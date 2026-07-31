@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/proxy-backend
+  entityRef: backstage/plugins/proxy-backend
   name: Proxy-backend Service Components
   source:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/plugins/proxy-backend/config-d
+  - entityRef: backstage/plugins/proxy-backend/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/proxy-backend/index
+  - entityRef: backstage/plugins/proxy-backend/index
     type: background-worker
     name: index Service
     isTest: false
@@ -79,7 +79,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/proxy-backend/plugin
+  - entityRef: backstage/plugins/proxy-backend/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -117,7 +117,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/proxy-backend/setuptests
+  - entityRef: backstage/plugins/proxy-backend/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -152,7 +152,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/proxy-backend/router
+  - entityRef: backstage/plugins/proxy-backend/router
     type: rest-api
     name: router Service
     isTest: false
@@ -187,7 +187,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/proxy-backend/router-config-test
+  - entityRef: backstage/plugins/proxy-backend/router-config-test
     type: rest-api
     name: router.config.test Service
     isTest: true
@@ -222,7 +222,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/proxy-backend/router-test
+  - entityRef: backstage/plugins/proxy-backend/router-test
     type: rest-api
     name: router.test Service
     isTest: true
@@ -260,7 +260,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/proxy-backend/router-credentials-test
+  - entityRef: backstage/plugins/proxy-backend/router-credentials-test
     type: rest-api
     name: router.credentials.test Service
     isTest: true
@@ -296,35 +296,35 @@ nodes:
       sinceDays: 60
       shortChurnDays: 30
 dependencies:
-  - from: blueprint/plugins/proxy-backend/index
-    to: blueprint/plugins/proxy-node/alpha
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-node/alpha
     type: direct-call
     description: '@backstage/plugin-proxy-node'
-  - from: blueprint/plugins/proxy-backend/plugin
-    to: blueprint/plugins/proxy-backend/router
+  - from: backstage/plugins/proxy-backend/plugin
+    to: backstage/plugins/proxy-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/proxy-backend/plugin
-    to: blueprint/plugins/proxy-node/alpha
+  - from: backstage/plugins/proxy-backend/plugin
+    to: backstage/plugins/proxy-node/alpha
     type: direct-call
     description: '@backstage/plugin-proxy-node'
-  - from: blueprint/plugins/proxy-backend/index
-    to: blueprint/plugins/proxy-backend/plugin
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/proxy-backend/router
-    to: blueprint/plugins/proxy-node/alpha
+  - from: backstage/plugins/proxy-backend/router
+    to: backstage/plugins/proxy-node/alpha
     type: direct-call
     description: '@backstage/plugin-proxy-node'
-  - from: blueprint/plugins/proxy-backend/router-test
-    to: blueprint/plugins/proxy-backend/router
+  - from: backstage/plugins/proxy-backend/router-test
+    to: backstage/plugins/proxy-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/proxy-backend/index
-    to: blueprint/plugins/proxy-backend/router
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/proxy-backend/index
-    to: blueprint/plugins/proxy-backend/router
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-backend/router
     type: direct-call
     description: Calls module / service

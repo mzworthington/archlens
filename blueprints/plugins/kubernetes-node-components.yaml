@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/kubernetes-node
+  entityRef: backstage/plugins/kubernetes-node
   name: Kubernetes-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/kubernetes-node/types
+  - entityRef: backstage/plugins/kubernetes-node/types
     type: background-worker
     name: types Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-node/index
+  - entityRef: backstage/plugins/kubernetes-node/index
     type: background-worker
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-node/pinnipedhelper-test
+  - entityRef: backstage/plugins/kubernetes-node/pinnipedhelper-test
     type: background-worker
     name: PinnipedHelper.test Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-node/pinnipedhelper
+  - entityRef: backstage/plugins/kubernetes-node/pinnipedhelper
     type: background-worker
     name: PinnipedHelper Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-node/extensions
+  - entityRef: backstage/plugins/kubernetes-node/extensions
     type: rest-api
     name: extensions Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-node/setuptests
+  - entityRef: backstage/plugins/kubernetes-node/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/kubernetes-backend/aksstrategy
+  - entityRef: backstage/plugins/kubernetes-backend/aksstrategy
     type: background-worker
     name: AksStrategy Service (External)
     external: true
@@ -225,7 +225,7 @@ nodes:
     position:
       x: -8410
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/anonymousstrategy
+  - entityRef: backstage/plugins/kubernetes-backend/anonymousstrategy
     type: background-worker
     name: AnonymousStrategy Service (External)
     external: true
@@ -237,7 +237,7 @@ nodes:
     position:
       x: -7950
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-react/auth
+  - entityRef: backstage/plugins/kubernetes-react/auth
     type: background-worker
     name: auth Service (External)
     external: true
@@ -249,7 +249,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/kubernetes-backend/awsiamstrategy
+  - entityRef: backstage/plugins/kubernetes-backend/awsiamstrategy
     type: background-worker
     name: AwsIamStrategy Service (External)
     external: true
@@ -261,7 +261,7 @@ nodes:
     position:
       x: -7490
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/azureidentitystrategy
+  - entityRef: backstage/plugins/kubernetes-backend/azureidentitystrategy
     type: background-worker
     name: AzureIdentityStrategy Service (External)
     external: true
@@ -273,7 +273,7 @@ nodes:
     position:
       x: -7030
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/builddefaultauthstrategymap
+  - entityRef: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
     type: background-worker
     name: buildDefaultAuthStrategyMap Service (External)
     external: true
@@ -285,7 +285,7 @@ nodes:
     position:
       x: -6570
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/builddefaultservicelocator
+  - entityRef: backstage/plugins/kubernetes-backend/builddefaultservicelocator
     type: background-worker
     name: buildDefaultServiceLocator Service (External)
     external: true
@@ -297,7 +297,7 @@ nodes:
     position:
       x: -6110
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/catalogclusterlocator
+  - entityRef: backstage/plugins/kubernetes-backend/catalogclusterlocator
     type: background-worker
     name: CatalogClusterLocator Service (External)
     external: true
@@ -309,7 +309,7 @@ nodes:
     position:
       x: -5650
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/catalogrelationservicelocator
+  - entityRef: backstage/plugins/kubernetes-backend/catalogrelationservicelocator
     type: background-worker
     name: CatalogRelationServiceLocator Service (External)
     external: true
@@ -321,7 +321,7 @@ nodes:
     position:
       x: -5190
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/catalogrelationservicelocator-test
+  - entityRef: backstage/plugins/kubernetes-backend/catalogrelationservicelocator-test
     type: background-worker
     name: CatalogRelationServiceLocator.test Service (External)
     external: true
@@ -333,7 +333,7 @@ nodes:
     position:
       x: -4730
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/configclusterlocator
+  - entityRef: backstage/plugins/kubernetes-backend/configclusterlocator
     type: background-worker
     name: ConfigClusterLocator Service (External)
     external: true
@@ -345,7 +345,7 @@ nodes:
     position:
       x: -4270
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/configclusterlocator-test
+  - entityRef: backstage/plugins/kubernetes-backend/configclusterlocator-test
     type: background-worker
     name: ConfigClusterLocator.test Service (External)
     external: true
@@ -357,7 +357,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/dispatchstrategy
+  - entityRef: backstage/plugins/kubernetes-backend/dispatchstrategy
     type: background-worker
     name: DispatchStrategy Service (External)
     external: true
@@ -369,7 +369,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/dispatchstrategy-test
+  - entityRef: backstage/plugins/kubernetes-backend/dispatchstrategy-test
     type: background-worker
     name: DispatchStrategy.test Service (External)
     external: true
@@ -381,7 +381,7 @@ nodes:
     position:
       x: -2890
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/gkeclusterlocator
+  - entityRef: backstage/plugins/kubernetes-backend/gkeclusterlocator
     type: background-worker
     name: GkeClusterLocator Service (External)
     external: true
@@ -393,7 +393,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/googleserviceaccountstrategy
+  - entityRef: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
     type: background-worker
     name: GoogleServiceAccountStrategy Service (External)
     external: true
@@ -405,7 +405,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/googlestrategy
+  - entityRef: backstage/plugins/kubernetes-backend/googlestrategy
     type: background-worker
     name: GoogleStrategy Service (External)
     external: true
@@ -417,7 +417,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-common/index
+  - entityRef: backstage/plugins/kubernetes-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -429,7 +429,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/kubernetes-backend/index
+  - entityRef: backstage/plugins/kubernetes-backend/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -441,7 +441,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/index-test
+  - entityRef: backstage/plugins/kubernetes-backend/index-test
     type: background-worker
     name: index.test Service (External)
     external: true
@@ -453,7 +453,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
     type: background-worker
     name: KubernetesFanOutHandler Service (External)
     external: true
@@ -465,7 +465,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler-test
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
     type: background-worker
     name: KubernetesFanOutHandler.test Service (External)
     external: true
@@ -477,7 +477,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfetcher
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfetcher
     type: background-worker
     name: KubernetesFetcher Service (External)
     external: true
@@ -489,7 +489,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesfetcher-test
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfetcher-test
     type: background-worker
     name: KubernetesFetcher.test Service (External)
     external: true
@@ -501,7 +501,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesinitializer
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesinitializer
     type: background-worker
     name: KubernetesInitializer Service (External)
     external: true
@@ -513,7 +513,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesproxy
     type: rest-api
     name: KubernetesProxy Service (External)
     external: true
@@ -525,7 +525,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy-test
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesproxy-test
     type: rest-api
     name: KubernetesProxy.test Service (External)
     external: true
@@ -537,7 +537,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesrouter
     type: rest-api
     name: KubernetesRouter Service (External)
     external: true
@@ -549,7 +549,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter-test
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesrouter-test
     type: rest-api
     name: KubernetesRouter.test Service (External)
     external: true
@@ -561,7 +561,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/localkubectlproxylocator
+  - entityRef: backstage/plugins/kubernetes-backend/localkubectlproxylocator
     type: background-worker
     name: LocalKubectlProxyLocator Service (External)
     external: true
@@ -573,7 +573,7 @@ nodes:
     position:
       x: 4010
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/multitenantservicelocator
+  - entityRef: backstage/plugins/kubernetes-backend/multitenantservicelocator
     type: background-worker
     name: MultiTenantServiceLocator Service (External)
     external: true
@@ -585,7 +585,7 @@ nodes:
     position:
       x: 4470
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/multitenantservicelocator-test
+  - entityRef: backstage/plugins/kubernetes-backend/multitenantservicelocator-test
     type: background-worker
     name: MultiTenantServiceLocator.test Service (External)
     external: true
@@ -597,7 +597,7 @@ nodes:
     position:
       x: 4930
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/oidcstrategy
+  - entityRef: backstage/plugins/kubernetes-backend/oidcstrategy
     type: background-worker
     name: OidcStrategy Service (External)
     external: true
@@ -609,7 +609,7 @@ nodes:
     position:
       x: 5390
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/plugin
+  - entityRef: backstage/plugins/kubernetes-backend/plugin
     type: background-worker
     name: plugin Service (External)
     external: true
@@ -621,7 +621,7 @@ nodes:
     position:
       x: 5850
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/resourceroutes-test
+  - entityRef: backstage/plugins/kubernetes-backend/resourceroutes-test
     type: rest-api
     name: resourceRoutes.test Service (External)
     external: true
@@ -633,7 +633,7 @@ nodes:
     position:
       x: 6310
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/resourcesroutes
+  - entityRef: backstage/plugins/kubernetes-backend/resourcesroutes
     type: rest-api
     name: resourcesRoutes Service (External)
     external: true
@@ -645,7 +645,7 @@ nodes:
     position:
       x: 6770
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/serviceaccountstrategy
+  - entityRef: backstage/plugins/kubernetes-backend/serviceaccountstrategy
     type: background-worker
     name: ServiceAccountStrategy Service (External)
     external: true
@@ -657,7 +657,7 @@ nodes:
     position:
       x: 7230
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/singletenantservicelocator
+  - entityRef: backstage/plugins/kubernetes-backend/singletenantservicelocator
     type: background-worker
     name: SingleTenantServiceLocator Service (External)
     external: true
@@ -669,7 +669,7 @@ nodes:
     position:
       x: 7690
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/singletenantservicelocator-test
+  - entityRef: backstage/plugins/kubernetes-backend/singletenantservicelocator-test
     type: background-worker
     name: SingleTenantServiceLocator.test Service (External)
     external: true
@@ -681,7 +681,7 @@ nodes:
     position:
       x: 8150
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/types
+  - entityRef: backstage/plugins/kubernetes-backend/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -694,207 +694,207 @@ nodes:
       x: 8610
       y: -204
 dependencies:
-  - from: blueprint/plugins/kubernetes-node/types
-    to: blueprint/plugins/kubernetes-common/index
+  - from: backstage/plugins/kubernetes-node/types
+    to: backstage/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
-  - from: blueprint/plugins/kubernetes-node/index
-    to: blueprint/plugins/kubernetes-node/types
+  - from: backstage/plugins/kubernetes-node/index
+    to: backstage/plugins/kubernetes-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-node/pinnipedhelper-test
-    to: blueprint/plugins/kubernetes-node/types
+  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+    to: backstage/plugins/kubernetes-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-node/pinnipedhelper-test
-    to: blueprint/plugins/kubernetes-node/extensions
+  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+    to: backstage/plugins/kubernetes-node/extensions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-node/pinnipedhelper-test
-    to: blueprint/plugins/kubernetes-common/index
+  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+    to: backstage/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
-  - from: blueprint/plugins/kubernetes-node/pinnipedhelper-test
-    to: blueprint/plugins/kubernetes-node/pinnipedhelper
+  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+    to: backstage/plugins/kubernetes-node/pinnipedhelper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-node/pinnipedhelper-test
-    to: blueprint/plugins/kubernetes-backend/index
+  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+    to: backstage/plugins/kubernetes-backend/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-backend'
-  - from: blueprint/plugins/kubernetes-node/index
-    to: blueprint/plugins/kubernetes-node/pinnipedhelper
+  - from: backstage/plugins/kubernetes-node/index
+    to: backstage/plugins/kubernetes-node/pinnipedhelper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-node/pinnipedhelper
-    to: blueprint/plugins/kubernetes-node/types
+  - from: backstage/plugins/kubernetes-node/pinnipedhelper
+    to: backstage/plugins/kubernetes-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-node/extensions
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-node/extensions
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-node/index
-    to: blueprint/plugins/kubernetes-node/extensions
+  - from: backstage/plugins/kubernetes-node/index
+    to: backstage/plugins/kubernetes-node/extensions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-node/index
-    to: blueprint/plugins/kubernetes-node/types
+  - from: backstage/plugins/kubernetes-node/index
+    to: backstage/plugins/kubernetes-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-node/index
-    to: blueprint/plugins/kubernetes-react/auth
+  - from: backstage/plugins/kubernetes-node/index
+    to: backstage/plugins/kubernetes-react/auth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-backend/localkubectlproxylocator
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/localkubectlproxylocator
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/index-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/index-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/configclusterlocator
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/configclusterlocator
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/gkeclusterlocator
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/gkeclusterlocator
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/catalogclusterlocator
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/catalogclusterlocator
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/index
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/configclusterlocator-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/configclusterlocator-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/types
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/types
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/googleserviceaccountstrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/azureidentitystrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/azureidentitystrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/anonymousstrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/anonymousstrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/dispatchstrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/dispatchstrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/googlestrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/googlestrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/dispatchstrategy-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/dispatchstrategy-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/aksstrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/aksstrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/builddefaultauthstrategymap
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/oidcstrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/oidcstrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/awsiamstrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/awsiamstrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/serviceaccountstrategy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/serviceaccountstrategy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/plugin
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/plugin
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/builddefaultservicelocator
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/catalogrelationservicelocator
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/catalogrelationservicelocator
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/singletenantservicelocator-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/singletenantservicelocator-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/catalogrelationservicelocator-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/catalogrelationservicelocator-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/singletenantservicelocator
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/singletenantservicelocator
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/multitenantservicelocator
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/multitenantservicelocator
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/multitenantservicelocator-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/multitenantservicelocator-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesproxy-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesrouter
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesfetcher
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesfetcher-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesfanouthandler-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesinitializer
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesproxy
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesrouter-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/resourcesroutes
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/resourcesroutes
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: blueprint/plugins/kubernetes-backend/resourceroutes-test
-    to: blueprint/plugins/kubernetes-node/index
+  - from: backstage/plugins/kubernetes-backend/resourceroutes-test
+    to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'

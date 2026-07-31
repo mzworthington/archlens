@@ -2,47 +2,49 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useAutoLoadWorkspace } from './useAutoLoadWorkspace';
 import { useBlueprintStore } from '../../../../application/store/store';
+import { GOLDEN_PATHS_CONTEXT_PATH } from '../../../../application/store/defaultData';
 
 const setIsStartupOpen = vi.fn();
 const setLocation = vi.fn();
+
+vi.mock('wouter', () => ({
+  useLocation: () => ['/workspace', setLocation],
+}));
 
 describe('useAutoLoadWorkspace', () => {
   beforeEach(() => {
     setIsStartupOpen.mockClear();
     setLocation.mockClear();
-    try {
-      localStorage.removeItem('archlens.workspaceSession');
-    } catch {
-      /* ignore */
-    }
     useBlueprintStore.setState({
       loadedSystems: [],
       isWorkspaceOpen: false,
       loadBundledSandbox: vi.fn().mockResolvedValue(undefined),
-      restoreWorkspaceSession: vi.fn().mockResolvedValue(false),
+      selectSystem: vi.fn().mockResolvedValue(undefined),
     });
   });
 
-  it('restores a prior sandbox session on bare /workspace', async () => {
-    const restoreWorkspaceSession = vi.fn().mockResolvedValue(true);
-    useBlueprintStore.setState({ restoreWorkspaceSession });
-
-    renderHook(() => useAutoLoadWorkspace('/workspace', setIsStartupOpen, setLocation));
+  it('auto-loads the Golden Paths context on bare /workspace', async () => {
+    renderHook(() => useAutoLoadWorkspace('/workspace', setIsStartupOpen));
 
     await waitFor(() => {
-      expect(restoreWorkspaceSession).toHaveBeenCalled();
+      expect(useBlueprintStore.getState().loadBundledSandbox).toHaveBeenCalled();
     });
-    expect(setIsStartupOpen).toHaveBeenCalledWith(false);
-    expect(setLocation).toHaveBeenCalledWith('/workspace/blueprint', { replace: true });
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().selectSystem).toHaveBeenCalledWith(
+        GOLDEN_PATHS_CONTEXT_PATH
+      );
+      expect(setIsStartupOpen).toHaveBeenCalledWith(false);
+      expect(setLocation).toHaveBeenCalledWith('/workspace/golden-paths', {
+        replace: true,
+      });
+    });
   });
 
-  it('keeps the startup chooser open for first-time visitors', async () => {
-    renderHook(() => useAutoLoadWorkspace('/workspace', setIsStartupOpen, setLocation));
+  it('does nothing on deep-linked workspace routes', () => {
+    renderHook(() => useAutoLoadWorkspace('/workspace/application', setIsStartupOpen));
 
-    await waitFor(() => {
-      expect(useBlueprintStore.getState().restoreWorkspaceSession).toHaveBeenCalled();
-    });
-    expect(setIsStartupOpen).not.toHaveBeenCalledWith(false);
-    expect(setLocation).not.toHaveBeenCalled();
+    expect(setIsStartupOpen).not.toHaveBeenCalled();
+    expect(useBlueprintStore.getState().loadBundledSandbox).not.toHaveBeenCalled();
   });
 });

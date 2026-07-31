@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-backend-module-ai-model
+  entityRef: backstage/plugins/catalog-backend-module-ai-model
   name: Catalog-backend-module-ai-model Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-ai-model/module
+  - entityRef: backstage/plugins/catalog-backend-module-ai-model/module
     type: background-worker
     name: module Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ai-model/module-test
+  - entityRef: backstage/plugins/catalog-backend-module-ai-model/module-test
     type: background-worker
     name: module.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-ai-model/index
+  - entityRef: backstage/plugins/catalog-backend-module-ai-model/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-node/alpha
+  - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -124,19 +124,19 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-ai-model/module
-    to: blueprint/plugins/catalog-node/alpha
+  - from: backstage/plugins/catalog-backend-module-ai-model/module
+    to: backstage/plugins/catalog-node/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-ai-model/module-test
-    to: blueprint/plugins/catalog-node/alpha
+  - from: backstage/plugins/catalog-backend-module-ai-model/module-test
+    to: backstage/plugins/catalog-node/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-ai-model/module-test
-    to: blueprint/plugins/catalog-backend-module-ai-model/module
+  - from: backstage/plugins/catalog-backend-module-ai-model/module-test
+    to: backstage/plugins/catalog-backend-module-ai-model/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-ai-model/index
-    to: blueprint/plugins/catalog-backend-module-ai-model/module
+  - from: backstage/plugins/catalog-backend-module-ai-model/index
+    to: backstage/plugins/catalog-backend-module-ai-model/module
     type: direct-call
     description: Calls module / service

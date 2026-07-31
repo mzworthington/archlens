@@ -4,12 +4,25 @@ import {
   loadChaoslensLargeGraphDiagram,
   runChaoslensDomainOrdersOutageDemo,
 } from '../helpers/chaoslens';
+import { loadGoldenJourneyDiagram, runGoldenJourneyOutageDemo } from '../helpers/goldenJourney';
 import { runTraceLensDemo } from '../helpers/tracelensDemo';
 import { loadSandbox } from '../helpers/workspace';
 import { drillIntoZoomable, expectCanvasReady } from '../helpers/canvas';
 
 test.describe('docs media recordings', () => {
   test.skip(!RECORD_DOCS_MEDIA, 'Set RECORD_DOCS_MEDIA=1 to record docs media');
+
+  test('golden-journey.gif', async ({ page }, testInfo) => {
+    const recordingStartedAt = Date.now();
+    await loadGoldenJourneyDiagram(page);
+    await runGoldenJourneyOutageDemo(page, {
+      onRecordingStart: () => {
+        writeRecordingTrimMarker(testInfo.outputDir, (Date.now() - recordingStartedAt) / 1000);
+      },
+    });
+    await page.waitForTimeout(600);
+  });
+
   test('chaoslens.gif', async ({ page }, testInfo) => {
     const recordingStartedAt = Date.now();
     await loadChaoslensLargeGraphDiagram(page);

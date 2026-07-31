@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/cli-module-test-jest
+  entityRef: backstage/packages/cli-module-test-jest
   name: Cli-module-test-jest Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/cli-module-test-jest/test-test
+  - entityRef: backstage/packages/cli-module-test-jest/test-test
     type: background-worker
     name: test.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-module-test-jest/test
+  - entityRef: backstage/packages/cli-module-test-jest/test
     type: background-worker
     name: test Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-module-test-jest/index
+  - entityRef: backstage/packages/cli-module-test-jest/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/index
+  - entityRef: backstage/packages/cli-node/index
     type: cache-store
     name: index Service (External)
     external: true
@@ -123,7 +123,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/packages/cli-common/index
+  - entityRef: backstage/packages/cli-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -135,7 +135,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/packages/cli-defaults/index
+  - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -148,23 +148,23 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/packages/cli-module-test-jest/test-test
-    to: blueprint/packages/cli-module-test-jest/test
+  - from: backstage/packages/cli-module-test-jest/test-test
+    to: backstage/packages/cli-module-test-jest/test
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-module-test-jest/test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-test-jest/test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-test-jest/test
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-module-test-jest/test
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-module-test-jest/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-test-jest/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-defaults/index
-    to: blueprint/packages/cli-module-test-jest/index
+  - from: backstage/packages/cli-defaults/index
+    to: backstage/packages/cli-module-test-jest/index
     type: direct-call
     description: '@backstage/cli-module-test-jest'

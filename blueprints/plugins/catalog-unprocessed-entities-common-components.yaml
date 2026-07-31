@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-unprocessed-entities-common
+  entityRef: backstage/plugins/catalog-unprocessed-entities-common
   name: Catalog-unprocessed-entities-common Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - entityRef: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: background-worker
     name: permissions Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/setuptests
+  - entityRef: backstage/plugins/catalog-unprocessed-entities-common/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/types
+  - entityRef: backstage/plugins/catalog-unprocessed-entities-common/types
     type: background-worker
     name: types Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/api
+  - entityRef: backstage/plugins/catalog-unprocessed-entities-common/api
     type: rest-api
     name: api Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/index
+  - entityRef: backstage/plugins/catalog-unprocessed-entities-common/index
     type: rest-api
     name: index Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend/alpha
+  - entityRef: backstage/plugins/catalog-backend/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -191,7 +191,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedentitiescatalog-test
+  - entityRef: backstage/plugins/catalog-backend/authorizedentitiescatalog-test
     type: background-worker
     name: AuthorizedEntitiesCatalog.test Service (External)
     external: true
@@ -203,7 +203,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/catalogplugin-test
+  - entityRef: backstage/plugins/catalog-backend/catalogplugin-test
     type: background-worker
     name: CatalogPlugin.test Service (External)
     external: true
@@ -215,7 +215,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -227,7 +227,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/catalog-unprocessed-entities/index
+  - entityRef: backstage/plugins/catalog-unprocessed-entities/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -239,7 +239,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-unprocessed/module
+  - entityRef: backstage/plugins/catalog-backend-module-unprocessed/module
     type: background-worker
     name: module Service (External)
     external: true
@@ -251,7 +251,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/plugins/permission-common/permissionclient
+  - entityRef: backstage/plugins/permission-common/permissionclient
     type: background-worker
     name: PermissionClient Service (External)
     external: true
@@ -263,7 +263,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/plugins/permission-common/permissionclient-test
+  - entityRef: backstage/plugins/permission-common/permissionclient-test
     type: background-worker
     name: PermissionClient.test Service (External)
     external: true
@@ -275,7 +275,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/plugins/catalog-unprocessed-entities/types
+  - entityRef: backstage/plugins/catalog-unprocessed-entities/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -287,7 +287,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+  - entityRef: backstage/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
     type: rest-api
     name: UnprocessedEntitiesModule Service (External)
     external: true
@@ -300,67 +300,67 @@ nodes:
       x: -1510
       y: -204
 dependencies:
-  - from: blueprint/plugins/catalog-unprocessed-entities-common/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-unprocessed-entities-common/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-unprocessed-entities-common/api
-    to: blueprint/plugins/catalog-unprocessed-entities-common/types
+  - from: backstage/plugins/catalog-unprocessed-entities-common/api
+    to: backstage/plugins/catalog-unprocessed-entities-common/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-unprocessed-entities-common/index
-    to: blueprint/plugins/catalog-unprocessed-entities-common/api
+  - from: backstage/plugins/catalog-unprocessed-entities-common/index
+    to: backstage/plugins/catalog-unprocessed-entities-common/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-unprocessed-entities-common/index
-    to: blueprint/plugins/catalog-unprocessed-entities-common/api
+  - from: backstage/plugins/catalog-unprocessed-entities-common/index
+    to: backstage/plugins/catalog-unprocessed-entities-common/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-unprocessed-entities-common/index
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/catalog-unprocessed-entities-common/index
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-unprocessed-entities-common/index
-    to: blueprint/plugins/catalog-unprocessed-entities-common/types
+  - from: backstage/plugins/catalog-unprocessed-entities-common/index
+    to: backstage/plugins/catalog-unprocessed-entities-common/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/alpha
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/catalog-backend/alpha
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/catalogplugin-test
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/catalog-backend/catalogplugin-test
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend/authorizedentitiescatalog-test
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/catalog-backend/authorizedentitiescatalog-test
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-unprocessed-entities/types
-    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+  - from: backstage/plugins/catalog-unprocessed-entities/types
+    to: backstage/plugins/catalog-unprocessed-entities-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-unprocessed-entities-common'
-  - from: blueprint/plugins/catalog-unprocessed-entities/index
-    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+  - from: backstage/plugins/catalog-unprocessed-entities/index
+    to: backstage/plugins/catalog-unprocessed-entities-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-unprocessed-entities-common'
-  - from: blueprint/plugins/catalog-backend-module-unprocessed/module
-    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+  - from: backstage/plugins/catalog-backend-module-unprocessed/module
+    to: backstage/plugins/catalog-unprocessed-entities-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-unprocessed-entities-common'
-  - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
-    to: blueprint/plugins/catalog-unprocessed-entities-common/index
+  - from: backstage/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+    to: backstage/plugins/catalog-unprocessed-entities-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-unprocessed-entities-common'
-  - from: blueprint/plugins/permission-common/permissionclient
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/permission-common/permissionclient
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient-test
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/permission-common/permissionclient-test
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service

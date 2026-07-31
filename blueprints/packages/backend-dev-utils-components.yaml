@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/backend-dev-utils
+  entityRef: backstage/packages/backend-dev-utils
   name: Backend-dev-utils Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/backend-dev-utils/devdatastore
+  - entityRef: backstage/packages/backend-dev-utils/devdatastore
     type: background-worker
     name: DevDataStore Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-dev-utils/setuptests
+  - entityRef: backstage/packages/backend-dev-utils/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-dev-utils/devdatastore-test
+  - entityRef: backstage/packages/backend-dev-utils/devdatastore-test
     type: background-worker
     name: DevDataStore.test Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-dev-utils/ipcclient
+  - entityRef: backstage/packages/backend-dev-utils/ipcclient
     type: background-worker
     name: ipcClient Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-dev-utils/index
+  - entityRef: backstage/packages/backend-dev-utils/index
     type: background-worker
     name: index Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-defaults/sqlite3
+  - entityRef: backstage/packages/backend-defaults/sqlite3
     type: relational-database
     name: sqlite3 Service (External)
     external: true
@@ -192,23 +192,23 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/packages/backend-dev-utils/devdatastore
-    to: blueprint/packages/backend-dev-utils/ipcclient
+  - from: backstage/packages/backend-dev-utils/devdatastore
+    to: backstage/packages/backend-dev-utils/ipcclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-dev-utils/devdatastore-test
-    to: blueprint/packages/backend-dev-utils/devdatastore
+  - from: backstage/packages/backend-dev-utils/devdatastore-test
+    to: backstage/packages/backend-dev-utils/devdatastore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-dev-utils/devdatastore-test
-    to: blueprint/packages/backend-dev-utils/ipcclient
+  - from: backstage/packages/backend-dev-utils/devdatastore-test
+    to: backstage/packages/backend-dev-utils/ipcclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-dev-utils/index
-    to: blueprint/packages/backend-dev-utils/devdatastore
+  - from: backstage/packages/backend-dev-utils/index
+    to: backstage/packages/backend-dev-utils/devdatastore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/sqlite3
-    to: blueprint/packages/backend-dev-utils/index
+  - from: backstage/packages/backend-defaults/sqlite3
+    to: backstage/packages/backend-dev-utils/index
     type: direct-call
     description: '@backstage/backend-dev-utils'

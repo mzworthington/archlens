@@ -43,7 +43,7 @@ describe('schemaCompare', () => {
         ...base.dependencies,
         {
           from: 'blueprint/app/cli',
-          to: 'blueprint/blueprint',
+          to: 'application/blueprint',
           type: 'direct-call',
           description: 'Part of product system',
         },
@@ -70,7 +70,7 @@ describe('schemaCompare', () => {
       ...base,
       dependencies: [
         {
-          from: 'blueprint/blueprint',
+          from: 'application/blueprint',
           to: 'blueprint/app/cli',
           type: 'direct-call',
           description: 'Part of product system',
@@ -94,12 +94,12 @@ describe('schemaCompare', () => {
       level: 'context',
       entityRef: 'blueprint',
       nodes: [
-        { entityRef: 'blueprint/hub', type: 'group', name: 'Hub' },
+        { entityRef: 'application/hub', type: 'group', name: 'Hub' },
         {
-          entityRef: 'blueprint/child',
+          entityRef: 'application/child',
           type: 'software-system',
           name: 'Child',
-          parentEntityRef: 'blueprint/hub',
+          parentEntityRef: 'application/hub',
         },
       ],
       dependencies: [],
@@ -107,9 +107,9 @@ describe('schemaCompare', () => {
     const staleDraft: SystemSchema = {
       ...disk,
       nodes: [
-        { entityRef: 'blueprint/hub', type: 'group', name: 'Hub', position: { x: 10, y: 20 } },
+        { entityRef: 'application/hub', type: 'group', name: 'Hub', position: { x: 10, y: 20 } },
         {
-          entityRef: 'blueprint/child',
+          entityRef: 'application/child',
           type: 'software-system',
           name: 'Child',
           position: { x: 30, y: 40 },

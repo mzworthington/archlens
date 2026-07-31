@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/search-backend-module-catalog
+  entityRef: backstage/plugins/search-backend-module-catalog
   name: Search-backend-module-catalog Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/search-backend-module-catalog/config-d
+  - entityRef: backstage/plugins/search-backend-module-catalog/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/module
+  - entityRef: backstage/plugins/search-backend-module-catalog/module
     type: background-worker
     name: module Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/module-test
+  - entityRef: backstage/plugins/search-backend-module-catalog/module-test
     type: background-worker
     name: module.test Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/index
+  - entityRef: backstage/plugins/search-backend-module-catalog/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+  - entityRef: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
     type: background-worker
     name: defaultCatalogCollatorEntityTransformer Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     type: background-worker
     name: DefaultCatalogCollatorFactory Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer-test
+  - entityRef: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer-test
     type: background-worker
     name: defaultCatalogCollatorEntityTransformer.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+  - entityRef: backstage/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
     type: background-worker
     name: CatalogCollatorEntityTransformer Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/config
+  - entityRef: backstage/plugins/search-backend-module-catalog/config
     type: background-worker
     name: config Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/config-test
+  - entityRef: backstage/plugins/search-backend-module-catalog/config-test
     type: background-worker
     name: config.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+  - entityRef: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
     type: background-worker
     name: DefaultCatalogCollatorFactory.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/alpha
+  - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -395,7 +395,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/catalog-common/alpha
+  - entityRef: backstage/plugins/catalog-common/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -407,7 +407,7 @@ nodes:
     position:
       x: -1510
       y: 404
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -419,7 +419,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
+  - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -431,7 +431,7 @@ nodes:
     position:
       x: -1050
       y: 404
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -443,7 +443,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -455,7 +455,7 @@ nodes:
     position:
       x: 1710
       y: 404
-  - entityRef: blueprint/plugins/search-backend-node/index
+  - entityRef: backstage/plugins/search-backend-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -467,7 +467,7 @@ nodes:
     position:
       x: 1250
       y: 404
-  - entityRef: blueprint/plugins/catalog-node/testutils
+  - entityRef: backstage/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -480,99 +480,99 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/search-backend-module-catalog/module
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/search-backend-module-catalog/module
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/search-backend-module-catalog/module
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-catalog/module
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/module
-    to: blueprint/plugins/search-backend-module-catalog/config
+  - from: backstage/plugins/search-backend-module-catalog/module
+    to: backstage/plugins/search-backend-module-catalog/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/module
-    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+  - from: backstage/plugins/search-backend-module-catalog/module
+    to: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/module-test
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-catalog/module-test
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/module-test
-    to: blueprint/plugins/search-backend-module-catalog/module
+  - from: backstage/plugins/search-backend-module-catalog/module-test
+    to: backstage/plugins/search-backend-module-catalog/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/index
-    to: blueprint/plugins/search-backend-module-catalog/module
+  - from: backstage/plugins/search-backend-module-catalog/index
+    to: backstage/plugins/search-backend-module-catalog/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
-    to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+    to: backstage/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/search-backend-module-catalog/config
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/search-backend-module-catalog/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer-test
-    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer-test
+    to: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/search-backend-module-catalog/index
-    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
+  - from: backstage/plugins/search-backend-module-catalog/index
+    to: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorentitytransformer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/index
-    to: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+  - from: backstage/plugins/search-backend-module-catalog/index
+    to: backstage/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/config-test
-    to: blueprint/plugins/search-backend-module-catalog/config
+  - from: backstage/plugins/search-backend-module-catalog/config-test
+    to: backstage/plugins/search-backend-module-catalog/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
-    to: blueprint/plugins/catalog-node/testutils
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
-    to: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory-test
+    to: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     type: direct-call
     description: Calls module / service

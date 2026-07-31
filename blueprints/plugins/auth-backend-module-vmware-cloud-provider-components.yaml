@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/auth-backend-module-vmware-cloud-provider
+  entityRef: backstage/plugins/auth-backend-module-vmware-cloud-provider
   name: Auth-backend-module-vmware-cloud-provider Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/auth-backend-module-vmware-cloud-provider/config-d
+  - entityRef: backstage/plugins/auth-backend-module-vmware-cloud-provider/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-vmware-cloud-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-vmware-cloud-provider/index
     type: background-worker
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module
+  - entityRef: backstage/plugins/auth-backend-module-vmware-cloud-provider/module
     type: background-worker
     name: module Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module-test
+  - entityRef: backstage/plugins/auth-backend-module-vmware-cloud-provider/module-test
     type: background-worker
     name: module.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-vmware-cloud-provider/authenticator-test
+  - entityRef: backstage/plugins/auth-backend-module-vmware-cloud-provider/authenticator-test
     type: background-worker
     name: authenticator.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-vmware-cloud-provider/authenticator
+  - entityRef: backstage/plugins/auth-backend-module-vmware-cloud-provider/authenticator
     type: background-worker
     name: authenticator Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/home/config
+  - entityRef: backstage/plugins/home/config
     type: rest-api
     name: config Service (External)
     external: true
@@ -225,7 +225,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/auth-node/index
+  - entityRef: backstage/plugins/auth-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -238,43 +238,43 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/module
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module
-    to: blueprint/plugins/auth-backend-module-vmware-cloud-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/module
+    to: backstage/plugins/auth-backend-module-vmware-cloud-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module-test
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/module-test
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module-test
-    to: blueprint/plugins/home/config
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/module-test
+    to: backstage/plugins/home/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module-test
-    to: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/module-test
+    to: backstage/plugins/auth-backend-module-vmware-cloud-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/authenticator-test
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/authenticator-test
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/authenticator-test
-    to: blueprint/plugins/auth-backend-module-vmware-cloud-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/authenticator-test
+    to: backstage/plugins/auth-backend-module-vmware-cloud-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/index
-    to: blueprint/plugins/auth-backend-module-vmware-cloud-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/index
+    to: backstage/plugins/auth-backend-module-vmware-cloud-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/index
-    to: blueprint/plugins/auth-backend-module-vmware-cloud-provider/module
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/index
+    to: backstage/plugins/auth-backend-module-vmware-cloud-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-vmware-cloud-provider/authenticator
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/authenticator
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'

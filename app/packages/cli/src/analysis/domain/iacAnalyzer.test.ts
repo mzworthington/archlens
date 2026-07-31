@@ -80,7 +80,7 @@ resource "aws_iam_role" "lambda" {
     expect(lambda?.properties?.filepath).toBe('infra/main.tf');
     expect(schema.dependencies.length).toBeGreaterThanOrEqual(1);
 
-    const contextPath = path.resolve('/repo/blueprints/context.yaml');
+    const contextPath = path.resolve('/repo/blueprints/acme/context.yaml');
     expect(fs.writtenFiles.has(contextPath)).toBe(true);
     const context = parseSchemaFromYaml(fs.writtenFiles.get(contextPath)!);
 
@@ -140,7 +140,7 @@ resources:
     ).toBe(true);
 
     const context = parseSchemaFromYaml(
-      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/acme/context.yaml'))!
     );
     expect(context.nodes.find(n => n.entityRef === 'acme/infra')).toMatchObject({
       parentEntityRef: undefined,
@@ -224,7 +224,7 @@ k8s_cluster = Cluster(
     expect(result.pulumiRoots).toBe(1);
 
     const context = parseSchemaFromYaml(
-      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/acme/context.yaml'))!
     );
     expect(context.nodes.some(n => n.entityRef === 'acme/tf-stack')).toBe(true);
     expect(context.nodes.some(n => n.entityRef === 'acme/pu-stack')).toBe(true);
@@ -254,7 +254,7 @@ k8s_cluster = Cluster(
     expect(result.rootsAnalyzed).toBe(2);
 
     const context = parseSchemaFromYaml(
-      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/acme/context.yaml'))!
     );
     expect(
       context.nodes.filter(n => n.entityRef === 'acme/stack-a' || n.entityRef === 'acme/stack-b')
@@ -284,11 +284,11 @@ k8s_cluster = Cluster(
     await analyzer.run('blueprint', out, { scanRoot: scan, discoveredSystems });
 
     const context = parseSchemaFromYaml(
-      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/backstage/context.yaml'))!
     );
-    expect(context.nodes.find(n => n.entityRef === 'blueprint/backstage')?.type).toBe('group');
-    expect(context.nodes.find(n => n.entityRef === 'blueprint/techdocs-s3-storage')).toMatchObject({
-      parentEntityRef: 'blueprint/backstage',
+    expect(context.nodes.find(n => n.entityRef === 'backstage')?.type).toBe('group');
+    expect(context.nodes.find(n => n.entityRef === 'backstage/techdocs-s3-storage')).toMatchObject({
+      parentEntityRef: 'backstage',
       properties: expect.objectContaining({ productId: 'backstage' }),
     });
   });
@@ -317,7 +317,7 @@ k8s_cluster = Cluster(
     await analyzer.run('Acme', out, { scanRoot: scan, discoveredSystems: fallbackRepo });
 
     const context = parseSchemaFromYaml(
-      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/acme/context.yaml'))!
     );
     expect(context.nodes.find(n => n.entityRef === 'acme/aws')).toMatchObject({
       type: 'group',
@@ -361,7 +361,7 @@ k8s_cluster = Cluster(
     await analyzer.run('Acme', out, { scanRoot: scan, discoveredSystems });
 
     const context = parseSchemaFromYaml(
-      fs.writtenFiles.get(path.resolve('/repo/blueprints/context.yaml'))!
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/acme/context.yaml'))!
     );
     expect(context.nodes.find(n => n.entityRef === 'acme/aws')).toBeUndefined();
     expect(context.nodes.find(n => n.entityRef === 'acme/terraform-examples')?.type).toBe('group');

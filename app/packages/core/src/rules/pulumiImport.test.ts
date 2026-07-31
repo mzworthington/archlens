@@ -223,7 +223,7 @@ k8s_cluster = Cluster(
 `;
     const result = parsePulumiToSchema(py, {
       targetLevel: 'container',
-      parentEntityRef: 'blueprint/gcp-py-gke',
+      parentEntityRef: 'application/gcp-py-gke',
       sourceFormat: 'python',
     });
 
@@ -246,7 +246,7 @@ compute_network = compute.Network(
 `;
     const result = parsePulumiToSchema(py, {
       targetLevel: 'container',
-      parentEntityRef: 'blueprint/gcp-py-webserver',
+      parentEntityRef: 'application/gcp-py-webserver',
       sourceFormat: 'python',
     });
 

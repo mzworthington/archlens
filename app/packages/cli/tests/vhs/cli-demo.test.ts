@@ -77,6 +77,6 @@ describe('CLI VHS demo', () => {
 
     expect(existsSync(gifPath)).toBe(true);
     expect(statSync(gifPath).size).toBeGreaterThan(10_000);
-    expect(existsSync(path.join(demoOutput, 'context.yaml'))).toBe(true);
+    expect(existsSync(path.join(demoOutput, 'application', 'context.yaml'))).toBe(true);
   }, 300_000);
 });

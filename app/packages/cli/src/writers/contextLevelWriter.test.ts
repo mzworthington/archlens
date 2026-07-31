@@ -7,7 +7,7 @@ import {
   topLevelSystemNodes,
 } from './contextLevelWriter.ts';
 import { MockFileSystem, MockLogger } from '../test/fakes.ts';
-import { parseSchemaFromYaml } from '@archlens/core';
+import { parseSchemaFromYaml, serializeSchemaToYaml } from '@archlens/core';
 
 describe('topLevelSystemNodes', () => {
   it('returns nodes without a visual parent, excluding the person', () => {
@@ -81,7 +81,9 @@ describe('ContextLevelWriter', () => {
   it('should write context schema with correct entityRef', async () => {
     await writer.write('/workspace/blueprints', 'my-context', 'my-system');
 
-    const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
+    const yamlContent = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/my-context/context.yaml'
+    )!;
     expect(yamlContent).toContain('entityRef: my-context');
     expect(yamlContent).toContain('name: My Context');
     expect(yamlContent).toContain('entityRef: my-context/my-system');
@@ -96,15 +98,19 @@ describe('ContextLevelWriter', () => {
   it('should use an explicit display name when provided', async () => {
     await writer.write('/workspace/blueprints', 'blueprint', 'packages', 'Packages');
 
-    const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
+    const yamlContent = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/backstage/context.yaml'
+    )!;
     expect(yamlContent).toContain('name: Packages System');
-    expect(yamlContent).toContain('entityRef: blueprint/packages');
+    expect(yamlContent).toContain('entityRef: backstage/packages');
   });
 
   it('should slugify context name in entityRef', async () => {
     await writer.write('/workspace/blueprints', 'My Context Name', 'my-system');
 
-    const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
+    const yamlContent = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/my-context-name/context.yaml'
+    )!;
     expect(yamlContent).toContain('entityRef: my-context-name');
     expect(yamlContent).toContain('name: My Context Name');
   });
@@ -113,9 +119,15 @@ describe('ContextLevelWriter', () => {
     await writer.write('/workspace/blueprints', 'blueprint', 'blueprint');
     await writer.write('/workspace/blueprints', 'blueprint', 'backstage');
 
-    const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
-    expect(yamlContent).toContain('entityRef: blueprint/blueprint');
-    expect(yamlContent).toContain('entityRef: blueprint/backstage');
+    const blueprintYaml = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/blueprint/context.yaml'
+    )!;
+    expect(blueprintYaml).toContain('entityRef: blueprint');
+
+    const backstageYaml = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/backstage/context.yaml'
+    )!;
+    expect(backstageYaml).toContain('entityRef: backstage');
   });
 
   it('emits a group frame when systems nest under a shared folder parent', async () => {
@@ -143,7 +155,7 @@ describe('ContextLevelWriter', () => {
     ]);
 
     const schema = parseSchemaFromYaml(
-      fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!
+      fileSystem.writtenFiles.get('/workspace/blueprints/ctx/context.yaml')!
     );
     expect(schema.nodes.find(n => n.entityRef === 'ctx/aws')?.type).toBe('group');
     expect(schema.nodes.find(n => n.entityRef === 'ctx/aws-lambda-api')?.parentEntityRef).toBe(
@@ -178,7 +190,7 @@ describe('ContextLevelWriter', () => {
     ]);
 
     const schema = parseSchemaFromYaml(
-      fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!
+      fileSystem.writtenFiles.get('/workspace/blueprints/ctx/context.yaml')!
     );
     expect(schema.nodes.find(n => n.entityRef === 'ctx/aws')).toBeUndefined();
     expect(schema.nodes.find(n => n.entityRef === 'ctx/terraform-examples')?.type).toBe('group');
@@ -232,38 +244,87 @@ describe('ContextLevelWriter', () => {
       },
     ]);
 
-    const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
-    expect(yamlContent).toContain('type: group');
-    expect(yamlContent).toContain('entityRef: ctx/backstage');
-    expect(yamlContent).toContain('parentEntityRef: ctx/backstage');
-    expect(yamlContent).toContain('entityRef: ctx/packages');
-    expect(yamlContent).not.toContain('Part of product system');
-    expect(yamlContent).toContain('entityRef: ctx/blueprint');
-    expect(yamlContent).not.toMatch(/from: ctx\/blueprint[\s\S]*to: ctx\/(packages|backstage)/);
+    const blueprintYaml = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/blueprint/context.yaml'
+    )!;
+    expect(blueprintYaml).toContain('entityRef: blueprint');
 
-    const schema = parseSchemaFromYaml(yamlContent);
-    const person = schema.nodes.find(n => n.type === 'person');
-    expect(person?.entityRef).toBe('ctx/user');
-    const personEdges = schema.dependencies.filter(d => d.from === 'ctx/user');
-    expect(personEdges.map(d => d.to).sort()).toEqual(['ctx/backstage', 'ctx/blueprint']);
-    expect(personEdges.every(d => d.description === PERSON_EDGE_DESCRIPTION)).toBe(true);
-    expect(personEdges.some(d => d.to === 'ctx/packages')).toBe(false);
+    const backstageYaml = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/backstage/context.yaml'
+    )!;
+    expect(backstageYaml).toContain('type: group');
+    expect(backstageYaml).toContain('entityRef: backstage');
+    expect(backstageYaml).toContain('parentEntityRef: backstage');
+    expect(backstageYaml).toContain('entityRef: backstage/packages');
+    expect(backstageYaml).not.toContain('Part of product system');
 
-    const packages = schema.nodes.find(n => n.entityRef === 'ctx/packages');
-    expect(packages?.parentEntityRef).toBe('ctx/backstage');
+    const blueprintSchema = parseSchemaFromYaml(blueprintYaml);
+    const backstageSchema = parseSchemaFromYaml(backstageYaml);
+    expect(blueprintSchema.nodes.find(n => n.entityRef === 'blueprint/user')?.type).toBe('person');
+    expect(backstageSchema.nodes.find(n => n.entityRef === 'backstage/user')?.type).toBe('person');
+
+    const blueprintPersonEdges = blueprintSchema.dependencies.filter(
+      d => d.from === 'blueprint/user'
+    );
+    const backstagePersonEdges = backstageSchema.dependencies.filter(
+      d => d.from === 'backstage/user'
+    );
+    expect(blueprintPersonEdges.map(d => d.to)).toEqual(['blueprint']);
+    expect(backstagePersonEdges.map(d => d.to).sort()).toEqual(['backstage']);
+    expect(blueprintPersonEdges.every(d => d.description === PERSON_EDGE_DESCRIPTION)).toBe(true);
+    expect(backstagePersonEdges.every(d => d.description === PERSON_EDGE_DESCRIPTION)).toBe(true);
+    expect(backstagePersonEdges.some(d => d.to === 'backstage/packages')).toBe(false);
+
+    const packages = backstageSchema.nodes.find(n => n.entityRef === 'backstage/packages');
+    expect(packages?.parentEntityRef).toBe('backstage');
   });
 
   it('should upsert rather than duplicate when rewriting the same system', async () => {
     await writer.write('/workspace/blueprints', 'blueprint', 'backstage');
     await writer.write('/workspace/blueprints', 'blueprint', 'backstage');
 
-    const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
-    const matches = yamlContent.match(/entityRef: blueprint\/backstage/g) || [];
-    expect(matches).toHaveLength(1);
+    const yamlContent = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/backstage/context.yaml'
+    )!;
+    const schema = parseSchemaFromYaml(yamlContent);
+    const backstageHubs = schema.nodes.filter(n => n.entityRef === 'backstage');
+    expect(backstageHubs).toHaveLength(1);
   });
 
   it('should log successful write', async () => {
     await writer.write('/workspace/blueprints', 'test-context', 'test-system');
     expect(logger.logs.some(log => log.includes('Saved Context schema'))).toBe(true);
+  });
+
+  it('migrates legacy root context.yaml into the peer context diagram', async () => {
+    const legacyPath = '/workspace/blueprints/context.yaml';
+    const targetPath = '/workspace/blueprints/ctx/context.yaml';
+    fileSystem.existingFiles.add(legacyPath);
+    fileSystem.writtenFiles.set(
+      legacyPath,
+      serializeSchemaToYaml({
+        entityRef: 'ctx',
+        name: 'Legacy',
+        version: '1.0.0',
+        level: 'context',
+        nodes: [{ entityRef: 'ctx/app', type: 'software-system', name: 'App' }],
+        dependencies: [],
+      })
+    );
+
+    await writer.writeSystems('/workspace/blueprints', 'ctx', [
+      {
+        entityRef: 'new-system',
+        displayName: 'new-system',
+        rootPath: 'new-system',
+        productId: 'new-system',
+      },
+    ]);
+
+    expect(fileSystem.deletedFiles.has(legacyPath)).toBe(true);
+    expect(fileSystem.writtenFiles.has(targetPath)).toBe(true);
+    const schema = parseSchemaFromYaml(fileSystem.writtenFiles.get(targetPath)!);
+    expect(schema.nodes.some(n => n.entityRef === 'ctx/app')).toBe(true);
+    expect(schema.nodes.some(n => n.entityRef === 'ctx/new-system')).toBe(true);
   });
 });

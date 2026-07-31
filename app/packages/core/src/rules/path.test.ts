@@ -17,8 +17,8 @@ describe('Domain Path Utilities', () => {
 
     it('should traverse up directories using ..', () => {
       expect(
-        resolveRelativePath('blueprints/eshop/containers.yaml', '../blueprint/child.yaml')
-      ).toBe('blueprints/blueprint/child.yaml');
+        resolveRelativePath('blueprints/eshop/containers.yaml', '../application/child.yaml')
+      ).toBe('blueprints/application/child.yaml');
     });
 
     it('should return absolute path if input is absolute or web url', () => {

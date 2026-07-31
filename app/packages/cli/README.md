@@ -93,7 +93,7 @@ GitHub Action template: [`.github/actions/validate-blueprints`](../../../.github
 
 | Artifact                                | Content                                                                        |
 | --------------------------------------- | ------------------------------------------------------------------------------ |
-| `blueprints/context.yaml`               | Software systems + hub→spoke “Part of product system” edges (merged on re-run) |
+| `blueprints/application/context.yaml`   | Software systems + hub→spoke “Part of product system” edges (merged on re-run) |
 | `blueprints/<system>/containers.yaml`   | Containers for that system                                                     |
 | `blueprints/<tf-root>/containers.yaml`  | Terraform/Pulumi resources as containers (grouped by owning product path)      |
 | `blueprints/<system>/*-components.yaml` | Component graphs per container                                                 |
@@ -112,7 +112,7 @@ By default the analyzer finds systems from:
 
 A **product hub** node is added when multiple subsystems share a product, so Blueprint vs Backstage (different `productId`s) stay disconnected.
 
-For **multi-repo products** (several git repos, one landscape), scan each repo with the same `--context` and a distinct `--system-name` (or `systemName` in config). Re-runs merge into the same `context.yaml`.
+For **multi-repo products** (several git repos, one landscape), scan each repo with the same `--context` and a distinct `--system-name` (or `systemName` in config). Re-runs merge into the same `application/context.yaml`.
 
 ### Filtering
 

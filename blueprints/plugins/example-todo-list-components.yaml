@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/example-todo-list
+  entityRef: backstage/plugins/example-todo-list
   name: Example-todo-list Service Components
   source:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/plugins/example-todo-list/routes
+  - entityRef: backstage/plugins/example-todo-list/routes
     type: background-worker
     name: routes Service
     isTest: false
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/example-todo-list/plugin
+  - entityRef: backstage/plugins/example-todo-list/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -82,7 +82,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/example-todo-list/setuptests
+  - entityRef: backstage/plugins/example-todo-list/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -117,7 +117,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/example-todo-list/plugin-test
+  - entityRef: backstage/plugins/example-todo-list/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -155,7 +155,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/example-todo-list/todolistpage
+  - entityRef: backstage/plugins/example-todo-list/todolistpage
     type: gateway-api
     name: TodoListPage Service
     isTest: false
@@ -193,7 +193,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/example-todo-list/index
+  - entityRef: backstage/plugins/example-todo-list/index
     type: background-worker
     name: index Service
     isTest: false
@@ -231,7 +231,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/example-todo-list/todolist
+  - entityRef: backstage/plugins/example-todo-list/todolist
     type: gateway-api
     name: TodoList Service
     isTest: false
@@ -267,31 +267,31 @@ nodes:
       sinceDays: 60
       shortChurnDays: 30
 dependencies:
-  - from: blueprint/plugins/example-todo-list/plugin
-    to: blueprint/plugins/example-todo-list/routes
+  - from: backstage/plugins/example-todo-list/plugin
+    to: backstage/plugins/example-todo-list/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/example-todo-list/plugin-test
-    to: blueprint/plugins/example-todo-list/plugin
+  - from: backstage/plugins/example-todo-list/plugin-test
+    to: backstage/plugins/example-todo-list/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/example-todo-list/todolistpage
-    to: blueprint/plugins/example-todo-list/todolist
+  - from: backstage/plugins/example-todo-list/todolistpage
+    to: backstage/plugins/example-todo-list/todolist
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/example-todo-list/index
-    to: blueprint/plugins/example-todo-list/todolistpage
+  - from: backstage/plugins/example-todo-list/index
+    to: backstage/plugins/example-todo-list/todolistpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/example-todo-list/index
-    to: blueprint/plugins/example-todo-list/todolist
+  - from: backstage/plugins/example-todo-list/index
+    to: backstage/plugins/example-todo-list/todolist
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/example-todo-list/index
-    to: blueprint/plugins/example-todo-list/todolist
+  - from: backstage/plugins/example-todo-list/index
+    to: backstage/plugins/example-todo-list/todolist
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/example-todo-list/index
-    to: blueprint/plugins/example-todo-list/plugin
+  - from: backstage/plugins/example-todo-list/index
+    to: backstage/plugins/example-todo-list/plugin
     type: direct-call
     description: Calls module / service

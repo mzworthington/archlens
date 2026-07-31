@@ -1,47 +1,36 @@
 import { useEffect, useRef } from 'react';
+import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
-import { loadWorkspaceSession } from '../../../../application/store/workspaceSession';
+import { GOLDEN_PATHS_CONTEXT_PATH } from '../../../../application/store/defaultData';
+import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
 
 function isWorkspaceRootPath(location: string): boolean {
   return location === '/workspace' || location === '/workspace/';
 }
 
+const GOLDEN_PATHS_CONTEXT_HREF = buildWorkspaceEntityHref('golden-paths');
+
 /**
- * On bare `/workspace`, restore a prior sandbox session when possible.
- * First-time visitors and expired folder sessions keep the startup chooser open.
+ * Bare `/workspace` auto-loads the bundled Golden Paths context (no multi-option chooser).
  */
 export function useAutoLoadWorkspace(
   location: string,
-  setIsStartupOpen: (open: boolean) => void,
-  setLocation: (path: string, options?: { replace?: boolean }) => void
+  setIsStartupOpen: (open: boolean) => void
 ): void {
-  const restoreStarted = useRef(false);
+  const [, setLocation] = useLocation();
+  const bootstrapRef = useRef(false);
 
   useEffect(() => {
     if (!isWorkspaceRootPath(location)) return;
-    if (restoreStarted.current) return;
-
-    restoreStarted.current = true;
+    if (bootstrapRef.current) return;
+    bootstrapRef.current = true;
 
     void (async () => {
-      const store = useBlueprintStore.getState();
-
-      if (store.loadedSystems.length > 0) {
-        setIsStartupOpen(false);
-        return;
-      }
-
-      const restored = await store.restoreWorkspaceSession();
-      if (restored) {
-        setIsStartupOpen(false);
-        setLocation('/workspace/blueprint', { replace: true });
-        return;
-      }
-
-      const session = loadWorkspaceSession();
-      if (session?.mode === 'folder') {
-        return;
-      }
+      const { loadBundledSandbox } = useBlueprintStore.getState();
+      await loadBundledSandbox();
+      await useBlueprintStore.getState().selectSystem(GOLDEN_PATHS_CONTEXT_PATH);
+      setIsStartupOpen(false);
+      setLocation(GOLDEN_PATHS_CONTEXT_HREF, { replace: true });
     })();
   }, [location, setIsStartupOpen, setLocation]);
 }

@@ -2,17 +2,17 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/advicelens-stress/code-rollup
+  entityRef: advicelens-stress/code-rollup
   name: AdviceLens - Code Roll-up
   description: >
     Minimal checkout container for drilling into component diagrams. Container-level
     forensics are quiet; the hotspot lives in the component diagram so AdviceLens can
     demonstrate applicability roll-up to the owning service.
 nodes:
-  - entityRef: blueprint/advicelens-stress/code-rollup/web
+  - entityRef: advicelens-stress/code-rollup/web
     type: web-app
     name: Checkout Web
-  - entityRef: blueprint/advicelens-stress/code-rollup/checkout-api
+  - entityRef: advicelens-stress/code-rollup/checkout-api
     type: rest-api
     name: Checkout API
     forensics:
@@ -28,13 +28,13 @@ nodes:
       hotspotScore: 0.15
       classifications: []
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/code-rollup/payments
+  - entityRef: advicelens-stress/code-rollup/payments
     type: microservice
     name: Payments Adapter
 dependencies:
-  - from: blueprint/advicelens-stress/code-rollup/web
-    to: blueprint/advicelens-stress/code-rollup/checkout-api
+  - from: advicelens-stress/code-rollup/web
+    to: advicelens-stress/code-rollup/checkout-api
     type: direct-call
-  - from: blueprint/advicelens-stress/code-rollup/checkout-api
-    to: blueprint/advicelens-stress/code-rollup/payments
+  - from: advicelens-stress/code-rollup/checkout-api
+    to: advicelens-stress/code-rollup/payments
     type: direct-call

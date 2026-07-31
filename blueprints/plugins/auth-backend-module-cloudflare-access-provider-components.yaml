@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider
+  entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider
   name: Auth-backend-module-cloudflare-access-provider Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/config-d
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
     type: background-worker
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/helpers
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
     type: rest-api
     name: helpers Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
     type: background-worker
     name: resolvers.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: background-worker
     name: types Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator-test
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator-test
     type: background-worker
     name: authenticator.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
     type: background-worker
     name: resolvers Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
     type: background-worker
     name: helpers.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
     type: background-worker
     name: authenticator Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -361,7 +361,7 @@ nodes:
     position:
       x: -3120
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-github/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -373,7 +373,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gerrit/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-gerrit/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -385,7 +385,7 @@ nodes:
     position:
       x: -820
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -397,7 +397,7 @@ nodes:
     position:
       x: -2200
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-aws/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -409,7 +409,7 @@ nodes:
     position:
       x: -4960
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-azure/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -421,7 +421,7 @@ nodes:
     position:
       x: -4040
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -433,7 +433,7 @@ nodes:
     position:
       x: 1940
       y: -204
-  - entityRef: blueprint/plugins/permission-common/createpermission
+  - entityRef: backstage/plugins/permission-common/createpermission
     type: background-worker
     name: createPermission Service (External)
     external: true
@@ -445,7 +445,7 @@ nodes:
     position:
       x: 3780
       y: -204
-  - entityRef: blueprint/plugins/auth-node/index
+  - entityRef: backstage/plugins/auth-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -457,7 +457,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/index
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -469,7 +469,7 @@ nodes:
     position:
       x: -2660
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/index
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -481,7 +481,7 @@ nodes:
     position:
       x: 2860
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/index
+  - entityRef: backstage/plugins/catalog-backend-module-github/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -493,7 +493,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gerrit/index
+  - entityRef: backstage/plugins/catalog-backend-module-gerrit/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -505,7 +505,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/index
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -517,7 +517,7 @@ nodes:
     position:
       x: -1740
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/index
+  - entityRef: backstage/plugins/catalog-backend-module-aws/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -529,7 +529,7 @@ nodes:
     position:
       x: -4500
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -541,7 +541,7 @@ nodes:
     position:
       x: 1020
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/index
+  - entityRef: backstage/plugins/catalog-backend-module-azure/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -553,7 +553,7 @@ nodes:
     position:
       x: -3580
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -565,7 +565,7 @@ nodes:
     position:
       x: 1480
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -577,7 +577,7 @@ nodes:
     position:
       x: 5160
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-puppetdb/index
+  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -589,7 +589,7 @@ nodes:
     position:
       x: 3320
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gcp/index
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -601,7 +601,7 @@ nodes:
     position:
       x: -1280
       y: -204
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -613,7 +613,7 @@ nodes:
     position:
       x: 4240
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph/index
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -625,7 +625,7 @@ nodes:
     position:
       x: 2400
       y: -204
-  - entityRef: blueprint/plugins/permission-common/util
+  - entityRef: backstage/plugins/permission-common/util
     type: background-worker
     name: util Service (External)
     external: true
@@ -638,191 +638,191 @@ nodes:
       x: 4700
       y: -204
 dependencies:
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/helpers
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/helpers
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/helpers
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-cloudflare-access-provider/authenticator
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-bitbucket-cloud/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-bitbucket-cloud/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-openapi/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-github/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-github/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-github/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gerrit/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-gerrit/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gerrit/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-gerrit/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-aws/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-aws/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-aws/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-azure/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-azure/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-azure/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-puppetdb/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-puppetdb/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gcp/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-gcp/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gcp/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-gcp/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/createpermission
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/permission-common/createpermission
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/util
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/permission-common/util
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph/alpha
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-msgraph/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service

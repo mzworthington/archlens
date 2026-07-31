@@ -2,64 +2,64 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/chaoslens-stress/shared-hub
+  entityRef: chaoslens-stress/shared-hub
   name: ChaosLens - Shared Hub Fan-Out
   description: >
     Five frontends converge on one shared API with three downstream backends.
     Shared API ships preset bulkhead + circuit breaker resilience YAML.
 nodes:
-  - entityRef: blueprint/chaoslens-stress/shared-hub/web-store
+  - entityRef: chaoslens-stress/shared-hub/web-store
     type: web-app
     name: Web Store
-  - entityRef: blueprint/chaoslens-stress/shared-hub/mobile-app
+  - entityRef: chaoslens-stress/shared-hub/mobile-app
     type: mobile-app
     name: Mobile App
-  - entityRef: blueprint/chaoslens-stress/shared-hub/admin-portal
+  - entityRef: chaoslens-stress/shared-hub/admin-portal
     type: web-app
     name: Admin Portal
-  - entityRef: blueprint/chaoslens-stress/shared-hub/partner-api
+  - entityRef: chaoslens-stress/shared-hub/partner-api
     type: rest-api
     name: Partner API
-  - entityRef: blueprint/chaoslens-stress/shared-hub/kiosk
+  - entityRef: chaoslens-stress/shared-hub/kiosk
     type: web-app
     name: In-Store Kiosk
-  - entityRef: blueprint/chaoslens-stress/shared-hub/shared-api
+  - entityRef: chaoslens-stress/shared-hub/shared-api
     type: rest-api
     name: Shared Platform API
     resilience:
       bulkhead: true
       circuitBreaker: true
-  - entityRef: blueprint/chaoslens-stress/shared-hub/inventory
+  - entityRef: chaoslens-stress/shared-hub/inventory
     type: microservice
     name: Inventory Service
-  - entityRef: blueprint/chaoslens-stress/shared-hub/pricing
+  - entityRef: chaoslens-stress/shared-hub/pricing
     type: microservice
     name: Pricing Engine
-  - entityRef: blueprint/chaoslens-stress/shared-hub/search-index
+  - entityRef: chaoslens-stress/shared-hub/search-index
     type: database
     name: Search Index
 dependencies:
-  - from: blueprint/chaoslens-stress/shared-hub/web-store
-    to: blueprint/chaoslens-stress/shared-hub/shared-api
+  - from: chaoslens-stress/shared-hub/web-store
+    to: chaoslens-stress/shared-hub/shared-api
     type: direct-call
-  - from: blueprint/chaoslens-stress/shared-hub/mobile-app
-    to: blueprint/chaoslens-stress/shared-hub/shared-api
+  - from: chaoslens-stress/shared-hub/mobile-app
+    to: chaoslens-stress/shared-hub/shared-api
     type: direct-call
-  - from: blueprint/chaoslens-stress/shared-hub/admin-portal
-    to: blueprint/chaoslens-stress/shared-hub/shared-api
+  - from: chaoslens-stress/shared-hub/admin-portal
+    to: chaoslens-stress/shared-hub/shared-api
     type: direct-call
-  - from: blueprint/chaoslens-stress/shared-hub/partner-api
-    to: blueprint/chaoslens-stress/shared-hub/shared-api
+  - from: chaoslens-stress/shared-hub/partner-api
+    to: chaoslens-stress/shared-hub/shared-api
     type: direct-call
-  - from: blueprint/chaoslens-stress/shared-hub/kiosk
-    to: blueprint/chaoslens-stress/shared-hub/shared-api
+  - from: chaoslens-stress/shared-hub/kiosk
+    to: chaoslens-stress/shared-hub/shared-api
     type: direct-call
-  - from: blueprint/chaoslens-stress/shared-hub/shared-api
-    to: blueprint/chaoslens-stress/shared-hub/inventory
+  - from: chaoslens-stress/shared-hub/shared-api
+    to: chaoslens-stress/shared-hub/inventory
     type: direct-call
-  - from: blueprint/chaoslens-stress/shared-hub/shared-api
-    to: blueprint/chaoslens-stress/shared-hub/pricing
+  - from: chaoslens-stress/shared-hub/shared-api
+    to: chaoslens-stress/shared-hub/pricing
     type: direct-call
-  - from: blueprint/chaoslens-stress/shared-hub/shared-api
-    to: blueprint/chaoslens-stress/shared-hub/search-index
+  - from: chaoslens-stress/shared-hub/shared-api
+    to: chaoslens-stress/shared-hub/search-index
     type: read-write

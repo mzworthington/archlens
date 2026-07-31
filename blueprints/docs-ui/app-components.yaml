@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/docs-ui/app
+  entityRef: backstage/docs-ui/app
   name: App Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/docs-ui/app/snippets
+  - entityRef: backstage/docs-ui/app/snippets
     type: background-worker
     name: snippets Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/docs-ui/app/components
+  - entityRef: backstage/docs-ui/app/components
     type: gateway-api
     name: components Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/docs-ui/app/props-definition
+  - entityRef: backstage/docs-ui/app/props-definition
     type: background-worker
     name: props-definition Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/docs-ui/app/layout
+  - entityRef: backstage/docs-ui/app/layout
     type: background-worker
     name: layout Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/docs-ui/app/providers
+  - entityRef: backstage/docs-ui/app/providers
     type: gateway-api
     name: providers Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/docs-ui/components/box
+  - entityRef: backstage/docs-ui/components/box
     type: background-worker
     name: box Service (External)
     external: true
@@ -191,7 +191,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/docs-ui/components/container
+  - entityRef: backstage/docs-ui/components/container
     type: background-worker
     name: container Service (External)
     external: true
@@ -203,7 +203,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/docs-ui/components/flex
+  - entityRef: backstage/docs-ui/components/flex
     type: background-worker
     name: flex Service (External)
     external: true
@@ -215,7 +215,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/docs-ui/components/grid
+  - entityRef: backstage/docs-ui/components/grid
     type: background-worker
     name: grid Service (External)
     external: true
@@ -227,7 +227,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/docs-ui/components/table
+  - entityRef: backstage/docs-ui/components/table
     type: gateway-api
     name: Table Service (External)
     external: true
@@ -240,155 +240,155 @@ nodes:
       x: 1020
       y: 404
 dependencies:
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/box
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/box
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/box
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/box
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/box
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/box
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/container
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/container
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/table
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/table
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/grid
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/grid
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/components
-    to: blueprint/docs-ui/components/flex
+  - from: backstage/docs-ui/app/components
+    to: backstage/docs-ui/components/flex
     type: direct-call
     description: Calls module / service
-  - from: blueprint/docs-ui/app/layout
-    to: blueprint/docs-ui/app/providers
+  - from: backstage/docs-ui/app/layout
+    to: backstage/docs-ui/app/providers
     type: direct-call
     description: Calls module / service

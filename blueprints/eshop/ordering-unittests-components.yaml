@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/ordering-unittests
+  entityRef: eshop/ordering-unittests
   name: Ordering.UnitTests Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/ordering-unittests/builders
+  - entityRef: eshop/ordering-unittests/builders
     type: background-worker
     name: Builders
     isTest: true
@@ -41,7 +41,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-unittests/application
+  - entityRef: eshop/ordering-unittests/application
     type: rest-api
     name: Application Layer
     isTest: true
@@ -76,7 +76,7 @@ nodes:
       classifications:
         - hotspot
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-unittests/domain
+  - entityRef: eshop/ordering-unittests/domain
     type: background-worker
     name: Domain Layer
     isTest: true
@@ -108,7 +108,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-domain/aggregatesmodel
+  - entityRef: eshop/ordering-domain/aggregatesmodel
     type: relational-database
     name: AggregatesModel Layer (External)
     external: true
@@ -120,7 +120,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/eshop/ordering-api/application
+  - entityRef: eshop/ordering-api/application
     type: event-broker
     name: Application Layer (External)
     external: true
@@ -133,23 +133,23 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/eshop/ordering-unittests/builders
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
+  - from: eshop/ordering-unittests/builders
+    to: eshop/ordering-domain/aggregatesmodel
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/ordering-unittests/application
-    to: blueprint/eshop/ordering-api/application
+  - from: eshop/ordering-unittests/application
+    to: eshop/ordering-api/application
     type: publish-subscribe
     description: Publishes / consumes messaging topics
-  - from: blueprint/eshop/ordering-unittests/application
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
+  - from: eshop/ordering-unittests/application
+    to: eshop/ordering-domain/aggregatesmodel
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/ordering-unittests/domain
-    to: blueprint/eshop/ordering-domain/aggregatesmodel
+  - from: eshop/ordering-unittests/domain
+    to: eshop/ordering-domain/aggregatesmodel
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/ordering-unittests/domain
-    to: blueprint/eshop/ordering-unittests/builders
+  - from: eshop/ordering-unittests/domain
+    to: eshop/ordering-unittests/builders
     type: direct-call
     description: Calls module / service

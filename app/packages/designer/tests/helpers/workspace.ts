@@ -4,11 +4,11 @@ import { expectCanvasReady } from './canvas';
 import { gotoApp } from './navigation';
 
 /** Open the bundled sandbox and wait for the diagram canvas. */
-export async function loadSandbox(page: Page, path = '/workspace/blueprint') {
+export async function loadSandbox(page: Page, path = '/workspace/application') {
   await gotoApp(page, '/workspace');
   await continueWithSandbox(page);
-  await expect(page).toHaveURL(/\/workspace\/blueprint/, { timeout: 60_000 });
-  if (path !== '/workspace/blueprint') {
+  await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/, { timeout: 60_000 });
+  if (path !== '/workspace/application') {
     await gotoApp(page, path);
   }
   await expectCanvasReady(page);

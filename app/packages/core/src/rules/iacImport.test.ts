@@ -83,7 +83,7 @@ cluster = gcp.container.Cluster("hello-world")
 `;
     const result = parseIacToSchema(py, '__main__.py', {
       targetLevel: 'container',
-      parentEntityRef: 'blueprint/gcp-py-gke',
+      parentEntityRef: 'application/gcp-py-gke',
     });
 
     expect(result.vendor).toBe('pulumi');
@@ -154,7 +154,7 @@ k8s_cluster = Cluster("gke-cluster", initial_node_count=3)
       ],
       {
         targetLevel: 'container',
-        parentEntityRef: 'blueprint/gcp-py-gke',
+        parentEntityRef: 'application/gcp-py-gke',
         pulumiRuntime: 'python',
       }
     );
@@ -185,7 +185,7 @@ k8s_cluster = Cluster("gke-cluster", initial_node_count=3)
       ],
       {
         targetLevel: 'container',
-        parentEntityRef: 'blueprint/gcp-py-gke',
+        parentEntityRef: 'application/gcp-py-gke',
       }
     );
 

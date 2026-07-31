@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-backend-module-gitea
+  entityRef: backstage/plugins/catalog-backend-module-gitea
   name: Catalog-backend-module-gitea Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/config-d
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/module
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/module
     type: background-worker
     name: module Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: background-worker
     name: GiteaEntityProvider Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/core-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/core-test
     type: background-worker
     name: core.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
     type: background-worker
     name: GiteaEntityProvider.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/types
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/types
     type: background-worker
     name: types Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/core
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/core
     type: background-worker
     name: core Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/index
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/index
     type: background-worker
     name: index Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/config
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/config
     type: background-worker
     name: config Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/config-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/config-test
     type: background-worker
     name: config.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/module-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/module-test
     type: background-worker
     name: module.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -395,7 +395,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
+  - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -408,83 +408,83 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-gitea/module
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitea/module
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitea/module
-    to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitea/module
+    to: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitea/core
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitea/config
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-backend-module-gitea/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitea/types
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-backend-module-gitea/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/core-test
-    to: blueprint/plugins/catalog-backend-module-gitea/core
+  - from: backstage/plugins/catalog-backend-module-gitea/core-test
+    to: backstage/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitea/config
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitea/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitea/core
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/index
-    to: blueprint/plugins/catalog-backend-module-gitea/core
+  - from: backstage/plugins/catalog-backend-module-gitea/index
+    to: backstage/plugins/catalog-backend-module-gitea/core
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/config
-    to: blueprint/plugins/catalog-backend-module-gitea/types
+  - from: backstage/plugins/catalog-backend-module-gitea/config
+    to: backstage/plugins/catalog-backend-module-gitea/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/config-test
-    to: blueprint/plugins/catalog-backend-module-gitea/config
+  - from: backstage/plugins/catalog-backend-module-gitea/config-test
+    to: backstage/plugins/catalog-backend-module-gitea/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/module-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitea/module-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitea/module-test
-    to: blueprint/plugins/catalog-backend-module-gitea/module
+  - from: backstage/plugins/catalog-backend-module-gitea/module-test
+    to: backstage/plugins/catalog-backend-module-gitea/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/module-test
-    to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitea/module-test
+    to: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/index
-    to: blueprint/plugins/catalog-backend-module-gitea/module
+  - from: backstage/plugins/catalog-backend-module-gitea/index
+    to: backstage/plugins/catalog-backend-module-gitea/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitea/index
-    to: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitea/index
+    to: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: direct-call
     description: Calls module / service

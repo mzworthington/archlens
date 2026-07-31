@@ -1,0 +1,87 @@
+# Merged into blueprints/chaoslens-stress/context.yaml after batch scans (see scripts/merge-sandbox-context.mjs).
+nodes:
+  - entityRef: chaoslens-stress
+    type: group
+    name: ChaosLens Stress Tests
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/ecommerce
+    type: software-system
+    name: E-Commerce SPOF
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/deep-chain
+    type: software-system
+    name: Deep Dependency Chain
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/shared-hub
+    type: software-system
+    name: Shared Hub Fan-Out
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/safeguards
+    type: software-system
+    name: Safeguards Playground
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/group-boundary
+    type: software-system
+    name: Group Boundary Expansion
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/multi-domain
+    type: software-system
+    name: Multi-Domain Cross-Cutting
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/diamond
+    type: software-system
+    name: Diamond DAG
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/large-graph
+    type: software-system
+    name: Large Graph (Monte Carlo)
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/external-scope
+    type: software-system
+    name: External Simulation Scope
+    parentEntityRef: chaoslens-stress
+    properties:
+      rootPath: chaoslens-stress
+      productId: chaoslens-stress
+  - entityRef: chaoslens-stress/external-auth/auth
+    type: microservice
+    name: Auth Service (External)
+    external: true
+    properties:
+      vendor: Sibling workspace diagram
+      classification: cross-diagram
+dependencies:
+  - from: chaoslens-stress/user
+    to: chaoslens-stress
+    type: direct-call
+    description: Runs fault injection scenarios
+  - from: chaoslens-stress/external-scope
+    to: chaoslens-stress/external-auth/auth
+    type: direct-call
+    description: Token validation via sibling Auth diagram

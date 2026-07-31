@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/webhookclient
+  entityRef: eshop/webhookclient
   name: WebhookClient Service Components
   source:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
 nodes:
-  - entityRef: blueprint/eshop/webhookclient/endpoints
+  - entityRef: eshop/webhookclient/endpoints
     type: rest-api
     name: Endpoints Layer
     isTest: false
@@ -43,7 +43,7 @@ nodes:
       hotspotScore: 0.20833333333333334
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhookclient/extensions
+  - entityRef: eshop/webhookclient/extensions
     type: rest-api
     name: Extensions Layer
     isTest: false
@@ -76,7 +76,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhookclient/services
+  - entityRef: eshop/webhookclient/services
     type: relational-database
     name: Services Layer
     isTest: false
@@ -110,7 +110,7 @@ nodes:
       hotspotScore: 0.041666666666666664
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/webhookclient/program
+  - entityRef: eshop/webhookclient/program
     type: background-worker
     name: Program
     isTest: false

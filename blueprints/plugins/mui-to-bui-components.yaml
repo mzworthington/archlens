@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/mui-to-bui
+  entityRef: backstage/plugins/mui-to-bui
   name: Mui-to-bui Service Components
   source:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/plugins/mui-to-bui/index
+  - entityRef: backstage/plugins/mui-to-bui/index
     type: background-worker
     name: index Service
     isTest: false
@@ -47,7 +47,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/routes
+  - entityRef: backstage/plugins/mui-to-bui/routes
     type: background-worker
     name: routes Service
     isTest: false
@@ -82,7 +82,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/plugin
+  - entityRef: backstage/plugins/mui-to-bui/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -120,7 +120,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/plugin-test
+  - entityRef: backstage/plugins/mui-to-bui/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -158,7 +158,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/buithemepreview
+  - entityRef: backstage/plugins/mui-to-bui/buithemepreview
     type: background-worker
     name: BuiThemePreview Service
     isTest: false
@@ -193,7 +193,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/muithemeextractor-test
+  - entityRef: backstage/plugins/mui-to-bui/muithemeextractor-test
     type: gateway-api
     name: MuiThemeExtractor.test Service
     isTest: true
@@ -231,7 +231,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/convertmuitobuitheme
+  - entityRef: backstage/plugins/mui-to-bui/convertmuitobuitheme
     type: background-worker
     name: convertMuiToBuiTheme Service
     isTest: false
@@ -266,7 +266,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/convertmuitobuitheme-test
+  - entityRef: backstage/plugins/mui-to-bui/convertmuitobuitheme-test
     type: background-worker
     name: convertMuiToBuiTheme.test Service
     isTest: true
@@ -304,7 +304,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/themecontent
+  - entityRef: backstage/plugins/mui-to-bui/themecontent
     type: gateway-api
     name: ThemeContent Service
     isTest: false
@@ -344,7 +344,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/buithemerpage-test
+  - entityRef: backstage/plugins/mui-to-bui/buithemerpage-test
     type: gateway-api
     name: BuiThemerPage.test Service
     isTest: true
@@ -382,7 +382,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/themecontent-test
+  - entityRef: backstage/plugins/mui-to-bui/themecontent-test
     type: gateway-api
     name: ThemeContent.test Service
     isTest: true
@@ -420,7 +420,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/buithemerpage
+  - entityRef: backstage/plugins/mui-to-bui/buithemerpage
     type: background-worker
     name: BuiThemerPage Service
     isTest: false
@@ -460,7 +460,7 @@ nodes:
           kind: direct
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/muithemeextractor
+  - entityRef: backstage/plugins/mui-to-bui/muithemeextractor
     type: gateway-api
     name: MuiThemeExtractor Service
     isTest: false
@@ -495,7 +495,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/plugins/mui-to-bui/buithemepreview-test
+  - entityRef: backstage/plugins/mui-to-bui/buithemepreview-test
     type: gateway-api
     name: BuiThemePreview.test Service
     isTest: true
@@ -534,59 +534,59 @@ nodes:
       sinceDays: 60
       shortChurnDays: 30
 dependencies:
-  - from: blueprint/plugins/mui-to-bui/index
-    to: blueprint/plugins/mui-to-bui/plugin
+  - from: backstage/plugins/mui-to-bui/index
+    to: backstage/plugins/mui-to-bui/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/plugin
-    to: blueprint/plugins/mui-to-bui/routes
+  - from: backstage/plugins/mui-to-bui/plugin
+    to: backstage/plugins/mui-to-bui/routes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/plugin-test
-    to: blueprint/plugins/mui-to-bui/plugin
+  - from: backstage/plugins/mui-to-bui/plugin-test
+    to: backstage/plugins/mui-to-bui/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/muithemeextractor-test
-    to: blueprint/plugins/mui-to-bui/muithemeextractor
+  - from: backstage/plugins/mui-to-bui/muithemeextractor-test
+    to: backstage/plugins/mui-to-bui/muithemeextractor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/convertmuitobuitheme-test
-    to: blueprint/plugins/mui-to-bui/convertmuitobuitheme
+  - from: backstage/plugins/mui-to-bui/convertmuitobuitheme-test
+    to: backstage/plugins/mui-to-bui/convertmuitobuitheme
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/themecontent
-    to: blueprint/plugins/mui-to-bui/convertmuitobuitheme
+  - from: backstage/plugins/mui-to-bui/themecontent
+    to: backstage/plugins/mui-to-bui/convertmuitobuitheme
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/themecontent
-    to: blueprint/plugins/mui-to-bui/buithemepreview
+  - from: backstage/plugins/mui-to-bui/themecontent
+    to: backstage/plugins/mui-to-bui/buithemepreview
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/buithemerpage-test
-    to: blueprint/plugins/mui-to-bui/buithemerpage
+  - from: backstage/plugins/mui-to-bui/buithemerpage-test
+    to: backstage/plugins/mui-to-bui/buithemerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/themecontent-test
-    to: blueprint/plugins/mui-to-bui/themecontent
+  - from: backstage/plugins/mui-to-bui/themecontent-test
+    to: backstage/plugins/mui-to-bui/themecontent
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/buithemerpage
-    to: blueprint/plugins/mui-to-bui/themecontent
+  - from: backstage/plugins/mui-to-bui/buithemerpage
+    to: backstage/plugins/mui-to-bui/themecontent
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/buithemerpage
-    to: blueprint/plugins/mui-to-bui/muithemeextractor
+  - from: backstage/plugins/mui-to-bui/buithemerpage
+    to: backstage/plugins/mui-to-bui/muithemeextractor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/index
-    to: blueprint/plugins/mui-to-bui/buithemerpage
+  - from: backstage/plugins/mui-to-bui/index
+    to: backstage/plugins/mui-to-bui/buithemerpage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/buithemepreview-test
-    to: blueprint/plugins/mui-to-bui/buithemepreview
+  - from: backstage/plugins/mui-to-bui/buithemepreview-test
+    to: backstage/plugins/mui-to-bui/buithemepreview
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mui-to-bui/index
-    to: blueprint/plugins/mui-to-bui/plugin
+  - from: backstage/plugins/mui-to-bui/index
+    to: backstage/plugins/mui-to-bui/plugin
     type: direct-call
     description: Calls module / service

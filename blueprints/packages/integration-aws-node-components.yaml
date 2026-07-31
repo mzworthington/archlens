@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/integration-aws-node
+  entityRef: backstage/packages/integration-aws-node
   name: Integration-aws-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/integration-aws-node/config-d
+  - entityRef: backstage/packages/integration-aws-node/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+  - entityRef: backstage/packages/integration-aws-node/defaultawscredentialsmanager
     type: background-worker
     name: DefaultAwsCredentialsManager Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/integration-aws-node/types
+  - entityRef: backstage/packages/integration-aws-node/types
     type: background-worker
     name: types Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
+  - entityRef: backstage/packages/integration-aws-node/defaultawscredentialsmanager-test
     type: background-worker
     name: DefaultAwsCredentialsManager.test Service
     isTest: true
@@ -150,7 +150,7 @@ nodes:
           commits: 1
       hotspotScore: 0.011101387268248412
       sinceDays: 60
-  - entityRef: blueprint/packages/integration-aws-node/index
+  - entityRef: backstage/packages/integration-aws-node/index
     type: background-worker
     name: index Service
     isTest: false
@@ -184,7 +184,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/integration-aws-node/config
+  - entityRef: backstage/packages/integration-aws-node/config
     type: background-worker
     name: config Service
     isTest: false
@@ -218,7 +218,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/integration-aws-node/config-test
+  - entityRef: backstage/packages/integration-aws-node/config-test
     type: background-worker
     name: config.test Service
     isTest: true
@@ -252,7 +252,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader
+  - entityRef: backstage/packages/backend-defaults/awscodecommiturlreader
     type: background-worker
     name: AwsCodeCommitUrlReader Service (External)
     external: true
@@ -264,7 +264,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awscodecommiturlreader-test
+  - entityRef: backstage/packages/backend-defaults/awscodecommiturlreader-test
     type: background-worker
     name: AwsCodeCommitUrlReader.test Service (External)
     external: true
@@ -276,7 +276,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader
+  - entityRef: backstage/packages/backend-defaults/awss3urlreader
     type: background-worker
     name: AwsS3UrlReader Service (External)
     external: true
@@ -288,7 +288,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/awss3urlreader-test
+  - entityRef: backstage/packages/backend-defaults/awss3urlreader-test
     type: background-worker
     name: AwsS3UrlReader.test Service (External)
     external: true
@@ -300,7 +300,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/packages/config/index
+  - entityRef: backstage/packages/config/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -313,59 +313,59 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    to: blueprint/packages/integration-aws-node/config
+  - from: backstage/packages/integration-aws-node/defaultawscredentialsmanager
+    to: backstage/packages/integration-aws-node/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    to: blueprint/packages/integration-aws-node/types
+  - from: backstage/packages/integration-aws-node/defaultawscredentialsmanager
+    to: backstage/packages/integration-aws-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-aws-node/defaultawscredentialsmanager
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
-    to: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+  - from: backstage/packages/integration-aws-node/defaultawscredentialsmanager-test
+    to: backstage/packages/integration-aws-node/defaultawscredentialsmanager
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/defaultawscredentialsmanager-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-aws-node/defaultawscredentialsmanager-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/index
-    to: blueprint/packages/integration-aws-node/defaultawscredentialsmanager
+  - from: backstage/packages/integration-aws-node/index
+    to: backstage/packages/integration-aws-node/defaultawscredentialsmanager
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/index
-    to: blueprint/packages/integration-aws-node/types
+  - from: backstage/packages/integration-aws-node/index
+    to: backstage/packages/integration-aws-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration-aws-node/config
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-aws-node/config
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/config-test
-    to: blueprint/packages/config/index
+  - from: backstage/packages/integration-aws-node/config-test
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/integration-aws-node/config-test
-    to: blueprint/packages/integration-aws-node/config
+  - from: backstage/packages/integration-aws-node/config-test
+    to: backstage/packages/integration-aws-node/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-defaults/awss3urlreader-test
-    to: blueprint/packages/integration-aws-node/index
+  - from: backstage/packages/backend-defaults/awss3urlreader-test
+    to: backstage/packages/integration-aws-node/index
     type: direct-call
     description: '@backstage/integration-aws-node'
-  - from: blueprint/packages/backend-defaults/awss3urlreader
-    to: blueprint/packages/integration-aws-node/index
+  - from: backstage/packages/backend-defaults/awss3urlreader
+    to: backstage/packages/integration-aws-node/index
     type: direct-call
     description: '@backstage/integration-aws-node'
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader
-    to: blueprint/packages/integration-aws-node/index
+  - from: backstage/packages/backend-defaults/awscodecommiturlreader
+    to: backstage/packages/integration-aws-node/index
     type: direct-call
     description: '@backstage/integration-aws-node'
-  - from: blueprint/packages/backend-defaults/awscodecommiturlreader-test
-    to: blueprint/packages/integration-aws-node/index
+  - from: backstage/packages/backend-defaults/awscodecommiturlreader-test
+    to: backstage/packages/integration-aws-node/index
     type: direct-call
     description: '@backstage/integration-aws-node'

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/scaffolder-backend-module-notifications
+  entityRef: backstage/plugins/scaffolder-backend-module-notifications
   name: Scaffolder-backend-module-notifications Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/module
+  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/module
     type: background-worker
     name: module Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
     type: background-worker
     name: sendNotification Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples
     type: background-worker
     name: sendNotification.examples Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
     type: background-worker
     name: sendNotification.examples.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-test
     type: background-worker
     name: sendNotification.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-notifications/index
+  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/index
     type: background-worker
     name: index Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/home/actions
+  - entityRef: backstage/plugins/home/actions
     type: gateway-api
     name: Actions Service (External)
     external: true
@@ -225,7 +225,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/plugins/notifications-node/index
+  - entityRef: backstage/plugins/notifications-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -237,7 +237,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/scaffolder-node/index
+  - entityRef: backstage/plugins/scaffolder-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -249,7 +249,7 @@ nodes:
     position:
       x: 1020
       y: 404
-  - entityRef: blueprint/plugins/notifications-common/index
+  - entityRef: backstage/plugins/notifications-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -261,7 +261,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -274,83 +274,83 @@ nodes:
       x: 560
       y: 404
 dependencies:
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/module
-    to: blueprint/plugins/notifications-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/module
+    to: backstage/plugins/notifications-node/index
     type: direct-call
     description: '@backstage/plugin-notifications-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/module
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/module
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/module
-    to: blueprint/plugins/home/actions
+  - from: backstage/plugins/scaffolder-backend-module-notifications/module
+    to: backstage/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
-    to: blueprint/plugins/notifications-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
+    to: backstage/plugins/notifications-node/index
     type: direct-call
     description: '@backstage/plugin-notifications-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
-    to: blueprint/plugins/notifications-common/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
+    to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
-    to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
+    to: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
-    to: blueprint/plugins/notifications-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: backstage/plugins/notifications-node/index
     type: direct-call
     description: '@backstage/plugin-notifications-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-examples
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples-test
+    to: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
-    to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    to: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
-    to: blueprint/plugins/notifications-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    to: backstage/plugins/notifications-node/index
     type: direct-call
     description: '@backstage/plugin-notifications-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/index
-    to: blueprint/plugins/scaffolder-backend-module-notifications/sendnotification
+  - from: backstage/plugins/scaffolder-backend-module-notifications/index
+    to: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/index
-    to: blueprint/plugins/home/actions
+  - from: backstage/plugins/scaffolder-backend-module-notifications/index
+    to: backstage/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-notifications/index
-    to: blueprint/plugins/scaffolder-backend-module-notifications/module
+  - from: backstage/plugins/scaffolder-backend-module-notifications/index
+    to: backstage/plugins/scaffolder-backend-module-notifications/module
     type: direct-call
     description: Calls module / service

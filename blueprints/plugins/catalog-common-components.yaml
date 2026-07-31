@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-common
+  entityRef: backstage/plugins/catalog-common
   name: Catalog-common Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-common/locationanalyzer
+  - entityRef: backstage/plugins/catalog-common/locationanalyzer
     type: background-worker
     name: LocationAnalyzer Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/recursivepartial-test
+  - entityRef: backstage/plugins/catalog-common/recursivepartial-test
     type: background-worker
     name: RecursivePartial.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/recursivepartial
+  - entityRef: backstage/plugins/catalog-common/recursivepartial
     type: background-worker
     name: RecursivePartial Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/index
+  - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/permissions
+  - entityRef: backstage/plugins/catalog-common/permissions
     type: background-worker
     name: permissions Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/alpha
+  - entityRef: backstage/plugins/catalog-common/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/common
+  - entityRef: backstage/plugins/catalog-common/common
     type: background-worker
     name: common Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/setuptests
+  - entityRef: backstage/plugins/catalog-common/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-common/catalogentitydocument
+  - entityRef: backstage/plugins/catalog-common/catalogentitydocument
     type: background-worker
     name: CatalogEntityDocument Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog/aboutcard
+  - entityRef: backstage/plugins/catalog/aboutcard
     type: gateway-api
     name: AboutCard Service (External)
     external: true
@@ -327,7 +327,7 @@ nodes:
     position:
       x: 11140
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/alpha
+  - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -339,7 +339,7 @@ nodes:
     position:
       x: 7000
       y: -204
-  - entityRef: blueprint/plugins/catalog-import/alpha
+  - entityRef: backstage/plugins/catalog-import/alpha
     type: gateway-api
     name: alpha Service (External)
     external: true
@@ -351,7 +351,7 @@ nodes:
     position:
       x: 6080
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/annotatelocationentityprocessor
+  - entityRef: backstage/plugins/catalog-backend/annotatelocationentityprocessor
     type: background-worker
     name: AnnotateLocationEntityProcessor Service (External)
     external: true
@@ -363,7 +363,7 @@ nodes:
     position:
       x: -5420
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/annotatelocationentityprocessor-test
+  - entityRef: backstage/plugins/catalog-backend/annotatelocationentityprocessor-test
     type: background-worker
     name: AnnotateLocationEntityProcessor.test Service (External)
     external: true
@@ -375,7 +375,7 @@ nodes:
     position:
       x: -4960
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/annotatescmslugentityprocessor
+  - entityRef: backstage/plugins/catalog-backend/annotatescmslugentityprocessor
     type: background-worker
     name: AnnotateScmSlugEntityProcessor Service (External)
     external: true
@@ -387,7 +387,7 @@ nodes:
     position:
       x: -4500
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/annotatescmslugentityprocessor-test
+  - entityRef: backstage/plugins/catalog-backend/annotatescmslugentityprocessor-test
     type: background-worker
     name: AnnotateScmSlugEntityProcessor.test Service (External)
     external: true
@@ -399,7 +399,7 @@ nodes:
     position:
       x: -4040
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedentitiescatalog
+  - entityRef: backstage/plugins/catalog-backend/authorizedentitiescatalog
     type: background-worker
     name: AuthorizedEntitiesCatalog Service (External)
     external: true
@@ -411,7 +411,7 @@ nodes:
     position:
       x: -3580
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationanalyzer
+  - entityRef: backstage/plugins/catalog-backend/authorizedlocationanalyzer
     type: background-worker
     name: AuthorizedLocationAnalyzer Service (External)
     external: true
@@ -423,7 +423,7 @@ nodes:
     position:
       x: -3120
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationservice
+  - entityRef: backstage/plugins/catalog-backend/authorizedlocationservice
     type: background-worker
     name: AuthorizedLocationService Service (External)
     external: true
@@ -435,7 +435,7 @@ nodes:
     position:
       x: -2660
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedrefreshservice
+  - entityRef: backstage/plugins/catalog-backend/authorizedrefreshservice
     type: background-worker
     name: AuthorizedRefreshService Service (External)
     external: true
@@ -447,7 +447,7 @@ nodes:
     position:
       x: -2200
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedvalidationservice
+  - entityRef: backstage/plugins/catalog-backend/authorizedvalidationservice
     type: background-worker
     name: AuthorizedValidationService Service (External)
     external: true
@@ -459,7 +459,7 @@ nodes:
     position:
       x: -1740
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-aws/awseksclusterprocessor
     type: background-worker
     name: AwsEKSClusterProcessor Service (External)
     external: true
@@ -471,7 +471,7 @@ nodes:
     position:
       x: -14160
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
     type: background-worker
     name: AwsOrganizationCloudAccountProcessor Service (External)
     external: true
@@ -483,7 +483,7 @@ nodes:
     position:
       x: -13700
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-aws/awss3discoveryprocessor
     type: background-worker
     name: AwsS3DiscoveryProcessor Service (External)
     external: true
@@ -495,7 +495,7 @@ nodes:
     position:
       x: -13240
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-aws/awss3entityprovider
     type: background-worker
     name: AwsS3EntityProvider Service (External)
     external: true
@@ -507,7 +507,7 @@ nodes:
     position:
       x: -12780
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
     type: background-worker
     name: AzureBlobStorageEntityProvider Service (External)
     external: true
@@ -519,7 +519,7 @@ nodes:
     position:
       x: -12320
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
     type: background-worker
     name: AzureDevOpsDiscoveryProcessor Service (External)
     external: true
@@ -531,7 +531,7 @@ nodes:
     position:
       x: -11860
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor-test
+  - entityRef: backstage/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor-test
     type: background-worker
     name: AzureDevOpsDiscoveryProcessor.test Service (External)
     external: true
@@ -543,7 +543,7 @@ nodes:
     position:
       x: -11400
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-azure/azuredevopsentityprovider
     type: background-worker
     name: AzureDevOpsEntityProvider Service (External)
     external: true
@@ -555,7 +555,7 @@ nodes:
     position:
       x: -10940
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
     type: background-worker
     name: BitbucketCloudEntityProvider Service (External)
     external: true
@@ -567,7 +567,7 @@ nodes:
     position:
       x: -10480
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
     type: background-worker
     name: BitbucketServerLocationParser Service (External)
     external: true
@@ -579,7 +579,7 @@ nodes:
     position:
       x: -10020
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/builtinkindsentityprocessor
+  - entityRef: backstage/plugins/catalog-backend/builtinkindsentityprocessor
     type: background-worker
     name: BuiltinKindsEntityProcessor Service (External)
     external: true
@@ -591,7 +591,7 @@ nodes:
     position:
       x: -1280
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/catalogbuilder
+  - entityRef: backstage/plugins/catalog-backend/catalogbuilder
     type: rest-api
     name: CatalogBuilder Service (External)
     external: true
@@ -603,7 +603,7 @@ nodes:
     position:
       x: -820
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+  - entityRef: backstage/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
     type: background-worker
     name: CatalogCollatorEntityTransformer Service (External)
     external: true
@@ -615,7 +615,7 @@ nodes:
     position:
       x: 13900
       y: -204
-  - entityRef: blueprint/plugins/catalog-import/catalogimportclient
+  - entityRef: backstage/plugins/catalog-import/catalogimportclient
     type: gateway-api
     name: CatalogImportClient Service (External)
     external: true
@@ -627,7 +627,7 @@ nodes:
     position:
       x: 6540
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/catalogmodulesyntheticloadentities
+  - entityRef: backstage/plugins/catalog-backend/catalogmodulesyntheticloadentities
     type: background-worker
     name: catalogModuleSyntheticLoadEntities Service (External)
     external: true
@@ -639,7 +639,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/catalogrules
+  - entityRef: backstage/plugins/catalog-backend/catalogrules
     type: background-worker
     name: CatalogRules Service (External)
     external: true
@@ -651,7 +651,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/catalogrules-test
+  - entityRef: backstage/plugins/catalog-backend/catalogrules-test
     type: background-worker
     name: CatalogRules.test Service (External)
     external: true
@@ -663,7 +663,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/catalogservice
+  - entityRef: backstage/plugins/catalog-node/catalogservice
     type: background-worker
     name: catalogService Service (External)
     external: true
@@ -675,7 +675,7 @@ nodes:
     position:
       x: 7460
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/codeownersprocessor
+  - entityRef: backstage/plugins/catalog-backend/codeownersprocessor
     type: background-worker
     name: CodeOwnersProcessor Service (External)
     external: true
@@ -687,7 +687,7 @@ nodes:
     position:
       x: 1020
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/codeownersprocessor-test
+  - entityRef: backstage/plugins/catalog-backend/codeownersprocessor-test
     type: background-worker
     name: CodeOwnersProcessor.test Service (External)
     external: true
@@ -699,7 +699,7 @@ nodes:
     position:
       x: 1480
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/common
+  - entityRef: backstage/plugins/catalog-node/common
     type: rest-api
     name: common Service (External)
     external: true
@@ -711,7 +711,7 @@ nodes:
     position:
       x: 7920
       y: -204
-  - entityRef: blueprint/plugins/catalog/contextmenuitems
+  - entityRef: backstage/plugins/catalog/contextmenuitems
     type: gateway-api
     name: contextMenuItems Service (External)
     external: true
@@ -723,7 +723,7 @@ nodes:
     position:
       x: 11600
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/conversion
+  - entityRef: backstage/plugins/catalog-backend/conversion
     type: relational-database
     name: conversion Service (External)
     external: true
@@ -735,7 +735,7 @@ nodes:
     position:
       x: 1940
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/conversion
+  - entityRef: backstage/plugins/catalog-node/conversion
     type: background-worker
     name: conversion Service (External)
     external: true
@@ -747,7 +747,7 @@ nodes:
     position:
       x: 8380
       y: -204
-  - entityRef: blueprint/plugins/api-docs/defaultapiexplorerpage
+  - entityRef: backstage/plugins/api-docs/defaultapiexplorerpage
     type: gateway-api
     name: DefaultApiExplorerPage Service (External)
     external: true
@@ -759,7 +759,7 @@ nodes:
     position:
       x: -14620
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     type: background-worker
     name: DefaultCatalogCollatorFactory Service (External)
     external: true
@@ -771,7 +771,7 @@ nodes:
     position:
       x: 14360
       y: -204
-  - entityRef: blueprint/plugins/catalog/defaultcatalogpage
+  - entityRef: backstage/plugins/catalog/defaultcatalogpage
     type: gateway-api
     name: DefaultCatalogPage Service (External)
     external: true
@@ -783,7 +783,7 @@ nodes:
     position:
       x: 12060
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator
+  - entityRef: backstage/plugins/catalog-backend/defaultcatalogprocessingorchestrator
     type: background-worker
     name: DefaultCatalogProcessingOrchestrator Service (External)
     external: true
@@ -795,7 +795,7 @@ nodes:
     position:
       x: 2400
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
     type: background-worker
     name: DefaultTechDocsCollatorFactory Service (External)
     external: true
@@ -807,7 +807,7 @@ nodes:
     position:
       x: 14820
       y: -204
-  - entityRef: blueprint/plugins/catalog/entitycontextmenu
+  - entityRef: backstage/plugins/catalog/entitycontextmenu
     type: gateway-api
     name: EntityContextMenu Service (External)
     external: true
@@ -819,7 +819,7 @@ nodes:
     position:
       x: 12520
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/filereaderprocessor
+  - entityRef: backstage/plugins/catalog-backend/filereaderprocessor
     type: background-worker
     name: FileReaderProcessor Service (External)
     external: true
@@ -831,7 +831,7 @@ nodes:
     position:
       x: 2860
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gerrit/gerritentityprovider
     type: background-worker
     name: GerritEntityProvider Service (External)
     external: true
@@ -843,7 +843,7 @@ nodes:
     position:
       x: -9560
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
     type: background-worker
     name: GiteaEntityProvider Service (External)
     external: true
@@ -855,7 +855,7 @@ nodes:
     position:
       x: -9100
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-github/githubentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-github/githubentityprovider
     type: background-worker
     name: GithubEntityProvider Service (External)
     external: true
@@ -867,7 +867,7 @@ nodes:
     position:
       x: -8640
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
     type: background-worker
     name: GitlabDiscoveryEntityProvider Service (External)
     external: true
@@ -879,7 +879,7 @@ nodes:
     position:
       x: -8180
       y: -204
-  - entityRef: blueprint/plugins/org/groupprofilecard
+  - entityRef: backstage/plugins/org/groupprofilecard
     type: gateway-api
     name: GroupProfileCard Service (External)
     external: true
@@ -891,7 +891,7 @@ nodes:
     position:
       x: 12980
       y: -204
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -903,7 +903,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -915,7 +915,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/catalog-backend/integration-test
+  - entityRef: backstage/plugins/catalog-backend/integration-test
     type: relational-database
     name: integration.test Service (External)
     external: true
@@ -927,7 +927,7 @@ nodes:
     position:
       x: 3320
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
     type: background-worker
     name: LdapOrgReaderProcessor Service (External)
     external: true
@@ -939,7 +939,7 @@ nodes:
     position:
       x: -7720
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/locationanalyzer
+  - entityRef: backstage/plugins/catalog-backend/locationanalyzer
     type: background-worker
     name: LocationAnalyzer Service (External)
     external: true
@@ -951,7 +951,7 @@ nodes:
     position:
       x: 3780
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
     type: background-worker
     name: MicrosoftGraphOrgReaderProcessor Service (External)
     external: true
@@ -963,7 +963,7 @@ nodes:
     position:
       x: -7260
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/modelprocessor
+  - entityRef: backstage/plugins/catalog-backend/modelprocessor
     type: background-worker
     name: ModelProcessor Service (External)
     external: true
@@ -975,7 +975,7 @@ nodes:
     position:
       x: 4240
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
     type: background-worker
     name: OpenApiRefProcessor Service (External)
     external: true
@@ -987,7 +987,7 @@ nodes:
     position:
       x: -6800
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor-test
     type: background-worker
     name: OpenApiRefProcessor.test Service (External)
     external: true
@@ -999,7 +999,7 @@ nodes:
     position:
       x: -6340
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/parse
+  - entityRef: backstage/plugins/catalog-node/parse
     type: background-worker
     name: parse Service (External)
     external: true
@@ -1011,7 +1011,7 @@ nodes:
     position:
       x: 8840
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/placeholderprocessor
+  - entityRef: backstage/plugins/catalog-backend/placeholderprocessor
     type: background-worker
     name: PlaceholderProcessor Service (External)
     external: true
@@ -1023,7 +1023,7 @@ nodes:
     position:
       x: 4700
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/processingresult
+  - entityRef: backstage/plugins/catalog-node/processingresult
     type: rest-api
     name: processingResult Service (External)
     external: true
@@ -1035,7 +1035,7 @@ nodes:
     position:
       x: 9300
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/processor
+  - entityRef: backstage/plugins/catalog-node/processor
     type: rest-api
     name: processor Service (External)
     external: true
@@ -1047,7 +1047,7 @@ nodes:
     position:
       x: 9760
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/registerexistingbutton
+  - entityRef: backstage/plugins/scaffolder/registerexistingbutton
     type: gateway-api
     name: RegisterExistingButton Service (External)
     external: true
@@ -1059,7 +1059,7 @@ nodes:
     position:
       x: 13440
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
     type: background-worker
     name: ScaffolderEntitiesProcessor Service (External)
     external: true
@@ -1071,7 +1071,7 @@ nodes:
     position:
       x: -5880
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/types
+  - entityRef: backstage/plugins/catalog-node/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -1083,7 +1083,7 @@ nodes:
     position:
       x: 10220
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/urlreaderprocessor
+  - entityRef: backstage/plugins/catalog-backend/urlreaderprocessor
     type: background-worker
     name: UrlReaderProcessor Service (External)
     external: true
@@ -1095,7 +1095,7 @@ nodes:
     position:
       x: 5160
       y: -204
-  - entityRef: blueprint/plugins/catalog-react/useentitypermission-test
+  - entityRef: backstage/plugins/catalog-react/useentitypermission-test
     type: gateway-api
     name: useEntityPermission.test Service (External)
     external: true
@@ -1107,7 +1107,7 @@ nodes:
     position:
       x: 10680
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/util
+  - entityRef: backstage/plugins/catalog-backend/util
     type: rest-api
     name: util Service (External)
     external: true
@@ -1120,315 +1120,315 @@ nodes:
       x: 5620
       y: -204
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor-test
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor-test
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-openapi/openapirefprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-openapi/openapirefprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/scaffolder/registerexistingbutton
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/scaffolder/registerexistingbutton
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/locationanalyzer
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/locationanalyzer
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/catalogrules
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/catalogrules
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/catalogrules-test
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/catalogrules-test
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/conversion
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/conversion
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/util
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/util
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/defaultcatalogprocessingorchestrator
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/defaultcatalogprocessingorchestrator
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/catalogmodulesyntheticloadentities
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/catalogmodulesyntheticloadentities
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/integration-test
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/integration-test
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/util
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-backend/util
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/modelprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/modelprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/annotatescmslugentityprocessor-test
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/annotatescmslugentityprocessor-test
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/codeownersprocessor-test
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/codeownersprocessor-test
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/annotatescmslugentityprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/annotatescmslugentityprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/filereaderprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/filereaderprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/codeownersprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/codeownersprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/builtinkindsentityprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/builtinkindsentityprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/annotatelocationentityprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/annotatelocationentityprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/placeholderprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/placeholderprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/urlreaderprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/urlreaderprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/annotatelocationentityprocessor-test
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/annotatelocationentityprocessor-test
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/authorizedrefreshservice
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-backend/authorizedrefreshservice
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/authorizedlocationanalyzer
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-backend/authorizedlocationanalyzer
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/authorizedlocationanalyzer
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend/authorizedlocationanalyzer
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/authorizedvalidationservice
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-backend/authorizedvalidationservice
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/authorizedlocationservice
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-backend/authorizedlocationservice
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/catalogbuilder
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-backend/catalogbuilder
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend/authorizedentitiescatalog
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-backend/authorizedentitiescatalog
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-github/githubentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-github/githubentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-react/useentitypermission-test
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-react/useentitypermission-test
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-gitea/giteaentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-gerrit/gerritentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-gerrit/gerritentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverlocationparser
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/org/groupprofilecard
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/org/groupprofilecard
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-scaffolder-entity-model/scaffolderentitiesprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog/entitycontextmenu
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog/entitycontextmenu
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog/defaultcatalogpage
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog/defaultcatalogpage
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog/aboutcard
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog/aboutcard
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog/contextmenuitems
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog/contextmenuitems
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/search-backend-module-catalog/catalogcollatorentitytransformer
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3entityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-aws/awss3entityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/awseksclusterprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-aws/awseksclusterprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-aws/awsorganizationcloudaccountprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-aws/awss3discoveryprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-aws/awss3discoveryprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-azure/azureblobstorageentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-azure/azuredevopsentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor-test
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor-test
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-azure/azuredevopsdiscoveryprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-node/parse
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-node/parse
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-node/types
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-node/types
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-node/alpha
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-node/alpha
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-node/catalogservice
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-node/catalogservice
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-node/conversion
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-node/conversion
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-node/common
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-node/common
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-node/processor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-node/processor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-node/processingresult
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-node/processingresult
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-import/alpha
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/catalog-import/alpha
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-import/catalogimportclient
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-import/catalogimportclient
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage
-    to: blueprint/plugins/catalog-common/alpha
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage
+    to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-common/locationanalyzer
-    to: blueprint/plugins/catalog-common/common
+  - from: backstage/plugins/catalog-common/locationanalyzer
+    to: backstage/plugins/catalog-common/common
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-common/locationanalyzer
-    to: blueprint/plugins/catalog-common/recursivepartial
+  - from: backstage/plugins/catalog-common/locationanalyzer
+    to: backstage/plugins/catalog-common/recursivepartial
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-common/recursivepartial-test
-    to: blueprint/plugins/catalog-common/recursivepartial
+  - from: backstage/plugins/catalog-common/recursivepartial-test
+    to: backstage/plugins/catalog-common/recursivepartial
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-common/index
-    to: blueprint/plugins/catalog-common/locationanalyzer
+  - from: backstage/plugins/catalog-common/index
+    to: backstage/plugins/catalog-common/locationanalyzer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-common/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-common/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-common/alpha
-    to: blueprint/plugins/catalog-common/permissions
+  - from: backstage/plugins/catalog-common/alpha
+    to: backstage/plugins/catalog-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-common/alpha
-    to: blueprint/plugins/catalog-common/permissions
+  - from: backstage/plugins/catalog-common/alpha
+    to: backstage/plugins/catalog-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-common/catalogentitydocument
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/catalog-common/catalogentitydocument
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/catalog-common/index
-    to: blueprint/plugins/catalog-common/catalogentitydocument
+  - from: backstage/plugins/catalog-common/index
+    to: backstage/plugins/catalog-common/catalogentitydocument
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-common/index
-    to: blueprint/plugins/catalog-common/common
+  - from: backstage/plugins/catalog-common/index
+    to: backstage/plugins/catalog-common/common
     type: direct-call
     description: Calls module / service

@@ -3,44 +3,44 @@ import type { SystemSchema } from '../models/schema';
 import { buildDefaultEstateScenarios } from './estateScenarios';
 
 const ecommerceSchema: SystemSchema = {
-  entityRef: 'blueprint/chaoslens-stress/ecommerce',
+  entityRef: 'chaoslens-stress/ecommerce',
   name: 'E-Commerce',
   version: '1.0.0',
   level: 'container',
   nodes: [
-    { entityRef: 'blueprint/chaoslens-stress/ecommerce/web', name: 'Web', type: 'web-app' },
+    { entityRef: 'chaoslens-stress/ecommerce/web', name: 'Web', type: 'web-app' },
     {
-      entityRef: 'blueprint/chaoslens-stress/ecommerce/mobile',
+      entityRef: 'chaoslens-stress/ecommerce/mobile',
       name: 'Mobile',
       type: 'mobile-app',
     },
-    { entityRef: 'blueprint/chaoslens-stress/ecommerce/api', name: 'API', type: 'rest-api' },
+    { entityRef: 'chaoslens-stress/ecommerce/api', name: 'API', type: 'rest-api' },
     {
-      entityRef: 'blueprint/chaoslens-stress/ecommerce/payment',
+      entityRef: 'chaoslens-stress/ecommerce/payment',
       name: 'Payment',
       type: 'microservice',
     },
-    { entityRef: 'blueprint/chaoslens-stress/ecommerce/db', name: 'Database', type: 'database' },
+    { entityRef: 'chaoslens-stress/ecommerce/db', name: 'Database', type: 'database' },
   ],
   dependencies: [
     {
-      from: 'blueprint/chaoslens-stress/ecommerce/web',
-      to: 'blueprint/chaoslens-stress/ecommerce/api',
+      from: 'chaoslens-stress/ecommerce/web',
+      to: 'chaoslens-stress/ecommerce/api',
       type: 'direct-call',
     },
     {
-      from: 'blueprint/chaoslens-stress/ecommerce/mobile',
-      to: 'blueprint/chaoslens-stress/ecommerce/api',
+      from: 'chaoslens-stress/ecommerce/mobile',
+      to: 'chaoslens-stress/ecommerce/api',
       type: 'direct-call',
     },
     {
-      from: 'blueprint/chaoslens-stress/ecommerce/api',
-      to: 'blueprint/chaoslens-stress/ecommerce/payment',
+      from: 'chaoslens-stress/ecommerce/api',
+      to: 'chaoslens-stress/ecommerce/payment',
       type: 'direct-call',
     },
     {
-      from: 'blueprint/chaoslens-stress/ecommerce/api',
-      to: 'blueprint/chaoslens-stress/ecommerce/db',
+      from: 'chaoslens-stress/ecommerce/api',
+      to: 'chaoslens-stress/ecommerce/db',
       type: 'read-write',
     },
   ],
@@ -59,7 +59,7 @@ describe('buildDefaultEstateScenarios', () => {
       scenarios.some(
         scenario =>
           scenario.kind === 'high-fan-in-probe' &&
-          scenario.spec.faults[0]?.nodeId === 'blueprint/chaoslens-stress/ecommerce/api'
+          scenario.spec.faults[0]?.nodeId === 'chaoslens-stress/ecommerce/api'
       )
     ).toBe(true);
   });

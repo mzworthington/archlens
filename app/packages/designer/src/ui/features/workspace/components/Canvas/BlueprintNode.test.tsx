@@ -5,7 +5,7 @@ import { useBlueprintStore } from '../../../../../application/store/store';
 
 const mockSetLocation = vi.fn();
 vi.mock('wouter', () => ({
-  useLocation: () => ['/workspace/blueprint', mockSetLocation],
+  useLocation: () => ['/workspace/application', mockSetLocation],
 }));
 
 vi.mock('@xyflow/react', () => {
@@ -188,7 +188,7 @@ describe('BlueprintNode Component', () => {
   });
 
   it('truncates long entityRefs while exposing the full value in the title tooltip', () => {
-    const longRef = 'blueprint/blueprint/designer/importschema';
+    const longRef = 'blueprint/application/designer/importschema';
     const props = {
       ...defaultProps,
       id: longRef,

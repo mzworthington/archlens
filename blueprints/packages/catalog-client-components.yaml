@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/catalog-client
+  entityRef: backstage/packages/catalog-client
   name: Catalog-client Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/catalog-client/utils-test
+  - entityRef: backstage/packages/catalog-client/utils-test
     type: background-worker
     name: utils.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/status
+  - entityRef: backstage/packages/catalog-client/status
     type: background-worker
     name: status Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/api
+  - entityRef: backstage/packages/catalog-client/api
     type: background-worker
     name: api Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/discovery
+  - entityRef: backstage/packages/catalog-client/discovery
     type: background-worker
     name: discovery Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/index
+  - entityRef: backstage/packages/catalog-client/index
     type: background-worker
     name: index Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/fetch
+  - entityRef: backstage/packages/catalog-client/fetch
     type: background-worker
     name: fetch Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/utils
+  - entityRef: backstage/packages/catalog-client/utils
     type: background-worker
     name: utils Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/setuptests
+  - entityRef: backstage/packages/catalog-client/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/catalogclient-test
+  - entityRef: backstage/packages/catalog-client/catalogclient-test
     type: background-worker
     name: CatalogClient.test Service
     isTest: true
@@ -320,7 +320,7 @@ nodes:
           commits: 1
       hotspotScore: 0.02447167120446
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/constants
+  - entityRef: backstage/packages/catalog-client/constants
     type: background-worker
     name: constants Service
     isTest: false
@@ -354,7 +354,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/testutils
+  - entityRef: backstage/packages/catalog-client/testutils
     type: background-worker
     name: testUtils Service
     isTest: false
@@ -388,7 +388,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/catalogclient
+  - entityRef: backstage/packages/catalog-client/catalogclient
     type: background-worker
     name: CatalogClient Service
     isTest: false
@@ -422,7 +422,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient-test
+  - entityRef: backstage/packages/catalog-client/inmemorycatalogclient-test
     type: background-worker
     name: InMemoryCatalogClient.test Service
     isTest: true
@@ -456,7 +456,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/catalog-client/inmemorycatalogclient
+  - entityRef: backstage/packages/catalog-client/inmemorycatalogclient
     type: background-worker
     name: InMemoryCatalogClient Service
     isTest: false
@@ -490,7 +490,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-openapi-utils/generated
+  - entityRef: backstage/packages/backend-openapi-utils/generated
     type: rest-api
     name: generated Service (External)
     external: true
@@ -502,7 +502,7 @@ nodes:
     position:
       x: -820
       y: 404
-  - entityRef: blueprint/packages/catalog-model/index
+  - entityRef: backstage/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -514,7 +514,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: backstage/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -526,7 +526,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/filter-predicates/index
+  - entityRef: backstage/packages/filter-predicates/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -538,7 +538,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/packages/integration-react/index
+  - entityRef: backstage/packages/integration-react/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -550,7 +550,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/packages/ui/types
+  - entityRef: backstage/packages/ui/types
     type: gateway-api
     name: types Service (External)
     external: true
@@ -563,135 +563,135 @@ nodes:
       x: 1020
       y: 404
 dependencies:
-  - from: blueprint/packages/catalog-client/utils-test
-    to: blueprint/packages/catalog-client/api
+  - from: backstage/packages/catalog-client/utils-test
+    to: backstage/packages/catalog-client/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/utils-test
-    to: blueprint/packages/catalog-client/utils
+  - from: backstage/packages/catalog-client/utils-test
+    to: backstage/packages/catalog-client/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/api
-    to: blueprint/packages/catalog-model/index
+  - from: backstage/packages/catalog-client/api
+    to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: blueprint/packages/catalog-client/api
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-client/api
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-client/api
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/catalog-client/api
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/index
-    to: blueprint/packages/catalog-client/api
+  - from: backstage/packages/catalog-client/index
+    to: backstage/packages/catalog-client/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/index
-    to: blueprint/packages/catalog-client/api
+  - from: backstage/packages/catalog-client/index
+    to: backstage/packages/catalog-client/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/index
-    to: blueprint/packages/catalog-client/status
+  - from: backstage/packages/catalog-client/index
+    to: backstage/packages/catalog-client/status
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/utils
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/catalog-client/utils
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/utils
-    to: blueprint/packages/catalog-client/api
+  - from: backstage/packages/catalog-client/utils
+    to: backstage/packages/catalog-client/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/catalogclient-test
-    to: blueprint/packages/catalog-model/index
+  - from: backstage/packages/catalog-client/catalogclient-test
+    to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: blueprint/packages/catalog-client/catalogclient-test
-    to: blueprint/packages/catalog-client/catalogclient
+  - from: backstage/packages/catalog-client/catalogclient-test
+    to: backstage/packages/catalog-client/catalogclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/catalogclient-test
-    to: blueprint/packages/catalog-client/api
+  - from: backstage/packages/catalog-client/catalogclient-test
+    to: backstage/packages/catalog-client/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/catalogclient-test
-    to: blueprint/packages/catalog-client/discovery
+  - from: backstage/packages/catalog-client/catalogclient-test
+    to: backstage/packages/catalog-client/discovery
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/index
-    to: blueprint/packages/backend-openapi-utils/generated
+  - from: backstage/packages/catalog-client/index
+    to: backstage/packages/backend-openapi-utils/generated
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/testutils
-    to: blueprint/packages/catalog-client/inmemorycatalogclient
+  - from: backstage/packages/catalog-client/testutils
+    to: backstage/packages/catalog-client/inmemorycatalogclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/catalog-model/index
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/catalog-client/api
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/catalog-client/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/catalog-client/utils
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/catalog-client/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/catalogclient
-    to: blueprint/packages/catalog-client/constants
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/catalog-client/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/index
-    to: blueprint/packages/catalog-client/catalogclient
+  - from: backstage/packages/catalog-client/index
+    to: backstage/packages/catalog-client/catalogclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/index
-    to: blueprint/packages/ui/types
+  - from: backstage/packages/catalog-client/index
+    to: backstage/packages/ui/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient-test
-    to: blueprint/packages/ui/types
+  - from: backstage/packages/catalog-client/inmemorycatalogclient-test
+    to: backstage/packages/ui/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient-test
-    to: blueprint/packages/catalog-client/inmemorycatalogclient
+  - from: backstage/packages/catalog-client/inmemorycatalogclient-test
+    to: backstage/packages/catalog-client/inmemorycatalogclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient-test
-    to: blueprint/packages/catalog-model/index
+  - from: backstage/packages/catalog-client/inmemorycatalogclient-test
+    to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/catalog-client/index
+  - from: backstage/packages/catalog-client/inmemorycatalogclient
+    to: backstage/packages/catalog-client/index
     type: direct-call
     description: '@backstage/catalog-client'
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/catalog-model/index
+  - from: backstage/packages/catalog-client/inmemorycatalogclient
+    to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/catalog-client/inmemorycatalogclient
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/filter-predicates/index
+  - from: backstage/packages/catalog-client/inmemorycatalogclient
+    to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: blueprint/packages/catalog-client/inmemorycatalogclient
-    to: blueprint/packages/catalog-client/constants
+  - from: backstage/packages/catalog-client/inmemorycatalogclient
+    to: backstage/packages/catalog-client/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration-react/index
-    to: blueprint/packages/catalog-client/api
+  - from: backstage/packages/integration-react/index
+    to: backstage/packages/catalog-client/api
     type: direct-call
     description: Calls module / service

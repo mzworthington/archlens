@@ -7,11 +7,11 @@ import { resolveDiagramPathsForEntityScope } from './resolveTraceLensScopeDiagra
 
 describe('resolveBundledPathsForEntityRef', () => {
   it('includes the component diagram and parent containers diagram for eshop-apphost', () => {
-    const paths = resolveBundledPathsForEntityRef('blueprint/eshop/eshop-apphost');
+    const paths = resolveBundledPathsForEntityRef('eshop/eshop-apphost');
 
     expect(paths).toContain('eshop/eshop-apphost-components.yaml');
     expect(paths).toContain('eshop/containers.yaml');
-    expect(guessBundledPathForEntityRef('blueprint/eshop/eshop-apphost')).toBe(
+    expect(guessBundledPathForEntityRef('eshop/eshop-apphost')).toBe(
       'eshop/eshop-apphost-components.yaml'
     );
   });
@@ -20,20 +20,20 @@ describe('resolveBundledPathsForEntityRef', () => {
 describe('resolveDiagramPathsForEntityScope', () => {
   it('falls back to bundled path resolution when catalog stubs lack node refs', () => {
     const paths = resolveDiagramPathsForEntityScope(
-      'blueprint/eshop/eshop-apphost',
+      'eshop/eshop-apphost',
       [
         {
           path: 'eshop/containers.yaml',
           name: 'EShop Containers',
           level: 'container',
-          entityRef: 'blueprint/eshop',
+          entityRef: 'eshop',
           nodeEntityRefs: [],
         },
         {
           path: 'eshop/eshop-apphost-components.yaml',
           name: 'EShop.AppHost Service Components',
           level: 'component',
-          entityRef: 'blueprint/eshop/eshop-apphost',
+          entityRef: 'eshop/eshop-apphost',
           nodeEntityRefs: [],
         },
       ],
@@ -60,7 +60,7 @@ describe('resolveDiagramPathsForEntityScope', () => {
           path: 'eshop/eshop-apphost-components.yaml',
           name: 'EShop.AppHost Service Components',
           level: 'component',
-          entityRef: 'blueprint/eshop/eshop-apphost',
+          entityRef: 'eshop/eshop-apphost',
           nodeEntityRefs: [],
         },
       ],

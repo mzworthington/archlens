@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/search-backend-module-elasticsearch
+  entityRef: backstage/plugins/search-backend-module-elasticsearch
   name: Search-backend-module-elasticsearch Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/config-d
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/module
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/module
     type: background-worker
     name: module Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/alpha
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
     type: background-worker
     name: ElasticSearchSearchEngine.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
     type: background-worker
     name: ElasticSearchAuthTransport.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/types
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/types
     type: background-worker
     name: types Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
     type: background-worker
     name: ElasticSearchClientOptions Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: background-worker
     name: ElasticSearchClientWrapper Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
     type: background-worker
     name: ElasticSearchClientWrapper.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
     type: background-worker
     name: ElasticSearchSearchEngineIndexer.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     type: background-worker
     name: ElasticSearchSearchEngineIndexer Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/index
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/index
     type: background-worker
     name: index Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: background-worker
     name: ElasticSearchSearchEngine Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
     type: background-worker
     name: ElasticSearchAuthTransport Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-elasticsearch/auth
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/auth
     type: background-worker
     name: auth Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/alpha
+  - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -531,7 +531,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/plugins/search-backend-node/index
+  - entityRef: backstage/plugins/search-backend-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -543,7 +543,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -556,155 +556,155 @@ nodes:
       x: 560
       y: 404
 dependencies:
-  - from: blueprint/plugins/search-backend-module-elasticsearch/module
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-elasticsearch/module
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/module
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - from: backstage/plugins/search-backend-module-elasticsearch/module
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/module
-    to: blueprint/plugins/search-backend-module-elasticsearch/auth
+  - from: backstage/plugins/search-backend-module-elasticsearch/module
+    to: backstage/plugins/search-backend-module-elasticsearch/auth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/alpha
-    to: blueprint/plugins/search-backend-module-elasticsearch/module
+  - from: backstage/plugins/search-backend-module-elasticsearch/alpha
+    to: backstage/plugins/search-backend-module-elasticsearch/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/auth
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
+    to: backstage/plugins/search-backend-module-elasticsearch/auth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    to: blueprint/plugins/search-backend-module-elasticsearch/types
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+    to: backstage/plugins/search-backend-module-elasticsearch/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/types
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-module-elasticsearch/types
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-module-elasticsearch/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-module-elasticsearch/auth
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-module-elasticsearch/auth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
-    to: blueprint/plugins/search-backend-module-elasticsearch/auth
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
+    to: backstage/plugins/search-backend-module-elasticsearch/auth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
-    to: blueprint/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
+  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
+    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/module
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-elasticsearch/index
-    to: blueprint/plugins/search-backend-module-elasticsearch/module
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/module
     type: direct-call
     description: Calls module / service

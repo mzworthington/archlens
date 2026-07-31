@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/microsite/components
+  entityRef: backstage/microsite/components
   name: Components Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/microsite/components/contentblock
+  - entityRef: backstage/microsite/components/contentblock
     type: gateway-api
     name: contentBlock Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/microsite/components/bannersectiongrid
+  - entityRef: backstage/microsite/components/bannersectiongrid
     type: gateway-api
     name: bannerSectionGrid Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/microsite/components/bannersection
+  - entityRef: backstage/microsite/components/bannersection
     type: gateway-api
     name: bannerSection Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/microsite/components/pluginssearch
+  - entityRef: backstage/microsite/components/pluginssearch
     type: gateway-api
     name: pluginsSearch Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/microsite/components/pluginsfilter
+  - entityRef: backstage/microsite/components/pluginsfilter
     type: gateway-api
     name: pluginsFilter Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/microsite/components/simplecard
+  - entityRef: backstage/microsite/components/simplecard
     type: gateway-api
     name: simpleCard Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/microsite/pages/index
+  - entityRef: backstage/microsite/pages/index
     type: gateway-api
     name: index Service (External)
     external: true
@@ -226,7 +226,7 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/microsite/pages/index
-    to: blueprint/microsite/components/contentblock
+  - from: backstage/microsite/pages/index
+    to: backstage/microsite/components/contentblock
     type: direct-call
     description: Calls module / service

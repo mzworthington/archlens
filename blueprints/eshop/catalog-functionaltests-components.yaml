@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/catalog-functionaltests
+  entityRef: eshop/catalog-functionaltests
   name: Catalog.FunctionalTests Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/catalog-functionaltests/catalogapifixture
+  - entityRef: eshop/catalog-functionaltests/catalogapifixture
     type: rest-api
     name: CatalogApiFixture
     isTest: true
@@ -42,7 +42,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-functionaltests/catalogapitests
+  - entityRef: eshop/catalog-functionaltests/catalogapitests
     type: rest-api
     name: CatalogApiTests
     isTest: true
@@ -74,7 +74,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/catalog-api/model
+  - entityRef: eshop/catalog-api/model
     type: rest-api
     name: Model Layer (External)
     external: true
@@ -87,7 +87,7 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/eshop/catalog-functionaltests/catalogapitests
-    to: blueprint/eshop/catalog-api/model
+  - from: eshop/catalog-functionaltests/catalogapitests
+    to: eshop/catalog-api/model
     type: direct-call
     description: Calls module / service

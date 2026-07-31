@@ -3,11 +3,25 @@ import { Link, useLocation } from 'wouter';
 import { AppHeader } from '../../components/AppHeader';
 import { DOCS_NAV, DOCS_SIDEBAR } from './pages';
 
+export type DocsLocalNav = {
+  /** Section label for mobile scroller (e.g. "On this page"). */
+  title: string;
+  /** Docs path whose sidebar item expands to show these entries. */
+  expandUnderPath: string;
+  items: { id: string; label: string }[];
+  activeId: string;
+  onSelect: (id: string) => void;
+};
+
 type Props = {
   children: React.ReactNode;
   title?: string;
   /** Landing drops the docs sidebar and mobile chapter nav for the product homepage. */
   layout?: 'docs' | 'landing';
+  /** Flush main content without the inner card (full-width interactive pages). */
+  contentLayout?: 'card' | 'flush';
+  /** In-page section nav — nested under a sidebar link on desktop, scroller on mobile. */
+  localNav?: DocsLocalNav;
 };
 
 function isNavActive(location: string, path: string): boolean {
@@ -52,10 +66,51 @@ function MobileScroller({
   );
 }
 
-export const DocsShell: React.FC<Props> = ({ children, title, layout = 'docs' }) => {
+function MobileLocalNav({ localNav }: { localNav: DocsLocalNav }) {
+  return (
+    <div className="border-t border-[#00f0ff]/10">
+      <p className="px-3 pt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
+        {localNav.title}
+      </p>
+      <div
+        data-testid="docs-mobile-local-nav"
+        className="flex gap-2 items-center p-3 overflow-x-auto scrollbar-none min-w-0"
+        role="navigation"
+        aria-label={localNav.title}
+      >
+        {localNav.items.map(item => {
+          const active = localNav.activeId === item.id;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => localNav.onSelect(item.id)}
+              className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 cursor-pointer ${
+                active
+                  ? 'bg-[#00f0ff]/15 text-[#00f0ff] border-[#00f0ff]/30'
+                  : 'text-slate-400 hover:text-slate-200 bg-transparent border-transparent hover:bg-white/5'
+              }`}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export const DocsShell: React.FC<Props> = ({
+  children,
+  title,
+  layout = 'docs',
+  contentLayout = 'card',
+  localNav,
+}) => {
   const [location] = useLocation();
   const referenceSection = DOCS_SIDEBAR.find(s => s.title === 'Reference');
   const isLanding = layout === 'landing';
+  const showLocalNav = localNav && location === localNav.expandUnderPath;
 
   return (
     <div className="h-dvh w-full overflow-y-auto blueprint-grid text-slate-100 pb-safe">
@@ -88,7 +143,6 @@ export const DocsShell: React.FC<Props> = ({ children, title, layout = 'docs' })
         ) : null}
       </AppHeader>
 
-      {/* Mobile: product guide + reference as separate horizontal scrollers */}
       {!isLanding ? (
         <div className="lg:hidden border-b border-[#00f0ff]/10 bg-[#061125]/60 backdrop-blur-sm sticky top-[73px] z-40">
           <div>
@@ -115,6 +169,7 @@ export const DocsShell: React.FC<Props> = ({ children, title, layout = 'docs' })
               />
             </div>
           ) : null}
+          {showLocalNav ? <MobileLocalNav localNav={localNav!} /> : null}
         </div>
       ) : null}
 
@@ -134,6 +189,7 @@ export const DocsShell: React.FC<Props> = ({ children, title, layout = 'docs' })
                   <ul className="space-y-1">
                     {section.items.map(item => {
                       const active = location === item.path;
+                      const expandLocal = showLocalNav && item.path === localNav!.expandUnderPath;
                       return (
                         <li key={item.path}>
                           <Link
@@ -146,6 +202,31 @@ export const DocsShell: React.FC<Props> = ({ children, title, layout = 'docs' })
                           >
                             {item.label}
                           </Link>
+                          {expandLocal ? (
+                            <ul
+                              className="mt-1 ml-2 space-y-0.5 border-l border-[#00f0ff]/15 pl-2"
+                              aria-label={localNav!.title}
+                            >
+                              {localNav!.items.map(sub => {
+                                const subActive = localNav!.activeId === sub.id;
+                                return (
+                                  <li key={sub.id}>
+                                    <button
+                                      type="button"
+                                      onClick={() => localNav!.onSelect(sub.id)}
+                                      className={`w-full text-left rounded-md px-2 py-1.5 text-[13px] transition-colors cursor-pointer ${
+                                        subActive
+                                          ? 'text-[#00f0ff] bg-[#00f0ff]/10'
+                                          : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
+                                      }`}
+                                    >
+                                      {sub.label}
+                                    </button>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          ) : null}
                         </li>
                       );
                     })}
@@ -157,20 +238,24 @@ export const DocsShell: React.FC<Props> = ({ children, title, layout = 'docs' })
         ) : null}
 
         <main className={`min-w-0 ${isLanding ? '' : 'pb-16'}`}>
-          <div
-            className={
-              isLanding
-                ? 'min-w-0'
-                : 'bg-[#061125]/40 border border-[#00f0ff]/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm'
-            }
-          >
-            {title ? (
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
-                Docs
-              </p>
-            ) : null}
-            {children}
-          </div>
+          {contentLayout === 'flush' ? (
+            children
+          ) : (
+            <div
+              className={
+                isLanding
+                  ? 'min-w-0'
+                  : 'bg-[#061125]/40 border border-[#00f0ff]/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm'
+              }
+            >
+              {title ? (
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
+                  Docs
+                </p>
+              ) : null}
+              {children}
+            </div>
+          )}
         </main>
       </div>
     </div>

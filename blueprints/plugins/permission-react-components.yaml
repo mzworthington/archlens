@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/permission-react
+  entityRef: backstage/plugins/permission-react
   name: Permission-react Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/permission-react/permissionapi
+  - entityRef: backstage/plugins/permission-react/permissionapi
     type: rest-api
     name: PermissionApi Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-react/identitypermissionapi-test
+  - entityRef: backstage/plugins/permission-react/identitypermissionapi-test
     type: rest-api
     name: IdentityPermissionApi.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-react/index
+  - entityRef: backstage/plugins/permission-react/index
     type: rest-api
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-react/identitypermissionapi
+  - entityRef: backstage/plugins/permission-react/identitypermissionapi
     type: rest-api
     name: IdentityPermissionApi Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-react/setuptests
+  - entityRef: backstage/plugins/permission-react/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-react/requirepermission-test
+  - entityRef: backstage/plugins/permission-react/requirepermission-test
     type: background-worker
     name: RequirePermission.test Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-react/requirepermission
+  - entityRef: backstage/plugins/permission-react/requirepermission
     type: gateway-api
     name: RequirePermission Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-react/usepermission-test
+  - entityRef: backstage/plugins/permission-react/usepermission-test
     type: gateway-api
     name: usePermission.test Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-react/usepermission
+  - entityRef: backstage/plugins/permission-react/usepermission
     type: background-worker
     name: usePermission Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog/aboutcard
+  - entityRef: backstage/plugins/catalog/aboutcard
     type: gateway-api
     name: AboutCard Service (External)
     external: true
@@ -327,7 +327,7 @@ nodes:
     position:
       x: -5650
       y: -204
-  - entityRef: blueprint/plugins/catalog/aboutcard-test
+  - entityRef: backstage/plugins/catalog/aboutcard-test
     type: gateway-api
     name: AboutCard.test Service (External)
     external: true
@@ -339,7 +339,7 @@ nodes:
     position:
       x: -5190
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/actionspage-test
+  - entityRef: backstage/plugins/scaffolder/actionspage-test
     type: gateway-api
     name: ActionsPage.test Service (External)
     external: true
@@ -351,7 +351,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/plugins/catalog-import/alpha
+  - entityRef: backstage/plugins/catalog-import/alpha
     type: gateway-api
     name: alpha Service (External)
     external: true
@@ -363,7 +363,7 @@ nodes:
     position:
       x: -7030
       y: -204
-  - entityRef: blueprint/plugins/catalog/apis
+  - entityRef: backstage/plugins/catalog/apis
     type: gateway-api
     name: apis Service (External)
     external: true
@@ -375,7 +375,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/app/components
+  - entityRef: backstage/plugins/app/components
     type: gateway-api
     name: components Service (External)
     external: true
@@ -387,7 +387,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/scaffolder/contextmenu
+  - entityRef: backstage/plugins/scaffolder/contextmenu
     type: gateway-api
     name: ContextMenu Service (External)
     external: true
@@ -399,7 +399,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/plugins/api-docs/defaultapiexplorerpage
+  - entityRef: backstage/plugins/api-docs/defaultapiexplorerpage
     type: gateway-api
     name: DefaultApiExplorerPage Service (External)
     external: true
@@ -411,7 +411,7 @@ nodes:
     position:
       x: -8410
       y: -204
-  - entityRef: blueprint/plugins/api-docs/defaultapiexplorerpage-test
+  - entityRef: backstage/plugins/api-docs/defaultapiexplorerpage-test
     type: gateway-api
     name: DefaultApiExplorerPage.test Service (External)
     external: true
@@ -423,7 +423,7 @@ nodes:
     position:
       x: -7950
       y: -204
-  - entityRef: blueprint/plugins/app/defaultapis
+  - entityRef: backstage/plugins/app/defaultapis
     type: gateway-api
     name: defaultApis Service (External)
     external: true
@@ -435,7 +435,7 @@ nodes:
     position:
       x: -7490
       y: -204
-  - entityRef: blueprint/plugins/catalog/defaultcatalogpage
+  - entityRef: backstage/plugins/catalog/defaultcatalogpage
     type: gateway-api
     name: DefaultCatalogPage Service (External)
     external: true
@@ -447,7 +447,7 @@ nodes:
     position:
       x: -4730
       y: -204
-  - entityRef: blueprint/plugins/catalog/defaultcatalogpage-test
+  - entityRef: backstage/plugins/catalog/defaultcatalogpage-test
     type: gateway-api
     name: DefaultCatalogPage.test Service (External)
     external: true
@@ -459,7 +459,7 @@ nodes:
     position:
       x: -4270
       y: -204
-  - entityRef: blueprint/plugins/devtools/defaultdevtoolspage
+  - entityRef: backstage/plugins/devtools/defaultdevtoolspage
     type: gateway-api
     name: DefaultDevToolsPage Service (External)
     external: true
@@ -471,7 +471,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/editorsubpage
+  - entityRef: backstage/plugins/scaffolder/editorsubpage
     type: gateway-api
     name: EditorSubPage Service (External)
     external: true
@@ -483,7 +483,7 @@ nodes:
     position:
       x: 4010
       y: -204
-  - entityRef: blueprint/plugins/catalog/entitycontextmenu-test
+  - entityRef: backstage/plugins/catalog/entitycontextmenu-test
     type: gateway-api
     name: EntityContextMenu.test Service (External)
     external: true
@@ -495,7 +495,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/plugins/catalog/entitylayout-test
+  - entityRef: backstage/plugins/catalog/entitylayout-test
     type: gateway-api
     name: EntityLayout.test Service (External)
     external: true
@@ -507,7 +507,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/plugins/techdocs-module-addons-contrib/hooks
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/hooks
     type: gateway-api
     name: hooks Service (External)
     external: true
@@ -519,7 +519,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -531,7 +531,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/kubernetes/index
+  - entityRef: backstage/plugins/kubernetes/index
     type: gateway-api
     name: index Service (External)
     external: true
@@ -543,7 +543,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
+  - entityRef: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
     type: gateway-api
     name: KubernetesClusterContent Service (External)
     external: true
@@ -555,7 +555,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/kubernetes/kubernetescontent-test
+  - entityRef: backstage/plugins/kubernetes/kubernetescontent-test
     type: gateway-api
     name: KubernetesContent.test Service (External)
     external: true
@@ -567,7 +567,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/listtaskpage-test
+  - entityRef: backstage/plugins/scaffolder/listtaskpage-test
     type: gateway-api
     name: ListTaskPage.test Service (External)
     external: true
@@ -579,7 +579,7 @@ nodes:
     position:
       x: 4470
       y: -204
-  - entityRef: blueprint/plugins/org/memberslistcard-test
+  - entityRef: backstage/plugins/org/memberslistcard-test
     type: gateway-api
     name: MembersListCard.test Service (External)
     external: true
@@ -591,7 +591,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/catalog/nfsdefaultcatalogpage-test
+  - entityRef: backstage/plugins/catalog/nfsdefaultcatalogpage-test
     type: gateway-api
     name: NfsDefaultCatalogPage.test Service (External)
     external: true
@@ -603,7 +603,7 @@ nodes:
     position:
       x: -2890
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/ongoingtask
+  - entityRef: backstage/plugins/scaffolder/ongoingtask
     type: gateway-api
     name: OngoingTask Service (External)
     external: true
@@ -615,7 +615,7 @@ nodes:
     position:
       x: 4930
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/ongoingtask-test
+  - entityRef: backstage/plugins/scaffolder/ongoingtask-test
     type: gateway-api
     name: OngoingTask.test Service (External)
     external: true
@@ -627,7 +627,7 @@ nodes:
     position:
       x: 5390
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
+  - entityRef: backstage/plugins/scaffolder/ongoingtaskcontextmenu
     type: gateway-api
     name: OngoingTaskContextMenu Service (External)
     external: true
@@ -639,7 +639,7 @@ nodes:
     position:
       x: 5850
       y: -204
-  - entityRef: blueprint/plugins/devtools/plugin
+  - entityRef: backstage/plugins/devtools/plugin
     type: gateway-api
     name: plugin Service (External)
     external: true
@@ -651,7 +651,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/registerexistingbutton
+  - entityRef: backstage/plugins/scaffolder/registerexistingbutton
     type: gateway-api
     name: RegisterExistingButton Service (External)
     external: true
@@ -663,7 +663,7 @@ nodes:
     position:
       x: 6310
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/registerexistingbutton-test
+  - entityRef: backstage/plugins/scaffolder/registerexistingbutton-test
     type: gateway-api
     name: RegisterExistingButton.test Service (External)
     external: true
@@ -675,7 +675,7 @@ nodes:
     position:
       x: 6770
       y: -204
-  - entityRef: blueprint/plugins/kubernetes/requirekubernetespermissions
+  - entityRef: backstage/plugins/kubernetes/requirekubernetespermissions
     type: gateway-api
     name: RequireKubernetesPermissions Service (External)
     external: true
@@ -687,7 +687,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/router
+  - entityRef: backstage/plugins/scaffolder/router
     type: gateway-api
     name: Router Service (External)
     external: true
@@ -699,7 +699,7 @@ nodes:
     position:
       x: 7230
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-react/scaffolderpagecontextmenu
+  - entityRef: backstage/plugins/scaffolder-react/scaffolderpagecontextmenu
     type: gateway-api
     name: ScaffolderPageContextMenu Service (External)
     external: true
@@ -711,7 +711,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/plugins/devtools/scheduledtaskscontent
+  - entityRef: backstage/plugins/devtools/scheduledtaskscontent
     type: gateway-api
     name: ScheduledTasksContent Service (External)
     external: true
@@ -723,7 +723,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-react/templatecard-test
+  - entityRef: backstage/plugins/scaffolder-react/templatecard-test
     type: gateway-api
     name: TemplateCard.test Service (External)
     external: true
@@ -735,7 +735,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-react/templatecardimpl
+  - entityRef: backstage/plugins/scaffolder-react/templatecardimpl
     type: gateway-api
     name: TemplateCardImpl Service (External)
     external: true
@@ -747,7 +747,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/templatelistpage-test
+  - entityRef: backstage/plugins/scaffolder/templatelistpage-test
     type: gateway-api
     name: TemplateListPage.test Service (External)
     external: true
@@ -759,7 +759,7 @@ nodes:
     position:
       x: 7690
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/templatingextensionspage-test
+  - entityRef: backstage/plugins/scaffolder/templatingextensionspage-test
     type: gateway-api
     name: TemplatingExtensionsPage.test Service (External)
     external: true
@@ -771,7 +771,7 @@ nodes:
     position:
       x: 8150
       y: -204
-  - entityRef: blueprint/plugins/catalog/unregisterentity-test
+  - entityRef: backstage/plugins/catalog/unregisterentity-test
     type: gateway-api
     name: UnregisterEntity.test Service (External)
     external: true
@@ -783,7 +783,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/plugins/catalog-react/useentitypermission
+  - entityRef: backstage/plugins/catalog-react/useentitypermission
     type: gateway-api
     name: useEntityPermission Service (External)
     external: true
@@ -795,7 +795,7 @@ nodes:
     position:
       x: -6570
       y: -204
-  - entityRef: blueprint/plugins/catalog-react/useentitypermission-test
+  - entityRef: backstage/plugins/catalog-react/useentitypermission-test
     type: gateway-api
     name: useEntityPermission.test Service (External)
     external: true
@@ -807,7 +807,7 @@ nodes:
     position:
       x: -6110
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
+  - entityRef: backstage/plugins/scaffolder/usescaffoldertemplateiconlinkprops
     type: gateway-api
     name: useScaffolderTemplateIconLinkProps Service (External)
     external: true
@@ -820,255 +820,255 @@ nodes:
       x: 8610
       y: -204
 dependencies:
-  - from: blueprint/plugins/scaffolder/actionspage-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/actionspage-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/templatingextensionspage-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/templatingextensionspage-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/listtaskpage-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/listtaskpage-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/ongoingtask-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/ongoingtask-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/ongoingtaskcontextmenu
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/ongoingtaskcontextmenu
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/contextmenu
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/contextmenu
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/ongoingtask
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/ongoingtask
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/router
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/router
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/editorsubpage
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/editorsubpage
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/templatelistpage-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/templatelistpage-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/registerexistingbutton-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/registerexistingbutton-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/registerexistingbutton
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/registerexistingbutton
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder/usescaffoldertemplateiconlinkprops
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder/usescaffoldertemplateiconlinkprops
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog-react/useentitypermission
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog-react/useentitypermission
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog-react/useentitypermission-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog-react/useentitypermission-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/app/defaultapis
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/app/defaultapis
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/org/memberslistcard-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/org/memberslistcard-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog/unregisterentity-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog/unregisterentity-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog/entitycontextmenu-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog/entitycontextmenu-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog/entitylayout-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog/entitylayout-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog/defaultcatalogpage
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog/defaultcatalogpage
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog/defaultcatalogpage-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog/defaultcatalogpage-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog/nfsdefaultcatalogpage-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog/nfsdefaultcatalogpage-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog/aboutcard-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog/aboutcard-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog/aboutcard
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog/aboutcard
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder-react/scaffolderpagecontextmenu
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder-react/scaffolderpagecontextmenu
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder-react/templatecardimpl
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder-react/templatecardimpl
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/scaffolder-react/templatecard-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/scaffolder-react/templatecard-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/devtools/defaultdevtoolspage
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/devtools/defaultdevtoolspage
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/devtools/scheduledtaskscontent
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/devtools/scheduledtaskscontent
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/devtools/plugin
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/devtools/plugin
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/catalog-import/alpha
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/catalog-import/alpha
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/permission-react/permissionapi
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/permissionapi
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/identitypermissionapi-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/identitypermissionapi-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/identitypermissionapi-test
-    to: blueprint/plugins/permission-react/identitypermissionapi
+  - from: backstage/plugins/permission-react/identitypermissionapi-test
+    to: backstage/plugins/permission-react/identitypermissionapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/permission-react/permissionapi
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/permission-react/permissionapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/permission-react/permissionapi
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/permission-react/permissionapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/permission-react/identitypermissionapi
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/permission-react/identitypermissionapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/identitypermissionapi
-    to: blueprint/plugins/permission-react/permissionapi
+  - from: backstage/plugins/permission-react/identitypermissionapi
+    to: backstage/plugins/permission-react/permissionapi
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/identitypermissionapi
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/identitypermissionapi
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/requirepermission-test
-    to: blueprint/plugins/permission-react/requirepermission
+  - from: backstage/plugins/permission-react/requirepermission-test
+    to: backstage/plugins/permission-react/requirepermission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/requirepermission-test
-    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
+  - from: backstage/plugins/permission-react/requirepermission-test
+    to: backstage/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/requirepermission-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/requirepermission-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/permission-react/requirepermission
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/permission-react/requirepermission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/permission-react/requirepermission
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/permission-react/requirepermission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/requirepermission
-    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
+  - from: backstage/plugins/permission-react/requirepermission
+    to: backstage/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/requirepermission
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/requirepermission
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/usepermission-test
-    to: blueprint/plugins/permission-react/usepermission
+  - from: backstage/plugins/permission-react/usepermission-test
+    to: backstage/plugins/permission-react/usepermission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/usepermission-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/usepermission-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/usepermission-test
-    to: blueprint/plugins/catalog/apis
+  - from: backstage/plugins/permission-react/usepermission-test
+    to: backstage/plugins/catalog/apis
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/usepermission
-    to: blueprint/plugins/catalog/apis
+  - from: backstage/plugins/permission-react/usepermission
+    to: backstage/plugins/catalog/apis
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/usepermission
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/usepermission
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/permission-react/usepermission
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/permission-react/usepermission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/permission-react/usepermission
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/permission-react/usepermission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/app/components
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/app/components
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/techdocs-module-addons-contrib/hooks
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/techdocs-module-addons-contrib/hooks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-react/index
-    to: blueprint/plugins/catalog/apis
+  - from: backstage/plugins/permission-react/index
+    to: backstage/plugins/catalog/apis
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/kubernetes-cluster/kubernetesclustercontent
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/kubernetes-cluster/kubernetesclustercontent
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/kubernetes/index
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/kubernetes/index
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/kubernetes/kubernetescontent-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/kubernetes/kubernetescontent-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/kubernetes/requirekubernetespermissions
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/kubernetes/requirekubernetespermissions
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage-test
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage-test
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'
-  - from: blueprint/plugins/api-docs/defaultapiexplorerpage
-    to: blueprint/plugins/permission-react/index
+  - from: backstage/plugins/api-docs/defaultapiexplorerpage
+    to: backstage/plugins/permission-react/index
     type: direct-call
     description: '@backstage/plugin-permission-react'

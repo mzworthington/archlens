@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import {
   buildBreadcrumbSegments,
-  entityRefParentPrefix,
+  buildCatalogAncestorChain,
   getSchemaEntityRef,
   NEXT_C4_LEVEL,
   type BreadcrumbSegmentData,
@@ -16,8 +16,15 @@ export type BreadcrumbSegment = BreadcrumbSegmentData & {
 };
 
 export function useBreadcrumbs() {
-  const { currentFilePath, schema, isWorkspaceOpen, workspaceName, selectedNodeId, loadedSystems } =
-    useBlueprintStore();
+  const {
+    currentFilePath,
+    schema,
+    isWorkspaceOpen,
+    workspaceName,
+    selectedNodeId,
+    loadedSystems,
+    workspaceCatalog,
+  } = useBlueprintStore();
 
   const [openDropdownIdx, setOpenDropdownIdx] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -32,9 +39,9 @@ export function useBreadcrumbs() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const contextSystems = loadedSystems.filter(s => s.schema.level === 'context');
   const activeLevel = (schema.level || 'container') as C4Level;
-  const { activeEntityRef, contextEntityRef } = useActiveDiagramEntity();
-  const contextSystem = loadedSystems.find(s => s.schema.level === 'context');
+  const { activeEntityRef } = useActiveDiagramEntity();
 
   const { namesByEntityRef, pathsByEntityRef } = useMemo(() => {
     const names: Record<string, string> = {};
@@ -44,11 +51,13 @@ export function useBreadcrumbs() {
       names[ref] = system.name;
       paths[ref] = system.path;
     }
-    for (const node of contextSystem?.schema.nodes ?? []) {
-      if (node.entityRef) names[node.entityRef] = node.name;
+    for (const contextSystem of contextSystems) {
+      for (const node of contextSystem.schema.nodes ?? []) {
+        if (node.entityRef) names[node.entityRef] = node.name;
+      }
     }
     return { namesByEntityRef: names, pathsByEntityRef: paths };
-  }, [loadedSystems, contextSystem, workspaceName]);
+  }, [loadedSystems, contextSystems, workspaceName]);
 
   const selectedNode = selectedNodeId
     ? schema.nodes.find(n => n.entityRef === selectedNodeId)
@@ -59,23 +68,97 @@ export function useBreadcrumbs() {
       ? loadedSystems.find(s => s.schema.entityRef === selectedNode.entityRef)
       : undefined;
 
-    return buildBreadcrumbSegments({
-      entityRef: activeEntityRef,
-      currentName: schema.name,
-      currentPath: currentFilePath,
-      currentLevel: activeLevel,
-      namesByEntityRef,
-      pathsByEntityRef,
-      zoomPreview:
-        selectedNode?.entityRef && childSystem
+    const zoomPreview =
+      selectedNode?.entityRef && childSystem
+        ? {
+            name: selectedNode.name || selectedNode.entityRef,
+            entityRef: selectedNode.entityRef,
+            path: childSystem.path,
+            level: childSystem.schema.level || NEXT_C4_LEVEL[activeLevel],
+          }
+        : undefined;
+
+    const chain = buildCatalogAncestorChain(workspaceCatalog, activeEntityRef);
+    let baseSegments: BreadcrumbSegmentData[];
+
+    const owningContextSystem = chain.some(entry => entry.level === 'context')
+      ? undefined
+      : contextSystems.find(ctx =>
+          ctx.schema.nodes?.some(
+            node =>
+              node.entityRef &&
+              (activeEntityRef === node.entityRef ||
+                activeEntityRef.startsWith(`${node.entityRef}/`))
+          )
+        );
+
+    if (chain.length > 0) {
+      const ancestors = chain.slice(0, -1);
+      const contextAncestor =
+        owningContextSystem && !ancestors.some(entry => entry.level === 'context')
           ? {
-              name: selectedNode.name || selectedNode.entityRef,
-              entityRef: selectedNode.entityRef,
-              path: childSystem.path,
-              level: childSystem.schema.level || NEXT_C4_LEVEL[activeLevel],
+              entityRef: getSchemaEntityRef(owningContextSystem.schema, workspaceName),
+              level: 'context' as const,
+              name: owningContextSystem.name,
+              path: owningContextSystem.path,
+              isZoomPreview: false as const,
             }
-          : undefined,
-    });
+          : undefined;
+
+      const ancestorRefs = new Set(ancestors.map(entry => entry.entityRef));
+      const nodeAncestors =
+        owningContextSystem && activeEntityRef.includes('/')
+          ? (owningContextSystem.schema.nodes
+              ?.filter(
+                node =>
+                  node.entityRef &&
+                  node.entityRef !== activeEntityRef &&
+                  activeEntityRef.startsWith(`${node.entityRef}/`) &&
+                  !ancestorRefs.has(node.entityRef)
+              )
+              .map(node => ({
+                entityRef: node.entityRef!,
+                level: 'container' as const,
+                name: node.name,
+                path: '',
+                isZoomPreview: false as const,
+              })) ?? [])
+          : [];
+
+      baseSegments = [
+        ...(contextAncestor ? [contextAncestor] : []),
+        ...ancestors.map(entry => ({
+          entityRef: entry.entityRef,
+          level: entry.level,
+          name: namesByEntityRef[entry.entityRef] ?? entry.name,
+          path: pathsByEntityRef[entry.entityRef] ?? entry.path,
+          isZoomPreview: false as const,
+        })),
+        ...nodeAncestors,
+        {
+          entityRef: activeEntityRef,
+          level: activeLevel,
+          name: schema.name,
+          path: currentFilePath,
+          isZoomPreview: false as const,
+        },
+      ];
+    } else {
+      baseSegments = buildBreadcrumbSegments({
+        entityRef: activeEntityRef,
+        currentName: schema.name,
+        currentPath: currentFilePath,
+        currentLevel: activeLevel,
+        namesByEntityRef,
+        pathsByEntityRef,
+      });
+    }
+
+    if (zoomPreview) {
+      baseSegments = [...baseSegments, { ...zoomPreview, isZoomPreview: true }];
+    }
+
+    return baseSegments;
   }, [
     activeEntityRef,
     activeLevel,
@@ -85,6 +168,9 @@ export function useBreadcrumbs() {
     pathsByEntityRef,
     selectedNode,
     loadedSystems,
+    workspaceCatalog,
+    contextSystems,
+    workspaceName,
   ]);
 
   const currentChildren = useMemo(() => {
@@ -95,33 +181,47 @@ export function useBreadcrumbs() {
       system.schema.nodes.map(n => n.entityRef).filter((ref): ref is string => !!ref)
     );
 
-    return loadedSystems
+    const fromLoaded = loadedSystems
       .filter(s => s.schema.entityRef && nodeEntityRefs.has(s.schema.entityRef))
       .map(s => ({
         path: s.path,
         name: s.name,
         entityRef: getSchemaEntityRef(s.schema, workspaceName),
       }));
-  }, [loadedSystems, currentFilePath, workspaceName]);
+
+    const loadedPaths = new Set(fromLoaded.map(c => c.path));
+    const fromCatalog = workspaceCatalog
+      .filter(
+        entry =>
+          entry.entityRef && nodeEntityRefs.has(entry.entityRef) && !loadedPaths.has(entry.path)
+      )
+      .map(entry => ({
+        path: entry.path,
+        name: entry.name,
+        entityRef: entry.entityRef,
+      }));
+
+    return [...fromLoaded, ...fromCatalog];
+  }, [loadedSystems, currentFilePath, workspaceName, workspaceCatalog]);
 
   const segmentsWithSiblings = useMemo(() => {
     return segments.map((seg, idx) => {
       const parentEntityRef = idx > 0 ? segments[idx - 1]?.entityRef : undefined;
-      const segDepth = seg.entityRef.split('/').filter(Boolean).length;
 
       const sameLevelSystems = loadedSystems.filter(s => {
         const ref = getSchemaEntityRef(s.schema, workspaceName);
         if (s.schema.level !== seg.level || ref === seg.entityRef) return false;
-        if (!parentEntityRef) return true;
-        return (
-          ref.split('/').filter(Boolean).length === segDepth &&
-          entityRefParentPrefix(ref, contextEntityRef) === parentEntityRef
-        );
+
+        const entry = workspaceCatalog.find(item => item.entityRef === ref);
+        if (!parentEntityRef) {
+          return seg.level === 'context' && s.schema.level === 'context' && !entry?.parentEntityRef;
+        }
+        return entry?.parentEntityRef === parentEntityRef;
       });
 
       return { ...seg, sameLevelSystems };
     });
-  }, [segments, loadedSystems, workspaceName, contextEntityRef]);
+  }, [segments, loadedSystems, workspaceName, workspaceCatalog]);
 
   return {
     openDropdownIdx,

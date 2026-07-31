@@ -188,7 +188,7 @@ describe('ModelExtractor', () => {
   });
 
   it('rolls up C# files by layer, skips boilerplate, types API containers, and links dependencies', () => {
-    const extractor = new ModelExtractor('blueprint/eshop');
+    const extractor = new ModelExtractor('eshop');
     const { componentNodesMap, containerNodesMap, componentDependencies, containerDependencies } =
       extractor.extractGraph(
         [
@@ -294,7 +294,7 @@ describe('ModelExtractor', () => {
   });
 
   it('creates container nodes and edges from csproj references without source files', () => {
-    const extractor = new ModelExtractor('blueprint/eshop');
+    const extractor = new ModelExtractor('eshop');
     const { containerNodesMap, containerDependencies } = extractor.extractGraph(
       [],
       [

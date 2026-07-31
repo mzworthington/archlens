@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/aws-lambda-api
+  entityRef: infrastructure/aws-lambda-api
   name: Aws-lambda-api Infrastructure
   source:
     scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/futurice/terraform-examples
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/aws-lambda-api/data-aws-route53-zone-this
+  - entityRef: infrastructure/aws-lambda-api/data-aws-route53-zone-this
     type: container
     name: data.aws-route53-zone.this
     external: true
@@ -18,7 +18,7 @@ nodes:
       iac.provider_type: aws_route53_zone
       iac.kind: data
       filepath: aws/aws_lambda_api/data.tf
-  - entityRef: blueprint/aws-lambda-api/aws-lambda-function-local-zipfile
+  - entityRef: infrastructure/aws-lambda-api/aws-lambda-function-local-zipfile
     type: serverless-function
     name: aws-lambda-function.local-zipfile
     external: false
@@ -27,7 +27,7 @@ nodes:
       iac.provider_type: aws_lambda_function
       iac.kind: resource
       filepath: aws/aws_lambda_api/main.tf
-  - entityRef: blueprint/aws-lambda-api/aws-lambda-function-s3-zipfile
+  - entityRef: infrastructure/aws-lambda-api/aws-lambda-function-s3-zipfile
     type: serverless-function
     name: aws-lambda-function.s3-zipfile
     external: false
@@ -36,7 +36,7 @@ nodes:
       iac.provider_type: aws_lambda_function
       iac.kind: resource
       filepath: aws/aws_lambda_api/main.tf
-  - entityRef: blueprint/aws-lambda-api/aws-iam-role-this
+  - entityRef: infrastructure/aws-lambda-api/aws-iam-role-this
     type: container
     name: aws-iam-role.this
     external: false
@@ -45,7 +45,7 @@ nodes:
       iac.provider_type: aws_iam_role
       iac.kind: resource
       filepath: aws/aws_lambda_api/permissions.tf
-  - entityRef: blueprint/aws-lambda-api/aws-lambda-permission-this
+  - entityRef: infrastructure/aws-lambda-api/aws-lambda-permission-this
     type: container
     name: aws-lambda-permission.this
     external: false
@@ -54,7 +54,7 @@ nodes:
       iac.provider_type: aws_lambda_permission
       iac.kind: resource
       filepath: aws/aws_lambda_api/permissions.tf
-  - entityRef: blueprint/aws-lambda-api/aws-iam-policy-this
+  - entityRef: infrastructure/aws-lambda-api/aws-iam-policy-this
     type: container
     name: aws-iam-policy.this
     external: false
@@ -63,7 +63,7 @@ nodes:
       iac.provider_type: aws_iam_policy
       iac.kind: resource
       filepath: aws/aws_lambda_api/permissions.tf
-  - entityRef: blueprint/aws-lambda-api/aws-iam-role-policy-attachment-this
+  - entityRef: infrastructure/aws-lambda-api/aws-iam-role-policy-attachment-this
     type: container
     name: aws-iam-role-policy-attachment.this
     external: false
@@ -72,7 +72,7 @@ nodes:
       iac.provider_type: aws_iam_role_policy_attachment
       iac.kind: resource
       filepath: aws/aws_lambda_api/permissions.tf
-  - entityRef: blueprint/aws-lambda-api/aws-route53-record-ipv4
+  - entityRef: infrastructure/aws-lambda-api/aws-route53-record-ipv4
     type: container
     name: aws-route53-record.ipv4
     external: false
@@ -81,7 +81,7 @@ nodes:
       iac.provider_type: aws_route53_record
       iac.kind: resource
       filepath: aws/aws_lambda_api/route53.tf
-  - entityRef: blueprint/aws-lambda-api/aws-route53-record-ipv6
+  - entityRef: infrastructure/aws-lambda-api/aws-route53-record-ipv6
     type: container
     name: aws-route53-record.ipv6
     external: false
@@ -90,7 +90,7 @@ nodes:
       iac.provider_type: aws_route53_record
       iac.kind: resource
       filepath: aws/aws_lambda_api/route53.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: gateway-api
     name: aws-api-gateway-rest-api.this
     external: false
@@ -99,7 +99,7 @@ nodes:
       iac.provider_type: aws_api_gateway_rest_api
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_config.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-deployment-this
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-deployment-this
     type: gateway-api
     name: aws-api-gateway-deployment.this
     external: false
@@ -108,7 +108,7 @@ nodes:
       iac.provider_type: aws_api_gateway_deployment
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_config.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-stage-this
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-stage-this
     type: gateway-api
     name: aws-api-gateway-stage.this
     external: false
@@ -117,7 +117,7 @@ nodes:
       iac.provider_type: aws_api_gateway_stage
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_config.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-settings-this
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-method-settings-this
     type: gateway-api
     name: aws-api-gateway-method-settings.this
     external: false
@@ -126,7 +126,7 @@ nodes:
       iac.provider_type: aws_api_gateway_method_settings
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_config.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-domain-name-this
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-domain-name-this
     type: gateway-api
     name: aws-api-gateway-domain-name.this
     external: false
@@ -135,7 +135,7 @@ nodes:
       iac.provider_type: aws_api_gateway_domain_name
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_config.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-base-path-mapping-this
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-base-path-mapping-this
     type: gateway-api
     name: aws-api-gateway-base-path-mapping.this
     external: false
@@ -144,7 +144,7 @@ nodes:
       iac.provider_type: aws_api_gateway_base_path_mapping
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_config.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-root
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-root
     type: gateway-api
     name: aws-api-gateway-method.proxy-root
     external: false
@@ -153,7 +153,7 @@ nodes:
       iac.provider_type: aws_api_gateway_method
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-other
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-other
     type: gateway-api
     name: aws-api-gateway-method.proxy-other
     external: false
@@ -162,7 +162,7 @@ nodes:
       iac.provider_type: aws_api_gateway_method
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-root
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-integration-proxy-root
     type: gateway-api
     name: aws-api-gateway-integration.proxy-root
     external: false
@@ -171,7 +171,7 @@ nodes:
       iac.provider_type: aws_api_gateway_integration
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-other
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-integration-proxy-other
     type: gateway-api
     name: aws-api-gateway-integration.proxy-other
     external: false
@@ -180,7 +180,7 @@ nodes:
       iac.provider_type: aws_api_gateway_integration
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-resource-proxy-other
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-resource-proxy-other
     type: gateway-api
     name: aws-api-gateway-resource.proxy-other
     external: false
@@ -189,7 +189,7 @@ nodes:
       iac.provider_type: aws_api_gateway_resource
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-method-response-proxy-other
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-method-response-proxy-other
     type: gateway-api
     name: aws-api-gateway-method-response.proxy-other
     external: false
@@ -198,7 +198,7 @@ nodes:
       iac.provider_type: aws_api_gateway_method_response
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
-  - entityRef: blueprint/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
+  - entityRef: infrastructure/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
     type: gateway-api
     name: aws-api-gateway-integration-response.proxy-other
     external: false
@@ -207,7 +207,7 @@ nodes:
       iac.provider_type: aws_api_gateway_integration_response
       iac.kind: resource
       filepath: aws/aws_lambda_api/api_gateway_resources.tf
-  - entityRef: blueprint/aws-lambda-api/aws-acm-certificate-this
+  - entityRef: infrastructure/aws-lambda-api/aws-acm-certificate-this
     type: container
     name: aws-acm-certificate.this
     external: false
@@ -216,7 +216,7 @@ nodes:
       iac.provider_type: aws_acm_certificate
       iac.kind: resource
       filepath: aws/aws_lambda_api/certificate.tf
-  - entityRef: blueprint/aws-lambda-api/aws-route53-record-cert-validation
+  - entityRef: infrastructure/aws-lambda-api/aws-route53-record-cert-validation
     type: container
     name: aws-route53-record.cert-validation
     external: false
@@ -225,7 +225,7 @@ nodes:
       iac.provider_type: aws_route53_record
       iac.kind: resource
       filepath: aws/aws_lambda_api/certificate.tf
-  - entityRef: blueprint/aws-lambda-api/aws-acm-certificate-validation-this
+  - entityRef: infrastructure/aws-lambda-api/aws-acm-certificate-validation-this
     type: container
     name: aws-acm-certificate-validation.this
     external: false
@@ -235,114 +235,114 @@ nodes:
       iac.kind: resource
       filepath: aws/aws_lambda_api/certificate.tf
 dependencies:
-  - from: blueprint/aws-lambda-api/aws-lambda-function-local-zipfile
-    to: blueprint/aws-lambda-api/aws-iam-role-this
+  - from: infrastructure/aws-lambda-api/aws-lambda-function-local-zipfile
+    to: infrastructure/aws-lambda-api/aws-iam-role-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-lambda-function-s3-zipfile
-    to: blueprint/aws-lambda-api/aws-iam-role-this
+  - from: infrastructure/aws-lambda-api/aws-lambda-function-s3-zipfile
+    to: infrastructure/aws-lambda-api/aws-iam-role-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-lambda-permission-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-stage-this
+  - from: infrastructure/aws-lambda-api/aws-lambda-permission-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-stage-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-iam-role-policy-attachment-this
-    to: blueprint/aws-lambda-api/aws-iam-role-this
+  - from: infrastructure/aws-lambda-api/aws-iam-role-policy-attachment-this
+    to: infrastructure/aws-lambda-api/aws-iam-role-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-iam-role-policy-attachment-this
-    to: blueprint/aws-lambda-api/aws-iam-policy-this
+  - from: infrastructure/aws-lambda-api/aws-iam-role-policy-attachment-this
+    to: infrastructure/aws-lambda-api/aws-iam-policy-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-route53-record-ipv4
-    to: blueprint/aws-lambda-api/data-aws-route53-zone-this
+  - from: infrastructure/aws-lambda-api/aws-route53-record-ipv4
+    to: infrastructure/aws-lambda-api/data-aws-route53-zone-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-route53-record-ipv4
-    to: blueprint/aws-lambda-api/aws-api-gateway-domain-name-this
+  - from: infrastructure/aws-lambda-api/aws-route53-record-ipv4
+    to: infrastructure/aws-lambda-api/aws-api-gateway-domain-name-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-route53-record-ipv6
-    to: blueprint/aws-lambda-api/data-aws-route53-zone-this
+  - from: infrastructure/aws-lambda-api/aws-route53-record-ipv6
+    to: infrastructure/aws-lambda-api/data-aws-route53-zone-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-route53-record-ipv6
-    to: blueprint/aws-lambda-api/aws-api-gateway-domain-name-this
+  - from: infrastructure/aws-lambda-api/aws-route53-record-ipv6
+    to: infrastructure/aws-lambda-api/aws-api-gateway-domain-name-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-deployment-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-deployment-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-stage-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-stage-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-stage-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-deployment-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-stage-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-deployment-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-method-settings-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-method-settings-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-method-settings-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-stage-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-method-settings-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-stage-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-domain-name-this
-    to: blueprint/aws-lambda-api/aws-acm-certificate-validation-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-domain-name-this
+    to: infrastructure/aws-lambda-api/aws-acm-certificate-validation-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-base-path-mapping-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-base-path-mapping-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-base-path-mapping-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-stage-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-base-path-mapping-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-stage-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-base-path-mapping-this
-    to: blueprint/aws-lambda-api/aws-api-gateway-domain-name-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-base-path-mapping-this
+    to: infrastructure/aws-lambda-api/aws-api-gateway-domain-name-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-root
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-root
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-resource-proxy-other
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-resource-proxy-other
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-root
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-integration-proxy-root
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-root
-    to: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-root
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-integration-proxy-root
+    to: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-root
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-integration-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-integration-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-other
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-integration-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-other
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-resource-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-resource-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-method-response-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-method-response-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-method-response-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-resource-proxy-other
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-method-response-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-resource-proxy-other
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-method-response-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-other
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-method-response-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-other
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-rest-api-this
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-rest-api-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-resource-proxy-other
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-resource-proxy-other
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-method-proxy-other
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-method-proxy-other
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
-    to: blueprint/aws-lambda-api/aws-api-gateway-method-response-proxy-other
+  - from: infrastructure/aws-lambda-api/aws-api-gateway-integration-response-proxy-other
+    to: infrastructure/aws-lambda-api/aws-api-gateway-method-response-proxy-other
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-route53-record-cert-validation
-    to: blueprint/aws-lambda-api/aws-acm-certificate-this
+  - from: infrastructure/aws-lambda-api/aws-route53-record-cert-validation
+    to: infrastructure/aws-lambda-api/aws-acm-certificate-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-route53-record-cert-validation
-    to: blueprint/aws-lambda-api/data-aws-route53-zone-this
+  - from: infrastructure/aws-lambda-api/aws-route53-record-cert-validation
+    to: infrastructure/aws-lambda-api/data-aws-route53-zone-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-acm-certificate-validation-this
-    to: blueprint/aws-lambda-api/aws-acm-certificate-this
+  - from: infrastructure/aws-lambda-api/aws-acm-certificate-validation-this
+    to: infrastructure/aws-lambda-api/aws-acm-certificate-this
     type: direct-call
-  - from: blueprint/aws-lambda-api/aws-acm-certificate-validation-this
-    to: blueprint/aws-lambda-api/aws-route53-record-cert-validation
+  - from: infrastructure/aws-lambda-api/aws-acm-certificate-validation-this
+    to: infrastructure/aws-lambda-api/aws-route53-record-cert-validation
     type: direct-call

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/events-backend
+  entityRef: backstage/plugins/events-backend
   name: Events-backend Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/events-backend/config-d
+  - entityRef: backstage/plugins/events-backend/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/index
+  - entityRef: backstage/plugins/events-backend/index
     type: background-worker
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/alpha
+  - entityRef: backstage/plugins/events-backend/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/setuptests
+  - entityRef: backstage/plugins/events-backend/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/migrations-test
+  - entityRef: backstage/plugins/events-backend/migrations-test
     type: relational-database
     name: migrations.test Service
     isTest: true
@@ -181,7 +181,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/eventsplugin-test
+  - entityRef: backstage/plugins/events-backend/eventsplugin-test
     type: background-worker
     name: EventsPlugin.test Service
     isTest: true
@@ -222,7 +222,7 @@ nodes:
           commits: 1
       hotspotScore: 0.007617010242447816
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/eventsplugin
+  - entityRef: backstage/plugins/events-backend/eventsplugin
     type: rest-api
     name: EventsPlugin Service
     isTest: false
@@ -256,7 +256,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher
+  - entityRef: backstage/plugins/events-backend/httppostingresseventpublisher
     type: rest-api
     name: HttpPostIngressEventPublisher Service
     isTest: false
@@ -290,7 +290,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/errors
+  - entityRef: backstage/plugins/events-backend/errors
     type: background-worker
     name: errors Service
     isTest: false
@@ -324,7 +324,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
+  - entityRef: backstage/plugins/events-backend/httpapplicationjsonbodyparser
     type: background-worker
     name: HttpApplicationJsonBodyParser Service
     isTest: false
@@ -358,7 +358,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/httppostingresseventpublisher-test
+  - entityRef: backstage/plugins/events-backend/httppostingresseventpublisher-test
     type: rest-api
     name: HttpPostIngressEventPublisher.test Service
     isTest: true
@@ -392,7 +392,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/requestvalidationcontextimpl
+  - entityRef: backstage/plugins/events-backend/requestvalidationcontextimpl
     type: background-worker
     name: RequestValidationContextImpl Service
     isTest: false
@@ -426,7 +426,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/requestvalidationcontextimpl-test
+  - entityRef: backstage/plugins/events-backend/requestvalidationcontextimpl-test
     type: background-worker
     name: RequestValidationContextImpl.test Service
     isTest: true
@@ -460,7 +460,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/memoryeventbusstore-test
+  - entityRef: backstage/plugins/events-backend/memoryeventbusstore-test
     type: background-worker
     name: MemoryEventBusStore.test Service
     isTest: true
@@ -494,7 +494,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/databaseeventbusstore-test
+  - entityRef: backstage/plugins/events-backend/databaseeventbusstore-test
     type: relational-database
     name: DatabaseEventBusStore.test Service
     isTest: true
@@ -528,7 +528,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/memoryeventbusstore
+  - entityRef: backstage/plugins/events-backend/memoryeventbusstore
     type: background-worker
     name: MemoryEventBusStore Service
     isTest: false
@@ -562,7 +562,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/createeventbusrouter
+  - entityRef: backstage/plugins/events-backend/createeventbusrouter
     type: rest-api
     name: createEventBusRouter Service
     isTest: false
@@ -598,7 +598,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/types
+  - entityRef: backstage/plugins/events-backend/types
     type: background-worker
     name: types Service
     isTest: false
@@ -632,7 +632,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-backend/databaseeventbusstore
+  - entityRef: backstage/plugins/events-backend/databaseeventbusstore
     type: relational-database
     name: DatabaseEventBusStore Service
     isTest: false
@@ -666,7 +666,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/events-node/alpha
+  - entityRef: backstage/plugins/events-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -678,7 +678,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/events-backend-module-azure/httpintegration-test
+  - entityRef: backstage/plugins/events-backend-module-azure/httpintegration-test
     type: background-worker
     name: httpIntegration.test Service (External)
     external: true
@@ -690,7 +690,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/plugins/events-node/index
+  - entityRef: backstage/plugins/events-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -702,7 +702,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/events-backend-test-utils/index
+  - entityRef: backstage/plugins/events-backend-test-utils/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -714,7 +714,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/scaffolder/validation
+  - entityRef: backstage/plugins/scaffolder/validation
     type: gateway-api
     name: validation Service (External)
     external: true
@@ -727,151 +727,151 @@ nodes:
       x: 790
       y: 404
 dependencies:
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/index
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/alpha
-    to: blueprint/plugins/events-backend/eventsplugin
+  - from: backstage/plugins/events-backend/alpha
+    to: backstage/plugins/events-backend/eventsplugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/eventsplugin
+  - from: backstage/plugins/events-backend/index
+    to: backstage/plugins/events-backend/eventsplugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/eventsplugin-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/eventsplugin-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/eventsplugin-test
-    to: blueprint/plugins/events-node/alpha
+  - from: backstage/plugins/events-backend/eventsplugin-test
+    to: backstage/plugins/events-node/alpha
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/eventsplugin-test
-    to: blueprint/plugins/events-backend-test-utils/index
+  - from: backstage/plugins/events-backend/eventsplugin-test
+    to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend/eventsplugin-test
-    to: blueprint/plugins/events-backend/eventsplugin
+  - from: backstage/plugins/events-backend/eventsplugin-test
+    to: backstage/plugins/events-backend/eventsplugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/eventsplugin
-    to: blueprint/plugins/events-node/alpha
+  - from: backstage/plugins/events-backend/eventsplugin
+    to: backstage/plugins/events-node/alpha
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/eventsplugin
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/eventsplugin
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/httppostingresseventpublisher
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher
-    to: blueprint/plugins/scaffolder/validation
+  - from: backstage/plugins/events-backend/httppostingresseventpublisher
+    to: backstage/plugins/scaffolder/validation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher
-    to: blueprint/plugins/events-backend/errors
+  - from: backstage/plugins/events-backend/httppostingresseventpublisher
+    to: backstage/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/httpapplicationjsonbodyparser
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
-    to: blueprint/plugins/events-backend/errors
+  - from: backstage/plugins/events-backend/httpapplicationjsonbodyparser
+    to: backstage/plugins/events-backend/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/httpapplicationjsonbodyparser
+  - from: backstage/plugins/events-backend/index
+    to: backstage/plugins/events-backend/httpapplicationjsonbodyparser
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
-    to: blueprint/plugins/events-backend-test-utils/index
+  - from: backstage/plugins/events-backend/httppostingresseventpublisher-test
+    to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
-    to: blueprint/plugins/events-backend/httppostingresseventpublisher
+  - from: backstage/plugins/events-backend/httppostingresseventpublisher-test
+    to: backstage/plugins/events-backend/httppostingresseventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/httppostingresseventpublisher-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/httppostingresseventpublisher-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/httppostingresseventpublisher
+  - from: backstage/plugins/events-backend/index
+    to: backstage/plugins/events-backend/httppostingresseventpublisher
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/scaffolder/validation
+  - from: backstage/plugins/events-backend/index
+    to: backstage/plugins/scaffolder/validation
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/requestvalidationcontextimpl
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/requestvalidationcontextimpl
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/requestvalidationcontextimpl-test
-    to: blueprint/plugins/events-backend/requestvalidationcontextimpl
+  - from: backstage/plugins/events-backend/requestvalidationcontextimpl-test
+    to: backstage/plugins/events-backend/requestvalidationcontextimpl
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/requestvalidationcontextimpl
+  - from: backstage/plugins/events-backend/index
+    to: backstage/plugins/events-backend/requestvalidationcontextimpl
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/memoryeventbusstore-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/memoryeventbusstore-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/memoryeventbusstore-test
-    to: blueprint/plugins/events-backend/memoryeventbusstore
+  - from: backstage/plugins/events-backend/memoryeventbusstore-test
+    to: backstage/plugins/events-backend/memoryeventbusstore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/databaseeventbusstore-test
-    to: blueprint/plugins/events-backend/databaseeventbusstore
+  - from: backstage/plugins/events-backend/databaseeventbusstore-test
+    to: backstage/plugins/events-backend/databaseeventbusstore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/events-backend/memoryeventbusstore
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/memoryeventbusstore
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/memoryeventbusstore
-    to: blueprint/plugins/events-backend/types
+  - from: backstage/plugins/events-backend/memoryeventbusstore
+    to: backstage/plugins/events-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/createeventbusrouter
-    to: blueprint/plugins/events-backend/memoryeventbusstore
+  - from: backstage/plugins/events-backend/createeventbusrouter
+    to: backstage/plugins/events-backend/memoryeventbusstore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/createeventbusrouter
-    to: blueprint/plugins/events-backend/databaseeventbusstore
+  - from: backstage/plugins/events-backend/createeventbusrouter
+    to: backstage/plugins/events-backend/databaseeventbusstore
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/events-backend/createeventbusrouter
-    to: blueprint/plugins/events-backend/types
+  - from: backstage/plugins/events-backend/createeventbusrouter
+    to: backstage/plugins/events-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/createeventbusrouter
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/createeventbusrouter
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/types
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/types
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/index
-    to: blueprint/plugins/events-backend/createeventbusrouter
+  - from: backstage/plugins/events-backend/index
+    to: backstage/plugins/events-backend/createeventbusrouter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend/databaseeventbusstore
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/events-backend/databaseeventbusstore
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/events-backend/databaseeventbusstore
-    to: blueprint/plugins/events-backend/types
+  - from: backstage/plugins/events-backend/databaseeventbusstore
+    to: backstage/plugins/events-backend/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/events-backend-module-azure/httpintegration-test
-    to: blueprint/plugins/events-backend/index
+  - from: backstage/plugins/events-backend-module-azure/httpintegration-test
+    to: backstage/plugins/events-backend/index
     type: direct-call
     description: '@backstage/plugin-events-backend'

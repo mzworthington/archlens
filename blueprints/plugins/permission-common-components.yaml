@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/permission-common
+  entityRef: backstage/plugins/permission-common
   name: Permission-common Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/permission-common/config-d
+  - entityRef: backstage/plugins/permission-common/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/api
+  - entityRef: backstage/plugins/permission-common/api
     type: background-worker
     name: api Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/integration
+  - entityRef: backstage/plugins/permission-common/integration
     type: background-worker
     name: integration Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/deprecated
+  - entityRef: backstage/plugins/permission-common/deprecated
     type: background-worker
     name: deprecated Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/permission
+  - entityRef: backstage/plugins/permission-common/permission
     type: background-worker
     name: permission Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/discovery
+  - entityRef: backstage/plugins/permission-common/discovery
     type: background-worker
     name: discovery Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/index
+  - entityRef: backstage/plugins/permission-common/index
     type: background-worker
     name: index Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/createpermission
+  - entityRef: backstage/plugins/permission-common/createpermission
     type: background-worker
     name: createPermission Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/util
+  - entityRef: backstage/plugins/permission-common/util
     type: background-worker
     name: util Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/permissionclient
+  - entityRef: backstage/plugins/permission-common/permissionclient
     type: background-worker
     name: PermissionClient Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/permission-common/permissionclient-test
+  - entityRef: backstage/plugins/permission-common/permissionclient-test
     type: background-worker
     name: PermissionClient.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog/aboutcard-test
+  - entityRef: backstage/plugins/catalog/aboutcard-test
     type: gateway-api
     name: AboutCard.test Service (External)
     external: true
@@ -395,7 +395,7 @@ nodes:
     position:
       x: -10250
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedentitiescatalog
+  - entityRef: backstage/plugins/catalog-backend/authorizedentitiescatalog
     type: background-worker
     name: AuthorizedEntitiesCatalog Service (External)
     external: true
@@ -407,7 +407,7 @@ nodes:
     position:
       x: -17150
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedentitiescatalog-test
+  - entityRef: backstage/plugins/catalog-backend/authorizedentitiescatalog-test
     type: background-worker
     name: AuthorizedEntitiesCatalog.test Service (External)
     external: true
@@ -419,7 +419,7 @@ nodes:
     position:
       x: -16690
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationanalyzer
+  - entityRef: backstage/plugins/catalog-backend/authorizedlocationanalyzer
     type: background-worker
     name: AuthorizedLocationAnalyzer Service (External)
     external: true
@@ -431,7 +431,7 @@ nodes:
     position:
       x: -16230
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationanalyzer-test
+  - entityRef: backstage/plugins/catalog-backend/authorizedlocationanalyzer-test
     type: background-worker
     name: AuthorizedLocationAnalyzer.test Service (External)
     external: true
@@ -443,7 +443,7 @@ nodes:
     position:
       x: -15770
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationservice
+  - entityRef: backstage/plugins/catalog-backend/authorizedlocationservice
     type: background-worker
     name: AuthorizedLocationService Service (External)
     external: true
@@ -455,7 +455,7 @@ nodes:
     position:
       x: -15310
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedlocationservice-test
+  - entityRef: backstage/plugins/catalog-backend/authorizedlocationservice-test
     type: background-worker
     name: AuthorizedLocationService.test Service (External)
     external: true
@@ -467,7 +467,7 @@ nodes:
     position:
       x: -14850
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedrefreshservice
+  - entityRef: backstage/plugins/catalog-backend/authorizedrefreshservice
     type: background-worker
     name: AuthorizedRefreshService Service (External)
     external: true
@@ -479,7 +479,7 @@ nodes:
     position:
       x: -14390
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedrefreshservice-test
+  - entityRef: backstage/plugins/catalog-backend/authorizedrefreshservice-test
     type: background-worker
     name: AuthorizedRefreshService.test Service (External)
     external: true
@@ -491,7 +491,7 @@ nodes:
     position:
       x: -13930
       y: -204
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine
+  - entityRef: backstage/plugins/search-backend/authorizedsearchengine
     type: background-worker
     name: AuthorizedSearchEngine Service (External)
     external: true
@@ -503,7 +503,7 @@ nodes:
     position:
       x: 16430
       y: -204
-  - entityRef: blueprint/plugins/search-backend/authorizedsearchengine-test
+  - entityRef: backstage/plugins/search-backend/authorizedsearchengine-test
     type: background-worker
     name: AuthorizedSearchEngine.test Service (External)
     external: true
@@ -515,7 +515,7 @@ nodes:
     position:
       x: 16890
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedvalidationservice
+  - entityRef: backstage/plugins/catalog-backend/authorizedvalidationservice
     type: background-worker
     name: AuthorizedValidationService Service (External)
     external: true
@@ -527,7 +527,7 @@ nodes:
     position:
       x: -13470
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/authorizedvalidationservice-test
+  - entityRef: backstage/plugins/catalog-backend/authorizedvalidationservice-test
     type: background-worker
     name: AuthorizedValidationService.test Service (External)
     external: true
@@ -539,7 +539,7 @@ nodes:
     position:
       x: -13010
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/checkpermissions
+  - entityRef: backstage/plugins/scaffolder-backend/checkpermissions
     type: background-worker
     name: checkPermissions Service (External)
     external: true
@@ -551,7 +551,7 @@ nodes:
     position:
       x: 8150
       y: -204
-  - entityRef: blueprint/plugins/catalog/contextmenuitems-test
+  - entityRef: backstage/plugins/catalog/contextmenuitems-test
     type: gateway-api
     name: contextMenuItems.test Service (External)
     external: true
@@ -563,7 +563,7 @@ nodes:
     position:
       x: -9790
       y: -204
-  - entityRef: blueprint/plugins/permission-node/createconditionexports
+  - entityRef: backstage/plugins/permission-node/createconditionexports
     type: background-worker
     name: createConditionExports Service (External)
     external: true
@@ -575,7 +575,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/plugins/permission-node/createconditionexports-test
+  - entityRef: backstage/plugins/permission-node/createconditionexports-test
     type: background-worker
     name: createConditionExports.test Service (External)
     external: true
@@ -587,7 +587,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/permission-node/createconditionfactory
+  - entityRef: backstage/plugins/permission-node/createconditionfactory
     type: background-worker
     name: createConditionFactory Service (External)
     external: true
@@ -599,7 +599,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/permission-node/createconditiontransformer
+  - entityRef: backstage/plugins/permission-node/createconditiontransformer
     type: background-worker
     name: createConditionTransformer Service (External)
     external: true
@@ -611,7 +611,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/permission-node/createconditiontransformer-test
+  - entityRef: backstage/plugins/permission-node/createconditiontransformer-test
     type: background-worker
     name: createConditionTransformer.test Service (External)
     external: true
@@ -623,7 +623,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/createdryrunner
+  - entityRef: backstage/plugins/scaffolder-backend/createdryrunner
     type: background-worker
     name: createDryRunner Service (External)
     external: true
@@ -635,7 +635,7 @@ nodes:
     position:
       x: 8610
       y: -204
-  - entityRef: blueprint/plugins/permission-node/createpermissionintegrationrouter
+  - entityRef: backstage/plugins/permission-node/createpermissionintegrationrouter
     type: rest-api
     name: createPermissionIntegrationRouter Service (External)
     external: true
@@ -647,7 +647,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/permission-node/createpermissionintegrationrouter-test
+  - entityRef: backstage/plugins/permission-node/createpermissionintegrationrouter-test
     type: rest-api
     name: createPermissionIntegrationRouter.test Service (External)
     external: true
@@ -659,7 +659,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/plugins/permission-node/createpermissionrule
+  - entityRef: backstage/plugins/permission-node/createpermissionrule
     type: background-worker
     name: createPermissionRule Service (External)
     external: true
@@ -671,7 +671,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/databasetaskstore
+  - entityRef: backstage/plugins/scaffolder-backend/databasetaskstore
     type: relational-database
     name: DatabaseTaskStore Service (External)
     external: true
@@ -683,7 +683,7 @@ nodes:
     position:
       x: 9070
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/databasetaskstore-test
+  - entityRef: backstage/plugins/scaffolder-backend/databasetaskstore-test
     type: relational-database
     name: DatabaseTaskStore.test Service (External)
     external: true
@@ -695,7 +695,7 @@ nodes:
     position:
       x: 9530
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
     type: background-worker
     name: DefaultCatalogCollatorFactory Service (External)
     external: true
@@ -707,7 +707,7 @@ nodes:
     position:
       x: 15050
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
     type: background-worker
     name: DefaultTechDocsCollatorFactory Service (External)
     external: true
@@ -719,7 +719,7 @@ nodes:
     position:
       x: 15510
       y: -204
-  - entityRef: blueprint/plugins/permission-react/identitypermissionapi
+  - entityRef: backstage/plugins/permission-react/identitypermissionapi
     type: rest-api
     name: IdentityPermissionApi Service (External)
     external: true
@@ -731,7 +731,7 @@ nodes:
     position:
       x: 4930
       y: -204
-  - entityRef: blueprint/plugins/permission-react/identitypermissionapi-test
+  - entityRef: backstage/plugins/permission-react/identitypermissionapi-test
     type: rest-api
     name: IdentityPermissionApi.test Service (External)
     external: true
@@ -743,7 +743,7 @@ nodes:
     position:
       x: 5390
       y: -204
-  - entityRef: blueprint/plugins/permission-node/index
+  - entityRef: backstage/plugins/permission-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -755,7 +755,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/integration-test
+  - entityRef: backstage/plugins/catalog-backend/integration-test
     type: relational-database
     name: integration.test Service (External)
     external: true
@@ -767,7 +767,7 @@ nodes:
     position:
       x: -12550
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesproxy
     type: rest-api
     name: KubernetesProxy Service (External)
     external: true
@@ -779,7 +779,7 @@ nodes:
     position:
       x: -7030
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesproxy-test
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesproxy-test
     type: rest-api
     name: KubernetesProxy.test Service (External)
     external: true
@@ -791,7 +791,7 @@ nodes:
     position:
       x: -6570
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesrouter
     type: rest-api
     name: KubernetesRouter Service (External)
     external: true
@@ -803,7 +803,7 @@ nodes:
     position:
       x: -6110
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/kubernetesrouter-test
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesrouter-test
     type: rest-api
     name: KubernetesRouter.test Service (External)
     external: true
@@ -815,7 +815,7 @@ nodes:
     position:
       x: -5650
       y: -204
-  - entityRef: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+  - entityRef: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
     type: background-worker
     name: NewlineDelimitedJsonCollatorFactory Service (External)
     external: true
@@ -827,7 +827,7 @@ nodes:
     position:
       x: 15970
       y: -204
-  - entityRef: blueprint/plugins/catalog/nfsdefaultcatalogpage-test
+  - entityRef: backstage/plugins/catalog/nfsdefaultcatalogpage-test
     type: gateway-api
     name: NfsDefaultCatalogPage.test Service (External)
     external: true
@@ -839,7 +839,7 @@ nodes:
     position:
       x: -9330
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner
+  - entityRef: backstage/plugins/scaffolder-backend/nunjucksworkflowrunner
     type: background-worker
     name: NunjucksWorkflowRunner Service (External)
     external: true
@@ -851,7 +851,7 @@ nodes:
     position:
       x: 9990
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner-test
+  - entityRef: backstage/plugins/scaffolder-backend/nunjucksworkflowrunner-test
     type: background-worker
     name: NunjucksWorkflowRunner.test Service (External)
     external: true
@@ -863,7 +863,7 @@ nodes:
     position:
       x: 10450
       y: -204
-  - entityRef: blueprint/plugins/scaffolder/ongoingtask-test
+  - entityRef: backstage/plugins/scaffolder/ongoingtask-test
     type: gateway-api
     name: OngoingTask.test Service (External)
     external: true
@@ -875,7 +875,7 @@ nodes:
     position:
       x: 14590
       y: -204
-  - entityRef: blueprint/plugins/permission-react/permissionapi
+  - entityRef: backstage/plugins/permission-react/permissionapi
     type: rest-api
     name: PermissionApi Service (External)
     external: true
@@ -887,7 +887,7 @@ nodes:
     position:
       x: 5850
       y: -204
-  - entityRef: blueprint/plugins/permission-backend/permissionintegrationclient
+  - entityRef: backstage/plugins/permission-backend/permissionintegrationclient
     type: background-worker
     name: PermissionIntegrationClient Service (External)
     external: true
@@ -899,7 +899,7 @@ nodes:
     position:
       x: -2890
       y: -204
-  - entityRef: blueprint/plugins/permission-backend/permissionintegrationclient-test
+  - entityRef: backstage/plugins/permission-backend/permissionintegrationclient-test
     type: rest-api
     name: PermissionIntegrationClient.test Service (External)
     external: true
@@ -911,7 +911,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - entityRef: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: background-worker
     name: permissions Service (External)
     external: true
@@ -923,7 +923,7 @@ nodes:
     position:
       x: -10710
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/permissions
+  - entityRef: backstage/plugins/scaffolder-backend/permissions
     type: background-worker
     name: permissions Service (External)
     external: true
@@ -935,7 +935,7 @@ nodes:
     position:
       x: 10910
       y: -204
-  - entityRef: blueprint/plugins/example-todo-list-common/permissions
+  - entityRef: backstage/plugins/example-todo-list-common/permissions
     type: background-worker
     name: permissions Service (External)
     external: true
@@ -947,7 +947,7 @@ nodes:
     position:
       x: -7490
       y: -204
-  - entityRef: blueprint/plugins/devtools-common/permissions
+  - entityRef: backstage/plugins/devtools-common/permissions
     type: background-worker
     name: permissions Service (External)
     external: true
@@ -959,7 +959,7 @@ nodes:
     position:
       x: -7950
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-common/permissions
+  - entityRef: backstage/plugins/scaffolder-common/permissions
     type: background-worker
     name: permissions Service (External)
     external: true
@@ -971,7 +971,7 @@ nodes:
     position:
       x: 13210
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-common/permissions
+  - entityRef: backstage/plugins/kubernetes-common/permissions
     type: background-worker
     name: permissions Service (External)
     external: true
@@ -983,7 +983,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/plugins/catalog-common/permissions
+  - entityRef: backstage/plugins/catalog-common/permissions
     type: background-worker
     name: permissions Service (External)
     external: true
@@ -995,7 +995,7 @@ nodes:
     position:
       x: -11630
       y: -204
-  - entityRef: blueprint/plugins/permission-backend-module-policy-allow-all/policy
+  - entityRef: backstage/plugins/permission-backend-module-policy-allow-all/policy
     type: background-worker
     name: policy Service (External)
     external: true
@@ -1007,7 +1007,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/requirepermission
+  - entityRef: backstage/plugins/kubernetes-backend/requirepermission
     type: rest-api
     name: requirePermission Service (External)
     external: true
@@ -1019,7 +1019,7 @@ nodes:
     position:
       x: -5190
       y: -204
-  - entityRef: blueprint/plugins/permission-react/requirepermission
+  - entityRef: backstage/plugins/permission-react/requirepermission
     type: gateway-api
     name: RequirePermission Service (External)
     external: true
@@ -1031,7 +1031,7 @@ nodes:
     position:
       x: 6310
       y: -204
-  - entityRef: blueprint/plugins/permission-react/requirepermission-test
+  - entityRef: backstage/plugins/permission-react/requirepermission-test
     type: background-worker
     name: RequirePermission.test Service (External)
     external: true
@@ -1043,7 +1043,7 @@ nodes:
     position:
       x: 6770
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/resourceroutes-test
+  - entityRef: backstage/plugins/kubernetes-backend/resourceroutes-test
     type: rest-api
     name: resourceRoutes.test Service (External)
     external: true
@@ -1055,7 +1055,7 @@ nodes:
     position:
       x: -4730
       y: -204
-  - entityRef: blueprint/plugins/kubernetes-backend/resourcesroutes
+  - entityRef: backstage/plugins/kubernetes-backend/resourcesroutes
     type: rest-api
     name: resourcesRoutes Service (External)
     external: true
@@ -1067,7 +1067,7 @@ nodes:
     position:
       x: -4270
       y: -204
-  - entityRef: blueprint/plugins/permission-backend/router
+  - entityRef: backstage/plugins/permission-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -1079,7 +1079,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/plugins/search-backend/router
+  - entityRef: backstage/plugins/search-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -1091,7 +1091,7 @@ nodes:
     position:
       x: 17350
       y: -204
-  - entityRef: blueprint/plugins/devtools-backend/router
+  - entityRef: backstage/plugins/devtools-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -1103,7 +1103,7 @@ nodes:
     position:
       x: -8870
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/router-test
+  - entityRef: backstage/plugins/scaffolder-backend/router-test
     type: rest-api
     name: router.test Service (External)
     external: true
@@ -1115,7 +1115,7 @@ nodes:
     position:
       x: 11370
       y: -204
-  - entityRef: blueprint/plugins/permission-backend/router-test
+  - entityRef: backstage/plugins/permission-backend/router-test
     type: rest-api
     name: router.test Service (External)
     external: true
@@ -1127,7 +1127,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/plugins/search-backend/router-test
+  - entityRef: backstage/plugins/search-backend/router-test
     type: rest-api
     name: router.test Service (External)
     external: true
@@ -1139,7 +1139,7 @@ nodes:
     position:
       x: 17810
       y: -204
-  - entityRef: blueprint/plugins/devtools-backend/router-test
+  - entityRef: backstage/plugins/devtools-backend/router-test
     type: rest-api
     name: router.test Service (External)
     external: true
@@ -1151,7 +1151,7 @@ nodes:
     position:
       x: -8410
       y: -204
-  - entityRef: blueprint/plugins/permission-node/serverpermissionclient
+  - entityRef: backstage/plugins/permission-node/serverpermissionclient
     type: background-worker
     name: ServerPermissionClient Service (External)
     external: true
@@ -1163,7 +1163,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/plugins/permission-node/serverpermissionclient-test
+  - entityRef: backstage/plugins/permission-node/serverpermissionclient-test
     type: background-worker
     name: ServerPermissionClient.test Service (External)
     external: true
@@ -1175,7 +1175,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/storagetaskbroker
+  - entityRef: backstage/plugins/scaffolder-backend/storagetaskbroker
     type: background-worker
     name: StorageTaskBroker Service (External)
     external: true
@@ -1187,7 +1187,7 @@ nodes:
     position:
       x: 11830
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/taskworker
+  - entityRef: backstage/plugins/scaffolder-backend/taskworker
     type: event-broker
     name: TaskWorker Service (External)
     external: true
@@ -1199,7 +1199,7 @@ nodes:
     position:
       x: 12290
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-react/templatecard-test
+  - entityRef: backstage/plugins/scaffolder-react/templatecard-test
     type: gateway-api
     name: TemplateCard.test Service (External)
     external: true
@@ -1211,7 +1211,7 @@ nodes:
     position:
       x: 14130
       y: -204
-  - entityRef: blueprint/plugins/permission-node/types
+  - entityRef: backstage/plugins/permission-node/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -1223,7 +1223,7 @@ nodes:
     position:
       x: 4010
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-backend/types
+  - entityRef: backstage/plugins/scaffolder-backend/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -1235,7 +1235,7 @@ nodes:
     position:
       x: 12750
       y: -204
-  - entityRef: blueprint/plugins/scaffolder-node/types
+  - entityRef: backstage/plugins/scaffolder-node/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -1247,7 +1247,7 @@ nodes:
     position:
       x: 13670
       y: -204
-  - entityRef: blueprint/plugins/search-common/types
+  - entityRef: backstage/plugins/search-common/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -1259,7 +1259,7 @@ nodes:
     position:
       x: 18270
       y: -204
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -1271,7 +1271,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+  - entityRef: backstage/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
     type: rest-api
     name: UnprocessedEntitiesModule Service (External)
     external: true
@@ -1283,7 +1283,7 @@ nodes:
     position:
       x: -18070
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule-test
+  - entityRef: backstage/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule-test
     type: rest-api
     name: UnprocessedEntitiesModule.test Service (External)
     external: true
@@ -1295,7 +1295,7 @@ nodes:
     position:
       x: -17610
       y: -204
-  - entityRef: blueprint/plugins/catalog-react/useentitypermission
+  - entityRef: backstage/plugins/catalog-react/useentitypermission
     type: gateway-api
     name: useEntityPermission Service (External)
     external: true
@@ -1307,7 +1307,7 @@ nodes:
     position:
       x: -11170
       y: -204
-  - entityRef: blueprint/plugins/permission-react/usepermission
+  - entityRef: backstage/plugins/permission-react/usepermission
     type: background-worker
     name: usePermission Service (External)
     external: true
@@ -1319,7 +1319,7 @@ nodes:
     position:
       x: 7230
       y: -204
-  - entityRef: blueprint/plugins/permission-react/usepermission-test
+  - entityRef: backstage/plugins/permission-react/usepermission-test
     type: gateway-api
     name: usePermission.test Service (External)
     external: true
@@ -1331,7 +1331,7 @@ nodes:
     position:
       x: 7690
       y: -204
-  - entityRef: blueprint/plugins/permission-node/util
+  - entityRef: backstage/plugins/permission-node/util
     type: background-worker
     name: util Service (External)
     external: true
@@ -1343,7 +1343,7 @@ nodes:
     position:
       x: 4470
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend/util
+  - entityRef: backstage/plugins/catalog-backend/util
     type: rest-api
     name: util Service (External)
     external: true
@@ -1356,423 +1356,423 @@ nodes:
       x: -12090
       y: -204
 dependencies:
-  - from: blueprint/plugins/permission-node/serverpermissionclient
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/serverpermissionclient
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/createpermissionintegrationrouter-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/createpermissionintegrationrouter-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/createconditionexports-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/createconditionexports-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/createconditiontransformer-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/createconditiontransformer-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/createpermissionrule
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/createpermissionrule
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/createpermissionintegrationrouter
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/createpermissionintegrationrouter
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/createconditionexports
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/createconditionexports
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/util
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/util
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/createconditiontransformer
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/createconditiontransformer
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/createconditionfactory
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/createconditionfactory
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/types
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/types
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/serverpermissionclient-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-node/serverpermissionclient-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-node/index
-    to: blueprint/plugins/permission-common/integration
+  - from: backstage/plugins/permission-node/index
+    to: backstage/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder/ongoingtask-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder/ongoingtask-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-unprocessed-entities-common/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-unprocessed-entities-common/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/integration-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/integration-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/util
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/util
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedrefreshservice
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedrefreshservice
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedlocationanalyzer
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedlocationanalyzer
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedvalidationservice
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedvalidationservice
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedvalidationservice-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedvalidationservice-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedrefreshservice-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedrefreshservice-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedlocationservice-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedlocationservice-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedlocationservice
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedlocationservice
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedlocationanalyzer-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedlocationanalyzer-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedentitiescatalog-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedentitiescatalog-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend/authorizedentitiescatalog
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend/authorizedentitiescatalog
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-react/useentitypermission
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-react/useentitypermission
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/createdryrunner
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/createdryrunner
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/databasetaskstore-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/databasetaskstore-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/nunjucksworkflowrunner-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/storagetaskbroker
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/storagetaskbroker
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/types
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/types
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/nunjucksworkflowrunner
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/nunjucksworkflowrunner
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/taskworker
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/taskworker
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/databasetaskstore
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/databasetaskstore
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/checkpermissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/checkpermissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-backend/router-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-backend/router-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/example-todo-list-common/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/example-todo-list-common/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog/nfsdefaultcatalogpage-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog/nfsdefaultcatalogpage-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog/aboutcard-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog/aboutcard-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog/contextmenuitems-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog/contextmenuitems-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend-module-catalog/defaultcatalogcollatorfactory
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-node/types
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-node/types
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-common/types
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-common/types
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-backend-module-policy-allow-all/policy
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-backend-module-policy-allow-all/policy
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-backend/permissionintegrationclient
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-backend/permissionintegrationclient
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-backend/router
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-backend/router
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-backend/router-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-backend/router-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-backend/permissionintegrationclient-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-backend/permissionintegrationclient-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/scaffolder-react/templatecard-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/scaffolder-react/templatecard-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-backend-module-unprocessed/unprocessedentitiesmodule
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/kubernetes-backend/requirepermission
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/kubernetes-backend/requirepermission
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesproxy-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesrouter
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesproxy
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/kubernetes-backend/kubernetesrouter-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/kubernetes-backend/resourcesroutes
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/kubernetes-backend/resourcesroutes
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/kubernetes-backend/resourceroutes-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/kubernetes-backend/resourceroutes-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/permissionapi
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/permissionapi
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/identitypermissionapi-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/identitypermissionapi-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/identitypermissionapi
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/identitypermissionapi
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/requirepermission-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/requirepermission-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/requirepermission
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/requirepermission
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/usepermission-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/usepermission-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-react/usepermission
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-react/usepermission
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/devtools-common/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/devtools-common/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend-node/newlinedelimitedjsoncollatorfactory
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend/router
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend/router
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend/router-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend/router-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/search-backend/authorizedsearchengine-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/search-backend/authorizedsearchengine-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/permission-common/api
-    to: blueprint/plugins/permission-common/permission
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/plugins/permission-common/integration
-    to: blueprint/plugins/permission-common/permission
+  - from: backstage/plugins/permission-common/api
+    to: backstage/plugins/permission-common/permission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/deprecated
-    to: blueprint/plugins/permission-common/api
+  - from: backstage/plugins/permission-common/integration
+    to: backstage/plugins/permission-common/permission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/deprecated
-    to: blueprint/plugins/permission-common/permission
+  - from: backstage/plugins/permission-common/deprecated
+    to: backstage/plugins/permission-common/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/api
+  - from: backstage/plugins/permission-common/deprecated
+    to: backstage/plugins/permission-common/permission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/api
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/discovery
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/integration
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/discovery
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/permission
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/integration
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/deprecated
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/permission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/createpermission
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/deprecated
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/util
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/permission-common/createpermission
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/util
+  - from: backstage/plugins/permission-common/util
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/createpermission
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient
-    to: blueprint/plugins/permission-common/api
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/createpermission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient
-    to: blueprint/plugins/permission-common/discovery
+  - from: backstage/plugins/permission-common/permissionclient
+    to: backstage/plugins/permission-common/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient
-    to: blueprint/plugins/permission-common/permission
+  - from: backstage/plugins/permission-common/permissionclient
+    to: backstage/plugins/permission-common/discovery
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/permission-common/permissionclient
+    to: backstage/plugins/permission-common/permission
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient-test
-    to: blueprint/plugins/permission-common/permissionclient
+  - from: backstage/plugins/permission-common/permissionclient
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient-test
-    to: blueprint/plugins/permission-common/api
+  - from: backstage/plugins/permission-common/permissionclient-test
+    to: backstage/plugins/permission-common/permissionclient
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient-test
-    to: blueprint/plugins/permission-common/discovery
+  - from: backstage/plugins/permission-common/permissionclient-test
+    to: backstage/plugins/permission-common/api
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/permissionclient-test
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/permission-common/permissionclient-test
+    to: backstage/plugins/permission-common/discovery
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/types
+  - from: backstage/plugins/permission-common/permissionclient-test
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/catalog-unprocessed-entities-common/permissions
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/permission-common/index
-    to: blueprint/plugins/permission-common/permissionclient
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/catalog-unprocessed-entities-common/permissions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-common/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/permission-common/permissionclient
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-common/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/devtools-backend/router
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/devtools-backend/router
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/devtools-backend/router-test
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/devtools-backend/router-test
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/kubernetes-common/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/kubernetes-common/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'
-  - from: blueprint/plugins/catalog-common/permissions
-    to: blueprint/plugins/permission-common/index
+  - from: backstage/plugins/catalog-common/permissions
+    to: backstage/plugins/permission-common/index
     type: direct-call
     description: '@backstage/plugin-permission-common'

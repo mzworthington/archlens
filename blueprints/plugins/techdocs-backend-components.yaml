@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/techdocs-backend
+  entityRef: backstage/plugins/techdocs-backend
   name: Techdocs-backend Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/techdocs-backend/config-d
+  - entityRef: backstage/plugins/techdocs-backend/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/index
+  - entityRef: backstage/plugins/techdocs-backend/index
     type: cache-store
     name: index Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/techdocscache
+  - entityRef: backstage/plugins/techdocs-backend/techdocscache
     type: cache-store
     name: TechDocsCache Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/cachemiddleware
+  - entityRef: backstage/plugins/techdocs-backend/cachemiddleware
     type: rest-api
     name: cacheMiddleware Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/techdocscache-test
+  - entityRef: backstage/plugins/techdocs-backend/techdocscache-test
     type: cache-store
     name: TechDocsCache.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/cachemiddleware-test
+  - entityRef: backstage/plugins/techdocs-backend/cachemiddleware-test
     type: rest-api
     name: cacheMiddleware.test Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/plugin
+  - entityRef: backstage/plugins/techdocs-backend/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/alpha
+  - entityRef: backstage/plugins/techdocs-backend/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/buildmetadatastorage
+  - entityRef: backstage/plugins/techdocs-backend/buildmetadatastorage
     type: background-worker
     name: BuildMetadataStorage Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/buildmetadatastorage-test
+  - entityRef: backstage/plugins/techdocs-backend/buildmetadatastorage-test
     type: background-worker
     name: BuildMetadataStorage.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/builder
+  - entityRef: backstage/plugins/techdocs-backend/builder
     type: background-worker
     name: builder Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy-test
+  - entityRef: backstage/plugins/techdocs-backend/defaultdocsbuildstrategy-test
     type: background-worker
     name: DefaultDocsBuildStrategy.test Service
     isTest: true
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/router
+  - entityRef: backstage/plugins/techdocs-backend/router
     type: rest-api
     name: router Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/router-test
+  - entityRef: backstage/plugins/techdocs-backend/router-test
     type: rest-api
     name: router.test Service
     isTest: true
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/cachedentityloader-test
+  - entityRef: backstage/plugins/techdocs-backend/cachedentityloader-test
     type: cache-store
     name: CachedEntityLoader.test Service
     isTest: true
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/docssynchronizer
+  - entityRef: backstage/plugins/techdocs-backend/docssynchronizer
     type: background-worker
     name: DocsSynchronizer Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/cachedentityloader
+  - entityRef: backstage/plugins/techdocs-backend/cachedentityloader
     type: cache-store
     name: CachedEntityLoader Service
     isTest: false
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/docssynchronizer-test
+  - entityRef: backstage/plugins/techdocs-backend/docssynchronizer-test
     type: background-worker
     name: DocsSynchronizer.test Service
     isTest: true
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
+  - entityRef: backstage/plugins/techdocs-backend/defaultdocsbuildstrategy
     type: background-worker
     name: DefaultDocsBuildStrategy Service
     isTest: false
@@ -655,7 +655,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/index
+  - entityRef: backstage/plugins/techdocs-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -667,7 +667,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -679,7 +679,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/plugins/catalog-node/testutils
+  - entityRef: backstage/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -692,139 +692,139 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/plugins/techdocs-backend/cachemiddleware
-    to: blueprint/plugins/techdocs-backend/techdocscache
+  - from: backstage/plugins/techdocs-backend/cachemiddleware
+    to: backstage/plugins/techdocs-backend/techdocscache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-backend/techdocscache-test
-    to: blueprint/plugins/techdocs-backend/techdocscache
+  - from: backstage/plugins/techdocs-backend/techdocscache-test
+    to: backstage/plugins/techdocs-backend/techdocscache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-backend/cachemiddleware-test
-    to: blueprint/plugins/techdocs-backend/cachemiddleware
+  - from: backstage/plugins/techdocs-backend/cachemiddleware-test
+    to: backstage/plugins/techdocs-backend/cachemiddleware
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/cachemiddleware-test
-    to: blueprint/plugins/techdocs-backend/techdocscache
+  - from: backstage/plugins/techdocs-backend/cachemiddleware-test
+    to: backstage/plugins/techdocs-backend/techdocscache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-backend/index
-    to: blueprint/plugins/techdocs-backend/cachemiddleware
+  - from: backstage/plugins/techdocs-backend/index
+    to: backstage/plugins/techdocs-backend/cachemiddleware
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/index
-    to: blueprint/plugins/techdocs-backend/techdocscache
+  - from: backstage/plugins/techdocs-backend/index
+    to: backstage/plugins/techdocs-backend/techdocscache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-backend/plugin
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/plugin
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/plugin
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/techdocs-backend/plugin
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/techdocs-backend/plugin
-    to: blueprint/plugins/techdocs-backend/router
+  - from: backstage/plugins/techdocs-backend/plugin
+    to: backstage/plugins/techdocs-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/alpha
-    to: blueprint/plugins/techdocs-backend/plugin
+  - from: backstage/plugins/techdocs-backend/alpha
+    to: backstage/plugins/techdocs-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/buildmetadatastorage-test
-    to: blueprint/plugins/techdocs-backend/buildmetadatastorage
+  - from: backstage/plugins/techdocs-backend/buildmetadatastorage-test
+    to: backstage/plugins/techdocs-backend/buildmetadatastorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/builder
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/builder
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/builder
-    to: blueprint/plugins/techdocs-backend/buildmetadatastorage
+  - from: backstage/plugins/techdocs-backend/builder
+    to: backstage/plugins/techdocs-backend/buildmetadatastorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/index
-    to: blueprint/plugins/techdocs-backend/buildmetadatastorage
+  - from: backstage/plugins/techdocs-backend/index
+    to: backstage/plugins/techdocs-backend/buildmetadatastorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/index
-    to: blueprint/plugins/techdocs-backend/builder
+  - from: backstage/plugins/techdocs-backend/index
+    to: backstage/plugins/techdocs-backend/builder
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/index
-    to: blueprint/plugins/techdocs-backend/plugin
+  - from: backstage/plugins/techdocs-backend/index
+    to: backstage/plugins/techdocs-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy-test
-    to: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
+  - from: backstage/plugins/techdocs-backend/defaultdocsbuildstrategy-test
+    to: backstage/plugins/techdocs-backend/defaultdocsbuildstrategy
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/router
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/techdocs-backend/docssynchronizer
+  - from: backstage/plugins/techdocs-backend/router
+    to: backstage/plugins/techdocs-backend/docssynchronizer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/techdocs-backend/cachedentityloader
+  - from: backstage/plugins/techdocs-backend/router
+    to: backstage/plugins/techdocs-backend/cachedentityloader
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
+  - from: backstage/plugins/techdocs-backend/router
+    to: backstage/plugins/techdocs-backend/defaultdocsbuildstrategy
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/techdocs-backend/router
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/techdocs-backend/router-test
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/router-test
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/router-test
-    to: blueprint/plugins/techdocs-backend/docssynchronizer
+  - from: backstage/plugins/techdocs-backend/router-test
+    to: backstage/plugins/techdocs-backend/docssynchronizer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/router-test
-    to: blueprint/plugins/techdocs-backend/cachedentityloader
+  - from: backstage/plugins/techdocs-backend/router-test
+    to: backstage/plugins/techdocs-backend/cachedentityloader
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-backend/router-test
-    to: blueprint/plugins/techdocs-backend/router
+  - from: backstage/plugins/techdocs-backend/router-test
+    to: backstage/plugins/techdocs-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/router-test
-    to: blueprint/plugins/catalog-node/testutils
+  - from: backstage/plugins/techdocs-backend/router-test
+    to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/techdocs-backend/cachedentityloader-test
-    to: blueprint/plugins/techdocs-backend/cachedentityloader
+  - from: backstage/plugins/techdocs-backend/cachedentityloader-test
+    to: backstage/plugins/techdocs-backend/cachedentityloader
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-backend/cachedentityloader-test
-    to: blueprint/plugins/catalog-node/testutils
+  - from: backstage/plugins/techdocs-backend/cachedentityloader-test
+    to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/docssynchronizer
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/cachedentityloader
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/techdocs-backend/cachedentityloader
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer-test
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/docssynchronizer-test
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer-test
-    to: blueprint/plugins/techdocs-backend/docssynchronizer
+  - from: backstage/plugins/techdocs-backend/docssynchronizer-test
+    to: backstage/plugins/techdocs-backend/docssynchronizer
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/defaultdocsbuildstrategy
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'

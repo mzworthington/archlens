@@ -18,11 +18,19 @@ describe('useActiveDiagramEntity', () => {
       workspaceName: '',
       workspaceCatalog: [
         {
-          path: 'context.yaml',
-          name: 'Blueprint',
+          path: 'application/context.yaml',
+          name: 'Application',
           level: 'context',
-          entityRef: 'blueprint',
+          entityRef: 'application',
           nodeEntityRefs: ['blueprint/app'],
+        },
+        {
+          path: 'app/containers.yaml',
+          name: 'App Containers',
+          level: 'container',
+          entityRef: 'blueprint/app',
+          nodeEntityRefs: ['blueprint/app/cli'],
+          parentEntityRef: 'application',
         },
         {
           path: 'app/cli-components.yaml',
@@ -30,6 +38,7 @@ describe('useActiveDiagramEntity', () => {
           level: 'component',
           entityRef: 'blueprint/app/cli',
           nodeEntityRefs: [],
+          parentEntityRef: 'blueprint/app',
         },
       ],
       loadedSystems: [

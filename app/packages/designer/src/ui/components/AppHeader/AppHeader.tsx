@@ -24,15 +24,7 @@ const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => 
   {
     href: '/',
     label: 'Docs',
-    isActive: loc =>
-      !loc.startsWith('/workspace') &&
-      !loc.startsWith('/tracelens') &&
-      !loc.startsWith('/design-system'),
-  },
-  {
-    href: '/design-system',
-    label: 'Design system',
-    isActive: loc => loc === '/design-system' || loc.startsWith('/design-system/'),
+    isActive: loc => !loc.startsWith('/workspace') && !loc.startsWith('/tracelens'),
   },
 ];
 

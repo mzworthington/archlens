@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Copy sandbox blueprint products into blueprints/ and merge context-overlay.yaml
- * into context.yaml. Tooling only - not part of the ArchLens runtime.
+ * Copy sandbox blueprint products into blueprints/ and merge per-product
+ * context-overlay.yaml into each product's context.yaml. Tooling only.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -17,34 +17,17 @@ const sandboxDir = path.join(scriptDir, 'sandbox-blueprints');
 const blueprintsDir = process.argv[2]
   ? path.resolve(process.argv[2])
   : path.join(repoRoot, 'blueprints');
-const contextPath = path.join(blueprintsDir, 'context.yaml');
-const overlayPath = path.join(sandboxDir, 'context-overlay.yaml');
 
 function depKey(dep) {
   return `${dep.from}|${dep.to}|${dep.type ?? ''}|${dep.description ?? ''}`;
 }
 
-function copySandboxProducts() {
-  let copied = 0;
-  for (const entry of fs.readdirSync(sandboxDir, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const source = path.join(sandboxDir, entry.name);
-    const target = path.join(blueprintsDir, entry.name);
-    fs.cpSync(source, target, { recursive: true, force: true });
-    copied += 1;
-    console.log(`  copied ${entry.name}/`);
-  }
-  return copied;
-}
-
-function mergeOverlay() {
+function mergeOverlayIntoContext(contextPath, overlayPath) {
   if (!fs.existsSync(contextPath)) {
-    throw new Error(`Missing ${contextPath} - run blueprint scans first`);
+    console.warn(`  skip merge — missing ${contextPath}`);
+    return false;
   }
-  if (!fs.existsSync(overlayPath)) {
-    console.log('  no context-overlay.yaml - skipped merge');
-    return;
-  }
+  if (!fs.existsSync(overlayPath)) return false;
 
   const contextDoc = yaml.load(fs.readFileSync(contextPath, 'utf8'));
   const overlay = yaml.load(fs.readFileSync(overlayPath, 'utf8'));
@@ -69,7 +52,64 @@ function mergeOverlay() {
   contextDoc.dependencies = dependencies;
 
   fs.writeFileSync(contextPath, yaml.dump(contextDoc, { lineWidth: 120, noRefs: true }));
-  console.log(`  merged ${overlay.nodes?.length ?? 0} overlay node(s) into context.yaml`);
+  console.log(
+    `  merged ${overlay.nodes?.length ?? 0} overlay node(s) into ${path.relative(repoRoot, contextPath)}`
+  );
+  return true;
+}
+
+function copySandboxProducts() {
+  let copied = 0;
+  for (const entry of fs.readdirSync(sandboxDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const source = path.join(sandboxDir, entry.name);
+    const target = path.join(blueprintsDir, entry.name);
+    fs.cpSync(source, target, { recursive: true, force: true });
+    copied += 1;
+    console.log(`  copied ${entry.name}/`);
+  }
+  return copied;
+}
+
+function mergeAllContextOverlays() {
+  let merged = 0;
+
+  const rootOverlay = path.join(sandboxDir, 'context-overlay.yaml');
+  if (fs.existsSync(rootOverlay)) {
+    if (
+      mergeOverlayIntoContext(
+        path.join(blueprintsDir, 'application', 'context.yaml'),
+        rootOverlay
+      )
+    ) {
+      merged += 1;
+    }
+  }
+
+  for (const entry of fs.readdirSync(sandboxDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const overlayPath = path.join(sandboxDir, entry.name, 'context-overlay.yaml');
+    if (!fs.existsSync(overlayPath)) continue;
+
+    const contextPath = path.join(blueprintsDir, entry.name, 'context.yaml');
+    if (mergeOverlayIntoContext(contextPath, overlayPath)) {
+      merged += 1;
+    }
+  }
+
+  // golden-journey lives at blueprints/golden-journey/context.yaml (sandbox copies into golden-journey/)
+  const goldenOverlay = path.join(sandboxDir, 'golden-journey', 'context-overlay.yaml');
+  if (fs.existsSync(goldenOverlay)) {
+    if (
+      mergeOverlayIntoContext(path.join(blueprintsDir, 'golden-journey', 'context.yaml'), goldenOverlay)
+    ) {
+      merged += 1;
+    }
+  }
+
+  if (merged === 0) {
+    console.log('  no context overlays found — skipped merge');
+  }
 }
 
 console.log(`Sandbox dir:    ${sandboxDir}`);
@@ -77,6 +117,6 @@ console.log(`Blueprints dir: ${blueprintsDir}`);
 console.log('▶ copy sandbox blueprint products');
 const copied = copySandboxProducts();
 console.log(`✓ copied ${copied} product folder(s)`);
-console.log('▶ merge sandbox context overlay');
-mergeOverlay();
+console.log('▶ merge sandbox context overlays');
+mergeAllContextOverlays();
 console.log('✓ sandbox blueprints installed');

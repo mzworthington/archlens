@@ -1,13 +1,54 @@
 import { type SystemSchema, parseSchemaFromYaml, getFileName } from '@archlens/core';
-import contextYaml from '../../../../../../blueprints/context.yaml?raw';
+import applicationContextYaml from '../../../../../../blueprints/application/context.yaml?raw';
 import infrastructureContextYaml from '../../../../../../blueprints/infrastructure/context.yaml?raw';
+import goldenJourneyContextYaml from '../../../../../../blueprints/golden-journey/context.yaml?raw';
+import goldenJourneyContainersYaml from '../../../../../../blueprints/golden-journey/containers.yaml?raw';
+import backstageContextYaml from '../../../../../../blueprints/backstage/context.yaml?raw';
+import blueprintContextYaml from '../../../../../../blueprints/blueprint/context.yaml?raw';
+import eshopContextYaml from '../../../../../../blueprints/eshop/context.yaml?raw';
+import chaoslensStressContextYaml from '../../../../../../blueprints/chaoslens-stress/context.yaml?raw';
+import advicelensStressContextYaml from '../../../../../../blueprints/advicelens-stress/context.yaml?raw';
 
-export const CONTEXT_BLUEPRINT_PATH = 'context.yaml';
-export const INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH = 'infrastructure/context.yaml';
+/** Context diagrams for each demo sandbox folder (discovered like an opened workspace). */
+export const APPLICATION_CONTEXT_PATH = 'application/context.yaml';
+export const INFRASTRUCTURE_CONTEXT_PATH = 'infrastructure/context.yaml';
+export const GOLDEN_PATHS_CONTEXT_PATH = 'golden-journey/context.yaml';
+export const GOLDEN_PATHS_CONTAINERS_PATH = 'golden-journey/containers.yaml';
+export const BACKSTAGE_CONTEXT_PATH = 'backstage/context.yaml';
+export const BLUEPRINT_CONTEXT_PATH = 'blueprint/context.yaml';
+export const ESHOP_CONTEXT_PATH = 'eshop/context.yaml';
+export const CHAOSLENS_STRESS_CONTEXT_PATH = 'chaoslens-stress/context.yaml';
+export const ADVICELENS_STRESS_CONTEXT_PATH = 'advicelens-stress/context.yaml';
 
-export type SandboxKind = 'application' | 'infrastructure';
+export const SANDBOX_CONTEXT_PATHS = [
+  GOLDEN_PATHS_CONTEXT_PATH,
+  APPLICATION_CONTEXT_PATH,
+  INFRASTRUCTURE_CONTEXT_PATH,
+  BACKSTAGE_CONTEXT_PATH,
+  BLUEPRINT_CONTEXT_PATH,
+  ESHOP_CONTEXT_PATH,
+  CHAOSLENS_STRESS_CONTEXT_PATH,
+  ADVICELENS_STRESS_CONTEXT_PATH,
+] as const;
 
-const INFRASTRUCTURE_PREFIX = 'infrastructure/';
+type ContextFallback = { yaml: string; name: string };
+
+const CONTEXT_FALLBACKS: Record<string, ContextFallback> = {
+  [APPLICATION_CONTEXT_PATH]: { yaml: applicationContextYaml, name: 'Application' },
+  [INFRASTRUCTURE_CONTEXT_PATH]: { yaml: infrastructureContextYaml, name: 'Infrastructure' },
+  [GOLDEN_PATHS_CONTEXT_PATH]: { yaml: goldenJourneyContextYaml, name: 'Golden Paths' },
+  [BACKSTAGE_CONTEXT_PATH]: { yaml: backstageContextYaml, name: 'Backstage' },
+  [BLUEPRINT_CONTEXT_PATH]: { yaml: blueprintContextYaml, name: 'Blueprint' },
+  [ESHOP_CONTEXT_PATH]: { yaml: eshopContextYaml, name: 'E-Shop' },
+  [CHAOSLENS_STRESS_CONTEXT_PATH]: {
+    yaml: chaoslensStressContextYaml,
+    name: 'ChaosLens Stress Tests',
+  },
+  [ADVICELENS_STRESS_CONTEXT_PATH]: {
+    yaml: advicelensStressContextYaml,
+    name: 'AdviceLens Stress Tests',
+  },
+};
 
 const allBlueprintModuleLoaders = import.meta.glob<{ default: string }>(
   '../../../../../../blueprints/**/*.{yaml,yml}',
@@ -17,14 +58,7 @@ const allBlueprintModuleLoaders = import.meta.glob<{ default: string }>(
   }
 );
 
-const blueprintModuleLoaders = Object.fromEntries(
-  Object.entries(allBlueprintModuleLoaders).filter(([filePath]) => {
-    const cleanPath = globKeyToCleanPath(filePath);
-    return (
-      cleanPath !== CONTEXT_BLUEPRINT_PATH && cleanPath !== INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH
-    );
-  })
-);
+const blueprintModuleLoaders = allBlueprintModuleLoaders;
 
 function globKeyToCleanPath(filePath: string): string {
   const blueprintsMarker = 'blueprints/';
@@ -34,146 +68,140 @@ function globKeyToCleanPath(filePath: string): string {
     : getFileName(filePath);
 }
 
-export function isInfrastructureBlueprintPath(path: string): boolean {
-  return path.startsWith(INFRASTRUCTURE_PREFIX);
-}
-
-export function getSandboxContextPath(kind: SandboxKind): string {
-  return kind === 'infrastructure' ? INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH : CONTEXT_BLUEPRINT_PATH;
-}
-
-export const blueprintPaths = [
-  CONTEXT_BLUEPRINT_PATH,
-  INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH,
-  ...Object.keys(blueprintModuleLoaders).map(globKeyToCleanPath),
-].sort((a, b) => {
-  const levelFromPath = (path: string) => {
-    if (path === CONTEXT_BLUEPRINT_PATH || path === INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH) return 1;
-    if (path.endsWith('containers.yaml')) return 2;
-    if (path.includes('-components.yaml') || path.endsWith('components.yaml')) return 3;
-    return 5;
-  };
-  const levelA = levelFromPath(a);
-  const levelB = levelFromPath(b);
-  if (levelA !== levelB) return levelA - levelB;
-  return a.localeCompare(b);
-});
-
-export function getBlueprintPathsForSandbox(kind: SandboxKind): string[] {
-  const contextPath = getSandboxContextPath(kind);
-  return blueprintPaths.filter(path => {
-    if (path === CONTEXT_BLUEPRINT_PATH || path === INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH) {
-      return path === contextPath;
-    }
-    return kind === 'infrastructure'
-      ? isInfrastructureBlueprintPath(path)
-      : !isInfrastructureBlueprintPath(path);
+export const blueprintPaths = Object.keys(blueprintModuleLoaders)
+  .map(globKeyToCleanPath)
+  .sort((a, b) => {
+    const levelFromPath = (path: string) => {
+      if (SANDBOX_CONTEXT_PATHS.includes(path as (typeof SANDBOX_CONTEXT_PATHS)[number])) return 1;
+      if (path.endsWith('containers.yaml')) return 2;
+      if (path.includes('-components.yaml') || path.endsWith('components.yaml')) return 3;
+      return 5;
+    };
+    const levelA = levelFromPath(a);
+    const levelB = levelFromPath(b);
+    if (levelA !== levelB) return levelA - levelB;
+    return a.localeCompare(b);
   });
-}
 
-let activeSandboxKind: SandboxKind = 'application';
-
-export function setActiveSandboxKind(kind: SandboxKind): void {
-  activeSandboxKind = kind;
-}
-
-export function getActiveSandboxKind(): SandboxKind {
-  return activeSandboxKind;
-}
-
-export function getActiveBlueprintPaths(): string[] {
-  return getBlueprintPathsForSandbox(activeSandboxKind);
+export function getBlueprintPaths(): string[] {
+  return blueprintPaths;
 }
 
 function findGlobKey(cleanPath: string): string | undefined {
   return Object.keys(blueprintModuleLoaders).find(key => globKeyToCleanPath(key) === cleanPath);
 }
 
-let parsedContextSchema: SystemSchema | null = null;
-let parsedInfrastructureContextSchema: SystemSchema | null = null;
+const parsedContextByPath = new Map<string, SystemSchema>();
+let parsedGoldenPathsContainersSchema: SystemSchema | null = null;
 
-function getContextSchema(): SystemSchema {
-  if (!parsedContextSchema) {
+function getBundledContextSchema(
+  path: string,
+  fallbackYaml: string,
+  fallbackName: string
+): SystemSchema {
+  const cached = parsedContextByPath.get(path);
+  if (cached) return cached;
+
+  try {
+    const schema = parseSchemaFromYaml(fallbackYaml);
+    parsedContextByPath.set(path, schema);
+    return schema;
+  } catch {
+    const empty: SystemSchema = {
+      name: fallbackName,
+      version: '1.0.0',
+      level: 'context',
+      nodes: [],
+      dependencies: [],
+    };
+    parsedContextByPath.set(path, empty);
+    return empty;
+  }
+}
+
+function getGoldenPathsContainersSchema(): SystemSchema {
+  if (!parsedGoldenPathsContainersSchema) {
     try {
-      parsedContextSchema = parseSchemaFromYaml(contextYaml);
+      parsedGoldenPathsContainersSchema = parseSchemaFromYaml(goldenJourneyContainersYaml);
     } catch {
-      parsedContextSchema = {
-        name: 'Empty Workspace',
+      parsedGoldenPathsContainersSchema = {
+        name: 'Golden Journey Estate',
         version: '1.0.0',
-        level: 'context',
+        level: 'container',
+        entityRef: 'golden-paths/golden-journey',
         nodes: [],
         dependencies: [],
       };
     }
   }
-  return parsedContextSchema;
+  return parsedGoldenPathsContainersSchema;
 }
 
-function getInfrastructureContextSchema(): SystemSchema {
-  if (!parsedInfrastructureContextSchema) {
-    try {
-      parsedInfrastructureContextSchema = parseSchemaFromYaml(infrastructureContextYaml);
-    } catch {
-      parsedInfrastructureContextSchema = {
-        name: 'Infrastructure Examples',
-        version: '1.0.0',
-        level: 'context',
-        nodes: [],
-        dependencies: [],
-      };
-    }
-  }
-  return parsedInfrastructureContextSchema;
-}
-
-/** Eagerly available context diagram - all other blueprints load lazily. */
-export let defaultInitialSchema: SystemSchema = getContextSchema();
+/** Eagerly available Golden Paths context — other blueprints load lazily. */
+export let defaultInitialSchema: SystemSchema = getBundledContextSchema(
+  GOLDEN_PATHS_CONTEXT_PATH,
+  goldenJourneyContextYaml,
+  'Golden Paths'
+);
 
 const blueprintSchemaCache = new Map<string, SystemSchema>();
 
-/** Clear parsed YAML cache (e.g. after hot reload in dev). Bundled paths are immutable in production. */
 export function clearBlueprintSchemaCache(): void {
   blueprintSchemaCache.clear();
-  parsedContextSchema = null;
-  parsedInfrastructureContextSchema = null;
-  defaultInitialSchema = getContextSchema();
+  parsedContextByPath.clear();
+  parsedGoldenPathsContainersSchema = null;
+  defaultInitialSchema = getBundledContextSchema(
+    GOLDEN_PATHS_CONTEXT_PATH,
+    goldenJourneyContextYaml,
+    'Golden Paths'
+  );
 }
 
-export const defaultLoadedSystems: Array<{ path: string; name: string; schema: SystemSchema }> = [
-  {
-    path: CONTEXT_BLUEPRINT_PATH,
-    name: defaultInitialSchema.name || 'Blueprint',
-    schema: defaultInitialSchema,
-  },
-];
+function buildContextLoadedSystem(path: string): {
+  path: string;
+  name: string;
+  schema: SystemSchema;
+} {
+  const fallback = CONTEXT_FALLBACKS[path];
+  const schema = getBundledContextSchema(path, fallback.yaml, fallback.name);
+  return { path, name: schema.name || fallback.name, schema };
+}
 
-export function getDefaultLoadedSystems(
-  kind: SandboxKind = 'application'
-): Array<{ path: string; name: string; schema: SystemSchema }> {
-  if (kind === 'application') return defaultLoadedSystems;
+function buildDefaultLoadedSystems(): Array<{ path: string; name: string; schema: SystemSchema }> {
+  const goldenContainersSchema = getGoldenPathsContainersSchema();
+  const goldenContainers = {
+    path: GOLDEN_PATHS_CONTAINERS_PATH,
+    name: goldenContainersSchema.name || 'Golden Journey Estate',
+    schema: goldenContainersSchema,
+  };
 
-  const schema = getInfrastructureContextSchema();
-  return [
-    {
-      path: INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH,
-      name: schema.name || 'Infrastructure Examples',
-      schema,
-    },
-  ];
+  const contexts = SANDBOX_CONTEXT_PATHS.map(buildContextLoadedSystem);
+  return [...contexts, goldenContainers];
+}
+
+export const defaultLoadedSystems = buildDefaultLoadedSystems();
+
+export function getDefaultLoadedSystems(): Array<{
+  path: string;
+  name: string;
+  schema: SystemSchema;
+}> {
+  return defaultLoadedSystems;
 }
 
 export async function loadBlueprintSchema(cleanPath: string): Promise<SystemSchema | null> {
   const cached = blueprintSchemaCache.get(cleanPath);
   if (cached) return cached;
 
-  if (cleanPath === CONTEXT_BLUEPRINT_PATH) {
-    const schema = getContextSchema();
+  const contextFallback = CONTEXT_FALLBACKS[cleanPath];
+  if (contextFallback) {
+    const schema = getBundledContextSchema(cleanPath, contextFallback.yaml, contextFallback.name);
     blueprintSchemaCache.set(cleanPath, schema);
     return schema;
   }
 
-  if (cleanPath === INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH) {
-    const schema = getInfrastructureContextSchema();
+  if (cleanPath === GOLDEN_PATHS_CONTAINERS_PATH) {
+    const schema = getGoldenPathsContainersSchema();
     blueprintSchemaCache.set(cleanPath, schema);
     return schema;
   }

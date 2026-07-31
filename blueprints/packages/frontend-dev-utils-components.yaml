@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/frontend-dev-utils
+  entityRef: backstage/packages/frontend-dev-utils
   name: Frontend-dev-utils Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/frontend-dev-utils/createdevapp
+  - entityRef: backstage/packages/frontend-dev-utils/createdevapp
     type: gateway-api
     name: createDevApp Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-dev-utils/createdevapp-test
+  - entityRef: backstage/packages/frontend-dev-utils/createdevapp-test
     type: gateway-api
     name: createDevApp.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-dev-utils/buicss
+  - entityRef: backstage/packages/frontend-dev-utils/buicss
     type: background-worker
     name: BuiCss Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/frontend-dev-utils/index
+  - entityRef: backstage/packages/frontend-dev-utils/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-module-new/index
+  - entityRef: backstage/packages/cli-module-new/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -157,7 +157,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/packages/frontend-plugin-api/index
+  - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -169,7 +169,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/packages/frontend-defaults/index
+  - entityRef: backstage/packages/frontend-defaults/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -182,31 +182,31 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/packages/cli-module-new/index
-    to: blueprint/packages/frontend-dev-utils/index
+  - from: backstage/packages/cli-module-new/index
+    to: backstage/packages/frontend-dev-utils/index
     type: direct-call
     description: '@backstage/frontend-dev-utils'
-  - from: blueprint/packages/frontend-dev-utils/createdevapp
-    to: blueprint/packages/frontend-plugin-api/index
+  - from: backstage/packages/frontend-dev-utils/createdevapp
+    to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
-  - from: blueprint/packages/frontend-dev-utils/createdevapp
-    to: blueprint/packages/frontend-defaults/index
+  - from: backstage/packages/frontend-dev-utils/createdevapp
+    to: backstage/packages/frontend-defaults/index
     type: direct-call
     description: '@backstage/frontend-defaults'
-  - from: blueprint/packages/frontend-dev-utils/createdevapp-test
-    to: blueprint/packages/frontend-plugin-api/index
+  - from: backstage/packages/frontend-dev-utils/createdevapp-test
+    to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
-  - from: blueprint/packages/frontend-dev-utils/createdevapp-test
-    to: blueprint/packages/frontend-dev-utils/createdevapp
+  - from: backstage/packages/frontend-dev-utils/createdevapp-test
+    to: backstage/packages/frontend-dev-utils/createdevapp
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/frontend-dev-utils/buicss
-    to: blueprint/packages/ui/styles-css
+  - from: backstage/packages/frontend-dev-utils/buicss
+    to: backstage/packages/ui/styles-css
     type: direct-call
     description: '@backstage/ui'
-  - from: blueprint/packages/frontend-dev-utils/index
-    to: blueprint/packages/frontend-dev-utils/createdevapp
+  - from: backstage/packages/frontend-dev-utils/index
+    to: backstage/packages/frontend-dev-utils/createdevapp
     type: direct-call
     description: Calls module / service

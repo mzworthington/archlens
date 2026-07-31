@@ -1,11 +1,8 @@
-import type { SandboxKind } from './defaultData';
-
 export type WorkspaceSessionMode = 'sandbox' | 'folder';
 
 export type WorkspaceSession = {
   mode: WorkspaceSessionMode;
   workspaceName?: string;
-  sandboxKind?: SandboxKind;
 };
 
 const STORAGE_KEY = 'archlens.workspaceSession';

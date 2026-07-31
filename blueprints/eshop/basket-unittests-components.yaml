@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/basket-unittests
+  entityRef: eshop/basket-unittests
   name: Basket.UnitTests Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/basket-unittests/basketservicetests
+  - entityRef: eshop/basket-unittests/basketservicetests
     type: background-worker
     name: BasketServiceTests
     isTest: true
@@ -41,7 +41,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/basket-unittests/helpers
+  - entityRef: eshop/basket-unittests/helpers
     type: background-worker
     name: Helpers Layer
     isTest: true
@@ -74,7 +74,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.041666666666666664
       sinceDays: 60
-  - entityRef: blueprint/eshop/basket-api/grpc
+  - entityRef: eshop/basket-api/grpc
     type: background-worker
     name: Grpc Layer (External)
     external: true
@@ -86,7 +86,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/eshop/basket-api/model
+  - entityRef: eshop/basket-api/model
     type: background-worker
     name: Model Layer (External)
     external: true
@@ -98,7 +98,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/eshop/basket-api/repositories
+  - entityRef: eshop/basket-api/repositories
     type: relational-database
     name: Repositories Layer (External)
     external: true
@@ -111,19 +111,19 @@ nodes:
       x: 560
       y: 404
 dependencies:
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/repositories
+  - from: eshop/basket-unittests/basketservicetests
+    to: eshop/basket-api/repositories
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/grpc
+  - from: eshop/basket-unittests/basketservicetests
+    to: eshop/basket-api/grpc
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/model
+  - from: eshop/basket-unittests/basketservicetests
+    to: eshop/basket-api/model
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-unittests/helpers
+  - from: eshop/basket-unittests/basketservicetests
+    to: eshop/basket-unittests/helpers
     type: direct-call
     description: Calls module / service

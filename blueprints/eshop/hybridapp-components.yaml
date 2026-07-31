@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/hybridapp
+  entityRef: eshop/hybridapp
   name: HybridApp Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/hybridapp/app-xaml
+  - entityRef: eshop/hybridapp/app-xaml
     type: background-worker
     name: App.xaml
     isTest: false
@@ -41,7 +41,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/hybridapp/mauiprogram
+  - entityRef: eshop/hybridapp/mauiprogram
     type: background-worker
     name: MauiProgram
     isTest: false
@@ -73,7 +73,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/hybridapp/platforms
+  - entityRef: eshop/hybridapp/platforms
     type: background-worker
     name: Platforms Layer
     isTest: false
@@ -105,7 +105,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/hybridapp/mainpage-xaml
+  - entityRef: eshop/hybridapp/mainpage-xaml
     type: background-worker
     name: MainPage.xaml
     isTest: false
@@ -137,7 +137,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/hybridapp/globalsuppressions
+  - entityRef: eshop/hybridapp/globalsuppressions
     type: background-worker
     name: GlobalSuppressions
     isTest: false
@@ -167,7 +167,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/hybridapp/services
+  - entityRef: eshop/hybridapp/services
     type: background-worker
     name: Services Layer
     isTest: false
@@ -197,7 +197,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/webappcomponents/catalog
+  - entityRef: eshop/webappcomponents/catalog
     type: background-worker
     name: Catalog Layer (External)
     external: true
@@ -209,7 +209,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/eshop/webappcomponents/services
+  - entityRef: eshop/webappcomponents/services
     type: background-worker
     name: Services Layer (External)
     external: true
@@ -222,15 +222,15 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/eshop/hybridapp/mauiprogram
-    to: blueprint/eshop/hybridapp/services
+  - from: eshop/hybridapp/mauiprogram
+    to: eshop/hybridapp/services
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/hybridapp/services
-    to: blueprint/eshop/webappcomponents/catalog
+  - from: eshop/hybridapp/services
+    to: eshop/webappcomponents/catalog
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/hybridapp/services
-    to: blueprint/eshop/webappcomponents/services
+  - from: eshop/hybridapp/services
+    to: eshop/webappcomponents/services
     type: direct-call
     description: Calls module / service

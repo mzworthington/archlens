@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/scaffolder-backend-module-gitea
+  entityRef: backstage/plugins/scaffolder-backend-module-gitea
   name: Scaffolder-backend-module-gitea Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/module
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/module
     type: background-worker
     name: module Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/gitea
     type: background-worker
     name: gitea Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples
     type: background-worker
     name: gitea.examples Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples-test
     type: background-worker
     name: gitea.examples.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/gitea-test
     type: background-worker
     name: gitea.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/scaffolder-backend-module-gitea/index
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/index
     type: background-worker
     name: index Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/home/actions
+  - entityRef: backstage/plugins/home/actions
     type: gateway-api
     name: Actions Service (External)
     external: true
@@ -225,7 +225,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/plugins/scaffolder-node/index
+  - entityRef: backstage/plugins/scaffolder-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -237,7 +237,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/plugins/scaffolder-node-test-utils/index
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -250,63 +250,63 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/module
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitea/module
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/module
-    to: blueprint/plugins/home/actions
+  - from: backstage/plugins/scaffolder-backend-module-gitea/module
+    to: backstage/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea
-    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea
+    to: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitea/gitea
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples-test
-    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea-examples
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitea/gitea-examples
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
-    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea-test
+    to: backstage/plugins/scaffolder-backend-module-gitea/gitea
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
-    to: blueprint/plugins/scaffolder-node/index
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea-test
+    to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/gitea-test
-    to: blueprint/plugins/scaffolder-node-test-utils/index
+  - from: backstage/plugins/scaffolder-backend-module-gitea/gitea-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
-    to: blueprint/plugins/scaffolder-backend-module-gitea/gitea
+  - from: backstage/plugins/scaffolder-backend-module-gitea/index
+    to: backstage/plugins/scaffolder-backend-module-gitea/gitea
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
-    to: blueprint/plugins/home/actions
+  - from: backstage/plugins/scaffolder-backend-module-gitea/index
+    to: backstage/plugins/home/actions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/scaffolder-backend-module-gitea/index
-    to: blueprint/plugins/scaffolder-backend-module-gitea/module
+  - from: backstage/plugins/scaffolder-backend-module-gitea/index
+    to: backstage/plugins/scaffolder-backend-module-gitea/module
     type: direct-call
     description: Calls module / service

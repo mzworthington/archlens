@@ -1,0 +1,50 @@
+import { expect, type Page } from '@playwright/test';
+import { clickCanvasNode } from './canvas';
+import { releaseE2ePage } from './navigation';
+import { loadSandbox } from './workspace';
+
+export const GOLDEN_JOURNEY_PATH = '/workspace/golden-paths/golden-journey';
+export const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/golden-paths/golden-journey';
+export const PAYMENT_GATEWAY_LABEL = 'Payment Gateway';
+export const CHECKOUT_API_LABEL = 'Checkout API';
+
+/** Load the golden journey Checkout Day diagram in the sandbox. */
+export async function loadGoldenJourneyDiagram(page: Page) {
+  await loadSandbox(page, GOLDEN_JOURNEY_ESTATE_PATH);
+  await page.waitForTimeout(800);
+}
+
+export type GoldenJourneyDemoOptions = {
+  onRecordingStart?: () => void | Promise<void>;
+};
+
+/** Simulate Payment Gateway region outage and expect AdviceLens circuit-breaker recommendation. */
+export async function runGoldenJourneyOutageDemo(page: Page, options?: GoldenJourneyDemoOptions) {
+  await page.getByRole('button', { name: /enter resilience mode/i }).click();
+  await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
+    timeout: 30_000,
+  });
+  await options?.onRecordingStart?.();
+  await page.waitForTimeout(600);
+
+  await clickCanvasNode(page, PAYMENT_GATEWAY_LABEL);
+  await expect(page.getByText(`Target: ${PAYMENT_GATEWAY_LABEL}`)).toBeVisible({
+    timeout: 10_000,
+  });
+
+  await page.getByRole('radio', { name: 'Region outage' }).click();
+  await page.getByTestId('add-fault-to-scenario').click();
+  await expect(page.getByRole('button', { name: /run resilience simulation/i })).toBeEnabled({
+    timeout: 10_000,
+  });
+
+  await page.getByRole('button', { name: /run resilience simulation/i }).click();
+  await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
+
+  await expect(page.getByText(/In Checkout API, add a circuit breaker/i)).toBeVisible({
+    timeout: 15_000,
+  });
+
+  await page.waitForTimeout(1_500);
+  await releaseE2ePage(page);
+}

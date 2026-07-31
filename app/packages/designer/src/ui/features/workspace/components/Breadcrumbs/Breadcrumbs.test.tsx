@@ -23,30 +23,41 @@ describe('Breadcrumbs Component', () => {
     });
   });
 
-  it('renders sandbox root switcher when a bundled sandbox is loaded', () => {
+  it('renders demo sandbox label when bundled workspace is loaded', () => {
     useBlueprintStore.setState({
       loadedSystems: [
         {
-          path: 'context.yaml',
-          name: 'Blueprint',
+          path: 'application/context.yaml',
+          name: 'Application',
           schema: {
-            name: 'Blueprint',
+            name: 'Application',
             version: '1.0.0',
             level: 'context',
-            entityRef: 'blueprint',
+            entityRef: 'application',
+            nodes: [],
+            dependencies: [],
+          },
+        },
+        {
+          path: 'infrastructure/context.yaml',
+          name: 'Infrastructure Examples',
+          schema: {
+            name: 'Infrastructure Examples',
+            version: '1.0.0',
+            level: 'context',
+            entityRef: 'infrastructure',
             nodes: [],
             dependencies: [],
           },
         },
       ],
-      sandboxKind: 'application',
       isWorkspaceOpen: false,
-      currentFilePath: 'context.yaml',
+      currentFilePath: 'application/context.yaml',
     });
 
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
-      name: 'Blueprint',
+      name: 'Application',
       version: '1.0.0',
       level: 'context',
       entityRef: 'blueprint',
@@ -56,9 +67,8 @@ describe('Breadcrumbs Component', () => {
 
     render(<Breadcrumbs />);
 
-    expect(screen.getByText('Sandboxes')).toBeInTheDocument();
-    expect(screen.getByTestId('sandbox-kind-label')).toHaveTextContent('Application');
-    expect(screen.getByTestId('sandbox-root-trigger')).toBeInTheDocument();
+    expect(screen.getByText('Demo sandbox')).toBeInTheDocument();
+    expect(screen.getByText('Application')).toBeInTheDocument();
   });
 
   it('renders demo sandbox label when no workspace folder is open', () => {
@@ -152,6 +162,8 @@ describe('Breadcrumbs Component', () => {
     };
 
     useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      workspaceName: 'enterprise',
       loadedSystems: [
         {
           path: 'context.yaml',
@@ -176,7 +188,7 @@ describe('Breadcrumbs Component', () => {
 
   it('renders next hierarchy level preview when a node with next level component schema is selected', () => {
     useBlueprintStore.setState({
-      currentFilePath: 'blueprint/containers.yaml',
+      currentFilePath: 'application/containers.yaml',
     });
 
     const { initSchema } = useBlueprintStore.getState();
@@ -187,7 +199,7 @@ describe('Breadcrumbs Component', () => {
       level: 'container',
       nodes: [
         {
-          entityRef: 'blueprint/web-app',
+          entityRef: 'application/web-app',
           type: 'web-app',
           name: 'Web Application',
           position: { x: 100, y: 100 },
@@ -197,7 +209,7 @@ describe('Breadcrumbs Component', () => {
     });
 
     useBlueprintStore.setState({
-      selectedNodeId: 'blueprint/web-app',
+      selectedNodeId: 'application/web-app',
       schema: {
         entityRef: 'blueprint',
         name: 'Main App System',
@@ -205,7 +217,7 @@ describe('Breadcrumbs Component', () => {
         level: 'container',
         nodes: [
           {
-            entityRef: 'blueprint/web-app',
+            entityRef: 'application/web-app',
             type: 'web-app',
             name: 'Web Application',
             position: { x: 100, y: 100 },
@@ -221,7 +233,7 @@ describe('Breadcrumbs Component', () => {
             name: 'Web App Components',
             version: '1.0.0',
             level: 'component',
-            entityRef: 'blueprint/web-app',
+            entityRef: 'application/web-app',
             nodes: [],
             dependencies: [],
           },
@@ -243,7 +255,7 @@ describe('Breadcrumbs Component', () => {
       level: 'container',
       nodes: [
         {
-          entityRef: 'blueprint/component',
+          entityRef: 'application/component',
           type: 'web-app',
           name: 'Component Node',
         },
@@ -254,7 +266,7 @@ describe('Breadcrumbs Component', () => {
     useBlueprintStore.setState({
       isWorkspaceOpen: true,
       workspaceName: 'TestWorkspace',
-      currentFilePath: 'blueprints/blueprint/containers.yaml',
+      currentFilePath: 'blueprints/application/containers.yaml',
 
       schema: {
         entityRef: 'blueprint',
@@ -263,7 +275,7 @@ describe('Breadcrumbs Component', () => {
         level: 'container',
         nodes: [
           {
-            entityRef: 'blueprint/component',
+            entityRef: 'application/component',
             type: 'web-app',
             name: 'Component Node',
           },
@@ -272,16 +284,16 @@ describe('Breadcrumbs Component', () => {
       },
       loadedSystems: [
         {
-          path: 'blueprints/blueprint/containers.yaml',
+          path: 'blueprints/application/containers.yaml',
           name: 'Container Diagram',
           schema: {
-            entityRef: 'blueprint',
+            entityRef: 'application',
             name: 'Container Diagram',
             version: '1.0.0',
             level: 'container',
             nodes: [
               {
-                entityRef: 'blueprint/component',
+                entityRef: 'application/component',
                 type: 'web-app',
                 name: 'Component Node',
               },
@@ -290,13 +302,13 @@ describe('Breadcrumbs Component', () => {
           },
         },
         {
-          path: 'blueprints/blueprint/component.yaml',
+          path: 'blueprints/application/component.yaml',
           name: 'Component Diagram',
           schema: {
             name: 'Component Diagram',
             version: '1.0.0',
             level: 'component',
-            entityRef: 'blueprint/component',
+            entityRef: 'application/component',
             nodes: [],
             dependencies: [],
           },
@@ -317,18 +329,18 @@ describe('Breadcrumbs Component', () => {
     expect(screen.getByText('Jump to component')).toBeInTheDocument();
     const childOption = screen.getByText('Component Diagram').closest('a');
     expect(childOption).toBeInTheDocument();
-    expect(childOption).toHaveAttribute('href', '/workspace/blueprint/component');
+    expect(childOption).toHaveAttribute('href', '/workspace/application/component');
   });
 
   it('always shows the context diagram when viewing a deep diagram without intermediate ancestors loaded', () => {
     const contextSchema = {
-      name: 'Blueprint',
+      name: 'Application',
       version: '1.0.0',
       level: 'context' as const,
-      entityRef: 'blueprint',
+      entityRef: 'application',
       nodes: [
         {
-          entityRef: 'blueprint/packages',
+          entityRef: 'backstage/packages',
           type: 'software-system' as const,
           name: 'Packages System',
         },
@@ -339,7 +351,7 @@ describe('Breadcrumbs Component', () => {
       name: 'Core Service Components',
       version: '1.0.0',
       level: 'component' as const,
-      entityRef: 'blueprint/packages/core',
+      entityRef: 'backstage/packages/core',
       nodes: [],
       dependencies: [],
     };
@@ -347,8 +359,8 @@ describe('Breadcrumbs Component', () => {
     useBlueprintStore.setState({
       loadedSystems: [
         {
-          path: 'context.yaml',
-          name: 'Blueprint',
+          path: 'application/context.yaml',
+          name: 'Application',
           schema: contextSchema,
         },
         {
@@ -357,23 +369,40 @@ describe('Breadcrumbs Component', () => {
           schema: componentSchema,
         },
       ],
+      workspaceCatalog: [
+        {
+          path: 'application/context.yaml',
+          name: 'Application',
+          level: 'context',
+          entityRef: 'application',
+          nodeEntityRefs: ['backstage/packages'],
+        },
+        {
+          path: 'packages/core-components.yaml',
+          name: 'Core Service Components',
+          level: 'component',
+          entityRef: 'backstage/packages/core',
+          nodeEntityRefs: [],
+          parentEntityRef: 'backstage/packages',
+        },
+      ],
       currentFilePath: 'packages/core-components.yaml',
       schema: componentSchema,
     });
 
     render(<Breadcrumbs />);
 
-    const contextLink = screen.getByText('Blueprint').closest('a');
+    const contextLink = screen.getByText('Application').closest('a');
     expect(contextLink).toBeInTheDocument();
-    expect(contextLink).toHaveAttribute('href', '/workspace/blueprint');
-    expect(screen.getByText('Blueprint')).toBeInTheDocument();
+    expect(contextLink).toHaveAttribute('href', '/workspace/application');
+    expect(screen.getByText('Application')).toBeInTheDocument();
     expect(screen.getByText('Packages System')).toBeInTheDocument();
     expect(screen.getByText('Core Service Components')).toBeInTheDocument();
   });
 
   it('renders zoom preview segment for container level zoom from context level', () => {
     useBlueprintStore.setState({
-      selectedNodeId: 'blueprint/cli',
+      selectedNodeId: 'application/cli',
     });
 
     const { initSchema } = useBlueprintStore.getState();
@@ -384,7 +413,7 @@ describe('Breadcrumbs Component', () => {
       level: 'context',
       nodes: [
         {
-          entityRef: 'blueprint/cli',
+          entityRef: 'application/cli',
           type: 'software-system',
           name: 'Cli System',
         },
@@ -401,13 +430,13 @@ describe('Breadcrumbs Component', () => {
           path: 'blueprints/context.yaml',
           name: 'Context Diagram',
           schema: {
-            entityRef: 'blueprint',
+            entityRef: 'application',
             name: 'Context Diagram',
             version: '1.0.0',
             level: 'context',
             nodes: [
               {
-                entityRef: 'blueprint/cli',
+                entityRef: 'application/cli',
                 type: 'software-system',
                 name: 'Cli System',
               },
@@ -422,7 +451,7 @@ describe('Breadcrumbs Component', () => {
             name: 'Cli System',
             version: '1.0.0',
             level: 'container',
-            entityRef: 'blueprint/cli',
+            entityRef: 'application/cli',
             nodes: [],
             dependencies: [],
           },

@@ -17,7 +17,7 @@ test.describe('Blueprint E2E Journeys', () => {
     await expect(page.getByTestId('startup-workspace-dialog')).toBeVisible({ timeout: 10_000 });
     await expect(page.getByTestId('startup-load-sandbox')).toBeVisible();
     await expect(page.getByTestId('startup-open-directory')).toBeVisible();
-    await expect(page.getByTestId('startup-import-mermaid')).toBeVisible();
+    await expect(page.queryByTestId('startup-import-mermaid')).not.toBeVisible();
   });
 
   test('Sandbox loads a diagram on the canvas', async ({ page }) => {

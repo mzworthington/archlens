@@ -103,28 +103,28 @@ describe('resilienceState', () => {
             name: 'External Scope',
             version: '1.0.0',
             level: 'container',
-            entityRef: 'blueprint/chaoslens-stress/external-scope',
+            entityRef: 'chaoslens-stress/external-scope',
             nodes: [
               {
-                entityRef: 'blueprint/chaoslens-stress/external-scope/web',
+                entityRef: 'chaoslens-stress/external-scope/web',
                 name: 'Web',
                 type: 'web-app',
               },
               {
-                entityRef: 'blueprint/chaoslens-stress/external-scope/api',
+                entityRef: 'chaoslens-stress/external-scope/api',
                 name: 'API',
                 type: 'rest-api',
               },
             ],
             dependencies: [
               {
-                from: 'blueprint/chaoslens-stress/external-scope/web',
-                to: 'blueprint/chaoslens-stress/external-scope/api',
+                from: 'chaoslens-stress/external-scope/web',
+                to: 'chaoslens-stress/external-scope/api',
                 type: 'direct-call',
               },
               {
-                from: 'blueprint/chaoslens-stress/external-scope/api',
-                to: 'blueprint/chaoslens-stress/external-auth/auth',
+                from: 'chaoslens-stress/external-scope/api',
+                to: 'chaoslens-stress/external-auth/auth',
                 type: 'direct-call',
               },
             ],
@@ -137,10 +137,10 @@ describe('resilienceState', () => {
             name: 'External Auth',
             version: '1.0.0',
             level: 'container',
-            entityRef: 'blueprint/chaoslens-stress/external-auth',
+            entityRef: 'chaoslens-stress/external-auth',
             nodes: [
               {
-                entityRef: 'blueprint/chaoslens-stress/external-auth/auth',
+                entityRef: 'chaoslens-stress/external-auth/auth',
                 name: 'Auth Service',
                 type: 'microservice',
               },
@@ -153,28 +153,28 @@ describe('resilienceState', () => {
         name: 'External Scope',
         version: '1.0.0',
         level: 'container',
-        entityRef: 'blueprint/chaoslens-stress/external-scope',
+        entityRef: 'chaoslens-stress/external-scope',
         nodes: [
           {
-            entityRef: 'blueprint/chaoslens-stress/external-scope/web',
+            entityRef: 'chaoslens-stress/external-scope/web',
             name: 'Web',
             type: 'web-app',
           },
           {
-            entityRef: 'blueprint/chaoslens-stress/external-scope/api',
+            entityRef: 'chaoslens-stress/external-scope/api',
             name: 'API',
             type: 'rest-api',
           },
         ],
         dependencies: [
           {
-            from: 'blueprint/chaoslens-stress/external-scope/web',
-            to: 'blueprint/chaoslens-stress/external-scope/api',
+            from: 'chaoslens-stress/external-scope/web',
+            to: 'chaoslens-stress/external-scope/api',
             type: 'direct-call',
           },
           {
-            from: 'blueprint/chaoslens-stress/external-scope/api',
-            to: 'blueprint/chaoslens-stress/external-auth/auth',
+            from: 'chaoslens-stress/external-scope/api',
+            to: 'chaoslens-stress/external-auth/auth',
             type: 'direct-call',
           },
         ],
@@ -193,8 +193,7 @@ describe('resilienceState', () => {
         useBlueprintStore
           .getState()
           .nodes.some(
-            node =>
-              node.id === 'blueprint/chaoslens-stress/external-auth/auth' && node.data.external
+            node => node.id === 'chaoslens-stress/external-auth/auth' && node.data.external
           )
       ).toBe(true);
     });
@@ -424,7 +423,7 @@ monteCarlo:
 version: https://archlens.dev/schemas/v1/chaos.schema.json
 metadata:
   name: Wrong diagram
-  diagramRef: blueprint/other
+  diagramRef: application/other
 faults:
   - nodeId: shop/payment
     faultType: region-outage

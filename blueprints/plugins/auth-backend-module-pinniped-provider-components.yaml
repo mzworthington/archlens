@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/auth-backend-module-pinniped-provider
+  entityRef: backstage/plugins/auth-backend-module-pinniped-provider
   name: Auth-backend-module-pinniped-provider Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/index
+  - entityRef: backstage/plugins/auth-backend-module-pinniped-provider/index
     type: background-worker
     name: index Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/module
+  - entityRef: backstage/plugins/auth-backend-module-pinniped-provider/module
     type: background-worker
     name: module Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/config-d
+  - entityRef: backstage/plugins/auth-backend-module-pinniped-provider/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/module-test
+  - entityRef: backstage/plugins/auth-backend-module-pinniped-provider/module-test
     type: background-worker
     name: module.test Service
     isTest: true
@@ -150,7 +150,7 @@ nodes:
           commits: 1
       hotspotScore: 0.014245429793854531
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator-test
+  - entityRef: backstage/plugins/auth-backend-module-pinniped-provider/authenticator-test
     type: rest-api
     name: authenticator.test Service
     isTest: true
@@ -189,7 +189,7 @@ nodes:
           commits: 1
       hotspotScore: 0.04837611824192921
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/deprecated
+  - entityRef: backstage/plugins/auth-backend-module-pinniped-provider/deprecated
     type: background-worker
     name: deprecated Service
     isTest: false
@@ -223,7 +223,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator
+  - entityRef: backstage/plugins/auth-backend-module-pinniped-provider/authenticator
     type: background-worker
     name: authenticator Service
     isTest: false
@@ -257,7 +257,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/auth-backend/index
+  - entityRef: backstage/plugins/auth-backend/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -269,7 +269,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/auth-node/index
+  - entityRef: backstage/plugins/auth-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -282,47 +282,47 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
-    to: blueprint/plugins/auth-backend/index
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/index
+    to: backstage/plugins/auth-backend/index
     type: direct-call
     description: '@backstage/plugin-auth-backend'
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/module
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/module
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/module
-    to: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/module
+    to: backstage/plugins/auth-backend-module-pinniped-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/module-test
-    to: blueprint/plugins/auth-backend-module-pinniped-provider/module
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/module-test
+    to: backstage/plugins/auth-backend-module-pinniped-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator-test
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/authenticator-test
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator-test
-    to: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/authenticator-test
+    to: backstage/plugins/auth-backend-module-pinniped-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/deprecated
-    to: blueprint/plugins/auth-backend-module-pinniped-provider/module
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/deprecated
+    to: backstage/plugins/auth-backend-module-pinniped-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
-    to: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/index
+    to: backstage/plugins/auth-backend-module-pinniped-provider/authenticator
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
-    to: blueprint/plugins/auth-backend-module-pinniped-provider/module
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/index
+    to: backstage/plugins/auth-backend-module-pinniped-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/index
-    to: blueprint/plugins/auth-backend-module-pinniped-provider/deprecated
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/index
+    to: backstage/plugins/auth-backend-module-pinniped-provider/deprecated
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/auth-backend-module-pinniped-provider/authenticator
-    to: blueprint/plugins/auth-node/index
+  - from: backstage/plugins/auth-backend-module-pinniped-provider/authenticator
+    to: backstage/plugins/auth-node/index
     type: direct-call
     description: '@backstage/plugin-auth-node'

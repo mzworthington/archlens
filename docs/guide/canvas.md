@@ -161,5 +161,5 @@ The designer installs as a Progressive Web App. After the first visit, the app s
 ## Next
 
 - [ArchLens](./cli.md) - how diagrams get generated
-- [Design system](./design-system.md) - visual assets & identity sandbox
+- [Design system](/design-system) - visual assets & identity sandbox
 - [Interface tour & journeys](../journeys.md) - E2E-oriented walkthrough

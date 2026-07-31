@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/paymentprocessor
+  entityRef: eshop/paymentprocessor
   name: PaymentProcessor Service Components
   source:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
 nodes:
-  - entityRef: blueprint/eshop/paymentprocessor/paymentoptions
+  - entityRef: eshop/paymentprocessor/paymentoptions
     type: background-worker
     name: PaymentOptions
     isTest: false
@@ -40,7 +40,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/paymentprocessor/integrationevents
+  - entityRef: eshop/paymentprocessor/integrationevents
     type: event-broker
     name: IntegrationEvents Layer
     isTest: false
@@ -71,7 +71,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
       shortChurnDays: 30
-  - entityRef: blueprint/eshop/paymentprocessor/program
+  - entityRef: eshop/paymentprocessor/program
     type: background-worker
     name: Program
     isTest: false

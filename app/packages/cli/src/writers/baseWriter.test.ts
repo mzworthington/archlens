@@ -35,7 +35,9 @@ describe('BaseWriter YAML v3 format', () => {
     const writer = new ContextLevelWriter(fileSystem, logger);
     await writer.write('/workspace/blueprints', 'my-context', 'my-system');
 
-    const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/context.yaml')!;
+    const yamlContent = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/my-context/context.yaml'
+    )!;
     expectV3YamlHeader(yamlContent);
     expect(yamlContent).toContain('entityRef: my-context');
   });

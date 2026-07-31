@@ -19,6 +19,13 @@ import {
   ShieldAlert,
 } from 'lucide-react';
 import { AppHeader } from './AppHeader';
+import { DESIGN_SYSTEM_SECTIONS, type DesignSystemSectionId } from './designSystemSections';
+
+type DesignSystemShowcaseProps = {
+  embedded?: boolean;
+  activeTab?: DesignSystemSectionId;
+  onTabChange?: (tab: DesignSystemSectionId) => void;
+};
 
 const IDENTITY_GUIDELINES = [
   {
@@ -49,10 +56,17 @@ const PRODUCT_CATEGORY_STYLES = {
   Contract: 'text-emerald-300 border-emerald-500/20 bg-emerald-500/10',
 } as const;
 
-export const DesignSystemShowcase: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<
-    'identity' | 'tokens' | 'assets' | 'components' | 'sandbox'
-  >('identity');
+export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
+  embedded = false,
+  activeTab: activeTabProp,
+  onTabChange,
+}) => {
+  const [internalTab, setInternalTab] = useState<DesignSystemSectionId>('identity');
+  const activeTab = activeTabProp ?? internalTab;
+  const setActiveTab = (tab: DesignSystemSectionId) => {
+    onTabChange?.(tab);
+    if (activeTabProp === undefined) setInternalTab(tab);
+  };
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const copyToClipboard = (text: string, id: string) => {
@@ -103,135 +117,195 @@ export const DesignSystemShowcase: React.FC = () => {
   const [sandboxStatus, setSandboxStatus] = useState<'healthy' | 'warning' | 'error'>('healthy');
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col h-dvh max-h-dvh bg-[#040914]/98 blueprint-grid text-slate-100 overflow-y-auto animate-fade-in pb-safe">
-      <AppHeader
-        sticky
-        badge="DESIGN SYSTEM"
-        subtitle="Visual language for the ArchLens product suite - tokens, marketing patterns, and canvas UI."
-      />
+    <div
+      className={
+        embedded
+          ? 'min-w-0 flex flex-col text-slate-100'
+          : 'fixed inset-0 z-[100] flex flex-col h-dvh max-h-dvh bg-[#040914]/98 blueprint-grid text-slate-100 overflow-y-auto animate-fade-in pb-safe'
+      }
+    >
+      {!embedded ? (
+        <AppHeader
+          sticky
+          badge="DESIGN SYSTEM"
+          subtitle="Visual language for the ArchLens product suite - tokens, marketing patterns, and canvas UI."
+        />
+      ) : null}
 
-      {/* Mobile sub-navigation switcher */}
-      <div className="md:hidden border-b border-[#00f0ff]/10 bg-[#061125]/60 backdrop-blur-sm sticky top-[73px] z-40">
-        <div className="flex gap-2 items-center p-3 overflow-x-auto scrollbar-none min-w-0">
-          {(
-            [
-              { id: 'identity' as const, label: 'Identity & Grid' },
-              { id: 'tokens' as const, label: 'Design Tokens' },
-              { id: 'assets' as const, label: 'Vector Asset Pack' },
-              { id: 'components' as const, label: 'UI Components' },
-              { id: 'sandbox' as const, label: 'Interactive Sandbox' },
-            ] as const
-          ).map(item => {
-            const active = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActiveTab(item.id)}
-                className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 ${
-                  active
-                    ? 'bg-[#00f0ff]/15 text-[#00f0ff] border-[#00f0ff]/30'
-                    : 'text-slate-500 hover:text-slate-200 bg-transparent border-transparent hover:bg-white/5'
-                }`}
-              >
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="max-w-6xl w-full mx-auto px-4 md:px-8 py-8 flex-1 flex flex-col md:flex-row md:items-start gap-8">
-        <aside className="hidden md:block w-full md:w-56 shrink-0">
-          <div className="sticky top-28 space-y-6 text-sm">
-            <div>
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
-                Design system
-              </p>
-              <ul className="space-y-1">
-                {(
-                  [
-                    { id: 'identity' as const, label: 'Identity & Grid' },
-                    { id: 'tokens' as const, label: 'Design Tokens' },
-                    { id: 'assets' as const, label: 'Vector Asset Pack' },
-                    { id: 'components' as const, label: 'UI Components' },
-                    { id: 'sandbox' as const, label: 'Interactive Sandbox' },
-                  ] as const
-                ).map(item => {
-                  const active = activeTab === item.id;
-                  return (
-                    <li key={item.id}>
-                      <button
-                        type="button"
-                        onClick={() => setActiveTab(item.id)}
-                        className={`w-full text-left block rounded-md px-2 py-1.5 transition-colors ${
-                          active
-                            ? 'bg-[#00f0ff]/10 text-[#00f0ff]'
-                            : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
-                        }`}
-                      >
-                        {item.label}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+      {!embedded ? (
+        <div className="md:hidden border-b border-[#00f0ff]/10 bg-[#061125]/60 backdrop-blur-sm sticky z-40 top-[73px]">
+          <div className="flex gap-2 items-center p-3 overflow-x-auto scrollbar-none min-w-0">
+            {DESIGN_SYSTEM_SECTIONS.map(item => {
+              const active = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActiveTab(item.id)}
+                  className={`rounded-lg px-3 py-1.5 text-[11px] font-mono whitespace-nowrap transition-all border shrink-0 cursor-pointer ${
+                    active
+                      ? 'bg-[#00f0ff]/15 text-[#00f0ff] border-[#00f0ff]/30'
+                      : 'text-slate-500 hover:text-slate-200 bg-transparent border-transparent hover:bg-white/5'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </div>
-        </aside>
+        </div>
+      ) : null}
 
-        <main className="min-w-0 w-full bg-[#061125]/40 border border-[#00f0ff]/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+      <div
+        className={
+          embedded
+            ? 'min-w-0'
+            : 'max-w-6xl w-full mx-auto px-4 md:px-8 py-8 flex-1 flex flex-col md:flex-row md:items-start gap-8'
+        }
+      >
+        {!embedded ? (
+          <aside
+            className="hidden md:block w-full md:w-56 shrink-0"
+            aria-label="Design system sections"
+          >
+            <div className="sticky top-28 space-y-6 text-sm">
+              <div>
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
+                  Design system
+                </p>
+                <ul className="space-y-1">
+                  {DESIGN_SYSTEM_SECTIONS.map(item => {
+                    const active = activeTab === item.id;
+                    return (
+                      <li key={item.id}>
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab(item.id)}
+                          className={`w-full text-left block rounded-md px-2 py-1.5 transition-colors cursor-pointer ${
+                            active
+                              ? 'bg-[#00f0ff]/10 text-[#00f0ff]'
+                              : 'text-slate-400 hover:text-slate-100 hover:bg-white/5'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+          </aside>
+        ) : null}
+
+        <main
+          className={
+            embedded
+              ? 'min-w-0 w-full'
+              : 'min-w-0 w-full bg-[#061125]/40 border border-[#00f0ff]/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm'
+          }
+        >
           {activeTab === 'identity' && (
             <div className="animate-fade-in">
-              <section className="relative overflow-hidden">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,240,255,0.10),transparent)]" />
-                <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-3">
-                      ArchLens design system
-                    </p>
-                    <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
-                      Schematic by design
-                    </h2>
-                    <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
-                      Shared visual language for the product homepage, docs, and canvas - drafting
-                      grids, cyan accents, and product-centric marketing patterns.
-                    </p>
-                    <div className="mt-8 flex flex-wrap gap-3">
-                      <button
-                        type="button"
-                        onClick={() => setActiveTab('components')}
-                        className="inline-flex items-center gap-2 rounded-xl bg-[#00f0ff]/90 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors"
-                      >
-                        UI patterns
-                        <ArrowRight className="h-4 w-4" aria-hidden />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setActiveTab('tokens')}
-                        className="rounded-xl border border-[#00f0ff]/40 text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] px-4 py-2.5 text-sm font-semibold transition-colors"
-                      >
-                        Design tokens
-                      </button>
-                      <Link
-                        href="/"
-                        className="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/5 transition-colors"
-                      >
-                        Product homepage
-                      </Link>
+              {embedded ? (
+                <section className="mb-8">
+                  <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="min-w-0">
+                      <h2 className="text-xl font-bold text-white tracking-tight">
+                        Schematic by design
+                      </h2>
+                      <p className="mt-2 max-w-2xl text-sm text-slate-400 leading-relaxed">
+                        Drafting grids, cyan accents, and product-centric patterns for homepage,
+                        docs, and canvas.
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab('components')}
+                          className="inline-flex items-center gap-2 rounded-lg bg-[#00f0ff]/90 px-3 py-2 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors cursor-pointer"
+                        >
+                          UI patterns
+                          <ArrowRight className="h-4 w-4" aria-hidden />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab('tokens')}
+                          className="rounded-lg border border-[#00f0ff]/40 text-[#00f0ff] hover:bg-[#00f0ff]/10 px-3 py-2 text-sm font-semibold transition-colors cursor-pointer"
+                        >
+                          Design tokens
+                        </button>
+                        <Link
+                          href="/"
+                          className="rounded-lg border border-white/10 px-3 py-2 text-sm font-semibold text-slate-300 hover:bg-white/5 transition-colors"
+                        >
+                          Product homepage
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex justify-center lg:justify-end">
                     <img
                       src="/assets/logo.svg"
                       alt="ArchLens logo"
-                      className="w-48 sm:w-56 drop-shadow-[0_0_40px_rgba(0,240,255,0.25)]"
+                      className="w-20 sm:w-24 shrink-0 drop-shadow-[0_0_30px_rgba(0,240,255,0.2)]"
                     />
                   </div>
-                </div>
-              </section>
+                </section>
+              ) : (
+                <section className="relative overflow-hidden">
+                  <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(0,240,255,0.10),transparent)]" />
+                  <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-3">
+                        ArchLens design system
+                      </p>
+                      <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
+                        Schematic by design
+                      </h2>
+                      <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
+                        Shared visual language for the product homepage, docs, and canvas - drafting
+                        grids, cyan accents, and product-centric marketing patterns.
+                      </p>
+                      <div className="mt-8 flex flex-wrap gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab('components')}
+                          className="inline-flex items-center gap-2 rounded-xl bg-[#00f0ff]/90 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-[#00f0ff] transition-colors"
+                        >
+                          UI patterns
+                          <ArrowRight className="h-4 w-4" aria-hidden />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setActiveTab('tokens')}
+                          className="rounded-xl border border-[#00f0ff]/40 text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] px-4 py-2.5 text-sm font-semibold transition-colors"
+                        >
+                          Design tokens
+                        </button>
+                        <Link
+                          href="/"
+                          className="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/5 transition-colors"
+                        >
+                          Product homepage
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="flex justify-center lg:justify-end">
+                      <img
+                        src="/assets/logo.svg"
+                        alt="ArchLens logo"
+                        className="w-48 sm:w-56 drop-shadow-[0_0_40px_rgba(0,240,255,0.25)]"
+                      />
+                    </div>
+                  </div>
+                </section>
+              )}
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div
+                className={
+                  embedded
+                    ? 'grid gap-4 sm:grid-cols-2'
+                    : 'mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4'
+                }
+              >
                 {IDENTITY_GUIDELINES.map(guideline => (
                   <article
                     key={guideline.title}

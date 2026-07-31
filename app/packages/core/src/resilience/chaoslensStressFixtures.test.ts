@@ -41,7 +41,7 @@ const SCENARIOS = [
     spec: {
       faults: [
         {
-          nodeId: 'blueprint/chaoslens-stress/ecommerce/payment',
+          nodeId: 'chaoslens-stress/ecommerce/payment',
           faultType: 'region-outage' as const,
         },
       ],
@@ -49,10 +49,10 @@ const SCENARIOS = [
     spofs: [] as string[],
     overallSla: 100,
     entryPointSlas: {
-      'blueprint/chaoslens-stress/ecommerce/web': 100,
-      'blueprint/chaoslens-stress/ecommerce/mobile': 100,
+      'chaoslens-stress/ecommerce/web': 100,
+      'chaoslens-stress/ecommerce/mobile': 100,
     },
-    propagationStoppedAt: ['blueprint/chaoslens-stress/ecommerce/api'],
+    propagationStoppedAt: ['chaoslens-stress/ecommerce/api'],
   },
   {
     name: 'shared hub fan-out with preset hub safeguards',
@@ -60,7 +60,7 @@ const SCENARIOS = [
     spec: {
       faults: [
         {
-          nodeId: 'blueprint/chaoslens-stress/shared-hub/inventory',
+          nodeId: 'chaoslens-stress/shared-hub/inventory',
           faultType: 'region-outage' as const,
         },
       ],
@@ -68,7 +68,7 @@ const SCENARIOS = [
     spofs: [] as string[],
     overallSla: 100,
     entryPointCount: 5,
-    propagationStoppedAt: ['blueprint/chaoslens-stress/shared-hub/shared-api'],
+    propagationStoppedAt: ['chaoslens-stress/shared-hub/shared-api'],
   },
   {
     name: 'safeguards bulkhead contains leaf fault',
@@ -76,15 +76,15 @@ const SCENARIOS = [
     spec: {
       faults: [
         {
-          nodeId: 'blueprint/chaoslens-stress/safeguards/ledger-db',
+          nodeId: 'chaoslens-stress/safeguards/ledger-db',
           faultType: 'region-outage' as const,
         },
       ],
     },
     spofs: [] as string[],
     overallSla: 100,
-    propagationStoppedAt: ['blueprint/chaoslens-stress/safeguards/bff'],
-    unaffectedEntry: 'blueprint/chaoslens-stress/safeguards/web',
+    propagationStoppedAt: ['chaoslens-stress/safeguards/bff'],
+    unaffectedEntry: 'chaoslens-stress/safeguards/web',
   },
   {
     name: 'group boundary expansion propagates to user',
@@ -92,16 +92,16 @@ const SCENARIOS = [
     spec: {
       faults: [
         {
-          nodeId: 'blueprint/chaoslens-stress/group-boundary/platform/db',
+          nodeId: 'chaoslens-stress/group-boundary/platform/db',
           faultType: 'region-outage' as const,
         },
       ],
     },
-    spofs: ['blueprint/chaoslens-stress/group-boundary/platform/db'],
+    spofs: ['chaoslens-stress/group-boundary/platform/db'],
     overallSla: 25,
     heatedNodes: [
-      'blueprint/chaoslens-stress/group-boundary/user',
-      'blueprint/chaoslens-stress/group-boundary/platform/api',
+      'chaoslens-stress/group-boundary/user',
+      'chaoslens-stress/group-boundary/platform/api',
     ],
   },
   {
@@ -110,15 +110,15 @@ const SCENARIOS = [
     spec: {
       faults: [
         {
-          nodeId: 'blueprint/chaoslens-stress/deep-chain/leaf',
+          nodeId: 'chaoslens-stress/deep-chain/leaf',
           faultType: 'region-outage' as const,
         },
       ],
     },
     spofs: [] as string[],
     overallSla: 100,
-    propagationStoppedAt: ['blueprint/chaoslens-stress/deep-chain/hop-05'],
-    unaffectedEntry: 'blueprint/chaoslens-stress/deep-chain/entry',
+    propagationStoppedAt: ['chaoslens-stress/deep-chain/hop-05'],
+    unaffectedEntry: 'chaoslens-stress/deep-chain/entry',
   },
   {
     name: 'diamond DAG merges parallel paths',
@@ -126,12 +126,12 @@ const SCENARIOS = [
     spec: {
       faults: [
         {
-          nodeId: 'blueprint/chaoslens-stress/diamond/cache',
+          nodeId: 'chaoslens-stress/diamond/cache',
           faultType: 'region-outage' as const,
         },
       ],
     },
-    spofs: ['blueprint/chaoslens-stress/diamond/aggregator'],
+    spofs: ['chaoslens-stress/diamond/aggregator'],
     overallSla: 78.9,
   },
   {
@@ -150,15 +150,15 @@ const SCENARIOS = [
     spec: {
       faults: [
         {
-          nodeId: 'blueprint/chaoslens-stress/large-graph/domain-orders',
+          nodeId: 'chaoslens-stress/large-graph/domain-orders',
           faultType: 'region-outage' as const,
         },
       ],
     },
     overallSla: 91.7,
     minSpofCount: 8,
-    propagationStoppedAt: ['blueprint/chaoslens-stress/large-graph/bff-retail'],
-    unaffectedEntry: 'blueprint/chaoslens-stress/large-graph/edge-mobile-02',
+    propagationStoppedAt: ['chaoslens-stress/large-graph/bff-retail'],
+    unaffectedEntry: 'chaoslens-stress/large-graph/edge-mobile-02',
   },
 ] as const;
 
@@ -236,10 +236,10 @@ describe('chaoslens-stress fixtures', () => {
 
 const EXTERNAL_SCOPE_ACTIVE = 'external-scope-containers.yaml';
 const EXTERNAL_AUTH_SIBLING = 'external-auth-containers.yaml';
-const EXTERNAL_SCOPE_WEB = 'blueprint/chaoslens-stress/external-scope/web';
-const EXTERNAL_SCOPE_API = 'blueprint/chaoslens-stress/external-scope/api';
-const EXTERNAL_AUTH = 'blueprint/chaoslens-stress/external-auth/auth';
-const EXTERNAL_AUTH_DB = 'blueprint/chaoslens-stress/external-auth/session-db';
+const EXTERNAL_SCOPE_WEB = 'chaoslens-stress/external-scope/web';
+const EXTERNAL_SCOPE_API = 'chaoslens-stress/external-scope/api';
+const EXTERNAL_AUTH = 'chaoslens-stress/external-auth/auth';
+const EXTERNAL_AUTH_DB = 'chaoslens-stress/external-auth/session-db';
 
 describe('chaoslens-stress external simulation scope', () => {
   const loadExternalScopeFixture = (fileName: string) =>

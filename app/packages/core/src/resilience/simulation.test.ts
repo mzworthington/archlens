@@ -96,33 +96,33 @@ describe('runResilienceSimulation', () => {
       name: 'Large Graph',
       version: '1.0.0',
       level: 'container',
-      entityRef: 'blueprint/chaoslens-stress/large-graph',
+      entityRef: 'chaoslens-stress/large-graph',
       nodes: [
         {
-          entityRef: 'blueprint/chaoslens-stress/large-graph/edge-mobile-01',
+          entityRef: 'chaoslens-stress/large-graph/edge-mobile-01',
           name: 'Edge',
           type: 'web-app',
         },
         {
-          entityRef: 'blueprint/chaoslens-stress/large-graph/bff-retail',
+          entityRef: 'chaoslens-stress/large-graph/bff-retail',
           name: 'BFF',
           type: 'rest-api',
         },
         {
-          entityRef: 'blueprint/chaoslens-stress/large-graph/domain-orders',
+          entityRef: 'chaoslens-stress/large-graph/domain-orders',
           name: 'Orders',
           type: 'microservice',
         },
       ],
       dependencies: [
         {
-          from: 'blueprint/chaoslens-stress/large-graph/edge-mobile-01',
-          to: 'blueprint/chaoslens-stress/large-graph/bff-retail',
+          from: 'chaoslens-stress/large-graph/edge-mobile-01',
+          to: 'chaoslens-stress/large-graph/bff-retail',
           type: 'direct-call',
         },
         {
-          from: 'blueprint/chaoslens-stress/large-graph/bff-retail',
-          to: 'blueprint/chaoslens-stress/large-graph/domain-orders',
+          from: 'chaoslens-stress/large-graph/bff-retail',
+          to: 'chaoslens-stress/large-graph/domain-orders',
           type: 'direct-call',
         },
       ],
@@ -131,11 +131,11 @@ describe('runResilienceSimulation', () => {
     const result = runResilienceSimulation(schema, {
       faults: [
         {
-          nodeId: 'blueprint/chaoslens-stress/large-graph/domain-orders',
+          nodeId: 'chaoslens-stress/large-graph/domain-orders',
           faultType: 'region-outage',
         },
       ],
-      entryPoints: ['blueprint/chaoslens-stress/large-graph/edge-mobile-01'],
+      entryPoints: ['chaoslens-stress/large-graph/edge-mobile-01'],
     });
 
     expect(result.impactedDomains).toEqual(['large-graph']);

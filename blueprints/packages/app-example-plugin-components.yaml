@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/app-example-plugin
+  entityRef: backstage/packages/app-example-plugin
   name: App-example-plugin Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/app-example-plugin/examplesidebaritem
+  - entityRef: backstage/packages/app-example-plugin/examplesidebaritem
     type: background-worker
     name: ExampleSidebarItem Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/app-example-plugin/plugin
+  - entityRef: backstage/packages/app-example-plugin/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/app-example-plugin/component
+  - entityRef: backstage/packages/app-example-plugin/component
     type: background-worker
     name: Component Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/app-example-plugin/index
+  - entityRef: backstage/packages/app-example-plugin/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/core-components/index
+  - entityRef: backstage/packages/core-components/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -157,7 +157,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/packages/frontend-plugin-api/index
+  - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -170,19 +170,19 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/packages/app-example-plugin/examplesidebaritem
-    to: blueprint/packages/core-components/index
+  - from: backstage/packages/app-example-plugin/examplesidebaritem
+    to: backstage/packages/core-components/index
     type: direct-call
     description: '@backstage/core-components'
-  - from: blueprint/packages/app-example-plugin/plugin
-    to: blueprint/packages/frontend-plugin-api/index
+  - from: backstage/packages/app-example-plugin/plugin
+    to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
-  - from: blueprint/packages/app-example-plugin/index
-    to: blueprint/packages/app-example-plugin/plugin
+  - from: backstage/packages/app-example-plugin/index
+    to: backstage/packages/app-example-plugin/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/app-example-plugin/index
-    to: blueprint/packages/app-example-plugin/examplesidebaritem
+  - from: backstage/packages/app-example-plugin/index
+    to: backstage/packages/app-example-plugin/examplesidebaritem
     type: direct-call
     description: Calls module / service

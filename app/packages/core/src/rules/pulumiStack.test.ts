@@ -43,7 +43,7 @@ k8s_cluster = Cluster(
         },
       ],
       'python',
-      { targetLevel: 'container', parentEntityRef: 'blueprint/gcp-py-gke' }
+      { targetLevel: 'container', parentEntityRef: 'application/gcp-py-gke' }
     );
 
     expect(result.schema.nodes).toHaveLength(1);

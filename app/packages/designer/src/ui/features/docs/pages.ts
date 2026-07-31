@@ -1,6 +1,5 @@
 import setupMd from '@docs/setup.md?raw';
 import architectureMd from '@docs/architecture.md?raw';
-import journeysMd from '@docs/journeys.md?raw';
 import featuresUnitMd from '@docs/features-unit.md?raw';
 import guideIndexMd from '@docs/guide/index.md?raw';
 import guideGettingStartedMd from '@docs/guide/getting-started.md?raw';
@@ -68,6 +67,7 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
   {
     title: 'Reference',
     items: [
+      { label: 'Design system', path: '/design-system' },
       { label: 'Setup & local development', path: '/setup' },
       { label: 'ChaosLens engine', path: '/chaoslens-engine' },
       { label: 'AdviceLens engine', path: '/advicelens-engine' },
@@ -122,7 +122,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     group: 'guide',
     productAction: {
       label: 'Open ChaosLens',
-      href: '/workspace/blueprint?resilience=1',
+      href: '/workspace/application?resilience=1',
     },
   },
   {
@@ -174,13 +174,6 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     group: 'reference',
   },
   {
-    path: '/journeys',
-    title: 'Interface tour & journeys',
-    markdown: journeysMd,
-    dir: '',
-    group: 'reference',
-  },
-  {
     path: '/features-unit',
     title: 'Unit test features',
     markdown: featuresUnitMd,
@@ -194,6 +187,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
 const LEGACY_GUIDE_PATH_ALIASES: Record<string, string> = {
   '/guide/forensics': '/guide/tracelens',
   '/guide/resilience': '/guide/chaoslens',
+  '/guide/design-system': '/design-system',
 };
 
 export function findDocsPage(pathname: string): DocsPageMeta | undefined {

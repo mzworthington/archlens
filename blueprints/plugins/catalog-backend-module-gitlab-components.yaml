@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-backend-module-gitlab
+  entityRef: backstage/plugins/catalog-backend-module-gitlab
   name: Catalog-backend-module-gitlab Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/config-d
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
     type: background-worker
     name: GitLabDiscoveryProcessor Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
     type: background-worker
     name: catalogModuleGitlabDiscoveryEntityProvider.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
     type: background-worker
     name: catalogModuleGitlabDiscoveryEntityProvider Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
     type: background-worker
     name: GitlabDiscoveryEntityProvider Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
     type: background-worker
     name: GitlabDiscoveryEntityProvider.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/index
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/index
     type: background-worker
     name: index Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
     type: background-worker
     name: GitlabOrgDiscoveryEntityProvider.test Service
     isTest: true
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/config
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config
     type: background-worker
     name: config Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/config-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config-test
     type: background-worker
     name: config.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
     type: background-worker
     name: GitlabOrgDiscoveryEntityProvider Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/setuptests
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/types
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/types
     type: background-worker
     name: types Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/client
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/client
     type: background-worker
     name: client Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/client-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/client-test
     type: background-worker
     name: client.test Service
     isTest: true
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/defaulttransformers
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/defaulttransformers
     type: background-worker
     name: defaultTransformers Service
     isTest: false
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/mocks
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/mocks
     type: background-worker
     name: mocks Service
     isTest: false
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/handlers
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/handlers
     type: background-worker
     name: handlers Service
     isTest: false
@@ -660,7 +660,7 @@ nodes:
           commits: 1
       hotspotScore: 0.14838584208479189
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
     type: background-worker
     name: GitLabDiscoveryProcessor.test Service
     isTest: true
@@ -696,7 +696,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
     type: background-worker
     name: analyzeGitLabWebhookEvent Service
     isTest: false
@@ -730,7 +730,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent-test
     type: background-worker
     name: analyzeGitLabWebhookEvent.test Service
     isTest: true
@@ -764,7 +764,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
     type: background-worker
     name: GitLabScmEventsBridge Service
     isTest: false
@@ -798,7 +798,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-node/alpha
+  - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -810,7 +810,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
     type: background-worker
     name: catalogModuleGitlabOrgDiscoveryEntityProvider Service (External)
     external: true
@@ -822,7 +822,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
     type: background-worker
     name: catalogModuleGitlabOrgDiscoveryEntityProvider.test Service (External)
     external: true
@@ -834,7 +834,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -846,7 +846,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/events-backend-test-utils/index
+  - entityRef: backstage/plugins/events-backend-test-utils/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -858,7 +858,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/events-node/index
+  - entityRef: backstage/plugins/events-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -870,7 +870,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/catalog-common/index
+  - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -882,7 +882,7 @@ nodes:
     position:
       x: -1050
       y: 404
-  - entityRef: blueprint/plugins/signals-node/lib
+  - entityRef: backstage/plugins/signals-node/lib
     type: background-worker
     name: lib Service (External)
     external: true
@@ -895,251 +895,251 @@ nodes:
       x: 1250
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitlab/index
+  - from: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-gitlab'
-  - from: blueprint/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/index
+  - from: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-gitlab'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/alpha
-    to: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/alpha
+    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/alpha
-    to: blueprint/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+  - from: backstage/plugins/catalog-backend-module-gitlab/alpha
+    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/events-backend-test-utils/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
-    to: blueprint/plugins/catalog-node/alpha
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-node/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
-    to: blueprint/plugins/catalog-common/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/handlers
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/handlers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/mocks
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/mocks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/handlers
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/handlers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/mocks
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/mocks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/types
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/config
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/config
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/config-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/config
+  - from: backstage/plugins/catalog-backend-module-gitlab/config-test
+    to: backstage/plugins/catalog-backend-module-gitlab/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitlab/defaulttransformers
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/defaulttransformers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: blueprint/plugins/catalog-backend-module-gitlab/types
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/client
-    to: blueprint/plugins/catalog-backend-module-gitlab/types
+  - from: backstage/plugins/catalog-backend-module-gitlab/client
+    to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/catalog-backend-module-gitlab/config
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/catalog-backend-module-gitlab/client
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/client
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/catalog-backend-module-gitlab/types
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/client-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/handlers
+  - from: backstage/plugins/catalog-backend-module-gitlab/client-test
+    to: backstage/plugins/catalog-backend-module-gitlab/handlers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/client-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/mocks
+  - from: backstage/plugins/catalog-backend-module-gitlab/client-test
+    to: backstage/plugins/catalog-backend-module-gitlab/mocks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/client-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/client
+  - from: backstage/plugins/catalog-backend-module-gitlab/client-test
+    to: backstage/plugins/catalog-backend-module-gitlab/client
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/client-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/types
+  - from: backstage/plugins/catalog-backend-module-gitlab/client-test
+    to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/defaulttransformers
-    to: blueprint/plugins/catalog-backend-module-gitlab/types
+  - from: backstage/plugins/catalog-backend-module-gitlab/defaulttransformers
+    to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/mocks
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/mocks
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/mocks
-    to: blueprint/plugins/catalog-backend-module-gitlab/types
+  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+    to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/handlers
-    to: blueprint/plugins/catalog-backend-module-gitlab/mocks
+  - from: backstage/plugins/catalog-backend-module-gitlab/handlers
+    to: backstage/plugins/catalog-backend-module-gitlab/mocks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/index
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
-    to: blueprint/plugins/signals-node/lib
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
-    to: blueprint/plugins/catalog-node/alpha
+  - from: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+    to: backstage/plugins/catalog-node/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent-test
-    to: blueprint/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+  - from: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent-test
+    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
-    to: blueprint/plugins/catalog-node/alpha
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+    to: backstage/plugins/catalog-node/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
-    to: blueprint/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
     type: direct-call
     description: Calls module / service

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/orderprocessor
+  entityRef: eshop/orderprocessor
   name: OrderProcessor Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/orderprocessor/extensions
+  - entityRef: eshop/orderprocessor/extensions
     type: background-worker
     name: Extensions Layer
     isTest: false
@@ -41,7 +41,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/orderprocessor/backgroundtaskoptions
+  - entityRef: eshop/orderprocessor/backgroundtaskoptions
     type: background-worker
     name: BackgroundTaskOptions
     isTest: false
@@ -71,7 +71,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/orderprocessor/events
+  - entityRef: eshop/orderprocessor/events
     type: background-worker
     name: Events Layer
     isTest: false
@@ -103,7 +103,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/orderprocessor/services
+  - entityRef: eshop/orderprocessor/services
     type: relational-database
     name: Services Layer
     isTest: false
@@ -133,7 +133,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.2916666666666667
       sinceDays: 60
-  - entityRef: blueprint/eshop/orderprocessor/program
+  - entityRef: eshop/orderprocessor/program
     type: background-worker
     name: Program
     isTest: false
@@ -163,7 +163,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/eventbus/abstractions
+  - entityRef: eshop/eventbus/abstractions
     type: event-broker
     name: Abstractions Layer (External)
     external: true
@@ -175,7 +175,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/eshop/eventbus/events
+  - entityRef: eshop/eventbus/events
     type: background-worker
     name: Events Layer (External)
     external: true
@@ -188,19 +188,19 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: blueprint/eshop/orderprocessor/extensions
-    to: blueprint/eshop/orderprocessor/events
+  - from: eshop/orderprocessor/extensions
+    to: eshop/orderprocessor/events
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/orderprocessor/events
-    to: blueprint/eshop/eventbus/events
+  - from: eshop/orderprocessor/events
+    to: eshop/eventbus/events
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/orderprocessor/services
-    to: blueprint/eshop/eventbus/abstractions
+  - from: eshop/orderprocessor/services
+    to: eshop/eventbus/abstractions
     type: publish-subscribe
     description: Publishes / consumes messaging topics
-  - from: blueprint/eshop/orderprocessor/services
-    to: blueprint/eshop/orderprocessor/events
+  - from: eshop/orderprocessor/services
+    to: eshop/orderprocessor/events
     type: direct-call
     description: Calls module / service

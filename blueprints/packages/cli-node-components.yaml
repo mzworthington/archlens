@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/cli-node
+  entityRef: backstage/packages/cli-node
   name: Cli-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/cli-node/ismonorepo-test
+  - entityRef: backstage/packages/cli-node/ismonorepo-test
     type: background-worker
     name: isMonorepo.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/ismonorepo
+  - entityRef: backstage/packages/cli-node/ismonorepo
     type: background-worker
     name: isMonoRepo Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/lockfile-test
+  - entityRef: backstage/packages/cli-node/lockfile-test
     type: background-worker
     name: Lockfile.test Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/packagegraph-test
+  - entityRef: backstage/packages/cli-node/packagegraph-test
     type: background-worker
     name: PackageGraph.test Service
     isTest: true
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/packagegraph
+  - entityRef: backstage/packages/cli-node/packagegraph
     type: background-worker
     name: PackageGraph Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/index
+  - entityRef: backstage/packages/cli-node/index
     type: cache-store
     name: index Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/lockfile
+  - entityRef: backstage/packages/cli-node/lockfile
     type: background-worker
     name: Lockfile Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/yarn
+  - entityRef: backstage/packages/cli-node/yarn
     type: background-worker
     name: Yarn Service
     isTest: false
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/types
+  - entityRef: backstage/packages/cli-node/types
     type: background-worker
     name: types Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/packagemanager
+  - entityRef: backstage/packages/cli-node/packagemanager
     type: background-worker
     name: PackageManager Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/packagemanager-test
+  - entityRef: backstage/packages/cli-node/packagemanager-test
     type: background-worker
     name: PackageManager.test Service
     isTest: true
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/successcache
+  - entityRef: backstage/packages/cli-node/successcache
     type: cache-store
     name: SuccessCache Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/httpjson
+  - entityRef: backstage/packages/cli-node/httpjson
     type: background-worker
     name: httpJson Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/cliauth
+  - entityRef: backstage/packages/cli-node/cliauth
     type: background-worker
     name: CliAuth Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/storage
+  - entityRef: backstage/packages/cli-node/storage
     type: background-worker
     name: storage Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/secretstore
+  - entityRef: backstage/packages/cli-node/secretstore
     type: background-worker
     name: secretStore Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/cliauth-test
+  - entityRef: backstage/packages/cli-node/cliauth-test
     type: background-worker
     name: CliAuth.test Service
     isTest: true
@@ -587,7 +587,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/authidentifiers
+  - entityRef: backstage/packages/cli-node/authidentifiers
     type: background-worker
     name: authIdentifiers Service
     isTest: false
@@ -621,7 +621,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/packageroles-test
+  - entityRef: backstage/packages/cli-node/packageroles-test
     type: background-worker
     name: PackageRoles.test Service
     isTest: true
@@ -655,7 +655,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/packageroles
+  - entityRef: backstage/packages/cli-node/packageroles
     type: background-worker
     name: PackageRoles Service
     isTest: false
@@ -689,7 +689,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/yarnplugin
+  - entityRef: backstage/packages/cli-node/yarnplugin
     type: background-worker
     name: yarnPlugin Service
     isTest: false
@@ -723,7 +723,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/yarnplugin-test
+  - entityRef: backstage/packages/cli-node/yarnplugin-test
     type: background-worker
     name: yarnPlugin.test Service
     isTest: true
@@ -757,7 +757,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/setuptests
+  - entityRef: backstage/packages/cli-node/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -791,7 +791,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/commandgraph
+  - entityRef: backstage/packages/cli-node/commandgraph
     type: background-worker
     name: CommandGraph Service
     isTest: false
@@ -825,7 +825,7 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/createclimodule
+  - entityRef: backstage/packages/cli-node/createclimodule
     type: background-worker
     name: createCliModule Service
     isTest: false
@@ -859,7 +859,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/runclimodule
+  - entityRef: backstage/packages/cli-node/runclimodule
     type: background-worker
     name: runCliModule Service
     isTest: false
@@ -895,7 +895,7 @@ nodes:
           commits: 3
       hotspotScore: 0.0012749038419983575
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/runcli
+  - entityRef: backstage/packages/cli-node/runcli
     type: background-worker
     name: runCli Service
     isTest: false
@@ -934,7 +934,7 @@ nodes:
       classifications:
         - knowledge-silo
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/runcli-test
+  - entityRef: backstage/packages/cli-node/runcli-test
     type: background-worker
     name: runCli.test Service
     isTest: true
@@ -971,7 +971,7 @@ nodes:
           commits: 5
       hotspotScore: 0.010566575910799948
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/runconcurrenttasks-test
+  - entityRef: backstage/packages/cli-node/runconcurrenttasks-test
     type: background-worker
     name: runConcurrentTasks.test Service
     isTest: true
@@ -1005,7 +1005,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/runworkerqueuethreads-test
+  - entityRef: backstage/packages/cli-node/runworkerqueuethreads-test
     type: background-worker
     name: runWorkerQueueThreads.test Service
     isTest: true
@@ -1039,7 +1039,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/concurrency
+  - entityRef: backstage/packages/cli-node/concurrency
     type: background-worker
     name: concurrency Service
     isTest: false
@@ -1073,7 +1073,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/runconcurrenttasks
+  - entityRef: backstage/packages/cli-node/runconcurrenttasks
     type: background-worker
     name: runConcurrentTasks Service
     isTest: false
@@ -1107,7 +1107,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/runworkerqueuethreads
+  - entityRef: backstage/packages/cli-node/runworkerqueuethreads
     type: background-worker
     name: runWorkerQueueThreads Service
     isTest: false
@@ -1141,7 +1141,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/gitutils-test
+  - entityRef: backstage/packages/cli-node/gitutils-test
     type: background-worker
     name: GitUtils.test Service
     isTest: true
@@ -1175,7 +1175,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/cli-node/gitutils
+  - entityRef: backstage/packages/cli-node/gitutils
     type: background-worker
     name: GitUtils Service
     isTest: false
@@ -1209,7 +1209,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/core-plugin-api/auth
+  - entityRef: backstage/packages/core-plugin-api/auth
     type: rest-api
     name: auth Service (External)
     external: true
@@ -1221,7 +1221,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/packages/cli-module-build/build
+  - entityRef: backstage/packages/cli-module-build/build
     type: background-worker
     name: build Service (External)
     external: true
@@ -1233,7 +1233,7 @@ nodes:
     position:
       x: -12090
       y: -204
-  - entityRef: blueprint/packages/repo-tools/buildapireports-test
+  - entityRef: backstage/packages/repo-tools/buildapireports-test
     type: background-worker
     name: buildApiReports.test Service (External)
     external: true
@@ -1245,7 +1245,7 @@ nodes:
     position:
       x: 19650
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/buildbackend
+  - entityRef: backstage/packages/cli-module-build/buildbackend
     type: background-worker
     name: buildBackend Service (External)
     external: true
@@ -1257,7 +1257,7 @@ nodes:
     position:
       x: -11630
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/buildfrontend
+  - entityRef: backstage/packages/cli-module-build/buildfrontend
     type: background-worker
     name: buildFrontend Service (External)
     external: true
@@ -1269,7 +1269,7 @@ nodes:
     position:
       x: -11170
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/buildworkspace
+  - entityRef: backstage/packages/cli-module-build/buildworkspace
     type: background-worker
     name: buildWorkspace Service (External)
     external: true
@@ -1281,7 +1281,7 @@ nodes:
     position:
       x: -10710
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/bump
+  - entityRef: backstage/packages/cli-module-migrate/bump
     type: background-worker
     name: bump Service (External)
     external: true
@@ -1293,7 +1293,7 @@ nodes:
     position:
       x: 7230
       y: -204
-  - entityRef: blueprint/packages/repo-tools/cache
+  - entityRef: backstage/packages/repo-tools/cache
     type: cache-store
     name: Cache Service (External)
     external: true
@@ -1305,7 +1305,7 @@ nodes:
     position:
       x: 20110
       y: -204
-  - entityRef: blueprint/packages/repo-tools/cache-test
+  - entityRef: backstage/packages/repo-tools/cache-test
     type: cache-store
     name: Cache.test Service (External)
     external: true
@@ -1317,7 +1317,7 @@ nodes:
     position:
       x: 20570
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/clean
+  - entityRef: backstage/packages/cli-module-build/clean
     type: background-worker
     name: clean Service (External)
     external: true
@@ -1329,7 +1329,7 @@ nodes:
     position:
       x: -10250
       y: -204
-  - entityRef: blueprint/packages/cli/cliinitializer
+  - entityRef: backstage/packages/cli/cliinitializer
     type: background-worker
     name: CliInitializer Service (External)
     external: true
@@ -1341,7 +1341,7 @@ nodes:
     position:
       x: 17350
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/command
+  - entityRef: backstage/packages/cli-module-build/command
     type: background-worker
     name: command Service (External)
     external: true
@@ -1353,7 +1353,7 @@ nodes:
     position:
       x: -9790
       y: -204
-  - entityRef: blueprint/packages/repo-tools/command
+  - entityRef: backstage/packages/repo-tools/command
     type: background-worker
     name: command Service (External)
     external: true
@@ -1365,7 +1365,7 @@ nodes:
     position:
       x: 21030
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/computetopologicallayers
+  - entityRef: backstage/packages/cli-module-build/computetopologicallayers
     type: background-worker
     name: computeTopologicalLayers Service (External)
     external: true
@@ -1377,7 +1377,7 @@ nodes:
     position:
       x: -9330
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/computetopologicallayers-test
+  - entityRef: backstage/packages/cli-module-build/computetopologicallayers-test
     type: background-worker
     name: computeTopologicalLayers.test Service (External)
     external: true
@@ -1389,7 +1389,7 @@ nodes:
     position:
       x: -8870
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/config
+  - entityRef: backstage/packages/cli-module-build/config
     type: gateway-api
     name: config Service (External)
     external: true
@@ -1401,7 +1401,7 @@ nodes:
     position:
       x: -8410
       y: -204
-  - entityRef: blueprint/packages/cli-module-config/config
+  - entityRef: backstage/packages/cli-module-config/config
     type: background-worker
     name: config Service (External)
     external: true
@@ -1413,7 +1413,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/createdistworkspace
+  - entityRef: backstage/packages/cli-module-build/createdistworkspace
     type: background-worker
     name: createDistWorkspace Service (External)
     external: true
@@ -1425,7 +1425,7 @@ nodes:
     position:
       x: -7950
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/createfeatureenvironment
+  - entityRef: backstage/packages/cli-module-build/createfeatureenvironment
     type: background-worker
     name: createFeatureEnvironment Service (External)
     external: true
@@ -1437,7 +1437,7 @@ nodes:
     position:
       x: -7490
       y: -204
-  - entityRef: blueprint/packages/repo-tools/diff
+  - entityRef: backstage/packages/repo-tools/diff
     type: background-worker
     name: diff Service (External)
     external: true
@@ -1449,7 +1449,7 @@ nodes:
     position:
       x: 21490
       y: -204
-  - entityRef: blueprint/packages/cli/discoverclimodules
+  - entityRef: backstage/packages/cli/discoverclimodules
     type: background-worker
     name: discoverCliModules Service (External)
     external: true
@@ -1461,7 +1461,7 @@ nodes:
     position:
       x: 17810
       y: -204
-  - entityRef: blueprint/packages/cli-module-translations/discoverpackages
+  - entityRef: backstage/packages/cli-module-translations/discoverpackages
     type: background-worker
     name: discoverPackages Service (External)
     external: true
@@ -1473,7 +1473,7 @@ nodes:
     position:
       x: 15510
       y: -204
-  - entityRef: blueprint/packages/cli-module-config/docs
+  - entityRef: backstage/packages/cli-module-config/docs
     type: gateway-api
     name: docs Service (External)
     external: true
@@ -1485,7 +1485,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/entrypoints
+  - entityRef: backstage/packages/cli-module-build/entrypoints
     type: background-worker
     name: entryPoints Service (External)
     external: true
@@ -1497,7 +1497,7 @@ nodes:
     position:
       x: -7030
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/example
+  - entityRef: backstage/packages/cli-module-new/example
     type: background-worker
     name: example Service (External)
     external: true
@@ -1509,7 +1509,7 @@ nodes:
     position:
       x: 10910
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/execute
+  - entityRef: backstage/packages/cli-module-actions/execute
     type: background-worker
     name: execute Service (External)
     external: true
@@ -1521,7 +1521,7 @@ nodes:
     position:
       x: -20830
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/execute-test
+  - entityRef: backstage/packages/cli-module-actions/execute-test
     type: background-worker
     name: execute.test Service (External)
     external: true
@@ -1533,7 +1533,7 @@ nodes:
     position:
       x: -20370
       y: -204
-  - entityRef: blueprint/packages/cli-module-translations/export
+  - entityRef: backstage/packages/cli-module-translations/export
     type: background-worker
     name: export Service (External)
     external: true
@@ -1545,7 +1545,7 @@ nodes:
     position:
       x: 15970
       y: -204
-  - entityRef: blueprint/packages/cli/factory
+  - entityRef: backstage/packages/cli/factory
     type: background-worker
     name: factory Service (External)
     external: true
@@ -1557,7 +1557,7 @@ nodes:
     position:
       x: 18270
       y: -204
-  - entityRef: blueprint/packages/cli-module-maintenance/fix
+  - entityRef: backstage/packages/cli-module-maintenance/fix
     type: background-worker
     name: fix Service (External)
     external: true
@@ -1569,7 +1569,7 @@ nodes:
     position:
       x: 5850
       y: -204
-  - entityRef: blueprint/packages/repo-tools/fuzz
+  - entityRef: backstage/packages/repo-tools/fuzz
     type: background-worker
     name: fuzz Service (External)
     external: true
@@ -1581,7 +1581,7 @@ nodes:
     position:
       x: 21950
       y: -204
-  - entityRef: blueprint/packages/repo-tools/generate-catalog-info
+  - entityRef: backstage/packages/repo-tools/generate-catalog-info
     type: background-worker
     name: generate-catalog-info Service (External)
     external: true
@@ -1593,7 +1593,7 @@ nodes:
     position:
       x: 22410
       y: -204
-  - entityRef: blueprint/packages/e2e-test-utils/generateprojects
+  - entityRef: backstage/packages/e2e-test-utils/generateprojects
     type: background-worker
     name: generateProjects Service (External)
     external: true
@@ -1605,7 +1605,7 @@ nodes:
     position:
       x: 19190
       y: -204
-  - entityRef: blueprint/packages/cli-module-translations/import
+  - entityRef: backstage/packages/cli-module-translations/import
     type: background-worker
     name: import Service (External)
     external: true
@@ -1617,7 +1617,7 @@ nodes:
     position:
       x: 16430
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/index
+  - entityRef: backstage/packages/cli-module-actions/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1629,7 +1629,7 @@ nodes:
     position:
       x: -19910
       y: -204
-  - entityRef: blueprint/packages/cli-module-lint/index
+  - entityRef: backstage/packages/cli-module-lint/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1641,7 +1641,7 @@ nodes:
     position:
       x: 4930
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/index
+  - entityRef: backstage/packages/cli-module-migrate/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1653,7 +1653,7 @@ nodes:
     position:
       x: 7690
       y: -204
-  - entityRef: blueprint/packages/backend-test-utils/index
+  - entityRef: backstage/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
     external: true
@@ -1665,7 +1665,7 @@ nodes:
     position:
       x: -1510
       y: 404
-  - entityRef: blueprint/packages/cli-common/index
+  - entityRef: backstage/packages/cli-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1677,7 +1677,7 @@ nodes:
     position:
       x: -1050
       y: 404
-  - entityRef: blueprint/packages/core/index
+  - entityRef: backstage/packages/core/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1689,7 +1689,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: backstage/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1701,7 +1701,7 @@ nodes:
     position:
       x: 1250
       y: 404
-  - entityRef: blueprint/packages/test-utils/index
+  - entityRef: backstage/packages/test-utils/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1713,7 +1713,7 @@ nodes:
     position:
       x: 1710
       y: 404
-  - entityRef: blueprint/packages/cli-internal/index
+  - entityRef: backstage/packages/cli-internal/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1725,7 +1725,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/packages/cli-module-test-jest/index
+  - entityRef: backstage/packages/cli-module-test-jest/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1737,7 +1737,7 @@ nodes:
     position:
       x: 14590
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/index
+  - entityRef: backstage/packages/cli-module-new/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1749,7 +1749,7 @@ nodes:
     position:
       x: 11370
       y: -204
-  - entityRef: blueprint/packages/cli-module-github/index
+  - entityRef: backstage/packages/cli-module-github/index
     type: gateway-api
     name: index Service (External)
     external: true
@@ -1761,7 +1761,7 @@ nodes:
     position:
       x: 3550
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/index
+  - entityRef: backstage/packages/cli-module-auth/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1773,7 +1773,7 @@ nodes:
     position:
       x: -15770
       y: -204
-  - entityRef: blueprint/packages/cli-module-translations/index
+  - entityRef: backstage/packages/cli-module-translations/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1785,7 +1785,7 @@ nodes:
     position:
       x: 16890
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/index
+  - entityRef: backstage/packages/cli-module-build/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1797,7 +1797,7 @@ nodes:
     position:
       x: -6570
       y: -204
-  - entityRef: blueprint/packages/cli-module-maintenance/index
+  - entityRef: backstage/packages/cli-module-maintenance/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1809,7 +1809,7 @@ nodes:
     position:
       x: 6310
       y: -204
-  - entityRef: blueprint/packages/cli-module-info/index
+  - entityRef: backstage/packages/cli-module-info/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1821,7 +1821,7 @@ nodes:
     position:
       x: 4010
       y: -204
-  - entityRef: blueprint/packages/cli-module-config/index
+  - entityRef: backstage/packages/cli-module-config/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1833,7 +1833,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/packages/cli-module-info/info
+  - entityRef: backstage/packages/cli-module-info/info
     type: background-worker
     name: info Service (External)
     external: true
@@ -1845,7 +1845,7 @@ nodes:
     position:
       x: 4470
       y: -204
-  - entityRef: blueprint/packages/cli-internal/internalclimodule
+  - entityRef: backstage/packages/cli-internal/internalclimodule
     type: background-worker
     name: InternalCliModule Service (External)
     external: true
@@ -1857,7 +1857,7 @@ nodes:
     position:
       x: -21750
       y: -204
-  - entityRef: blueprint/packages/cli-internal/internalcommandnode
+  - entityRef: backstage/packages/cli-internal/internalcommandnode
     type: background-worker
     name: InternalCommandNode Service (External)
     external: true
@@ -1869,7 +1869,7 @@ nodes:
     position:
       x: -21290
       y: -204
-  - entityRef: blueprint/packages/cli-module-lint/lint
+  - entityRef: backstage/packages/cli-module-lint/lint
     type: background-worker
     name: lint Service (External)
     external: true
@@ -1881,7 +1881,7 @@ nodes:
     position:
       x: 5390
       y: -204
-  - entityRef: blueprint/packages/repo-tools/lint-legacy-backend-exports
+  - entityRef: backstage/packages/repo-tools/lint-legacy-backend-exports
     type: background-worker
     name: lint-legacy-backend-exports Service (External)
     external: true
@@ -1893,7 +1893,7 @@ nodes:
     position:
       x: 22870
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/list
+  - entityRef: backstage/packages/cli-module-actions/list
     type: background-worker
     name: list Service (External)
     external: true
@@ -1905,7 +1905,7 @@ nodes:
     position:
       x: -19450
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/list
+  - entityRef: backstage/packages/cli-module-auth/list
     type: background-worker
     name: list Service (External)
     external: true
@@ -1917,7 +1917,7 @@ nodes:
     position:
       x: -15310
       y: -204
-  - entityRef: blueprint/packages/cli-module-maintenance/list-deprecations
+  - entityRef: backstage/packages/cli-module-maintenance/list-deprecations
     type: background-worker
     name: list-deprecations Service (External)
     external: true
@@ -1929,7 +1929,7 @@ nodes:
     position:
       x: 6770
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/login
+  - entityRef: backstage/packages/cli-module-auth/login
     type: background-worker
     name: login Service (External)
     external: true
@@ -1941,7 +1941,7 @@ nodes:
     position:
       x: -14850
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/login-test
+  - entityRef: backstage/packages/cli-module-auth/login-test
     type: background-worker
     name: login.test Service (External)
     external: true
@@ -1953,7 +1953,7 @@ nodes:
     position:
       x: -14390
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/logout
+  - entityRef: backstage/packages/cli-module-auth/logout
     type: background-worker
     name: logout Service (External)
     external: true
@@ -1965,7 +1965,7 @@ nodes:
     position:
       x: -13930
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/migrate
+  - entityRef: backstage/packages/cli-module-migrate/migrate
     type: background-worker
     name: migrate Service (External)
     external: true
@@ -1977,7 +1977,7 @@ nodes:
     position:
       x: 8150
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/modulefederation
+  - entityRef: backstage/packages/cli-module-build/modulefederation
     type: event-broker
     name: moduleFederation Service (External)
     external: true
@@ -1989,7 +1989,7 @@ nodes:
     position:
       x: -6110
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/new
+  - entityRef: backstage/packages/cli-module-new/new
     type: background-worker
     name: new Service (External)
     external: true
@@ -2001,7 +2001,7 @@ nodes:
     position:
       x: 11830
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/new-test
+  - entityRef: backstage/packages/cli-module-new/new-test
     type: background-worker
     name: new.test Service (External)
     external: true
@@ -2013,7 +2013,7 @@ nodes:
     position:
       x: 12290
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/packagedetection
+  - entityRef: backstage/packages/cli-module-build/packagedetection
     type: event-broker
     name: packageDetection Service (External)
     external: true
@@ -2025,7 +2025,7 @@ nodes:
     position:
       x: -5650
       y: -204
-  - entityRef: blueprint/packages/backend-defaults/packagediscoveryservice
+  - entityRef: backstage/packages/backend-defaults/packagediscoveryservice
     type: background-worker
     name: PackageDiscoveryService Service (External)
     external: true
@@ -2037,7 +2037,7 @@ nodes:
     position:
       x: -23590
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/packageexports
+  - entityRef: backstage/packages/cli-module-migrate/packageexports
     type: background-worker
     name: packageExports Service (External)
     external: true
@@ -2049,7 +2049,7 @@ nodes:
     position:
       x: 8610
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/packagelintconfigs
+  - entityRef: backstage/packages/cli-module-migrate/packagelintconfigs
     type: background-worker
     name: packageLintConfigs Service (External)
     external: true
@@ -2061,7 +2061,7 @@ nodes:
     position:
       x: 9070
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/packager
+  - entityRef: backstage/packages/cli-module-build/packager
     type: background-worker
     name: packager Service (External)
     external: true
@@ -2073,7 +2073,7 @@ nodes:
     position:
       x: -5190
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/packagerole
+  - entityRef: backstage/packages/cli-module-migrate/packagerole
     type: background-worker
     name: packageRole Service (External)
     external: true
@@ -2085,7 +2085,7 @@ nodes:
     position:
       x: 9530
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/packagescripts
+  - entityRef: backstage/packages/cli-module-migrate/packagescripts
     type: background-worker
     name: packageScripts Service (External)
     external: true
@@ -2097,7 +2097,7 @@ nodes:
     position:
       x: 9990
       y: -204
-  - entityRef: blueprint/packages/repo-tools/paths
+  - entityRef: backstage/packages/repo-tools/paths
     type: background-worker
     name: paths Service (External)
     external: true
@@ -2109,7 +2109,7 @@ nodes:
     position:
       x: 23330
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-manager
     type: background-worker
     name: plugin-manager Service (External)
     external: true
@@ -2121,7 +2121,7 @@ nodes:
     position:
       x: -23130
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-manager-test
     type: background-worker
     name: plugin-manager.test Service (External)
     external: true
@@ -2133,7 +2133,7 @@ nodes:
     position:
       x: -22670
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/portabletemplater
+  - entityRef: backstage/packages/cli-module-new/portabletemplater
     type: background-worker
     name: PortableTemplater Service (External)
     external: true
@@ -2145,7 +2145,7 @@ nodes:
     position:
       x: 12750
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/postpack
+  - entityRef: backstage/packages/cli-module-build/postpack
     type: background-worker
     name: postpack Service (External)
     external: true
@@ -2157,7 +2157,7 @@ nodes:
     position:
       x: -4730
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/prepack
+  - entityRef: backstage/packages/cli-module-build/prepack
     type: background-worker
     name: prepack Service (External)
     external: true
@@ -2169,7 +2169,7 @@ nodes:
     position:
       x: -4270
       y: -204
-  - entityRef: blueprint/packages/cli-module-config/print
+  - entityRef: backstage/packages/cli-module-config/print
     type: background-worker
     name: print Service (External)
     external: true
@@ -2181,7 +2181,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/printtoken
+  - entityRef: backstage/packages/cli-module-auth/printtoken
     type: background-worker
     name: printToken Service (External)
     external: true
@@ -2193,7 +2193,7 @@ nodes:
     position:
       x: -13470
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/productionpack
+  - entityRef: backstage/packages/cli-module-build/productionpack
     type: background-worker
     name: productionPack Service (External)
     external: true
@@ -2205,7 +2205,7 @@ nodes:
     position:
       x: -3810
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/publishing
+  - entityRef: backstage/packages/cli-module-build/publishing
     type: background-worker
     name: publishing Service (External)
     external: true
@@ -2217,7 +2217,7 @@ nodes:
     position:
       x: -3350
       y: -204
-  - entityRef: blueprint/packages/cli-module-migrate/reactrouterdeps
+  - entityRef: backstage/packages/cli-module-migrate/reactrouterdeps
     type: rest-api
     name: reactRouterDeps Service (External)
     external: true
@@ -2229,7 +2229,7 @@ nodes:
     position:
       x: 10450
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/resolveauth
+  - entityRef: backstage/packages/cli-module-actions/resolveauth
     type: background-worker
     name: resolveAuth Service (External)
     external: true
@@ -2241,7 +2241,7 @@ nodes:
     position:
       x: -18990
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/resolveauth-test
+  - entityRef: backstage/packages/cli-module-actions/resolveauth-test
     type: background-worker
     name: resolveAuth.test Service (External)
     external: true
@@ -2253,7 +2253,7 @@ nodes:
     position:
       x: -18530
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/role
+  - entityRef: backstage/packages/cli-module-build/role
     type: background-worker
     name: role Service (External)
     external: true
@@ -2265,7 +2265,7 @@ nodes:
     position:
       x: -2890
       y: -204
-  - entityRef: blueprint/packages/cli-module-config/schema
+  - entityRef: backstage/packages/cli-module-config/schema
     type: background-worker
     name: schema Service (External)
     external: true
@@ -2277,7 +2277,7 @@ nodes:
     position:
       x: 2630
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/select
+  - entityRef: backstage/packages/cli-module-auth/select
     type: background-worker
     name: select Service (External)
     external: true
@@ -2289,7 +2289,7 @@ nodes:
     position:
       x: -13010
       y: -204
-  - entityRef: blueprint/packages/cli-module-auth/show
+  - entityRef: backstage/packages/cli-module-auth/show
     type: background-worker
     name: show Service (External)
     external: true
@@ -2301,7 +2301,7 @@ nodes:
     position:
       x: -12550
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/sourcesadd
+  - entityRef: backstage/packages/cli-module-actions/sourcesadd
     type: background-worker
     name: sourcesAdd Service (External)
     external: true
@@ -2313,7 +2313,7 @@ nodes:
     position:
       x: -18070
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/sourcesadd-test
+  - entityRef: backstage/packages/cli-module-actions/sourcesadd-test
     type: background-worker
     name: sourcesAdd.test Service (External)
     external: true
@@ -2325,7 +2325,7 @@ nodes:
     position:
       x: -17610
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/sourceslist
+  - entityRef: backstage/packages/cli-module-actions/sourceslist
     type: background-worker
     name: sourcesList Service (External)
     external: true
@@ -2337,7 +2337,7 @@ nodes:
     position:
       x: -17150
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/sourcesremove
+  - entityRef: backstage/packages/cli-module-actions/sourcesremove
     type: background-worker
     name: sourcesRemove Service (External)
     external: true
@@ -2349,7 +2349,7 @@ nodes:
     position:
       x: -16690
       y: -204
-  - entityRef: blueprint/packages/cli-module-actions/sourcesremove-test
+  - entityRef: backstage/packages/cli-module-actions/sourcesremove-test
     type: background-worker
     name: sourcesRemove.test Service (External)
     external: true
@@ -2361,7 +2361,7 @@ nodes:
     position:
       x: -16230
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/start
+  - entityRef: backstage/packages/cli-module-build/start
     type: background-worker
     name: start Service (External)
     external: true
@@ -2373,7 +2373,7 @@ nodes:
     position:
       x: -2430
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/start-test
+  - entityRef: backstage/packages/cli-module-build/start-test
     type: background-worker
     name: start.test Service (External)
     external: true
@@ -2385,7 +2385,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/startfrontend
+  - entityRef: backstage/packages/cli-module-build/startfrontend
     type: gateway-api
     name: startFrontend Service (External)
     external: true
@@ -2397,7 +2397,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/startpackage
+  - entityRef: backstage/packages/cli-module-build/startpackage
     type: background-worker
     name: startPackage Service (External)
     external: true
@@ -2409,7 +2409,7 @@ nodes:
     position:
       x: -1050
       y: -204
-  - entityRef: blueprint/packages/cli-module-test-jest/test
+  - entityRef: backstage/packages/cli-module-test-jest/test
     type: background-worker
     name: test Service (External)
     external: true
@@ -2421,7 +2421,7 @@ nodes:
     position:
       x: 15050
       y: -204
-  - entityRef: blueprint/packages/cli-common/testutils
+  - entityRef: backstage/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -2433,7 +2433,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/packages/cli-module-build/typedistproject
+  - entityRef: backstage/packages/cli-module-build/typedistproject
     type: background-worker
     name: typeDistProject Service (External)
     external: true
@@ -2445,7 +2445,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/typedistproject-test
+  - entityRef: backstage/packages/cli-module-build/typedistproject-test
     type: background-worker
     name: typeDistProject.test Service (External)
     external: true
@@ -2457,7 +2457,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/packages/backend-dynamic-feature-service/types
+  - entityRef: backstage/packages/backend-dynamic-feature-service/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -2469,7 +2469,7 @@ nodes:
     position:
       x: -22210
       y: -204
-  - entityRef: blueprint/packages/cli/types
+  - entityRef: backstage/packages/cli/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -2481,7 +2481,7 @@ nodes:
     position:
       x: 18730
       y: -204
-  - entityRef: blueprint/packages/cli-module-build/types
+  - entityRef: backstage/packages/cli-module-build/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -2493,7 +2493,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/packages/repo-tools/utils
+  - entityRef: backstage/packages/repo-tools/utils
     type: background-worker
     name: utils Service (External)
     external: true
@@ -2505,7 +2505,7 @@ nodes:
     position:
       x: 23790
       y: -204
-  - entityRef: blueprint/packages/cli-module-config/validate
+  - entityRef: backstage/packages/cli-module-config/validate
     type: background-worker
     name: validate Service (External)
     external: true
@@ -2517,7 +2517,7 @@ nodes:
     position:
       x: 3090
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/version
+  - entityRef: backstage/packages/cli-module-new/version
     type: background-worker
     name: version Service (External)
     external: true
@@ -2529,7 +2529,7 @@ nodes:
     position:
       x: 13210
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/version-test
+  - entityRef: backstage/packages/cli-module-new/version-test
     type: background-worker
     name: version.test Service (External)
     external: true
@@ -2541,7 +2541,7 @@ nodes:
     position:
       x: 13670
       y: -204
-  - entityRef: blueprint/packages/cli-module-new/writetemplatecontents
+  - entityRef: backstage/packages/cli-module-new/writetemplatecontents
     type: background-worker
     name: writeTemplateContents Service (External)
     external: true
@@ -2554,767 +2554,767 @@ nodes:
       x: 14130
       y: -204
 dependencies:
-  - from: blueprint/packages/cli-module-actions/resolveauth-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/resolveauth-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/resolveauth
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/resolveauth
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/sourcesremove-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/sourcesremove-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/sourcesadd-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/sourcesadd-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/sourcesremove
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/sourcesremove
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/execute
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/execute
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/sourceslist
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/sourceslist
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/list
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/list
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/execute-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/execute-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/sourcesadd
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/sourcesadd
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-actions/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-actions/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-lint/lint
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-lint/lint
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-lint/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-lint/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-migrate/packagerole
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-migrate/packagerole
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-migrate/packagescripts
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-migrate/packagescripts
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-migrate/migrate
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-migrate/migrate
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-migrate/bump
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-migrate/bump
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-migrate/packagelintconfigs
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-migrate/packagelintconfigs
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-migrate/packageexports
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-migrate/packageexports
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-migrate/reactrouterdeps
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-migrate/reactrouterdeps
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-migrate/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-migrate/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-node/ismonorepo-test
-    to: blueprint/packages/cli-node/ismonorepo
+  - from: backstage/packages/cli-node/ismonorepo-test
+    to: backstage/packages/cli-node/ismonorepo
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/ismonorepo-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/cli-node/ismonorepo-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/cli-node/ismonorepo-test
-    to: blueprint/packages/cli-common/testutils
+  - from: backstage/packages/cli-node/ismonorepo-test
+    to: backstage/packages/cli-common/testutils
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/ismonorepo
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-node/ismonorepo
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/lockfile-test
-    to: blueprint/packages/cli-node/lockfile
+  - from: backstage/packages/cli-node/lockfile-test
+    to: backstage/packages/cli-node/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/lockfile-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/cli-node/lockfile-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/cli-node/packagegraph-test
-    to: blueprint/packages/cli-node/packagegraph
+  - from: backstage/packages/cli-node/packagegraph-test
+    to: backstage/packages/cli-node/packagegraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packagegraph-test
-    to: blueprint/packages/cli-node/lockfile
+  - from: backstage/packages/cli-node/packagegraph-test
+    to: backstage/packages/cli-node/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packagegraph-test
-    to: blueprint/packages/cli-common/testutils
+  - from: backstage/packages/cli-node/packagegraph-test
+    to: backstage/packages/cli-common/testutils
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/packagegraph
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-node/packagegraph
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/packagegraph
-    to: blueprint/packages/cli-node/lockfile
+  - from: backstage/packages/cli-node/packagegraph
+    to: backstage/packages/cli-node/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packagegraph
-    to: blueprint/packages/core/index
+  - from: backstage/packages/cli-node/packagegraph
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/ismonorepo
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/ismonorepo
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/packagegraph
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/packagegraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/lockfile
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/yarn
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/yarn
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/yarn
-    to: blueprint/packages/cli-node/packagemanager
+  - from: backstage/packages/cli-node/yarn
+    to: backstage/packages/cli-node/packagemanager
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/yarn
-    to: blueprint/packages/cli-node/lockfile
+  - from: backstage/packages/cli-node/yarn
+    to: backstage/packages/cli-node/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/yarn
-    to: blueprint/packages/cli-node/types
+  - from: backstage/packages/cli-node/yarn
+    to: backstage/packages/cli-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/yarn
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-node/yarn
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/yarn
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/yarn
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packagemanager
-    to: blueprint/packages/cli-node/yarn
+  - from: backstage/packages/cli-node/packagemanager
+    to: backstage/packages/cli-node/yarn
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packagemanager
-    to: blueprint/packages/cli-node/lockfile
+  - from: backstage/packages/cli-node/packagemanager
+    to: backstage/packages/cli-node/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packagemanager
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-node/packagemanager
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/packagemanager-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/cli-node/packagemanager-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/cli-node/packagemanager-test
-    to: blueprint/packages/cli-common/testutils
+  - from: backstage/packages/cli-node/packagemanager-test
+    to: backstage/packages/cli-common/testutils
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/packagemanager-test
-    to: blueprint/packages/cli-node/packagemanager
+  - from: backstage/packages/cli-node/packagemanager-test
+    to: backstage/packages/cli-node/packagemanager
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packagemanager-test
-    to: blueprint/packages/cli-node/yarn
+  - from: backstage/packages/cli-node/packagemanager-test
+    to: backstage/packages/cli-node/yarn
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packagemanager-test
-    to: blueprint/packages/test-utils/index
+  - from: backstage/packages/cli-node/packagemanager-test
+    to: backstage/packages/test-utils/index
     type: direct-call
     description: '@backstage/test-utils'
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/packagemanager
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/packagemanager
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/lockfile
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/lockfile
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/packagemanager
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/packagemanager
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/successcache
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-node/successcache
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/successcache
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/successcache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/cli-node/httpjson
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/httpjson
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/cliauth
-    to: blueprint/packages/cli-node/storage
+  - from: backstage/packages/cli-node/cliauth
+    to: backstage/packages/cli-node/storage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/cliauth
-    to: blueprint/packages/cli-node/secretstore
+  - from: backstage/packages/cli-node/cliauth
+    to: backstage/packages/cli-node/secretstore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/cliauth
-    to: blueprint/packages/cli-node/authidentifiers
+  - from: backstage/packages/cli-node/cliauth
+    to: backstage/packages/cli-node/authidentifiers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/cliauth
-    to: blueprint/packages/cli-node/httpjson
+  - from: backstage/packages/cli-node/cliauth
+    to: backstage/packages/cli-node/httpjson
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/storage
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/storage
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/cliauth
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/cliauth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/cliauth-test
-    to: blueprint/packages/cli-node/cliauth
+  - from: backstage/packages/cli-node/cliauth-test
+    to: backstage/packages/cli-node/cliauth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/cliauth-test
-    to: blueprint/packages/cli-node/storage
+  - from: backstage/packages/cli-node/cliauth-test
+    to: backstage/packages/cli-node/storage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/cliauth-test
-    to: blueprint/packages/cli-node/secretstore
+  - from: backstage/packages/cli-node/cliauth-test
+    to: backstage/packages/cli-node/secretstore
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/cliauth-test
-    to: blueprint/packages/cli-node/httpjson
+  - from: backstage/packages/cli-node/cliauth-test
+    to: backstage/packages/cli-node/httpjson
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packageroles-test
-    to: blueprint/packages/cli-node/packageroles
+  - from: backstage/packages/cli-node/packageroles-test
+    to: backstage/packages/cli-node/packageroles
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/types
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/packageroles
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/packageroles
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/packageroles
-    to: blueprint/packages/cli-node/types
+  - from: backstage/packages/cli-node/packageroles
+    to: backstage/packages/cli-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/yarnplugin
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-node/yarnplugin
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/yarnplugin-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/cli-node/yarnplugin-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/cli-node/yarnplugin-test
-    to: blueprint/packages/cli-common/testutils
+  - from: backstage/packages/cli-node/yarnplugin-test
+    to: backstage/packages/cli-common/testutils
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/yarnplugin-test
-    to: blueprint/packages/cli-node/yarnplugin
+  - from: backstage/packages/cli-node/yarnplugin-test
+    to: backstage/packages/cli-node/yarnplugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/yarnplugin
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/yarnplugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/commandgraph
-    to: blueprint/packages/cli-internal/index
+  - from: backstage/packages/cli-node/commandgraph
+    to: backstage/packages/cli-internal/index
     type: direct-call
     description: '@internal/cli'
-  - from: blueprint/packages/cli-node/commandgraph
-    to: blueprint/packages/cli-node/types
+  - from: backstage/packages/cli-node/commandgraph
+    to: backstage/packages/cli-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/createclimodule
-    to: blueprint/packages/cli-internal/index
+  - from: backstage/packages/cli-node/createclimodule
+    to: backstage/packages/cli-internal/index
     type: direct-call
     description: '@internal/cli'
-  - from: blueprint/packages/cli-node/createclimodule
-    to: blueprint/packages/cli-node/types
+  - from: backstage/packages/cli-node/createclimodule
+    to: backstage/packages/cli-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/createclimodule
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/createclimodule
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/runcli
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/runcli
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/runclimodule
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/runclimodule
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/types
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runclimodule
-    to: blueprint/packages/cli-node/types
+  - from: backstage/packages/cli-node/runclimodule
+    to: backstage/packages/cli-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runclimodule
-    to: blueprint/packages/cli-node/runcli
+  - from: backstage/packages/cli-node/runclimodule
+    to: backstage/packages/cli-node/runcli
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runcli
-    to: blueprint/packages/cli-internal/index
+  - from: backstage/packages/cli-node/runcli
+    to: backstage/packages/cli-internal/index
     type: direct-call
     description: '@internal/cli'
-  - from: blueprint/packages/cli-node/runcli
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/runcli
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/runcli
-    to: blueprint/packages/cli-node/commandgraph
+  - from: backstage/packages/cli-node/runcli
+    to: backstage/packages/cli-node/commandgraph
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runcli
-    to: blueprint/packages/cli-node/types
+  - from: backstage/packages/cli-node/runcli
+    to: backstage/packages/cli-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runcli-test
-    to: blueprint/packages/cli-node/createclimodule
+  - from: backstage/packages/cli-node/runcli-test
+    to: backstage/packages/cli-node/createclimodule
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runcli-test
-    to: blueprint/packages/cli-node/runcli
+  - from: backstage/packages/cli-node/runcli-test
+    to: backstage/packages/cli-node/runcli
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runconcurrenttasks-test
-    to: blueprint/packages/cli-node/runconcurrenttasks
+  - from: backstage/packages/cli-node/runconcurrenttasks-test
+    to: backstage/packages/cli-node/runconcurrenttasks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runworkerqueuethreads-test
-    to: blueprint/packages/cli-node/runworkerqueuethreads
+  - from: backstage/packages/cli-node/runworkerqueuethreads-test
+    to: backstage/packages/cli-node/runworkerqueuethreads
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/runconcurrenttasks
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/runconcurrenttasks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/runconcurrenttasks
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/runconcurrenttasks
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/runworkerqueuethreads
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/runworkerqueuethreads
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/runworkerqueuethreads
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/runworkerqueuethreads
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runconcurrenttasks
-    to: blueprint/packages/cli-node/concurrency
+  - from: backstage/packages/cli-node/runconcurrenttasks
+    to: backstage/packages/cli-node/concurrency
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/runworkerqueuethreads
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/runworkerqueuethreads
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/runworkerqueuethreads
-    to: blueprint/packages/cli-node/concurrency
+  - from: backstage/packages/cli-node/runworkerqueuethreads
+    to: backstage/packages/cli-node/concurrency
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/core-plugin-api/auth
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/core-plugin-api/auth
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/repo-tools/cache
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/repo-tools/cache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/concurrency
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/concurrency
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/yarn
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/yarn
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/gitutils-test
-    to: blueprint/packages/cli-node/gitutils
+  - from: backstage/packages/cli-node/gitutils-test
+    to: backstage/packages/cli-node/gitutils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-node/gitutils
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/cli-node/gitutils
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/cli-node/gitutils
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/cli-node/gitutils
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/cli-node/gitutils
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/cli-node/gitutils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/cli-module-test-jest/test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-test-jest/test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-test-jest/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-test-jest/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-new/example
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-new/example
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-new/version-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-new/version-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-new/portabletemplater
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-new/portabletemplater
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-new/writetemplatecontents
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-new/writetemplatecontents
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-new/version
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-new/version
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-new/new-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-new/new-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-new/new
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-new/new
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-new/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-new/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/e2e-test-utils/generateprojects
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/e2e-test-utils/generateprojects
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-github/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-github/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-manager
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/backend-dynamic-feature-service/plugin-manager-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/backend-dynamic-feature-service/types
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/backend-dynamic-feature-service/types
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli/cliinitializer
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli/cliinitializer
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli/discoverclimodules
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli/discoverclimodules
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli/factory
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli/factory
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli/types
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli/types
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-auth/login
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-auth/login
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-auth/select
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-auth/select
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-auth/login-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-auth/login-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-auth/printtoken
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-auth/printtoken
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-auth/list
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-auth/list
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-auth/show
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-auth/show
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-auth/logout
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-auth/logout
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-auth/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-auth/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-internal/internalcommandnode
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-internal/internalcommandnode
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-internal/internalclimodule
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-internal/internalclimodule
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-translations/discoverpackages
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-translations/discoverpackages
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-translations/export
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-translations/export
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-translations/import
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-translations/import
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-translations/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-translations/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/entrypoints
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/entrypoints
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/typedistproject
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/typedistproject
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/publishing
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/publishing
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/role
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/role
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/typedistproject-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/typedistproject-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/buildbackend
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/buildbackend
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/createdistworkspace
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/createdistworkspace
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/productionpack
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/productionpack
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/computetopologicallayers
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/computetopologicallayers
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/computetopologicallayers-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/computetopologicallayers-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/createfeatureenvironment
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/createfeatureenvironment
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/buildfrontend
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/buildfrontend
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/config
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/config
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/types
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/types
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/packager
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/packager
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/packagedetection
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/packagedetection
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/modulefederation
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/modulefederation
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/buildworkspace
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/buildworkspace
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/start-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/start-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/start
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/start
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/clean
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/clean
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/build
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/build
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/prepack
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/prepack
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/startfrontend
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/startfrontend
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/command
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/command
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/startpackage
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/startpackage
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/postpack
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/postpack
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-build/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-build/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/paths
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/paths
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/lint-legacy-backend-exports
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/buildapireports-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/cache-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/cache-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/cache
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/cache
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/command
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/command
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/utils
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/utils
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/generate-catalog-info
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/generate-catalog-info
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/fuzz
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/fuzz
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-maintenance/list-deprecations
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-maintenance/list-deprecations
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-maintenance/fix
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-maintenance/fix
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-maintenance/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-maintenance/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-info/info
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-info/info
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-info/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-info/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-config/config
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-config/config
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-config/schema
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-config/schema
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-config/print
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-config/print
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-config/validate
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-config/validate
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-config/docs
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-config/docs
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/cli-module-config/index
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/cli-module-config/index
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/backend-defaults/packagediscoveryservice
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/backend-defaults/packagediscoveryservice
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'

@@ -15,15 +15,15 @@ const containerSchema: SystemSchema = {
   name: 'Cli Containers',
   version: '1.0.0',
   level: 'container',
-  entityRef: 'blueprint/cli',
+  entityRef: 'application/cli',
   nodes: [
-    { entityRef: 'blueprint/cli/vhs', type: 'container', name: 'Vhs Service' },
-    { entityRef: 'blueprint/cli/analysis', type: 'container', name: 'Analysis Service' },
-    { entityRef: 'blueprint/cli/writers', type: 'container', name: 'Writers Service' },
+    { entityRef: 'application/cli/vhs', type: 'container', name: 'Vhs Service' },
+    { entityRef: 'application/cli/analysis', type: 'container', name: 'Analysis Service' },
+    { entityRef: 'application/cli/writers', type: 'container', name: 'Writers Service' },
   ],
   dependencies: [
-    { from: 'blueprint/cli/vhs', to: 'blueprint/cli/analysis', type: 'inter-container' },
-    { from: 'blueprint/cli/writers', to: 'blueprint/cli/vhs', type: 'inter-container' },
+    { from: 'application/cli/vhs', to: 'application/cli/analysis', type: 'inter-container' },
+    { from: 'application/cli/writers', to: 'application/cli/vhs', type: 'inter-container' },
   ],
 };
 
@@ -31,10 +31,10 @@ const vhsComponents: SystemSchema = {
   name: 'Vhs Components',
   version: '1.0.0',
   level: 'component',
-  entityRef: 'blueprint/cli/vhs',
+  entityRef: 'application/cli/vhs',
   nodes: [
     {
-      entityRef: 'blueprint/cli/vhs/cli-demo-test',
+      entityRef: 'application/cli/vhs/cli-demo-test',
       type: 'background-worker',
       name: 'cli-demo.test Service',
     },
@@ -46,18 +46,18 @@ const writersComponents: SystemSchema = {
   name: 'Writers Components',
   version: '1.0.0',
   level: 'component',
-  entityRef: 'blueprint/cli/writers',
+  entityRef: 'application/cli/writers',
   nodes: [
     {
-      entityRef: 'blueprint/cli/writers/context-level-writer',
+      entityRef: 'application/cli/writers/context-level-writer',
       type: 'background-worker',
       name: 'Context Level Writer',
     },
   ],
   dependencies: [
     {
-      from: 'blueprint/cli/writers/context-level-writer',
-      to: 'blueprint/cli/vhs/cli-demo-test',
+      from: 'application/cli/writers/context-level-writer',
+      to: 'application/cli/vhs/cli-demo-test',
       type: 'direct-call',
     },
   ],
@@ -73,12 +73,12 @@ describe('workspaceExternals', () => {
   describe('buildWorkspaceEntityIndex', () => {
     it('indexes every node across workspace schemas', () => {
       const index = buildWorkspaceEntityIndex(loadedSystems);
-      expect(index.byRef.get('blueprint/cli/analysis')).toMatchObject({
+      expect(index.byRef.get('application/cli/analysis')).toMatchObject({
         name: 'Analysis Service',
         sourceSchemaLevel: 'container',
         sourcePath: 'containers.yaml',
       });
-      expect(index.byRef.get('blueprint/cli/writers/context-level-writer')).toMatchObject({
+      expect(index.byRef.get('application/cli/writers/context-level-writer')).toMatchObject({
         sourceSchemaLevel: 'component',
         sourcePath: 'writers-components.yaml',
       });
@@ -146,10 +146,10 @@ describe('workspaceExternals', () => {
       const candidates = listExternalCandidates(vhsComponents, index, {});
 
       const refs = candidates.map(c => c.entityRef);
-      expect(refs).toContain('blueprint/cli/analysis');
-      expect(refs).toContain('blueprint/cli/writers/context-level-writer');
-      expect(refs).not.toContain('blueprint/cli/vhs/cli-demo-test');
-      expect(refs).not.toContain('blueprint/cli/vhs');
+      expect(refs).toContain('application/cli/analysis');
+      expect(refs).toContain('application/cli/writers/context-level-writer');
+      expect(refs).not.toContain('application/cli/vhs/cli-demo-test');
+      expect(refs).not.toContain('application/cli/vhs');
     });
 
     it('lists cross-container components on container diagrams', () => {
@@ -160,8 +160,8 @@ describe('workspaceExternals', () => {
       };
       const candidates = listExternalCandidates(active, index, {});
       const refs = candidates.map(c => c.entityRef);
-      expect(refs).toContain('blueprint/cli/writers/context-level-writer');
-      expect(refs).not.toContain('blueprint/cli/vhs');
+      expect(refs).toContain('application/cli/writers/context-level-writer');
+      expect(refs).not.toContain('application/cli/vhs');
     });
 
     it('filters by source schema level', () => {
@@ -170,14 +170,14 @@ describe('workspaceExternals', () => {
         sourceSchemaLevels: ['container'],
       });
       expect(containersOnly.every(c => c.sourceSchemaLevel === 'container')).toBe(true);
-      expect(containersOnly.map(c => c.entityRef)).toContain('blueprint/cli/analysis');
+      expect(containersOnly.map(c => c.entityRef)).toContain('application/cli/analysis');
 
       const componentsOnly = listExternalCandidates(vhsComponents, index, {
         sourceSchemaLevels: ['component'],
       });
       expect(componentsOnly.every(c => c.sourceSchemaLevel === 'component')).toBe(true);
       expect(componentsOnly.map(c => c.entityRef)).toContain(
-        'blueprint/cli/writers/context-level-writer'
+        'application/cli/writers/context-level-writer'
       );
     });
 
@@ -188,7 +188,7 @@ describe('workspaceExternals', () => {
         search: 'writer',
       });
       expect(filtered).toHaveLength(1);
-      expect(filtered[0].entityRef).toBe('blueprint/cli/writers/context-level-writer');
+      expect(filtered[0].entityRef).toBe('application/cli/writers/context-level-writer');
     });
 
     it('excludes entities already on the active diagram', () => {
@@ -198,7 +198,7 @@ describe('workspaceExternals', () => {
         nodes: [
           ...vhsComponents.nodes,
           {
-            entityRef: 'blueprint/cli/analysis',
+            entityRef: 'application/cli/analysis',
             type: 'container',
             name: 'Analysis Service (External)',
             external: true,
@@ -206,18 +206,18 @@ describe('workspaceExternals', () => {
         ],
       };
       const candidates = listExternalCandidates(active, index, {});
-      expect(candidates.map(c => c.entityRef)).not.toContain('blueprint/cli/analysis');
+      expect(candidates.map(c => c.entityRef)).not.toContain('application/cli/analysis');
     });
   });
 
   describe('materializeExternalNodes', () => {
     it('creates external proxy nodes with canonical refs and layout positions', () => {
       const index = buildWorkspaceEntityIndex(loadedSystems);
-      const entity = index.byRef.get('blueprint/cli/analysis')!;
+      const entity = index.byRef.get('application/cli/analysis')!;
       const [node] = materializeExternalNodes([entity], [{ x: 200, y: 300 }]);
 
       expect(node).toMatchObject({
-        entityRef: 'blueprint/cli/analysis',
+        entityRef: 'application/cli/analysis',
         type: 'container',
         external: true,
         position: { x: 200, y: 300 },
@@ -231,14 +231,14 @@ describe('workspaceExternals', () => {
     it('suggests related containers from parent container diagram', () => {
       const index = buildWorkspaceEntityIndex(loadedSystems);
       const suggested = suggestExternalDependencies(vhsComponents, loadedSystems, index);
-      expect(suggested.map(s => s.entityRef)).toContain('blueprint/cli/analysis');
+      expect(suggested.map(s => s.entityRef)).toContain('application/cli/analysis');
     });
 
     it('suggests cross-container components referenced from other diagrams', () => {
       const index = buildWorkspaceEntityIndex(loadedSystems);
       const suggested = suggestExternalDependencies(vhsComponents, loadedSystems, index);
       expect(suggested.map(s => s.entityRef)).toContain(
-        'blueprint/cli/writers/context-level-writer'
+        'application/cli/writers/context-level-writer'
       );
     });
 
@@ -247,15 +247,15 @@ describe('workspaceExternals', () => {
         ...vhsComponents,
         dependencies: [
           {
-            from: 'blueprint/cli/vhs/cli-demo-test',
-            to: 'blueprint/cli/analysis',
+            from: 'application/cli/vhs/cli-demo-test',
+            to: 'application/cli/analysis',
             type: 'direct-call',
           },
         ],
       };
       const index = buildWorkspaceEntityIndex(loadedSystems);
       const suggested = suggestExternalDependencies(active, loadedSystems, index);
-      expect(suggested.map(s => s.entityRef)).toContain('blueprint/cli/analysis');
+      expect(suggested.map(s => s.entityRef)).toContain('application/cli/analysis');
     });
   });
 
@@ -275,15 +275,15 @@ describe('workspaceExternals', () => {
       const enriched = enrichSchemaWithExternals(vhsComponents, loadedSystems, index);
 
       const byRef = new Map(enriched.nodes.map(n => [n.entityRef, n]));
-      expect(byRef.get('blueprint/cli/analysis')).toMatchObject({
+      expect(byRef.get('application/cli/analysis')).toMatchObject({
         external: true,
         type: 'container',
       });
-      expect(byRef.get('blueprint/cli/writers/context-level-writer')).toMatchObject({
+      expect(byRef.get('application/cli/writers/context-level-writer')).toMatchObject({
         external: true,
         type: 'background-worker',
       });
-      expect(byRef.get('blueprint/cli/vhs/cli-demo-test')?.external).toBeFalsy();
+      expect(byRef.get('application/cli/vhs/cli-demo-test')?.external).toBeFalsy();
       expect(enriched.nodes.filter(n => !n.external)).toHaveLength(vhsComponents.nodes.length);
     });
 
@@ -303,8 +303,8 @@ describe('workspaceExternals', () => {
         nodes: [containerSchema.nodes[0]],
         dependencies: [
           {
-            from: 'blueprint/cli/vhs',
-            to: 'blueprint/cli/analysis',
+            from: 'application/cli/vhs',
+            to: 'application/cli/analysis',
             type: 'inter-container',
           },
         ],
@@ -314,9 +314,9 @@ describe('workspaceExternals', () => {
 
       const externals = enriched.nodes.filter(n => n.external);
       expect(externals.every(n => n.type === 'container')).toBe(true);
-      expect(externals.map(n => n.entityRef)).toContain('blueprint/cli/analysis');
+      expect(externals.map(n => n.entityRef)).toContain('application/cli/analysis');
       expect(externals.map(n => n.entityRef)).not.toContain(
-        'blueprint/cli/writers/context-level-writer'
+        'application/cli/writers/context-level-writer'
       );
     });
 
@@ -328,15 +328,15 @@ describe('workspaceExternals', () => {
         level: 'context',
         nodes: [
           {
-            entityRef: 'blueprint/cli',
+            entityRef: 'application/cli',
             type: 'software-system',
             name: 'Cli System',
           },
         ],
         dependencies: [
           {
-            from: 'blueprint/cli',
-            to: 'blueprint/cli/vhs/cli-demo-test',
+            from: 'application/cli',
+            to: 'application/cli/vhs/cli-demo-test',
             type: 'direct-call',
           },
         ],
@@ -349,7 +349,9 @@ describe('workspaceExternals', () => {
       const enriched = enrichSchemaWithExternals(contextSchema, loaded, index);
 
       expect(enriched.nodes.every(n => !n.external || n.type === 'software-system')).toBe(true);
-      expect(enriched.nodes.map(n => n.entityRef)).not.toContain('blueprint/cli/vhs/cli-demo-test');
+      expect(enriched.nodes.map(n => n.entityRef)).not.toContain(
+        'application/cli/vhs/cli-demo-test'
+      );
     });
 
     it('unresolved mode only adds dangling dependency endpoints', () => {
@@ -357,8 +359,8 @@ describe('workspaceExternals', () => {
         ...vhsComponents,
         dependencies: [
           {
-            from: 'blueprint/cli/vhs/cli-demo-test',
-            to: 'blueprint/cli/analysis',
+            from: 'application/cli/vhs/cli-demo-test',
+            to: 'application/cli/analysis',
             type: 'direct-call',
           },
         ],
@@ -369,7 +371,7 @@ describe('workspaceExternals', () => {
       });
 
       const externalRefs = enriched.nodes.filter(n => n.external).map(n => n.entityRef);
-      expect(externalRefs).toEqual(['blueprint/cli/analysis']);
+      expect(externalRefs).toEqual(['application/cli/analysis']);
     });
 
     it('skips context schemas when enrichLevels excludes them', () => {
@@ -378,7 +380,7 @@ describe('workspaceExternals', () => {
         name: 'Blueprint',
         version: '1.0.0',
         level: 'context',
-        nodes: [{ entityRef: 'blueprint/cli', type: 'software-system', name: 'Cli' }],
+        nodes: [{ entityRef: 'application/cli', type: 'software-system', name: 'Cli' }],
         dependencies: [],
       };
       const index = buildWorkspaceEntityIndex(loadedSystems);
@@ -395,11 +397,13 @@ describe('workspaceExternals', () => {
       const writers = result.find(s => s.path === 'writers-components.yaml')!.schema;
       const vhs = result.find(s => s.path === 'vhs-components.yaml')!.schema;
 
-      expect(writers.nodes.some(n => n.entityRef === 'blueprint/cli/vhs/cli-demo-test')).toBe(true);
+      expect(writers.nodes.some(n => n.entityRef === 'application/cli/vhs/cli-demo-test')).toBe(
+        true
+      );
       expect(
-        writers.nodes.find(n => n.entityRef === 'blueprint/cli/vhs/cli-demo-test')?.external
+        writers.nodes.find(n => n.entityRef === 'application/cli/vhs/cli-demo-test')?.external
       ).toBe(true);
-      expect(vhs.nodes.some(n => n.entityRef === 'blueprint/cli/analysis' && n.external)).toBe(
+      expect(vhs.nodes.some(n => n.entityRef === 'application/cli/analysis' && n.external)).toBe(
         true
       );
     });
@@ -423,14 +427,14 @@ describe('workspaceExternals', () => {
       const containers = result.find(s => s.path === 'containers.yaml')!.schema;
 
       const edge = containers.dependencies.find(
-        d => d.from === 'blueprint/cli/writers' && d.to === 'blueprint/cli/vhs'
+        d => d.from === 'application/cli/writers' && d.to === 'application/cli/vhs'
       );
       expect(edge).toMatchObject({
         type: 'inter-container',
       });
       expect(edge?.description).toContain('Context Level Writer');
       expect(edge?.description).toContain('cli-demo.test Service');
-      expect(containers.nodes.find(n => n.entityRef === 'blueprint/cli/writers')).toMatchObject({
+      expect(containers.nodes.find(n => n.entityRef === 'application/cli/writers')).toMatchObject({
         external: true,
         type: 'container',
       });
@@ -438,18 +442,18 @@ describe('workspaceExternals', () => {
 
     it('adds service-level coupling edges and external component proxies on container diagrams', () => {
       const storefrontContainers: SystemSchema = {
-        entityRef: 'blueprint/chaoslens-stress/external-scope',
+        entityRef: 'chaoslens-stress/external-scope',
         name: 'Storefront Containers',
         version: '1.0.0',
         level: 'container',
         nodes: [
           {
-            entityRef: 'blueprint/chaoslens-stress/external-scope/web',
+            entityRef: 'chaoslens-stress/external-scope/web',
             type: 'web-app',
             name: 'Web Storefront',
           },
           {
-            entityRef: 'blueprint/chaoslens-stress/external-scope/api',
+            entityRef: 'chaoslens-stress/external-scope/api',
             type: 'rest-api',
             name: 'API Gateway',
           },
@@ -458,34 +462,34 @@ describe('workspaceExternals', () => {
       };
 
       const storefrontComponents: SystemSchema = {
-        entityRef: 'blueprint/chaoslens-stress/external-scope',
+        entityRef: 'chaoslens-stress/external-scope',
         name: 'Storefront Components',
         version: '1.0.0',
         level: 'component',
         nodes: [
           {
-            entityRef: 'blueprint/chaoslens-stress/external-scope/api/gateway',
+            entityRef: 'chaoslens-stress/external-scope/api/gateway',
             type: 'rest-api',
             name: 'Gateway Handler',
           },
         ],
         dependencies: [
           {
-            from: 'blueprint/chaoslens-stress/external-scope/api/gateway',
-            to: 'blueprint/chaoslens-stress/external-auth/auth',
+            from: 'chaoslens-stress/external-scope/api/gateway',
+            to: 'chaoslens-stress/external-auth/auth',
             type: 'direct-call',
           },
         ],
       };
 
       const authComponents: SystemSchema = {
-        entityRef: 'blueprint/chaoslens-stress/external-auth',
+        entityRef: 'chaoslens-stress/external-auth',
         name: 'Auth Components',
         version: '1.0.0',
         level: 'component',
         nodes: [
           {
-            entityRef: 'blueprint/chaoslens-stress/external-auth/auth',
+            entityRef: 'chaoslens-stress/external-auth/auth',
             type: 'microservice',
             name: 'Auth Service',
           },
@@ -521,14 +525,14 @@ describe('workspaceExternals', () => {
 
       expect(storefront.dependencies).toContainEqual(
         expect.objectContaining({
-          from: 'blueprint/chaoslens-stress/external-scope/api',
-          to: 'blueprint/chaoslens-stress/external-auth/auth',
+          from: 'chaoslens-stress/external-scope/api',
+          to: 'chaoslens-stress/external-auth/auth',
           type: 'direct-call',
         })
       );
       expect(
         storefront.nodes.find(
-          n => n.entityRef === 'blueprint/chaoslens-stress/external-auth/auth' && n.external
+          n => n.entityRef === 'chaoslens-stress/external-auth/auth' && n.external
         )
       ).toMatchObject({
         name: expect.stringContaining('External'),

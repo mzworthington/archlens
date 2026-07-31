@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/techdocs-cli
+  entityRef: backstage/packages/techdocs-cli
   name: Techdocs-cli Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/techdocs-cli/techdocs-cli-test
+  - entityRef: backstage/packages/techdocs-cli/techdocs-cli-test
     type: background-worker
     name: techdocs-cli.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/publisherconfig-test
+  - entityRef: backstage/packages/techdocs-cli/publisherconfig-test
     type: background-worker
     name: PublisherConfig.test Service
     isTest: true
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/livereload
+  - entityRef: backstage/packages/techdocs-cli/livereload
     type: background-worker
     name: livereload Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/httpserver
+  - entityRef: backstage/packages/techdocs-cli/httpserver
     type: background-worker
     name: httpServer Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/livereload-test
+  - entityRef: backstage/packages/techdocs-cli/livereload-test
     type: background-worker
     name: livereload.test Service
     isTest: true
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/publisherconfig
+  - entityRef: backstage/packages/techdocs-cli/publisherconfig
     type: background-worker
     name: PublisherConfig Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/utility
+  - entityRef: backstage/packages/techdocs-cli/utility
     type: background-worker
     name: utility Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/mkdocsserver-test
+  - entityRef: backstage/packages/techdocs-cli/mkdocsserver-test
     type: background-worker
     name: mkdocsServer.test Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/mkdocsserver
+  - entityRef: backstage/packages/techdocs-cli/mkdocsserver
     type: background-worker
     name: mkdocsServer Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/publish
+  - entityRef: backstage/packages/techdocs-cli/publish
     type: background-worker
     name: publish Service
     isTest: false
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/migrate
+  - entityRef: backstage/packages/techdocs-cli/migrate
     type: background-worker
     name: migrate Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/generate
+  - entityRef: backstage/packages/techdocs-cli/generate
     type: background-worker
     name: generate Service
     isTest: false
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/index
+  - entityRef: backstage/packages/techdocs-cli/index
     type: background-worker
     name: index Service
     isTest: false
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/mkdocs
+  - entityRef: backstage/packages/techdocs-cli/mkdocs
     type: gateway-api
     name: mkdocs Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/utils
+  - entityRef: backstage/packages/techdocs-cli/utils
     type: background-worker
     name: utils Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/techdocs-cli/serve
+  - entityRef: backstage/packages/techdocs-cli/serve
     type: gateway-api
     name: serve Service
     isTest: false
@@ -553,7 +553,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/config/index
+  - entityRef: backstage/packages/config/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -565,7 +565,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/packages/cli-common/index
+  - entityRef: backstage/packages/cli-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -577,7 +577,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/catalog-model/index
+  - entityRef: backstage/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -590,111 +590,111 @@ nodes:
       x: -360
       y: 404
 dependencies:
-  - from: blueprint/packages/techdocs-cli/publisherconfig-test
-    to: blueprint/packages/techdocs-cli/publisherconfig
+  - from: backstage/packages/techdocs-cli/publisherconfig-test
+    to: backstage/packages/techdocs-cli/publisherconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/httpserver
-    to: blueprint/packages/techdocs-cli/utility
+  - from: backstage/packages/techdocs-cli/httpserver
+    to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/httpserver
-    to: blueprint/packages/techdocs-cli/livereload
+  - from: backstage/packages/techdocs-cli/httpserver
+    to: backstage/packages/techdocs-cli/livereload
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/livereload-test
-    to: blueprint/packages/techdocs-cli/livereload
+  - from: backstage/packages/techdocs-cli/livereload-test
+    to: backstage/packages/techdocs-cli/livereload
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/publisherconfig
-    to: blueprint/packages/config/index
+  - from: backstage/packages/techdocs-cli/publisherconfig
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/techdocs-cli/mkdocsserver-test
-    to: blueprint/packages/techdocs-cli/mkdocsserver
+  - from: backstage/packages/techdocs-cli/mkdocsserver-test
+    to: backstage/packages/techdocs-cli/mkdocsserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/mkdocsserver-test
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/techdocs-cli/mkdocsserver-test
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/techdocs-cli/mkdocsserver
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/techdocs-cli/mkdocsserver
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/techdocs-cli/publish
-    to: blueprint/packages/techdocs-cli/utility
+  - from: backstage/packages/techdocs-cli/publish
+    to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/publish
-    to: blueprint/packages/backend-defaults/discovery
+  - from: backstage/packages/techdocs-cli/publish
+    to: backstage/packages/backend-defaults/discovery
     type: direct-call
     description: '@backstage/backend-defaults'
-  - from: blueprint/packages/techdocs-cli/publish
-    to: blueprint/packages/catalog-model/index
+  - from: backstage/packages/techdocs-cli/publish
+    to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: blueprint/packages/techdocs-cli/publish
-    to: blueprint/packages/techdocs-cli/publisherconfig
+  - from: backstage/packages/techdocs-cli/publish
+    to: backstage/packages/techdocs-cli/publisherconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/migrate
-    to: blueprint/packages/backend-defaults/discovery
+  - from: backstage/packages/techdocs-cli/migrate
+    to: backstage/packages/backend-defaults/discovery
     type: direct-call
     description: '@backstage/backend-defaults'
-  - from: blueprint/packages/techdocs-cli/migrate
-    to: blueprint/packages/techdocs-cli/utility
+  - from: backstage/packages/techdocs-cli/migrate
+    to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/migrate
-    to: blueprint/packages/techdocs-cli/publisherconfig
+  - from: backstage/packages/techdocs-cli/migrate
+    to: backstage/packages/techdocs-cli/publisherconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/generate
-    to: blueprint/packages/config/index
+  - from: backstage/packages/techdocs-cli/generate
+    to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: blueprint/packages/techdocs-cli/generate
-    to: blueprint/packages/techdocs-cli/utility
+  - from: backstage/packages/techdocs-cli/generate
+    to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/mkdocs
-    to: blueprint/packages/techdocs-cli/utility
+  - from: backstage/packages/techdocs-cli/mkdocs
+    to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/mkdocs
-    to: blueprint/packages/techdocs-cli/mkdocsserver
+  - from: backstage/packages/techdocs-cli/mkdocs
+    to: backstage/packages/techdocs-cli/mkdocsserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/mkdocs
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/techdocs-cli/mkdocs
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/techdocs-cli/mkdocs
-    to: blueprint/packages/techdocs-cli/utils
+  - from: backstage/packages/techdocs-cli/mkdocs
+    to: backstage/packages/techdocs-cli/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/utils
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/techdocs-cli/utils
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/techdocs-cli/serve
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/techdocs-cli/serve
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/techdocs-cli/serve
-    to: blueprint/packages/techdocs-cli/httpserver
+  - from: backstage/packages/techdocs-cli/serve
+    to: backstage/packages/techdocs-cli/httpserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/serve
-    to: blueprint/packages/techdocs-cli/mkdocsserver
+  - from: backstage/packages/techdocs-cli/serve
+    to: backstage/packages/techdocs-cli/mkdocsserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/serve
-    to: blueprint/packages/techdocs-cli/utility
+  - from: backstage/packages/techdocs-cli/serve
+    to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/techdocs-cli/serve
-    to: blueprint/packages/techdocs-cli/utils
+  - from: backstage/packages/techdocs-cli/serve
+    to: backstage/packages/techdocs-cli/utils
     type: direct-call
     description: Calls module / service

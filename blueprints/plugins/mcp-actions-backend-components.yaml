@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/mcp-actions-backend
+  entityRef: backstage/plugins/mcp-actions-backend
   name: Mcp-actions-backend Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/mcp-actions-backend/config-d
+  - entityRef: backstage/plugins/mcp-actions-backend/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -45,7 +45,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/index
+  - entityRef: backstage/plugins/mcp-actions-backend/index
     type: background-worker
     name: index Service
     isTest: false
@@ -79,7 +79,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/createstreamablerouter
+  - entityRef: backstage/plugins/mcp-actions-backend/createstreamablerouter
     type: rest-api
     name: createStreamableRouter Service
     isTest: false
@@ -118,7 +118,7 @@ nodes:
           commits: 1
       hotspotScore: 0.004991572669518994
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/plugin
+  - entityRef: backstage/plugins/mcp-actions-backend/plugin
     type: rest-api
     name: plugin Service
     isTest: false
@@ -161,7 +161,7 @@ nodes:
           commits: 1
       hotspotScore: 0.009529366005445352
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/plugin-test
+  - entityRef: backstage/plugins/mcp-actions-backend/plugin-test
     type: background-worker
     name: plugin.test Service
     isTest: true
@@ -200,7 +200,7 @@ nodes:
           commits: 2
       hotspotScore: 0.011258049181036345
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/config
+  - entityRef: backstage/plugins/mcp-actions-backend/config
     type: background-worker
     name: config Service
     isTest: false
@@ -236,7 +236,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/metrics
+  - entityRef: backstage/plugins/mcp-actions-backend/metrics
     type: background-worker
     name: metrics Service
     isTest: false
@@ -270,7 +270,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/handleerrors
+  - entityRef: backstage/plugins/mcp-actions-backend/handleerrors
     type: background-worker
     name: handleErrors Service
     isTest: false
@@ -304,7 +304,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/mcpservice-test
+  - entityRef: backstage/plugins/mcp-actions-backend/mcpservice-test
     type: background-worker
     name: McpService.test Service
     isTest: true
@@ -346,7 +346,7 @@ nodes:
           commits: 1
       hotspotScore: 0.007762867885388305
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/handleerrors-test
+  - entityRef: backstage/plugins/mcp-actions-backend/handleerrors-test
     type: background-worker
     name: handleErrors.test Service
     isTest: true
@@ -380,7 +380,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/mcp-actions-backend/mcpservice
+  - entityRef: backstage/plugins/mcp-actions-backend/mcpservice
     type: rest-api
     name: McpService Service
     isTest: false
@@ -423,7 +423,7 @@ nodes:
           commits: 1
       hotspotScore: 0.02892843251653053
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-node/testutils
+  - entityRef: backstage/plugins/catalog-node/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -436,67 +436,67 @@ nodes:
       x: 100
       y: 404
 dependencies:
-  - from: blueprint/plugins/mcp-actions-backend/index
-    to: blueprint/plugins/catalog-node/testutils
+  - from: backstage/plugins/mcp-actions-backend/index
+    to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
-    to: blueprint/plugins/mcp-actions-backend/mcpservice
+  - from: backstage/plugins/mcp-actions-backend/createstreamablerouter
+    to: backstage/plugins/mcp-actions-backend/mcpservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
-    to: blueprint/plugins/mcp-actions-backend/metrics
+  - from: backstage/plugins/mcp-actions-backend/createstreamablerouter
+    to: backstage/plugins/mcp-actions-backend/metrics
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/createstreamablerouter
-    to: blueprint/plugins/mcp-actions-backend/config
+  - from: backstage/plugins/mcp-actions-backend/createstreamablerouter
+    to: backstage/plugins/mcp-actions-backend/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/plugin
-    to: blueprint/plugins/mcp-actions-backend/mcpservice
+  - from: backstage/plugins/mcp-actions-backend/plugin
+    to: backstage/plugins/mcp-actions-backend/mcpservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/plugin
-    to: blueprint/plugins/mcp-actions-backend/createstreamablerouter
+  - from: backstage/plugins/mcp-actions-backend/plugin
+    to: backstage/plugins/mcp-actions-backend/createstreamablerouter
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/plugin
-    to: blueprint/plugins/mcp-actions-backend/config
+  - from: backstage/plugins/mcp-actions-backend/plugin
+    to: backstage/plugins/mcp-actions-backend/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/plugin-test
-    to: blueprint/plugins/mcp-actions-backend/plugin
+  - from: backstage/plugins/mcp-actions-backend/plugin-test
+    to: backstage/plugins/mcp-actions-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/index
-    to: blueprint/plugins/mcp-actions-backend/plugin
+  - from: backstage/plugins/mcp-actions-backend/index
+    to: backstage/plugins/mcp-actions-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice-test
-    to: blueprint/plugins/mcp-actions-backend/mcpservice
+  - from: backstage/plugins/mcp-actions-backend/mcpservice-test
+    to: backstage/plugins/mcp-actions-backend/mcpservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice-test
-    to: blueprint/plugins/mcp-actions-backend/config
+  - from: backstage/plugins/mcp-actions-backend/mcpservice-test
+    to: backstage/plugins/mcp-actions-backend/config
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/handleerrors-test
-    to: blueprint/plugins/mcp-actions-backend/handleerrors
+  - from: backstage/plugins/mcp-actions-backend/handleerrors-test
+    to: backstage/plugins/mcp-actions-backend/handleerrors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice
-    to: blueprint/plugins/mcp-actions-backend/package-json
+  - from: backstage/plugins/mcp-actions-backend/mcpservice
+    to: backstage/plugins/mcp-actions-backend/package-json
     type: direct-call
     description: '@backstage/plugin-mcp-actions-backend'
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice
-    to: blueprint/plugins/mcp-actions-backend/handleerrors
+  - from: backstage/plugins/mcp-actions-backend/mcpservice
+    to: backstage/plugins/mcp-actions-backend/handleerrors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice
-    to: blueprint/plugins/mcp-actions-backend/metrics
+  - from: backstage/plugins/mcp-actions-backend/mcpservice
+    to: backstage/plugins/mcp-actions-backend/metrics
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/mcp-actions-backend/mcpservice
-    to: blueprint/plugins/mcp-actions-backend/config
+  - from: backstage/plugins/mcp-actions-backend/mcpservice
+    to: backstage/plugins/mcp-actions-backend/config
     type: direct-call
     description: Calls module / service

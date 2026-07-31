@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: golden-paths/golden-journey/billing-platform
+  name: Billing Platform
+  description: >
+    Subscription renewals share Payment Gateway fan-in with checkout — another product
+    boundary in the same estate context.
+nodes:
+  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker
+    type: background-worker
+    name: Billing Worker
+    forensics:
+      complexity: 14
+      loc: 520
+      sloc: 380
+      churn: 0.22
+      churn30: 18
+      churn365: 120
+      churnByWeek: [2, 2, 3, 3, 4, 4, 5, 5]
+      authorCount: 2
+      topAuthorPercent: 0.72
+      hotspotScore: 0.28
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/billing-platform/subscription-db
+    type: database
+    name: Subscription DB
+  - entityRef: golden-paths/golden-journey/payment-gateway
+    type: gateway-api
+    name: Payment Gateway
+    external: true
+    properties:
+      vendor: Stripe-compatible PSP
+      classification: third-party
+dependencies:
+  - from: golden-paths/golden-journey/billing-platform/billing-worker
+    to: golden-paths/golden-journey/billing-platform/subscription-db
+    type: read-write
+  - from: golden-paths/golden-journey/billing-platform/billing-worker
+    to: golden-paths/golden-journey/payment-gateway
+    type: direct-call

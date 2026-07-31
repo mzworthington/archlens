@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/repo-tools
+  entityRef: backstage/packages/repo-tools
   name: Repo-tools Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/repo-tools/discovery
+  - entityRef: backstage/packages/repo-tools/discovery
     type: background-worker
     name: discovery Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/fetch
+  - entityRef: backstage/packages/repo-tools/fetch
     type: background-worker
     name: fetch Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/errors
+  - entityRef: backstage/packages/repo-tools/errors
     type: background-worker
     name: errors Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/getpackageexportdetails
+  - entityRef: backstage/packages/repo-tools/getpackageexportdetails
     type: background-worker
     name: getPackageExportDetails Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/helpers
+  - entityRef: backstage/packages/repo-tools/helpers
     type: background-worker
     name: helpers Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/dedupe-imports
+  - entityRef: backstage/packages/repo-tools/dedupe-imports
     type: background-worker
     name: dedupe-imports Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/constants
+  - entityRef: backstage/packages/repo-tools/constants
     type: background-worker
     name: constants Service
     isTest: false
@@ -249,7 +249,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/exec
+  - entityRef: backstage/packages/repo-tools/exec
     type: background-worker
     name: exec Service
     isTest: false
@@ -283,7 +283,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/paths-test
+  - entityRef: backstage/packages/repo-tools/paths-test
     type: background-worker
     name: paths.test Service
     isTest: true
@@ -317,7 +317,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/paths
+  - entityRef: backstage/packages/repo-tools/paths
     type: background-worker
     name: paths Service
     isTest: false
@@ -351,7 +351,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/runner
+  - entityRef: backstage/packages/repo-tools/runner
     type: background-worker
     name: runner Service
     isTest: false
@@ -387,7 +387,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/knip-extractor
+  - entityRef: backstage/packages/repo-tools/knip-extractor
     type: background-worker
     name: knip-extractor Service
     isTest: false
@@ -421,7 +421,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/knip-reports
+  - entityRef: backstage/packages/repo-tools/knip-reports
     type: background-worker
     name: knip-reports Service
     isTest: false
@@ -455,7 +455,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/generate-patch
+  - entityRef: backstage/packages/repo-tools/generate-patch
     type: background-worker
     name: generate-patch Service
     isTest: false
@@ -489,7 +489,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/lint-legacy-backend-exports
+  - entityRef: backstage/packages/repo-tools/lint-legacy-backend-exports
     type: background-worker
     name: lint-legacy-backend-exports Service
     isTest: false
@@ -523,7 +523,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/buildapireports-test
+  - entityRef: backstage/packages/repo-tools/buildapireports-test
     type: background-worker
     name: buildApiReports.test Service
     isTest: true
@@ -557,7 +557,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/categorizepackagedirs
+  - entityRef: backstage/packages/repo-tools/categorizepackagedirs
     type: background-worker
     name: categorizePackageDirs Service
     isTest: false
@@ -591,7 +591,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/types
+  - entityRef: backstage/packages/repo-tools/types
     type: relational-database
     name: types Service
     isTest: false
@@ -625,7 +625,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/generateclireport
+  - entityRef: backstage/packages/repo-tools/generateclireport
     type: background-worker
     name: generateCliReport Service
     isTest: false
@@ -659,7 +659,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/runcliextraction
+  - entityRef: backstage/packages/repo-tools/runcliextraction
     type: background-worker
     name: runCliExtraction Service
     isTest: false
@@ -693,7 +693,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/index
+  - entityRef: backstage/packages/repo-tools/index
     type: background-worker
     name: index Service
     isTest: false
@@ -727,7 +727,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/patchapireportgeneration
+  - entityRef: backstage/packages/repo-tools/patchapireportgeneration
     type: background-worker
     name: patchApiReportGeneration Service
     isTest: false
@@ -761,7 +761,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/builddocs
+  - entityRef: backstage/packages/repo-tools/builddocs
     type: background-worker
     name: buildDocs Service
     isTest: false
@@ -795,7 +795,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/runapiextraction
+  - entityRef: backstage/packages/repo-tools/runapiextraction
     type: rest-api
     name: runApiExtraction Service
     isTest: false
@@ -829,7 +829,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/generatetypedeclarations
+  - entityRef: backstage/packages/repo-tools/generatetypedeclarations
     type: background-worker
     name: generateTypeDeclarations Service
     isTest: false
@@ -863,7 +863,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/createtemporarytsconfig
+  - entityRef: backstage/packages/repo-tools/createtemporarytsconfig
     type: background-worker
     name: createTemporaryTsConfig Service
     isTest: false
@@ -897,7 +897,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/runapiextraction-test
+  - entityRef: backstage/packages/repo-tools/runapiextraction-test
     type: background-worker
     name: runApiExtraction.test Service
     isTest: true
@@ -931,7 +931,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/buildapireports
+  - entityRef: backstage/packages/repo-tools/buildapireports
     type: background-worker
     name: buildApiReports Service
     isTest: false
@@ -965,7 +965,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/tryrunprettier
+  - entityRef: backstage/packages/repo-tools/tryrunprettier
     type: background-worker
     name: tryRunPrettier Service
     isTest: false
@@ -999,7 +999,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/logapireportinstructions
+  - entityRef: backstage/packages/repo-tools/logapireportinstructions
     type: background-worker
     name: logApiReportInstructions Service
     isTest: false
@@ -1033,7 +1033,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/generatesqlreport
+  - entityRef: backstage/packages/repo-tools/generatesqlreport
     type: background-worker
     name: generateSqlReport Service
     isTest: false
@@ -1067,7 +1067,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/runsqlextraction
+  - entityRef: backstage/packages/repo-tools/runsqlextraction
     type: relational-database
     name: runSqlExtraction Service
     isTest: false
@@ -1101,7 +1101,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/getpgschemainfo
+  - entityRef: backstage/packages/repo-tools/getpgschemainfo
     type: relational-database
     name: getPgSchemaInfo Service
     isTest: false
@@ -1135,7 +1135,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/peer-deps
+  - entityRef: backstage/packages/repo-tools/peer-deps
     type: background-worker
     name: peer-deps Service
     isTest: false
@@ -1169,7 +1169,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/cache-test
+  - entityRef: backstage/packages/repo-tools/cache-test
     type: cache-store
     name: Cache.test Service
     isTest: true
@@ -1203,7 +1203,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/utils
+  - entityRef: backstage/packages/repo-tools/utils
     type: background-worker
     name: utils Service
     isTest: false
@@ -1237,7 +1237,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/cache
+  - entityRef: backstage/packages/repo-tools/cache
     type: cache-store
     name: Cache Service
     isTest: false
@@ -1271,7 +1271,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/command
+  - entityRef: backstage/packages/repo-tools/command
     type: background-worker
     name: command Service
     isTest: false
@@ -1305,7 +1305,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/util
+  - entityRef: backstage/packages/repo-tools/util
     type: background-worker
     name: util Service
     isTest: false
@@ -1341,7 +1341,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/utils-test
+  - entityRef: backstage/packages/repo-tools/utils-test
     type: background-worker
     name: utils.test Service
     isTest: true
@@ -1375,7 +1375,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/generate-catalog-info
+  - entityRef: backstage/packages/repo-tools/generate-catalog-info
     type: background-worker
     name: generate-catalog-info Service
     isTest: false
@@ -1409,7 +1409,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/codeowners
+  - entityRef: backstage/packages/repo-tools/codeowners
     type: background-worker
     name: codeowners Service
     isTest: false
@@ -1443,7 +1443,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/type-deps
+  - entityRef: backstage/packages/repo-tools/type-deps
     type: background-worker
     name: type-deps Service
     isTest: false
@@ -1477,7 +1477,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/lint
+  - entityRef: backstage/packages/repo-tools/lint
     type: background-worker
     name: lint Service
     isTest: false
@@ -1511,7 +1511,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/fuzz
+  - entityRef: backstage/packages/repo-tools/fuzz
     type: background-worker
     name: fuzz Service
     isTest: false
@@ -1545,7 +1545,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/verify
+  - entityRef: backstage/packages/repo-tools/verify
     type: background-worker
     name: verify Service
     isTest: false
@@ -1579,7 +1579,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/diff
+  - entityRef: backstage/packages/repo-tools/diff
     type: background-worker
     name: diff Service
     isTest: false
@@ -1615,7 +1615,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/index-test
+  - entityRef: backstage/packages/repo-tools/index-test
     type: background-worker
     name: index.test Service
     isTest: true
@@ -1649,7 +1649,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/client
+  - entityRef: backstage/packages/repo-tools/client
     type: background-worker
     name: client Service
     isTest: false
@@ -1683,7 +1683,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/repo-tools/server
+  - entityRef: backstage/packages/repo-tools/server
     type: background-worker
     name: server Service
     isTest: false
@@ -1717,7 +1717,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/core-app-api/common
+  - entityRef: backstage/packages/core-app-api/common
     type: background-worker
     name: common Service (External)
     external: true
@@ -1729,7 +1729,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/packages/backend-test-utils/index
+  - entityRef: backstage/packages/backend-test-utils/index
     type: relational-database
     name: index Service (External)
     external: true
@@ -1741,7 +1741,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/packages/cli-node/index
+  - entityRef: backstage/packages/cli-node/index
     type: cache-store
     name: index Service (External)
     external: true
@@ -1753,7 +1753,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/packages/cli-common/index
+  - entityRef: backstage/packages/cli-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1765,7 +1765,7 @@ nodes:
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/packages/core/index
+  - entityRef: backstage/packages/core/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1777,7 +1777,7 @@ nodes:
     position:
       x: 1250
       y: 404
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: backstage/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1789,7 +1789,7 @@ nodes:
     position:
       x: 1710
       y: 404
-  - entityRef: blueprint/packages/catalog-model/index
+  - entityRef: backstage/packages/catalog-model/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1801,7 +1801,7 @@ nodes:
     position:
       x: -1050
       y: 404
-  - entityRef: blueprint/packages/backend-plugin-api/index
+  - entityRef: backstage/packages/backend-plugin-api/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1813,7 +1813,7 @@ nodes:
     position:
       x: -1510
       y: 404
-  - entityRef: blueprint/packages/config-loader/index
+  - entityRef: backstage/packages/config-loader/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1825,7 +1825,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/packages/cli-module-build/startbackend
+  - entityRef: backstage/packages/cli-module-build/startbackend
     type: background-worker
     name: startBackend Service (External)
     external: true
@@ -1837,7 +1837,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/packages/cli-common/testutils
+  - entityRef: backstage/packages/cli-common/testutils
     type: background-worker
     name: testUtils Service (External)
     external: true
@@ -1850,503 +1850,503 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/packages/backend-test-utils/index
-    to: blueprint/packages/repo-tools/cache
+  - from: backstage/packages/backend-test-utils/index
+    to: backstage/packages/repo-tools/cache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/cli-node/index
-    to: blueprint/packages/repo-tools/cache
+  - from: backstage/packages/cli-node/index
+    to: backstage/packages/repo-tools/cache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/cli-module-build/startbackend
-    to: blueprint/packages/repo-tools/runner
+  - from: backstage/packages/cli-module-build/startbackend
+    to: backstage/packages/repo-tools/runner
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/errors
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/errors
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/getpackageexportdetails
-    to: blueprint/packages/core/index
+  - from: backstage/packages/repo-tools/getpackageexportdetails
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/repo-tools/helpers
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/helpers
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/helpers
-    to: blueprint/packages/repo-tools/constants
+  - from: backstage/packages/repo-tools/helpers
+    to: backstage/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/paths-test
-    to: blueprint/packages/repo-tools/paths
+  - from: backstage/packages/repo-tools/paths-test
+    to: backstage/packages/repo-tools/paths
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/paths
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/paths
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/paths
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/paths
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/runner
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/runner
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/runner
-    to: blueprint/packages/repo-tools/paths
+  - from: backstage/packages/repo-tools/runner
+    to: backstage/packages/repo-tools/paths
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/knip-extractor
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/knip-extractor
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/knip-extractor
-    to: blueprint/packages/repo-tools/util
+  - from: backstage/packages/repo-tools/knip-extractor
+    to: backstage/packages/repo-tools/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/knip-reports
-    to: blueprint/packages/repo-tools/knip-extractor
+  - from: backstage/packages/repo-tools/knip-reports
+    to: backstage/packages/repo-tools/knip-extractor
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/knip-reports
-    to: blueprint/packages/repo-tools/paths
+  - from: backstage/packages/repo-tools/knip-reports
+    to: backstage/packages/repo-tools/paths
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/generate-patch
-    to: blueprint/packages/repo-tools/exec
+  - from: backstage/packages/repo-tools/generate-patch
+    to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/generate-patch
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/repo-tools/generate-patch
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/lint-legacy-backend-exports
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/lint-legacy-backend-exports
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/lint-legacy-backend-exports
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/repo-tools/buildapireports-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/cli-common/testutils
+  - from: backstage/packages/repo-tools/buildapireports-test
+    to: backstage/packages/cli-common/testutils
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/repo-tools/categorizepackagedirs
+  - from: backstage/packages/repo-tools/buildapireports-test
+    to: backstage/packages/repo-tools/categorizepackagedirs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/repo-tools/buildapireports
+  - from: backstage/packages/repo-tools/buildapireports-test
+    to: backstage/packages/repo-tools/buildapireports
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/buildapireports-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/buildapireports-test
-    to: blueprint/packages/repo-tools/index
+  - from: backstage/packages/repo-tools/buildapireports-test
+    to: backstage/packages/repo-tools/index
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/categorizepackagedirs
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/categorizepackagedirs
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/generateclireport
-    to: blueprint/packages/repo-tools/types
+  - from: backstage/packages/repo-tools/generateclireport
+    to: backstage/packages/repo-tools/types
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/runcliextraction
-    to: blueprint/packages/repo-tools/util
+  - from: backstage/packages/repo-tools/runcliextraction
+    to: backstage/packages/repo-tools/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/runcliextraction
-    to: blueprint/packages/repo-tools/types
+  - from: backstage/packages/repo-tools/runcliextraction
+    to: backstage/packages/repo-tools/types
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/runcliextraction
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/runcliextraction
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/runcliextraction
-    to: blueprint/packages/repo-tools/generateclireport
+  - from: backstage/packages/repo-tools/runcliextraction
+    to: backstage/packages/repo-tools/generateclireport
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/runcliextraction
-    to: blueprint/packages/core-app-api/common
+  - from: backstage/packages/repo-tools/runcliextraction
+    to: backstage/packages/core-app-api/common
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/runcliextraction
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/runcliextraction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/patchapireportgeneration
-    to: blueprint/packages/core-app-api/common
+  - from: backstage/packages/repo-tools/patchapireportgeneration
+    to: backstage/packages/core-app-api/common
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/patchapireportgeneration
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/patchapireportgeneration
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/runapiextraction
-    to: blueprint/packages/repo-tools/getpackageexportdetails
+  - from: backstage/packages/repo-tools/runapiextraction
+    to: backstage/packages/repo-tools/getpackageexportdetails
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/runapiextraction
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/runapiextraction
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/runapiextraction
-    to: blueprint/packages/core-app-api/common
+  - from: backstage/packages/repo-tools/runapiextraction
+    to: backstage/packages/core-app-api/common
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/runapiextraction
-    to: blueprint/packages/repo-tools/patchapireportgeneration
+  - from: backstage/packages/repo-tools/runapiextraction
+    to: backstage/packages/repo-tools/patchapireportgeneration
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/generatetypedeclarations
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/generatetypedeclarations
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/runapiextraction
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/runapiextraction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/builddocs
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/builddocs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/createtemporarytsconfig
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/createtemporarytsconfig
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/generatetypedeclarations
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/generatetypedeclarations
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/createtemporarytsconfig
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/createtemporarytsconfig
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/runapiextraction-test
-    to: blueprint/packages/repo-tools/runapiextraction
+  - from: backstage/packages/repo-tools/runapiextraction-test
+    to: backstage/packages/repo-tools/runapiextraction
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/buildapireports
-    to: blueprint/packages/repo-tools/categorizepackagedirs
+  - from: backstage/packages/repo-tools/buildapireports
+    to: backstage/packages/repo-tools/categorizepackagedirs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/buildapireports
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/buildapireports
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/buildapireports
-    to: blueprint/packages/repo-tools/paths
+  - from: backstage/packages/repo-tools/buildapireports
+    to: backstage/packages/repo-tools/paths
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/buildapireports
-    to: blueprint/packages/repo-tools/index
+  - from: backstage/packages/repo-tools/buildapireports
+    to: backstage/packages/repo-tools/index
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/tryrunprettier
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/tryrunprettier
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/tryrunprettier
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/tryrunprettier
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/logapireportinstructions
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/logapireportinstructions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/generatesqlreport
-    to: blueprint/packages/repo-tools/types
+  - from: backstage/packages/repo-tools/generatesqlreport
+    to: backstage/packages/repo-tools/types
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/runsqlextraction
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/runsqlextraction
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/runsqlextraction
-    to: blueprint/packages/repo-tools/types
+  - from: backstage/packages/repo-tools/runsqlextraction
+    to: backstage/packages/repo-tools/types
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/runsqlextraction
-    to: blueprint/packages/repo-tools/getpgschemainfo
+  - from: backstage/packages/repo-tools/runsqlextraction
+    to: backstage/packages/repo-tools/getpgschemainfo
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/runsqlextraction
-    to: blueprint/packages/repo-tools/generatesqlreport
+  - from: backstage/packages/repo-tools/runsqlextraction
+    to: backstage/packages/repo-tools/generatesqlreport
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/runsqlextraction
-    to: blueprint/packages/core-app-api/common
+  - from: backstage/packages/repo-tools/runsqlextraction
+    to: backstage/packages/core-app-api/common
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/getpgschemainfo
-    to: blueprint/packages/repo-tools/types
+  - from: backstage/packages/repo-tools/getpgschemainfo
+    to: backstage/packages/repo-tools/types
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/runsqlextraction
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/runsqlextraction
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/buildapireports
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/buildapireports
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/cache-test
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/cache-test
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/cache-test
-    to: blueprint/packages/repo-tools/cache
+  - from: backstage/packages/repo-tools/cache-test
+    to: backstage/packages/repo-tools/cache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/cache-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/repo-tools/cache-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/repo-tools/utils
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/utils
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/cache
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/cache
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/cache
-    to: blueprint/packages/repo-tools/constants
+  - from: backstage/packages/repo-tools/cache
+    to: backstage/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/command
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/command
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/command
-    to: blueprint/packages/repo-tools/paths
+  - from: backstage/packages/repo-tools/command
+    to: backstage/packages/repo-tools/paths
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/command
-    to: blueprint/packages/repo-tools/utils
+  - from: backstage/packages/repo-tools/command
+    to: backstage/packages/repo-tools/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/command
-    to: blueprint/packages/repo-tools/cache
+  - from: backstage/packages/repo-tools/command
+    to: backstage/packages/repo-tools/cache
     type: read-write
     description: Queries datastore records
-  - from: blueprint/packages/repo-tools/command
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/command
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/errors
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/errors
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/constants
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/utils-test
-    to: blueprint/packages/repo-tools/utils
+  - from: backstage/packages/repo-tools/utils-test
+    to: backstage/packages/repo-tools/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/utils
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/utils
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/generate-catalog-info
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/generate-catalog-info
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/generate-catalog-info
-    to: blueprint/packages/catalog-model/index
+  - from: backstage/packages/repo-tools/generate-catalog-info
+    to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: blueprint/packages/repo-tools/generate-catalog-info
-    to: blueprint/packages/repo-tools/codeowners
+  - from: backstage/packages/repo-tools/generate-catalog-info
+    to: backstage/packages/repo-tools/codeowners
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/generate-catalog-info
-    to: blueprint/packages/repo-tools/utils
+  - from: backstage/packages/repo-tools/generate-catalog-info
+    to: backstage/packages/repo-tools/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/codeowners
-    to: blueprint/packages/repo-tools/utils
+  - from: backstage/packages/repo-tools/codeowners
+    to: backstage/packages/repo-tools/utils
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/type-deps
-    to: blueprint/packages/repo-tools/getpackageexportdetails
+  - from: backstage/packages/repo-tools/type-deps
+    to: backstage/packages/repo-tools/getpackageexportdetails
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/lint
-    to: blueprint/packages/repo-tools/runner
+  - from: backstage/packages/repo-tools/lint
+    to: backstage/packages/repo-tools/runner
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/lint
-    to: blueprint/packages/repo-tools/helpers
+  - from: backstage/packages/repo-tools/lint
+    to: backstage/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/fuzz
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/fuzz
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/fuzz
-    to: blueprint/packages/repo-tools/exec
+  - from: backstage/packages/repo-tools/fuzz
+    to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/verify
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/verify
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/verify
-    to: blueprint/packages/repo-tools/runner
+  - from: backstage/packages/repo-tools/verify
+    to: backstage/packages/repo-tools/runner
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/verify
-    to: blueprint/packages/repo-tools/constants
+  - from: backstage/packages/repo-tools/verify
+    to: backstage/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/verify
-    to: blueprint/packages/repo-tools/helpers
+  - from: backstage/packages/repo-tools/verify
+    to: backstage/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/cli-node/index
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/repo-tools/exec
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/repo-tools/constants
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/repo-tools/util
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/repo-tools/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/fuzz
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/fuzz
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/fuzz
-    to: blueprint/packages/repo-tools/exec
+  - from: backstage/packages/repo-tools/fuzz
+    to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/fuzz
-    to: blueprint/packages/repo-tools/helpers
+  - from: backstage/packages/repo-tools/fuzz
+    to: backstage/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/fuzz
-    to: blueprint/packages/config-loader/index
+  - from: backstage/packages/repo-tools/fuzz
+    to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/repo-tools/exec
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/repo-tools/constants
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/repo-tools/helpers
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/diff
-    to: blueprint/packages/repo-tools/util
+  - from: backstage/packages/repo-tools/diff
+    to: backstage/packages/repo-tools/util
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index-test
-    to: blueprint/packages/backend-test-utils/index
+  - from: backstage/packages/repo-tools/index-test
+    to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: blueprint/packages/repo-tools/client
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/repo-tools/client
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/repo-tools/client
-    to: blueprint/packages/repo-tools/exec
+  - from: backstage/packages/repo-tools/client
+    to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/client
-    to: blueprint/packages/repo-tools/constants
+  - from: backstage/packages/repo-tools/client
+    to: backstage/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/client
-    to: blueprint/packages/repo-tools/dedupe-imports
+  - from: backstage/packages/repo-tools/client
+    to: backstage/packages/repo-tools/dedupe-imports
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/client
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/client
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/client
-    to: blueprint/packages/repo-tools/helpers
+  - from: backstage/packages/repo-tools/client
+    to: backstage/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/client
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/client
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/server
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/server
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/helpers
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/runner
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/runner
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/server
-    to: blueprint/packages/backend-plugin-api/index
+  - from: backstage/packages/repo-tools/server
+    to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: blueprint/packages/repo-tools/server
-    to: blueprint/packages/repo-tools/exec
+  - from: backstage/packages/repo-tools/server
+    to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/server
-    to: blueprint/packages/repo-tools/constants
+  - from: backstage/packages/repo-tools/server
+    to: backstage/packages/repo-tools/constants
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/server
-    to: blueprint/packages/repo-tools/dedupe-imports
+  - from: backstage/packages/repo-tools/server
+    to: backstage/packages/repo-tools/dedupe-imports
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/server
-    to: blueprint/packages/cli-common/index
+  - from: backstage/packages/repo-tools/server
+    to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: blueprint/packages/repo-tools/server
-    to: blueprint/packages/repo-tools/helpers
+  - from: backstage/packages/repo-tools/server
+    to: backstage/packages/repo-tools/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/repo-tools/index
-    to: blueprint/packages/repo-tools/errors
+  - from: backstage/packages/repo-tools/index
+    to: backstage/packages/repo-tools/errors
     type: direct-call
     description: Calls module / service

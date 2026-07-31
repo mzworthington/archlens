@@ -2,7 +2,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/advicelens-stress/composite-risk
+  entityRef: advicelens-stress/composite-risk
   name: AdviceLens - Composite Risk
   description: >
     Classic fan-in on shared Inventory DB with a Payment service that is both a
@@ -11,16 +11,16 @@ metadata:
     surface reduce-composite-risk alongside caller-targeted circuit breakers on
     Orders and Billing.
 nodes:
-  - entityRef: blueprint/advicelens-stress/composite-risk/web
+  - entityRef: advicelens-stress/composite-risk/web
     type: web-app
     name: Web Storefront
-  - entityRef: blueprint/advicelens-stress/composite-risk/mobile
+  - entityRef: advicelens-stress/composite-risk/mobile
     type: mobile-app
     name: Mobile App
-  - entityRef: blueprint/advicelens-stress/composite-risk/api
+  - entityRef: advicelens-stress/composite-risk/api
     type: rest-api
     name: API Gateway
-  - entityRef: blueprint/advicelens-stress/composite-risk/orders
+  - entityRef: advicelens-stress/composite-risk/orders
     type: background-worker
     name: Orders Service
     forensics:
@@ -36,7 +36,7 @@ nodes:
       hotspotScore: 0.42
       classifications: [hotspot]
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/composite-risk/payment
+  - entityRef: advicelens-stress/composite-risk/payment
     type: microservice
     name: Payment Service
     forensics:
@@ -52,7 +52,7 @@ nodes:
       hotspotScore: 0.88
       classifications: [hotspot, knowledge-silo]
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/composite-risk/billing
+  - entityRef: advicelens-stress/composite-risk/billing
     type: background-worker
     name: Billing Worker
     forensics:
@@ -68,28 +68,28 @@ nodes:
       hotspotScore: 0.35
       classifications: []
       sinceDays: 365
-  - entityRef: blueprint/advicelens-stress/composite-risk/inventory
+  - entityRef: advicelens-stress/composite-risk/inventory
     type: database
     name: Inventory Database
 dependencies:
-  - from: blueprint/advicelens-stress/composite-risk/web
-    to: blueprint/advicelens-stress/composite-risk/api
+  - from: advicelens-stress/composite-risk/web
+    to: advicelens-stress/composite-risk/api
     type: direct-call
-  - from: blueprint/advicelens-stress/composite-risk/mobile
-    to: blueprint/advicelens-stress/composite-risk/api
+  - from: advicelens-stress/composite-risk/mobile
+    to: advicelens-stress/composite-risk/api
     type: direct-call
-  - from: blueprint/advicelens-stress/composite-risk/api
-    to: blueprint/advicelens-stress/composite-risk/payment
+  - from: advicelens-stress/composite-risk/api
+    to: advicelens-stress/composite-risk/payment
     type: direct-call
-  - from: blueprint/advicelens-stress/composite-risk/api
-    to: blueprint/advicelens-stress/composite-risk/orders
+  - from: advicelens-stress/composite-risk/api
+    to: advicelens-stress/composite-risk/orders
     type: direct-call
-  - from: blueprint/advicelens-stress/composite-risk/orders
-    to: blueprint/advicelens-stress/composite-risk/inventory
+  - from: advicelens-stress/composite-risk/orders
+    to: advicelens-stress/composite-risk/inventory
     type: direct-call
-  - from: blueprint/advicelens-stress/composite-risk/billing
-    to: blueprint/advicelens-stress/composite-risk/inventory
+  - from: advicelens-stress/composite-risk/billing
+    to: advicelens-stress/composite-risk/inventory
     type: direct-call
-  - from: blueprint/advicelens-stress/composite-risk/payment
-    to: blueprint/advicelens-stress/composite-risk/inventory
+  - from: advicelens-stress/composite-risk/payment
+    to: advicelens-stress/composite-risk/inventory
     type: read-write

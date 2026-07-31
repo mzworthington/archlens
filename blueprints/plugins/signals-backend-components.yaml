@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/signals-backend
+  entityRef: backstage/plugins/signals-backend
   name: Signals-backend Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/signals-backend/index
+  - entityRef: backstage/plugins/signals-backend/index
     type: background-worker
     name: index Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-backend/plugin
+  - entityRef: backstage/plugins/signals-backend/plugin
     type: background-worker
     name: plugin Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-backend/setuptests
+  - entityRef: backstage/plugins/signals-backend/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-backend/signalmanager
+  - entityRef: backstage/plugins/signals-backend/signalmanager
     type: background-worker
     name: SignalManager Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-backend/router
+  - entityRef: backstage/plugins/signals-backend/router
     type: rest-api
     name: router Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-backend/router-test
+  - entityRef: backstage/plugins/signals-backend/router-test
     type: rest-api
     name: router.test Service
     isTest: true
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-backend/signalmanager-test
+  - entityRef: backstage/plugins/signals-backend/signalmanager-test
     type: background-worker
     name: SignalManager.test Service
     isTest: true
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/signals-node/index
+  - entityRef: backstage/plugins/signals-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -259,7 +259,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/events-node/index
+  - entityRef: backstage/plugins/events-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -272,47 +272,47 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: blueprint/plugins/signals-backend/index
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/signals-backend/index
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/signals-backend/plugin
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/signals-backend/plugin
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/signals-backend/plugin
-    to: blueprint/plugins/signals-backend/router
+  - from: backstage/plugins/signals-backend/plugin
+    to: backstage/plugins/signals-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-backend/index
-    to: blueprint/plugins/signals-backend/plugin
+  - from: backstage/plugins/signals-backend/index
+    to: backstage/plugins/signals-backend/plugin
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-backend/signalmanager
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/signals-backend/signalmanager
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/signals-backend/signalmanager
-    to: blueprint/plugins/signals-node/index
+  - from: backstage/plugins/signals-backend/signalmanager
+    to: backstage/plugins/signals-node/index
     type: direct-call
     description: '@backstage/plugin-signals-node'
-  - from: blueprint/plugins/signals-backend/router
-    to: blueprint/plugins/signals-backend/signalmanager
+  - from: backstage/plugins/signals-backend/router
+    to: backstage/plugins/signals-backend/signalmanager
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-backend/router
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/signals-backend/router
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/signals-backend/router-test
-    to: blueprint/plugins/signals-backend/router
+  - from: backstage/plugins/signals-backend/router-test
+    to: backstage/plugins/signals-backend/router
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/signals-backend/signalmanager-test
-    to: blueprint/plugins/events-node/index
+  - from: backstage/plugins/signals-backend/signalmanager-test
+    to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: blueprint/plugins/signals-backend/signalmanager-test
-    to: blueprint/plugins/signals-backend/signalmanager
+  - from: backstage/plugins/signals-backend/signalmanager-test
+    to: backstage/plugins/signals-backend/signalmanager
     type: direct-call
     description: Calls module / service

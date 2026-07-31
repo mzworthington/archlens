@@ -218,4 +218,85 @@ describe('useUrlSync', () => {
     expect(selectSystem).not.toHaveBeenCalled();
     expect(useBlueprintStore.getState().currentFilePath).toBe('context.yaml');
   });
+
+  it('selects the context diagram when the URL names a context but the canvas shows a child estate', async () => {
+    mockLocation = '/workspace/golden-paths';
+    mockRouteParams = { '*': 'golden-paths' };
+
+    const contextSchema = {
+      name: 'Golden Paths',
+      version: '1.0.0',
+      level: 'context' as const,
+      entityRef: 'golden-paths',
+      nodes: [
+        {
+          entityRef: 'golden-paths/golden-journey',
+          type: 'group' as const,
+          name: 'Golden Journey Estate',
+        },
+      ],
+      dependencies: [],
+    };
+    const estateSchema = {
+      name: 'Golden Journey Estate',
+      version: '1.0.0',
+      level: 'container' as const,
+      entityRef: 'golden-paths/golden-journey',
+      nodes: [
+        {
+          entityRef: 'golden-paths/golden-journey/web',
+          type: 'web-app' as const,
+          name: 'Web Storefront',
+        },
+      ],
+      dependencies: [],
+    };
+
+    useBlueprintStore.setState({
+      schema: estateSchema,
+      selectedNodeId: null,
+      currentFilePath: 'golden-journey/containers.yaml',
+      workspaceCatalog: [
+        {
+          path: 'golden-journey/context.yaml',
+          name: 'Golden Paths',
+          level: 'context',
+          entityRef: 'golden-paths',
+          nodeEntityRefs: ['golden-paths/golden-journey'],
+        },
+        {
+          path: 'golden-journey/containers.yaml',
+          name: 'Golden Journey Estate',
+          level: 'container',
+          entityRef: 'golden-paths/golden-journey',
+          nodeEntityRefs: ['golden-paths/golden-journey/web'],
+          parentEntityRef: 'golden-paths',
+        },
+      ],
+      loadedSystems: [
+        {
+          path: 'golden-journey/context.yaml',
+          name: 'Golden Paths',
+          schema: contextSchema,
+        },
+        {
+          path: 'golden-journey/containers.yaml',
+          name: 'Golden Journey Estate',
+          schema: estateSchema,
+        },
+      ],
+      isWorkspaceOpen: false,
+      workspaceName: '',
+      isStartupOpen: false,
+      systemSelectInFlight: null,
+      diagramLoadCount: 0,
+    });
+
+    const selectSystem = vi.spyOn(useBlueprintStore.getState(), 'selectSystem');
+    renderHook(() => useUrlSync());
+
+    await vi.waitFor(() => {
+      expect(selectSystem).toHaveBeenCalledWith('golden-journey/context.yaml');
+    });
+  });
 });

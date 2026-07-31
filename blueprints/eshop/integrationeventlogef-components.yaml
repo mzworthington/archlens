@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/integrationeventlogef
+  entityRef: eshop/integrationeventlogef
   name: IntegrationEventLogEF Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/integrationeventlogef/eventstateenum
+  - entityRef: eshop/integrationeventlogef/eventstateenum
     type: background-worker
     name: EventStateEnum
     isTest: false
@@ -39,7 +39,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/integrationeventlogef/integrationeventlogentry
+  - entityRef: eshop/integrationeventlogef/integrationeventlogentry
     type: background-worker
     name: IntegrationEventLogEntry
     isTest: false
@@ -71,7 +71,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/integrationeventlogef/integrationlogextensions
+  - entityRef: eshop/integrationeventlogef/integrationlogextensions
     type: background-worker
     name: IntegrationLogExtensions
     isTest: false
@@ -103,7 +103,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/integrationeventlogef/utilities
+  - entityRef: eshop/integrationeventlogef/utilities
     type: background-worker
     name: Utilities Layer
     isTest: false
@@ -135,7 +135,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/integrationeventlogef/services
+  - entityRef: eshop/integrationeventlogef/services
     type: background-worker
     name: Services Layer
     isTest: false
@@ -168,7 +168,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.08333333333333333
       sinceDays: 60
-  - entityRef: blueprint/eshop/ordering-infrastructure/orderingcontext
+  - entityRef: eshop/ordering-infrastructure/orderingcontext
     type: relational-database
     name: OrderingContext (External)
     external: true
@@ -181,7 +181,7 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: blueprint/eshop/ordering-infrastructure/orderingcontext
-    to: blueprint/eshop/integrationeventlogef/eventstateenum
+  - from: eshop/ordering-infrastructure/orderingcontext
+    to: eshop/integrationeventlogef/eventstateenum
     type: direct-call
     description: Calls module / service

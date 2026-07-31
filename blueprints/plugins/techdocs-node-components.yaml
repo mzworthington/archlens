@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/techdocs-node
+  entityRef: backstage/plugins/techdocs-node
   name: Techdocs-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/techdocs-node/helpers
+  - entityRef: backstage/plugins/techdocs-node/helpers
     type: background-worker
     name: helpers Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/techdocstypes
+  - entityRef: backstage/plugins/techdocs-node/techdocstypes
     type: background-worker
     name: techdocsTypes Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/preparers
+  - entityRef: backstage/plugins/techdocs-node/preparers
     type: background-worker
     name: preparers Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/url
+  - entityRef: backstage/plugins/techdocs-node/url
     type: background-worker
     name: url Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/types
+  - entityRef: backstage/plugins/techdocs-node/types
     type: rest-api
     name: types Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/index
+  - entityRef: backstage/plugins/techdocs-node/index
     type: background-worker
     name: index Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/dir
+  - entityRef: backstage/plugins/techdocs-node/dir
     type: background-worker
     name: dir Service
     isTest: false
@@ -247,7 +247,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/dir-test
+  - entityRef: backstage/plugins/techdocs-node/dir-test
     type: background-worker
     name: dir.test Service
     isTest: true
@@ -281,7 +281,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/publish
+  - entityRef: backstage/plugins/techdocs-node/publish
     type: background-worker
     name: publish Service
     isTest: false
@@ -315,7 +315,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/publish-test
+  - entityRef: backstage/plugins/techdocs-node/publish-test
     type: background-worker
     name: publish.test Service
     isTest: true
@@ -349,7 +349,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/googlemigration
+  - entityRef: backstage/plugins/techdocs-node/googlemigration
     type: background-worker
     name: GoogleMigration Service
     isTest: false
@@ -383,7 +383,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/local-test
+  - entityRef: backstage/plugins/techdocs-node/local-test
     type: rest-api
     name: local.test Service
     isTest: true
@@ -417,7 +417,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/openstackswift-test
+  - entityRef: backstage/plugins/techdocs-node/openstackswift-test
     type: rest-api
     name: openStackSwift.test Service
     isTest: true
@@ -451,7 +451,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/awss3
+  - entityRef: backstage/plugins/techdocs-node/awss3
     type: rest-api
     name: awsS3 Service
     isTest: false
@@ -485,7 +485,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/googlestorage
+  - entityRef: backstage/plugins/techdocs-node/googlestorage
     type: rest-api
     name: googleStorage Service
     isTest: false
@@ -519,7 +519,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/awss3-test
+  - entityRef: backstage/plugins/techdocs-node/awss3-test
     type: rest-api
     name: awsS3.test Service
     isTest: true
@@ -558,7 +558,7 @@ nodes:
           commits: 1
       hotspotScore: 0.10285664894766411
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/azureblobstorage-test
+  - entityRef: backstage/plugins/techdocs-node/azureblobstorage-test
     type: rest-api
     name: azureBlobStorage.test Service
     isTest: true
@@ -592,7 +592,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/googlestorage-test
+  - entityRef: backstage/plugins/techdocs-node/googlestorage-test
     type: rest-api
     name: googleStorage.test Service
     isTest: true
@@ -626,7 +626,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/local
+  - entityRef: backstage/plugins/techdocs-node/local
     type: rest-api
     name: local Service
     isTest: false
@@ -660,7 +660,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/helpers-test
+  - entityRef: backstage/plugins/techdocs-node/helpers-test
     type: background-worker
     name: helpers.test Service
     isTest: true
@@ -694,7 +694,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/openstackswift
+  - entityRef: backstage/plugins/techdocs-node/openstackswift
     type: rest-api
     name: openStackSwift Service
     isTest: false
@@ -728,7 +728,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/azureblobstorage
+  - entityRef: backstage/plugins/techdocs-node/azureblobstorage
     type: rest-api
     name: azureBlobStorage Service
     isTest: false
@@ -762,7 +762,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/techdocs-test
+  - entityRef: backstage/plugins/techdocs-node/techdocs-test
     type: background-worker
     name: techdocs.test Service
     isTest: true
@@ -796,7 +796,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/generators
+  - entityRef: backstage/plugins/techdocs-node/generators
     type: background-worker
     name: generators Service
     isTest: false
@@ -830,7 +830,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/techdocs
+  - entityRef: backstage/plugins/techdocs-node/techdocs
     type: background-worker
     name: techdocs Service
     isTest: false
@@ -864,7 +864,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/dockercontainerrunner
+  - entityRef: backstage/plugins/techdocs-node/dockercontainerrunner
     type: background-worker
     name: DockerContainerRunner Service
     isTest: false
@@ -898,7 +898,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/generators-test
+  - entityRef: backstage/plugins/techdocs-node/generators-test
     type: background-worker
     name: generators.test Service
     isTest: true
@@ -932,7 +932,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/dockercontainerrunner-test
+  - entityRef: backstage/plugins/techdocs-node/dockercontainerrunner-test
     type: background-worker
     name: DockerContainerRunner.test Service
     isTest: true
@@ -966,7 +966,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/mkdocspatchers
+  - entityRef: backstage/plugins/techdocs-node/mkdocspatchers
     type: background-worker
     name: mkdocsPatchers Service
     isTest: false
@@ -1000,7 +1000,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-node/extensions
+  - entityRef: backstage/plugins/techdocs-node/extensions
     type: background-worker
     name: extensions Service
     isTest: false
@@ -1034,7 +1034,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/techdocs-backend/builder
+  - entityRef: backstage/plugins/techdocs-backend/builder
     type: background-worker
     name: builder Service (External)
     external: true
@@ -1046,7 +1046,7 @@ nodes:
     position:
       x: -590
       y: -204
-  - entityRef: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
+  - entityRef: backstage/plugins/techdocs-backend/defaultdocsbuildstrategy
     type: background-worker
     name: DefaultDocsBuildStrategy Service (External)
     external: true
@@ -1058,7 +1058,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
     type: background-worker
     name: DefaultTechDocsCollatorFactory Service (External)
     external: true
@@ -1070,7 +1070,7 @@ nodes:
     position:
       x: -1970
       y: -204
-  - entityRef: blueprint/plugins/techdocs-backend/docssynchronizer
+  - entityRef: backstage/plugins/techdocs-backend/docssynchronizer
     type: background-worker
     name: DocsSynchronizer Service (External)
     external: true
@@ -1082,7 +1082,7 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: blueprint/plugins/techdocs-backend/docssynchronizer-test
+  - entityRef: backstage/plugins/techdocs-backend/docssynchronizer-test
     type: background-worker
     name: DocsSynchronizer.test Service (External)
     external: true
@@ -1094,7 +1094,7 @@ nodes:
     position:
       x: 790
       y: -204
-  - entityRef: blueprint/plugins/techdocs-common/index
+  - entityRef: backstage/plugins/techdocs-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1106,7 +1106,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1118,7 +1118,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/plugins/catalog-backend/migrations
+  - entityRef: backstage/plugins/catalog-backend/migrations
     type: relational-database
     name: migrations Service (External)
     external: true
@@ -1130,7 +1130,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/plugins/techdocs-backend/plugin
+  - entityRef: backstage/plugins/techdocs-backend/plugin
     type: background-worker
     name: plugin Service (External)
     external: true
@@ -1142,7 +1142,7 @@ nodes:
     position:
       x: 1250
       y: -204
-  - entityRef: blueprint/plugins/techdocs-backend/router
+  - entityRef: backstage/plugins/techdocs-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -1154,7 +1154,7 @@ nodes:
     position:
       x: 1710
       y: -204
-  - entityRef: blueprint/plugins/techdocs-backend/router-test
+  - entityRef: backstage/plugins/techdocs-backend/router-test
     type: rest-api
     name: router.test Service (External)
     external: true
@@ -1166,7 +1166,7 @@ nodes:
     position:
       x: 2170
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/techdocscollatordocumenttransformer
+  - entityRef: backstage/plugins/search-backend-module-techdocs/techdocscollatordocumenttransformer
     type: background-worker
     name: TechDocsCollatorDocumentTransformer Service (External)
     external: true
@@ -1178,7 +1178,7 @@ nodes:
     position:
       x: -1510
       y: -204
-  - entityRef: blueprint/plugins/search-backend-module-techdocs/techdocscollatorentitytransformer
+  - entityRef: backstage/plugins/search-backend-module-techdocs/techdocscollatorentitytransformer
     type: background-worker
     name: TechDocsCollatorEntityTransformer Service (External)
     external: true
@@ -1191,395 +1191,395 @@ nodes:
       x: -1050
       y: -204
 dependencies:
-  - from: blueprint/plugins/search-backend-module-techdocs/techdocscollatorentitytransformer
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/search-backend-module-techdocs/techdocscollatorentitytransformer
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/search-backend-module-techdocs/defaulttechdocscollatorfactory
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/search-backend-module-techdocs/techdocscollatordocumenttransformer
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/search-backend-module-techdocs/techdocscollatordocumenttransformer
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/plugin
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/plugin
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/builder
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/builder
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/router
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/router
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/router-test
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/router-test
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/docssynchronizer
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/docssynchronizer-test
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/docssynchronizer-test
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-backend/defaultdocsbuildstrategy
-    to: blueprint/plugins/techdocs-node/index
+  - from: backstage/plugins/techdocs-backend/defaultdocsbuildstrategy
+    to: backstage/plugins/techdocs-node/index
     type: direct-call
     description: '@backstage/plugin-techdocs-node'
-  - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/helpers
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/helpers
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocstypes
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/techdocs-node/techdocstypes
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/techdocs-node/preparers
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/preparers
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/preparers
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/preparers
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/preparers
-    to: blueprint/plugins/techdocs-node/dir
+  - from: backstage/plugins/techdocs-node/preparers
+    to: backstage/plugins/techdocs-node/dir
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/preparers
-    to: blueprint/plugins/techdocs-node/url
+  - from: backstage/plugins/techdocs-node/preparers
+    to: backstage/plugins/techdocs-node/url
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/preparers
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/preparers
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/url
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/url
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/url
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/url
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/dir
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/dir
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/url
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/url
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/preparers
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/preparers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dir
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/dir
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/dir
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/dir
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dir
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/dir
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dir-test
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/dir-test
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/dir-test
-    to: blueprint/plugins/techdocs-node/dir
+  - from: backstage/plugins/techdocs-node/dir-test
+    to: backstage/plugins/techdocs-node/dir
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish
-    to: blueprint/plugins/techdocs-node/awss3
+  - from: backstage/plugins/techdocs-node/publish
+    to: backstage/plugins/techdocs-node/awss3
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish
-    to: blueprint/plugins/techdocs-node/azureblobstorage
+  - from: backstage/plugins/techdocs-node/publish
+    to: backstage/plugins/techdocs-node/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish
-    to: blueprint/plugins/techdocs-node/googlestorage
+  - from: backstage/plugins/techdocs-node/publish
+    to: backstage/plugins/techdocs-node/googlestorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish
-    to: blueprint/plugins/techdocs-node/local
+  - from: backstage/plugins/techdocs-node/publish
+    to: backstage/plugins/techdocs-node/local
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish
-    to: blueprint/plugins/techdocs-node/openstackswift
+  - from: backstage/plugins/techdocs-node/publish
+    to: backstage/plugins/techdocs-node/openstackswift
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/publish
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish-test
-    to: blueprint/plugins/techdocs-node/publish
+  - from: backstage/plugins/techdocs-node/publish-test
+    to: backstage/plugins/techdocs-node/publish
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish-test
-    to: blueprint/plugins/techdocs-node/local
+  - from: backstage/plugins/techdocs-node/publish-test
+    to: backstage/plugins/techdocs-node/local
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish-test
-    to: blueprint/plugins/techdocs-node/googlestorage
+  - from: backstage/plugins/techdocs-node/publish-test
+    to: backstage/plugins/techdocs-node/googlestorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish-test
-    to: blueprint/plugins/techdocs-node/awss3
+  - from: backstage/plugins/techdocs-node/publish-test
+    to: backstage/plugins/techdocs-node/awss3
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish-test
-    to: blueprint/plugins/techdocs-node/azureblobstorage
+  - from: backstage/plugins/techdocs-node/publish-test
+    to: backstage/plugins/techdocs-node/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish-test
-    to: blueprint/plugins/techdocs-node/openstackswift
+  - from: backstage/plugins/techdocs-node/publish-test
+    to: backstage/plugins/techdocs-node/openstackswift
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/publish-test
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/publish-test
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/googlemigration
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/googlemigration
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/googlemigration
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/googlemigration
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/local-test
-    to: blueprint/plugins/techdocs-node/local
+  - from: backstage/plugins/techdocs-node/local-test
+    to: backstage/plugins/techdocs-node/local
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/openstackswift-test
-    to: blueprint/plugins/techdocs-node/openstackswift
+  - from: backstage/plugins/techdocs-node/openstackswift-test
+    to: backstage/plugins/techdocs-node/openstackswift
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/openstackswift-test
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/openstackswift-test
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/awss3
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/awss3
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/googlestorage
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/googlestorage
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/googlestorage
-    to: blueprint/plugins/catalog-backend/migrations
+  - from: backstage/plugins/techdocs-node/googlestorage
+    to: backstage/plugins/catalog-backend/migrations
     type: read-write
     description: Queries datastore records
-  - from: blueprint/plugins/techdocs-node/googlestorage
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/googlestorage
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/awss3-test
-    to: blueprint/plugins/techdocs-node/awss3
+  - from: backstage/plugins/techdocs-node/awss3-test
+    to: backstage/plugins/techdocs-node/awss3
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/azureblobstorage-test
-    to: blueprint/plugins/techdocs-node/azureblobstorage
+  - from: backstage/plugins/techdocs-node/azureblobstorage-test
+    to: backstage/plugins/techdocs-node/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/googlestorage-test
-    to: blueprint/plugins/techdocs-node/googlestorage
+  - from: backstage/plugins/techdocs-node/googlestorage-test
+    to: backstage/plugins/techdocs-node/googlestorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/local
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/local
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/local
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/local
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/helpers-test
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/publish
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/publish
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/openstackswift
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/openstackswift
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/openstackswift
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/openstackswift
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/azureblobstorage
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/azureblobstorage
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/azureblobstorage
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/azureblobstorage
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs-test
-    to: blueprint/plugins/techdocs-node/techdocs
+  - from: backstage/plugins/techdocs-node/techdocs-test
+    to: backstage/plugins/techdocs-node/techdocs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/helpers
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/generators
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/generators
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/generators
-    to: blueprint/plugins/techdocs-node/techdocs
+  - from: backstage/plugins/techdocs-node/generators
+    to: backstage/plugins/techdocs-node/techdocs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/generators
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/generators
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/generators
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/generators
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/types
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/types
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/techdocs
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/techdocs-node/mkdocspatchers
+  - from: backstage/plugins/techdocs-node/techdocs
+    to: backstage/plugins/techdocs-node/mkdocspatchers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/techdocs
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/techdocs-node/dockercontainerrunner
+  - from: backstage/plugins/techdocs-node/techdocs
+    to: backstage/plugins/techdocs-node/dockercontainerrunner
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/techdocs
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/techdocs
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/helpers-test
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/helpers-test
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/techdocs-node/mkdocspatchers
+  - from: backstage/plugins/techdocs-node/helpers-test
+    to: backstage/plugins/techdocs-node/mkdocspatchers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/techdocs
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/techdocs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/generators
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/generators
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dockercontainerrunner
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/dockercontainerrunner
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/generators-test
-    to: blueprint/plugins/techdocs-node/generators
+  - from: backstage/plugins/techdocs-node/generators-test
+    to: backstage/plugins/techdocs-node/generators
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/generators-test
-    to: blueprint/plugins/techdocs-node/techdocs
+  - from: backstage/plugins/techdocs-node/generators-test
+    to: backstage/plugins/techdocs-node/techdocs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/dockercontainerrunner-test
-    to: blueprint/plugins/techdocs-node/dockercontainerrunner
+  - from: backstage/plugins/techdocs-node/dockercontainerrunner-test
+    to: backstage/plugins/techdocs-node/dockercontainerrunner
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/mkdocspatchers
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/mkdocspatchers
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/mkdocspatchers
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/mkdocspatchers
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/publish
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/publish
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/extensions
-    to: blueprint/plugins/techdocs-node/techdocstypes
+  - from: backstage/plugins/techdocs-node/extensions
+    to: backstage/plugins/techdocs-node/techdocstypes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/extensions
-    to: blueprint/plugins/techdocs-node/types
+  - from: backstage/plugins/techdocs-node/extensions
+    to: backstage/plugins/techdocs-node/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/techdocs-common/index
+  - from: backstage/plugins/techdocs-node/helpers-test
+    to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'
-  - from: blueprint/plugins/techdocs-node/helpers-test
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/helpers-test
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/helpers
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/helpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/techdocstypes
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/techdocstypes
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/techdocs-node/index
-    to: blueprint/plugins/techdocs-node/extensions
+  - from: backstage/plugins/techdocs-node/index
+    to: backstage/plugins/techdocs-node/extensions
     type: direct-call
     description: Calls module / service

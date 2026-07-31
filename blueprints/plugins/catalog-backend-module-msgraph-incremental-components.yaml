@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental
+  entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental
   name: Catalog-backend-module-msgraph-incremental Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
     type: background-worker
     name: clientHelpers.test Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
     type: background-worker
     name: clientHelpers Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/alpha
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/alpha
     type: background-worker
     name: alpha Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
     type: background-worker
     name: catalogModuleMicrosoftGraphIncrementalEntityProvider Service
     isTest: false
@@ -146,7 +146,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/index
     type: background-worker
     name: index Service
     isTest: false
@@ -181,7 +181,7 @@ nodes:
       hotspotScore: 0
       sinceDays: 60
   - entityRef: >-
-      blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
+      backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
     type: background-worker
     name: catalogModuleMicrosoftGraphIncrementalEntityProvider.test Service
     isTest: true
@@ -216,7 +216,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
     type: background-worker
     name: MicrosoftGraphIncrementalEntityProvider.test Service
     isTest: true
@@ -250,7 +250,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: background-worker
     name: MicrosoftGraphIncrementalEntityProvider Service
     isTest: false
@@ -284,7 +284,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/catalog-backend-module-msgraph/index
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -296,7 +296,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -308,7 +308,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/catalog-node/index
+  - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -320,7 +320,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
     external: true
@@ -333,90 +333,90 @@ nodes:
       x: -590
       y: 404
 dependencies:
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
-    to: blueprint/plugins/catalog-backend-module-msgraph/index
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
+    to: backstage/plugins/catalog-backend-module-msgraph/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-msgraph'
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
-    to: blueprint/plugins/catalog-backend-module-msgraph/index
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
+    to: backstage/plugins/catalog-backend-module-msgraph/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-msgraph'
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
-    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
-    to: blueprint/plugins/catalog-backend-module-msgraph/index
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-backend-module-msgraph/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-msgraph'
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
   - from: >-
-      blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+      backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
   - from: >-
-      blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+      backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
   - from: >-
-      blueprint/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+      backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/index
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-msgraph/index
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
+    to: backstage/plugins/catalog-backend-module-msgraph/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-msgraph'
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
-    to: blueprint/plugins/catalog-backend-module-incremental-ingestion/index
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
-    to: blueprint/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
-    to: blueprint/plugins/catalog-backend-module-msgraph/index
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-backend-module-msgraph/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-msgraph'
-  - from: blueprint/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
-    to: blueprint/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
     type: direct-call
     description: Calls module / service

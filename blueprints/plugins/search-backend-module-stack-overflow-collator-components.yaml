@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator
+  entityRef: backstage/plugins/search-backend-module-stack-overflow-collator
   name: Search-backend-module-stack-overflow-collator Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/config-d
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/config-d
     type: background-worker
     name: config.d Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
     type: background-worker
     name: SearchStackOverflowCollatorModule Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
     type: background-worker
     name: SearchStackOverflowCollatorModule.test Service
     isTest: true
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/index
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/index
     type: background-worker
     name: index Service
     isTest: false
@@ -145,7 +145,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
     type: background-worker
     name: StackOverflowQuestionsCollatorFactory Service
     isTest: false
@@ -179,7 +179,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
     type: background-worker
     name: StackOverflowQuestionsCollatorFactory.test Service
     isTest: true
@@ -214,7 +214,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/search-backend-node/alpha
+  - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
     name: alpha Service (External)
     external: true
@@ -226,7 +226,7 @@ nodes:
     position:
       x: -130
       y: 404
-  - entityRef: blueprint/plugins/search-common/index
+  - entityRef: backstage/plugins/search-common/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -238,7 +238,7 @@ nodes:
     position:
       x: 790
       y: 404
-  - entityRef: blueprint/plugins/search-backend-node/index
+  - entityRef: backstage/plugins/search-backend-node/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -250,7 +250,7 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: background-worker
     name: module Service (External)
     external: true
@@ -263,39 +263,39 @@ nodes:
       x: -590
       y: 404
 dependencies:
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
-    to: blueprint/plugins/search-backend-node/alpha
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+    to: backstage/plugins/search-backend-node/alpha
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
-    to: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule-test
+    to: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
-    to: blueprint/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/index
+    to: backstage/plugins/search-backend-module-stack-overflow-collator/searchstackoverflowcollatormodule
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
-    to: blueprint/plugins/auth-backend-module-cloudflare-access-provider/module
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
-    to: blueprint/plugins/search-common/index
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+    to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
-    to: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+    to: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
-    to: blueprint/plugins/search-backend-node/index
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory-test
+    to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: blueprint/plugins/search-backend-module-stack-overflow-collator/index
-    to: blueprint/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/index
+    to: backstage/plugins/search-backend-module-stack-overflow-collator/stackoverflowquestionscollatorfactory
     type: direct-call
     description: Calls module / service

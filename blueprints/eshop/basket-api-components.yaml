@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/eshop/basket-api
+  entityRef: eshop/basket-api
   name: Basket.API Service Components
   source:
     remoteUrl: https://github.com/dotnet/eShop
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
     scanRoot: .
 nodes:
-  - entityRef: blueprint/eshop/basket-api/grpc
+  - entityRef: eshop/basket-api/grpc
     type: background-worker
     name: Grpc Layer
     isTest: false
@@ -42,7 +42,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.125
       sinceDays: 60
-  - entityRef: blueprint/eshop/basket-api/repositories
+  - entityRef: eshop/basket-api/repositories
     type: relational-database
     name: Repositories Layer
     isTest: false
@@ -75,7 +75,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0.08333333333333333
       sinceDays: 60
-  - entityRef: blueprint/eshop/basket-api/extensions
+  - entityRef: eshop/basket-api/extensions
     type: background-worker
     name: Extensions Layer
     isTest: false
@@ -107,7 +107,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/basket-api/model
+  - entityRef: eshop/basket-api/model
     type: background-worker
     name: Model Layer
     isTest: false
@@ -139,7 +139,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/basket-api/integrationevents
+  - entityRef: eshop/basket-api/integrationevents
     type: event-broker
     name: IntegrationEvents Layer
     isTest: false
@@ -169,7 +169,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/basket-api/program
+  - entityRef: eshop/basket-api/program
     type: background-worker
     name: Program
     isTest: false
@@ -199,7 +199,7 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/eshop/basket-unittests/basketservicetests
+  - entityRef: eshop/basket-unittests/basketservicetests
     type: background-worker
     name: BasketServiceTests (External)
     external: true
@@ -211,7 +211,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/eshop/webapp/extensions
+  - entityRef: eshop/webapp/extensions
     type: rest-api
     name: Extensions Layer (External)
     external: true
@@ -223,7 +223,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/eshop/webapp/services
+  - entityRef: eshop/webapp/services
     type: rest-api
     name: Services Layer (External)
     external: true
@@ -236,51 +236,51 @@ nodes:
       x: 560
       y: -204
 dependencies:
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/repositories
+  - from: eshop/basket-unittests/basketservicetests
+    to: eshop/basket-api/repositories
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/grpc
+  - from: eshop/basket-unittests/basketservicetests
+    to: eshop/basket-api/grpc
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/basket-unittests/basketservicetests
-    to: blueprint/eshop/basket-api/model
+  - from: eshop/basket-unittests/basketservicetests
+    to: eshop/basket-api/model
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/basket-api/grpc
-    to: blueprint/eshop/basket-api/repositories
+  - from: eshop/basket-api/grpc
+    to: eshop/basket-api/repositories
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/basket-api/grpc
-    to: blueprint/eshop/basket-api/extensions
+  - from: eshop/basket-api/grpc
+    to: eshop/basket-api/extensions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/basket-api/grpc
-    to: blueprint/eshop/basket-api/model
+  - from: eshop/basket-api/grpc
+    to: eshop/basket-api/model
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/basket-api/repositories
-    to: blueprint/eshop/basket-api/model
+  - from: eshop/basket-api/repositories
+    to: eshop/basket-api/model
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/basket-api/extensions
-    to: blueprint/eshop/basket-api/repositories
+  - from: eshop/basket-api/extensions
+    to: eshop/basket-api/repositories
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/basket-api/extensions
-    to: blueprint/eshop/basket-api/integrationevents
+  - from: eshop/basket-api/extensions
+    to: eshop/basket-api/integrationevents
     type: publish-subscribe
     description: Publishes / consumes messaging topics
-  - from: blueprint/eshop/basket-api/integrationevents
-    to: blueprint/eshop/basket-api/repositories
+  - from: eshop/basket-api/integrationevents
+    to: eshop/basket-api/repositories
     type: read-write
     description: Queries datastore records
-  - from: blueprint/eshop/webapp/extensions
-    to: blueprint/eshop/basket-api/grpc
+  - from: eshop/webapp/extensions
+    to: eshop/basket-api/grpc
     type: direct-call
     description: Calls module / service
-  - from: blueprint/eshop/webapp/services
-    to: blueprint/eshop/basket-api/grpc
+  - from: eshop/webapp/services
+    to: eshop/basket-api/grpc
     type: direct-call
     description: Calls module / service

@@ -22,7 +22,7 @@ const boundary: RefactorBoundary = {
 const offender = {
   entityRef: 'svc/a',
   schemaPath: 'svc-components.yaml',
-  diagramEntityRef: 'blueprint/svc',
+  diagramEntityRef: 'application/svc',
 } as RankedOffender;
 
 describe('applyRefactorPlanAsDraft', () => {
@@ -43,7 +43,7 @@ describe('applyRefactorPlanAsDraft', () => {
 
     expect(result).toEqual({ ok: true });
     expect(selectSystem).toHaveBeenCalledWith('svc-components.yaml');
-    expect(setLocation).toHaveBeenCalledWith('/workspace/blueprint/svc');
+    expect(setLocation).toHaveBeenCalledWith('/workspace/application/svc');
     expect(setIsDiffOpen).toHaveBeenCalledWith(true);
   });
 

@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/proxy-node
+  entityRef: backstage/plugins/proxy-node
   name: Proxy-node Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/proxy-node/index
+  - entityRef: backstage/plugins/proxy-node/index
     type: background-worker
     name: index Service
     isTest: false
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/proxy-backend/index
+  - entityRef: backstage/plugins/proxy-backend/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -55,7 +55,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/plugins/proxy-backend/plugin
+  - entityRef: backstage/plugins/proxy-backend/plugin
     type: background-worker
     name: plugin Service (External)
     external: true
@@ -67,7 +67,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/plugins/proxy-backend/router
+  - entityRef: backstage/plugins/proxy-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -80,15 +80,15 @@ nodes:
       x: 560
       y: -204
 dependencies:
-  - from: blueprint/plugins/proxy-backend/index
-    to: blueprint/plugins/proxy-node/alpha
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-node/alpha
     type: direct-call
     description: '@backstage/plugin-proxy-node'
-  - from: blueprint/plugins/proxy-backend/plugin
-    to: blueprint/plugins/proxy-node/alpha
+  - from: backstage/plugins/proxy-backend/plugin
+    to: backstage/plugins/proxy-node/alpha
     type: direct-call
     description: '@backstage/plugin-proxy-node'
-  - from: blueprint/plugins/proxy-backend/router
-    to: blueprint/plugins/proxy-node/alpha
+  - from: backstage/plugins/proxy-backend/router
+    to: backstage/plugins/proxy-node/alpha
     type: direct-call
     description: '@backstage/plugin-proxy-node'

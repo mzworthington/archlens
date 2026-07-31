@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: blueprint/aws-domain-redirect
+  entityRef: infrastructure/aws-domain-redirect
   name: Aws-domain-redirect Infrastructure
   source:
     scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/futurice/terraform-examples
     defaultBranch: master
 nodes:
-  - entityRef: blueprint/aws-domain-redirect/module-aws-reverse-proxy
+  - entityRef: infrastructure/aws-domain-redirect/module-aws-reverse-proxy
     type: container
     name: module.aws-reverse-proxy
     external: true

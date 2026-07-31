@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/plugins/user-settings-common
+  entityRef: backstage/plugins/user-settings-common
   name: User-settings-common Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/plugins/user-settings-common/setuptests
+  - entityRef: backstage/plugins/user-settings-common/setuptests
     type: background-worker
     name: setupTests Service
     isTest: true
@@ -43,7 +43,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings-common/types
+  - entityRef: backstage/plugins/user-settings-common/types
     type: background-worker
     name: types Service
     isTest: false
@@ -77,7 +77,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings-common/index
+  - entityRef: backstage/plugins/user-settings-common/index
     type: background-worker
     name: index Service
     isTest: false
@@ -111,7 +111,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/plugins/user-settings-backend/router
+  - entityRef: backstage/plugins/user-settings-backend/router
     type: rest-api
     name: router Service (External)
     external: true
@@ -123,7 +123,7 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: blueprint/plugins/user-settings/usersettingsstorage
+  - entityRef: backstage/plugins/user-settings/usersettingsstorage
     type: gateway-api
     name: UserSettingsStorage Service (External)
     external: true
@@ -136,15 +136,15 @@ nodes:
       x: 330
       y: -204
 dependencies:
-  - from: blueprint/plugins/user-settings/usersettingsstorage
-    to: blueprint/plugins/user-settings-common/index
+  - from: backstage/plugins/user-settings/usersettingsstorage
+    to: backstage/plugins/user-settings-common/index
     type: direct-call
     description: '@backstage/plugin-user-settings-common'
-  - from: blueprint/plugins/user-settings-common/index
-    to: blueprint/plugins/user-settings-common/types
+  - from: backstage/plugins/user-settings-common/index
+    to: backstage/plugins/user-settings-common/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/plugins/user-settings-backend/router
-    to: blueprint/plugins/user-settings-common/index
+  - from: backstage/plugins/user-settings-backend/router
+    to: backstage/plugins/user-settings-common/index
     type: direct-call
     description: '@backstage/plugin-user-settings-common'

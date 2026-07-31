@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: blueprint/packages/connections
+  entityRef: backstage/packages/connections
   name: Connections Service Components
   source:
     remoteUrl: https://github.com/backstage/backstage
@@ -9,7 +9,7 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: blueprint/packages/connections/gitea
+  - entityRef: backstage/packages/connections/gitea
     type: background-worker
     name: gitea Service
     isTest: false
@@ -64,7 +64,7 @@ nodes:
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/github
+  - entityRef: backstage/packages/connections/github
     type: background-worker
     name: github Service
     isTest: false
@@ -103,7 +103,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0031332382557586755
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/awss3
+  - entityRef: backstage/packages/connections/awss3
     type: background-worker
     name: awsS3 Service
     isTest: false
@@ -139,7 +139,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0005510177622196292
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/github-test
+  - entityRef: backstage/packages/connections/github-test
     type: background-worker
     name: github.test Service
     isTest: true
@@ -177,7 +177,7 @@ nodes:
           commits: 1
       hotspotScore: 0.002630839707852543
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/awscodecommit
+  - entityRef: backstage/packages/connections/awscodecommit
     type: background-worker
     name: awsCodeCommit Service
     isTest: false
@@ -213,7 +213,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0005672241669907947
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/gerrit
+  - entityRef: backstage/packages/connections/gerrit
     type: background-worker
     name: gerrit Service
     isTest: false
@@ -268,7 +268,7 @@ nodes:
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/googlegcs
+  - entityRef: backstage/packages/connections/googlegcs
     type: background-worker
     name: googleGcs Service
     isTest: false
@@ -304,7 +304,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0004429750637451921
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/bitbucketserver
+  - entityRef: backstage/packages/connections/bitbucketserver
     type: background-worker
     name: bitbucketServer Service
     isTest: false
@@ -359,7 +359,7 @@ nodes:
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/azure
+  - entityRef: backstage/packages/connections/azure
     type: background-worker
     name: azure Service
     isTest: false
@@ -411,7 +411,7 @@ nodes:
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/gitlab
+  - entityRef: backstage/packages/connections/gitlab
     type: background-worker
     name: gitlab Service
     isTest: false
@@ -466,7 +466,7 @@ nodes:
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/bitbucketcloud
+  - entityRef: backstage/packages/connections/bitbucketcloud
     type: background-worker
     name: bitbucketCloud Service
     isTest: false
@@ -521,7 +521,7 @@ nodes:
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/harness
+  - entityRef: backstage/packages/connections/harness
     type: background-worker
     name: harness Service
     isTest: false
@@ -573,7 +573,7 @@ nodes:
           score: 0.8333333333333334
           sharedCommits: 5
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/awscodecommit-test
+  - entityRef: backstage/packages/connections/awscodecommit-test
     type: background-worker
     name: awsCodeCommit.test Service
     isTest: true
@@ -607,7 +607,7 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/azureblobstorage
+  - entityRef: backstage/packages/connections/azureblobstorage
     type: background-worker
     name: azureBlobStorage Service
     isTest: false
@@ -643,7 +643,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0007130818099312849
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/createconnectiontype-test
+  - entityRef: backstage/packages/connections/createconnectiontype-test
     type: background-worker
     name: createConnectionType.test Service
     isTest: true
@@ -682,7 +682,7 @@ nodes:
           commits: 1
       hotspotScore: 0.007595401702752928
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/createconnectiontype
+  - entityRef: backstage/packages/connections/createconnectiontype
     type: background-worker
     name: createConnectionType Service
     isTest: false
@@ -721,7 +721,7 @@ nodes:
           commits: 1
       hotspotScore: 0.009010761052768053
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/connectionsservice
+  - entityRef: backstage/packages/connections/connectionsservice
     type: rest-api
     name: ConnectionsService Service
     isTest: false
@@ -757,7 +757,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0005510177622196292
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/connection
+  - entityRef: backstage/packages/connections/connection
     type: rest-api
     name: Connection Service
     isTest: false
@@ -793,7 +793,7 @@ nodes:
           commits: 1
       hotspotScore: 0.001707074635896106
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/connectiontype
+  - entityRef: backstage/packages/connections/connectiontype
     type: rest-api
     name: ConnectionType Service
     isTest: false
@@ -829,7 +829,7 @@ nodes:
           commits: 1
       hotspotScore: 0.002511992739530662
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/index
+  - entityRef: backstage/packages/connections/index
     type: rest-api
     name: index Service
     isTest: false
@@ -865,7 +865,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0003187259604995894
       sinceDays: 60
-  - entityRef: blueprint/packages/connections/types
+  - entityRef: backstage/packages/connections/types
     type: background-worker
     name: types Service
     isTest: false
@@ -903,7 +903,7 @@ nodes:
           commits: 1
       hotspotScore: 0.0010264056355071523
       sinceDays: 60
-  - entityRef: blueprint/packages/backend-app-api/backendinitializer
+  - entityRef: backstage/packages/backend-app-api/backendinitializer
     type: background-worker
     name: BackendInitializer Service (External)
     external: true
@@ -915,7 +915,7 @@ nodes:
     position:
       x: -3580
       y: -204
-  - entityRef: blueprint/packages/integration/creategithubcredentialsproviderfromconnection
+  - entityRef: backstage/packages/integration/creategithubcredentialsproviderfromconnection
     type: background-worker
     name: createGitHubCredentialsProviderFromConnection Service (External)
     external: true
@@ -927,7 +927,7 @@ nodes:
     position:
       x: 560
       y: -204
-  - entityRef: blueprint/packages/connections-node/defaultconnectionsservice
+  - entityRef: backstage/packages/connections-node/defaultconnectionsservice
     type: background-worker
     name: DefaultConnectionsService Service (External)
     external: true
@@ -939,7 +939,7 @@ nodes:
     position:
       x: -2660
       y: -204
-  - entityRef: blueprint/packages/integration/defaultgithubcredentialsprovider
+  - entityRef: backstage/packages/integration/defaultgithubcredentialsprovider
     type: background-worker
     name: DefaultGithubCredentialsProvider Service (External)
     external: true
@@ -951,7 +951,7 @@ nodes:
     position:
       x: 1020
       y: -204
-  - entityRef: blueprint/packages/integration/defaultgithubcredentialsprovider-test
+  - entityRef: backstage/packages/integration/defaultgithubcredentialsprovider-test
     type: background-worker
     name: DefaultGithubCredentialsProvider.test Service (External)
     external: true
@@ -963,7 +963,7 @@ nodes:
     position:
       x: 1480
       y: -204
-  - entityRef: blueprint/packages/ui/definitions
+  - entityRef: backstage/packages/ui/definitions
     type: background-worker
     name: definitions Service (External)
     external: true
@@ -975,7 +975,7 @@ nodes:
     position:
       x: 560
       y: 404
-  - entityRef: blueprint/packages/connections-node/getlegacyintegrations-test
+  - entityRef: backstage/packages/connections-node/getlegacyintegrations-test
     type: background-worker
     name: getLegacyIntegrations.test Service (External)
     external: true
@@ -987,7 +987,7 @@ nodes:
     position:
       x: -2200
       y: -204
-  - entityRef: blueprint/packages/integration/helpers-test
+  - entityRef: backstage/packages/integration/helpers-test
     type: background-worker
     name: helpers.test Service (External)
     external: true
@@ -999,7 +999,7 @@ nodes:
     position:
       x: 1940
       y: -204
-  - entityRef: blueprint/packages/integration/index
+  - entityRef: backstage/packages/integration/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1011,7 +1011,7 @@ nodes:
     position:
       x: 2400
       y: -204
-  - entityRef: blueprint/packages/core-app-api/index
+  - entityRef: backstage/packages/core-app-api/index
     type: rest-api
     name: index Service (External)
     external: true
@@ -1023,7 +1023,7 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: blueprint/packages/errors/index
+  - entityRef: backstage/packages/errors/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1035,7 +1035,7 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: blueprint/packages/core/index
+  - entityRef: backstage/packages/core/index
     type: background-worker
     name: index Service (External)
     external: true
@@ -1047,7 +1047,7 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: blueprint/packages/connections-node/lookup
+  - entityRef: backstage/packages/connections-node/lookup
     type: background-worker
     name: lookup Service (External)
     external: true
@@ -1059,7 +1059,7 @@ nodes:
     position:
       x: -1740
       y: -204
-  - entityRef: blueprint/packages/connections-node/lookup-test
+  - entityRef: backstage/packages/connections-node/lookup-test
     type: background-worker
     name: lookup.test Service (External)
     external: true
@@ -1071,7 +1071,7 @@ nodes:
     position:
       x: -1280
       y: -204
-  - entityRef: blueprint/packages/integration/registry
+  - entityRef: backstage/packages/integration/registry
     type: background-worker
     name: registry Service (External)
     external: true
@@ -1083,7 +1083,7 @@ nodes:
     position:
       x: 2860
       y: -204
-  - entityRef: blueprint/packages/integration/scmintegrations
+  - entityRef: backstage/packages/integration/scmintegrations
     type: background-worker
     name: ScmIntegrations Service (External)
     external: true
@@ -1095,7 +1095,7 @@ nodes:
     position:
       x: 3320
       y: -204
-  - entityRef: blueprint/packages/integration/scmintegrations-test
+  - entityRef: backstage/packages/integration/scmintegrations-test
     type: background-worker
     name: ScmIntegrations.test Service (External)
     external: true
@@ -1107,7 +1107,7 @@ nodes:
     position:
       x: 3780
       y: -204
-  - entityRef: blueprint/packages/connections-node/service
+  - entityRef: backstage/packages/connections-node/service
     type: background-worker
     name: service Service (External)
     external: true
@@ -1119,7 +1119,7 @@ nodes:
     position:
       x: -820
       y: -204
-  - entityRef: blueprint/packages/connections-node/types
+  - entityRef: backstage/packages/connections-node/types
     type: background-worker
     name: types Service (External)
     external: true
@@ -1131,7 +1131,7 @@ nodes:
     position:
       x: -360
       y: -204
-  - entityRef: blueprint/packages/backend-app-api/withdeclaredconnections
+  - entityRef: backstage/packages/backend-app-api/withdeclaredconnections
     type: background-worker
     name: withDeclaredConnections Service (External)
     external: true
@@ -1144,415 +1144,415 @@ nodes:
       x: -3120
       y: -204
 dependencies:
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/awss3
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/awss3
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/azure
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/azure
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/bitbucketcloud
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/bitbucketcloud
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/bitbucketserver
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/bitbucketserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/gerrit
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/gerrit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/github
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/github
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/gitlab
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/gitlab
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/gitea
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/gitea
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/awscodecommit
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/awscodecommit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/harness
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/harness
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/azureblobstorage
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations-test
-    to: blueprint/packages/connections/googlegcs
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/googlegcs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/defaultgithubcredentialsprovider-test
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/integration/defaultgithubcredentialsprovider
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/integration/registry
-    to: blueprint/packages/connections/awscodecommit
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/connections/awscodecommit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/registry
-    to: blueprint/packages/connections/azureblobstorage
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/connections/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/helpers-test
-    to: blueprint/packages/connections/bitbucketserver
+  - from: backstage/packages/integration/helpers-test
+    to: backstage/packages/connections/bitbucketserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/awss3
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/awss3
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/awscodecommit
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/awscodecommit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/azureblobstorage
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/azure
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/azure
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/bitbucketcloud
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/bitbucketcloud
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/bitbucketserver
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/bitbucketserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/gerrit
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/gerrit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/gitea
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/gitea
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/github
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/github
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/gitlab
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/gitlab
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/googlegcs
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/googlegcs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/index
-    to: blueprint/packages/connections/harness
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/harness
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/creategithubcredentialsproviderfromconnection
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/integration/creategithubcredentialsproviderfromconnection
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/integration/scmintegrations
-    to: blueprint/packages/connections/gitea
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/connections/gitea
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/integration/scmintegrations
-    to: blueprint/packages/connections/azureblobstorage
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/connections/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections-node/lookup-test
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/lookup-test
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/types
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/types
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/lookup
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/lookup
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/defaultconnectionsservice
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/defaultconnectionsservice
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/getlegacyintegrations-test
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/getlegacyintegrations-test
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/connections-node/service
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/connections-node/service
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/core-app-api/index
-    to: blueprint/packages/connections/github
+  - from: backstage/packages/core-app-api/index
+    to: backstage/packages/connections/github
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-app-api/index
-    to: blueprint/packages/connections/gitlab
+  - from: backstage/packages/core-app-api/index
+    to: backstage/packages/connections/gitlab
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/core-app-api/index
-    to: blueprint/packages/connections/bitbucketserver
+  - from: backstage/packages/core-app-api/index
+    to: backstage/packages/connections/bitbucketserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/gitea
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/gitea
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/github
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/github
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/awss3
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/awss3
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/github-test
-    to: blueprint/packages/connections/github
+  - from: backstage/packages/connections/github-test
+    to: backstage/packages/connections/github
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/awscodecommit
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/awscodecommit
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/gerrit
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/gerrit
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/googlegcs
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/googlegcs
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/bitbucketserver
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/bitbucketserver
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/azure
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/azure
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/gitlab
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/gitlab
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/bitbucketcloud
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/bitbucketcloud
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/harness
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/harness
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/awscodecommit-test
-    to: blueprint/packages/connections/awscodecommit
+  - from: backstage/packages/connections/awscodecommit-test
+    to: backstage/packages/connections/awscodecommit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/azureblobstorage
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/azureblobstorage
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/createconnectiontype-test
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/connections/createconnectiontype-test
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/connections/createconnectiontype-test
-    to: blueprint/packages/connections/createconnectiontype
+  - from: backstage/packages/connections/createconnectiontype-test
+    to: backstage/packages/connections/createconnectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/createconnectiontype
-    to: blueprint/packages/errors/index
+  - from: backstage/packages/connections/createconnectiontype
+    to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: blueprint/packages/connections/createconnectiontype
-    to: blueprint/packages/core/index
+  - from: backstage/packages/connections/createconnectiontype
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/connections/createconnectiontype
-    to: blueprint/packages/connections/connectiontype
+  - from: backstage/packages/connections/createconnectiontype
+    to: backstage/packages/connections/connectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/connectionsservice
-    to: blueprint/packages/ui/definitions
+  - from: backstage/packages/connections/connectionsservice
+    to: backstage/packages/ui/definitions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/connectionsservice
-    to: blueprint/packages/connections/connection
+  - from: backstage/packages/connections/connectionsservice
+    to: backstage/packages/connections/connection
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/connectionsservice
-    to: blueprint/packages/connections/connectiontype
+  - from: backstage/packages/connections/connectionsservice
+    to: backstage/packages/connections/connectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/connection
-    to: blueprint/packages/connections/connectiontype
+  - from: backstage/packages/connections/connection
+    to: backstage/packages/connections/connectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/connection
-    to: blueprint/packages/ui/definitions
+  - from: backstage/packages/connections/connection
+    to: backstage/packages/ui/definitions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/connectiontype
-    to: blueprint/packages/core/index
+  - from: backstage/packages/connections/connectiontype
+    to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: blueprint/packages/connections/connectiontype
-    to: blueprint/packages/ui/definitions
+  - from: backstage/packages/connections/connectiontype
+    to: backstage/packages/ui/definitions
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/connectionsservice
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/connectionsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/connection
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/connection
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/connectiontype
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/connectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/connectionsservice
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/connectionsservice
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/connection
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/connection
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/connectiontype
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/connectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/types
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/types
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/awscodecommit
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/awscodecommit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/awss3
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/awss3
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/azureblobstorage
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/azure
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/azure
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/bitbucketcloud
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/bitbucketcloud
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/bitbucketserver
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/bitbucketserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/gerrit
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/gerrit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/gitea
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/gitea
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/github
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/github
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/gitlab
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/gitlab
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/googlegcs
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/googlegcs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/harness
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/harness
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/types
-    to: blueprint/packages/connections/connectiontype
+  - from: backstage/packages/connections/types
+    to: backstage/packages/connections/connectiontype
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/awscodecommit
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/awscodecommit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/awss3
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/awss3
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/azureblobstorage
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/azureblobstorage
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/azure
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/azure
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/bitbucketcloud
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/bitbucketcloud
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/bitbucketserver
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/bitbucketserver
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/gerrit
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/gerrit
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/gitea
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/gitea
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/github
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/github
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/gitlab
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/gitlab
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/googlegcs
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/googlegcs
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/harness
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/harness
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/connections/index
-    to: blueprint/packages/connections/types
+  - from: backstage/packages/connections/index
+    to: backstage/packages/connections/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/packages/backend-app-api/withdeclaredconnections
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/backend-app-api/withdeclaredconnections
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
-  - from: blueprint/packages/backend-app-api/backendinitializer
-    to: blueprint/packages/connections/index
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/connections/index
     type: direct-call
     description: '@backstage/connections'
