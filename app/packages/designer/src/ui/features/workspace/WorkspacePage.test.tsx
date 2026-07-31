@@ -213,7 +213,7 @@ describe('WorkspacePage Component', () => {
     expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
   });
 
-  it('auto-loads sandbox on bare /workspace when no folder session is pending', async () => {
+  it('restores a prior sandbox session on bare /workspace via useAutoLoadWorkspace', async () => {
     const { useAutoLoadWorkspace } = await import('./hooks/useAutoLoadWorkspace');
     const autoLoadMock = vi.mocked(useAutoLoadWorkspace);
 

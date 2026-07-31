@@ -23,6 +23,44 @@ describe('Breadcrumbs Component', () => {
     });
   });
 
+  it('renders sandbox root switcher when a bundled sandbox is loaded', () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'context.yaml',
+          name: 'Blueprint',
+          schema: {
+            name: 'Blueprint',
+            version: '1.0.0',
+            level: 'context',
+            entityRef: 'blueprint',
+            nodes: [],
+            dependencies: [],
+          },
+        },
+      ],
+      sandboxKind: 'application',
+      isWorkspaceOpen: false,
+      currentFilePath: 'context.yaml',
+    });
+
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Blueprint',
+      version: '1.0.0',
+      level: 'context',
+      entityRef: 'blueprint',
+      nodes: [],
+      dependencies: [],
+    });
+
+    render(<Breadcrumbs />);
+
+    expect(screen.getByText('Sandboxes')).toBeInTheDocument();
+    expect(screen.getByTestId('sandbox-kind-label')).toHaveTextContent('Application');
+    expect(screen.getByTestId('sandbox-root-trigger')).toBeInTheDocument();
+  });
+
   it('renders demo sandbox label when no workspace folder is open', () => {
     render(<Breadcrumbs />);
 

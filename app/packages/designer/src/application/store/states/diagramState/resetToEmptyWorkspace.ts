@@ -34,6 +34,7 @@ export function resetToEmptyWorkspace(
     workspaceCatalog: [],
     loadedSystems: [{ path: EMPTY_WORKSPACE_PATH, name: empty.name, schema: empty }],
     isWorkspaceOpen: false,
+    sandboxKind: undefined,
     selectedNodeId: null,
     selectedEdgeId: null,
     focusedCyclePath: null,

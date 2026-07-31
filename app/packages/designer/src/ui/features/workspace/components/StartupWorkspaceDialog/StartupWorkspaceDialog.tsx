@@ -10,6 +10,7 @@ import {
 interface StartupWorkspaceDialogProps {
   isOpen: boolean;
   onLoadSandbox: () => void;
+  onLoadInfrastructureSandbox: () => void;
   onOpenDirectory: () => void;
   onImportMermaid: () => void;
   onImportIac: () => void;
@@ -55,6 +56,7 @@ const CopyableCommand: React.FC<CopyableCommandProps> = ({ command, testId, copi
 export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   isOpen,
   onLoadSandbox,
+  onLoadInfrastructureSandbox,
   onOpenDirectory,
   onImportMermaid,
   onImportIac,
@@ -96,7 +98,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
               Open workspace
             </h2>
             <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-              Start with the bundled sandbox, open a local blueprint folder, or import Mermaid or
+              Start with a bundled sandbox, open a local blueprint folder, or import Mermaid or
               infrastructure (Terraform / Pulumi) into the active canvas.
             </p>
           </div>
@@ -112,7 +114,24 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
               <span>
                 <span className="block text-sm font-semibold text-slate-100">Load sandbox</span>
                 <span className="block text-xs text-slate-500 mt-0.5">
-                  Clear saved drafts and load the bundled demo diagrams fresh
+                  Application architecture demos: Backstage, eShop, stress fixtures, and more
+                </span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              data-testid="startup-load-infrastructure-sandbox"
+              onClick={onLoadInfrastructureSandbox}
+              className={optionClass}
+            >
+              <Cloud className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />
+              <span>
+                <span className="block text-sm font-semibold text-slate-100">
+                  Load infrastructure sandbox
+                </span>
+                <span className="block text-xs text-slate-500 mt-0.5">
+                  Terraform and Pulumi example diagrams from upstream sample repos
                 </span>
               </span>
             </button>

@@ -1,6 +1,11 @@
 import { resolveWorkspaceEntityRefs, type SystemSchema } from '@archlens/core';
 import { buildBundledPathCatalog, startBundledBlueprintPrefetch } from './bundledBlueprintLoader';
-import { blueprintPaths, defaultLoadedSystems } from '../../defaultData';
+import {
+  getBlueprintPathsForSandbox,
+  getDefaultLoadedSystems,
+  setActiveSandboxKind,
+  type SandboxKind,
+} from '../../defaultData';
 import { clearSandboxCaches } from '../../clearSandboxCaches';
 import { resetDefaultIdbSeedFlag } from './defaultIdbSeed';
 import {
@@ -13,8 +18,8 @@ import { yieldToUi } from '../../yieldToUi';
 import type { HydrateSystem } from './hydrateSandboxDrafts';
 import { saveWorkspaceSession } from '../../workspaceSession';
 
-export function resolveBundledSandboxSystems(): HydrateSystem[] {
-  return defaultLoadedSystems;
+export function resolveBundledSandboxSystems(kind: SandboxKind = 'application'): HydrateSystem[] {
+  return getDefaultLoadedSystems(kind);
 }
 
 export function pickSandboxEntryDiagram(systems: HydrateSystem[]): HydrateSystem | undefined {
@@ -60,9 +65,12 @@ type ActivateBundledSandboxSet = (partial: Record<string, unknown>) => void;
 export function activateBundledSandbox(
   set: ActivateBundledSandboxSet,
   get: ActivateBundledSandboxGet,
-  systems: HydrateSystem[] = resolveBundledSandboxSystems()
+  systems: HydrateSystem[] = resolveBundledSandboxSystems(),
+  kind: SandboxKind = 'application'
 ): void {
   if (get().isWorkspaceOpen || systems.length === 0) return;
+
+  setActiveSandboxKind(kind);
 
   const resolved = resolveWorkspaceEntityRefs(
     systems.map(sys => ({ path: sys.path, schema: sys.schema }))
@@ -74,7 +82,7 @@ export function activateBundledSandbox(
   const entry = pickSandboxEntryDiagram(systemsWithResolved);
   if (!entry) return;
 
-  const workspaceCatalog = buildBundledPathCatalog(blueprintPaths);
+  const workspaceCatalog = buildBundledPathCatalog(getBlueprintPathsForSandbox(kind));
 
   set({
     isWorkspaceOpen: false,
@@ -88,10 +96,11 @@ export function activateBundledSandbox(
     focusedCyclePath: null,
     layoutCustomized: false,
     hasPendingChanges: false,
+    sandboxKind: kind,
   });
 
   get().initSchema(entry.schema);
-  saveWorkspaceSession({ mode: 'sandbox' });
+  saveWorkspaceSession({ mode: 'sandbox', sandboxKind: kind });
 }
 
 /**
@@ -99,7 +108,8 @@ export function activateBundledSandbox(
  */
 export async function reloadBundledSandbox(
   set: ActivateBundledSandboxSet,
-  get: ActivateBundledSandboxGet
+  get: ActivateBundledSandboxGet,
+  kind: SandboxKind = 'application'
 ): Promise<void> {
   resetDefaultIdbSeedFlag();
 
@@ -124,7 +134,8 @@ export async function reloadBundledSandbox(
       focusedCyclePath: null,
     });
 
-    activateBundledSandbox(set, get, resolveBundledSandboxSystems());
+    const systems = resolveBundledSandboxSystems(kind);
+    activateBundledSandbox(set, get, systems, kind);
     startBundledBlueprintPrefetch({ get, set });
   } finally {
     endDiagramLoad(get, set);
@@ -140,7 +151,8 @@ export async function reloadBundledSandbox(
  */
 export async function resumeBundledSandbox(
   set: ActivateBundledSandboxSet,
-  get: ActivateBundledSandboxGet
+  get: ActivateBundledSandboxGet,
+  kind: SandboxKind = 'application'
 ): Promise<void> {
   if (get().isWorkspaceOpen || get().loadedSystems.length > 0) return;
 
@@ -148,7 +160,8 @@ export async function resumeBundledSandbox(
   await yieldToUi();
 
   try {
-    activateBundledSandbox(set, get, resolveBundledSandboxSystems());
+    const systems = resolveBundledSandboxSystems(kind);
+    activateBundledSandbox(set, get, systems, kind);
     startBundledBlueprintPrefetch({ get, set });
   } finally {
     endDiagramLoad(get, set);

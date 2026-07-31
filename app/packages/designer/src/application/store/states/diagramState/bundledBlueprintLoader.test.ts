@@ -35,6 +35,16 @@ describe('inferEntityRefFromBundledPath', () => {
     );
   });
 
+  it('maps infrastructure sandbox paths to the same entity refs', () => {
+    expect(inferEntityRefFromBundledPath('infrastructure/context.yaml')).toBe('blueprint');
+    expect(inferEntityRefFromBundledPath('infrastructure/gcp-py-gke/containers.yaml')).toBe(
+      'blueprint/gcp-py-gke'
+    );
+    expect(inferEntityRefFromBundledPath('infrastructure/terraform-examples/containers.yaml')).toBe(
+      'blueprint/terraform-examples'
+    );
+  });
+
   it('maps component diagrams', () => {
     expect(inferEntityRefFromBundledPath('app/designer-components.yaml')).toBe(
       'blueprint/app/designer'

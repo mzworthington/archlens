@@ -71,6 +71,7 @@ import type { MermaidImportPreview } from './diagramState/importMermaid';
 import type { IacImportPreview } from './diagramState/importIac';
 import { createDiagramInitialState } from './diagramState/initialState';
 import { reloadBundledSandbox } from './diagramState/loadBundledSandbox';
+import type { SandboxKind } from '../defaultData';
 import { prefetchAllWorkspaceSystems } from './diagramState/prefetchWorkspaceSystems';
 import { applyRefactorBoundaryAsDraft } from '../../forensics/applyRefactorBoundaryAsDraft';
 import type { RefactorBoundary } from '@archlens/core/forensics';
@@ -115,6 +116,8 @@ export interface DiagramState {
   layoutSessionId: number;
   /** Path currently being loaded by selectSystem (prevents URL-sync loops). */
   systemSelectInFlight: string | null;
+  /** Active bundled sandbox when not using a folder workspace. */
+  sandboxKind?: SandboxKind;
 
   recordHistory: () => void;
   undo: () => void;
@@ -167,7 +170,7 @@ export interface DiagramState {
     engine?: import('../../../core').LayoutEngineId;
   }) => Promise<void>;
   markLayoutCustomized: () => void;
-  loadBundledSandbox: () => Promise<void>;
+  loadBundledSandbox: (kind?: SandboxKind) => Promise<void>;
   restoreWorkspaceSession: () => Promise<boolean>;
   prefetchAllWorkspaceSystems: () => Promise<void>;
   applyRefactorBoundaryAsDraft: (boundary: RefactorBoundary) => boolean;
@@ -199,6 +202,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   layoutCustomized: false,
   layoutSessionId: 0,
   systemSelectInFlight: null,
+  sandboxKind: undefined,
 
   checkPendingChanges: async () => {
     const { currentFilePath, hasPendingChanges, workingCopyPort } = get();
@@ -398,7 +402,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     set({ layoutSessionId: get().layoutSessionId + 1 });
   },
 
-  loadBundledSandbox: () => reloadBundledSandbox(set, get),
+  loadBundledSandbox: (kind = 'application') => reloadBundledSandbox(set, get, kind),
   restoreWorkspaceSession: () => restoreWorkspaceSessionAction(get, set),
   prefetchAllWorkspaceSystems: () => prefetchAllWorkspaceSystems(get, set),
   applyRefactorBoundaryAsDraft: boundary => applyRefactorBoundaryAsDraft(boundary, get, set),

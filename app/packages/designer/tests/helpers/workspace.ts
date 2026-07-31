@@ -24,12 +24,18 @@ export async function keepStartupChooserOpen(page: Page) {
   });
 }
 
-/** Wait until background sandbox prefetch has loaded ranked estate rows. */
+/** Wait until TraceLens has ranked estate rows (prefers loaded diagrams to avoid full prefetch). */
 export async function waitForForensicsOffenders(page: Page) {
   await expect(page.getByTestId('offender-list')).toBeVisible({ timeout: 90_000 });
+
+  const rankLoaded = page.getByTestId('forensics-rank-loaded-only');
+  if (await rankLoaded.isVisible().catch(() => false)) {
+    await rankLoaded.click();
+  }
+
   await expect(
     page.locator('[data-testid^="estate-row-"], [data-testid^="offender-row-"]').first()
-  ).toBeVisible({ timeout: 180_000 });
+  ).toBeVisible({ timeout: 90_000 });
 }
 
 export async function workspaceSlug(page: Page): Promise<string> {

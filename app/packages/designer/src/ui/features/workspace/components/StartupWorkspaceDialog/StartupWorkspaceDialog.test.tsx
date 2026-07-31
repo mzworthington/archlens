@@ -8,6 +8,7 @@ describe('StartupWorkspaceDialog', () => {
       <StartupWorkspaceDialog
         isOpen
         onLoadSandbox={vi.fn()}
+        onLoadInfrastructureSandbox={vi.fn()}
         onOpenDirectory={vi.fn()}
         onImportMermaid={vi.fn()}
         onImportIac={vi.fn()}
@@ -16,6 +17,9 @@ describe('StartupWorkspaceDialog', () => {
 
     expect(screen.getByRole('dialog', { name: /Open workspace/i })).toBeInTheDocument();
     expect(screen.getByTestId('startup-load-sandbox')).toHaveTextContent(/Load sandbox/i);
+    expect(screen.getByTestId('startup-load-infrastructure-sandbox')).toHaveTextContent(
+      /Load infrastructure sandbox/i
+    );
     expect(screen.getByTestId('startup-open-directory')).toHaveTextContent(
       /Open workspace from directory/i
     );
@@ -39,6 +43,7 @@ describe('StartupWorkspaceDialog', () => {
       <StartupWorkspaceDialog
         isOpen={false}
         onLoadSandbox={vi.fn()}
+        onLoadInfrastructureSandbox={vi.fn()}
         onOpenDirectory={vi.fn()}
         onImportMermaid={vi.fn()}
         onImportIac={vi.fn()}
@@ -50,6 +55,7 @@ describe('StartupWorkspaceDialog', () => {
 
   it('invokes the matching handler for each choice', () => {
     const onLoadSandbox = vi.fn();
+    const onLoadInfrastructureSandbox = vi.fn();
     const onOpenDirectory = vi.fn();
     const onImportMermaid = vi.fn();
     const onImportIac = vi.fn();
@@ -58,6 +64,7 @@ describe('StartupWorkspaceDialog', () => {
       <StartupWorkspaceDialog
         isOpen
         onLoadSandbox={onLoadSandbox}
+        onLoadInfrastructureSandbox={onLoadInfrastructureSandbox}
         onOpenDirectory={onOpenDirectory}
         onImportMermaid={onImportMermaid}
         onImportIac={onImportIac}
@@ -65,11 +72,13 @@ describe('StartupWorkspaceDialog', () => {
     );
 
     fireEvent.click(screen.getByTestId('startup-load-sandbox'));
+    fireEvent.click(screen.getByTestId('startup-load-infrastructure-sandbox'));
     fireEvent.click(screen.getByTestId('startup-open-directory'));
     fireEvent.click(screen.getByTestId('startup-import-mermaid'));
     fireEvent.click(screen.getByTestId('startup-import-iac'));
 
     expect(onLoadSandbox).toHaveBeenCalledTimes(1);
+    expect(onLoadInfrastructureSandbox).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
     expect(onImportMermaid).toHaveBeenCalledTimes(1);
     expect(onImportIac).toHaveBeenCalledTimes(1);

@@ -10,9 +10,9 @@ const sample: Recommendation[] = [
     source: 'chaoslens',
     targetEntityRef: 'shop/web',
     targetName: 'Web App',
-    title: 'Add a circuit breaker on outbound call',
+    title: 'Add caller-side circuit breaker',
     detail:
-      'Add a circuit breaker on calls from Web App to API — shared dependency with fan-in and no isolation.',
+      'In Web App, add a circuit breaker on the outbound client to API — shared dependency with fan-in and no caller-side isolation in application code.',
     priority: 95,
     evidence: {
       applicabilityScope: {
@@ -34,7 +34,7 @@ describe('RecommendationsList', () => {
   it('renders ranked recommendations with source labels', () => {
     render(<RecommendationsList recommendations={sample} />);
     expect(screen.getByTestId('recommendations-list')).toBeInTheDocument();
-    expect(screen.getByText('Add a circuit breaker on outbound call')).toBeInTheDocument();
+    expect(screen.getByText('Add caller-side circuit breaker')).toBeInTheDocument();
     expect(screen.getByText(/Scope: API/)).toBeInTheDocument();
     expect(screen.getByText(/ChaosLens/)).toBeInTheDocument();
     expect(screen.getByText('95')).toBeInTheDocument();

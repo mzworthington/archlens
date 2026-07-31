@@ -68,8 +68,8 @@ export function buildResilienceRecommendations(
         source: 'chaoslens',
         targetEntityRef: caller,
         targetName: callerName,
-        title: 'Add a circuit breaker on outbound call',
-        detail: `Add a circuit breaker on calls from ${callerName} to ${dependencyName} — shared dependency with fan-in and no isolation.`,
+        title: 'Add caller-side circuit breaker',
+        detail: `In ${callerName}, add a circuit breaker on the outbound client to ${dependencyName} — shared dependency with fan-in and no caller-side isolation in application code.`,
         priority: 95,
         evidence: {
           simulation: {
@@ -104,7 +104,7 @@ export function buildResilienceRecommendations(
       targetEntityRef: stopped,
       targetName,
       title: 'Keep safeguard enabled',
-      detail: `Circuit breaker on ${targetName} contained the blast radius - keep this safeguard enabled.`,
+      detail: `Circuit breaker in ${targetName} contained the blast radius — keep this outbound isolation in application code.`,
       priority: 60,
       evidence: {
         simulation: {
@@ -139,7 +139,7 @@ export function buildResilienceRecommendations(
       targetEntityRef: primary,
       targetName: nodeName(schema, primary),
       title: 'Review timeouts and fallbacks',
-      detail: `High-impact nodes: ${names.join(', ')}. Review timeouts and fallbacks.`,
+      detail: `High-impact services: ${names.join(', ')}. Review outbound timeouts and fallbacks in application code.`,
       priority: 85,
       evidence: {
         simulation: {
@@ -185,7 +185,7 @@ export function buildResilienceRecommendations(
       targetEntityRef: primaryPeer,
       targetName: nodeName(schema, primaryPeer),
       title: 'Handle event staleness',
-      detail: `${publisherName} stopped publishing - ${peerNames.join(', ')} may keep running but will miss new events.`,
+      detail: `${publisherName} stopped publishing — in ${peerNames.join(', ')}, handle stale or missing events in consumer logic.`,
       priority: 80,
       evidence: {
         simulation: {
@@ -222,7 +222,7 @@ export function buildResilienceRecommendations(
       targetEntityRef: primary,
       targetName: nodeName(schema, primary),
       title: 'Verify integrity handling',
-      detail: `Data integrity risk without availability loss: ${names.join(', ')}. Verify staleness handling and compensating actions.`,
+      detail: `Data integrity risk without availability loss: ${names.join(', ')}. Verify staleness handling and compensating actions in application code.`,
       priority: 80,
       evidence: {
         simulation: {

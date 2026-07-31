@@ -1,20 +1,36 @@
-import type { C4Level, EntityRef, SystemSchema } from '../models/schema';
-import { nodeRole } from '../taxonomy/nodeRoles';
+import type { C4Level, EntityRef, SystemNode, SystemSchema } from '../models/schema';
+import { nodeRole, type NodeRole } from '../taxonomy/nodeRoles';
 
 /** Diagram levels that receive full ChaosLens estate resilience simulation. */
 export function isEstateResilienceDiagramLevel(level: C4Level): boolean {
   return level === 'context' || level === 'container';
 }
 
+/** Roles that may receive outbound resilience safeguard advice (application runtime, not infra). */
+const SAFEGUARD_TARGET_ROLES: ReadonlySet<NodeRole> = new Set([
+  'user-facing',
+  'sync-service',
+  'async-worker',
+  'serverless',
+]);
+
+function isIacImportedNode(node: SystemNode): boolean {
+  const props = node.properties;
+  if (!props) return false;
+  return props['iac.address'] != null || props['iac.kind'] != null;
+}
+
 /**
  * Whether a node is an appropriate target for outbound resilience safeguards
- * (circuit breakers, timeouts, staleness handling). Excludes structural C4 nodes
- * such as components, code modules, and grouping containers.
+ * (circuit breakers, timeouts, staleness handling). Targets calling application
+ * services and workers — not shared data stores, brokers, structural C4 nodes,
+ * or IaC-imported resources.
  */
 export function isResilienceAdviceTarget(schema: SystemSchema, entityRef: EntityRef): boolean {
   const node = schema.nodes.find(candidate => candidate.entityRef === entityRef);
   if (!node) return false;
-  return nodeRole(node.type) !== 'structural';
+  if (isIacImportedNode(node)) return false;
+  return SAFEGUARD_TARGET_ROLES.has(nodeRole(node.type));
 }
 
 export interface AdviceApplicability {

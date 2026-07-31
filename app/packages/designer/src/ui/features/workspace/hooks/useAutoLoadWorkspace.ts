@@ -7,21 +7,21 @@ function isWorkspaceRootPath(location: string): boolean {
 }
 
 /**
- * On bare `/workspace`, auto-load the bundled sandbox for first-time visitors.
- * Folder sessions require a new picker gesture — keep the startup chooser open.
+ * On bare `/workspace`, restore a prior sandbox session when possible.
+ * First-time visitors and expired folder sessions keep the startup chooser open.
  */
 export function useAutoLoadWorkspace(
   location: string,
   setIsStartupOpen: (open: boolean) => void,
   setLocation: (path: string, options?: { replace?: boolean }) => void
 ): void {
-  const autoLoadStarted = useRef(false);
+  const restoreStarted = useRef(false);
 
   useEffect(() => {
     if (!isWorkspaceRootPath(location)) return;
-    if (autoLoadStarted.current) return;
+    if (restoreStarted.current) return;
 
-    autoLoadStarted.current = true;
+    restoreStarted.current = true;
 
     void (async () => {
       const store = useBlueprintStore.getState();
@@ -31,10 +31,8 @@ export function useAutoLoadWorkspace(
         return;
       }
 
-      await store.restoreWorkspaceSession();
-
-      const afterRestore = useBlueprintStore.getState();
-      if (afterRestore.loadedSystems.length > 0) {
+      const restored = await store.restoreWorkspaceSession();
+      if (restored) {
         setIsStartupOpen(false);
         setLocation('/workspace/blueprint', { replace: true });
         return;
@@ -44,10 +42,6 @@ export function useAutoLoadWorkspace(
       if (session?.mode === 'folder') {
         return;
       }
-
-      await afterRestore.loadBundledSandbox();
-      setIsStartupOpen(false);
-      setLocation('/workspace/blueprint', { replace: true });
     })();
   }, [location, setIsStartupOpen, setLocation]);
 }

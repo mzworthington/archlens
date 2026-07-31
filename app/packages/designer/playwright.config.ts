@@ -5,15 +5,15 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 2 : 2,
+  workers: 1,
   timeout: 180_000,
   reporter: [['list'], ['html']],
   use: {
     baseURL: 'http://localhost:5188',
     navigationTimeout: 60_000,
     trace: 'on-first-retry',
-    /** Full-page shot attached to the HTML report for every test. */
-    screenshot: 'on',
+    /** Full-page shot attached to the HTML report when a test fails. */
+    screenshot: 'only-on-failure',
     /** WebM per test kept when the run fails (also in CI artifacts). */
     video: 'retain-on-failure',
   },

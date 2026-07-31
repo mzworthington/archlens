@@ -427,61 +427,6 @@ nodes:
       fileCount: 128
       hotspotCount: 2
       knowledgeSiloCount: 0
-  - entityRef: blueprint/helloworld
-    type: group
-    name: Helloworld System
-    properties:
-      rootPath: ''
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-gke
-    type: software-system
-    name: Gcp-py-gke System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-gke
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-functions
-    type: software-system
-    name: Gcp-py-functions System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-functions
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-webserver
-    type: software-system
-    name: Gcp-py-webserver System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-webserver
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-instance-nginx
-    type: software-system
-    name: Gcp-py-instance-nginx System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-instance-nginx
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-serverless-raw
-    type: software-system
-    name: Gcp-py-serverless-raw System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-serverless-raw
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-network-component
-    type: software-system
-    name: Gcp-py-network-component System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-network-component
-      productId: helloworld
-  - entityRef: blueprint/gcp-py-cloudrun-cloudsql
-    type: software-system
-    name: Gcp-py-cloudrun-cloudsql System
-    parentEntityRef: blueprint/helloworld
-    properties:
-      rootPath: gcp-py-cloudrun-cloudsql
-      productId: helloworld
   - entityRef: blueprint/gpio-build-monitor
     type: software-system
     name: Gpio Build Monitor System
@@ -519,55 +464,6 @@ nodes:
       fileCount: 31
       hotspotCount: 1
       knowledgeSiloCount: 1
-  - entityRef: blueprint/terraform-examples
-    type: group
-    name: Terraform Examples System
-    properties:
-      rootPath: ''
-      productId: terraform-examples
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      churn: 0
-      churn30: 0
-      churn365: 0
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 0
-      hotspotScore: 0
-      sinceDays: 60
-      fileCount: 2
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/aws-lambda-api
-    type: software-system
-    name: Aws-lambda-api System
-    parentEntityRef: blueprint/terraform-examples
-    properties:
-      rootPath: aws/aws_lambda_api
-      productId: terraform-examples
-  - entityRef: blueprint/aws-reverse-proxy
-    type: software-system
-    name: Aws-reverse-proxy System
-    parentEntityRef: blueprint/terraform-examples
-    properties:
-      rootPath: aws/aws_reverse_proxy
-      productId: terraform-examples
-  - entityRef: blueprint/aws-domain-redirect
-    type: software-system
-    name: Aws-domain-redirect System
-    parentEntityRef: blueprint/terraform-examples
-    properties:
-      rootPath: aws/aws_domain_redirect
-      productId: terraform-examples
   - entityRef: blueprint/chaoslens-stress
     type: group
     name: ChaosLens Stress Tests
@@ -692,15 +588,7 @@ dependencies:
     type: direct-call
     description: Uses
   - from: blueprint/user
-    to: blueprint/helloworld
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
     to: blueprint/gpio-build-monitor
-    type: direct-call
-    description: Uses
-  - from: blueprint/user
-    to: blueprint/terraform-examples
     type: direct-call
     description: Uses
   - from: blueprint/user

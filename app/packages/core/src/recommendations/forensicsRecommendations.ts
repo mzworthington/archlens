@@ -74,7 +74,7 @@ export function buildForensicsRecommendations(
       targetEntityRef: applicability.adviceTargetEntityRef,
       targetName: applicability.adviceTargetName,
       title: 'Reduce composite risk',
-      detail: `${applicability.scopeName} combines elevated change risk with high blast exposure${contributorNote} — prioritize refactoring or add safeguards before the next incident.`,
+      detail: `${applicability.scopeName} combines elevated change risk with high blast exposure${contributorNote} — prioritize refactoring or add outbound safeguards in application code before the next incident.`,
       priority,
       evidence: {
         forensics: {
@@ -110,7 +110,7 @@ export function buildForensicsRecommendations(
           ? [
               {
                 kind: 'add-safeguards',
-                label: `Add safeguards on ${applicability.adviceTargetName}`,
+                label: `Add outbound safeguards in ${applicability.adviceTargetName}`,
                 targetEntityRef: applicability.adviceTargetEntityRef,
               },
             ]
