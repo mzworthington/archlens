@@ -5,6 +5,7 @@ import type { ChaosSpec } from '@archlens/core/resilience';
 import {
   runResilienceSimulation,
   computeResilienceHeatHops,
+  resolveFaultNodeIds,
   wasmResultToSimulationResult,
   type MonteCarloConfig,
   type SimulationResult,
@@ -34,7 +35,8 @@ export async function runResilienceSimulationAsync(
 
   if (wasmResult) {
     const result = wasmResultToSimulationResult(wasmResult);
-    const withHops = { ...result, heatHops: computeResilienceHeatHops(schema, spec) };
+    const faultNodeIds = resolveFaultNodeIds(schema, spec);
+    const withHops = { ...result, heatHops: computeResilienceHeatHops(schema, spec), faultNodeIds };
 
     if (spec.faults.length > 0 && result.integrityHeat.size === 0) {
       const tsIntegrity = runResilienceSimulation(schema, spec);
@@ -45,6 +47,7 @@ export async function runResilienceSimulationAsync(
         overallIntegrity: tsIntegrity.overallIntegrity,
         integrityImpactedDomains: tsIntegrity.integrityImpactedDomains,
         advice: [...new Set([...withHops.advice, ...tsIntegrity.advice])],
+        faultNodeIds: tsIntegrity.faultNodeIds,
       };
     }
 

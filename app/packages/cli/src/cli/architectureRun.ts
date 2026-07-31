@@ -46,6 +46,7 @@ export interface ResolvedArchitectureState {
   globPattern: string;
   outputDir: string;
   contextName: string;
+  systemName: string | undefined;
   rollupModules: boolean;
   cliIgnores: string[];
   cliSystems: string[] | undefined;
@@ -109,6 +110,7 @@ export async function resolveArchitectureState(
   let globPattern = plan.architecture.glob || fileConfig.glob || DEFAULT_SCAN_GLOB;
   let outputDir = plan.architecture.outputDir || process.env.ARCHLENS_OUTPUT_DIR || 'blueprints';
   let contextName = plan.architecture.context || fileConfig.context || DEFAULT_CONTEXT_NAME;
+  let systemName = plan.architecture.systemName || fileConfig.systemName;
   let rollupModules = plan.architecture.rollupModules || fileConfig.rollupModules;
   const cliIgnores = plan.architecture.ignore;
   const cliSystems = plan.architecture.systems;
@@ -129,6 +131,19 @@ export async function resolveArchitectureState(
       process.exit(0);
     }
     contextName = (contextNameInput as string) || contextName;
+
+    const systemNameInput = await p.text({
+      message: 'Software system name (optional — one product across multiple repos):',
+      placeholder: 'e.g. frontend-api',
+      defaultValue: systemName ?? '',
+    });
+
+    if (p.isCancel(systemNameInput)) {
+      p.cancel('Analysis cancelled.');
+      process.exit(0);
+    }
+    const trimmedSystemName = String(systemNameInput).trim();
+    systemName = trimmedSystemName || undefined;
 
     const confirmRollup = await p.confirm({
       message: 'Roll up *-module-* packages into their parent systems?',
@@ -161,6 +176,7 @@ export async function resolveArchitectureState(
     globPattern,
     outputDir,
     contextName,
+    systemName,
     rollupModules,
     cliIgnores,
     cliSystems,
@@ -199,10 +215,18 @@ export async function executeArchitectureRun(
   }
 
   const sourceProvenance = await collectGitProvenance(process.cwd());
+  const scanSource =
+    sourceProvenance || state.systemName
+      ? {
+          ...sourceProvenance,
+          ...(state.systemName ? { systemName: state.systemName } : {}),
+        }
+      : undefined;
   const analysisOptions = mergeAnalysisOptions(state.fileConfig, {
     ignore: state.cliIgnores,
     include: state.fileConfig.include,
     systems: state.cliSystems,
+    systemName: state.systemName,
     rollupModules: state.rollupModules,
   });
 
@@ -238,7 +262,7 @@ export async function executeArchitectureRun(
       cancellation.signal,
       {
         forensicsByPath,
-        source: sourceProvenance,
+        source: scanSource,
       }
     );
 
@@ -246,7 +270,7 @@ export async function executeArchitectureRun(
     const iacResult = await iacAnalyzer.run(state.contextName, state.outputDir, {
       scanRoot: process.cwd(),
       signal: cancellation.signal,
-      source: sourceProvenance,
+      source: scanSource,
       discoveredSystems,
     });
 

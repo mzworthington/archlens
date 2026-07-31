@@ -527,6 +527,7 @@ describe('ForensicsPage', () => {
         integrityImpactedDomains: [],
         advice: [],
         propagationStoppedAt: [],
+        faultNodeIds: [],
       },
       loadedSystems: [
         {

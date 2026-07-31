@@ -71,6 +71,11 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                     Loaded from {result.origin === 'local' ? 'workspace folder' : 'git raw URL'}
                   </p>
                 ) : null}
+                {source?.systemName ? (
+                  <p className="text-[10px] uppercase tracking-wider text-slate-500 mt-1">
+                    System · {source.systemName}
+                  </p>
+                ) : null}
               </div>
             </div>
 

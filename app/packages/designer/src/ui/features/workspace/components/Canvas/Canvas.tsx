@@ -719,8 +719,10 @@ export const Canvas: React.FC = () => {
                 ) : null}
               </div>
               <button
+                type="button"
                 onClick={() => setNotification(null)}
                 className="text-slate-450 hover:text-slate-200 transition shrink-0 p-0.5 rounded hover:bg-white/10"
+                aria-label="Dismiss notification"
               >
                 <X className="w-4 h-4" />
               </button>

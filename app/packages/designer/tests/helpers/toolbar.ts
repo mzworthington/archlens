@@ -7,22 +7,25 @@ function isBareWorkspaceUrl(page: Page): boolean {
 
 /** Dismiss the startup chooser by continuing with the bundled sandbox when shown. */
 export async function continueWithSandbox(page: Page) {
+  if (!isBareWorkspaceUrl(page)) return;
+
+  // First-time visitors auto-load the sandbox; wait for navigation instead of racing the dialog button.
+  const autoLoaded = await page
+    .waitForURL(/\/workspace\/blueprint/, { timeout: 30_000 })
+    .then(() => true)
+    .catch(() => false);
+  if (autoLoaded) return;
+
   const dialog = page.getByTestId('startup-workspace-dialog');
-  const canvas = page.getByTestId('canvas');
-
-  if (await canvas.isVisible().catch(() => false)) {
-    return;
-  }
-
-  // Deep links usually skip the chooser, but still dismiss if it is visible.
   if (!(await dialog.isVisible().catch(() => false))) {
-    if (!isBareWorkspaceUrl(page)) return;
+    if (page.url().includes('/workspace/blueprint')) return;
     try {
-      await dialog.waitFor({ state: 'visible', timeout: 5_000 });
+      await dialog.waitFor({ state: 'visible', timeout: 10_000 });
     } catch {
       return;
     }
   }
+
   await page.getByTestId('startup-load-sandbox').click();
   await expect(dialog).toHaveCount(0);
 }

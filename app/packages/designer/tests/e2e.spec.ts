@@ -63,6 +63,13 @@ test.describe('Blueprint E2E Journeys', () => {
   });
 
   test('Import Mermaid merge preview', async ({ page }) => {
+    // Folder session keeps the startup chooser open (auto-load only runs for first-time sandbox visitors).
+    await page.addInitScript(() => {
+      localStorage.setItem(
+        'archlens.workspaceSession',
+        JSON.stringify({ mode: 'folder', workspaceName: 'E2E' })
+      );
+    });
     await gotoApp(page, '/workspace');
     await page.getByTestId('startup-import-mermaid').click();
 

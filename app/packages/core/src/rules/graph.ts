@@ -225,6 +225,7 @@ const sourceProvenanceSchema = z.object({
   defaultBranch: z.string().min(1).optional(),
   scannedAtCommit: z.string().min(1).optional(),
   scanRoot: z.string().optional(),
+  systemName: z.string().min(1).optional(),
 });
 
 const metadataSchema = z.object({

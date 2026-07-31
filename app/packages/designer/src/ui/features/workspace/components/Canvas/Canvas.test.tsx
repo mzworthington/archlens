@@ -341,6 +341,7 @@ describe('Canvas Component', () => {
         integrityImpactedDomains: [],
         advice: [],
         propagationStoppedAt: [],
+        faultNodeIds: [],
       },
     });
 

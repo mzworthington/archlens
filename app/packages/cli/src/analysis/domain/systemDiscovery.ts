@@ -195,13 +195,31 @@ export function discoverSystems(
   options: {
     systems?: string[];
     fallbackId?: string;
+    /** Pin this scan to a named software system (multi-repo products). */
+    systemName?: string;
+    /** Product hub slug when `systemName` is set (typically the context / `--context` value). */
+    productName?: string;
   } = {}
 ): DiscoveredSystem[] {
   const productName =
+    options.productName ||
     options.fallbackId ||
     readPackageName(cwd, fs) ||
     cwd.split(/[\\/]/).filter(Boolean).pop() ||
     'app';
+
+  const trimmedSystemName = options.systemName?.trim();
+  if (trimmedSystemName) {
+    const id = slugify(trimmedSystemName);
+    const named: DiscoveredSystem = {
+      id,
+      displayName: titleCase(trimmedSystemName),
+      rootPath: '',
+      kind: 'config',
+      productId: slugify(productName),
+    };
+    return withProductHub([named], productName);
+  }
 
   if (options.systems && options.systems.length > 0) {
     const configured = options.systems.map(name => {
@@ -273,9 +291,13 @@ export function partitionFilesBySystem<T extends { relativePath: string }>(
     buckets.set(system.id, []);
   }
 
-  // Prefer product hub as unmatched sink; otherwise any empty-root system.
+  // Prefer the named repo system for unmatched files; product hubs are context-only.
   const fallback =
-    systems.find(s => s.kind === 'product') || systems.find(s => s.rootPath === '') || systems[0];
+    systems.find(s => s.rootPath === '' && s.kind === 'config') ||
+    systems.find(s => s.kind === 'fallback') ||
+    systems.find(s => s.rootPath === '' && s.kind === 'product') ||
+    systems.find(s => s.rootPath === '') ||
+    systems[0];
 
   for (const file of files) {
     const rel = file.relativePath.replace(/\\/g, '/');

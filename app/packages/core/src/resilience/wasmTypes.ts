@@ -57,6 +57,7 @@ export function wasmResultToSimulationResult(result: WasmSimulationResult) {
     integrityImpactedDomains: result.integrityImpactedDomains ?? [],
     advice: result.advice ?? [],
     propagationStoppedAt: result.propagationStoppedAt ?? [],
+    faultNodeIds: [],
     monteCarlo: result.monteCarlo,
     engine: result.engine ?? 'go',
   };

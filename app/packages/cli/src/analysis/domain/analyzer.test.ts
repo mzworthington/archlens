@@ -177,6 +177,53 @@ describe('CodebaseAnalyzer Domain Service', () => {
     ]);
   });
 
+  it('uses --system-name for multi-repo product membership', async () => {
+    parser.files = [
+      {
+        filePath: '/workspace/src/api.ts',
+        relativePath: 'src/api.ts',
+        baseName: 'api',
+        isTestFile: false,
+        imports: [],
+        newExpressions: [],
+        callExpressions: [],
+      },
+    ];
+
+    analyzer = new CodebaseAnalyzer({
+      parser,
+      fileSystem,
+      logger,
+      analysisOptions: { ignore: [], include: [], systems: [], systemName: 'frontend-api' },
+    });
+
+    await analyzer.runAnalysis('acme', 'blueprints');
+
+    expect(mockContextWriteSystems).toHaveBeenCalledTimes(1);
+    expect(mockContextWriteSystems).toHaveBeenCalledWith(
+      '/workspace/blueprints',
+      'acme',
+      [
+        {
+          entityRef: 'acme',
+          displayName: 'Acme',
+          rootPath: '',
+          productId: 'acme',
+          isProductHub: true,
+        },
+        {
+          entityRef: 'frontend-api',
+          displayName: 'Frontend Api',
+          rootPath: '',
+          productId: 'acme',
+          isProductHub: false,
+        },
+      ],
+      undefined
+    );
+    expect(mockContainerWrite.mock.calls[0]?.[0]).toBe('/workspace/blueprints/frontend-api');
+  });
+
   it('should not throw if analyzing an empty file set', async () => {
     parser.files = [];
     await expect(analyzer.runAnalysis('test-pkg', 'blueprints')).resolves.not.toThrow();

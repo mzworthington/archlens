@@ -157,19 +157,14 @@ export interface ForensicAuthor {
 
 export interface NodeForensics {
   complexity?: number;
-  /** Peak cyclomatic complexity among functions in the file. */
   complexityPeak?: number;
-  /** Peak cognitive complexity among functions in the file. */
   cognitiveComplexity?: number;
   functionCount?: number;
   loc?: number;
   sloc?: number;
   churn?: number;
-  /** Lines added + removed in the lookback window (git numstat). */
   lineChurn?: number;
-  /** Short-window churn (typically 30d) for trend comparison. */
   churn30?: number;
-  /** Long-window churn (typically 365d). */
   churn365?: number;
   churnByWeek?: number[];
   authorCount?: number;
@@ -178,13 +173,9 @@ export interface NodeForensics {
   hotspotScore?: number;
   classifications?: ForensicClassification[];
   coupledFiles?: CoupledFileForensics[];
-  /** Static import-graph peers (direct relative imports). */
   importedFiles?: ImportedFileForensics[];
-  /** Git history lookback window (days) used when these metrics were collected. */
   sinceDays?: number;
-  /** Short churn window (days) when dual-window metrics are present. */
   shortChurnDays?: number;
-  /** Rollups only (containers / systems) */
   fileCount?: number;
   hotspotCount?: number;
   knowledgeSiloCount?: number;
@@ -218,14 +209,11 @@ export interface SystemDependency {
 }
 
 export interface SourceProvenance {
-  /** Normalized HTTPS remote URL (no `.git` suffix). */
   remoteUrl?: string;
-  /** Default branch on the remote when known (e.g. `main`). */
   defaultBranch?: string;
-  /** Commit SHA at scan time - preferred ref for source links. */
   scannedAtCommit?: string;
-  /** Scan root relative to the git repository root (`.` when cwd is the repo root). */
   scanRoot?: string;
+  systemName?: string;
 }
 
 export interface SystemSchema {
@@ -235,7 +223,6 @@ export interface SystemSchema {
   level: C4Level;
   nodes: SystemNode[];
   dependencies: SystemDependency[];
-  /** Git provenance for linking node `properties.filepath` to remote source. */
   source?: SourceProvenance;
 }
 

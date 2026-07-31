@@ -26,6 +26,7 @@ describe('loadAnalysisConfig', () => {
           systems: ['packages', 'microsite'],
           rollupModules: true,
           context: 'Acme',
+          systemName: 'frontend-api',
           glob: 'packages/**/*.{ts,tsx}',
         }),
         'utf8'
@@ -37,6 +38,7 @@ describe('loadAnalysisConfig', () => {
       expect(loaded.systems).toEqual(['packages', 'microsite']);
       expect(loaded.rollupModules).toBe(true);
       expect(loaded.context).toBe('Acme');
+      expect(loaded.systemName).toBe('frontend-api');
       expect(loaded.glob).toBe('packages/**/*.{ts,tsx}');
       expect(loaded.configPath).toContain('blueprint.config.json');
     } finally {

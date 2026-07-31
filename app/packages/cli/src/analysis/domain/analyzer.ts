@@ -179,6 +179,8 @@ export class CodebaseAnalyzer {
     const systems = discoverSystems(cwd, this.deps.fileSystem, {
       systems: this.analysisOptions.systems,
       fallbackId: fallbackName,
+      systemName: this.analysisOptions.systemName,
+      productName: this.analysisOptions.systemName ? contextName : undefined,
     });
 
     const workspacePackageRoots = [
@@ -204,7 +206,12 @@ export class CodebaseAnalyzer {
     const emittedSystems = systems.filter(system => {
       const files = partitioned.get(system.id) || [];
       // Always keep the product hub on the context diagram, even with no source files.
-      return files.length > 0 || system.kind === 'fallback' || system.kind === 'product';
+      return (
+        files.length > 0 ||
+        system.kind === 'fallback' ||
+        system.kind === 'product' ||
+        (system.kind === 'config' && !system.rootPath)
+      );
     });
 
     const allComponentNodes: SystemNode[] = [];

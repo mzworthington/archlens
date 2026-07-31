@@ -20,6 +20,11 @@ export type AnalysisOptions = {
    * from workspaces / standalone packages.
    */
   systems: string[];
+  /**
+   * Name this repository on the context diagram when it is one product across multiple repos.
+   * Nests under a product hub derived from `--context` / config (not monorepo workspace roots).
+   */
+  systemName?: string;
 };
 
 export const DEFAULT_ANALYSIS_OPTIONS: AnalysisOptions = {

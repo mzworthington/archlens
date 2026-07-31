@@ -116,6 +116,24 @@ describe('systemDiscovery', () => {
     expect(systems.find(s => s.id === 'backstage')?.kind).toBe('product');
   });
 
+  it('pins a single-repo scan to a named system under a shared product hub', () => {
+    const fs = memoryFs({
+      texts: { '/repo/package.json': JSON.stringify({ name: 'frontend-repo' }) },
+      dirs: { '/repo': ['src'] },
+    });
+    const systems = discoverSystems('/repo', fs, {
+      systemName: 'frontend-api',
+      productName: 'acme',
+    });
+    expect(systems.map(s => s.id).sort()).toEqual(['acme', 'frontend-api']);
+    expect(systems.find(s => s.id === 'acme')?.kind).toBe('product');
+    expect(systems.find(s => s.id === 'frontend-api')).toMatchObject({
+      displayName: 'Frontend Api',
+      productId: 'acme',
+    });
+    expect(systems.every(s => s.productId === 'acme')).toBe(true);
+  });
+
   it('falls back to a single system when no workspaces or standalone packages exist', () => {
     const fs = memoryFs({
       texts: { '/repo/package.json': JSON.stringify({ name: 'simple-app' }) },
@@ -131,6 +149,28 @@ describe('systemDiscovery', () => {
         productId: 'simple-app',
       },
     ]);
+  });
+
+  it('partitions repo-wide files onto a named multi-repo system instead of the product hub', () => {
+    const systems = [
+      {
+        id: 'acme',
+        displayName: 'Acme',
+        rootPath: '',
+        kind: 'product' as const,
+        productId: 'acme',
+      },
+      {
+        id: 'frontend-api',
+        displayName: 'Frontend Api',
+        rootPath: '',
+        kind: 'config' as const,
+        productId: 'acme',
+      },
+    ];
+    const buckets = partitionFilesBySystem([{ relativePath: 'src/api.ts' }], systems);
+    expect(buckets.get('frontend-api')).toHaveLength(1);
+    expect(buckets.get('acme')).toHaveLength(0);
   });
 
   it('partitions files by longest matching system root', () => {

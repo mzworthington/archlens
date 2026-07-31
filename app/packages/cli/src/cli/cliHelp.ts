@@ -86,6 +86,7 @@ function printOverviewHelp(): void {
   flag('--glob=<pattern>', `Source files to scan (default: ${DEFAULT_SCAN_GLOB})`);
   flag('--output=<dir>', 'Blueprint output folder (default: blueprints)');
   flag('--context=<name>', 'Root entityRef slug (default: blueprint)');
+  flag('--system-name=<name>', 'Software system for this repo (multi-repo products)');
   flag('--no-git', 'Skip TraceLens git forensics enrichment');
   flag('--git --git-since=<days>', 'Enable forensics with lookback window');
   flag('--watch', 'Re-run when source files change');
@@ -122,6 +123,7 @@ function printScanHelp(): void {
   flag('--glob=<pattern>', `Files to analyze (default: ${DEFAULT_SCAN_GLOB})`);
   flag('--output=<dir>', 'Write YAML under this folder');
   flag('--context=<name>', 'Context diagram root name / entityRef');
+  flag('--system-name=<name>', 'Name this repo on the context diagram (multi-repo products)');
   flag('--parser=tree-sitter|ts-morph', 'AST engine (default: tree-sitter)');
   flag('--rollup-modules', 'Collapse *-module-* packages into prefix systems');
   flag('--ignore=<a,b>', 'Extra ignore globs (comma-separated)');
@@ -135,6 +137,7 @@ function printScanHelp(): void {
   example('archlens scan');
   example('archlens scan --output=blueprints --no-git');
   example('archlens scan --glob="packages/**/*.ts" --context=my-app');
+  example('archlens scan --context=acme --system-name=frontend-api');
 }
 
 function printEnrichHelp(): void {

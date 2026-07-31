@@ -71,4 +71,22 @@ describe('SourceCodeDialog', () => {
       'https://github.com/org/repo/blob/abc/src/answer.ts'
     );
   });
+
+  it('shows scan system name when present on provenance', () => {
+    render(
+      <SourceCodeDialog
+        isOpen
+        onClose={() => {}}
+        filepath="src/answer.ts"
+        isWorkspaceOpen={false}
+        source={{
+          remoteUrl: 'https://github.com/org/repo',
+          scannedAtCommit: 'abc',
+          systemName: 'frontend-api',
+        }}
+      />
+    );
+
+    expect(screen.getByText('System · frontend-api')).toBeInTheDocument();
+  });
 });

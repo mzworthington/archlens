@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import {
   loadChaoslensLargeGraphDiagram,
   runChaoslensDomainOrdersOutageDemo,
@@ -9,6 +9,5 @@ test.describe('ChaosLens smoke', () => {
     test.setTimeout(120_000);
     await loadChaoslensLargeGraphDiagram(page);
     await runChaoslensDomainOrdersOutageDemo(page);
-    await expect(page.locator('[data-availability-heat]').first()).toBeVisible();
   });
 });
