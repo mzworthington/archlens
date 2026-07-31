@@ -134,7 +134,7 @@ export function chaosSpecTargetsDiagram(
 /** Returns an error message when the spec cannot run against the active diagram. */
 export function validateChaosSpecForDiagram(
   document: ChaosSpecDocument,
-  schema: Pick<SystemSchema, 'nodes'>,
+  schema: Pick<SystemSchema, 'nodes' | 'dependencies'>,
   activeDiagramRef: string
 ): string | null {
   if (!chaosSpecTargetsDiagram(document, activeDiagramRef)) {
@@ -142,8 +142,9 @@ export function validateChaosSpecForDiagram(
   }
 
   const nodeRefs = new Set(schema.nodes.map(node => node.entityRef));
+  const dependencyRefs = new Set((schema.dependencies ?? []).flatMap(dep => [dep.from, dep.to]));
   for (const fault of document.faults) {
-    if (!nodeRefs.has(fault.nodeId)) {
+    if (!nodeRefs.has(fault.nodeId) && !dependencyRefs.has(fault.nodeId)) {
       return `Fault target ${fault.nodeId} is not on the active diagram.`;
     }
   }

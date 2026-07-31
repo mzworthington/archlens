@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: blueprint/advicelens-stress
+  name: AdviceLens Stress Tests
+  description: >
+    Sandbox scenarios that combine TraceLens forensics with ChaosLens topologies so
+    AdviceLens can rank composite risk, caller-targeted circuit breakers, refactor
+    silos, and event staleness. Open a scenario, load the sandbox workspace, then
+    use TraceLens (/tracelens) and ChaosLens (Resilience mode) on the same diagrams.
+nodes:
+  - entityRef: blueprint/advicelens-stress/composite-risk
+    type: container
+    name: Composite Risk (hotspot × blast)
+  - entityRef: blueprint/advicelens-stress/knowledge-silo
+    type: container
+    name: Knowledge Silo Cluster
+  - entityRef: blueprint/advicelens-stress/pubsub-staleness
+    type: container
+    name: Pub/Sub Staleness
+  - entityRef: blueprint/advicelens-stress/code-rollup
+    type: container
+    name: Code Roll-up (component drill-down)
+dependencies: []

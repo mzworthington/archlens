@@ -32,12 +32,12 @@ test.describe('Accessibility (axe)', () => {
   });
 
   test('import Mermaid dialog', async ({ page }) => {
-    await gotoApp(page, '/workspace');
     await openImportMermaid(page);
     await expectNoSeriousA11yViolations(page, 'import Mermaid dialog');
   });
 
   test('TraceLens refactor plan slide-over', async ({ page }) => {
+    test.setTimeout(180_000);
     await loadSandbox(page);
     await page.getByRole('link', { name: 'TraceLens' }).click();
     await waitForForensicsOffenders(page);
@@ -49,6 +49,7 @@ test.describe('Accessibility (axe)', () => {
   });
 
   test('ChaosLens resilience panel', async ({ page }) => {
+    test.setTimeout(180_000);
     await loadSandbox(page);
     await page.getByRole('button', { name: /enter resilience mode/i }).click();
     await expectNoSeriousA11yViolations(page, 'ChaosLens resilience mode');

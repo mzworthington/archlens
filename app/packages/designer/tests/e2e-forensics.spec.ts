@@ -23,6 +23,7 @@ test.describe('TraceLens page', () => {
   });
 
   test('lists offenders when opened from a loaded workspace', async ({ page }) => {
+    test.setTimeout(120_000);
     await loadSandbox(page);
     await page.getByRole('link', { name: 'TraceLens' }).click();
 

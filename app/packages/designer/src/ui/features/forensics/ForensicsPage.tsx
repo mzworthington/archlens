@@ -239,7 +239,7 @@ function EstateRankedRow({
         <div className="col-span-full flex flex-wrap gap-2 pt-1">
           {recommendation.actions.slice(0, 2).map(action => (
             <button
-              key={`${recommendation.id}:${action.kind}`}
+              key={`${recommendation.id}:${action.kind}:${action.targetEntityRef ?? 'global'}`}
               type="button"
               onClick={event => {
                 event.stopPropagation();

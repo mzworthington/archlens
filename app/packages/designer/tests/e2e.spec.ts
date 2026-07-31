@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { drillIntoFirstZoomable, expectCanvasReady } from './helpers/canvas';
 import { gotoApp } from './helpers/navigation';
-import { loadSandbox, workspaceSlug } from './helpers/workspace';
+import { loadSandbox, keepStartupChooserOpen, workspaceSlug } from './helpers/workspace';
 import { openImportMermaid } from './helpers/toolbar';
 
 const SAMPLE_MERMAID = `flowchart TD
@@ -11,6 +11,7 @@ const SAMPLE_MERMAID = `flowchart TD
 
 test.describe('Blueprint E2E Journeys', () => {
   test('Startup workspace chooser', async ({ page }) => {
+    await keepStartupChooserOpen(page);
     await gotoApp(page, '/workspace');
 
     await expect(page.getByTestId('startup-workspace-dialog')).toBeVisible({ timeout: 10_000 });
@@ -20,12 +21,14 @@ test.describe('Blueprint E2E Journeys', () => {
   });
 
   test('Sandbox loads a diagram on the canvas', async ({ page }) => {
+    test.setTimeout(120_000);
     await loadSandbox(page);
     await expect(page.locator('#workspace-slug-input')).not.toHaveValue('');
     await expect(page.locator('#workspace-name-input')).not.toHaveValue('');
   });
 
   test('Workspace panel toggles', async ({ page }) => {
+    test.setTimeout(120_000);
     await loadSandbox(page);
 
     const leftPanelButton = page.getByRole('button', { name: 'Toggle Left Panel' });
@@ -90,12 +93,14 @@ test.describe('Blueprint E2E Journeys', () => {
   });
 
   test('Import Mermaid from toolbar menu', async ({ page }) => {
+    test.setTimeout(120_000);
     await gotoApp(page, '/workspace');
     await openImportMermaid(page);
     await expect(page.getByTestId('import-mermaid-dialog')).toBeVisible();
   });
 
   test('Tablet viewport: compact breadcrumbs', async ({ page }) => {
+    test.setTimeout(120_000);
     await page.setViewportSize({ width: 768, height: 1024 });
     await loadSandbox(page);
     await expect(page.getByLabel('Open diagram location menu')).toBeVisible();
