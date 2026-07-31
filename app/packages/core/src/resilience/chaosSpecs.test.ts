@@ -15,7 +15,10 @@ const CHAOS_SPECS_DIR = path.join(REPO_ROOT, 'chaos-specs');
 const STRESS_DIR = path.join(REPO_ROOT, 'blueprints/chaoslens-stress');
 
 function loadStressDiagram(diagramRef: string) {
-  const files = fs.readdirSync(STRESS_DIR).filter(name => name.endsWith('.yaml'));
+  const files = fs
+    .readdirSync(STRESS_DIR)
+    .filter(name => name.endsWith('.yaml'))
+    .sort();
   for (const file of files) {
     const schema = parseSchemaFromYaml(fs.readFileSync(path.join(STRESS_DIR, file), 'utf8'));
     const ref = schema.entityRef?.trim() || schema.name;

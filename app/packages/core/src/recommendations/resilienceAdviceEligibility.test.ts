@@ -14,6 +14,18 @@ const containerSchema: SystemSchema = {
   nodes: [
     { entityRef: 'shop/api', name: 'API', type: 'microservice' },
     { entityRef: 'shop/api/db', name: 'Database', type: 'database' },
+    { entityRef: 'shop/events', name: 'Events Bus', type: 'event-broker' },
+    {
+      entityRef: 'shop/lambda',
+      name: 'Lambda',
+      type: 'serverless-function',
+      properties: {
+        filepath: 'main.tf',
+        'iac.address': 'aws_lambda_function.api',
+        'iac.provider_type': 'aws_lambda_function',
+        'iac.kind': 'resource',
+      },
+    },
   ],
   dependencies: [{ from: 'shop/api', to: 'shop/api/db', type: 'read-write' }],
 };
@@ -43,9 +55,17 @@ describe('isEstateResilienceDiagramLevel', () => {
 });
 
 describe('isResilienceAdviceTarget', () => {
-  it('allows runtime service and data nodes', () => {
+  it('allows calling application services and workers', () => {
     expect(isResilienceAdviceTarget(containerSchema, 'shop/api')).toBe(true);
-    expect(isResilienceAdviceTarget(containerSchema, 'shop/api/db')).toBe(true);
+  });
+
+  it('excludes shared infrastructure and data stores', () => {
+    expect(isResilienceAdviceTarget(containerSchema, 'shop/api/db')).toBe(false);
+    expect(isResilienceAdviceTarget(containerSchema, 'shop/events')).toBe(false);
+  });
+
+  it('excludes IaC-imported resources', () => {
+    expect(isResilienceAdviceTarget(containerSchema, 'shop/lambda')).toBe(false);
   });
 
   it('excludes structural component and code-module nodes', () => {

@@ -7,9 +7,13 @@ import {
   type WorkspaceCatalogEntry,
 } from '@archlens/core';
 import {
-  blueprintPaths,
   CONTEXT_BLUEPRINT_PATH,
-  defaultLoadedSystems,
+  getActiveBlueprintPaths,
+  getActiveSandboxKind,
+  getDefaultLoadedSystems,
+  getSandboxContextPath,
+  INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH,
+  isInfrastructureBlueprintPath,
   loadBlueprintSchema,
 } from '../../defaultData';
 import type { HydrateSystem } from './hydrateSandboxDrafts';
@@ -20,21 +24,30 @@ const inflightBundledLoads = new Map<string, Promise<boolean>>();
 
 export type BundledSystem = { path: string; name: string; schema: SystemSchema };
 
+function normalizeBundledPathForInference(path: string): string {
+  return isInfrastructureBlueprintPath(path) ? path.slice('infrastructure/'.length) : path;
+}
+
 export function inferEntityRefFromBundledPath(path: string): string | undefined {
-  if (path === CONTEXT_BLUEPRINT_PATH) return 'blueprint';
-  const containersMatch = path.match(/^([^/]+)\/containers\.yaml$/);
+  if (path === CONTEXT_BLUEPRINT_PATH || path === INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH) {
+    return 'blueprint';
+  }
+  const normalizedPath = normalizeBundledPathForInference(path);
+  const containersMatch = normalizedPath.match(/^([^/]+)\/containers\.yaml$/);
   if (containersMatch) return `blueprint/${containersMatch[1]}`;
-  const nestedContainersMatch = path.match(/^(.+)\/([^/]+)-containers\.yaml$/);
+  const nestedContainersMatch = normalizedPath.match(/^(.+)\/([^/]+)-containers\.yaml$/);
   if (nestedContainersMatch) {
     return `blueprint/${nestedContainersMatch[1]}/${nestedContainersMatch[2]}`;
   }
-  const componentMatch = path.match(/^(.+)\/([^/]+)-components\.yaml$/);
+  const componentMatch = normalizedPath.match(/^(.+)\/([^/]+)-components\.yaml$/);
   if (componentMatch) return `blueprint/${componentMatch[1]}/${componentMatch[2]}`;
   return undefined;
 }
 
 function inferLevelFromBundledPath(path: string): C4Level {
-  if (path === CONTEXT_BLUEPRINT_PATH) return 'context';
+  if (path === CONTEXT_BLUEPRINT_PATH || path === INFRASTRUCTURE_CONTEXT_BLUEPRINT_PATH) {
+    return 'context';
+  }
   if (
     path.endsWith('/containers.yaml') ||
     path.endsWith('-containers.yaml') ||
@@ -79,7 +92,10 @@ function buildSandboxWorkspaceCatalogFromResolved(
     resolvedSystems.map(s => ({ path: s.path, schema: s.schema })),
     workspaceName
   );
-  return mergeWorkspaceCatalogEntries(buildBundledPathCatalog(blueprintPaths), fromLoaded);
+  return mergeWorkspaceCatalogEntries(
+    buildBundledPathCatalog(getActiveBlueprintPaths()),
+    fromLoaded
+  );
 }
 
 function commitBundledLoadedSystems(
@@ -198,8 +214,9 @@ export function startBundledBlueprintPrefetch(deps: {
   if (prefetchStarted || deps.get().isWorkspaceOpen) return;
   prefetchStarted = true;
 
-  const pendingPaths = blueprintPaths.filter(
-    path => path !== CONTEXT_BLUEPRINT_PATH && !deps.get().loadedSystems.some(s => s.path === path)
+  const contextPath = getSandboxContextPath(getActiveSandboxKind());
+  const pendingPaths = getActiveBlueprintPaths().filter(
+    path => path !== contextPath && !deps.get().loadedSystems.some(s => s.path === path)
   );
   if (pendingPaths.length === 0) return;
 
@@ -268,7 +285,7 @@ export function resetBundledBlueprintLoaderState(): void {
 
 export function guessBundledPathForEntityRef(entityRef: string): string | undefined {
   if (!entityRef) return undefined;
-  return blueprintPaths.find(path => inferEntityRefFromBundledPath(path) === entityRef);
+  return getActiveBlueprintPaths().find(path => inferEntityRefFromBundledPath(path) === entityRef);
 }
 
 /** Diagram YAML paths needed to rank offenders for a scoped entity in bundled sandbox mode. */
@@ -290,5 +307,5 @@ export function resolveBundledPathsForEntityRef(entityRef: string): string[] {
 }
 
 export function resolveBundledContextSystems(): HydrateSystem[] {
-  return defaultLoadedSystems;
+  return getDefaultLoadedSystems(getActiveSandboxKind());
 }

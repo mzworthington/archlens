@@ -88,7 +88,7 @@ describe('runResilienceSimulation', () => {
     expect(result.overallSla).toBe(100);
     expect(result.integrityHeat.get('shop/worker')).toBeGreaterThan(0);
     expect(result.overallIntegrity).toBeLessThan(100);
-    expect(result.advice.some(line => /miss new events/i.test(line))).toBe(true);
+    expect(result.advice.some(line => /stale or missing events/i.test(line))).toBe(true);
   });
 
   it('groups workspace-qualified refs by parent diagram, not workspace root', () => {

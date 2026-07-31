@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { gotoApp } from './helpers/navigation';
+import { gotoApp, releaseE2ePage } from './helpers/navigation';
 import { expectNoSeriousA11yViolations } from './helpers/a11y';
 import { loadSandbox, waitForForensicsOffenders } from './helpers/workspace';
 import { openImportMermaid } from './helpers/toolbar';
@@ -46,6 +46,7 @@ test.describe('Accessibility (axe)', () => {
       .first()
       .click();
     await expectNoSeriousA11yViolations(page, 'TraceLens refactor plan');
+    await releaseE2ePage(page);
   });
 
   test('ChaosLens resilience panel', async ({ page }) => {
@@ -53,5 +54,6 @@ test.describe('Accessibility (axe)', () => {
     await loadSandbox(page);
     await page.getByRole('button', { name: /enter resilience mode/i }).click();
     await expectNoSeriousA11yViolations(page, 'ChaosLens resilience mode');
+    await releaseE2ePage(page);
   });
 });

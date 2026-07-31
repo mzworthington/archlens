@@ -76,16 +76,16 @@ Optional chaos specs in `chaos-specs/*.yaml` extend the default scenario set (re
 
 ## Applicability matrix
 
-AdviceLens distinguishes **where signals are observed** from **where actions belong**. Real architecture reviews rarely prescribe circuit breakers on source-file nodes.
+AdviceLens distinguishes **where signals are observed** from **where actions belong**. Resilience safeguards are **application-runtime** concerns (outbound clients, consumer logic, retries) — not IaC or shared infrastructure provisioning.
 
 | Diagram level | Estate chaos simulation | Resilience safeguards (`add-circuit-breaker`, timeouts, staleness) | TraceLens composite risk |
 | ------------- | ----------------------- | ------------------------------------------------------------------ | ------------------------ |
-| `context`     | Yes                     | On runtime nodes (services, data stores, brokers)                  | Yes                      |
-| `container`   | Yes                     | On runtime nodes                                                   | Yes                      |
-| `component`   | No                      | No — forensics/refactor only                                       | Rolled up to `entityRef` |
-| `code`        | No                      | No — forensics/refactor only                                       | Rolled up to `entityRef` |
+| `context`     | Yes                     | On **calling** services, APIs, and workers (not on brokers/DBs)    | Yes                      |
+| `container`   | Yes                     | On **calling** services, APIs, and workers                         | Yes                      |
+| `component`   | No                      | No — forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
+| `code`        | No                      | No — forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
 
-**SPOF handling:** shared dependencies are still detected, but `add-circuit-breaker` targets **callers** (outbound isolation), not the shared callee. Evidence includes `simulation.dependencyEntityRef` and `evidence.applicabilityScope` for the shared dependency.
+**SPOF handling:** shared dependencies (databases, brokers) are still detected, but `add-circuit-breaker` targets **callers** — add isolation in the calling service's outbound client, not on the shared resource or its Terraform module. IaC-imported nodes (`iac.address` / `iac.kind` properties) are never safeguard targets. Evidence includes `simulation.dependencyEntityRef` and `evidence.applicabilityScope` for the shared dependency.
 
 Core helpers: `isResilienceAdviceTarget()`, `isEstateResilienceDiagramLevel()`, `resolveAdviceApplicability()` in `@archlens/core/recommendations`.
 

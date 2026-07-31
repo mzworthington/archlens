@@ -16,9 +16,17 @@ import {
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const PAYMENT_OUTAGE_SPEC = path.join(REPO_ROOT, 'chaos-specs/payment-outage.yaml');
+const EXTERNAL_SCOPE_AUTH_OUTAGE_SPEC = path.join(
+  REPO_ROOT,
+  'chaos-specs/external-scope-auth-outage.yaml'
+);
 const ECOMMERCE_BLUEPRINT = path.join(
   REPO_ROOT,
   'blueprints/chaoslens-stress/ecommerce-containers.yaml'
+);
+const EXTERNAL_SCOPE_BLUEPRINT = path.join(
+  REPO_ROOT,
+  'blueprints/chaoslens-stress/external-scope-containers.yaml'
 );
 
 describe('ChaosSpec document', () => {
@@ -118,6 +126,13 @@ faults:
     expect(
       validateChaosSpecForDiagram(doc, schema, 'blueprint/chaoslens-stress/wrong-diagram')
     ).toMatch(/active diagram/i);
+    expect(validateChaosSpecForDiagram(doc, schema, doc.metadata.diagramRef)).toBeNull();
+  });
+
+  it('accepts fault targets on dependency endpoints not yet materialized as nodes', () => {
+    const doc = parseChaosSpecFromYaml(fs.readFileSync(EXTERNAL_SCOPE_AUTH_OUTAGE_SPEC, 'utf8'));
+    const schema = parseSchemaFromYaml(fs.readFileSync(EXTERNAL_SCOPE_BLUEPRINT, 'utf8'));
+
     expect(validateChaosSpecForDiagram(doc, schema, doc.metadata.diagramRef)).toBeNull();
   });
 

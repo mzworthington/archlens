@@ -26,7 +26,8 @@ export async function restoreWorkspaceSession(get: RestoreGet, set: RestoreSet):
     if (!session) return false;
 
     if (session.mode === 'sandbox') {
-      await resumeBundledSandbox(set, get as Parameters<typeof resumeBundledSandbox>[1]);
+      const kind = session.sandboxKind ?? 'application';
+      await resumeBundledSandbox(set, get as Parameters<typeof resumeBundledSandbox>[1], kind);
       return true;
     }
 

@@ -1,0 +1,105 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  entityRef: blueprint
+  name: Infrastructure Examples
+  source:
+    scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
+    scanRoot: .
+    remoteUrl: https://github.com/futurice/terraform-examples
+    defaultBranch: master
+nodes:
+  - entityRef: blueprint/user
+    type: person
+    name: User
+  - entityRef: blueprint/helloworld
+    type: group
+    name: Pulumi Examples
+    properties:
+      rootPath: ''
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-gke
+    type: software-system
+    name: Gcp-py-gke System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-gke
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-functions
+    type: software-system
+    name: Gcp-py-functions System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-functions
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-webserver
+    type: software-system
+    name: Gcp-py-webserver System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-webserver
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-instance-nginx
+    type: software-system
+    name: Gcp-py-instance-nginx System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-instance-nginx
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-serverless-raw
+    type: software-system
+    name: Gcp-py-serverless-raw System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-serverless-raw
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-network-component
+    type: software-system
+    name: Gcp-py-network-component System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-network-component
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql
+    type: software-system
+    name: Gcp-py-cloudrun-cloudsql System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-cloudrun-cloudsql
+      productId: helloworld
+  - entityRef: blueprint/terraform-examples
+    type: group
+    name: Terraform Examples System
+    properties:
+      rootPath: ''
+      productId: terraform-examples
+  - entityRef: blueprint/aws-lambda-api
+    type: software-system
+    name: Aws-lambda-api System
+    parentEntityRef: blueprint/terraform-examples
+    properties:
+      rootPath: aws/aws_lambda_api
+      productId: terraform-examples
+  - entityRef: blueprint/aws-reverse-proxy
+    type: software-system
+    name: Aws-reverse-proxy System
+    parentEntityRef: blueprint/terraform-examples
+    properties:
+      rootPath: aws/aws_reverse_proxy
+      productId: terraform-examples
+  - entityRef: blueprint/aws-domain-redirect
+    type: software-system
+    name: Aws-domain-redirect System
+    parentEntityRef: blueprint/terraform-examples
+    properties:
+      rootPath: aws/aws_domain_redirect
+      productId: terraform-examples
+dependencies:
+  - from: blueprint/user
+    to: blueprint/helloworld
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
+    to: blueprint/terraform-examples
+    type: direct-call
+    description: Uses

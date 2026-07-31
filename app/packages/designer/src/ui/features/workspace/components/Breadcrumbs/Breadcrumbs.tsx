@@ -2,6 +2,8 @@ import React from 'react';
 import { Folder, ChevronRight, Layers, Compass, Code, Network, ChevronDown } from 'lucide-react';
 import { useBreadcrumbs } from './useBreadcrumbs';
 import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
+import { SandboxRootSwitcher } from './SandboxRootSwitcher';
+import { useSandboxRoot } from './useSandboxRoot';
 import { Link } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 
@@ -52,24 +54,32 @@ export const Breadcrumbs: React.FC = () => {
     isWorkspaceOpen,
     workspaceName,
   } = useBreadcrumbs();
+  const { showSandboxRoot } = useSandboxRoot();
 
   return (
     <div
       ref={dropdownRef}
       className="flex flex-wrap items-center gap-y-1.5 gap-x-2.5 text-xs select-none w-full"
     >
-      <div className="flex items-center gap-1.5 text-slate-400 font-medium">
-        <Folder className="w-3.5 h-3.5 text-brand-500" />
-        <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
-        <span
-          className="max-w-[100px] sm:max-w-[150px] truncate"
-          title={isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox'}
-        >
-          {isWorkspaceOpen ? workspaceName : 'Demo sandbox'}
-        </span>
-      </div>
+      <Folder className="w-3.5 h-3.5 text-brand-500 shrink-0" />
 
-      <ChevronRight className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+      {showSandboxRoot ? (
+        <SandboxRootSwitcher />
+      ) : (
+        <>
+          <div className="flex items-center gap-1.5 text-slate-400 font-medium">
+            <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
+            <span
+              className="max-w-[100px] sm:max-w-[150px] truncate"
+              title={isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox'}
+            >
+              {isWorkspaceOpen ? workspaceName : 'Demo sandbox'}
+            </span>
+          </div>
+
+          <ChevronRight className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+        </>
+      )}
 
       <div className="flex flex-wrap items-center gap-1.5">
         {(segments as any[]).map((seg, idx) => {

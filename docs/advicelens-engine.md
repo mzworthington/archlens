@@ -66,12 +66,12 @@ const narrated = await narrateRecommendations(recommendations, {
 
 ## Resilience advice eligibility
 
-| Function                                        | Purpose                                                                              |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `isEstateResilienceDiagramLevel(level)`         | `context` / `container` only for estate chaos sweeps                                 |
-| `isResilienceAdviceTarget(schema, entityRef)`   | Excludes structural node roles (`component`, `code-module`, `group`, …)              |
-| `resolveAdviceApplicability(schema, entityRef)` | Roll code/component contributors up to `schema.entityRef` for composite-risk targets |
-| `detectSpofCallSites(schema)`                   | Shared dependency → caller list for outbound circuit-breaker advice                  |
+| Function                                        | Purpose                                                                                                |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `isEstateResilienceDiagramLevel(level)`         | `context` / `container` only for estate chaos sweeps                                                   |
+| `isResilienceAdviceTarget(schema, entityRef)`   | Calling services/workers only; excludes structural roles, data stores, brokers, and IaC-imported nodes |
+| `resolveAdviceApplicability(schema, entityRef)` | Roll code/component contributors up to `schema.entityRef` for composite-risk targets                   |
+| `detectSpofCallSites(schema)`                   | Shared dependency → caller list for outbound circuit-breaker advice                                    |
 
 Component/code diagrams still receive TraceLens refactor and rolled-up composite-risk recommendations; they do not run default estate chaos scenarios.
 

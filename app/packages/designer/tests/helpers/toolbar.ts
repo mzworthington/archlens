@@ -11,13 +11,6 @@ function isBareWorkspaceUrl(page: Page): boolean {
 export async function continueWithSandbox(page: Page) {
   if (!isBareWorkspaceUrl(page)) return;
 
-  // First-time visitors auto-load the sandbox; wait for navigation instead of racing the dialog button.
-  const autoLoaded = await page
-    .waitForURL(/\/workspace\/blueprint/, { timeout: 30_000 })
-    .then(() => true)
-    .catch(() => false);
-  if (autoLoaded) return;
-
   const dialog = page.getByTestId('startup-workspace-dialog');
   if (!(await dialog.isVisible().catch(() => false))) {
     if (page.url().includes('/workspace/blueprint')) return;

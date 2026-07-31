@@ -23,16 +23,26 @@ describe('useAutoLoadWorkspace', () => {
     });
   });
 
-  it('loads sandbox on bare /workspace when no folder session exists', async () => {
-    const loadBundledSandbox = vi.fn().mockResolvedValue(undefined);
-    useBlueprintStore.setState({ loadBundledSandbox });
+  it('restores a prior sandbox session on bare /workspace', async () => {
+    const restoreWorkspaceSession = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({ restoreWorkspaceSession });
 
     renderHook(() => useAutoLoadWorkspace('/workspace', setIsStartupOpen, setLocation));
 
     await waitFor(() => {
-      expect(loadBundledSandbox).toHaveBeenCalled();
+      expect(restoreWorkspaceSession).toHaveBeenCalled();
     });
     expect(setIsStartupOpen).toHaveBeenCalledWith(false);
     expect(setLocation).toHaveBeenCalledWith('/workspace/blueprint', { replace: true });
+  });
+
+  it('keeps the startup chooser open for first-time visitors', async () => {
+    renderHook(() => useAutoLoadWorkspace('/workspace', setIsStartupOpen, setLocation));
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().restoreWorkspaceSession).toHaveBeenCalled();
+    });
+    expect(setIsStartupOpen).not.toHaveBeenCalledWith(false);
+    expect(setLocation).not.toHaveBeenCalled();
   });
 });

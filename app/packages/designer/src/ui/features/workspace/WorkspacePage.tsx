@@ -81,7 +81,13 @@ export const WorkspacePage: React.FC = () => {
   }, [location, isStartupOpen, setIsStartupOpen]);
 
   const handleLoadSandbox = useCallback(async () => {
-    await loadBundledSandbox();
+    await loadBundledSandbox('application');
+    setIsStartupOpen(false);
+    setLocation('/workspace/blueprint', { replace: true });
+  }, [loadBundledSandbox, setIsStartupOpen, setLocation]);
+
+  const handleLoadInfrastructureSandbox = useCallback(async () => {
+    await loadBundledSandbox('infrastructure');
     setIsStartupOpen(false);
     setLocation('/workspace/blueprint', { replace: true });
   }, [loadBundledSandbox, setIsStartupOpen, setLocation]);
@@ -163,6 +169,7 @@ export const WorkspacePage: React.FC = () => {
       <StartupWorkspaceDialog
         isOpen={showStartup}
         onLoadSandbox={handleLoadSandbox}
+        onLoadInfrastructureSandbox={handleLoadInfrastructureSandbox}
         onOpenDirectory={() => void handleOpenDirectory()}
         onImportMermaid={handleImportMermaid}
         onImportIac={handleImportIac}

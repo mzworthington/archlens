@@ -106,6 +106,7 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
   set({
     isWorkspaceOpen: true,
     workspaceName,
+    sandboxKind: undefined,
     workspaceCatalog,
     loadedSystems: [entry],
     nodeRefMap: {

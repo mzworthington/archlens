@@ -1,5 +1,6 @@
 import { expect, type Page } from '@playwright/test';
 import { clickCanvasNode } from './canvas';
+import { releaseE2ePage } from './navigation';
 import { loadSandbox } from './workspace';
 
 const LARGE_GRAPH_PATH = '/workspace/blueprint/chaoslens-stress/large-graph';
@@ -54,6 +55,7 @@ export async function runChaoslensDomainOrdersOutageDemo(
   await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
   // Partial blast on large graph - hold on heated nodes after ripple.
   await page.waitForTimeout(2_500);
+  await releaseE2ePage(page);
 }
 
 /** Load external-scope stress diagram (API depends on workspace sibling Auth). */
@@ -101,4 +103,5 @@ export async function runChaoslensExternalScopeDemo(page: Page, options?: Chaosl
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
   await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
   await page.waitForTimeout(2_500);
+  await releaseE2ePage(page);
 }
