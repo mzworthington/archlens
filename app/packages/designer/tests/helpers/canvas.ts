@@ -13,7 +13,7 @@ export async function expectCanvasReady(page: Page): Promise<Locator> {
   return nodes;
 }
 
-export async function drillIntoFirstZoomable(page: Page, nodeName = 'EShop System') {
+export async function drillIntoFirstZoomable(page: Page, nodeName = 'Golden Journey') {
   await drillIntoZoomable(page, nodeName);
 }
 

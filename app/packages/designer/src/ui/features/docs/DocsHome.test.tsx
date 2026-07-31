@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { DocsHome } from './DocsHome';
+import { PRODUCT_HERO } from '../../content/productOutcomes';
 
 vi.mock('wouter', () => ({
   useLocation: () => ['/'],
@@ -25,11 +26,12 @@ describe('DocsHome', () => {
     render(<DocsHome />);
 
     expect(screen.getByTestId('docs-home')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: PRODUCT_HERO.headline })).toBeInTheDocument();
     expect(screen.getByText('Free & open source')).toBeInTheDocument();
     expect(screen.getByText('Local-first')).toBeInTheDocument();
-    expect(screen.getByText(/diagrams stay in indexeddb or folders you open/i)).toBeInTheDocument();
     expect(screen.getAllByText(/no uploads to archlens servers/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/free to use with no license fees/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Why it matters' })).toBeInTheDocument();
+    expect(screen.getByText('Simulate without touching production')).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
       0
     );

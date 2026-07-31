@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, FolderOpen, Loader2 } from 'lucide-react';
+import { FORENSICS_EMPTY } from '../../content/productOutcomes';
 
 const actionButtonClass =
   'inline-flex items-center gap-2 rounded-lg border border-[#00f0ff]/25 bg-[#040914]/80 px-3 py-2 text-xs font-semibold text-slate-100 transition-colors hover:border-[#00f0ff]/45 hover:bg-[#00f0ff]/10 disabled:opacity-50 disabled:pointer-events-none';
@@ -56,11 +57,9 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
         <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-2">
           ArchLens Canvas
         </p>
-        <h2 className="text-lg font-bold text-white tracking-tight">Load blueprints to rank</h2>
+        <h2 className="text-lg font-bold text-white tracking-tight">{FORENSICS_EMPTY.title}</h2>
         <p className="mt-2 text-sm text-slate-400 leading-relaxed max-w-2xl">
-          TraceLens ranks components and containers from loaded YAML blueprints. Start with the
-          bundled sandbox or open a local folder - or load a workspace on ArchLens Canvas first and
-          return here to use what is already in scope.
+          {FORENSICS_EMPTY.body}
           {pendingFolderSession ? (
             <>
               {' '}

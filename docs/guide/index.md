@@ -1,6 +1,6 @@
 # Product guide
 
-ArchLens helps you **see and edit systems architecture** as living diagrams that stay faithful to **BlueprintSpec**.
+ArchLens helps teams **catch architecture risk before it becomes an outage** — model failures on living diagrams, surface code hotspots, and get a ranked fix list while design is still cheap to change.
 
 Use this guide if you want to understand the product, not just the internals.
 

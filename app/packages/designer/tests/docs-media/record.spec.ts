@@ -52,10 +52,10 @@ test.describe('docs media recordings', () => {
     await page.getByRole('button', { name: 'Toggle Right Panel' }).click();
     await page.waitForTimeout(800);
 
-    await drillIntoZoomable(page, 'EShop System');
+    await drillIntoZoomable(page, 'Golden Journey');
     await page.waitForTimeout(1_200);
 
-    await drillIntoZoomable(page, 'Core Service');
+    await drillIntoZoomable(page, 'Checkout API');
     await page.waitForTimeout(1_500);
 
     await page.getByTestId('zoom-out-button').click();

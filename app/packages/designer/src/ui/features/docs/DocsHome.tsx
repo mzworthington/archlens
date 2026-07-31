@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { DocsShell } from './DocsShell';
+import { PRODUCT_HERO, WHY_IT_MATTERS } from '../../content/productOutcomes';
 
 type Product = {
   title: string;
@@ -24,6 +25,8 @@ type Product = {
   foundational?: boolean;
   role?: 'Observes' | 'Prescribes';
 };
+
+const WHY_ICONS: LucideIcon[] = [ShieldAlert, GitBranch, Lightbulb];
 
 const FLOW = [
   {
@@ -215,16 +218,13 @@ export const DocsHome: React.FC = () => {
                 </span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
-                Architecture your teams can design, validate, and trust
+                {PRODUCT_HERO.headline}
               </h1>
-              <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
-                Free to use with no license fees. ArchLens Canvas runs in your browser - diagrams
-                stay in IndexedDB or folders you open, with no account and no uploads to ArchLens
-                servers.
+              <p className="mt-4 max-w-xl text-slate-300 text-base sm:text-lg leading-relaxed">
+                {PRODUCT_HERO.lede}
               </p>
               <p className="mt-3 max-w-xl text-slate-500 text-sm leading-relaxed">
-                One product suite from codebase to diagram: declarative specs, operational insight,
-                and resilience simulation before incidents reach customers.
+                {PRODUCT_HERO.trustLine}
               </p>
               <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3">
                 <Link
@@ -266,6 +266,32 @@ export const DocsHome: React.FC = () => {
               />
             </div>
           </div>
+        </section>
+
+        <section aria-labelledby="why-it-matters-heading">
+          <h2
+            id="why-it-matters-heading"
+            className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-5"
+          >
+            Why it matters
+          </h2>
+          <ul className="grid gap-4 sm:grid-cols-3">
+            {WHY_IT_MATTERS.map((item, index) => {
+              const Icon = WHY_ICONS[index] ?? Lightbulb;
+              return (
+                <li
+                  key={item.title}
+                  className="rounded-xl border border-[#00f0ff]/10 bg-[#040914]/60 p-5"
+                >
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#00f0ff]/15 bg-[#00f0ff]/5 text-[#00f0ff]">
+                    <Icon className="h-4 w-4" aria-hidden />
+                  </div>
+                  <h3 className="mt-3 text-sm font-semibold text-white">{item.title}</h3>
+                  <p className="mt-2 text-sm text-slate-400 leading-relaxed">{item.body}</p>
+                </li>
+              );
+            })}
+          </ul>
         </section>
 
         <section aria-labelledby="how-it-works-heading">
@@ -336,10 +362,10 @@ export const DocsHome: React.FC = () => {
               <ScanSearch className="h-5 w-5" aria-hidden />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-white">Ready to explore?</h2>
+              <h2 className="text-lg font-semibold text-white">Try it in five minutes</h2>
               <p className="mt-1 text-sm text-slate-400 max-w-md">
-                No sign-up required - load the sandbox in ArchLens Canvas for free, or follow the
-                getting-started walkthrough with your own repository.
+                Load the sandbox, fault a service, and read ranked AdviceLens output — no sign-up,
+                no production risk.
               </p>
             </div>
           </div>

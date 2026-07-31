@@ -51,18 +51,10 @@ export async function openWorkspaceFolder(page: Page) {
   await folderItem.click();
 }
 
-/** Opens Import Mermaid from the startup chooser or toolbar overflow menu. */
+/** Opens Import Mermaid from the toolbar overflow menu (startup chooser no longer offers import). */
 export async function openImportMermaid(page: Page) {
   await keepStartupChooserOpen(page);
   await gotoApp(page, '/workspace');
-
-  const startupImport = page.getByTestId('startup-import-mermaid');
-  if (await startupImport.isVisible().catch(() => false)) {
-    await startupImport.click();
-    await expect(page.getByRole('dialog', { name: /Import Mermaid/i })).toBeVisible();
-    return;
-  }
-
   await continueWithSandbox(page);
 
   const importItem = page.getByRole('menuitem', { name: 'Import Mermaid' });

@@ -17,7 +17,7 @@ test.describe('Blueprint E2E Journeys', () => {
     await expect(page.getByTestId('startup-workspace-dialog')).toBeVisible({ timeout: 10_000 });
     await expect(page.getByTestId('startup-load-sandbox')).toBeVisible();
     await expect(page.getByTestId('startup-open-directory')).toBeVisible();
-    await expect(page.queryByTestId('startup-import-mermaid')).not.toBeVisible();
+    await expect(page.getByTestId('startup-import-mermaid')).toHaveCount(0);
   });
 
   test('Sandbox loads a diagram on the canvas', async ({ page }) => {
@@ -66,15 +66,13 @@ test.describe('Blueprint E2E Journeys', () => {
   });
 
   test('Import Mermaid merge preview', async ({ page }) => {
-    // Folder session keeps the startup chooser open (auto-load only runs for first-time sandbox visitors).
     await page.addInitScript(() => {
       localStorage.setItem(
         'archlens.workspaceSession',
         JSON.stringify({ mode: 'folder', workspaceName: 'E2E' })
       );
     });
-    await gotoApp(page, '/workspace');
-    await page.getByTestId('startup-import-mermaid').click();
+    await openImportMermaid(page);
 
     const dialog = page.getByTestId('import-mermaid-dialog');
     await expect(dialog).toBeVisible({ timeout: 10_000 });
