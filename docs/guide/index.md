@@ -22,7 +22,7 @@ Use this guide if you want to understand the product, not just the internals.
 3. Open **ArchLens Canvas** - on bare `/workspace`, pick **Load sandbox** (bundled demo), open a local `blueprints/` folder, or import Mermaid.
 4. Explore hierarchy (context → container → component), manage externals / display filters, inspect **TraceLens** signals.
 5. Toggle **ChaosLens** in the bottom toolbar to simulate failures on the active diagram.
-6. Review **AdviceLens** recommendations in TraceLens (Recommendations tab) or the ChaosLens telemetry panel.
+6. Review **AdviceLens** at [`/advicelens`](/advicelens), in TraceLens (AdviceLens tab), or the ChaosLens telemetry panel.
 7. Commit draft YAML via Pending Changes (folder workspaces) - **BlueprintSpec** is the source of truth.
 
 ## Guide chapters

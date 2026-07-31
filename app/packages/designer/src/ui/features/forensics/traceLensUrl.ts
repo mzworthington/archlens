@@ -1,15 +1,23 @@
+export type TraceLensView = 'offenders' | 'recommendations';
+
 export type TraceLensUrlState = {
   /** Entity ref in the path — scopes ranked results to this subtree. */
   entityRef?: string;
   /** When set, opens the refactor plan slide-over for this offender. */
   planEntityRef?: string;
   showSource: boolean;
+  /** AdviceLens estate recommendations tab. */
+  view?: TraceLensView;
 };
 
 export type TraceLensUrlOptions = {
   planEntityRef?: string | null;
   showSource?: boolean;
+  view?: TraceLensView | null;
 };
+
+/** Canonical in-app entry for AdviceLens (estate recommendations in TraceLens). */
+export const ADVICELENS_ENTRY_URL = '/tracelens?view=recommendations';
 
 const TRACE_LENS_PREFIX = '/tracelens/';
 
@@ -27,6 +35,7 @@ export function buildTraceLensUrl(
   const params = new URLSearchParams();
   if (opts.planEntityRef) params.set('plan', opts.planEntityRef);
   if (opts.showSource) params.set('source', '1');
+  if (opts.view === 'recommendations') params.set('view', 'recommendations');
   const qs = params.toString();
   return qs ? `${path}?${qs}` : path;
 }
@@ -49,7 +58,8 @@ export function parseTraceLensUrl(pathname: string, search = ''): TraceLensUrlSt
   const params = new URLSearchParams(query);
   const showSource = params.get('source') === '1';
   const planEntityRef = params.get('plan') ?? undefined;
-  return { ...parseTraceLensPath(pathname), planEntityRef, showSource };
+  const view = params.get('view') === 'recommendations' ? 'recommendations' : undefined;
+  return { ...parseTraceLensPath(pathname), planEntityRef, showSource, view };
 }
 
 export function currentTraceLensUrl(pathname: string, search = ''): string {

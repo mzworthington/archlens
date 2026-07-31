@@ -12,6 +12,7 @@ import guideAdviceLensMd from '@docs/guide/advicelens.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 import advicelensEngineMd from '@docs/advicelens-engine.md?raw';
+import { ADVICELENS_ENTRY_URL } from '../forensics/traceLensUrl';
 
 export type DocsNavItem = {
   label: string;
@@ -130,7 +131,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     markdown: guideAdviceLensMd,
     dir: 'guide',
     group: 'guide',
-    productAction: { label: 'Open AdviceLens', href: '/tracelens' },
+    productAction: { label: 'Open AdviceLens', href: ADVICELENS_ENTRY_URL },
   },
   {
     path: '/guide/schema',
@@ -243,6 +244,7 @@ export function resolveDocsHref(href: string, fromDir: string): string | null {
     joined === '/' ||
     joined.startsWith('/workspace') ||
     joined === '/tracelens' ||
+    joined === '/advicelens' ||
     joined === '/design-system' ||
     DOCS_PAGES.some(p => p.path === joined)
   ) {

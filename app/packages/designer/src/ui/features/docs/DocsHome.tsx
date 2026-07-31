@@ -21,6 +21,8 @@ type Product = {
   category: 'Platform' | 'Intelligence' | 'Resilience' | 'Contract';
   icon: LucideIcon;
   featured?: boolean;
+  foundational?: boolean;
+  role?: 'Observes' | 'Prescribes';
 };
 
 const FLOW = [
@@ -69,6 +71,7 @@ const PRODUCTS: Product[] = [
       'Git churn, complexity, and coupling on every node - highlight hotspots and refactoring boundaries early.',
     href: '/guide/tracelens',
     category: 'Intelligence',
+    role: 'Observes',
     icon: GitBranch,
   },
   {
@@ -87,6 +90,7 @@ const PRODUCTS: Product[] = [
       'Merge TraceLens and ChaosLens signals into evidence-backed recommendations—studio, CLI, and CI.',
     href: '/guide/advicelens',
     category: 'Intelligence',
+    role: 'Prescribes',
     icon: Lightbulb,
   },
   {
@@ -97,6 +101,7 @@ const PRODUCTS: Product[] = [
     href: '/guide/schema',
     category: 'Contract',
     icon: FileCode2,
+    foundational: true,
   },
 ];
 
@@ -107,8 +112,54 @@ const CATEGORY_STYLES: Record<Product['category'], string> = {
   Contract: 'text-emerald-300 border-emerald-500/20 bg-emerald-500/10',
 };
 
+const ROLE_STYLES: Record<NonNullable<Product['role']>, string> = {
+  Observes: 'text-violet-300 border-violet-500/20 bg-violet-500/10',
+  Prescribes: 'text-rose-300 border-rose-500/20 bg-rose-500/10',
+};
+
+function productBadge(product: Product): { label: string; className: string } {
+  if (product.role) {
+    return { label: product.role, className: ROLE_STYLES[product.role] };
+  }
+  return { label: product.category, className: CATEGORY_STYLES[product.category] };
+}
+
 function ProductCard({ product }: { product: Product }) {
   const Icon = product.icon;
+  const badge = productBadge(product);
+
+  if (product.foundational) {
+    return (
+      <Link
+        href={product.href}
+        aria-label={`${product.title}: ${product.tagline}`}
+        className="group flex flex-col gap-4 rounded-xl border border-emerald-400/25 bg-[#040914]/80 p-5 transition-all hover:border-emerald-400/40 hover:bg-[#061125]/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 sm:flex-row sm:items-center"
+      >
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
+          <Icon className="h-5 w-5" aria-hidden />
+        </div>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <h3 className="text-base font-semibold text-white group-hover:text-emerald-300 transition-colors">
+              {product.title}
+            </h3>
+            <span
+              className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${badge.className}`}
+            >
+              {badge.label}
+            </span>
+          </div>
+          <p className="mt-1 text-xs font-medium text-slate-300">{product.tagline}</p>
+          <p className="mt-1 text-sm text-slate-400 leading-relaxed">{product.details}</p>
+        </div>
+        <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-emerald-300 group-hover:gap-2 transition-all sm:self-center">
+          Learn more
+          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+        </span>
+      </Link>
+    );
+  }
+
   return (
     <Link
       href={product.href}
@@ -122,9 +173,9 @@ function ProductCard({ product }: { product: Product }) {
           <Icon className="h-5 w-5" aria-hidden />
         </div>
         <span
-          className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${CATEGORY_STYLES[product.category]}`}
+          className={`rounded-full border px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider ${badge.className}`}
         >
-          {product.category}
+          {badge.label}
         </span>
       </div>
       <h3 className="mt-4 text-base font-semibold text-white group-hover:text-[#00f0ff] transition-colors">
@@ -142,7 +193,8 @@ function ProductCard({ product }: { product: Product }) {
 
 export const DocsHome: React.FC = () => {
   const featured = PRODUCTS.filter(p => p.featured);
-  const rest = PRODUCTS.filter(p => !p.featured);
+  const foundational = PRODUCTS.find(p => p.foundational);
+  const suite = PRODUCTS.filter(p => !p.featured && !p.foundational);
 
   return (
     <DocsShell layout="landing">
@@ -261,10 +313,15 @@ export const DocsHome: React.FC = () => {
             ))}
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map(product => (
+            {suite.map(product => (
               <ProductCard key={product.title} product={product} />
             ))}
           </div>
+          {foundational && (
+            <div className="mt-4">
+              <ProductCard product={foundational} />
+            </div>
+          )}
         </section>
 
         <section className="rounded-2xl border border-[#00f0ff]/15 bg-gradient-to-br from-[#00f0ff]/10 via-transparent to-transparent p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">

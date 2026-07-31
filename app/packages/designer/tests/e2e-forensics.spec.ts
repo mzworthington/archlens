@@ -16,6 +16,12 @@ test.describe('TraceLens page', () => {
     await expect(page).toHaveURL(/\/tracelens$/);
   });
 
+  test('redirects /advicelens to the recommendations tab', async ({ page }) => {
+    await gotoApp(page, '/advicelens');
+    await expect(page).toHaveURL(/\/tracelens\?view=recommendations$/);
+    await expect(page.getByRole('heading', { name: 'All recommendations' })).toBeVisible();
+  });
+
   test('lists offenders when opened from a loaded workspace', async ({ page }) => {
     await loadSandbox(page);
     await page.getByRole('link', { name: 'TraceLens' }).click();

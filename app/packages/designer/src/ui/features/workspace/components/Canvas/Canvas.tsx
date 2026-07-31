@@ -14,7 +14,7 @@ import { useBlueprintStore } from '../../../../../application/store/store';
 import { BlueprintNode } from './BlueprintNode';
 import { BlueprintGroupNode } from './BlueprintGroupNode';
 import { WorkspaceToolbar } from '../WorkspaceToolbar/WorkspaceToolbar';
-import { AlertTriangle, CheckCircle2, Info, AlertCircle, X, ZoomOut } from 'lucide-react';
+import { AlertTriangle, X, ZoomOut } from 'lucide-react';
 import { resolveChildDiagramEntry } from '@archlens/core';
 import type { NodeType } from '@archlens/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
@@ -100,8 +100,6 @@ export const Canvas: React.FC = () => {
     loadedSystems,
     schema,
     currentFilePath,
-    notification,
-    setNotification,
     mermaidEnrichBannerOpen,
     setMermaidEnrichBannerOpen,
     applyClientLayout,
@@ -142,8 +140,6 @@ export const Canvas: React.FC = () => {
       loadedSystems: state.loadedSystems,
       schema: state.schema,
       currentFilePath: state.currentFilePath,
-      notification: state.notification,
-      setNotification: state.setNotification,
       mermaidEnrichBannerOpen: state.mermaidEnrichBannerOpen,
       setMermaidEnrichBannerOpen: state.setMermaidEnrichBannerOpen,
       applyClientLayout: state.applyClientLayout,
@@ -237,15 +233,6 @@ export const Canvas: React.FC = () => {
     void run();
     return () => controller.abort();
   }, [currentFilePath, layoutSessionId, applyClientLayout]);
-
-  useEffect(() => {
-    if (notification) {
-      const timer = setTimeout(() => {
-        setNotification(null);
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [notification, setNotification]);
 
   const simulationScopeSet = useMemo(() => {
     if (!isResilienceMode || !resilienceSimulationScope?.length) return null;
@@ -661,74 +648,6 @@ export const Canvas: React.FC = () => {
           </Panel>
         )}
 
-        {notification && (
-          <Panel position="top-center" className="m-4 max-w-md w-full animate-slide-in z-50">
-            <div
-              className={`flex items-start gap-3 border px-4 py-3 rounded-xl shadow-2xl backdrop-blur-md text-xs transition-all duration-300 ${
-                notification.type === 'success'
-                  ? 'bg-emerald-950/90 border-emerald-500/30 text-emerald-200'
-                  : notification.type === 'info'
-                    ? 'bg-cyan-950/90 border-cyan-900/50 text-cyan-200'
-                    : notification.type === 'warning'
-                      ? 'bg-amber-950/90 border-amber-900/50 text-amber-200'
-                      : 'bg-red-950/90 border-red-900/50 text-red-200'
-              }`}
-            >
-              {notification.type === 'success' && (
-                <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-              )}
-              {notification.type === 'info' && (
-                <Info className="w-5 h-5 text-cyan-450 shrink-0 mt-0.5" />
-              )}
-              {notification.type === 'warning' && (
-                <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-              )}
-              {notification.type === 'error' && (
-                <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
-              )}
-              <div className="flex-1">
-                {notification.title && (
-                  <h5
-                    className={`font-bold mb-0.5 ${
-                      notification.type === 'success'
-                        ? 'text-emerald-300'
-                        : notification.type === 'info'
-                          ? 'text-cyan-300'
-                          : notification.type === 'warning'
-                            ? 'text-amber-300'
-                            : 'text-red-300'
-                    }`}
-                  >
-                    {notification.title}
-                  </h5>
-                )}
-                <p className="leading-relaxed">{notification.message}</p>
-                {notification.actions && notification.actions.length > 0 ? (
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {notification.actions.map(action => (
-                      <button
-                        key={action.label}
-                        type="button"
-                        onClick={action.onClick}
-                        className="rounded-md border border-current/30 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider hover:bg-white/10 transition-colors"
-                      >
-                        {action.label}
-                      </button>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-              <button
-                type="button"
-                onClick={() => setNotification(null)}
-                className="text-slate-450 hover:text-slate-200 transition shrink-0 p-0.5 rounded hover:bg-white/10"
-                aria-label="Dismiss notification"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          </Panel>
-        )}
         {mermaidEnrichBannerOpen ? (
           <Panel position="top-center" className="m-4 max-w-lg w-full z-50">
             <div

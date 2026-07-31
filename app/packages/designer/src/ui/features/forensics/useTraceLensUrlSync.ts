@@ -157,6 +157,7 @@ export function useTraceLensUrlSync({
     const targetUrl = buildTraceLensUrl(scopeEntityRef, {
       planEntityRef: activePlanEntityRef,
       showSource,
+      view: parsed.view,
     });
 
     if (currentTraceLensUrl(location, search) !== targetUrl) {

@@ -32,7 +32,14 @@ describe('docs link resolution', () => {
     });
     expect(tracelens?.productAction?.href).toBe('/tracelens');
     expect(chaoslens?.productAction?.href).toBe('/workspace/blueprint?resilience=1');
-    expect(advicelens?.productAction).toEqual({ label: 'Open AdviceLens', href: '/tracelens' });
+    expect(advicelens?.productAction).toEqual({
+      label: 'Open AdviceLens',
+      href: '/tracelens?view=recommendations',
+    });
+  });
+
+  it('resolves in-app AdviceLens entry link', () => {
+    expect(resolveDocsHref('/advicelens', '')).toBe('/advicelens');
   });
 
   it('resolves absolute docs paths', () => {
