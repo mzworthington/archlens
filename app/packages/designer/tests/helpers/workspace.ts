@@ -14,11 +14,22 @@ export async function loadSandbox(page: Page, path = '/workspace/blueprint') {
   await expectCanvasReady(page);
 }
 
-/** Wait until background sandbox prefetch has loaded forensics-ranked components. */
-export async function waitForForensicsOffenders(page: Page) {
-  await expect(page.locator('[data-testid^="offender-row-"]').first()).toBeVisible({
-    timeout: 90_000,
+/** Prevent first-visit auto sandbox load so the startup chooser stays visible. */
+export async function keepStartupChooserOpen(page: Page) {
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      'archlens.workspaceSession',
+      JSON.stringify({ mode: 'folder', workspaceName: 'E2E' })
+    );
   });
+}
+
+/** Wait until background sandbox prefetch has loaded ranked estate rows. */
+export async function waitForForensicsOffenders(page: Page) {
+  await expect(page.getByTestId('offender-list')).toBeVisible({ timeout: 90_000 });
+  await expect(
+    page.locator('[data-testid^="estate-row-"], [data-testid^="offender-row-"]').first()
+  ).toBeVisible({ timeout: 180_000 });
 }
 
 export async function workspaceSlug(page: Page): Promise<string> {

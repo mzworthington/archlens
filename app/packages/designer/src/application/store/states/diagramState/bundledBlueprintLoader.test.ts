@@ -26,6 +26,15 @@ describe('inferEntityRefFromBundledPath', () => {
     );
   });
 
+  it('maps nested advicelens-stress scenario paths', () => {
+    expect(
+      inferEntityRefFromBundledPath('advicelens-stress/composite-risk/payment-components.yaml')
+    ).toBe('blueprint/advicelens-stress/composite-risk/payment');
+    expect(inferEntityRefFromBundledPath('advicelens-stress/composite-risk-containers.yaml')).toBe(
+      'blueprint/advicelens-stress/composite-risk'
+    );
+  });
+
   it('maps component diagrams', () => {
     expect(inferEntityRefFromBundledPath('app/designer-components.yaml')).toBe(
       'blueprint/app/designer'

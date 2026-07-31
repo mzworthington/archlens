@@ -1,4 +1,6 @@
 import { expect, type Page } from '@playwright/test';
+import { gotoApp } from './navigation';
+import { keepStartupChooserOpen } from './workspace';
 
 function isBareWorkspaceUrl(page: Page): boolean {
   const { pathname } = new URL(page.url());
@@ -56,8 +58,18 @@ export async function openWorkspaceFolder(page: Page) {
   await folderItem.click();
 }
 
-/** Opens Import Mermaid from the toolbar overflow menu (after sandbox is loaded). */
+/** Opens Import Mermaid from the startup chooser or toolbar overflow menu. */
 export async function openImportMermaid(page: Page) {
+  await keepStartupChooserOpen(page);
+  await gotoApp(page, '/workspace');
+
+  const startupImport = page.getByTestId('startup-import-mermaid');
+  if (await startupImport.isVisible().catch(() => false)) {
+    await startupImport.click();
+    await expect(page.getByRole('dialog', { name: /Import Mermaid/i })).toBeVisible();
+    return;
+  }
+
   await continueWithSandbox(page);
 
   const importItem = page.getByRole('menuitem', { name: 'Import Mermaid' });

@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: blueprint/advicelens-stress/pubsub-staleness
+  name: AdviceLens - Pub/Sub Staleness
+  description: >
+    Orders publishes domain events; Analytics and Search workers subscribe on the same
+    broker. Fault the Orders publisher in ChaosLens to surface handle-event-staleness
+    advice on the downstream workers. Orders also carries forensics for TraceLens.
+nodes:
+  - entityRef: blueprint/advicelens-stress/pubsub-staleness/orders
+    type: microservice
+    name: Orders Service
+    forensics:
+      complexity: 26
+      loc: 1120
+      sloc: 840
+      churn: 0.48
+      churn30: 56
+      churn365: 390
+      churnByWeek: [6, 7, 8, 9, 10, 11, 12, 13]
+      authorCount: 3
+      topAuthorPercent: 0.71
+      hotspotScore: 0.58
+      classifications: [hotspot]
+      sinceDays: 365
+  - entityRef: blueprint/advicelens-stress/pubsub-staleness/events
+    type: event-broker
+    name: Order Events Bus
+  - entityRef: blueprint/advicelens-stress/pubsub-staleness/analytics
+    type: background-worker
+    name: Analytics Worker
+    forensics:
+      complexity: 14
+      loc: 520
+      sloc: 380
+      churn: 0.31
+      churn30: 28
+      churn365: 180
+      churnByWeek: [3, 3, 4, 4, 5, 5, 6, 6]
+      authorCount: 2
+      topAuthorPercent: 0.68
+      hotspotScore: 0.32
+      classifications: []
+      sinceDays: 365
+  - entityRef: blueprint/advicelens-stress/pubsub-staleness/search
+    type: background-worker
+    name: Search Indexer
+    forensics:
+      complexity: 16
+      loc: 610
+      sloc: 450
+      churn: 0.36
+      churn30: 34
+      churn365: 220
+      churnByWeek: [4, 4, 5, 5, 6, 6, 7, 7]
+      authorCount: 2
+      topAuthorPercent: 0.65
+      hotspotScore: 0.38
+      classifications: []
+      sinceDays: 365
+  - entityRef: blueprint/advicelens-stress/pubsub-staleness/api
+    type: rest-api
+    name: Storefront API
+dependencies:
+  - from: blueprint/advicelens-stress/pubsub-staleness/api
+    to: blueprint/advicelens-stress/pubsub-staleness/orders
+    type: direct-call
+  - from: blueprint/advicelens-stress/pubsub-staleness/orders
+    to: blueprint/advicelens-stress/pubsub-staleness/events
+    type: publish-subscribe
+  - from: blueprint/advicelens-stress/pubsub-staleness/analytics
+    to: blueprint/advicelens-stress/pubsub-staleness/events
+    type: publish-subscribe
+  - from: blueprint/advicelens-stress/pubsub-staleness/search
+    to: blueprint/advicelens-stress/pubsub-staleness/events
+    type: publish-subscribe

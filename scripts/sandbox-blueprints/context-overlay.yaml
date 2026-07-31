@@ -76,8 +76,46 @@ nodes:
     properties:
       rootPath: chaoslens-stress
       productId: chaoslens-stress
+  - entityRef: blueprint/advicelens-stress
+    type: group
+    name: AdviceLens Stress Tests
+    properties:
+      rootPath: advicelens-stress
+      productId: advicelens-stress
+  - entityRef: blueprint/advicelens-stress/composite-risk
+    type: software-system
+    name: Composite Risk (hotspot × blast)
+    parentEntityRef: blueprint/advicelens-stress
+    properties:
+      rootPath: advicelens-stress
+      productId: advicelens-stress
+  - entityRef: blueprint/advicelens-stress/knowledge-silo
+    type: software-system
+    name: Knowledge Silo Cluster
+    parentEntityRef: blueprint/advicelens-stress
+    properties:
+      rootPath: advicelens-stress
+      productId: advicelens-stress
+  - entityRef: blueprint/advicelens-stress/pubsub-staleness
+    type: software-system
+    name: Pub/Sub Staleness
+    parentEntityRef: blueprint/advicelens-stress
+    properties:
+      rootPath: advicelens-stress
+      productId: advicelens-stress
+  - entityRef: blueprint/advicelens-stress/code-rollup
+    type: software-system
+    name: Code Roll-up (component drill-down)
+    parentEntityRef: blueprint/advicelens-stress
+    properties:
+      rootPath: advicelens-stress
+      productId: advicelens-stress
 dependencies:
   - from: blueprint/user
     to: blueprint/chaoslens-stress
+    type: direct-call
+    description: Uses
+  - from: blueprint/user
+    to: blueprint/advicelens-stress
     type: direct-call
     description: Uses

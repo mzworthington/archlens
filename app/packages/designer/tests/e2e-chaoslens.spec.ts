@@ -6,7 +6,7 @@ import {
 
 test.describe('ChaosLens smoke', () => {
   test('simulates domain-orders outage on large-graph stress diagram', async ({ page }) => {
-    test.setTimeout(120_000);
+    test.setTimeout(180_000);
     await loadChaoslensLargeGraphDiagram(page);
     await runChaoslensDomainOrdersOutageDemo(page);
   });

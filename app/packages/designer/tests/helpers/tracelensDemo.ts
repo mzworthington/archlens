@@ -12,7 +12,9 @@ export async function runTraceLensDemo(page: Page) {
 
   await expect(page.getByTestId('forensics-workspace-summary')).toBeVisible({ timeout: 60_000 });
 
-  const firstRow = page.locator('[data-testid^="offender-row-"]').first();
+  const firstRow = page
+    .locator('[data-testid^="estate-row-"], [data-testid^="offender-row-"]')
+    .first();
   await expect(firstRow).toBeVisible({ timeout: 90_000 });
   await page.waitForTimeout(1_500);
 
