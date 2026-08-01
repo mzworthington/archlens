@@ -11,6 +11,7 @@ import {
   TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
   wasmFileName,
 } from '../core/src/lib/treeSitterLanguages.ts';
+import { buildWorkspaceCatalogFromYamlFiles } from '../core/src/lib/buildWorkspaceCatalogFromYaml.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoDocs = path.resolve(__dirname, '../../../docs');
@@ -18,6 +19,7 @@ const repoSchemas = path.resolve(__dirname, '../../../schemas');
 const repoBlueprints = path.resolve(__dirname, '../../../blueprints');
 const bundledBlueprintsDest = path.resolve(__dirname, 'public/bundled-blueprints');
 const base = process.env.VITE_BASE || '/';
+const bundledWorkspaceName = 'blueprints';
 
 /** Merge overlays (e.g. context-overlay.yaml) are not standalone SystemSchema docs. */
 function isBundledBlueprintYaml(fileName: string): boolean {
@@ -55,10 +57,37 @@ function copyBundledBlueprintsTree(srcDir: string, destDir: string): void {
   }
 }
 
+function bundledBlueprintsSyncKey(manifestPaths: string[]): string {
+  return manifestPaths
+    .map(relativePath => {
+      const stat = fs.statSync(path.join(repoBlueprints, relativePath));
+      return `${relativePath}:${stat.size}:${Math.trunc(stat.mtimeMs)}`;
+    })
+    .join('\n');
+}
+
+function writeBundledWorkspaceCatalog(manifestPaths: string[]): void {
+  const files = manifestPaths.map(relativePath => ({
+    path: relativePath,
+    content: fs.readFileSync(path.join(repoBlueprints, relativePath), 'utf8'),
+  }));
+  const catalog = buildWorkspaceCatalogFromYamlFiles(files, bundledWorkspaceName, {
+    onInvalid: (relativePath, error) => {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`[sync-bundled-blueprints] Skipping ${relativePath}: ${message}`);
+    },
+  });
+  fs.writeFileSync(
+    path.join(bundledBlueprintsDest, 'catalog.json'),
+    `${JSON.stringify(catalog, null, 2)}\n`
+  );
+}
+
 /**
  * Mirror repo `blueprints/` into `public/bundled-blueprints/` for static demo serving.
  * Must sync in `configResolved` so files exist before Vite builds its publicFiles allowlist
  * (files created later in configureServer are invisible to servePublicMiddleware).
+ * Also emits `catalog.json` so the demo can open without fetching every YAML up front.
  */
 function syncBundledBlueprints(): Plugin {
   let lastSyncKey = '';
@@ -69,20 +98,17 @@ function syncBundledBlueprints(): Plugin {
     }
 
     const manifestPaths = collectBundledBlueprintPaths(repoBlueprints).sort();
-    const syncKey = manifestPaths.join('\n');
-    if (
-      syncKey === lastSyncKey &&
-      fs.existsSync(path.join(bundledBlueprintsDest, 'manifest.json'))
-    ) {
+    const syncKey = bundledBlueprintsSyncKey(manifestPaths);
+    const manifestPath = path.join(bundledBlueprintsDest, 'manifest.json');
+    const catalogPath = path.join(bundledBlueprintsDest, 'catalog.json');
+    if (syncKey === lastSyncKey && fs.existsSync(manifestPath) && fs.existsSync(catalogPath)) {
       return;
     }
 
     fs.rmSync(bundledBlueprintsDest, { recursive: true, force: true });
     copyBundledBlueprintsTree(repoBlueprints, bundledBlueprintsDest);
-    fs.writeFileSync(
-      path.join(bundledBlueprintsDest, 'manifest.json'),
-      `${JSON.stringify(manifestPaths, null, 2)}\n`
-    );
+    fs.writeFileSync(manifestPath, `${JSON.stringify(manifestPaths, null, 2)}\n`);
+    writeBundledWorkspaceCatalog(manifestPaths);
     lastSyncKey = syncKey;
   };
 

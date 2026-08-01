@@ -16,7 +16,9 @@ import {
   noopGraphChange,
   noopResilienceEngine,
 } from '../../../core';
-import { loadWorkspaceFromDirectory } from './ioState/openWorkspace';
+import { loadWorkspaceFromCatalog, loadWorkspaceFromDirectory } from './ioState/openWorkspace';
+import { selectBundledSampleEntryPath } from '../goldenPathsSample';
+import { loadBundledWorkspaceCatalog } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 
 export interface IoState {
   fileSystemPort: FileSystemPort;
@@ -188,9 +190,12 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
     setIsLoading(true);
     try {
       set({ workspacePort: sampleWorkspacePort, isSampleWorkspace: true });
-      return await loadWorkspaceFromDirectory({
-        selectDirectory: () => sampleWorkspacePort.selectDirectory(),
-        readDirectoryFiles: () => sampleWorkspacePort.readDirectoryFiles(),
+      const catalog = await loadBundledWorkspaceCatalog();
+      const entryPath = selectBundledSampleEntryPath(catalog);
+      return await loadWorkspaceFromCatalog({
+        catalog,
+        entryPath,
+        readFile: relativePath => sampleWorkspacePort.readFile(relativePath),
         getDirectoryName: () => sampleWorkspacePort.getDirectoryName(),
         workingCopy: workingCopyPort,
         logger,

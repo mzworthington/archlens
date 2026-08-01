@@ -1,4 +1,5 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { buildWorkspaceCatalogFromYamlFiles, type WorkspaceCatalogEntry } from '@archlens/core';
 import { GOLDEN_PATHS_CONTEXT_PATH } from '../../application/store/goldenPathsSample';
 
 const blueprintLoaders = import.meta.glob<string>(
@@ -15,9 +16,25 @@ function relativePathFromGlobKey(key: string): string {
   return key.slice(idx + marker.length);
 }
 
-const manifestPaths = Object.keys(blueprintLoaders).map(relativePathFromGlobKey).sort();
+const yamlByRelativePath = Object.fromEntries(
+  Object.entries(blueprintLoaders).map(([key, loader]) => [relativePathFromGlobKey(key), loader])
+);
 
-function installBundledBlueprintFetchStub() {
+let realCatalog: WorkspaceCatalogEntry[] = [];
+
+async function buildRealCatalog(): Promise<WorkspaceCatalogEntry[]> {
+  const files = await Promise.all(
+    Object.entries(yamlByRelativePath).map(async ([path, loader]) => ({
+      path,
+      content: await loader(),
+    }))
+  );
+  return buildWorkspaceCatalogFromYamlFiles(files, 'blueprints', {
+    onInvalid: () => undefined,
+  });
+}
+
+function installBundledBlueprintFetchStub(catalog: WorkspaceCatalogEntry[]) {
   vi.stubGlobal(
     'fetch',
     vi.fn(async (input: RequestInfo | URL) => {
@@ -28,25 +45,24 @@ function installBundledBlueprintFetchStub() {
         throw new Error(`Unexpected fetch URL in bundled blueprint test: ${href}`);
       }
       const relativePath = href.slice(idx + marker.length);
-      if (relativePath === 'manifest.json') {
-        return new Response(JSON.stringify(manifestPaths), { status: 200 });
+      if (relativePath === 'catalog.json') {
+        return new Response(JSON.stringify(catalog), { status: 200 });
       }
-      const globKey = Object.keys(blueprintLoaders).find(
-        key => relativePathFromGlobKey(key) === relativePath
-      );
-      if (!globKey) {
+      const loader = yamlByRelativePath[relativePath];
+      if (!loader) {
         throw new Error(`Bundled blueprint not found in test fixtures: ${relativePath}`);
       }
-      const content = await blueprintLoaders[globKey]!();
+      const content = await loader();
       return new Response(content, { status: 200 });
     })
   );
 }
 
 describe('BundledSampleWorkspaceAdapter', () => {
-  beforeAll(() => {
+  beforeAll(async () => {
     window.location.href = 'http://localhost:5188/';
-    installBundledBlueprintFetchStub();
+    realCatalog = await buildRealCatalog();
+    installBundledBlueprintFetchStub(realCatalog);
   });
 
   afterEach(() => {
@@ -74,10 +90,38 @@ describe('BundledSampleWorkspaceAdapter', () => {
       BundledSampleWorkspaceAdapter.readFile('app/packages/designer/src/foo.ts')
     ).rejects.toThrow(/only contains blueprint/i);
   });
+
+  it('loads the prebuilt navigation catalog without fetching every YAML', async () => {
+    const { loadBundledWorkspaceCatalog } = await import('./bundledSampleWorkspace');
+    const fetchMock = fetch as unknown as ReturnType<typeof vi.fn>;
+    fetchMock.mockClear();
+
+    const catalog = await loadBundledWorkspaceCatalog();
+    expect(catalog.length).toBeGreaterThan(100);
+    expect(catalog.some(e => e.path === GOLDEN_PATHS_CONTEXT_PATH)).toBe(true);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(String(fetchMock.mock.calls[0]?.[0])).toContain('/bundled-blueprints/catalog.json');
+  });
 });
 
 describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
-  const tinyManifest = ['demo/context.yaml', 'demo/containers.yaml'];
+  const tinyCatalog: WorkspaceCatalogEntry[] = [
+    {
+      path: 'demo/context.yaml',
+      name: 'Demo',
+      level: 'context',
+      entityRef: 'demo',
+      nodeEntityRefs: [],
+    },
+    {
+      path: 'demo/containers.yaml',
+      name: 'App',
+      level: 'container',
+      entityRef: 'demo/app',
+      nodeEntityRefs: [],
+      parentEntityRef: 'demo',
+    },
+  ];
   const yamlByPath: Record<string, string> = {
     'demo/context.yaml':
       'entityRef: demo\nlevel: context\nname: Demo\nnodes: []\ndependencies: []\n',
@@ -105,17 +149,17 @@ describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
   }
 
   it('retries transient Failed to fetch errors and then succeeds', async () => {
-    let manifestAttempts = 0;
+    let catalogAttempts = 0;
     vi.stubGlobal(
       'fetch',
       vi.fn(async (input: RequestInfo | URL) => {
         const relativePath = relativeFromUrl(input);
-        if (relativePath === 'manifest.json') {
-          manifestAttempts += 1;
-          if (manifestAttempts < 3) {
+        if (relativePath === 'catalog.json') {
+          catalogAttempts += 1;
+          if (catalogAttempts < 3) {
             throw new TypeError('Failed to fetch');
           }
-          return new Response(JSON.stringify(tinyManifest), { status: 200 });
+          return new Response(JSON.stringify(tinyCatalog), { status: 200 });
         }
         return new Response(yamlByPath[relativePath], { status: 200 });
       })
@@ -123,23 +167,24 @@ describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
 
     const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
     const files = await BundledSampleWorkspaceAdapter.readDirectoryFiles();
-    expect(files.map(f => f.name)).toEqual([...tinyManifest].sort((a, b) => a.localeCompare(b)));
-    expect(manifestAttempts).toBe(3);
+    expect(files.map(f => f.name)).toEqual(
+      [...tinyCatalog.map(e => e.path)].sort((a, b) => a.localeCompare(b))
+    );
+    expect(catalogAttempts).toBe(3);
   });
 
-  it('clears a failed manifest cache so a later retry can succeed', async () => {
-    let manifestAttempts = 0;
+  it('clears a failed catalog cache so a later retry can succeed', async () => {
+    let catalogAttempts = 0;
     vi.stubGlobal(
       'fetch',
       vi.fn(async (input: RequestInfo | URL) => {
         const relativePath = relativeFromUrl(input);
-        if (relativePath === 'manifest.json') {
-          manifestAttempts += 1;
-          // Exhaust the first open's retry budget, then allow the next open to succeed.
-          if (manifestAttempts <= 3) {
+        if (relativePath === 'catalog.json') {
+          catalogAttempts += 1;
+          if (catalogAttempts <= 3) {
             throw new TypeError('Failed to fetch');
           }
-          return new Response(JSON.stringify(tinyManifest), { status: 200 });
+          return new Response(JSON.stringify(tinyCatalog), { status: 200 });
         }
         return new Response(yamlByPath[relativePath], { status: 200 });
       })
@@ -152,19 +197,25 @@ describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
 
     const files = await BundledSampleWorkspaceAdapter.readDirectoryFiles();
     expect(files).toHaveLength(2);
-    expect(manifestAttempts).toBe(4);
+    expect(catalogAttempts).toBe(4);
   });
 
   it('limits concurrent blueprint downloads', async () => {
     let inFlight = 0;
     let maxInFlight = 0;
+    const manyCatalog: WorkspaceCatalogEntry[] = Array.from({ length: 40 }, (_, i) => ({
+      path: `demo/file-${i}.yaml`,
+      name: `File ${i}`,
+      level: 'context' as const,
+      entityRef: `demo-${i}`,
+      nodeEntityRefs: [],
+    }));
     vi.stubGlobal(
       'fetch',
       vi.fn(async (input: RequestInfo | URL) => {
         const relativePath = relativeFromUrl(input);
-        if (relativePath === 'manifest.json') {
-          const many = Array.from({ length: 40 }, (_, i) => `demo/file-${i}.yaml`);
-          return new Response(JSON.stringify(many), { status: 200 });
+        if (relativePath === 'catalog.json') {
+          return new Response(JSON.stringify(manyCatalog), { status: 200 });
         }
         inFlight += 1;
         maxInFlight = Math.max(maxInFlight, inFlight);
