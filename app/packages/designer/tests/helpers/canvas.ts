@@ -86,12 +86,8 @@ export async function openGoldenJourneyEstate(page: Page) {
 }
 
 export async function openPropertiesPanel(page: Page) {
-  const panel = page.getByTestId('right-panel');
-  const isCollapsed = await panel.evaluate(el => el.classList.contains('w-0'));
-  if (isCollapsed) {
-    await page.getByRole('button', { name: 'Open Properties Panel' }).click();
-    await expect(panel).not.toHaveClass(/w-0/);
-  }
+  const { ensureRightPanelOpen } = await import('./workspace');
+  await ensureRightPanelOpen(page);
 }
 
 export async function clickCanvasNode(page: Page, label: string) {

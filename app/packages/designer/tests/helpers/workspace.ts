@@ -70,3 +70,17 @@ export async function openExplorerTraceLensTab(page: Page) {
   await page.getByTestId('left-tab-tracelens').click();
   await expect(page.getByTestId('workspace-display-controls')).toBeVisible();
 }
+
+/** Open the properties panel when collapsed (desktop rail or mobile chip). */
+export async function ensureRightPanelOpen(page: Page) {
+  const panel = page.getByTestId('right-panel');
+  if ((await panel.count()) === 0) {
+    const mobile = page.getByRole('button', { name: 'Open Properties Panel' });
+    if (await mobile.isVisible().catch(() => false)) {
+      await mobile.click();
+    } else {
+      await page.getByRole('button', { name: 'Toggle right panel' }).click();
+    }
+  }
+  await expect(panel).toBeVisible({ timeout: 30_000 });
+}
