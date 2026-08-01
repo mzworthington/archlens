@@ -35,14 +35,12 @@ curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts
 
 ## Workspace Component Catalog
 
-| Component                           | Path                                               | Language/Framework                       | Description                                                                                  |
-| :---------------------------------- | :------------------------------------------------- | :--------------------------------------- | :------------------------------------------------------------------------------------------- |
-| **`@archlens/designer`**            | [app/packages/designer/](./app/packages/designer/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                                          |
-| **`@archlens/cli`**                 | [app/packages/cli/](./app/packages/cli/)           | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable)                             |
-| **`@archlens/core`**                | [app/packages/core/](./app/packages/core/)         | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec)                             |
-| **`blueprint-rust` (unmaintained)** | [cli/](./cli/)                                     | Rust                                     | Quarantined - `cargo build` fails unless `BLUEPRINT_RUST_ALLOW_BUILD=1`; use `@archlens/cli` |
-
-Schema source of truth is TypeScript + Zod in `@archlens/core` (no Protocol Buffers).
+| Component                                                                             | Path                                               | Language/Framework                       | Description                                                      |
+| :------------------------------------------------------------------------------------ | :------------------------------------------------- | :--------------------------------------- | :--------------------------------------------------------------- |
+| **`@archlens/designer`**                                                              | [app/packages/designer/](./app/packages/designer/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                              |
+| **`@archlens/cli`**                                                                   | [app/packages/cli/](./app/packages/cli/)           | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable) |
+| **`@archlens/core`**                                                                  | [app/packages/core/](./app/packages/core/)         | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec) |
+| Schema source of truth is TypeScript + Zod in `@archlens/core` (no Protocol Buffers). |
 
 ---
 
