@@ -15,16 +15,16 @@ test.describe('Blueprint E2E Journeys', () => {
     await gotoApp(page, '/workspace');
 
     await expect(page.getByTestId('startup-workspace-dialog')).toBeVisible({ timeout: 10_000 });
-    await expect(page.getByTestId('workspace-load-sandbox-golden-paths')).toBeVisible();
+    await expect(page.getByTestId('workspace-open-sample')).toBeVisible();
     await expect(page.getByTestId('workspace-open-directory')).toBeVisible();
     await expect(page.getByTestId('startup-import-mermaid')).toHaveCount(0);
   });
 
-  test('Sandbox loads a diagram on the canvas', async ({ page }) => {
+  test('Golden Paths sample loads a diagram on the canvas', async ({ page }) => {
     test.setTimeout(120_000);
     await loadSandbox(page);
     await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/);
-    await expect(page.getByRole('button', { name: 'Golden Paths' })).toBeVisible();
+    await expect(page.getByText('Golden Paths').first()).toBeVisible();
   });
 
   test('Workspace panel toggles', async ({ page }) => {
@@ -58,20 +58,18 @@ test.describe('Blueprint E2E Journeys', () => {
     const rootSlug = await workspaceSlug(page);
 
     await drillIntoFirstZoomable(page);
+    await expect(page).toHaveURL(/\/workspace\/golden-paths\/golden-journey(?:\/|$)/, {
+      timeout: 30_000,
+    });
     expect(await workspaceSlug(page)).not.toBe(rootSlug);
 
     await page.getByTestId('zoom-out-button').click();
     await expectCanvasReady(page);
+    await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/, { timeout: 30_000 });
     expect(await workspaceSlug(page)).toBe(rootSlug);
   });
 
   test('Import Mermaid merge preview', async ({ page }) => {
-    await page.addInitScript(() => {
-      localStorage.setItem(
-        'archlens.workspaceSession',
-        JSON.stringify({ mode: 'folder', workspaceName: 'E2E' })
-      );
-    });
     await openImportMermaid(page);
 
     const dialog = page.getByTestId('import-mermaid-dialog');

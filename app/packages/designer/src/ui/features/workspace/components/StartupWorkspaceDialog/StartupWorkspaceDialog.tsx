@@ -1,17 +1,16 @@
 import React from 'react';
 import { WorkspaceEntryPanel } from '../../../../components/WorkspaceEntryPanel';
-import type { SandboxContextPath } from '../../../../../application/store/defaultData';
 
 interface StartupWorkspaceDialogProps {
   isOpen: boolean;
-  onLoadSandbox: (contextPath: SandboxContextPath) => void;
+  onOpenSample: () => void;
   onOpenDirectory: () => void;
 }
 
-/** First-run gate for bare `/workspace` — demo sandbox or a local folder. */
+/** First-run gate for bare `/workspace` — bundled sample or a local folder. */
 export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   isOpen,
-  onLoadSandbox,
+  onOpenSample,
   onOpenDirectory,
 }) => {
   if (!isOpen) return null;
@@ -29,7 +28,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
       <div className="fixed inset-0 flex items-center justify-center p-4 pointer-events-none overflow-y-auto">
         <div className="pointer-events-auto w-full max-w-lg my-auto bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl p-5">
           <WorkspaceEntryPanel
-            onLoadSandbox={onLoadSandbox}
+            onOpenSample={onOpenSample}
             onOpenDirectory={onOpenDirectory}
             showCliPanel
             titleId="startup-workspace-title"

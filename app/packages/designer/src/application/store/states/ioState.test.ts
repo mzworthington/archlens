@@ -63,6 +63,7 @@ dependencies: []
       workingCopyPort: dexieWorkingCopyAdapter,
       currentFilePath: 'blueprint.yaml',
       isWorkspaceOpen: false,
+      isSampleWorkspace: false,
       workspaceName: '',
       lastError: null,
       notification: null,
@@ -76,6 +77,7 @@ dependencies: []
     expect(success).toBe(true);
     const updatedState = useBlueprintStore.getState();
     expect(updatedState.isWorkspaceOpen).toBe(true);
+    expect(updatedState.isSampleWorkspace).toBe(false);
     expect(updatedState.workspaceName).toBe('MockWorkspace');
     expect(updatedState.currentFilePath).toBe('blueprint.yaml');
     expect(updatedState.schema.name).toBe('Root Context');
@@ -117,8 +119,6 @@ dependencies: []
       expect.arrayContaining(['blueprint.yaml', 'another-system.yaml'])
     );
   });
-
-  // Workspace directory selection tests cover multi-file loading.
 
   describe('saveSchema error handling', () => {
     it('should return false if saveSchema port operation fails', async () => {
@@ -183,7 +183,22 @@ nodes: []`);
     it('should delegate to saveSchema when workspace is not open', async () => {
       const store = useBlueprintStore.getState();
       const originalSaveSchema = store.saveSchema;
-      useBlueprintStore.setState({ isWorkspaceOpen: false });
+      useBlueprintStore.setState({ isWorkspaceOpen: false, isSampleWorkspace: false });
+
+      const mockSaveSchema = vi.fn().mockResolvedValue(true);
+      useBlueprintStore.setState({ saveSchema: mockSaveSchema });
+
+      const success = await store.saveActiveDiagram();
+      expect(success).toBe(true);
+      expect(mockSaveSchema).toHaveBeenCalled();
+
+      useBlueprintStore.setState({ saveSchema: originalSaveSchema });
+    });
+
+    it('should delegate to saveSchema for bundled sample workspaces', async () => {
+      const store = useBlueprintStore.getState();
+      const originalSaveSchema = store.saveSchema;
+      useBlueprintStore.setState({ isWorkspaceOpen: true, isSampleWorkspace: true });
 
       const mockSaveSchema = vi.fn().mockResolvedValue(true);
       useBlueprintStore.setState({ saveSchema: mockSaveSchema });

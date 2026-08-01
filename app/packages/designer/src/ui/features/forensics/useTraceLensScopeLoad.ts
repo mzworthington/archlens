@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { resolveDiagramPathsForEntityScope } from '../../../application/forensics/resolveTraceLensScopeDiagrams';
-import { ensureBundledSystemLoaded } from '../../../application/store/states/diagramState/bundledBlueprintLoader';
 import { ensureSystemLoaded } from '../../../application/store/states/ioState/ensureSystemLoaded';
 import { useBlueprintStore } from '../../../application/store/store';
 
@@ -27,13 +26,11 @@ export function useTraceLensScopeLoad({
   loadedSystems: readonly LoadedSystem[];
 }): void {
   useEffect(() => {
-    if (!scopeEntityRef || !hasScope) return;
+    if (!scopeEntityRef || !hasScope || !isWorkspaceOpen) return;
 
-    const paths = resolveDiagramPathsForEntityScope(
-      scopeEntityRef,
-      workspaceCatalog,
-      isWorkspaceOpen
-    ).filter(path => !loadedSystems.some(system => system.path === path));
+    const paths = resolveDiagramPathsForEntityScope(scopeEntityRef, workspaceCatalog).filter(
+      path => !loadedSystems.some(system => system.path === path)
+    );
 
     if (paths.length === 0) return;
 
@@ -41,27 +38,18 @@ export function useTraceLensScopeLoad({
 
     void (async () => {
       const state = useBlueprintStore.getState();
-      const { logger } = state;
+      const { logger, workspacePort, workingCopyPort } = state;
 
       for (const path of paths) {
         if (cancelled) return;
 
-        if (isWorkspaceOpen) {
-          const { workspacePort, workingCopyPort } = useBlueprintStore.getState();
-          await ensureSystemLoaded(path, {
-            workspacePort,
-            workingCopyPort,
-            logger,
-            get: () => useBlueprintStore.getState(),
-            set: partial => useBlueprintStore.setState(partial),
-          });
-        } else {
-          await ensureBundledSystemLoaded(path, {
-            get: () => useBlueprintStore.getState(),
-            set: partial => useBlueprintStore.setState(partial),
-            logger,
-          });
-        }
+        await ensureSystemLoaded(path, {
+          workspacePort,
+          workingCopyPort,
+          logger,
+          get: () => useBlueprintStore.getState(),
+          set: partial => useBlueprintStore.setState(partial),
+        });
       }
     })();
 

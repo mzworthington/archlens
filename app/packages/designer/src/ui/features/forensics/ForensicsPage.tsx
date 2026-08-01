@@ -43,23 +43,20 @@ import { useTraceLensScopeFromUrl } from './useTraceLensScopeFromUrl';
 import { parseTraceLensUrl, buildTraceLensUrl } from './traceLensUrl';
 import { TRACE_LENS_HERO } from '../../content/productOutcomes';
 import { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
-import { loadWorkspaceSession } from '../../../application/store/workspaceSession';
 import {
   GOLDEN_PATHS_CONTEXT_PATH,
-  getSandboxDefinition,
-  type SandboxContextPath,
-} from '../../../application/store/defaultData';
+  GOLDEN_PATHS_ENTITY_REF,
+} from '../../../application/store/goldenPathsSample';
 import {
   DIAGRAM_LAYOUT_MESSAGE,
   DIAGRAM_LOADING_MESSAGE,
   FORENSICS_PREFETCH_MESSAGE,
-  SANDBOX_LOADING_MESSAGE,
 } from '../../../application/store/diagramLoadSession';
 
 function isForensicsLoadingState(isLoading: boolean | string): boolean {
   if (!isLoading) return false;
   if (isLoading === true) return true;
-  return isLoading === SANDBOX_LOADING_MESSAGE || isLoading === FORENSICS_PREFETCH_MESSAGE;
+  return isLoading === FORENSICS_PREFETCH_MESSAGE;
 }
 
 function scoreBarColor(level: ConcernLevel): string {
@@ -270,11 +267,10 @@ export const ForensicsPage: React.FC = () => {
     workspaceName,
     isLoading,
     diagramLoadCount,
-    loadBundledSandbox,
+    openBundledSample,
     openWorkspaceDirectory,
     prefetchAllWorkspaceSystems,
     selectSystem,
-    activeSandboxContextPath,
     simulateResilienceFaultAtNode,
     selectNode,
     setShowCoupling,
@@ -299,11 +295,10 @@ export const ForensicsPage: React.FC = () => {
       workspaceName: state.workspaceName,
       isLoading: state.isLoading,
       diagramLoadCount: state.diagramLoadCount,
-      loadBundledSandbox: state.loadBundledSandbox,
+      openBundledSample: state.openBundledSample,
       openWorkspaceDirectory: state.openWorkspaceDirectory,
       prefetchAllWorkspaceSystems: state.prefetchAllWorkspaceSystems,
       selectSystem: state.selectSystem,
-      activeSandboxContextPath: state.activeSandboxContextPath,
       simulateResilienceFaultAtNode: state.simulateResilienceFaultAtNode,
       selectNode: state.selectNode,
       setShowCoupling: state.setShowCoupling,
@@ -355,11 +350,7 @@ export const ForensicsPage: React.FC = () => {
   useEffect(() => {
     const { diagramLoadCount: loadCount, isLoading: loading } = useBlueprintStore.getState();
     if (loadCount > 0 || !loading) return;
-    if (
-      loading === DIAGRAM_LOADING_MESSAGE ||
-      loading === DIAGRAM_LAYOUT_MESSAGE ||
-      loading === SANDBOX_LOADING_MESSAGE
-    ) {
+    if (loading === DIAGRAM_LOADING_MESSAGE || loading === DIAGRAM_LAYOUT_MESSAGE) {
       useBlueprintStore.setState({ isLoading: false });
     }
   }, []);
@@ -373,16 +364,8 @@ export const ForensicsPage: React.FC = () => {
     [workspaceCatalog, loadedSystems]
   );
   const hasScope = loadedCount > 0 || isWorkspaceOpen;
-  const pendingFolderSession = useMemo(() => {
-    if (hasScope || forensicsBusy) return false;
-    return loadWorkspaceSession()?.mode === 'folder';
-  }, [hasScope, forensicsBusy]);
-  const pendingFolderName = useMemo(() => {
-    if (!pendingFolderSession) return undefined;
-    return loadWorkspaceSession()?.workspaceName;
-  }, [pendingFolderSession]);
   const hasForensicsData = loadedSystemsHaveForensics(loadedSystems);
-  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Bundled sandbox';
+  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace' : 'No workspace';
   const deferRankingWhilePrefetch = unloadedCount > 0 && !rankLoadedOnly;
   const rankingSystems = useDeferredLoadedSystems(loadedSystems, deferRankingWhilePrefetch);
 
@@ -455,19 +438,13 @@ export const ForensicsPage: React.FC = () => {
     void prefetchAllWorkspaceSystems();
   }, [hasScope, unloadedCount, prefetchAllWorkspaceSystems, rankLoadedOnly]);
 
-  const handleLoadSandbox = useCallback(
-    async (
-      contextPath: SandboxContextPath = activeSandboxContextPath ?? GOLDEN_PATHS_CONTEXT_PATH
-    ) => {
-      const definition = getSandboxDefinition(contextPath);
-      if (!definition) return;
+  const handleOpenSample = useCallback(async () => {
+    const opened = await openBundledSample();
+    if (!opened) return;
 
-      await loadBundledSandbox(contextPath);
-      await selectSystem(contextPath);
-      setLocation(`/tracelens/${definition.entityRef}`, { replace: true });
-    },
-    [activeSandboxContextPath, loadBundledSandbox, selectSystem, setLocation]
-  );
+    await selectSystem(GOLDEN_PATHS_CONTEXT_PATH);
+    setLocation(`/tracelens/${GOLDEN_PATHS_ENTITY_REF}`, { replace: true });
+  }, [openBundledSample, selectSystem, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {
     const opened = await openWorkspaceDirectory();
@@ -732,13 +709,10 @@ export const ForensicsPage: React.FC = () => {
             catalogCount={catalogCount}
             unloadedCount={unloadedCount}
             isLoading={forensicsBusy}
-            pendingFolderSession={pendingFolderSession}
-            pendingFolderName={pendingFolderName}
             rankLoadedOnly={rankLoadedOnly}
             onRankLoadedOnly={() => setRankLoadedOnly(true)}
-            onLoadSandbox={contextPath => void handleLoadSandbox(contextPath)}
+            onOpenSample={() => void handleOpenSample()}
             onOpenDirectory={() => void handleOpenDirectory()}
-            activeSandboxContextPath={activeSandboxContextPath}
           />
 
           <div className="mb-6">
@@ -822,7 +796,7 @@ export const ForensicsPage: React.FC = () => {
                           ? 'Blueprints are loaded but have no TraceLens blocks. Re-scan with git enabled (`archlens` default) or run `archlens enrich --git` on existing YAML.'
                           : hasScope
                             ? 'No rows match this filter. Try All or Heating, or load more component diagrams.'
-                            : 'Load the sandbox or open a blueprint folder above, or open a workspace on the canvas first.'}
+                            : 'Open the Golden Paths sample or a blueprint folder above, or open a workspace on the canvas first.'}
                   </p>
                 </div>
               ) : (

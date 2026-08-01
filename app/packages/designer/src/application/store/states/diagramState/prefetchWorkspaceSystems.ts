@@ -1,4 +1,3 @@
-import { startBundledBlueprintPrefetch } from './bundledBlueprintLoader';
 import { ensureSystemLoaded } from '../ioState/ensureSystemLoaded';
 import {
   beginDiagramLoad,
@@ -28,7 +27,6 @@ let prefetchInFlight: Promise<void> | null = null;
 
 /**
  * Load every diagram in the active workspace catalog so forensics rankings cover the full tree.
- * Folder workspaces load eagerly with a loading overlay; bundled sandbox uses background prefetch.
  */
 export async function prefetchAllWorkspaceSystems(
   get: PrefetchGet,
@@ -46,9 +44,6 @@ export async function prefetchAllWorkspaceSystems(
       .filter(path => !loadedSystems.some(system => system.path === path));
 
     if (unloadedPaths.length === 0 || !isWorkspaceOpen) {
-      if (!isWorkspaceOpen) {
-        startBundledBlueprintPrefetch({ get, set });
-      }
       return;
     }
 

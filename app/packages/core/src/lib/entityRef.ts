@@ -121,6 +121,9 @@ export function resolveWorkspaceEntityRefs(
         const ref = node.entityRef || '';
         if (ref.includes('/')) {
           refMap.set(ref, ref);
+        } else if (ref === contextSlug || ref === systemId) {
+          // Diagram-root group nodes share the context entityRef (e.g. backstage group on backstage context).
+          refMap.set(ref, ref);
         } else {
           refMap.set(
             ref,
@@ -141,12 +144,18 @@ export function resolveWorkspaceEntityRefs(
 
     const resolvedNodes = file.schema.nodes.map(node => {
       const ref = node.entityRef || '';
-      if (ref.includes('/')) {
-        return { ...node, entityRef: ref };
-      }
-      const defaultRef = resolveShortEntityRef(ref, systemId, contextSlug);
-      const entityRef = fileRefMap.get(ref) ?? defaultRef;
-      return { ...node, entityRef };
+      const entityRef = ref.includes('/')
+        ? ref
+        : (fileRefMap.get(ref) ?? resolveShortEntityRef(ref, systemId, contextSlug));
+
+      const parentRef = node.parentEntityRef;
+      const parentEntityRef = parentRef
+        ? parentRef.includes('/')
+          ? parentRef
+          : (fileRefMap.get(parentRef) ?? resolveShortEntityRef(parentRef, systemId, contextSlug))
+        : undefined;
+
+      return parentEntityRef ? { ...node, entityRef, parentEntityRef } : { ...node, entityRef };
     });
 
     const resolvedDeps = (file.schema.dependencies ?? []).map(dep => {

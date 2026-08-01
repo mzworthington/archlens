@@ -79,7 +79,7 @@ export const PropertyPanel: React.FC = () => {
     removeResilienceFault,
     openChaosSpecDialog,
     clearResilienceScenario,
-    isWorkspaceOpen,
+    isSampleWorkspace,
   } = useBlueprintStore();
 
   const selectedFault = selectedNodeId
@@ -287,7 +287,7 @@ export const PropertyPanel: React.FC = () => {
         <div className="space-y-6">
           {showSimulationPanel ? (
             <ResilienceSection
-              sandboxMode={!isWorkspaceOpen}
+              sampleMode={isSampleWorkspace}
               telemetryView={resilienceTelemetryView}
               schemaNodes={schema.nodes}
               selectedNodeId={selectedNodeId}

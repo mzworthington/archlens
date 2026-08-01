@@ -1,13 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { resolveRelativePath, defaultInitialSchema } from './store';
-
-describe('Default Initial Schema & Hierarchical C4 Linking', () => {
-  it('should verify initial default workspace structure', () => {
-    expect(defaultInitialSchema).toBeDefined();
-    expect(defaultInitialSchema.name).toBeDefined();
-    expect(defaultInitialSchema.nodes).toBeDefined();
-  });
-});
+import { resolveRelativePath } from './store';
 
 describe('Blueprint Store Integration Helper Actions', () => {
   it('should resolve relative path correctly', () => {

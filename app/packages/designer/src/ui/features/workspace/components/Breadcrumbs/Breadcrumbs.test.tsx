@@ -1,5 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
+import { Router } from 'wouter';
+import { memoryLocation } from 'wouter/memory-location';
 import { Breadcrumbs } from './Breadcrumbs';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
@@ -23,75 +25,62 @@ describe('Breadcrumbs Component', () => {
     });
   });
 
-  it('renders demo sandbox label when bundled workspace is loaded', () => {
+  it('renders sample workspace label when bundled sample is open', () => {
     useBlueprintStore.setState({
       loadedSystems: [
         {
-          path: 'application/context.yaml',
-          name: 'Application',
+          path: 'context.yaml',
+          name: 'Golden Paths',
           schema: {
-            name: 'Application',
+            name: 'Golden Paths',
             version: '1.0.0',
             level: 'context',
-            entityRef: 'application',
-            nodes: [],
-            dependencies: [],
-          },
-        },
-        {
-          path: 'infrastructure/context.yaml',
-          name: 'Infrastructure Examples',
-          schema: {
-            name: 'Infrastructure Examples',
-            version: '1.0.0',
-            level: 'context',
-            entityRef: 'infrastructure',
+            entityRef: 'golden-paths',
             nodes: [],
             dependencies: [],
           },
         },
       ],
-      isWorkspaceOpen: false,
-      currentFilePath: 'application/context.yaml',
+      isWorkspaceOpen: true,
+      isSampleWorkspace: true,
+      workspaceName: 'Golden Paths',
+      currentFilePath: 'context.yaml',
     });
 
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
-      name: 'Application',
+      name: 'Golden Paths',
       version: '1.0.0',
       level: 'context',
-      entityRef: 'blueprint',
+      entityRef: 'golden-paths',
       nodes: [],
       dependencies: [],
     });
 
     render(<Breadcrumbs />);
 
-    expect(screen.getByText('Sandboxes')).toBeInTheDocument();
-    expect(screen.getByText('Application')).toBeInTheDocument();
+    expect(screen.getAllByText('Golden Paths').length).toBeGreaterThan(0);
+    expect(screen.getByTestId('workspace-storage-badge')).toHaveTextContent('Sample');
   });
 
-  it('renders demo sandbox label when no workspace folder is open', () => {
-    useBlueprintStore.setState({
-      activeSandboxContextPath: 'application/context.yaml',
-    });
-
-    render(<Breadcrumbs />);
-
-    expect(screen.getByText('Sandboxes')).toBeInTheDocument();
-    expect(screen.getByTestId('workspace-storage-badge')).toHaveTextContent('Demo (not on disk)');
-    expect(screen.getByText('Main App System')).toBeInTheDocument();
-  });
-
-  it('renders specific workspace name when workspace directory is loaded', () => {
+  it('renders folder badge when a directory workspace is open', () => {
     useBlueprintStore.setState({
       isWorkspaceOpen: true,
+      isSampleWorkspace: false,
       workspaceName: 'DevPortalRepo',
     });
 
     render(<Breadcrumbs />);
 
     expect(screen.getByText('DevPortalRepo')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-storage-badge')).toHaveTextContent('Folder');
+  });
+
+  it('omits workspace chrome when no workspace is open', () => {
+    render(<Breadcrumbs />);
+
+    expect(screen.queryByTestId('workspace-storage-badge')).not.toBeInTheDocument();
+    expect(screen.getAllByText('Main App System').length).toBeGreaterThan(0);
   });
 
   it('renders active diagram breadcrumbs and ancestor system breadcrumbs', () => {
@@ -392,7 +381,8 @@ describe('Breadcrumbs Component', () => {
       ],
       currentFilePath: 'packages/core-components.yaml',
       schema: componentSchema,
-      activeSandboxContextPath: 'application/context.yaml',
+      isWorkspaceOpen: true,
+      workspaceName: 'backstage',
     });
 
     render(<Breadcrumbs />);
@@ -467,5 +457,69 @@ describe('Breadcrumbs Component', () => {
 
     expect(screen.getByText('Context Diagram')).toBeInTheDocument();
     expect(screen.getByText('Cli System')).toBeInTheDocument();
+  });
+
+  it('shows a compact summary and opens the full trail in a mobile menu', () => {
+    const { hook } = memoryLocation({ path: '/workspace' });
+    render(
+      <Router hook={hook}>
+        <Breadcrumbs />
+      </Router>
+    );
+
+    expect(screen.getAllByText('Main App System').length).toBeGreaterThan(0);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Open diagram location menu' }));
+
+    expect(screen.getAllByText('Main App System').length).toBeGreaterThan(1);
+  });
+
+  it('shows ancestor trail inside the mobile menu', () => {
+    const contextSchema = {
+      name: 'Enterprise Context',
+      version: '1.0.0',
+      level: 'context' as const,
+      entityRef: 'enterprise',
+      nodes: [
+        {
+          entityRef: 'enterprise/main-app',
+          type: 'software-system' as const,
+          name: 'Main App System',
+        },
+      ],
+      dependencies: [],
+    };
+    const containerSchema = {
+      name: 'Main App System',
+      version: '1.0.0',
+      level: 'container' as const,
+      entityRef: 'enterprise/main-app',
+      nodes: [],
+      dependencies: [],
+    };
+
+    useBlueprintStore.setState({
+      loadedSystems: [
+        { path: 'context.yaml', name: 'Enterprise Context', schema: contextSchema },
+        { path: 'container.yaml', name: 'Main App System', schema: containerSchema },
+      ],
+      currentFilePath: 'container.yaml',
+      schema: containerSchema,
+    });
+
+    const { hook } = memoryLocation({ path: '/workspace' });
+    render(
+      <Router hook={hook}>
+        <Breadcrumbs />
+      </Router>
+    );
+
+    expect(screen.getByText('Enterprise Context › Main App System')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Open diagram location menu' }));
+
+    const rootLinks = screen.getAllByText('Enterprise Context');
+    const rootLink = rootLinks.find(el => el.closest('a'))?.closest('a');
+    expect(rootLink).toHaveAttribute('href', '/workspace/enterprise');
   });
 });

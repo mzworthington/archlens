@@ -14,6 +14,8 @@ import {
   noopGraphChange,
 } from '../../../core';
 import { createBrowserLayoutRegistry } from '../../../infrastructure/layout/createBrowserLayoutRegistry';
+import { BrowserWorkspaceAdapter } from '../../../infrastructure/fileSystem/fileSync';
+import { BundledSampleWorkspaceAdapter } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { loadWorkspaceFromDirectory } from './ioState/openWorkspace';
 
 const browserLayoutRegistry = createBrowserLayoutRegistry();
@@ -39,6 +41,7 @@ export interface IoState {
   saveSchema: () => Promise<boolean>;
   loadSchema: () => Promise<boolean>;
   openWorkspaceDirectory: () => Promise<boolean>;
+  openBundledSample: () => Promise<boolean>;
   saveActiveDiagram: () => Promise<boolean>;
 }
 
@@ -129,23 +132,58 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
   },
 
   openWorkspaceDirectory: async () => {
-    const { workspacePort, workingCopyPort, logger, setNotification, initSchema, setIsLoading } =
-      get();
+    const {
+      workspacePort,
+      workingCopyPort,
+      logger,
+      setNotification,
+      initSchema,
+      setIsLoading,
+      isSampleWorkspace,
+    } = get();
     setIsLoading(true);
     try {
+      const port = isSampleWorkspace ? BrowserWorkspaceAdapter : workspacePort;
+      set({ workspacePort: port, isSampleWorkspace: false });
       return await loadWorkspaceFromDirectory({
-        selectDirectory: () => workspacePort.selectDirectory(),
-        readDirectoryFiles: () => workspacePort.readDirectoryFiles(),
-        getDirectoryName: () => workspacePort.getDirectoryName(),
+        selectDirectory: () => port.selectDirectory(),
+        readDirectoryFiles: () => port.readDirectoryFiles(),
+        getDirectoryName: () => port.getDirectoryName(),
         workingCopy: workingCopyPort,
         logger,
         setNotification,
         initSchema,
         set,
+        isSampleWorkspace: false,
       });
     } catch (err) {
       logger.error('Failed to open workspace directory', err);
       set({ lastError: (err as Error).message || 'Failed to open workspace directory' });
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  },
+
+  openBundledSample: async () => {
+    const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
+    setIsLoading(true);
+    try {
+      set({ workspacePort: BundledSampleWorkspaceAdapter, isSampleWorkspace: true });
+      return await loadWorkspaceFromDirectory({
+        selectDirectory: () => BundledSampleWorkspaceAdapter.selectDirectory(),
+        readDirectoryFiles: () => BundledSampleWorkspaceAdapter.readDirectoryFiles(),
+        getDirectoryName: () => BundledSampleWorkspaceAdapter.getDirectoryName(),
+        workingCopy: workingCopyPort,
+        logger,
+        setNotification,
+        initSchema,
+        set,
+        isSampleWorkspace: true,
+      });
+    } catch (err) {
+      logger.error('Failed to open bundled sample workspace', err);
+      set({ lastError: (err as Error).message || 'Failed to open bundled sample workspace' });
       return false;
     } finally {
       setIsLoading(false);
@@ -161,10 +199,11 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       workspacePort,
       workingCopyPort,
       isWorkspaceOpen,
+      isSampleWorkspace,
       logger,
       setNotification,
     } = get();
-    if (!isWorkspaceOpen) {
+    if (!isWorkspaceOpen || isSampleWorkspace) {
       return get().saveSchema();
     }
 

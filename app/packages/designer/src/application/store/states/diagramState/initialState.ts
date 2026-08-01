@@ -1,6 +1,6 @@
 import { validateGraph, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
-import { APPLICATION_CONTEXT_PATH } from '../../defaultData';
+import { GOLDEN_PATHS_CONTEXT_PATH } from '../../goldenPathsSample';
 
 export interface DiagramInitialState {
   schema: SystemSchema;
@@ -21,7 +21,7 @@ const emptySchema: SystemSchema = {
   dependencies: [],
 };
 
-/** Minimal store boot state - bundled sandbox activation replaces this at runtime. */
+/** Minimal store boot state before a workspace folder or sample is opened. */
 export function createDiagramInitialState(): DiagramInitialState {
   return {
     schema: emptySchema,
@@ -29,7 +29,7 @@ export function createDiagramInitialState(): DiagramInitialState {
     edges: [],
     validationResult: validateGraph(emptySchema),
     yamlCode: serializeSchemaToYaml(emptySchema),
-    currentFilePath: APPLICATION_CONTEXT_PATH,
+    currentFilePath: GOLDEN_PATHS_CONTEXT_PATH,
     loadedSystems: [],
     nodeRefMap: {},
   };

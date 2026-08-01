@@ -1,10 +1,6 @@
 import React from 'react';
 import { FolderOpen, Loader2, Map } from 'lucide-react';
 import { WorkspaceEntryPanel } from '../../components/WorkspaceEntryPanel';
-import {
-  GOLDEN_PATHS_CONTEXT_PATH,
-  type SandboxContextPath,
-} from '../../../application/store/defaultData';
 
 const actionButtonClass =
   'inline-flex items-center gap-2 rounded-lg border border-[#00f0ff]/25 bg-[#040914]/80 px-3 py-2 text-xs font-semibold text-slate-100 transition-colors hover:border-[#00f0ff]/45 hover:bg-[#00f0ff]/10 disabled:opacity-50 disabled:pointer-events-none';
@@ -16,13 +12,10 @@ type ForensicsWorkspacePanelProps = {
   catalogCount: number;
   unloadedCount: number;
   isLoading: boolean | string;
-  pendingFolderSession?: boolean;
-  pendingFolderName?: string;
   rankLoadedOnly?: boolean;
   onRankLoadedOnly?: () => void;
-  onLoadSandbox: (contextPath: SandboxContextPath) => void;
+  onOpenSample: () => void;
   onOpenDirectory: () => void;
-  activeSandboxContextPath?: string | null;
 };
 
 export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = ({
@@ -32,13 +25,10 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
   catalogCount,
   unloadedCount,
   isLoading,
-  pendingFolderSession = false,
-  pendingFolderName,
   rankLoadedOnly = false,
   onRankLoadedOnly,
-  onLoadSandbox,
+  onOpenSample,
   onOpenDirectory,
-  activeSandboxContextPath = null,
 }) => {
   const busy = Boolean(isLoading);
   const showCatalogProgress = catalogCount > 0 && unloadedCount > 0 && !rankLoadedOnly;
@@ -52,15 +42,6 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
       : null;
 
   if (!hasScope) {
-    const description = pendingFolderSession ? (
-      <>
-        Load the demo estate to simulate failures and ranked advice in minutes — or open blueprints
-        from your own repo. Your last session used a local folder (
-        <span className="font-mono text-slate-300">{pendingFolderName || 'folder'}</span>) — re-open
-        it below to restore rankings.
-      </>
-    ) : undefined;
-
     return (
       <div className="mb-8">
         <WorkspaceEntryPanel
@@ -68,8 +49,7 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
           layout="grid"
           showCliPanel
           disabled={busy}
-          description={description}
-          onLoadSandbox={onLoadSandbox}
+          onOpenSample={onOpenSample}
           onOpenDirectory={onOpenDirectory}
         />
 
@@ -137,17 +117,13 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
         ) : null}
         <button
           type="button"
-          data-testid="workspace-load-sandbox"
-          onClick={() =>
-            onLoadSandbox(
-              (activeSandboxContextPath as SandboxContextPath | null) ?? GOLDEN_PATHS_CONTEXT_PATH
-            )
-          }
+          data-testid="workspace-open-sample"
+          onClick={onOpenSample}
           disabled={busy}
           className={actionButtonClass}
         >
           <Map className="w-3.5 h-3.5 text-amber-400" />
-          Sandbox
+          Sample
         </button>
         <button
           type="button"

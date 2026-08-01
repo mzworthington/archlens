@@ -20,11 +20,11 @@ export function useBreadcrumbs() {
     currentFilePath,
     schema,
     isWorkspaceOpen,
+    isSampleWorkspace,
     workspaceName,
     selectedNodeId,
     loadedSystems,
     workspaceCatalog,
-    activeSandboxContextPath,
   } = useBlueprintStore();
 
   const [openDropdownIdx, setOpenDropdownIdx] = useState<number | null>(null);
@@ -234,7 +234,7 @@ export function useBreadcrumbs() {
     currentChildren,
     getNextLevel: (level: C4Level) => NEXT_C4_LEVEL[level],
     isWorkspaceOpen,
+    isSampleWorkspace,
     workspaceName,
-    activeSandboxContextPath,
   };
 }

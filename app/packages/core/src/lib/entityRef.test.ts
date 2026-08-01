@@ -360,5 +360,42 @@ describe('entityRef Rules', () => {
 
       expect(result.schemas['context.yaml'].dependencies[0]?.from).toBe('blueprint/person-5380');
     });
+
+    it('keeps diagram-root group entityRef when only one context diagram is loaded', () => {
+      const contextSchema: SystemSchema = {
+        name: 'Backstage',
+        version: '1.0.0',
+        level: 'context',
+        entityRef: 'backstage',
+        nodes: [
+          { entityRef: 'backstage/user', type: 'person', name: 'User' },
+          { entityRef: 'backstage', type: 'group', name: 'Backstage System' },
+          {
+            entityRef: 'backstage/packages',
+            type: 'software-system',
+            name: 'Packages System',
+            parentEntityRef: 'backstage',
+          },
+          {
+            entityRef: 'backstage/plugins',
+            type: 'software-system',
+            name: 'Plugins System',
+            parentEntityRef: 'backstage',
+          },
+        ],
+        dependencies: [],
+      };
+
+      const result = resolveWorkspaceEntityRefs([
+        { path: 'backstage/context.yaml', schema: contextSchema },
+      ]);
+
+      const nodes = result.schemas['backstage/context.yaml'].nodes;
+      const group = nodes.find(n => n.type === 'group');
+      const child = nodes.find(n => n.entityRef === 'backstage/packages');
+
+      expect(group?.entityRef).toBe('backstage');
+      expect(child?.parentEntityRef).toBe('backstage');
+    });
   });
 });

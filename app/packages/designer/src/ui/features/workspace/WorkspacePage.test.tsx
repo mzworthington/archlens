@@ -51,11 +51,6 @@ describe('WorkspacePage Component', () => {
     mockMatch = true;
     mockParams = { '*': 'my-system' };
     mockSetLocation.mockClear();
-    try {
-      localStorage.removeItem('archlens.workspaceSession');
-    } catch {
-      /* jsdom may not provide localStorage */
-    }
 
     useBlueprintStore.setState({
       leftCollapsed: true,
@@ -135,7 +130,16 @@ describe('WorkspacePage Component', () => {
     mockParams = { '*': 'my-system' };
 
     useBlueprintStore.setState({
-      workspaceName: '', // clear workspaceName so getSchemaEntityRef matches my-system!
+      workspaceName: '',
+      workspaceCatalog: [
+        {
+          path: 'target.yaml',
+          name: 'My System',
+          level: 'container',
+          entityRef: 'my-system',
+          nodeEntityRefs: [],
+        },
+      ],
     });
 
     const spySelectSystem = vi.spyOn(useBlueprintStore.getState(), 'selectSystem');
@@ -146,39 +150,14 @@ describe('WorkspacePage Component', () => {
     spySelectSystem.mockRestore();
   });
 
-  it('should redirect route to slugified workspace name if on a workspace route and path mismatches', () => {
-    mockLocation = '/';
-    mockMatch = false;
-    mockParams = { '*': '' };
-    useBlueprintStore.setState({ workspaceName: 'Awesome Redirect System', isWorkspaceOpen: true });
-
-    render(<WorkspacePage />);
-
-    expect(mockSetLocation).toHaveBeenCalledWith('/workspace/awesome-redirect-system', {
-      replace: true,
-    });
-  });
-
-  it('opens the startup chooser when entering the workspace route', () => {
-    mockLocation = '/workspace/application';
-    mockParams = { '*': 'application' };
-    useBlueprintStore.setState({ isStartupOpen: false });
-
-    render(<WorkspacePage />);
-
-    expect(screen.getByTestId('startup-workspace-dialog')).toBeInTheDocument();
-    expect(useBlueprintStore.getState().isStartupOpen).toBe(true);
-  });
-
   it('does not reopen the startup chooser when navigating within the workspace', () => {
     mockLocation = '/workspace/application';
     mockParams = { '*': 'application' };
     useBlueprintStore.setState({ isStartupOpen: false });
 
     const { rerender } = render(<WorkspacePage />);
-    expect(useBlueprintStore.getState().isStartupOpen).toBe(true);
+    expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
 
-    useBlueprintStore.setState({ isStartupOpen: false });
     mockLocation = '/workspace/application/deeper';
     mockParams = { '*': 'application/deeper' };
     rerender(<WorkspacePage />);
@@ -186,17 +165,9 @@ describe('WorkspacePage Component', () => {
     expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
   });
 
-  it('shows the startup chooser when a folder session needs re-open', () => {
+  it('shows the startup chooser on bare workspace with no loaded systems', () => {
     mockLocation = '/workspace';
     mockParams = { '*': '' };
-    try {
-      localStorage.setItem(
-        'archlens.workspaceSession',
-        JSON.stringify({ mode: 'folder', workspaceName: 'my-project' })
-      );
-    } catch {
-      /* skip when localStorage unavailable */
-    }
     useBlueprintStore.setState({
       isStartupOpen: true,
       loadedSystems: [],

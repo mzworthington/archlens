@@ -4,7 +4,9 @@ Lifecycle agents, skills, and SOPs live in `~/.agents` (user-global), not in thi
 
 Phase handover artifacts: `~/.agents/handover/archlens/`
 
-Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-tdd`, `agent-adapter`, `agent-security`, `agent-arch-drift`, `agent-telemetry`, and `agent-pre-commit`.
+Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-tdd`, `agent-adapter`, `agent-security`, `agent-arch-drift`, `agent-prune`, `agent-telemetry`, and `agent-pre-commit`.
+
+Dead-code backlog: `~/.agents/handover/blueprint/dead-code-backlog.md` (maintain via `agent-prune`).
 
 Before handover or declaring work complete, run `agent-pre-commit` when `.husky/pre-commit` (or equivalent) exists — fix hook failures until green.
 

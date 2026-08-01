@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { ReactFlowProvider } from '@xyflow/react';
-import { useLocation } from 'wouter';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CodeViewer } from './components/CodeViewer/CodeViewer';
 import { Canvas } from './components/Canvas/Canvas';
@@ -11,38 +10,17 @@ import { useUrlSync } from './hooks/useUrlSync';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
 import { useWorkspaceDialogs } from './hooks/useWorkspaceDialogs';
 
-function isWorkspaceRoute(location: string): boolean {
-  return location === '/workspace' || location.startsWith('/workspace/');
-}
-
 export const WorkspacePage: React.FC = () => {
-  const [location] = useLocation();
   const {
     leftCollapsed,
     rightCollapsed,
     toggleLeftCollapsed,
     toggleRightCollapsed,
-    setIsStartupOpen,
     setIsShortcutsOpen,
   } = useBlueprintStore();
   const workspaceDialogs = useWorkspaceDialogs();
 
   useUrlSync();
-
-  const previousLocationRef = useRef<string | null>(null);
-
-  // Open the chooser whenever navigation enters the workspace route.
-  useEffect(() => {
-    const previous = previousLocationRef.current;
-    previousLocationRef.current = location;
-
-    const onWorkspace = isWorkspaceRoute(location);
-    const wasOnWorkspace = previous != null && isWorkspaceRoute(previous);
-
-    if (onWorkspace && !wasOnWorkspace) {
-      setIsStartupOpen(true);
-    }
-  }, [location, setIsStartupOpen]);
 
   useKeyboardNavigation({
     onShortcutsOpen: () => setIsShortcutsOpen(true),
