@@ -3,6 +3,7 @@ import { Link2, Play, ScanSearch, ShieldAlert } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { buildTraceLensUrl, workspaceEntityRefFromPath } from '../../../forensics/traceLensUrl';
+import { buildChaosLensUrl } from '../../../../../application/resilience/chaosLensUrl';
 import {
   countCouplingCapableNodes,
   countCouplingCapableSchemaNodes,
@@ -124,12 +125,34 @@ function TraceLensButton() {
 }
 
 function ResilienceLensButton() {
-  const { isResilienceMode, toggleResilienceMode } = useBlueprintStore();
+  const [location, setLocation] = useLocation();
+  const { isResilienceMode, setResilienceMode, resilienceFaults } = useBlueprintStore();
+
+  const handleClick = () => {
+    const next = !isResilienceMode;
+    setResilienceMode(next);
+    if (next) {
+      setLocation(
+        buildChaosLensUrl(workspaceEntityRefFromPath(location), { faults: resilienceFaults })
+      );
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('lens') === 'chaoslens') params.delete('lens');
+    params.delete('resilience');
+    params.delete('fault');
+    params.delete('type');
+    params.delete('severity');
+    params.delete('faults');
+    const query = params.toString();
+    setLocation(`${window.location.pathname}${query ? `?${query}` : ''}`, { replace: true });
+  };
 
   return (
     <button
       type="button"
-      onClick={() => toggleResilienceMode()}
+      onClick={handleClick}
       aria-pressed={isResilienceMode}
       data-testid="toolbar-resilience-lens"
       className={`${lensBtnClass} ${

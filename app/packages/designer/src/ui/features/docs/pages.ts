@@ -122,7 +122,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     group: 'guide',
     productAction: {
       label: 'Open ChaosLens',
-      href: '/workspace/application?resilience=1',
+      href: '/workspace/application?lens=chaoslens',
     },
   },
   {

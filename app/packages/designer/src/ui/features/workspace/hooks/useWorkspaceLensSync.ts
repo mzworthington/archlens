@@ -1,31 +1,78 @@
-import { useCallback, useEffect } from 'react';
-import { useLocation } from 'wouter';
+import { useCallback, useEffect, useRef } from 'react';
+import { useLocation, useSearch } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
-import { buildTraceLensUrl, isTraceLensUrl } from '../../forensics/traceLensUrl';
+import {
+  buildTraceLensUrl,
+  isTraceLensUrl,
+  workspaceEntityRefFromPath,
+} from '../../forensics/traceLensUrl';
+import {
+  buildChaosLensUrl,
+  clearChaosLensSearchParams,
+  isChaosLensUrl,
+  parseChaosLensUrl,
+  redirectLegacyResilienceUrl,
+  resilienceFaultsEqual,
+} from '../../../../application/resilience/chaosLensUrl';
 
-/** Sync TraceLens mode with `?lens=tracelens` on workspace routes. */
+function currentUrl(pathname: string, search: string): string {
+  const query = search.startsWith('?') ? search.slice(1) : search;
+  return query ? `${pathname}?${query}` : pathname;
+}
+
+/** Sync TraceLens / ChaosLens mode with workspace query params. */
 export function useWorkspaceLensSync(): void {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  const search = useSearch();
   const isTraceLensMode = useBlueprintStore(s => s.isTraceLensMode);
   const setTraceLensMode = useBlueprintStore(s => s.setTraceLensMode);
+  const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
+  const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
+  const applyResilienceUrlState = useBlueprintStore(s => s.applyResilienceUrlState);
+  const applyingUrlRef = useRef(false);
+
+  // Legacy `?resilience=1` → sticky `?lens=chaoslens`
+  useEffect(() => {
+    const query = search.startsWith('?') ? search.slice(1) : search;
+    const params = new URLSearchParams(query);
+    if (params.get('resilience') !== '1') return;
+    setLocation(redirectLegacyResilienceUrl(location, search), { replace: true });
+  }, [location, search, setLocation]);
 
   useEffect(() => {
-    const search = window.location.search;
     const active = isTraceLensUrl(location, search);
     if (active !== isTraceLensMode) {
       setTraceLensMode(active);
     }
-  }, [location, isTraceLensMode, setTraceLensMode]);
+  }, [location, search, isTraceLensMode, setTraceLensMode]);
 
+  // URL → ChaosLens mode + faults
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('resilience') !== '1') return;
-    useBlueprintStore.getState().setResilienceMode(true);
-    params.delete('resilience');
-    const query = params.toString();
-    const nextUrl = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
-    window.history.replaceState(null, '', nextUrl);
-  }, []);
+    const active = isChaosLensUrl(location, search);
+    if (!active) return;
+    if (isTraceLensUrl(location, search)) return;
+
+    const parsed = parseChaosLensUrl(location, search);
+    if (isResilienceMode && resilienceFaultsEqual(resilienceFaults, parsed.faults)) return;
+
+    applyingUrlRef.current = true;
+    applyResilienceUrlState(parsed.faults);
+    queueMicrotask(() => {
+      applyingUrlRef.current = false;
+    });
+  }, [location, search, isResilienceMode, resilienceFaults, applyResilienceUrlState]);
+
+  // Store → ChaosLens URL while resilience mode is active
+  useEffect(() => {
+    if (!isResilienceMode) return;
+    if (applyingUrlRef.current) return;
+    if (isTraceLensUrl(location, search)) return;
+
+    const entityRef = workspaceEntityRefFromPath(location);
+    const desired = buildChaosLensUrl(entityRef, { faults: resilienceFaults });
+    if (currentUrl(location, search) === desired) return;
+    setLocation(desired, { replace: true });
+  }, [isResilienceMode, resilienceFaults, location, search, setLocation]);
 }
 
 export function useTraceLensNavigation() {
@@ -52,4 +99,26 @@ export function useTraceLensNavigation() {
   }, [setLocation, setTraceLensMode]);
 
   return { enterTraceLens, exitTraceLens };
+}
+
+export function useChaosLensNavigation() {
+  const [location, setLocation] = useLocation();
+  const setResilienceMode = useBlueprintStore(s => s.setResilienceMode);
+  const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
+
+  const enterChaosLens = useCallback(() => {
+    setResilienceMode(true);
+    setLocation(
+      buildChaosLensUrl(workspaceEntityRefFromPath(location), { faults: resilienceFaults }),
+      { replace: true }
+    );
+  }, [location, resilienceFaults, setLocation, setResilienceMode]);
+
+  const exitChaosLens = useCallback(() => {
+    setResilienceMode(false);
+    const cleared = clearChaosLensSearchParams(window.location.search);
+    setLocation(`${window.location.pathname}${cleared ? `?${cleared}` : ''}`, { replace: true });
+  }, [setLocation, setResilienceMode]);
+
+  return { enterChaosLens, exitChaosLens };
 }

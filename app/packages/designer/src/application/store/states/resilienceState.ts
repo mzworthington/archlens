@@ -3,6 +3,7 @@ import { getSchemaEntityRef } from '@archlens/core';
 import {
   applyResilienceToNode,
   applySafeguardToggle,
+  defaultFaultSeverity,
   mergeNodeSafeguards,
   resolveNodeResilience,
   buildSimulationSchemaForFaults,
@@ -52,6 +53,8 @@ export interface ResilienceState {
   chaosSpecDialogMode: 'import' | 'export' | null;
   setResilienceMode: (enabled: boolean) => void;
   toggleResilienceMode: () => void;
+  /** Apply shareable ChaosLens URL scenario (mode + faults). */
+  applyResilienceUrlState: (faults: NodeFaultConfig[]) => void;
   setResilienceTelemetryView: (view: TelemetryViewMode) => void;
   setResiliencePanelTab: (tab: ResiliencePanelTab) => void;
   setResilienceFaultType: (faultType: FaultType) => void;
@@ -127,6 +130,23 @@ export const createResilienceState = (
   },
   toggleResilienceMode: () => {
     get().setResilienceMode(!get().isResilienceMode);
+  },
+  applyResilienceUrlState: faults => {
+    const first = faults[0];
+    set({
+      isResilienceMode: true,
+      isTraceLensMode: false,
+      ...resilienceModePanelPatch(),
+      resilienceFaults: faults,
+      ...(first
+        ? {
+            selectedNodeId: first.nodeId,
+            resilienceFaultType: first.faultType,
+            resilienceSeverity: first.severity ?? defaultFaultSeverity(first.faultType),
+          }
+        : {}),
+    });
+    void syncResilienceExternalsToCanvas(get, set);
   },
   setResilienceTelemetryView: view => set({ resilienceTelemetryView: view }),
   setResiliencePanelTab: tab => set({ resiliencePanelTab: tab }),

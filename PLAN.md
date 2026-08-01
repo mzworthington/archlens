@@ -67,7 +67,7 @@ Microservice architectures are inherently non-deterministic under strain. Outage
 
 - **Headless CLI & PR Checks:** GitHub Action blocking PRs if an architectural change increases top-level outage blast radius beyond defined SLO thresholds.
 - **AdviceLens:** Evidence-backed recommendation ranking (TraceLens + ChaosLens) with optional AI narration for concrete infra/code fixes (e.g., "Add a 200ms timeout with fallback caching on Payment-Service to prevent connection pool starvation on DB-Primary").
-- **URL Hash State:** Shareable URL state allowing exact outage scenarios to be linked directly in architectural RFCs and presentation decks.
+- **URL Hash State:** Shareable workspace query state (`?lens=chaoslens&fault=…`) so exact outage scenarios can be linked in RFCs and decks.
 
 ## 5. UX & UI Architecture within ArchLens
 
@@ -179,12 +179,12 @@ _Last updated: August 2026 (external simulation scope Phase 2)_
 
 ### Iteration 3 (Version 3.0)
 
-| Item                                | Status | Notes                                                                                           |
-| ----------------------------------- | ------ | ----------------------------------------------------------------------------------------------- |
-| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                        |
-| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                         |
-| URL hash / shareable scenario state | ⏳     | Resilience mode and fault config are not encoded in the workspace URL.                          |
-| AdviceLens (recommendation engine)  | 🚧     | Core ranking + estate CLI + designer wiring shipped; CI guardrails and narration layer pending. |
+| Item                                | Status | Notes                                                                                                     |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------- |
+| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                                  |
+| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                                   |
+| URL hash / shareable scenario state | ✅     | Sticky `?lens=chaoslens` with `fault`/`type`/`severity` (or `faults=`); legacy `?resilience=1` redirects. |
+| AdviceLens (recommendation engine)  | 🚧     | Core ranking + estate CLI + designer wiring shipped; CI guardrails and narration layer pending.           |
 
 ### OKR validation (ongoing)
 
