@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/app-node/schema
     type: background-worker
-    name: schema Service
+    name: Schema
     isTest: false
     properties:
       filepath: plugins/app-node/src/schema.ts
@@ -22,11 +22,31 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 39
+      churn: 2
+      lineChurn: 41
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +56,42 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: freben@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/app-node/extensions
     type: rest-api
-    name: extensions Service
+    name: Extensions
     isTest: false
     properties:
       filepath: plugins/app-node/src/extensions.ts
@@ -66,7 +112,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,44 +166,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-node/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/app-node/src/setupTests.ts
-      containerId: app-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/app-node/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/app-node/src/index.ts
@@ -134,7 +190,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -144,10 +244,82 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/appplugin
+      sinceDays: 365
+  - entityRef: backstage/plugins/scaffolder-common/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/api.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: -204
+  - entityRef: backstage/plugins/events-backend/service/hub
     type: rest-api
-    name: appPlugin Service (External)
+    name: Hub (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend/src/service/hub/MemoryEventBusStore.test.ts
+      containerId: events-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend/service/request
+    type: rest-api
+    name: Request (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityTransformParams.test.ts
+      containerId: catalog-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: -204
+  - entityRef: backstage/plugins/scaffolder-common/scaffolderclient
+    type: background-worker
+    name: Scaffolderclient (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/ScaffolderClient.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend/service
+    type: rest-api
+    name: Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/AuthorizedRefreshService.ts
+      containerId: catalog-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1280
+      y: -204
+  - entityRef: backstage/plugins/scaffolder-backend/service
+    type: rest-api
+    name: Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/service/rules.test.ts
+      containerId: scaffolder-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: -204
+  - entityRef: backstage/plugins/app-backend/service
+    type: rest-api
+    name: Service (External)
     external: true
     properties:
       filepath: plugins/app-backend/src/service/appPlugin.ts
@@ -155,10 +327,46 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
+      x: -1740
+      y: -204
+  - entityRef: backstage/plugins/notifications-backend/service
+    type: rest-api
+    name: Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend/src/service/DefaultNotificationRecipientResolver.test.ts
+      containerId: notifications-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
       x: 100
       y: -204
+  - entityRef: backstage/plugins/search-backend/service
+    type: rest-api
+    name: Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend/src/service/router.ts
+      containerId: search-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1940
+      y: -204
 dependencies:
-  - from: backstage/plugins/app-backend/appplugin
+  - from: backstage/plugins/catalog-backend/service
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/service
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/service
     to: backstage/plugins/app-node/index
     type: direct-call
     description: '@backstage/plugin-app-node'
@@ -167,6 +375,26 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/app-node/index
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/notifications-backend/service
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend/service/hub
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend/service
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-common/api
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-common/scaffolderclient
     to: backstage/plugins/app-node/schema
     type: direct-call
     description: Calls module / service

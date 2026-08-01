@@ -23,11 +23,12 @@ function depKey(dep) {
 }
 
 function mergeOverlayIntoContext(contextPath, overlayPath) {
+  if (!fs.existsSync(overlayPath)) return false;
+
   if (!fs.existsSync(contextPath)) {
     console.warn(`  skip merge — missing ${contextPath}`);
     return false;
   }
-  if (!fs.existsSync(overlayPath)) return false;
 
   const contextDoc = yaml.load(fs.readFileSync(contextPath, 'utf8'));
   const overlay = yaml.load(fs.readFileSync(overlayPath, 'utf8'));

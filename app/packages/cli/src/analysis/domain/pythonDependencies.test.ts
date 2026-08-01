@@ -48,7 +48,7 @@ describe('pythonDependencies', () => {
       const index = buildPythonModuleIndex(files, {});
       expect(index.get('acme.orders.service')).toEqual({
         containerId: 'acme',
-        componentId: 'service',
+        componentId: 'orders',
       });
     });
   });
@@ -91,14 +91,14 @@ describe('pythonDependencies', () => {
     it('resolves absolute imports', () => {
       expect(resolvePythonImport('src/gateway/handlers.py', 'orders.service', index)).toEqual({
         containerId: 'orders',
-        componentId: 'service',
+        componentId: 'orders',
       });
     });
 
     it('resolves parent-relative imports', () => {
       expect(resolvePythonImport('src/gateway/handlers.py', '..catalog.client', index)).toEqual({
         containerId: 'catalog',
-        componentId: 'client',
+        componentId: 'catalog',
       });
     });
 
@@ -146,14 +146,14 @@ describe('pythonDependencies', () => {
       expect(componentDependencies).toHaveLength(2);
       expect(componentDependencies).toContainEqual(
         expect.objectContaining({
-          from: EntityRef.child(EntityRef.child(parentRef, 'gateway'), 'handlers'),
-          to: EntityRef.child(EntityRef.child(parentRef, 'orders'), 'service'),
+          from: EntityRef.child(EntityRef.child(parentRef, 'gateway'), 'gateway'),
+          to: EntityRef.child(EntityRef.child(parentRef, 'orders'), 'orders'),
         })
       );
       expect(componentDependencies).toContainEqual(
         expect.objectContaining({
-          from: EntityRef.child(EntityRef.child(parentRef, 'gateway'), 'handlers'),
-          to: EntityRef.child(EntityRef.child(parentRef, 'catalog'), 'client'),
+          from: EntityRef.child(EntityRef.child(parentRef, 'gateway'), 'gateway'),
+          to: EntityRef.child(EntityRef.child(parentRef, 'catalog'), 'catalog'),
         })
       );
       expect(containerDependencies).toHaveLength(2);

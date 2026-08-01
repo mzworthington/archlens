@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
     type: background-worker
-    name: autocomplete Service
+    name: Autocomplete
     isTest: false
     properties:
       filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,44 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
-    type: background-worker
-    name: autocomplete.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 149
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/module
     type: background-worker
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/module.ts
@@ -90,11 +100,13 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 67
+      churn: 2
+      lineChurn: 73
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +116,60 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: ben@blam.sh
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples
+      sinceDays: 365
+  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/actions
     type: background-worker
-    name: bitbucketCloud.examples Service
+    name: Actions
     isTest: false
     properties:
       filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloud.examples.ts
@@ -134,69 +190,44 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    type: background-worker
-    name: helpers Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/helpers.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 159
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
-    type: background-worker
-    name: bitbucketCloud.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloud.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 584
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -206,39 +237,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    type: background-worker
-    name: bitbucketCloudPullRequest Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPullRequest.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 421
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -246,319 +244,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/inputproperties
-    type: background-worker
-    name: inputProperties Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/inputProperties.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 238
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    type: background-worker
-    name: bitbucketCloudPipelinesRun Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPipelinesRun.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 110
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples-test
-    type: background-worker
-    name: bitbucketCloudPipelinesRun.examples.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPipelinesRun.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 266
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-test
-    type: background-worker
-    name: bitbucketCloudPipelinesRun.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPipelinesRun.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 150
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples
-    type: background-worker
-    name: bitbucketCloudPipelinesRun.examples Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPipelinesRun.examples.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 202
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples
-    type: background-worker
-    name: bitbucketCloudBranchRestriction.examples Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudBranchRestriction.examples.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 115
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples
-    type: background-worker
-    name: bitbucketCloudPullRequest.examples Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPullRequest.examples.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 123
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
-    type: background-worker
-    name: bitbucketCloudBranchRestriction.examples.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudBranchRestriction.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 198
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers-test
-    type: background-worker
-    name: helpers.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/helpers.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 240
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/index.ts
+      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/index.ts
       containerId: scaffolder-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
@@ -567,10 +259,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 18
+      lineChurn: 24
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -580,39 +315,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    type: background-worker
-    name: bitbucketCloud Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloud.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 285
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -620,204 +322,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    type: background-worker
-    name: bitbucketCloud.examples.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloud.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 291
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
-    type: background-worker
-    name: bitbucketCloudPullRequest.examples.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPullRequest.examples.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 434
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-test
-    type: background-worker
-    name: bitbucketCloudPullRequest.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudPullRequest.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 464
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-test
-    type: background-worker
-    name: bitbucketCloudBranchRestriction.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudBranchRestriction.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 48
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    type: background-worker
-    name: bitbucketCloudBranchRestriction Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloudBranchRestriction.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 171
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/actions
-    type: gateway-api
-    name: Actions Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/Actions.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -360
-      y: 404
-  - entityRef: backstage/plugins/scaffolder-node/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/tasks/alpha.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 560
-      y: 404
+      sinceDays: 365
   - entityRef: backstage/plugins/bitbucket-cloud-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/bitbucket-cloud-common/src/models/index.ts
@@ -825,26 +333,26 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -820
+      x: -360
       y: 404
   - entityRef: backstage/plugins/scaffolder-node/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      filepath: plugins/scaffolder-node/src/index.ts
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: 560
       y: 404
   - entityRef: backstage/plugins/scaffolder-node-test-utils/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      filepath: plugins/scaffolder-node-test-utils/src/index.ts
       containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
@@ -856,24 +364,16 @@ dependencies:
     to: backstage/plugins/bitbucket-cloud-common/index
     type: direct-call
     description: '@backstage/plugin-bitbucket-cloud-common'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
-    to: backstage/plugins/bitbucket-cloud-common/index
-    type: direct-call
-    description: '@backstage/plugin-bitbucket-cloud-common'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
-    type: direct-call
-    description: Calls module / service
   - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/module
     to: backstage/plugins/scaffolder-node/alpha
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
   - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/module
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
+    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/actions
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/module
-    to: backstage/plugins/home/actions
+    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/actions
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/module
@@ -884,180 +384,16 @@ dependencies:
     to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples
+  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/actions
     to: backstage/plugins/scaffolder-node/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-test
+  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/actions
     to: backstage/plugins/scaffolder-node-test-utils/index
     type: direct-call
     description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/inputproperties
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples-test
-    to: backstage/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-test
-    to: backstage/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun-examples
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples-test
-    to: backstage/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    type: direct-call
-    description: Calls module / service
   - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpipelinesrun
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloud-examples-test
-    to: backstage/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-examples-test
-    to: backstage/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudpullrequest-test
-    to: backstage/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-test
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/inputproperties
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction
-    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/bitbucketcloudbranchrestriction-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index
-    to: backstage/plugins/home/actions
+    to: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/actions
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index

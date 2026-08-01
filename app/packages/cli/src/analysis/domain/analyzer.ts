@@ -4,13 +4,13 @@ import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import { ContainerLevelWriter } from '../../writers/containerLevelWriter.ts';
 import { ComponentLevelWriter } from '../../writers/componentLevelWriter.ts';
 import type { SystemNode, SourceProvenance } from '@archlens/core';
-import { EntityRef } from '@archlens/core';
 import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from './analysisOptions.ts';
 import {
   discoverSystems,
   partitionFilesBySystem,
   type DiscoveredSystem,
 } from './systemDiscovery.ts';
+import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from './entityRefContext.ts';
 import { throwIfAborted } from './cancellation.ts';
 import {
   attachForensicsToSchema,
@@ -232,7 +232,7 @@ export class CodebaseAnalyzer {
         `📦 System [${system.id}] (${system.kind}) - ${files.length} source file(s)`
       );
 
-      const parentRef = EntityRef.parse(system.id, EntityRef.parse(contextName));
+      const parentRef = resolveSystemEntityRef(contextName, system.id);
       const resolveOptions = {
         rollupModules: this.analysisOptions.rollupModules,
         workspacePackageRoots: workspacePackageRoots.length > 0 ? workspacePackageRoots : undefined,
@@ -270,7 +270,10 @@ export class CodebaseAnalyzer {
         allComponentNodes.push(...componentNodesMap.values());
       }
 
-      const blueprintsDir = this.deps.fileSystem.getAbsolutePath(rootDir, system.id);
+      const blueprintsDir = this.deps.fileSystem.getAbsolutePath(
+        rootDir,
+        resolveBlueprintOutputSegment(contextName, system.id)
+      );
       if (!this.deps.fileSystem.exists(blueprintsDir)) this.deps.fileSystem.mkdir(blueprintsDir);
 
       await containerWriter.write(

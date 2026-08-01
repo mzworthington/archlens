@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/permission-backend-module-policy-allow-all/module
     type: background-worker
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/permission-backend-module-policy-allow-all/src/module.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/permission-backend-module-policy-allow-all/policy
     type: background-worker
-    name: policy Service
+    name: Policy
     isTest: false
     properties:
       filepath: plugins/permission-backend-module-policy-allow-all/src/policy.ts
@@ -66,7 +110,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,10 +164,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/permission-backend-module-policy-allow-all/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/permission-backend-module-policy-allow-all/src/index.ts
@@ -100,7 +188,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,10 +242,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/permission-node/alpha
     type: background-worker
-    name: alpha Service (External)
+    name: Alpha (External)
     external: true
     properties:
       filepath: plugins/permission-node/src/alpha.ts
@@ -121,23 +253,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
-      y: 404
-  - entityRef: backstage/plugins/permission-node/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/permission-node/src/integration/index.ts
-      containerId: permission-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
       x: 100
-      y: -204
+      y: 404
   - entityRef: backstage/plugins/permission-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/permission-common/src/types/index.ts
@@ -145,13 +265,21 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/permission-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/index.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
       y: 404
 dependencies:
-  - from: backstage/plugins/permission-node/index
-    to: backstage/plugins/permission-backend-module-policy-allow-all/policy
-    type: direct-call
-    description: Calls module / service
   - from: backstage/plugins/permission-backend-module-policy-allow-all/module
     to: backstage/plugins/permission-node/alpha
     type: direct-call

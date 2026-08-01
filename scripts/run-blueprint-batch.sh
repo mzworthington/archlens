@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Regenerate blueprints/ by scanning sibling repos. Each repo passes an explicit
+# --context (and output dir when needed) matching blueprints/*/context.yaml today.
 set -euo pipefail
 
 DIRECTORIES=(
@@ -16,14 +18,24 @@ PARENT_DIR="${BLUEPRINT_BATCH_PARENT:-$(dirname "${BLUEPRINT_REPO}")}"
 BLUEPRINT_BIN="${BLUEPRINT_REPO}/app/dist/archlens"
 BLUEPRINTS_DIR="${BLUEPRINT_REPO}/blueprints"
 
-BLUEPRINT_FLAGS=(--headless --output="${BLUEPRINTS_DIR}" --git-since=60)
-
 failures=()
 succeeded=()
 
+# EntityRef root for each scanned repo (must match blueprints/*/context.yaml).
+scan_context() {
+  case "$1" in
+    backstage) echo backstage ;;
+    blueprint) echo blueprint ;;
+    eshop) echo eshop ;;
+    examples) echo blueprint ;;
+    gpio-build-monitor) echo application ;;
+    terraform-examples) echo infrastructure ;;
+    *) echo "$1" ;;
+  esac
+}
+
 echo "Parent directory: ${PARENT_DIR}"
 echo "Blueprints dir:   ${BLUEPRINTS_DIR}"
-echo "Blueprint flags:  ${BLUEPRINT_FLAGS[*]} $*"
 echo
 
 ensure_app_deps() {
@@ -94,9 +106,12 @@ for name in "${DIRECTORIES[@]}"; do
     continue
   fi
 
+  context="$(scan_context "${name}")"
+
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo "▶ ${name}"
   echo "  ${target}"
+  echo "  context=${context}"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
   # if ! pull_latest "${name}" "${target}"; then
@@ -105,7 +120,7 @@ for name in "${DIRECTORIES[@]}"; do
 
   if (
     cd "${target}"
-    "${BLUEPRINT_BIN}" "${BLUEPRINT_FLAGS[@]}" "$@"
+    "${BLUEPRINT_BIN}" --headless --output="${BLUEPRINTS_DIR}" --context="${context}" --git-since=365 "$@"
   ); then
     succeeded+=("${name}")
     echo

@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/gateway-backend/router
     type: rest-api
-    name: router Service
+    name: Router
     isTest: false
     properties:
       filepath: plugins/gateway-backend/src/router.ts
@@ -19,14 +19,60 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 96
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 8
+      functionCount: 6
+      loc: 97
+      sloc: 72
+      churn: 6
+      lineChurn: 145
       churn30: 1
-      churn365: 1
+      churn365: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,17 +82,20 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 3
+        - email: aramis.sennyey@doordash.com
+          commits: 3
+      hotspotScore: 0.002542307503489098
+      sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/gateway-backend/plugin
     type: rest-api
-    name: plugin Service
+    name: Plugin
     isTest: false
     properties:
       filepath: plugins/gateway-backend/src/plugin.ts
@@ -54,14 +103,59 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 50
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 2
+      loc: 51
+      sloc: 29
+      churn: 4
+      lineChurn: 59
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -71,55 +165,23 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
       authors:
+        - email: aramis.sennyey@doordash.com
+          commits: 3
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00020689123131842314
       importedFiles:
         - path: plugins/gateway-backend/src/router.ts
           kind: direct
-      sinceDays: 60
-      shortChurnDays: 30
-  - entityRef: backstage/plugins/gateway-backend/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/gateway-backend/src/setupTests.ts
-      containerId: gateway-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/gateway-backend/plugin-test
     type: rest-api
-    name: plugin.test Service
+    name: Plugin test
     isTest: true
     properties:
       filepath: plugins/gateway-backend/src/plugin.test.ts
@@ -127,14 +189,60 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 212
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 19
+      loc: 213
+      sloc: 171
+      churn: 5
+      lineChurn: 269
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -144,17 +252,18 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 5
+      hotspotScore: 0.0018865674991408754
+      sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/gateway-backend/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/gateway-backend/src/index.ts
@@ -175,7 +284,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -188,7 +341,7 @@ nodes:
       importedFiles:
         - path: plugins/gateway-backend/src/plugin.ts
           kind: direct
-      sinceDays: 60
+      sinceDays: 365
       shortChurnDays: 30
 dependencies:
   - from: backstage/plugins/gateway-backend/plugin

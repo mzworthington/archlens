@@ -22,6 +22,18 @@ describe('typescriptGrouping', () => {
       ).toBe(true);
     });
 
+    it('skips e2e and unit test trees under packages', () => {
+      expect(
+        shouldSkipTypeScriptFile('app/packages/designer/tests/a11y.spec.ts', 'a11y.spec')
+      ).toBe(true);
+      expect(
+        shouldSkipTypeScriptFile(
+          'app/packages/designer/tests/e2e-forensics.spec.ts',
+          'e2e-forensics.spec'
+        )
+      ).toBe(true);
+    });
+
     it('keeps architectural sources', () => {
       expect(
         shouldSkipTypeScriptFile(

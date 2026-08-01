@@ -1,16 +1,22 @@
 import type { SystemDependency, SystemNode } from '@archlens/core';
-import { slugify } from '@archlens/core';
+import { EntityRef, slugify } from '@archlens/core';
 import {
   componentMapKey,
   resolveContainerFromPath,
   type ResolveContainerOptions,
 } from './containerGrouping.ts';
-import type { ParsedSourceFile } from './types.ts';
-import { dependencyTypeForTarget } from './nodeTypeHydrator.ts';
-import { EntityRef } from '@archlens/core';
 import { mergeContainerDependencies } from './csharpDependencies.ts';
+import {
+  formatFolderComponentName,
+  meaningfulDirSegments,
+  type ComponentIdentity,
+} from './folderComponentRollup.ts';
+import { dependencyTypeForTarget } from './nodeTypeHydrator.ts';
+import type { ParsedSourceFile } from './types.ts';
 
 const PYTHON_LAYOUT_ROOTS = new Set(['src', 'lib', 'app', 'source', 'sources']);
+
+const PYTHON_STRIP_EXTENSION = /\.py$/i;
 
 /** Common Python stdlib top-level modules - skip when not in the repo index. */
 const PYTHON_STDLIB_MODULES = new Set([
@@ -82,17 +88,33 @@ export function modulePathFromPythonFile(relativePath: string): string | null {
   return parts.join('.');
 }
 
+export function shouldSkipPythonFile(relativePath: string, baseName: string): boolean {
+  const normalized = relativePath.replace(/\\/g, '/');
+  if (/\/migrations\//i.test(normalized)) return true;
+  if (baseName === 'conftest') return true;
+  if (baseName === 'setup') return true;
+  return false;
+}
+
 export function resolvePythonComponent(
   relativePath: string,
   baseName: string
-): { componentId: string; componentName: string } {
-  if (baseName === '__init__') {
-    const parts = relativePath.replace(/\\/g, '/').split('/').filter(Boolean);
-    const parent = parts.length >= 2 ? parts[parts.length - 2]! : 'package';
-    return { componentId: slugify(parent), componentName: `${parent} Package` };
+): ComponentIdentity | null {
+  if (shouldSkipPythonFile(relativePath, baseName)) return null;
+
+  const meaningful = meaningfulDirSegments(relativePath, {
+    layoutRoots: PYTHON_LAYOUT_ROOTS,
+    stripExtension: PYTHON_STRIP_EXTENSION,
+  });
+
+  if (meaningful.length === 0) {
+    const leaf = slugify(baseName);
+    return { componentId: leaf, componentName: formatFolderComponentName(leaf) };
   }
 
-  return { componentId: slugify(baseName), componentName: `${baseName} Service` };
+  const parentFolder = meaningful[meaningful.length - 1]!;
+  const componentId = slugify(parentFolder);
+  return { componentId, componentName: formatFolderComponentName(componentId) };
 }
 
 function pythonPackageContext(relativePath: string, modulePath: string): string {
@@ -176,6 +198,7 @@ export function buildPythonModuleIndex(
     if (!modulePath) continue;
 
     const componentIdentity = resolvePythonComponent(file.relativePath, file.baseName);
+    if (!componentIdentity) continue;
     const { containerId } = resolveContainerFromPath(file.relativePath, resolveOptions);
     index.set(modulePath, {
       containerId,
@@ -220,6 +243,7 @@ export function extractPythonDependencies(
     if (!isPythonSourcePath(file.relativePath)) continue;
 
     const fromIdentity = resolvePythonComponent(file.relativePath, file.baseName);
+    if (!fromIdentity) continue;
     const { containerId: fromContainerId } = resolveContainerFromPath(
       file.relativePath,
       resolveOptions

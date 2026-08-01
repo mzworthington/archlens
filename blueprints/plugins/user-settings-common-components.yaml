@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/user-settings-common/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/user-settings-common/src/setupTests.ts
-      containerId: user-settings-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/user-settings-common/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: plugins/user-settings-common/src/types.ts
@@ -53,13 +19,13 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 30
+      complexity: 1
+      loc: 31
+      sloc: 6
+      churn: 3
+      lineChurn: 103
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -69,17 +35,63 @@ nodes:
         - 1
         - 0
         - 0
+        - 1
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: g.rantila@gmail.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0003611829970474167
+      sinceDays: 365
   - entityRef: backstage/plugins/user-settings-common/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/user-settings-common/src/index.ts
@@ -87,13 +99,13 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
+      complexity: 1
+      loc: 18
+      sloc: 1
+      churn: 3
+      lineChurn: 23
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -103,17 +115,63 @@ nodes:
         - 1
         - 0
         - 0
+        - 1
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: g.rantila@gmail.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/user-settings-backend/router
+      hotspotScore: 0.00008065251390379207
+      sinceDays: 365
+  - entityRef: backstage/plugins/user-settings-backend/service
     type: rest-api
-    name: router Service (External)
+    name: Service (External)
     external: true
     properties:
       filepath: plugins/user-settings-backend/src/service/router.ts
@@ -123,9 +181,9 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: backstage/plugins/user-settings/usersettingsstorage
+  - entityRef: backstage/plugins/user-settings/storageapi
     type: gateway-api
-    name: UserSettingsStorage Service (External)
+    name: Storageapi (External)
     external: true
     properties:
       filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
@@ -136,7 +194,7 @@ nodes:
       x: 330
       y: -204
 dependencies:
-  - from: backstage/plugins/user-settings/usersettingsstorage
+  - from: backstage/plugins/user-settings/storageapi
     to: backstage/plugins/user-settings-common/index
     type: direct-call
     description: '@backstage/plugin-user-settings-common'
@@ -144,7 +202,7 @@ dependencies:
     to: backstage/plugins/user-settings-common/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/user-settings-backend/router
+  - from: backstage/plugins/user-settings-backend/service
     to: backstage/plugins/user-settings-common/index
     type: direct-call
     description: '@backstage/plugin-user-settings-common'

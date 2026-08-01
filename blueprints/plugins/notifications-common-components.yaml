@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/notifications-common/filters
     type: background-worker
-    name: filters Service
+    name: Filters
     isTest: false
     properties:
       filepath: plugins/notifications-common/src/filters.ts
@@ -22,11 +22,31 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 50
+      churn: 2
+      lineChurn: 53
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +56,42 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: heikki.hellgren@op.fi
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-common/utils
     type: background-worker
-    name: utils Service
+    name: Utils
     isTest: false
     properties:
       filepath: plugins/notifications-common/src/utils.ts
@@ -56,11 +102,14 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 48
+      churn: 2
+      lineChurn: 68
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,31 +119,37 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-common/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/notifications-common/src/setupTests.ts
-      containerId: notifications-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +159,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: henrik.edegard@fortnox.se
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-common/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: plugins/notifications-common/src/types.ts
@@ -121,14 +179,17 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 196
+      complexity: 1
+      loc: 197
+      sloc: 58
+      churn: 6
+      lineChurn: 257
       churn30: 1
-      churn365: 1
+      churn365: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,16 +199,63 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.3333333333333333
       authors:
+        - email: henrik.edegard@fortnox.se
+          commits: 2
+        - email: franky@spotify.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: heikki.hellgren@op.fi
+          commits: 1
+      hotspotScore: 0.000901204177098894
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-common/constants
     type: background-worker
-    name: constants Service
+    name: Constants
     isTest: false
     properties:
       filepath: plugins/notifications-common/src/constants.ts
@@ -168,7 +276,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -178,10 +330,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-common/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/notifications-common/src/index.ts
@@ -202,7 +354,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -212,334 +408,22 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications/bulkactions
-    type: gateway-api
-    name: BulkActions Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsTable/BulkActions.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 790
-      y: -204
-  - entityRef: backstage/plugins/catalog-react/columnfactories
-    type: gateway-api
-    name: columnFactories Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-react/src/components/EntityDataTable/columnFactories.tsx
-      containerId: catalog-react
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -7490
-      y: -204
-  - entityRef: backstage/plugins/catalog-react/columns
+      sinceDays: 365
+  - entityRef: backstage/plugins/notifications-backend/actions
     type: background-worker
-    name: columns Service (External)
+    name: Actions (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/components/EntityTable/columns.tsx
-      containerId: catalog-react
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -7030
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend-module-email/config-d
-    type: background-worker
-    name: config.d Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend-module-email/config.d.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -6110
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend/creategetnotificationsaction-test
-    type: background-worker
-    name: createGetNotificationsAction.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend/src/actions/createGetNotificationsAction.test.ts
+      filepath: plugins/notifications-backend/src/actions/createGetNotificationsAction.ts
       containerId: notifications-backend
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3350
+      x: -820
       y: -204
-  - entityRef: backstage/plugins/notifications-backend/databasenotificationsstore
-    type: relational-database
-    name: DatabaseNotificationsStore Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend/src/database/DatabaseNotificationsStore.ts
-      containerId: notifications-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    position:
-      x: -2890
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend/databasenotificationsstore-test
-    type: relational-database
-    name: DatabaseNotificationsStore.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend/src/database/DatabaseNotificationsStore.test.ts
-      containerId: notifications-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    position:
-      x: -2430
-      y: -204
-  - entityRef: backstage/plugins/notifications-node/defaultnotificationservice
+  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/actions
     type: background-worker
-    name: DefaultNotificationService Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-node/src/service/DefaultNotificationService.ts
-      containerId: notifications-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -590
-      y: -204
-  - entityRef: backstage/plugins/notifications-node/defaultnotificationservice-test
-    type: background-worker
-    name: DefaultNotificationService.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-node/src/service/DefaultNotificationService.test.ts
-      containerId: notifications-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -130
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend-module-slack/extensions
-    type: background-worker
-    name: extensions Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend-module-slack/src/extensions.ts
-      containerId: notifications-backend-module-slack
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -4730
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend-module-email/extensions
-    type: background-worker
-    name: extensions Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend-module-email/src/extensions.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -5650
-      y: -204
-  - entityRef: backstage/plugins/notifications-node/extensions
-    type: background-worker
-    name: extensions Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-node/src/extensions.ts
-      containerId: notifications-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
-      y: -204
-  - entityRef: backstage/plugins/catalog-react/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
-      containerId: catalog-react
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: -6570
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-node/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/tasks/index.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 7690
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend/dev/index.ts
-      containerId: notifications-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: -1970
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationicon
-    type: background-worker
-    name: NotificationIcon Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsTable/NotificationIcon.tsx
-      containerId: notifications
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 1250
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationsapi
-    type: rest-api
-    name: NotificationsApi Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/api/NotificationsApi.ts
-      containerId: notifications
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 1710
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationsclient
-    type: rest-api
-    name: NotificationsClient Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/api/NotificationsClient.ts
-      containerId: notifications
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 2170
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationsclient-test
-    type: rest-api
-    name: NotificationsClient.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/api/NotificationsClient.test.ts
-      containerId: notifications
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 2630
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
-    type: background-worker
-    name: NotificationsEmailProcessor Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/NotificationsEmailProcessor.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -5190
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationsfilters
-    type: gateway-api
-    name: NotificationsFilters Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsFilters/NotificationsFilters.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 3090
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationspage
-    type: gateway-api
-    name: NotificationsPage Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsPage/NotificationsPage.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 3550
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationssidebaritem
-    type: gateway-api
-    name: NotificationsSideBarItem Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsSideBarItem/NotificationsSideBarItem.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 4010
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend/notificationsstore
-    type: relational-database
-    name: NotificationsStore Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend/src/database/NotificationsStore.ts
-      containerId: notifications-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    position:
-      x: -1510
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationstable
-    type: gateway-api
-    name: NotificationsTable Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsTable/NotificationsTable.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 4470
-      y: -204
-  - entityRef: backstage/plugins/notifications/originrow
-    type: gateway-api
-    name: OriginRow Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/UserNotificationSettingsCard/OriginRow.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 4930
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend/router
-    type: rest-api
-    name: router Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend/src/service/router.ts
-      containerId: notifications-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: -1050
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
-    type: background-worker
-    name: sendNotification Service (External)
+    name: Actions (External)
     external: true
     properties:
       filepath: plugins/scaffolder-backend-module-notifications/src/actions/sendNotification.ts
@@ -547,47 +431,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 7230
+      x: 4700
       y: -204
-  - entityRef: backstage/plugins/notifications/severityicon
+  - entityRef: backstage/plugins/notifications/components
     type: gateway-api
-    name: SeverityIcon Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsTable/SeverityIcon.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 5390
-      y: -204
-  - entityRef: backstage/plugins/notifications-backend-module-slack/slacknotificationprocessor
-    type: relational-database
-    name: SlackNotificationProcessor Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications-backend-module-slack/src/lib/SlackNotificationProcessor.ts
-      containerId: notifications-backend-module-slack
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    position:
-      x: -4270
-      y: -204
-  - entityRef: backstage/plugins/notifications/topicrow
-    type: background-worker
-    name: TopicRow Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/UserNotificationSettingsCard/TopicRow.tsx
-      containerId: notifications
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 5850
-      y: -204
-  - entityRef: backstage/plugins/notifications/usernotificationsettingscard
-    type: gateway-api
-    name: UserNotificationSettingsCard Service (External)
+    name: Components (External)
     external: true
     properties:
       filepath: plugins/notifications/src/components/UserNotificationSettingsCard/UserNotificationSettingsCard.tsx
@@ -595,23 +443,215 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 6310
+      x: 1940
       y: -204
-  - entityRef: backstage/plugins/notifications/usernotificationsettingspanel
-    type: gateway-api
-    name: UserNotificationSettingsPanel Service (External)
+  - entityRef: backstage/plugins/notifications-backend/database
+    type: relational-database
+    name: Database (External)
     external: true
     properties:
-      filepath: plugins/notifications/src/components/UserNotificationSettingsCard/UserNotificationSettingsPanel.tsx
+      filepath: plugins/notifications-backend/src/database/DatabaseNotificationsStore.test.ts
+      containerId: notifications-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -360
+      y: -204
+  - entityRef: backstage/plugins/catalog-react/components/entitydatatable
+    type: gateway-api
+    name: Entitydatatable (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityDataTable/columnFactories.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -4500
+      y: -204
+  - entityRef: backstage/plugins/catalog-react/components/entitytable
+    type: gateway-api
+    name: Entitytable (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/EntityTable.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -4040
+      y: -204
+  - entityRef: backstage/plugins/notifications-backend-module-slack/extensions
+    type: background-worker
+    name: Extensions (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/extensions.ts
+      containerId: notifications-backend-module-slack
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: -204
+  - entityRef: backstage/plugins/notifications-backend-module-email/extensions
+    type: background-worker
+    name: Extensions (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend-module-email/src/extensions.ts
+      containerId: notifications-backend-module-email
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3120
+      y: -204
+  - entityRef: backstage/plugins/notifications-node/extensions
+    type: background-worker
+    name: Extensions (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-node/src/extensions.ts
+      containerId: notifications-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: -204
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -3580
+      y: -204
+  - entityRef: backstage/plugins/notifications-backend/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend/dev/index.ts
+      containerId: notifications-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: -204
+  - entityRef: backstage/plugins/notifications/notificationsapi
+    type: rest-api
+    name: Notificationsapi (External)
+    external: true
+    properties:
+      filepath: plugins/notifications/src/api/NotificationsApi.ts
+      containerId: notifications
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 3320
+      y: -204
+  - entityRef: backstage/plugins/notifications/notificationsclient
+    type: rest-api
+    name: Notificationsclient (External)
+    external: true
+    properties:
+      filepath: plugins/notifications/src/api/NotificationsClient.ts
+      containerId: notifications
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 3780
+      y: -204
+  - entityRef: backstage/plugins/notifications/notificationsclient-test
+    type: rest-api
+    name: Notificationsclient test (External)
+    external: true
+    properties:
+      filepath: plugins/notifications/src/api/NotificationsClient.test.ts
+      containerId: notifications
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 4240
+      y: -204
+  - entityRef: backstage/plugins/notifications/components/notificationstable
+    type: gateway-api
+    name: Notificationstable (External)
+    external: true
+    properties:
+      filepath: plugins/notifications/src/components/NotificationsTable/SelectAll.tsx
       containerId: notifications
       technology: React Component
       classification: ui-import
     position:
-      x: 6770
+      x: 2400
+      y: -204
+  - entityRef: backstage/plugins/notifications-backend-module-email/processor
+    type: background-worker
+    name: Processor (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend-module-email/src/processor/NotificationsEmailProcessor.ts
+      containerId: notifications-backend-module-email
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2660
+      y: -204
+  - entityRef: backstage/plugins/notifications-backend/service
+    type: rest-api
+    name: Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend/src/service/DefaultNotificationRecipientResolver.test.ts
+      containerId: notifications-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: -204
+  - entityRef: backstage/plugins/notifications-node/service
+    type: background-worker
+    name: Service (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-node/src/service/NotificationService.ts
+      containerId: notifications-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: -204
+  - entityRef: backstage/plugins/notifications-backend-module-slack/slacknotificationprocessor
+    type: relational-database
+    name: Slacknotificationprocessor (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-backend-module-slack/src/lib/SlackNotificationProcessor.ts
+      containerId: notifications-backend-module-slack
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1740
+      y: -204
+  - entityRef: backstage/plugins/notifications/components/usernotificationsettingscard
+    type: gateway-api
+    name: Usernotificationsettingscard (External)
+    external: true
+    properties:
+      filepath: plugins/notifications/src/components/UserNotificationSettingsCard/NoBorderTableCell.tsx
+      containerId: notifications
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2860
       y: -204
   - entityRef: backstage/plugins/notifications-backend-module-slack/util
     type: background-worker
-    name: util Service (External)
+    name: Util (External)
     external: true
     properties:
       filepath: plugins/notifications-backend-module-slack/src/lib/util.ts
@@ -619,7 +659,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3810
+      x: -1280
       y: -204
 dependencies:
   - from: backstage/plugins/notifications-common/filters
@@ -654,11 +694,11 @@ dependencies:
     to: backstage/plugins/notifications-common/utils
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-react/columns
+  - from: backstage/plugins/catalog-react/components/entitytable
     to: backstage/plugins/notifications-common/utils
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-react/columnfactories
+  - from: backstage/plugins/catalog-react/components/entitydatatable
     to: backstage/plugins/notifications-common/utils
     type: direct-call
     description: Calls module / service
@@ -682,43 +722,23 @@ dependencies:
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/scaffolder-node/index
-    to: backstage/plugins/notifications-common/filters
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-node/index
-    to: backstage/plugins/notifications-common/filters
-    type: direct-call
-    description: Calls module / service
   - from: backstage/plugins/notifications-backend/index
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-backend/databasenotificationsstore-test
+  - from: backstage/plugins/notifications-backend/database
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-backend/notificationsstore
+  - from: backstage/plugins/notifications-backend/actions
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-backend/databasenotificationsstore
+  - from: backstage/plugins/notifications-backend/service
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-backend/creategetnotificationsaction-test
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-backend/router
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-backend-module-email/config-d
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
+  - from: backstage/plugins/notifications-backend-module-email/processor
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
@@ -726,51 +746,19 @@ dependencies:
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/scaffolder-backend-module-notifications/sendnotification
+  - from: backstage/plugins/scaffolder-backend-module-notifications/actions
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/usernotificationsettingscard
+  - from: backstage/plugins/notifications/components
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/originrow
+  - from: backstage/plugins/notifications/components/usernotificationsettingscard
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/topicrow
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/usernotificationsettingspanel
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/bulkactions
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/notificationicon
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/notificationstable
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/severityicon
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/notificationspage
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/notificationsfilters
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications/notificationssidebaritem
+  - from: backstage/plugins/notifications/components/notificationstable
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
@@ -790,11 +778,7 @@ dependencies:
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-node/defaultnotificationservice-test
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-node/defaultnotificationservice
+  - from: backstage/plugins/notifications-node/service
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'

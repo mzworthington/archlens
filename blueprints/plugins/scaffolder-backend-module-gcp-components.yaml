@@ -4,48 +4,14 @@ metadata:
   entityRef: backstage/plugins/scaffolder-backend-module-gcp
   name: Scaffolder-backend-module-gcp Service Components
   source:
-    remoteUrl: https://github.com/backstage/backstage
-    defaultBranch: master
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
 nodes:
-  - entityRef: backstage/plugins/scaffolder-backend-module-gcp/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-gcp/config.d.ts
-      containerId: scaffolder-backend-module-gcp
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 25
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/scaffolder-backend-module-gcp/module
     type: background-worker
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/scaffolder-backend-module-gcp/src/module.ts
@@ -56,11 +22,13 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 44
+      churn: 2
+      lineChurn: 46
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +38,64 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: lukasz.jernas@allegro.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
+      importedFiles:
+        - path: plugins/scaffolder-backend-module-gcp/src/providers/GcpBucketWorkspaceProvider.ts
+          kind: direct
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/scaffolder-backend-module-gcp/providers
     type: background-worker
-    name: GcpBucketWorkspaceProvider Service
+    name: Providers
     isTest: false
     properties:
       filepath: plugins/scaffolder-backend-module-gcp/src/providers/GcpBucketWorkspaceProvider.ts
@@ -90,11 +106,12 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 107
+      churn: 2
+      lineChurn: 123
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +121,62 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
+      shortChurnDays: 30
   - entityRef: backstage/plugins/scaffolder-backend-module-gcp/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/scaffolder-backend-module-gcp/src/index.ts
@@ -124,11 +187,13 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 23
+      churn: 2
+      lineChurn: 25
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,35 +203,71 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: lukasz.jernas@allegro.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-node/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/tasks/alpha.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 100
-      y: 404
+      importedFiles:
+        - path: plugins/scaffolder-backend-module-gcp/src/module.ts
+          kind: direct
+      sinceDays: 365
+      shortChurnDays: 30
 dependencies:
   - from: backstage/plugins/scaffolder-backend-module-gcp/module
     to: backstage/plugins/scaffolder-node/alpha
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
   - from: backstage/plugins/scaffolder-backend-module-gcp/module
-    to: backstage/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
+    to: backstage/plugins/scaffolder-backend-module-gcp/providers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-gcp/gcpbucketworkspaceprovider
+  - from: backstage/plugins/scaffolder-backend-module-gcp/providers
     to: backstage/plugins/scaffolder-node/alpha
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'

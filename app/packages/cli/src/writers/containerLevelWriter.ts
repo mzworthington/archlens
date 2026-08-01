@@ -1,7 +1,8 @@
 import { BaseWriter } from './baseWriter.ts';
 import type { SystemNode, SystemDependency, SystemSchema, SourceProvenance } from '@archlens/core';
-import { EntityRef, parseSchemaFromYaml } from '@archlens/core';
+import { parseSchemaFromYaml } from '@archlens/core';
 import { seedPreservedPositions } from '@archlens/core/layout';
+import { resolveSystemEntityRef } from '../analysis/domain/entityRefContext.ts';
 
 export class ContainerLevelWriter extends BaseWriter {
   async write(
@@ -12,7 +13,7 @@ export class ContainerLevelWriter extends BaseWriter {
     containerDependencies: SystemDependency[],
     source?: SourceProvenance
   ): Promise<void> {
-    const systemRef = EntityRef.parse(systemId, EntityRef.parse(contextName));
+    const systemRef = resolveSystemEntityRef(contextName, systemId);
     const targetPath = this.fileSystem.getAbsolutePath(blueprintsDir, 'containers.yaml');
     const nextNodes = Array.from(containerNodesMap.values());
     const nodes = await this.seedFromDisk(targetPath, nextNodes);

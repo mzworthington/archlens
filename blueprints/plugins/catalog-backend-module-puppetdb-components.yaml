@@ -9,44 +9,10 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/config-d
+  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/module
     type: background-worker
-    name: config.d Service
+    name: Module
     isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/config.d.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 67
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
-    type: background-worker
-    name: catalogModulePuppetDbEntityProvider.test Service
-    isTest: true
     properties:
       filepath: plugins/catalog-backend-module-puppetdb/src/module/catalogModulePuppetDbEntityProvider.test.ts
       containerId: catalog-backend-module-puppetdb
@@ -56,11 +22,31 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 72
+      churn: 2
+      lineChurn: 74
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,31 +56,20 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
-    type: background-worker
-    name: catalogModulePuppetDbEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/module/catalogModulePuppetDbEntityProvider.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 50
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,50 +79,17 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/module/index.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: background-worker
-    name: PuppetDbEntityProviderConfig Service
+    name: Providers
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-puppetdb/src/providers/PuppetDbEntityProviderConfig.ts
@@ -168,7 +110,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -178,25 +164,68 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/constants
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/index
     type: background-worker
-    name: constants Service
+    name: Index
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/providers/constants.ts
+      filepath: plugins/catalog-backend-module-puppetdb/src/index.ts
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 22
+      complexity: 1
+      loc: 26
+      sloc: 3
+      churn: 3
+      lineChurn: 27
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -206,152 +235,21 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig-test
-    type: background-worker
-    name: PuppetDbEntityProviderConfig.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/providers/PuppetDbEntityProviderConfig.test.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 126
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: kyle.opperman@ing.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
-    type: background-worker
-    name: PuppetDbEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/providers/PuppetDbEntityProvider.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 240
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
+      hotspotScore: 0.0000946790380609733
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/puppet
     type: background-worker
-    name: PuppetDbEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/providers/PuppetDbEntityProvider.test.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 222
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/setupTests.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/read
-    type: background-worker
-    name: read Service
+    name: Puppet
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-puppetdb/src/puppet/read.ts
@@ -372,7 +270,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -382,375 +324,85 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/read-test
-    type: background-worker
-    name: read.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/puppet/read.test.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 309
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: jonkoops@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/transformers-test
-    type: background-worker
-    name: transformers.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/puppet/transformers.test.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 85
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/puppet/types.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 106
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    type: background-worker
-    name: transformers Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/puppet/transformers.ts
-      containerId: catalog-backend-module-puppetdb
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 66
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/techdocs/dom
-    type: gateway-api
-    name: dom Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageContent/dom.tsx
-      containerId: techdocs
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -590
-      y: -204
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      filepath: plugins/catalog-node/src/api/index.ts
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 330
+      x: 100
       y: 404
-  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -130
-      y: 404
-  - entityRef: backstage/plugins/techdocs/removemkdocsheader-test
-    type: background-worker
-    name: removeMkdocsHeader.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs/src/reader/transformers/removeMkdocsHeader.test.ts
-      containerId: techdocs
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -130
-      y: -204
-  - entityRef: backstage/plugins/techdocs/rewritedoclinks-test
-    type: background-worker
-    name: rewriteDocLinks.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs/src/reader/transformers/rewriteDocLinks.test.ts
-      containerId: techdocs
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
-      y: -204
-  - entityRef: backstage/plugins/techdocs/shadowdom
-    type: gateway-api
-    name: shadowDom Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs/src/test-utils/shadowDom.ts
-      containerId: techdocs
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 790
-      y: -204
 dependencies:
-  - from: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
+  - from: backstage/plugins/catalog-backend-module-puppetdb/module
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
+  - from: backstage/plugins/catalog-backend-module-puppetdb/module
+    to: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
+  - from: backstage/plugins/catalog-backend-module-puppetdb/module
+    to: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
+  - from: backstage/plugins/catalog-backend-module-puppetdb/providers
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
+  - from: backstage/plugins/catalog-backend-module-puppetdb/providers
+    to: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-puppetdb/providers
+    to: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-puppetdb/providers
+    to: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-puppetdb/providers
+    to: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-puppetdb/providers
+    to: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-puppetdb/providers
+    to: backstage/plugins/catalog-backend-module-puppetdb/puppet
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-puppetdb/index
-    to: backstage/plugins/catalog-backend-module-puppetdb/catalogmodulepuppetdbentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
-    to: backstage/plugins/catalog-backend-module-puppetdb/read
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
+    to: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-puppetdb/index
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
+    to: backstage/plugins/catalog-backend-module-puppetdb/puppet
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-puppetdb/index
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
+    to: backstage/plugins/catalog-backend-module-puppetdb/module
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/index
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
+  - from: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    to: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider
+  - from: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    to: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/read
+  - from: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    to: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityprovider-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/index
-    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/read
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/read
-    to: backstage/plugins/catalog-backend-module-puppetdb/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/read
-    to: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/read
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/read-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/read
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/read-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/transformers-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/transformers-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/transformers-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/types
-    to: backstage/plugins/catalog-backend-module-puppetdb/puppetdbentityproviderconfig
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    to: backstage/plugins/catalog-backend-module-puppetdb/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/index
-    to: backstage/plugins/catalog-backend-module-puppetdb/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/index
-    to: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-puppetdb/index
-    to: backstage/plugins/catalog-backend-module-puppetdb/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/dom
-    to: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/removemkdocsheader-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/rewritedoclinks-test
-    to: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/shadowdom
-    to: backstage/plugins/catalog-backend-module-puppetdb/transformers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/shadowdom
-    to: backstage/plugins/catalog-backend-module-puppetdb/transformers
+  - from: backstage/plugins/catalog-backend-module-puppetdb/puppet
+    to: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: direct-call
     description: Calls module / service

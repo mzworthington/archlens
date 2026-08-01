@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/techdocs-cli/techdocs-cli-test
     type: background-worker
-    name: techdocs-cli.test Service
+    name: Techdocs cli test
     isTest: true
     properties:
       filepath: packages/techdocs-cli/cli-e2e-tests/techdocs-cli.test.ts
@@ -19,14 +19,37 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 143
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 14
+      loc: 144
+      sloc: 108
+      churn: 4
+      lineChurn: 165
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +59,46 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.25
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: ruslan@tarasovs.com
+          commits: 1
+        - email: rtarasov@evolution.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.0011571882429674515
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli/publisherconfig-test
     type: background-worker
-    name: PublisherConfig.test Service
+    name: Publisherconfig test
     isTest: true
     properties:
       filepath: packages/techdocs-cli/src/lib/PublisherConfig.test.ts
@@ -66,7 +119,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,10 +173,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli/livereload
     type: background-worker
-    name: livereload Service
+    name: Livereload
     isTest: false
     properties:
       filepath: packages/techdocs-cli/src/lib/livereload.ts
@@ -87,14 +184,21 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 175
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 6
+      functionCount: 9
+      loc: 176
+      sloc: 100
+      churn: 3
+      lineChurn: 352
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +208,60 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: freben@gmail.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.0061716706291597406
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli/httpserver
     type: background-worker
-    name: httpServer Service
+    name: Httpserver
     isTest: false
     properties:
       filepath: packages/techdocs-cli/src/lib/httpServer.ts
@@ -121,14 +269,21 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 147
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      functionCount: 11
+      loc: 148
+      sloc: 106
+      churn: 3
+      lineChurn: 181
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,16 +293,60 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: freben@gmail.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.003808201308674704
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli/livereload-test
     type: background-worker
-    name: livereload.test Service
+    name: Livereload test
     isTest: true
     properties:
       filepath: packages/techdocs-cli/src/lib/livereload.test.ts
@@ -155,14 +354,21 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 180
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 20
+      loc: 181
+      sloc: 140
+      churn: 3
+      lineChurn: 362
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,16 +378,60 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: freben@gmail.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.003808201308674704
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli/publisherconfig
     type: background-worker
-    name: PublisherConfig Service
+    name: Publisherconfig
     isTest: false
     properties:
       filepath: packages/techdocs-cli/src/lib/PublisherConfig.ts
@@ -202,7 +452,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -212,10 +506,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli/utility
     type: background-worker
-    name: utility Service
+    name: Utility
     isTest: false
     properties:
       filepath: packages/techdocs-cli/src/lib/utility.ts
@@ -226,11 +520,31 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 70
+      churn: 2
+      lineChurn: 74
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -240,16 +554,42 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: freben@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli/mkdocsserver-test
     type: background-worker
-    name: mkdocsServer.test Service
+    name: Mkdocsserver test
     isTest: true
     properties:
       filepath: packages/techdocs-cli/src/lib/mkdocsServer.test.ts
@@ -260,11 +600,23 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 141
+      churn: 2
+      lineChurn: 196
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -274,16 +626,48 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli/mkdocsserver
     type: background-worker
-    name: mkdocsServer Service
+    name: Mkdocsserver
     isTest: false
     properties:
       filepath: packages/techdocs-cli/src/lib/mkdocsServer.ts
@@ -291,14 +675,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 89
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 58
+      functionCount: 1
+      loc: 90
+      sloc: 70
+      churn: 3
+      lineChurn: 122
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -308,31 +738,54 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli/publish
-    type: background-worker
-    name: publish Service
+          commits: 3
+      hotspotScore: 0.005133707841528329
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+  - entityRef: backstage/packages/techdocs-cli/commands
+    type: gateway-api
+    name: Commands
     isTest: false
     properties:
       filepath: packages/techdocs-cli/src/commands/publish/publish.ts
       containerId: techdocs-cli
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 52
+      churn: 2
+      lineChurn: 54
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -342,31 +795,20 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli/migrate
-    type: background-worker
-    name: migrate Service
-    isTest: false
-    properties:
-      filepath: packages/techdocs-cli/src/commands/migrate/migrate.ts
-      containerId: techdocs-cli
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 55
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -376,84 +818,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli/generate
-    type: background-worker
-    name: generate Service
-    isTest: false
-    properties:
-      filepath: packages/techdocs-cli/src/commands/generate/generate.ts
-      containerId: techdocs-cli
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 115
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: freben@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/techdocs-cli/src/commands/index.ts
-      containerId: techdocs-cli
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 362
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli/mkdocs
+      sinceDays: 365
+  - entityRef: backstage/packages/techdocs-cli/commands/serve
     type: gateway-api
-    name: mkdocs Service
+    name: Serve
     isTest: false
     properties:
       filepath: packages/techdocs-cli/src/commands/serve/mkdocs.ts
@@ -461,14 +838,60 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 95
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      functionCount: 4
+      loc: 96
+      sloc: 58
+      churn: 3
+      lineChurn: 111
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -478,19 +901,20 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli/utils
+          commits: 3
+      hotspotScore: 0.0019461802268088955
+      sinceDays: 365
+  - entityRef: backstage/packages/techdocs-cli/index
     type: background-worker
-    name: utils Service
+    name: Index
     isTest: false
     properties:
-      filepath: packages/techdocs-cli/src/commands/serve/utils.ts
+      filepath: packages/techdocs-cli/src/index.ts
       containerId: techdocs-cli
       technology: TypeScript Domain Service
       classification: default
@@ -499,10 +923,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 35
+      lineChurn: 29
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -512,39 +979,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli/serve
-    type: gateway-api
-    name: serve Service
-    isTest: false
-    properties:
-      filepath: packages/techdocs-cli/src/commands/serve/serve.ts
-      containerId: techdocs-cli
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 170
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -552,10 +986,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/config/src/index.ts
@@ -567,7 +1001,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-common/src/index.ts
@@ -579,10 +1013,10 @@ nodes:
       y: 404
   - entityRef: backstage/packages/catalog-model/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/kinds/index.ts
+      filepath: packages/catalog-model/src/model/sources/index.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
@@ -622,79 +1056,71 @@ dependencies:
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: backstage/packages/techdocs-cli/publish
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/publish
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/backend-defaults/discovery
     type: direct-call
     description: '@backstage/backend-defaults'
-  - from: backstage/packages/techdocs-cli/publish
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: backstage/packages/techdocs-cli/publish
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/techdocs-cli/publisherconfig
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/migrate
-    to: backstage/packages/backend-defaults/discovery
-    type: direct-call
-    description: '@backstage/backend-defaults'
-  - from: backstage/packages/techdocs-cli/migrate
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/migrate
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/techdocs-cli/publisherconfig
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/generate
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: backstage/packages/techdocs-cli/generate
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/mkdocs
+  - from: backstage/packages/techdocs-cli/commands/serve
     to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/mkdocs
+  - from: backstage/packages/techdocs-cli/commands/serve
     to: backstage/packages/techdocs-cli/mkdocsserver
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/mkdocs
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/techdocs-cli/mkdocs
-    to: backstage/packages/techdocs-cli/utils
+  - from: backstage/packages/techdocs-cli/commands/serve
+    to: backstage/packages/techdocs-cli/commands
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/utils
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: backstage/packages/techdocs-cli/serve
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/techdocs-cli/serve
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/techdocs-cli/httpserver
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/serve
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/techdocs-cli/mkdocsserver
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/serve
+  - from: backstage/packages/techdocs-cli/commands
     to: backstage/packages/techdocs-cli/utility
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli/serve
-    to: backstage/packages/techdocs-cli/utils
+  - from: backstage/packages/techdocs-cli/commands
+    to: backstage/packages/techdocs-cli/commands/serve
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/index
+    to: backstage/packages/techdocs-cli/commands
     type: direct-call
     description: Calls module / service

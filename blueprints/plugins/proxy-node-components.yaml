@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/proxy-node/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/proxy-node/src/alpha/index.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/proxy-backend/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/proxy-backend/dev/index.ts
@@ -57,7 +101,7 @@ nodes:
       y: -204
   - entityRef: backstage/plugins/proxy-backend/plugin
     type: background-worker
-    name: plugin Service (External)
+    name: Plugin (External)
     external: true
     properties:
       filepath: plugins/proxy-backend/src/plugin.ts
@@ -67,9 +111,9 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: backstage/plugins/proxy-backend/router
+  - entityRef: backstage/plugins/proxy-backend/service
     type: rest-api
-    name: router Service (External)
+    name: Service (External)
     external: true
     properties:
       filepath: plugins/proxy-backend/src/service/router.ts
@@ -88,7 +132,7 @@ dependencies:
     to: backstage/plugins/proxy-node/alpha
     type: direct-call
     description: '@backstage/plugin-proxy-node'
-  - from: backstage/plugins/proxy-backend/router
+  - from: backstage/plugins/proxy-backend/service
     to: backstage/plugins/proxy-node/alpha
     type: direct-call
     description: '@backstage/plugin-proxy-node'

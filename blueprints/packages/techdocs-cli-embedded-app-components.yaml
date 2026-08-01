@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/techdocs-cli-embedded-app/index
     type: gateway-api
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/index.tsx
@@ -19,14 +19,19 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 22
+      complexity: 1
+      loc: 23
+      sloc: 5
+      churn: 3
+      lineChurn: 25
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +41,57 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: gabriel.dugny@believe.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.00008766577598238267
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli-embedded-app/app
     type: background-worker
-    name: App Service
+    name: App
     isTest: false
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/App.tsx
@@ -53,14 +99,20 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 56
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 57
+      sloc: 34
+      churn: 5
+      lineChurn: 180
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +122,58 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
+        - email: gabriel.dugny@believe.com
+          commits: 4
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0006311935870731553
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli-embedded-app/addons
     type: gateway-api
-    name: addons Service
+    name: Addons
     isTest: false
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/addons.tsx
@@ -90,11 +184,29 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 48
+      churn: 2
+      lineChurn: 96
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +216,44 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli-embedded-app/app-test
     type: background-worker
-    name: App.test Service
+    name: App test
     isTest: true
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/App.test.tsx
@@ -121,14 +261,34 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 54
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 4
+      loc: 55
+      sloc: 36
+      churn: 3
+      lineChurn: 76
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,16 +298,44 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: gabriel.dugny@believe.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.00026650395898644334
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
     type: gateway-api
-    name: apis Service
+    name: Apis
     isTest: false
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/apis.ts
@@ -155,14 +343,60 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 209
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 18
+      loc: 210
+      sloc: 163
+      churn: 3
+      lineChurn: 301
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,50 +406,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: gabriel.dugny@believe.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli-embedded-app/setuptests
+      hotspotScore: 0.0031664878284836627
+      sinceDays: 365
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/components/sidebar
     type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: packages/techdocs-cli-embedded-app/src/setupTests.ts
-      containerId: techdocs-cli-embedded-app
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli-embedded-app/logofull
-    type: background-worker
-    name: LogoFull Service
+    name: Sidebar
     isTest: false
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/components/Sidebar/LogoFull.tsx
@@ -236,7 +439,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -246,10 +493,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli-embedded-app/sidebar
+      sinceDays: 365
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/components
     type: gateway-api
-    name: Sidebar Service
+    name: Components
     isTest: false
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/components/Sidebar/Sidebar.tsx
@@ -270,7 +517,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -280,45 +571,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli-embedded-app/logoicon
-    type: background-worker
-    name: LogoIcon Service
-    isTest: false
-    properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/Sidebar/LogoIcon.tsx
-      containerId: techdocs-cli-embedded-app
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 46
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli-embedded-app/livereloadaddon-test
+      sinceDays: 365
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/components/livereload
     type: gateway-api
-    name: LiveReloadAddon.test Service
-    isTest: true
+    name: Livereload
+    isTest: false
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/components/LiveReload/LiveReloadAddon.test.tsx
       containerId: techdocs-cli-embedded-app
@@ -338,7 +595,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -348,22 +649,22 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli-embedded-app/livereloadaddon
-    type: gateway-api
-    name: LiveReloadAddon Service
+      sinceDays: 365
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/components/techdocspage
+    type: background-worker
+    name: Techdocspage
     isTest: false
     properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/LiveReload/LiveReloadAddon.tsx
+      filepath: packages/techdocs-cli-embedded-app/src/components/TechDocsPage/index.ts
       containerId: techdocs-cli-embedded-app
-      technology: React Component
-      classification: ui-import
+      technology: TypeScript Domain Service
+      classification: default
     forensics:
       complexity: 0
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 128
+      lineChurn: 16
       churn30: 1
       churn365: 1
       churnByWeek:
@@ -372,7 +673,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -382,44 +727,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/techdocs-cli-embedded-app/techdocspage
-    type: gateway-api
-    name: TechDocsPage Service
-    isTest: false
-    properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/TechDocsPage/TechDocsPage.tsx
-      containerId: techdocs-cli-embedded-app
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 105
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/techdocs-cli-embedded-app/config
     type: background-worker
-    name: config Service
+    name: Config
     isTest: false
     properties:
       filepath: packages/techdocs-cli-embedded-app/src/config.ts
@@ -440,7 +751,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -450,22 +805,118 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/core-components/header
-    type: gateway-api
-    name: Header Service (External)
+      sinceDays: 365
+  - entityRef: backstage/packages/frontend-plugin-api/alpha
+    type: background-worker
+    name: Alpha (External)
     external: true
     properties:
-      filepath: packages/core-components/src/layout/Header/Header.tsx
-      containerId: core-components
+      filepath: packages/frontend-plugin-api/src/alpha.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: -204
+  - entityRef: backstage/packages/core-plugin-api/analytics
+    type: gateway-api
+    name: Analytics (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/AnalyticsContext.test.tsx
+      containerId: core-plugin-api
       technology: React Component
       classification: ui-import
     position:
-      x: 100
+      x: -1740
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/analytics
+    type: gateway-api
+    name: Analytics (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/analytics/AnalyticsContext.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: -204
+  - entityRef: backstage/packages/core-app-api/app
+    type: gateway-api
+    name: App (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/AppContext.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -4040
+      y: -204
+  - entityRef: backstage/packages/core-app-api/authconnector
+    type: rest-api
+    name: Authconnector (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/lib/AuthConnector/types.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -3580
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints
+    type: gateway-api
+    name: Blueprints (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/PluginHeaderActionBlueprint.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1480
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ExtensionSuspense.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1940
+      y: -204
+  - entityRef: backstage/packages/core-plugin-api/extensions
+    type: gateway-api
+    name: Extensions (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/componentData.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1280
+      y: -204
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
       y: -204
   - entityRef: backstage/packages/frontend-defaults/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/frontend-defaults/src/index.ts
@@ -473,59 +924,59 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: 330
       y: 404
   - entityRef: backstage/packages/core-app-api/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/system/index.ts
+      filepath: packages/core-app-api/src/apis/index.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -360
-      y: 404
+      x: -3120
+      y: -204
   - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 560
-      y: 404
+      x: 2400
+      y: -204
   - entityRef: backstage/packages/test-utils/index
-    type: rest-api
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
       filepath: packages/test-utils/src/index.ts
       containerId: test-utils
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: 1480
+      x: 1250
       y: 404
   - entityRef: backstage/packages/catalog-model/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/kinds/index.ts
+      filepath: packages/catalog-model/src/model/sources/index.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1280
+      x: -1050
       y: 404
   - entityRef: backstage/packages/config/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/config/src/index.ts
@@ -533,11 +984,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -820
+      x: -590
       y: 404
   - entityRef: backstage/packages/integration-react/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/integration-react/dev/index.tsx
@@ -545,33 +996,145 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 1020
+      x: 790
       y: 404
   - entityRef: backstage/packages/core-components/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/core-components/src/layout/Sidebar/index.ts
+      filepath: packages/core-components/src/index.ts
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 560
-      y: -204
-  - entityRef: backstage/packages/app-legacy/root
-    type: gateway-api
-    name: Root Service (External)
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core-compat-api/index
+    type: rest-api
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/app-legacy/src/components/Root/Root.tsx
-      containerId: app-legacy
-      technology: React Component
-      classification: ui-import
+      filepath: packages/core-compat-api/src/apis/index.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -2200
+      y: -204
+  - entityRef: backstage/packages/frontend-internal/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/apis/index.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: -204
+  - entityRef: backstage/packages/frontend-test-utils/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 4240
+      y: -204
+  - entityRef: backstage/packages/core-plugin-api/plugin
+    type: background-worker
+    name: Plugin (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/plugin/Plugin.tsx
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: -360
       y: -204
+  - entityRef: backstage/packages/core-app-api/routing
+    type: gateway-api
+    name: Routing (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/routing/validation.ts
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -2660
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/routing
+    type: gateway-api
+    name: Routing (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/routing/describeParentCallSite.test.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2860
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/translation
+    type: gateway-api
+    name: Translation (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/TranslationResource.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3320
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/wiring
+    type: gateway-api
+    name: Wiring (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3780
+      y: -204
 dependencies:
+  - from: backstage/packages/core-plugin-api/plugin
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/plugin
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/index
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/analytics
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/analytics
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
   - from: backstage/packages/techdocs-cli-embedded-app/index
     to: backstage/packages/cli/asset-types
     type: direct-call
@@ -605,7 +1168,7 @@ dependencies:
     type: direct-call
     description: '@backstage/frontend-plugin-api'
   - from: backstage/packages/techdocs-cli-embedded-app/app
-    to: backstage/packages/techdocs-cli-embedded-app/sidebar
+    to: backstage/packages/techdocs-cli-embedded-app/components
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/techdocs-cli-embedded-app/app
@@ -617,11 +1180,11 @@ dependencies:
     type: direct-call
     description: '@backstage/frontend-plugin-api'
   - from: backstage/packages/techdocs-cli-embedded-app/addons
-    to: backstage/packages/techdocs-cli-embedded-app/techdocspage
+    to: backstage/packages/techdocs-cli-embedded-app/components
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/techdocs-cli-embedded-app/addons
-    to: backstage/packages/techdocs-cli-embedded-app/livereloadaddon
+    to: backstage/packages/techdocs-cli-embedded-app/components/livereload
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/techdocs-cli-embedded-app/app-test
@@ -648,47 +1211,155 @@ dependencies:
     to: backstage/packages/integration-react/index
     type: direct-call
     description: '@backstage/integration-react'
-  - from: backstage/packages/techdocs-cli-embedded-app/sidebar
-    to: backstage/packages/techdocs-cli-embedded-app/logofull
+  - from: backstage/packages/techdocs-cli-embedded-app/components
+    to: backstage/packages/techdocs-cli-embedded-app/components/sidebar
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli-embedded-app/sidebar
-    to: backstage/packages/techdocs-cli-embedded-app/logoicon
+  - from: backstage/packages/techdocs-cli-embedded-app/components
+    to: backstage/packages/techdocs-cli-embedded-app/components/sidebar
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli-embedded-app/sidebar
+  - from: backstage/packages/techdocs-cli-embedded-app/components
     to: backstage/packages/core-components/index
     type: direct-call
     description: '@backstage/core-components'
-  - from: backstage/packages/techdocs-cli-embedded-app/index
-    to: backstage/packages/techdocs-cli-embedded-app/sidebar
+  - from: backstage/packages/techdocs-cli-embedded-app/components/sidebar
+    to: backstage/packages/techdocs-cli-embedded-app/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/techdocs-cli-embedded-app/livereloadaddon-test
-    to: backstage/packages/techdocs-cli-embedded-app/livereloadaddon
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/techdocs-cli-embedded-app/techdocspage
+  - from: backstage/packages/techdocs-cli-embedded-app/components
     to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/techdocs-cli-embedded-app/index
-    to: backstage/packages/techdocs-cli-embedded-app/techdocspage
+  - from: backstage/packages/techdocs-cli-embedded-app/components/techdocspage
+    to: backstage/packages/techdocs-cli-embedded-app/components
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/techdocs-cli-embedded-app/config
     to: backstage/packages/core-app-api/index
     type: direct-call
     description: '@backstage/core-app-api'
-  - from: backstage/packages/app-legacy/root
-    to: backstage/packages/techdocs-cli-embedded-app/logoicon
+  - from: backstage/packages/core-app-api/app
+    to: backstage/packages/techdocs-cli-embedded-app/apis
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-components/index
-    to: backstage/packages/techdocs-cli-embedded-app/sidebar
+  - from: backstage/packages/core-app-api/app
+    to: backstage/packages/techdocs-cli-embedded-app/apis
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-components/header
-    to: backstage/packages/techdocs-cli-embedded-app/sidebar
+  - from: backstage/packages/core-app-api/authconnector
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/index
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/translation
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/translation
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/alpha
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/wiring
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/wiring
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/wiring
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/wiring
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/wiring
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/index
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/routing
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/routing
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/analytics
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/analytics
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-internal/index
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/index
+    to: backstage/packages/techdocs-cli-embedded-app/apis
     type: direct-call
     description: Calls module / service

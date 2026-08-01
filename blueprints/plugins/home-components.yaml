@@ -9,21 +9,23 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/home/config-d
-    type: background-worker
-    name: config.d Service
+  - entityRef: backstage/plugins/home/index
+    type: gateway-api
+    name: Index
     isTest: false
     properties:
-      filepath: plugins/home/config.d.ts
+      filepath: plugins/home/dev/index.tsx
       containerId: home
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 1
-      loc: 69
-      sloc: 18
+      complexityPeak: 1
+      functionCount: 10
+      loc: 228
+      sloc: 197
       churn: 4
-      lineChurn: 92
+      lineChurn: 506
       churn30: 1
       churn365: 4
       churnByWeek:
@@ -32,56 +34,66 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
         - 0
         - 0
         - 0
       authorCount: 2
       topAuthorPercent: 0.75
       authors:
-        - email: karthik.jk11@gmail.com
+        - email: kunickiaj@gmail.com
           commits: 3
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0.0004969964129824106
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/index
-    type: gateway-api
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/home/dev/index.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 227
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0017743553058834256
+      sinceDays: 365
   - entityRef: backstage/plugins/home/alpha-test
     type: background-worker
-    name: alpha.test Service
+    name: Alpha test
     isTest: true
     properties:
       filepath: plugins/home/src/alpha.test.ts
@@ -89,14 +101,19 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 106
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 17
+      loc: 107
+      sloc: 71
+      churn: 3
+      lineChurn: 222
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -106,16 +123,60 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: kunickiaj@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0015569441814471164
+      sinceDays: 365
   - entityRef: backstage/plugins/home/routes
     type: background-worker
-    name: routes Service
+    name: Routes
     isTest: false
     properties:
       filepath: plugins/home/src/routes.ts
@@ -136,7 +197,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -146,10 +251,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/plugin
     type: gateway-api
-    name: plugin Service
+    name: Plugin
     isTest: false
     properties:
       filepath: plugins/home/src/plugin.ts
@@ -170,7 +275,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -180,10 +329,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/translation
     type: background-worker
-    name: translation Service
+    name: Translation
     isTest: false
     properties:
       filepath: plugins/home/src/translation.ts
@@ -191,14 +340,57 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 91
+      complexity: 1
+      loc: 92
+      sloc: 66
+      churn: 6
+      lineChurn: 101
       churn30: 1
-      churn365: 2
+      churn365: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -208,18 +400,25 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: karthik.jk11@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: kunickiaj@gmail.com
+          commits: 1
+        - email: mikko.korhonen@gmail.com
+          commits: 1
+      hotspotScore: 0.0003541697349688261
+      sinceDays: 365
   - entityRef: backstage/plugins/home/alpha
     type: gateway-api
-    name: alpha Service
+    name: Alpha
     isTest: false
     properties:
       filepath: plugins/home/src/alpha.tsx
@@ -227,14 +426,19 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 226
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 15
+      loc: 227
+      sloc: 173
+      churn: 15
+      lineChurn: 531
       churn30: 1
-      churn365: 1
+      churn365: 15
       churnByWeek:
+        - 1
+        - 0
         - 0
         - 0
         - 0
@@ -244,16 +448,60 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 3
+        - 2
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/componentaccordion
+          commits: 9
+        - email: kunickiaj@gmail.com
+          commits: 6
+      hotspotScore: 0.0037240421637316163
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/componentrenderers
     type: gateway-api
-    name: ComponentAccordion Service
+    name: Componentrenderers
     isTest: false
     properties:
       filepath: plugins/home/src/componentRenderers/ComponentAccordion.tsx
@@ -274,7 +522,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -284,13 +576,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/componenttabs
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/componentrenderers/componenttabs
     type: gateway-api
-    name: ComponentTabs Service
+    name: Componenttabs
     isTest: false
     properties:
-      filepath: plugins/home/src/componentRenderers/ComponentTabs/ComponentTabs.tsx
+      filepath: plugins/home/src/componentRenderers/ComponentTabs/index.ts
       containerId: home
       technology: React Component
       classification: ui-import
@@ -299,10 +591,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 53
+      lineChurn: 18
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -312,84 +647,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/componenttabs-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/companylogo
     type: gateway-api
-    name: ComponentTabs.test Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/componentRenderers/ComponentTabs/ComponentTabs.test.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 75
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/componenttab
-    type: background-worker
-    name: ComponentTab Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/componentRenderers/ComponentTabs/ComponentTab.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 31
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/companylogo-stories
-    type: gateway-api
-    name: CompanyLogo.stories Service
+    name: Companylogo
     isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/CompanyLogo/CompanyLogo.stories.tsx
@@ -400,11 +668,25 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 81
+      churn: 2
+      lineChurn: 82
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -414,16 +696,48 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: charles.dedreuille@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/companylogo
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents
     type: gateway-api
-    name: CompanyLogo Service
+    name: Homepagecomponents
     isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/CompanyLogo/CompanyLogo.tsx
@@ -444,7 +758,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -454,50 +812,16 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/companylogo-test
-    type: background-worker
-    name: CompanyLogo.test Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/CompanyLogo/CompanyLogo.test.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 42
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/headerworldclock-test
-    type: background-worker
-    name: HeaderWorldClock.test Service
-    isTest: true
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/headerworldclock
+    type: gateway-api
+    name: Headerworldclock
+    isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/HeaderWorldClock/HeaderWorldClock.test.tsx
       containerId: home
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 0
       loc: 0
@@ -512,69 +836,44 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/headerworldclock
-    type: gateway-api
-    name: HeaderWorldClock Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/HeaderWorldClock/HeaderWorldClock.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 148
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/headerworldclock-stories
-    type: gateway-api
-    name: HeaderWorldClock.stories Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/HeaderWorldClock/HeaderWorldClock.stories.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 100
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -584,16 +883,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/quickstart-stories
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/quickstart
     type: gateway-api
-    name: QuickStart.stories Service
+    name: Quickstart
     isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/QuickStart/QuickStart.stories.tsx
@@ -601,14 +901,30 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 104
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 4
+      loc: 105
+      sloc: 84
+      churn: 3
+      lineChurn: 110
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -618,118 +934,50 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/content
+        - email: kunickiaj@gmail.com
+          commits: 1
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+      hotspotScore: 0.0003857294143224838
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype
     type: gateway-api
-    name: Content Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/Content.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 92
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/styles
-    type: background-worker
-    name: styles Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/styles.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 68
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/content-test
-    type: gateway-api
-    name: Content.test Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/QuickStart/Content.test.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 68
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/actions
-    type: gateway-api
-    name: Actions Service
+    name: Visitedbytype
     isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/VisitedByType/Actions.tsx
@@ -750,7 +998,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -760,220 +1052,16 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitedbytype-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/randomjoke
     type: gateway-api
-    name: VisitedByType.test Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/VisitedByType.test.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 72
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/homepagevisitedbytype-stories
-    type: gateway-api
-    name: HomePageVisitedByType.stories Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/HomePageVisitedByType.stories.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 207
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/recentlyvisited
-    type: background-worker
-    name: RecentlyVisited Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/RecentlyVisited.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 26
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitedbytype
-    type: background-worker
-    name: VisitedByType Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/VisitedByType.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 34
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/topvisited
-    type: background-worker
-    name: TopVisited Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/TopVisited.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 26
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/context
-    type: gateway-api
-    name: Context Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/Context.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 129
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/settings
-    type: background-worker
-    name: Settings Service
+    name: Randomjoke
     isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/RandomJoke/Settings.tsx
       containerId: home
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 0
       loc: 0
@@ -988,7 +1076,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -998,16 +1130,16 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/timeutil-test
-    type: background-worker
-    name: timeUtil.test Service
-    isTest: true
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/welcometitle
+    type: gateway-api
+    name: Welcometitle
+    isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/WelcomeTitle/timeUtil.test.ts
       containerId: home
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 0
       loc: 0
@@ -1022,7 +1154,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1032,146 +1208,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/welcometitle-test
-    type: background-worker
-    name: WelcomeTitle.test Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/WelcomeTitle/WelcomeTitle.test.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 44
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/welcometitle-stories
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/starredentities
     type: gateway-api
-    name: WelcomeTitle.stories Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/WelcomeTitle/WelcomeTitle.stories.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 42
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/timeutil
-    type: background-worker
-    name: timeUtil Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/WelcomeTitle/timeUtil.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 63
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/welcometitle
-    type: gateway-api
-    name: WelcomeTitle Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/homePageComponents/WelcomeTitle/WelcomeTitle.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 62
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/starredentities-stories
-    type: gateway-api
-    name: StarredEntities.stories Service
+    name: Starredentities
     isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/StarredEntities/StarredEntities.stories.tsx
@@ -1182,11 +1222,25 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 101
+      churn: 2
+      lineChurn: 102
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1196,19 +1250,51 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: charles.dedreuille@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/featureddocscard-stories
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/featureddocscard
     type: gateway-api
-    name: FeaturedDocsCard.stories Service
+    name: Featureddocscard
     isTest: false
     properties:
-      filepath: plugins/home/src/homePageComponents/FeaturedDocsCard/FeaturedDocsCard.stories.tsx
+      filepath: plugins/home/src/homePageComponents/FeaturedDocsCard/Content.tsx
       containerId: home
       technology: React Component
       classification: ui-import
@@ -1217,10 +1303,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 71
+      lineChurn: 172
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1230,16 +1359,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/toolkit-stories
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/homepagecomponents/toolkit
     type: gateway-api
-    name: Toolkit.stories Service
+    name: Toolkit
     isTest: false
     properties:
       filepath: plugins/home/src/homePageComponents/Toolkit/Toolkit.stories.tsx
@@ -1250,11 +1380,25 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 85
+      churn: 2
+      lineChurn: 86
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1264,31 +1408,26 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/setupTests.ts
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 20
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1298,16 +1437,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: charles.dedreuille@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/plugin-test
     type: background-worker
-    name: plugin.test Service
+    name: Plugin test
     isTest: true
     properties:
       filepath: plugins/home/src/plugin.test.ts
@@ -1328,7 +1470,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1338,16 +1524,16 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitlistskeleton
-    type: background-worker
-    name: VisitListSkeleton Service
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/components/visitlist
+    type: gateway-api
+    name: Visitlist
     isTest: false
     properties:
       filepath: plugins/home/src/components/VisitList/VisitListSkeleton.tsx
       containerId: home
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 0
       loc: 0
@@ -1362,7 +1548,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1372,214 +1602,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/itemname
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/components
     type: gateway-api
-    name: ItemName Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/VisitList/ItemName.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 53
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitlist-test
-    type: background-worker
-    name: VisitList.test Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/components/VisitList/VisitList.test.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 147
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/itemcategory
-    type: background-worker
-    name: ItemCategory Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/VisitList/ItemCategory.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 42
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitlistitem
-    type: background-worker
-    name: VisitListItem Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/VisitList/VisitListItem.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 52
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitlistfew
-    type: background-worker
-    name: VisitListFew Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/VisitList/VisitListFew.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 30
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitlistempty
-    type: background-worker
-    name: VisitListEmpty Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/VisitList/VisitListEmpty.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 33
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitlist
-    type: gateway-api
-    name: VisitList Service
+    name: Components
     isTest: false
     properties:
       filepath: plugins/home/src/components/VisitList/VisitList.tsx
@@ -1590,11 +1616,54 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 96
+      churn: 2
+      lineChurn: 99
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1604,19 +1673,22 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: stephanie.swaney.ddk6@statefarm.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/itemdetail
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/components/starredentitylistitem
     type: background-worker
-    name: ItemDetail Service
+    name: Starredentitylistitem
     isTest: false
     properties:
-      filepath: plugins/home/src/components/VisitList/ItemDetail.tsx
+      filepath: plugins/home/src/components/StarredEntityListItem/index.ts
       containerId: home
       technology: TypeScript Domain Service
       classification: default
@@ -1625,10 +1697,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 58
+      lineChurn: 17
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1638,39 +1753,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/starredentitylistitem
-    type: gateway-api
-    name: StarredEntityListItem Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/StarredEntityListItem/StarredEntityListItem.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 97
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -1678,44 +1760,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitlistener-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/components/customhomepage
     type: gateway-api
-    name: VisitListener.test Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/components/VisitListener.test.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 133
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/customhomepagegrid
-    type: gateway-api
-    name: CustomHomepageGrid Service
+    name: Customhomepage
     isTest: false
     properties:
       filepath: plugins/home/src/components/CustomHomepage/CustomHomepageGrid.tsx
@@ -1729,11 +1777,54 @@ nodes:
       functionCount: 38
       loc: 465
       sloc: 411
-      churn: 6
-      lineChurn: 516
+      churn: 13
+      lineChurn: 617
       churn30: 1
-      churn365: 6
+      churn365: 13
       churnByWeek:
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 3
+        - 1
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1743,265 +1834,31 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.8333333333333334
+        - 0
+      authorCount: 8
+      topAuthorPercent: 0.38461538461538464
       authors:
         - email: karthik.jk11@gmail.com
           commits: 5
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.019512511344483337
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/addwidgetdialog
-    type: background-worker
-    name: AddWidgetDialog Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/CustomHomepage/AddWidgetDialog.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 4
-      loc: 91
-      sloc: 71
-      churn: 3
-      lineChurn: 156
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
-      authors:
-        - email: karthik.jk11@gmail.com
+        - email: shijun@shijun.dev
           commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0.0016854660962012187
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/customhomepagebuttons
-    type: background-worker
-    name: CustomHomepageButtons Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/CustomHomepage/CustomHomepageButtons.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 129
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: aurnikislam@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/types
-    type: gateway-api
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/CustomHomepage/types.ts
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      loc: 184
-      sloc: 85
-      churn: 3
-      lineChurn: 185
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
-      authors:
-        - email: karthik.jk11@gmail.com
-          commits: 2
-        - email: poldsberg@gmail.com
+        - email: mikko.korhonen@gmail.com
           commits: 1
-      hotspotScore: 0.000999394960888543
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/widgetsettingsoverlay
-    type: gateway-api
-    name: WidgetSettingsOverlay Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/CustomHomepage/WidgetSettingsOverlay.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 159
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: kyle.opperman@ing.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/customhomepagegrid-test
-    type: gateway-api
-    name: CustomHomepageGrid.test Service
-    isTest: true
-    properties:
-      filepath: plugins/home/src/components/CustomHomepage/CustomHomepageGrid.test.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 271
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
+        - email: zeshan.ziya@axelerant.com
           commits: 1
-        - email: karthik.jk11@gmail.com
+        - email: jboeijenga@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/homepagecompositionroot
-    type: gateway-api
-    name: HomepageCompositionRoot Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/HomepageCompositionRoot.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 27
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/visitlistener
-    type: gateway-api
-    name: VisitListener Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/components/VisitListener.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 111
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.015145139458716431
+      sinceDays: 365
   - entityRef: backstage/plugins/home/deprecated
     type: gateway-api
-    name: deprecated Service
+    name: Deprecated
     isTest: false
     properties:
       filepath: plugins/home/src/deprecated.ts
@@ -2022,7 +1879,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -2032,10 +1933,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/visitswebstorageapi
     type: rest-api
-    name: VisitsWebStorageApi Service
+    name: Visitswebstorageapi
     isTest: false
     properties:
       filepath: plugins/home/src/api/VisitsWebStorageApi.ts
@@ -2056,7 +1957,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -2066,10 +2011,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/visitsstorageapi-test
     type: rest-api
-    name: VisitsStorageApi.test Service
+    name: Visitsstorageapi test
     isTest: true
     properties:
       filepath: plugins/home/src/api/VisitsStorageApi.test.ts
@@ -2080,11 +2025,12 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 560
+      churn: 2
+      lineChurn: 758
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -2094,16 +2040,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: stephanie.swaney.ddk6@statefarm.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/visitswebstorageapi-test
     type: rest-api
-    name: VisitsWebStorageApi.test Service
+    name: Visitswebstorageapi test
     isTest: true
     properties:
       filepath: plugins/home/src/api/VisitsWebStorageApi.test.ts
@@ -2124,7 +2115,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -2134,10 +2169,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/config
     type: rest-api
-    name: config Service
+    name: Config
     isTest: false
     properties:
       filepath: plugins/home/src/api/config.ts
@@ -2158,7 +2193,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -2168,10 +2247,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/config-test
     type: rest-api
-    name: config.test Service
+    name: Config test
     isTest: true
     properties:
       filepath: plugins/home/src/api/config.test.ts
@@ -2192,7 +2271,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -2202,10 +2325,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/visitsstorageapi
     type: rest-api
-    name: VisitsStorageApi Service
+    name: Visitsstorageapi
     isTest: false
     properties:
       filepath: plugins/home/src/api/VisitsStorageApi.ts
@@ -2216,11 +2339,12 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 249
+      churn: 2
+      lineChurn: 346
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -2230,16 +2354,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: stephanie.swaney.ddk6@statefarm.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/visitsapi
     type: rest-api
-    name: VisitsApi Service
+    name: Visitsapi
     isTest: false
     properties:
       filepath: plugins/home/src/api/VisitsApi.ts
@@ -2247,14 +2416,59 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 157
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 158
+      sloc: 41
+      churn: 3
+      lineChurn: 182
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -2264,16 +2478,21 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: kunickiaj@gmail.com
+          commits: 1
+        - email: stephanie.swaney.ddk6@statefarm.com
+          commits: 1
+      hotspotScore: 0.0006382068491517459
+      sinceDays: 365
   - entityRef: backstage/plugins/home/overridablecomponents
     type: background-worker
-    name: overridableComponents Service
+    name: Overridablecomponents
     isTest: false
     properties:
       filepath: plugins/home/src/overridableComponents.ts
@@ -2294,7 +2513,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -2304,10 +2567,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/templatebackstagelogo
+      sinceDays: 365
+  - entityRef: backstage/plugins/home/assets
     type: background-worker
-    name: TemplateBackstageLogo Service
+    name: Assets
     isTest: false
     properties:
       filepath: plugins/home/src/assets/TemplateBackstageLogo.tsx
@@ -2328,7 +2591,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -2338,44 +2645,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/templatebackstagelogoicon
-    type: background-worker
-    name: TemplateBackstageLogoIcon Service
-    isTest: false
-    properties:
-      filepath: plugins/home/src/assets/TemplateBackstageLogoIcon.tsx
-      containerId: home
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 45
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home/defaulthomepagelayout
     type: gateway-api
-    name: DefaultHomePageLayout Service
+    name: Defaulthomepagelayout
     isTest: false
     properties:
       filepath: plugins/home/src/alpha/DefaultHomePageLayout.tsx
@@ -2386,11 +2659,33 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 39
+      churn: 2
+      lineChurn: 78
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -2400,16 +2695,40 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: kunickiaj@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/home-react/alpha
     type: background-worker
-    name: alpha Service (External)
+    name: Alpha (External)
     external: true
     properties:
       filepath: plugins/home-react/src/alpha.ts
@@ -2417,11 +2736,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: 100
       y: 404
   - entityRef: backstage/plugins/techdocs-react/api
     type: background-worker
-    name: api Service (External)
+    name: Api (External)
     external: true
     properties:
       filepath: plugins/techdocs-react/src/api.ts
@@ -2429,467 +2748,95 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1250
+      x: 1020
       y: 404
-  - entityRef: backstage/plugins/auth-backend/authplugin
-    type: background-worker
-    name: authPlugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend/src/authPlugin.ts
-      containerId: auth-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -8410
-      y: -204
-  - entityRef: backstage/plugins/catalog-backend/catalogplugin
-    type: background-worker
-    name: CatalogPlugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend/src/service/CatalogPlugin.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -7950
-      y: -204
-  - entityRef: backstage/plugins/app/components
+  - entityRef: backstage/plugins/techdocs/home/components
     type: gateway-api
-    name: components Service (External)
+    name: Components (External)
     external: true
     properties:
-      filepath: plugins/app/src/extensions/components.tsx
-      containerId: app
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -1050
-      y: 404
-  - entityRef: backstage/plugins/scaffolder-backend/createdryrunner
-    type: background-worker
-    name: createDryRunner Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/dryrun/createDryRunner.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4930
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend/decoratedactionsregistry
-    type: background-worker
-    name: DecoratedActionsRegistry Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/dryrun/DecoratedActionsRegistry.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 5390
-      y: -204
-  - entityRef: backstage/plugins/devtools/defaultdevtoolspage
-    type: gateway-api
-    name: DefaultDevToolsPage Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/src/components/DefaultDevToolsPage/DefaultDevToolsPage.tsx
-      containerId: devtools
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -7490
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-node/extensions
-    type: background-worker
-    name: extensions Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/extensions.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 8150
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-server/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/actions/index.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -4270
-      y: -204
-  - entityRef: backstage/plugins/catalog-react/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
-      containerId: catalog-react
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: -590
-      y: 404
-  - entityRef: backstage/plugins/home-react/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/home-react/src/components/index.ts
-      containerId: home-react
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 790
-      y: 404
-  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/index.ts
-      containerId: scaffolder-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1510
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/index.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -5190
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/dev/index.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 5850
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-node/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node/src/tasks/index.ts
-      containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 8610
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
-      containerId: scaffolder-node-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 7690
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-github/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/index.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-azure/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-azure/src/actions/index.ts
-      containerId: scaffolder-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -6110
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-cookiecutter/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-cookiecutter/src/actions/fetch/index.ts
-      containerId: scaffolder-backend-module-cookiecutter
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -2430
-      y: -204
-  - entityRef: backstage/plugins/devtools/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/devtools/dev/index.tsx
-      containerId: devtools
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: -7030
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-rails/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-rails/src/actions/fetch/index.ts
-      containerId: scaffolder-backend-module-rails
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 3090
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitea/src/actions/index.ts
-      containerId: scaffolder-backend-module-gitea
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -590
-      y: -204
-  - entityRef: backstage/plugins/techdocs/index
-    type: gateway-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs/dev/index.tsx
+      filepath: plugins/techdocs/src/home/components/TechDocsPageWrapper.tsx
       containerId: techdocs
       technology: React Component
       classification: ui-import
     position:
-      x: 9530
+      x: 330
       y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-yeoman/index
-    type: background-worker
-    name: index Service (External)
+  - entityRef: backstage/plugins/techdocs/components
+    type: gateway-api
+    name: Components (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-yeoman/src/actions/index.ts
-      containerId: scaffolder-backend-module-yeoman
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderLayout.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
     position:
-      x: 4010
+      x: -590
       y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/index
+  - entityRef: backstage/plugins/techdocs/helpers
     type: background-worker
-    name: index Service (External)
+    name: Helpers (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-notifications/src/actions/index.ts
-      containerId: scaffolder-backend-module-notifications
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 2170
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/index.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 1250
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/index.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -3350
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-server/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-server/src/module.ts
-      containerId: scaffolder-backend-module-bitbucket-server
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -3810
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/module.ts
-      containerId: scaffolder-backend-module-gerrit
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1050
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/module.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -4730
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-github/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-github/src/module.ts
-      containerId: scaffolder-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 790
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-azure/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-azure/src/module.ts
-      containerId: scaffolder-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -5650
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-cookiecutter/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-cookiecutter/src/module.ts
-      containerId: scaffolder-backend-module-cookiecutter
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1970
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-rails/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-rails/src/module.ts
-      containerId: scaffolder-backend-module-rails
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 3550
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitea/src/module.ts
-      containerId: scaffolder-backend-module-gitea
+      filepath: plugins/techdocs/src/helpers.ts
+      containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
     position:
       x: -130
       y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-yeoman/module
-    type: background-worker
-    name: module Service (External)
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-yeoman/src/module.ts
-      containerId: scaffolder-backend-module-yeoman
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/home-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/home-react/src/index.ts
+      containerId: home-react
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4470
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/techdocs-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-common/src/index.ts
+      containerId: techdocs-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
       y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-notifications/module
-    type: background-worker
-    name: module Service (External)
+  - entityRef: backstage/plugins/catalog/index
+    type: rest-api
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-notifications/src/module.ts
-      containerId: scaffolder-backend-module-notifications
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
     position:
-      x: 2630
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/module.ts
-      containerId: scaffolder-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 1710
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/module.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -2890
+      x: -1510
       y: -204
   - entityRef: backstage/plugins/auth-backend-module-vmware-cloud-provider/module-test
     type: background-worker
-    name: module.test Service (External)
+    name: Module test (External)
     external: true
     properties:
       filepath: plugins/auth-backend-module-vmware-cloud-provider/src/module.test.ts
@@ -2897,101 +2844,69 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8870
+      x: -1970
       y: -204
-  - entityRef: backstage/plugins/scaffolder-backend/nunjucksworkflowrunner-test
+  - entityRef: backstage/plugins/techdocs/overridablecomponents
     type: background-worker
-    name: NunjucksWorkflowRunner.test Service (External)
+    name: Overridablecomponents (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/NunjucksWorkflowRunner.test.ts
-      containerId: scaffolder-backend
+      filepath: plugins/techdocs/src/overridableComponents.ts
+      containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 6310
+      x: 790
       y: -204
-  - entityRef: backstage/plugins/notifications-backend/plugin
-    type: background-worker
-    name: plugin Service (External)
+  - entityRef: backstage/plugins/techdocs/router
+    type: gateway-api
+    name: Router (External)
     external: true
     properties:
-      filepath: plugins/notifications-backend/src/plugin.ts
-      containerId: notifications-backend
+      filepath: plugins/techdocs/src/Router.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: -204
+  - entityRef: backstage/plugins/techdocs/routes
+    type: background-worker
+    name: Routes (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/routes.ts
+      containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -6570
-      y: -204
-  - entityRef: backstage/plugins/search-backend/plugin
-    type: background-worker
-    name: plugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/search-backend/src/plugin.ts
-      containerId: search-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 9070
-      y: -204
-  - entityRef: backstage/plugins/app-backend/router
-    type: rest-api
-    name: router Service (External)
-    external: true
-    properties:
-      filepath: plugins/app-backend/src/service/router.ts
-      containerId: app-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: -9330
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend/scaffolderplugin
-    type: background-worker
-    name: ScaffolderPlugin Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/ScaffolderPlugin.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 6770
-      y: -204
-  - entityRef: backstage/plugins/scaffolder-backend/taskworker-test
-    type: background-worker
-    name: TaskWorker.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/TaskWorker.test.ts
-      containerId: scaffolder-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 7230
+      x: 1710
       y: -204
   - entityRef: backstage/plugins/catalog-react/testutils
-    type: background-worker
-    name: testUtils Service (External)
+    type: gateway-api
+    name: Testutils (External)
     external: true
     properties:
       filepath: plugins/catalog-react/src/testUtils.ts
       containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/techdocs/translation
+    type: background-worker
+    name: Translation (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/translation.ts
+      containerId: techdocs
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
-      y: 404
+      x: 2170
+      y: -204
 dependencies:
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-server/module
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-server/index
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
   - from: backstage/plugins/home/index
     to: backstage/plugins/catalog-react/index
     type: direct-call
@@ -3013,11 +2928,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/index
-    to: backstage/plugins/app/components
+    to: backstage/plugins/home/components
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/index
-    to: backstage/plugins/home/types
+    to: backstage/plugins/home/components/customhomepage
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/alpha-test
@@ -3033,6 +2948,10 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-home-react'
   - from: backstage/plugins/home/plugin
+    to: backstage/plugins/home/homepagecomponents
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/plugin
     to: backstage/plugins/home/routes
     type: direct-call
     description: Calls module / service
@@ -3041,7 +2960,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/plugin
-    to: backstage/plugins/home/content
+    to: backstage/plugins/home/homepagecomponents/starredentities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/alpha
+    to: backstage/plugins/home/components
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/alpha
@@ -3056,567 +2979,247 @@ dependencies:
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/componentaccordion
+  - from: backstage/plugins/home/componentrenderers
     to: backstage/plugins/home-react/index
     type: direct-call
     description: '@backstage/plugin-home-react'
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/componentaccordion
+  - from: backstage/plugins/home/componentrenderers/componenttabs
+    to: backstage/plugins/home/componentrenderers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/componenttabs
+  - from: backstage/plugins/home/componentrenderers/componenttabs
+    to: backstage/plugins/home/componentrenderers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/componenttabs
+  - from: backstage/plugins/home/homepagecomponents/companylogo
+    to: backstage/plugins/home/assets
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/componenttab
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/componenttabs-test
-    to: backstage/plugins/home/componenttabs
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/companylogo-stories
+  - from: backstage/plugins/home/homepagecomponents/companylogo
     to: backstage/plugins/home/plugin
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/companylogo-stories
+  - from: backstage/plugins/home/homepagecomponents/companylogo
     to: backstage/plugins/home/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/companylogo-test
-    to: backstage/plugins/home/companylogo
+  - from: backstage/plugins/home/homepagecomponents/companylogo
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/companylogo
+  - from: backstage/plugins/home/homepagecomponents/companylogo
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/headerworldclock-test
-    to: backstage/plugins/home/headerworldclock
+  - from: backstage/plugins/home/homepagecomponents/headerworldclock
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/headerworldclock
+  - from: backstage/plugins/home/homepagecomponents/headerworldclock
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/headerworldclock
+  - from: backstage/plugins/home/homepagecomponents/headerworldclock
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/headerworldclock-stories
-    to: backstage/plugins/home/headerworldclock
+  - from: backstage/plugins/home/homepagecomponents/headerworldclock
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/quickstart-stories
+  - from: backstage/plugins/home/homepagecomponents/quickstart
     to: backstage/plugins/home/plugin
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content
+  - from: backstage/plugins/home/homepagecomponents/quickstart
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/actions
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/actions
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/visitedbytype-test
-    to: backstage/plugins/home/visitedbytype
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/visitedbytype-test
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/homepagevisitedbytype-stories
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype
     to: backstage/plugins/home/plugin
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/homepagevisitedbytype-stories
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype
     to: backstage/plugins/home/visitsapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/homepagevisitedbytype-stories
-    to: backstage/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: backstage/plugins/home/homepagevisitedbytype-stories
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/recentlyvisited
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/recentlyvisited
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/recentlyvisited
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/recentlyvisited
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype
     to: backstage/plugins/home/config
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/home/visitedbytype
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/techdocs-react/api
+  - from: backstage/plugins/home/homepagecomponents
+    to: backstage/plugins/home/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/home/context
+  - from: backstage/plugins/home/homepagecomponents
+    to: backstage/plugins/home/homepagecomponents/visitedbytype
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/visitedbytype
-    to: backstage/plugins/home/visitlist
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitedbytype
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/topvisited
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/topvisited
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/topvisited
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/topvisited
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/context
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype
     to: backstage/plugins/home/visitsapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/context
-    to: backstage/plugins/home/content
+  - from: backstage/plugins/home/homepagecomponents/welcometitle
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
+  - from: backstage/plugins/home/homepagecomponents/welcometitle
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/home/homepagecomponents/welcometitle
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/context
+  - from: backstage/plugins/home/homepagecomponents/welcometitle
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
+  - from: backstage/plugins/home/homepagecomponents
+    to: backstage/plugins/home/homepagecomponents/welcometitle
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/settings
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/actions
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/settings
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/timeutil-test
-    to: backstage/plugins/home/timeutil
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/welcometitle-test
-    to: backstage/plugins/home/welcometitle
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/welcometitle-stories
-    to: backstage/plugins/home/welcometitle
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/welcometitle
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/welcometitle
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/welcometitle
-    to: backstage/plugins/home/timeutil
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/starredentities-stories
+  - from: backstage/plugins/home/homepagecomponents/starredentities
     to: backstage/plugins/home/plugin
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/starredentities-stories
-    to: backstage/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/starredentities-stories
-    to: backstage/plugins/catalog-react/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/home/starredentitylistitem
+  - from: backstage/plugins/home/homepagecomponents/starredentities
+    to: backstage/plugins/home/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content
+  - from: backstage/plugins/home/homepagecomponents/starredentities
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/catalog-react/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content
+  - from: backstage/plugins/home/homepagecomponents/featureddocscard
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/featureddocscard-stories
+  - from: backstage/plugins/home/homepagecomponents/featureddocscard
     to: backstage/plugins/home/plugin
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/featureddocscard-stories
-    to: backstage/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/featureddocscard-stories
-    to: backstage/plugins/catalog-react/testutils
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
+  - from: backstage/plugins/home/homepagecomponents/toolkit
+    to: backstage/plugins/home/componentrenderers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/headerworldclock
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/welcometitle
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/visitedbytype
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/toolkit-stories
+  - from: backstage/plugins/home/homepagecomponents/toolkit
     to: backstage/plugins/home/plugin
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/content
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/content-test
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/content
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/context
+  - from: backstage/plugins/home/homepagecomponents/toolkit
+    to: backstage/plugins/home/assets
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/plugin-test
     to: backstage/plugins/home/plugin
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/itemname
+  - from: backstage/plugins/home/components/visitlist
     to: backstage/plugins/home/visitsapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/itemname
+  - from: backstage/plugins/home/components/visitlist
+    to: backstage/plugins/home/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components/visitlist
+    to: backstage/plugins/home/visitsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components/visitlist
+    to: backstage/plugins/home/visitsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components/visitlist
+    to: backstage/plugins/home/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components/visitlist
+    to: backstage/plugins/home/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components
+    to: backstage/plugins/home/visitsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components
+    to: backstage/plugins/home/components/visitlist
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components
+    to: backstage/plugins/home/components/visitlist
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components
+    to: backstage/plugins/home/components/visitlist
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components
+    to: backstage/plugins/home/components/visitlist
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components
+    to: backstage/plugins/home/components/visitlist
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components/visitlist
+    to: backstage/plugins/home/visitsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components/visitlist
+    to: backstage/plugins/home/visitsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/components
     to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/visitlist-test
-    to: backstage/plugins/home/visitlist
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/itemcategory
-    to: backstage/plugins/home/visitsapi
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/itemcategory
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlistitem
-    to: backstage/plugins/home/visitsapi
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlistitem
-    to: backstage/plugins/home/itemname
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlistitem
-    to: backstage/plugins/home/itemdetail
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlistitem
-    to: backstage/plugins/home/itemcategory
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlistfew
+  - from: backstage/plugins/home/components
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/visitlistempty
-    to: backstage/plugins/home/translation
+  - from: backstage/plugins/home/components/starredentitylistitem
+    to: backstage/plugins/home/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/visitlist
-    to: backstage/plugins/home/visitsapi
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlist
-    to: backstage/plugins/home/visitlistitem
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlist
-    to: backstage/plugins/home/itemdetail
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlist
-    to: backstage/plugins/home/visitlistempty
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlist
-    to: backstage/plugins/home/visitlistfew
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlist
-    to: backstage/plugins/home/visitlistskeleton
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/context
-    to: backstage/plugins/home/visitsapi
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/context
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/itemdetail
-    to: backstage/plugins/home/visitsapi
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/starredentitylistitem
-    to: backstage/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/home/starredentitylistitem
-    to: backstage/plugins/home/translation
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/starredentitylistitem
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlistener-test
+  - from: backstage/plugins/home/components
     to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/visitlistener-test
-    to: backstage/plugins/home/visitlistener
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/homepagecompositionroot
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/visitlistener
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/visitlist
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/customhomepagegrid
-    to: backstage/plugins/home/widgetsettingsoverlay
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/customhomepagegrid
-    to: backstage/plugins/home/addwidgetdialog
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/customhomepagegrid
-    to: backstage/plugins/home/customhomepagebuttons
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/customhomepagegrid
-    to: backstage/plugins/home/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/customhomepagegrid
-    to: backstage/plugins/home-react/index
-    type: direct-call
-    description: '@backstage/plugin-home-react'
-  - from: backstage/plugins/home/customhomepagegrid
+  - from: backstage/plugins/home/components/customhomepage
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/addwidgetdialog
-    to: backstage/plugins/home/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/addwidgetdialog
+  - from: backstage/plugins/home/components/customhomepage
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/customhomepagebuttons
+  - from: backstage/plugins/home/components/customhomepage
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/widgetsettingsoverlay
-    to: backstage/plugins/home/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/widgetsettingsoverlay
+  - from: backstage/plugins/home/components/customhomepage
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/customhomepagegrid-test
-    to: backstage/plugins/home/customhomepagegrid
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/customhomepagegrid-test
+  - from: backstage/plugins/home/components/customhomepage
     to: backstage/plugins/home/plugin
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/customhomepagegrid
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/visitlistener
+  - from: backstage/plugins/home/components
     to: backstage/plugins/techdocs-react/api
     type: direct-call
     description: Calls module / service
@@ -3677,7 +3280,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/index
-    to: backstage/plugins/app/components
+    to: backstage/plugins/home/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/index
+    to: backstage/plugins/home/assets
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/index
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/index
@@ -3692,12 +3303,8 @@ dependencies:
     to: backstage/plugins/home/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/templatebackstagelogo
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/home/index
-    to: backstage/plugins/home/templatebackstagelogoicon
+  - from: backstage/plugins/home/overridablecomponents
+    to: backstage/plugins/home/homepagecomponents
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/home/defaulthomepagelayout
@@ -3705,170 +3312,134 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-home-react'
   - from: backstage/plugins/home/defaulthomepagelayout
-    to: backstage/plugins/app/components
+    to: backstage/plugins/home/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-gerrit/module
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-gerrit/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend/catalogplugin
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/module
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend/scaffolderplugin
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend/decoratedactionsregistry
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend/createdryrunner
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend/nunjucksworkflowrunner-test
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend/taskworker-test
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/app-backend/router
-    to: backstage/plugins/home/config
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-node/extensions
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-node/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-node-test-utils/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-github/module
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-github/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/notifications-backend/plugin
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-azure/module
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-azure/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-cookiecutter/module
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-cookiecutter/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/auth-backend/authplugin
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/router
+    to: backstage/plugins/techdocs/home/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/devtools/defaultdevtoolspage
-    to: backstage/plugins/home/content
+  - from: backstage/plugins/techdocs/overridablecomponents
+    to: backstage/plugins/techdocs/home/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/devtools/defaultdevtoolspage
-    to: backstage/plugins/home/content
+  - from: backstage/plugins/techdocs/components
+    to: backstage/plugins/techdocs/home/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/devtools/index
-    to: backstage/plugins/home/content
+  - from: backstage/plugins/techdocs/components
+    to: backstage/plugins/techdocs/home/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-rails/module
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-rails/index
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-gitea/module
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-gitea/index
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend/plugin
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/index
-    to: backstage/plugins/home/styles
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-yeoman/module
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-yeoman/index
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-notifications/module
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-notifications/index
-    to: backstage/plugins/home/actions
+  - from: backstage/plugins/techdocs/components
+    to: backstage/plugins/techdocs/home/components
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/auth-backend-module-vmware-cloud-provider/module-test
     to: backstage/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/module
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/index
-    to: backstage/plugins/home/actions
     type: direct-call
     description: Calls module / service

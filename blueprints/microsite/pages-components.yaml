@@ -10,14 +10,14 @@ metadata:
     scanRoot: .
 nodes:
   - entityRef: backstage/microsite/pages/index
-    type: gateway-api
-    name: index Service
+    type: background-worker
+    name: Index
     isTest: false
     properties:
       filepath: microsite/src/pages/index.tsx
       containerId: pages
-      technology: React Component
-      classification: ui-import
+      technology: TypeScript Domain Service
+      classification: default
     forensics:
       complexity: 0
       loc: 0
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/microsite/pages/_home
+      sinceDays: 365
+  - entityRef: backstage/microsite/pages/pages/home
     type: gateway-api
-    name: _home Service
+    name: Home
     isTest: false
     properties:
       filepath: microsite/src/pages/home/_home.tsx
@@ -53,14 +97,60 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 551
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 6
+      loc: 552
+      sloc: 479
+      churn: 3
+      lineChurn: 555
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,50 +160,17 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/microsite/pages/_hubspotnewadoptersform
-    type: gateway-api
-    name: _hubSpotNewAdoptersForm Service
-    isTest: false
-    properties:
-      filepath: microsite/src/pages/home/_hubSpotNewAdoptersForm.tsx
-      containerId: pages
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 52
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 3
+      hotspotScore: 0.003892360453617791
+      sinceDays: 365
   - entityRef: backstage/microsite/pages/link
     type: gateway-api
-    name: link Service
+    name: Link
     isTest: false
     properties:
       filepath: microsite/src/pages/link.tsx
@@ -134,7 +191,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -144,13 +245,100 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/microsite/pages/_plugincard
+      sinceDays: 365
+  - entityRef: backstage/microsite/pages/pages/plugins
     type: gateway-api
-    name: _pluginCard Service
+    name: Plugins
     isTest: false
     properties:
-      filepath: microsite/src/pages/plugins/_pluginCard.tsx
+      filepath: microsite/src/pages/plugins/index.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 15
+      functionCount: 27
+      loc: 252
+      sloc: 219
+      churn: 7
+      lineChurn: 511
+      churn30: 1
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.5714285714285714
+      authors:
+        - email: awanlin@spotify.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: heikki.hellgren@op.fi
+          commits: 1
+      hotspotScore: 0.021502661532958826
+      sinceDays: 365
+  - entityRef: backstage/microsite/pages/pages/getting-involved
+    type: gateway-api
+    name: Getting involved
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/getting-involved/index.tsx
       containerId: pages
       technology: React Component
       classification: ui-import
@@ -159,10 +347,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 58
+      lineChurn: 6
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,16 +403,175 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
+  - entityRef: backstage/microsite/pages/pages/community
+    type: gateway-api
+    name: Community
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/community/index.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 5
+      loc: 259
+      sloc: 242
+      churn: 4
+      lineChurn: 315
+      churn30: 1
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+      hotspotScore: 0.0011045887773780219
+      sinceDays: 365
+  - entityRef: backstage/microsite/pages/pages/demos
+    type: gateway-api
+    name: Demos
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/demos/index.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 212
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
   - entityRef: backstage/microsite/components/contentblock
     type: gateway-api
-    name: contentBlock Service (External)
+    name: Contentblock (External)
     external: true
     properties:
       filepath: microsite/src/components/contentBlock/contentBlock.tsx
@@ -193,18 +583,10 @@ nodes:
       y: 404
 dependencies:
   - from: backstage/microsite/pages/index
-    to: backstage/microsite/pages/_home
+    to: backstage/microsite/pages/pages/home
     type: direct-call
     description: Calls module / service
-  - from: backstage/microsite/pages/_home
-    to: backstage/microsite/pages/_hubspotnewadoptersform
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/microsite/pages/index
-    to: backstage/microsite/pages/_plugincard
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/microsite/pages/index
+  - from: backstage/microsite/pages/pages/community
     to: backstage/microsite/components/contentblock
     type: direct-call
     description: Calls module / service

@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/cli-module-migrate/utils
     type: background-worker
-    name: utils Service
+    name: Utils
     isTest: false
     properties:
       filepath: packages/cli-module-migrate/src/lib/utils.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/yarn
+      sinceDays: 365
+  - entityRef: backstage/packages/cli-module-migrate/versioning
     type: background-worker
-    name: yarn Service
+    name: Versioning
     isTest: false
     properties:
       filepath: packages/cli-module-migrate/src/lib/versioning/yarn.ts
@@ -56,11 +100,40 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 41
+      churn: 2
+      lineChurn: 44
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,31 +143,11 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/packages
-    type: background-worker
-    name: packages Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-migrate/src/lib/versioning/packages.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 126
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,56 +157,23 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/packages-test
-    type: background-worker
-    name: packages.test Service
-    isTest: true
-    properties:
-      filepath: packages/cli-module-migrate/src/lib/versioning/packages.test.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 159
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/packagerole
-    type: background-worker
-    name: packageRole Service
+      sinceDays: 365
+  - entityRef: backstage/packages/cli-module-migrate/commands
+    type: rest-api
+    name: Commands
     isTest: false
     properties:
       filepath: packages/cli-module-migrate/src/commands/packageRole.ts
       containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
+      technology: REST Controller / Router
+      classification: api-marker
     forensics:
       complexity: 0
       loc: 0
@@ -164,11 +184,55 @@ nodes:
       churn365: 2
       churnByWeek:
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
         - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -178,45 +242,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 2
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/packagescripts
+      sinceDays: 365
+  - entityRef: backstage/packages/cli-module-migrate/commands/versions
     type: background-worker
-    name: packageScripts Service
+    name: Versions
     isTest: false
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/packageScripts.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 112
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/migrate-test
-    type: background-worker
-    name: migrate.test Service
-    isTest: true
     properties:
       filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
       containerId: cli-module-migrate
@@ -236,7 +266,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -246,221 +320,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/migrate
-    type: background-worker
-    name: migrate Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/migrate.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 174
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/bump-test
-    type: background-worker
-    name: bump.test Service
-    isTest: true
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/bump.test.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 1364
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: jonkoops@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/bump
-    type: background-worker
-    name: bump Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/bump.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 21
-      complexityPeak: 21
-      cognitiveComplexity: 204
-      functionCount: 15
-      loc: 520
-      sloc: 421
-      churn: 3
-      lineChurn: 530
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 1
-        - 1
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-        - email: jonkoops@gmail.com
-          commits: 1
-      hotspotScore: 0.060125761701024245
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/packagelintconfigs
-    type: background-worker
-    name: packageLintConfigs Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/packageLintConfigs.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 94
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/packageexports
-    type: background-worker
-    name: packageExports Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/packageExports.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 27
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/reactrouterdeps
-    type: rest-api
-    name: reactRouterDeps Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/reactRouterDeps.ts
-      containerId: cli-module-migrate
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 64
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-migrate/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/cli-module-migrate/src/index.ts
@@ -481,7 +344,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -491,10 +398,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-common/src/index.ts
@@ -502,71 +409,47 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -820
+      x: -130
       y: 404
   - entityRef: backstage/packages/errors/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/errors/src/serialization/index.ts
+      filepath: packages/errors/src/index.ts
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 560
+      x: 790
       y: 404
   - entityRef: backstage/packages/backend-test-utils/index
-    type: relational-database
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/database/index.ts
-      containerId: backend-test-utils
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    position:
-      x: -1280
-      y: 404
-  - entityRef: backstage/packages/cli-node/index
-    type: cache-store
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-node/src/monorepo/index.ts
-      containerId: cli-node
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    position:
-      x: 100
-      y: 404
-  - entityRef: backstage/packages/test-utils/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/test-utils/src/index.ts
-      containerId: test-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 1480
-      y: 404
-  - entityRef: backstage/packages/release-manifests/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/release-manifests/src/index.ts
-      containerId: release-manifests
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
       y: 404
   - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-defaults/src/index.ts
@@ -576,179 +459,51 @@ nodes:
     position:
       x: 100
       y: -204
-  - entityRef: backstage/packages/cli-common/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-common/src/testUtils.ts
-      containerId: cli-common
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -360
-      y: 404
 dependencies:
   - from: backstage/packages/cli-module-migrate/utils
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/yarn
+  - from: backstage/packages/cli-module-migrate/versioning
     to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: backstage/packages/cli-module-migrate/yarn
+  - from: backstage/packages/cli-module-migrate/versioning
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/packages
-    to: backstage/packages/cli-module-migrate/yarn
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/packages
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/packages
-    to: backstage/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: backstage/packages/cli-module-migrate/packages-test
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/packages-test
-    to: backstage/packages/cli-module-migrate/yarn
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/packages-test
-    to: backstage/packages/cli-module-migrate/packages
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/packages-test
+  - from: backstage/packages/cli-module-migrate/versioning
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: backstage/packages/cli-module-migrate/packages-test
-    to: backstage/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: backstage/packages/cli-module-migrate/packagerole
+  - from: backstage/packages/cli-module-migrate/commands
     to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-migrate/packagerole
+  - from: backstage/packages/cli-module-migrate/commands
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/packagescripts
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-migrate/migrate-test
-    to: backstage/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: backstage/packages/cli-module-migrate/migrate-test
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/migrate-test
-    to: backstage/packages/cli-common/testutils
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/migrate-test
-    to: backstage/packages/cli-module-migrate/migrate
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/migrate-test
-    to: backstage/packages/test-utils/index
-    type: direct-call
-    description: '@backstage/test-utils'
-  - from: backstage/packages/cli-module-migrate/migrate
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-migrate/migrate
+  - from: backstage/packages/cli-module-migrate/commands/versions
     to: backstage/packages/cli-module-migrate/utils
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/bump-test
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/bump-test
-    to: backstage/packages/cli-common/testutils
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/bump-test
-    to: backstage/packages/cli-module-migrate/bump
+  - from: backstage/packages/cli-module-migrate/commands/versions
+    to: backstage/packages/cli-module-migrate/versioning
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/bump-test
-    to: backstage/packages/test-utils/index
-    type: direct-call
-    description: '@backstage/test-utils'
-  - from: backstage/packages/cli-module-migrate/bump-test
-    to: backstage/packages/cli-module-migrate/packages
+  - from: backstage/packages/cli-module-migrate/commands/versions
+    to: backstage/packages/cli-module-migrate/versioning
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/bump-test
-    to: backstage/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: backstage/packages/cli-module-migrate/bump-test
-    to: backstage/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: backstage/packages/cli-module-migrate/bump
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/bump
-    to: backstage/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: backstage/packages/cli-module-migrate/bump
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-migrate/bump
-    to: backstage/packages/cli-module-migrate/packages
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/bump
-    to: backstage/packages/release-manifests/index
-    type: direct-call
-    description: '@backstage/release-manifests'
-  - from: backstage/packages/cli-module-migrate/bump
-    to: backstage/packages/cli-module-migrate/migrate
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/bump
+  - from: backstage/packages/cli-module-migrate/commands/versions
     to: backstage/packages/cli-module-migrate/utils
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-migrate/packagelintconfigs
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-migrate/packagelintconfigs
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-migrate/packagelintconfigs
+  - from: backstage/packages/cli-module-migrate/commands
     to: backstage/packages/cli/eslint
     type: direct-call
     description: '@backstage/cli'
-  - from: backstage/packages/cli-module-migrate/packageexports
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-migrate/reactrouterdeps
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
   - from: backstage/packages/cli-module-migrate/index
     to: backstage/packages/cli-node/index
     type: direct-call

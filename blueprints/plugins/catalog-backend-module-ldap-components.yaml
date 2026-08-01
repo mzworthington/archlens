@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/config.d.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 1088
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/catalog-backend-module-ldap/module
     type: background-worker
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-ldap/src/module.ts
@@ -56,11 +22,31 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 111
+      churn: 2
+      lineChurn: 113
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +56,40 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/read
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/ldap
     type: background-worker
-    name: read Service
+    name: Ldap
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-ldap/src/ldap/read.ts
@@ -90,11 +100,54 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 553
+      churn: 2
+      lineChurn: 584
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,87 +157,22 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/org-test
-    type: background-worker
-    name: org.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/org.test.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 138
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: ganiev@pm.me
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/read-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-ldap/processors
     type: background-worker
-    name: read.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/read.test.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 1546
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/types
-    type: background-worker
-    name: types Service
+    name: Processors
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/types.ts
+      filepath: plugins/catalog-backend-module-ldap/src/processors/index.ts
       containerId: catalog-backend-module-ldap
       technology: TypeScript Domain Service
       classification: default
@@ -193,10 +181,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 57
+      lineChurn: 22
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -206,39 +237,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/constants
-    type: background-worker
-    name: constants Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/constants.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 54
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -246,81 +244,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/client
-    type: background-worker
-    name: client Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/client.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 224
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/util
-    type: background-worker
-    name: util Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/util.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 54
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-backend-module-ldap/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/index.ts
+      filepath: plugins/catalog-backend-module-ldap/src/index.ts
       containerId: catalog-backend-module-ldap
       technology: TypeScript Domain Service
       classification: default
@@ -329,10 +259,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 61
+      lineChurn: 29
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -342,39 +315,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/config.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 477
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -382,217 +322,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/config-test
-    type: background-worker
-    name: config.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/config.test.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 479
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/vendors
-    type: background-worker
-    name: vendors Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/vendors.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 145
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/org
-    type: background-worker
-    name: org Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/org.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 91
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/setupTests.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/ldaporgentityprovider
-    type: background-worker
-    name: LdapOrgEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/processors/LdapOrgEntityProvider.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 383
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
-    type: background-worker
-    name: LdapOrgReaderProcessor Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-ldap/src/processors/LdapOrgReaderProcessor.ts
-      containerId: catalog-backend-module-ldap
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 135
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      filepath: plugins/catalog-node/src/api/index.ts
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
@@ -601,10 +337,10 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-common/src/ingestion/index.ts
+      filepath: plugins/catalog-common/src/index.ts
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
@@ -617,153 +353,41 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-catalog-node'
   - from: backstage/plugins/catalog-backend-module-ldap/module
-    to: backstage/plugins/catalog-backend-module-ldap/types
+    to: backstage/plugins/catalog-backend-module-ldap/processors
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read
-    to: backstage/plugins/catalog-backend-module-ldap/org
+  - from: backstage/plugins/catalog-backend-module-ldap/module
+    to: backstage/plugins/catalog-backend-module-ldap/ldap
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read
-    to: backstage/plugins/catalog-backend-module-ldap/client
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read
-    to: backstage/plugins/catalog-backend-module-ldap/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read
-    to: backstage/plugins/catalog-backend-module-ldap/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read
-    to: backstage/plugins/catalog-backend-module-ldap/vendors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read
-    to: backstage/plugins/catalog-backend-module-ldap/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read
-    to: backstage/plugins/catalog-backend-module-ldap/util
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/org-test
-    to: backstage/plugins/catalog-backend-module-ldap/org
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read-test
-    to: backstage/plugins/catalog-backend-module-ldap/client
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read-test
-    to: backstage/plugins/catalog-backend-module-ldap/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read-test
-    to: backstage/plugins/catalog-backend-module-ldap/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read-test
-    to: backstage/plugins/catalog-backend-module-ldap/read
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read-test
-    to: backstage/plugins/catalog-backend-module-ldap/util
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/read-test
-    to: backstage/plugins/catalog-backend-module-ldap/vendors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/types
-    to: backstage/plugins/catalog-backend-module-ldap/vendors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/types
-    to: backstage/plugins/catalog-backend-module-ldap/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/client
-    to: backstage/plugins/catalog-backend-module-ldap/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/client
-    to: backstage/plugins/catalog-backend-module-ldap/vendors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/util
-    to: backstage/plugins/catalog-backend-module-ldap/vendors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/vendors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/client
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/util
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/vendors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/constants
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/read
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/config
-    to: backstage/plugins/catalog-backend-module-ldap/util
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/config-test
-    to: backstage/plugins/catalog-backend-module-ldap/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/ldaporgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/ldaporgentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/index
-    to: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-ldap/ldaporgentityprovider
+  - from: backstage/plugins/catalog-backend-module-ldap/processors
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
-    to: backstage/plugins/catalog-node/index
+  - from: backstage/plugins/catalog-backend-module-ldap/processors
+    to: backstage/plugins/catalog-backend-module-ldap/ldap
     type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-ldap/ldaporgreaderprocessor
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-ldap/processors
+    to: backstage/plugins/catalog-backend-module-ldap/ldap
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-ldap/processors
+    to: backstage/plugins/catalog-backend-module-ldap/ldap
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-ldap/processors
     to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/processors
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-ldap/index
+    to: backstage/plugins/catalog-backend-module-ldap/ldap
+    type: direct-call
+    description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-ldap/index
     to: backstage/plugins/catalog-backend-module-ldap/module
     type: direct-call

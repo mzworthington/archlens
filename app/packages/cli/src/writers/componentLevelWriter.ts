@@ -2,6 +2,7 @@ import { BaseWriter } from './baseWriter.ts';
 import type { SystemNode, SystemDependency, SystemSchema, SourceProvenance } from '@archlens/core';
 import { EntityRef, parseSchemaFromYaml } from '@archlens/core';
 import { seedPreservedPositions } from '@archlens/core/layout';
+import { resolveSystemEntityRef } from '../analysis/domain/entityRefContext.ts';
 
 export class ComponentLevelWriter extends BaseWriter {
   async write(
@@ -13,7 +14,7 @@ export class ComponentLevelWriter extends BaseWriter {
     containerNodesMap: Map<string, SystemNode>,
     source?: SourceProvenance
   ): Promise<void> {
-    const systemRef = EntityRef.parse(systemId, EntityRef.parse(contextName));
+    const systemRef = resolveSystemEntityRef(contextName, systemId);
 
     for (const [containerId, containerNode] of containerNodesMap.entries()) {
       const internalComponents = Array.from(componentNodesMap.values()).filter(

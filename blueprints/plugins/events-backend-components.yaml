@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/events-backend/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/config.d.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 34
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/events-backend/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/events-backend/dev/index.ts
@@ -66,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/events-backend/alpha
     type: background-worker
-    name: alpha Service
+    name: Alpha
     isTest: false
     properties:
       filepath: plugins/events-backend/src/alpha.ts
@@ -100,7 +110,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,104 +164,75 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/setuptests
+      sinceDays: 365
+  - entityRef: backstage/plugins/events-backend/schema/openapi
     type: background-worker
-    name: setupTests Service
-    isTest: true
+    name: Openapi
+    isTest: false
     properties:
-      filepath: plugins/events-backend/src/setupTests.ts
+      filepath: plugins/events-backend/src/schema/openapi/index.ts
       containerId: events-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/migrations-test
-    type: relational-database
-    name: migrations.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/migrations.test.ts
-      containerId: events-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 98
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/eventsplugin-test
-    type: background-worker
-    name: EventsPlugin.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/EventsPlugin.test.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 29
-      loc: 433
-      sloc: 341
+      complexity: 1
+      loc: 18
+      sloc: 1
       churn: 3
-      lineChurn: 470
+      lineChurn: 21
       churn30: 1
       churn365: 3
       churnByWeek:
-        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 1
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
         - 0
         - 0
         - 0
@@ -216,30 +241,38 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 1
         - email: freben@gmail.com
           commits: 1
-        - email: stephen@stephen.glass
-          commits: 1
-      hotspotScore: 0.007617010242447816
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/eventsplugin
-    type: rest-api
-    name: EventsPlugin Service
-    isTest: false
+      hotspotScore: 0.00007363925182520144
+      sinceDays: 365
+  - entityRef: backstage/plugins/events-backend/migrations-test
+    type: relational-database
+    name: Migrations test
+    isTest: true
     properties:
-      filepath: plugins/events-backend/src/service/EventsPlugin.ts
+      filepath: plugins/events-backend/src/migrations.test.ts
       containerId: events-backend
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: Prisma / SQL Database Client
+      classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 156
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 5
+      loc: 97
+      sloc: 65
+      churn: 5
+      lineChurn: 182
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -249,16 +282,148 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6
       authors:
+        - email: freben@gmail.com
+          commits: 3
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/httppostingresseventpublisher
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.0019146205474552377
+      sinceDays: 365
+  - entityRef: backstage/plugins/events-backend/service
     type: rest-api
-    name: HttpPostIngressEventPublisher Service
+    name: Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend/src/service/EventsPlugin.test.ts
+      containerId: events-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 29
+      loc: 433
+      sloc: 341
+      churn: 6
+      lineChurn: 982
+      churn30: 1
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.3333333333333333
+      authors:
+        - email: freben@gmail.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: stephen@stephen.glass
+          commits: 1
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.010330535041763974
+      sinceDays: 365
+  - entityRef: backstage/plugins/events-backend/service/http
+    type: rest-api
+    name: Http
     isTest: false
     properties:
       filepath: plugins/events-backend/src/service/http/HttpPostIngressEventPublisher.ts
@@ -269,11 +434,12 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 166
+      churn: 2
+      lineChurn: 190
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -283,65 +449,39 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/errors
-    type: background-worker
-    name: errors Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/http/errors.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 38
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/httpapplicationjsonbodyparser
-    type: background-worker
-    name: HttpApplicationJsonBodyParser Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/http/body-parser/HttpApplicationJsonBodyParser.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 44
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -351,124 +491,25 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/httppostingresseventpublisher-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/events-backend/service/hub
     type: rest-api
-    name: HttpPostIngressEventPublisher.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/HttpPostIngressEventPublisher.test.ts
-      containerId: events-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 562
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/requestvalidationcontextimpl
-    type: background-worker
-    name: RequestValidationContextImpl Service
+    name: Hub
     isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/http/validation/RequestValidationContextImpl.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 39
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/requestvalidationcontextimpl-test
-    type: background-worker
-    name: RequestValidationContextImpl.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/http/validation/RequestValidationContextImpl.test.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 64
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/memoryeventbusstore-test
-    type: background-worker
-    name: MemoryEventBusStore.test Service
-    isTest: true
     properties:
       filepath: plugins/events-backend/src/service/hub/MemoryEventBusStore.test.ts
       containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
+      technology: REST Controller / Router
+      classification: api-marker
     forensics:
       complexity: 0
       loc: 0
@@ -483,7 +524,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -493,182 +578,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/databaseeventbusstore-test
-    type: relational-database
-    name: DatabaseEventBusStore.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend/src/service/hub/DatabaseEventBusStore.test.ts
-      containerId: events-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 235
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/memoryeventbusstore
-    type: background-worker
-    name: MemoryEventBusStore Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/hub/MemoryEventBusStore.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 164
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/createeventbusrouter
-    type: rest-api
-    name: createEventBusRouter Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/hub/createEventBusRouter.ts
-      containerId: events-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 293
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: stephen@stephen.glass
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/hub/types.ts
-      containerId: events-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 44
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend/databaseeventbusstore
-    type: relational-database
-    name: DatabaseEventBusStore Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend/src/service/hub/DatabaseEventBusStore.ts
-      containerId: events-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 624
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/events-node/alpha
     type: background-worker
-    name: alpha Service (External)
+    name: Alpha (External)
     external: true
     properties:
       filepath: plugins/events-node/src/alpha.ts
@@ -676,11 +589,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: 100
       y: 404
-  - entityRef: backstage/plugins/events-backend-module-azure/httpintegration-test
+  - entityRef: backstage/plugins/events-backend-module-azure/http
     type: background-worker
-    name: httpIntegration.test Service (External)
+    name: Http (External)
     external: true
     properties:
       filepath: plugins/events-backend-module-azure/src/http/httpIntegration.test.ts
@@ -692,19 +605,19 @@ nodes:
       y: -204
   - entityRef: backstage/plugins/events-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
+      filepath: plugins/events-node/src/api/index.ts
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 330
+      x: 560
       y: 404
   - entityRef: backstage/plugins/events-backend-test-utils/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/events-backend-test-utils/src/index.ts
@@ -712,19 +625,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -590
-      y: 404
-  - entityRef: backstage/plugins/scaffolder/validation
-    type: gateway-api
-    name: validation Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder/src/components/fields/EntityNamePicker/validation.ts
-      containerId: scaffolder
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 790
+      x: -360
       y: 404
 dependencies:
   - from: backstage/plugins/events-backend/index
@@ -732,146 +633,30 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-events-node'
   - from: backstage/plugins/events-backend/alpha
-    to: backstage/plugins/events-backend/eventsplugin
+    to: backstage/plugins/events-backend/service
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/events-backend/index
-    to: backstage/plugins/events-backend/eventsplugin
+    to: backstage/plugins/events-backend/service
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/events-backend/eventsplugin-test
+  - from: backstage/plugins/events-backend/index
+    to: backstage/plugins/events-backend/service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend/service
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/eventsplugin-test
+  - from: backstage/plugins/events-backend/service
     to: backstage/plugins/events-node/alpha
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/eventsplugin-test
+  - from: backstage/plugins/events-backend/service
     to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: backstage/plugins/events-backend/eventsplugin-test
-    to: backstage/plugins/events-backend/eventsplugin
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/eventsplugin
-    to: backstage/plugins/events-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/eventsplugin
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/httppostingresseventpublisher
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/httppostingresseventpublisher
-    to: backstage/plugins/scaffolder/validation
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/httppostingresseventpublisher
-    to: backstage/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/httpapplicationjsonbodyparser
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/httpapplicationjsonbodyparser
-    to: backstage/plugins/events-backend/errors
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/index
-    to: backstage/plugins/events-backend/httpapplicationjsonbodyparser
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/httppostingresseventpublisher-test
-    to: backstage/plugins/events-backend-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-events-backend-test-utils'
-  - from: backstage/plugins/events-backend/httppostingresseventpublisher-test
-    to: backstage/plugins/events-backend/httppostingresseventpublisher
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/httppostingresseventpublisher-test
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/index
-    to: backstage/plugins/events-backend/httppostingresseventpublisher
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/index
-    to: backstage/plugins/scaffolder/validation
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/requestvalidationcontextimpl
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/requestvalidationcontextimpl-test
-    to: backstage/plugins/events-backend/requestvalidationcontextimpl
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/index
-    to: backstage/plugins/events-backend/requestvalidationcontextimpl
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/memoryeventbusstore-test
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/memoryeventbusstore-test
-    to: backstage/plugins/events-backend/memoryeventbusstore
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/databaseeventbusstore-test
-    to: backstage/plugins/events-backend/databaseeventbusstore
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/plugins/events-backend/memoryeventbusstore
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/memoryeventbusstore
-    to: backstage/plugins/events-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/createeventbusrouter
-    to: backstage/plugins/events-backend/memoryeventbusstore
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/createeventbusrouter
-    to: backstage/plugins/events-backend/databaseeventbusstore
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/plugins/events-backend/createeventbusrouter
-    to: backstage/plugins/events-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/createeventbusrouter
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/types
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/index
-    to: backstage/plugins/events-backend/createeventbusrouter
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend/databaseeventbusstore
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend/databaseeventbusstore
-    to: backstage/plugins/events-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend-module-azure/httpintegration-test
+  - from: backstage/plugins/events-backend-module-azure/http
     to: backstage/plugins/events-backend/index
     type: direct-call
     description: '@backstage/plugin-events-backend'

@@ -9,24 +9,70 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/packages/cli-module-test-jest/test-test
+  - entityRef: backstage/packages/cli-module-test-jest/commands/repo
     type: background-worker
-    name: test.test Service
-    isTest: true
+    name: Repo
+    isTest: false
     properties:
       filepath: packages/cli-module-test-jest/src/commands/repo/test.test.ts
       containerId: cli-module-test-jest
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 103
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 8
+      loc: 104
+      sloc: 74
+      churn: 3
+      lineChurn: 107
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,37 +82,89 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-test-jest/test
+        - email: freben@gmail.com
+          commits: 1
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0.0007504190424091957
+      sinceDays: 365
+  - entityRef: backstage/packages/cli-module-test-jest/commands/package
     type: background-worker
-    name: test Service
+    name: Package
     isTest: false
     properties:
-      filepath: packages/cli-module-test-jest/src/commands/repo/test.ts
+      filepath: packages/cli-module-test-jest/src/commands/package/test.ts
       containerId: cli-module-test-jest
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 451
+      complexity: 14
+      complexityPeak: 14
+      cognitiveComplexity: 62
+      functionCount: 4
+      loc: 102
+      sloc: 58
+      churn: 3
+      lineChurn: 106
       churn30: 1
-      churn365: 2
+      churn365: 3
       churnByWeek:
         - 0
-        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -74,12 +172,14 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 3
+      hotspotScore: 0.005203840462314236
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-test-jest/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/cli-module-test-jest/src/index.ts
@@ -100,7 +200,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,34 +254,22 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-node/index
-    type: cache-store
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-node/src/monorepo/index.ts
-      containerId: cli-node
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    position:
-      x: 330
-      y: 404
-  - entityRef: backstage/packages/cli-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/cli-common/src/index.ts
-      containerId: cli-common
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: 100
       y: 404
   - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-defaults/src/index.ts
@@ -148,18 +280,6 @@ nodes:
       x: 100
       y: -204
 dependencies:
-  - from: backstage/packages/cli-module-test-jest/test-test
-    to: backstage/packages/cli-module-test-jest/test
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-test-jest/test
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-test-jest/test
-    to: backstage/packages/cli-common/index
-    type: direct-call
-    description: '@backstage/cli-common'
   - from: backstage/packages/cli-module-test-jest/index
     to: backstage/packages/cli-node/index
     type: direct-call

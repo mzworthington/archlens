@@ -281,7 +281,7 @@ k8s_cluster = Cluster(
 
     const discoveredSystems = discoverSystems(scan, fs, { fallbackId: 'backstage' });
     const analyzer = new IacAnalyzer({ fileSystem: fs, logger: new SilentLogger() });
-    await analyzer.run('blueprint', out, { scanRoot: scan, discoveredSystems });
+    await analyzer.run('backstage', out, { scanRoot: scan, discoveredSystems });
 
     const context = parseSchemaFromYaml(
       fs.writtenFiles.get(path.resolve('/repo/blueprints/backstage/context.yaml'))!
@@ -355,19 +355,29 @@ k8s_cluster = Cluster(
 
     const discoveredSystems = discoverSystems(scan, fs, { fallbackId: 'terraform-examples' });
     const contextWriter = new ContextLevelWriter(fs, new SilentLogger());
-    await contextWriter.write(out, 'Acme', 'terraform-examples', 'Terraform Examples');
+    await contextWriter.write(out, 'infrastructure', 'terraform-examples', 'Terraform Examples');
 
     const analyzer = new IacAnalyzer({ fileSystem: fs, logger: new SilentLogger() });
-    await analyzer.run('Acme', out, { scanRoot: scan, discoveredSystems });
+    await analyzer.run('infrastructure', out, { scanRoot: scan, discoveredSystems });
 
     const context = parseSchemaFromYaml(
-      fs.writtenFiles.get(path.resolve('/repo/blueprints/acme/context.yaml'))!
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/infrastructure/context.yaml'))!
     );
-    expect(context.nodes.find(n => n.entityRef === 'acme/aws')).toBeUndefined();
-    expect(context.nodes.find(n => n.entityRef === 'acme/terraform-examples')?.type).toBe('group');
-    expect(context.nodes.find(n => n.entityRef === 'acme/aws-lambda-api')).toMatchObject({
-      parentEntityRef: 'acme/terraform-examples',
+    expect(context.nodes.find(n => n.entityRef === 'infrastructure/aws')).toBeUndefined();
+    expect(context.nodes.find(n => n.entityRef === 'infrastructure/terraform-examples')?.type).toBe(
+      'group'
+    );
+    expect(context.nodes.find(n => n.entityRef === 'infrastructure/aws-lambda-api')).toMatchObject({
+      parentEntityRef: 'infrastructure/terraform-examples',
     });
+    expect(
+      fs.writtenFiles.has(
+        path.resolve('/repo/blueprints/infrastructure/aws-lambda-api/containers.yaml')
+      )
+    ).toBe(true);
+    expect(
+      fs.writtenFiles.has(path.resolve('/repo/blueprints/aws-lambda-api/containers.yaml'))
+    ).toBe(false);
   });
 
   it('does not run code-scan fallback for empty terraform roots', async () => {

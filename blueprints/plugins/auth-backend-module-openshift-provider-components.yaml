@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/auth-backend-module-openshift-provider/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/auth-backend-module-openshift-provider/config.d.ts
-      containerId: auth-backend-module-openshift-provider
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 44
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/auth-backend-module-openshift-provider/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/auth-backend-module-openshift-provider/dev/index.ts
@@ -53,14 +19,57 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 26
+      complexity: 1
+      loc: 27
+      sloc: 7
+      churn: 3
+      lineChurn: 78
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +79,21 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: git@daellenbach.org
+          commits: 1
+      hotspotScore: 0.000273517221065034
+      sinceDays: 365
   - entityRef: backstage/plugins/auth-backend-module-openshift-provider/module
     type: background-worker
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/auth-backend-module-openshift-provider/src/module.ts
@@ -87,14 +101,59 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 45
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 2
+      loc: 46
+      sloc: 27
+      churn: 3
+      lineChurn: 135
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +163,21 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: git@daellenbach.org
+          commits: 1
+      hotspotScore: 0.0004733951903048665
+      sinceDays: 365
   - entityRef: backstage/plugins/auth-backend-module-openshift-provider/authenticator-test
     type: rest-api
-    name: authenticator.test Service
+    name: Authenticator test
     isTest: true
     properties:
       filepath: plugins/auth-backend-module-openshift-provider/src/authenticator.test.ts
@@ -121,14 +185,59 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 226
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 18
+      loc: 227
+      sloc: 182
+      churn: 4
+      lineChurn: 902
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,16 +247,23 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.25
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: yannik@daellenbach.org
+          commits: 1
+        - email: git@daellenbach.org
+          commits: 1
+      hotspotScore: 0.0031629811974443673
+      sinceDays: 365
   - entityRef: backstage/plugins/auth-backend-module-openshift-provider/resolvers
     type: background-worker
-    name: resolvers Service
+    name: Resolvers
     isTest: false
     properties:
       filepath: plugins/auth-backend-module-openshift-provider/src/resolvers.ts
@@ -155,14 +271,35 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 68
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 2
+      loc: 69
+      sloc: 47
+      churn: 4
+      lineChurn: 206
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,16 +309,48 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.25
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: git@daellenbach.org
+          commits: 1
+      hotspotScore: 0.0021670979822845
+      sinceDays: 365
   - entityRef: backstage/plugins/auth-backend-module-openshift-provider/authenticator
     type: background-worker
-    name: authenticator Service
+    name: Authenticator
     isTest: false
     properties:
       filepath: plugins/auth-backend-module-openshift-provider/src/authenticator.ts
@@ -189,14 +358,35 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 184
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 8
+      functionCount: 8
+      loc: 185
+      sloc: 136
+      churn: 4
+      lineChurn: 554
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -206,16 +396,48 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.25
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: git@daellenbach.org
+          commits: 1
+      hotspotScore: 0.009713367978848001
+      sinceDays: 365
   - entityRef: backstage/plugins/auth-backend/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/auth-backend/dev/index.ts
@@ -227,10 +449,10 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/auth-node/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/auth-node/src/oauth/index.ts
+      filepath: plugins/auth-node/src/index.ts
       containerId: auth-node
       technology: TypeScript Domain Service
       classification: default

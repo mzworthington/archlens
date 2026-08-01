@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/backend/authmodulegithubprovider
     type: background-worker
-    name: authModuleGithubProvider Service
+    name: Authmodulegithubprovider
     isTest: false
     properties:
       filepath: packages/backend/src/authModuleGithubProvider.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/backend/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/backend/src/index.ts
@@ -59,39 +103,93 @@ nodes:
       functionCount: 1
       loc: 79
       sloc: 56
-      churn: 5
-      lineChurn: 85
+      churn: 23
+      lineChurn: 143
       churn30: 4
-      churn365: 5
+      churn365: 23
       churnByWeek:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 2
         - 0
-      authorCount: 4
-      topAuthorPercent: 0.4
+        - 2
+        - 0
+        - 0
+      authorCount: 9
+      topAuthorPercent: 0.391304347826087
       authors:
+        - email: aramis.sennyey@doordash.com
+          commits: 9
+        - email: poldsberg@gmail.com
+          commits: 4
         - email: 58849535+neoreddog@users.noreply.github.com
           commits: 2
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: aramis.sennyey@doordash.com
-          commits: 1
+        - email: ben@blam.sh
+          commits: 2
+        - email: pillaris@adobe.com
+          commits: 2
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0.0009183629370327152
-      sinceDays: 60
+        - email: heikki.hellgren@op.fi
+          commits: 1
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: yannik@daellenbach.org
+          commits: 1
+      hotspotScore: 0.0010028964772384578
+      sinceDays: 365
   - entityRef: backstage/packages/backend-plugin-api/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      filepath: packages/backend-plugin-api/src/index.ts
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
@@ -100,10 +198,10 @@ nodes:
       y: 404
   - entityRef: backstage/packages/catalog-model/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/kinds/index.ts
+      filepath: packages/catalog-model/src/model/sources/index.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
@@ -111,14 +209,14 @@ nodes:
       x: 560
       y: 404
   - entityRef: backstage/packages/backend-defaults/index
-    type: rest-api
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpRouter/http/index.ts
+      filepath: packages/backend-defaults/src/index.ts
       containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: -360
       y: 404

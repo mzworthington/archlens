@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/config.d.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 130
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
     type: background-worker
-    name: GitLabDiscoveryProcessor Service
+    name: Gitlabdiscoveryprocessor
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-gitlab/src/GitLabDiscoveryProcessor.ts
@@ -53,14 +19,19 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 229
+      complexity: 16
+      complexityPeak: 16
+      cognitiveComplexity: 78
+      functionCount: 8
+      loc: 230
+      sloc: 162
+      churn: 4
+      lineChurn: 238
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 2
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +41,64 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.25
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: 17289602+JohannesWill@users.noreply.github.com
+          commits: 1
+        - email: clairep@spotify.com
+          commits: 1
+        - email: kc9ddi@gmail.com
+          commits: 1
+      hotspotScore: 0.01335325099763653
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-backend-module-gitlab/alpha
     type: background-worker
-    name: alpha Service
+    name: Alpha
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-gitlab/src/alpha.ts
@@ -87,14 +106,57 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 27
+      complexity: 1
+      loc: 28
+      sloc: 8
+      churn: 3
+      lineChurn: 35
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,31 +166,56 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: lokeshkaki1@gmail.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+      hotspotScore: 0.00012273208637533575
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/module
     type: background-worker
-    name: catalogModuleGitlabDiscoveryEntityProvider.test Service
-    isTest: true
+    name: Module
+    isTest: false
     properties:
       filepath: plugins/catalog-backend-module-gitlab/src/module/catalogModuleGitlabDiscoveryEntityProvider.test.ts
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 116
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 5
+      loc: 117
+      sloc: 94
+      churn: 3
+      lineChurn: 131
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,31 +225,20 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
-    type: background-worker
-    name: catalogModuleGitlabDiscoveryEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/module/catalogModuleGitlabDiscoveryEntityProvider.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 79
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,16 +248,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: lokeshkaki1@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+      hotspotScore: 0.0004593686661476853
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/providers
     type: background-worker
-    name: GitlabDiscoveryEntityProvider Service
+    name: Providers
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabDiscoveryEntityProvider.ts
@@ -189,14 +268,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 690
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 52
+      functionCount: 41
+      loc: 691
+      sloc: 503
+      churn: 16
+      lineChurn: 1042
       churn30: 1
-      churn365: 1
+      churn365: 16
       churnByWeek:
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -206,254 +331,35 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 10
+      topAuthorPercent: 0.25
       authors:
+        - email: clairep@spotify.com
+          commits: 4
+        - email: vaceal@gmail.com
+          commits: 4
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    type: background-worker
-    name: GitlabDiscoveryEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabDiscoveryEntityProvider.test.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 893
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: awanlin@spotify.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/index.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 18
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    type: background-worker
-    name: GitlabOrgDiscoveryEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabOrgDiscoveryEntityProvider.test.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 831
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: suhail17mohammad@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/config.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 133
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: 17289602+JohannesWill@users.noreply.github.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config-test
-    type: background-worker
-    name: config.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/config.test.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 545
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: matthieu@brouillard.fr
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    type: background-worker
-    name: GitlabOrgDiscoveryEntityProvider Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabOrgDiscoveryEntityProvider.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 847
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/setupTests.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: kc9ddi@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.04384691451534852
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-backend-module-gitlab/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-gitlab/src/lib/types.ts
@@ -461,14 +367,35 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 420
+      complexity: 1
+      loc: 421
+      sloc: 204
+      churn: 5
+      lineChurn: 471
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -478,16 +405,45 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.4
       authors:
+        - email: vaceal@gmail.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: 17289602+JohannesWill@users.noreply.github.com
+          commits: 1
+        - email: matthieu@brouillard.fr
+          commits: 1
+      hotspotScore: 0.0016516232195080897
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-backend-module-gitlab/client
     type: background-worker
-    name: client Service
+    name: Client
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-gitlab/src/lib/client.ts
@@ -495,14 +451,27 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 531
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 14
+      functionCount: 26
+      loc: 532
+      sloc: 423
+      churn: 11
+      lineChurn: 798
       churn30: 1
-      churn365: 1
+      churn365: 11
       churnByWeek:
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -512,19 +481,65 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 7
+      topAuthorPercent: 0.36363636363636365
       authors:
+        - email: clairep@spotify.com
+          commits: 4
+        - email: 17289602+JohannesWill@users.noreply.github.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/client-test
+        - email: suhail17mohammad@gmail.com
+          commits: 1
+        - email: elaine.de-mattos-silva-bezerra@deutschebahn.com
+          commits: 1
+        - email: matthieu@brouillard.fr
+          commits: 1
+        - email: kc9ddi@gmail.com
+          commits: 1
+      hotspotScore: 0.01678974941614593
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/index
     type: background-worker
-    name: client.test Service
-    isTest: true
+    name: Index
+    isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/lib/client.test.ts
+      filepath: plugins/catalog-backend-module-gitlab/src/lib/index.ts
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
@@ -532,11 +547,54 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 808
+      churn: 2
+      lineChurn: 34
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -546,16 +604,110 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: 17289602+JohannesWill@users.noreply.github.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/client-test
+    type: background-worker
+    name: Client test
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/lib/client.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 73
+      loc: 809
+      sloc: 682
+      churn: 8
+      lineChurn: 1169
+      churn30: 1
+      churn365: 8
+      churnByWeek:
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.375
+      authors:
+        - email: clairep@spotify.com
+          commits: 3
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+        - email: 17289602+JohannesWill@users.noreply.github.com
+          commits: 1
+        - email: elaine.de-mattos-silva-bezerra@deutschebahn.com
+          commits: 1
+        - email: kc9ddi@gmail.com
+          commits: 1
+      hotspotScore: 0.008198503369872429
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-backend-module-gitlab/defaulttransformers
     type: background-worker
-    name: defaultTransformers Service
+    name: Defaulttransformers
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-gitlab/src/lib/defaultTransformers.ts
@@ -566,124 +718,61 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 156
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/mocks
-    type: background-worker
-    name: mocks Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/__testUtils__/mocks.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 3128
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/handlers
-    type: background-worker
-    name: handlers Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/__testUtils__/handlers.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 18
-      complexityPeak: 18
-      cognitiveComplexity: 100
-      functionCount: 56
-      loc: 786
-      sloc: 678
-      churn: 3
-      lineChurn: 1526
-      churn30: 2
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 2
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
-      authors:
-        - email: jonkoops@gmail.com
-          commits: 2
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.14838584208479189
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
-    type: background-worker
-    name: GitLabDiscoveryProcessor.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/GitLabDiscoveryProcessor.test.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 697
+      lineChurn: 158
       churn30: 1
       churn365: 2
       churnByWeek:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
         - 0
         - 0
         - 0
@@ -692,13 +781,189 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-        - email: jonkoops@gmail.com
+        - email: jhe@redhat.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     type: background-worker
-    name: analyzeGitLabWebhookEvent Service
+    name: __testutils__
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/__testUtils__/mocks.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 15
+      loc: 3129
+      sloc: 2970
+      churn: 6
+      lineChurn: 3436
+      churn30: 1
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.3333333333333333
+      authors:
+        - email: vaceal@gmail.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: matthieu@brouillard.fr
+          commits: 1
+        - email: jhe@redhat.com
+          commits: 1
+      hotspotScore: 0.024097568502037352
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    type: background-worker
+    name: Gitlabdiscoveryprocessor test
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/GitLabDiscoveryProcessor.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 13
+      functionCount: 60
+      loc: 624
+      sloc: 541
+      churn: 5
+      lineChurn: 821
+      churn30: 1
+      churn365: 5
+      churnByWeek:
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.4
+      authors:
+        - email: kc9ddi@gmail.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+        - email: clairep@spotify.com
+          commits: 1
+      hotspotScore: 0.017273664499568683
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/events
+    type: background-worker
+    name: Events
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-gitlab/src/events/analyzeGitLabWebhookEvent.ts
@@ -706,14 +971,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 521
+      complexity: 15
+      complexityPeak: 15
+      cognitiveComplexity: 94
+      functionCount: 20
+      loc: 522
+      sloc: 416
+      churn: 6
+      lineChurn: 1214
       churn30: 1
-      churn365: 1
+      churn365: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -723,84 +1034,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
+        - email: lokeshkaki1@gmail.com
+          commits: 5
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent-test
-    type: background-worker
-    name: analyzeGitLabWebhookEvent.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/events/analyzeGitLabWebhookEvent.test.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 264
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
-    type: background-worker
-    name: GitLabScmEventsBridge Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/events/GitLabScmEventsBridge.ts
-      containerId: catalog-backend-module-gitlab
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 149
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.06385575122556755
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
-    name: alpha Service (External)
+    name: Alpha (External)
     external: true
     properties:
       filepath: plugins/catalog-node/src/alpha.ts
@@ -812,7 +1058,7 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
     type: background-worker
-    name: catalogModuleGitlabOrgDiscoveryEntityProvider Service (External)
+    name: Catalogmodulegitlaborgdiscoveryentityprovider (External)
     external: true
     properties:
       filepath: plugins/catalog-backend-module-gitlab-org/src/catalogModuleGitlabOrgDiscoveryEntityProvider.ts
@@ -824,7 +1070,7 @@ nodes:
       y: -204
   - entityRef: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
     type: background-worker
-    name: catalogModuleGitlabOrgDiscoveryEntityProvider.test Service (External)
+    name: Catalogmodulegitlaborgdiscoveryentityprovider test (External)
     external: true
     properties:
       filepath: plugins/catalog-backend-module-gitlab-org/src/catalogModuleGitlabOrgDiscoveryEntityProvider.test.ts
@@ -836,10 +1082,10 @@ nodes:
       y: -204
   - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      filepath: plugins/catalog-node/src/api/index.ts
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
@@ -848,7 +1094,7 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/events-backend-test-utils/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/events-backend-test-utils/src/index.ts
@@ -860,10 +1106,10 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/events-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
+      filepath: plugins/events-node/src/api/index.ts
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
@@ -872,10 +1118,10 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-common/src/ingestion/index.ts
+      filepath: plugins/catalog-common/src/index.ts
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
@@ -884,7 +1130,7 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/signals-node/lib
     type: background-worker
-    name: lib Service (External)
+    name: Lib (External)
     external: true
     properties:
       filepath: plugins/signals-node/src/lib.ts
@@ -912,138 +1158,90 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/alpha
-    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/module
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/alpha
-    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+    to: backstage/plugins/catalog-backend-module-gitlab/events
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+  - from: backstage/plugins/catalog-backend-module-gitlab/module
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+  - from: backstage/plugins/catalog-backend-module-gitlab/module
     to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+  - from: backstage/plugins/catalog-backend-module-gitlab/module
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/module
+    to: backstage/plugins/catalog-backend-module-gitlab/providers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/module
     to: backstage/plugins/catalog-node/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
-    to: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+  - from: backstage/plugins/catalog-backend-module-gitlab/module
+    to: backstage/plugins/catalog-backend-module-gitlab/events
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/module
+    to: backstage/plugins/catalog-backend-module-gitlab/providers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-backend-module-gitlab/handlers
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
+    to: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-backend-module-gitlab/mocks
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
+    to: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
+    to: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/index
-    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
+    to: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/index
-    to: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-backend-module-gitlab/handlers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-backend-module-gitlab/mocks
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
-    to: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/config
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/config-test
-    to: backstage/plugins/catalog-backend-module-gitlab/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/catalog-backend-module-gitlab/defaulttransformers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+  - from: backstage/plugins/catalog-backend-module-gitlab/providers
     to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
@@ -1052,7 +1250,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/index
-    to: backstage/plugins/catalog-backend-module-gitlab/config
+    to: backstage/plugins/catalog-backend-module-gitlab/providers
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/index
@@ -1064,11 +1262,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/client-test
-    to: backstage/plugins/catalog-backend-module-gitlab/handlers
+    to: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/client-test
-    to: backstage/plugins/catalog-backend-module-gitlab/mocks
+    to: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/client-test
@@ -1083,28 +1281,28 @@ dependencies:
     to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+  - from: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+  - from: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+  - from: backstage/plugins/catalog-backend-module-gitlab/__testutils__
     to: backstage/plugins/catalog-backend-module-gitlab/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/handlers
-    to: backstage/plugins/catalog-backend-module-gitlab/mocks
-    type: direct-call
-    description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/index
-    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/module
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/index
     to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/providers
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-gitlab/index
@@ -1123,23 +1321,11 @@ dependencies:
     to: backstage/plugins/signals-node/lib
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+  - from: backstage/plugins/catalog-backend-module-gitlab/events
     to: backstage/plugins/catalog-node/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent-test
-    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
-    to: backstage/plugins/catalog-node/alpha
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+  - from: backstage/plugins/catalog-backend-module-gitlab/events
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
-    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
-    type: direct-call
-    description: Calls module / service

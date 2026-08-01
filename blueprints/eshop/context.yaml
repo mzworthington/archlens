@@ -1,16 +1,14 @@
-# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
 metadata:
   entityRef: eshop
   name: E-Shop
-  description: Sample e-commerce estate for import and merge demonstrations.
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
 nodes:
-  - entityRef: eshop/user
-    type: person
-    name: User
-    properties:
-      role: context-actor
   - entityRef: eshop
     type: software-system
     name: EShop System
@@ -21,32 +19,89 @@ nodes:
       complexity: 25
       complexityPeak: 25
       cognitiveComplexity: 168
-      churn: 0
+      churn: 33
+      lineChurn: 550
       churn30: 0
-      churn365: 0
+      churn365: 33
+      hotspotScore: 0.33075601374570446
+      authorCount: 2
+      fileCount: 127
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+      classifications:
+        - knowledge-silo
+      authors:
+        - email: mikekistler@microsoft.com
+          commits: 10
+        - email: amauryleve@microsoft.com
+          commits: 9
+        - email: joperezr@microsoft.com
+          commits: 8
+        - email: eric.erhardt@microsoft.com
+          commits: 6
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 8
+        - 2
         - 0
         - 0
         - 0
         - 0
         - 0
-      authorCount: 0
-      hotspotScore: 1
-      classifications:
-        - hotspot
-      sinceDays: 60
-      fileCount: 128
-      hotspotCount: 2
-      knowledgeSiloCount: 0
+        - 0
+        - 3
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.8484848484848485
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: eshop/user
+    type: person
+    name: User
+    properties:
+      role: context-actor
 dependencies:
-  - from: application/user
-    to: eshop
-    type: direct-call
-    description: Uses
   - from: eshop/user
     to: eshop
     type: direct-call

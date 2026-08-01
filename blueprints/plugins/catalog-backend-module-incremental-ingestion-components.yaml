@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-incremental-ingestion/dev/index.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,25 +86,59 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/database
     type: relational-database
-    name: IncrementalIngestionDatabaseManager.test Service
-    isTest: true
+    name: Database
+    isTest: false
     properties:
       filepath: plugins/catalog-backend-module-incremental-ingestion/src/database/IncrementalIngestionDatabaseManager.test.ts
       containerId: catalog-backend-module-incremental-ingestion
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 267
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 13
+      loc: 268
+      sloc: 206
+      churn: 9
+      lineChurn: 733
       churn30: 1
-      churn365: 1
+      churn365: 9
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,31 +148,8 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/tables
-    type: relational-database
-    name: tables Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-incremental-ingestion/src/database/tables.ts
-      containerId: catalog-backend-module-incremental-ingestion
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 118
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 3
+        - 1
         - 0
         - 0
         - 0
@@ -104,168 +159,66 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.3333333333333333
       authors:
+        - email: freben@gmail.com
+          commits: 3
+        - email: dakotawan@gmail.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/migrations
-    type: relational-database
-    name: migrations Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-incremental-ingestion/src/database/migrations.ts
-      containerId: catalog-backend-module-incremental-ingestion
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 31
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: LetiziaAdam@JohnDeere.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
-    type: relational-database
-    name: IncrementalIngestionDatabaseManager Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-incremental-ingestion/src/database/IncrementalIngestionDatabaseManager.ts
-      containerId: catalog-backend-module-incremental-ingestion
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 672
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
-    type: background-worker
-    name: catalogModuleIncrementalIngestionEntityProvider Service
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.0025703605518034604
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/module
+    type: rest-api
+    name: Module
     isTest: false
     properties:
       filepath: >-
         plugins/catalog-backend-module-incremental-ingestion/src/module/catalogModuleIncrementalIngestionEntityProvider.ts
       containerId: catalog-backend-module-incremental-ingestion
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 144
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders-test
-    type: background-worker
-    name: WrapperProviders.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-incremental-ingestion/src/module/WrapperProviders.test.ts
-      containerId: catalog-backend-module-incremental-ingestion
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 117
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    type: rest-api
-    name: WrapperProviders Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-incremental-ingestion/src/module/WrapperProviders.ts
-      containerId: catalog-backend-module-incremental-ingestion
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 166
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 3
+      loc: 145
+      sloc: 76
+      churn: 3
+      lineChurn: 150
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -275,33 +228,20 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: >-
-      backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider-test
-    type: background-worker
-    name: catalogModuleIncrementalIngestionEntityProvider.test Service
-    isTest: true
-    properties:
-      filepath: >-
-        plugins/catalog-backend-module-incremental-ingestion/src/module/catalogModuleIncrementalIngestionEntityProvider.test.ts
-      containerId: catalog-backend-module-incremental-ingestion
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 76
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -311,16 +251,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: kurtaking@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.001051989311788592
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-incremental-ingestion/src/types.ts
@@ -331,11 +274,38 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 198
+      churn: 2
+      lineChurn: 200
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -345,16 +315,35 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: kurtaking@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/engine
     type: background-worker
-    name: IncrementalIngestionEngine Service
+    name: Engine
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-incremental-ingestion/src/engine/IncrementalIngestionEngine.ts
@@ -362,14 +351,37 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 434
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 70
+      functionCount: 10
+      loc: 435
+      sloc: 378
+      churn: 6
+      lineChurn: 473
       churn30: 1
-      churn365: 1
+      churn365: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -379,31 +391,20 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine-test
-    type: background-worker
-    name: IncrementalIngestionEngine.test Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-incremental-ingestion/src/engine/IncrementalIngestionEngine.test.ts
-      containerId: catalog-backend-module-incremental-ingestion
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 225
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -413,16 +414,23 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: kurtaking@gmail.com
+          commits: 2
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/routes
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.021562274260626842
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/router
     type: rest-api
-    name: routes Service
+    name: Router
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-incremental-ingestion/src/router/routes.ts
@@ -443,7 +451,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -453,10 +505,46 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+      sinceDays: 365
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
     type: background-worker
-    name: catalogModuleMicrosoftGraphIncrementalEntityProvider Service (External)
+    name: Microsoftgraphincrementalentityprovider (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph-incremental/src/MicrosoftGraphIncrementalEntityProvider.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/module
+    type: background-worker
+    name: Module (External)
     external: true
     properties:
       filepath: >-
@@ -465,164 +553,55 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -360
+      x: 330
       y: -204
-  - entityRef: >-
-      backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
-    type: background-worker
-    name: catalogModuleMicrosoftGraphIncrementalEntityProvider.test Service (External)
-    external: true
-    properties:
-      filepath: >-
-        plugins/catalog-backend-module-msgraph-incremental/src/module/catalogModuleMicrosoftGraphIncrementalEntityProvider.test.ts
-      containerId: catalog-backend-module-msgraph-incremental
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 100
-      y: -204
-  - entityRef: backstage/plugins/catalog-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
-      containerId: catalog-node
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 100
-      y: 404
-  - entityRef: backstage/plugins/events-node/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
-      containerId: events-node
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 560
-      y: 404
-  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
-    type: background-worker
-    name: MicrosoftGraphIncrementalEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-msgraph-incremental/src/MicrosoftGraphIncrementalEntityProvider.ts
-      containerId: catalog-backend-module-msgraph-incremental
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 560
-      y: -204
-  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
-    type: background-worker
-    name: module Service (External)
-    external: true
-    properties:
-      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
-      containerId: auth-backend-module-cloudflare-access-provider
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -360
-      y: 404
 dependencies:
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager-test
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/database
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager-test
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/migrations
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/tables
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/migrations
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/database
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/tables
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders-test
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders-test
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/index
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/migrations
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/engine
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/routes
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/router
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/wrapperproviders
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: >-
-      backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider-test
-    to: backstage/plugins/catalog-node/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-node'
-  - from: >-
-      backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider-test
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/module
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/types
-    type: direct-call
-    description: Calls module / service
-  - from: >-
-      backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider-test
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/catalogmoduleincrementalingestionentityprovider
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-incremental-ingestion/types
@@ -634,55 +613,46 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-events-node'
   - from: backstage/plugins/catalog-backend-module-incremental-ingestion/types
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/database
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend-module-incremental-ingestion/index
-    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/module
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-incremental-ingestion/index
-    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/module
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/engine
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/engine
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/engine
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/engine
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine-test
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestionengine-test
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/engine
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/routes
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/incrementalingestiondatabasemanager
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/router
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
-    to: backstage/plugins/catalog-backend-module-incremental-ingestion/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
-  - from: >-
-      backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider-test
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/module
     to: backstage/plugins/catalog-backend-module-incremental-ingestion/index
     type: direct-call
     description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'

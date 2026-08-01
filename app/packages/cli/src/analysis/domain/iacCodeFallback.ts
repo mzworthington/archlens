@@ -1,5 +1,6 @@
-import { EntityRef, systemSchemaPublicUrl, type SystemSchema } from '@archlens/core';
+import { systemSchemaPublicUrl, type SystemSchema } from '@archlens/core';
 import type { CodebaseParserPort } from './ports.ts';
+import { resolveSystemEntityRef } from './entityRefContext.ts';
 import { ModelExtractor } from './modelExtractor.ts';
 
 function globForRuntime(runtime: string, relRoot: string): string {
@@ -42,7 +43,7 @@ export async function schemaFromCodeScanFallback(args: {
   const files = await args.parser.parseSourceFiles(glob, args.signal);
   if (files.length === 0) return null;
 
-  const parentRef = EntityRef.parse(args.systemId, EntityRef.parse(args.contextName));
+  const parentRef = resolveSystemEntityRef(args.contextName, args.systemId);
   const extractor = new ModelExtractor(parentRef, { rollupModules: false });
   const { containerNodesMap, containerDependencies } = extractor.extractGraph(files, []);
 

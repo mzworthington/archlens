@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/config.d.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 51
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/module
     type: background-worker
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/module.ts
@@ -56,11 +22,13 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 50
+      churn: 2
+      lineChurn: 52
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,17 +38,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: ben@blam.sh
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/actions/confluence
     type: background-worker
-    name: confluenceToMarkdown.test Service
-    isTest: true
+    name: Confluence
+    isTest: false
     properties:
       filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/confluenceToMarkdown.test.ts
       containerId: scaffolder-backend-module-confluence-to-markdown
@@ -100,7 +112,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,115 +166,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/helpers
+      sinceDays: 365
+  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/actions
     type: background-worker
-    name: helpers Service
+    name: Actions
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/helpers.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 211
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples
-    type: background-worker
-    name: confluenceToMarkdown.examples Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/confluenceToMarkdown.examples.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 41
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/helpers-test
-    type: background-worker
-    name: helpers.test Service
-    isTest: true
-    properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/helpers.test.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 181
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/index.ts
+      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/index.ts
       containerId: scaffolder-backend-module-confluence-to-markdown
       technology: TypeScript Domain Service
       classification: default
@@ -236,7 +190,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -246,13 +244,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
+      sinceDays: 365
+  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/index
     type: background-worker
-    name: confluenceToMarkdown Service
+    name: Index
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/confluenceToMarkdown.ts
+      filepath: plugins/scaffolder-backend-module-confluence-to-markdown/src/index.ts
       containerId: scaffolder-backend-module-confluence-to-markdown
       technology: TypeScript Domain Service
       classification: default
@@ -261,10 +259,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 193
+      lineChurn: 24
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -274,40 +315,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    type: background-worker
-    name: confluenceToMarkdown.examples.test Service
-    isTest: true
-    properties:
-      filepath: >-
-        plugins/scaffolder-backend-module-confluence-to-markdown/src/actions/confluence/confluenceToMarkdown.examples.test.ts
-      containerId: scaffolder-backend-module-confluence-to-markdown
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 148
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -315,38 +322,14 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/actions
-    type: gateway-api
-    name: Actions Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/homePageComponents/VisitedByType/Actions.tsx
-      containerId: home
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -360
-      y: 404
+      sinceDays: 365
   - entityRef: backstage/plugins/scaffolder-node/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      filepath: plugins/scaffolder-node/src/index.ts
       containerId: scaffolder-node
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 560
-      y: 404
-  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
-      containerId: scaffolder-node-test-utils
       technology: TypeScript Domain Service
       classification: default
     position:
@@ -358,63 +341,11 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-scaffolder-node'
   - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/module
-    to: backstage/plugins/home/actions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
-    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-test
-    to: backstage/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/helpers-test
-    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/helpers
+    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/actions
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/index
-    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/helpers
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    to: backstage/plugins/scaffolder-node/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node'
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/confluencetomarkdown-examples-test
-    to: backstage/plugins/scaffolder-node-test-utils/index
-    type: direct-call
-    description: '@backstage/plugin-scaffolder-node-test-utils'
-  - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/index
-    to: backstage/plugins/home/actions
+    to: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/actions
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/scaffolder-backend-module-confluence-to-markdown/index

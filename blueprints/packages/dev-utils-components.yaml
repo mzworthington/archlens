@@ -9,49 +9,15 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/packages/dev-utils/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: packages/dev-utils/src/setupTests.ts
-      containerId: dev-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/index
-    type: background-worker
-    name: index Service
+  - entityRef: backstage/packages/dev-utils/devapp
+    type: gateway-api
+    name: Devapp
     isTest: false
     properties:
       filepath: packages/dev-utils/src/devApp/index.tsx
       containerId: dev-utils
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 0
       loc: 0
@@ -66,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,180 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/render-test
+      sinceDays: 365
+  - entityRef: backstage/packages/dev-utils/components
     type: gateway-api
-    name: render.test Service
-    isTest: true
-    properties:
-      filepath: packages/dev-utils/src/devApp/render.test.tsx
-      containerId: dev-utils
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 48
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/buicss
-    type: background-worker
-    name: BuiCss Service
-    isTest: false
-    properties:
-      filepath: packages/dev-utils/src/devApp/BuiCss.tsx
-      containerId: dev-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 25
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/sidebarthemeswitcher
-    type: gateway-api
-    name: SidebarThemeSwitcher Service
-    isTest: false
-    properties:
-      filepath: packages/dev-utils/src/devApp/SidebarThemeSwitcher.tsx
-      containerId: dev-utils
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 128
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/sidebarthemeswitcher-test
-    type: background-worker
-    name: SidebarThemeSwitcher.test Service
-    isTest: true
-    properties:
-      filepath: packages/dev-utils/src/devApp/SidebarThemeSwitcher.test.tsx
-      containerId: dev-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 90
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/render
-    type: gateway-api
-    name: render Service
-    isTest: false
-    properties:
-      filepath: packages/dev-utils/src/devApp/render.tsx
-      containerId: dev-utils
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 342
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/entitygriditem
-    type: gateway-api
-    name: EntityGridItem Service
+    name: Components
     isTest: false
     properties:
       filepath: packages/dev-utils/src/components/EntityGridItem/EntityGridItem.tsx
@@ -270,7 +110,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -280,11 +164,89 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/sidebarlanguageswitcher-test
+      sinceDays: 365
+  - entityRef: backstage/packages/dev-utils/components/entitygriditem
     type: background-worker
-    name: SidebarLanguageSwitcher.test Service
-    isTest: true
+    name: Entitygriditem
+    isTest: false
+    properties:
+      filepath: packages/dev-utils/src/components/EntityGridItem/index.ts
+      containerId: dev-utils
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/packages/dev-utils/components/sidebarlanguageswitcher
+    type: background-worker
+    name: Sidebarlanguageswitcher
+    isTest: false
     properties:
       filepath: packages/dev-utils/src/components/SidebarLanguageSwitcher/SidebarLanguageSwitcher.test.tsx
       containerId: dev-utils
@@ -304,7 +266,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -314,47 +320,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/sidebarlanguageswitcher
-    type: gateway-api
-    name: SidebarLanguageSwitcher Service
-    isTest: false
-    properties:
-      filepath: packages/dev-utils/src/components/SidebarLanguageSwitcher/SidebarLanguageSwitcher.tsx
-      containerId: dev-utils
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 109
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/dev-utils/sidebarsignoutbutton
+      sinceDays: 365
+  - entityRef: backstage/packages/dev-utils/components/sidebarsignoutbutton
     type: background-worker
-    name: SidebarSignOutButton Service
+    name: Sidebarsignoutbutton
     isTest: false
     properties:
-      filepath: packages/dev-utils/src/components/SidebarSignOutButton/SidebarSignOutButton.tsx
+      filepath: packages/dev-utils/src/components/SidebarSignOutButton/index.ts
       containerId: dev-utils
       technology: TypeScript Domain Service
       classification: default
@@ -363,10 +335,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 43
+      lineChurn: 16
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -376,16 +391,95 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
+  - entityRef: backstage/packages/dev-utils/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/dev-utils/src/index.ts
+      containerId: dev-utils
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 24
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
   - entityRef: backstage/packages/core-plugin-api/alpha
     type: background-worker
-    name: alpha Service (External)
+    name: Alpha (External)
     external: true
     properties:
       filepath: packages/core-plugin-api/src/alpha.ts
@@ -393,83 +487,71 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 790
-      y: 404
-  - entityRef: backstage/packages/app-defaults/components
-    type: gateway-api
-    name: components Service (External)
-    external: true
-    properties:
-      filepath: packages/app-defaults/src/defaults/components.tsx
-      containerId: app-defaults
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -1510
+      x: 560
       y: 404
   - entityRef: backstage/packages/core-plugin-api/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      filepath: packages/core-plugin-api/src/apis/index.ts
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 1250
+      x: 1020
       y: 404
   - entityRef: backstage/packages/core-components/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/core-components/src/layout/Sidebar/index.ts
+      filepath: packages/core-components/src/index.ts
       containerId: core-components
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: 100
       y: 404
   - entityRef: backstage/packages/test-utils/index
-    type: rest-api
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
       filepath: packages/test-utils/src/index.ts
       containerId: test-utils
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: 1710
+      x: 1480
       y: 404
   - entityRef: backstage/packages/app-defaults/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/app-defaults/src/defaults/index.ts
+      filepath: packages/app-defaults/src/index.ts
       containerId: app-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1050
+      x: -1280
       y: 404
   - entityRef: backstage/packages/core-app-api/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/system/index.ts
+      filepath: packages/core-app-api/src/apis/index.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -130
+      x: -360
       y: 404
   - entityRef: backstage/packages/integration-react/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/integration-react/dev/index.tsx
@@ -481,151 +563,91 @@ nodes:
       y: -204
   - entityRef: backstage/packages/catalog-model/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/kinds/index.ts
+      filepath: packages/catalog-model/src/model/sources/index.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -590
+      x: -820
       y: 404
 dependencies:
-  - from: backstage/packages/dev-utils/index
-    to: backstage/packages/dev-utils/render
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/index
-    to: backstage/packages/dev-utils/render
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/render-test
-    to: backstage/packages/dev-utils/render
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/render-test
+  - from: backstage/packages/dev-utils/devapp
     to: backstage/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/buicss
+  - from: backstage/packages/dev-utils/devapp
     to: backstage/packages/ui/styles-css
     type: direct-call
     description: '@backstage/ui'
-  - from: backstage/packages/dev-utils/sidebarthemeswitcher
+  - from: backstage/packages/dev-utils/devapp
     to: backstage/packages/core-components/index
     type: direct-call
     description: '@backstage/core-components'
-  - from: backstage/packages/dev-utils/sidebarthemeswitcher
-    to: backstage/packages/core-plugin-api/index
-    type: direct-call
-    description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/sidebarthemeswitcher-test
-    to: backstage/packages/core-plugin-api/index
-    type: direct-call
-    description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/sidebarthemeswitcher-test
+  - from: backstage/packages/dev-utils/devapp
     to: backstage/packages/test-utils/index
     type: direct-call
     description: '@backstage/test-utils'
-  - from: backstage/packages/dev-utils/sidebarthemeswitcher-test
-    to: backstage/packages/dev-utils/sidebarthemeswitcher
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/render
+  - from: backstage/packages/dev-utils/devapp
     to: backstage/packages/app-defaults/index
     type: direct-call
     description: '@backstage/app-defaults'
-  - from: backstage/packages/dev-utils/render
+  - from: backstage/packages/dev-utils/devapp
     to: backstage/packages/core-app-api/index
     type: direct-call
     description: '@backstage/core-app-api'
-  - from: backstage/packages/dev-utils/render
-    to: backstage/packages/core-components/index
-    type: direct-call
-    description: '@backstage/core-components'
-  - from: backstage/packages/dev-utils/render
-    to: backstage/packages/core-plugin-api/index
-    type: direct-call
-    description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/render
+  - from: backstage/packages/dev-utils/devapp
     to: backstage/packages/core-plugin-api/alpha
     type: direct-call
     description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/render
+  - from: backstage/packages/dev-utils/devapp
     to: backstage/packages/integration-react/index
     type: direct-call
     description: '@backstage/integration-react'
-  - from: backstage/packages/dev-utils/render
-    to: backstage/packages/dev-utils/sidebarthemeswitcher
+  - from: backstage/packages/dev-utils/devapp
+    to: backstage/packages/dev-utils/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/dev-utils/render
-    to: backstage/packages/app-defaults/components
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/entitygriditem
+  - from: backstage/packages/dev-utils/components
     to: backstage/packages/catalog-model/index
     type: direct-call
     description: '@backstage/catalog-model'
-  - from: backstage/packages/dev-utils/index
-    to: backstage/packages/dev-utils/entitygriditem
+  - from: backstage/packages/dev-utils/components/entitygriditem
+    to: backstage/packages/dev-utils/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/dev-utils/sidebarlanguageswitcher-test
-    to: backstage/packages/test-utils/index
+  - from: backstage/packages/dev-utils/components/sidebarlanguageswitcher
+    to: backstage/packages/dev-utils/components
     type: direct-call
-    description: '@backstage/test-utils'
-  - from: backstage/packages/dev-utils/sidebarlanguageswitcher-test
+    description: Calls module / service
+  - from: backstage/packages/dev-utils/components
     to: backstage/packages/core-plugin-api/alpha
     type: direct-call
     description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/sidebarlanguageswitcher-test
-    to: backstage/packages/dev-utils/sidebarlanguageswitcher
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/sidebarlanguageswitcher
-    to: backstage/packages/core-plugin-api/alpha
-    type: direct-call
-    description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/sidebarlanguageswitcher
+  - from: backstage/packages/dev-utils/components
     to: backstage/packages/core-plugin-api/index
     type: direct-call
     description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/sidebarlanguageswitcher
+  - from: backstage/packages/dev-utils/components
     to: backstage/packages/core-components/index
     type: direct-call
     description: '@backstage/core-components'
-  - from: backstage/packages/dev-utils/index
-    to: backstage/packages/dev-utils/sidebarlanguageswitcher
+  - from: backstage/packages/dev-utils/components/sidebarlanguageswitcher
+    to: backstage/packages/dev-utils/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/dev-utils/components/sidebarsignoutbutton
+    to: backstage/packages/dev-utils/components
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/dev-utils/index
-    to: backstage/packages/dev-utils/sidebarsignoutbutton
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/sidebarsignoutbutton
-    to: backstage/packages/core-components/index
-    type: direct-call
-    description: '@backstage/core-components'
-  - from: backstage/packages/dev-utils/sidebarsignoutbutton
-    to: backstage/packages/core-plugin-api/index
-    type: direct-call
-    description: '@backstage/core-plugin-api'
-  - from: backstage/packages/dev-utils/index
-    to: backstage/packages/dev-utils/entitygriditem
+    to: backstage/packages/dev-utils/components
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/dev-utils/index
-    to: backstage/packages/dev-utils/sidebarsignoutbutton
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/index
-    to: backstage/packages/dev-utils/sidebarlanguageswitcher
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/dev-utils/index
-    to: backstage/packages/app-defaults/components
+    to: backstage/packages/dev-utils/devapp
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/integration-react/index

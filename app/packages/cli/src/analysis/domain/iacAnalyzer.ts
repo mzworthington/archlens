@@ -1,5 +1,4 @@
 import {
-  EntityRef,
   parseSchemaFromYaml,
   systemSchemaPublicUrl,
   type SourceProvenance,
@@ -14,6 +13,7 @@ import { throwIfAborted } from './cancellation.ts';
 import { schemaFromCodeScanFallback } from './iacCodeFallback.ts';
 import { discoverPulumiRoots } from './pulumiDiscovery.ts';
 import { discoverTerraformRoots } from './terraformDiscovery.ts';
+import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from './entityRefContext.ts';
 import {
   planIacContextSystems,
   productHubInputsForIac,
@@ -127,7 +127,7 @@ export class IacAnalyzer {
 
       if (files.length === 0) continue;
 
-      const systemRef = EntityRef.parse(root.systemId, EntityRef.parse(contextName));
+      const systemRef = resolveSystemEntityRef(contextName, root.systemId);
       let result;
       try {
         result = parseIacBatchToSchema(files, {
@@ -174,7 +174,10 @@ export class IacAnalyzer {
         }
       }
 
-      const blueprintsDir = fileSystem.getAbsolutePath(rootDir, root.systemId);
+      const blueprintsDir = fileSystem.getAbsolutePath(
+        rootDir,
+        resolveBlueprintOutputSegment(contextName, root.systemId)
+      );
       if (!fileSystem.exists(blueprintsDir)) fileSystem.mkdir(blueprintsDir);
       const targetPath = fileSystem.getAbsolutePath(blueprintsDir, 'containers.yaml');
 

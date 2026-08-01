@@ -8,6 +8,7 @@ import {
   normalizeContextGrouping,
   pruneEmptyProductHubs,
 } from '../analysis/domain/systemDiscovery.ts';
+import { resolveContextDisplayName } from '../analysis/domain/entityRefContext.ts';
 
 /** Human label for a new context diagram from a slugified entityRef root. */
 export function contextDisplayName(contextName: string): string {
@@ -41,46 +42,6 @@ export const LEGACY_CONTEXT_RELATIVE_PATH = 'context.yaml';
 /** Auto-managed edges from the context Person actor to each top-level system. */
 export const PERSON_EDGE_DESCRIPTION = 'Uses';
 
-/** Context diagram identity for application/context.yaml (peer with golden-paths, infrastructure). */
-export const APPLICATION_CONTEXT_ENTITY_REF = 'application';
-
-/** Product roots that own a dedicated peer context diagram under blueprints/. */
-export const PEER_CONTEXT_ENTITY_REFS: Record<string, string> = {
-  application: 'application',
-  blueprint: 'blueprint',
-  backstage: 'backstage',
-  eshop: 'eshop',
-  'chaoslens-stress': 'chaoslens-stress',
-  'advicelens-stress': 'advicelens-stress',
-  infrastructure: 'infrastructure',
-  'golden-paths': 'golden-paths',
-  'golden-journey': 'golden-paths',
-};
-
-/** Maps a scanned productId to the peer context that owns its context diagram. */
-export const PRODUCT_CONTEXT_ENTITY: Record<string, string> = {
-  backstage: 'backstage',
-  packages: 'backstage',
-  plugins: 'backstage',
-  microsite: 'backstage',
-  'docs-ui': 'backstage',
-  'techdocs-s3-storage': 'backstage',
-  blueprint: 'blueprint',
-  app: 'blueprint',
-  sim: 'blueprint',
-  eshop: 'eshop',
-  'chaoslens-stress': 'chaoslens-stress',
-  'advicelens-stress': 'advicelens-stress',
-  infrastructure: 'infrastructure',
-  'golden-journey': 'golden-paths',
-  'gpio-build-monitor': 'application',
-};
-
-function resolveContextDiagramEntityRef(contextName: string): string {
-  const slug = EntityRef.parse(contextName);
-  return PEER_CONTEXT_ENTITY_REFS[slug] ?? slug;
-}
-
 function contextRelativePathForEntityRef(diagramEntityRef: string): string {
   if (diagramEntityRef === 'golden-paths') return 'golden-journey/context.yaml';
   return `${diagramEntityRef}/context.yaml`;
@@ -97,17 +58,8 @@ function hubSystemRef(system: ContextSystemInput, diagramEntityRef: string): str
   return EntityRef.parse(system.entityRef, diagramEntityRef);
 }
 
-function resolveDiagramEntityRefForSystems(
-  contextName: string,
-  systems: ContextSystemInput[]
-): string {
-  const fromContext = resolveContextDiagramEntityRef(contextName);
-  const productIds = [...new Set(systems.map(s => s.productId).filter(Boolean))];
-  if (productIds.length === 1) {
-    const mapped = PRODUCT_CONTEXT_ENTITY[productIds[0]!];
-    if (mapped) return mapped;
-  }
-  return fromContext;
+function resolveDiagramEntityRefForSystems(contextName: string): string {
+  return EntityRef.parse(contextName);
 }
 
 /** Leaf segment for the single context-level person node (`{context}/user`). */
@@ -235,7 +187,7 @@ export class ContextLevelWriter extends BaseWriter {
     if (systems.length === 0) return;
 
     const contextRef = EntityRef.parse(contextName);
-    const diagramEntityRef = resolveDiagramEntityRefForSystems(contextName, systems);
+    const diagramEntityRef = resolveDiagramEntityRefForSystems(contextName);
     const contextRelativePath = contextRelativePathForEntityRef(diagramEntityRef);
     const targetPath = this.fileSystem.getAbsolutePath(rootDir, contextRelativePath);
     const legacyApplicationPath = this.fileSystem.getAbsolutePath(
@@ -247,7 +199,6 @@ export class ContextLevelWriter extends BaseWriter {
       targetPath,
       legacyApplicationPath,
       legacyPath,
-      contextName,
       diagramEntityRef
     );
     const previousNodes = [...contextSchema.nodes];
@@ -347,7 +298,7 @@ export class ContextLevelWriter extends BaseWriter {
     contextSchema = {
       ...contextSchema,
       entityRef: diagramEntityRef,
-      name: contextSchema.name || contextDisplayName(contextName),
+      name: contextSchema.name || resolveContextDisplayName(diagramEntityRef),
       nodes: seedPreservedPositions(previousNodes, contextSchema.nodes),
     };
 
@@ -368,8 +319,7 @@ export class ContextLevelWriter extends BaseWriter {
     targetPath: string,
     legacyApplicationPath: string,
     legacyPath: string,
-    contextName: string,
-    contextRef: string
+    diagramEntityRef: string
   ): Promise<SystemSchema> {
     const readPath = this.fileSystem.exists(targetPath)
       ? targetPath
@@ -385,8 +335,8 @@ export class ContextLevelWriter extends BaseWriter {
         const parsed = parseSchemaFromYaml(existingYaml);
         return {
           ...parsed,
-          entityRef: parsed.entityRef || contextRef,
-          name: parsed.name || contextDisplayName(contextName),
+          entityRef: parsed.entityRef || diagramEntityRef,
+          name: parsed.name || resolveContextDisplayName(diagramEntityRef),
           nodes: parsed.nodes ? [...parsed.nodes] : [],
           dependencies: parsed.dependencies ? [...parsed.dependencies] : [],
         };
@@ -398,8 +348,8 @@ export class ContextLevelWriter extends BaseWriter {
     }
 
     return {
-      entityRef: contextRef,
-      name: contextDisplayName(contextName),
+      entityRef: diagramEntityRef,
+      name: resolveContextDisplayName(diagramEntityRef),
       version: systemSchemaPublicUrl(),
       level: 'context',
       nodes: [],

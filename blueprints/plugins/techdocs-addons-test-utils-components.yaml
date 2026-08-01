@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/techdocs-addons-test-utils/test-utils
     type: gateway-api
-    name: test-utils Service
+    name: Test utils
     isTest: false
     properties:
       filepath: plugins/techdocs-addons-test-utils/src/test-utils.tsx
@@ -19,14 +19,29 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 366
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 6
+      functionCount: 14
+      loc: 367
+      sloc: 211
+      churn: 6
+      lineChurn: 436
       churn30: 1
-      churn365: 1
+      churn365: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,31 +51,28 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/techdocs-addons-test-utils/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/techdocs-addons-test-utils/src/setupTests.ts
-      containerId: techdocs-addons-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +82,23 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.3333333333333333
       authors:
+        - email: freben@gmail.com
+          commits: 2
+        - email: timeloveinvent+github@gmail.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: kyle.opperman@ing.com
+          commits: 1
+      hotspotScore: 0.010702237931929278
+      sinceDays: 365
   - entityRef: backstage/plugins/techdocs-addons-test-utils/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/techdocs-addons-test-utils/src/index.ts
@@ -100,7 +119,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,13 +173,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation
     type: gateway-api
-    name: ExpandableNavigation.test Service (External)
+    name: Expandablenavigation (External)
     external: true
     properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/ExpandableNavigation/ExpandableNavigation.test.tsx
+      filepath: plugins/techdocs-module-addons-contrib/src/ExpandableNavigation/ExpandableNavigation.tsx
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
@@ -125,7 +188,7 @@ nodes:
       y: -204
   - entityRef: backstage/plugins/techdocs-react/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/techdocs-react/src/index.ts
@@ -137,7 +200,7 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/techdocs/index
     type: gateway-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/techdocs/dev/index.tsx
@@ -149,10 +212,10 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      filepath: plugins/catalog-react/src/apis/index.ts
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
@@ -161,19 +224,19 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/search-react/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/search-react/src/context/index.tsx
+      filepath: plugins/search-react/src/index.ts
       containerId: search-react
       technology: TypeScript Domain Service
       classification: default
     position:
       x: 100
       y: 404
-  - entityRef: backstage/plugins/techdocs-module-addons-contrib/lightbox-test
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/lightbox
     type: gateway-api
-    name: LightBox.test Service (External)
+    name: Lightbox (External)
     external: true
     properties:
       filepath: plugins/techdocs-module-addons-contrib/src/LightBox/LightBox.test.tsx
@@ -183,12 +246,12 @@ nodes:
     position:
       x: -130
       y: -204
-  - entityRef: backstage/plugins/techdocs-module-addons-contrib/reportissue-test
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/reportissue
     type: gateway-api
-    name: ReportIssue.test Service (External)
+    name: Reportissue (External)
     external: true
     properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/ReportIssue.test.tsx
+      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/IssueLink.test.tsx
       containerId: techdocs-module-addons-contrib
       technology: React Component
       classification: ui-import
@@ -196,20 +259,20 @@ nodes:
       x: 330
       y: -204
   - entityRef: backstage/plugins/catalog-react/testutils
-    type: background-worker
-    name: testUtils Service (External)
+    type: gateway-api
+    name: Testutils (External)
     external: true
     properties:
       filepath: plugins/catalog-react/src/testUtils.ts
       containerId: catalog-react
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     position:
       x: -360
       y: 404
-  - entityRef: backstage/plugins/techdocs-module-addons-contrib/textsize-test
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/textsize
     type: gateway-api
-    name: TextSize.test Service (External)
+    name: Textsize (External)
     external: true
     properties:
       filepath: plugins/techdocs-module-addons-contrib/src/TextSize/TextSize.test.tsx
@@ -220,19 +283,19 @@ nodes:
       x: 790
       y: -204
 dependencies:
-  - from: backstage/plugins/techdocs-module-addons-contrib/textsize-test
+  - from: backstage/plugins/techdocs-module-addons-contrib/textsize
     to: backstage/plugins/techdocs-addons-test-utils/index
     type: direct-call
     description: '@backstage/plugin-techdocs-addons-test-utils'
-  - from: backstage/plugins/techdocs-module-addons-contrib/lightbox-test
+  - from: backstage/plugins/techdocs-module-addons-contrib/lightbox
     to: backstage/plugins/techdocs-addons-test-utils/index
     type: direct-call
     description: '@backstage/plugin-techdocs-addons-test-utils'
-  - from: backstage/plugins/techdocs-module-addons-contrib/reportissue-test
+  - from: backstage/plugins/techdocs-module-addons-contrib/reportissue
     to: backstage/plugins/techdocs-addons-test-utils/index
     type: direct-call
     description: '@backstage/plugin-techdocs-addons-test-utils'
-  - from: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation-test
+  - from: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation
     to: backstage/plugins/techdocs-addons-test-utils/index
     type: direct-call
     description: '@backstage/plugin-techdocs-addons-test-utils'

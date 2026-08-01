@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/config.d.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 235
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/search-backend-module-elasticsearch/module
     type: background-worker
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/search-backend-module-elasticsearch/src/module.ts
@@ -56,11 +22,30 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 121
+      churn: 2
+      lineChurn: 146
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +55,43 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: florian.verdonck@outlook.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/search-backend-module-elasticsearch/alpha
     type: background-worker
-    name: alpha Service
+    name: Alpha
     isTest: false
     properties:
       filepath: plugins/search-backend-module-elasticsearch/src/alpha.ts
@@ -100,7 +112,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,25 +166,60 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/search-backend-module-elasticsearch/engines
     type: background-worker
-    name: ElasticSearchSearchEngine.test Service
-    isTest: true
+    name: Engines
+    isTest: false
     properties:
       filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngine.test.ts
       containerId: search-backend-module-elasticsearch
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 1127
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 72
+      loc: 1128
+      sloc: 991
+      churn: 4
+      lineChurn: 1240
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,31 +229,8 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
-    type: background-worker
-    name: ElasticSearchAuthTransport.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchAuthTransport.test.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 194
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,235 +240,79 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5
       authors:
+        - email: florian.verdonck@outlook.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/types.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 46
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
-    type: background-worker
-    name: ElasticSearchClientOptions Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchClientOptions.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 233
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    type: background-worker
-    name: ElasticSearchClientWrapper Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchClientWrapper.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 236
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
-    type: background-worker
-    name: ElasticSearchClientWrapper.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchClientWrapper.test.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 391
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    type: background-worker
-    name: ElasticSearchSearchEngineIndexer.test Service
-    isTest: true
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngineIndexer.test.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 431
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    type: background-worker
-    name: ElasticSearchSearchEngineIndexer Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngineIndexer.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 268
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.008696444977452361
+      sinceDays: 365
   - entityRef: backstage/plugins/search-backend-module-elasticsearch/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/index.ts
+      filepath: plugins/search-backend-module-elasticsearch/src/index.ts
       containerId: search-backend-module-elasticsearch
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 57
+      complexity: 1
+      loc: 58
+      sloc: 35
+      churn: 3
+      lineChurn: 67
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -410,84 +322,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: florian.verdonck@outlook.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    type: background-worker
-    name: ElasticSearchSearchEngine Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngine.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 697
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
-    type: background-worker
-    name: ElasticSearchAuthTransport Service
-    isTest: false
-    properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchAuthTransport.ts
-      containerId: search-backend-module-elasticsearch
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 153
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.00023494427963278557
+      sinceDays: 365
   - entityRef: backstage/plugins/search-backend-module-elasticsearch/auth
     type: background-worker
-    name: auth Service
+    name: Auth
     isTest: false
     properties:
       filepath: plugins/search-backend-module-elasticsearch/src/auth.ts
@@ -495,14 +342,57 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 117
+      complexity: 1
+      loc: 118
+      sloc: 11
+      churn: 3
+      lineChurn: 236
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -512,16 +402,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: florian.verdonck@outlook.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0008275649252736926
+      sinceDays: 365
   - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
-    name: alpha Service (External)
+    name: Alpha (External)
     external: true
     properties:
       filepath: plugins/search-backend-node/src/alpha.ts
@@ -533,10 +426,10 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/search-backend-node/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/search-backend-node/src/test-utils/index.ts
+      filepath: plugins/search-backend-node/src/index.ts
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
@@ -545,7 +438,7 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/search-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/search-common/src/index.ts
@@ -561,7 +454,7 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
   - from: backstage/plugins/search-backend-module-elasticsearch/module
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+    to: backstage/plugins/search-backend-module-elasticsearch/engines
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/search-backend-module-elasticsearch/module
@@ -572,132 +465,24 @@ dependencies:
     to: backstage/plugins/search-backend-module-elasticsearch/module
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine-test
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport-test
+  - from: backstage/plugins/search-backend-module-elasticsearch/engines
     to: backstage/plugins/search-backend-module-elasticsearch/auth
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    to: backstage/plugins/search-backend-module-elasticsearch/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper-test
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
+  - from: backstage/plugins/search-backend-module-elasticsearch/engines
     to: backstage/plugins/search-backend-node/index
     type: direct-call
     description: '@backstage/plugin-search-backend-node'
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer-test
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    to: backstage/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
+  - from: backstage/plugins/search-backend-module-elasticsearch/engines
     to: backstage/plugins/search-common/index
     type: direct-call
     description: '@backstage/plugin-search-common'
-  - from: backstage/plugins/search-backend-module-elasticsearch/index
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/index
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/index
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/index
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/index
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/index
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/index
-    to: backstage/plugins/search-backend-module-elasticsearch/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: backstage/plugins/search-common/index
-    type: direct-call
-    description: '@backstage/plugin-search-common'
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: backstage/plugins/search-backend-node/index
-    type: direct-call
-    description: '@backstage/plugin-search-backend-node'
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientwrapper
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: backstage/plugins/search-backend-module-elasticsearch/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengineindexer
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
+  - from: backstage/plugins/search-backend-module-elasticsearch/engines
     to: backstage/plugins/search-backend-module-elasticsearch/auth
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchsearchengine
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
+  - from: backstage/plugins/search-backend-module-elasticsearch/engines
     to: backstage/plugins/search-backend-module-elasticsearch/auth
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/search-backend-module-elasticsearch/elasticsearchauthtransport
-    to: backstage/plugins/search-backend-module-elasticsearch/elasticsearchclientoptions
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/search-backend-module-elasticsearch/index
@@ -706,5 +491,13 @@ dependencies:
     description: Calls module / service
   - from: backstage/plugins/search-backend-module-elasticsearch/index
     to: backstage/plugins/search-backend-module-elasticsearch/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/engines
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-elasticsearch/index
+    to: backstage/plugins/search-backend-module-elasticsearch/engines
     type: direct-call
     description: Calls module / service
