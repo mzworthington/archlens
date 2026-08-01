@@ -141,10 +141,37 @@ function applyProxyBoundaryExpansion(
   return { schema: workingSchema, scopeRefs: scope };
 }
 
+/** Enough rounds for deep home-diagram chains (each round expands ~2 proxy hops). */
+const MAX_PROXY_CLOSURE_ROUNDS = 6;
+
+function collectMissingWorkspaceEntities(
+  schema: SystemSchema,
+  scopeRefs: Iterable<EntityRef>,
+  index: ReturnType<typeof buildWorkspaceEntityIndex>
+): WorkspaceEntity[] {
+  const onDiagram = new Set(schema.nodes.map(n => n.entityRef));
+  const toMaterialize: WorkspaceEntity[] = [];
+
+  for (const ref of scopeRefs) {
+    if (onDiagram.has(ref)) continue;
+    const entity = index.byRef.get(ref);
+    if (entity) toMaterialize.push(entity);
+  }
+
+  return toMaterialize.sort((a, b) => a.entityRef.localeCompare(b.entityRef));
+}
+
+function sameEntityRefSet(a: Set<EntityRef>, b: Set<EntityRef>): boolean {
+  if (a.size !== b.size) return false;
+  for (const ref of a) {
+    if (!b.has(ref)) return false;
+  }
+  return true;
+}
+
 /**
- * Build an enriched schema for ChaosLens simulation: materialize direct external
- * neighbors of the fault target that exist in the workspace but are missing from
- * the active diagram.
+ * Build an enriched schema for ChaosLens simulation: materialize external neighbors
+ * and expand through proxy home diagrams (Phase 3) until the closure stabilizes.
  */
 export function buildSimulationSchema(
   activeSchema: SystemSchema,
@@ -177,32 +204,43 @@ export function buildSimulationSchemaForFaults(
     scopeRefs = collectSimulationScopeRefs(workingSchema, faultTargets);
   }
 
-  ({ schema: workingSchema, scopeRefs } = applyProxyBoundaryExpansion(
-    workingSchema,
-    scopeRefs,
-    faultTargets,
-    loadedSystems
-  ));
+  const materializedByRef = new Map<EntityRef, WorkspaceEntity>();
+  let enriched = workingSchema;
+  let depCount = enriched.dependencies?.length ?? 0;
 
-  const onDiagram = new Set(workingSchema.nodes.map(n => n.entityRef));
-  const toMaterialize: WorkspaceEntity[] = [];
+  for (let round = 0; round < MAX_PROXY_CLOSURE_ROUNDS; round++) {
+    ({ schema: enriched, scopeRefs } = applyProxyBoundaryExpansion(
+      enriched,
+      scopeRefs,
+      faultTargets,
+      loadedSystems
+    ));
 
-  for (const ref of scopeRefs) {
-    if (onDiagram.has(ref)) continue;
-    const entity = index.byRef.get(ref);
-    if (entity) toMaterialize.push(entity);
+    const missing = collectMissingWorkspaceEntities(enriched, scopeRefs, index);
+    const nextDepCount = enriched.dependencies?.length ?? 0;
+
+    if (missing.length === 0) {
+      const nextScope = collectSimulationScopeRefs(enriched, faultTargets);
+      if (sameEntityRefSet(nextScope, scopeRefs) && nextDepCount === depCount) {
+        scopeRefs = nextScope;
+        break;
+      }
+      scopeRefs = nextScope;
+      depCount = nextDepCount;
+      continue;
+    }
+
+    for (const entity of missing) {
+      materializedByRef.set(entity.entityRef, entity);
+    }
+    enriched = enrichSchemaWithEntities(enriched, missing);
+    scopeRefs = collectSimulationScopeRefs(enriched, faultTargets);
+    depCount = enriched.dependencies?.length ?? 0;
   }
 
-  const materialized = toMaterialize.sort((a, b) => a.entityRef.localeCompare(b.entityRef));
-  let enriched = enrichSchemaWithEntities(workingSchema, materialized);
-
-  ({ schema: enriched, scopeRefs } = applyProxyBoundaryExpansion(
-    enriched,
-    collectSimulationScopeRefs(enriched, faultTargets),
-    faultTargets,
-    loadedSystems
-  ));
-
+  const materialized = [...materializedByRef.values()].sort((a, b) =>
+    a.entityRef.localeCompare(b.entityRef)
+  );
   const scope = [...collectSimulationScopeRefs(enriched, faultTargets)];
 
   return {

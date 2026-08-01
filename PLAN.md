@@ -144,7 +144,7 @@ The best approach isn't choosing only Go or TypeScript, but leveraging both wher
 
 ## 7. Implementation Status & Remaining Work
 
-_Last updated: August 2026 (external simulation scope Phase 2)_
+_Last updated: August 2026 (external simulation scope Phase 3)_
 
 **Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
 
@@ -166,6 +166,7 @@ _Last updated: August 2026 (external simulation scope Phase 2)_
 | Stress-test harness                                                 | ✅     | Vitest regression in `/core/resilience` loads fixtures, asserts SLA/SPOF/latency (KR3: &lt;5s).                                               |
 | External simulation scope (Phase 1)                                 | ✅     | `buildSimulationSchema` enriches graph with direct external neighbors; designer materializes on Simulate.                                     |
 | External simulation scope (Phase 2)                                 | ✅     | Upstream transitive closure (`collectSimulationUpstreamRefs`); force-show scope + dim out-of-scope on canvas via `resilienceSimulationScope`. |
+| External simulation scope (Phase 3)                                 | ✅     | Expand through external proxies into home diagrams; expand→materialize to a bounded fixpoint so deep home chains stay on the sim graph.       |
 
 ### Iteration 2 (Version 2.0)
 
@@ -197,10 +198,9 @@ _Last updated: August 2026 (external simulation scope Phase 2)_
 ### Suggested next slice
 
 1. ⏳ **AdviceLens Phase 4** — CI guardrails and `archlens resilience` PR gate.
-2. ⏳ **External simulation scope Phase 3** — expand through external proxies into home diagrams (cross-boundary subgraph).
-3. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
-4. ⏳ OTel ingestion, then resilience comparison and executive mode.
-5. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
+2. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
+3. ⏳ OTel ingestion, then resilience comparison and executive mode.
+4. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
 
 ## 9. AdviceLens
 
@@ -360,11 +360,11 @@ ChaosLens runs against `schema.nodes` + `schema.dependencies`. Edges whose endpo
 
 Three blind spots:
 
-| Layer                    | Symptom                                                                                                          |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| **Unresolved endpoints** | `dependencies` reference `entityRef` values not in `schema.nodes` — propagation cannot cross the edge.           |
-| **Hidden externals**     | External proxies on schema/canvas filtered by **Show Externals** toggles — heat computed but not visible.        |
-| **Proxy boundary**       | Materialized externals are leaves — downstream deps from the external's home diagram are not expanded (Phase 3). |
+| Layer                    | Symptom                                                                                                   |
+| ------------------------ | --------------------------------------------------------------------------------------------------------- |
+| **Unresolved endpoints** | `dependencies` reference `entityRef` values not in `schema.nodes` — propagation cannot cross the edge.    |
+| **Hidden externals**     | External proxies on schema/canvas filtered by **Show Externals** toggles — heat computed but not visible. |
+| **Proxy boundary**       | Without home-diagram expansion, materialized externals stay leaves and under-report blast radius.         |
 
 ### Design
 
@@ -384,7 +384,7 @@ User selects node → buildSimulationSchema → materialize missing neighbors on
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | **1** | Direct dependency neighbors of fault target + unresolved endpoints on those edges; resolve from workspace index; materialize on canvas; simulate enriched schema. | ✅ Done |
 | **2** | Upstream transitive closure; force-show scope during resilience mode; dim out-of-scope nodes.                                                                     | ✅ Done |
-| **3** | Expand through external proxies into home diagrams (cross-boundary subgraph).                                                                                     | ⏳      |
+| **3** | Expand through external proxies into home diagrams (cross-boundary subgraph); rematerialize until closure stabilizes.                                             | ✅ Done |
 
 ### Core API (Phase 1)
 
