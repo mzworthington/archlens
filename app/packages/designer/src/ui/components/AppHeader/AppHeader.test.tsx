@@ -30,6 +30,7 @@ describe('AppHeader', () => {
     const menu = mobileNav();
     expect(menu.getByRole('link', { name: 'Canvas' })).toBeInTheDocument();
     expect(menu.getByRole('link', { name: 'TraceLens' })).toBeInTheDocument();
+    expect(menu.getByRole('link', { name: 'AdviceLens' })).toBeInTheDocument();
     expect(menu.getByRole('link', { name: 'Docs' })).toBeInTheDocument();
     expect(menu.queryByRole('link', { name: 'Design system' })).not.toBeInTheDocument();
   });

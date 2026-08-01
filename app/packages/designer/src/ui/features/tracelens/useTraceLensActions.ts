@@ -15,6 +15,7 @@ import { applyRefactorPlanAsDraft } from '../../../application/forensics/applyRe
 import { openSimulateFailureOnCanvas } from '../../../application/forensics/openSimulateFailureOnCanvas';
 import { useBlueprintStore } from '../../../application/store/store';
 import { buildTraceLensUrl } from '../forensics/traceLensUrl';
+import { buildAdviceLensUrl } from '../forensics/adviceLensUrl';
 import type { TraceLensPanelModel } from './useTraceLensPanelModel';
 
 export function useTraceLensActions(model: TraceLensPanelModel) {
@@ -62,10 +63,10 @@ export function useTraceLensActions(model: TraceLensPanelModel) {
       if (!plan.boundary) return;
       setActivePlan({ offender, ...plan });
       const planScope = scopeEntityRef ?? offender.entityRef;
+      const buildUrl = traceLensView === 'recommendations' ? buildAdviceLensUrl : buildTraceLensUrl;
       setLocation(
-        buildTraceLensUrl(planScope, {
+        buildUrl(planScope, {
           planEntityRef: offender.entityRef,
-          view: traceLensView === 'recommendations' ? 'recommendations' : null,
         }),
         {
           replace: true,

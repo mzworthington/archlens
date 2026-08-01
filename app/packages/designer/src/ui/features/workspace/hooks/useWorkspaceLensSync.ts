@@ -4,6 +4,12 @@ import { useBlueprintStore } from '../../../../application/store/store';
 import { workspaceEntityRefFromPath } from '../../../../application/navigation/workspaceUrl';
 import { buildTraceLensUrl, isTraceLensUrl } from '../../forensics/traceLensUrl';
 import {
+  buildAdviceLensUrl,
+  isAdviceLensUrl,
+  isEstateLensUrl,
+  redirectLegacyAdviceLensUrl,
+} from '../../forensics/adviceLensUrl';
+import {
   buildChaosLensUrl,
   clearChaosLensSearchParams,
   isChaosLensUrl,
@@ -36,8 +42,22 @@ export function useWorkspaceLensSync(): void {
     setLocation(redirectLegacyResilienceUrl(location, search), { replace: true });
   }, [location, search, setLocation]);
 
+  // Legacy `?lens=tracelens&view=recommendations` → `?lens=advicelens`
   useEffect(() => {
-    const active = isTraceLensUrl(location, search);
+    const query = search.startsWith('?') ? search.slice(1) : search;
+    const params = new URLSearchParams(query);
+    if (params.get('lens') !== 'tracelens' || params.get('view') !== 'recommendations') return;
+    setLocation(redirectLegacyAdviceLensUrl(location, search), { replace: true });
+  }, [location, search, setLocation]);
+
+  // Legacy `/advicelens` paths → workspace AdviceLens lens
+  useEffect(() => {
+    if (location !== '/advicelens' && !location.startsWith('/advicelens/')) return;
+    setLocation(redirectLegacyAdviceLensUrl(location, search), { replace: true });
+  }, [location, search, setLocation]);
+
+  useEffect(() => {
+    const active = isEstateLensUrl(location, search);
     if (active !== isTraceLensMode) {
       setTraceLensMode(active);
     }
@@ -50,6 +70,7 @@ export function useWorkspaceLensSync(): void {
     const active = isChaosLensUrl(location, search);
     if (!active) return;
     if (isTraceLensUrl(location, search)) return;
+    if (isAdviceLensUrl(location, search)) return;
 
     const parsed = parseChaosLensUrl(location, search);
     const state = useBlueprintStore.getState();
@@ -69,6 +90,7 @@ export function useWorkspaceLensSync(): void {
     if (!isResilienceMode) return;
     if (applyingUrlRef.current) return;
     if (isTraceLensUrl(location, search)) return;
+    if (isAdviceLensUrl(location, search)) return;
 
     const entityRef = workspaceEntityRefFromPath(location);
     const desired = buildChaosLensUrl(entityRef, { faults: resilienceFaults });
@@ -89,6 +111,14 @@ export function useTraceLensNavigation() {
     [setLocation, setTraceLensMode]
   );
 
+  const enterAdviceLens = useCallback(
+    (scopeEntityRef?: string | null, options?: Parameters<typeof buildAdviceLensUrl>[1]) => {
+      setTraceLensMode(true);
+      setLocation(buildAdviceLensUrl(scopeEntityRef, options));
+    },
+    [setLocation, setTraceLensMode]
+  );
+
   const exitTraceLens = useCallback(() => {
     setTraceLensMode(false);
     const params = new URLSearchParams(window.location.search);
@@ -96,11 +126,15 @@ export function useTraceLensNavigation() {
     params.delete('view');
     params.delete('plan');
     params.delete('source');
+    params.delete('fault');
+    params.delete('type');
+    params.delete('severity');
+    params.delete('faults');
     const query = params.toString();
     setLocation(`${window.location.pathname}${query ? `?${query}` : ''}`, { replace: true });
   }, [setLocation, setTraceLensMode]);
 
-  return { enterTraceLens, exitTraceLens };
+  return { enterTraceLens, enterAdviceLens, exitTraceLens };
 }
 
 export function useChaosLensNavigation() {

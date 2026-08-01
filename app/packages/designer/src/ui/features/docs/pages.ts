@@ -11,7 +11,7 @@ import guideAdviceLensMd from '@docs/guide/advicelens.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 import advicelensEngineMd from '@docs/advicelens-engine.md?raw';
-import { ADVICELENS_ENTRY_URL } from '../forensics/traceLensUrl';
+import { ADVICELENS_ENTRY_URL } from '../forensics/adviceLensUrl';
 
 export type DocsNavItem = {
   label: string;

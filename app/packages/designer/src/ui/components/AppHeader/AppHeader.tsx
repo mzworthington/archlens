@@ -1,39 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Menu, X } from 'lucide-react';
-import { BrandMark } from './BrandMark';
+import { BrandMark, type BrandLensTab } from './BrandMark';
 import { isWorkspacePath } from '../../../application/navigation/workspaceUrl';
+import { isAdviceLensUrl } from '../../features/forensics/adviceLensUrl';
+import { isTraceLensUrl } from '../../features/forensics/traceLensUrl';
+import { isChaosLensUrl } from '../../../application/resilience/chaosLensUrl';
 
 type Props = {
   badge?: string;
+  lensTabs?: BrandLensTab[];
   subtitle?: string;
   children?: React.ReactNode;
   sticky?: boolean;
 };
 
+function workspaceLens(location: string): string | null {
+  const search = typeof window !== 'undefined' ? window.location.search : '';
+  if (isAdviceLensUrl(location, search)) return 'advicelens';
+  if (isTraceLensUrl(location, search)) return 'tracelens';
+  if (isChaosLensUrl(location, search)) return 'chaoslens';
+  return null;
+}
+
 const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => boolean }[] = [
   {
     href: '/workspace',
     label: 'Canvas',
-    isActive: loc => {
-      if (!isWorkspacePath(loc)) return false;
-      const params = new URLSearchParams(window.location.search);
-      return params.get('lens') !== 'tracelens';
-    },
+    isActive: loc => isWorkspacePath(loc) && workspaceLens(loc) === null,
   },
   {
     href: '/workspace?lens=tracelens',
     label: 'TraceLens',
-    isActive: loc => {
-      if (loc === '/tracelens' || loc.startsWith('/tracelens/')) return true;
-      if (!isWorkspacePath(loc)) return false;
-      return new URLSearchParams(window.location.search).get('lens') === 'tracelens';
-    },
+    isActive: loc => workspaceLens(loc) === 'tracelens',
+  },
+  {
+    href: '/workspace?lens=advicelens',
+    label: 'AdviceLens',
+    isActive: loc => workspaceLens(loc) === 'advicelens',
   },
   {
     href: '/',
     label: 'Docs',
-    isActive: loc => !isWorkspacePath(loc) && !loc.startsWith('/tracelens'),
+    isActive: loc =>
+      !isWorkspacePath(loc) && !loc.startsWith('/tracelens') && !loc.startsWith('/advicelens'),
   },
 ];
 
@@ -48,7 +58,13 @@ const navLinkClass = (active: boolean, mobile = false) => {
  * Shared top chrome - brand, optional mid content, and site nav.
  * Desktop: inline links. Mobile: burger opens an accordion nav panel.
  */
-export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky = false }) => {
+export const AppHeader: React.FC<Props> = ({
+  badge,
+  lensTabs,
+  subtitle,
+  children,
+  sticky = false,
+}) => {
   const [location] = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -73,7 +89,7 @@ export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky =
     >
       <div className="p-4 md:px-8 flex items-center justify-between gap-4">
         <div className="flex items-center gap-4 md:gap-6 min-w-0 flex-1">
-          <BrandMark badge={badge} subtitle={subtitle} />
+          <BrandMark badge={badge} lensTabs={lensTabs} subtitle={subtitle} />
           {children ? (
             <div className="min-w-0 flex items-center gap-3 flex-1">{children}</div>
           ) : null}

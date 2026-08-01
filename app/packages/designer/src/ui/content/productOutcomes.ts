@@ -28,7 +28,7 @@ export const WORKSPACE_STARTUP = {
 } as const;
 
 export const TRACE_LENS_HERO = {
-  pageTitle: 'TraceLens',
+  pageTitle: 'Forensics',
   offenders: {
     sectionTitle: 'Worst offenders',
     body: 'Estate-wide ranking by git metrics, temporal coupling, and blueprint dependency hotspots on every loaded diagram. Find nodes that amplify outage risk before you refactor.',

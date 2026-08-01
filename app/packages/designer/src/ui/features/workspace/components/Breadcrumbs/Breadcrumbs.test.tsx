@@ -295,6 +295,131 @@ describe('Breadcrumbs Component', () => {
     expect(screen.getByText('Core Service Components')).toBeInTheDocument();
   });
 
+  it('preserves TraceLens in breadcrumb links while the lens is active', () => {
+    const { hook } = memoryLocation({
+      path: '/workspace/golden-paths/golden-journey/catalog-platform/catalog-api-components?lens=tracelens',
+    });
+
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'golden-journey/context.yaml',
+          name: 'Golden Paths',
+          schema: {
+            name: 'Golden Paths',
+            version: '1.0.0',
+            level: 'context',
+            entityRef: 'golden-paths',
+            nodes: [
+              { entityRef: 'golden-paths/golden-journey', type: 'group', name: 'Golden Journey' },
+            ],
+            dependencies: [],
+          },
+        },
+        {
+          path: 'golden-journey/containers.yaml',
+          name: 'Golden Journey Estate',
+          schema: {
+            name: 'Golden Journey Estate',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'golden-paths/golden-journey',
+            nodes: [
+              {
+                entityRef: 'golden-paths/golden-journey/catalog-platform',
+                type: 'group',
+                name: 'Catalog Platform',
+              },
+            ],
+            dependencies: [],
+          },
+        },
+        {
+          path: 'golden-journey/catalog-platform/containers.yaml',
+          name: 'Catalog Platform',
+          schema: {
+            name: 'Catalog Platform',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'golden-paths/golden-journey/catalog-platform',
+            nodes: [
+              {
+                entityRef: 'golden-paths/golden-journey/catalog-platform/catalog-api',
+                type: 'rest-api',
+                name: 'Catalog API',
+              },
+            ],
+            dependencies: [],
+          },
+        },
+        {
+          path: 'golden-journey/catalog-platform/catalog-api-components.yaml',
+          name: 'Catalog API Components',
+          schema: {
+            name: 'Catalog API Components',
+            version: '1.0.0',
+            level: 'component',
+            entityRef: 'golden-paths/golden-journey/catalog-platform/catalog-api',
+            nodes: [],
+            dependencies: [],
+          },
+        },
+      ],
+      workspaceCatalog: [
+        {
+          path: 'golden-journey/context.yaml',
+          name: 'Golden Paths',
+          level: 'context',
+          entityRef: 'golden-paths',
+          nodeEntityRefs: ['golden-paths/golden-journey'],
+        },
+        {
+          path: 'golden-journey/containers.yaml',
+          name: 'Golden Journey Estate',
+          level: 'container',
+          entityRef: 'golden-paths/golden-journey',
+          nodeEntityRefs: ['golden-paths/golden-journey/catalog-platform'],
+          parentEntityRef: 'golden-paths',
+        },
+        {
+          path: 'golden-journey/catalog-platform/containers.yaml',
+          name: 'Catalog Platform',
+          level: 'container',
+          entityRef: 'golden-paths/golden-journey/catalog-platform',
+          nodeEntityRefs: ['golden-paths/golden-journey/catalog-platform/catalog-api'],
+          parentEntityRef: 'golden-paths/golden-journey',
+        },
+        {
+          path: 'golden-journey/catalog-platform/catalog-api-components.yaml',
+          name: 'Catalog API Components',
+          level: 'component',
+          entityRef: 'golden-paths/golden-journey/catalog-platform/catalog-api',
+          nodeEntityRefs: [],
+          parentEntityRef: 'golden-paths/golden-journey/catalog-platform',
+        },
+      ],
+      currentFilePath: 'golden-journey/catalog-platform/catalog-api-components.yaml',
+      isWorkspaceOpen: true,
+      workspaceName: 'blueprints',
+      isSampleWorkspace: true,
+    });
+
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema(useBlueprintStore.getState().loadedSystems[3]!.schema);
+
+    render(
+      <Router hook={hook}>
+        <Breadcrumbs />
+      </Router>
+    );
+
+    const goldenPathsLink = screen.getAllByText('Golden Paths').find(el => el.closest('a'));
+    expect(goldenPathsLink?.closest('a')).toHaveAttribute(
+      'href',
+      '/workspace/golden-paths?lens=tracelens'
+    );
+  });
+
   it('shows a compact summary and opens the full trail in a mobile menu', () => {
     const { hook } = memoryLocation({ path: '/workspace' });
     render(

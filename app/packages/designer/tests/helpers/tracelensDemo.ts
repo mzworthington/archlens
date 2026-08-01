@@ -10,7 +10,7 @@ export async function runTraceLensDemo(page: Page) {
   url.searchParams.set('lens', 'tracelens');
   await page.goto(url.toString());
   await expect(page).toHaveURL(/lens=tracelens/);
-  await expect(page.getByRole('heading', { name: 'TraceLens' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Forensics' })).toBeVisible();
 
   const firstRow = page
     .locator('[data-testid^="estate-row-"], [data-testid^="offender-row-"]')
