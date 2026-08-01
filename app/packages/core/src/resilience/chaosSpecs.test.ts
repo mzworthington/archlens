@@ -21,7 +21,7 @@ function loadStressDiagram(diagramRef: string) {
     if (!fs.existsSync(dir)) continue;
     const files = fs
       .readdirSync(dir)
-      .filter(name => name.endsWith('.yaml'))
+      .filter(name => name.endsWith('.yaml') && !name.includes('-overlay.'))
       .sort();
     for (const file of files) {
       const schema = parseSchemaFromYaml(fs.readFileSync(path.join(dir, file), 'utf8'));
