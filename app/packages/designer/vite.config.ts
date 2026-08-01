@@ -201,7 +201,6 @@ export default defineConfig({
         // Keep /schemas/* as real JSON (IDE validators + browser), not the SPA shell.
         navigateFallbackDenylist: [/^\/schemas\//],
         cleanupOutdatedCaches: true,
-        // Bundled sandbox blueprints inflate the main chunk (~17MB); allow Workbox to precache it.
         maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
       },
     }),

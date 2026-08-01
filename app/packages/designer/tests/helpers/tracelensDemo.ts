@@ -7,7 +7,7 @@ export async function runTraceLensDemo(page: Page) {
   await expect(page.getByRole('heading', { name: 'Worst offenders' })).toBeVisible();
 
   if (await page.getByTestId('workspace-entry').isVisible()) {
-    await page.getByTestId('workspace-load-sandbox-golden-paths').click();
+    await page.getByTestId('workspace-open-sample').click();
   }
 
   await expect(page.getByTestId('forensics-workspace-summary')).toBeVisible({ timeout: 60_000 });

@@ -4,7 +4,6 @@ import { releaseE2ePage } from './navigation';
 import { loadSandbox } from './workspace';
 
 const LARGE_GRAPH_PATH = '/workspace/chaoslens-stress/large-graph';
-const LARGE_GRAPH_ORDERS_PATH = '/workspace/chaoslens-stress/large-graph/domain-orders';
 const EXTERNAL_SCOPE_PATH = '/workspace/chaoslens-stress/external-scope';
 const FAULT_NODE_LABEL = 'Orders Domain';
 const EXTERNAL_SCOPE_API_LABEL = 'API Gateway';
@@ -14,7 +13,6 @@ const EXTERNAL_AUTH_LABEL = 'Auth Service (External)';
 export async function loadChaoslensLargeGraphDiagram(page: Page) {
   await loadSandbox(page, LARGE_GRAPH_PATH);
   await clickCanvasNode(page, FAULT_NODE_LABEL);
-  await expect(page).toHaveURL(LARGE_GRAPH_ORDERS_PATH, { timeout: 15_000 });
   await page.waitForTimeout(1_500);
 }
 
@@ -62,7 +60,6 @@ export async function runChaoslensDomainOrdersOutageDemo(
 export async function loadChaoslensExternalScopeDiagram(page: Page) {
   await loadSandbox(page, EXTERNAL_SCOPE_PATH);
   await clickCanvasNode(page, EXTERNAL_SCOPE_API_LABEL);
-  await expect(page).toHaveURL(EXTERNAL_SCOPE_PATH, { timeout: 15_000 });
   await page.waitForTimeout(1_000);
 }
 

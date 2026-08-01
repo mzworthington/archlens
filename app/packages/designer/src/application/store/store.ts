@@ -13,7 +13,7 @@ export type {
 
 export { resolveRelativePath, getFileName } from '@archlens/core';
 
-export { defaultInitialSchema, SANDBOX_DEFINITIONS } from './defaultData';
+export { GOLDEN_PATHS_ENTITY_REF } from './goldenPathsSample';
 
 export interface BlueprintState extends UiState, DiagramState, IoState, ResilienceState {}
 

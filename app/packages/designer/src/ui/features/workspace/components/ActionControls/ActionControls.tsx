@@ -18,7 +18,6 @@ import {
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { useToolbarMenu } from '../WorkspaceToolbar/useToolbarMenu';
 import { ToolbarMenuPortal } from '../WorkspaceToolbar/ToolbarMenuPortal';
-import { SystemSelector } from '../SystemSelector/SystemSelector';
 import { DiagramExportMenuItems } from '../WorkspaceToolbar/DiagramExportMenuItems';
 
 const iconBtnClass =
@@ -396,8 +395,6 @@ export const ToolbarOverflowMenu: React.FC = () => {
         menuRef={menuRef}
         menuClassName={menuPanelClass}
       >
-        <SystemSelector variant="menu" />
-
         <button
           type="button"
           role="menuitem"

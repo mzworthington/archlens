@@ -1,27 +1,24 @@
 import { EntityRef, listUnresolvedDependencyEndpoints } from '@archlens/core';
 import { materializeUnresolvedSimulationEndpoints } from '@archlens/core/resilience';
 import type { BlueprintState } from '../store/store';
-import {
-  ensureBundledSystemLoaded,
-  guessBundledPathForEntityRef,
-} from '../store/states/diagramState/bundledBlueprintLoader';
+import { ensureSystemLoaded } from '../store/states/ioState/ensureSystemLoaded';
 
-async function ensureBundledSystemsForEntityRefs(
+async function ensureWorkspaceSystemsForEntityRefs(
   entityRefs: string[],
   get: () => BlueprintState,
   set: (partial: Partial<BlueprintState>) => void
 ): Promise<void> {
-  if (get().isWorkspaceOpen) return;
+  if (!get().isWorkspaceOpen) return;
 
-  const { logger } = get();
+  const { logger, workspacePort, workingCopyPort } = get();
   const pathsToLoad = new Set<string>();
 
   for (const ref of entityRefs) {
     let candidate: string | null = ref;
     while (candidate) {
-      const path = guessBundledPathForEntityRef(candidate);
-      if (path && !get().loadedSystems.some(system => system.path === path)) {
-        pathsToLoad.add(path);
+      const catalogPath = get().workspaceCatalog.find(entry => entry.entityRef === candidate)?.path;
+      if (catalogPath && !get().loadedSystems.some(system => system.path === catalogPath)) {
+        pathsToLoad.add(catalogPath);
       }
       const parent = EntityRef.getParent(candidate);
       if (!parent || parent === candidate) break;
@@ -30,7 +27,13 @@ async function ensureBundledSystemsForEntityRefs(
   }
 
   for (const path of pathsToLoad) {
-    await ensureBundledSystemLoaded(path, { get, set, logger });
+    await ensureSystemLoaded(path, {
+      workspacePort,
+      workingCopyPort,
+      logger,
+      get,
+      set,
+    });
   }
 }
 
@@ -44,7 +47,7 @@ export async function syncResilienceExternalsToCanvas(
 
   if (unresolvedRefs.length === 0) return;
 
-  await ensureBundledSystemsForEntityRefs(unresolvedRefs, get, set);
+  await ensureWorkspaceSystemsForEntityRefs(unresolvedRefs, get, set);
 
   const { materialized } = materializeUnresolvedSimulationEndpoints(schema, get().loadedSystems);
 

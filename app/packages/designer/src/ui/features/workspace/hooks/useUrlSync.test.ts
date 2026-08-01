@@ -66,86 +66,25 @@ describe('useUrlSync', () => {
     });
   });
 
-  it('updates the URL when the user selects a different node on the canvas', () => {
+  it('does not update the URL when the user selects a node on the canvas', () => {
     const { rerender } = renderHook(() => useUrlSync());
 
     useBlueprintStore.getState().selectNode('blueprint/app/cli/ports');
     rerender();
 
-    expect(setLocation).toHaveBeenCalledWith('/workspace/blueprint/app/cli/ports', {
-      replace: true,
-    });
+    expect(setLocation).not.toHaveBeenCalled();
     expect(useBlueprintStore.getState().selectedNodeId).toBe('blueprint/app/cli/ports');
   });
 
-  it('keeps the diagram URL when selecting an external node on the canvas', () => {
-    mockLocation = '/workspace/billing/orders';
-    mockRouteParams = { '*': 'billing/orders' };
+  it('selects a node when the URL names a node on the loaded diagram', () => {
+    renderHook(() => useUrlSync());
 
-    const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      name: 'Orders Components',
-      version: '1.0.0',
-      level: 'component',
-      entityRef: 'billing/orders',
-      nodes: [
-        { entityRef: 'billing/orders/checkout', type: 'component', name: 'Checkout' },
-        {
-          entityRef: 'billing/api',
-          type: 'rest-api',
-          name: 'Billing API',
-          external: true,
-        },
-      ],
-      dependencies: [],
-    });
-
-    useBlueprintStore.setState({
-      selectedNodeId: null,
-      currentFilePath: 'orders-components.yaml',
-      workspaceCatalog: [
-        {
-          path: 'orders-components.yaml',
-          name: 'Orders Components',
-          level: 'component',
-          entityRef: 'billing/orders',
-          nodeEntityRefs: ['billing/orders/checkout', 'billing/api'],
-        },
-        {
-          path: 'containers.yaml',
-          name: 'Billing Containers',
-          level: 'container',
-          entityRef: 'billing',
-          nodeEntityRefs: ['billing/api'],
-        },
-      ],
-      loadedSystems: [
-        {
-          path: 'orders-components.yaml',
-          name: 'Orders Components',
-          schema: useBlueprintStore.getState().schema,
-        },
-      ],
-      isWorkspaceOpen: true,
-      workspaceName: 'billing',
-      isStartupOpen: false,
-      systemSelectInFlight: null,
-      diagramLoadCount: 0,
-    });
-
-    const { rerender } = renderHook(() => useUrlSync());
-    setLocation.mockClear();
-
-    useBlueprintStore.getState().selectNode('billing/api');
-    rerender();
-
-    expect(useBlueprintStore.getState().selectedNodeId).toBe('billing/api');
-    expect(setLocation).not.toHaveBeenCalledWith('/workspace/billing/api', expect.anything());
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('blueprint/app/cli/nodefilesystem');
   });
 
-  it('keeps the diagram URL when selecting a node that has a child diagram (zoom is explicit)', () => {
-    mockLocation = '/workspace/billing';
-    mockRouteParams = { '*': 'billing' };
+  it('loads the owning diagram when the URL names a node on another file', async () => {
+    mockLocation = '/workspace/billing/api';
+    mockRouteParams = { '*': 'billing/api' };
 
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
@@ -206,17 +145,11 @@ describe('useUrlSync', () => {
     });
 
     const selectSystem = vi.spyOn(useBlueprintStore.getState(), 'selectSystem');
-    const { rerender } = renderHook(() => useUrlSync());
-    setLocation.mockClear();
-    selectSystem.mockClear();
+    renderHook(() => useUrlSync());
 
-    useBlueprintStore.getState().selectNode('billing/api');
-    rerender();
-
-    expect(useBlueprintStore.getState().selectedNodeId).toBe('billing/api');
-    expect(setLocation).not.toHaveBeenCalled();
-    expect(selectSystem).not.toHaveBeenCalled();
-    expect(useBlueprintStore.getState().currentFilePath).toBe('context.yaml');
+    await vi.waitFor(() => {
+      expect(selectSystem).toHaveBeenCalledWith('api-components.yaml');
+    });
   });
 
   it('selects the context diagram when the URL names a context but the canvas shows a child estate', async () => {
@@ -255,17 +188,17 @@ describe('useUrlSync', () => {
     useBlueprintStore.setState({
       schema: estateSchema,
       selectedNodeId: null,
-      currentFilePath: 'golden-journey/containers.yaml',
+      currentFilePath: 'containers.yaml',
       workspaceCatalog: [
         {
-          path: 'golden-journey/context.yaml',
+          path: 'context.yaml',
           name: 'Golden Paths',
           level: 'context',
           entityRef: 'golden-paths',
           nodeEntityRefs: ['golden-paths/golden-journey'],
         },
         {
-          path: 'golden-journey/containers.yaml',
+          path: 'containers.yaml',
           name: 'Golden Journey Estate',
           level: 'container',
           entityRef: 'golden-paths/golden-journey',
@@ -275,12 +208,12 @@ describe('useUrlSync', () => {
       ],
       loadedSystems: [
         {
-          path: 'golden-journey/context.yaml',
+          path: 'context.yaml',
           name: 'Golden Paths',
           schema: contextSchema,
         },
         {
-          path: 'golden-journey/containers.yaml',
+          path: 'containers.yaml',
           name: 'Golden Journey Estate',
           schema: estateSchema,
         },
@@ -296,7 +229,7 @@ describe('useUrlSync', () => {
     renderHook(() => useUrlSync());
 
     await vi.waitFor(() => {
-      expect(selectSystem).toHaveBeenCalledWith('golden-journey/context.yaml');
+      expect(selectSystem).toHaveBeenCalledWith('context.yaml');
     });
   });
 });

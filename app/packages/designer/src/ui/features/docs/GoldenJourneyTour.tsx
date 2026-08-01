@@ -204,11 +204,6 @@ export const GoldenJourneyTour: React.FC = () => {
             </li>
           ))}
         </ul>
-        <p className="mt-3 text-xs text-slate-500">
-          Shared dependency: <span className="text-slate-300">Payment Gateway</span> (external) —
-          fan-in from Checkout and Billing drives group-boundary blast radius and AdviceLens SPOF
-          ranking.
-        </p>
       </div>
 
       <div className="mb-8 overflow-hidden rounded-xl border border-[#00f0ff]/10 bg-[#061125]/40">
@@ -220,11 +215,6 @@ export const GoldenJourneyTour: React.FC = () => {
             (e.currentTarget as HTMLImageElement).style.display = 'none';
           }}
         />
-        <p className="border-t border-[#00f0ff]/10 px-4 py-3 text-xs text-slate-500">
-          Recording: <code className="text-slate-400">pnpm record:docs-media</code> (writes{' '}
-          <code className="text-slate-400">docs/screenshots/golden-journey.gif</code>). Follow the
-          steps below for the interactive tour.
-        </p>
       </div>
 
       <ol className="space-y-4">

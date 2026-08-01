@@ -27,7 +27,6 @@ import {
   positionExternalNodes,
 } from '@archlens/core/layout';
 import { ensureSystemLoaded } from './ioState/ensureSystemLoaded';
-import { ensureBundledSystemLoaded } from './diagramState/bundledBlueprintLoader';
 import {
   clearSessionLayout,
   getSessionLayout,
@@ -70,8 +69,6 @@ import { importSchemaContent } from './diagramState/importSchema';
 import type { MermaidImportPreview } from './diagramState/importMermaid';
 import type { IacImportPreview } from './diagramState/importIac';
 import { createDiagramInitialState } from './diagramState/initialState';
-import { reloadBundledSandbox } from './diagramState/loadBundledSandbox';
-import { GOLDEN_PATHS_CONTEXT_PATH, type SandboxContextPath } from '../defaultData';
 import { prefetchAllWorkspaceSystems } from './diagramState/prefetchWorkspaceSystems';
 import { applyRefactorBoundaryAsDraft } from '../../forensics/applyRefactorBoundaryAsDraft';
 import type { RefactorBoundary } from '@archlens/core/forensics';
@@ -101,6 +98,8 @@ export interface DiagramState {
   schemaVersionWarning: SchemaVersionAssessment | null;
   currentFilePath: string;
   isWorkspaceOpen: boolean;
+  /** Bundled Golden Paths sample (read-only; save downloads YAML). */
+  isSampleWorkspace: boolean;
   workspaceName: string;
   /** Lightweight workspace index (all diagrams). Full schemas live in loadedSystems. */
   workspaceCatalog: WorkspaceCatalogEntry[];
@@ -115,8 +114,6 @@ export interface DiagramState {
   layoutSessionId: number;
   /** Path currently being loaded by selectSystem (prevents URL-sync loops). */
   systemSelectInFlight: string | null;
-  /** Active bundled sandbox context path when not using a folder workspace. */
-  activeSandboxContextPath: SandboxContextPath | null;
 
   recordHistory: () => void;
   undo: () => void;
@@ -169,7 +166,6 @@ export interface DiagramState {
     engine?: import('../../../core').LayoutEngineId;
   }) => Promise<void>;
   markLayoutCustomized: () => void;
-  loadBundledSandbox: (contextPath?: SandboxContextPath) => Promise<void>;
   prefetchAllWorkspaceSystems: () => Promise<void>;
   applyRefactorBoundaryAsDraft: (boundary: RefactorBoundary) => boolean;
 }
@@ -190,6 +186,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   schemaVersionWarning: assessSchemaVersion(initial.schema.version),
   currentFilePath: initial.currentFilePath,
   isWorkspaceOpen: false,
+  isSampleWorkspace: false,
   workspaceName: '',
   workspaceCatalog: [],
   loadedSystems: initial.loadedSystems,
@@ -200,7 +197,6 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   layoutCustomized: false,
   layoutSessionId: 0,
   systemSelectInFlight: null,
-  activeSandboxContextPath: null,
 
   checkPendingChanges: async () => {
     const { currentFilePath, hasPendingChanges, workingCopyPort } = get();
@@ -285,21 +281,19 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     if (get().systemSelectInFlight === path) return;
 
     set({ systemSelectInFlight: path });
-    const { logger, isWorkspaceOpen, workspacePort, workingCopyPort } = get();
+    const { logger, workspacePort, workingCopyPort } = get();
     beginDiagramLoad(get, set, DIAGRAM_LOADING_MESSAGE);
     await yieldToUi();
 
     try {
       if (!get().loadedSystems.some(s => s.path === path)) {
-        const ok = isWorkspaceOpen
-          ? await ensureSystemLoaded(path, {
-              workspacePort,
-              workingCopyPort,
-              logger,
-              get,
-              set,
-            })
-          : await ensureBundledSystemLoaded(path, { get, set, logger });
+        const ok = await ensureSystemLoaded(path, {
+          workspacePort,
+          workingCopyPort,
+          logger,
+          get,
+          set,
+        });
         if (!ok) {
           logger.warn('System path not found in workspace', { path });
           return;
@@ -400,8 +394,6 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     set({ layoutSessionId: get().layoutSessionId + 1 });
   },
 
-  loadBundledSandbox: (contextPath?: SandboxContextPath) =>
-    reloadBundledSandbox(set, get, contextPath ?? GOLDEN_PATHS_CONTEXT_PATH),
   prefetchAllWorkspaceSystems: () => prefetchAllWorkspaceSystems(get, set),
   applyRefactorBoundaryAsDraft: boundary => applyRefactorBoundaryAsDraft(boundary, get, set),
 

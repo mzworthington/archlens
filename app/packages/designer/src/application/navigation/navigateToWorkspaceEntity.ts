@@ -7,7 +7,7 @@ export type NavigateToWorkspaceEntityActions = {
 
 /**
  * Navigate to `/workspace/<entityRef>`. Diagram load and node selection are handled
- * by `useUrlSync` from the URL alone so store updates do not race the router.
+ * Navigation sets `/workspace/<entityRef>`; diagram load runs from the URL in `useUrlSync`.
  * Returns false when the ref is not present in the loaded workspace catalog.
  */
 export function navigateToWorkspaceEntity(

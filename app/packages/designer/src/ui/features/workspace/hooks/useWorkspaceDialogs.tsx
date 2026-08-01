@@ -2,10 +2,7 @@ import React, { useCallback } from 'react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
-import {
-  getSandboxDefinition,
-  type SandboxContextPath,
-} from '../../../../application/store/defaultData';
+import { GOLDEN_PATHS_ENTITY_REF } from '../../../../application/store/goldenPathsSample';
 import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
 import { DiffMenu } from '../components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from '../components/ImportMermaidDialog/ImportMermaidDialog';
@@ -41,21 +38,16 @@ export function useWorkspaceDialogs(): React.ReactNode {
     childExternalsParentRef,
     isSourceCodeOpen,
     openWorkspaceDirectory,
-    loadBundledSandbox,
+    openBundledSample,
   } = useBlueprintStore();
 
-  const handleLoadSandbox = useCallback(
-    async (contextPath: SandboxContextPath) => {
-      const definition = getSandboxDefinition(contextPath);
-      if (!definition) return;
+  const handleOpenSample = useCallback(async () => {
+    const opened = await openBundledSample();
+    if (!opened) return;
 
-      await loadBundledSandbox(contextPath);
-      setIsStartupOpen(false);
-      await useBlueprintStore.getState().selectSystem(contextPath);
-      setLocation(buildWorkspaceEntityHref(definition.entityRef), { replace: true });
-    },
-    [loadBundledSandbox, setIsStartupOpen, setLocation]
-  );
+    setIsStartupOpen(false);
+    setLocation(buildWorkspaceEntityHref(GOLDEN_PATHS_ENTITY_REF), { replace: true });
+  }, [openBundledSample, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {
     try {
@@ -91,7 +83,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
       {isStartupOpen ? (
         <StartupWorkspaceDialog
           isOpen={isStartupOpen}
-          onLoadSandbox={handleLoadSandbox}
+          onOpenSample={() => void handleOpenSample()}
           onOpenDirectory={() => void handleOpenDirectory()}
         />
       ) : null}

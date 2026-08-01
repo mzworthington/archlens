@@ -1,27 +1,22 @@
 import { expect, type Page } from '@playwright/test';
-import { continueWithSandbox } from './toolbar';
+import { continueWithSample } from './toolbar';
 import { expectCanvasReady } from './canvas';
 import { gotoApp } from './navigation';
 
-/** Open the bundled sandbox and wait for the diagram canvas. */
-export async function loadSandbox(page: Page, path = '/workspace/application') {
+/** Open the Golden Paths sample and wait for the diagram canvas. */
+export async function loadSandbox(page: Page, path = '/workspace/golden-paths') {
   await gotoApp(page, '/workspace');
-  await continueWithSandbox(page);
+  await continueWithSample(page);
   await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/, { timeout: 60_000 });
-  if (path !== '/workspace/application') {
+  if (path !== '/workspace/golden-paths') {
     await gotoApp(page, path);
   }
   await expectCanvasReady(page);
 }
 
-/** Prevent first-visit auto sandbox load so the startup chooser stays visible. */
+/** Navigate to bare workspace so the startup chooser stays visible. */
 export async function keepStartupChooserOpen(page: Page) {
-  await page.addInitScript(() => {
-    localStorage.setItem(
-      'archlens.workspaceSession',
-      JSON.stringify({ mode: 'folder', workspaceName: 'E2E' })
-    );
-  });
+  await gotoApp(page, '/workspace');
 }
 
 /** Wait until TraceLens has ranked estate rows (prefers loaded diagrams to avoid full prefetch). */

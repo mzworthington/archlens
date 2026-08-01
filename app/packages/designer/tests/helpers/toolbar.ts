@@ -1,28 +1,23 @@
 import { expect, type Page } from '@playwright/test';
 import { gotoApp } from './navigation';
-import { keepStartupChooserOpen } from './workspace';
+import { expectCanvasReady } from './canvas';
 
-function isBareWorkspaceUrl(page: Page): boolean {
-  const { pathname } = new URL(page.url());
-  return pathname === '/workspace' || pathname === '/workspace/';
-}
-
-/** Dismiss the startup chooser by continuing with the bundled sandbox when shown. */
-export async function continueWithSandbox(page: Page) {
-  if (!isBareWorkspaceUrl(page)) return;
+/** Dismiss the startup chooser by opening the bundled Golden Paths sample when shown. */
+export async function continueWithSample(page: Page) {
+  if (page.url().includes('/workspace/golden-paths')) {
+    await expectCanvasReady(page);
+    return;
+  }
 
   const dialog = page.getByTestId('startup-workspace-dialog');
   if (!(await dialog.isVisible().catch(() => false))) {
-    if (page.url().includes('/workspace/application')) return;
-    try {
-      await dialog.waitFor({ state: 'visible', timeout: 10_000 });
-    } catch {
-      return;
-    }
+    await dialog.waitFor({ state: 'visible', timeout: 15_000 });
   }
 
-  await page.getByTestId('workspace-load-sandbox-golden-paths').click();
-  await expect(dialog).toHaveCount(0);
+  await page.getByTestId('workspace-open-sample').click();
+  await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/, { timeout: 90_000 });
+  await expect(dialog).toHaveCount(0, { timeout: 90_000 });
+  await expectCanvasReady(page);
 }
 
 async function openOverflowMenu(page: Page) {
@@ -33,13 +28,12 @@ async function openOverflowMenu(page: Page) {
 /** Opens a workspace folder via the startup chooser when present, else the toolbar overflow. */
 export async function openWorkspaceFolder(page: Page) {
   const startupOpen = page.getByTestId('workspace-open-directory');
-  // Prefer a quick visibility check - do not burn 5s waiting when the chooser is gone.
   if (await startupOpen.isVisible().catch(() => false)) {
     await startupOpen.click();
     return;
   }
 
-  await continueWithSandbox(page);
+  await continueWithSample(page);
 
   const folderItem = page.getByRole('menuitem', { name: 'Open Folder' });
 
@@ -51,11 +45,10 @@ export async function openWorkspaceFolder(page: Page) {
   await folderItem.click();
 }
 
-/** Opens Import Mermaid from the toolbar overflow menu (startup chooser no longer offers import). */
+/** Opens Import Mermaid from the toolbar overflow menu. */
 export async function openImportMermaid(page: Page) {
-  await keepStartupChooserOpen(page);
   await gotoApp(page, '/workspace');
-  await continueWithSandbox(page);
+  await continueWithSample(page);
 
   const importItem = page.getByRole('menuitem', { name: 'Import Mermaid' });
 

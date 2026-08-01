@@ -10,7 +10,6 @@ import { resolveSchemaOnWorkspaceOpen } from '../../../../infrastructure/db/sche
 import { cancelDefaultIdbSeed } from '../diagramState/defaultIdbSeed';
 
 import type { ToastNotification } from '../uiState';
-import { saveWorkspaceSession } from '../../workspaceSession';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
@@ -27,6 +26,7 @@ type OpenWorkspaceDeps = {
   setNotification?: (n: ToastNotification | null) => void;
   initSchema: (schema: SystemSchema) => void;
   set: (partial: Record<string, unknown>) => void;
+  isSampleWorkspace?: boolean;
 };
 
 /**
@@ -35,13 +35,14 @@ type OpenWorkspaceDeps = {
  * Other systems are loaded on demand via ensureSystemLoaded.
  */
 export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promise<boolean> {
-  const { logger, setNotification, initSchema, set } = deps;
-  logger.info('Opening workspace folder picker');
+  const { logger, setNotification, initSchema, set, isSampleWorkspace = false } = deps;
+  logger.info(
+    isSampleWorkspace ? 'Opening bundled sample workspace' : 'Opening workspace folder picker'
+  );
 
   const ok = await deps.selectDirectory();
   if (!ok) return false;
 
-  // Stop bundled-default IDB seeding from racing with real workspace paths.
   cancelDefaultIdbSeed();
 
   const files = await deps.readDirectoryFiles();
@@ -93,7 +94,6 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
     resolvedSystems.find(s => s.schema.level === 'container') ||
     resolvedSystems[0];
 
-  // Only draft-reconcile the entry diagram - other files load on navigation.
   const { systems, discardedDraftCount } = await applyDiskFirstDraftResolution(
     [firstSystem],
     resolved,
@@ -105,6 +105,7 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
 
   set({
     isWorkspaceOpen: true,
+    isSampleWorkspace,
     workspaceName,
     workspaceCatalog,
     loadedSystems: [entry],
@@ -112,14 +113,13 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
       [entry.path]: resolved.nodeRefMap[entry.path] || {},
     },
     currentFilePath: entry.path,
-    activeSandboxContextPath: null,
   });
   initSchema(entry.schema);
-  saveWorkspaceSession({ mode: 'folder', workspaceName });
 
   logger.info('Workspace opened with lazy system load', {
     catalogSize: workspaceCatalog.length,
     entryPath: entry.path,
+    isSampleWorkspace,
   });
 
   if (discardedDraftCount > 0) {
@@ -158,7 +158,6 @@ export async function applyDiskFirstDraftResolution(
     const fileRefMap = resolved.nodeRefMap[sys.path] || {};
     const diskSchema = sys.schema;
 
-    // Sequential Dexie writes avoid fake-indexeddb transaction deadlocks.
     try {
       await workingCopy.saveBaselineSchema({
         filePath: sys.path,

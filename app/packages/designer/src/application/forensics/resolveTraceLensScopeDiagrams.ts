@@ -3,13 +3,11 @@ import {
   resolveEntityHome,
   type WorkspaceCatalogEntry,
 } from '@archlens/core';
-import { resolveBundledPathsForEntityRef } from '../store/states/diagramState/bundledBlueprintLoader';
 
 /** YAML paths that must be loaded before TraceLens can rank a scoped entity subtree. */
 export function resolveDiagramPathsForEntityScope(
   entityRef: string,
-  catalog: readonly WorkspaceCatalogEntry[],
-  isWorkspaceOpen: boolean
+  catalog: readonly WorkspaceCatalogEntry[]
 ): string[] {
   if (!entityRef) return [];
 
@@ -17,14 +15,6 @@ export function resolveDiagramPathsForEntityScope(
 
   for (const candidateRef of resolveScopeEntityRefCandidates(entityRef, catalog)) {
     collectDiagramPathsForEntityRef(candidateRef, catalog, paths);
-  }
-
-  if (!isWorkspaceOpen) {
-    for (const candidateRef of resolveScopeEntityRefCandidates(entityRef, catalog)) {
-      for (const path of resolveBundledPathsForEntityRef(candidateRef)) {
-        paths.add(path);
-      }
-    }
   }
 
   return [...paths];

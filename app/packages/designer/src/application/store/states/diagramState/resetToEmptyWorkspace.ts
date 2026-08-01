@@ -1,6 +1,5 @@
 import type { SystemSchema } from '@archlens/core';
 import { cancelDefaultIdbSeed } from './defaultIdbSeed';
-import { clearWorkspaceSession } from '../../workspaceSession';
 
 export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = {
   name: 'Empty Workspace',
@@ -13,7 +12,7 @@ export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = {
 export const EMPTY_WORKSPACE_PATH = 'blueprint.yaml';
 
 /**
- * Replace the active diagram with a blank canvas (no sandbox systems).
+ * Replace the active diagram with a blank canvas (no workspace systems).
  * Used when starting from Mermaid import so merge is not against bundled demos.
  */
 export function resetToEmptyWorkspace(
@@ -24,7 +23,6 @@ export function resetToEmptyWorkspace(
   }
 ): void {
   cancelDefaultIdbSeed();
-  clearWorkspaceSession();
   get().clearHistory();
 
   const empty = { ...EMPTY_WORKSPACE_SCHEMA, nodes: [], dependencies: [] };
@@ -34,7 +32,8 @@ export function resetToEmptyWorkspace(
     workspaceCatalog: [],
     loadedSystems: [{ path: EMPTY_WORKSPACE_PATH, name: empty.name, schema: empty }],
     isWorkspaceOpen: false,
-    activeSandboxContextPath: null,
+    isSampleWorkspace: false,
+    workspaceName: '',
     selectedNodeId: null,
     selectedEdgeId: null,
     focusedCyclePath: null,

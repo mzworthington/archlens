@@ -7,16 +7,9 @@ import {
   CLI_SCAN_COMMAND,
 } from '../../../constants/cli';
 import { WORKSPACE_STARTUP } from '../../content/productOutcomes';
-import {
-  SANDBOX_DEFINITIONS,
-  type SandboxContextPath,
-} from '../../../application/store/defaultData';
 
 const optionClass =
   'w-full flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
-
-const sandboxOptionClass =
-  'w-full flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/60 px-3.5 py-3 text-left transition hover:border-amber-500/30 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/30 disabled:opacity-50 disabled:pointer-events-none';
 
 type CopyableCommandProps = {
   command: string;
@@ -50,7 +43,7 @@ const CopyableCommand: React.FC<CopyableCommandProps> = ({ command, testId, copi
 );
 
 export type WorkspaceEntryPanelProps = {
-  onLoadSandbox: (contextPath: SandboxContextPath) => void;
+  onOpenSample: () => void;
   onOpenDirectory: () => void;
   disabled?: boolean;
   showCliPanel?: boolean;
@@ -63,9 +56,9 @@ export type WorkspaceEntryPanelProps = {
   titleId?: string;
 };
 
-/** Shared workspace entry — pick a bundled sandbox or open a local blueprint folder. */
+/** Shared workspace entry — open the bundled Golden Paths sample or a local blueprint folder. */
 export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
-  onLoadSandbox,
+  onOpenSample,
   onOpenDirectory,
   disabled = false,
   showCliPanel = false,
@@ -89,9 +82,6 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
     }
   };
 
-  const sandboxLayoutClass =
-    layout === 'grid' ? 'mt-4 grid gap-2 sm:grid-cols-2' : 'mt-4 grid gap-2 sm:grid-cols-2';
-
   return (
     <section className={className} data-testid={testId}>
       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-2">
@@ -102,29 +92,22 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
       </h2>
       <p className="mt-2 text-sm text-slate-400 leading-relaxed max-w-2xl">{description}</p>
 
-      <div className="mt-4">
-        <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500 mb-2">
-          Sandboxes
-        </p>
-        <div className={sandboxLayoutClass}>
-          {SANDBOX_DEFINITIONS.map(definition => (
-            <button
-              key={definition.contextPath}
-              type="button"
-              data-testid={`workspace-load-sandbox-${definition.entityRef}`}
-              onClick={() => onLoadSandbox(definition.contextPath)}
-              disabled={disabled}
-              className={sandboxOptionClass}
-            >
-              <Map className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-              <span>
-                <span className="block text-sm font-semibold text-slate-100">
-                  {definition.name}
-                </span>
-              </span>
-            </button>
-          ))}
-        </div>
+      <div className={layout === 'grid' ? 'mt-4 grid gap-2 sm:grid-cols-2' : 'mt-4'}>
+        <button
+          type="button"
+          data-testid="workspace-open-sample"
+          onClick={onOpenSample}
+          disabled={disabled}
+          className={optionClass}
+        >
+          <Map className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+          <span>
+            <span className="block text-sm font-semibold text-slate-100">Open sample</span>
+            <span className="block text-xs text-slate-500 mt-0.5">
+              Golden Paths estate — same navigation as a folder workspace
+            </span>
+          </span>
+        </button>
       </div>
 
       <div className={layout === 'grid' ? 'mt-4' : 'mt-3'}>

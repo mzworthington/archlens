@@ -58,7 +58,7 @@ describe('ForensicsPage', () => {
 
     expect(screen.getByRole('heading', { name: 'Worst offenders' })).toBeInTheDocument();
     expect(screen.getByTestId('forensics-workspace-summary')).toBeInTheDocument();
-    expect(screen.getByText('Bundled sandbox')).toBeInTheDocument();
+    expect(screen.getByText('No workspace')).toBeInTheDocument();
     expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/\bOK\b/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/deps 1/).length).toBeGreaterThanOrEqual(1);
@@ -84,7 +84,7 @@ describe('ForensicsPage', () => {
     );
 
     expect(screen.getByTestId('workspace-entry')).toBeInTheDocument();
-    expect(screen.getByTestId('workspace-load-sandbox-golden-paths')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-open-sample')).toBeInTheDocument();
     expect(screen.getByTestId('workspace-open-directory')).toBeInTheDocument();
     expect(screen.queryByTestId('forensics-workspace-summary')).not.toBeInTheDocument();
   });

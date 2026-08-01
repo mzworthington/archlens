@@ -460,7 +460,7 @@ describe('Canvas Component', () => {
     expect(screen.getByText('Cycle Detected')).toBeInTheDocument();
   });
 
-  it('renders system switcher dropdown when multiple loaded systems exist', () => {
+  it('renders more-actions menu without a system switcher', () => {
     useBlueprintStore.setState({
       loadedSystems: [
         {
@@ -480,37 +480,7 @@ describe('Canvas Component', () => {
     render(<Canvas />);
 
     fireEvent.click(screen.getByLabelText('More actions'));
-    expect(screen.getByText('System')).toBeInTheDocument();
-    expect(screen.getByRole('combobox', { name: 'Active system' })).toBeInTheDocument();
-    expect(screen.getByText('System 1')).toBeInTheDocument();
-    expect(screen.getByText('System 2')).toBeInTheDocument();
-  });
-
-  it('triggers selectSystem when selecting another system in dropdown', () => {
-    useBlueprintStore.setState({
-      loadedSystems: [
-        {
-          path: 'sys1.yaml',
-          name: 'System 1',
-          schema: { name: 'S1', version: '1.0.0', level: 'container', nodes: [], dependencies: [] },
-        },
-        {
-          path: 'sys2.yaml',
-          name: 'System 2',
-          schema: { name: 'S2', version: '1.0.0', level: 'container', nodes: [], dependencies: [] },
-        },
-      ],
-      currentFilePath: 'sys1.yaml',
-    });
-
-    render(<Canvas />);
-
-    fireEvent.click(screen.getByLabelText('More actions'));
-    fireEvent.change(screen.getByRole('combobox', { name: 'Active system' }), {
-      target: { value: 'sys2.yaml' },
-    });
-
-    expect(mockSetLocation).toHaveBeenCalledWith('/workspace/s2');
+    expect(screen.queryByRole('combobox', { name: 'Active system' })).not.toBeInTheDocument();
   });
 
   it('triggers openWorkspaceDirectory store action when Open Folder is clicked', async () => {
