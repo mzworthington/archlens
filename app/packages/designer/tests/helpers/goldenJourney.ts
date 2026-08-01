@@ -1,5 +1,5 @@
 import { expect, type Page } from '@playwright/test';
-import { clickCanvasNode, openGoldenJourneyEstate } from './canvas';
+import { clickCanvasNode } from './canvas';
 import { releaseE2ePage } from './navigation';
 import { loadSandbox } from './workspace';
 
@@ -10,8 +10,7 @@ export const CHECKOUT_API_LABEL = 'Checkout API';
 
 /** Load the golden journey estate diagram used by the outage demo. */
 export async function loadGoldenJourneyDiagram(page: Page) {
-  await loadSandbox(page);
-  await openGoldenJourneyEstate(page);
+  await loadSandbox(page, GOLDEN_JOURNEY_ESTATE_PATH);
 }
 
 export type GoldenJourneyDemoOptions = {

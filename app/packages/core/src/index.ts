@@ -14,3 +14,5 @@ export * from './rules/workspaceExternals';
 export * from './rules/externalNodeLayout';
 export * from './rules/path';
 export * from './rules/sourceProvenance';
+export * from './taxonomy/nodeOwnership';
+export * from './taxonomy/nodeRoles';

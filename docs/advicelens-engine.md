@@ -66,12 +66,20 @@ const narrated = await narrateRecommendations(recommendations, {
 
 ## Resilience advice eligibility
 
+Advice targets are **owned application software** — not human actors, third-party vendors, shared data stores, brokers, or IaC-imported resources.
+
 | Function                                        | Purpose                                                                                                |
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `isEstateResilienceDiagramLevel(level)`         | `context` / `container` only for estate chaos sweeps                                                   |
-| `isResilienceAdviceTarget(schema, entityRef)`   | Calling services/workers only; excludes structural roles, data stores, brokers, and IaC-imported nodes |
+| `isResilienceAdviceTarget(schema, entityRef)`   | Calling services/workers you control; excludes actors, vendors, structural roles, data stores, brokers |
+| `isAdviceActionable(schema, entityRef)`         | Whether AdviceLens may prescribe implementation actions (alias of resilience eligibility today)        |
+| `isThirdPartyDependency(schema, entityRef)`     | Whether a dependency is a vendor/SaaS outside your control (`properties.classification: third-party`)  |
 | `resolveAdviceApplicability(schema, entityRef)` | Roll code/component contributors up to `schema.entityRef` for composite-risk targets                   |
 | `detectSpofCallSites(schema)`                   | Shared dependency → caller list for outbound circuit-breaker advice                                    |
+
+**Ownership vs diagram proxy:** `external: true` marks a **workspace proxy** (homded on another diagram). Add `properties.classification: third-party` for vendors you cannot modify — AdviceLens still targets **your callers**, but copy and evidence cite `dependencyOwnership: third-party`. Canvas labels: `(Workspace)` vs `(Third-party)`.
+
+**Human actors:** C4 `person` nodes and `properties.role: product-persona` are never safeguard or refactor targets.
 
 Component/code diagrams still receive TraceLens refactor and rolled-up composite-risk recommendations; they do not run default estate chaos scenarios.
 

@@ -44,6 +44,7 @@ describe('buildResilienceRecommendations', () => {
     expect(circuitBreakers.length).toBe(2);
     expect(circuitBreakers.map(r => r.targetEntityRef).sort()).toEqual(['shop/mobile', 'shop/web']);
     expect(circuitBreakers[0]!.evidence.simulation?.dependencyEntityRef).toBe('shop/api');
+    expect(circuitBreakers[0]!.evidence.simulation?.dependencyOwnership).toBe('owned');
     expect(recommendations[0].priority).toBeGreaterThanOrEqual(
       recommendations[recommendations.length - 1]?.priority ?? 0
     );

@@ -33,8 +33,10 @@ describe('nodeRole', () => {
   });
 
   it('classifies user-facing and async roles', () => {
+    expect(nodeRole('person')).toBe('actor');
     expect(nodeRole('web-app')).toBe('user-facing');
     expect(isUserFacingRole(nodeRole('web-app'))).toBe(true);
+    expect(isUserFacingRole(nodeRole('person'))).toBe(false);
     expect(nodeRole('background-worker')).toBe('async-worker');
     expect(nodeRole('event-broker')).toBe('message-infrastructure');
   });

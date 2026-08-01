@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import type { SystemSchema } from '../models/schema';
 import {
+  isAdviceActionable,
   isEstateResilienceDiagramLevel,
   isResilienceAdviceTarget,
+  isThirdPartyDependency,
   resolveAdviceApplicability,
 } from './resilienceAdviceEligibility';
 
@@ -71,6 +73,33 @@ describe('isResilienceAdviceTarget', () => {
   it('excludes structural component and code-module nodes', () => {
     expect(isResilienceAdviceTarget(componentSchema, 'shop/api/handlers')).toBe(false);
     expect(isResilienceAdviceTarget(componentSchema, 'shop/api/repo')).toBe(false);
+  });
+
+  it('excludes human actors and third-party vendors', () => {
+    const contextSchema: SystemSchema = {
+      name: 'Estate',
+      version: '1.0.0',
+      level: 'context',
+      nodes: [
+        { entityRef: 'shop/shopper', name: 'Shopper', type: 'person' },
+        {
+          entityRef: 'shop/gateway',
+          name: 'Payment Gateway',
+          type: 'gateway-api',
+          external: true,
+          properties: { classification: 'third-party' },
+        },
+        { entityRef: 'shop/api', name: 'Checkout API', type: 'microservice' },
+      ],
+      dependencies: [],
+    };
+
+    expect(isResilienceAdviceTarget(contextSchema, 'shop/shopper')).toBe(false);
+    expect(isResilienceAdviceTarget(contextSchema, 'shop/gateway')).toBe(false);
+    expect(isResilienceAdviceTarget(contextSchema, 'shop/api')).toBe(true);
+    expect(isAdviceActionable(contextSchema, 'shop/shopper')).toBe(false);
+    expect(isThirdPartyDependency(contextSchema, 'shop/gateway')).toBe(true);
+    expect(isThirdPartyDependency(contextSchema, 'shop/api')).toBe(false);
   });
 });
 
