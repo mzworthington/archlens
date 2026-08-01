@@ -31,7 +31,7 @@ describe('docs link resolution', () => {
       href: '/guide/getting-started',
     });
     expect(tracelens?.productAction?.href).toBe('/workspace?lens=tracelens');
-    expect(chaoslens?.productAction?.href).toBe('/workspace/application?resilience=1');
+    expect(chaoslens?.productAction?.href).toBe('/workspace/application?lens=chaoslens');
     expect(advicelens?.productAction).toEqual({
       label: 'Open AdviceLens',
       href: '/workspace?lens=tracelens&view=recommendations',
