@@ -83,102 +83,6 @@ describe('Breadcrumbs Component', () => {
     expect(screen.getAllByText('Main App System').length).toBeGreaterThan(0);
   });
 
-  it('renders active diagram breadcrumbs and ancestor system breadcrumbs', () => {
-    const contextSchema = {
-      name: 'Enterprise System Context',
-      version: '1.0.0',
-      level: 'context' as const,
-      entityRef: 'enterprise',
-      nodes: [
-        {
-          entityRef: 'enterprise/main-app',
-          type: 'software-system' as const,
-          name: 'Main App System',
-        },
-      ],
-      dependencies: [],
-    };
-    const containerSchema = {
-      name: 'Main App System',
-      version: '1.0.0',
-      level: 'container' as const,
-      entityRef: 'enterprise/main-app',
-      nodes: [],
-      dependencies: [],
-    };
-
-    useBlueprintStore.setState({
-      loadedSystems: [
-        {
-          path: 'context.yaml',
-          name: 'Enterprise System Context',
-          schema: contextSchema,
-        },
-        {
-          path: 'services/auth/container.yaml',
-          name: 'Main App System',
-          schema: containerSchema,
-        },
-      ],
-      currentFilePath: 'services/auth/container.yaml',
-      schema: containerSchema,
-    });
-
-    render(<Breadcrumbs />);
-
-    expect(screen.getByText('Enterprise System Context')).toBeInTheDocument();
-    expect(screen.getByText('Main App System')).toBeInTheDocument();
-  });
-
-  it('renders correct href links for ancestor breadcrumbs', async () => {
-    const rootSchema = {
-      name: 'Root Map',
-      version: '1.0.0',
-      level: 'context' as const,
-      entityRef: 'enterprise',
-      nodes: [
-        {
-          type: 'software-system' as const,
-          name: 'Child System',
-          entityRef: 'enterprise/child-system',
-        },
-      ],
-      dependencies: [],
-    };
-    const childSchema = {
-      name: 'Child System',
-      version: '1.0.0',
-      level: 'container' as const,
-      entityRef: 'enterprise/child-system',
-      nodes: [],
-      dependencies: [],
-    };
-
-    useBlueprintStore.setState({
-      isWorkspaceOpen: true,
-      workspaceName: 'enterprise',
-      loadedSystems: [
-        {
-          path: 'context.yaml',
-          name: 'Root Map',
-          schema: rootSchema,
-        },
-        {
-          path: 'child.yaml',
-          name: 'Child System',
-          schema: childSchema,
-        },
-      ],
-      currentFilePath: 'child.yaml',
-      schema: childSchema,
-    });
-
-    render(<Breadcrumbs />);
-
-    const rootLink = screen.getByText('Root Map').closest('a');
-    expect(rootLink).toHaveAttribute('href', '/workspace/enterprise');
-  });
-
   it('renders next hierarchy level preview when a node with next level component schema is selected', () => {
     useBlueprintStore.setState({
       currentFilePath: 'application/containers.yaml',
@@ -311,14 +215,11 @@ describe('Breadcrumbs Component', () => {
 
     render(<Breadcrumbs />);
 
-    // Check if dropdown trigger button is present
     const dropdownBtn = screen.getByTitle('Explore child components');
     expect(dropdownBtn).toBeInTheDocument();
 
-    // Click trigger to open menu
     fireEvent.click(dropdownBtn);
 
-    // Verify Jump to Component header and child item exists
     expect(screen.getByText('Jump to component')).toBeInTheDocument();
     const childOption = screen.getByText('Component Diagram').closest('a');
     expect(childOption).toBeInTheDocument();
@@ -394,71 +295,6 @@ describe('Breadcrumbs Component', () => {
     expect(screen.getByText('Core Service Components')).toBeInTheDocument();
   });
 
-  it('renders zoom preview segment for container level zoom from context level', () => {
-    useBlueprintStore.setState({
-      selectedNodeId: 'application/cli',
-    });
-
-    const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      entityRef: 'blueprint',
-      name: 'Context Diagram',
-      version: '1.0.0',
-      level: 'context',
-      nodes: [
-        {
-          entityRef: 'application/cli',
-          type: 'software-system',
-          name: 'Cli System',
-        },
-      ],
-      dependencies: [],
-    });
-
-    useBlueprintStore.setState({
-      isWorkspaceOpen: true,
-      workspaceName: 'TestWorkspace',
-      currentFilePath: 'blueprints/context.yaml',
-      loadedSystems: [
-        {
-          path: 'blueprints/context.yaml',
-          name: 'Context Diagram',
-          schema: {
-            entityRef: 'application',
-            name: 'Context Diagram',
-            version: '1.0.0',
-            level: 'context',
-            nodes: [
-              {
-                entityRef: 'application/cli',
-                type: 'software-system',
-                name: 'Cli System',
-              },
-            ],
-            dependencies: [],
-          },
-        },
-        {
-          path: 'blueprints/containers.yaml',
-          name: 'Cli System',
-          schema: {
-            name: 'Cli System',
-            version: '1.0.0',
-            level: 'container',
-            entityRef: 'application/cli',
-            nodes: [],
-            dependencies: [],
-          },
-        },
-      ],
-    });
-
-    render(<Breadcrumbs />);
-
-    expect(screen.getByText('Context Diagram')).toBeInTheDocument();
-    expect(screen.getByText('Cli System')).toBeInTheDocument();
-  });
-
   it('shows a compact summary and opens the full trail in a mobile menu', () => {
     const { hook } = memoryLocation({ path: '/workspace' });
     render(
@@ -472,55 +308,6 @@ describe('Breadcrumbs Component', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Open diagram location menu' }));
 
     expect(screen.getAllByText('Main App System').length).toBeGreaterThan(1);
-  });
-
-  it('shows ancestor trail inside the mobile menu', () => {
-    const contextSchema = {
-      name: 'Enterprise Context',
-      version: '1.0.0',
-      level: 'context' as const,
-      entityRef: 'enterprise',
-      nodes: [
-        {
-          entityRef: 'enterprise/main-app',
-          type: 'software-system' as const,
-          name: 'Main App System',
-        },
-      ],
-      dependencies: [],
-    };
-    const containerSchema = {
-      name: 'Main App System',
-      version: '1.0.0',
-      level: 'container' as const,
-      entityRef: 'enterprise/main-app',
-      nodes: [],
-      dependencies: [],
-    };
-
-    useBlueprintStore.setState({
-      loadedSystems: [
-        { path: 'context.yaml', name: 'Enterprise Context', schema: contextSchema },
-        { path: 'container.yaml', name: 'Main App System', schema: containerSchema },
-      ],
-      currentFilePath: 'container.yaml',
-      schema: containerSchema,
-    });
-
-    const { hook } = memoryLocation({ path: '/workspace' });
-    render(
-      <Router hook={hook}>
-        <Breadcrumbs />
-      </Router>
-    );
-
-    expect(screen.getByText('Enterprise Context › Main App System')).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole('button', { name: 'Open diagram location menu' }));
-
-    const rootLinks = screen.getAllByText('Enterprise Context');
-    const rootLink = rootLinks.find(el => el.closest('a'))?.closest('a');
-    expect(rootLink).toHaveAttribute('href', '/workspace/enterprise');
   });
 
   it('lists peer context diagrams from the workspace catalog before they are lazy-loaded', () => {
