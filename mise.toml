@@ -1,13 +1,20 @@
 # Blueprint toolchain: Node/pnpm/Bun (app/) + Go (resilience-engine / ChaosLens WASM).
+# Bun is required for `@archlens/cli` compile and husky pre-push (`pnpm build`).
+# Cursor Cloud agents bootstrap via `.cursor/environment.json` → `bin/setup-dev-env.sh`.
 [tools]
 node = "26.4.0"
 pnpm = "11.10.0"
 bun = "1.3.14"
 go = "1.26.5"
 # Docs media: designer GIFs (record:docs-media) + CLI tape (test:vhs).
+# Optional for agents — `bin/setup-dev-env.sh` installs node/pnpm/bun/go only.
 ffmpeg = "8.1.2"
 vhs = "0.11.0"
 # ttyd (VHS): aqua has no darwin/arm64 build - Linux CI uses apt; on macOS: brew install ttyd
+
+[tasks.install-tools]
+description = "Install core toolchain (node, pnpm, bun, go) without docs-media extras"
+run = "mise install node pnpm bun go"
 
 [tasks.install]
 description = "Install app/ Node dependencies"
