@@ -15,7 +15,7 @@ export async function continueWithSample(page: Page) {
   }
 
   await page.getByTestId('workspace-open-sample').click();
-  await expect(page).toHaveURL(/\/workspace\/golden-paths\/golden-journey(?:\/|$)/, {
+  await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/, {
     timeout: 120_000,
   });
   await expect(dialog).toHaveCount(0, { timeout: 90_000 });

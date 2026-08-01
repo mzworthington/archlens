@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
-import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/goldenPathsSample';
+import { GOLDEN_PATHS_ENTITY_REF } from '../../../../application/store/goldenPathsSample';
 import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
 import { DiffMenu } from '../components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from '../components/ImportMermaidDialog/ImportMermaidDialog';
@@ -43,7 +43,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
     if (!opened) return;
 
     setIsStartupOpen(false);
-    setLocation(buildWorkspaceEntityHref(GOLDEN_JOURNEY_ENTITY_REF), { replace: true });
+    setLocation(buildWorkspaceEntityHref(GOLDEN_PATHS_ENTITY_REF), { replace: true });
   }, [openBundledSample, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {
