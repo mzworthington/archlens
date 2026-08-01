@@ -1,0 +1,395 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-backend/auth
+  name: Auth Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-backend/auth/google-service-account-strategy-test
+    type: background-worker
+    name: GoogleServiceAccountStrategy
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/google-service-account-strategy
+    type: background-worker
+    name: GoogleServiceAccountStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/azure-identity-strategy
+    type: background-worker
+    name: AzureIdentityStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AzureIdentityStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/anonymous-strategy
+    type: background-worker
+    name: AnonymousStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AnonymousStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy-test
+    type: background-worker
+    name: AwsIamStrategy
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AwsIamStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/dispatch-strategy
+    type: background-worker
+    name: DispatchStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/DispatchStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/service-account-strategy-test
+    type: background-worker
+    name: ServiceAccountStrategy
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/ServiceAccountStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/google-strategy
+    type: background-worker
+    name: GoogleStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/GoogleStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/azure-identity-strategy-test
+    type: background-worker
+    name: AzureIdentityStrategy
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AzureIdentityStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/dispatch-strategy-test
+    type: background-worker
+    name: DispatchStrategy
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/DispatchStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/aks-strategy
+    type: background-worker
+    name: AksStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AksStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    type: background-worker
+    name: BuildDefaultAuthStrategyMap
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/buildDefaultAuthStrategyMap.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/aks-strategy-test
+    type: background-worker
+    name: AksStrategy
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AksStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/oidc-strategy
+    type: background-worker
+    name: OidcStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/OidcStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/index.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/oidc-strategy-test
+    type: background-worker
+    name: OidcStrategy
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/OidcStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy
+    type: background-worker
+    name: AwsIamStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AwsIamStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-backend/auth/require-permission
+    type: rest-api
+    name: RequirePermission
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/requirePermission.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/kubernetes-backend/auth/service-account-strategy
+    type: background-worker
+    name: ServiceAccountStrategy
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/ServiceAccountStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-node/src/types/index.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-backend/auth/google-service-account-strategy-test
+    to: backstage/plugins/kubernetes-backend/auth/google-service-account-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/google-service-account-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/azure-identity-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/anonymous-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy-test
+    to: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/dispatch-strategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/auth/dispatch-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/service-account-strategy-test
+    to: backstage/plugins/kubernetes-backend/auth/service-account-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/google-strategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/auth/google-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/azure-identity-strategy-test
+    to: backstage/plugins/kubernetes-backend/auth/azure-identity-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/dispatch-strategy-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/auth/dispatch-strategy-test
+    to: backstage/plugins/kubernetes-backend/auth/dispatch-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/dispatch-strategy-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/aks-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/aks-strategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-backend/auth/aks-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-backend/auth/azure-identity-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-backend/auth/google-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-backend/auth/google-service-account-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-backend/auth/anonymous-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-backend/auth/oidc-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/build-default-auth-strategy-map
+    to: backstage/plugins/kubernetes-backend/auth/service-account-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/aks-strategy-test
+    to: backstage/plugins/kubernetes-backend/auth/aks-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/oidc-strategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/auth/oidc-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/aks-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/anonymous-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/azure-identity-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/google-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/google-service-account-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/dispatch-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/service-account-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/index
+    to: backstage/plugins/kubernetes-backend/auth/oidc-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/oidc-strategy-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/auth/oidc-strategy-test
+    to: backstage/plugins/kubernetes-backend/auth/oidc-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/auth/aws-iam-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/auth/require-permission
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/kubernetes-backend/auth/service-account-strategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'

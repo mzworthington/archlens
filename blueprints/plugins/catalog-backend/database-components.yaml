@@ -1,0 +1,491 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend/database
+  name: Database Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend/database/operations
+    type: relational-database
+    name: Operations
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 8
+      lineChurn: 676
+      churn30: 2
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5
+      authors:
+        - email: freben@gmail.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 2
+      hotspotScore: 0.004081718529739738
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/database/default-catalog-database
+    type: relational-database
+    name: DefaultCatalogDatabase
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/DefaultCatalogDatabase.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/default-catalog-database-test
+    type: relational-database
+    name: DefaultCatalogDatabase
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/DefaultCatalogDatabase.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/metrics-test
+    type: relational-database
+    name: Metrics
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/metrics.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/tables
+    type: relational-database
+    name: Tables
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/tables.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/util-test
+    type: relational-database
+    name: Util
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/util.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/migrations
+    type: relational-database
+    name: Migrations
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/migrations.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/types
+    type: relational-database
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/types.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/conversion
+    type: relational-database
+    name: Conversion
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/conversion.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/conversion-test
+    type: relational-database
+    name: Conversion
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/conversion.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/util
+    type: relational-database
+    name: Util
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/util.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/default-provider-database-test
+    type: relational-database
+    name: DefaultProviderDatabase
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/DefaultProviderDatabase.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/default-processing-database
+    type: relational-database
+    name: DefaultProcessingDatabase
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/DefaultProcessingDatabase.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/default-processing-database-test
+    type: relational-database
+    name: DefaultProcessingDatabase
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/DefaultProcessingDatabase.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/default-provider-database
+    type: relational-database
+    name: DefaultProviderDatabase
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/DefaultProviderDatabase.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/metrics
+    type: relational-database
+    name: Metrics
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/metrics.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/dev/index.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/processing/refresh
+    type: background-worker
+    name: Refresh (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/processing/refresh.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/processing/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/processing/types.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend/database/default-catalog-database
+    to: backstage/plugins/catalog-backend/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-catalog-database
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-catalog-database
+    to: backstage/plugins/catalog-backend/database/conversion
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-catalog-database-test
+    to: backstage/plugins/catalog-backend/database/default-catalog-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-catalog-database-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-catalog-database-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/metrics-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/metrics-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/metrics-test
+    to: backstage/plugins/catalog-backend/database/metrics
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/util-test
+    to: backstage/plugins/catalog-backend/database/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/migrations
+    to: backstage/plugins/catalog-backend/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend'
+  - from: backstage/plugins/catalog-backend/database/types
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/database/types
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/types
+    to: backstage/plugins/catalog-backend/processing/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/conversion-test
+    to: backstage/plugins/catalog-backend/database/conversion
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database-test
+    to: backstage/plugins/catalog-backend/database/default-provider-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database-test
+    to: backstage/plugins/catalog-backend/database/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/processing/refresh
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/database/conversion
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/database/metrics
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate/check-location-key-conflict
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate/insert-unprocessed-entity
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate/update-unprocessed-entity
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/database/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/constants/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/database/default-processing-database
+    to: backstage/plugins/catalog-backend/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/database/default-processing-database-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database-test
+    to: backstage/plugins/catalog-backend/database/default-processing-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database-test
+    to: backstage/plugins/catalog-backend/processing/refresh
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database-test
+    to: backstage/plugins/catalog-backend/database/conversion
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-processing-database-test
+    to: backstage/plugins/catalog-backend/database/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/conversion
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/operations/provider/delete-with-eager-pruning-of-children
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/operations/provider/refresh-by-refresh-keys
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate/check-location-key-conflict
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate/insert-unprocessed-entity
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate/update-unprocessed-entity
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/default-provider-database
+    to: backstage/plugins/catalog-backend/database/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/metrics
+    to: backstage/plugins/catalog-backend/metrics/metrics
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/database/metrics
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records

@@ -92,17 +92,93 @@ nodes:
     name: Module
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-openapi/src/module/catalogModuleJsonSchemaRefPlaceholderResolver.test.ts
       containerId: catalog-backend-module-openapi
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
+      churn: 5
+      lineChurn: 123
+      churn30: 3
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-openapi/src/lib/index.ts
+      containerId: catalog-backend-module-openapi
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
       churn: 2
-      lineChurn: 56
-      churn30: 1
+      lineChurn: 43
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -130,7 +206,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -153,7 +228,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -165,84 +241,9 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/plugins/catalog-backend-module-openapi/index
-    type: background-worker
-    name: Index
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-openapi/src/lib/index.ts
-      containerId: catalog-backend-module-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-openapi/bundle-test
     type: background-worker
     name: Bundle test

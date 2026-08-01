@@ -1,0 +1,336 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/clientapp/services
+  name: Services Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/clientapp/services/order-mock-service
+    type: background-worker
+    name: OrderMockService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Order/OrderMockService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/order-service
+    type: background-worker
+    name: OrderService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Order/OrderService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-order-service
+    type: background-worker
+    name: IOrderService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Order/IOrderService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/settings-service
+    type: background-worker
+    name: SettingsService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Settings/SettingsService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-settings-service
+    type: background-worker
+    name: ISettingsService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Settings/ISettingsService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/basket-grpc
+    type: background-worker
+    name: BasketGrpc
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Basket/Protos/BasketGrpc.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/basket
+    type: background-worker
+    name: Basket
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Basket/Protos/Basket.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-basket-service
+    type: background-worker
+    name: IBasketService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Basket/IBasketService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/basket-service
+    type: background-worker
+    name: BasketService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Basket/BasketService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/basket-mock-service
+    type: background-worker
+    name: BasketMockService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Basket/BasketMockService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/fix-uri-service
+    type: rest-api
+    name: FixUriService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/FixUri/FixUriService.cs
+      containerId: clientapp
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/clientapp/services/i-fix-uri-service
+    type: background-worker
+    name: IFixUriService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/FixUri/IFixUriService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-identity-service
+    type: background-worker
+    name: IIdentityService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Identity/IIdentityService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/identity-service
+    type: background-worker
+    name: IdentityService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Identity/IdentityService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/identity-mock-service
+    type: background-worker
+    name: IdentityMockService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Identity/IdentityMockService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/authorize-request
+    type: background-worker
+    name: AuthorizeRequest
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Identity/AuthorizeRequest.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/location-service
+    type: background-worker
+    name: LocationService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Location/LocationService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-location-service
+    type: background-worker
+    name: ILocationService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Location/ILocationService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-catalog-service
+    type: background-worker
+    name: ICatalogService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Catalog/ICatalogService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/catalog-mock-service
+    type: background-worker
+    name: CatalogMockService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Catalog/CatalogMockService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/catalog-service
+    type: background-worker
+    name: CatalogService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Catalog/CatalogService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/maui-navigation-service
+    type: background-worker
+    name: MauiNavigationService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Navigation/MauiNavigationService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-navigation-service
+    type: background-worker
+    name: INavigationService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Navigation/INavigationService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-dialog-service
+    type: background-worker
+    name: IDialogService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Dialog/IDialogService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/dialog-service
+    type: background-worker
+    name: DialogService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Dialog/DialogService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/common
+    type: background-worker
+    name: Common
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Common/Common.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-theme
+    type: background-worker
+    name: ITheme
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Theme/ITheme.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/theme-shared
+    type: background-worker
+    name: Theme.shared
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/Theme/Theme.shared.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/http-request-exception-ex
+    type: background-worker
+    name: HttpRequestExceptionEx
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/RequestProvider/HttpRequestExceptionEx.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-request-provider
+    type: background-worker
+    name: IRequestProvider
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/RequestProvider/IRequestProvider.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/request-provider
+    type: background-worker
+    name: RequestProvider
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/RequestProvider/RequestProvider.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/e-shop-json-serializer-context
+    type: background-worker
+    name: EShopJsonSerializerContext
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/EShopJsonSerializerContext.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-open-url-service
+    type: background-worker
+    name: IOpenUrlService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/OpenUrl/IOpenUrlService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/open-url-service
+    type: background-worker
+    name: OpenUrlService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/OpenUrl/OpenUrlService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/i-app-environment-service
+    type: background-worker
+    name: IAppEnvironmentService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/AppEnvironment/IAppEnvironmentService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/services/app-environment-service
+    type: background-worker
+    name: AppEnvironmentService
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Services/AppEnvironment/AppEnvironmentService.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+dependencies: []

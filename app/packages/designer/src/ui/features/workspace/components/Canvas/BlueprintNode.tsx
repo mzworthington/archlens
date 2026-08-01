@@ -207,6 +207,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       : 0;
   const sourceFilepath =
     typeof data.properties?.filepath === 'string' ? data.properties.filepath : undefined;
+  const showSourceCodeButton = Boolean(sourceFilepath) && !canZoom;
   const updateNodeInternals = useUpdateNodeInternals();
 
   const zoomToChild = (e: React.MouseEvent) => {
@@ -444,7 +445,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           </div>
 
           <div className="flex flex-wrap items-center justify-end gap-1 min-w-0">
-            {sourceFilepath ? (
+            {showSourceCodeButton && sourceFilepath ? (
               <button
                 type="button"
                 onClick={e => {

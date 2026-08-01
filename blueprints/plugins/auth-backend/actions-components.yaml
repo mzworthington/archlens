@@ -1,0 +1,82 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-backend/actions
+  name: Actions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/auth-backend/actions/create-who-am-i-action-test
+    type: background-worker
+    name: CreateWhoAmIAction
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend/src/actions/createWhoAmIAction.test.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/actions/create-who-am-i-action
+    type: background-worker
+    name: CreateWhoAmIAction
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/actions/createWhoAmIAction.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/actions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/actions/index.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/testutils
+    type: background-worker
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/auth-backend/actions/create-who-am-i-action-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/auth-backend/actions/create-who-am-i-action-test
+    to: backstage/plugins/auth-backend/actions/create-who-am-i-action
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/actions/create-who-am-i-action
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/auth-backend/actions/index
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/auth-backend/actions/index
+    to: backstage/plugins/auth-backend/actions/create-who-am-i-action
+    type: direct-call
+    description: Calls module / service

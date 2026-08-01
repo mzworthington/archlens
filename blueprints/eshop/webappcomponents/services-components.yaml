@@ -1,0 +1,39 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/webappcomponents/services
+  name: Services Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/webappcomponents/services/i-product-image-url-provider
+    type: background-worker
+    name: IProductImageUrlProvider
+    isTest: false
+    properties:
+      filepath: src/WebAppComponents/Services/IProductImageUrlProvider.cs
+      containerId: webappcomponents
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webappcomponents/services/i-catalog-service
+    type: background-worker
+    name: ICatalogService
+    isTest: false
+    properties:
+      filepath: src/WebAppComponents/Services/ICatalogService.cs
+      containerId: webappcomponents
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webappcomponents/services/catalog-service
+    type: background-worker
+    name: CatalogService
+    isTest: false
+    properties:
+      filepath: src/WebAppComponents/Services/CatalogService.cs
+      containerId: webappcomponents
+      technology: C# Domain Service
+      classification: default
+dependencies: []

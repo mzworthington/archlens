@@ -14,44 +14,22 @@ nodes:
     name: Module
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/module/catalogModulePuppetDbEntityProvider.test.ts
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 74
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      complexityPeak: 1
+      churn: 7
+      lineChurn: 147
+      churn30: 3
+      churn365: 7
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 1
         - 0
         - 0
@@ -72,50 +50,63 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7142857142857143
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
+          commits: 5
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.0001963713382005372
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-puppetdb/providers
     type: background-worker
     name: Providers
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/providers/PuppetDbEntityProviderConfig.ts
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 101
-      churn30: 1
-      churn365: 1
+      churn: 7
+      lineChurn: 734
+      churn30: 6
+      churn365: 7
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -158,13 +149,29 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
       authors:
         - email: poldsberg@gmail.com
+          commits: 6
+        - email: freben@spotify.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-puppetdb/index
     type: background-worker
     name: Index
@@ -252,18 +259,15 @@ nodes:
     name: Puppet
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-puppetdb/src/puppet/read.ts
       containerId: catalog-backend-module-puppetdb
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 72
-      churn30: 1
-      churn365: 1
+      churn: 9
+      lineChurn: 711
+      churn30: 7
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -284,9 +288,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -315,16 +317,25 @@ nodes:
         - 0
         - 1
         - 0
+        - 7
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7777777777777778
       authors:
         - email: poldsberg@gmail.com
+          commits: 7
+        - email: jonkoops@gmail.com
+          commits: 1
+        - email: jsebbari@splio.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
     name: Index (External)

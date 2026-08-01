@@ -1,0 +1,78 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-components/layout/bottomlink
+  name: Bottomlink Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-components/layout/bottomlink/bottom-link-test
+    type: background-worker
+    name: BottomLink
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/BottomLink/BottomLink.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/bottomlink/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/BottomLink/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/bottomlink/bottom-link-stories
+    type: background-worker
+    name: BottomLink.stories
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/BottomLink/BottomLink.stories.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/core-components/layout
+    type: gateway-api
+    name: Layout (External)
+    external: true
+    properties:
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/core-components/layout/bottomlink/bottom-link-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/layout/bottomlink/bottom-link-test
+    to: backstage/packages/core-components/layout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/bottomlink/index
+    to: backstage/packages/core-components/layout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/bottomlink/bottom-link-stories
+    to: backstage/packages/core-components/layout
+    type: direct-call
+    description: Calls module / service

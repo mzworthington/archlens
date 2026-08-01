@@ -1,0 +1,119 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/app-visualizer/components
+  name: Components Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/app-visualizer/components/appvisualizerpage
+    type: gateway-api
+    name: Appvisualizerpage
+    isTest: false
+    properties:
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 11
+      churn: 26
+      lineChurn: 2019
+      churn30: 4
+      churn365: 26
+      hotspotScore: 0.0271237910889492
+      authorCount: 3
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 21
+        - email: charles.dedreuille@gmail.com
+          commits: 4
+        - email: freben@gmail.com
+          commits: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 7
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.8076923076923077
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/app-visualizer/components/copy-tree-button
+    type: gateway-api
+    name: CopyTreeButton
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/CopyTreeButton.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-visualizer/components/app-visualizer-page
+    type: gateway-api
+    name: AppVisualizerPage
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/AppVisualizerPage.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+dependencies:
+  - from: backstage/plugins/app-visualizer/components/app-visualizer-page
+    to: backstage/plugins/app-visualizer/components/appvisualizerpage
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,79 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-react/components/pods/events
+  name: Events Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/events/use-events-test
+    type: gateway-api
+    name: UseEvents
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/Pods/Events/useEvents.test.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/events/use-events
+    type: gateway-api
+    name: UseEvents
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/Pods/Events/useEvents.ts
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/events/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/Pods/Events/index.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/events/events-test
+    type: gateway-api
+    name: Events
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/Pods/Events/Events.test.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/pods
+    type: gateway-api
+    name: Pods (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-react/components/pods/events/use-events-test
+    to: backstage/plugins/kubernetes-react/components/pods/events/use-events
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/pods/events/use-events
+    to: backstage/plugins/kubernetes-react/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/pods/events/index
+    to: backstage/plugins/kubernetes-react/components/pods
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/pods/events/index
+    to: backstage/plugins/kubernetes-react/components/pods/events/use-events
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/pods/events/events-test
+    to: backstage/plugins/kubernetes-react/components/pods
+    type: direct-call
+    description: Calls module / service

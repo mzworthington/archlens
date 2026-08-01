@@ -1,0 +1,398 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-plugin-api/components
+  name: Components Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-plugin-api/components/extension-suspense
+    type: gateway-api
+    name: ExtensionSuspense
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ExtensionSuspense.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/extension-boundary
+    type: gateway-api
+    name: ExtensionBoundary
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ExtensionBoundary.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/create-swappable-component-test
+    type: gateway-api
+    name: CreateSwappableComponent
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/createSwappableComponent.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    type: gateway-api
+    name: ExtensionBoundary
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ExtensionBoundary.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/create-swappable-component
+    type: gateway-api
+    name: CreateSwappableComponent
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/createSwappableComponent.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/page-layout
+    type: gateway-api
+    name: PageLayout
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/PageLayout.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/error-display-boundary
+    type: gateway-api
+    name: ErrorDisplayBoundary
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ErrorDisplayBoundary.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/extension-suspense-test
+    type: gateway-api
+    name: ExtensionSuspense
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ExtensionSuspense.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/app-node-provider-test
+    type: gateway-api
+    name: AppNodeProvider
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/AppNodeProvider.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/index.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/components/app-node-provider
+    type: gateway-api
+    name: AppNodeProvider
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/AppNodeProvider.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/error-api-boundary
+    type: gateway-api
+    name: ErrorApiBoundary
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/ErrorApiBoundary.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/components/default-swappable-components
+    type: background-worker
+    name: DefaultSwappableComponents
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/components/DefaultSwappableComponents.tsx
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/analytics
+    type: gateway-api
+    name: Analytics (External)
+    external: true
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/definitions/analytics-api
+    type: rest-api
+    name: AnalyticsApi (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/definitions/AnalyticsApi.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/apis.ts
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2170
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2630
+      y: 404
+  - entityRef: backstage/packages/frontend-test-utils/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/frontend-internal/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/apis/index.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1970
+      y: 404
+  - entityRef: backstage/packages/version-bridge/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3090
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/definitions/plugin-wrapper-api
+    type: gateway-api
+    name: PluginWrapperApi (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/definitions/PluginWrapperApi.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/routing
+    type: gateway-api
+    name: Routing (External)
+    external: true
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/analytics/tracker
+    type: background-worker
+    name: Tracker (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/Tracker.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2890
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/icons/types
+    type: gateway-api
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/icons/types.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/wiring
+    type: gateway-api
+    name: Wiring (External)
+    external: true
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary
+    to: backstage/packages/frontend-plugin-api/analytics
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary
+    to: backstage/packages/core-plugin-api/analytics/tracker
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary
+    to: backstage/packages/frontend-plugin-api/definitions/plugin-wrapper-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    to: backstage/packages/frontend-plugin-api/definitions/analytics-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    to: backstage/packages/frontend-plugin-api/analytics
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    to: backstage/packages/frontend-plugin-api/routing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    to: backstage/packages/frontend-plugin-api/definitions/plugin-wrapper-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-boundary-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-plugin-api/components/create-swappable-component
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/frontend-plugin-api/components/create-swappable-component
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/page-layout
+    to: backstage/packages/frontend-plugin-api/icons/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/error-display-boundary
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/extension-suspense-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/frontend-plugin-api/components/app-node-provider-test
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/frontend-plugin-api/components/app-node-provider-test
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/app-node-provider-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/frontend-plugin-api/components/app-node-provider
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/frontend-plugin-api/components/app-node-provider
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/error-api-boundary
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/components/error-api-boundary
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/frontend-plugin-api/components/default-swappable-components
+    to: backstage/packages/frontend-plugin-api/types/types
+    type: direct-call
+    description: Calls module / service

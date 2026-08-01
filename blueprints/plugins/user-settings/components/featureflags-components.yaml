@@ -1,0 +1,60 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/user-settings/components/featureflags
+  name: Featureflags Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/user-settings/components/featureflags/user-settings-feature-flags
+    type: gateway-api
+    name: UserSettingsFeatureFlags
+    isTest: false
+    properties:
+      filepath: plugins/user-settings/src/components/FeatureFlags/UserSettingsFeatureFlags.tsx
+      containerId: user-settings
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/user-settings/components/featureflags/feature-flags-item
+    type: background-worker
+    name: FeatureFlagsItem
+    isTest: false
+    properties:
+      filepath: plugins/user-settings/src/components/FeatureFlags/FeatureFlagsItem.tsx
+      containerId: user-settings
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/user-settings/components/featureflags/empty-flags
+    type: background-worker
+    name: EmptyFlags
+    isTest: false
+    properties:
+      filepath: plugins/user-settings/src/components/FeatureFlags/EmptyFlags.tsx
+      containerId: user-settings
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/user-settings/components/featureflags/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/user-settings/src/components/FeatureFlags/index.ts
+      containerId: user-settings
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/user-settings/components/featureflags/user-settings-feature-flags
+    to: backstage/plugins/user-settings/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/components/featureflags/feature-flags-item
+    to: backstage/plugins/user-settings/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/components/featureflags/empty-flags
+    to: backstage/plugins/user-settings/translation/translation
+    type: direct-call
+    description: Calls module / service

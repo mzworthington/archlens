@@ -1,0 +1,97 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-build/commands/package/build
+  name: Build Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-module-build/commands/package/build/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/build/index.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/commands/package/build/command
+    type: background-worker
+    name: Command
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/build/command.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/builder
+    type: background-worker
+    name: Builder (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-module-build/commands/package/build/index
+    to: backstage/packages/cli-module-build/commands/package/build/command
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/build/command
+    to: backstage/packages/cli-module-build/builder
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/build/command
+    to: backstage/packages/cli-module-build/role/role
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/build/command
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/commands/package/build/command
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/commands/package/build/command
+    to: backstage/packages/cli-module-build/buildfrontend/build-frontend
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/build/command
+    to: backstage/packages/cli-module-build/buildbackend/build-backend
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/build/command
+    to: backstage/packages/cli-module-build/urls/urls
+    type: direct-call
+    description: Calls module / service

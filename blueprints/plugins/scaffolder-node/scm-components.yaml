@@ -1,0 +1,47 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-node/scm
+  name: Scm Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/scaffolder-node/scm/git-test
+    type: background-worker
+    name: Git
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-node/src/scm/git.test.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/scm/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-node/src/scm/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/scm/git
+    type: relational-database
+    name: Git
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-node/src/scm/git.ts
+      containerId: scaffolder-node
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+dependencies:
+  - from: backstage/plugins/scaffolder-node/scm/git-test
+    to: backstage/plugins/scaffolder-node/scm/git
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/scaffolder-node/scm/index
+    to: backstage/plugins/scaffolder-node/scm/git
+    type: read-write
+    description: Queries datastore records

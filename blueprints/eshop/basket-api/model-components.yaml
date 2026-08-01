@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/basket-api/model
+  name: Model Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/basket-api/model/customer-basket
+    type: background-worker
+    name: CustomerBasket
+    isTest: false
+    properties:
+      filepath: src/Basket.API/Model/CustomerBasket.cs
+      containerId: basket-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/basket-api/model/basket-item
+    type: background-worker
+    name: BasketItem
+    isTest: false
+    properties:
+      filepath: src/Basket.API/Model/BasketItem.cs
+      containerId: basket-api
+      technology: C# Domain Service
+      classification: default
+dependencies: []

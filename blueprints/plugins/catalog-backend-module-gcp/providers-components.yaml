@@ -1,0 +1,79 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-gcp/providers
+  name: Providers Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/providers/gke-entity-provider
+    type: background-worker
+    name: GkeEntityProvider
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/providers/GkeEntityProvider.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/providers/gke-entity-provider-test
+    type: background-worker
+    name: GkeEntityProvider
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/providers/GkeEntityProvider.test.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/providers/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/providers/index.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-gcp/providers/gke-entity-provider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gcp/providers/gke-entity-provider
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/catalog-backend-module-gcp/providers/gke-entity-provider-test
+    to: backstage/plugins/catalog-backend-module-gcp/providers/gke-entity-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gcp/providers/index
+    to: backstage/plugins/catalog-backend-module-gcp/providers/gke-entity-provider
+    type: direct-call
+    description: Calls module / service

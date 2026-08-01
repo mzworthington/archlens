@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 5dcf083457706497817668300b7377a04a111e27
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/cli/copytreesitterwasms
@@ -87,7 +87,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0.00021086666198074088
+      hotspotScore: 0.0002076528736129437
       sinceDays: 365
   - entityRef: blueprint/app/cli/emitbuildversion
     type: background-worker
@@ -172,7 +172,6 @@ nodes:
     name: Adapters
     isTest: false
     properties:
-      filepath: app/packages/cli/src/analysis/adapters/loadAnalysisConfig.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
@@ -180,13 +179,10 @@ nodes:
       complexity: 11
       complexityPeak: 11
       cognitiveComplexity: 55
-      functionCount: 3
-      loc: 87
-      sloc: 72
-      churn: 4
-      lineChurn: 171
-      churn30: 4
-      churn365: 4
+      churn: 18
+      lineChurn: 681
+      churn30: 18
+      churn365: 18
       churnByWeek:
         - 0
         - 0
@@ -237,38 +233,198 @@ nodes:
         - 0
         - 0
         - 0
+        - 11
         - 2
-        - 0
-        - 2
+        - 5
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 4
-      hotspotScore: 0.008263337316370281
+          commits: 18
+      hotspotScore: 0.008137396984707232
       classifications:
         - knowledge-silo
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: blueprint/app/cli/analysis/adapters/pathfilter
+    type: background-worker
+    name: Pathfilter
+    isTest: false
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 4
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing
+    type: background-worker
+    name: Parsing
+    isTest: false
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 64
+      complexityPeak: 64
+      cognitiveComplexity: 1467
+      churn: 23
+      lineChurn: 746
+      churn30: 23
+      churn365: 23
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 2
+        - 15
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 23
+      hotspotScore: 0.05814280461162424
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: blueprint/app/cli/analysis/domain
     type: relational-database
     name: Domain
     isTest: false
     properties:
-      filepath: app/packages/cli/src/analysis/domain/pythonDependencies.test.ts
       containerId: cli
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 14
-      loc: 163
-      sloc: 150
-      churn: 3
-      lineChurn: 166
-      churn30: 3
-      churn365: 3
+      complexity: 38
+      complexityPeak: 38
+      cognitiveComplexity: 651
+      churn: 183
+      lineChurn: 12756
+      churn30: 183
+      churn365: 183
       churnByWeek:
         - 0
         - 0
@@ -319,37 +475,116 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 2
-        - 1
+        - 64
+        - 22
+        - 66
+        - 31
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 3
-      hotspotScore: 0.0007292472060167288
+          commits: 183
+      hotspotScore: 0.1927710843373494
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 47
+      hotspotCount: 0
+      knowledgeSiloCount: 9
+  - entityRef: blueprint/app/cli/analysis/domain/languages
+    type: background-worker
+    name: Languages
+    isTest: false
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 14
+      lineChurn: 317
+      churn30: 14
+      churn365: 14
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 4
+        - 6
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 14
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/cli/writers
     type: background-worker
     name: Writers
     isTest: false
     properties:
-      filepath: app/packages/cli/src/writers/componentLevelWriter.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 4
-      loc: 64
-      sloc: 55
-      churn: 8
-      lineChurn: 140
-      churn30: 8
-      churn365: 8
+      complexity: 17
+      complexityPeak: 17
+      cognitiveComplexity: 109
+      churn: 80
+      lineChurn: 3739
+      churn30: 80
+      churn365: 80
       churnByWeek:
         - 0
         - 0
@@ -400,38 +635,45 @@ nodes:
         - 0
         - 0
         - 0
-        - 3
-        - 3
-        - 2
-        - 0
+        - 25
+        - 25
+        - 22
+        - 8
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 8
-      hotspotScore: 0.0018450832923314823
+          commits: 80
+      hotspotScore: 0.07641193138802967
+      classifications:
+        - knowledge-silo
       coupledFiles:
+        - path: app/packages/cli/src/writers/componentLevelWriter.ts
+          score: 1
+          sharedCommits: 7
         - path: app/packages/cli/src/writers/containerLevelWriter.ts
           score: 1
-          sharedCommits: 6
+          sharedCommits: 7
       sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 2
   - entityRef: blueprint/app/cli/cli
     type: background-worker
     name: Cli
     isTest: false
     properties:
-      filepath: app/packages/cli/src/cli/buildVersion.generated.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 2
-      churn30: 1
-      churn365: 1
+      complexity: 27
+      complexityPeak: 27
+      cognitiveComplexity: 320
+      churn: 71
+      lineChurn: 3449
+      churn30: 71
+      churn365: 71
       churnByWeek:
         - 0
         - 0
@@ -484,32 +726,43 @@ nodes:
         - 0
         - 0
         - 0
+        - 70
         - 1
-        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 71
+      hotspotScore: 0.03761112673314443
+      classifications:
+        - knowledge-silo
+      coupledFiles:
+        - path: app/packages/cli/src/cli/parseArchlensArgv.test.ts
+          score: 0.75
+          sharedCommits: 6
+        - path: app/packages/cli/src/cli/parseArchlensArgv.ts
+          score: 0.75
+          sharedCommits: 6
       sinceDays: 365
+      fileCount: 37
+      hotspotCount: 0
+      knowledgeSiloCount: 3
   - entityRef: blueprint/app/cli/forensics
     type: background-worker
     name: Forensics
     isTest: false
     properties:
-      filepath: app/packages/cli/src/forensics/collectFileMetrics.test.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 8
-      churn30: 1
-      churn365: 1
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 10
+      lineChurn: 97
+      churn30: 10
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -560,34 +813,36 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
-        - 0
+        - 6
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 10
+      hotspotScore: 0.0015400921459626656
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/cli/forensics/adapters
     type: background-worker
     name: Adapters
     isTest: false
     properties:
-      filepath: app/packages/cli/src/forensics/adapters/sourceFileWalk.test.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 63
-      churn30: 1
-      churn365: 1
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 43
+      churn: 17
+      lineChurn: 850
+      churn30: 17
+      churn365: 17
       churnByWeek:
         - 0
         - 0
@@ -638,37 +893,38 @@ nodes:
         - 0
         - 0
         - 0
+        - 5
         - 0
-        - 0
-        - 1
+        - 12
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 17
+      hotspotScore: 0.004845233717635353
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: blueprint/app/cli/forensics/domain
     type: background-worker
     name: Domain
     isTest: false
     properties:
-      filepath: app/packages/cli/src/forensics/domain/forensicAnalyzer.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 8
-      complexityPeak: 8
-      cognitiveComplexity: 28
-      functionCount: 11
-      loc: 189
-      sloc: 164
-      churn: 6
-      lineChurn: 212
-      churn30: 6
-      churn365: 6
+      complexity: 32
+      complexityPeak: 32
+      cognitiveComplexity: 445
+      churn: 60
+      lineChurn: 2082
+      churn30: 60
+      churn365: 60
       churnByWeek:
         - 0
         - 0
@@ -719,17 +975,22 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 2
-        - 3
+        - 18
+        - 13
+        - 29
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 6
-      hotspotScore: 0.007450622056652843
+          commits: 60
+      hotspotScore: 0.032393848283619214
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 17
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: blueprint/app/core/index
     type: background-worker
     name: Index (External)
@@ -759,7 +1020,6 @@ nodes:
     name: Recommendations (External)
     external: true
     properties:
-      filepath: app/packages/core/src/recommendations/advicelensStressFixtures.test.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
@@ -771,7 +1031,6 @@ nodes:
     name: Resilience (External)
     external: true
     properties:
-      filepath: app/packages/core/src/resilience.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
@@ -780,7 +1039,11 @@ nodes:
       y: 404
 dependencies:
   - from: blueprint/app/cli/copytreesitterwasms
-    to: blueprint/app/cli/analysis/adapters
+    to: blueprint/app/cli/analysis/adapters/parsing
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain
+    to: blueprint/app/cli/writers
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/cli/analysis/domain
@@ -856,11 +1119,11 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/app/cli/cli
-    to: blueprint/app/cli/analysis/adapters
+    to: blueprint/app/cli/analysis/adapters/parsing
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/cli/cli
-    to: blueprint/app/cli/analysis/adapters
+    to: blueprint/app/cli/analysis/adapters/parsing
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/cli/cli
@@ -892,7 +1155,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/cli/cli
-    to: blueprint/app/cli/analysis/adapters
+    to: blueprint/app/cli/analysis/adapters/parsing
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/cli/cli
@@ -1024,7 +1287,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/cli/forensics
-    to: blueprint/app/cli/analysis/adapters
+    to: blueprint/app/cli/analysis/adapters/parsing
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/cli/forensics

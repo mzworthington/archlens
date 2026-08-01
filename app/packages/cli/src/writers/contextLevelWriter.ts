@@ -298,7 +298,7 @@ export class ContextLevelWriter extends BaseWriter {
     contextSchema = {
       ...contextSchema,
       entityRef: diagramEntityRef,
-      name: contextSchema.name || resolveContextDisplayName(diagramEntityRef),
+      name: resolveContextDisplayName(diagramEntityRef),
       nodes: seedPreservedPositions(previousNodes, contextSchema.nodes),
     };
 
@@ -321,22 +321,29 @@ export class ContextLevelWriter extends BaseWriter {
     legacyPath: string,
     diagramEntityRef: string
   ): Promise<SystemSchema> {
-    const readPath = this.fileSystem.exists(targetPath)
-      ? targetPath
-      : this.fileSystem.exists(legacyApplicationPath)
-        ? legacyApplicationPath
-        : this.fileSystem.exists(legacyPath)
-          ? legacyPath
-          : null;
+    const candidates = [targetPath];
+    if (diagramEntityRef === EntityRef.parse('application')) {
+      candidates.push(legacyApplicationPath);
+    }
+    candidates.push(legacyPath);
 
-    if (readPath) {
+    for (const readPath of candidates) {
+      if (readPath === targetPath && !this.fileSystem.exists(readPath)) continue;
+      if (readPath !== targetPath && !this.fileSystem.exists(readPath)) continue;
+
       try {
         const existingYaml = await this.fileSystem.readSchema(readPath);
         const parsed = parseSchemaFromYaml(existingYaml);
+        const parsedRef = parsed.entityRef ? EntityRef.parse(parsed.entityRef) : diagramEntityRef;
+
+        if (readPath !== targetPath && parsedRef !== diagramEntityRef) {
+          continue;
+        }
+
         return {
           ...parsed,
-          entityRef: parsed.entityRef || diagramEntityRef,
-          name: parsed.name || resolveContextDisplayName(diagramEntityRef),
+          entityRef: diagramEntityRef,
+          name: resolveContextDisplayName(diagramEntityRef),
           nodes: parsed.nodes ? [...parsed.nodes] : [],
           dependencies: parsed.dependencies ? [...parsed.dependencies] : [],
         };

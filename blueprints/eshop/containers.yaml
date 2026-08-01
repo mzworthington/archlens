@@ -17,10 +17,10 @@ nodes:
       complexity: 25
       complexityPeak: 25
       cognitiveComplexity: 168
-      churn: 3
-      lineChurn: 8
+      churn: 7
+      lineChurn: 28
       churn30: 0
-      churn365: 3
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -30,7 +30,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
+        - 3
         - 0
         - 0
         - 0
@@ -39,7 +39,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -76,12 +76,12 @@ nodes:
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.7142857142857143
       authors:
-        - email: joperezr@microsoft.com
-          commits: 2
         - email: amauryleve@microsoft.com
-          commits: 1
+          commits: 4
+        - email: joperezr@microsoft.com
+          commits: 3
       hotspotScore: 0.020618556701030927
       classifications:
         - knowledge-silo
@@ -815,9 +815,9 @@ nodes:
     name: Ordering.Domain Service
     isTest: false
     forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 17
       churn: 0
       churn30: 0
       churn365: 0
@@ -894,7 +894,6 @@ nodes:
     name: Repositories Layer (External)
     external: true
     properties:
-      filepath: src/Basket.API/Repositories/RedisBasketRepository.cs
       containerId: basket-api
       technology: Entity Framework / DB Context
       classification: database-marker
@@ -918,7 +917,6 @@ nodes:
     name: Model Layer (External)
     external: true
     properties:
-      filepath: src/Basket.API/Model/CustomerBasket.cs
       containerId: basket-api
       technology: C# Domain Service
       classification: default
@@ -930,7 +928,6 @@ nodes:
     name: Model Layer (External)
     external: true
     properties:
-      filepath: src/Catalog.API/Model/CatalogServices.cs
       containerId: catalog-api
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
@@ -942,7 +939,6 @@ nodes:
     name: Models Layer (External)
     external: true
     properties:
-      filepath: src/ClientApp/Models/Token/UserToken.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
@@ -954,7 +950,6 @@ nodes:
     name: Validations Layer (External)
     external: true
     properties:
-      filepath: src/ClientApp/Validations/IValidity.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
@@ -966,7 +961,6 @@ nodes:
     name: ViewModels Layer (External)
     external: true
     properties:
-      filepath: src/ClientApp/ViewModels/BasketViewModel.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
@@ -990,7 +984,6 @@ nodes:
     name: Services Layer (External)
     external: true
     properties:
-      filepath: src/ClientApp/Services/Order/OrderMockService.cs
       containerId: clientapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
@@ -1026,7 +1019,6 @@ nodes:
     name: Abstractions Layer (External)
     external: true
     properties:
-      filepath: src/EventBus/Abstractions/IEventBusBuilder.cs
       containerId: eventbus
       technology: C# Event Client
       classification: event-marker
@@ -1050,7 +1042,6 @@ nodes:
     name: Services Layer (External)
     external: true
     properties:
-      filepath: src/WebAppComponents/Services/IProductImageUrlProvider.cs
       containerId: webappcomponents
       technology: C# Domain Service
       classification: default
@@ -1074,7 +1065,6 @@ nodes:
     name: Application Layer (External)
     external: true
     properties:
-      filepath: src/Ordering.API/Application/Queries/OrderQueries.cs
       containerId: ordering-api
       technology: C# Event Client
       classification: event-marker
@@ -1086,7 +1076,6 @@ nodes:
     name: AggregatesModel Layer (External)
     external: true
     properties:
-      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs
       containerId: ordering-domain
       technology: Entity Framework / DB Context
       classification: database-marker

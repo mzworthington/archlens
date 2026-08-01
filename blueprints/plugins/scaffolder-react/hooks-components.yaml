@@ -1,0 +1,394 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-react/hooks
+  name: Hooks Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-download-logs
+    type: gateway-api
+    name: UseDownloadLogs
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useDownloadLogs.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-transform-schema-to-props
+    type: gateway-api
+    name: UseTransformSchemaToProps
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTransformSchemaToProps.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-template-schema
+    type: gateway-api
+    name: UseTemplateSchema
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTemplateSchema.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-template-parameter-schema
+    type: gateway-api
+    name: UseTemplateParameterSchema
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTemplateParameterSchema.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-template-schema-test
+    type: gateway-api
+    name: UseTemplateSchema
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTemplateSchema.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-form-data-from-query
+    type: gateway-api
+    name: UseFormDataFromQuery
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useFormDataFromQuery.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-filtered-schema-properties-test
+    type: gateway-api
+    name: UseFilteredSchemaProperties
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useFilteredSchemaProperties.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-transform-schema-to-props-test
+    type: gateway-api
+    name: UseTransformSchemaToProps
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTransformSchemaToProps.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-template-time-saved-test
+    type: gateway-api
+    name: UseTemplateTimeSaved
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTemplateTimeSaved.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/index.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-filtered-schema-properties
+    type: gateway-api
+    name: UseFilteredSchemaProperties
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useFilteredSchemaProperties.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-template-time-saved
+    type: gateway-api
+    name: UseTemplateTimeSaved
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/hooks/useTemplateTimeSaved.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-custom-field-extensions-test
+    type: gateway-api
+    name: UseCustomFieldExtensions
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/hooks/useCustomFieldExtensions.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-custom-layouts
+    type: background-worker
+    name: UseCustomLayouts
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/hooks/useCustomLayouts.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-event-stream
+    type: gateway-api
+    name: UseEventStream
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/hooks/useEventStream.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/hooks/use-custom-field-extensions
+    type: background-worker
+    name: UseCustomFieldExtensions
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/hooks/useCustomFieldExtensions.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/extensions
+    type: gateway-api
+    name: Extensions (External)
+    external: true
+    properties:
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/index.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1740
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/layouts/keys
+    type: background-worker
+    name: Keys (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/layouts/keys.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/extensions/keys
+    type: background-worker
+    name: Keys (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/extensions/keys.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/layouts
+    type: gateway-api
+    name: Layouts (External)
+    external: true
+    properties:
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/signals-node/lib
+    type: background-worker
+    name: Lib (External)
+    external: true
+    properties:
+      filepath: plugins/signals-node/src/lib.ts
+      containerId: signals-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-react/hooks/use-transform-schema-to-props
+    to: backstage/plugins/scaffolder-react/layouts
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-transform-schema-to-props
+    to: backstage/plugins/scaffolder-react/hooks/use-template-schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-schema
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-schema
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-schema
+    to: backstage/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-parameter-schema
+    to: backstage/plugins/scaffolder-react/ref/ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-parameter-schema
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-schema-test
+    to: backstage/plugins/scaffolder-react/hooks/use-template-schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-schema-test
+    to: backstage/plugins/scaffolder-react/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-filtered-schema-properties-test
+    to: backstage/plugins/scaffolder-react/hooks/use-filtered-schema-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-filtered-schema-properties-test
+    to: backstage/plugins/scaffolder-react/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-transform-schema-to-props-test
+    to: backstage/plugins/scaffolder-react/hooks/use-template-schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-transform-schema-to-props-test
+    to: backstage/plugins/scaffolder-react/hooks/use-transform-schema-to-props
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-time-saved-test
+    to: backstage/plugins/scaffolder-react/hooks/use-template-time-saved
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-time-saved-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-time-saved-test
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/hooks/index
+    to: backstage/plugins/scaffolder-react/hooks/use-form-data-from-query
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/index
+    to: backstage/plugins/scaffolder-react/hooks/use-template-schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/index
+    to: backstage/plugins/scaffolder-react/hooks/use-template-parameter-schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/index
+    to: backstage/plugins/scaffolder-react/hooks/use-filtered-schema-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-filtered-schema-properties
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder-react/hooks/use-template-time-saved
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/hooks/use-custom-field-extensions-test
+    to: backstage/plugins/scaffolder-react/hooks/use-custom-field-extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-custom-field-extensions-test
+    to: backstage/plugins/scaffolder-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-custom-layouts
+    to: backstage/plugins/scaffolder-react/layouts/keys
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-custom-layouts
+    to: backstage/plugins/scaffolder-react/layouts
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/index
+    to: backstage/plugins/scaffolder-react/hooks/use-custom-field-extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/index
+    to: backstage/plugins/scaffolder-react/hooks/use-custom-layouts
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/index
+    to: backstage/plugins/scaffolder-react/hooks/use-event-stream
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-event-stream
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/hooks/use-event-stream
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-custom-field-extensions
+    to: backstage/plugins/scaffolder-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/hooks/use-custom-field-extensions
+    to: backstage/plugins/scaffolder-react/extensions/keys
+    type: direct-call
+    description: Calls module / service

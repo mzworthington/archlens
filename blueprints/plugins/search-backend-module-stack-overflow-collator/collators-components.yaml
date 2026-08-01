@@ -1,0 +1,87 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/collators
+  name: Collators Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: >-
+      backstage/plugins/search-backend-module-stack-overflow-collator/collators/stack-overflow-questions-collator-factory
+    type: background-worker
+    name: StackOverflowQuestionsCollatorFactory
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.ts
+      containerId: search-backend-module-stack-overflow-collator
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: >-
+      backstage/plugins/search-backend-module-stack-overflow-collator/collators/stack-overflow-questions-collator-factory-test
+    type: background-worker
+    name: StackOverflowQuestionsCollatorFactory
+    isTest: true
+    properties:
+      filepath: >-
+        plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.test.ts
+      containerId: search-backend-module-stack-overflow-collator
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/collators/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-stack-overflow-collator/src/collators/index.ts
+      containerId: search-backend-module-stack-overflow-collator
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/search-backend-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: >-
+      backstage/plugins/search-backend-module-stack-overflow-collator/collators/stack-overflow-questions-collator-factory
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: >-
+      backstage/plugins/search-backend-module-stack-overflow-collator/collators/stack-overflow-questions-collator-factory-test
+    to: >-
+      backstage/plugins/search-backend-module-stack-overflow-collator/collators/stack-overflow-questions-collator-factory
+    type: direct-call
+    description: Calls module / service
+  - from: >-
+      backstage/plugins/search-backend-module-stack-overflow-collator/collators/stack-overflow-questions-collator-factory-test
+    to: backstage/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/collators/index
+    to: >-
+      backstage/plugins/search-backend-module-stack-overflow-collator/collators/stack-overflow-questions-collator-factory
+    type: direct-call
+    description: Calls module / service

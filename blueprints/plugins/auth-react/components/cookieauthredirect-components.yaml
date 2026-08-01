@@ -1,0 +1,49 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-react/components/cookieauthredirect
+  name: Cookieauthredirect Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/auth-react/components/cookieauthredirect/cookie-auth-redirect-test
+    type: gateway-api
+    name: CookieAuthRedirect
+    isTest: true
+    properties:
+      filepath: plugins/auth-react/src/components/CookieAuthRedirect/CookieAuthRedirect.test.tsx
+      containerId: auth-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/auth-react/components/cookieauthredirect/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/auth-react/src/components/CookieAuthRedirect/index.ts
+      containerId: auth-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: auth-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/auth-react/components/cookieauthredirect/cookie-auth-redirect-test
+    to: backstage/plugins/auth-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-react/components/cookieauthredirect/index
+    to: backstage/plugins/auth-react/components
+    type: direct-call
+    description: Calls module / service

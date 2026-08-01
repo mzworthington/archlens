@@ -1,0 +1,639 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search/components
+  name: Components Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/search/components/searchmodal
+    type: gateway-api
+    name: Searchmodal
+    isTest: false
+    properties:
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 10
+      lineChurn: 834
+      churn30: 5
+      churn365: 10
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: fatihcamgoz@hotmail.com.tr
+          commits: 2
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+        - email: sydneynicoleachinger@spotify.com
+          commits: 1
+      hotspotScore: 0.001290440222460673
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/search/components/searchpage
+    type: gateway-api
+    name: Searchpage
+    isTest: false
+    properties:
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 130
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/search/components/sidebarsearch
+    type: background-worker
+    name: Sidebarsearch
+    isTest: false
+    properties:
+      filepath: plugins/search/src/components/SidebarSearch/index.ts
+      containerId: search
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/plugins/search/components/sidebarsearchmodal
+    type: background-worker
+    name: Sidebarsearchmodal
+    isTest: false
+    properties:
+      filepath: plugins/search/src/components/SidebarSearchModal/index.ts
+      containerId: search
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/plugins/search/components/searchtype
+    type: gateway-api
+    name: Searchtype
+    isTest: false
+    properties:
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 11
+      lineChurn: 1101
+      churn30: 7
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6363636363636364
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: sydneynicoleachinger@spotify.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/search/components/homepagecomponent
+    type: gateway-api
+    name: Homepagecomponent
+    isTest: false
+    properties:
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 7
+      lineChurn: 246
+      churn30: 4
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5714285714285714
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+        - email: sydneynicoleachinger@spotify.com
+          commits: 1
+      hotspotScore: 0.00022793101755419498
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/search/components/search-modal
+    type: gateway-api
+    name: SearchModal
+    isTest: false
+    properties:
+      filepath: plugins/search/src/components/SearchModal/SearchModal.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search/components/search-page
+    type: gateway-api
+    name: SearchPage
+    isTest: false
+    properties:
+      filepath: plugins/search/src/components/SearchPage/SearchPage.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search/components/sidebar-search
+    type: gateway-api
+    name: SidebarSearch
+    isTest: false
+    properties:
+      filepath: plugins/search/src/components/SidebarSearch/SidebarSearch.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search/components/sidebar-search-modal
+    type: background-worker
+    name: SidebarSearchModal
+    isTest: false
+    properties:
+      filepath: plugins/search/src/components/SidebarSearchModal/SidebarSearchModal.tsx
+      containerId: search
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search/components/search-type
+    type: gateway-api
+    name: SearchType
+    isTest: false
+    properties:
+      filepath: plugins/search/src/components/SearchType/SearchType.tsx
+      containerId: search
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search/components/util
+    type: gateway-api
+    name: Util
+    isTest: false
+    properties:
+      filepath: plugins/search/src/components/util.ts
+      containerId: search
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search/components/util-test
+    type: background-worker
+    name: Util
+    isTest: true
+    properties:
+      filepath: plugins/search/src/components/util.test.tsx
+      containerId: search
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-react/src/index.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/search/components/search-modal
+    to: backstage/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: backstage/plugins/search/components/search-modal
+    to: backstage/plugins/search/plugin/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search/components/search-modal
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search/components/search-modal
+    to: backstage/plugins/search/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search/components/search-page
+    to: backstage/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: backstage/plugins/search/components/sidebar-search
+    to: backstage/plugins/search/plugin/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search/components/sidebar-search-modal
+    to: backstage/plugins/search/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search/components/search-type
+    to: backstage/plugins/search/components/searchtype
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search/components/search-type
+    to: backstage/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: backstage/plugins/search/components/search-type
+    to: backstage/plugins/search/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search/components/util
+    to: backstage/plugins/search/plugin/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search/components/util-test
+    to: backstage/plugins/search/components/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search/components/util-test
+    to: backstage/plugins/search/plugin/plugin
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,174 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder/components/templatelistpage
+  name: Templatelistpage Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder/components/templatelistpage/template-list-page-test
+    type: gateway-api
+    name: TemplateListPage
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/TemplateListPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/templatelistpage/register-existing-button-test
+    type: gateway-api
+    name: RegisterExistingButton
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/RegisterExistingButton.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/templatelistpage/register-existing-button
+    type: gateway-api
+    name: RegisterExistingButton
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/RegisterExistingButton.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/templatelistpage/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/index.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-common/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/plugins/scaffolder/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/catalog/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/techdocs-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-common/src/index.ts
+      containerId: techdocs-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder/components/templatelistpage/template-list-page-test
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/scaffolder/components/templatelistpage/template-list-page-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/templatelistpage/template-list-page-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/templatelistpage/template-list-page-test
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder/components/templatelistpage/template-list-page-test
+    to: backstage/plugins/scaffolder/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatelistpage/template-list-page-test
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatelistpage/template-list-page-test
+    to: backstage/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
+  - from: backstage/plugins/scaffolder/components/templatelistpage/register-existing-button-test
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder/components/templatelistpage/register-existing-button
+    to: backstage/plugins/catalog-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/scaffolder/components/templatelistpage/register-existing-button
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder/components/templatelistpage/index
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service

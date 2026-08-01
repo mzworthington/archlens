@@ -836,18 +836,17 @@ nodes:
     name: Commands
     isTest: false
     properties:
-      filepath: packages/cli-module-actions/src/commands/sourcesRemove.test.ts
       containerId: cli-module-actions
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 228
-      churn30: 1
-      churn365: 2
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 54
+      churn: 37
+      lineChurn: 2104
+      churn30: 8
+      churn365: 37
       churnByWeek:
         - 0
         - 0
@@ -881,14 +880,10 @@ nodes:
         - 0
         - 0
         - 0
+        - 16
         - 0
         - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
+        - 8
         - 0
         - 0
         - 0
@@ -897,20 +892,40 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
+        - 0
+        - 0
+        - 0
+        - 8
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6486486486486487
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 24
         - email: ben@blam.sh
-          commits: 1
-      hotspotScore: 0
+          commits: 13
+      hotspotScore: 0.017673420438048346
+      coupledFiles:
+        - path: packages/cli-module-actions/src/commands/sourcesAdd.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/cli-module-actions/src/commands/sourcesRemove.ts
+          score: 1
+          sharedCommits: 6
+        - path: packages/cli-module-actions/src/commands/sourcesList.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/cli-module-actions/src/lib/resolveAuth.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-actions/index
     type: background-worker
     name: Index

@@ -1,0 +1,166 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs/home/components/grids
+  name: Grids Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs/home/components/grids/docs-card-grid-test
+    type: gateway-api
+    name: DocsCardGrid
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/home/components/Grids/DocsCardGrid.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/home/components/grids/info-card-grid-test
+    type: gateway-api
+    name: InfoCardGrid
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/home/components/Grids/InfoCardGrid.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/home/components/grids/entity-list-docs-grid
+    type: gateway-api
+    name: EntityListDocsGrid
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/home/components/Grids/EntityListDocsGrid.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/home/components/grids/docs-card-grid
+    type: background-worker
+    name: DocsCardGrid
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/home/components/Grids/DocsCardGrid.tsx
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs/home/components/grids/info-card-grid
+    type: gateway-api
+    name: InfoCardGrid
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/home/components/Grids/InfoCardGrid.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/home/components/grids/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/home/components/Grids/index.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs/home/components/grids/entity-list-docs-grid-test
+    type: gateway-api
+    name: EntityListDocsGrid
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/home/components/Grids/EntityListDocsGrid.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/catalog/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs/home/components/grids/docs-card-grid-test
+    to: backstage/plugins/techdocs/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/grids/info-card-grid-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/home/components/grids/info-card-grid-test
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/techdocs/home/components/grids/info-card-grid-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/home/components/grids/info-card-grid-test
+    to: backstage/plugins/techdocs/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/grids/entity-list-docs-grid
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/home/components/grids/docs-card-grid
+    to: backstage/plugins/techdocs/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/grids/docs-card-grid
+    to: backstage/plugins/techdocs/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/grids/info-card-grid
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/home/components/grids/info-card-grid
+    to: backstage/plugins/techdocs/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/grids/info-card-grid
+    to: backstage/plugins/techdocs/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/grids/entity-list-docs-grid-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/home/components/grids/entity-list-docs-grid-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/home/components/grids/entity-list-docs-grid-test
+    to: backstage/plugins/techdocs/routes/routes
+    type: direct-call
+    description: Calls module / service

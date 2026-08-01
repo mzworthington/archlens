@@ -1,0 +1,223 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs-node/stages/generate
+  name: Generate Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/techdocs-test
+    type: background-worker
+    name: Techdocs
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/techdocs.test.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/helpers
+    type: background-worker
+    name: Helpers
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/helpers.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/generators
+    type: background-worker
+    name: Generators
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/generators.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/types.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/techdocs
+    type: background-worker
+    name: Techdocs
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/techdocs.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/helpers-test
+    type: background-worker
+    name: Helpers
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/helpers.test.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/index.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/docker-container-runner
+    type: background-worker
+    name: DockerContainerRunner
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/DockerContainerRunner.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/generators-test
+    type: background-worker
+    name: Generators
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/generators.test.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/docker-container-runner-test
+    type: background-worker
+    name: DockerContainerRunner
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/DockerContainerRunner.test.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/generate/mkdocs-patchers
+    type: background-worker
+    name: MkdocsPatchers
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-node/src/stages/generate/mkdocsPatchers.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-node/stages/publish/helpers
+    type: background-worker
+    name: Helpers (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-node/src/stages/publish/helpers.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs-node/stages/generate/techdocs-test
+    to: backstage/plugins/techdocs-node/stages/generate/techdocs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/helpers
+    to: backstage/plugins/techdocs-node/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/helpers
+    to: backstage/plugins/techdocs-node/stages/generate/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/helpers
+    to: backstage/plugins/techdocs-node/stages/publish/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/generators
+    to: backstage/plugins/techdocs-node/stages/generate/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/generators
+    to: backstage/plugins/techdocs-node/stages/generate/techdocs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/generators
+    to: backstage/plugins/techdocs-node/stages/generate/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/types
+    to: backstage/plugins/techdocs-node/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/techdocs
+    to: backstage/plugins/techdocs-node/stages/generate/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/techdocs
+    to: backstage/plugins/techdocs-node/stages/generate/mkdocs-patchers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/techdocs
+    to: backstage/plugins/techdocs-node/stages/generate/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/techdocs
+    to: backstage/plugins/techdocs-node/stages/generate/docker-container-runner
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/helpers-test
+    to: backstage/plugins/techdocs-node/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/helpers-test
+    to: backstage/plugins/techdocs-node/stages/generate/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/helpers-test
+    to: backstage/plugins/techdocs-node/stages/generate/mkdocs-patchers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/index
+    to: backstage/plugins/techdocs-node/stages/generate/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/index
+    to: backstage/plugins/techdocs-node/stages/generate/techdocs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/index
+    to: backstage/plugins/techdocs-node/stages/generate/generators
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/index
+    to: backstage/plugins/techdocs-node/stages/generate/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/docker-container-runner
+    to: backstage/plugins/techdocs-node/stages/generate/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/generators-test
+    to: backstage/plugins/techdocs-node/stages/generate/generators
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/generators-test
+    to: backstage/plugins/techdocs-node/stages/generate/techdocs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/docker-container-runner-test
+    to: backstage/plugins/techdocs-node/stages/generate/docker-container-runner
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/mkdocs-patchers
+    to: backstage/plugins/techdocs-node/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-node/stages/generate/mkdocs-patchers
+    to: backstage/plugins/techdocs-node/stages/generate/helpers
+    type: direct-call
+    description: Calls module / service

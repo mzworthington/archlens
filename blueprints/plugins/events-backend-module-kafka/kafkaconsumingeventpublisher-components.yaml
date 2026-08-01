@@ -1,0 +1,155 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher
+  name: Kafkaconsumingeventpublisher Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module
+    type: background-worker
+    name: Module
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/module.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module-test
+    type: background-worker
+    name: Module
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/module.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher
+    type: event-broker
+    name: KafkaConsumingEventPublisher
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/KafkaConsumingEventPublisher.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+  - entityRef: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/index.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/config
+    type: event-broker
+    name: Config
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/config.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+  - entityRef: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/config.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher-test
+    type: event-broker
+    name: KafkaConsumingEventPublisher
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/KafkaConsumingEventPublisher.test.ts
+      containerId: events-backend-module-kafka
+      technology: TypeScript Event Client
+      classification: event-marker
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module
+    to: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module-test
+    to: backstage/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module-test
+    to: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module-test
+    to: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher
+    to: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/config
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher
+    to: backstage/plugins/events-backend-module-kafka/loggerserviceadapter/logger-service-adapter
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher
+    to: backstage/plugins/events-backend-module-kafka/kafkatransformers/kafka-transformers
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/index
+    to: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/module
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/config
+    to: backstage/plugins/events-backend-module-kafka/config/config
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/config-test
+    to: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/config
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher-test
+    to: backstage/plugins/events-backend-module-kafka/kafkaconsumingeventpublisher/kafka-consuming-event-publisher
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics

@@ -753,18 +753,17 @@ nodes:
     name: Commands
     isTest: false
     properties:
-      filepath: packages/techdocs-cli/src/commands/publish/publish.ts
       containerId: techdocs-cli
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 54
-      churn30: 1
-      churn365: 2
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 45
+      churn: 15
+      lineChurn: 798
+      churn30: 5
+      churn365: 15
       churnByWeek:
         - 0
         - 0
@@ -782,33 +781,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
+        - 2
         - 0
         - 0
         - 0
@@ -816,53 +790,7 @@ nodes:
         - 0
         - 1
         - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/techdocs-cli/commands/serve
-    type: gateway-api
-    name: Serve
-    isTest: false
-    properties:
-      filepath: packages/techdocs-cli/src/commands/serve/mkdocs.ts
-      containerId: techdocs-cli
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 5
-      complexityPeak: 5
-      cognitiveComplexity: 10
-      functionCount: 4
-      loc: 96
-      sloc: 58
-      churn: 3
-      lineChurn: 111
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -885,6 +813,44 @@ nodes:
         - 0
         - 0
         - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: freben@gmail.com
+          commits: 3
+        - email: karthik.jk11@gmail.com
+          commits: 2
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.00683793052662585
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/techdocs-cli/commands/serve
+    type: gateway-api
+    name: Serve
+    isTest: false
+    properties:
+      containerId: techdocs-cli
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 5
+      lineChurn: 163
+      churn30: 2
+      churn365: 5
+      churnByWeek:
         - 0
         - 0
         - 0
@@ -897,7 +863,43 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -906,9 +908,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 3
+          commits: 5
       hotspotScore: 0.0019461802268088955
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/techdocs-cli/index
     type: background-worker
     name: Index

@@ -170,18 +170,17 @@ nodes:
     name: Commands
     isTest: false
     properties:
-      filepath: packages/e2e-test/src/commands/index.ts
       containerId: e2e-test
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 30
-      churn30: 1
-      churn365: 2
+      complexity: 14
+      complexityPeak: 14
+      cognitiveComplexity: 91
+      churn: 24
+      lineChurn: 850
+      churn30: 2
+      churn365: 24
       churnByWeek:
         - 0
         - 0
@@ -208,24 +207,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
+        - 3
         - 0
         - 0
+        - 9
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -236,13 +228,29 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 6
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.625
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
+          commits: 15
+        - email: freben@gmail.com
+          commits: 7
+        - email: aramis.sennyey@doordash.com
+          commits: 1
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0.04025612433111012
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/e2e-test/index
     type: background-worker
     name: Index

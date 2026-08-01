@@ -1,0 +1,112 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports
+  name: Sql reports Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports/generate-sql-report
+    type: background-worker
+    name: GenerateSqlReport
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/generateSqlReport.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports/run-sql-extraction
+    type: relational-database
+    name: RunSqlExtraction
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/runSqlExtraction.ts
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports/types
+    type: relational-database
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/types.ts
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports/get-pg-schema-info
+    type: relational-database
+    name: GetPgSchemaInfo
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/getPgSchemaInfo.ts
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/sql-reports/index.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports
+    type: background-worker
+    name: Api reports (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports/generate-sql-report
+    to: backstage/packages/repo-tools/commands/api-reports/sql-reports/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports/run-sql-extraction
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports/run-sql-extraction
+    to: backstage/packages/repo-tools/commands/api-reports/sql-reports/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports/run-sql-extraction
+    to: backstage/packages/repo-tools/commands/api-reports/sql-reports/get-pg-schema-info
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports/run-sql-extraction
+    to: backstage/packages/repo-tools/commands/api-reports/sql-reports/generate-sql-report
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports/run-sql-extraction
+    to: backstage/packages/repo-tools/commands/api-reports
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports/get-pg-schema-info
+    to: backstage/packages/repo-tools/commands/api-reports/sql-reports/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports/index
+    to: backstage/packages/repo-tools/commands/api-reports/sql-reports/run-sql-extraction
+    type: read-write
+    description: Queries datastore records

@@ -1,0 +1,195 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-migrate/commands
+  name: Commands Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-module-migrate/commands/versions
+    type: background-worker
+    name: Versions
+    isTest: false
+    properties:
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 21
+      complexityPeak: 21
+      cognitiveComplexity: 204
+      churn: 8
+      lineChurn: 2409
+      churn30: 4
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 2
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: jonkoops@gmail.com
+          commits: 2
+      hotspotScore: 0.03902880346735677
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-module-migrate/commands/package-role
+    type: background-worker
+    name: PackageRole
+    isTest: false
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageRole.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-migrate/commands/package-scripts
+    type: background-worker
+    name: PackageScripts
+    isTest: false
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageScripts.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-migrate/commands/package-lint-configs
+    type: background-worker
+    name: PackageLintConfigs
+    isTest: false
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageLintConfigs.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-migrate/commands/package-exports
+    type: background-worker
+    name: PackageExports
+    isTest: false
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/packageExports.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-migrate/commands/react-router-deps
+    type: rest-api
+    name: ReactRouterDeps
+    isTest: false
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/reactRouterDeps.ts
+      containerId: cli-module-migrate
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-module-migrate/commands/package-role
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-migrate/commands/package-role
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-migrate/commands/package-scripts
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-migrate/commands/package-lint-configs
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-migrate/commands/package-lint-configs
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-migrate/commands/package-lint-configs
+    to: backstage/packages/cli/eslint
+    type: direct-call
+    description: '@backstage/cli'
+  - from: backstage/packages/cli-module-migrate/commands/package-exports
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-migrate/commands/react-router-deps
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'

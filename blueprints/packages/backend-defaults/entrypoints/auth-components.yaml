@@ -1,0 +1,539 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/auth
+  name: Auth Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/plugin
+    type: background-worker
+    name: Plugin
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 5
+      lineChurn: 361
+      churn30: 2
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: sarabadu@gmail.com
+          commits: 1
+      hotspotScore: 0.005102148162174672
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/user
+    type: background-worker
+    name: User
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 608
+      churn30: 2
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external
+    type: background-worker
+    name: External
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 28
+      churn: 60
+      lineChurn: 4390
+      churn30: 11
+      churn365: 60
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 15
+        - 8
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 11
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.6833333333333333
+      authors:
+        - email: sarabadu@gmail.com
+          commits: 40
+        - email: poldsberg@gmail.com
+          commits: 11
+        - email: pschultz@pobox.com
+          commits: 3
+        - email: jonkoops@gmail.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 2
+        - email: freben@gmail.com
+          commits: 2
+      hotspotScore: 0.01006403108277753
+      coupledFiles:
+        - path: packages/backend-defaults/src/entrypoints/auth/external/legacy.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/backend-defaults/src/entrypoints/auth/external/types.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    type: background-worker
+    name: AuthServiceFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/helpers
+    type: background-worker
+    name: Helpers
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/helpers.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/jwks-client
+    type: background-worker
+    name: JwksClient
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/JwksClient.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    type: background-worker
+    name: DefaultAuthService
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/DefaultAuthService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/types.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    type: background-worker
+    name: AuthServiceFactory
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/helpers-test
+    type: background-worker
+    name: Helpers
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/helpers.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/entrypoints
+    type: background-worker
+    name: Entrypoints (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/entryPoints.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/auth/plugin/plugin-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/auth/plugin/keys/create-plugin-key-source
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/auth/user/user-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/helpers
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/helpers
+    to: backstage/packages/backend-defaults/entrypoints/auth/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/jwks-client
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    to: backstage/packages/backend-defaults/entrypoints/auth/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    to: backstage/packages/backend-defaults/entrypoints/auth/plugin/plugin-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    to: backstage/packages/backend-defaults/entrypoints/auth/plugin/keys/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/auth/default-auth-service
+    to: backstage/packages/backend-defaults/entrypoints/auth/user/user-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/types
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    to: backstage/packages/cli-module-build/entrypoints
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/plugin/plugin-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/helpers-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/helpers-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/index
+    to: backstage/packages/backend-defaults/entrypoints/auth/auth-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/index
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/index
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/index
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/index
+    to: backstage/packages/backend-defaults/entrypoints/auth/plugin/plugin-token-handler
+    type: direct-call
+    description: Calls module / service

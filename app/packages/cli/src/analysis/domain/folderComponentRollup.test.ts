@@ -8,6 +8,19 @@ describe('folderComponentRollup', () => {
   const tsStrip = /\.(ts|tsx)$/i;
   const layoutRoots = new Set(['src']);
 
+  it('rolls up monorepo paths to full folder depth', () => {
+    expect(
+      resolveFolderRolledComponent(
+        'app/packages/designer/src/application/store/states/diagramState.ts',
+        'diagramState',
+        { layoutRoots, stripExtension: tsStrip, leafWhenSingleSegmentInSimpleRepo: true }
+      )
+    ).toEqual({
+      componentId: 'application/store/states',
+      componentName: 'States',
+    });
+  });
+
   it('rolls up monorepo paths to folder depth', () => {
     expect(
       resolveFolderRolledComponent(

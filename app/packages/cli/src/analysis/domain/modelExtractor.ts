@@ -31,6 +31,8 @@ import {
   subpathComponentIdFromSpecifier,
 } from './workspacePackages.ts';
 import { slugify } from '@archlens/core';
+import { fileLeafEntityRef } from '../../writers/rollupDrillDown.ts';
+import { resolveRelativeTypeScriptImportPath } from './typescriptGrouping.ts';
 
 function componentEntityRef(parentRef: string, containerId: string, componentId: string): string {
   let ref = EntityRef.child(parentRef, containerId);
@@ -38,6 +40,47 @@ function componentEntityRef(parentRef: string, containerId: string, componentId:
     ref = EntityRef.child(ref, segment);
   }
   return ref;
+}
+
+function fileDisplayName(baseName: string): string {
+  const label = baseName.replace(/\.(test|spec)$/i, '').replace(/[-_]/g, ' ');
+  return label.charAt(0).toUpperCase() + label.slice(1);
+}
+
+function appendMemberFilepath(node: SystemNode, filepath: string): void {
+  const existing = node.properties?.memberFilepaths;
+  const memberFilepaths = Array.isArray(existing) ? [...existing] : [];
+  if (!memberFilepaths.includes(filepath)) {
+    memberFilepaths.push(filepath);
+  }
+  node.properties = {
+    ...node.properties,
+    memberFilepaths,
+    filepath: typeof node.properties?.filepath === 'string' ? node.properties.filepath : filepath,
+  };
+}
+
+function resolveRelativeImportTargetPath(
+  fromRelativePath: string,
+  moduleSpecifier: string
+): string | null {
+  return resolveRelativeTypeScriptImportPath(fromRelativePath, moduleSpecifier);
+}
+
+function pushFileLevelDependency(
+  fileLevelDependencies: SystemDependency[],
+  dependency: SystemDependency
+): void {
+  const exists = fileLevelDependencies.some(
+    dep =>
+      dep.from === dependency.from &&
+      dep.to === dependency.to &&
+      dep.type === dependency.type &&
+      dep.description === dependency.description
+  );
+  if (!exists) {
+    fileLevelDependencies.push(dependency);
+  }
 }
 
 export class ModelExtractor {
@@ -54,6 +97,9 @@ export class ModelExtractor {
     const componentDependencies: SystemDependency[] = [];
     const containerNodesMap = new Map<string, SystemNode>();
     const containerDependencies: SystemDependency[] = [];
+    const fileLevelNodesMap = new Map<string, SystemNode>();
+    const fileLevelDependencies: SystemDependency[] = [];
+    const filepathToFileEntityRef = new Map<string, string>();
 
     for (const file of sourceFiles) {
       const { containerId, displayName } = resolveContainerFromPath(
@@ -70,6 +116,8 @@ export class ModelExtractor {
       const containerRef = EntityRef.child(this.parentRef, containerId);
       const componentRef = componentEntityRef(this.parentRef, containerId, componentId);
       const hydration = classifyParsedSource(file);
+      const fileEntityRef = fileLeafEntityRef(componentRef, file.baseName);
+      filepathToFileEntityRef.set(file.relativePath, fileEntityRef);
 
       const existing = componentNodesMap.get(mapKey);
       if (existing) {
@@ -84,11 +132,41 @@ export class ModelExtractor {
         if (!file.isTestFile) {
           existing.isTest = false;
         }
+        appendMemberFilepath(existing, file.relativePath);
       } else {
         componentNodesMap.set(mapKey, {
           entityRef: componentRef,
           type: hydration.type,
           name: componentName,
+          isTest: !!file.isTestFile,
+          properties: {
+            filepath: file.relativePath,
+            memberFilepaths: [file.relativePath],
+            containerId,
+            technology: hydration.technology,
+            classification: hydration.reason,
+          },
+        });
+      }
+
+      const existingFileNode = fileLevelNodesMap.get(fileEntityRef);
+      if (existingFileNode) {
+        if (nodeTypePriority(hydration.type) > nodeTypePriority(existingFileNode.type)) {
+          existingFileNode.type = hydration.type;
+          existingFileNode.properties = {
+            ...existingFileNode.properties,
+            technology: hydration.technology,
+            classification: hydration.reason,
+          };
+        }
+        if (!file.isTestFile) {
+          existingFileNode.isTest = false;
+        }
+      } else {
+        fileLevelNodesMap.set(fileEntityRef, {
+          entityRef: fileEntityRef,
+          type: hydration.type,
+          name: fileDisplayName(file.baseName),
           isTest: !!file.isTestFile,
           properties: {
             filepath: file.relativePath,
@@ -145,6 +223,7 @@ export class ModelExtractor {
       );
       const fromComponent = findComponent(fromContainerId, fromComponentId);
       if (!fromComponent) continue;
+      const fromFileRef = filepathToFileEntityRef.get(file.relativePath);
 
       for (const imp of [...file.imports, ...(file.reExports ?? [])]) {
         const packageIndex = this.resolveOptions.workspacePackageIndex;
@@ -178,6 +257,14 @@ export class ModelExtractor {
                 description: packageNameFromSpecifier(imp.moduleSpecifier) ?? undefined,
               });
             }
+            if (fromFileRef && fromFileRef !== toComponentRef) {
+              pushFileLevelDependency(fileLevelDependencies, {
+                from: fromFileRef,
+                to: toComponentRef,
+                type: 'direct-call',
+                description: packageNameFromSpecifier(imp.moduleSpecifier) ?? undefined,
+              });
+            }
           }
 
           if (workspaceTargetContainerId !== fromContainerId) {
@@ -206,10 +293,27 @@ export class ModelExtractor {
         if (!toComponent) continue;
         const toContainerId = String(toComponent.properties?.containerId || '');
 
+        const targetPath = resolveRelativeImportTargetPath(file.relativePath, imp.moduleSpecifier);
+        const toFileRef = targetPath ? filepathToFileEntityRef.get(targetPath) : undefined;
+        const edge = dependencyTypeForTarget(toComponent);
+
+        if (fromFileRef) {
+          const fileToRef =
+            toFileRef ??
+            (fromComponent.entityRef !== toComponent.entityRef ? toComponent.entityRef : undefined);
+          if (fileToRef && fromFileRef !== fileToRef) {
+            pushFileLevelDependency(fileLevelDependencies, {
+              from: fromFileRef,
+              to: fileToRef,
+              type: edge.type,
+              description: edge.description,
+            });
+          }
+        }
+
         if (fromComponent.entityRef !== toComponent.entityRef) {
           const fromContainerRef = EntityRef.child(this.parentRef, fromContainerId);
           const toContainerRef = EntityRef.child(this.parentRef, toContainerId);
-          const edge = dependencyTypeForTarget(toComponent);
 
           componentDependencies.push({
             from: fromComponent.entityRef,
@@ -252,7 +356,14 @@ export class ModelExtractor {
     );
     mergeContainerDependencies(containerDependencies, csprojDeps);
 
-    return { componentNodesMap, componentDependencies, containerNodesMap, containerDependencies };
+    return {
+      componentNodesMap,
+      componentDependencies,
+      containerNodesMap,
+      containerDependencies,
+      fileLevelNodesMap,
+      fileLevelDependencies,
+    };
   }
 
   private ensureCsprojContainers(

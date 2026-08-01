@@ -20,19 +20,29 @@ nodes:
       classification: ui-import
     forensics:
       complexity: 1
-      loc: 29
-      sloc: 9
-      churn: 4
-      lineChurn: 86
-      churn30: 1
-      churn365: 4
+      churn: 9
+      lineChurn: 138
+      churn30: 2
+      churn365: 9
+      hotspotScore: 0.0003015702693793965
+      authorCount: 3
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: ben@blam.sh
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: kyle.opperman@ing.com
+          commits: 2
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 3
+        - 7
         - 0
         - 0
         - 0
@@ -75,24 +85,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.5
-      authors:
-        - email: ben@blam.sh
-          commits: 2
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: kyle.opperman@ing.com
-          commits: 1
-      hotspotScore: 0.0003015702693793965
-      importedFiles:
-        - path: plugins/auth/src/index.ts
-          kind: direct
+      topAuthorPercent: 0.5555555555555556
       sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/auth/routes
@@ -359,21 +357,70 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/auth/src/components/Router.tsx
       containerId: auth
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 1
-      loc: 30
-      sloc: 9
-      churn: 3
-      lineChurn: 87
-      churn30: 1
-      churn365: 3
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 63
+      churn: 11
+      lineChurn: 1621
+      churn30: 2
+      churn365: 11
+      hotspotScore: 0.06455006417134802
+      authorCount: 6
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: ben@blam.sh
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: kyle.opperman@ing.com
+          commits: 2
+        - email: rdjamaile@gmail.com
+          commits: 1
+        - email: rdjamaile@gail.com
+          commits: 1
+        - email: heikki.hellgren@op.fi
+          commits: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -388,58 +435,12 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 3
-      topAuthorPercent: 0.3333333333333333
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: kyle.opperman@ing.com
-          commits: 1
-        - email: ben@blam.sh
-          commits: 1
-      hotspotScore: 0.00030507690041869175
-      importedFiles:
-        - path: plugins/auth/src/components/ConsentPage/index.ts
-          kind: direct
+      topAuthorPercent: 0.36363636363636365
       sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/auth/components/consentpage
@@ -447,30 +448,38 @@ nodes:
     name: Consentpage
     isTest: false
     properties:
-      filepath: plugins/auth/src/components/ConsentPage/ConsentPage.test.tsx
       containerId: auth
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 248
-      churn30: 1
-      churn365: 2
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 13
+      churn: 10
+      lineChurn: 736
+      churn30: 3
+      churn365: 10
+      hotspotScore: 0.009257505943739612
+      authorCount: 4
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: rdjamaile@gail.com
+          commits: 2
+        - email: kyle.opperman@ing.com
+          commits: 2
+        - email: ben@blam.sh
+          commits: 2
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 4
         - 0
         - 0
         - 0
@@ -504,28 +513,21 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: rdjamaile@gail.com
-          commits: 1
-      hotspotScore: 0
-      importedFiles:
-        - path: plugins/auth/src/components/ConsentPage/ConsentPage.tsx
-          kind: direct
-        - path: plugins/auth/src/components/ConsentPage/useConsentSession.ts
-          kind: direct
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.4
       sinceDays: 365
       shortChurnDays: 30
 dependencies:

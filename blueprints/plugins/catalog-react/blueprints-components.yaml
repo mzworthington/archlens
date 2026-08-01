@@ -1,0 +1,200 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/blueprints
+  name: Blueprints Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-icon-link-blueprint
+    type: background-worker
+    name: EntityIconLinkBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityIconLinkBlueprint.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-header-layout-blueprint-test
+    type: gateway-api
+    name: EntityHeaderLayoutBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityHeaderLayoutBlueprint.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-card-blueprint-test
+    type: gateway-api
+    name: EntityCardBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityCardBlueprint.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-context-menu-item-blueprint-test
+    type: background-worker
+    name: EntityContextMenuItemBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityContextMenuItemBlueprint.test.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-card-blueprint
+    type: background-worker
+    name: EntityCardBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityCardBlueprint.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/blueprints/catalog-filter-blueprint
+    type: background-worker
+    name: CatalogFilterBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/CatalogFilterBlueprint.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/blueprints/resolve-entity-filter-data
+    type: background-worker
+    name: ResolveEntityFilterData
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/resolveEntityFilterData.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-content-layout-blueprint
+    type: gateway-api
+    name: EntityContentLayoutBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityContentLayoutBlueprint.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/blueprints/extension-data
+    type: gateway-api
+    name: ExtensionData
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/extensionData.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-context-menu-item-blueprint
+    type: background-worker
+    name: EntityContextMenuItemBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityContextMenuItemBlueprint.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/blueprints/catalog-filter-blueprint-test
+    type: gateway-api
+    name: CatalogFilterBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/CatalogFilterBlueprint.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-header-layout-blueprint
+    type: gateway-api
+    name: EntityHeaderLayoutBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityHeaderLayoutBlueprint.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-content-blueprint
+    type: gateway-api
+    name: EntityContentBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityContentBlueprint.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/blueprints/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/index.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-content-blueprint-test
+    type: gateway-api
+    name: EntityContentBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityContentBlueprint.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/blueprints/entity-header-blueprint
+    type: background-worker
+    name: EntityHeaderBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/alpha/blueprints/EntityHeaderBlueprint.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/catalog-react/blueprints/entity-icon-link-blueprint
+    to: backstage/plugins/catalog-react/blueprints/resolve-entity-filter-data
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/entity-card-blueprint-test
+    to: backstage/plugins/catalog-react/blueprints/entity-card-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/entity-card-blueprint
+    to: backstage/plugins/catalog-react/blueprints/resolve-entity-filter-data
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/entity-content-layout-blueprint
+    to: backstage/plugins/catalog-react/blueprints/resolve-entity-filter-data
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/catalog-filter-blueprint-test
+    to: backstage/plugins/catalog-react/blueprints/catalog-filter-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/entity-content-blueprint
+    to: backstage/plugins/catalog-react/blueprints/resolve-entity-filter-data
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/index
+    to: backstage/plugins/catalog-react/blueprints/catalog-filter-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/index
+    to: backstage/plugins/catalog-react/blueprints/entity-card-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/index
+    to: backstage/plugins/catalog-react/blueprints/entity-content-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/entity-content-blueprint-test
+    to: backstage/plugins/catalog-react/blueprints/entity-content-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/blueprints/entity-header-blueprint
+    to: backstage/plugins/catalog-react/blueprints/resolve-entity-filter-data
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,188 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider
+  name: Kubernetes auth provider Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/types.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers-test
+    type: background-worker
+    name: KubernetesAuthProviders
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/KubernetesAuthProviders.test.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider/aks-kubernetes-auth-provider
+    type: background-worker
+    name: AksKubernetesAuthProvider
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/AksKubernetesAuthProvider.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider/server-side-auth-provider
+    type: background-worker
+    name: ServerSideAuthProvider
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/ServerSideAuthProvider.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    type: background-worker
+    name: KubernetesAuthProviders
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/KubernetesAuthProviders.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider/oidc-kubernetes-auth-provider
+    type: background-worker
+    name: OidcKubernetesAuthProvider
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/OidcKubernetesAuthProvider.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/index.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/kubernetes-auth-provider/google-kubernetes-auth-provider
+    type: background-worker
+    name: GoogleKubernetesAuthProvider
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/GoogleKubernetesAuthProvider.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/types
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers-test
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/aks-kubernetes-auth-provider
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/aks-kubernetes-auth-provider
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/server-side-auth-provider
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/server-side-auth-provider
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/google-kubernetes-auth-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/server-side-auth-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/oidc-kubernetes-auth-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/aks-kubernetes-auth-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/oidc-kubernetes-auth-provider
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/oidc-kubernetes-auth-provider
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/index
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/index
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/kubernetes-auth-providers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/index
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/google-kubernetes-auth-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/index
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/server-side-auth-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/index
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/oidc-kubernetes-auth-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/index
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/aks-kubernetes-auth-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/google-kubernetes-auth-provider
+    to: backstage/plugins/kubernetes-react/kubernetes-auth-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/kubernetes-auth-provider/google-kubernetes-auth-provider
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'

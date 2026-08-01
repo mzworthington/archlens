@@ -1,0 +1,94 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/ui/provider
+  name: Provider Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/ui/provider/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/ui/src/provider/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/provider/bui-provider
+    type: gateway-api
+    name: BUIProvider
+    isTest: false
+    properties:
+      filepath: packages/ui/src/provider/BUIProvider.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/version-bridge/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/ui/analytics/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/analytics/types.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/ui/analytics/use-analytics
+    type: gateway-api
+    name: UseAnalytics (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/analytics/useAnalytics.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/ui/hooks/use-resolved-href
+    type: gateway-api
+    name: UseResolvedHref (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/hooks/useResolvedHref.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/ui/provider/bui-provider
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/ui/provider/bui-provider
+    to: backstage/packages/ui/analytics/use-analytics
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/provider/bui-provider
+    to: backstage/packages/ui/hooks/use-resolved-href
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/provider/bui-provider
+    to: backstage/packages/ui/analytics/types
+    type: direct-call
+    description: Calls module / service

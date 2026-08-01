@@ -1,0 +1,198 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest
+  name: Steppreparecreatepullrequest Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/preview-pull-request-component
+    type: background-worker
+    name: PreviewPullRequestComponent
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewPullRequestComponent.tsx
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/preview-pull-request-component-test
+    type: gateway-api
+    name: PreviewPullRequestComponent
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewPullRequestComponent.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/prepare-pull-request-form-test
+    type: gateway-api
+    name: PreparePullRequestForm
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreparePullRequestForm.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/prepare-pull-request-form
+    type: gateway-api
+    name: PreparePullRequestForm
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreparePullRequestForm.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/autocomplete-text-field
+    type: gateway-api
+    name: AutocompleteTextField
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/AutocompleteTextField.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/preview-catalog-info-component-test
+    type: gateway-api
+    name: PreviewCatalogInfoComponent
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewCatalogInfoComponent.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/step-prepare-create-pull-request-test
+    type: gateway-api
+    name: StepPrepareCreatePullRequest
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/StepPrepareCreatePullRequest.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/index.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/preview-catalog-info-component
+    type: background-worker
+    name: PreviewCatalogInfoComponent
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewCatalogInfoComponent.tsx
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/catalog-import/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/catalog-import/components/helpers
+    type: gateway-api
+    name: Helpers (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-import/src/components/helpers.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-import/hooks
+    type: background-worker
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/preview-pull-request-component
+    to: backstage/plugins/catalog-import/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/prepare-pull-request-form-test
+    to: backstage/plugins/catalog-import/components/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/step-prepare-create-pull-request-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/step-prepare-create-pull-request-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/step-prepare-create-pull-request-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/step-prepare-create-pull-request-test
+    to: backstage/plugins/catalog-import/components/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/step-prepare-create-pull-request-test
+    to: backstage/plugins/catalog-import/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/index
+    to: backstage/plugins/catalog-import/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/steppreparecreatepullrequest/preview-catalog-info-component
+    to: backstage/plugins/catalog-import/hooks
+    type: direct-call
+    description: Calls module / service

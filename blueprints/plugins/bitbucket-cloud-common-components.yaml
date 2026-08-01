@@ -270,12 +270,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 656
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 683
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -325,7 +323,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -334,9 +332,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/bitbucket-cloud-common/types
     type: background-worker
     name: Types
@@ -585,7 +586,6 @@ nodes:
     name: Autocomplete (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.ts
       containerId: scaffolder-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
@@ -597,7 +597,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProviderConfig.ts
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default

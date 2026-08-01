@@ -94,7 +94,6 @@ nodes:
     name: Module
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-azure/src/module/catalogModuleAzureDevOpsEntityProvider.ts
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
@@ -102,16 +101,100 @@ nodes:
       complexity: 4
       complexityPeak: 4
       cognitiveComplexity: 6
-      functionCount: 4
-      loc: 98
-      sloc: 68
-      churn: 4
-      lineChurn: 154
-      churn30: 1
-      churn365: 4
+      churn: 7
+      lineChurn: 311
+      churn30: 3
+      churn365: 7
       churnByWeek:
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7142857142857143
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: lokeshkaki1@gmail.com
+          commits: 2
+      hotspotScore: 0.0021600847202059093
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend-module-azure/providers
+    type: background-worker
+    name: Providers
+    isTest: false
+    properties:
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 13
+      lineChurn: 1435
+      churn30: 8
+      churn365: 13
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -153,44 +236,40 @@ nodes:
         - 0
         - 0
         - 0
+        - 8
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 4
+      topAuthorPercent: 0.6153846153846154
       authors:
         - email: poldsberg@gmail.com
+          commits: 8
+        - email: freben@spotify.com
           commits: 2
-        - email: lokeshkaki1@gmail.com
+        - email: pschultz@pobox.com
           commits: 2
-      hotspotScore: 0.0021600847202059093
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.0038011880465961133
       sinceDays: 365
-  - entityRef: backstage/plugins/catalog-backend-module-azure/providers
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend-module-azure/processors
     type: background-worker
-    name: Providers
+    name: Processors
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-azure/src/providers/AzureBlobStorageEntityProvider.ts
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 4
-      complexityPeak: 4
-      cognitiveComplexity: 6
-      functionCount: 15
-      loc: 249
-      sloc: 199
+      complexity: 0
       churn: 4
-      lineChurn: 271
-      churn30: 1
+      lineChurn: 614
+      churn30: 3
       churn365: 4
       churnByWeek:
         - 0
@@ -199,90 +278,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 4
-      topAuthorPercent: 0.25
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: awanlin@spotify.com
-          commits: 1
-        - email: freben@spotify.com
-          commits: 1
-        - email: pschultz@pobox.com
-          commits: 1
-      hotspotScore: 0.0038011880465961133
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog-backend-module-azure/processors
-    type: background-worker
-    name: Processors
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-azure/src/processors/AzureDevOpsDiscoveryProcessor.test.ts
-      containerId: catalog-backend-module-azure
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 409
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -325,20 +320,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
         - email: awanlin@spotify.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-azure/azure
     type: background-worker
     name: Azure
@@ -429,13 +427,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      churn: 4
+      lineChurn: 44
+      churn30: 2
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -469,6 +465,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -484,19 +481,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
+        - 2
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 2
+        - email: lokeshkaki1@gmail.com
+          commits: 2
+      hotspotScore: 0.0000946790380609733
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-azure/azure-test
     type: background-worker
     name: Azure test
@@ -582,7 +583,6 @@ nodes:
     name: Events
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-azure/src/events/analyzeAzureDevOpsWebhookEvent.ts
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
@@ -590,13 +590,10 @@ nodes:
       complexity: 19
       complexityPeak: 19
       cognitiveComplexity: 141
-      functionCount: 15
-      loc: 558
-      sloc: 435
-      churn: 7
-      lineChurn: 1228
-      churn30: 1
-      churn365: 7
+      churn: 14
+      lineChurn: 2066
+      churn30: 3
+      churn365: 14
       churnByWeek:
         - 0
         - 0
@@ -630,7 +627,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 6
+        - 11
         - 0
         - 0
         - 0
@@ -646,20 +643,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.8571428571428571
+      topAuthorPercent: 0.7857142857142857
       authors:
         - email: lokeshkaki1@gmail.com
-          commits: 6
+          commits: 11
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0.08181671540883811
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: Alpha (External)

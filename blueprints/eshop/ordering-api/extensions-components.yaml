@@ -1,0 +1,48 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/ordering-api/extensions
+  name: Extensions Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/ordering-api/extensions/linq-select-extensions
+    type: background-worker
+    name: LinqSelectExtensions
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Extensions/LinqSelectExtensions.cs
+      containerId: ordering-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-api/extensions/ordering-api-trace
+    type: background-worker
+    name: OrderingApiTrace
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Extensions/OrderingApiTrace.cs
+      containerId: ordering-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-api/extensions/extensions
+    type: background-worker
+    name: Extensions
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Extensions/Extensions.cs
+      containerId: ordering-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-api/extensions/basket-item-extensions
+    type: background-worker
+    name: BasketItemExtensions
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Extensions/BasketItemExtensions.cs
+      containerId: ordering-api
+      technology: C# Domain Service
+      classification: default
+dependencies: []

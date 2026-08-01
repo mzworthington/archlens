@@ -20,12 +20,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 21
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 38
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -75,7 +73,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -84,15 +82,17 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings-backend/database
     type: relational-database
     name: Database
     isTest: false
     properties:
-      filepath: plugins/user-settings-backend/src/database/DatabaseUserSettingsStore.ts
       containerId: user-settings-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
@@ -100,13 +100,10 @@ nodes:
       complexity: 4
       complexityPeak: 4
       cognitiveComplexity: 6
-      functionCount: 10
-      loc: 197
-      sloc: 143
-      churn: 5
-      lineChurn: 288
-      churn30: 1
-      churn365: 5
+      churn: 10
+      lineChurn: 708
+      churn30: 3
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -116,9 +113,9 @@ nodes:
         - 0
         - 1
         - 0
-        - 2
+        - 4
         - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -156,22 +153,27 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.6
+      topAuthorPercent: 0.5
       authors:
         - email: g.rantila@gmail.com
-          commits: 3
+          commits: 5
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
         - email: pschultz@pobox.com
+          commits: 1
+        - email: awanlin@spotify.com
           commits: 1
       hotspotScore: 0.0040396389572681934
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings-backend/plugin
     type: background-worker
     name: Plugin
@@ -255,7 +257,6 @@ nodes:
     name: Service
     isTest: false
     properties:
-      filepath: plugins/user-settings-backend/src/service/router.ts
       containerId: user-settings-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -263,13 +264,10 @@ nodes:
       complexity: 3
       complexityPeak: 3
       cognitiveComplexity: 3
-      functionCount: 6
-      loc: 131
-      sloc: 88
-      churn: 6
-      lineChurn: 320
-      churn30: 1
-      churn365: 6
+      churn: 11
+      lineChurn: 1074
+      churn30: 3
+      churn365: 11
       churnByWeek:
         - 0
         - 0
@@ -277,34 +275,9 @@ nodes:
         - 0
         - 0
         - 1
-        - 1
+        - 2
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -320,23 +293,51 @@ nodes:
         - 0
         - 0
         - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 4
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.5454545454545454
       authors:
         - email: g.rantila@gmail.com
-          commits: 3
+          commits: 5
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
+        - email: zcmander@gmail.com
+          commits: 2
         - email: gabriel.dugny@believe.com
           commits: 1
-        - email: zcmander@gmail.com
-          commits: 1
-      hotspotScore: 0.003366365797723495
+      hotspotScore: 0.005168774151921283
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/signals-node/index
     type: background-worker
     name: Index (External)

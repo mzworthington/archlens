@@ -1,0 +1,326 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph
+  name: Entityrelationsgraph Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/default-render-label
+    type: background-worker
+    name: DefaultRenderLabel
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/DefaultRenderLabel.tsx
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/entity-icon-test
+    type: background-worker
+    name: EntityIcon
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/EntityIcon.test.tsx
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/default-render-node-test
+    type: gateway-api
+    name: DefaultRenderNode
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/DefaultRenderNode.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/entity-icon
+    type: background-worker
+    name: EntityIcon
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/EntityIcon.tsx
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph
+    type: gateway-api
+    name: UseEntityRelationGraph
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/useEntityRelationGraph.ts
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/entity-relations-graph-test
+    type: gateway-api
+    name: EntityRelationsGraph
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/EntityRelationsGraph.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph-test
+    type: gateway-api
+    name: UseEntityRelationGraph
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/useEntityRelationGraph.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges-test
+    type: gateway-api
+    name: UseEntityRelationNodesAndEdges
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/useEntityRelationNodesAndEdges.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/default-render-label-test
+    type: gateway-api
+    name: DefaultRenderLabel
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/DefaultRenderLabel.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-store
+    type: gateway-api
+    name: UseEntityStore
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/useEntityStore.ts
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-store-test
+    type: gateway-api
+    name: UseEntityStore
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/useEntityStore.test.ts
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/index.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges
+    type: gateway-api
+    name: UseEntityRelationNodesAndEdges
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/useEntityRelationNodesAndEdges.ts
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/entityrelationsgraph/default-render-node
+    type: gateway-api
+    name: DefaultRenderNode
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/DefaultRenderNode.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/plugins/catalog-graph/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/catalog-graph/graph
+    type: gateway-api
+    name: Graph (External)
+    external: true
+    properties:
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations
+    type: background-worker
+    name: Graph transformations (External)
+    external: true
+    properties:
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/plugins/catalog-graph/hooks/use-relations
+    type: gateway-api
+    name: UseRelations (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-graph/src/hooks/useRelations.ts
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/default-render-label
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph
+    to: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph
+    to: backstage/plugins/catalog-graph/hooks/use-relations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/entity-relations-graph-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/entity-relations-graph-test
+    to: backstage/plugins/catalog-graph/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/entity-relations-graph-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph-test
+    to: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph-test
+    to: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges-test
+    to: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges-test
+    to: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-store
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-store-test
+    to: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-store-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/index
+    to: backstage/plugins/catalog-graph/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges
+    to: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-graph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges
+    to: backstage/plugins/catalog-graph/hooks/use-relations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges
+    to: backstage/plugins/catalog-graph/graph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/use-entity-relation-nodes-and-edges
+    to: backstage/plugins/catalog-graph/graph-transformations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/default-render-node
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/entityrelationsgraph/default-render-node
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service

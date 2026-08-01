@@ -1,0 +1,99 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/database
+  name: Database Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: >-
+      backstage/plugins/catalog-backend-module-incremental-ingestion/database/incremental-ingestion-database-manager-test
+    type: relational-database
+    name: IncrementalIngestionDatabaseManager
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-incremental-ingestion/src/database/IncrementalIngestionDatabaseManager.test.ts
+      containerId: catalog-backend-module-incremental-ingestion
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/database/tables
+    type: relational-database
+    name: Tables
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-incremental-ingestion/src/database/tables.ts
+      containerId: catalog-backend-module-incremental-ingestion
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/database/migrations
+    type: relational-database
+    name: Migrations
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-incremental-ingestion/src/database/migrations.ts
+      containerId: catalog-backend-module-incremental-ingestion
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/database/incremental-ingestion-database-manager
+    type: relational-database
+    name: IncrementalIngestionDatabaseManager
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-incremental-ingestion/src/database/IncrementalIngestionDatabaseManager.ts
+      containerId: catalog-backend-module-incremental-ingestion
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-incremental-ingestion/dev/index.ts
+      containerId: catalog-backend-module-incremental-ingestion
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: >-
+      backstage/plugins/catalog-backend-module-incremental-ingestion/database/incremental-ingestion-database-manager-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: >-
+      backstage/plugins/catalog-backend-module-incremental-ingestion/database/incremental-ingestion-database-manager-test
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/database/incremental-ingestion-database-manager
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/database/migrations
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/database/migrations
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-incremental-ingestion'
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/database/incremental-ingestion-database-manager
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/database/incremental-ingestion-database-manager
+    to: backstage/plugins/catalog-backend-module-incremental-ingestion/database/tables
+    type: read-write
+    description: Queries datastore records

@@ -653,18 +653,15 @@ nodes:
     name: Httprouter
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpRouter/httpRouterServiceFactory.test.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 240
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 352
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -714,7 +711,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -723,26 +720,196 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/httprouter/http
+    type: rest-api
+    name: Http
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 11
+      lineChurn: 692
+      churn30: 9
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8181818181818182
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: rmartine@integralads.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/database/connectors
+    type: relational-database
+    name: Connectors
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 22
+      churn: 28
+      lineChurn: 5340
+      churn30: 13
+      churn365: 28
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 13
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.5357142857142857
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 13
+        - email: freben@gmail.com
+          commits: 5
+        - email: roland.fuszenecker@seon.io
+          commits: 4
+        - email: pschultz@pobox.com
+          commits: 3
+        - email: arjan_randhawa@outlook.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0.04076107920076866
+      sinceDays: 365
+      fileCount: 13
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/database
     type: relational-database
     name: Database
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/database/connectors/mysql.ts
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 452
-      churn30: 1
-      churn365: 2
+      churn: 6
+      lineChurn: 677
+      churn30: 5
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -792,37 +959,37 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 5
         - email: pschultz@pobox.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/rootlifecycle
     type: background-worker
     name: Rootlifecycle
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootLifecycle/rootLifecycleServiceFactory.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 167
-      churn30: 1
-      churn365: 2
+      churn: 4
+      lineChurn: 244
+      churn30: 3
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -872,75 +1039,45 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
         - email: pschultz@pobox.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger
     type: background-worker
     name: Rootlogger
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootLogger/utils.test.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 9
-      loc: 81
-      sloc: 56
-      churn: 3
-      lineChurn: 248
-      churn30: 1
-      churn365: 3
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 18
+      churn: 29
+      lineChurn: 1736
+      churn30: 10
+      churn365: 29
       churnByWeek:
-        - 1
+        - 10
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 8
         - 0
         - 0
         - 0
@@ -959,186 +1096,62 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6206896551724138
       authors:
         - email: thomas.cardonne@adevinta.com
-          commits: 2
+          commits: 18
         - email: poldsberg@gmail.com
+          commits: 10
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0.0008696444977452362
+      hotspotScore: 0.008812163801749108
       sinceDays: 365
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/logger
     type: background-worker
     name: Logger
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/logger/index.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/cache
-    type: event-broker
-    name: Cache
-    isTest: false
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/cache/CacheClient.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Event Client
-      classification: event-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 150
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/rootconfig
-    type: background-worker
-    name: Rootconfig
-    isTest: false
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 55
+      lineChurn: 57
       churn30: 2
       churn365: 2
       churnByWeek:
@@ -1190,8 +1203,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 1
+        - 2
+        - 0
         - 0
         - 0
         - 0
@@ -1202,31 +1215,125 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/auth
-    type: relational-database
-    name: Auth
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/cache
+    type: event-broker
+    name: Cache
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.ts
       containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
+      technology: TypeScript Event Client
+      classification: event-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 4
-      loc: 127
-      sloc: 89
-      churn: 7
-      lineChurn: 188
-      churn30: 1
-      churn365: 7
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 24
+      churn: 31
+      lineChurn: 3558
+      churn30: 10
+      churn365: 31
       churnByWeek:
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 3
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 3
+        - 1
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 9
+      topAuthorPercent: 0.3548387096774194
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: benji.janssens@gmail.com
+          commits: 6
+        - email: john.r.k.redwood@gmail.com
+          commits: 4
+        - email: alexandru.pita@lseg.com
+          commits: 3
+        - email: ganiev@pm.me
+          commits: 3
+        - email: freben@gmail.com
+          commits: 2
+        - email: kyle.opperman@ing.com
+          commits: 2
+        - email: shijun@unity3d.com
+          commits: 2
+        - email: vdv100@gmail.com
+          commits: 1
+        - email: shijun@shijun.dev
+          commits: 1
+      hotspotScore: 0.04576153506280376
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan
+    type: cache-store
+    name: Infinispan
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 22
+      complexityPeak: 22
+      cognitiveComplexity: 143
+      churn: 11
+      lineChurn: 1442
+      churn30: 4
+      churn365: 11
+      churnByWeek:
+        - 3
         - 2
         - 1
         - 0
@@ -1251,6 +1358,248 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5454545454545454
+      authors:
+        - email: john.r.k.redwood@gmail.com
+          commits: 6
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: alexandru.pita@lseg.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.05199632505067082
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootconfig
+    type: background-worker
+    name: Rootconfig
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 221
+      churn30: 5
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth
+    type: background-worker
+    name: Auth
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 27
+      churn: 33
+      lineChurn: 1970
+      churn30: 8
+      churn365: 33
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7272727272727273
+      authors:
+        - email: sarabadu@gmail.com
+          commits: 20
+        - email: poldsberg@gmail.com
+          commits: 8
+        - email: freben@gmail.com
+          commits: 2
+        - email: pschultz@pobox.com
+          commits: 2
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0.009730901134044477
+      sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/plugin
+    type: background-worker
+    name: Plugin
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 5
+      lineChurn: 361
+      churn30: 2
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1275,21 +1624,304 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: sarabadu@gmail.com
+          commits: 1
+      hotspotScore: 0.005102148162174672
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/plugin/keys
+    type: relational-database
+    name: Keys
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 9
+      churn: 17
+      lineChurn: 1213
+      churn30: 9
+      churn365: 17
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.5294117647058824
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: freben@gmail.com
+          commits: 4
+        - email: pschultz@pobox.com
+          commits: 3
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0.002787771676239769
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/user
+    type: background-worker
+    name: User
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 608
+      churn30: 2
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 2
-      topAuthorPercent: 0.8571428571428571
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external
+    type: background-worker
+    name: External
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 28
+      churn: 60
+      lineChurn: 4390
+      churn30: 11
+      churn365: 60
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 15
+        - 8
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 11
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.6833333333333333
       authors:
         - email: sarabadu@gmail.com
-          commits: 6
+          commits: 40
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.0006592466353875178
+          commits: 11
+        - email: pschultz@pobox.com
+          commits: 3
+        - email: jonkoops@gmail.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 2
+        - email: freben@gmail.com
+          commits: 2
+      hotspotScore: 0.01006403108277753
+      coupledFiles:
+        - path: packages/backend-defaults/src/entrypoints/auth/external/legacy.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/backend-defaults/src/entrypoints/auth/external/types.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
       sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/roothealth
     type: background-worker
     name: Roothealth
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootHealth/rootHealthServiceFactory.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
@@ -1297,12 +1929,177 @@ nodes:
       complexity: 3
       complexityPeak: 3
       cognitiveComplexity: 3
-      functionCount: 6
-      loc: 73
-      sloc: 46
+      churn: 6
+      lineChurn: 188
+      churn30: 3
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.0008205516631951019
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery
+    type: background-worker
+    name: Discovery
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 36
+      churn: 17
+      lineChurn: 1715
+      churn30: 7
+      churn365: 17
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.5294117647058824
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: aramis.sennyey@doordash.com
+          commits: 4
+        - email: freben@gmail.com
+          commits: 3
+        - email: freben@spotify.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.01596919775295083
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/lifecycle
+    type: background-worker
+    name: Lifecycle
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
       churn: 3
-      lineChurn: 78
-      churn30: 1
+      lineChurn: 170
+      churn30: 2
       churn365: 3
       churnByWeek:
         - 0
@@ -1325,7 +2122,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -1334,75 +2130,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-        - email: pschultz@pobox.com
-          commits: 1
-      hotspotScore: 0.0008205516631951019
-      sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery
-    type: background-worker
-    name: Discovery
-    isTest: false
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/discovery/HostDiscovery.ts
-      containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 9
-      complexityPeak: 9
-      cognitiveComplexity: 36
-      functionCount: 16
-      loc: 331
-      sloc: 180
-      churn: 7
-      lineChurn: 506
-      churn30: 1
-      churn365: 7
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 3
         - 0
         - 0
         - 0
@@ -1426,53 +2153,36 @@ nodes:
         - 2
         - 0
         - 0
-        - 1
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 5
-      topAuthorPercent: 0.42857142857142855
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
-        - email: aramis.sennyey@doordash.com
-          commits: 3
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: pschultz@pobox.com
           commits: 1
-        - email: awanlin@spotify.com
-          commits: 1
-        - email: freben@gmail.com
-          commits: 1
-        - email: freben@spotify.com
-          commits: 1
-      hotspotScore: 0.01596919775295083
+      hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/lifecycle
-    type: background-worker
-    name: Lifecycle
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/database
+    type: relational-database
+    name: Database
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/lifecycle/lifecycleServiceFactory.ts
       containerId: backend-defaults
-      technology: TypeScript Domain Service
-      classification: default
+      technology: Prisma / SQL Database Client
+      classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 153
-      churn30: 1
-      churn365: 2
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 6
+      lineChurn: 292
+      churn30: 3
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -1480,29 +2190,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -1523,34 +2210,156 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-        - email: pschultz@pobox.com
-          commits: 1
-      hotspotScore: 0
+          commits: 3
+        - email: freben@gmail.com
+          commits: 3
+      hotspotScore: 0.002440615203349534
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler
     type: rest-api
     name: Scheduler
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/database/migrateBackendTasks.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
+    forensics:
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 20
+      churn: 64
+      lineChurn: 6343
+      churn30: 16
+      churn365: 64
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 2
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 9
+        - 0
+        - 1
+        - 1
+        - 0
+        - 1
+        - 4
+        - 0
+        - 0
+        - 3
+        - 3
+        - 0
+        - 0
+        - 4
+        - 0
+        - 5
+        - 0
+        - 16
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.421875
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 21
+        - email: freben@spotify.com
+          commits: 16
+        - email: freben@gmail.com
+          commits: 11
+        - email: kurtaking@gmail.com
+          commits: 5
+        - email: musaabe@spotify.com
+          commits: 4
+        - email: pschultz@pobox.com
+          commits: 3
+        - email: awanlin@spotify.com
+          commits: 2
+        - email: jonkoops@gmail.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.01956349456822852
+      sinceDays: 365
+      fileCount: 16
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/__testutils__
+    type: background-worker
+    name: __testutils__
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/__testUtils__/createTestScopedSignal.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
     forensics:
       complexity: 0
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 31
+      lineChurn: 28
       churn30: 1
       churn365: 1
       churnByWeek:
@@ -1619,18 +2428,17 @@ nodes:
     name: Roothttprouter
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/DefaultRootHttpRouter.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 115
-      churn30: 1
-      churn365: 1
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 45
+      churn: 10
+      lineChurn: 1109
+      churn30: 6
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -1638,36 +2446,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
+        - 1
         - 0
         - 0
         - 0
@@ -1685,30 +2465,146 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 7
+        - email: bethanyngriggs@gmail.com
+          commits: 3
+      hotspotScore: 0.010940688842601359
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http
+    type: rest-api
+    name: Http
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      churn: 28
+      lineChurn: 1994
+      churn30: 13
+      churn365: 28
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 13
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6428571428571429
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 14
+        - email: bethanyngriggs@gmail.com
+          commits: 8
+        - email: freben@gmail.com
+          commits: 4
+        - email: 5510334+vandr0iy@users.noreply.github.com
+          commits: 2
+      hotspotScore: 0.003387405583959267
+      sinceDays: 365
+      fileCount: 13
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/httpauth
     type: rest-api
     name: Httpauth
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpAuth/httpAuthServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 327
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 390
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -1758,7 +2654,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -1767,103 +2663,25 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/permissions
     type: background-worker
     name: Permissions
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/permissions/permissionsServiceFactory.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 45
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/userinfo
-    type: cache-store
-    name: Userinfo
-    isTest: false
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/userInfo/DefaultUserInfoService.test.ts
-      containerId: backend-defaults
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 185
-      churn30: 1
+      lineChurn: 62
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -1912,39 +2730,39 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 1
         - 0
         - 0
+        - 2
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-        - email: jonkoops@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata
-    type: rest-api
-    name: Rootsystemmetadata
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/userinfo
+    type: cache-store
+    name: Userinfo
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootSystemMetadata/rootSystemMetadataServiceFactory.ts
       containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Cache Client
+      classification: cache-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 11
-      churn30: 0
-      churn365: 1
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 21
+      churn: 14
+      lineChurn: 967
+      churn30: 6
+      churn365: 14
       churnByWeek:
         - 0
         - 0
@@ -1960,7 +2778,91 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7142857142857143
+      authors:
+        - email: freben@gmail.com
+          commits: 7
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0.004811097785913161
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata
+    type: rest-api
+    name: Rootsystemmetadata
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 8
+      lineChurn: 639
+      churn30: 0
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
         - 0
         - 0
         - 0
@@ -2003,27 +2905,303 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: aramis.sennyey@doordash.com
-          commits: 1
-      hotspotScore: 0
+          commits: 8
+      hotspotScore: 0.0017217558402939958
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/urlreader/tree
+    type: background-worker
+    name: Tree
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 40
+      churn: 29
+      lineChurn: 1741
+      churn30: 9
+      churn365: 29
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.41379310344827586
+      authors:
+        - email: freben@gmail.com
+          commits: 11
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: ben@blam.sh
+          commits: 5
+        - email: pschultz@pobox.com
+          commits: 4
+      hotspotScore: 0.011263298898216527
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/urlreader
     type: background-worker
     name: Urlreader
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/tree/TarArchiveResponse.test.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 23
-      loc: 308
-      sloc: 237
+      complexity: 15
+      complexityPeak: 15
+      cognitiveComplexity: 81
+      churn: 142
+      lineChurn: 16228
+      churn30: 42
+      churn365: 142
+      churnByWeek:
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 20
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 2
+        - 26
+        - 0
+        - 2
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 3
+        - 13
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 2
+        - 0
+        - 2
+        - 9
+        - 0
+        - 40
+        - 0
+        - 2
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.4014084507042254
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 50
+        - email: freben@gmail.com
+          commits: 35
+        - email: pschultz@pobox.com
+          commits: 20
+        - email: jonkoops@gmail.com
+          commits: 9
+        - email: awanlin@spotify.com
+          commits: 5
+        - email: ben@blam.sh
+          commits: 4
+        - email: kmittal@redhat.com
+          commits: 4
+        - email: stijn@bdcommit.com
+          commits: 3
+        - email: wtravisoneal@gmail.com
+          commits: 3
+        - email: aminehamdifcb@gmail.com
+          commits: 2
+        - email: 17289602+JohannesWill@users.noreply.github.com
+          commits: 2
+        - email: zcmander@gmail.com
+          commits: 2
+        - email: eric.vickstrom98@gmail.com
+          commits: 2
+        - email: jakemgsmith@gmail.com
+          commits: 1
+      hotspotScore: 0.03556425200053301
+      sinceDays: 365
+      fileCount: 36
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor
+    type: rest-api
+    name: Auditor
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 11
+      lineChurn: 1114
+      churn30: 8
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7272727272727273
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 8
+        - email: jonkoops@gmail.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.0009397771185311423
+      sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/permissionsregistry
+    type: rest-api
+    name: Permissionsregistry
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
       churn: 4
-      lineChurn: 394
-      churn30: 1
+      lineChurn: 234
+      churn30: 3
       churn365: 4
       churnByWeek:
         - 0
@@ -2041,16 +3219,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 2
         - 1
         - 0
         - 0
@@ -2074,40 +3242,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 3
-      topAuthorPercent: 0.5
-      authors:
-        - email: freben@gmail.com
-          commits: 2
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: ben@blam.sh
-          commits: 1
-      hotspotScore: 0.0013816126294823512
-      sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor
-    type: rest-api
-    name: Auditor
-    isTest: false
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/auditor/auditorServiceFactory.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 68
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
@@ -2118,45 +3252,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -2165,87 +3261,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/permissionsregistry
-    type: rest-api
-    name: Permissionsregistry
-    isTest: false
-    properties:
-      filepath: packages/backend-defaults/src/entrypoints/permissionsRegistry/permissionsRegistryServiceFactory.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 119
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/migrations-test
     type: relational-database
     name: Migrations test
@@ -2340,12 +3361,10 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 25
-      sloc: 2
-      churn: 3
-      lineChurn: 30
-      churn30: 1
-      churn365: 3
+      churn: 10
+      lineChurn: 58
+      churn30: 3
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -2358,31 +3377,12 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
+        - 1
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 2
+        - 1
         - 0
         - 0
         - 0
@@ -2400,32 +3400,59 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+        - 0
+        - 2
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.5
       authors:
+        - email: aramis.sennyey@doordash.com
+          commits: 3
         - email: jackpalmer@spotify.com
           commits: 2
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: ericpeterson@spotify.com
+          commits: 1
+        - email: ben@blam.sh
+          commits: 1
+        - email: freben@gmail.com
           commits: 1
       hotspotScore: 0.00010519893117885922
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/metrics
     type: background-worker
     name: Metrics
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/DefaultMetricsService.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 246
-      churn30: 1
-      churn365: 2
+      churn: 10
+      lineChurn: 868
+      churn30: 5
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -2456,7 +3483,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
@@ -2475,7 +3502,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
@@ -2484,28 +3511,30 @@ nodes:
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 5
         - email: ben@blam.sh
-          commits: 1
+          commits: 5
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/tracing
     type: background-worker
     name: Tracing
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/tracing/tracingServiceFactory.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 118
-      churn30: 1
-      churn365: 2
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 26
+      churn: 17
+      lineChurn: 1974
+      churn30: 5
+      churn365: 17
       churnByWeek:
         - 0
         - 0
@@ -2545,47 +3574,49 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
+        - 0
+        - 2
+        - 5
         - 0
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.7058823529411765
       authors:
-        - email: poldsberg@gmail.com
-          commits: 1
         - email: ericpeterson@spotify.com
-          commits: 1
-      hotspotScore: 0
+          commits: 12
+        - email: poldsberg@gmail.com
+          commits: 5
+      hotspotScore: 0.015821919249300428
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/actions
     type: rest-api
     name: Actions
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/actionsServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 39
-      churn30: 1
-      churn365: 1
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 12
+      churn: 15
+      lineChurn: 1870
+      churn30: 4
+      churn365: 15
       churnByWeek:
         - 0
         - 0
@@ -2593,6 +3624,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
@@ -2609,24 +3641,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -2640,103 +3655,135 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/backend-defaults/entrypoints/actionsregistry
-    type: rest-api
-    name: Actionsregistry
-    isTest: false
-    properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actionsRegistry/actionsRegistryServiceFactory.test.ts
-      containerId: backend-defaults
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 141
-      loc: 1252
-      sloc: 1106
-      churn: 12
-      lineChurn: 2156
-      churn30: 1
-      churn365: 12
-      churnByWeek:
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 3
-        - 1
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
         - 1
         - 2
+        - 3
+        - 0
+        - 0
         - 1
         - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.8333333333333334
+      topAuthorPercent: 0.7333333333333333
       authors:
         - email: ben@blam.sh
-          commits: 10
+          commits: 9
         - email: poldsberg@gmail.com
+          commits: 4
+        - email: pschultz@pobox.com
           commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0.00856319299795914
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/actionsregistry
+    type: rest-api
+    name: Actionsregistry
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 17
+      complexityPeak: 17
+      cognitiveComplexity: 126
+      churn: 37
+      lineChurn: 2834
+      churn30: 4
+      churn365: 37
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 9
+        - 4
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 4
+        - 2
+        - 0
+        - 3
+        - 1
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.6756756756756757
+      authors:
+        - email: ben@blam.sh
+          commits: 24
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: jcollier@redhat.com
+          commits: 4
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0.007560296520720683
+        - email: LetiziaAdam@JohnDeere.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.03493305841345985
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/instancemetadata
     type: rest-api
     name: Instancemetadata
     isTest: false
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/instanceMetadata/instanceMetadataServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
@@ -2744,13 +3791,10 @@ nodes:
       complexity: 3
       complexityPeak: 3
       cognitiveComplexity: 3
-      functionCount: 2
-      loc: 89
-      sloc: 49
-      churn: 5
-      lineChurn: 198
-      churn30: 1
-      churn365: 5
+      churn: 8
+      lineChurn: 322
+      churn30: 2
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -2766,10 +3810,9 @@ nodes:
         - 3
         - 0
         - 0
-        - 0
-        - 0
         - 1
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -2800,22 +3843,26 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 2
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.6
+      topAuthorPercent: 0.5
       authors:
         - email: aramis.sennyey@doordash.com
-          commits: 3
+          commits: 4
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: freben@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0.0020829388373414122
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/createbackend
     type: background-worker
     name: Createbackend
@@ -2989,7 +4036,6 @@ nodes:
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/techdocs-cli/src/commands/publish/publish.ts
       containerId: techdocs-cli
       technology: React Component
       classification: ui-import
@@ -3133,7 +4179,6 @@ nodes:
     name: Manager (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
@@ -3145,7 +4190,6 @@ nodes:
     name: Schemas (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
@@ -3157,7 +4201,6 @@ nodes:
     name: Services (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.test.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -3169,7 +4212,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -3321,11 +4363,11 @@ dependencies:
     to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: backstage/packages/backend-defaults/entrypoints/httprouter
+  - from: backstage/packages/backend-defaults/entrypoints/httprouter/http
     to: backstage/packages/backend-defaults/ratelimitstorefactory
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/backend-defaults/entrypoints/httprouter
+  - from: backstage/packages/backend-defaults/entrypoints/httprouter/http
     to: backstage/packages/backend-defaults/ratelimitmiddleware
     type: direct-call
     description: Calls module / service
@@ -3333,19 +4375,19 @@ dependencies:
     to: backstage/packages/backend-defaults/escaperegexp
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/backend-defaults/entrypoints/auth
+  - from: backstage/packages/backend-defaults/entrypoints/auth/plugin/keys
     to: backstage/packages/backend-defaults/index
     type: direct-call
     description: '@backstage/backend-defaults'
-  - from: backstage/packages/backend-defaults/entrypoints/scheduler
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/database
     to: backstage/packages/backend-defaults/index
     type: direct-call
     description: '@backstage/backend-defaults'
-  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http
     to: backstage/packages/backend-defaults/ratelimitstorefactory
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http
     to: backstage/packages/backend-defaults/ratelimitmiddleware
     type: direct-call
     description: Calls module / service

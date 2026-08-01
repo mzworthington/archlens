@@ -1,0 +1,63 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/repo-tools/commands/generate-catalog-info
+  name: Generate catalog info Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/repo-tools/commands/generate-catalog-info/utils-test
+    type: background-worker
+    name: Utils
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-catalog-info/utils.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/generate-catalog-info/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-catalog-info/utils.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/generate-catalog-info/codeowners
+    type: background-worker
+    name: Codeowners
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-catalog-info/codeowners.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/repo-tools/commands/generate-catalog-info/utils-test
+    to: backstage/packages/repo-tools/commands/generate-catalog-info/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/generate-catalog-info/utils
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/repo-tools/commands/generate-catalog-info/codeowners
+    to: backstage/packages/repo-tools/commands/generate-catalog-info/utils
+    type: direct-call
+    description: Calls module / service

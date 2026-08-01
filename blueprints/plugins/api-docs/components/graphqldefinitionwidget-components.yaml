@@ -1,0 +1,54 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/api-docs/components/graphqldefinitionwidget
+  name: Graphqldefinitionwidget Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/api-docs/components/graphqldefinitionwidget/graph-ql-definition-test
+    type: background-worker
+    name: GraphQlDefinition
+    isTest: true
+    properties:
+      filepath: plugins/api-docs/src/components/GraphQlDefinitionWidget/GraphQlDefinition.test.tsx
+      containerId: api-docs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/api-docs/components/graphqldefinitionwidget/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/GraphQlDefinitionWidget/index.ts
+      containerId: api-docs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/api-docs/components/graphqldefinitionwidget/graph-ql-definition
+    type: gateway-api
+    name: GraphQlDefinition
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/GraphQlDefinitionWidget/GraphQlDefinition.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/api-docs/components/graphqldefinitionwidget/index
+    to: backstage/plugins/api-docs/components
+    type: direct-call
+    description: Calls module / service

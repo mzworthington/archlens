@@ -563,7 +563,7 @@ describe('Breadcrumbs Component', () => {
         },
         {
           path: 'blueprint/context.yaml',
-          name: 'Blueprint',
+          name: 'ArchLens',
           level: 'context',
           entityRef: 'blueprint',
           nodeEntityRefs: [],
@@ -580,7 +580,7 @@ describe('Breadcrumbs Component', () => {
       'href',
       '/workspace/backstage'
     );
-    expect(screen.getByRole('link', { name: 'Blueprint' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'ArchLens' })).toHaveAttribute(
       'href',
       '/workspace/blueprint'
     );

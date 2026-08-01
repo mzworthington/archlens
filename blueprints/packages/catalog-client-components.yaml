@@ -346,12 +346,10 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 48
-      sloc: 31
-      churn: 5
-      lineChurn: 70
-      churn30: 1
-      churn365: 5
+      churn: 6
+      lineChurn: 94
+      churn30: 2
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -401,16 +399,16 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
       authorCount: 5
-      topAuthorPercent: 0.2
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: ben@blam.sh
           commits: 1
         - email: nilayparmar19@gmail.com
@@ -421,6 +419,9 @@ nodes:
           commits: 1
       hotspotScore: 0.0002454641727506715
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/catalog-client/fetch
     type: background-worker
     name: Fetch
@@ -637,8 +638,8 @@ nodes:
         - 0
         - 0
         - 1
-        - 1
-        - 4
+        - 2
+        - 3
         - 0
         - 0
         - 0
@@ -850,22 +851,23 @@ nodes:
     name: Testutils
     isTest: false
     properties:
-      filepath: packages/catalog-client/src/testUtils.ts
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
+      complexity: 16
+      complexityPeak: 16
+      cognitiveComplexity: 90
+      churn: 27
+      lineChurn: 3501
+      churn30: 3
+      churn365: 27
       churnByWeek:
         - 0
         - 0
         - 0
+        - 2
+        - 5
         - 0
         - 0
         - 0
@@ -888,24 +890,9 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 9
+        - 3
+        - 2
         - 0
         - 0
         - 0
@@ -916,13 +903,37 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.4074074074074074
       authors:
         - email: poldsberg@gmail.com
+          commits: 11
+        - email: heikki.hellgren@op.fi
+          commits: 9
+        - email: freben@gmail.com
+          commits: 3
+        - email: ben@blam.sh
+          commits: 3
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.07220854636116897
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/catalog-client/catalogclient
     type: background-worker
     name: Catalogclient
@@ -972,8 +983,8 @@ nodes:
         - 0
         - 0
         - 1
-        - 1
-        - 11
+        - 3
+        - 9
         - 0
         - 1
         - 0
@@ -1067,7 +1078,6 @@ nodes:
     name: Schema (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/schema/load.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default

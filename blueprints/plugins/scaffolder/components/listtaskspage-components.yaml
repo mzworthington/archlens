@@ -1,0 +1,218 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder/components/listtaskspage
+  name: Listtaskspage Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns
+    type: gateway-api
+    name: Columns
+    isTest: false
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 11
+      lineChurn: 443
+      churn30: 9
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8181818181818182
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: freben@spotify.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/owner-list-picker-test
+    type: gateway-api
+    name: OwnerListPicker
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/OwnerListPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/index.tsx
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/owner-list-picker
+    type: gateway-api
+    name: OwnerListPicker
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/OwnerListPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/list-task-page-test
+    type: gateway-api
+    name: ListTaskPage
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/ListTaskPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder/components/listtaskspage/index
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/listtaskspage/owner-list-picker
+    to: backstage/plugins/scaffolder/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/listtaskspage/list-task-page-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/listtaskspage/list-task-page-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/listtaskspage/list-task-page-test
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/listtaskspage/list-task-page-test
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/listtaskspage/list-task-page-test
+    to: backstage/plugins/scaffolder/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/listtaskspage/list-task-page-test
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'

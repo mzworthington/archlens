@@ -1,0 +1,58 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog/components/entitynotfound
+  name: Entitynotfound Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog/components/entitynotfound/illo
+    type: background-worker
+    name: Illo
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/components/EntityNotFound/Illo/Illo.tsx
+      containerId: catalog
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog/components/entitynotfound/entity-not-found-test
+    type: gateway-api
+    name: EntityNotFound
+    isTest: true
+    properties:
+      filepath: plugins/catalog/src/components/EntityNotFound/EntityNotFound.test.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/components/entitynotfound/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/components/EntityNotFound/index.ts
+      containerId: catalog
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog/components/entitynotfound/entity-not-found-test
+    to: backstage/plugins/catalog/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/components/entitynotfound/index
+    to: backstage/plugins/catalog/components
+    type: direct-call
+    description: Calls module / service

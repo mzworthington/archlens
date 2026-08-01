@@ -1,0 +1,190 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-test-utils/database
+  name: Database Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/packages/backend-test-utils/database/mysql
+    type: relational-database
+    name: Mysql
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/database/mysql.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/postgres
+    type: relational-database
+    name: Postgres
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/database/postgres.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/sqlite
+    type: relational-database
+    name: Sqlite
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/database/sqlite.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/types
+    type: relational-database
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/database/types.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/test-databases
+    type: relational-database
+    name: TestDatabases
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/database/TestDatabases.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/test-databases-test
+    type: relational-database
+    name: TestDatabases
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/TestDatabases.test.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/mysql-test
+    type: relational-database
+    name: Mysql
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/mysql.test.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/postgres-test
+    type: relational-database
+    name: Postgres
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/postgres.test.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/index
+    type: relational-database
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/database/sqlite-test
+    type: relational-database
+    name: Sqlite
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/sqlite.test.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+dependencies:
+  - from: backstage/packages/backend-test-utils/database/mysql
+    to: backstage/packages/backend-test-utils/waitforready/wait-for-ready
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/database/mysql
+    to: backstage/packages/backend-test-utils/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/postgres
+    to: backstage/packages/backend-test-utils/waitforready/wait-for-ready
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/database/postgres
+    to: backstage/packages/backend-test-utils/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/sqlite
+    to: backstage/packages/backend-test-utils/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/types
+    to: backstage/packages/backend-test-utils/getdockerimageforname/get-docker-image-for-name
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/database/test-databases
+    to: backstage/packages/backend-test-utils/isdockerdisabledfortests/is-docker-disabled-for-tests
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/database/test-databases
+    to: backstage/packages/backend-test-utils/database/mysql
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/test-databases
+    to: backstage/packages/backend-test-utils/database/postgres
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/test-databases
+    to: backstage/packages/backend-test-utils/database/sqlite
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/test-databases
+    to: backstage/packages/backend-test-utils/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/test-databases-test
+    to: backstage/packages/backend-test-utils/database/test-databases
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/mysql-test
+    to: backstage/packages/backend-test-utils/isdockerdisabledfortests/is-docker-disabled-for-tests
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/database/mysql-test
+    to: backstage/packages/backend-test-utils/database/mysql
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/mysql-test
+    to: backstage/packages/backend-test-utils/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/postgres-test
+    to: backstage/packages/backend-test-utils/isdockerdisabledfortests/is-docker-disabled-for-tests
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/database/postgres-test
+    to: backstage/packages/backend-test-utils/database/postgres
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/postgres-test
+    to: backstage/packages/backend-test-utils/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/index
+    to: backstage/packages/backend-test-utils/database/test-databases
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/index
+    to: backstage/packages/backend-test-utils/database/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/sqlite-test
+    to: backstage/packages/backend-test-utils/database/sqlite
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-test-utils/database/sqlite-test
+    to: backstage/packages/backend-test-utils/database/types
+    type: read-write
+    description: Queries datastore records

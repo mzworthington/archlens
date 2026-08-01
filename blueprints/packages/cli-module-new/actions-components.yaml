@@ -1,0 +1,34 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-new/actions
+  name: Actions Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/packages/cli-module-new/actions/example-test
+    type: background-worker
+    name: Example
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/templates/scaffolder-backend-module/src/actions/example.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-new/actions/example
+    type: background-worker
+    name: Example
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/templates/scaffolder-backend-module/src/actions/example.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/packages/cli-module-new/actions/example-test
+    to: backstage/packages/cli-module-new/actions/example
+    type: direct-call
+    description: Calls module / service

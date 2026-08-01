@@ -1,0 +1,63 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: infrastructure/gcp-py-cloudrun-cloudsql
+  name: Gcp-py-cloudrun-cloudsql Infrastructure
+  source:
+    scannedAtCommit: 63ae0bceb16a3a7903ec7e6c25c86bbd556e6065
+    scanRoot: .
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
+nodes:
+  - entityRef: infrastructure/gcp-py-cloudrun-cloudsql/gcp-sql-databaseinstance-my-cloud-sql-instance
+    type: relational-database
+    name: gcp:sql:DatabaseInstance.my-cloud-sql-instance
+    external: false
+    properties:
+      iac.address: gcp:sql:DatabaseInstance.my-cloud-sql-instance
+      iac.provider_type: gcp_sql_databaseinstance
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+  - entityRef: infrastructure/gcp-py-cloudrun-cloudsql/gcp-sql-database-database
+    type: relational-database
+    name: gcp:sql:Database.database
+    external: false
+    properties:
+      iac.address: gcp:sql:Database.database
+      iac.provider_type: gcp_sql_database
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+  - entityRef: infrastructure/gcp-py-cloudrun-cloudsql/gcp-sql-user-users
+    type: container
+    name: gcp:sql:User.users
+    external: false
+    properties:
+      iac.address: gcp:sql:User.users
+      iac.provider_type: gcp_sql_user
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+  - entityRef: infrastructure/gcp-py-cloudrun-cloudsql/pulumi-output-concat-postgres
+    type: container
+    name: pulumi:Output:concat.postgres://
+    external: false
+    properties:
+      iac.address: pulumi:Output:concat.postgres://
+      iac.provider_type: pulumi_output_concat
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+  - entityRef: infrastructure/gcp-py-cloudrun-cloudsql/gcp-cloudrun-service-default-service
+    type: container
+    name: gcp:cloudrun:Service.default-service
+    external: false
+    properties:
+      iac.address: gcp:cloudrun:Service.default-service
+      iac.provider_type: gcp_cloudrun_service
+      iac.kind: resource
+      filepath: gcp-py-cloudrun-cloudsql/__main__.py
+dependencies:
+  - from: infrastructure/gcp-py-cloudrun-cloudsql/gcp-sql-database-database
+    to: infrastructure/gcp-py-cloudrun-cloudsql/gcp-sql-databaseinstance-my-cloud-sql-instance
+    type: direct-call
+  - from: infrastructure/gcp-py-cloudrun-cloudsql/pulumi-output-concat-postgres
+    to: infrastructure/gcp-py-cloudrun-cloudsql/gcp-sql-databaseinstance-my-cloud-sql-instance
+    type: direct-call

@@ -1,0 +1,136 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/entitypresentationapi
+  name: Entitypresentationapi Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/catalog-react/entitypresentationapi/default-entity-presentation-test
+    type: rest-api
+    name: DefaultEntityPresentation
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/defaultEntityPresentation.test.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/entitypresentationapi/use-updating-observable
+    type: gateway-api
+    name: UseUpdatingObservable
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/useUpdatingObservable.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-snapshot-test
+    type: rest-api
+    name: EntityPresentationSnapshot
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/entityPresentationSnapshot.test.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-api
+    type: rest-api
+    name: EntityPresentationApi
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/EntityPresentationApi.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/entitypresentationapi/default-entity-presentation
+    type: rest-api
+    name: DefaultEntityPresentation
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/defaultEntityPresentation.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/entitypresentationapi/use-entity-presentation
+    type: gateway-api
+    name: UseEntityPresentation
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/useEntityPresentation.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-snapshot
+    type: rest-api
+    name: EntityPresentationSnapshot
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/entityPresentationSnapshot.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/entitypresentationapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+dependencies:
+  - from: backstage/plugins/catalog-react/entitypresentationapi/default-entity-presentation-test
+    to: backstage/plugins/catalog-react/entitypresentationapi/default-entity-presentation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-snapshot-test
+    to: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-snapshot
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-snapshot-test
+    to: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/default-entity-presentation
+    to: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/use-entity-presentation
+    to: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/use-entity-presentation
+    to: backstage/plugins/catalog-react/entitypresentationapi/default-entity-presentation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/use-entity-presentation
+    to: backstage/plugins/catalog-react/entitypresentationapi/use-updating-observable
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-snapshot
+    to: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-snapshot
+    to: backstage/plugins/catalog-react/entitypresentationapi/default-entity-presentation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/index
+    to: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/index
+    to: backstage/plugins/catalog-react/entitypresentationapi/default-entity-presentation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/index
+    to: backstage/plugins/catalog-react/entitypresentationapi/entity-presentation-snapshot
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/entitypresentationapi/index
+    to: backstage/plugins/catalog-react/entitypresentationapi/use-entity-presentation
+    type: direct-call
+    description: Calls module / service

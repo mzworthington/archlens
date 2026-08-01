@@ -1,0 +1,113 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-import/components/importstepper
+  name: Importstepper Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-import/components/importstepper/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/ImportStepper/index.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-import/components/importstepper/defaults
+    type: gateway-api
+    name: Defaults
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/ImportStepper/defaults.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-import/alpha
+    type: gateway-api
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-import/src/alpha.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/catalog-import/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/catalog-import/components/helpers
+    type: gateway-api
+    name: Helpers (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-import/src/components/helpers.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-import/components/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-import/src/components/types.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/catalog-import/components/use-import-state
+    type: gateway-api
+    name: UseImportState (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-import/src/components/useImportState.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-import/components/importstepper/index
+    to: backstage/plugins/catalog-import/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/importstepper/defaults
+    to: backstage/plugins/catalog-import/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-import'
+  - from: backstage/plugins/catalog-import/components/importstepper/defaults
+    to: backstage/plugins/catalog-import/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/importstepper/defaults
+    to: backstage/plugins/catalog-import/components/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/importstepper/defaults
+    to: backstage/plugins/catalog-import/components/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/importstepper/defaults
+    to: backstage/plugins/catalog-import/components/use-import-state
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,82 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/org/components/cards/user/userprofilecard
+  name: Userprofilecard Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/org/components/cards/user/userprofilecard/user-profile-card-test
+    type: gateway-api
+    name: UserProfileCard
+    isTest: true
+    properties:
+      filepath: plugins/org/src/components/Cards/User/UserProfileCard/UserProfileCard.test.tsx
+      containerId: org
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/org/components/cards/user/userprofilecard/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/org/src/components/Cards/User/UserProfileCard/index.ts
+      containerId: org
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/org/components/cards/user/userprofilecard/user-profile-card-stories
+    type: gateway-api
+    name: UserProfileCard.stories
+    isTest: false
+    properties:
+      filepath: plugins/org/src/components/Cards/User/UserProfileCard/UserProfileCard.stories.tsx
+      containerId: org
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/org/components/cards/user
+    type: gateway-api
+    name: User (External)
+    external: true
+    properties:
+      containerId: org
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/org/components/cards/user/userprofilecard/user-profile-card-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/org/components/cards/user/userprofilecard/user-profile-card-test
+    to: backstage/plugins/org/components/cards/user
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/org/components/cards/user/userprofilecard/index
+    to: backstage/plugins/org/components/cards/user
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/org/components/cards/user/userprofilecard/user-profile-card-stories
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/org/components/cards/user/userprofilecard/user-profile-card-stories
+    to: backstage/plugins/org/components/cards/user
+    type: direct-call
+    description: Calls module / service

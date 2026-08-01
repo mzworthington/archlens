@@ -1,0 +1,295 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/catalog-model/entity
+  name: Entity Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/catalog-model/entity/policies
+    type: background-worker
+    name: Policies
+    isTest: false
+    properties:
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 12
+      lineChurn: 1055
+      churn30: 12
+      churn365: 12
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 12
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 12
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/catalog-model/entity/conditions-test
+    type: background-worker
+    name: Conditions
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/entity/conditions.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/entity-status
+    type: background-worker
+    name: EntityStatus
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/EntityStatus.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/entity
+    type: background-worker
+    name: Entity
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/Entity.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/ref
+    type: background-worker
+    name: Ref
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/ref.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/ref-test
+    type: background-worker
+    name: Ref
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/entity/ref.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/entity-envelope
+    type: background-worker
+    name: EntityEnvelope
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/EntityEnvelope.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/conditions
+    type: background-worker
+    name: Conditions
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/conditions.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/alpha-entity
+    type: background-worker
+    name: AlphaEntity
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/AlphaEntity.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/constants
+    type: background-worker
+    name: Constants
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/constants.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/catalog-model/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/model/sources/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/catalog-model/kinds
+    type: background-worker
+    name: Kinds (External)
+    external: true
+    properties:
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/catalog-model/entity/conditions-test
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/conditions-test
+    to: backstage/packages/catalog-model/entity/conditions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/entity-status
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/catalog-model/entity/entity
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/catalog-model/entity/ref
+    to: backstage/packages/catalog-model/entity/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/ref
+    to: backstage/packages/catalog-model/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/ref
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/ref-test
+    to: backstage/packages/catalog-model/entity/ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/conditions
+    to: backstage/packages/catalog-model/kinds
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/conditions
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/alpha-entity
+    to: backstage/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: backstage/packages/catalog-model/entity/alpha-entity
+    to: backstage/packages/catalog-model/entity/entity-status
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/index
+    to: backstage/packages/catalog-model/entity/conditions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/index
+    to: backstage/packages/catalog-model/entity/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/index
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/index
+    to: backstage/packages/catalog-model/entity/entity-envelope
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/index
+    to: backstage/packages/catalog-model/entity/ref
+    type: direct-call
+    description: Calls module / service

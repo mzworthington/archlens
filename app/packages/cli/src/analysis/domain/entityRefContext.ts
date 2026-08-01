@@ -3,7 +3,7 @@ import { EntityRef } from '@archlens/core';
 /** Human-readable context diagram titles keyed by --context / entityRef slug. */
 export const CONTEXT_DISPLAY_NAMES: Record<string, string> = {
   application: 'Application',
-  blueprint: 'Blueprint',
+  blueprint: 'ArchLens',
   backstage: 'Backstage',
   eshop: 'E-Shop',
   infrastructure: 'Infrastructure Examples',
@@ -11,6 +11,18 @@ export const CONTEXT_DISPLAY_NAMES: Record<string, string> = {
   'chaoslens-stress': 'ChaosLens Stress Tests',
   'advicelens-stress': 'AdviceLens Stress Tests',
 };
+
+/** Curated product hub labels on context diagrams (e.g. Pulumi example family). */
+export const PRODUCT_HUB_DISPLAY_NAMES: Record<string, string> = {
+  archlens: 'ArchLens',
+  helloworld: 'Pulumi Examples',
+};
+
+export function resolveProductHubDisplayName(productId: string, fallback?: string): string {
+  const slug = EntityRef.parse(productId);
+  if (PRODUCT_HUB_DISPLAY_NAMES[slug]) return PRODUCT_HUB_DISPLAY_NAMES[slug]!;
+  return fallback ?? resolveContextDisplayName(slug);
+}
 
 export function resolveContextDisplayName(contextName: string): string {
   const slug = EntityRef.parse(contextName);

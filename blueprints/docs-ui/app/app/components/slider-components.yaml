@@ -1,0 +1,39 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/docs-ui/app/app/components/slider
+  name: Slider Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/docs-ui/app/app/components/slider/snippets
+    type: background-worker
+    name: Snippets
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/components/slider/snippets.ts
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/docs-ui/app/app/components/slider/components
+    type: background-worker
+    name: Components
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/components/slider/components.tsx
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/docs-ui/app/app/components/slider/props-definition
+    type: background-worker
+    name: Props definition
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/components/slider/props-definition.ts
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+dependencies: []

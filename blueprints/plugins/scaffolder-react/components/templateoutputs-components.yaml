@@ -1,0 +1,117 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-react/components/templateoutputs
+  name: Templateoutputs Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-react/components/templateoutputs/link-outputs
+    type: gateway-api
+    name: LinkOutputs
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateOutputs/LinkOutputs.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/components/templateoutputs/default-template-outputs
+    type: gateway-api
+    name: DefaultTemplateOutputs
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateOutputs/DefaultTemplateOutputs.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/components/templateoutputs/text-outputs
+    type: background-worker
+    name: TextOutputs
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateOutputs/TextOutputs.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/components/templateoutputs/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateOutputs/index.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/components/templateoutputs/default-template-outputs-test
+    type: gateway-api
+    name: DefaultTemplateOutputs
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateOutputs/DefaultTemplateOutputs.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-react/components/templateoutputs/link-outputs
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/components/templateoutputs/link-outputs
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/components/templateoutputs/default-template-outputs
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder-react/components/templateoutputs/default-template-outputs
+    to: backstage/plugins/scaffolder-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/components/templateoutputs/text-outputs
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/components/templateoutputs/default-template-outputs-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'

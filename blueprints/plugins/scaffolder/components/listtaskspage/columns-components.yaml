@@ -1,0 +1,141 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns
+  name: Columns Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/created-at-column-test
+    type: background-worker
+    name: CreatedAtColumn
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/CreatedAtColumn.test.tsx
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/template-title-column
+    type: gateway-api
+    name: TemplateTitleColumn
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/TemplateTitleColumn.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/created-at-column
+    type: gateway-api
+    name: CreatedAtColumn
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/CreatedAtColumn.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/task-status-column-test
+    type: background-worker
+    name: TaskStatusColumn
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/TaskStatusColumn.test.tsx
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/owner-entity-column
+    type: gateway-api
+    name: OwnerEntityColumn
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/OwnerEntityColumn.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/owner-entity-column-test
+    type: gateway-api
+    name: OwnerEntityColumn
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/OwnerEntityColumn.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/index.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/task-status-column
+    type: background-worker
+    name: TaskStatusColumn
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/TaskStatusColumn.tsx
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/listtaskspage/columns/template-title-column-test
+    type: gateway-api
+    name: TemplateTitleColumn
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/ListTasksPage/columns/TemplateTitleColumn.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder/components/listtaskspage/columns/template-title-column
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/listtaskspage/columns/template-title-column
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/listtaskspage/columns/owner-entity-column
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/listtaskspage/columns/owner-entity-column-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/listtaskspage/columns/template-title-column-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/listtaskspage/columns/template-title-column-test
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'

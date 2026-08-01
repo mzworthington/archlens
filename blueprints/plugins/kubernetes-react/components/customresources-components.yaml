@@ -1,0 +1,164 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-react/components/customresources
+  name: Customresources Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts
+    type: gateway-api
+    name: Argorollouts
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 6
+      churn: 12
+      lineChurn: 802
+      churn30: 7
+      churn365: 12
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: itsmiteshkumar98@gmail.com
+          commits: 5
+      hotspotScore: 0.005996339077194975
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/default-custom-resource-drawer
+    type: background-worker
+    name: DefaultCustomResourceDrawer
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/CustomResources/DefaultCustomResourceDrawer.tsx
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/default-custom-resource-test
+    type: gateway-api
+    name: DefaultCustomResource
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/CustomResources/DefaultCustomResource.test.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/default-custom-resource
+    type: gateway-api
+    name: DefaultCustomResource
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/CustomResources/DefaultCustomResource.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/CustomResources/index.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-react/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-react/components/customresources/default-custom-resource-drawer
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/customresources/default-custom-resource-test
+    to: backstage/plugins/kubernetes-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/customresources/index
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service

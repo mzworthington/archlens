@@ -1,0 +1,38 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
+  name: Autocomplete Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete/autocomplete
+    type: background-worker
+    name: Autocomplete
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/autocomplete/autocomplete.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete/autocomplete-test
+    type: background-worker
+    name: Autocomplete
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/autocomplete/autocomplete.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete/autocomplete
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete/autocomplete-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete/autocomplete
+    type: direct-call
+    description: Calls module / service

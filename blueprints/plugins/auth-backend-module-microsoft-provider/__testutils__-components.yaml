@@ -1,0 +1,34 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-backend-module-microsoft-provider/__testutils__
+  name: __testutils__ Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/__testutils__/fake
+    type: background-worker
+    name: Fake
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-microsoft-provider/src/__testUtils__/fake.ts
+      containerId: auth-backend-module-microsoft-provider
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend-module-microsoft-provider/__testutils__/fake-test
+    type: background-worker
+    name: Fake
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend-module-microsoft-provider/src/__testUtils__/fake.test.ts
+      containerId: auth-backend-module-microsoft-provider
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/auth-backend-module-microsoft-provider/__testutils__/fake-test
+    to: backstage/plugins/auth-backend-module-microsoft-provider/__testutils__/fake
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,377 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/repo-tools/commands
+  name: Commands Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/repo-tools/commands/knip-reports
+    type: background-worker
+    name: Knip reports
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/knip-reports/knip-reports.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports
+    type: background-worker
+    name: Api reports
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 53
+      churn: 18
+      lineChurn: 1149
+      churn30: 7
+      churn365: 18
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 15
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.007293792561734239
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 2
+  - entityRef: backstage/packages/repo-tools/commands/package-docs
+    type: cache-store
+    name: Package docs
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 28
+      churn: 20
+      lineChurn: 747
+      churn30: 5
+      churn365: 20
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 3
+        - 1
+        - 0
+        - 0
+        - 5
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.55
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 11
+        - email: freben@gmail.com
+          commits: 3
+        - email: freben@spotify.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: aramis.sennyey@doordash.com
+          commits: 1
+      hotspotScore: 0.008275649252736925
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/generate-catalog-info
+    type: background-worker
+    name: Generate catalog info
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/generate-patch
+    type: background-worker
+    name: Generate patch
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/generate-patch/generate-patch.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/lint-legacy-backend-exports
+    type: background-worker
+    name: Lint legacy backend exports
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/lint-legacy-backend-exports/lint-legacy-backend-exports.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/peer-deps
+    type: background-worker
+    name: Peer deps
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/peer-deps/peer-deps.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/util
+    type: background-worker
+    name: Util
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/util.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/index.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/type-deps
+    type: background-worker
+    name: Type deps
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/type-deps/type-deps.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/openapi/constants
+    type: background-worker
+    name: Constants (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/lib/openapi/constants.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/catalog-model/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/model/sources/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+dependencies:
+  - from: backstage/packages/repo-tools/commands/knip-reports
+    to: backstage/packages/repo-tools/commands/knip-reports/knip-extractor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/knip-reports
+    to: backstage/packages/repo-tools/paths/paths
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/generate-patch
+    to: backstage/packages/repo-tools/exec/exec
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/generate-patch
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/repo-tools/commands/lint-legacy-backend-exports
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/repo-tools/commands/lint-legacy-backend-exports
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/index
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/repo-tools/commands/index
+    to: backstage/packages/repo-tools/errors/errors
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/index
+    to: backstage/packages/repo-tools/openapi/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/generate-catalog-info
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/repo-tools/commands/generate-catalog-info
+    to: backstage/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: backstage/packages/repo-tools/commands/generate-catalog-info
+    to: backstage/packages/repo-tools/commands/generate-catalog-info/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/generate-catalog-info
+    to: backstage/packages/repo-tools/commands/generate-catalog-info/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/type-deps
+    to: backstage/packages/repo-tools/getpackageexportdetails/get-package-export-details
+    type: direct-call
+    description: Calls module / service

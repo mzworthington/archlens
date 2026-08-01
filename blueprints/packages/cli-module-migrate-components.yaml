@@ -92,18 +92,15 @@ nodes:
     name: Versioning
     isTest: false
     properties:
-      filepath: packages/cli-module-migrate/src/lib/versioning/yarn.ts
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 44
-      churn30: 1
-      churn365: 2
+      churn: 4
+      lineChurn: 329
+      churn30: 3
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -153,7 +150,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -162,26 +159,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-migrate/commands
     type: rest-api
     name: Commands
     isTest: false
     properties:
-      filepath: packages/cli-module-migrate/src/commands/packageRole.ts
       containerId: cli-module-migrate
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 74
-      churn30: 1
-      churn365: 2
+      churn: 10
+      lineChurn: 371
+      churn30: 5
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -227,11 +224,11 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
@@ -240,26 +237,28 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 10
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-migrate/commands/versions
     type: background-worker
     name: Versions
     isTest: false
     properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 341
-      churn30: 1
-      churn365: 1
+      complexity: 21
+      complexityPeak: 21
+      cognitiveComplexity: 204
+      churn: 8
+      lineChurn: 2409
+      churn30: 4
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -305,22 +304,27 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 2
+        - 0
+        - 0
+        - 4
         - 0
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 6
+        - email: jonkoops@gmail.com
+          commits: 2
+      hotspotScore: 0.03902880346735677
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-migrate/index
     type: background-worker
     name: Index

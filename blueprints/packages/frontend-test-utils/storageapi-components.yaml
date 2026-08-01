@@ -1,0 +1,83 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-test-utils/storageapi
+  name: Storageapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-test-utils/storageapi/mock-storage-api-test
+    type: rest-api
+    name: MockStorageApi
+    isTest: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/StorageApi/MockStorageApi.test.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-test-utils/storageapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/StorageApi/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-test-utils/storageapi/mock-storage-api
+    type: rest-api
+    name: MockStorageApi
+    isTest: false
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/StorageApi/MockStorageApi.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-test-utils/storageapi/mock-storage-api-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/frontend-test-utils/storageapi/mock-storage-api-test
+    to: backstage/packages/frontend-test-utils/storageapi/mock-storage-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/storageapi/index
+    to: backstage/packages/frontend-test-utils/storageapi/mock-storage-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/storageapi/mock-storage-api
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/frontend-test-utils/storageapi/mock-storage-api
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'

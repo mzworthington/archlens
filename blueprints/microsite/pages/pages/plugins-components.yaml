@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/microsite/pages/pages/plugins
+  name: Plugins Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/microsite/pages/pages/plugins/index
+    type: gateway-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/plugins/index.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/microsite/pages/pages/plugins/_plugin-card
+    type: gateway-api
+    name: ' pluginCard'
+    isTest: false
+    properties:
+      filepath: microsite/src/pages/plugins/_pluginCard.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+dependencies: []

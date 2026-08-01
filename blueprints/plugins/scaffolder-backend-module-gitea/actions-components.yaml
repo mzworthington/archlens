@@ -1,0 +1,117 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend-module-gitea/actions
+  name: Actions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea
+    type: background-worker
+    name: Gitea
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-examples
+    type: background-worker
+    name: Gitea.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.examples.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-examples-test
+    type: background-worker
+    name: Gitea.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.examples.test.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-test
+    type: background-worker
+    name: Gitea
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/gitea.test.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitea/actions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitea/src/actions/index.ts
+      containerId: scaffolder-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-test
+    to: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitea/actions/index
+    to: backstage/plugins/scaffolder-backend-module-gitea/actions/gitea
+    type: direct-call
+    description: Calls module / service

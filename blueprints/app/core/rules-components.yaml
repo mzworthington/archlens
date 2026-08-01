@@ -1,0 +1,767 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/core/rules
+  name: Rules Components
+  source:
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+nodes:
+  - entityRef: blueprint/app/core/rules/workspaceexternals
+    type: background-worker
+    name: Workspaceexternals
+    isTest: false
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 9
+      lineChurn: 743
+      churn30: 9
+      churn365: 9
+      hotspotScore: 0
+      authorCount: 1
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 9
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+      topAuthorPercent: 1
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: blueprint/app/core/rules/compare-blueprint-trees-test
+    type: background-worker
+    name: CompareBlueprintTrees
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/compareBlueprintTrees.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/path
+    type: background-worker
+    name: Path
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/path.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/parent-child-layout
+    type: background-worker
+    name: ParentChildLayout
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/parentChildLayout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/compare-system-schemas-test
+    type: background-worker
+    name: CompareSystemSchemas
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/compareSystemSchemas.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/path-test
+    type: background-worker
+    name: Path
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/path.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/compare-system-schemas
+    type: background-worker
+    name: CompareSystemSchemas
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/compareSystemSchemas.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/layout-merge-test
+    type: background-worker
+    name: LayoutMerge
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/layoutMerge.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/mermaid-import-test
+    type: background-worker
+    name: MermaidImport
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/mermaidImport.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/mermaid-import
+    type: background-worker
+    name: MermaidImport
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/mermaidImport.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/external-node-layout-test
+    type: background-worker
+    name: ExternalNodeLayout
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/externalNodeLayout.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/csproj-references-test
+    type: background-worker
+    name: CsprojReferences
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/csprojReferences.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/schema-merge-test
+    type: background-worker
+    name: SchemaMerge
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/schemaMerge.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/infra-schema-map
+    type: background-worker
+    name: InfraSchemaMap
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/infraSchemaMap.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/terraform-import
+    type: background-worker
+    name: TerraformImport
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/terraformImport.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/schema-merge
+    type: background-worker
+    name: SchemaMerge
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/schemaMerge.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/schema-diff
+    type: background-worker
+    name: SchemaDiff
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/schemaDiff.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/iac-import-test
+    type: background-worker
+    name: IacImport
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/iacImport.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/pulumi-import
+    type: background-worker
+    name: PulumiImport
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/pulumiImport.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/pulumi-stack
+    type: background-worker
+    name: PulumiStack
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/pulumiStack.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/infra-ir
+    type: background-worker
+    name: InfraIr
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/infraIr.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/pulumi-import-test
+    type: background-worker
+    name: PulumiImport
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/pulumiImport.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/iac-import
+    type: background-worker
+    name: IacImport
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/iacImport.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/compare-blueprint-trees
+    type: background-worker
+    name: CompareBlueprintTrees
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/compareBlueprintTrees.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/validate-blueprint-workspace
+    type: background-worker
+    name: ValidateBlueprintWorkspace
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/validateBlueprintWorkspace.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/iac-resource-map
+    type: background-worker
+    name: IacResourceMap
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/iacResourceMap.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/source-provenance
+    type: background-worker
+    name: SourceProvenance
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/sourceProvenance.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/pulumi-stack-test
+    type: background-worker
+    name: PulumiStack
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/pulumiStack.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/graph-test
+    type: background-worker
+    name: Graph
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/graph.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/graph
+    type: background-worker
+    name: Graph
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/graph.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/parent-child-layout-test
+    type: background-worker
+    name: ParentChildLayout
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/parentChildLayout.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/validate-blueprint-workspace-test
+    type: background-worker
+    name: ValidateBlueprintWorkspace
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/validateBlueprintWorkspace.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/csproj-references
+    type: background-worker
+    name: CsprojReferences
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/csprojReferences.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/terraform-import-test
+    type: background-worker
+    name: TerraformImport
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/terraformImport.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspace-externals-test
+    type: background-worker
+    name: WorkspaceExternals
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/external-node-layout
+    type: background-worker
+    name: ExternalNodeLayout
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/externalNodeLayout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/source-provenance-test
+    type: background-worker
+    name: SourceProvenance
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/sourceProvenance.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/iac-resource-map-test
+    type: background-worker
+    name: IacResourceMap
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/iacResourceMap.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/layout-merge
+    type: background-worker
+    name: LayoutMerge
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/layoutMerge.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/pulumi-type-map
+    type: background-worker
+    name: PulumiTypeMap
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/pulumiTypeMap.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/infra-schema-map-test
+    type: background-worker
+    name: InfraSchemaMap
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/infraSchemaMap.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: blueprint/app/core/rules/compare-blueprint-trees-test
+    to: blueprint/app/core/rules/compare-blueprint-trees
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-blueprint-trees-test
+    to: blueprint/app/core/rules/schema-diff
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-blueprint-trees-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/parent-child-layout
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/parent-child-layout
+    to: blueprint/app/core/nodeposition/node-position
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-system-schemas-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-system-schemas-test
+    to: blueprint/app/core/rules/compare-system-schemas
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-system-schemas-test
+    to: blueprint/app/core/rules/schema-diff
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/path-test
+    to: blueprint/app/core/rules/path
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-system-schemas
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-system-schemas
+    to: blueprint/app/core/nodeposition/node-position
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-system-schemas
+    to: blueprint/app/core/rules/schema-diff
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/layout-merge-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/layout-merge-test
+    to: blueprint/app/core/rules/layout-merge
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/mermaid-import-test
+    to: blueprint/app/core/rules/mermaid-import
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/mermaid-import
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/mermaid-import
+    to: blueprint/app/core/slug/slug
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/mermaid-import
+    to: blueprint/app/core/entityref/entity-ref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/external-node-layout-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/external-node-layout-test
+    to: blueprint/app/core/nodeposition/node-position
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/external-node-layout-test
+    to: blueprint/app/core/rules/external-node-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/csproj-references-test
+    to: blueprint/app/core/rules/csproj-references
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/schema-merge-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/schema-merge-test
+    to: blueprint/app/core/rules/schema-merge
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/infra-schema-map
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/infra-schema-map
+    to: blueprint/app/core/rules/iac-resource-map
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/infra-schema-map
+    to: blueprint/app/core/rules/infra-ir
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/terraform-import
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/terraform-import
+    to: blueprint/app/core/rules/infra-schema-map
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/terraform-import
+    to: blueprint/app/core/rules/infra-ir
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/schema-merge
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/schema-diff
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/iac-import-test
+    to: blueprint/app/core/rules/iac-import
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/pulumi-import
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/pulumi-import
+    to: blueprint/app/core/rules/infra-schema-map
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/pulumi-import
+    to: blueprint/app/core/rules/infra-ir
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/pulumi-import
+    to: blueprint/app/core/rules/pulumi-type-map
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/pulumi-stack
+    to: blueprint/app/core/rules/infra-schema-map
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/pulumi-stack
+    to: blueprint/app/core/rules/pulumi-import
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/pulumi-import-test
+    to: blueprint/app/core/rules/pulumi-import
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/iac-import
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/iac-import
+    to: blueprint/app/core/rules/infra-schema-map
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/iac-import
+    to: blueprint/app/core/rules/pulumi-import
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/iac-import
+    to: blueprint/app/core/rules/pulumi-stack
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/iac-import
+    to: blueprint/app/core/rules/terraform-import
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-blueprint-trees
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-blueprint-trees
+    to: blueprint/app/core/rules/compare-system-schemas
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/compare-blueprint-trees
+    to: blueprint/app/core/rules/schema-diff
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/validate-blueprint-workspace
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/validate-blueprint-workspace
+    to: blueprint/app/core/workspacecatalog/workspace-catalog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/validate-blueprint-workspace
+    to: blueprint/app/core/entityref/entity-ref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/validate-blueprint-workspace
+    to: blueprint/app/core/rules/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/iac-resource-map
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/source-provenance
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/pulumi-stack-test
+    to: blueprint/app/core/rules/pulumi-stack
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph-test
+    to: blueprint/app/core/rules/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/schemaversion/schema-version
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/entityref/entity-ref
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/nodeposition/node-position
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/parent-child-layout-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/parent-child-layout-test
+    to: blueprint/app/core/rules/parent-child-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/validate-blueprint-workspace-test
+    to: blueprint/app/core/rules/validate-blueprint-workspace
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/validate-blueprint-workspace-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/csproj-references
+    to: blueprint/app/core/rules/path
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/terraform-import-test
+    to: blueprint/app/core/rules/terraform-import
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspace-externals-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspace-externals-test
+    to: blueprint/app/core/nodeposition/node-position
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/external-node-layout
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/external-node-layout
+    to: blueprint/app/core/nodeposition/node-position
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/external-node-layout
+    to: blueprint/app/core/rules/parent-child-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/source-provenance-test
+    to: blueprint/app/core/rules/source-provenance
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/source-provenance-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/iac-resource-map-test
+    to: blueprint/app/core/rules/iac-resource-map
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/layout-merge
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/layout-merge
+    to: blueprint/app/core/nodeposition/node-position
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/infra-schema-map-test
+    to: blueprint/app/core/rules/infra-schema-map
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/infra-schema-map-test
+    to: blueprint/app/core/rules/terraform-import
+    type: direct-call
+    description: Calls module / service

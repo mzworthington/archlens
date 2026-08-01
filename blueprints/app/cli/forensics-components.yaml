@@ -1,0 +1,282 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/cli/forensics
+  name: Forensics Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/cli/forensics/adapters
+    type: background-worker
+    name: Adapters
+    isTest: false
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 43
+      churn: 17
+      lineChurn: 850
+      churn30: 17
+      churn365: 17
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 12
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 17
+      hotspotScore: 0.004845233717635353
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: blueprint/app/cli/forensics/domain
+    type: background-worker
+    name: Domain
+    isTest: false
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 32
+      complexityPeak: 32
+      cognitiveComplexity: 445
+      churn: 60
+      lineChurn: 2082
+      churn30: 60
+      churn365: 60
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 18
+        - 13
+        - 29
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 60
+      hotspotScore: 0.032393848283619214
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 17
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: blueprint/app/cli/forensics/collect-file-metrics-test
+    type: background-worker
+    name: CollectFileMetrics
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/forensics/collectFileMetrics.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/collect-file-metrics
+    type: background-worker
+    name: CollectFileMetrics
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/forensics/collectFileMetrics.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/console-logger
+    type: background-worker
+    name: ConsoleLogger (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/consoleLogger.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/app/cli/cli/parse-archlens-argv
+    type: background-worker
+    name: ParseArchlensArgv (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/cli/parseArchlensArgv.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    type: background-worker
+    name: TreeSitterForensics (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterForensics.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/app/cli/forensics/collect-file-metrics-test
+    to: blueprint/app/cli/forensics/domain/attach-forensics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/analysis/adapters/console-logger
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/domain/forensic-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/domain/options
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/domain/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/domain/attach-forensics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/adapters/git-log-history
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/adapters/tree-sitter-import-graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/adapters/load-forensics-config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/adapters/source-file-lister
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/collect-file-metrics
+    to: blueprint/app/cli/cli/parse-archlens-argv
+    type: direct-call
+    description: Calls module / service

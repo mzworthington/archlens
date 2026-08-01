@@ -20,12 +20,10 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 34
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 148
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -75,7 +73,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -84,9 +82,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/index
     type: rest-api
     name: Index
@@ -98,29 +99,11 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 80
+      churn30: 3
+      churn365: 4
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -158,13 +141,32 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/alpha
     type: background-worker
     name: Alpha
@@ -1116,18 +1118,15 @@ nodes:
     name: Jobsaccordions
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/JobsAccordions/JobsDrawer.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 37
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 163
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -1177,7 +1176,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -1186,26 +1185,28 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components
     type: gateway-api
     name: Components
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/JobsAccordions/JobsAccordions.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 131
-      churn30: 1
-      churn365: 1
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 67
+      churn: 41
+      lineChurn: 3183
+      churn30: 19
+      churn365: 41
       churnByWeek:
         - 0
         - 0
@@ -1214,76 +1215,82 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 8
+        - 0
+        - 7
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 19
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.6585365853658537
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 19
+        - email: itsmiteshkumar98@gmail.com
+          commits: 15
+        - email: 63000843+kingbj940429@users.noreply.github.com
+          commits: 4
+        - email: kingbj0429@gmail.com
+          commits: 3
+      hotspotScore: 0.011852412912818138
       sinceDays: 365
+      fileCount: 19
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/cluster
     type: gateway-api
     name: Cluster
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/Cluster/Cluster.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 79
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 95
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -1333,7 +1340,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -1342,15 +1349,17 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/deploymentsaccordions
     type: gateway-api
     name: Deploymentsaccordions
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/DeploymentsAccordions/DeploymentDrawer.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
@@ -1358,13 +1367,10 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 3
-      loc: 87
-      sloc: 68
-      churn: 3
-      lineChurn: 96
-      churn30: 1
-      churn365: 3
+      churn: 6
+      lineChurn: 234
+      churn30: 4
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -1414,26 +1420,28 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.8333333333333334
       authors:
+        - email: poldsberg@gmail.com
+          commits: 4
         - email: itsmiteshkumar98@gmail.com
           commits: 2
-        - email: poldsberg@gmail.com
-          commits: 1
       hotspotScore: 0.000673273159544699
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/daemonsetsaccordions
     type: gateway-api
     name: Daemonsetsaccordions
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/DaemonSetsAccordions/DaemonSetsDrawer.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
@@ -1441,12 +1449,887 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 2
-      loc: 84
-      sloc: 66
+      churn: 6
+      lineChurn: 208
+      churn30: 4
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: itsmiteshkumar98@gmail.com
+          commits: 2
+      hotspotScore: 0.0006522333733089272
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/servicesaccordions
+    type: gateway-api
+    name: Servicesaccordions
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 171
+      churn30: 4
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: itsmiteshkumar98@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/ingressesaccordions
+    type: gateway-api
+    name: Ingressesaccordions
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 169
+      churn30: 4
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: itsmiteshkumar98@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/persistentvolumesclaimsaccordions
+    type: gateway-api
+    name: Persistentvolumesclaimsaccordions
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 14
+      lineChurn: 1030
+      churn30: 7
+      churn365: 14
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: 63000843+kingbj940429@users.noreply.github.com
+          commits: 7
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/resourceutilization
+    type: gateway-api
+    name: Resourceutilization
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 66
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/kubernetesdrawer
+    type: gateway-api
+    name: Kubernetesdrawer
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 467
+      churn30: 3
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: itsmiteshkumar98@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/statefulsetsaccordions
+    type: gateway-api
+    name: Statefulsetsaccordions
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 226
+      churn30: 4
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: itsmiteshkumar98@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/pods
+    type: gateway-api
+    name: Pods
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 15
+      lineChurn: 1294
+      churn30: 9
+      churn365: 15
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: itsmiteshkumar98@gmail.com
+          commits: 5
+        - email: LetiziaAdam@JohnDeere.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/poddrawer
+    type: gateway-api
+    name: Poddrawer
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 7
+      lineChurn: 804
+      churn30: 6
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: itsmiteshkumar98@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/poddelete
+    type: gateway-api
+    name: Poddelete
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 189
+      churn30: 4
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/podlogs
+    type: gateway-api
+    name: Podlogs
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 177
+      churn30: 4
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: itsmiteshkumar98@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/errorlist
+    type: gateway-api
+    name: Errorlist
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
       churn: 3
-      lineChurn: 93
-      churn30: 1
+      lineChurn: 164
+      churn30: 2
       churn365: 3
       churnByWeek:
         - 0
@@ -1464,7 +2347,6 @@ nodes:
         - 0
         - 1
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -1497,7 +2379,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -1505,424 +2388,109 @@ nodes:
       authorCount: 2
       topAuthorPercent: 0.6666666666666666
       authors:
-        - email: itsmiteshkumar98@gmail.com
+        - email: poldsberg@gmail.com
           commits: 2
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.0006522333733089272
-      sinceDays: 365
-  - entityRef: backstage/plugins/kubernetes-react/components/servicesaccordions
-    type: gateway-api
-    name: Servicesaccordions
-    isTest: false
-    properties:
-      filepath: plugins/kubernetes-react/src/components/ServicesAccordions/ServicesAccordions.test.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 35
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/kubernetes-react/components/ingressesaccordions
-    type: gateway-api
-    name: Ingressesaccordions
-    isTest: false
-    properties:
-      filepath: plugins/kubernetes-react/src/components/IngressesAccordions/IngressesAccordions.test.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 32
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/kubernetes-react/components/persistentvolumesclaimsaccordions
-    type: gateway-api
-    name: Persistentvolumesclaimsaccordions
-    isTest: false
-    properties:
-      filepath: >-
-        plugins/kubernetes-react/src/components/PersistentVolumesClaimsAccordions/PersistentVolumeClaimsAccordions.test.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 102
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: 63000843+kingbj940429@users.noreply.github.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/kubernetes-react/components/resourceutilization
-    type: gateway-api
-    name: Resourceutilization
-    isTest: false
-    properties:
-      filepath: plugins/kubernetes-react/src/components/ResourceUtilization/index.ts
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/kubernetes-react/components/kubernetesdrawer
-    type: gateway-api
-    name: Kubernetesdrawer
-    isTest: false
-    properties:
-      filepath: plugins/kubernetes-react/src/components/KubernetesDrawer/ManifestYaml.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 81
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
         - email: itsmiteshkumar98@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/plugins/kubernetes-react/components/statefulsetsaccordions
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/events
     type: gateway-api
-    name: Statefulsetsaccordions
+    name: Events
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/StatefulSetsAccordions/StatefulSetDrawer.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 79
-      churn30: 1
-      churn365: 1
+      churn: 5
+      lineChurn: 379
+      churn30: 4
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: itsmiteshkumar98@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/fixdialog
+    type: gateway-api
+    name: Fixdialog
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 174
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -1972,7 +2540,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -1981,105 +2549,107 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/plugins/kubernetes-react/components/pods
-    type: gateway-api
-    name: Pods
-    isTest: false
-    properties:
-      filepath: plugins/kubernetes-react/src/components/Pods/PodsTable.test.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 182
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: LetiziaAdam@JohnDeere.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/podexecterminal
     type: gateway-api
     name: Podexecterminal
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/PodExecTerminal/PodExecTerminal.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
+      churn: 7
+      lineChurn: 263
+      churn30: 5
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7142857142857143
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: freben@gmail.com
+          commits: 1
+        - email: itsmiteshkumar98@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/errorpanel
+    type: gateway-api
+    name: Errorpanel
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
       churn: 2
-      lineChurn: 97
-      churn30: 1
+      lineChurn: 128
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -2107,7 +2677,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -2130,87 +2699,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/kubernetes-react/components/errorpanel
-    type: gateway-api
-    name: Errorpanel
-    isTest: false
-    properties:
-      filepath: plugins/kubernetes-react/src/components/ErrorPanel/ErrorPanel.test.tsx
-      containerId: kubernetes-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 112
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -2219,26 +2709,28 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/configmapsaccordions
     type: gateway-api
     name: Configmapsaccordions
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/ConfigmapsAccordions/ConfigmapsDrawer.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 74
-      churn30: 1
-      churn365: 2
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 10
+      lineChurn: 358
+      churn30: 4
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -2247,6 +2739,14 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
         - 1
         - 0
         - 0
@@ -2280,28 +2780,25 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
+      authorCount: 3
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
         - email: kingbj0429@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 4
+        - email: itsmiteshkumar98@gmail.com
+          commits: 2
+      hotspotScore: 0.0010099097393170484
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/kubernetesdialog
     type: background-worker
     name: Kubernetesdialog
@@ -2385,18 +2882,15 @@ nodes:
     name: Horizontalpodautoscalers
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/HorizontalPodAutoscalers/HorizontalPodAutoscalerDrawer.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 54
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 128
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -2446,7 +2940,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -2455,26 +2949,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/errorreporting
     type: gateway-api
     name: Errorreporting
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/ErrorReporting/index.ts
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 165
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -2524,7 +3018,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -2533,62 +3027,29 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/cronjobsaccordions
     type: gateway-api
     name: Cronjobsaccordions
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/CronJobsAccordions/CronJobsDrawer.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 41
-      churn30: 1
-      churn365: 1
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 6
+      lineChurn: 187
+      churn30: 4
+      churn365: 6
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -2604,33 +3065,70 @@ nodes:
         - 0
         - 1
         - 0
+        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 4
+        - email: itsmiteshkumar98@gmail.com
+          commits: 2
+      hotspotScore: 0.0005891140146016115
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/persistentvolumesaccordions
     type: gateway-api
     name: Persistentvolumesaccordions
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/PersistentVolumesAccordions/PersistentVolumesTable.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 162
-      churn30: 1
-      churn365: 2
+      churn: 12
+      lineChurn: 806
+      churn30: 6
+      churn365: 12
       churnByWeek:
         - 0
         - 0
@@ -2657,7 +3155,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 6
         - 0
         - 0
         - 0
@@ -2680,7 +3178,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 6
         - 0
         - 0
         - 0
@@ -2689,28 +3187,28 @@ nodes:
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 6
         - email: 63000843+kingbj940429@users.noreply.github.com
-          commits: 1
+          commits: 6
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/secretsaccordions
     type: gateway-api
     name: Secretsaccordions
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/SecretsAccordions/SecretsDrawer.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 74
-      churn30: 1
-      churn365: 2
+      churn: 8
+      lineChurn: 330
+      churn30: 4
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -2729,7 +3227,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -2760,7 +3258,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -2769,28 +3267,28 @@ nodes:
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
         - email: 63000843+kingbj940429@users.noreply.github.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/components/customresources
     type: gateway-api
     name: Customresources
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/components/CustomResources/DefaultCustomResourceDrawer.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 62
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 238
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -2840,7 +3338,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -2849,26 +3347,186 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts
+    type: gateway-api
+    name: Argorollouts
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 6
+      churn: 12
+      lineChurn: 802
+      churn30: 7
+      churn365: 12
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: itsmiteshkumar98@gmail.com
+          commits: 5
+      hotspotScore: 0.005996339077194975
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: background-worker
+    name: __fixtures__
+    isTest: false
+    properties:
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 99
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/hooks
     type: gateway-api
     name: Hooks
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/useIsPodDeleteEnabled.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 65
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      churn: 27
+      lineChurn: 1605
+      churn30: 23
+      churn365: 27
       churnByWeek:
         - 0
         - 0
@@ -2887,30 +3545,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -2923,13 +3558,41 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 23
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8888888888888888
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 23
+        - email: 63000843+kingbj940429@users.noreply.github.com
+          commits: 4
+      hotspotScore: 0.00015078513468969824
       sinceDays: 365
+      fileCount: 23
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/hooks/__mocks__
     type: gateway-api
     name: __mocks__
@@ -3091,18 +3754,15 @@ nodes:
     name: Formatters
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/api/formatters/StandardClusterLinksFormatter.ts
       containerId: kubernetes-react
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 56
-      churn30: 1
-      churn365: 1
+      churn: 17
+      lineChurn: 1522
+      churn30: 15
+      churn365: 17
       churnByWeek:
         - 0
         - 0
@@ -3110,38 +3770,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -3157,13 +3786,51 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 15
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8823529411764706
       authors:
         - email: poldsberg@gmail.com
+          commits: 15
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: johanopersson@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-react/kubernetesproxyclient-test
     type: rest-api
     name: Kubernetesproxyclient test
@@ -3568,18 +4235,15 @@ nodes:
     name: Kubernetes auth provider
     isTest: false
     properties:
-      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/types.ts
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 41
-      churn30: 1
-      churn365: 1
+      churn: 10
+      lineChurn: 473
+      churn30: 8
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -3587,6 +4251,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -3628,19 +4293,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
+        - 8
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 8
+        - email: pschultz@pobox.com
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-react/api
     type: background-worker
     name: Api (External)
@@ -3658,7 +4327,6 @@ nodes:
     name: Apiresources (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-cluster/src/components/ApiResources/useApiResources.ts
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
@@ -3682,7 +4350,6 @@ nodes:
     name: Clusteroverview (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-cluster/src/components/ClusterOverview/useCluster.ts
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
@@ -3694,7 +4361,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-cluster/src/components/KubernetesClusterContent/KubernetesClusterContent.tsx
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
@@ -3754,7 +4420,6 @@ nodes:
     name: Nodes (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-cluster/src/components/Nodes/Nodes.test.tsx
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
@@ -3784,6 +4449,10 @@ dependencies:
     description: Calls module / service
   - from: backstage/plugins/kubernetes-react/owner-test
     to: backstage/plugins/kubernetes-react/owner
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/owner-test
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/kubernetes-react/crons-test
@@ -4122,19 +4791,19 @@ dependencies:
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/poddrawer
     to: backstage/plugins/kubernetes-react/hooks
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/poddrawer
     to: backstage/plugins/kubernetes-react/resources
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/poddrawer
     to: backstage/plugins/kubernetes-react/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/poddrawer
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
@@ -4158,27 +4827,27 @@ dependencies:
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/poddelete
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/poddelete
+    to: backstage/plugins/kubernetes-react/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/pods/podlogs
     to: backstage/plugins/kubernetes-react/types
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/kubernetes-react/components/pods
-    to: backstage/plugins/kubernetes-react/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/podlogs
     to: backstage/plugins/kubernetes-react/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/podlogs
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
@@ -4186,7 +4855,7 @@ dependencies:
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/pods
+  - from: backstage/plugins/kubernetes-react/components/pods/events
     to: backstage/plugins/kubernetes-react/types
     type: direct-call
     description: Calls module / service
@@ -4398,35 +5067,35 @@ dependencies:
     to: backstage/plugins/kubernetes-react/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/customresources
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts
     to: backstage/plugins/kubernetes-react/hooks
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/customresources
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts
     to: backstage/plugins/kubernetes-react/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/customresources
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/customresources
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts
     to: backstage/plugins/kubernetes-react/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/customresources
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts
     to: backstage/plugins/kubernetes-react/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/customresources
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts
     to: backstage/plugins/kubernetes-react/hooks
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/customresources
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts
     to: backstage/plugins/kubernetes-react/owner
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-react/components/customresources
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts
     to: backstage/plugins/kubernetes-react/translation
     type: direct-call
     description: Calls module / service

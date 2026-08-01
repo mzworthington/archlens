@@ -1,0 +1,164 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder/hooks
+  name: Hooks Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder/hooks/use-scaffolder-template-icon-link-props
+    type: gateway-api
+    name: UseScaffolderTemplateIconLinkProps
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/alpha/hooks/useScaffolderTemplateIconLinkProps.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/hooks/use-form-decorators-test
+    type: gateway-api
+    name: UseFormDecorators
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/alpha/hooks/useFormDecorators.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/hooks/use-form-decorators
+    type: gateway-api
+    name: UseFormDecorators
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/alpha/hooks/useFormDecorators.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/hooks/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/alpha/hooks/index.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-common/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/alpha.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/alpha.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1020
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder/hooks/use-scaffolder-template-icon-link-props
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/hooks/use-scaffolder-template-icon-link-props
+    to: backstage/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder/hooks/use-scaffolder-template-icon-link-props
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder/hooks/use-scaffolder-template-icon-link-props
+    to: backstage/plugins/scaffolder/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/hooks/use-scaffolder-template-icon-link-props
+    to: backstage/plugins/scaffolder/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/hooks/use-form-decorators-test
+    to: backstage/plugins/scaffolder/formdecoratorsapi/form-decorators-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/hooks/use-form-decorators-test
+    to: backstage/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/hooks/use-form-decorators-test
+    to: backstage/plugins/scaffolder/hooks/use-form-decorators
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/hooks/use-form-decorators-test
+    to: backstage/plugins/scaffolder/ref/ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/hooks/use-form-decorators-test
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/hooks/use-form-decorators
+    to: backstage/plugins/scaffolder/ref/ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/hooks/use-form-decorators
+    to: backstage/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/hooks/use-form-decorators
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/hooks/index
+    to: backstage/plugins/scaffolder/hooks/use-form-decorators
+    type: direct-call
+    description: Calls module / service

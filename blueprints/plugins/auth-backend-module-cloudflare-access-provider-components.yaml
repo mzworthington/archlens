@@ -20,12 +20,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 24
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 55
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -75,7 +73,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -84,9 +82,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
     type: rest-api
     name: Helpers
@@ -722,7 +723,6 @@ nodes:
     name: Cataloggraphpage (External)
     external: true
     properties:
-      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SelectedKindsFilter.test.tsx
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
@@ -734,7 +734,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/EntityRelationsGraph.tsx
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
@@ -758,7 +757,6 @@ nodes:
     name: Entityrelationsgraph (External)
     external: true
     properties:
-      filepath: plugins/catalog-graph/src/components/EntityRelationsGraph/DefaultRenderLabel.tsx
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
@@ -770,7 +768,6 @@ nodes:
     name: Graph (External)
     external: true
     properties:
-      filepath: plugins/catalog-graph/src/lib/types/graph.ts
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
@@ -782,7 +779,6 @@ nodes:
     name: Graph transformations (External)
     external: true
     properties:
-      filepath: plugins/catalog-graph/src/lib/graph-transformations/set-distance.ts
       containerId: catalog-graph
       technology: TypeScript Domain Service
       classification: default
@@ -794,7 +790,6 @@ nodes:
     name: Hooks (External)
     external: true
     properties:
-      filepath: plugins/catalog-graph/src/hooks/useRelations.ts
       containerId: catalog-graph
       technology: React Component
       classification: ui-import
@@ -842,7 +837,6 @@ nodes:
     name: Permissions (External)
     external: true
     properties:
-      filepath: plugins/permission-common/src/permissions/createPermission.ts
       containerId: permission-common
       technology: TypeScript Domain Service
       classification: default

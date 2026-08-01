@@ -1,0 +1,39 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/clientapp-unittests/services
+  name: Services Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/clientapp-unittests/services/basket-service-tests
+    type: background-worker
+    name: BasketServiceTests
+    isTest: true
+    properties:
+      filepath: tests/ClientApp.UnitTests/Services/BasketServiceTests.cs
+      containerId: clientapp-unittests
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp-unittests/services/catalog-service-tests
+    type: background-worker
+    name: CatalogServiceTests
+    isTest: true
+    properties:
+      filepath: tests/ClientApp.UnitTests/Services/CatalogServiceTests.cs
+      containerId: clientapp-unittests
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp-unittests/services/orders-service-tests
+    type: background-worker
+    name: OrdersServiceTests
+    isTest: true
+    properties:
+      filepath: tests/ClientApp.UnitTests/Services/OrdersServiceTests.cs
+      containerId: clientapp-unittests
+      technology: C# Domain Service
+      classification: default
+dependencies: []

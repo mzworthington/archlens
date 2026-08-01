@@ -1,0 +1,431 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-plugin-api/blueprints
+  name: Blueprints Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/plugin-header-action-blueprint
+    type: gateway-api
+    name: PluginHeaderActionBlueprint
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/PluginHeaderActionBlueprint.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/plugin-wrapper-blueprint
+    type: gateway-api
+    name: PluginWrapperBlueprint
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/PluginWrapperBlueprint.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/app-root-element-blueprint
+    type: background-worker
+    name: AppRootElementBlueprint
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/AppRootElementBlueprint.tsx
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/sub-page-blueprint
+    type: background-worker
+    name: SubPageBlueprint
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/SubPageBlueprint.tsx
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/api-blueprint
+    type: background-worker
+    name: ApiBlueprint
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/ApiBlueprint.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/app-root-element-blueprint-test
+    type: gateway-api
+    name: AppRootElementBlueprint
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/AppRootElementBlueprint.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    type: gateway-api
+    name: PageBlueprint
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/PageBlueprint.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/api-blueprint-test
+    type: background-worker
+    name: ApiBlueprint
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/ApiBlueprint.test.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/index.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/page-blueprint-test
+    type: gateway-api
+    name: PageBlueprint
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/PageBlueprint.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/analytics-implementation-blueprint-test
+    type: background-worker
+    name: AnalyticsImplementationBlueprint
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/AnalyticsImplementationBlueprint.test.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints/analytics-implementation-blueprint
+    type: background-worker
+    name: AnalyticsImplementationBlueprint
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/blueprints/AnalyticsImplementationBlueprint.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/apis.ts
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2630
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/breadcrumbs
+    type: gateway-api
+    name: Breadcrumbs (External)
+    external: true
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -2430
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1970
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/wiring/create-extension-blueprint
+    type: background-worker
+    name: CreateExtensionBlueprint (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/createExtensionBlueprint.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3090
+      y: 404
+  - entityRef: backstage/packages/frontend-test-utils/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2170
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2890
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/schema/optional-string-schema
+    type: background-worker
+    name: OptionalStringSchema (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/schema/optionalStringSchema.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/definitions/plugin-header-actions-api
+    type: gateway-api
+    name: PluginHeaderActionsApi (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/definitions/PluginHeaderActionsApi.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/definitions/route-resolution-api
+    type: rest-api
+    name: RouteResolutionApi (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/definitions/RouteResolutionApi.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/routing
+    type: gateway-api
+    name: Routing (External)
+    external: true
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/system
+    type: rest-api
+    name: System (External)
+    external: true
+    properties:
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/icons/types
+    type: gateway-api
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/icons/types.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/wiring
+    type: gateway-api
+    name: Wiring (External)
+    external: true
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-plugin-api/blueprints/plugin-header-action-blueprint
+    to: backstage/packages/frontend-plugin-api/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/plugin-header-action-blueprint
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/plugin-wrapper-blueprint
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/app-root-element-blueprint
+    to: backstage/packages/frontend-plugin-api/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/app-root-element-blueprint
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/sub-page-blueprint
+    to: backstage/packages/frontend-plugin-api/icons/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/sub-page-blueprint
+    to: backstage/packages/frontend-plugin-api/routing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/sub-page-blueprint
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/sub-page-blueprint
+    to: backstage/packages/frontend-plugin-api/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/sub-page-blueprint
+    to: backstage/packages/frontend-plugin-api/schema/optional-string-schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/api-blueprint
+    to: backstage/packages/frontend-plugin-api/system
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/api-blueprint
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/api-blueprint
+    to: backstage/packages/frontend-plugin-api/wiring/create-extension-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/app-root-element-blueprint-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/frontend-plugin-api/blueprints/app-root-element-blueprint-test
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/app-root-element-blueprint-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/frontend-plugin-api/blueprints/app-root-element-blueprint-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/icons/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/routing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/system
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/breadcrumbs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/definitions/route-resolution-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/definitions/plugin-header-actions-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint
+    to: backstage/packages/frontend-plugin-api/schema/optional-string-schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/api-blueprint-test
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/api-blueprint-test
+    to: backstage/packages/frontend-plugin-api/blueprints/api-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/api-blueprint-test
+    to: backstage/packages/frontend-plugin-api/system
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/index
+    to: backstage/packages/frontend-plugin-api/blueprints/analytics-implementation-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/index
+    to: backstage/packages/frontend-plugin-api/blueprints/api-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint-test
+    to: backstage/packages/frontend-plugin-api/routing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/frontend-plugin-api/blueprints/page-blueprint-test
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/analytics-implementation-blueprint-test
+    to: backstage/packages/frontend-plugin-api/blueprints/analytics-implementation-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/analytics-implementation-blueprint
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/blueprints/analytics-implementation-blueprint
+    to: backstage/packages/frontend-plugin-api/wiring
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,94 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/ui/components/tablepagination
+  name: Tablepagination Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/ui/components/tablepagination/definition
+    type: background-worker
+    name: Definition
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/TablePagination/definition.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/tablepagination/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/TablePagination/types.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/tablepagination/table-pagination-stories
+    type: gateway-api
+    name: TablePagination.stories
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/TablePagination/TablePagination.stories.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/tablepagination/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/TablePagination/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/ui/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/ui/components/tablepagination/definition
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/tablepagination/definition
+    to: backstage/packages/ui/components/tablepagination/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/tablepagination/table-pagination-stories
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/tablepagination/index
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/tablepagination/index
+    to: backstage/packages/ui/components/tablepagination/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/tablepagination/index
+    to: backstage/packages/ui/components/tablepagination/definition
+    type: direct-call
+    description: Calls module / service

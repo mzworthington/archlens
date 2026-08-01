@@ -1,0 +1,75 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/clientapp/converters
+  name: Converters Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/clientapp/converters/double-converter
+    type: background-worker
+    name: DoubleConverter
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Converters/DoubleConverter.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/converters/has-count-converter
+    type: background-worker
+    name: HasCountConverter
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Converters/HasCountConverter.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/converters/does-not-have-count-converter
+    type: background-worker
+    name: DoesNotHaveCountConverter
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Converters/DoesNotHaveCountConverter.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/converters/items-to-height-converter
+    type: background-worker
+    name: ItemsToHeightConverter
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Converters/ItemsToHeightConverter.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/converters/first-validation-error-converter
+    type: background-worker
+    name: FirstValidationErrorConverter
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Converters/FirstValidationErrorConverter.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/converters/web-navigated-event-args-converter
+    type: background-worker
+    name: WebNavigatedEventArgsConverter
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Converters/WebNavigatedEventArgsConverter.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/converters/web-navigating-event-args-converter
+    type: background-worker
+    name: WebNavigatingEventArgsConverter
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Converters/WebNavigatingEventArgsConverter.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+dependencies: []

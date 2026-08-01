@@ -1,0 +1,525 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-plugin-api/services/definitions
+  name: Definitions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/logger-service
+    type: background-worker
+    name: LoggerService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/LoggerService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/database-service
+    type: relational-database
+    name: DatabaseService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/DatabaseService.ts
+      containerId: backend-plugin-api
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/permissions-service
+    type: background-worker
+    name: PermissionsService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/PermissionsService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/http-router-service
+    type: rest-api
+    name: HttpRouterService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/HttpRouterService.ts
+      containerId: backend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/url-reader-service
+    type: background-worker
+    name: UrlReaderService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/UrlReaderService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/root-logger-service
+    type: background-worker
+    name: RootLoggerService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/RootLoggerService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/lifecycle-service
+    type: background-worker
+    name: LifecycleService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/LifecycleService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/root-health-service
+    type: background-worker
+    name: RootHealthService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/RootHealthService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/plugin-metadata-service
+    type: background-worker
+    name: PluginMetadataService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/PluginMetadataService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/root-http-router-service
+    type: rest-api
+    name: RootHttpRouterService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/RootHttpRouterService.ts
+      containerId: backend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/scheduler-service
+    type: background-worker
+    name: SchedulerService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/SchedulerService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/discovery-service
+    type: background-worker
+    name: DiscoveryService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/DiscoveryService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/auth-service
+    type: background-worker
+    name: AuthService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/AuthService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/root-instance-metadata-service
+    type: background-worker
+    name: RootInstanceMetadataService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/RootInstanceMetadataService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/core-services
+    type: background-worker
+    name: CoreServices
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/coreServices.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/root-system-metadata-service
+    type: background-worker
+    name: RootSystemMetadataService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/RootSystemMetadataService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/http-auth-service
+    type: rest-api
+    name: HttpAuthService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/HttpAuthService.ts
+      containerId: backend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/cache-service
+    type: cache-store
+    name: CacheService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/CacheService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/user-info-service
+    type: background-worker
+    name: UserInfoService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/UserInfoService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/scheduler-service-test
+    type: background-worker
+    name: SchedulerService
+    isTest: true
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/SchedulerService.test.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/permissions-registry-service
+    type: background-worker
+    name: PermissionsRegistryService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/PermissionsRegistryService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/root-lifecycle-service
+    type: background-worker
+    name: RootLifecycleService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/RootLifecycleService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/root-config-service
+    type: background-worker
+    name: RootConfigService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/RootConfigService.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/services/definitions/auditor-service
+    type: rest-api
+    name: AuditorService
+    isTest: false
+    properties:
+      filepath: packages/backend-plugin-api/src/services/definitions/AuditorService.ts
+      containerId: backend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/services
+    type: background-worker
+    name: Services (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/services/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-plugin-api/services/definitions/logger-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-plugin-api/services/definitions/permissions-service
+    to: backstage/packages/backend-plugin-api/services/definitions/auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/root-logger-service
+    to: backstage/packages/backend-plugin-api/services/definitions/logger-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/lifecycle-service
+    to: backstage/packages/backend-plugin-api/services/definitions/logger-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/root-health-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-plugin-api/services/definitions/scheduler-service
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-plugin-api/services/definitions/scheduler-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-plugin-api/services/definitions/auth-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/user-info-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/cache-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/root-config-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/database-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/discovery-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/root-health-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/http-auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/http-router-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/lifecycle-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/logger-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/permissions-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/permissions-registry-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/plugin-metadata-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/root-http-router-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/root-lifecycle-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/root-logger-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/scheduler-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/url-reader-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/root-instance-metadata-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/core-services
+    to: backstage/packages/backend-plugin-api/services/definitions/root-system-metadata-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/http-auth-service
+    to: backstage/packages/backend-plugin-api/services/definitions/auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/cache-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-plugin-api/services/definitions/user-info-service
+    to: backstage/packages/backend-plugin-api/services/definitions/auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/scheduler-service-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-plugin-api/services/definitions/scheduler-service-test
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-plugin-api/services/definitions/scheduler-service-test
+    to: backstage/packages/backend-plugin-api/services/definitions/scheduler-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/cache-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/database-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/discovery-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/http-auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/http-router-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/lifecycle-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/logger-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/permissions-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/permissions-registry-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/plugin-metadata-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/root-config-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/root-health-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/root-http-router-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/root-lifecycle-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/root-logger-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/scheduler-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/url-reader-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/user-info-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/root-instance-metadata-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/root-system-metadata-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/index
+    to: backstage/packages/backend-plugin-api/services/definitions/core-services
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/root-lifecycle-service
+    to: backstage/packages/backend-plugin-api/services/definitions/lifecycle-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-plugin-api/services/definitions/root-config-service
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-plugin-api/services/definitions/auditor-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'

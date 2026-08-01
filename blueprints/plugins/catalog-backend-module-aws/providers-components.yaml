@@ -1,0 +1,126 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-aws/providers
+  name: Providers Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider-test
+    type: background-worker
+    name: AwsS3EntityProvider
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/providers/AwsS3EntityProvider.test.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/providers/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/providers/types.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/providers/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/providers/index.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/providers/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/providers/config.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/providers/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/providers/config.test.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider
+    type: background-worker
+    name: AwsS3EntityProvider
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/providers/AwsS3EntityProvider.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider-test
+    to: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/providers/index
+    to: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/providers/config
+    to: backstage/plugins/catalog-backend-module-aws/providers/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/providers/config-test
+    to: backstage/plugins/catalog-backend-module-aws/providers/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider
+    to: backstage/plugins/catalog-backend-module-aws/providers/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/providers/aws-s3-entity-provider
+    to: backstage/plugins/catalog-backend-module-aws/providers/types
+    type: direct-call
+    description: Calls module / service

@@ -94,18 +94,17 @@ nodes:
     name: Actions
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerritReview.test.ts
       containerId: scaffolder-backend-module-gerrit
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 118
-      churn30: 1
-      churn365: 1
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 35
+      churn: 15
+      lineChurn: 2091
+      churn30: 11
+      churn365: 15
       churnByWeek:
         - 0
         - 0
@@ -132,6 +131,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
         - 0
         - 0
         - 0
@@ -154,19 +154,25 @@ nodes:
         - 0
         - 0
         - 0
+        - 9
         - 0
-        - 1
+        - 2
         - 0
         - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 3
+      topAuthorPercent: 0.6
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 9
+        - email: freben@gmail.com
+          commits: 4
+        - email: thomas.cardonne@adevinta.com
+          commits: 2
+      hotspotScore: 0.008710471501609543
       sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/index
     type: background-worker
     name: Index

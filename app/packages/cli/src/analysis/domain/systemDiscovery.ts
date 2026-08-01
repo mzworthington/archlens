@@ -1,5 +1,6 @@
 import { slugify } from '@archlens/core';
 import type { SystemNode } from '@archlens/core';
+import { resolveProductHubDisplayName } from './entityRefContext.ts';
 
 export type DiscoveredSystem = {
   /** Slug used in entityRefs and output folders. */
@@ -128,23 +129,32 @@ function readWorkspaceGlobs(cwd: string, fs: SystemDiscoveryFs): string[] {
 }
 
 function readPackageName(cwd: string, fs: SystemDiscoveryFs): string | undefined {
-  const pkgPath = fs.getAbsolutePath(cwd, 'package.json');
-  if (!fs.exists(pkgPath)) return undefined;
-  const text = fs.readText(pkgPath);
-  if (!text) return undefined;
-  try {
-    const name = JSON.parse(text).name as string | undefined;
-    if (!name || name === 'root') return undefined;
-    return name.includes('/') ? name.split('/').pop() : name;
-  } catch {
-    return undefined;
+  const candidates = ['package.json', 'app/package.json'];
+  for (const relativePath of candidates) {
+    const pkgPath = fs.getAbsolutePath(cwd, relativePath);
+    if (!fs.exists(pkgPath)) continue;
+    const text = fs.readText(pkgPath);
+    if (!text) continue;
+    try {
+      const name = JSON.parse(text).name as string | undefined;
+      if (!name || name === 'root') continue;
+      return name.includes('/') ? name.split('/').pop() : name;
+    } catch {
+      // try next candidate
+    }
   }
+  return undefined;
 }
 
 /**
  * Attach a product hub when multiple subsystems are found so the context diagram
  * can fan spokes into one product node (e.g. Backstage ← packages/plugins/microsite).
  */
+function productHubLabel(productName: string): string {
+  const productId = slugify(productName);
+  return resolveProductHubDisplayName(productId, titleCase(productName));
+}
+
 export function withProductHub(
   systems: DiscoveredSystem[],
   productName: string
@@ -157,7 +167,7 @@ export function withProductHub(
       {
         ...systems[0],
         id: productId,
-        displayName: titleCase(productName),
+        displayName: productHubLabel(productName),
         productId,
         kind: systems[0].kind === 'fallback' ? 'fallback' : 'product',
       },
@@ -167,7 +177,7 @@ export function withProductHub(
   const children = systems.filter(s => s.id !== productId);
   const hub: DiscoveredSystem = {
     id: productId,
-    displayName: titleCase(productName),
+    displayName: productHubLabel(productName),
     rootPath: '',
     kind: 'product',
     productId,
@@ -203,8 +213,8 @@ export function discoverSystems(
 ): DiscoveredSystem[] {
   const productName =
     options.productName ||
-    options.fallbackId ||
     readPackageName(cwd, fs) ||
+    options.fallbackId ||
     cwd.split(/[\\/]/).filter(Boolean).pop() ||
     'app';
 
@@ -269,7 +279,7 @@ export function discoverSystems(
     return [
       {
         id: fallbackId,
-        displayName: titleCase(productName),
+        displayName: productHubLabel(productName),
         rootPath: '',
         kind: 'fallback',
         productId: fallbackId,
@@ -374,7 +384,7 @@ export function planIacContextSystems(
 
     folderGroups.push({
       entityRef: groupEntityRef,
-      displayName: titleCase(folderName),
+      displayName: resolveProductHubDisplayName(groupEntityRef, titleCase(folderName)),
       rootPath: parentPath,
       productId,
     });

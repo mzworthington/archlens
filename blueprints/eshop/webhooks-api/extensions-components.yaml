@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/webhooks-api/extensions
+  name: Extensions Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/webhooks-api/extensions/route-handler-builder-extensions
+    type: background-worker
+    name: RouteHandlerBuilderExtensions
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/Extensions/RouteHandlerBuilderExtensions.cs
+      containerId: webhooks-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webhooks-api/extensions/extensions
+    type: background-worker
+    name: Extensions
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/Extensions/Extensions.cs
+      containerId: webhooks-api
+      technology: C# Domain Service
+      classification: default
+dependencies: []

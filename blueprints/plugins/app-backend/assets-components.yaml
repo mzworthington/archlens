@@ -1,0 +1,132 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/app-backend/assets
+  name: Assets Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/app-backend/assets/find-static-assets-test
+    type: background-worker
+    name: FindStaticAssets
+    isTest: true
+    properties:
+      filepath: plugins/app-backend/src/lib/assets/findStaticAssets.test.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/assets/create-static-asset-middleware-test
+    type: rest-api
+    name: CreateStaticAssetMiddleware
+    isTest: true
+    properties:
+      filepath: plugins/app-backend/src/lib/assets/createStaticAssetMiddleware.test.ts
+      containerId: app-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/app-backend/assets/static-assets-store
+    type: relational-database
+    name: StaticAssetsStore
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/assets/StaticAssetsStore.ts
+      containerId: app-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/app-backend/assets/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/assets/types.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/assets/find-static-assets
+    type: background-worker
+    name: FindStaticAssets
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/assets/findStaticAssets.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/assets/static-assets-store-test
+    type: background-worker
+    name: StaticAssetsStore
+    isTest: true
+    properties:
+      filepath: plugins/app-backend/src/lib/assets/StaticAssetsStore.test.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/assets/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/assets/index.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/assets/create-static-asset-middleware
+    type: rest-api
+    name: CreateStaticAssetMiddleware
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/assets/createStaticAssetMiddleware.ts
+      containerId: app-backend
+      technology: REST Controller / Router
+      classification: api-marker
+dependencies:
+  - from: backstage/plugins/app-backend/assets/find-static-assets-test
+    to: backstage/plugins/app-backend/assets/find-static-assets
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/create-static-asset-middleware-test
+    to: backstage/plugins/app-backend/assets/create-static-asset-middleware
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/create-static-asset-middleware-test
+    to: backstage/plugins/app-backend/assets/static-assets-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/static-assets-store
+    to: backstage/plugins/app-backend/assets/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/find-static-assets
+    to: backstage/plugins/app-backend/assets/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/static-assets-store-test
+    to: backstage/plugins/app-backend/assets/static-assets-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/index
+    to: backstage/plugins/app-backend/assets/static-assets-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/index
+    to: backstage/plugins/app-backend/assets/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/index
+    to: backstage/plugins/app-backend/assets/find-static-assets
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/index
+    to: backstage/plugins/app-backend/assets/create-static-asset-middleware
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/create-static-asset-middleware
+    to: backstage/plugins/app-backend/assets/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/assets/create-static-asset-middleware
+    to: backstage/plugins/app-backend/headers/headers
+    type: direct-call
+    description: Calls module / service

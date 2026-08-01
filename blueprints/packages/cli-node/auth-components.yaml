@@ -1,0 +1,131 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-node/auth
+  name: Auth Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-node/auth/http-json
+    type: background-worker
+    name: HttpJson
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/httpJson.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/auth/cli-auth
+    type: background-worker
+    name: CliAuth
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/CliAuth.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/auth/storage
+    type: background-worker
+    name: Storage
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/storage.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/auth/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/auth/secret-store
+    type: background-worker
+    name: SecretStore
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/secretStore.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/auth/cli-auth-test
+    type: background-worker
+    name: CliAuth
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/auth/CliAuth.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/auth/auth-identifiers
+    type: background-worker
+    name: AuthIdentifiers
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/auth/authIdentifiers.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-node/auth/http-json
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/cli-node/auth/cli-auth
+    to: backstage/packages/cli-node/auth/storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/auth/cli-auth
+    to: backstage/packages/cli-node/auth/secret-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/auth/cli-auth
+    to: backstage/packages/cli-node/auth/auth-identifiers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/auth/cli-auth
+    to: backstage/packages/cli-node/auth/http-json
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/auth/storage
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/cli-node/auth/index
+    to: backstage/packages/cli-node/auth/cli-auth
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/auth/cli-auth-test
+    to: backstage/packages/cli-node/auth/cli-auth
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/auth/cli-auth-test
+    to: backstage/packages/cli-node/auth/storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/auth/cli-auth-test
+    to: backstage/packages/cli-node/auth/secret-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/auth/cli-auth-test
+    to: backstage/packages/cli-node/auth/http-json
+    type: direct-call
+    description: Calls module / service

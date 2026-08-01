@@ -1,0 +1,702 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/core/recommendations
+  name: Recommendations Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/core/recommendations/advicelens-stress-fixtures-test
+    type: background-worker
+    name: AdvicelensStressFixtures
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/recommendations/advicelensStressFixtures.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/narrate-recommendations-test
+    type: background-worker
+    name: NarrateRecommendations
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/recommendations/narrateRecommendations.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/run-estate-resilience
+    type: background-worker
+    name: RunEstateResilience
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/runEstateResilience.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/forensics-recommendations
+    type: background-worker
+    name: ForensicsRecommendations
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/forensicsRecommendations.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/evidence-citations-test
+    type: background-worker
+    name: EvidenceCitations
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/recommendations/evidenceCitations.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/resilience-advice-eligibility-test
+    type: background-worker
+    name: ResilienceAdviceEligibility
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/recommendations/resilienceAdviceEligibility.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/run-estate-resilience-test
+    type: background-worker
+    name: RunEstateResilience
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/recommendations/runEstateResilience.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/estate-scenarios-test
+    type: background-worker
+    name: EstateScenarios
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/recommendations/estateScenarios.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/types.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/build-recommendations-test
+    type: background-worker
+    name: BuildRecommendations
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/recommendations/buildRecommendations.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/evidence-citations
+    type: background-worker
+    name: EvidenceCitations
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/evidenceCitations.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/estate-scenarios
+    type: background-worker
+    name: EstateScenarios
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/estateScenarios.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/resilience-recommendations
+    type: background-worker
+    name: ResilienceRecommendations
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/resilienceRecommendations.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/refactor-recommendations
+    type: background-worker
+    name: RefactorRecommendations
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/refactorRecommendations.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/narrate-recommendations
+    type: background-worker
+    name: NarrateRecommendations
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/narrateRecommendations.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/resilience-advice-eligibility
+    type: background-worker
+    name: ResilienceAdviceEligibility
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/resilienceAdviceEligibility.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/build-recommendations
+    type: background-worker
+    name: BuildRecommendations
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations/buildRecommendations.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/golden-journey-fixture-test
+    type: background-worker
+    name: GoldenJourneyFixture
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/recommendations/goldenJourneyFixture.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/recommendations/recommendations
+    type: background-worker
+    name: Recommendations
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/recommendations.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/forensics/chaos-risk-context
+    type: background-worker
+    name: ChaosRiskContext (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics/chaosRiskContext.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3580
+      y: 404
+  - entityRef: blueprint/app/core/resilience/chaos-spec-document
+    type: background-worker
+    name: ChaosSpecDocument (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/resilience/chaosSpecDocument.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: blueprint/app/core/forensics/composite-risk
+    type: background-worker
+    name: CompositeRisk (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics/compositeRisk.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3120
+      y: 404
+  - entityRef: blueprint/app/core/resilience/fault-spec
+    type: background-worker
+    name: FaultSpec (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/resilience/faultSpec.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/app/core/rules/graph
+    type: background-worker
+    name: Graph (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/rules/graph.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2860
+      y: 404
+  - entityRef: blueprint/app/core/resilience/graph
+    type: background-worker
+    name: Graph (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/resilience/graph.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: blueprint/app/core/resilience/integrity-radius
+    type: background-worker
+    name: IntegrityRadius (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/resilience/integrityRadius.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/app/core/taxonomy/node-ownership
+    type: background-worker
+    name: NodeOwnership (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/taxonomy/nodeOwnership.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3320
+      y: 404
+  - entityRef: blueprint/app/core/resilience/node-resilience
+    type: background-worker
+    name: NodeResilience (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/resilience/nodeResilience.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: blueprint/app/core/taxonomy/node-roles
+    type: background-worker
+    name: NodeRoles (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/taxonomy/nodeRoles.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3780
+      y: 404
+  - entityRef: blueprint/app/core/forensics/ownership
+    type: background-worker
+    name: Ownership (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics/ownership.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2660
+      y: 404
+  - entityRef: blueprint/app/core/forensics/refactor-boundary
+    type: background-worker
+    name: RefactorBoundary (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics/refactorBoundary.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: 404
+  - entityRef: blueprint/app/core/forensics/refactor-score
+    type: background-worker
+    name: RefactorScore (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics/refactorScore.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: 404
+  - entityRef: blueprint/app/core/forensics/refactor-suggestions
+    type: background-worker
+    name: RefactorSuggestions (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/forensics/refactorSuggestions.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: blueprint/app/core/rules
+    type: background-worker
+    name: Rules (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2400
+      y: 404
+  - entityRef: blueprint/app/core/resilience/simulation
+    type: background-worker
+    name: Simulation (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/resilience/simulation.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+  - entityRef: blueprint/app/core/resilience/simulation-schema
+    type: background-worker
+    name: SimulationSchema (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/resilience/simulationSchema.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+dependencies:
+  - from: blueprint/app/core/recommendations/advicelens-stress-fixtures-test
+    to: blueprint/app/core/recommendations/build-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/advicelens-stress-fixtures-test
+    to: blueprint/app/core/recommendations/run-estate-resilience
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/advicelens-stress-fixtures-test
+    to: blueprint/app/core/rules/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/narrate-recommendations-test
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/narrate-recommendations-test
+    to: blueprint/app/core/recommendations/narrate-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/resilience/chaos-spec-document
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/resilience/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/resilience/simulation-schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/rules
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/recommendations/build-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/recommendations/estate-scenarios
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/recommendations/resilience-advice-eligibility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/forensics-recommendations
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/forensics-recommendations
+    to: blueprint/app/core/forensics/composite-risk
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/forensics-recommendations
+    to: blueprint/app/core/forensics/refactor-score
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/forensics-recommendations
+    to: blueprint/app/core/taxonomy/node-ownership
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/forensics-recommendations
+    to: blueprint/app/core/recommendations/resilience-advice-eligibility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/forensics-recommendations
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/evidence-citations-test
+    to: blueprint/app/core/recommendations/evidence-citations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-advice-eligibility-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-advice-eligibility-test
+    to: blueprint/app/core/recommendations/resilience-advice-eligibility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience-test
+    to: blueprint/app/core/rules/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/run-estate-resilience-test
+    to: blueprint/app/core/recommendations/run-estate-resilience
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/estate-scenarios-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/estate-scenarios-test
+    to: blueprint/app/core/recommendations/estate-scenarios
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/types
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/types
+    to: blueprint/app/core/forensics/refactor-suggestions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations-test
+    to: blueprint/app/core/resilience/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations-test
+    to: blueprint/app/core/recommendations/build-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations-test
+    to: blueprint/app/core/recommendations/forensics-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations-test
+    to: blueprint/app/core/recommendations/resilience-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/evidence-citations
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/estate-scenarios
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/estate-scenarios
+    to: blueprint/app/core/resilience/fault-spec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/estate-scenarios
+    to: blueprint/app/core/resilience/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-recommendations
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-recommendations
+    to: blueprint/app/core/resilience/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-recommendations
+    to: blueprint/app/core/resilience/integrity-radius
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-recommendations
+    to: blueprint/app/core/resilience/node-resilience
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-recommendations
+    to: blueprint/app/core/resilience/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-recommendations
+    to: blueprint/app/core/recommendations/resilience-advice-eligibility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-recommendations
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/refactor-recommendations
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/refactor-recommendations
+    to: blueprint/app/core/forensics/ownership
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/refactor-recommendations
+    to: blueprint/app/core/forensics/refactor-boundary
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/refactor-recommendations
+    to: blueprint/app/core/forensics/refactor-suggestions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/refactor-recommendations
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/narrate-recommendations
+    to: blueprint/app/core/recommendations/evidence-citations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/narrate-recommendations
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-advice-eligibility
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-advice-eligibility
+    to: blueprint/app/core/taxonomy/node-ownership
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/resilience-advice-eligibility
+    to: blueprint/app/core/taxonomy/node-roles
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/forensics/chaos-risk-context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/forensics/refactor-boundary
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/forensics/ownership
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/resilience/fault-spec
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/resilience/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/recommendations/forensics-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/recommendations/refactor-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/recommendations/resilience-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/build-recommendations
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/golden-journey-fixture-test
+    to: blueprint/app/core/recommendations/build-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/golden-journey-fixture-test
+    to: blueprint/app/core/recommendations/run-estate-resilience
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/golden-journey-fixture-test
+    to: blueprint/app/core/resilience/simulation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/golden-journey-fixture-test
+    to: blueprint/app/core/rules/graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/build-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/resilience-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/refactor-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/forensics-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/resilience-advice-eligibility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/estate-scenarios
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/run-estate-resilience
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/evidence-citations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/recommendations/recommendations
+    to: blueprint/app/core/recommendations/narrate-recommendations
+    type: direct-call
+    description: Calls module / service

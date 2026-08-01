@@ -14,34 +14,20 @@ nodes:
     name: Monorepo
     isTest: false
     properties:
-      filepath: packages/cli-node/src/monorepo/isMonorepo.test.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 4
-      loc: 51
-      sloc: 30
-      churn: 3
-      lineChurn: 58
-      churn30: 1
-      churn365: 3
+      complexity: 19
+      complexityPeak: 19
+      cognitiveComplexity: 145
+      churn: 28
+      lineChurn: 2048
+      churn30: 7
+      churn365: 28
       churnByWeek:
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -57,10 +43,27 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
         - 1
         - 0
         - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -71,44 +74,45 @@ nodes:
         - 0
         - 0
         - 0
+        - 7
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 3
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
-          commits: 3
-      hotspotScore: 0.00020338460027912784
+          commits: 21
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: freben@gmail.com
+          commits: 2
+        - email: mtlewis@users.noreply.github.com
+          commits: 2
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.031180963201413874
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-node/pacman
     type: background-worker
     name: Pacman
     isTest: false
     properties:
-      filepath: packages/cli-node/src/pacman/yarn/Yarn.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 14
-      loc: 102
-      sloc: 69
-      churn: 7
-      lineChurn: 149
-      churn30: 1
-      churn365: 7
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      churn: 21
+      lineChurn: 561
+      churn30: 5
+      churn365: 21
       churnByWeek:
         - 0
         - 0
@@ -124,18 +128,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
         - 0
         - 0
         - 0
@@ -144,6 +136,18 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
@@ -158,7 +162,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
@@ -167,434 +171,34 @@ nodes:
       topAuthorPercent: 0.5714285714285714
       authors:
         - email: poldsberg@gmail.com
-          commits: 4
+          commits: 12
         - email: gabriel.dugny@believe.com
-          commits: 3
-      hotspotScore: 0.0015674640745650024
+          commits: 9
+      hotspotScore: 0.0033032464390161794
       coupledFiles:
         - path: packages/cli-node/src/pacman/PackageManager.ts
           score: 1
           sharedCommits: 5
+        - path: packages/cli-node/src/pacman/yarn/Yarn.ts
+          score: 1
+          sharedCommits: 5
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-node/pacman/yarn
     type: background-worker
     name: Yarn
     isTest: false
     properties:
-      filepath: packages/cli-node/src/pacman/yarn/types.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 19
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/cli-node/cache
-    type: cache-store
-    name: Cache
-    isTest: false
-    properties:
-      filepath: packages/cli-node/src/cache/SuccessCache.ts
-      containerId: cli-node
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    forensics:
-      complexity: 9
-      complexityPeak: 9
-      cognitiveComplexity: 35
-      functionCount: 6
-      loc: 116
-      sloc: 70
-      churn: 3
-      lineChurn: 132
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 2
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 3
-      hotspotScore: 0.004165877674682825
-      sinceDays: 365
-  - entityRef: backstage/packages/cli-node/auth
-    type: background-worker
-    name: Auth
-    isTest: false
-    properties:
-      filepath: packages/cli-node/src/auth/httpJson.ts
-      containerId: cli-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      complexityPeak: 4
-      cognitiveComplexity: 6
-      functionCount: 1
-      loc: 42
-      sloc: 21
-      churn: 3
-      lineChurn: 86
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 2
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 3
-      hotspotScore: 0.001206281077517586
-      sinceDays: 365
-  - entityRef: backstage/packages/cli-node/roles
-    type: background-worker
-    name: Roles
-    isTest: false
-    properties:
-      filepath: packages/cli-node/src/roles/PackageRoles.test.ts
-      containerId: cli-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 283
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/cli-node/yarn
-    type: background-worker
-    name: Yarn
-    isTest: false
-    properties:
-      filepath: packages/cli-node/src/yarn/yarnPlugin.ts
-      containerId: cli-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 3
-      loc: 74
-      sloc: 42
-      churn: 5
-      lineChurn: 94
-      churn30: 1
-      churn365: 5
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 2
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 3
-      topAuthorPercent: 0.6
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 3
-        - email: freben@spotify.com
-          commits: 1
-        - email: gabriel.dugny@believe.com
-          commits: 1
-      hotspotScore: 0.0009888699530812767
-      sinceDays: 365
-  - entityRef: backstage/packages/cli-node/cli-module
-    type: background-worker
-    name: Cli module
-    isTest: false
-    properties:
-      filepath: packages/cli-node/src/cli-module/CommandGraph.ts
-      containerId: cli-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 250
-      churn30: 1
+      lineChurn: 36
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -642,10 +246,10 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
-        - 1
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -657,23 +261,105 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/cli-node/concurrency
-    type: background-worker
-    name: Concurrency
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-node/cache
+    type: cache-store
+    name: Cache
     isTest: false
     properties:
-      filepath: packages/cli-node/src/concurrency/runConcurrentTasks.test.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 35
+      churn: 5
+      lineChurn: 166
+      churn30: 2
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+      hotspotScore: 0.004165877674682825
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-node/auth
+    type: background-worker
+    name: Auth
+    isTest: false
+    properties:
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 144
-      churn30: 1
-      churn365: 1
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 26
+      lineChurn: 1732
+      churn30: 7
+      churn365: 26
       churnByWeek:
         - 0
         - 0
@@ -707,6 +393,61 @@ nodes:
         - 0
         - 0
         - 0
+        - 19
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 26
+      hotspotScore: 0.007960052459200348
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-node/roles
+    type: background-worker
+    name: Roles
+    isTest: false
+    properties:
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 19
+      complexityPeak: 19
+      cognitiveComplexity: 115
+      churn: 9
+      lineChurn: 572
+      churn30: 4
+      churn365: 9
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -728,13 +469,288 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8888888888888888
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 8
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.013658327898055222
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-node/yarn
+    type: background-worker
+    name: Yarn
+    isTest: false
+    properties:
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 12
+      lineChurn: 309
+      churn30: 3
+      churn365: 12
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.8333333333333334
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 10
+        - email: freben@spotify.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.0009888699530812767
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-node/cli-module
+    type: background-worker
+    name: Cli module
+    isTest: false
+    properties:
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 64
+      churn: 23
+      lineChurn: 2515
+      churn30: 7
+      churn365: 23
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 11
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 23
+      hotspotScore: 0.0379557743693324
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: backstage/packages/cli-node/concurrency
+    type: background-worker
+    name: Concurrency
+    isTest: false
+    properties:
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 11
+      lineChurn: 693
+      churn30: 6
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 11
+      hotspotScore: 0.0003015702693793965
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-node/index
     type: background-worker
     name: Index
@@ -818,50 +834,18 @@ nodes:
     name: Git
     isTest: false
     properties:
-      filepath: packages/cli-node/src/git/GitUtils.test.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 56
-      churn30: 1
-      churn365: 1
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 6
+      lineChurn: 204
+      churn30: 3
+      churn365: 6
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -884,13 +868,47 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 6
+      hotspotScore: 0.0018374746645907411
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-build/__testutils__
     type: background-worker
     name: __testutils__ (External)
@@ -901,19 +919,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8410
+      x: -9100
       y: -204
   - entityRef: backstage/packages/repo-tools/commands/api-reports
-    type: rest-api
+    type: background-worker
     name: Api reports (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
       containerId: repo-tools
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: 11830
+      x: 12520
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/build
+    type: background-worker
+    name: Build (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -5880
       y: -204
   - entityRef: backstage/packages/cli-module-build/buildbackend
     type: background-worker
@@ -925,19 +953,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7950
+      x: -8640
       y: -204
   - entityRef: backstage/packages/cli-module-build/builder
     type: background-worker
     name: Builder (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/builder/plugins.test.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7490
+      x: -8180
       y: -204
   - entityRef: backstage/packages/cli-module-build/buildfrontend
     type: background-worker
@@ -949,79 +976,84 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7030
+      x: -7720
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/bundle
+    type: background-worker
+    name: Bundle (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -5420
       y: -204
   - entityRef: backstage/packages/cli-module-build/bundler
     type: gateway-api
     name: Bundler (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
     position:
-      x: -6570
+      x: -7260
       y: -204
   - entityRef: backstage/packages/cli-module-actions/commands
     type: background-worker
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-actions/src/commands/sourcesRemove.test.ts
       containerId: cli-module-actions
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -11170
+      x: -11860
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/commands
     type: rest-api
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/commands/packageRole.ts
       containerId: cli-module-migrate
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 4470
+      x: 5160
       y: -204
   - entityRef: backstage/packages/cli-module-new/commands
     type: background-worker
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/templates/cli-module/src/commands/example.ts
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 5850
+      x: 6540
       y: -204
   - entityRef: backstage/packages/cli-module-auth/commands
     type: background-worker
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-auth/src/commands/login.ts
       containerId: cli-module-auth
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -9330
+      x: -10020
       y: -204
   - entityRef: backstage/packages/cli-module-translations/commands
     type: background-worker
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-translations/src/commands/export.ts
       containerId: cli-module-translations
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9530
+      x: 10220
       y: -204
   - entityRef: backstage/packages/cli-module-build/commands
     type: background-worker
@@ -1033,19 +1065,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -6110
+      x: -6800
       y: -204
   - entityRef: backstage/packages/repo-tools/commands
     type: background-worker
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/knip-reports/knip-reports.ts
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 11370
+      x: 12060
       y: -204
   - entityRef: backstage/packages/cli-module-info/commands
     type: background-worker
@@ -1057,19 +1088,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1250
+      x: 1940
       y: -204
   - entityRef: backstage/packages/cli-module-config/commands
     type: gateway-api
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-config/src/commands/schema.ts
       containerId: cli-module-config
       technology: React Component
       classification: ui-import
     position:
-      x: -1050
+      x: -360
       y: -204
   - entityRef: backstage/packages/cli-module-build/config
     type: background-worker
@@ -1081,7 +1111,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4730
+      x: -4040
       y: -204
   - entityRef: backstage/packages/cli-module-config/config
     type: background-worker
@@ -1093,19 +1123,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -590
+      x: 100
       y: -204
   - entityRef: backstage/packages/cli-module-github/commands/create-github-app
     type: gateway-api
     name: Create github app (External)
     external: true
     properties:
-      filepath: packages/cli-module-github/src/commands/create-github-app/GithubCreateAppServer.ts
       containerId: cli-module-github
       technology: React Component
       classification: ui-import
     position:
-      x: 330
+      x: 1020
       y: -204
   - entityRef: backstage/packages/cli-module-translations/discoverpackages
     type: background-worker
@@ -1117,7 +1146,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9990
+      x: 10680
       y: -204
   - entityRef: backstage/packages/cli-module-build/entrypoints
     type: background-worker
@@ -1129,31 +1158,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4270
+      x: -3580
       y: -204
   - entityRef: backstage/packages/cli-module-new/execution
     type: background-worker
     name: Execution (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/src/lib/execution/PortableTemplater.ts
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 6310
+      x: 7000
       y: -204
   - entityRef: backstage/packages/repo-tools/commands/generate-catalog-info
     type: background-worker
     name: Generate catalog info (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/generate-catalog-info/utils.test.ts
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12290
+      x: 12980
       y: -204
   - entityRef: backstage/packages/cli-module-actions/index
     type: background-worker
@@ -1165,7 +1192,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10710
+      x: -11400
       y: -204
   - entityRef: backstage/packages/cli-module-lint/index
     type: background-worker
@@ -1177,7 +1204,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3090
+      x: 3780
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/index
     type: background-worker
@@ -1189,7 +1216,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 5390
+      x: 6080
       y: -204
   - entityRef: backstage/packages/backend-test-utils/index
     type: background-worker
@@ -1273,7 +1300,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9070
+      x: 9760
       y: -204
   - entityRef: backstage/packages/cli-module-new/index
     type: background-worker
@@ -1285,7 +1312,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 6770
+      x: 7460
       y: -204
   - entityRef: backstage/packages/cli-module-github/index
     type: background-worker
@@ -1297,7 +1324,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 790
+      x: 1480
       y: -204
   - entityRef: backstage/packages/cli-module-auth/index
     type: background-worker
@@ -1309,7 +1336,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8870
+      x: -9560
       y: -204
   - entityRef: backstage/packages/cli-module-translations/index
     type: background-worker
@@ -1321,7 +1348,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 10450
+      x: 11140
       y: -204
   - entityRef: backstage/packages/cli-module-build/index
     type: background-worker
@@ -1333,7 +1360,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3810
+      x: -3120
       y: -204
   - entityRef: backstage/packages/cli-module-maintenance/index
     type: background-worker
@@ -1345,7 +1372,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4010
+      x: 4700
       y: -204
   - entityRef: backstage/packages/cli-module-info/index
     type: background-worker
@@ -1357,7 +1384,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1710
+      x: 2400
       y: -204
   - entityRef: backstage/packages/cli-module-config/index
     type: background-worker
@@ -1369,7 +1396,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: 560
       y: -204
   - entityRef: backstage/packages/cli-internal/internalclimodule
     type: background-worker
@@ -1381,7 +1408,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -12090
+      x: -12780
       y: -204
   - entityRef: backstage/packages/cli-internal/internalcommandnode
     type: background-worker
@@ -1393,19 +1420,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -11630
+      x: -12320
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/manager
     type: background-worker
     name: Manager (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -13010
+      x: -13700
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/repo/schema/openapi
+    type: background-worker
+    name: Openapi (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 13900
       y: -204
   - entityRef: backstage/packages/cli-module-lint/commands/package
     type: background-worker
@@ -1417,7 +1454,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2170
+      x: 2860
       y: -204
   - entityRef: backstage/packages/cli-module-test-jest/commands/package
     type: background-worker
@@ -1429,31 +1466,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8150
+      x: 8840
       y: -204
   - entityRef: backstage/packages/cli-module-build/commands/package
-    type: gateway-api
+    type: background-worker
     name: Package (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/commands/package/prepack.ts
       containerId: cli-module-build
-      technology: React Component
-      classification: ui-import
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: -5650
+      x: -6340
       y: -204
   - entityRef: backstage/packages/repo-tools/commands/package-docs
     type: cache-store
     name: Package docs (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/package-docs/Cache.test.ts
       containerId: repo-tools
       technology: TypeScript Cache Client
       classification: cache-marker
     position:
-      x: 12750
+      x: 13440
       y: -204
   - entityRef: backstage/packages/backend-defaults/packagediscoveryservice
     type: background-worker
@@ -1465,19 +1500,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -13470
+      x: -14160
       y: -204
   - entityRef: backstage/packages/cli-module-build/packager
     type: background-worker
     name: Packager (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/packager/createDistWorkspace.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3350
+      x: -2660
       y: -204
   - entityRef: backstage/packages/repo-tools/paths
     type: background-worker
@@ -1489,7 +1523,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 13670
+      x: 14360
       y: -204
   - entityRef: backstage/packages/cli-module-build/publishing
     type: background-worker
@@ -1501,7 +1535,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2890
+      x: -2200
       y: -204
   - entityRef: backstage/packages/cli-module-lint/commands/repo
     type: background-worker
@@ -1513,55 +1547,40 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2630
+      x: 3320
       y: -204
   - entityRef: backstage/packages/cli-module-test-jest/commands/repo
     type: background-worker
     name: Repo (External)
     external: true
     properties:
-      filepath: packages/cli-module-test-jest/src/commands/repo/test.test.ts
       containerId: cli-module-test-jest
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8610
+      x: 9300
       y: -204
   - entityRef: backstage/packages/cli-module-build/commands/repo
     type: background-worker
     name: Repo (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/commands/repo/start.test.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5190
-      y: -204
-  - entityRef: backstage/packages/repo-tools/commands/repo
-    type: background-worker
-    name: Repo (External)
-    external: true
-    properties:
-      filepath: packages/repo-tools/src/commands/repo/schema/openapi/lint.ts
-      containerId: repo-tools
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 13210
+      x: -4500
       y: -204
   - entityRef: backstage/packages/cli-module-maintenance/commands/repo
     type: background-worker
     name: Repo (External)
     external: true
     properties:
-      filepath: packages/cli-module-maintenance/src/commands/repo/list-deprecations.ts
       containerId: cli-module-maintenance
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3550
+      x: 4240
       y: -204
   - entityRef: backstage/packages/cli-module-actions/resolveauth
     type: background-worker
@@ -1573,7 +1592,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10250
+      x: -10940
       y: -204
   - entityRef: backstage/packages/cli-module-actions/resolveauth-test
     type: background-worker
@@ -1585,7 +1604,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -9790
+      x: -10480
       y: -204
   - entityRef: backstage/packages/cli-module-build/role
     type: background-worker
@@ -1597,19 +1616,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2430
+      x: -1740
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/scanner
     type: background-worker
     name: Scanner (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/scanner/plugin-scanner-watcher.test.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -12550
+      x: -13240
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/start
+    type: gateway-api
+    name: Start (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -4960
       y: -204
   - entityRef: backstage/packages/cli-common/testutils
     type: background-worker
@@ -1633,7 +1662,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1970
+      x: -1280
       y: -204
   - entityRef: backstage/packages/cli-module-build/typedistproject-test
     type: background-worker
@@ -1645,7 +1674,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1510
+      x: -820
       y: -204
   - entityRef: backstage/packages/cli-module-new/version
     type: background-worker
@@ -1657,7 +1686,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 7230
+      x: 7920
       y: -204
   - entityRef: backstage/packages/cli-module-new/version-test
     type: background-worker
@@ -1669,31 +1698,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 7690
+      x: 8380
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/commands/versions
     type: background-worker
     name: Versions (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4930
+      x: 5620
       y: -204
   - entityRef: backstage/packages/cli/wiring
     type: background-worker
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/cli/src/wiring/CliInitializer.test.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 10910
+      x: 11600
       y: -204
 dependencies:
   - from: backstage/packages/cli-module-actions/resolveauth-test
@@ -2004,6 +2031,18 @@ dependencies:
     to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/commands/package/start
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/commands/package/bundle
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/commands/package/build
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
   - from: backstage/packages/cli-module-build/index
     to: backstage/packages/cli-node/index
     type: direct-call
@@ -2028,7 +2067,7 @@ dependencies:
     to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'

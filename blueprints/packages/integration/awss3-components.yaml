@@ -1,0 +1,109 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/integration/awss3
+  name: Awss3 Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/integration/awss3/aws-s3-integration
+    type: background-worker
+    name: AwsS3Integration
+    isTest: false
+    properties:
+      filepath: packages/integration/src/awsS3/AwsS3Integration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/awss3/aws-s3-integration-test
+    type: background-worker
+    name: AwsS3Integration
+    isTest: true
+    properties:
+      filepath: packages/integration/src/awsS3/AwsS3Integration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/awss3/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/integration/src/awsS3/index.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/awss3/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: packages/integration/src/awsS3/config.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/awss3/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: packages/integration/src/awsS3/config.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/integration/awss3/aws-s3-integration
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3/aws-s3-integration
+    to: backstage/packages/integration/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3/aws-s3-integration
+    to: backstage/packages/integration/awss3/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3/aws-s3-integration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/awss3/aws-s3-integration-test
+    to: backstage/packages/integration/awss3/aws-s3-integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3/index
+    to: backstage/packages/integration/awss3/aws-s3-integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3/index
+    to: backstage/packages/integration/awss3/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3/config
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/awss3/config-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/awss3/config-test
+    to: backstage/packages/integration/awss3/config
+    type: direct-call
+    description: Calls module / service

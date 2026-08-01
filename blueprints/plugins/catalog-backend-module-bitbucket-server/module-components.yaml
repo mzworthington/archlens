@@ -1,0 +1,161 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/module
+  name: Module Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider
+    type: background-worker
+    name: CatalogModuleBitbucketServerEntityProvider
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/module/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/index.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: >-
+      backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider-test
+    type: background-worker
+    name: CatalogModuleBitbucketServerEntityProvider
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.test.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/alpha.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/providers/bitbucket-server-entity-provider
+    type: background-worker
+    name: BitbucketServerEntityProvider (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerEntityProvider.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/events/bitbucket-server-scm-events-bridge
+    type: background-worker
+    name: BitbucketServerScmEventsBridge (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/events/BitbucketServerScmEventsBridge.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider
+    to: backstage/plugins/catalog-backend-module-bitbucket-server/providers/bitbucket-server-entity-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider
+    to: backstage/plugins/catalog-backend-module-bitbucket-server/events/bitbucket-server-scm-events-bridge
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/module/index
+    to: backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider
+    type: direct-call
+    description: Calls module / service
+  - from: >-
+      backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: >-
+      backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider-test
+    to: backstage/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: >-
+      backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: >-
+      backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider-test
+    to: backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider
+    type: direct-call
+    description: Calls module / service
+  - from: >-
+      backstage/plugins/catalog-backend-module-bitbucket-server/module/catalog-module-bitbucket-server-entity-provider-test
+    to: backstage/plugins/catalog-backend-module-bitbucket-server/providers/bitbucket-server-entity-provider
+    type: direct-call
+    description: Calls module / service

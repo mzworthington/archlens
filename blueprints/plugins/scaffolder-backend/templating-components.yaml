@@ -1,0 +1,174 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend/templating
+  name: Templating Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend/templating/filters
+    type: background-worker
+    name: Filters
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/lib/templating/filters/createDefaultFilters.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 29
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/plugins/scaffolder-backend/templating/templating
+    type: background-worker
+    name: Templating
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/util/templating.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/templating/helpers
+    type: background-worker
+    name: Helpers
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/lib/templating/helpers.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/templating/secure-templater
+    type: background-worker
+    name: SecureTemplater
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/lib/templating/SecureTemplater.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/templating/secure-templater-test
+    type: background-worker
+    name: SecureTemplater
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/lib/templating/SecureTemplater.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-backend/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-backend/dev/index.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend/templating/templating
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/templating/templating
+    to: backstage/plugins/scaffolder-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/templating/secure-templater
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/templating/secure-templater
+    to: backstage/plugins/scaffolder-backend/templating/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/templating/secure-templater
+    to: backstage/plugins/scaffolder-backend/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-backend'
+  - from: backstage/plugins/scaffolder-backend/templating/secure-templater-test
+    to: backstage/plugins/scaffolder-backend/templating/secure-templater
+    type: direct-call
+    description: Calls module / service

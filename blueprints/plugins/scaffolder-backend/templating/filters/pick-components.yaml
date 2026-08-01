@@ -1,0 +1,55 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend/templating/filters/pick
+  name: Pick Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend/templating/filters/pick/filter
+    type: background-worker
+    name: Filter
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/lib/templating/filters/pick/filter.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/templating/filters/pick/examples
+    type: background-worker
+    name: Examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/lib/templating/filters/pick/examples.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/templating/filters/pick/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/lib/templating/filters/pick/index.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/scaffolder-backend/templating/filters/pick/filter
+    to: backstage/plugins/scaffolder-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/templating/filters/pick/filter
+    to: backstage/plugins/scaffolder-backend/templating/filters/pick/examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/templating/filters/pick/examples
+    to: backstage/plugins/scaffolder-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/templating/filters/pick/index
+    to: backstage/plugins/scaffolder-backend/templating/filters/pick/filter
+    type: direct-call
+    description: Calls module / service

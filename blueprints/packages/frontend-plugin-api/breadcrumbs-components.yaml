@@ -1,0 +1,80 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-plugin-api/breadcrumbs
+  name: Breadcrumbs Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-plugin-api/breadcrumbs/use-breadcrumb-entries
+    type: gateway-api
+    name: UseBreadcrumbEntries
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/breadcrumbs/useBreadcrumbEntries.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/breadcrumbs/use-breadcrumb-entries-test
+    type: gateway-api
+    name: UseBreadcrumbEntries
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/breadcrumbs/useBreadcrumbEntries.test.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/breadcrumbs/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/breadcrumbs/types.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/breadcrumbs/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/breadcrumbs/index.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/version-bridge/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-plugin-api/breadcrumbs/use-breadcrumb-entries
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/frontend-plugin-api/breadcrumbs/use-breadcrumb-entries
+    to: backstage/packages/frontend-plugin-api/breadcrumbs/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/breadcrumbs/use-breadcrumb-entries-test
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/frontend-plugin-api/breadcrumbs/use-breadcrumb-entries-test
+    to: backstage/packages/frontend-plugin-api/breadcrumbs/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/breadcrumbs/index
+    to: backstage/packages/frontend-plugin-api/breadcrumbs/types
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,64 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-react/components/cluster
+  name: Cluster Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-react/components/cluster/cluster-test
+    type: gateway-api
+    name: Cluster
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/Cluster/Cluster.test.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/cluster/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/Cluster/index.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: background-worker
+    name: __fixtures__ (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-react/components/cluster/cluster-test
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/cluster/cluster-test
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/cluster/index
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service

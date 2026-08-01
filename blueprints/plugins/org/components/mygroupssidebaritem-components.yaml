@@ -1,0 +1,96 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/org/components/mygroupssidebaritem
+  name: Mygroupssidebaritem Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/org/components/mygroupssidebaritem/my-groups-sidebar-item-test
+    type: gateway-api
+    name: MyGroupsSidebarItem
+    isTest: true
+    properties:
+      filepath: plugins/org/src/components/MyGroupsSidebarItem/MyGroupsSidebarItem.test.tsx
+      containerId: org
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/org/components/mygroupssidebaritem/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/org/src/components/MyGroupsSidebarItem/index.ts
+      containerId: org
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/org/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: org
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/org/components/mygroupssidebaritem/my-groups-sidebar-item-test
+    to: backstage/plugins/org/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/org/components/mygroupssidebaritem/my-groups-sidebar-item-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/org/components/mygroupssidebaritem/my-groups-sidebar-item-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/org/components/mygroupssidebaritem/my-groups-sidebar-item-test
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/org/components/mygroupssidebaritem/index
+    to: backstage/plugins/org/components
+    type: direct-call
+    description: Calls module / service

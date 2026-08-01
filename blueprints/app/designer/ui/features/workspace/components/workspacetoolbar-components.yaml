@@ -1,0 +1,116 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar
+  name: Workspacetoolbar Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
+    type: gateway-api
+    name: LensToolbarControls
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/WorkspaceToolbar/LensToolbarControls.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/diagram-export-menu-items
+    type: gateway-api
+    name: DiagramExportMenuItems
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/WorkspaceToolbar/DiagramExportMenuItems.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/use-toolbar-menu
+    type: gateway-api
+    name: UseToolbarMenu
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/WorkspaceToolbar/useToolbarMenu.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls-test
+    type: gateway-api
+    name: LensToolbarControls
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/WorkspaceToolbar/LensToolbarControls.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/toolbar-menu-portal
+    type: gateway-api
+    name: ToolbarMenuPortal
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/WorkspaceToolbar/ToolbarMenuPortal.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: background-worker
+    name: ResolveCouplingEdges (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/resolveCouplingEdges.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/app/designer/application/store
+    type: background-worker
+    name: Store (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    type: background-worker
+    name: TraceLensUrl (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/traceLensUrl.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
+    to: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
+    to: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/diagram-export-menu-items
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/diagram-export-menu-items
+    to: blueprint/app/designer/application/canvas/export-canvas-image
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service

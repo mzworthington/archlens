@@ -1,0 +1,117 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend-module-azure/actions
+  name: Actions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend-module-azure/actions/azure-examples
+    type: background-worker
+    name: Azure.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-azure/src/actions/azure.examples.ts
+      containerId: scaffolder-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-azure/actions/azure-examples-test
+    type: background-worker
+    name: Azure.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-azure/src/actions/azure.examples.test.ts
+      containerId: scaffolder-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-azure/actions/azure
+    type: background-worker
+    name: Azure
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-azure/src/actions/azure.ts
+      containerId: scaffolder-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-azure/actions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-azure/src/actions/index.ts
+      containerId: scaffolder-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-azure/actions/azure-test
+    type: background-worker
+    name: Azure
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-azure/src/actions/azure.test.ts
+      containerId: scaffolder-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/azure-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/azure-examples-test
+    to: backstage/plugins/scaffolder-backend-module-azure/actions/azure
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/azure-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/azure-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/azure
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/index
+    to: backstage/plugins/scaffolder-backend-module-azure/actions/azure
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/azure-test
+    to: backstage/plugins/scaffolder-backend-module-azure/actions/azure
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/azure-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-azure/actions/azure-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'

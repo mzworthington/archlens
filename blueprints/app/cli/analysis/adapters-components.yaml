@@ -1,0 +1,316 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/cli/analysis/adapters
+  name: Adapters Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/cli/analysis/adapters/pathfilter
+    type: background-worker
+    name: Pathfilter
+    isTest: false
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 4
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing
+    type: background-worker
+    name: Parsing
+    isTest: false
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 64
+      complexityPeak: 64
+      cognitiveComplexity: 1467
+      churn: 23
+      lineChurn: 746
+      churn30: 23
+      churn365: 23
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 2
+        - 15
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 23
+      hotspotScore: 0.05814280461162424
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: blueprint/app/cli/analysis/adapters/load-analysis-config
+    type: background-worker
+    name: LoadAnalysisConfig
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/loadAnalysisConfig.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/console-logger
+    type: background-worker
+    name: ConsoleLogger
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/consoleLogger.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/git-provenance
+    type: background-worker
+    name: GitProvenance
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/gitProvenance.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/console-logger-test
+    type: background-worker
+    name: ConsoleLogger
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/consoleLogger.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/node-file-system
+    type: background-worker
+    name: NodeFileSystem
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/nodeFileSystem.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/git-provenance-test
+    type: background-worker
+    name: GitProvenance
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/gitProvenance.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/load-analysis-config-test
+    type: background-worker
+    name: LoadAnalysisConfig
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/loadAnalysisConfig.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/node-file-system-test
+    type: background-worker
+    name: NodeFileSystem
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/nodeFileSystem.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/analysis-options
+    type: background-worker
+    name: AnalysisOptions (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/analysisOptions.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/ports
+    type: background-worker
+    name: Ports (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/ports.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/app/cli/analysis/adapters/load-analysis-config
+    to: blueprint/app/cli/analysis/domain/analysis-options
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/console-logger
+    to: blueprint/app/cli/analysis/domain/ports
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/git-provenance
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/adapters/console-logger-test
+    to: blueprint/app/cli/analysis/adapters/console-logger
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/node-file-system
+    to: blueprint/app/cli/analysis/domain/ports
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/git-provenance-test
+    to: blueprint/app/cli/analysis/adapters/git-provenance
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/load-analysis-config-test
+    to: blueprint/app/cli/analysis/adapters/load-analysis-config
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/load-analysis-config-test
+    to: blueprint/app/cli/analysis/domain/analysis-options
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/node-file-system-test
+    to: blueprint/app/cli/analysis/adapters/node-file-system
+    type: direct-call
+    description: Calls module / service

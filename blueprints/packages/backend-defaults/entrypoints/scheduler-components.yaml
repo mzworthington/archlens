@@ -1,0 +1,604 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/scheduler
+  name: Scheduler Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/database
+    type: relational-database
+    name: Database
+    isTest: false
+    properties:
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 6
+      lineChurn: 292
+      churn30: 3
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: freben@gmail.com
+          commits: 3
+      hotspotScore: 0.002440615203349534
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/__testutils__
+    type: background-worker
+    name: __testutils__
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/__testUtils__/createTestScopedSignal.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory-test
+    type: background-worker
+    name: SchedulerServiceFactory
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/schedulerServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory
+    type: background-worker
+    name: SchedulerServiceFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/schedulerServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker
+    type: background-worker
+    name: LocalTaskWorker
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/LocalTaskWorker.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor
+    type: relational-database
+    name: PluginTaskSchedulerJanitor
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/PluginTaskSchedulerJanitor.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor-test
+    type: relational-database
+    name: PluginTaskSchedulerJanitor
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/PluginTaskSchedulerJanitor.test.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker-test
+    type: background-worker
+    name: LocalTaskWorker
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/LocalTaskWorker.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/util-test
+    type: relational-database
+    name: Util
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/util.test.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl-test
+    type: background-worker
+    name: PluginTaskSchedulerImpl
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/PluginTaskSchedulerImpl.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/types.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    type: rest-api
+    name: PluginTaskSchedulerImpl
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/PluginTaskSchedulerImpl.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/util
+    type: relational-database
+    name: Util
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/util.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service-test
+    type: background-worker
+    name: DefaultSchedulerService
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/DefaultSchedulerService.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker
+    type: relational-database
+    name: TaskWorker
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/TaskWorker.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    type: background-worker
+    name: DefaultSchedulerService
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/DefaultSchedulerService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker-test
+    type: background-worker
+    name: TaskWorker
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/lib/TaskWorker.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/__testutils__/create-test-scoped-signal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/util-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl-test
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl-test
+    to: backstage/packages/backend-test-utils/alpha
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/types
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/local-task-worker
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/util
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/__testutils__/create-test-scoped-signal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service-test
+    to: backstage/packages/backend-test-utils/alpha
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-impl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/plugin-task-scheduler-janitor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/__testutils__/create-test-scoped-signal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/task-worker-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/index
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/default-scheduler-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/index
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/scheduler-service-factory
+    type: direct-call
+    description: Calls module / service

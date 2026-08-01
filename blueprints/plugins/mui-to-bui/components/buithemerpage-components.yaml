@@ -1,0 +1,130 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/mui-to-bui/components/buithemerpage
+  name: Buithemerpage Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/bui-theme-preview
+    type: background-worker
+    name: BuiThemePreview
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemePreview.tsx
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/mui-theme-extractor-test
+    type: gateway-api
+    name: MuiThemeExtractor
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/MuiThemeExtractor.test.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/convert-mui-to-bui-theme
+    type: background-worker
+    name: ConvertMuiToBuiTheme
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/convertMuiToBuiTheme.ts
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/convert-mui-to-bui-theme-test
+    type: background-worker
+    name: ConvertMuiToBuiTheme
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/convertMuiToBuiTheme.test.ts
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/theme-content
+    type: gateway-api
+    name: ThemeContent
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/ThemeContent.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/bui-themer-page-test
+    type: gateway-api
+    name: BuiThemerPage
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemerPage.test.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/theme-content-test
+    type: gateway-api
+    name: ThemeContent
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/ThemeContent.test.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/mui-theme-extractor
+    type: gateway-api
+    name: MuiThemeExtractor
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/MuiThemeExtractor.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/index.ts
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/mui-to-bui/components/buithemerpage/bui-theme-preview-test
+    type: gateway-api
+    name: BuiThemePreview
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemePreview.test.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/mui-to-bui/components
+    type: background-worker
+    name: Components (External)
+    external: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemerPage.tsx
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/mui-to-bui/components/buithemerpage/convert-mui-to-bui-theme-test
+    to: backstage/plugins/mui-to-bui/components/buithemerpage/convert-mui-to-bui-theme
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/components/buithemerpage/theme-content
+    to: backstage/plugins/mui-to-bui/components/buithemerpage/convert-mui-to-bui-theme
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/components/buithemerpage/bui-themer-page-test
+    to: backstage/plugins/mui-to-bui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/components/buithemerpage/index
+    to: backstage/plugins/mui-to-bui/components
+    type: direct-call
+    description: Calls module / service

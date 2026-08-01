@@ -1,0 +1,59 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/app/swappablecomponentsapi
+  name: Swappablecomponentsapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/app/swappablecomponentsapi/default-swappable-components-api
+    type: gateway-api
+    name: DefaultSwappableComponentsApi
+    isTest: false
+    properties:
+      filepath: plugins/app/src/apis/SwappableComponentsApi/DefaultSwappableComponentsApi.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app/swappablecomponentsapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/app/src/apis/SwappableComponentsApi/index.ts
+      containerId: app
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/app/swappablecomponentsapi/default-swappable-components-api-test
+    type: gateway-api
+    name: DefaultSwappableComponentsApi
+    isTest: true
+    properties:
+      filepath: plugins/app/src/apis/SwappableComponentsApi/DefaultSwappableComponentsApi.test.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/app-react/src/index.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/app/swappablecomponentsapi/default-swappable-components-api
+    to: backstage/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'
+  - from: backstage/plugins/app/swappablecomponentsapi/default-swappable-components-api-test
+    to: backstage/plugins/app-react/index
+    type: direct-call
+    description: '@backstage/plugin-app-react'

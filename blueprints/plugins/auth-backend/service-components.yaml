@@ -1,0 +1,454 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-backend/service
+  name: Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/auth-backend/service/oidc-router-test
+    type: rest-api
+    name: OidcRouter
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend/src/service/OidcRouter.test.ts
+      containerId: auth-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/auth-backend/service/offline-access-service
+    type: background-worker
+    name: OfflineAccessService
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/service/OfflineAccessService.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/service/router
+    type: rest-api
+    name: Router
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/service/router.ts
+      containerId: auth-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/auth-backend/service/oidc-service
+    type: background-worker
+    name: OidcService
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/service/OidcService.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/service/read-token-expiration-test
+    type: background-worker
+    name: ReadTokenExpiration
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend/src/service/readTokenExpiration.test.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/service/cimd-client-test
+    type: background-worker
+    name: CimdClient
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend/src/service/CimdClient.test.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/service/oidc-service-test
+    type: background-worker
+    name: OidcService
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend/src/service/OidcService.test.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/service/oidc-error
+    type: rest-api
+    name: OidcError
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/service/OidcError.ts
+      containerId: auth-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/auth-backend/service/cimd-client
+    type: background-worker
+    name: CimdClient
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/service/CimdClient.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/service/read-token-expiration
+    type: background-worker
+    name: ReadTokenExpiration
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/service/readTokenExpiration.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend/service/oidc-router
+    type: rest-api
+    name: OidcRouter
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend/src/service/OidcRouter.ts
+      containerId: auth-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/auth-backend/database/auth-database
+    type: relational-database
+    name: AuthDatabase (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/database/AuthDatabase.ts
+      containerId: auth-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -2660
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2400
+      y: 404
+  - entityRef: backstage/plugins/auth-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/auth-node/src/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/identity/key-stores
+    type: background-worker
+    name: KeyStores (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/identity/KeyStores.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/database/offline-session-database
+    type: relational-database
+    name: OfflineSessionDatabase (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/database/OfflineSessionDatabase.ts
+      containerId: auth-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -2200
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/database/oidc-database
+    type: relational-database
+    name: OidcDatabase (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/database/OidcDatabase.ts
+      containerId: auth-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1740
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/providers/router
+    type: rest-api
+    name: Router (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/providers/router.ts
+      containerId: auth-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/identity/static-key-store
+    type: background-worker
+    name: StaticKeyStore (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/identity/StaticKeyStore.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/identity/static-token-issuer
+    type: background-worker
+    name: StaticTokenIssuer (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/identity/StaticTokenIssuer.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/testutils
+    type: background-worker
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2860
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/identity/token-factory
+    type: background-worker
+    name: TokenFactory (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/identity/TokenFactory.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/identity/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/identity/types.ts
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/auth-backend/database/user-info-database
+    type: relational-database
+    name: UserInfoDatabase (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend/src/database/UserInfoDatabase.ts
+      containerId: auth-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1280
+      y: 404
+dependencies:
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/auth-backend/service/oidc-router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/auth-backend/database/user-info-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/auth-backend/database/oidc-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/auth-backend/database/auth-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/auth-backend/service/oidc-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/auth-backend/identity/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/auth-backend/service/offline-access-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/auth-backend/service/cimd-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-router-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/auth-backend/service/offline-access-service
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/auth-backend/service/offline-access-service
+    to: backstage/plugins/auth-backend/database/offline-session-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/offline-access-service
+    to: backstage/plugins/auth-backend/refreshtoken/refresh-token
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/offline-access-service
+    to: backstage/plugins/auth-backend/identity/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/identity/key-stores
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/identity/token-factory
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/database/user-info-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/database/auth-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/service/read-token-expiration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/identity/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/identity/static-token-issuer
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/identity/static-key-store
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/providers/router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/service/oidc-router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/database/oidc-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/router
+    to: backstage/plugins/auth-backend/service/offline-access-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-service
+    to: backstage/plugins/auth-backend/identity/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-service
+    to: backstage/plugins/auth-backend/database/user-info-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-service
+    to: backstage/plugins/auth-backend/database/oidc-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-service
+    to: backstage/plugins/auth-backend/service/offline-access-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-service
+    to: backstage/plugins/auth-backend/service/cimd-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/read-token-expiration-test
+    to: backstage/plugins/auth-backend/service/read-token-expiration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/cimd-client-test
+    to: backstage/plugins/auth-backend/service/cimd-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-service-test
+    to: backstage/plugins/auth-backend/service/oidc-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-service-test
+    to: backstage/plugins/auth-backend/service/offline-access-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-service-test
+    to: backstage/plugins/auth-backend/database/auth-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-service-test
+    to: backstage/plugins/auth-backend/database/oidc-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-service-test
+    to: backstage/plugins/auth-backend/database/user-info-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-service-test
+    to: backstage/plugins/auth-backend/identity/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-service-test
+    to: backstage/plugins/auth-backend/service/cimd-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-router
+    to: backstage/plugins/auth-backend/service/oidc-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-router
+    to: backstage/plugins/auth-backend/identity/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-router
+    to: backstage/plugins/auth-backend/database/user-info-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-router
+    to: backstage/plugins/auth-backend/database/oidc-database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/auth-backend/service/oidc-router
+    to: backstage/plugins/auth-backend/service/offline-access-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend/service/oidc-router
+    to: backstage/plugins/auth-backend/service/oidc-error
+    type: direct-call
+    description: Calls module / service

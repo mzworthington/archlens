@@ -1,0 +1,78 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/app-legacy/components/catalog
+  name: Catalog Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/app-legacy/components/catalog/entity-page-test
+    type: gateway-api
+    name: EntityPage
+    isTest: true
+    properties:
+      filepath: packages/app-legacy/src/components/catalog/EntityPage.test.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/app-legacy/components/catalog/entity-page
+    type: gateway-api
+    name: EntityPage
+    isTest: false
+    properties:
+      filepath: packages/app-legacy/src/components/catalog/EntityPage.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/catalog-model/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/model/sources/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/core-components/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/app-legacy/components/catalog/entity-page-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/app-legacy/components/catalog/entity-page
+    to: backstage/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: backstage/packages/app-legacy/components/catalog/entity-page
+    to: backstage/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'

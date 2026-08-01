@@ -14,7 +14,6 @@ nodes:
     name: Extensions Layer
     isTest: false
     properties:
-      filepath: src/EventBus/Extensions/GenericTypeExtensions.cs
       containerId: eventbus
       technology: C# Domain Service
       classification: default
@@ -22,9 +21,6 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 2
-      loc: 27
-      sloc: 22
       churn: 0
       churn30: 0
       churn365: 0
@@ -83,22 +79,22 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/eventbus/abstractions
     type: event-broker
     name: Abstractions Layer
     isTest: false
     properties:
-      filepath: src/EventBus/Abstractions/IEventBusBuilder.cs
       containerId: eventbus
       technology: C# Event Client
       classification: event-marker
     forensics:
       complexity: 1
-      loc: 7
-      sloc: 5
+      complexityPeak: 1
       churn: 0
       churn30: 0
       churn365: 0
@@ -157,9 +153,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/eventbus/events
     type: background-worker
     name: Events Layer
@@ -253,7 +251,6 @@ nodes:
     name: Services Layer (External)
     external: true
     properties:
-      filepath: src/WebApp/Services/OrderingService.cs
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker

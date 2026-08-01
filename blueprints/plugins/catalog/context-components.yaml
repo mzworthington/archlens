@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog/context
+  name: Context Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/catalog/context/entity-context-menu-context
+    type: gateway-api
+    name: EntityContextMenuContext
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/context/EntityContextMenuContext.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/context/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/context/index.ts
+      containerId: catalog
+      technology: TypeScript Domain Service
+      classification: default
+dependencies: []

@@ -14,18 +14,17 @@ nodes:
     name: System
     isTest: false
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/helpers.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 135
-      churn30: 1
-      churn365: 2
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 36
+      lineChurn: 1302
+      churn30: 7
+      churn365: 36
       churnByWeek:
         - 0
         - 0
@@ -43,32 +42,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 7
         - 0
         - 0
         - 0
@@ -76,6 +50,31 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 15
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
         - 0
         - 0
         - 0
@@ -84,9 +83,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
+          commits: 36
+      hotspotScore: 0.003148954673287186
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
     name: Index
@@ -97,18 +99,14 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 18
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      churn: 6
+      lineChurn: 67
+      churn30: 2
+      churn365: 6
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
+        - 1
         - 0
         - 0
         - 0
@@ -155,33 +153,229 @@ nodes:
         - 0
         - 1
         - 0
+        - 2
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: ben@blam.sh
+          commits: 3
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: clairep@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00017182492092547005
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/frontend-plugin-api/definitions
     type: rest-api
     name: Definitions
     isTest: false
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/definitions/AlertApi.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 1
-      loc: 84
-      sloc: 15
-      churn: 6
-      lineChurn: 163
-      churn30: 1
-      churn365: 6
+      churn: 123
+      lineChurn: 5136
+      churn30: 24
+      churn365: 123
+      churnByWeek:
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 19
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 2
+        - 0
+        - 6
+        - 5
+        - 5
+        - 0
+        - 1
+        - 2
+        - 38
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 24
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.8373983739837398
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 99
+        - email: charles.dedreuille@gmail.com
+          commits: 9
+        - email: ericpeterson@spotify.com
+          commits: 3
+        - email: ben@blam.sh
+          commits: 3
+        - email: aramis.sennyey@doordash.com
+          commits: 2
+        - email: camilaibs@gmail.com
+          commits: 2
+        - email: freben@gmail.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: git@daellenbach.org
+          commits: 1
+      hotspotScore: 0.004246530188586617
+      sinceDays: 365
+      fileCount: 24
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/frontend-plugin-api/blueprints
+    type: gateway-api
+    name: Blueprints
+    isTest: false
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      churn: 94
+      lineChurn: 2604
+      churn30: 15
+      churn365: 94
+      churnByWeek:
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 4
+        - 1
+        - 4
+        - 11
+        - 13
+        - 0
+        - 3
+        - 2
+        - 13
+        - 0
+        - 0
+        - 2
+        - 6
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 1
+        - 13
+        - 0
+        - 0
+        - 2
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.8617021276595744
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 81
+        - email: ericpeterson@spotify.com
+          commits: 4
+        - email: clairep@spotify.com
+          commits: 3
+        - email: heikki.hellgren@op.fi
+          commits: 2
+        - email: ben@blam.sh
+          commits: 2
+        - email: maratd@spotify.com
+          commits: 1
+        - email: johanopersson@gmail.com
+          commits: 1
+      hotspotScore: 0.01550632245576385
+      sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/frontend-plugin-api/translation
+    type: gateway-api
+    name: Translation
+    isTest: false
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 12
+      lineChurn: 1201
+      churn30: 9
+      churn365: 12
       churnByWeek:
         - 0
         - 0
@@ -209,8 +403,9 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 1
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -230,39 +425,36 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
+        - 9
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.9166666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 4
-        - email: charles.dedreuille@gmail.com
+          commits: 10
+        - email: freben@spotify.com
           commits: 2
-      hotspotScore: 0.0005715808594051351
+      hotspotScore: 0.00239853563087799
       sinceDays: 365
-  - entityRef: backstage/packages/frontend-plugin-api/blueprints
-    type: gateway-api
-    name: Blueprints
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/frontend-plugin-api/translation/__fixtures__
+    type: background-worker
+    name: __fixtures__
     isTest: false
     properties:
-      filepath: packages/frontend-plugin-api/src/blueprints/PluginHeaderActionBlueprint.tsx
       containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
+      technology: TypeScript Domain Service
+      classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 4
-      loc: 46
-      sloc: 18
+      complexity: 0
       churn: 3
-      lineChurn: 106
-      churn30: 1
+      lineChurn: 90
+      churn30: 3
       churn365: 3
       churnByWeek:
         - 0
@@ -292,12 +484,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
         - 0
         - 0
         - 0
@@ -313,7 +499,13 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -323,164 +515,11 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 3
-      hotspotScore: 0.00037170289016530254
-      sinceDays: 365
-  - entityRef: backstage/packages/frontend-plugin-api/translation
-    type: gateway-api
-    name: Translation
-    isTest: false
-    properties:
-      filepath: packages/frontend-plugin-api/src/translation/TranslationResource.ts
-      containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 107
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/frontend-plugin-api/translation/__fixtures__
-    type: background-worker
-    name: __fixtures__
-    isTest: false
-    properties:
-      filepath: packages/frontend-plugin-api/src/translation/__fixtures__/refs.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 37
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/frontend-plugin-api/alpha
     type: background-worker
     name: Alpha
@@ -564,79 +603,97 @@ nodes:
     name: Wiring
     isTest: false
     properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 129
-      churn30: 1
-      churn365: 1
+      complexity: 14
+      complexityPeak: 14
+      cognitiveComplexity: 70
+      churn: 198
+      lineChurn: 12588
+      churn30: 31
+      churn365: 198
       churnByWeek:
+        - 24
+        - 4
+        - 2
+        - 0
+        - 2
+        - 1
+        - 1
+        - 4
         - 0
         - 0
         - 0
+        - 6
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 13
+        - 9
+        - 4
         - 0
         - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 2
+        - 3
+        - 6
+        - 5
+        - 5
+        - 2
+        - 2
+        - 10
+        - 6
+        - 13
+        - 0
+        - 0
+        - 12
+        - 14
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 27
+        - 0
+        - 0
+        - 4
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.9040404040404041
       authors:
         - email: poldsberg@gmail.com
+          commits: 179
+        - email: aramis.sennyey@doordash.com
+          commits: 6
+        - email: sarabadu@gmail.com
+          commits: 3
+        - email: freben@gmail.com
+          commits: 3
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 2
+        - email: elaine.mattos@gmail.com
+          commits: 2
+        - email: ben@blam.sh
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.07490163899934776
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 22
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: backstage/packages/frontend-plugin-api/types
     type: gateway-api
     name: Types
@@ -722,18 +779,343 @@ nodes:
     name: Schema
     isTest: false
     properties:
-      filepath: packages/frontend-plugin-api/src/schema/createPortableSchema.test.ts
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
     forensics:
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 33
+      churn: 39
+      lineChurn: 3136
+      churn30: 13
+      churn365: 39
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 14
+        - 12
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 7
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 39
+      hotspotScore: 0.06198671688162314
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: backstage/packages/frontend-plugin-api/components
+    type: gateway-api
+    name: Components
+    isTest: false
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 6
+      churn: 63
+      lineChurn: 2001
+      churn30: 13
+      churn365: 63
+      churnByWeek:
+        - 17
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 2
+        - 1
+        - 6
+        - 4
+        - 0
+        - 0
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 13
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7142857142857143
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 40
+        - email: ben@blam.sh
+          commits: 19
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: clairep@spotify.com
+          commits: 2
+      hotspotScore: 0.007805760693471353
+      sinceDays: 365
+      fileCount: 13
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/frontend-plugin-api/icons
+    type: gateway-api
+    name: Icons
+    isTest: false
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    forensics:
       complexity: 1
-      complexityPeak: 1
-      functionCount: 37
-      loc: 243
-      sloc: 195
+      churn: 8
+      lineChurn: 183
+      churn30: 3
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 8
+      hotspotScore: 0.00031910342457587294
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/frontend-plugin-api/routing
+    type: gateway-api
+    name: Routing
+    isTest: false
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 26
+      lineChurn: 1596
+      churn30: 14
+      churn365: 26
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 14
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9230769230769231
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 24
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0.003618843232552757
+      sinceDays: 365
+      fileCount: 14
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/frontend-plugin-api/breadcrumbs
+    type: gateway-api
+    name: Breadcrumbs
+    isTest: false
+    properties:
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
       churn: 13
-      lineChurn: 1367
+      lineChurn: 428
       churn30: 4
       churn365: 13
       churnByWeek:
@@ -772,8 +1154,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 3
-        - 6
         - 0
         - 0
         - 0
@@ -785,391 +1165,41 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
+        - 4
+        - 5
+        - 4
         - 0
         - 0
-        - 2
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7692307692307693
       authors:
+        - email: clairep@spotify.com
+          commits: 9
         - email: poldsberg@gmail.com
-          commits: 13
-      hotspotScore: 0.004793564630716685
+          commits: 4
+      hotspotScore: 0.0001963713382005372
       sinceDays: 365
-  - entityRef: backstage/packages/frontend-plugin-api/components
-    type: gateway-api
-    name: Components
-    isTest: false
-    properties:
-      filepath: packages/frontend-plugin-api/src/components/ExtensionSuspense.tsx
-      containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 35
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/frontend-plugin-api/icons
-    type: gateway-api
-    name: Icons
-    isTest: false
-    properties:
-      filepath: packages/frontend-plugin-api/src/icons/types.test.ts
-      containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 73
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/frontend-plugin-api/routing
-    type: gateway-api
-    name: Routing
-    isTest: false
-    properties:
-      filepath: packages/frontend-plugin-api/src/routing/describeParentCallSite.test.ts
-      containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 84
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/frontend-plugin-api/breadcrumbs
-    type: gateway-api
-    name: Breadcrumbs
-    isTest: false
-    properties:
-      filepath: packages/frontend-plugin-api/src/breadcrumbs/useBreadcrumbEntries.tsx
-      containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 100
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/frontend-plugin-api/analytics
     type: gateway-api
     name: Analytics
     isTest: false
     properties:
-      filepath: packages/frontend-plugin-api/src/analytics/AnalyticsContext.test.tsx
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 81
-      churn30: 1
-      churn365: 1
+      churn: 13
+      lineChurn: 857
+      churn30: 8
+      churn365: 13
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -1180,13 +1210,62 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7692307692307693
       authors:
         - email: poldsberg@gmail.com
+          commits: 10
+        - email: camilaibs@gmail.com
+          commits: 2
+        - email: pschultz@pobox.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/techdocs-cli-embedded-app/addons
     type: gateway-api
     name: Addons (External)
@@ -1204,7 +1283,6 @@ nodes:
     name: Alertapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/AlertApi/MockAlertApi.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -1228,7 +1306,6 @@ nodes:
     name: Analytics (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/analytics/AnalyticsContext.test.tsx
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -1240,7 +1317,6 @@ nodes:
     name: Analyticsapi (External)
     external: true
     properties:
-      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/MultipleAnalyticsApi.test.ts
       containerId: core-compat-api
       technology: REST Controller / Router
       classification: api-marker
@@ -1252,7 +1328,6 @@ nodes:
     name: Analyticsapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/AnalyticsApi/MockAnalyticsApi.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -1276,7 +1351,6 @@ nodes:
     name: App (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/app/useApp.tsx
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -1312,7 +1386,6 @@ nodes:
     name: App (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/app/createExtensionTester.test.tsx
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
@@ -1360,7 +1433,6 @@ nodes:
     name: Compatwrapper (External)
     external: true
     properties:
-      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.tsx
       containerId: core-compat-api
       technology: React Component
       classification: ui-import
@@ -1372,7 +1444,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/Sidebar/Sidebar.tsx
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
@@ -1564,7 +1635,6 @@ nodes:
     name: Defaults (External)
     external: true
     properties:
-      filepath: packages/app-defaults/src/defaults/themes.tsx
       containerId: app-defaults
       technology: React Component
       classification: ui-import
@@ -1576,7 +1646,6 @@ nodes:
     name: Definitions (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/apis/definitions/AlertApi.ts
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
@@ -1612,7 +1681,6 @@ nodes:
     name: Examples (External)
     external: true
     properties:
-      filepath: packages/app/src/examples/pagesPlugin.tsx
       containerId: app
       technology: React Component
       classification: ui-import
@@ -1636,7 +1704,6 @@ nodes:
     name: Featureflagsapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/FeatureFlagsApi/MockFeatureFlagsApi.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -1648,7 +1715,6 @@ nodes:
     name: Icons (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/icons/types.test.ts
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -1660,7 +1726,6 @@ nodes:
     name: Iconsapi (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/apis/implementations/IconsApi/DefaultIconsApi.test.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
@@ -1864,7 +1929,6 @@ nodes:
     name: Modules (External)
     external: true
     properties:
-      filepath: packages/app/src/modules/appModuleScaffolder.tsx
       containerId: app
       technology: React Component
       classification: ui-import
@@ -1876,7 +1940,6 @@ nodes:
     name: Nav (External)
     external: true
     properties:
-      filepath: packages/create-app/templates/default-app/packages/app/src/modules/nav/LogoFull.tsx
       containerId: create-app
       technology: React Component
       classification: ui-import
@@ -1948,7 +2011,6 @@ nodes:
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/routing/useRouteRefParams.test.tsx
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -1960,7 +2022,6 @@ nodes:
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/routing/RouteTracker.tsx
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
@@ -1972,7 +2033,6 @@ nodes:
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/frontend-internal/src/routing/OpaqueRouteRef.ts
       containerId: frontend-internal
       technology: REST Controller / Router
       classification: api-marker
@@ -1984,7 +2044,6 @@ nodes:
     name: System (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/apis/system/helpers.ts
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
@@ -2020,7 +2079,6 @@ nodes:
     name: Translationapi (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/apis/TranslationApi/MockTranslationApi.ts
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -2032,7 +2090,6 @@ nodes:
     name: Translationapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/TranslationApi/I18nextTranslationApi.ts
       containerId: core-app-api
       technology: React Component
       classification: ui-import
@@ -2044,7 +2101,6 @@ nodes:
     name: Translationapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/TranslationApi/MockTranslationApi.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -2056,7 +2112,6 @@ nodes:
     name: Tree (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
@@ -2068,7 +2123,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
@@ -2080,7 +2134,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-internal/src/wiring/createExtensionDataContainer.ts
       containerId: frontend-internal
       technology: TypeScript Domain Service
       classification: default
@@ -2092,7 +2145,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/scaffolder-internal/src/wiring/InternalFormField.ts
       containerId: scaffolder-internal
       technology: React Component
       classification: ui-import

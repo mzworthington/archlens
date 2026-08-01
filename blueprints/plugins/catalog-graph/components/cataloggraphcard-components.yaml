@@ -1,0 +1,100 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-graph/components/cataloggraphcard
+  name: Cataloggraphcard Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphcard/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphCard/index.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphcard/catalog-graph-card-test
+    type: gateway-api
+    name: CatalogGraphCard
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphCard/CatalogGraphCard.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-graph/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-graph/components/cataloggraphcard/index
+    to: backstage/plugins/catalog-graph/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphcard/catalog-graph-card-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/cataloggraphcard/catalog-graph-card-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/cataloggraphcard/catalog-graph-card-test
+    to: backstage/plugins/catalog-graph/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphcard/catalog-graph-card-test
+    to: backstage/plugins/catalog-graph/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphcard/catalog-graph-card-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service

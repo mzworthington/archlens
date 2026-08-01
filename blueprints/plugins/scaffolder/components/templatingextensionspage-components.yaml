@@ -1,0 +1,186 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder/components/templatingextensionspage
+  name: Templatingextensionspage Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder/components/templatingextensionspage/template-globals
+    type: gateway-api
+    name: TemplateGlobals
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/TemplateGlobals.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/templatingextensionspage/navigation
+    type: gateway-api
+    name: Navigation
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/navigation.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/templatingextensionspage/function-args
+    type: background-worker
+    name: FunctionArgs
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/functionArgs.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/templatingextensionspage/templating-extensions-page-test
+    type: gateway-api
+    name: TemplatingExtensionsPage
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/TemplatingExtensionsPage.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/templatingextensionspage/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/types.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/templatingextensionspage/template-filters
+    type: gateway-api
+    name: TemplateFilters
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/TemplateFilters.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/templatingextensionspage/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/TemplatingExtensionsPage/index.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-globals
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-globals
+    to: backstage/plugins/scaffolder/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-globals
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-globals
+    to: backstage/plugins/scaffolder/components/templatingextensionspage/function-args
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-globals
+    to: backstage/plugins/scaffolder/components/templatingextensionspage/navigation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-globals
+    to: backstage/plugins/scaffolder/components/templatingextensionspage/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/navigation
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/templating-extensions-page-test
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/templating-extensions-page-test
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/templating-extensions-page-test
+    to: backstage/plugins/scaffolder/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/templating-extensions-page-test
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/templating-extensions-page-test
+    to: backstage/plugins/scaffolder/components/templatingextensionspage/navigation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-filters
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-filters
+    to: backstage/plugins/scaffolder/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-filters
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-filters
+    to: backstage/plugins/scaffolder/components/templatingextensionspage/function-args
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-filters
+    to: backstage/plugins/scaffolder/components/templatingextensionspage/navigation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/template-filters
+    to: backstage/plugins/scaffolder/components/templatingextensionspage/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/templatingextensionspage/index
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service

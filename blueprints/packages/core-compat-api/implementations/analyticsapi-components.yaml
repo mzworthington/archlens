@@ -1,0 +1,100 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-compat-api/implementations/analyticsapi
+  name: Analyticsapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-compat-api/implementations/analyticsapi/multiple-analytics-api-test
+    type: rest-api
+    name: MultipleAnalyticsApi
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/MultipleAnalyticsApi.test.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-compat-api/implementations/analyticsapi/no-op-analytics-api
+    type: rest-api
+    name: NoOpAnalyticsApi
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/NoOpAnalyticsApi.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-compat-api/implementations/analyticsapi/multiple-analytics-api
+    type: rest-api
+    name: MultipleAnalyticsApi
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/MultipleAnalyticsApi.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-compat-api/implementations/analyticsapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/index.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/core-compat-api/implementations/analyticsapi/multiple-analytics-api-test
+    to: backstage/packages/core-compat-api/implementations/analyticsapi/multiple-analytics-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/implementations/analyticsapi/no-op-analytics-api
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/implementations/analyticsapi/no-op-analytics-api
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/implementations/analyticsapi/multiple-analytics-api
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/implementations/analyticsapi/multiple-analytics-api
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/implementations/analyticsapi/index
+    to: backstage/packages/core-compat-api/implementations/analyticsapi/multiple-analytics-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/implementations/analyticsapi/index
+    to: backstage/packages/core-compat-api/implementations/analyticsapi/no-op-analytics-api
+    type: direct-call
+    description: Calls module / service

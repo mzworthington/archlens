@@ -19,13 +19,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 50
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      churn: 12
+      lineChurn: 163
+      churn30: 3
+      churn365: 12
       churnByWeek:
         - 0
         - 0
@@ -38,7 +36,10 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
         - 0
+        - 0
+        - 1
         - 0
         - 0
         - 1
@@ -55,17 +56,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -80,32 +71,47 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.4166666666666667
       authors:
+        - email: bvsabhishek@gmail.com
+          commits: 4
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
+        - email: jroebuck@spotify.com
+          commits: 2
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+        - email: mtlewis@users.noreply.github.com
+          commits: 1
+        - email: jhe@redhat.com
+          commits: 1
+      hotspotScore: 0.00020338460027912784
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-github/analyzers
     type: background-worker
     name: Analyzers
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-github/src/analyzers/GithubLocationAnalyzer.ts
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 133
-      churn30: 1
-      churn365: 2
+      churn: 4
+      lineChurn: 307
+      churn30: 2
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -142,20 +148,20 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -164,11 +170,16 @@ nodes:
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: freben@gmail.com
+          commits: 1
+        - email: freben@spotify.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-github/octokitproviderservice
     type: background-worker
     name: Octokitproviderservice
@@ -337,134 +348,18 @@ nodes:
     name: Module
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-github/src/module/index.ts
-      containerId: catalog-backend-module-github
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog-backend-module-github/providers
-    type: background-worker
-    name: Providers
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProviderConfig.test.ts
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 15
-      loc: 493
-      sloc: 442
-      churn: 3
-      lineChurn: 618
-      churn30: 1
-      churn365: 3
+      churn: 10
+      lineChurn: 291
+      churn30: 7
+      churn365: 10
       churnByWeek:
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -482,75 +377,176 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 3
+        - 1
         - 0
       authorCount: 3
-      topAuthorPercent: 0.3333333333333333
+      topAuthorPercent: 0.7
       authors:
         - email: poldsberg@gmail.com
+          commits: 5
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 4
+        - email: freben@gmail.com
           commits: 1
-        - email: bvsabhishek@gmail.com
-          commits: 1
-        - email: benji.janssens@gmail.com
-          commits: 1
-      hotspotScore: 0.0021670979822844996
+      hotspotScore: 0.0006452201112303365
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend-module-github/providers
+    type: background-worker
+    name: Providers
+    isTest: false
+    properties:
+      containerId: catalog-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 14
+      complexityPeak: 14
+      cognitiveComplexity: 60
+      churn: 51
+      lineChurn: 10760
+      churn30: 10
+      churn365: 51
+      churnByWeek:
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 4
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 2
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 1
+        - 1
+        - 0
+      authorCount: 8
+      topAuthorPercent: 0.23529411764705882
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 8
+        - email: benji.janssens@gmail.com
+          commits: 6
+        - email: mtlewis@users.noreply.github.com
+          commits: 6
+        - email: bvsabhishek@gmail.com
+          commits: 5
+        - email: vdv100@gmail.com
+          commits: 4
+        - email: freben@spotify.com
+          commits: 4
+        - email: jhe@redhat.com
+          commits: 4
+        - email: angeliski@hotmail.com
+          commits: 3
+        - email: freben@gmail.com
+          commits: 3
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 2
+        - email: warre.pessers@gmail.com
+          commits: 2
+        - email: thomvaill@bluebricks.dev
+          commits: 2
+        - email: stephen@stephen.glass
+          commits: 2
+      hotspotScore: 0.06760083317553493
+      sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-github/processors
     type: background-worker
     name: Processors
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-github/src/processors/GithubOrgReaderProcessor.ts
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 153
-      churn30: 1
-      churn365: 1
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 45
+      churn: 7
+      lineChurn: 1246
+      churn30: 5
+      churn365: 7
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -565,13 +561,57 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 5
+        - email: vdv100@gmail.com
+          commits: 2
+      hotspotScore: 0.008871776529417128
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-github/deprecated
     type: background-worker
     name: Deprecated
@@ -1718,7 +1758,6 @@ nodes:
     name: Events
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-github/src/events/analyzeGithubWebhookEvent.ts
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
@@ -1726,13 +1765,10 @@ nodes:
       complexity: 40
       complexityPeak: 40
       cognitiveComplexity: 683
-      functionCount: 19
-      loc: 660
-      sloc: 486
-      churn: 3
-      lineChurn: 1320
-      churn30: 1
-      churn365: 3
+      churn: 8
+      lineChurn: 3040
+      churn30: 3
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -1748,7 +1784,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -1761,7 +1797,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -1782,20 +1818,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.625
       authors:
         - email: freben@gmail.com
-          commits: 2
+          commits: 5
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0.1851501188747922
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: Alpha (External)
@@ -1813,7 +1852,6 @@ nodes:
     name: Error detection (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-common/src/error-detection/pods.ts
       containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
@@ -1909,7 +1947,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

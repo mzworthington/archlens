@@ -1,0 +1,173 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend/stitching
+  name: Stitching Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend/stitching/progress-tracker
+    type: relational-database
+    name: ProgressTracker
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/stitching/progressTracker.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/stitching/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/stitching/types.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/stitching/default-stitcher
+    type: relational-database
+    name: DefaultStitcher
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/stitching/DefaultStitcher.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/stitching/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/stitching/index.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/stitching/default-stitcher-test
+    type: background-worker
+    name: DefaultStitcher
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/stitching/DefaultStitcher.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/database/operations/stitcher/get-deferred-stitchable-entities
+    type: relational-database
+    name: GetDeferredStitchableEntities (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/operations/stitcher/getDeferredStitchableEntities.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/operations/stitcher/mark-for-stitching
+    type: relational-database
+    name: MarkForStitching (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/operations/stitcher/markForStitching.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/migrations
+    type: relational-database
+    name: Migrations (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/migrations.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/operations/stitcher/perform-stitching
+    type: relational-database
+    name: PerformStitching (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/operations/stitcher/performStitching.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/tables
+    type: relational-database
+    name: Tables (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/tables.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/processing/task-pipeline
+    type: background-worker
+    name: TaskPipeline (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/processing/TaskPipeline.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend/stitching/progress-tracker
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/progress-tracker
+    to: backstage/plugins/catalog-backend/metrics/metrics
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher
+    to: backstage/plugins/catalog-backend/database/operations/stitcher/get-deferred-stitchable-entities
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher
+    to: backstage/plugins/catalog-backend/database/operations/stitcher/perform-stitching
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher
+    to: backstage/plugins/catalog-backend/processing/task-pipeline
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher
+    to: backstage/plugins/catalog-backend/stitching/progress-tracker
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher
+    to: backstage/plugins/catalog-backend/stitching/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher-test
+    to: backstage/plugins/catalog-backend/database/operations/stitcher/mark-for-stitching
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/stitching/default-stitcher-test
+    to: backstage/plugins/catalog-backend/stitching/default-stitcher
+    type: read-write
+    description: Queries datastore records

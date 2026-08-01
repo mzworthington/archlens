@@ -1,0 +1,233 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs/hooks
+  name: Hooks Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs/hooks/use-tech-docs-search
+    type: gateway-api
+    name: UseTechDocsSearch
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsSearch.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/hooks/use-tech-docs-reader-content-data
+    type: gateway-api
+    name: UseTechDocsReaderContentData
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsReaderContentData.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/hooks/use-tech-docs-reader-header-data
+    type: gateway-api
+    name: UseTechDocsReaderHeaderData
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsReaderHeaderData.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/hooks/use-tech-docs-reader-header-data-test
+    type: gateway-api
+    name: UseTechDocsReaderHeaderData
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsReaderHeaderData.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/hooks/use-tech-docs-reader-content-data-test
+    type: gateway-api
+    name: UseTechDocsReaderContentData
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsReaderContentData.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/hooks/use-tech-docs-search-test
+    type: gateway-api
+    name: UseTechDocsSearch
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsSearch.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/hooks/use-techdocs-reader-icon-link-props
+    type: gateway-api
+    name: UseTechdocsReaderIconLinkProps
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/alpha/hooks/useTechdocsReaderIconLinkProps.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/search-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-react/src/index.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/techdocs-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/index.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/plugins/techdocs-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-common/src/index.ts
+      containerId: techdocs-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpagecontent
+    type: gateway-api
+    name: Techdocsreaderpagecontent (External)
+    external: true
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1480
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-search
+    to: backstage/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-search
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-content-data
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-content-data
+    to: backstage/plugins/techdocs/reader/components/techdocsreaderpagecontent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-content-data
+    to: backstage/plugins/techdocs/reader/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-header-data
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-header-data
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-header-data-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-header-data-test
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-header-data-test
+    to: backstage/plugins/techdocs/hooks/use-tech-docs-reader-header-data
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-content-data-test
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-reader-content-data-test
+    to: backstage/plugins/techdocs/hooks/use-tech-docs-reader-content-data
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-search-test
+    to: backstage/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: backstage/plugins/techdocs/hooks/use-tech-docs-search-test
+    to: backstage/plugins/techdocs/hooks/use-tech-docs-search
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/hooks/use-techdocs-reader-icon-link-props
+    to: backstage/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
+  - from: backstage/plugins/techdocs/hooks/use-techdocs-reader-icon-link-props
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/hooks/use-techdocs-reader-icon-link-props
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/hooks/use-techdocs-reader-icon-link-props
+    to: backstage/plugins/techdocs/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/hooks/use-techdocs-reader-icon-link-props
+    to: backstage/plugins/techdocs/routes/routes
+    type: direct-call
+    description: Calls module / service

@@ -14,7 +14,6 @@ nodes:
     name: Tree
     isTest: false
     properties:
-      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
@@ -22,28 +21,17 @@ nodes:
       complexity: 20
       complexityPeak: 20
       cognitiveComplexity: 182
-      functionCount: 35
-      loc: 665
-      sloc: 583
-      churn: 22
-      lineChurn: 1536
-      churn30: 1
-      churn365: 22
+      churn: 84
+      lineChurn: 8831
+      churn30: 11
+      churn365: 84
       churnByWeek:
-        - 1
+        - 11
         - 0
         - 0
         - 0
-        - 1
-        - 5
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 6
+        - 13
         - 0
         - 0
         - 0
@@ -51,66 +39,78 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 4
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
         - 3
-        - 3
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.9090909090909091
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 9
+        - 8
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 2
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7976190476190477
       authors:
         - email: poldsberg@gmail.com
-          commits: 20
+          commits: 67
+        - email: camilaibs@gmail.com
+          commits: 9
         - email: aramis.sennyey@doordash.com
-          commits: 2
+          commits: 8
       hotspotScore: 0.10772370552715184
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: backstage/packages/frontend-app-api/implementations/iconsapi
     type: gateway-api
     name: Iconsapi
     isTest: false
     properties:
-      filepath: packages/frontend-app-api/src/apis/implementations/IconsApi/DefaultIconsApi.test.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 27
-      loc: 173
-      sloc: 118
-      churn: 8
-      lineChurn: 480
-      churn30: 1
-      churn365: 8
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 16
+      lineChurn: 769
+      churn30: 3
+      churn365: 16
       churnByWeek:
         - 0
         - 0
@@ -139,12 +139,15 @@ nodes:
         - 0
         - 0
         - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 4
         - 3
         - 0
         - 0
         - 0
-        - 2
-        - 2
         - 0
         - 0
         - 0
@@ -157,10 +160,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -169,13 +169,19 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 8
-      hotspotScore: 0.0016831828988617475
+          commits: 16
+      hotspotScore: 0.002861410928064971
       coupledFiles:
+        - path: packages/frontend-app-api/src/apis/implementations/IconsApi/DefaultIconsApi.test.ts
+          score: 0.8571428571428571
+          sharedCommits: 6
         - path: packages/frontend-app-api/src/apis/implementations/IconsApi/DefaultIconsApi.ts
           score: 0.8571428571428571
           sharedCommits: 6
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/frontend-app-api/extensions
     type: background-worker
     name: Extensions
@@ -259,47 +265,56 @@ nodes:
     name: Wiring
     isTest: false
     properties:
-      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 5
-      loc: 185
-      sloc: 151
-      churn: 13
-      lineChurn: 570
-      churn30: 1
-      churn365: 13
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 43
+      churn: 138
+      lineChurn: 16337
+      churn30: 20
+      churn365: 138
       churnByWeek:
+        - 6
         - 0
+        - 3
         - 0
-        - 0
-        - 0
-        - 1
+        - 3
+        - 6
         - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 1
+        - 8
         - 2
         - 0
         - 0
+        - 2
+        - 8
+        - 5
+        - 51
+        - 0
+        - 2
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 1
+        - 6
         - 0
         - 0
         - 0
@@ -308,33 +323,37 @@ nodes:
         - 0
         - 0
         - 2
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
+        - 18
         - 0
         - 0
+        - 2
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 4
+      topAuthorPercent: 0.9202898550724637
       authors:
         - email: poldsberg@gmail.com
-          commits: 13
-      hotspotScore: 0.003997559384796651
+          commits: 127
+        - email: freben@gmail.com
+          commits: 3
+        - email: elaine.mattos@gmail.com
+          commits: 2
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 2
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: camilaibs@gmail.com
+          commits: 1
+      hotspotScore: 0.10494645374402996
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 17
+      hotspotCount: 0
+      knowledgeSiloCount: 2
   - entityRef: backstage/packages/frontend-app-api/index
     type: background-worker
     name: Index
@@ -418,85 +437,90 @@ nodes:
     name: Routing
     isTest: false
     properties:
-      filepath: packages/frontend-app-api/src/routing/RouteTracker.tsx
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 129
-      churn30: 1
-      churn365: 1
+      complexity: 15
+      complexityPeak: 15
+      cognitiveComplexity: 96
+      churn: 48
+      lineChurn: 4201
+      churn30: 15
+      churn365: 48
       churnByWeek:
+        - 1
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 7
         - 0
         - 1
         - 0
+        - 5
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 15
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9791666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 47
+        - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.012750110458877738
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 2
   - entityRef: backstage/packages/frontend-test-utils/app
     type: gateway-api
     name: App (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/app/createExtensionTester.test.tsx
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
@@ -520,7 +544,6 @@ nodes:
     name: Entity (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/entity/conditions.test.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
@@ -532,7 +555,6 @@ nodes:
     name: Identityapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/IdentityApi/startCookieAuthRefresh.test.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
@@ -688,7 +710,6 @@ nodes:
     name: Schema (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/schema/load.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default

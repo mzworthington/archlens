@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/techdocs-cli-embedded-app/components/livereload
+  name: Livereload Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/components/livereload/live-reload-addon-test
+    type: gateway-api
+    name: LiveReloadAddon
+    isTest: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/components/LiveReload/LiveReloadAddon.test.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/components/livereload/live-reload-addon
+    type: gateway-api
+    name: LiveReloadAddon
+    isTest: false
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/components/LiveReload/LiveReloadAddon.tsx
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+dependencies: []

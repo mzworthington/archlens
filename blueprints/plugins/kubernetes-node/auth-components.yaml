@@ -1,0 +1,103 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-node/auth
+  name: Auth Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-node/auth/pinniped-helper-test
+    type: background-worker
+    name: PinnipedHelper
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-node/src/auth/PinnipedHelper.test.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-node/auth/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-node/src/auth/index.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-node/auth/pinniped-helper
+    type: background-worker
+    name: PinnipedHelper
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-node/src/auth/PinnipedHelper.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-backend/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-backend/dev/index.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-node/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-node/src/types/types.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-node/auth/pinniped-helper-test
+    to: backstage/plugins/kubernetes-node/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-node/auth/pinniped-helper-test
+    to: backstage/plugins/kubernetes-node/extensions/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-node/auth/pinniped-helper-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-node/auth/pinniped-helper-test
+    to: backstage/plugins/kubernetes-node/auth/pinniped-helper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-node/auth/pinniped-helper-test
+    to: backstage/plugins/kubernetes-backend/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-backend'
+  - from: backstage/plugins/kubernetes-node/auth/index
+    to: backstage/plugins/kubernetes-node/auth/pinniped-helper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-node/auth/pinniped-helper
+    to: backstage/plugins/kubernetes-node/types/types
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,146 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog/filter
+  name: Filter Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/catalog/filter/matchers
+    type: background-worker
+    name: Matchers
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 9
+      lineChurn: 454
+      churn30: 9
+      churn365: 9
+      hotspotScore: 0
+      authorCount: 1
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 1
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/catalog/filter/parse-filter-expression
+    type: background-worker
+    name: ParseFilterExpression
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/alpha/filter/parseFilterExpression.ts
+      containerId: catalog
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog/filter/filter-wrapper
+    type: gateway-api
+    name: FilterWrapper
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/alpha/filter/FilterWrapper.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/filter/parse-filter-expression-test
+    type: rest-api
+    name: ParseFilterExpression
+    isTest: true
+    properties:
+      filepath: plugins/catalog/src/alpha/filter/parseFilterExpression.test.ts
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+dependencies:
+  - from: backstage/plugins/catalog/filter/parse-filter-expression
+    to: backstage/plugins/catalog/filter/matchers/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/filter/parse-filter-expression
+    to: backstage/plugins/catalog/filter/matchers/create-kind-matcher
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/filter/parse-filter-expression
+    to: backstage/plugins/catalog/filter/matchers/create-type-matcher
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/filter/parse-filter-expression
+    to: backstage/plugins/catalog/filter/matchers/create-is-matcher
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/filter/parse-filter-expression
+    to: backstage/plugins/catalog/filter/matchers/create-has-matcher
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/filter/filter-wrapper
+    to: backstage/plugins/catalog/filter/parse-filter-expression
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/filter/parse-filter-expression-test
+    to: backstage/plugins/catalog/filter/parse-filter-expression
+    type: direct-call
+    description: Calls module / service

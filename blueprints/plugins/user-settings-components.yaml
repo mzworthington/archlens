@@ -20,12 +20,10 @@ nodes:
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 56
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 104
+      churn30: 3
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -59,23 +57,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -84,15 +82,17 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings/storageapi
     type: gateway-api
     name: Storageapi
     isTest: false
     properties:
-      filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
       containerId: user-settings
       technology: React Component
       classification: ui-import
@@ -100,25 +100,20 @@ nodes:
       complexity: 6
       complexityPeak: 6
       cognitiveComplexity: 15
-      functionCount: 29
-      loc: 359
-      sloc: 289
-      churn: 4
-      lineChurn: 627
-      churn30: 1
-      churn365: 4
+      churn: 11
+      lineChurn: 1565
+      churn30: 4
+      churn365: 11
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
-        - 1
+        - 3
+        - 2
         - 0
-        - 1
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -156,22 +151,27 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 0
+        - 4
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6363636363636364
       authors:
         - email: g.rantila@gmail.com
-          commits: 2
+          commits: 6
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
         - email: pschultz@pobox.com
           commits: 1
       hotspotScore: 0.013191945969828946
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings/plugin
     type: background-worker
     name: Plugin
@@ -499,18 +499,17 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/user-settings/src/components/Settings.tsx
       containerId: user-settings
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 30
-      churn30: 1
-      churn365: 1
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 2
+      churn: 14
+      lineChurn: 774
+      churn30: 7
+      churn365: 14
       churnByWeek:
         - 0
         - 0
@@ -543,6 +542,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 7
         - 0
         - 0
         - 0
@@ -559,8 +559,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
@@ -569,9 +568,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 14
+      hotspotScore: 0.0024055488929565806
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings/components/usersettingstab
     type: background-worker
     name: Usersettingstab
@@ -655,18 +657,15 @@ nodes:
     name: General
     isTest: false
     properties:
-      filepath: plugins/user-settings/src/components/General/UserSettingsAppearanceCard.tsx
       containerId: user-settings
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 39
-      churn30: 1
-      churn365: 1
+      churn: 18
+      lineChurn: 1154
+      churn30: 16
+      churn365: 18
       churnByWeek:
         - 0
         - 0
@@ -707,6 +706,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -715,36 +715,37 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
+        - 16
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8888888888888888
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 16
+        - email: itsmiteshkumar98@gmail.com
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 16
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings/components/settingspage
     type: gateway-api
     name: Settingspage
     isTest: false
     properties:
-      filepath: plugins/user-settings/src/components/SettingsPage/SettingsPage.test.tsx
       containerId: user-settings
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 129
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 145
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -794,7 +795,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -803,26 +804,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings/components/defaultsettingspage
     type: gateway-api
     name: Defaultsettingspage
     isTest: false
     properties:
-      filepath: plugins/user-settings/src/components/DefaultSettingsPage/DefaultSettingsPage.test.tsx
       containerId: user-settings
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 81
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 98
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -872,7 +873,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -881,9 +882,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings/components/settingslayout
     type: background-worker
     name: Settingslayout
@@ -967,25 +971,24 @@ nodes:
     name: Authproviders
     isTest: false
     properties:
-      filepath: plugins/user-settings/src/components/AuthProviders/ProviderSettingsItem.tsx
       containerId: user-settings
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 176
-      churn30: 1
-      churn365: 2
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 10
+      churn: 10
+      lineChurn: 571
+      churn30: 7
+      churn365: 10
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -1028,35 +1031,39 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 3
+      topAuthorPercent: 0.8
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
+          commits: 8
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: yannik@daellenbach.org
+          commits: 1
+      hotspotScore: 0.006171670629159741
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/user-settings/components/featureflags
     type: gateway-api
     name: Featureflags
     isTest: false
     properties:
-      filepath: plugins/user-settings/src/components/FeatureFlags/UserSettingsFeatureFlags.tsx
       containerId: user-settings
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 152
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 299
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -1106,7 +1113,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -1115,9 +1122,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/apis
     type: gateway-api
     name: Apis (External)

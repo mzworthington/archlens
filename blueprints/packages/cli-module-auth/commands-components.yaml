@@ -1,0 +1,183 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-auth/commands
+  name: Commands Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-module-auth/commands/login
+    type: background-worker
+    name: Login
+    isTest: false
+    properties:
+      filepath: packages/cli-module-auth/src/commands/login.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-auth/commands/select
+    type: background-worker
+    name: Select
+    isTest: false
+    properties:
+      filepath: packages/cli-module-auth/src/commands/select.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-auth/commands/login-test
+    type: background-worker
+    name: Login
+    isTest: true
+    properties:
+      filepath: packages/cli-module-auth/src/commands/login.test.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-auth/commands/print-token
+    type: background-worker
+    name: PrintToken
+    isTest: false
+    properties:
+      filepath: packages/cli-module-auth/src/commands/printToken.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-auth/commands/list
+    type: background-worker
+    name: List
+    isTest: false
+    properties:
+      filepath: packages/cli-module-auth/src/commands/list.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-auth/commands/show
+    type: background-worker
+    name: Show
+    isTest: false
+    properties:
+      filepath: packages/cli-module-auth/src/commands/show.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-auth/commands/logout
+    type: background-worker
+    name: Logout
+    isTest: false
+    properties:
+      filepath: packages/cli-module-auth/src/commands/logout.ts
+      containerId: cli-module-auth
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/cli-internal/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-internal/src/index.ts
+      containerId: cli-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-module-auth/commands/login
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-auth/commands/login
+    to: backstage/packages/cli-module-auth/localserver/local-server
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/login
+    to: backstage/packages/cli-module-auth/pkce/pkce
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/login
+    to: backstage/packages/cli-module-auth/http/http
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/login
+    to: backstage/packages/cli-module-auth/storage/storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/login
+    to: backstage/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: backstage/packages/cli-module-auth/commands/select
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-auth/commands/select
+    to: backstage/packages/cli-module-auth/storage/storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/select
+    to: backstage/packages/cli-module-auth/prompt/prompt
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/login-test
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-auth/commands/login-test
+    to: backstage/packages/cli-module-auth/commands/login
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/print-token
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-auth/commands/list
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-auth/commands/list
+    to: backstage/packages/cli-module-auth/storage/storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/show
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-auth/commands/show
+    to: backstage/packages/cli-module-auth/http/http
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/logout
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-auth/commands/logout
+    to: backstage/packages/cli-internal/index
+    type: direct-call
+    description: '@internal/cli'
+  - from: backstage/packages/cli-module-auth/commands/logout
+    to: backstage/packages/cli-module-auth/storage/storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/logout
+    to: backstage/packages/cli-module-auth/http/http
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-auth/commands/logout
+    to: backstage/packages/cli-module-auth/prompt/prompt
+    type: direct-call
+    description: Calls module / service

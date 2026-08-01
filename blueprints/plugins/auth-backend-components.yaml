@@ -20,169 +20,9 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 24
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/auth-backend/database
-    type: relational-database
-    name: Database
-    isTest: false
-    properties:
-      filepath: plugins/auth-backend/src/database/OfflineSessionDatabase.test.ts
-      containerId: auth-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 848
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: ben@blam.sh
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/auth-backend/identity
-    type: relational-database
-    name: Identity
-    isTest: false
-    properties:
-      filepath: plugins/auth-backend/src/identity/TokenFactory.ts
-      containerId: auth-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 237
-      churn30: 1
+      lineChurn: 47
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -222,49 +62,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: freben@spotify.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/auth-backend/providers
-    type: rest-api
-    name: Providers
-    isTest: false
-    properties:
-      filepath: plugins/auth-backend/src/providers/router.ts
-      containerId: auth-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 170
-      churn30: 1
-      churn365: 2
-      churnByWeek:
         - 0
         - 0
         - 0
@@ -276,44 +73,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -325,22 +85,352 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/auth-backend/database
+    type: relational-database
+    name: Database
+    isTest: false
+    properties:
+      containerId: auth-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 26
+      lineChurn: 4630
+      churn30: 7
+      churn365: 26
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7692307692307693
+      authors:
+        - email: ben@blam.sh
+          commits: 17
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: kyle.opperman@ing.com
+          commits: 2
+      hotspotScore: 0.028982305539775717
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/auth-backend/identity
+    type: relational-database
+    name: Identity
+    isTest: false
+    properties:
+      containerId: auth-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 21
+      lineChurn: 2254
+      churn30: 15
+      churn365: 21
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 15
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7619047619047619
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 16
+        - email: freben@gmail.com
+          commits: 3
+        - email: freben@spotify.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.0019356603336910094
+      sinceDays: 365
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/auth-backend/providers
+    type: rest-api
+    name: Providers
+    isTest: false
+    properties:
+      containerId: auth-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 226
+      churn30: 2
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/auth-backend/actions
     type: background-worker
     name: Actions
     isTest: false
     properties:
-      filepath: plugins/auth-backend/src/actions/createWhoAmIAction.test.ts
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
+      churn: 6
+      lineChurn: 442
+      churn30: 3
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: ben@blam.sh
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/auth-backend/catalog
+    type: background-worker
+    name: Catalog
+    isTest: false
+    properties:
+      containerId: auth-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
       churn: 2
-      lineChurn: 202
-      churn30: 1
+      lineChurn: 281
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -373,7 +463,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -391,87 +480,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: ben@blam.sh
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/auth-backend/catalog
-    type: background-worker
-    name: Catalog
-    isTest: false
-    properties:
-      filepath: plugins/auth-backend/src/lib/catalog/CatalogIdentityClient.test.ts
-      containerId: auth-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 148
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -480,26 +490,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/auth-backend/resolvers
     type: background-worker
     name: Resolvers
     isTest: false
     properties:
-      filepath: plugins/auth-backend/src/lib/resolvers/CatalogAuthResolverContext.ts
       containerId: auth-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 269
-      churn30: 1
-      churn365: 2
+      churn: 3
+      lineChurn: 333
+      churn30: 2
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -549,20 +559,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: pschultz@pobox.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/auth-backend/refreshtoken-test
     type: background-worker
     name: Refreshtoken test
@@ -895,31 +908,26 @@ nodes:
     name: Service
     isTest: false
     properties:
-      filepath: plugins/auth-backend/src/service/OidcRouter.test.ts
       containerId: auth-backend
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 90
-      loc: 1853
-      sloc: 1577
-      churn: 27
-      lineChurn: 5281
-      churn30: 5
-      churn365: 27
+      complexity: 16
+      complexityPeak: 16
+      cognitiveComplexity: 118
+      churn: 151
+      lineChurn: 19068
+      churn30: 33
+      churn365: 151
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 6
-        - 0
-        - 0
-        - 0
-        - 0
+        - 28
+        - 2
+        - 4
         - 0
         - 0
         - 0
@@ -936,54 +944,67 @@ nodes:
         - 0
         - 0
         - 1
-        - 0
-        - 1
-        - 1
-        - 0
-        - 0
-        - 1
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
         - 0
         - 3
         - 0
+        - 7
+        - 12
+        - 0
+        - 0
+        - 8
+        - 4
+        - 2
+        - 0
+        - 0
+        - 3
         - 1
         - 0
+        - 6
+        - 0
+        - 7
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 5
+        - 0
+        - 33
         - 0
         - 0
         - 0
         - 0
       authorCount: 8
-      topAuthorPercent: 0.5555555555555556
+      topAuthorPercent: 0.5827814569536424
       authors:
         - email: ben@blam.sh
-          commits: 15
+          commits: 86
         - email: rdjamaile@gmail.com
-          commits: 4
+          commits: 21
         - email: poldsberg@gmail.com
-          commits: 2
-        - email: mtlewis@users.noreply.github.com
-          commits: 2
-        - email: rdjamaile@gail.com
-          commits: 1
+          commits: 16
         - email: heikki.hellgren@op.fi
-          commits: 1
-        - email: freben@gmail.com
-          commits: 1
+          commits: 7
         - email: kyle.opperman@ing.com
+          commits: 5
+        - email: mtlewis@users.noreply.github.com
+          commits: 4
+        - email: freben@gmail.com
+          commits: 3
+        - email: rdjamaile@gail.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 2
+        - email: pschultz@pobox.com
+          commits: 2
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: jonkoops@gmail.com
           commits: 1
-      hotspotScore: 0.018518518518518517
+      hotspotScore: 0.1445854110122241
       sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/auth-backend/authplugin
     type: background-worker
     name: Authplugin
@@ -1220,7 +1241,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

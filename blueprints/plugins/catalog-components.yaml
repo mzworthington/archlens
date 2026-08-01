@@ -19,32 +19,12 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 43
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      churn: 12
+      lineChurn: 271
+      churn30: 4
+      churn365: 12
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -77,16 +57,41 @@ nodes:
         - 0
         - 1
         - 0
+        - 4
+        - 0
+        - 1
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 8
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: 19777147+the-serious-programmer@users.noreply.github.com
+          commits: 2
+      hotspotScore: 0.0005154747627764102
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/routes
     type: background-worker
     name: Routes
@@ -174,18 +179,15 @@ nodes:
     name: Entitypresentationapi
     isTest: false
     properties:
-      filepath: plugins/catalog/src/apis/EntityPresentationApi/DefaultEntityPresentationApi.ts
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 464
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 746
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -235,7 +237,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -244,26 +246,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/starredentitiesapi
     type: rest-api
     name: Starredentitiesapi
     isTest: false
     properties:
-      filepath: plugins/catalog/src/apis/StarredEntitiesApi/migration.ts
       containerId: catalog
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 63
-      churn30: 1
-      churn365: 1
+      churn: 5
+      lineChurn: 376
+      churn30: 5
+      churn365: 5
       churnByWeek:
         - 0
         - 0
@@ -313,7 +315,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
@@ -322,103 +324,25 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 5
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/context
     type: gateway-api
     name: Context
     isTest: false
     properties:
-      filepath: plugins/catalog/src/context/EntityContextMenuContext.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 51
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/plugin
-    type: gateway-api
-    name: Plugin
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/plugin.ts
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 317
-      churn30: 1
+      lineChurn: 67
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -451,6 +375,72 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/plugin
+    type: gateway-api
+    name: Plugin
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/plugin.ts
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 8
+      lineChurn: 404
+      churn30: 2
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
@@ -462,6 +452,13 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
+        - 1
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -470,19 +467,29 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.875
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 7
         - email: johanopersson@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00030507690041869175
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/plugin-test
     type: background-worker
     name: Plugin test
@@ -566,18 +573,17 @@ nodes:
     name: Entityorphanwarning
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/EntityOrphanWarning/EntityOrphanWarning.test.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 76
-      churn30: 1
-      churn365: 2
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 8
+      lineChurn: 333
+      churn30: 4
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -605,21 +611,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -628,56 +620,69 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 6
         - email: johanopersson@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 2
+      hotspotScore: 0.0006943129457804707
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components
     type: gateway-api
     name: Components
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/EntityOrphanWarning/EntityOrphanWarning.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 101
-      churn30: 1
-      churn365: 2
+      complexity: 19
+      complexityPeak: 19
+      cognitiveComplexity: 79
+      churn: 115
+      lineChurn: 7136
+      churn30: 31
+      churn365: 115
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 2
+        - 2
+        - 3
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 8
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -688,55 +693,164 @@ nodes:
         - 1
         - 0
         - 0
+        - 5
+        - 1
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 9
+        - 7
+        - 4
+        - 16
+        - 1
+        - 2
+        - 1
         - 0
         - 1
         - 0
         - 0
+        - 1
+        - 1
+        - 5
+        - 4
+        - 4
+        - 3
+        - 1
+        - 0
+        - 31
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.5130434782608696
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 44
         - email: johanopersson@gmail.com
+          commits: 32
+        - email: esapram@redhat.com
+          commits: 9
+        - email: andreas@berger-ecommerce.com
+          commits: 8
+        - email: freben@gmail.com
+          commits: 7
+        - email: freben@spotify.com
+          commits: 6
+        - email: maratd@spotify.com
+          commits: 3
+        - email: git@logonoff.co
           commits: 1
-      hotspotScore: 0
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: 19777147+the-serious-programmer@users.noreply.github.com
+          commits: 1
+        - email: sandor.karpf@lastpass.com
+          commits: 1
+        - email: ben@blam.sh
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.042307503489097883
       sinceDays: 365
+      fileCount: 31
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/entitycontextmenu
     type: gateway-api
     name: Entitycontextmenu
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/EntityContextMenu/UnregisterEntity.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 12
+      lineChurn: 913
+      churn30: 6
+      churn365: 12
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: git@logonoff.co
+          commits: 1
+      hotspotScore: 0.0038292410949104755
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/relatedentitiescard
+    type: gateway-api
+    name: Relatedentitiescard
+    isTest: false
+    properties:
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 98
-      churn30: 1
+      lineChurn: 87
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -787,87 +901,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: git@logonoff.co
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/relatedentitiescard
-    type: gateway-api
-    name: Relatedentitiescard
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/RelatedEntitiesCard/presets.ts
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 68
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -876,9 +910,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/filteredentitylayout
     type: gateway-api
     name: Filteredentitylayout
@@ -964,95 +1001,14 @@ nodes:
     name: Entityprocessingerrorspanel
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/EntityProcessingErrorsPanel/index.ts
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 20
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/entitylayout
-    type: gateway-api
-    name: Entitylayout
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/EntityLayout/EntityLayout.test.tsx
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 458
-      churn30: 1
+      lineChurn: 250
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -1081,7 +1037,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -1103,7 +1058,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -1115,23 +1071,105 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/entitylayout
+    type: gateway-api
+    name: Entitylayout
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 17
+      lineChurn: 1449
+      churn30: 6
+      churn365: 17
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 2
+        - 3
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8235294117647058
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 10
+        - email: poldsberg@gmail.com
+          commits: 7
+      hotspotScore: 0.008170450321558066
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/catalogentitypage
     type: gateway-api
     name: Catalogentitypage
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/CatalogEntityPage/useEntityFromUrl.ts
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 55
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 72
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -1181,7 +1219,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -1190,24 +1228,105 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/entitynotfound
     type: gateway-api
     name: Entitynotfound
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/EntityNotFound/Illo/Illo.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
+      churn: 3
+      lineChurn: 92
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/entitynotfound/illo
+    type: background-worker
+    name: Illo
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/components/EntityNotFound/Illo/index.ts
+      containerId: catalog
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 45
+      lineChurn: 16
       churn30: 1
       churn365: 1
       churnByWeek:
@@ -1276,35 +1395,16 @@ nodes:
     name: Hassubcomponentscard
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/HasSubcomponentsCard/HasSubcomponentsCard.test.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 169
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 195
+      churn30: 2
+      churn365: 3
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -1342,47 +1442,49 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/hassystemscard
     type: gateway-api
     name: Hassystemscard
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/HasSystemsCard/HasSystemsCard.test.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 120
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 146
+      churn30: 2
+      churn365: 3
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -1420,30 +1522,48 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/entitylabelscard
     type: background-worker
     name: Entitylabelscard
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/EntityLabelsCard/EntityLabelsEmptyState.tsx
       containerId: catalog
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 72
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 121
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -1493,7 +1613,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -1502,9 +1622,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/catalogsearchresultlistitem
     type: background-worker
     name: Catalogsearchresultlistitem
@@ -1588,7 +1711,6 @@ nodes:
     name: Catalogpage
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/CatalogPage/DefaultCatalogPage.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
@@ -1596,13 +1718,10 @@ nodes:
       complexity: 4
       complexityPeak: 4
       cognitiveComplexity: 3
-      functionCount: 5
-      loc: 254
-      sloc: 216
-      churn: 5
-      lineChurn: 456
-      churn30: 1
-      churn365: 5
+      churn: 11
+      lineChurn: 1165
+      churn30: 5
+      churn365: 11
       churnByWeek:
         - 0
         - 0
@@ -1638,7 +1757,7 @@ nodes:
         - 1
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 1
@@ -1647,61 +1766,45 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.6
+      topAuthorPercent: 0.7272727272727273
       authors:
         - email: poldsberg@gmail.com
-          commits: 3
+          commits: 8
         - email: johanopersson@gmail.com
-          commits: 1
+          commits: 2
         - email: 19777147+the-serious-programmer@users.noreply.github.com
           commits: 1
       hotspotScore: 0.00639609501567464
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/dependsonresourcescard
     type: gateway-api
     name: Dependsonresourcescard
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/DependsOnResourcesCard/DependsOnResourcesCard.test.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 120
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 146
+      churn30: 2
+      churn365: 3
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -1739,30 +1842,290 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/hasresourcescard
     type: gateway-api
     name: Hasresourcescard
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/HasResourcesCard/HasResourcesCard.test.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 115
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 141
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/dependencyofcomponentscard
+    type: gateway-api
+    name: Dependencyofcomponentscard
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 146
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/dependsoncomponentscard
+    type: gateway-api
+    name: Dependsoncomponentscard
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 146
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/catalogexportbutton/file-download
+    type: gateway-api
+    name: File download
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 21
+      churn: 26
+      lineChurn: 3109
+      churn30: 13
+      churn365: 26
       churnByWeek:
         - 0
         - 0
@@ -1801,6 +2164,159 @@ nodes:
         - 0
         - 0
         - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 2
+        - 13
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.5
+      authors:
+        - email: 19777147+the-serious-programmer@users.noreply.github.com
+          commits: 10
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: florian.judith@alithya.com
+          commits: 3
+        - email: lex.huismans@workiva.com
+          commits: 3
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.010456773759178606
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/catalogexportbutton
+    type: gateway-api
+    name: Catalogexportbutton
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 7
+      lineChurn: 976
+      churn30: 2
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5714285714285714
+      authors:
+        - email: 19777147+the-serious-programmer@users.noreply.github.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+      hotspotScore: 0.003275193390701817
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/hassubdomainscard
+    type: gateway-api
+    name: Hassubdomainscard
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 146
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1817,29 +2333,299 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/dependencyofcomponentscard
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/hascomponentscard
     type: gateway-api
-    name: Dependencyofcomponentscard
+    name: Hascomponentscard
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/DependencyOfComponentsCard/index.ts
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
+      churn: 3
+      lineChurn: 146
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/catalogtable
+    type: gateway-api
+    name: Catalogtable
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 28
+      churn: 18
+      lineChurn: 1409
+      churn30: 10
+      churn365: 18
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.7222222222222222
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 10
+        - email: freben@gmail.com
+          commits: 4
+        - email: maratd@spotify.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 1
+        - email: rajuvala80@gmail.com
+          commits: 1
+      hotspotScore: 0.004891750299816954
+      sinceDays: 365
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/aboutcard
+    type: gateway-api
+    name: Aboutcard
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 29
+      complexityPeak: 29
+      cognitiveComplexity: 55
+      churn: 18
+      lineChurn: 2246
+      churn30: 6
+      churn365: 18
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 5
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 10
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: esapram@redhat.com
+          commits: 2
+      hotspotScore: 0.034066920546753914
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/systemdiagramcard
+    type: gateway-api
+    name: Systemdiagramcard
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
       churn: 2
-      lineChurn: 26
-      churn30: 1
+      lineChurn: 194
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -1874,7 +2660,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -1890,87 +2675,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: johanopersson@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/dependsoncomponentscard
-    type: gateway-api
-    name: Dependsoncomponentscard
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/DependsOnComponentsCard/DependsOnComponentsCard.test.tsx
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 120
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -1979,30 +2685,38 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/catalogexportbutton
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/catalogkindheader
     type: gateway-api
-    name: Catalogexportbutton
+    name: Catalogkindheader
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/CatalogExportButton/file-download/useStreamingExport.ts
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 7
-      complexityPeak: 7
-      cognitiveComplexity: 21
-      functionCount: 2
-      loc: 205
-      sloc: 143
-      churn: 4
-      lineChurn: 426
-      churn30: 1
-      churn365: 4
+      complexity: 0
+      churn: 3
+      lineChurn: 307
+      churn30: 3
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -2045,121 +2759,31 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.75
+      authorCount: 1
+      topAuthorPercent: 1
       authors:
-        - email: 19777147+the-serious-programmer@users.noreply.github.com
+        - email: poldsberg@gmail.com
           commits: 3
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.010456773759178606
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/hassubdomainscard
-    type: gateway-api
-    name: Hassubdomainscard
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/HasSubdomainsCard/HasSubdomainsCard.test.tsx
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 120
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/hascomponentscard
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/entityswitch
     type: gateway-api
-    name: Hascomponentscard
+    name: Entityswitch
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/HasComponentsCard/HasComponentsCard.test.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 120
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      complexityPeak: 1
+      churn: 6
+      lineChurn: 882
+      churn30: 4
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -2187,169 +2811,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/catalogtable
-    type: gateway-api
-    name: Catalogtable
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/CatalogTable/OffsetPaginatedCatalogTable.tsx
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 65
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/aboutcard
-    type: gateway-api
-    name: Aboutcard
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/AboutCard/AboutField.tsx
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 3
-      loc: 80
-      sloc: 51
-      churn: 5
-      lineChurn: 118
-      churn30: 1
-      churn365: 5
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
         - 2
         - 0
         - 0
@@ -2368,89 +2829,11 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.6
-      authors:
-        - email: johanopersson@gmail.com
-          commits: 3
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: esapram@redhat.com
-          commits: 1
-      hotspotScore: 0.0012413473879105388
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/systemdiagramcard
-    type: gateway-api
-    name: Systemdiagramcard
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/SystemDiagramCard/SystemDiagramCard.test.tsx
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 176
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -2459,182 +2842,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 6
+      hotspotScore: 0.0018725409749836938
       sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/catalogkindheader
-    type: gateway-api
-    name: Catalogkindheader
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/CatalogKindHeader/CatalogKindHeader.test.tsx
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 213
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/entityswitch
-    type: gateway-api
-    name: Entityswitch
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/components/EntitySwitch/conditions.test.ts
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 225
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/entityrelationwarning
     type: gateway-api
     name: Entityrelationwarning
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/EntityRelationWarning/EntityRelationWarning.test.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 170
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 190
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -2684,7 +2911,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -2693,26 +2920,27 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/components/entitylinkscard
     type: gateway-api
     name: Entitylinkscard
     isTest: false
     properties:
-      filepath: plugins/catalog/src/components/EntityLinksCard/useDynamicColumns.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 50
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      complexityPeak: 1
+      churn: 11
+      lineChurn: 390
+      churn30: 8
+      churn365: 11
       churnByWeek:
         - 0
         - 0
@@ -2743,37 +2971,42 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9090909090909091
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 8
+        - email: johanopersson@gmail.com
+          commits: 3
+      hotspotScore: 0.0002454641727506715
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/overridablecomponents
     type: background-worker
     name: Overridablecomponents
@@ -3750,35 +3983,32 @@ nodes:
     name: Entitytabs
     isTest: false
     properties:
-      filepath: plugins/catalog/src/alpha/components/EntityTabs/EntityTabs.test.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 20
-      loc: 487
-      sloc: 427
-      churn: 4
-      lineChurn: 982
-      churn30: 1
-      churn365: 4
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 11
+      churn: 26
+      lineChurn: 2462
+      churn30: 7
+      churn365: 26
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 2
+        - 2
+        - 2
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 1
         - 0
@@ -3794,7 +4024,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 6
         - 0
         - 0
         - 0
@@ -3805,91 +4035,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 3
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-        - email: ben@blam.sh
-          commits: 1
-        - email: pschultz@pobox.com
-          commits: 1
-      hotspotScore: 0.0034435116805879916
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog/components/entityheader
-    type: gateway-api
-    name: Entityheader
-    isTest: false
-    properties:
-      filepath: plugins/catalog/src/alpha/components/EntityHeader/EntityHeaderBui.test.tsx
-      containerId: catalog
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 9
-      loc: 141
-      sloc: 115
-      churn: 4
-      lineChurn: 286
-      churn30: 1
-      churn365: 4
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -3897,20 +4043,113 @@ nodes:
         - 0
         - 0
         - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.6153846153846154
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 13
+        - email: andreas@berger-ecommerce.com
+          commits: 6
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: ben@blam.sh
+          commits: 2
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: esapram@redhat.com
+          commits: 1
+      hotspotScore: 0.00895944230539951
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog/components/entityheader
+    type: gateway-api
+    name: Entityheader
+    isTest: false
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 12
+      lineChurn: 761
+      churn30: 3
+      churn365: 12
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
         - 1
+        - 0
+        - 0
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.75
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: johanopersson@gmail.com
-          commits: 3
+          commits: 9
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.0010028964772384578
+          commits: 3
+      hotspotScore: 0.008030185079986254
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/pages
     type: gateway-api
     name: Pages
@@ -4005,18 +4244,15 @@ nodes:
     name: Filter
     isTest: false
     properties:
-      filepath: plugins/catalog/src/alpha/filter/parseFilterExpression.ts
       containerId: catalog
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 131
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 392
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -4066,7 +4302,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -4075,26 +4311,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/filter/matchers
     type: background-worker
     name: Matchers
     isTest: false
     properties:
-      filepath: plugins/catalog/src/alpha/filter/matchers/createHasMatcher.ts
       containerId: catalog
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 52
-      churn30: 1
-      churn365: 1
+      churn: 9
+      lineChurn: 454
+      churn30: 9
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -4144,7 +4380,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 9
         - 0
         - 0
         - 0
@@ -4153,9 +4389,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 9
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog/entitycards
     type: gateway-api
     name: Entitycards
@@ -4438,48 +4677,33 @@ nodes:
     name: Apiexplorerpage (External)
     external: true
     properties:
-      filepath: plugins/api-docs/src/components/ApiExplorerPage/ApiExplorerPage.test.tsx
       containerId: api-docs
       technology: React Component
       classification: ui-import
     position:
-      x: -5420
-      y: -204
-  - entityRef: backstage/plugins/org/components/cards
-    type: gateway-api
-    name: Cards (External)
-    external: true
-    properties:
-      filepath: plugins/org/src/components/Cards/Group/GroupProfile/index.ts
-      containerId: org
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 1480
+      x: -6110
       y: -204
   - entityRef: backstage/plugins/catalog-react/components
     type: gateway-api
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/components/MissingAnnotationEmptyState/MissingAnnotationEmptyState.tsx
       containerId: catalog-react
       technology: React Component
       classification: ui-import
     position:
-      x: -2660
+      x: -3350
       y: -204
-  - entityRef: backstage/plugins/techdocs/home/components
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components
     type: gateway-api
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/techdocs/src/home/components/TechDocsPageWrapper.tsx
-      containerId: techdocs
+      containerId: catalog-react
       technology: React Component
       classification: ui-import
     position:
-      x: 5160
+      x: -1510
       y: -204
   - entityRef: backstage/plugins/app/defaultapis
     type: gateway-api
@@ -4491,79 +4715,84 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -4040
+      x: -4730
       y: -204
   - entityRef: backstage/plugins/catalog-react/components/entitydisplayname
     type: gateway-api
     name: Entitydisplayname (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/components/EntityDisplayName/EntityDisplayName.stories.tsx
       containerId: catalog-react
       technology: React Component
       classification: ui-import
     position:
-      x: -2200
+      x: -2890
+      y: -204
+  - entityRef: backstage/plugins/scaffolder/components/fields/entitypicker
+    type: gateway-api
+    name: Entitypicker (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3090
       y: -204
   - entityRef: backstage/plugins/catalog-react/components/entitytable
     type: gateway-api
     name: Entitytable (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/components/EntityTable/EntityTable.test.tsx
       containerId: catalog-react
       technology: React Component
       classification: ui-import
     position:
-      x: -1740
+      x: -2430
       y: -204
   - entityRef: backstage/plugins/catalog-react/components/favoriteentity
     type: gateway-api
     name: Favoriteentity (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/components/FavoriteEntity/FavoriteEntity.test.tsx
       containerId: catalog-react
       technology: React Component
       classification: ui-import
     position:
-      x: -1280
+      x: -1970
       y: -204
-  - entityRef: backstage/plugins/scaffolder/components/fields
+  - entityRef: backstage/plugins/techdocs/home/components/grids
     type: gateway-api
-    name: Fields (External)
+    name: Grids (External)
     external: true
     properties:
-      filepath: plugins/scaffolder/src/components/fields/MultiEntityPicker/schema.ts
-      containerId: scaffolder
+      containerId: techdocs
       technology: React Component
       classification: ui-import
     position:
-      x: 3780
+      x: 5850
       y: -204
   - entityRef: backstage/plugins/catalog-react/hooks
     type: gateway-api
     name: Hooks (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/hooks/useEntityTypeFilter.tsx
       containerId: catalog-react
       technology: React Component
       classification: ui-import
     position:
-      x: 100
+      x: -590
       y: -204
   - entityRef: backstage/plugins/permission-react/hooks
     type: gateway-api
     name: Hooks (External)
     external: true
     properties:
-      filepath: plugins/permission-react/src/hooks/usePermission.test.tsx
       containerId: permission-react
       technology: React Component
       classification: ui-import
     position:
-      x: 2400
+      x: 1710
       y: -204
   - entityRef: backstage/plugins/home/index
     type: gateway-api
@@ -4575,7 +4804,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 1020
+      x: 330
       y: -204
   - entityRef: backstage/plugins/scaffolder/index
     type: gateway-api
@@ -4587,7 +4816,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 4700
+      x: 5390
       y: -204
   - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
@@ -4599,7 +4828,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 560
+      x: -130
       y: -204
   - entityRef: backstage/plugins/user-settings/index
     type: gateway-api
@@ -4611,7 +4840,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 5620
+      x: 6310
       y: -204
   - entityRef: backstage/plugins/search-react/index
     type: background-worker
@@ -4683,7 +4912,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 2860
+      x: 2170
       y: -204
   - entityRef: backstage/plugins/permission-common/index
     type: background-worker
@@ -4707,7 +4936,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -3580
+      x: -4270
       y: -204
   - entityRef: backstage/plugins/api-docs/index
     type: gateway-api
@@ -4719,74 +4948,101 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -4960
+      x: -5650
       y: -204
-  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog
+  - entityRef: backstage/plugins/org/components/cards/group/memberslist
     type: gateway-api
-    name: Inspectentitydialog (External)
+    name: Memberslist (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/JsonPage.test.tsx
-      containerId: catalog-react
+      containerId: org
       technology: React Component
       classification: ui-import
     position:
-      x: -820
+      x: 790
+      y: -204
+  - entityRef: backstage/plugins/scaffolder/components/fields/multientitypicker
+    type: gateway-api
+    name: Multientitypicker (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3550
+      y: -204
+  - entityRef: backstage/plugins/scaffolder/components/fields/mygroupspicker
+    type: gateway-api
+    name: Mygroupspicker (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4010
       y: -204
   - entityRef: backstage/plugins/org/components/mygroupssidebaritem
     type: gateway-api
     name: Mygroupssidebaritem (External)
     external: true
     properties:
-      filepath: plugins/org/src/components/MyGroupsSidebarItem/MyGroupsSidebarItem.test.tsx
       containerId: org
       technology: React Component
       classification: ui-import
     position:
-      x: 1940
+      x: 1250
+      y: -204
+  - entityRef: backstage/plugins/scaffolder/components/fields/ownerpicker
+    type: gateway-api
+    name: Ownerpicker (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4470
       y: -204
   - entityRef: backstage/plugins/catalog-import/components/stepprepareselectlocations
     type: gateway-api
     name: Stepprepareselectlocations (External)
     external: true
     properties:
-      filepath: plugins/catalog-import/src/components/StepPrepareSelectLocations/StepPrepareSelectLocations.test.tsx
       containerId: catalog-import
       technology: React Component
       classification: ui-import
     position:
-      x: -3120
+      x: -3810
       y: -204
   - entityRef: backstage/plugins/scaffolder-react/components/templatecard
     type: gateway-api
     name: Templatecard (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardTags.tsx
       containerId: scaffolder-react
       technology: React Component
       classification: ui-import
     position:
-      x: 3320
+      x: 2630
       y: -204
   - entityRef: backstage/plugins/scaffolder/components/templatelistpage
     type: gateway-api
     name: Templatelistpage (External)
     external: true
     properties:
-      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/TemplateListPage.test.tsx
       containerId: scaffolder
       technology: React Component
       classification: ui-import
     position:
-      x: 4240
+      x: 4930
       y: -204
   - entityRef: backstage/plugins/catalog-react/testutils
     type: gateway-api
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
       containerId: catalog-react
       technology: React Component
       classification: ui-import
@@ -4798,24 +5054,22 @@ nodes:
     name: Toast (External)
     external: true
     properties:
-      filepath: plugins/app/src/components/Toast/ToastContainer.tsx
       containerId: app
       technology: React Component
       classification: ui-import
     position:
-      x: -4500
+      x: -5190
       y: -204
   - entityRef: backstage/plugins/catalog-react/components/userlistpicker
     type: gateway-api
     name: Userlistpicker (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/components/UserListPicker/useStarredEntitiesCount.ts
       containerId: catalog-react
       technology: React Component
       classification: ui-import
     position:
-      x: -360
+      x: -1050
       y: -204
 dependencies:
   - from: backstage/plugins/home/index
@@ -4826,7 +5080,19 @@ dependencies:
     to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
-  - from: backstage/plugins/scaffolder/components/fields
+  - from: backstage/plugins/scaffolder/components/fields/multientitypicker
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/scaffolder/components/fields/entitypicker
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/scaffolder/components/fields/ownerpicker
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/scaffolder/components/fields/mygroupspicker
     to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
@@ -4862,7 +5128,7 @@ dependencies:
     to: backstage/plugins/catalog/apis
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog-react/components/inspectentitydialog
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components
     to: backstage/plugins/catalog/apis
     type: direct-call
     description: Calls module / service
@@ -4914,7 +5180,7 @@ dependencies:
     to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/group/memberslist
     to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'
@@ -5334,11 +5600,11 @@ dependencies:
     to: backstage/plugins/catalog/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog/components/catalogexportbutton
+  - from: backstage/plugins/catalog/components/catalogexportbutton/file-download
     to: backstage/plugins/catalog/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/catalog/components/catalogexportbutton
+  - from: backstage/plugins/catalog/components/catalogexportbutton/file-download
     to: backstage/plugins/catalog/components
     type: direct-call
     description: Calls module / service
@@ -5355,15 +5621,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog/components
-    to: backstage/plugins/catalog/components/catalogexportbutton
+    to: backstage/plugins/catalog/components/catalogexportbutton/file-download
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog/components
-    to: backstage/plugins/catalog/components/catalogexportbutton
+    to: backstage/plugins/catalog/components/catalogexportbutton/file-download
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog/components
-    to: backstage/plugins/catalog/components/catalogexportbutton
+    to: backstage/plugins/catalog/components/catalogexportbutton/file-download
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog/components/catalogexportbutton
@@ -6086,7 +6352,7 @@ dependencies:
     to: backstage/plugins/catalog/apis
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/grids
     to: backstage/plugins/catalog/index
     type: direct-call
     description: '@backstage/plugin-catalog'

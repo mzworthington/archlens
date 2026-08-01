@@ -1,0 +1,100 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-app-api/implementations/identityapi
+  name: Identityapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-app-api/implementations/identityapi/start-cookie-auth-refresh-test
+    type: rest-api
+    name: StartCookieAuthRefresh
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/IdentityApi/startCookieAuthRefresh.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-app-api/implementations/identityapi/start-cookie-auth-refresh
+    type: rest-api
+    name: StartCookieAuthRefresh
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/IdentityApi/startCookieAuthRefresh.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-app-api/implementations/identityapi/app-identity-proxy-test
+    type: rest-api
+    name: AppIdentityProxy
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/IdentityApi/AppIdentityProxy.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-app-api/implementations/identityapi/app-identity-proxy
+    type: rest-api
+    name: AppIdentityProxy
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/IdentityApi/AppIdentityProxy.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/core-app-api/implementations/identityapi/start-cookie-auth-refresh-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-app-api/implementations/identityapi/start-cookie-auth-refresh-test
+    to: backstage/packages/core-app-api/implementations/identityapi/start-cookie-auth-refresh
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/identityapi/start-cookie-auth-refresh
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/implementations/identityapi/app-identity-proxy-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-app-api/implementations/identityapi/app-identity-proxy-test
+    to: backstage/packages/core-app-api/implementations/identityapi/app-identity-proxy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/identityapi/app-identity-proxy
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/implementations/identityapi/app-identity-proxy
+    to: backstage/packages/core-app-api/implementations/identityapi/start-cookie-auth-refresh
+    type: direct-call
+    description: Calls module / service

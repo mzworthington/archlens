@@ -1,0 +1,443 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/repo-tools/commands/api-reports
+  name: Api reports Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/cli-reports
+    type: background-worker
+    name: Cli reports
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 55
+      churn: 11
+      lineChurn: 481
+      churn30: 4
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 2
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7272727272727273
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 8
+        - email: freben@spotify.com
+          commits: 2
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.016074396684129688
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports
+    type: rest-api
+    name: Api reports
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 32
+      complexityPeak: 32
+      cognitiveComplexity: 431
+      churn: 20
+      lineChurn: 1560
+      churn30: 7
+      churn365: 20
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 14
+        - email: freben@gmail.com
+          commits: 3
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.05206645767145673
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports
+    type: relational-database
+    name: Sql reports
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 45
+      churn: 8
+      lineChurn: 477
+      churn30: 5
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: freben@gmail.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.007924986148807394
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/build-api-reports-test
+    type: background-worker
+    name: BuildApiReports
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/categorize-package-dirs
+    type: background-worker
+    name: CategorizePackageDirs
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/categorizePackageDirs.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/build-api-reports
+    type: background-worker
+    name: BuildApiReports
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/try-run-prettier
+    type: background-worker
+    name: TryRunPrettier
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/common/tryRunPrettier.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/common/index.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/log-api-report-instructions
+    type: background-worker
+    name: LogApiReportInstructions
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/common/logApiReportInstructions.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands
+    type: background-worker
+    name: Commands (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/cli-common/testutils
+    type: background-worker
+    name: Testutils (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/testUtils.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports-test
+    to: backstage/packages/cli-common/testutils
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports-test
+    to: backstage/packages/repo-tools/commands/api-reports/categorize-package-dirs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports-test
+    to: backstage/packages/repo-tools/commands/api-reports/build-api-reports
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports-test
+    to: backstage/packages/repo-tools/commands
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports-test
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports-test
+    to: backstage/packages/repo-tools/commands/api-reports/api-reports/index
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/categorize-package-dirs
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports
+    to: backstage/packages/repo-tools/commands/api-reports/categorize-package-dirs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports
+    to: backstage/packages/repo-tools/paths/paths
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/build-api-reports
+    to: backstage/packages/repo-tools/commands/api-reports/api-reports/index
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/try-run-prettier
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/index
+    to: backstage/packages/repo-tools/commands/api-reports/try-run-prettier
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/index
+    to: backstage/packages/repo-tools/commands/api-reports/log-api-report-instructions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/index
+    to: backstage/packages/repo-tools/commands/api-reports/build-api-reports
+    type: direct-call
+    description: Calls module / service

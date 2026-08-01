@@ -1,0 +1,83 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-plugin-api/translation/__fixtures__
+  name: __fixtures__ Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-plugin-api/translation/__fixtures__/refs
+    type: background-worker
+    name: Refs
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/__fixtures__/refs.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/translation/__fixtures__/counting-de
+    type: background-worker
+    name: Counting de
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/__fixtures__/counting-de.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/translation/__fixtures__/fruits-sv
+    type: background-worker
+    name: Fruits sv
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/__fixtures__/fruits-sv.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-plugin-api/translation/translation-messages
+    type: background-worker
+    name: TranslationMessages (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/TranslationMessages.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/translation/translation-ref
+    type: background-worker
+    name: TranslationRef (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/TranslationRef.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-plugin-api/translation/__fixtures__/refs
+    to: backstage/packages/frontend-plugin-api/translation/translation-ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/translation/__fixtures__/counting-de
+    to: backstage/packages/frontend-plugin-api/translation/translation-messages
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/translation/__fixtures__/counting-de
+    to: backstage/packages/frontend-plugin-api/translation/__fixtures__/refs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/translation/__fixtures__/fruits-sv
+    to: backstage/packages/frontend-plugin-api/translation/translation-messages
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/translation/__fixtures__/fruits-sv
+    to: backstage/packages/frontend-plugin-api/translation/__fixtures__/refs
+    type: direct-call
+    description: Calls module / service

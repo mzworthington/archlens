@@ -1,0 +1,209 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker
+  name: Repobranchpicker Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/schema
+    type: gateway-api
+    name: Schema
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/schema.ts
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/repo-branch-picker-test
+    type: gateway-api
+    name: RepoBranchPicker
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/RepoBranchPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/bitbucket-repo-branch-picker-test
+    type: gateway-api
+    name: BitbucketRepoBranchPicker
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/BitbucketRepoBranchPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/git-hub-repo-branch-picker-test
+    type: gateway-api
+    name: GitHubRepoBranchPicker
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/GitHubRepoBranchPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/default-repo-branch-picker
+    type: gateway-api
+    name: DefaultRepoBranchPicker
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/DefaultRepoBranchPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/types.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/index.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/git-hub-repo-branch-picker
+    type: gateway-api
+    name: GitHubRepoBranchPicker
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/GitHubRepoBranchPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/bitbucket-repo-branch-picker
+    type: gateway-api
+    name: BitbucketRepoBranchPicker
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/BitbucketRepoBranchPicker.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/fields/repobranchpicker/default-repo-branch-picker-test
+    type: gateway-api
+    name: DefaultRepoBranchPicker
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/fields/RepoBranchPicker/DefaultRepoBranchPicker.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/alpha.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/scaffolder/components/fields
+    type: gateway-api
+    name: Fields (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/schema
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/repo-branch-picker-test
+    to: backstage/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/repo-branch-picker-test
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/repo-branch-picker-test
+    to: backstage/plugins/scaffolder/components/fields
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/bitbucket-repo-branch-picker-test
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/git-hub-repo-branch-picker-test
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/default-repo-branch-picker
+    to: backstage/plugins/scaffolder/components/fields/repobranchpicker/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/default-repo-branch-picker
+    to: backstage/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/index
+    to: backstage/plugins/scaffolder/components/fields
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/index
+    to: backstage/plugins/scaffolder/components/fields/repobranchpicker/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/git-hub-repo-branch-picker
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/git-hub-repo-branch-picker
+    to: backstage/plugins/scaffolder/components/fields/repobranchpicker/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/git-hub-repo-branch-picker
+    to: backstage/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/git-hub-repo-branch-picker
+    to: backstage/plugins/scaffolder/components/fields
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/bitbucket-repo-branch-picker
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/bitbucket-repo-branch-picker
+    to: backstage/plugins/scaffolder/components/fields/repobranchpicker/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/bitbucket-repo-branch-picker
+    to: backstage/plugins/scaffolder-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/fields/repobranchpicker/bitbucket-repo-branch-picker
+    to: backstage/plugins/scaffolder/components/fields
+    type: direct-call
+    description: Calls module / service

@@ -331,21 +331,17 @@ nodes:
     name: Openapi
     isTest: false
     properties:
-      filepath: packages/repo-tools/src/lib/openapi/helpers.ts
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 4
-      complexityPeak: 4
-      cognitiveComplexity: 6
-      functionCount: 10
-      loc: 102
-      sloc: 73
-      churn: 5
-      lineChurn: 147
-      churn30: 1
-      churn365: 5
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 40
+      churn: 11
+      lineChurn: 369
+      churn30: 4
+      churn365: 11
       churnByWeek:
         - 0
         - 0
@@ -356,6 +352,33 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
@@ -368,51 +391,29 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
         - 0
       authorCount: 4
-      topAuthorPercent: 0.4
+      topAuthorPercent: 0.45454545454545453
       authors:
         - email: poldsberg@gmail.com
+          commits: 5
+        - email: freben@gmail.com
+          commits: 2
+        - email: r_ferreira@outlook.pt
           commits: 2
         - email: 159921952+aramissennyeydd@users.noreply.github.com
           commits: 1
-        - email: freben@gmail.com
+        - email: jonkoops@gmail.com
           commits: 1
-        - email: r_ferreira@outlook.pt
-          commits: 1
-      hotspotScore: 0.002061899051105641
+      hotspotScore: 0.005785941214837257
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/repo-tools/exec
     type: background-worker
     name: Exec
@@ -833,18 +834,109 @@ nodes:
     name: Commands
     isTest: false
     properties:
-      filepath: packages/repo-tools/src/commands/knip-reports/knip-reports.ts
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 59
-      churn30: 1
-      churn365: 1
+      complexity: 24
+      complexityPeak: 24
+      cognitiveComplexity: 239
+      churn: 41
+      lineChurn: 2498
+      churn30: 10
+      churn365: 41
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 6
+        - 0
+        - 2
+        - 1
+        - 10
+        - 2
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.6585365853658537
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 24
+        - email: freben@gmail.com
+          commits: 8
+        - email: gabriel.dugny@believe.com
+          commits: 3
+        - email: pschultz@pobox.com
+          commits: 2
+        - email: jonkoops@gmail.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 1
+        - email: johanopersson@gmail.com
+          commits: 1
+      hotspotScore: 0.027099244671674134
+      sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/api-reports
+    type: background-worker
+    name: Api reports
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 53
+      churn: 18
+      lineChurn: 1149
+      churn30: 7
+      churn365: 18
       churnByWeek:
         - 0
         - 0
@@ -871,27 +963,11 @@ nodes:
         - 0
         - 0
         - 0
+        - 3
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 7
         - 0
         - 0
         - 1
@@ -899,32 +975,54 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: poldsberg@gmail.com
+          commits: 15
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.007293792561734239
+      classifications:
+        - knowledge-silo
       sinceDays: 365
-  - entityRef: backstage/packages/repo-tools/commands/api-reports
-    type: rest-api
-    name: Api reports
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 2
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/cli-reports
+    type: background-worker
+    name: Cli reports
     isTest: false
     properties:
-      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
       containerId: repo-tools
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Domain Service
+      classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 34
-      loc: 550
-      sloc: 470
-      churn: 4
-      lineChurn: 614
-      churn30: 1
-      churn365: 4
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 55
+      churn: 11
+      lineChurn: 481
+      churn30: 4
+      churn365: 11
       churnByWeek:
         - 0
         - 0
@@ -958,7 +1056,9 @@ nodes:
         - 2
         - 0
         - 0
+        - 2
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -972,123 +1072,127 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.75
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 3
-        - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0.0021530714581273185
-      sinceDays: 365
-  - entityRef: backstage/packages/repo-tools/commands/package-docs
-    type: cache-store
-    name: Package docs
-    isTest: false
-    properties:
-      filepath: packages/repo-tools/src/commands/package-docs/Cache.test.ts
-      containerId: repo-tools
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 12
-      loc: 181
-      sloc: 159
-      churn: 3
-      lineChurn: 186
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.3333333333333333
+      topAuthorPercent: 0.7272727272727273
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 8
         - email: freben@spotify.com
-          commits: 1
+          commits: 2
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0.0006522333733089272
+      hotspotScore: 0.016074396684129688
       sinceDays: 365
-  - entityRef: backstage/packages/repo-tools/commands/generate-catalog-info
-    type: background-worker
-    name: Generate catalog info
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports
+    type: rest-api
+    name: Api reports
     isTest: false
     properties:
-      filepath: packages/repo-tools/src/commands/generate-catalog-info/utils.test.ts
       containerId: repo-tools
-      technology: TypeScript Domain Service
-      classification: default
+      technology: REST Controller / Router
+      classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 36
-      churn30: 1
-      churn365: 1
+      complexity: 32
+      complexityPeak: 32
+      cognitiveComplexity: 431
+      churn: 20
+      lineChurn: 1560
+      churn30: 7
+      churn365: 20
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 14
+        - email: freben@gmail.com
+          commits: 3
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.05206645767145673
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports
+    type: relational-database
+    name: Sql reports
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 45
+      churn: 8
+      lineChurn: 477
+      churn30: 5
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -1115,6 +1219,11 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -1129,6 +1238,234 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: freben@gmail.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.007924986148807394
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/package-docs
+    type: cache-store
+    name: Package docs
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 28
+      churn: 20
+      lineChurn: 747
+      churn30: 5
+      churn365: 20
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 3
+        - 1
+        - 0
+        - 0
+        - 5
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.55
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 11
+        - email: freben@gmail.com
+          commits: 3
+        - email: freben@spotify.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: aramis.sennyey@doordash.com
+          commits: 1
+      hotspotScore: 0.008275649252736925
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/generate-catalog-info
+    type: background-worker
+    name: Generate catalog info
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 178
+      churn30: 3
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: freben@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/repo/schema/openapi
+    type: background-worker
+    name: Openapi
+    isTest: false
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 51
+      churn: 11
+      lineChurn: 542
+      churn30: 5
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -1142,34 +1479,148 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 1
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6363636363636364
       authors:
         - email: poldsberg@gmail.com
+          commits: 6
+        - email: aramis.sennyey@doordash.com
+          commits: 2
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
           commits: 1
-      hotspotScore: 0
+        - email: freben@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0.01022182947954582
       sinceDays: 365
-  - entityRef: backstage/packages/repo-tools/commands/repo
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/package/schema/openapi
     type: background-worker
-    name: Repo
+    name: Openapi
     isTest: false
     properties:
-      filepath: packages/repo-tools/src/commands/repo/schema/openapi/lint.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 33
+      churn: 7
+      lineChurn: 265
+      churn30: 3
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5714285714285714
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: freben@gmail.com
+          commits: 2
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0.005081108375938901
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/repo-tools/commands/package/schema/openapi/generate
+    type: background-worker
+    name: Generate
+    isTest: false
+    properties:
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 5
       complexityPeak: 5
-      cognitiveComplexity: 7
-      functionCount: 4
-      loc: 125
-      sloc: 96
-      churn: 4
-      lineChurn: 132
-      churn30: 1
-      churn365: 4
+      cognitiveComplexity: 10
+      churn: 16
+      lineChurn: 664
+      churn30: 4
+      churn365: 16
       churnByWeek:
         - 0
         - 0
@@ -1180,12 +1631,27 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 0
+        - 1
         - 0
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 4
         - 2
         - 0
         - 0
@@ -1201,123 +1667,32 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 0
+        - 0
+        - 4
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 3
+      authorCount: 5
       topAuthorPercent: 0.5
       authors:
-        - email: aramis.sennyey@doordash.com
-          commits: 2
         - email: poldsberg@gmail.com
-          commits: 1
-        - email: 159921952+aramissennyeydd@users.noreply.github.com
-          commits: 1
-      hotspotScore: 0.002314376485934903
-      sinceDays: 365
-  - entityRef: backstage/packages/repo-tools/commands/package
-    type: background-worker
-    name: Package
-    isTest: false
-    properties:
-      filepath: packages/repo-tools/src/commands/package/schema/openapi/fuzz.ts
-      containerId: repo-tools
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 6
-      complexityPeak: 6
-      cognitiveComplexity: 15
-      functionCount: 2
-      loc: 97
-      sloc: 71
-      churn: 3
-      lineChurn: 104
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
+          commits: 8
         - email: freben@gmail.com
+          commits: 3
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 2
+        - email: r_ferreira@outlook.pt
+          commits: 2
+        - email: rfrferreira98@gmail.com
           commits: 1
-      hotspotScore: 0.002188137768520272
+      hotspotScore: 0.004435888264708564
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/repo-tools/index
     type: background-worker
     name: Index
@@ -1521,11 +1896,11 @@ dependencies:
     to: backstage/packages/repo-tools/commands
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/api-reports
+  - from: backstage/packages/repo-tools/commands/api-reports/cli-reports
     to: backstage/packages/repo-tools/commands
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/api-reports
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports
     to: backstage/packages/repo-tools/getpackageexportdetails
     type: direct-call
     description: Calls module / service
@@ -1561,103 +1936,103 @@ dependencies:
     to: backstage/packages/repo-tools/getpackageexportdetails
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/runner
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/runner
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/repo-tools/commands
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi
     to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi
     to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi
     to: backstage/packages/repo-tools/commands
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/runner
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/exec
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/repo-tools/openapi
     type: direct-call
     description: Calls module / service

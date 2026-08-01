@@ -14,18 +14,17 @@ nodes:
     name: Schema
     isTest: false
     properties:
-      filepath: packages/connections/src/schema/gitea.ts
       containerId: connections
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 43
-      sloc: 25
-      churn: 6
-      lineChurn: 84
-      churn30: 2
-      churn365: 6
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 80
+      lineChurn: 1745
+      churn30: 32
+      churn365: 80
       churnByWeek:
         - 0
         - 0
@@ -65,29 +64,29 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 1
-        - 0
-        - 0
+        - 7
+        - 16
         - 0
         - 0
         - 1
-        - 1
+        - 0
+        - 12
+        - 12
         - 0
         - 0
-        - 2
+        - 25
         - 0
-        - 0
+        - 7
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.8333333333333334
+      topAuthorPercent: 0.8375
       authors:
         - email: 58849535+neoreddog@users.noreply.github.com
-          commits: 5
+          commits: 67
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.00029455700730080577
+          commits: 13
+      hotspotScore: 0.0020338460027912782
       coupledFiles:
         - path: packages/connections/src/schema/bitbucketCloud.ts
           score: 1
@@ -98,36 +97,32 @@ nodes:
         - path: packages/connections/src/schema/gerrit.ts
           score: 1
           sharedCommits: 5
+        - path: packages/connections/src/schema/gitea.ts
+          score: 1
+          sharedCommits: 5
         - path: packages/connections/src/schema/gitlab.ts
           score: 1
           sharedCommits: 5
-        - path: packages/connections/src/schema/azure.ts
-          score: 0.8333333333333334
-          sharedCommits: 5
-        - path: packages/connections/src/schema/harness.ts
-          score: 0.8333333333333334
-          sharedCommits: 5
       sinceDays: 365
+      fileCount: 14
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/connections/system
     type: background-worker
     name: System
     isTest: false
     properties:
-      filepath: packages/connections/src/system/createConnectionType.test.ts
       containerId: connections
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 18
-      loc: 314
-      sloc: 257
-      churn: 19
-      lineChurn: 703
-      churn30: 15
-      churn365: 19
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 45
+      lineChurn: 1259
+      churn30: 33
+      churn365: 45
       churnByWeek:
         - 0
         - 0
@@ -166,31 +161,34 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 2
+        - 4
+        - 1
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 2
-        - 0
-        - 0
-        - 8
         - 5
-        - 2
+        - 0
+        - 0
+        - 15
+        - 14
+        - 4
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.9473684210526315
+      topAuthorPercent: 0.9555555555555556
       authors:
         - email: 58849535+neoreddog@users.noreply.github.com
-          commits: 18
+          commits: 43
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.004930323241249202
+          commits: 2
+      hotspotScore: 0.005849060573544573
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/connections/connectionsservice
     type: rest-api
     name: Connectionsservice
@@ -442,12 +440,10 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 1
-      loc: 25
-      sloc: 8
-      churn: 9
-      lineChurn: 59
-      churn30: 5
-      churn365: 9
+      churn: 21
+      lineChurn: 136
+      churn30: 14
+      churn365: 21
       churnByWeek:
         - 0
         - 0
@@ -486,50 +482,49 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 1
         - 0
         - 1
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
-        - 1
         - 4
+        - 10
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.8888888888888888
+      topAuthorPercent: 0.9047619047619048
       authors:
         - email: 58849535+neoreddog@users.noreply.github.com
-          commits: 8
+          commits: 19
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.00020689123131842314
+          commits: 2
+      hotspotScore: 0.00027001059002573866
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/connections/definitions
     type: background-worker
     name: Definitions
     isTest: false
     properties:
-      filepath: packages/connections/src/definitions/types.ts
       containerId: connections
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 1
-      loc: 60
-      sloc: 37
-      churn: 13
-      lineChurn: 190
-      churn30: 5
-      churn365: 13
+      churn: 20
+      lineChurn: 251
+      churn30: 7
+      churn365: 20
       churnByWeek:
         - 0
         - 0
@@ -568,9 +563,9 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 4
-        - 1
+        - 2
+        - 6
+        - 2
         - 0
         - 0
         - 0
@@ -579,20 +574,23 @@ nodes:
         - 2
         - 0
         - 0
-        - 1
-        - 4
+        - 2
+        - 5
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.9230769230769231
+      topAuthorPercent: 0.9
       authors:
         - email: 58849535+neoreddog@users.noreply.github.com
-          commits: 12
+          commits: 18
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0.0006662598974661084
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/connections-node/defaultconnectionsservice
     type: background-worker
     name: Defaultconnectionsservice (External)
@@ -622,7 +620,6 @@ nodes:
     name: Github (External)
     external: true
     properties:
-      filepath: packages/integration/src/github/SingleInstanceGithubCredentialsProvider.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
@@ -706,7 +703,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default

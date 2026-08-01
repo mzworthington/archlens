@@ -1,0 +1,162 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/app-defaults/defaults
+  name: Defaults Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/app-defaults/defaults/themes
+    type: background-worker
+    name: Themes
+    isTest: false
+    properties:
+      filepath: packages/app-defaults/src/defaults/themes.tsx
+      containerId: app-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/app-defaults/defaults/apis
+    type: gateway-api
+    name: Apis
+    isTest: false
+    properties:
+      filepath: packages/app-defaults/src/defaults/apis.ts
+      containerId: app-defaults
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/app-defaults/defaults/components-test
+    type: gateway-api
+    name: Components
+    isTest: true
+    properties:
+      filepath: packages/app-defaults/src/defaults/components.test.tsx
+      containerId: app-defaults
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/app-defaults/defaults/components
+    type: gateway-api
+    name: Components
+    isTest: false
+    properties:
+      filepath: packages/app-defaults/src/defaults/components.tsx
+      containerId: app-defaults
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/app-defaults/defaults/icons
+    type: background-worker
+    name: Icons
+    isTest: false
+    properties:
+      filepath: packages/app-defaults/src/defaults/icons.tsx
+      containerId: app-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/app-defaults/defaults/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/app-defaults/src/defaults/index.ts
+      containerId: app-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/theme/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/theme/src/index.ts
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/core-app-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/core-components/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/packages/app-defaults/defaults/themes
+    to: backstage/packages/theme/index
+    type: direct-call
+    description: '@backstage/theme'
+  - from: backstage/packages/app-defaults/defaults/themes
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/app-defaults/defaults/apis
+    to: backstage/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: backstage/packages/app-defaults/defaults/apis
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/app-defaults/defaults/apis
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/app-defaults/defaults/components
+    to: backstage/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: backstage/packages/app-defaults/defaults/components
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/app-defaults/defaults/icons
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/app-defaults/defaults/index
+    to: backstage/packages/app-defaults/defaults/apis
+    type: direct-call
+    description: Calls module / service

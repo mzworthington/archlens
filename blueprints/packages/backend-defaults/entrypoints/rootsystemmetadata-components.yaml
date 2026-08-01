@@ -1,0 +1,136 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata
+  name: Rootsystemmetadata Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-factory
+    type: background-worker
+    name: RootSystemMetadataServiceFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootSystemMetadata/rootSystemMetadataServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-test
+    type: rest-api
+    name: RootSystemMetadataService
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootSystemMetadata/RootSystemMetadataService.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/default-root-system-metadata-service
+    type: background-worker
+    name: DefaultRootSystemMetadataService
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootSystemMetadata/lib/DefaultRootSystemMetadataService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootSystemMetadata/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery/parsing
+    type: background-worker
+    name: Parsing (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/parsing.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/default-root-system-metadata-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-test
+    to: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/default-root-system-metadata-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/default-root-system-metadata-service
+    to: backstage/packages/backend-defaults/entrypoints/discovery/parsing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/default-root-system-metadata-service
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/index
+    to: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/root-system-metadata-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/index
+    to: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata/default-root-system-metadata-service
+    type: direct-call
+    description: Calls module / service

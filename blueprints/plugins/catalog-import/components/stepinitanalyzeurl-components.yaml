@@ -1,0 +1,53 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-import/components/stepinitanalyzeurl
+  name: Stepinitanalyzeurl Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-import/components/stepinitanalyzeurl/step-init-analyze-url-test
+    type: gateway-api
+    name: StepInitAnalyzeUrl
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepInitAnalyzeUrl/StepInitAnalyzeUrl.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-import/components/stepinitanalyzeurl/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepInitAnalyzeUrl/index.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-import/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-import/components/stepinitanalyzeurl/step-init-analyze-url-test
+    to: backstage/plugins/catalog-import/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/stepinitanalyzeurl/step-init-analyze-url-test
+    to: backstage/plugins/catalog-import/catalogimportapi/catalog-import-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/components/stepinitanalyzeurl/index
+    to: backstage/plugins/catalog-import/components
+    type: direct-call
+    description: Calls module / service

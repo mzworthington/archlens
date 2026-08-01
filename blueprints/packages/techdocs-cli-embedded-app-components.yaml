@@ -421,18 +421,15 @@ nodes:
     name: Sidebar
     isTest: false
     properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/Sidebar/LogoFull.tsx
       containerId: techdocs-cli-embedded-app
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 45
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 108
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -482,7 +479,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -491,64 +488,29 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/techdocs-cli-embedded-app/components
     type: gateway-api
     name: Components
     isTest: false
     properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/Sidebar/Sidebar.tsx
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 84
-      churn30: 1
-      churn365: 1
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 4
+      lineChurn: 203
+      churn30: 2
+      churn365: 4
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -565,30 +527,71 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: gabriel.dugny@believe.com
           commits: 1
-      hotspotScore: 0
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.0008345781873522831
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/techdocs-cli-embedded-app/components/livereload
     type: gateway-api
     name: Livereload
     isTest: false
     properties:
-      filepath: packages/techdocs-cli-embedded-app/src/components/LiveReload/LiveReloadAddon.test.tsx
       containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 106
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 234
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -638,7 +641,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -647,9 +650,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/techdocs-cli-embedded-app/components/techdocspage
     type: background-worker
     name: Techdocspage
@@ -823,7 +829,6 @@ nodes:
     name: Analytics (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/analytics/AnalyticsContext.test.tsx
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -835,7 +840,6 @@ nodes:
     name: Analytics (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/analytics/AnalyticsContext.test.tsx
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -847,7 +851,6 @@ nodes:
     name: App (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/app/AppContext.test.tsx
       containerId: core-app-api
       technology: React Component
       classification: ui-import
@@ -859,7 +862,6 @@ nodes:
     name: Authconnector (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/lib/AuthConnector/types.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
@@ -871,7 +873,6 @@ nodes:
     name: Blueprints (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/blueprints/PluginHeaderActionBlueprint.tsx
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -883,7 +884,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/components/ExtensionSuspense.tsx
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -895,7 +895,6 @@ nodes:
     name: Extensions (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/extensions/componentData.test.tsx
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -1051,7 +1050,6 @@ nodes:
     name: Plugin (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/plugin/Plugin.tsx
       containerId: core-plugin-api
       technology: TypeScript Domain Service
       classification: default
@@ -1063,7 +1061,6 @@ nodes:
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/routing/validation.ts
       containerId: core-app-api
       technology: React Component
       classification: ui-import
@@ -1075,7 +1072,6 @@ nodes:
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/routing/describeParentCallSite.test.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -1087,7 +1083,6 @@ nodes:
     name: Translation (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/translation/TranslationResource.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -1099,7 +1094,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import

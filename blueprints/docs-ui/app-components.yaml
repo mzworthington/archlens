@@ -4,10 +4,10 @@ metadata:
   entityRef: backstage/docs-ui/app
   name: App Service Components
   source:
-    remoteUrl: https://github.com/backstage/backstage
-    defaultBranch: master
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
 nodes:
   - entityRef: backstage/docs-ui/app/snippets
     type: background-worker
@@ -89,23 +89,33 @@ nodes:
           commits: 1
       hotspotScore: 0.00030858353145798707
       sinceDays: 365
-  - entityRef: backstage/docs-ui/app/app/components
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/tabs
     type: gateway-api
-    name: Components
+    name: Tabs
     isTest: false
     properties:
-      filepath: docs-ui/src/app/components/tabs/snippets.ts
       containerId: app
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 1
-      loc: 72
-      sloc: 65
-      churn: 3
-      lineChurn: 142
-      churn30: 1
-      churn365: 3
+      churn: 9
+      lineChurn: 536
+      churn30: 3
+      churn365: 9
+      hotspotScore: 0.0006522333733089272
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
       churnByWeek:
         - 0
         - 0
@@ -130,26 +140,9 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -160,34 +153,3551 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.3333333333333333
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: johanopersson@gmail.com
-          commits: 1
-        - email: charles.dedreuille@gmail.com
-          commits: 1
-      hotspotScore: 0.0004979416075799336
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.4444444444444444
       sinceDays: 365
-  - entityRef: backstage/docs-ui/app/app/hooks
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/tooltip
     type: background-worker
-    name: Hooks
+    name: Tooltip
     isTest: false
     properties:
-      filepath: docs-ui/src/app/hooks/use-breakpoint/snippets.ts
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 8
+      lineChurn: 310
+      churn30: 3
+      churn365: 8
+      hotspotScore: 0.00029455700730080577
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.375
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/box
+    type: background-worker
+    name: Box
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 11
+      lineChurn: 316
+      churn30: 3
+      churn365: 11
+      hotspotScore: 0.0004979416075799336
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.45454545454545453
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/card
+    type: background-worker
+    name: Card
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 14
+      lineChurn: 594
+      churn30: 3
+      churn365: 14
+      hotspotScore: 0.000946790380609733
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 8
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5714285714285714
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/date-range-picker
+    type: background-worker
+    name: Date range picker
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 7
+      lineChurn: 366
+      churn30: 3
+      churn365: 7
+      hotspotScore: 0.00036468962808671194
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5714285714285714
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/alert
+    type: gateway-api
+    name: Alert
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 9
+      lineChurn: 800
+      churn30: 3
+      churn365: 9
+      hotspotScore: 0.001206281077517586
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.3333333333333333
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/accordion
+    type: background-worker
+    name: Accordion
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      churn: 7
+      lineChurn: 560
+      churn30: 3
+      churn365: 7
+      hotspotScore: 0.0005750874904444304
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.42857142857142855
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/skeleton
+    type: background-worker
+    name: Skeleton
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 9
+      lineChurn: 286
+      churn30: 3
+      churn365: 9
+      hotspotScore: 0.00042079572471543687
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.3333333333333333
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/number-field
+    type: gateway-api
+    name: Number field
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 6
+      lineChurn: 364
+      churn30: 3
+      churn365: 6
+      hotspotScore: 0
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: 52410024+jabrks@users.noreply.github.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/search-autocomplete
+    type: gateway-api
+    name: Search autocomplete
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 6
+      lineChurn: 784
+      churn30: 3
+      churn365: 6
+      hotspotScore: 0
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/checkbox
+    type: background-worker
+    name: Checkbox
+    isTest: false
+    properties:
       containerId: app
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 26
-      churn30: 1
-      churn365: 2
+      churn: 6
+      lineChurn: 150
+      churn30: 3
+      churn365: 6
+      hotspotScore: 0
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/text-area-field
+    type: background-worker
+    name: Text area field
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 9
+      lineChurn: 358
+      churn30: 3
+      churn365: 9
+      hotspotScore: 0.0006241803249945647
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: vanessaliuchen@gmail.com
+          commits: 6
+        - email: poldsberg@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.6666666666666666
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/slider
+    type: background-worker
+    name: Slider
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 244
+      churn30: 3
+      churn365: 3
+      hotspotScore: 0
+      authorCount: 1
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 1
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/combobox
+    type: gateway-api
+    name: Combobox
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 9
+      lineChurn: 1330
+      churn30: 3
+      churn365: 9
+      hotspotScore: 0.0020198194786340967
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: 52410024+jabrks@users.noreply.github.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.3333333333333333
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/button-link
+    type: gateway-api
+    name: Button link
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      churn: 7
+      lineChurn: 538
+      churn30: 3
+      churn365: 7
+      hotspotScore: 0.0005540477042086585
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5714285714285714
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/dialog
+    type: background-worker
+    name: Dialog
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 8
+      lineChurn: 567
+      churn30: 3
+      churn365: 8
+      hotspotScore: 0.0008275649252736926
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.375
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/popover
+    type: background-worker
+    name: Popover
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 9
+      lineChurn: 392
+      churn30: 3
+      churn365: 9
+      hotspotScore: 0.0005400211800514773
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.3333333333333333
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/container
+    type: background-worker
+    name: Container
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 11
+      lineChurn: 267
+      churn30: 3
+      churn365: 11
+      hotspotScore: 0.0004137824626368463
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5454545454545454
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/button
+    type: gateway-api
+    name: Button
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 13
+      lineChurn: 560
+      churn30: 3
+      churn365: 13
+      hotspotScore: 0.0007223659940948333
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 8
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.6153846153846154
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/link
+    type: gateway-api
+    name: Link
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 13
+      lineChurn: 674
+      churn30: 3
+      churn365: 13
+      hotspotScore: 0.001220307601674767
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: charles.dedreuille@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 3
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5384615384615384
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/date-picker
+    type: background-worker
+    name: Date picker
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 6
+      lineChurn: 310
+      churn30: 3
+      churn365: 6
+      hotspotScore: 0
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: erik.hughes@outlook.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/table
+    type: gateway-api
+    name: Table
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 26
+      lineChurn: 4028
+      churn30: 3
+      churn365: 26
+      hotspotScore: 0.018325653811357277
+      authorCount: 5
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 8
+        - email: g.rantila@gmail.com
+          commits: 6
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: jroebuck@spotify.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+        - email: clairep@spotify.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 3
+        - 1
+        - 5
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 2
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.38461538461538464
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/list
+    type: gateway-api
+    name: List
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 546
+      churn30: 3
+      churn365: 5
+      hotspotScore: 0
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.6
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/visually-hidden
+    type: background-worker
+    name: Visually hidden
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      churn: 6
+      lineChurn: 143
+      churn30: 3
+      churn365: 6
+      hotspotScore: 0.00011922545533604044
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/menu
+    type: gateway-api
+    name: Menu
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 10
+      lineChurn: 1436
+      churn30: 3
+      churn365: 10
+      hotspotScore: 0.002587893706999937
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/avatar
+    type: background-worker
+    name: Avatar
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      churn: 7
+      lineChurn: 408
+      churn30: 3
+      churn365: 7
+      hotspotScore: 0.0004418355109512087
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.42857142857142855
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/switch
+    type: gateway-api
+    name: Switch
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 8
+      lineChurn: 219
+      churn30: 3
+      churn365: 8
+      hotspotScore: 0.0004348222488726181
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: ambrish.r@infosys.com
+          commits: 2
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.375
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/password-field
+    type: gateway-api
+    name: Password field
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 8
+      lineChurn: 356
+      churn30: 3
+      churn365: 8
+      hotspotScore: 0.0004488487730297993
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.375
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/plugin-header
+    type: gateway-api
+    name: Plugin header
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 206
+      churn30: 3
+      churn365: 5
+      hotspotScore: 0
+      authorCount: 1
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 1
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/button-icon
+    type: gateway-api
+    name: Button icon
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 10
+      lineChurn: 330
+      churn30: 3
+      churn365: 10
+      hotspotScore: 0.000490928345501343
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/text-field
+    type: gateway-api
+    name: Text field
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 8
+      lineChurn: 344
+      churn30: 3
+      churn365: 8
+      hotspotScore: 0.00036468962808671194
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.375
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/radio-group
+    type: background-worker
+    name: Radio group
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      churn: 7
+      lineChurn: 456
+      churn30: 3
+      churn365: 7
+      hotspotScore: 0.0004137824626368463
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.42857142857142855
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/checkbox-group
+    type: background-worker
+    name: Checkbox group
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 6
+      lineChurn: 456
+      churn30: 3
+      churn365: 6
+      hotspotScore: 0
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: 80819276+deepthi-28@users.noreply.github.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/tag-group
+    type: gateway-api
+    name: Tag group
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      churn: 7
+      lineChurn: 566
+      churn30: 3
+      churn365: 7
+      hotspotScore: 0.0006592466353875178
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: charles.dedreuille@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5714285714285714
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/text
+    type: background-worker
+    name: Text
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 10
+      lineChurn: 408
+      churn30: 3
+      churn365: 10
+      hotspotScore: 0.0005119681317371148
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/select
+    type: gateway-api
+    name: Select
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 12
+      lineChurn: 1552
+      churn30: 3
+      churn365: 12
+      hotspotScore: 0.0024265886791923525
+      authorCount: 4
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: 52410024+jabrks@users.noreply.github.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.4166666666666667
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/search-field
+    type: background-worker
+    name: Search field
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 9
+      lineChurn: 392
+      churn30: 3
+      churn365: 9
+      hotspotScore: 0.00047690182134416174
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.4444444444444444
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/flex
+    type: background-worker
+    name: Flex
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 11
+      lineChurn: 440
+      churn30: 3
+      churn365: 11
+      hotspotScore: 0.0006943129457804707
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.45454545454545453
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/header
+    type: gateway-api
+    name: Header
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 21
+      lineChurn: 1198
+      churn30: 3
+      churn365: 21
+      hotspotScore: 0.0017287691023725865
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 12
+        - email: johanopersson@gmail.com
+          commits: 6
+        - email: poldsberg@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 11
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5714285714285714
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/toggle-button
+    type: gateway-api
+    name: Toggle button
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 9
+      lineChurn: 338
+      churn30: 3
+      churn365: 9
+      hotspotScore: 0.00047690182134416174
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.4444444444444444
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/toggle-button-group
+    type: gateway-api
+    name: Toggle button group
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 10
+      lineChurn: 900
+      churn30: 3
+      churn365: 10
+      hotspotScore: 0.0015709707056042975
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/grid
+    type: background-worker
+    name: Grid
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 11
+      lineChurn: 554
+      churn30: 3
+      churn365: 11
+      hotspotScore: 0.0008205516631951019
+      authorCount: 3
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.45454545454545453
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/components/badge
+    type: gateway-api
+    name: Badge
+    isTest: false
+    properties:
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 6
+      lineChurn: 110
+      churn30: 3
+      churn365: 6
+      hotspotScore: 0
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/hooks/use-breakpoint
+    type: background-worker
+    name: Use breakpoint
+    isTest: false
+    properties:
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 77
+      churn30: 3
+      churn365: 5
+      hotspotScore: 0
+      authorCount: 2
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: antony.bouyon@believe.com
+          commits: 2
       churnByWeek:
         - 0
         - 0
@@ -216,41 +3726,35 @@ nodes:
         - 1
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: antony.bouyon@believe.com
-          commits: 1
-      hotspotScore: 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.6
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: backstage/docs-ui/app/layout
     type: background-worker
     name: Layout
@@ -333,10 +3837,14 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0.0013044667466178543
+      importedFiles:
+        - path: docs-ui/src/app/providers.tsx
+          kind: direct
       sinceDays: 365
-  - entityRef: backstage/docs-ui/app/app/get-started
+      shortChurnDays: 30
+  - entityRef: backstage/docs-ui/app/app/get-started/installation
     type: background-worker
-    name: Get started
+    name: Installation
     isTest: false
     properties:
       filepath: docs-ui/src/app/get-started/installation/snippets.ts
@@ -416,6 +3924,7 @@ nodes:
           commits: 1
       hotspotScore: 0.00018234481404335597
       sinceDays: 365
+      shortChurnDays: 30
   - entityRef: backstage/docs-ui/app/providers
     type: gateway-api
     name: Providers
@@ -494,27 +4003,8 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/docs-ui/components/table
-    type: gateway-api
-    name: Table (External)
-    external: true
-    properties:
-      filepath: docs-ui/src/components/Table/Table.tsx
-      containerId: components
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 100
-      y: 404
+      shortChurnDays: 30
 dependencies:
-  - from: backstage/docs-ui/app/app/components
-    to: backstage/docs-ui/components/table
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/docs-ui/app/app/components
-    to: backstage/docs-ui/components/table
-    type: direct-call
-    description: Calls module / service
   - from: backstage/docs-ui/app/layout
     to: backstage/docs-ui/app/providers
     type: direct-call

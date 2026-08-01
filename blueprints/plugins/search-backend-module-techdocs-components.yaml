@@ -331,20 +331,17 @@ nodes:
     name: Collators
     isTest: false
     properties:
-      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.test.ts
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 25
-      loc: 332
-      sloc: 278
-      churn: 6
-      lineChurn: 396
-      churn30: 1
-      churn365: 6
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 3
+      churn: 19
+      lineChurn: 948
+      churn30: 8
+      churn365: 19
       churnByWeek:
         - 0
         - 0
@@ -371,7 +368,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -381,7 +378,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 4
+        - 9
         - 0
         - 0
         - 0
@@ -394,22 +391,25 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 8
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.7894736842105263
       authors:
         - email: freben@spotify.com
-          commits: 4
+          commits: 9
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 8
         - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0.0013886258915609415
+          commits: 2
+      hotspotScore: 0.004572646875241081
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
     name: Alpha (External)
@@ -499,7 +499,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

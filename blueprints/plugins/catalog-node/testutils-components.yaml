@@ -1,0 +1,100 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-node/testutils
+  name: Testutils Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-node/testutils/test-utils
+    type: background-worker
+    name: TestUtils
+    isTest: false
+    properties:
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/testutils/catalog-service-mock
+    type: background-worker
+    name: CatalogServiceMock
+    isTest: false
+    properties:
+      filepath: plugins/catalog-node/src/testUtils/catalogServiceMock.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/testutils/catalog-service-mock-test
+    type: background-worker
+    name: CatalogServiceMock
+    isTest: true
+    properties:
+      filepath: plugins/catalog-node/src/testUtils/catalogServiceMock.test.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/testutils/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/catalog-node/src/testUtils/types.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-node/testutils/test-utils
+    to: backstage/plugins/catalog-node/testutils/catalog-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-node/testutils/test-utils
+    to: backstage/plugins/catalog-node/testutils/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-node/testutils/catalog-service-mock
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-node/testutils/catalog-service-mock
+    to: backstage/plugins/catalog-node/testutils/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-node/testutils/catalog-service-mock-test
+    to: backstage/plugins/catalog-node/testutils/catalog-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-node/testutils/types
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-node/testutils/types
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'

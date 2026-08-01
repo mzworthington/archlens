@@ -1,0 +1,220 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem
+  name: Filesystem Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read
+    type: background-worker
+    name: Read
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/read.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read-examples
+    type: background-worker
+    name: Read.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/read.examples.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read-examples-test
+    type: background-worker
+    name: Read.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/read.examples.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete-examples
+    type: background-worker
+    name: Delete.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/delete.examples.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename
+    type: background-worker
+    name: Rename
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/rename.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename-examples
+    type: background-worker
+    name: Rename.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/rename.examples.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/index.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename-test
+    type: background-worker
+    name: Rename
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/rename.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete-test
+    type: background-worker
+    name: Delete
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/delete.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete-examples-test
+    type: background-worker
+    name: Delete.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/delete.examples.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename-examples-test
+    type: background-worker
+    name: Rename.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/rename.examples.test.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete
+    type: background-worker
+    name: Delete
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend/src/scaffolder/actions/builtin/filesystem/delete.ts
+      containerId: scaffolder-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read-examples-test
+    to: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/index
+    to: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/index
+    to: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/index
+    to: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/read
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename-test
+    to: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete-test
+    to: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete-examples-test
+    to: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename-examples-test
+    to: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/rename-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend/scaffolder/actions/builtin/filesystem/delete
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'

@@ -1,0 +1,34 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-node/checkpoints
+  name: Checkpoints Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/scaffolder-node/checkpoints/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-node/src/alpha/checkpoints/types.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/checkpoints/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-node/src/alpha/checkpoints/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/scaffolder-node/checkpoints/index
+    to: backstage/plugins/scaffolder-node/checkpoints/types
+    type: direct-call
+    description: Calls module / service

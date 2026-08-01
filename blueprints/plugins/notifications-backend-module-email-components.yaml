@@ -92,57 +92,16 @@ nodes:
     name: Transports
     isTest: false
     properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/transports/smtp.ts
       containerId: notifications-backend-module-email
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 30
-      churn30: 1
-      churn365: 1
+      churn: 7
+      lineChurn: 230
+      churn30: 6
+      churn365: 7
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -158,19 +117,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
       authors:
         - email: poldsberg@gmail.com
+          commits: 6
+        - email: heikki.hellgren@op.fi
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/notifications-backend-module-email/processor
     type: background-worker
     name: Processor
     isTest: false
     properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/NotificationsEmailProcessor.ts
       containerId: notifications-backend-module-email
       technology: TypeScript Domain Service
       classification: default
@@ -178,13 +179,10 @@ nodes:
       complexity: 7
       complexityPeak: 7
       cognitiveComplexity: 21
-      functionCount: 23
-      loc: 400
-      sloc: 342
-      churn: 6
-      lineChurn: 466
-      churn30: 1
-      churn365: 6
+      churn: 11
+      lineChurn: 1119
+      churn30: 3
+      churn365: 11
       churnByWeek:
         - 0
         - 0
@@ -202,54 +200,57 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 3
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
       authorCount: 3
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.7272727272727273
       authors:
         - email: colt.mckissick.ycbp@statefarm.com
-          commits: 4
+          commits: 7
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
         - email: pschultz@pobox.com
           commits: 1
       hotspotScore: 0.011438630450181292
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/notifications-backend-module-email/extensions
     type: background-worker
     name: Extensions
@@ -447,7 +448,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

@@ -1,0 +1,208 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/webapp/services
+  name: Services Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/webapp/services/ordering-service
+    type: background-worker
+    name: OrderingService
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/OrderingService.cs
+      containerId: webapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webapp/services/basket-state
+    type: rest-api
+    name: BasketState
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/BasketState.cs
+      containerId: webapp
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/webapp/services/order-status-notification-service
+    type: background-worker
+    name: OrderStatusNotificationService
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/OrderStatus/OrderStatusNotificationService.cs
+      containerId: webapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webapp/services/order-status-changed-to-awaiting-validation-integration-event
+    type: event-broker
+    name: OrderStatusChangedToAwaitingValidationIntegrationEvent
+    isTest: false
+    properties:
+      filepath: >-
+        src/WebApp/Services/OrderStatus/IntegrationEvents/Events/OrderStatusChangedToAwaitingValidationIntegrationEvent.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-cancelled-integration-event
+    type: event-broker
+    name: OrderStatusChangedToCancelledIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/OrderStatus/IntegrationEvents/Events/OrderStatusChangedToCancelledIntegrationEvent.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-paid-integration-event
+    type: event-broker
+    name: OrderStatusChangedToPaidIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/OrderStatus/IntegrationEvents/Events/OrderStatusChangedToPaidIntegrationEvent.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-stock-confirmed-integration-event
+    type: event-broker
+    name: OrderStatusChangedToStockConfirmedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/OrderStatus/IntegrationEvents/Events/OrderStatusChangedToStockConfirmedIntegrationEvent.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-shipped-integration-event
+    type: event-broker
+    name: OrderStatusChangedToShippedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/OrderStatus/IntegrationEvents/Events/OrderStatusChangedToShippedIntegrationEvent.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-submitted-integration-event
+    type: event-broker
+    name: OrderStatusChangedToSubmittedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/OrderStatus/IntegrationEvents/Events/OrderStatusChangedToSubmittedIntegrationEvent.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-paid-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToPaidIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: >-
+        src/WebApp/Services/OrderStatus/IntegrationEvents/EventHandling/OrderStatusChangedToPaidIntegrationEventHandler.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-cancelled-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToCancelledIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: >-
+        src/WebApp/Services/OrderStatus/IntegrationEvents/EventHandling/OrderStatusChangedToCancelledIntegrationEventHandler.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-awaiting-validation-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToAwaitingValidationIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: >-
+        src/WebApp/Services/OrderStatus/IntegrationEvents/EventHandling/OrderStatusChangedToAwaitingValidationIntegrationEventHandler.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-stock-confirmed-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToStockConfirmedIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: >-
+        src/WebApp/Services/OrderStatus/IntegrationEvents/EventHandling/OrderStatusChangedToStockConfirmedIntegrationEventHandler.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-shipped-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToShippedIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: >-
+        src/WebApp/Services/OrderStatus/IntegrationEvents/EventHandling/OrderStatusChangedToShippedIntegrationEventHandler.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/order-status-changed-to-submitted-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToSubmittedIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: >-
+        src/WebApp/Services/OrderStatus/IntegrationEvents/EventHandling/OrderStatusChangedToSubmittedIntegrationEventHandler.cs
+      containerId: webapp
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webapp/services/product-image-url-provider
+    type: background-worker
+    name: ProductImageUrlProvider
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/ProductImageUrlProvider.cs
+      containerId: webapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webapp/services/basket-checkout-info
+    type: background-worker
+    name: BasketCheckoutInfo
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/BasketCheckoutInfo.cs
+      containerId: webapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webapp/services/basket-item
+    type: background-worker
+    name: BasketItem
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/BasketItem.cs
+      containerId: webapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webapp/services/basket-service
+    type: background-worker
+    name: BasketService
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/BasketService.cs
+      containerId: webapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/webapp/services/log-out-service
+    type: rest-api
+    name: LogOutService
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/LogOutService.cs
+      containerId: webapp
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/webapp/services/i-basket-state
+    type: background-worker
+    name: IBasketState
+    isTest: false
+    properties:
+      filepath: src/WebApp/Services/IBasketState.cs
+      containerId: webapp
+      technology: C# Domain Service
+      classification: default
+dependencies: []

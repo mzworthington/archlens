@@ -1,0 +1,111 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/catalog-api/integrationevents
+  name: IntegrationEvents Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/catalog-api/integrationevents/i-catalog-integration-event-service
+    type: event-broker
+    name: ICatalogIntegrationEventService
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/ICatalogIntegrationEventService.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/catalog-integration-event-service
+    type: event-broker
+    name: CatalogIntegrationEventService
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/CatalogIntegrationEventService.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/confirmed-order-stock-item
+    type: event-broker
+    name: ConfirmedOrderStockItem
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/Events/ConfirmedOrderStockItem.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/order-status-changed-to-awaiting-validation-integration-event
+    type: event-broker
+    name: OrderStatusChangedToAwaitingValidationIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/Events/OrderStatusChangedToAwaitingValidationIntegrationEvent.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/order-stock-rejected-integration-event
+    type: event-broker
+    name: OrderStockRejectedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/Events/OrderStockRejectedIntegrationEvent.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/order-status-changed-to-paid-integration-event
+    type: event-broker
+    name: OrderStatusChangedToPaidIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/Events/OrderStatusChangedToPaidIntegrationEvent.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/order-stock-confirmed-integration-event
+    type: event-broker
+    name: OrderStockConfirmedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/Events/OrderStockConfirmedIntegrationEvent.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/product-price-changed-integration-event
+    type: event-broker
+    name: ProductPriceChangedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/Events/ProductPriceChangedIntegrationEvent.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/order-stock-item
+    type: event-broker
+    name: OrderStockItem
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/Events/OrderStockItem.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/order-status-changed-to-paid-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToPaidIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/EventHandling/OrderStatusChangedToPaidIntegrationEventHandler.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/catalog-api/integrationevents/order-status-changed-to-awaiting-validation-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToAwaitingValidationIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/IntegrationEvents/EventHandling/OrderStatusChangedToAwaitingValidationIntegrationEventHandler.cs
+      containerId: catalog-api
+      technology: C# Event Client
+      classification: event-marker
+dependencies: []

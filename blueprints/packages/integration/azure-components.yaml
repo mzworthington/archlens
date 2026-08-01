@@ -1,0 +1,329 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/integration/azure
+  name: Azure Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/integration/azure/managed-identity-client-assertion-test
+    type: background-worker
+    name: ManagedIdentityClientAssertion
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/ManagedIdentityClientAssertion.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/client-assertion
+    type: background-worker
+    name: ClientAssertion
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/ClientAssertion.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/managed-identity-client-assertion
+    type: background-worker
+    name: ManagedIdentityClientAssertion
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/ManagedIdentityClientAssertion.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider
+    type: cache-store
+    name: CachedAzureDevOpsCredentialsProvider
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/CachedAzureDevOpsCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/integration/azure/core-test
+    type: background-worker
+    name: Core
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/core.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider-test
+    type: cache-store
+    name: CachedAzureDevOpsCredentialsProvider
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/CachedAzureDevOpsCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider-test
+    type: background-worker
+    name: DefaultAzureDevOpsCredentialsProvider
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/DefaultAzureDevOpsCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/types.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/core
+    type: background-worker
+    name: Core
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/core.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider
+    type: background-worker
+    name: DefaultAzureDevOpsCredentialsProvider
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/DefaultAzureDevOpsCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/azure-integration
+    type: background-worker
+    name: AzureIntegration
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/AzureIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/azure-url-test
+    type: background-worker
+    name: AzureUrl
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/AzureUrl.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/azure-url
+    type: background-worker
+    name: AzureUrl
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/AzureUrl.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/index.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/config.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/config.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/azure/azure-integration-test
+    type: background-worker
+    name: AzureIntegration
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/AzureIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/config-loader/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/sources/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/integration/azure/managed-identity-client-assertion-test
+    to: backstage/packages/integration/azure/managed-identity-client-assertion
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/managed-identity-client-assertion
+    to: backstage/packages/integration/azure/client-assertion
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider
+    to: backstage/packages/integration/azure/config
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider
+    to: backstage/packages/integration/azure/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider
+    to: backstage/packages/integration/azure/managed-identity-client-assertion
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/core-test
+    to: backstage/packages/integration/azure/core
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider-test
+    to: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider-test
+    to: backstage/packages/integration/scmintegrations/scm-integrations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider-test
+    to: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider-test
+    to: backstage/packages/integration/azure/config
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider-test
+    to: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/core
+    to: backstage/packages/integration/azure/azure-url
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider
+    to: backstage/packages/integration/azure/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider
+    to: backstage/packages/integration/azure/cached-azure-dev-ops-credentials-provider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider
+    to: backstage/packages/integration/registry/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider
+    to: backstage/packages/integration/azure/core
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/azure-integration
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azure/azure-integration
+    to: backstage/packages/integration/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azure/azure-integration
+    to: backstage/packages/integration/azure/azure-url
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/azure-integration
+    to: backstage/packages/integration/azure/config
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/azure-url-test
+    to: backstage/packages/integration/azure/azure-url
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/azure-url
+    to: backstage/packages/integration/azure/core
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/index
+    to: backstage/packages/integration/azure/azure-integration
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/index
+    to: backstage/packages/integration/azure/config
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/index
+    to: backstage/packages/integration/azure/core
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/index
+    to: backstage/packages/integration/azure/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/index
+    to: backstage/packages/integration/azure/default-azure-dev-ops-credentials-provider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/config
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/azure/config
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azure/config-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/azure/config-test
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/azure/config-test
+    to: backstage/packages/integration/azure/config
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/azure/azure-integration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/azure/azure-integration-test
+    to: backstage/packages/integration/azure/azure-integration
+    type: read-write
+    description: Queries datastore records

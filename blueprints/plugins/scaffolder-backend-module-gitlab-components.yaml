@@ -14,18 +14,15 @@ nodes:
     name: Autocomplete
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/autocomplete/autocomplete.ts
       containerId: scaffolder-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 108
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 260
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -75,7 +72,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -84,9 +81,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/module
     type: background-worker
     name: Module
@@ -336,18 +336,17 @@ nodes:
     name: Actions
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabUserInfo.examples.test.ts
       containerId: scaffolder-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 314
-      churn30: 1
-      churn365: 2
+      complexity: 42
+      complexityPeak: 42
+      cognitiveComplexity: 656
+      churn: 101
+      lineChurn: 17689
+      churn30: 53
+      churn365: 101
       churnByWeek:
         - 0
         - 0
@@ -360,6 +359,34 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 5
+        - 5
+        - 6
+        - 0
+        - 4
+        - 8
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -369,48 +396,41 @@ nodes:
         - 0
         - 0
         - 0
+        - 53
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 4
+      topAuthorPercent: 0.6039603960396039
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 53
         - email: Jellyfrog@users.noreply.github.com
+          commits: 17
+        - email: elaine.mattos@gmail.com
+          commits: 7
+        - email: myloxyloto2012@gmail.com
+          commits: 5
+        - email: 128792991+dfl-aeb@users.noreply.github.com
+          commits: 4
+        - email: bi003731@inter.co
+          commits: 4
+        - email: ben@blam.sh
+          commits: 3
+        - email: freben@gmail.com
+          commits: 3
+        - email: john.r.k.redwood@gmail.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 2
+        - email: sn0wcat@users.noreply.github.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.08512697510993289
       sinceDays: 365
+      fileCount: 53
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/util
     type: background-worker
     name: Util

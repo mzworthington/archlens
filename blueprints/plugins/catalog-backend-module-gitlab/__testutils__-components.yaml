@@ -1,0 +1,70 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-gitlab/__testutils__
+  name: __testutils__ Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/__testutils__/mocks
+    type: background-worker
+    name: Mocks
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/__testUtils__/mocks.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/__testutils__/handlers
+    type: background-worker
+    name: Handlers
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/__testUtils__/handlers.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-gitlab/__testutils__/mocks
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/__testutils__/mocks
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/__testutils__/mocks
+    to: backstage/plugins/catalog-backend-module-gitlab/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/__testutils__/handlers
+    to: backstage/plugins/catalog-backend-module-gitlab/__testutils__/mocks
+    type: direct-call
+    description: Calls module / service

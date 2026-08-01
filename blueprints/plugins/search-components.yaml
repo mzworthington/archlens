@@ -20,29 +20,11 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 19
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 74
+      churn30: 2
+      churn365: 3
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -80,13 +62,32 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search/plugin
     type: gateway-api
     name: Plugin
@@ -493,18 +494,104 @@ nodes:
     name: Searchmodal
     isTest: false
     properties:
-      filepath: plugins/search/src/components/SearchModal/index.tsx
       containerId: search
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 22
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      complexityPeak: 1
+      churn: 10
+      lineChurn: 834
+      churn30: 5
+      churn365: 10
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: fatihcamgoz@hotmail.com.tr
+          commits: 2
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+        - email: sydneynicoleachinger@spotify.com
+          commits: 1
+      hotspotScore: 0.001290440222460673
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/search/components
+    type: gateway-api
+    name: Components
+    isTest: false
+    properties:
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 17
+      churn: 10
+      lineChurn: 705
+      churn30: 7
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -516,33 +603,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -559,29 +620,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7
       authors:
         - email: poldsberg@gmail.com
+          commits: 7
+        - email: fatihcamgoz@hotmail.com.tr
           commits: 1
-      hotspotScore: 0
+        - email: jphilip@spotify.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.0025773738138820507
       sinceDays: 365
-  - entityRef: backstage/plugins/search/components
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/search/components/searchpage
     type: gateway-api
-    name: Components
+    name: Searchpage
     isTest: false
     properties:
-      filepath: plugins/search/src/components/SearchModal/SearchModal.tsx
       containerId: search
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 251
-      churn30: 1
+      lineChurn: 130
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -594,7 +687,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -632,87 +724,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: fatihcamgoz@hotmail.com.tr
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/search/components/searchpage
-    type: gateway-api
-    name: Searchpage
-    isTest: false
-    properties:
-      filepath: plugins/search/src/components/SearchPage/index.tsx
-      containerId: search
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -721,9 +734,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search/components/sidebarsearch
     type: background-worker
     name: Sidebarsearch
@@ -885,18 +901,15 @@ nodes:
     name: Searchtype
     isTest: false
     properties:
-      filepath: plugins/search/src/components/SearchType/SearchType.Tabs.test.tsx
       containerId: search
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 129
-      churn30: 1
-      churn365: 1
+      churn: 11
+      lineChurn: 1101
+      churn30: 7
+      churn365: 11
       churnByWeek:
         - 0
         - 0
@@ -905,85 +918,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/search/components/homepagecomponent
-    type: gateway-api
-    name: Homepagecomponent
-    isTest: false
-    properties:
-      filepath: plugins/search/src/components/HomePageComponent/HomePageSearchBar.stories.tsx
-      containerId: search
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 86
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -1024,20 +959,110 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6363636363636364
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 7
+        - email: sydneynicoleachinger@spotify.com
+          commits: 3
         - email: charles.dedreuille@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/search/components/homepagecomponent
+    type: gateway-api
+    name: Homepagecomponent
+    isTest: false
+    properties:
+      containerId: search
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 7
+      lineChurn: 246
+      churn30: 4
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5714285714285714
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+        - email: sydneynicoleachinger@spotify.com
+          commits: 1
+      hotspotScore: 0.00022793101755419498
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search/apis-test
     type: background-worker
     name: Apis test
@@ -1201,7 +1226,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/techdocs/src/search/components/TechDocsSearch.tsx
       containerId: techdocs
       technology: React Component
       classification: ui-import
@@ -1237,7 +1261,6 @@ nodes:
     name: Hooks (External)
     external: true
     properties:
-      filepath: plugins/techdocs/src/hooks/useTechDocsSearch.ts
       containerId: techdocs
       technology: React Component
       classification: ui-import
@@ -1321,7 +1344,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
       containerId: catalog-react
       technology: React Component
       classification: ui-import

@@ -100,12 +100,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 45
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -155,7 +153,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -164,26 +162,28 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-node/auth
     type: background-worker
     name: Auth
     isTest: false
     properties:
-      filepath: plugins/kubernetes-node/src/auth/PinnipedHelper.test.ts
       containerId: kubernetes-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 400
-      churn30: 1
-      churn365: 1
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 5
+      lineChurn: 577
+      churn30: 3
+      churn365: 5
       churnByWeek:
         - 0
         - 0
@@ -191,30 +191,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -238,13 +215,43 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6
       authors:
         - email: poldsberg@gmail.com
+          commits: 3
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.0016831828988617475
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-node/extensions
     type: rest-api
     name: Extensions
@@ -334,7 +341,6 @@ nodes:
     name: Auth (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.test.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -346,7 +352,6 @@ nodes:
     name: Cluster locator (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/CatalogClusterLocator.test.ts
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
@@ -394,7 +399,6 @@ nodes:
     name: Routes (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/routes/resourcesRoutes.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -406,7 +410,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/service/ProxyAuditSession.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -418,7 +421,6 @@ nodes:
     name: Service locator (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/buildDefaultServiceLocator.ts
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default

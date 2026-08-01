@@ -1,0 +1,39 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/ordering-infrastructure/idempotency
+  name: Idempotency Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/ordering-infrastructure/idempotency/request-manager
+    type: background-worker
+    name: RequestManager
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/Idempotency/RequestManager.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-infrastructure/idempotency/i-request-manager
+    type: background-worker
+    name: IRequestManager
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/Idempotency/IRequestManager.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-infrastructure/idempotency/client-request
+    type: background-worker
+    name: ClientRequest
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/Idempotency/ClientRequest.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+dependencies: []

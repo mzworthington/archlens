@@ -1,0 +1,83 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-gitlab/events
+  name: Events Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/events/analyze-git-lab-webhook-event
+    type: background-worker
+    name: AnalyzeGitLabWebhookEvent
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/events/analyzeGitLabWebhookEvent.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/events/analyze-git-lab-webhook-event-test
+    type: background-worker
+    name: AnalyzeGitLabWebhookEvent
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/events/analyzeGitLabWebhookEvent.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/events/git-lab-scm-events-bridge
+    type: background-worker
+    name: GitLabScmEventsBridge
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/events/GitLabScmEventsBridge.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/alpha.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-gitlab/events/analyze-git-lab-webhook-event
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/events/analyze-git-lab-webhook-event-test
+    to: backstage/plugins/catalog-backend-module-gitlab/events/analyze-git-lab-webhook-event
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/events/git-lab-scm-events-bridge
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/events/git-lab-scm-events-bridge
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/events/git-lab-scm-events-bridge
+    to: backstage/plugins/catalog-backend-module-gitlab/events/analyze-git-lab-webhook-event
+    type: direct-call
+    description: Calls module / service

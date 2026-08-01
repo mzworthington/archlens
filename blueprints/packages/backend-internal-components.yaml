@@ -14,18 +14,15 @@ nodes:
     name: Wiring
     isTest: false
     properties:
-      filepath: packages/backend-internal/src/wiring/helpers.ts
       containerId: backend-internal
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 100
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      churn: 7
+      lineChurn: 194
+      churn30: 3
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -62,10 +59,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
-        - 0
+        - 2
+        - 2
         - 0
         - 0
         - 0
@@ -75,18 +70,25 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 0
+        - 3
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.7142857142857143
       authors:
         - email: poldsberg@gmail.com
+          commits: 5
+        - email: jackpalmer@spotify.com
           commits: 2
-      hotspotScore: 0
+      hotspotScore: 0.00012623871741463105
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-internal/index
     type: background-worker
     name: Index
@@ -196,7 +198,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -208,7 +209,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default

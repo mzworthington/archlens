@@ -1,0 +1,208 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage
+  name: Techdocsreaderpage Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect
+    type: gateway-api
+    name: UseExternalRedirect
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/useExternalRedirect.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    type: gateway-api
+    name: TechDocsReaderPage
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/TechDocsReaderPage.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage/context-test
+    type: gateway-api
+    name: Context
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/context.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage/context
+    type: gateway-api
+    name: Context
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/context.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/index.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect-test
+    type: gateway-api
+    name: UseExternalRedirect
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPage/useExternalRedirect.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/techdocs-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/index.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/techdocs-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-common/src/index.ts
+      containerId: techdocs-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/index.ts
+      containerId: techdocs-module-addons-contrib
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect
+    to: backstage/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect
+    to: backstage/plugins/techdocs/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    to: backstage/plugins/techdocs/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    to: backstage/plugins/techdocs/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    to: backstage/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    to: backstage/plugins/techdocs/reader/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/tech-docs-reader-page-test
+    to: backstage/plugins/techdocs-module-addons-contrib/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-module-addons-contrib'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/context-test
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/context
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/index
+    to: backstage/plugins/techdocs/reader/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect-test
+    to: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage/use-external-redirect-test
+    to: backstage/plugins/techdocs-common/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-common'

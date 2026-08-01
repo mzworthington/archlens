@@ -1,0 +1,313 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/catalog-model/entity/policies
+  name: Policies Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy-test
+    type: background-worker
+    name: GroupDefaultParentEntityPolicy
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/GroupDefaultParentEntityPolicy.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/no-foreign-root-fields-entity-policy
+    type: background-worker
+    name: NoForeignRootFieldsEntityPolicy
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/NoForeignRootFieldsEntityPolicy.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/field-format-entity-policy-test
+    type: background-worker
+    name: FieldFormatEntityPolicy
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/FieldFormatEntityPolicy.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/field-format-entity-policy
+    type: background-worker
+    name: FieldFormatEntityPolicy
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/FieldFormatEntityPolicy.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy-test
+    type: background-worker
+    name: SchemaValidEntityPolicy
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/SchemaValidEntityPolicy.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/types.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/no-foreign-root-fields-entity-policy-test
+    type: background-worker
+    name: NoForeignRootFieldsEntityPolicy
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/NoForeignRootFieldsEntityPolicy.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy
+    type: background-worker
+    name: GroupDefaultParentEntityPolicy
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/GroupDefaultParentEntityPolicy.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy
+    type: background-worker
+    name: DefaultNamespaceEntityPolicy
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/DefaultNamespaceEntityPolicy.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy
+    type: background-worker
+    name: SchemaValidEntityPolicy
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/SchemaValidEntityPolicy.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy-test
+    type: background-worker
+    name: DefaultNamespaceEntityPolicy
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/entity/policies/DefaultNamespaceEntityPolicy.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/constants
+    type: background-worker
+    name: Constants (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/entity/constants.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/catalog-model/entity/entity
+    type: background-worker
+    name: Entity (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/entity/Entity.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/catalog-model/kinds
+    type: background-worker
+    name: Kinds (External)
+    external: true
+    properties:
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/catalog-model/entity/ref
+    type: background-worker
+    name: Ref (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/entity/ref.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/config-loader/schema
+    type: background-worker
+    name: Schema (External)
+    external: true
+    properties:
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/catalog-model/validation
+    type: background-worker
+    name: Validation (External)
+    external: true
+    properties:
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy-test
+    to: backstage/packages/catalog-model/kinds
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy-test
+    to: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/no-foreign-root-fields-entity-policy
+    to: backstage/packages/catalog-model/entity/policies/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/no-foreign-root-fields-entity-policy
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/field-format-entity-policy-test
+    to: backstage/packages/catalog-model/entity/policies/field-format-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/field-format-entity-policy
+    to: backstage/packages/catalog-model/entity/policies/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/field-format-entity-policy
+    to: backstage/packages/catalog-model/validation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/field-format-entity-policy
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy-test
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy-test
+    to: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/types
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/no-foreign-root-fields-entity-policy-test
+    to: backstage/packages/catalog-model/entity/policies/no-foreign-root-fields-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy
+    to: backstage/packages/catalog-model/kinds
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy
+    to: backstage/packages/catalog-model/entity/policies/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy
+    to: backstage/packages/catalog-model/entity/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy
+    to: backstage/packages/catalog-model/entity/ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/index
+    to: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/index
+    to: backstage/packages/catalog-model/entity/policies/group-default-parent-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/index
+    to: backstage/packages/catalog-model/entity/policies/field-format-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/index
+    to: backstage/packages/catalog-model/entity/policies/no-foreign-root-fields-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/index
+    to: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/index
+    to: backstage/packages/catalog-model/entity/policies/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy
+    to: backstage/packages/catalog-model/entity/policies/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy
+    to: backstage/packages/catalog-model/entity/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/schema-valid-entity-policy
+    to: backstage/packages/catalog-model/entity/policies/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy-test
+    to: backstage/packages/catalog-model/entity/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy-test
+    to: backstage/packages/catalog-model/entity/policies/default-namespace-entity-policy
+    type: direct-call
+    description: Calls module / service

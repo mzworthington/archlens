@@ -134,6 +134,21 @@ describe('systemDiscovery', () => {
     expect(systems.every(s => s.productId === 'acme')).toBe(true);
   });
 
+  it('reads app/package.json when the repo root has no package manifest', () => {
+    const fs = memoryFs({
+      texts: {
+        '/repo/app/package.json': JSON.stringify({ name: 'archlens' }),
+      },
+      dirs: { '/repo': ['app'] },
+    });
+    const systems = discoverSystems('/repo', fs, { fallbackId: 'sim' });
+    expect(systems.find(s => s.id === 'archlens')).toMatchObject({
+      kind: 'product',
+      displayName: 'ArchLens',
+    });
+    expect(systems.find(s => s.id === 'app')?.productId).toBe('archlens');
+  });
+
   it('falls back to a single system when no workspaces or standalone packages exist', () => {
     const fs = memoryFs({
       texts: { '/repo/package.json': JSON.stringify({ name: 'simple-app' }) },

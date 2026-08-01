@@ -1,0 +1,70 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-react/components/horizontalpodautoscalers
+  name: Horizontalpodautoscalers Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-react/components/horizontalpodautoscalers/horizontal-pod-autoscaler-drawer-test
+    type: gateway-api
+    name: HorizontalPodAutoscalerDrawer
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/HorizontalPodAutoscalers/HorizontalPodAutoscalerDrawer.test.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/horizontalpodautoscalers/horizontal-pod-autoscaler-drawer
+    type: gateway-api
+    name: HorizontalPodAutoscalerDrawer
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/HorizontalPodAutoscalers/HorizontalPodAutoscalerDrawer.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/horizontalpodautoscalers/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/HorizontalPodAutoscalers/index.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-react/components/horizontalpodautoscalers/horizontal-pod-autoscaler-drawer-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/horizontalpodautoscalers/horizontal-pod-autoscaler-drawer
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service

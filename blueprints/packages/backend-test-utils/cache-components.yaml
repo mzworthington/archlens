@@ -1,0 +1,203 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-test-utils/cache
+  name: Cache Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/packages/backend-test-utils/cache/test-caches-test
+    type: cache-store
+    name: TestCaches
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/cache/TestCaches.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/test-caches
+    type: event-broker
+    name: TestCaches
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/cache/TestCaches.ts
+      containerId: backend-test-utils
+      technology: TypeScript Event Client
+      classification: event-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/valkey-test
+    type: cache-store
+    name: Valkey
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/cache/valkey.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/helpers
+    type: cache-store
+    name: Helpers
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/cache/helpers.ts
+      containerId: backend-test-utils
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/redis
+    type: event-broker
+    name: Redis
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/cache/redis.ts
+      containerId: backend-test-utils
+      technology: TypeScript Event Client
+      classification: event-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/memcache
+    type: cache-store
+    name: Memcache
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/cache/memcache.ts
+      containerId: backend-test-utils
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/redis-test
+    type: event-broker
+    name: Redis
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/cache/redis.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Event Client
+      classification: event-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/types
+    type: cache-store
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/cache/types.ts
+      containerId: backend-test-utils
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/index
+    type: cache-store
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/cache/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/memcache-test
+    type: cache-store
+    name: Memcache
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/cache/memcache.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-test-utils/cache/valkey
+    type: cache-store
+    name: Valkey
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/cache/valkey.ts
+      containerId: backend-test-utils
+      technology: TypeScript Cache Client
+      classification: cache-marker
+dependencies:
+  - from: backstage/packages/backend-test-utils/cache/test-caches-test
+    to: backstage/packages/backend-test-utils/cache/test-caches
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/test-caches
+    to: backstage/packages/backend-test-utils/isdockerdisabledfortests/is-docker-disabled-for-tests
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/cache/test-caches
+    to: backstage/packages/backend-test-utils/cache/memcache
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/test-caches
+    to: backstage/packages/backend-test-utils/cache/redis
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/test-caches
+    to: backstage/packages/backend-test-utils/cache/types
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/test-caches
+    to: backstage/packages/backend-test-utils/cache/valkey
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/valkey-test
+    to: backstage/packages/backend-test-utils/isdockerdisabledfortests/is-docker-disabled-for-tests
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/cache/valkey-test
+    to: backstage/packages/backend-test-utils/cache/valkey
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/helpers
+    to: backstage/packages/backend-test-utils/waitforready/wait-for-ready
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/cache/helpers
+    to: backstage/packages/backend-test-utils/cache/types
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/redis
+    to: backstage/packages/backend-test-utils/cache/types
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/redis
+    to: backstage/packages/backend-test-utils/cache/helpers
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/memcache
+    to: backstage/packages/backend-test-utils/cache/types
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/memcache
+    to: backstage/packages/backend-test-utils/cache/helpers
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/redis-test
+    to: backstage/packages/backend-test-utils/isdockerdisabledfortests/is-docker-disabled-for-tests
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/cache/redis-test
+    to: backstage/packages/backend-test-utils/cache/redis
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/types
+    to: backstage/packages/backend-test-utils/getdockerimageforname/get-docker-image-for-name
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/cache/index
+    to: backstage/packages/backend-test-utils/cache/test-caches
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/index
+    to: backstage/packages/backend-test-utils/cache/types
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/memcache-test
+    to: backstage/packages/backend-test-utils/isdockerdisabledfortests/is-docker-disabled-for-tests
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/cache/memcache-test
+    to: backstage/packages/backend-test-utils/cache/memcache
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/valkey
+    to: backstage/packages/backend-test-utils/cache/types
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-test-utils/cache/valkey
+    to: backstage/packages/backend-test-utils/cache/helpers
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics

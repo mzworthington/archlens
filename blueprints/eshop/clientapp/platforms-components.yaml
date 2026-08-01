@@ -1,0 +1,66 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/clientapp/platforms
+  name: Platforms Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/clientapp/platforms/app-delegate
+    type: background-worker
+    name: AppDelegate
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Platforms/iOS/AppDelegate.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/platforms/program
+    type: background-worker
+    name: Program
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Platforms/iOS/Program.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/platforms/main-application
+    type: background-worker
+    name: MainApplication
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Platforms/Android/MainApplication.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/platforms/web-authentication-callback-activity
+    type: background-worker
+    name: WebAuthenticationCallbackActivity
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Platforms/Android/WebAuthenticationCallbackActivity.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/platforms/main-activity
+    type: background-worker
+    name: MainActivity
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Platforms/Android/MainActivity.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/platforms/app-xaml
+    type: background-worker
+    name: App.xaml
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Platforms/Windows/App.xaml.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+dependencies: []

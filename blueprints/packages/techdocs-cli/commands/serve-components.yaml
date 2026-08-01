@@ -1,0 +1,77 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/techdocs-cli/commands/serve
+  name: Serve Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/techdocs-cli/commands/serve/mkdocs
+    type: gateway-api
+    name: Mkdocs
+    isTest: false
+    properties:
+      filepath: packages/techdocs-cli/src/commands/serve/mkdocs.ts
+      containerId: techdocs-cli
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/techdocs-cli/commands/serve/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/techdocs-cli/src/commands/serve/utils.ts
+      containerId: techdocs-cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/techdocs-cli/commands
+    type: gateway-api
+    name: Commands (External)
+    external: true
+    properties:
+      containerId: techdocs-cli
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/techdocs-cli/commands/serve/mkdocs
+    to: backstage/packages/techdocs-cli/utility/utility
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/serve/mkdocs
+    to: backstage/packages/techdocs-cli/mkdocsserver/mkdocs-server
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/serve/mkdocs
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/techdocs-cli/commands/serve/mkdocs
+    to: backstage/packages/techdocs-cli/commands/serve/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/serve/mkdocs
+    to: backstage/packages/techdocs-cli/commands
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/serve/utils
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'

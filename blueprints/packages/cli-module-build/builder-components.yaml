@@ -1,0 +1,192 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-build/builder
+  name: Builder Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-module-build/builder/plugins-test
+    type: background-worker
+    name: Plugins
+    isTest: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/plugins.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/builder/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/types.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/builder/packager
+    type: background-worker
+    name: Packager
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/packager.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/builder/packager-test
+    type: background-worker
+    name: Packager
+    isTest: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/packager.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/builder/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/index.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/builder/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/config.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/builder/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/config.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/builder/plugins
+    type: background-worker
+    name: Plugins
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/plugins.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-module-build/builder/plugins-test
+    to: backstage/packages/cli-module-build/builder/plugins
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/plugins-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/cli-module-build/builder/types
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/builder/packager
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/builder/packager
+    to: backstage/packages/cli-module-build/builder/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/packager
+    to: backstage/packages/cli-module-build/builder/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/packager
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/builder/packager-test
+    to: backstage/packages/cli-module-build/builder/packager
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/index
+    to: backstage/packages/cli-module-build/builder/packager
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/index
+    to: backstage/packages/cli-module-build/builder/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/config
+    to: backstage/packages/cli-module-build/builder/plugins
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/config
+    to: backstage/packages/cli-module-build/builder/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/config
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/builder/config
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/builder/config
+    to: backstage/packages/cli-module-build/entrypoints/entry-points
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/config-test
+    to: backstage/packages/cli-module-build/builder/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/config-test
+    to: backstage/packages/cli-module-build/builder/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/builder/plugins
+    to: backstage/packages/cli-module-build/entrypoints/entry-points
+    type: direct-call
+    description: Calls module / service

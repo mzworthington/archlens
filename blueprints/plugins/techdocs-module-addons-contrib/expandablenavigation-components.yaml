@@ -1,0 +1,91 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation
+  name: Expandablenavigation Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation/expandable-navigation
+    type: gateway-api
+    name: ExpandableNavigation
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ExpandableNavigation/ExpandableNavigation.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation/expandable-navigation-test
+    type: gateway-api
+    name: ExpandableNavigation
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ExpandableNavigation/ExpandableNavigation.test.tsx
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ExpandableNavigation/index.ts
+      containerId: techdocs-module-addons-contrib
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/index.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/techdocs-addons-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-addons-test-utils/src/index.ts
+      containerId: techdocs-addons-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation/expandable-navigation
+    to: backstage/plugins/techdocs-react/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-react'
+  - from: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation/expandable-navigation-test
+    to: backstage/plugins/techdocs-addons-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-addons-test-utils'
+  - from: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation/expandable-navigation-test
+    to: backstage/plugins/techdocs-module-addons-contrib/plugin/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-module-addons-contrib/expandablenavigation/expandable-navigation-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'

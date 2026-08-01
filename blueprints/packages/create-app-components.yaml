@@ -19,13 +19,12 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 27
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      complexityPeak: 1
+      churn: 8
+      lineChurn: 132
+      churn30: 4
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -59,12 +58,9 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -78,15 +74,23 @@ nodes:
         - 1
         - 0
         - 0
+        - 4
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.875
       authors:
         - email: poldsberg@gmail.com
+          commits: 7
+        - email: clairep@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00016481165884687946
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/create-app/index
     type: gateway-api
     name: Index
@@ -97,39 +101,15 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 6
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      churn: 14
+      lineChurn: 246
+      churn30: 5
+      churn365: 14
       churnByWeek:
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -157,14 +137,45 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 2
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6428571428571429
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 7
+        - email: awanlin@spotify.com
+          commits: 3
+        - email: freben@gmail.com
+          commits: 2
+        - email: rajibq@users.noreply.github.com
+          commits: 2
+      hotspotScore: 0.0003261166866544636
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/create-app/app
     type: gateway-api
     name: App
@@ -175,46 +186,14 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 224
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      churn: 7
+      lineChurn: 356
+      churn30: 2
+      churn365: 7
       churnByWeek:
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
         - 0
@@ -231,18 +210,55 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5714285714285714
       authors:
         - email: poldsberg@gmail.com
+          commits: 4
+        - email: freben@gmail.com
           commits: 2
-      hotspotScore: 0
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.00046287529718698055
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/create-app/apis
     type: gateway-api
     name: Apis
@@ -484,18 +500,15 @@ nodes:
     name: Root
     isTest: false
     properties:
-      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/LogoFull.tsx
       containerId: create-app
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 29
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 60
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -545,7 +558,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -554,9 +567,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/create-app/components
     type: gateway-api
     name: Components
@@ -640,18 +656,16 @@ nodes:
     name: Nav
     isTest: false
     properties:
-      filepath: packages/create-app/templates/default-app/packages/app/src/modules/nav/LogoFull.tsx
       containerId: create-app
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 28
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      complexityPeak: 1
+      churn: 7
+      lineChurn: 165
+      churn30: 7
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -701,18 +715,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 5
+        - email: kamezaki@ap-com.co.jp
+          commits: 2
+      hotspotScore: 0.00023143764859349028
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/create-app/createapp-test
     type: background-worker
     name: Createapp test
@@ -1332,7 +1351,6 @@ nodes:
     name: Modules (External)
     external: true
     properties:
-      filepath: packages/app/src/modules/appModuleScaffolder.tsx
       containerId: app
       technology: React Component
       classification: ui-import

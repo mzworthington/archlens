@@ -92,57 +92,24 @@ nodes:
     name: Schema
     isTest: false
     properties:
-      filepath: packages/config-loader/src/schema/load.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 5
-      complexityPeak: 5
-      cognitiveComplexity: 10
-      functionCount: 8
-      loc: 178
-      sloc: 128
-      churn: 6
-      lineChurn: 218
-      churn30: 4
-      churn365: 6
+      complexity: 17
+      complexityPeak: 17
+      cognitiveComplexity: 128
+      churn: 58
+      lineChurn: 4484
+      churn30: 43
+      churn365: 58
       churnByWeek:
+        - 1
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -156,18 +123,60 @@ nodes:
         - 0
         - 2
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
-        - 3
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 11
+        - 32
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.8793103448275862
       authors:
         - email: poldsberg@gmail.com
-          commits: 6
-      hotspotScore: 0.003822227832831885
+          commits: 51
+        - email: freben@gmail.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: rohanjethwani17@gmail.com
+          commits: 1
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.061460722225728855
       sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/config-loader/configsources
     type: background-worker
     name: Configsources
@@ -1219,12 +1228,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 42
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 87
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -1274,8 +1281,8 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 1
-        - 0
         - 0
         - 0
         - 0
@@ -1283,9 +1290,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/config-loader/remoteconfigsource
     type: background-worker
     name: Remoteconfigsource
@@ -1447,18 +1457,15 @@ nodes:
     name: Transform
     isTest: false
     properties:
-      filepath: packages/config-loader/src/sources/transform/apply.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 129
-      churn30: 1
-      churn365: 2
+      churn: 12
+      lineChurn: 860
+      churn30: 9
+      churn365: 12
       churnByWeek:
         - 0
         - 0
@@ -1485,21 +1492,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -1513,13 +1506,32 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: poldsberg@gmail.com
+          commits: 10
+        - email: freben@gmail.com
           commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/config-loader/configsources-test
     type: background-worker
     name: Configsources test
@@ -1930,7 +1942,6 @@ nodes:
     name: Azure (External)
     external: true
     properties:
-      filepath: packages/integration/src/azure/ManagedIdentityClientAssertion.test.ts
       containerId: integration
       technology: TypeScript Cache Client
       classification: cache-marker
@@ -1942,7 +1953,6 @@ nodes:
     name: Bitbucketcloud (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketCloud/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
@@ -1954,19 +1964,28 @@ nodes:
     name: Bitbucketserver (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketServer/BitbucketServerIntegration.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
       x: 3090
       y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/bundle
+    type: background-worker
+    name: Bundle (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: -204
   - entityRef: backstage/packages/cli-module-build/bundler
     type: gateway-api
     name: Bundler (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
@@ -2002,7 +2021,6 @@ nodes:
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-config/src/commands/schema.ts
       containerId: cli-module-config
       technology: React Component
       classification: ui-import
@@ -2038,7 +2056,6 @@ nodes:
     name: Gerrit (External)
     external: true
     properties:
-      filepath: packages/integration/src/gerrit/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
@@ -2050,7 +2067,6 @@ nodes:
     name: Gitea (External)
     external: true
     properties:
-      filepath: packages/integration/src/gitea/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
@@ -2062,7 +2078,6 @@ nodes:
     name: Github (External)
     external: true
     properties:
-      filepath: packages/integration/src/github/SingleInstanceGithubCredentialsProvider.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
@@ -2074,7 +2089,6 @@ nodes:
     name: Gitlab (External)
     external: true
     properties:
-      filepath: packages/integration/src/gitlab/DefaultGitlabCredentialsProvider.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
@@ -2086,7 +2100,6 @@ nodes:
     name: Harness (External)
     external: true
     properties:
-      filepath: packages/integration/src/harness/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
@@ -2170,31 +2183,17 @@ nodes:
     name: Manager (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
       x: -5190
       y: -204
-  - entityRef: backstage/packages/cli-module-build/commands/package
-    type: gateway-api
-    name: Package (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/commands/package/prepack.ts
-      containerId: cli-module-build
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -1510
-      y: -204
-  - entityRef: backstage/packages/repo-tools/commands/package
+  - entityRef: backstage/packages/repo-tools/commands/package/schema/openapi
     type: background-worker
-    name: Package (External)
+    name: Openapi (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/package/schema/openapi/fuzz.ts
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
@@ -2206,7 +2205,6 @@ nodes:
     name: Packager (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/packager/createDistWorkspace.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
@@ -2218,7 +2216,6 @@ nodes:
     name: Policies (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/entity/policies/GroupDefaultParentEntityPolicy.test.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
@@ -2230,7 +2227,6 @@ nodes:
     name: Rootconfig (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
@@ -2242,7 +2238,6 @@ nodes:
     name: Runner (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/runner/startEmbeddedDb.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
@@ -2254,7 +2249,6 @@ nodes:
     name: Schemas (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
@@ -2266,7 +2260,6 @@ nodes:
     name: Services (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.test.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -2278,7 +2271,6 @@ nodes:
     name: Tree (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
@@ -2290,7 +2282,6 @@ nodes:
     name: Validation (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/validation/entitySchemaValidator.test.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
@@ -2746,7 +2737,7 @@ dependencies:
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/bundle
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
@@ -2758,7 +2749,7 @@ dependencies:
     to: backstage/packages/config-loader/schema
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'

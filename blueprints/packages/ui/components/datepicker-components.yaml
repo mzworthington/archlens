@@ -1,0 +1,148 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/ui/components/datepicker
+  name: Datepicker Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/ui/components/datepicker/definition
+    type: background-worker
+    name: Definition
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/DatePicker/definition.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/datepicker/date-picker-group
+    type: gateway-api
+    name: DatePickerGroup
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/DatePicker/DatePickerGroup.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/datepicker/types
+    type: gateway-api
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/DatePicker/types.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/datepicker/date-picker-calendar
+    type: gateway-api
+    name: DatePickerCalendar
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/DatePicker/DatePickerCalendar.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/datepicker/date-picker-stories
+    type: gateway-api
+    name: DatePicker.stories
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/DatePicker/DatePicker.stories.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/datepicker/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/DatePicker/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/ui/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/ui/components/fieldlabel/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/components/FieldLabel/types.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/ui/components/datepicker/definition
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/definition
+    to: backstage/packages/ui/components/datepicker/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/date-picker-group
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/date-picker-group
+    to: backstage/packages/ui/components/datepicker/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/types
+    to: backstage/packages/ui/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/types
+    to: backstage/packages/ui/components/fieldlabel/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/date-picker-calendar
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/date-picker-calendar
+    to: backstage/packages/ui/components/datepicker/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/date-picker-stories
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/index
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/index
+    to: backstage/packages/ui/components/datepicker/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/datepicker/index
+    to: backstage/packages/ui/components/datepicker/definition
+    type: direct-call
+    description: Calls module / service

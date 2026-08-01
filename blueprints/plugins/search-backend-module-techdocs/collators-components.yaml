@@ -1,0 +1,259 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search-backend-module-techdocs/collators
+  name: Collators Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory-test
+    type: background-worker
+    name: DefaultTechDocsCollatorFactory
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.test.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-entity-transformer
+    type: background-worker
+    name: TechDocsCollatorEntityTransformer
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/TechDocsCollatorEntityTransformer.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-entity-transformer
+    type: background-worker
+    name: DefaultTechDocsCollatorEntityTransformer
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/defaultTechDocsCollatorEntityTransformer.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    type: background-worker
+    name: DefaultTechDocsCollatorFactory
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-document-transformer
+    type: background-worker
+    name: TechDocsCollatorDocumentTransformer
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/TechDocsCollatorDocumentTransformer.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-entity-transformer-test
+    type: background-worker
+    name: DefaultTechDocsCollatorEntityTransformer
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/defaultTechDocsCollatorEntityTransformer.test.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-document-transformer
+    type: background-worker
+    name: DefaultTechDocsCollatorDocumentTransformer
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/defaultTechDocsCollatorDocumentTransformer.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-module-techdocs/collators/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-techdocs/src/collators/index.ts
+      containerId: search-backend-module-techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-common/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/plugins/search-backend-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/techdocs-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-node/src/index.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/testutils
+    type: background-worker
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory-test
+    to: backstage/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory-test
+    to: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory-test
+    to: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-entity-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory-test
+    to: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-document-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-entity-transformer
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-entity-transformer
+    to: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-entity-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/catalog-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-entity-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-document-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-entity-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-document-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-factory
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-document-transformer
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-entity-transformer-test
+    to: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-entity-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-document-transformer
+    to: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-document-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/index
+    to: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-entity-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/index
+    to: backstage/plugins/search-backend-module-techdocs/collators/default-tech-docs-collator-document-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/index
+    to: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-entity-transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-techdocs/collators/index
+    to: backstage/plugins/search-backend-module-techdocs/collators/tech-docs-collator-document-transformer
+    type: direct-call
+    description: Calls module / service

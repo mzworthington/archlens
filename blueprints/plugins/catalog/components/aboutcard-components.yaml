@@ -1,0 +1,187 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog/components/aboutcard
+  name: Aboutcard Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog/components/aboutcard/about-field
+    type: gateway-api
+    name: AboutField
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/components/AboutCard/AboutField.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/components/aboutcard/about-content
+    type: gateway-api
+    name: AboutContent
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/components/AboutCard/AboutContent.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/components/aboutcard/about-card-test
+    type: gateway-api
+    name: AboutCard
+    isTest: true
+    properties:
+      filepath: plugins/catalog/src/components/AboutCard/AboutCard.test.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/components/aboutcard/about-content-test
+    type: gateway-api
+    name: AboutContent
+    isTest: true
+    properties:
+      filepath: plugins/catalog/src/components/AboutCard/AboutContent.test.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/components/aboutcard/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/components/AboutCard/index.ts
+      containerId: catalog
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog/components/aboutcard/hooks
+    type: gateway-api
+    name: Hooks
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/components/AboutCard/hooks.ts
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog/components/entitylinkscard
+    type: gateway-api
+    name: Entitylinkscard (External)
+    external: true
+    properties:
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog/components/aboutcard/about-field
+    to: backstage/plugins/catalog/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/components/aboutcard/about-content
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog/components/aboutcard/about-content
+    to: backstage/plugins/catalog/components/entitylinkscard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/components/aboutcard/about-content
+    to: backstage/plugins/catalog/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/components/aboutcard/about-card-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog/components/aboutcard/about-card-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog/components/aboutcard/about-card-test
+    to: backstage/plugins/catalog/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/components/aboutcard/about-card-test
+    to: backstage/plugins/catalog/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/components/aboutcard/about-card-test
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/catalog/components/aboutcard/about-card-test
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/catalog/components/aboutcard/about-content-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog/components/aboutcard/index
+    to: backstage/plugins/catalog/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/components/aboutcard/hooks
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'

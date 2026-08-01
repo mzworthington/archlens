@@ -257,18 +257,23 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/example-todo-list/src/components/TodoListPage/TodoListPage.tsx
       containerId: example-todo-list
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 194
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 281
+      churn30: 2
+      churn365: 2
+      hotspotScore: 0
+      authorCount: 1
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
       churnByWeek:
         - 0
         - 0
@@ -318,20 +323,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
       topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      importedFiles:
-        - path: plugins/example-todo-list/src/components/TodoList/index.ts
-          kind: direct
       sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/example-todo-list/components/todolistpage

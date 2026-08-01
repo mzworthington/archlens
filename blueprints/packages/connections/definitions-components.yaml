@@ -1,0 +1,278 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/connections/definitions
+  name: Definitions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/connections/definitions/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/connections/src/definitions/types.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/connections/definitions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/connections/src/definitions/index.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/connections/schema/aws-code-commit
+    type: background-worker
+    name: AwsCodeCommit (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/awsCodeCommit.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
+      y: 404
+  - entityRef: backstage/packages/connections/schema/aws-s3
+    type: background-worker
+    name: AwsS3 (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/awsS3.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1970
+      y: 404
+  - entityRef: backstage/packages/connections/schema/azure
+    type: background-worker
+    name: Azure (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/azure.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/packages/connections/schema/azure-blob-storage
+    type: background-worker
+    name: AzureBlobStorage (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/azureBlobStorage.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/connections/schema/bitbucket-cloud
+    type: background-worker
+    name: BitbucketCloud (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/bitbucketCloud.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/connections/schema/bitbucket-server
+    type: background-worker
+    name: BitbucketServer (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/bitbucketServer.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/connections/schema/gerrit
+    type: background-worker
+    name: Gerrit (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/gerrit.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/connections/schema/gitea
+    type: background-worker
+    name: Gitea (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/gitea.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/connections/schema/github
+    type: background-worker
+    name: Github (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/github.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/connections/schema/gitlab
+    type: background-worker
+    name: Gitlab (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/gitlab.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/packages/connections/schema/google-gcs
+    type: background-worker
+    name: GoogleGcs (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/googleGcs.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2170
+      y: 404
+  - entityRef: backstage/packages/connections/schema/harness
+    type: background-worker
+    name: Harness (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/harness.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2630
+      y: 404
+dependencies:
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/aws-code-commit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/aws-s3
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/azure-blob-storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/azure
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/bitbucket-cloud
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/bitbucket-server
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/github
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/google-gcs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/schema/harness
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/types
+    to: backstage/packages/connections/connectiontype/connection-type
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/aws-code-commit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/aws-s3
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/azure-blob-storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/azure
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/bitbucket-cloud
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/bitbucket-server
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/github
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/google-gcs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/schema/harness
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/connections/definitions/index
+    to: backstage/packages/connections/definitions/types
+    type: direct-call
+    description: Calls module / service

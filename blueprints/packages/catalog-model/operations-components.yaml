@@ -1,0 +1,595 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/catalog-model/operations
+  name: Operations Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/catalog-model/operations/declare-annotation
+    type: background-worker
+    name: DeclareAnnotation
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareAnnotation.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-label
+    type: background-worker
+    name: DeclareLabel
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareLabel.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-annotation-test
+    type: background-worker
+    name: UpdateAnnotation
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateAnnotation.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/remove-annotation-test
+    type: background-worker
+    name: RemoveAnnotation
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/removeAnnotation.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/remove-annotation
+    type: background-worker
+    name: RemoveAnnotation
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/removeAnnotation.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-tag
+    type: background-worker
+    name: UpdateTag
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateTag.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-label-test
+    type: background-worker
+    name: UpdateLabel
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateLabel.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/util-test
+    type: background-worker
+    name: Util
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/util.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-kind-test
+    type: background-worker
+    name: DeclareKind
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareKind.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/remove-tag
+    type: background-worker
+    name: RemoveTag
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/removeTag.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-kind-version-test
+    type: background-worker
+    name: UpdateKindVersion
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateKindVersion.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/remove-tag-test
+    type: background-worker
+    name: RemoveTag
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/removeTag.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-relation-test
+    type: background-worker
+    name: UpdateRelation
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateRelation.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-label
+    type: background-worker
+    name: UpdateLabel
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateLabel.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-tag
+    type: background-worker
+    name: DeclareTag
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareTag.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-kind-version-test
+    type: background-worker
+    name: DeclareKindVersion
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareKindVersion.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-tag-test
+    type: background-worker
+    name: DeclareTag
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareTag.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-annotation
+    type: background-worker
+    name: UpdateAnnotation
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateAnnotation.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-kind
+    type: background-worker
+    name: DeclareKind
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareKind.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/remove-label-test
+    type: background-worker
+    name: RemoveLabel
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/removeLabel.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-kind
+    type: background-worker
+    name: UpdateKind
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateKind.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-tag-test
+    type: background-worker
+    name: UpdateTag
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateTag.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-annotation-test
+    type: background-worker
+    name: DeclareAnnotation
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareAnnotation.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-label-test
+    type: background-worker
+    name: DeclareLabel
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareLabel.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-kind-version
+    type: background-worker
+    name: UpdateKindVersion
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateKindVersion.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/remove-kind
+    type: background-worker
+    name: RemoveKind
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/removeKind.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/util
+    type: background-worker
+    name: Util
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/util.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/remove-kind-test
+    type: background-worker
+    name: RemoveKind
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/removeKind.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-relation
+    type: background-worker
+    name: UpdateRelation
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateRelation.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-kind-version
+    type: background-worker
+    name: DeclareKindVersion
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareKindVersion.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-relation-test
+    type: background-worker
+    name: DeclareRelation
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareRelation.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/remove-label
+    type: background-worker
+    name: RemoveLabel
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/removeLabel.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/declare-relation
+    type: background-worker
+    name: DeclareRelation
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/model/operations/declareRelation.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/operations/update-kind-test
+    type: background-worker
+    name: UpdateKind
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/model/operations/updateKind.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/catalog-model/jsonschema/util
+    type: background-worker
+    name: Util (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/model/jsonSchema/util.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/catalog-model/jsonschema/zod
+    type: background-worker
+    name: Zod (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/model/jsonSchema/zod.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/catalog-model/operations/declare-annotation
+    to: backstage/packages/catalog-model/jsonschema/zod
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/declare-label
+    to: backstage/packages/catalog-model/jsonschema/zod
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-annotation-test
+    to: backstage/packages/catalog-model/operations/update-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/remove-annotation-test
+    to: backstage/packages/catalog-model/operations/remove-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-label-test
+    to: backstage/packages/catalog-model/operations/update-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util-test
+    to: backstage/packages/catalog-model/operations/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/declare-kind-test
+    to: backstage/packages/catalog-model/operations/declare-kind
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-kind-version-test
+    to: backstage/packages/catalog-model/operations/update-kind-version
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/remove-tag-test
+    to: backstage/packages/catalog-model/operations/remove-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-relation-test
+    to: backstage/packages/catalog-model/operations/update-relation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-label
+    to: backstage/packages/catalog-model/jsonschema/zod
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/declare-kind-version-test
+    to: backstage/packages/catalog-model/operations/declare-kind-version
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/declare-tag-test
+    to: backstage/packages/catalog-model/operations/declare-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-annotation
+    to: backstage/packages/catalog-model/jsonschema/zod
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/remove-label-test
+    to: backstage/packages/catalog-model/operations/remove-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-tag-test
+    to: backstage/packages/catalog-model/operations/update-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/declare-annotation-test
+    to: backstage/packages/catalog-model/operations/declare-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/declare-label-test
+    to: backstage/packages/catalog-model/operations/declare-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-kind-version
+    to: backstage/packages/catalog-model/jsonschema/zod
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/jsonschema/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/declare-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/declare-kind
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/declare-kind-version
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/declare-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/declare-relation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/declare-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/index
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/remove-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/remove-kind
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/remove-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/remove-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/update-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/update-kind
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/update-kind-version
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/update-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/update-relation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/util
+    to: backstage/packages/catalog-model/operations/update-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/remove-kind-test
+    to: backstage/packages/catalog-model/operations/remove-kind
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/declare-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/declare-kind
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/declare-kind-version
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/declare-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/declare-relation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/declare-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/remove-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/remove-kind
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/remove-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/remove-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/update-annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/update-kind
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/update-kind-version
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/update-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/update-relation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/index
+    to: backstage/packages/catalog-model/operations/update-tag
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/declare-kind-version
+    to: backstage/packages/catalog-model/jsonschema/zod
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/declare-relation-test
+    to: backstage/packages/catalog-model/operations/declare-relation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/operations/update-kind-test
+    to: backstage/packages/catalog-model/operations/update-kind
+    type: direct-call
+    description: Calls module / service

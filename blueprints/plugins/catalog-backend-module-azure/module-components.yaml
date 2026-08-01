@@ -1,0 +1,134 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-azure/module
+  name: Module Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider
+    type: background-worker
+    name: CatalogModuleAzureDevOpsEntityProvider
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-azure/src/module/catalogModuleAzureDevOpsEntityProvider.ts
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider-test
+    type: background-worker
+    name: CatalogModuleAzureDevOpsEntityProvider
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-azure/src/module/catalogModuleAzureDevOpsEntityProvider.test.ts
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-azure/module/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-azure/src/module/index.ts
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/alpha.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-azure/events/azure-dev-ops-scm-events-bridge
+    type: background-worker
+    name: AzureDevOpsScmEventsBridge (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-azure/src/events/AzureDevOpsScmEventsBridge.ts
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-azure/providers
+    type: background-worker
+    name: Providers (External)
+    external: true
+    properties:
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider
+    to: backstage/plugins/catalog-backend-module-azure/providers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider
+    to: backstage/plugins/catalog-backend-module-azure/events/azure-dev-ops-scm-events-bridge
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider-test
+    to: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider-test
+    to: backstage/plugins/catalog-backend-module-azure/providers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-azure/module/index
+    to: backstage/plugins/catalog-backend-module-azure/module/catalog-module-azure-dev-ops-entity-provider
+    type: direct-call
+    description: Calls module / service

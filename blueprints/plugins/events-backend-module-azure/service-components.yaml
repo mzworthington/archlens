@@ -1,0 +1,148 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend-module-azure/service
+  name: Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook-test
+    type: background-worker
+    name: EventsModuleAzureDevOpsWebhook
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/service/eventsModuleAzureDevOpsWebhook.test.ts
+      containerId: events-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-event-router
+    type: rest-api
+    name: EventsModuleAzureDevOpsEventRouter
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-azure/src/service/eventsModuleAzureDevOpsEventRouter.ts
+      containerId: events-backend-module-azure
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook
+    type: background-worker
+    name: EventsModuleAzureDevOpsWebhook
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-azure/src/service/eventsModuleAzureDevOpsWebhook.ts
+      containerId: events-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-event-router-test
+    type: rest-api
+    name: EventsModuleAzureDevOpsEventRouter
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/service/eventsModuleAzureDevOpsEventRouter.test.ts
+      containerId: events-backend-module-azure
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/events-node/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/alpha.ts
+      containerId: events-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/events-backend-module-azure/router/azure-dev-ops-event-router
+    type: rest-api
+    name: AzureDevOpsEventRouter (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/router/AzureDevOpsEventRouter.ts
+      containerId: events-backend-module-azure
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/events-backend-module-azure/http/create-azure-dev-ops-webhook-validator
+    type: background-worker
+    name: CreateAzureDevOpsWebhookValidator (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/http/createAzureDevOpsWebhookValidator.ts
+      containerId: events-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook-test
+    to: backstage/plugins/events-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook-test
+    to: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-event-router
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-event-router
+    to: backstage/plugins/events-backend-module-azure/router/azure-dev-ops-event-router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook
+    to: backstage/plugins/events-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook
+    to: backstage/plugins/events-backend-module-azure/http/create-azure-dev-ops-webhook-validator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-event-router-test
+    to: backstage/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-event-router-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-event-router-test
+    to: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-event-router
+    type: direct-call
+    description: Calls module / service

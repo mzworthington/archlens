@@ -344,6 +344,45 @@ describe('ContextLevelWriter', () => {
     expect(logger.logs.some(log => log.includes('Saved Context schema'))).toBe(true);
   });
 
+  it('does not inherit a peer application context when creating infrastructure', async () => {
+    const applicationPath = '/workspace/blueprints/application/context.yaml';
+    fileSystem.existingFiles.add(applicationPath);
+    fileSystem.writtenFiles.set(
+      applicationPath,
+      serializeSchemaToYaml({
+        entityRef: 'application',
+        name: 'Application',
+        version: '1.0.0',
+        level: 'context',
+        nodes: [
+          {
+            entityRef: 'application/gpio-build-monitor',
+            type: 'software-system',
+            name: 'Gpio Build Monitor System',
+          },
+        ],
+        dependencies: [],
+      })
+    );
+
+    await writer.writeSystems('/workspace/blueprints', 'infrastructure', [
+      {
+        entityRef: 'terraform-examples',
+        displayName: 'Terraform Examples',
+        rootPath: '',
+        productId: 'terraform-examples',
+        isProductHub: true,
+      },
+    ]);
+
+    const schema = parseSchemaFromYaml(
+      fileSystem.writtenFiles.get('/workspace/blueprints/infrastructure/context.yaml')!
+    );
+    expect(schema.name).toBe('Infrastructure Examples');
+    expect(schema.nodes.some(n => n.entityRef === 'application/gpio-build-monitor')).toBe(false);
+    expect(schema.nodes.some(n => n.entityRef === 'infrastructure/terraform-examples')).toBe(true);
+  });
+
   it('migrates legacy root context.yaml into the peer context diagram', async () => {
     const legacyPath = '/workspace/blueprints/context.yaml';
     const targetPath = '/workspace/blueprints/ctx/context.yaml';

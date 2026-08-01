@@ -1,0 +1,171 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder/components/ongoingtask
+  name: Ongoingtask Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-test
+    type: gateway-api
+    name: OngoingTask
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/OngoingTask.test.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-context-menu
+    type: gateway-api
+    name: OngoingTaskContextMenu
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/OngoingTaskContextMenu.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/ongoingtask/context-menu
+    type: gateway-api
+    name: ContextMenu
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/ContextMenu.tsx
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder/components/ongoingtask/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder/src/components/OngoingTask/index.ts
+      containerId: scaffolder
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-common/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/alpha.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: scaffolder
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1050
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-test
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-test
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-test
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-test
+    to: backstage/plugins/scaffolder/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-test
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-context-menu
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-context-menu
+    to: backstage/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder/components/ongoingtask/ongoing-task-context-menu
+    to: backstage/plugins/scaffolder/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/ongoingtask/context-menu
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder/components/ongoingtask/context-menu
+    to: backstage/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder/components/ongoingtask/context-menu
+    to: backstage/plugins/scaffolder/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder/components/ongoingtask/index
+    to: backstage/plugins/scaffolder/components
+    type: direct-call
+    description: Calls module / service

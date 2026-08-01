@@ -1,0 +1,63 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend/service/http/validation
+  name: Validation Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend/service/http/validation/request-validation-context-impl
+    type: background-worker
+    name: RequestValidationContextImpl
+    isTest: false
+    properties:
+      filepath: plugins/events-backend/src/service/http/validation/RequestValidationContextImpl.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend/service/http/validation/request-validation-context-impl-test
+    type: background-worker
+    name: RequestValidationContextImpl
+    isTest: true
+    properties:
+      filepath: plugins/events-backend/src/service/http/validation/RequestValidationContextImpl.test.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend/service/http/validation/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/events-backend/src/service/http/validation/index.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend/service/http/validation/request-validation-context-impl
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend/service/http/validation/request-validation-context-impl-test
+    to: backstage/plugins/events-backend/service/http/validation/request-validation-context-impl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend/service/http/validation/index
+    to: backstage/plugins/events-backend/service/http/validation/request-validation-context-impl
+    type: direct-call
+    description: Calls module / service

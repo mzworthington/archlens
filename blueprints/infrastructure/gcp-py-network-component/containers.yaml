@@ -1,0 +1,18 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: infrastructure/gcp-py-network-component
+  name: Gcp-py-network-component Infrastructure
+  source:
+    scannedAtCommit: 63ae0bceb16a3a7903ec7e6c25c86bbd556e6065
+    scanRoot: .
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
+nodes:
+  - entityRef: infrastructure/gcp-py-network-component/gcp-py-network-component
+    type: container
+    name: Gcp-py-network-component Service
+    isTest: false
+    properties:
+      iac.view: code-fallback
+dependencies: []

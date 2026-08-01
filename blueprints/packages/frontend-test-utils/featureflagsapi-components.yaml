@@ -1,0 +1,67 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-test-utils/featureflagsapi
+  name: Featureflagsapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-test-utils/featureflagsapi/mock-feature-flags-api
+    type: rest-api
+    name: MockFeatureFlagsApi
+    isTest: false
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/FeatureFlagsApi/MockFeatureFlagsApi.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-test-utils/featureflagsapi/mock-feature-flags-api-test
+    type: rest-api
+    name: MockFeatureFlagsApi
+    isTest: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/FeatureFlagsApi/MockFeatureFlagsApi.test.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-test-utils/featureflagsapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/FeatureFlagsApi/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-test-utils/featureflagsapi/mock-feature-flags-api
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-test-utils/featureflagsapi/mock-feature-flags-api-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-test-utils/featureflagsapi/mock-feature-flags-api-test
+    to: backstage/packages/frontend-test-utils/featureflagsapi/mock-feature-flags-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/featureflagsapi/index
+    to: backstage/packages/frontend-test-utils/featureflagsapi/mock-feature-flags-api
+    type: direct-call
+    description: Calls module / service

@@ -14,7 +14,6 @@ nodes:
     name: Mocks Layer
     isTest: true
     properties:
-      filepath: tests/ClientApp.UnitTests/Mocks/MockSettingsService.cs
       containerId: clientapp-unittests
       technology: C# Domain Service
       classification: default
@@ -22,9 +21,6 @@ nodes:
       complexity: 3
       complexityPeak: 3
       cognitiveComplexity: 3
-      functionCount: 9
-      loc: 193
-      sloc: 161
       churn: 0
       churn30: 0
       churn365: 0
@@ -83,15 +79,16 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp-unittests/viewmodels
     type: background-worker
     name: ViewModels Layer
     isTest: true
     properties:
-      filepath: tests/ClientApp.UnitTests/ViewModels/MockViewModelTests.cs
       containerId: clientapp-unittests
       technology: C# Domain Service
       classification: default
@@ -99,13 +96,10 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 7
-      loc: 119
-      sloc: 97
-      churn: 1
-      lineChurn: 16
+      churn: 2
+      lineChurn: 22
       churn30: 0
-      churn365: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -124,7 +118,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -164,9 +158,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: amauryleve@microsoft.com
-          commits: 1
+          commits: 2
       hotspotScore: 0.006872852233676976
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp-unittests/testingextensions
     type: background-worker
     name: TestingExtensions
@@ -249,20 +246,16 @@ nodes:
     name: Services Layer
     isTest: true
     properties:
-      filepath: tests/ClientApp.UnitTests/Services/BasketServiceTests.cs
       containerId: clientapp-unittests
       technology: C# Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 1
-      loc: 14
-      sloc: 12
-      churn: 1
-      lineChurn: 2
+      churn: 3
+      lineChurn: 10
       churn30: 0
-      churn365: 1
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -281,7 +274,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -321,9 +314,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: amauryleve@microsoft.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/messages
     type: background-worker
     name: Messages Layer (External)
@@ -341,7 +337,6 @@ nodes:
     name: Models Layer (External)
     external: true
     properties:
-      filepath: src/ClientApp/Models/Token/UserToken.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
@@ -353,7 +348,6 @@ nodes:
     name: Services Layer (External)
     external: true
     properties:
-      filepath: src/ClientApp/Services/Order/OrderMockService.cs
       containerId: clientapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
@@ -365,7 +359,6 @@ nodes:
     name: Validations Layer (External)
     external: true
     properties:
-      filepath: src/ClientApp/Validations/IValidity.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
@@ -377,7 +370,6 @@ nodes:
     name: ViewModels Layer (External)
     external: true
     properties:
-      filepath: src/ClientApp/ViewModels/BasketViewModel.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default

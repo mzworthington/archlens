@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/catalog-api/services
+  name: Services Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/catalog-api/services/catalog-ai
+    type: relational-database
+    name: CatalogAI
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/Services/CatalogAI.cs
+      containerId: catalog-api
+      technology: Entity Framework / DB Context
+      classification: database-marker
+  - entityRef: eshop/catalog-api/services/i-catalog-ai
+    type: relational-database
+    name: ICatalogAI
+    isTest: false
+    properties:
+      filepath: src/Catalog.API/Services/ICatalogAI.cs
+      containerId: catalog-api
+      technology: Entity Framework / DB Context
+      classification: database-marker
+dependencies: []

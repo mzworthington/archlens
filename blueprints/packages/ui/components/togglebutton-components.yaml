@@ -1,0 +1,94 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/ui/components/togglebutton
+  name: Togglebutton Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/ui/components/togglebutton/toggle-button-stories
+    type: gateway-api
+    name: ToggleButton.stories
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/ToggleButton/ToggleButton.stories.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/togglebutton/definition
+    type: background-worker
+    name: Definition
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/ToggleButton/definition.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/togglebutton/types
+    type: gateway-api
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/ToggleButton/types.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/togglebutton/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/ToggleButton/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/ui/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/ui/components/togglebutton/toggle-button-stories
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/togglebutton/definition
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/togglebutton/definition
+    to: backstage/packages/ui/components/togglebutton/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/togglebutton/index
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/togglebutton/index
+    to: backstage/packages/ui/components/togglebutton/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/togglebutton/index
+    to: backstage/packages/ui/components/togglebutton/definition
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,117 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs/search/components
+  name: Components Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs/search/components/tech-docs-search
+    type: gateway-api
+    name: TechDocsSearch
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/search/components/TechDocsSearch.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/search/components/tech-docs-search-result-list-item
+    type: gateway-api
+    name: TechDocsSearchResultListItem
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/search/components/TechDocsSearchResultListItem.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/search/components/tech-docs-search-test
+    type: gateway-api
+    name: TechDocsSearch
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/search/components/TechDocsSearch.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/search/components/tech-docs-search-result-list-item-test
+    type: background-worker
+    name: TechDocsSearchResultListItem
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/search/components/TechDocsSearchResultListItem.test.tsx
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs/search/components/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/search/components/index.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-react/src/index.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/techdocs/hooks/use-tech-docs-search
+    type: gateway-api
+    name: UseTechDocsSearch (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/hooks/useTechDocsSearch.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs/search/components/tech-docs-search
+    to: backstage/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: backstage/plugins/techdocs/search/components/tech-docs-search
+    to: backstage/plugins/techdocs/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/search/components/tech-docs-search
+    to: backstage/plugins/techdocs/hooks/use-tech-docs-search
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/search/components/tech-docs-search-result-list-item
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/techdocs/search/components/tech-docs-search-result-list-item
+    to: backstage/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'
+  - from: backstage/plugins/techdocs/search/components/tech-docs-search-test
+    to: backstage/plugins/search-react/index
+    type: direct-call
+    description: '@backstage/plugin-search-react'

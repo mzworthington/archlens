@@ -1,0 +1,137 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-node/flow
+  name: Flow Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/auth-node/flow/__testutils__
+    type: background-worker
+    name: __testutils__
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/flow/__testUtils__/parseWebMessageResponse.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/auth-node/src/flow/sendWebMessageResponse.ts
+          kind: direct
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/auth-node/flow/send-web-message-response-test
+    type: rest-api
+    name: SendWebMessageResponse
+    isTest: true
+    properties:
+      filepath: plugins/auth-node/src/flow/sendWebMessageResponse.test.ts
+      containerId: auth-node
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/auth-node/flow/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/flow/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/flow/send-web-message-response
+    type: rest-api
+    name: SendWebMessageResponse
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/flow/sendWebMessageResponse.ts
+      containerId: auth-node
+      technology: REST Controller / Router
+      classification: api-marker
+dependencies:
+  - from: backstage/plugins/auth-node/flow/send-web-message-response-test
+    to: backstage/plugins/auth-node/flow/send-web-message-response
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/flow/send-web-message-response-test
+    to: backstage/plugins/auth-node/flow/__testutils__/parse-web-message-response
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/flow/index
+    to: backstage/plugins/auth-node/flow/send-web-message-response
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/flow/send-web-message-response
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service

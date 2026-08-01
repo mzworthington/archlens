@@ -172,21 +172,17 @@ nodes:
     name: Engines
     isTest: false
     properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngine.test.ts
       containerId: search-backend-module-elasticsearch
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 72
-      loc: 1128
-      sloc: 991
-      churn: 4
-      lineChurn: 1240
-      churn30: 1
-      churn365: 4
+      complexity: 23
+      complexityPeak: 23
+      cognitiveComplexity: 237
+      churn: 29
+      lineChurn: 4502
+      churn30: 11
+      churn365: 29
       churnByWeek:
         - 0
         - 0
@@ -194,6 +190,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 5
         - 0
         - 0
         - 0
@@ -201,6 +198,18 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 4
         - 0
         - 0
         - 0
@@ -223,35 +232,31 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 1
-        - 0
+        - 11
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 3
-      topAuthorPercent: 0.5
+      authorCount: 5
+      topAuthorPercent: 0.41379310344827586
       authors:
-        - email: florian.verdonck@outlook.com
-          commits: 2
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 11
+        - email: florian.verdonck@outlook.com
+          commits: 7
+        - email: freben@gmail.com
+          commits: 4
+        - email: 38531751+matheusjv11@users.noreply.github.com
+          commits: 4
         - email: freben@spotify.com
+          commits: 2
+        - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0.008696444977452361
+      hotspotScore: 0.065167231234264
       sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend-module-elasticsearch/index
     type: background-worker
     name: Index

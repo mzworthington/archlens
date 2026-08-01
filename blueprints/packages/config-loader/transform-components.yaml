@@ -1,0 +1,205 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/config-loader/transform
+  name: Transform Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/config-loader/transform/apply
+    type: background-worker
+    name: Apply
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/apply.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config-loader/transform/include-test
+    type: background-worker
+    name: Include
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/transform/include.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config-loader/transform/include
+    type: background-worker
+    name: Include
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/include.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config-loader/transform/apply-test
+    type: background-worker
+    name: Apply
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/transform/apply.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config-loader/transform/substitution-test
+    type: background-worker
+    name: Substitution
+    isTest: true
+    properties:
+      filepath: packages/config-loader/src/sources/transform/substitution.test.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config-loader/transform/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/utils.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config-loader/transform/substitution
+    type: background-worker
+    name: Substitution
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/substitution.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config-loader/transform/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/types.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config-loader/transform/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/transform/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/config-loader/transform/apply
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/config-loader/transform/apply
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/config-loader/transform/apply
+    to: backstage/packages/config-loader/transform/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/apply
+    to: backstage/packages/config-loader/transform/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/apply
+    to: backstage/packages/config-loader/transform/substitution
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/apply
+    to: backstage/packages/config-loader/transform/include
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/apply
+    to: backstage/packages/config-loader/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/include-test
+    to: backstage/packages/config-loader/transform/include
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/include-test
+    to: backstage/packages/config-loader/transform/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/include
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/config-loader/transform/include
+    to: backstage/packages/config-loader/transform/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/include
+    to: backstage/packages/config-loader/transform/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/include
+    to: backstage/packages/config-loader/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/apply-test
+    to: backstage/packages/config-loader/transform/apply
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/substitution-test
+    to: backstage/packages/config-loader/transform/substitution
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/utils
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/config-loader/transform/substitution
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/config-loader/transform/substitution
+    to: backstage/packages/config-loader/transform/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/substitution
+    to: backstage/packages/config-loader/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/types
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/config-loader/transform/index
+    to: backstage/packages/config-loader/transform/apply
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/transform/index
+    to: backstage/packages/config-loader/transform/types
+    type: direct-call
+    description: Calls module / service

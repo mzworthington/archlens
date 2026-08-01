@@ -1,0 +1,111 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search-react/components/searchautocomplete
+  name: Searchautocomplete Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-default-option
+    type: gateway-api
+    name: SearchAutocompleteDefaultOption
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocompleteDefaultOption.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-stories
+    type: gateway-api
+    name: SearchAutocomplete.stories
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocomplete.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-default-option-stories
+    type: gateway-api
+    name: SearchAutocompleteDefaultOption.stories
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocompleteDefaultOption.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchautocomplete/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/index.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-test
+    type: gateway-api
+    name: SearchAutocomplete
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchAutocomplete/SearchAutocomplete.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/search-react/context
+    type: gateway-api
+    name: Context (External)
+    external: true
+    properties:
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-stories
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-stories
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-stories
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-default-option-stories
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-default-option-stories
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchautocomplete/index
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-test
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchautocomplete/search-autocomplete-test
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service

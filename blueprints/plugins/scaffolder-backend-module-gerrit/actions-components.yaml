@@ -1,0 +1,189 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions
+  name: Actions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-test
+    type: background-worker
+    name: GerritReview
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerritReview.test.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-examples-test
+    type: background-worker
+    name: Gerrit.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerrit.examples.test.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit
+    type: background-worker
+    name: Gerrit
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerrit.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-examples
+    type: background-worker
+    name: Gerrit.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerrit.examples.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-examples-test
+    type: background-worker
+    name: GerritReview.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerritReview.examples.test.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review
+    type: background-worker
+    name: GerritReview
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerritReview.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/index.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-test
+    type: background-worker
+    name: Gerrit
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerrit.test.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-examples
+    type: background-worker
+    name: GerritReview.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gerrit/src/actions/gerritReview.examples.ts
+      containerId: scaffolder-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-test
+    to: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/index
+    to: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/index
+    to: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-test
+    to: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gerrit/actions/gerrit-review-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'

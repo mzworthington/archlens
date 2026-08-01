@@ -1,0 +1,150 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend/permissions
+  name: Permissions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend/permissions/rules
+    type: background-worker
+    name: Rules
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 30
+      churn: 27
+      lineChurn: 1605
+      churn30: 14
+      churn365: 27
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 0
+        - 14
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 14
+        - email: kmittal@redhat.com
+          commits: 8
+        - email: gabriel.dugny@believe.com
+          commits: 5
+      hotspotScore: 0.0044814744682194025
+      sinceDays: 365
+      fileCount: 14
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/permissions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/permissions/index.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/permissions/condition-exports
+    type: background-worker
+    name: ConditionExports
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/permissions/conditionExports.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-node/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/alpha.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/permission-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/index.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend/permissions/index
+    to: backstage/plugins/catalog-backend/permissions/condition-exports
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/permissions/condition-exports
+    to: backstage/plugins/permission-node/index
+    type: direct-call
+    description: '@backstage/plugin-permission-node'
+  - from: backstage/plugins/catalog-backend/permissions/condition-exports
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'

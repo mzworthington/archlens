@@ -1,0 +1,256 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend/service
+  name: Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend/service/http
+    type: rest-api
+    name: Http
+    isTest: false
+    properties:
+      containerId: events-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 808
+      churn30: 4
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/events-backend/service/hub
+    type: rest-api
+    name: Hub
+    isTest: false
+    properties:
+      containerId: events-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 11
+      lineChurn: 1521
+      churn30: 7
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7272727272727273
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: freben@gmail.com
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: stephen@stephen.glass
+          commits: 1
+      hotspotScore: 0.0020198194786340967
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/events-backend/service/events-plugin-test
+    type: background-worker
+    name: EventsPlugin
+    isTest: true
+    properties:
+      filepath: plugins/events-backend/src/service/EventsPlugin.test.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend/service/events-plugin
+    type: rest-api
+    name: EventsPlugin
+    isTest: false
+    properties:
+      filepath: plugins/events-backend/src/service/EventsPlugin.ts
+      containerId: events-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/events-node/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/alpha.ts
+      containerId: events-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend/service/events-plugin-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend/service/events-plugin-test
+    to: backstage/plugins/events-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend/service/events-plugin-test
+    to: backstage/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: backstage/plugins/events-backend/service/events-plugin-test
+    to: backstage/plugins/events-backend/service/events-plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend/service/events-plugin
+    to: backstage/plugins/events-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend/service/events-plugin
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'

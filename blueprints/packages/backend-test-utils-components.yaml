@@ -14,7 +14,6 @@ nodes:
     name: Database
     isTest: false
     properties:
-      filepath: packages/backend-test-utils/src/database/mysql.ts
       containerId: backend-test-utils
       technology: Prisma / SQL Database Client
       classification: database-marker
@@ -22,52 +21,12 @@ nodes:
       complexity: 9
       complexityPeak: 9
       cognitiveComplexity: 28
-      functionCount: 11
-      loc: 259
-      sloc: 204
-      churn: 11
-      lineChurn: 419
-      churn30: 1
-      churn365: 11
+      churn: 44
+      lineChurn: 1547
+      churn30: 10
+      churn365: 44
       churnByWeek:
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 1
         - 0
         - 0
         - 0
@@ -76,41 +35,84 @@ nodes:
         - 0
         - 0
         - 0
-        - 5
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.7272727272727273
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 3
+        - 3
+        - 0
+        - 0
+        - 0
+        - 17
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.6590909090909091
       authors:
         - email: freben@gmail.com
-          commits: 8
+          commits: 26
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 12
         - email: freben@spotify.com
-          commits: 1
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 2
+        - email: ben@blam.sh
+          commits: 2
       hotspotScore: 0.013223505649182603
       sinceDays: 365
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-test-utils/cache
     type: event-broker
     name: Cache
     isTest: false
     properties:
-      filepath: packages/backend-test-utils/src/cache/TestCaches.test.ts
       containerId: backend-test-utils
       technology: TypeScript Event Client
       classification: event-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 59
-      churn30: 1
-      churn365: 2
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 13
+      churn: 23
+      lineChurn: 957
+      churn30: 11
+      churn365: 23
       churnByWeek:
         - 0
         - 0
@@ -148,32 +150,37 @@ nodes:
         - 0
         - 0
         - 0
+        - 5
+        - 4
+        - 0
+        - 0
+        - 0
+        - 3
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 11
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.7391304347826086
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 16
+        - email: freben@spotify.com
+          commits: 4
         - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 3
+      hotspotScore: 0.004881230406699068
       sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-test-utils/waitforready
     type: background-worker
     name: Waitforready
@@ -500,12 +507,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 18
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 64
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -555,7 +560,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -564,9 +569,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-test-utils/getdockerimageforname
     type: background-worker
     name: Getdockerimageforname
@@ -650,7 +658,6 @@ nodes:
     name: Filesystem
     isTest: false
     properties:
-      filepath: packages/backend-test-utils/src/filesystem/MockDirectory.ts
       containerId: backend-test-utils
       technology: TypeScript Domain Service
       classification: default
@@ -658,13 +665,10 @@ nodes:
       complexity: 9
       complexityPeak: 9
       cognitiveComplexity: 29
-      functionCount: 21
-      loc: 460
-      sloc: 227
-      churn: 3
-      lineChurn: 465
-      churn30: 1
-      churn365: 3
+      churn: 7
+      lineChurn: 813
+      churn30: 3
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -690,8 +694,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 2
         - 0
         - 0
         - 0
@@ -714,37 +718,39 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.7142857142857143
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 5
         - email: freben@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0.014675250899450862
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-test-utils/wiring
     type: rest-api
     name: Wiring
     isTest: false
     properties:
-      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 125
-      churn30: 1
-      churn365: 1
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 40
+      churn: 13
+      lineChurn: 1361
+      churn30: 5
+      churn365: 13
       churnByWeek:
         - 0
         - 0
@@ -760,6 +766,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -770,27 +777,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -799,30 +786,55 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.6923076923076923
       authors:
         - email: poldsberg@gmail.com
+          commits: 9
+        - email: aramis.sennyey@doordash.com
+          commits: 2
+        - email: ericpeterson@spotify.com
           commits: 1
-      hotspotScore: 0
+        - email: ben@blam.sh
+          commits: 1
+      hotspotScore: 0.01528891133132754
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-test-utils/msw
     type: background-worker
     name: Msw
     isTest: false
     properties:
-      filepath: packages/backend-test-utils/src/msw/registerMswTestHooks.ts
       containerId: backend-test-utils
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 30
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 47
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -872,7 +884,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -881,67 +893,44 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-test-utils/services
     type: rest-api
     name: Services
     isTest: false
     properties:
-      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.test.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 236
-      churn30: 1
-      churn365: 1
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 68
+      churn: 97
+      lineChurn: 5733
+      churn30: 31
+      churn365: 97
       churnByWeek:
         - 0
         - 0
+        - 12
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 2
         - 0
         - 0
+        - 1
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 7
         - 0
         - 0
         - 0
@@ -952,135 +941,180 @@ nodes:
         - 0
         - 1
         - 0
+        - 1
+        - 0
+        - 13
+        - 0
+        - 3
+        - 0
+        - 6
+        - 1
+        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 2
+        - 0
+        - 5
+        - 6
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 31
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.7319587628865979
       authors:
         - email: poldsberg@gmail.com
+          commits: 53
+        - email: aramis.sennyey@doordash.com
+          commits: 13
+        - email: ericpeterson@spotify.com
+          commits: 11
+        - email: ben@blam.sh
+          commits: 7
+        - email: freben@spotify.com
+          commits: 6
+        - email: freben@gmail.com
+          commits: 4
+        - email: gabriel.dugny@believe.com
           commits: 1
-      hotspotScore: 0
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: 198982749+Copilot@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0.017547181720633718
       sinceDays: 365
+      fileCount: 29
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-defaults/entrypoints/actions
     type: rest-api
     name: Actions (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/actionsServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -15310
+      x: -17840
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/actionsregistry
     type: rest-api
     name: Actionsregistry (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actionsRegistry/actionsRegistryServiceFactory.test.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -14850
+      x: -17380
       y: -204
   - entityRef: backstage/packages/repo-tools/commands/api-reports
-    type: rest-api
+    type: background-worker
     name: Api reports (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
       containerId: repo-tools
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: 13670
+      x: 16200
       y: -204
   - entityRef: backstage/packages/frontend-test-utils/app
     type: gateway-api
     name: App (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/app/createExtensionTester.test.tsx
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
     position:
-      x: 10450
+      x: 12980
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/auditor
     type: rest-api
     name: Auditor (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auditor/auditorServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -14390
+      x: -16920
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/auth
-    type: relational-database
+    type: background-worker
     name: Auth (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.ts
       containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: -13930
+      x: -16460
       y: -204
   - entityRef: backstage/packages/integration/bitbucketcloud
     type: background-worker
     name: Bitbucketcloud (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketCloud/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 10910
+      x: 13440
       y: -204
   - entityRef: backstage/packages/integration/bitbucketserver
     type: background-worker
     name: Bitbucketserver (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketServer/BitbucketServerIntegration.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 11370
+      x: 13900
       y: -204
   - entityRef: backstage/packages/cli-module-build/builder
     type: background-worker
     name: Builder (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/builder/plugins.test.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1510
+      x: 560
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/bundle
+    type: background-worker
+    name: Bundle (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/cache
     type: event-broker
     name: Cache (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/cache/CacheClient.test.ts
       containerId: backend-defaults
       technology: TypeScript Event Client
       classification: event-marker
     position:
-      x: -13470
+      x: -14160
       y: -204
   - entityRef: backstage/packages/core-compat-api/collectentitypagecontents-test
     type: gateway-api
@@ -1092,7 +1126,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 7690
+      x: 10220
       y: -204
   - entityRef: backstage/packages/connections-node/combineconnectionsources-test
     type: background-worker
@@ -1104,7 +1138,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 5850
+      x: 8380
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/database/connectors
+    type: relational-database
+    name: Connectors (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -12780
       y: -204
   - entityRef: backstage/packages/core-compat-api/convertlegacyappoptions-test
     type: background-worker
@@ -1116,7 +1161,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8150
+      x: 10680
       y: -204
   - entityRef: backstage/packages/create-app/createapp-test
     type: background-worker
@@ -1128,19 +1173,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8610
+      x: 11140
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/database
     type: relational-database
     name: Database (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/database/connectors/mysql.ts
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -13010
+      x: -13240
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/database
+    type: relational-database
+    name: Database (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -5420
       y: -204
   - entityRef: backstage/packages/connections-node/defaultconnectionsservice-test
     type: background-worker
@@ -1152,55 +1207,73 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 6310
+      x: 8840
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/discovery
     type: background-worker
     name: Discovery (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/discovery/HostDiscovery.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -12550
+      x: -12320
       y: -204
   - entityRef: backstage/packages/cli-module-new/execution
     type: background-worker
     name: Execution (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/src/lib/execution/PortableTemplater.ts
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1250
+      x: 3780
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external
+    type: background-worker
+    name: External (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -16000
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/features
     type: background-worker
     name: Features (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/features/features.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4270
+      x: -2200
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/package/schema/openapi/generate
+    type: background-worker
+    name: Generate (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 17120
       y: -204
   - entityRef: backstage/packages/integration/gerrit
     type: background-worker
     name: Gerrit (External)
     external: true
     properties:
-      filepath: packages/integration/src/gerrit/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 11830
+      x: 14360
       y: -204
   - entityRef: backstage/packages/yarn-plugin/getcurrentbackstageversion-test
     type: background-worker
@@ -1212,7 +1285,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 15050
+      x: 17580
       y: -204
   - entityRef: backstage/packages/connections-node/getlegacyintegrations-test
     type: background-worker
@@ -1224,19 +1297,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 6770
+      x: 9300
       y: -204
   - entityRef: backstage/packages/integration/gitea
     type: background-worker
     name: Gitea (External)
     external: true
     properties:
-      filepath: packages/integration/src/gitea/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12290
+      x: 14820
       y: -204
   - entityRef: backstage/packages/connections-node/github-test
     type: background-worker
@@ -1248,67 +1320,84 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 7230
+      x: 9760
       y: -204
   - entityRef: backstage/packages/integration/gitlab
     type: background-worker
     name: Gitlab (External)
     external: true
     properties:
-      filepath: packages/integration/src/gitlab/DefaultGitlabCredentialsProvider.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12750
+      x: 15280
       y: -204
   - entityRef: backstage/packages/yarn-plugin/handlers
     type: background-worker
     name: Handlers (External)
     external: true
     properties:
-      filepath: packages/yarn-plugin/src/handlers/reduceDependency.ts
       containerId: yarn-plugin
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 15510
+      x: 18040
       y: -204
   - entityRef: backstage/packages/integration/harness
     type: background-worker
     name: Harness (External)
     external: true
     properties:
-      filepath: packages/integration/src/harness/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 13210
+      x: 15740
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/httprouter/http
+    type: rest-api
+    name: Http (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -10940
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http
+    type: rest-api
+    name: Http (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -7720
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/httpauth
     type: rest-api
     name: Httpauth (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpAuth/httpAuthServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -12090
+      x: -11860
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/httprouter
     type: rest-api
     name: Httprouter (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpRouter/httpRouterServiceFactory.test.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -11630
+      x: -11400
       y: -204
   - entityRef: backstage/packages/errors/index
     type: background-worker
@@ -1392,19 +1481,40 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 15970
+      x: 18500
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan
+    type: cache-store
+    name: Infinispan (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    position:
+      x: -13700
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/instancemetadata
     type: rest-api
     name: Instancemetadata (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/instanceMetadata/instanceMetadataServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -11170
+      x: -10480
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/plugin/keys
+    type: relational-database
+    name: Keys (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -15080
       y: -204
   - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader-test
     type: background-worker
@@ -1416,7 +1526,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9990
+      x: 12520
       y: -204
   - entityRef: backstage/packages/config-loader/loader-test
     type: background-worker
@@ -1428,31 +1538,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4470
+      x: 7000
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/manager
     type: background-worker
     name: Manager (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3810
+      x: -1740
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/metrics
     type: background-worker
     name: Metrics (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/DefaultMetricsService.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10710
+      x: -10020
       y: -204
   - entityRef: backstage/packages/backend-defaults/migrations-test
     type: relational-database
@@ -1464,19 +1572,18 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -5190
+      x: -3120
       y: -204
   - entityRef: backstage/packages/cli-node/monorepo
     type: background-worker
     name: Monorepo (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/monorepo/isMonorepo.test.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3090
+      x: 5620
       y: -204
   - entityRef: backstage/packages/config-loader/observableconfigproxy
     type: background-worker
@@ -1490,65 +1597,38 @@ nodes:
     position:
       x: 100
       y: 404
-  - entityRef: backstage/packages/cli-module-build/commands/package
-    type: gateway-api
-    name: Package (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/commands/package/prepack.ts
-      containerId: cli-module-build
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -1050
-      y: -204
-  - entityRef: backstage/packages/repo-tools/commands/package
-    type: background-worker
-    name: Package (External)
-    external: true
-    properties:
-      filepath: packages/repo-tools/src/commands/package/schema/openapi/fuzz.ts
-      containerId: repo-tools
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 14130
-      y: -204
   - entityRef: backstage/packages/repo-tools/commands/package-docs
     type: cache-store
     name: Package docs (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/package-docs/Cache.test.ts
       containerId: repo-tools
       technology: TypeScript Cache Client
       classification: cache-marker
     position:
-      x: 14590
+      x: 16660
       y: -204
   - entityRef: backstage/packages/cli-module-build/packager
     type: background-worker
     name: Packager (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/packager/createDistWorkspace.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -590
+      x: 1940
       y: -204
   - entityRef: backstage/packages/cli-node/pacman
     type: background-worker
     name: Pacman (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/pacman/yarn/Yarn.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3550
+      x: 6080
       y: -204
   - entityRef: backstage/packages/backend-plugin-api/paths-test
     type: background-worker
@@ -1560,31 +1640,40 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2890
+      x: -820
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/permissionsregistry
     type: rest-api
     name: Permissionsregistry (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/permissionsRegistry/permissionsRegistryServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -10250
+      x: -9560
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/plugin
+    type: background-worker
+    name: Plugin (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -15540
       y: -204
   - entityRef: backstage/packages/cli-module-new/preparation
     type: background-worker
     name: Preparation (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/src/lib/preparation/selectTemplateInteractively.test.ts
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1710
+      x: 4240
       y: -204
   - entityRef: backstage/packages/backend-defaults/ratelimitstorefactory-test
     type: event-broker
@@ -1596,7 +1685,7 @@ nodes:
       technology: TypeScript Event Client
       classification: event-marker
     position:
-      x: -4730
+      x: -2660
       y: -204
   - entityRef: backstage/packages/config-loader/remoteconfigsource-test
     type: background-worker
@@ -1608,7 +1697,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4930
+      x: 7460
       y: -204
   - entityRef: backstage/packages/frontend-defaults/resolution
     type: background-worker
@@ -1620,7 +1709,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9530
+      x: 12060
       y: -204
   - entityRef: backstage/packages/cli-module-build/role-test
     type: background-worker
@@ -1632,79 +1721,73 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: 2400
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/rootconfig
     type: background-worker
     name: Rootconfig (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -9790
+      x: -9100
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/roothealth
     type: background-worker
     name: Roothealth (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootHealth/rootHealthServiceFactory.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -9330
+      x: -8640
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter
     type: rest-api
     name: Roothttprouter (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/DefaultRootHttpRouter.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -8870
+      x: -8180
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/rootlifecycle
     type: background-worker
     name: Rootlifecycle (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootLifecycle/rootLifecycleServiceFactory.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8410
+      x: -7260
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger
     type: background-worker
     name: Rootlogger (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootLogger/utils.test.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7950
+      x: -6800
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata
     type: rest-api
     name: Rootsystemmetadata (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootSystemMetadata/rootSystemMetadataServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -7490
+      x: -6340
       y: -204
   - entityRef: backstage/packages/cli-module-new/router-test
     type: rest-api
@@ -1716,43 +1799,40 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 2170
+      x: 4700
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/scanner
     type: background-worker
     name: Scanner (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/scanner/plugin-scanner-watcher.test.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3350
+      x: -1280
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler
     type: rest-api
     name: Scheduler (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/database/migrateBackendTasks.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -7030
+      x: -5880
       y: -204
   - entityRef: backstage/packages/config-loader/schema
     type: background-worker
     name: Schema (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/schema/load.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 5390
+      x: 7920
       y: -204
   - entityRef: backstage/packages/cli-module-auth/secretstore-test
     type: background-worker
@@ -1764,7 +1844,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2430
+      x: -360
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/start
+    type: gateway-api
+    name: Start (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1480
       y: -204
   - entityRef: backstage/packages/cli-module-auth/storage-test
     type: background-worker
@@ -1776,7 +1867,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1970
+      x: 100
       y: -204
   - entityRef: backstage/packages/create-app/tasks-test
     type: background-worker
@@ -1788,43 +1879,62 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9070
+      x: 11600
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/tracing
     type: background-worker
     name: Tracing (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/tracing/tracingServiceFactory.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -6570
+      x: -4960
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/urlreader/tree
+    type: background-worker
+    name: Tree (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4040
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/urlreader
     type: background-worker
     name: Urlreader (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/tree/TarArchiveResponse.test.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -6110
+      x: -4500
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/user
+    type: background-worker
+    name: User (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -14620
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/userinfo
     type: cache-store
     name: Userinfo (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/userInfo/DefaultUserInfoService.test.ts
       containerId: backend-defaults
       technology: TypeScript Cache Client
       classification: cache-marker
     position:
-      x: -5650
+      x: -3580
       y: -204
   - entityRef: backstage/packages/cli-module-new/version-test
     type: background-worker
@@ -1836,55 +1946,51 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2630
+      x: 5160
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/versioning
     type: background-worker
     name: Versioning (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/lib/versioning/yarn.ts
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 790
+      x: 3320
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/commands/versions
     type: background-worker
     name: Versions (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: 2860
       y: -204
   - entityRef: backstage/packages/backend-app-api/wiring
     type: background-worker
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -15770
+      x: -18300
       y: -204
   - entityRef: backstage/packages/cli-node/yarn
     type: background-worker
     name: Yarn (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/yarn/yarnPlugin.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4010
+      x: 6540
       y: -204
 dependencies:
   - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
@@ -2263,7 +2369,11 @@ dependencies:
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/start
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/cli-module-build/commands/package/bundle
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
@@ -2283,7 +2393,7 @@ dependencies:
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
@@ -2307,6 +2417,14 @@ dependencies:
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/httprouter/http
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/database/connectors
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: backstage/packages/backend-defaults/entrypoints/database
     to: backstage/packages/backend-test-utils/index
     type: direct-call
@@ -2323,11 +2441,31 @@ dependencies:
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: backstage/packages/backend-defaults/entrypoints/rootconfig
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/plugin
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/plugin/keys
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/user
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: backstage/packages/backend-defaults/entrypoints/auth
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
@@ -2336,6 +2474,10 @@ dependencies:
     type: direct-call
     description: '@backstage/backend-test-utils'
   - from: backstage/packages/backend-defaults/entrypoints/discovery
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/database
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
@@ -2351,6 +2493,10 @@ dependencies:
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
   - from: backstage/packages/backend-defaults/entrypoints/httpauth
     to: backstage/packages/backend-test-utils/index
     type: direct-call
@@ -2360,6 +2506,10 @@ dependencies:
     type: direct-call
     description: '@backstage/backend-test-utils'
   - from: backstage/packages/backend-defaults/entrypoints/rootsystemmetadata
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/urlreader/tree
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'

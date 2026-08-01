@@ -1,0 +1,555 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-app-api/routing
+  name: Routing Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-app-api/routing/validation
+    type: background-worker
+    name: Validation
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/validation.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-app-api/routing/routing-provider-compat-test
+    type: gateway-api
+    name: RoutingProvider.compat
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.compat.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/collectors-beta-test
+    type: gateway-api
+    name: Collectors.beta
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/collectors.beta.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/route-tracker
+    type: gateway-api
+    name: RouteTracker
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/RouteTracker.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/helpers
+    type: background-worker
+    name: Helpers
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/helpers.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-app-api/routing/flat-routes
+    type: gateway-api
+    name: FlatRoutes
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/FlatRoutes.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/route-tracker-test
+    type: gateway-api
+    name: RouteTracker
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RouteTracker.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/routing-provider-stable-test
+    type: gateway-api
+    name: RoutingProvider.stable
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.stable.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/routing-provider
+    type: gateway-api
+    name: RoutingProvider
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/flat-routes-beta-test
+    type: gateway-api
+    name: FlatRoutes.beta
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/FlatRoutes.beta.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/types.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-app-api/routing/routing-provider-beta-test
+    type: gateway-api
+    name: RoutingProvider.beta
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RoutingProvider.beta.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/route-resolver-stable-test
+    type: rest-api
+    name: RouteResolver.stable
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RouteResolver.stable.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-app-api/routing/route-resolver-beta-test
+    type: rest-api
+    name: RouteResolver.beta
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RouteResolver.beta.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-app-api/routing/collectors
+    type: gateway-api
+    name: Collectors
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/collectors.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/collectors-stable-test
+    type: gateway-api
+    name: Collectors.stable
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/collectors.stable.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/route-resolver
+    type: gateway-api
+    name: RouteResolver
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/RouteResolver.ts
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/flat-routes-stable-test
+    type: gateway-api
+    name: FlatRoutes.stable
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/FlatRoutes.stable.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/feature-flagged-test
+    type: gateway-api
+    name: FeatureFlagged
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/FeatureFlagged.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/feature-flagged
+    type: gateway-api
+    name: FeatureFlagged
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/FeatureFlagged.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/routing/index.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-app-api/routing/collectors-compat-test
+    type: gateway-api
+    name: Collectors.compat
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/collectors.compat.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/routing/route-resolver-compat-test
+    type: rest-api
+    name: RouteResolver.compat
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/RouteResolver.compat.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-app-api/routing/flat-routes-compat-test
+    type: gateway-api
+    name: FlatRoutes.compat
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/routing/FlatRoutes.compat.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/apis.ts
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/core-app-api/app
+    type: gateway-api
+    name: App (External)
+    external: true
+    properties:
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/version-bridge/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/core-app-api/extensions/traversal
+    type: gateway-api
+    name: Traversal (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/extensions/traversal.ts
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/packages/core-app-api/routing/validation
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/validation
+    to: backstage/packages/core-app-api/routing/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/validation
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-compat-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/routing-provider-compat-test
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/collectors-beta-test
+    to: backstage/packages/core-app-api/extensions/traversal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/collectors-beta-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/route-tracker
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/route-tracker
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/flat-routes
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/flat-routes
+    to: backstage/packages/core-app-api/app
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/route-tracker-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-app-api/routing/route-tracker-test
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/route-tracker-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/routing-provider-stable-test
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-app-api/routing/routing-provider-stable-test
+    to: backstage/packages/core-app-api/extensions/traversal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-stable-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/routing-provider-stable-test
+    to: backstage/packages/core-app-api/routing/validation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-stable-test
+    to: backstage/packages/core-app-api/routing/route-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-stable-test
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-stable-test
+    to: backstage/packages/core-app-api/app
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/routing-provider
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-app-api/routing/routing-provider
+    to: backstage/packages/core-app-api/routing/route-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/flat-routes-beta-test
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/flat-routes-beta-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/flat-routes-beta-test
+    to: backstage/packages/core-app-api/app
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/flat-routes-beta-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-app-api/routing/types
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/types
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-app-api/routing/routing-provider-beta-test
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-app-api/routing/routing-provider-beta-test
+    to: backstage/packages/core-app-api/extensions/traversal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-beta-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/routing-provider-beta-test
+    to: backstage/packages/core-app-api/routing/validation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-beta-test
+    to: backstage/packages/core-app-api/routing/route-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-beta-test
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/routing-provider-beta-test
+    to: backstage/packages/core-app-api/app
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/route-resolver-stable-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/route-resolver-stable-test
+    to: backstage/packages/core-app-api/routing/route-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/route-resolver-beta-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/route-resolver-beta-test
+    to: backstage/packages/core-app-api/routing/route-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/collectors
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/collectors
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/collectors
+    to: backstage/packages/core-app-api/extensions/traversal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/collectors-stable-test
+    to: backstage/packages/core-app-api/extensions/traversal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/collectors-stable-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/route-resolver
+    to: backstage/packages/core-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/route-resolver
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/route-resolver
+    to: backstage/packages/core-app-api/routing/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/flat-routes-stable-test
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/flat-routes-stable-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/flat-routes-stable-test
+    to: backstage/packages/core-app-api/app
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/flat-routes-stable-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-app-api/routing/feature-flagged-test
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/feature-flagged-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-app-api/routing/feature-flagged-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/feature-flagged
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/collectors-compat-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/collectors-compat-test
+    to: backstage/packages/core-app-api/extensions/traversal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/route-resolver-compat-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/flat-routes-compat-test
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/routing/flat-routes-compat-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/routing/flat-routes-compat-test
+    to: backstage/packages/core-app-api/app
+    type: direct-call
+    description: Calls module / service

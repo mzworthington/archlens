@@ -1,0 +1,151 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/components/entitytable
+  name: Entitytable Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-react/components/entitytable/entity-table-test
+    type: gateway-api
+    name: EntityTable
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/EntityTable.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entitytable/title-column-test
+    type: gateway-api
+    name: TitleColumn
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/TitleColumn.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entitytable/columns
+    type: background-worker
+    name: Columns
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/columns.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entitytable/columns-test
+    type: gateway-api
+    name: Columns
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/columns.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entitytable/presets-test
+    type: gateway-api
+    name: Presets
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/presets.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entitytable/presets
+    type: background-worker
+    name: Presets
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/presets.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entitytable/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/index.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entitytable/title-column
+    type: background-worker
+    name: TitleColumn
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityTable/TitleColumn.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/alpha/apis.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/notifications-common/utils
+    type: background-worker
+    name: Utils (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-common/src/utils.ts
+      containerId: notifications-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-react/components/entitytable/entity-table-test
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitytable/columns
+    to: backstage/plugins/notifications-common/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitytable/columns
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitytable/columns
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitytable/presets-test
+    to: backstage/plugins/catalog-react/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitytable/presets-test
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitytable/index
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitytable/title-column
+    to: backstage/plugins/catalog-react/translation/translation
+    type: direct-call
+    description: Calls module / service

@@ -3,6 +3,34 @@ import type { SystemNode, SystemDependency, SystemSchema, SourceProvenance } fro
 import { EntityRef, parseSchemaFromYaml } from '@archlens/core';
 import { seedPreservedPositions } from '@archlens/core/layout';
 import { resolveSystemEntityRef } from '../analysis/domain/entityRefContext.ts';
+import { buildRollupDrillDownSchemas } from './rollupDrillDown.ts';
+
+function stripRollupMetadata(nodes: SystemNode[]): SystemNode[] {
+  return nodes.map(node => {
+    if (!node.properties?.memberFilepaths) return node;
+    const { memberFilepaths: _memberFilepaths, ...restProperties } = node.properties;
+    return {
+      ...node,
+      properties: Object.keys(restProperties).length > 0 ? restProperties : undefined,
+    };
+  });
+}
+
+/** Rollup nodes with a drill-down diagram should not carry a misleading representative filepath. */
+function stripDrillDownFilepaths(
+  nodes: SystemNode[],
+  drillDownEntityRefs: ReadonlySet<string>
+): SystemNode[] {
+  return nodes.map(node => {
+    if (!node.entityRef || !drillDownEntityRefs.has(node.entityRef)) return node;
+    if (typeof node.properties?.filepath !== 'string') return node;
+    const { filepath: _filepath, ...restProperties } = node.properties;
+    return {
+      ...node,
+      properties: Object.keys(restProperties).length > 0 ? restProperties : undefined,
+    };
+  });
+}
 
 export class ComponentLevelWriter extends BaseWriter {
   async write(
@@ -12,7 +40,9 @@ export class ComponentLevelWriter extends BaseWriter {
     componentNodesMap: Map<string, SystemNode>,
     componentDependencies: SystemDependency[],
     containerNodesMap: Map<string, SystemNode>,
-    source?: SourceProvenance
+    source?: SourceProvenance,
+    fileLevelNodesMap: Map<string, SystemNode> = new Map(),
+    fileLevelDependencies: SystemDependency[] = []
   ): Promise<void> {
     const systemRef = resolveSystemEntityRef(contextName, systemId);
 
@@ -34,7 +64,26 @@ export class ComponentLevelWriter extends BaseWriter {
         blueprintsDir,
         `${slugifiedContainerId}-components.yaml`
       );
-      const nodes = await this.seedFromDisk(componentPath, internalComponents);
+      const drillDownSchemas = buildRollupDrillDownSchemas(
+        containerRef,
+        internalComponents,
+        [...fileLevelNodesMap.values()],
+        fileLevelDependencies,
+        source
+      );
+      const drillDownEntityRefs = new Set(
+        drillDownSchemas
+          .map(entry => entry.schema.entityRef)
+          .filter(
+            (entityRef): entityRef is string =>
+              typeof entityRef === 'string' && entityRef.length > 0
+          )
+      );
+
+      const nodes = await this.seedFromDisk(
+        componentPath,
+        stripDrillDownFilepaths(stripRollupMetadata(internalComponents), drillDownEntityRefs)
+      );
 
       const componentSchema: SystemSchema = {
         entityRef: containerRef,
@@ -48,6 +97,22 @@ export class ComponentLevelWriter extends BaseWriter {
 
       await this.writeYaml(componentPath, componentSchema);
       this.logger.info(`📄 Saved Component schema for [${containerRef}]: ${componentPath}`);
+
+      for (const { relativePath, schema } of drillDownSchemas) {
+        const drillDownPath = this.fileSystem.getAbsolutePath(blueprintsDir, relativePath);
+        const drillDownNodes = await this.seedFromDisk(
+          drillDownPath,
+          stripDrillDownFilepaths(stripRollupMetadata(schema.nodes), drillDownEntityRefs)
+        );
+        const drillDownSchema: SystemSchema = {
+          ...schema,
+          nodes: drillDownNodes,
+        };
+        await this.writeYaml(drillDownPath, drillDownSchema);
+        this.logger.info(
+          `📄 Saved Rollup drill-down schema for [${schema.entityRef}]: ${drillDownPath}`
+        );
+      }
     }
   }
 

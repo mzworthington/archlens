@@ -1,0 +1,95 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan
+  name: Infinispan Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-keyv-store-test
+    type: cache-store
+    name: InfinispanKeyvStore
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/cache/providers/infinispan/InfinispanKeyvStore.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-options-mapper
+    type: cache-store
+    name: InfinispanOptionsMapper
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/cache/providers/infinispan/InfinispanOptionsMapper.ts
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-keyv-store
+    type: cache-store
+    name: InfinispanKeyvStore
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/cache/providers/infinispan/InfinispanKeyvStore.ts
+      containerId: backend-defaults
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/entrypoints/cache/types
+    type: event-broker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/cache/types.ts
+      containerId: backend-defaults
+      technology: TypeScript Event Client
+      classification: event-marker
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-keyv-store-test
+    to: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-keyv-store
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-keyv-store-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-options-mapper
+    to: backstage/packages/backend-defaults/entrypoints/cache/types
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-keyv-store
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/cache/providers/infinispan/infinispan-keyv-store
+    to: backstage/packages/backend-defaults/entrypoints/cache/types
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics

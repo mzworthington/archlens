@@ -1,0 +1,93 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog/starredentitiesapi
+  name: Starredentitiesapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog/starredentitiesapi/migration
+    type: rest-api
+    name: Migration
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/apis/StarredEntitiesApi/migration.ts
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog/starredentitiesapi/migration-test
+    type: rest-api
+    name: Migration
+    isTest: true
+    properties:
+      filepath: plugins/catalog/src/apis/StarredEntitiesApi/migration.test.ts
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog/starredentitiesapi/default-starred-entities-api
+    type: gateway-api
+    name: DefaultStarredEntitiesApi
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/apis/StarredEntitiesApi/DefaultStarredEntitiesApi.ts
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/starredentitiesapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog/src/apis/StarredEntitiesApi/index.ts
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog/starredentitiesapi/default-starred-entities-api-test
+    type: rest-api
+    name: DefaultStarredEntitiesApi
+    isTest: true
+    properties:
+      filepath: plugins/catalog/src/apis/StarredEntitiesApi/DefaultStarredEntitiesApi.test.ts
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog/starredentitiesapi/migration-test
+    to: backstage/plugins/catalog/starredentitiesapi/migration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/starredentitiesapi/default-starred-entities-api
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog/starredentitiesapi/default-starred-entities-api
+    to: backstage/plugins/catalog/starredentitiesapi/migration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/starredentitiesapi/index
+    to: backstage/plugins/catalog/starredentitiesapi/default-starred-entities-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/starredentitiesapi/default-starred-entities-api-test
+    to: backstage/plugins/catalog/starredentitiesapi/default-starred-entities-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog/starredentitiesapi/default-starred-entities-api-test
+    to: backstage/plugins/catalog/starredentitiesapi/migration
+    type: direct-call
+    description: Calls module / service

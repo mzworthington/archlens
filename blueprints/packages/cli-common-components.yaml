@@ -766,115 +766,150 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2860
+      x: 2630
       y: -204
   - entityRef: backstage/packages/repo-tools/commands/api-reports
+    type: background-worker
+    name: Api reports (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 6310
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports
     type: rest-api
     name: Api reports (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/api-reports/buildApiReports.test.ts
       containerId: repo-tools
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 6540
+      x: 6770
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/build
+    type: background-worker
+    name: Build (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -12090
       y: -204
   - entityRef: backstage/packages/cli-module-build/builder
     type: background-worker
     name: Builder (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/builder/plugins.test.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -11860
+      x: -13470
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/bundle
+    type: background-worker
+    name: Bundle (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -11630
       y: -204
   - entityRef: backstage/packages/cli-module-build/bundler
     type: gateway-api
     name: Bundler (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
     position:
-      x: -11400
+      x: -13010
       y: -204
   - entityRef: backstage/packages/cli-node/cache
     type: cache-store
     name: Cache (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/cache/SuccessCache.ts
       containerId: cli-node
       technology: TypeScript Cache Client
       classification: cache-marker
     position:
-      x: 100
+      x: -130
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/cli-reports
+    type: background-worker
+    name: Cli reports (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 7230
       y: -204
   - entityRef: backstage/packages/cli-module-new/codeowners
     type: background-worker
     name: Codeowners (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/src/lib/codeowners/codeowners.test.ts
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2660
+      x: -2890
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/commands
     type: rest-api
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/commands/packageRole.ts
       containerId: cli-module-migrate
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -4500
+      x: -4730
       y: -204
   - entityRef: backstage/packages/techdocs-cli/commands
     type: gateway-api
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/techdocs-cli/src/commands/publish/publish.ts
       containerId: techdocs-cli
       technology: React Component
       classification: ui-import
     position:
-      x: 10680
+      x: 12290
       y: -204
   - entityRef: backstage/packages/cli-module-translations/commands
     type: background-worker
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-translations/src/commands/export.ts
       containerId: cli-module-translations
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -360
+      x: -590
       y: -204
   - entityRef: backstage/packages/repo-tools/commands
     type: background-worker
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/knip-reports/knip-reports.ts
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 6080
+      x: 5850
       y: -204
   - entityRef: backstage/packages/cli-module-info/commands
     type: background-worker
@@ -886,19 +921,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -6340
+      x: -6570
       y: -204
   - entityRef: backstage/packages/e2e-test/commands
     type: relational-database
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/e2e-test/src/commands/index.ts
       containerId: e2e-test
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: 5620
+      x: 5390
       y: -204
   - entityRef: backstage/packages/cli-module-build/config
     type: background-worker
@@ -910,7 +944,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10020
+      x: -10250
       y: -204
   - entityRef: backstage/packages/cli-module-config/config
     type: background-worker
@@ -922,7 +956,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7260
+      x: -7490
       y: -204
   - entityRef: backstage/packages/config-loader/configsources
     type: background-worker
@@ -934,19 +968,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3780
+      x: 3550
       y: -204
   - entityRef: backstage/packages/cli-module-github/commands/create-github-app
     type: gateway-api
     name: Create github app (External)
     external: true
     properties:
-      filepath: packages/cli-module-github/src/commands/create-github-app/GithubCreateAppServer.ts
       containerId: cli-module-github
       technology: React Component
       classification: ui-import
     position:
-      x: -6800
+      x: -7030
       y: -204
   - entityRef: backstage/packages/create-app/createapp
     type: background-worker
@@ -958,7 +991,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4240
+      x: 4010
       y: -204
   - entityRef: backstage/packages/create-app/createapp-test
     type: background-worker
@@ -970,7 +1003,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4700
+      x: 4470
       y: -204
   - entityRef: backstage/packages/repo-tools/errors
     type: background-worker
@@ -982,7 +1015,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8840
+      x: 10450
       y: -204
   - entityRef: backstage/packages/create-app/errors
     type: background-worker
@@ -994,7 +1027,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 5160
+      x: 4930
       y: -204
   - entityRef: backstage/packages/codemods/errors
     type: background-worker
@@ -1006,19 +1039,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3320
+      x: 3090
       y: -204
   - entityRef: backstage/packages/cli-module-new/execution
     type: background-worker
     name: Execution (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/src/lib/execution/PortableTemplater.ts
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2200
+      x: -2430
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/package/schema/openapi/generate
+    type: background-worker
+    name: Generate (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 9530
       y: -204
   - entityRef: backstage/packages/yarn-plugin/getcurrentbackstageversion
     type: background-worker
@@ -1030,7 +1073,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12520
+      x: 14130
       y: -204
   - entityRef: backstage/packages/yarn-plugin/getworkspaceroot
     type: background-worker
@@ -1042,19 +1085,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12980
+      x: 14590
       y: -204
   - entityRef: backstage/packages/cli-node/git
     type: background-worker
     name: Git (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/git/GitUtils.test.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 560
+      x: 330
       y: -204
   - entityRef: backstage/packages/errors/index
     type: background-worker
@@ -1078,31 +1120,30 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 13440
+      x: 15050
       y: -204
   - entityRef: backstage/packages/repo-tools/commands/knip-reports
     type: background-worker
     name: Knip reports (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/knip-reports/knip-extractor.ts
+      filepath: packages/repo-tools/src/commands/knip-reports/knip-reports.ts
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 7000
+      x: 8150
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/manager
     type: background-worker
     name: Manager (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -13240
+      x: -14850
       y: -204
   - entityRef: backstage/packages/techdocs-cli/mkdocsserver
     type: background-worker
@@ -1114,7 +1155,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 11600
+      x: 13210
       y: -204
   - entityRef: backstage/packages/techdocs-cli/mkdocsserver-test
     type: background-worker
@@ -1126,31 +1167,51 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12060
+      x: 13670
       y: -204
   - entityRef: backstage/packages/cli-node/monorepo
     type: background-worker
     name: Monorepo (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/monorepo/isMonorepo.test.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: 790
       y: -204
   - entityRef: backstage/packages/repo-tools/openapi
     type: background-worker
     name: Openapi (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/lib/openapi/helpers.ts
       containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9300
+      x: 10910
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/repo/schema/openapi
+    type: background-worker
+    name: Openapi (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 9990
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/package/schema/openapi
+    type: background-worker
+    name: Openapi (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 9070
       y: -204
   - entityRef: backstage/packages/cli-module-lint/commands/package
     type: background-worker
@@ -1162,7 +1223,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5880
+      x: -6110
       y: -204
   - entityRef: backstage/packages/cli-module-test-jest/commands/package
     type: background-worker
@@ -1174,67 +1235,51 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1280
+      x: -1510
       y: -204
   - entityRef: backstage/packages/cli-module-build/commands/package
-    type: gateway-api
-    name: Package (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/commands/package/prepack.ts
-      containerId: cli-module-build
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -10940
-      y: -204
-  - entityRef: backstage/packages/repo-tools/commands/package
     type: background-worker
     name: Package (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/package/schema/openapi/fuzz.ts
-      containerId: repo-tools
+      containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 7460
+      x: -12550
       y: -204
   - entityRef: backstage/packages/repo-tools/commands/package-docs
     type: cache-store
     name: Package docs (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/package-docs/Cache.test.ts
       containerId: repo-tools
       technology: TypeScript Cache Client
       classification: cache-marker
     position:
-      x: 7920
+      x: 8610
       y: -204
   - entityRef: backstage/packages/cli-module-build/packager
     type: background-worker
     name: Packager (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/packager/createDistWorkspace.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -9560
+      x: -9790
       y: -204
   - entityRef: backstage/packages/cli-node/pacman
     type: background-worker
     name: Pacman (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/pacman/yarn/Yarn.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1480
+      x: 1250
       y: -204
   - entityRef: backstage/packages/backend-plugin-api/paths
     type: background-worker
@@ -1246,7 +1291,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -12320
+      x: -13930
       y: -204
   - entityRef: backstage/packages/repo-tools/paths
     type: background-worker
@@ -1258,19 +1303,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9760
+      x: 11370
       y: -204
   - entityRef: backstage/packages/cli-module-new/preparation
     type: background-worker
     name: Preparation (External)
     external: true
     properties:
-      filepath: packages/cli-module-new/src/lib/preparation/selectTemplateInteractively.test.ts
       containerId: cli-module-new
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1740
+      x: -1970
       y: -204
   - entityRef: backstage/packages/cli-module-lint/commands/repo
     type: background-worker
@@ -1282,55 +1326,40 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5420
+      x: -5650
       y: -204
   - entityRef: backstage/packages/cli-module-test-jest/commands/repo
     type: background-worker
     name: Repo (External)
     external: true
     properties:
-      filepath: packages/cli-module-test-jest/src/commands/repo/test.test.ts
       containerId: cli-module-test-jest
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -820
+      x: -1050
       y: -204
   - entityRef: backstage/packages/cli-module-build/commands/repo
     type: background-worker
     name: Repo (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/commands/repo/start.test.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10480
-      y: -204
-  - entityRef: backstage/packages/repo-tools/commands/repo
-    type: background-worker
-    name: Repo (External)
-    external: true
-    properties:
-      filepath: packages/repo-tools/src/commands/repo/schema/openapi/lint.ts
-      containerId: repo-tools
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 8380
+      x: -10710
       y: -204
   - entityRef: backstage/packages/cli-module-maintenance/commands/repo
     type: background-worker
     name: Repo (External)
     external: true
     properties:
-      filepath: packages/cli-module-maintenance/src/commands/repo/list-deprecations.ts
       containerId: cli-module-maintenance
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4960
+      x: -5190
       y: -204
   - entityRef: backstage/packages/cli-module-build/role
     type: background-worker
@@ -1342,7 +1371,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -9100
+      x: -9330
       y: -204
   - entityRef: backstage/packages/cli-module-build/role-test
     type: background-worker
@@ -1354,19 +1383,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8640
+      x: -8870
       y: -204
   - entityRef: backstage/packages/cli-module-build/runner
     type: background-worker
     name: Runner (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/runner/startEmbeddedDb.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8180
+      x: -8410
       y: -204
   - entityRef: backstage/packages/repo-tools/runner
     type: background-worker
@@ -1378,31 +1406,51 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 10220
+      x: 11830
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/schemas
     type: background-worker
     name: Schemas (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -12780
+      x: -14390
       y: -204
   - entityRef: backstage/packages/techdocs-cli/commands/serve
     type: gateway-api
     name: Serve (External)
     external: true
     properties:
-      filepath: packages/techdocs-cli/src/commands/serve/mkdocs.ts
       containerId: techdocs-cli
       technology: React Component
       classification: ui-import
     position:
-      x: 11140
+      x: 12750
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/sql-reports
+    type: relational-database
+    name: Sql reports (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: 7690
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/commands/package/start
+    type: gateway-api
+    name: Start (External)
+    external: true
+    properties:
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -11170
       y: -204
   - entityRef: backstage/packages/cli-module-build/typedistproject
     type: background-worker
@@ -1414,7 +1462,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7720
+      x: -7950
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/utils
     type: background-worker
@@ -1426,55 +1474,51 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3580
+      x: -3810
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/versioning
     type: background-worker
     name: Versioning (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/lib/versioning/yarn.ts
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3120
+      x: -3350
       y: -204
   - entityRef: backstage/packages/cli-module-migrate/commands/versions
     type: background-worker
     name: Versions (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
       containerId: cli-module-migrate
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4040
+      x: -4270
       y: -204
   - entityRef: backstage/packages/cli/wiring
     type: background-worker
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/cli/src/wiring/CliInitializer.test.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2400
+      x: 2170
       y: -204
   - entityRef: backstage/packages/cli-node/yarn
     type: background-worker
     name: Yarn (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/yarn/yarnPlugin.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1940
+      x: 1710
       y: -204
 dependencies:
   - from: backstage/packages/config-loader/configsources
@@ -1709,6 +1753,18 @@ dependencies:
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/commands/package/start
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/commands/package/bundle
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/commands/package/build
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: backstage/packages/repo-tools/errors
     to: backstage/packages/cli-common/index
     type: direct-call
@@ -1741,15 +1797,31 @@ dependencies:
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/cli-reports
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/sql-reports
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
   - from: backstage/packages/repo-tools/commands/package-docs
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: backstage/packages/repo-tools/commands/repo
+  - from: backstage/packages/repo-tools/commands/repo/schema/openapi
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: backstage/packages/repo-tools/commands/package
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/package/schema/openapi/generate
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'

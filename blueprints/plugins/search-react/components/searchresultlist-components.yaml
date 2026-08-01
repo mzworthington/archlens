@@ -1,0 +1,121 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search-react/components/searchresultlist
+  name: Searchresultlist Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/search-react/components/searchresultlist/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultList/index.tsx
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-react/components/searchresultlist/search-result-list-test
+    type: gateway-api
+    name: SearchResultList
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultList/SearchResultList.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchresultlist/search-result-list-stories
+    type: gateway-api
+    name: SearchResultList.stories
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchResultList/SearchResultList.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/search-react/context
+    type: gateway-api
+    name: Context (External)
+    external: true
+    properties:
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/search-react/extensions
+    type: gateway-api
+    name: Extensions (External)
+    external: true
+    properties:
+      filepath: plugins/search-react/src/extensions.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/plugins/search-react/components/searchresultlist/index
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchresultlist/search-result-list-test
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchresultlist/search-result-list-test
+    to: backstage/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchresultlist/search-result-list-test
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchresultlist/search-result-list-stories
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-react/components/searchresultlist/search-result-list-stories
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchresultlist/search-result-list-stories
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchresultlist/search-result-list-stories
+    to: backstage/plugins/search-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchresultlist/search-result-list-stories
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service

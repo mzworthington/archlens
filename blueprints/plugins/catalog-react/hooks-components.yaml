@@ -1,0 +1,373 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/hooks
+  name: Hooks Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-type-filter
+    type: gateway-api
+    name: UseEntityTypeFilter
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityTypeFilter.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-ownership
+    type: gateway-api
+    name: UseEntityOwnership
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityOwnership.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-related-entities-test
+    type: gateway-api
+    name: UseRelatedEntities
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useRelatedEntities.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-permission
+    type: gateway-api
+    name: UseEntityPermission
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityPermission.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-context-menu-test
+    type: gateway-api
+    name: UseEntityContextMenu
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityContextMenu.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-ownership-test
+    type: gateway-api
+    name: UseEntityOwnership
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityOwnership.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-list-provider
+    type: gateway-api
+    name: UseEntityListProvider
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityListProvider.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-starred-entities-test
+    type: gateway-api
+    name: UseStarredEntities
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useStarredEntities.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-starred-entity
+    type: gateway-api
+    name: UseStarredEntity
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useStarredEntity.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-starred-entity-test
+    type: gateway-api
+    name: UseStarredEntity
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useStarredEntity.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-related-entities
+    type: gateway-api
+    name: UseRelatedEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useRelatedEntities.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-list-provider-test
+    type: gateway-api
+    name: UseEntityListProvider
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityListProvider.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/index.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-context-menu
+    type: background-worker
+    name: UseEntityContextMenu
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityContextMenu.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-permission-test
+    type: gateway-api
+    name: UseEntityPermission
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntityPermission.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity
+    type: gateway-api
+    name: UseEntity
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntity.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-entity-test
+    type: gateway-api
+    name: UseEntity
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useEntity.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/hooks/use-starred-entities
+    type: gateway-api
+    name: UseStarredEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/hooks/useStarredEntities.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-common/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/catalog/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/alpha/apis.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils/test-utils
+    type: background-worker
+    name: TestUtils (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/testUtils.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-react/hooks/use-entity-type-filter
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-type-filter
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-ownership
+    to: backstage/plugins/catalog-react/getentityrelations/get-entity-relations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-related-entities-test
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-related-entities-test
+    to: backstage/plugins/catalog-react/hooks/use-related-entities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-related-entities-test
+    to: backstage/plugins/catalog-react/testutils/test-utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-permission
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/catalog-react/hooks/use-entity-permission
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/catalog-react/hooks/use-entity-context-menu-test
+    to: backstage/plugins/catalog-react/hooks/use-entity-context-menu
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-ownership-test
+    to: backstage/plugins/catalog-react/hooks/use-entity-ownership
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-list-provider
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-list-provider
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-list-provider
+    to: backstage/plugins/catalog-react/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-starred-entities-test
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-starred-entities-test
+    to: backstage/plugins/catalog-react/hooks/use-starred-entities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-starred-entity
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-starred-entity-test
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-starred-entity-test
+    to: backstage/plugins/catalog-react/hooks/use-starred-entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-related-entities
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-list-provider-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/hooks/use-entity-list-provider-test
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-list-provider-test
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-list-provider-test
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-list-provider-test
+    to: backstage/plugins/catalog-react/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/index
+    to: backstage/plugins/catalog-react/hooks/use-related-entities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/index
+    to: backstage/plugins/catalog-react/hooks/use-starred-entities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/index
+    to: backstage/plugins/catalog-react/hooks/use-starred-entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/index
+    to: backstage/plugins/catalog-react/hooks/use-entity-ownership
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-permission-test
+    to: backstage/plugins/catalog-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-react/hooks/use-entity-permission-test
+    to: backstage/plugins/catalog-react/hooks/use-entity-permission
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/hooks/use-entity-permission-test
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/catalog-react/hooks/use-starred-entities
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service

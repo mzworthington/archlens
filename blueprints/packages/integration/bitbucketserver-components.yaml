@@ -1,0 +1,183 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/integration/bitbucketserver
+  name: Bitbucketserver Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/integration/bitbucketserver/bitbucket-server-integration-test
+    type: background-worker
+    name: BitbucketServerIntegration
+    isTest: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/BitbucketServerIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/bitbucketserver/core-test
+    type: background-worker
+    name: Core
+    isTest: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/core.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/bitbucketserver/bitbucket-server-integration
+    type: background-worker
+    name: BitbucketServerIntegration
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketServer/BitbucketServerIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/bitbucketserver/core
+    type: background-worker
+    name: Core
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketServer/core.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/bitbucketserver/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketServer/index.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/bitbucketserver/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketServer/config.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/bitbucketserver/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/config.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/config-loader/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/sources/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/integration/bitbucketserver/bitbucket-server-integration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/bitbucketserver/bitbucket-server-integration-test
+    to: backstage/packages/integration/bitbucketserver/bitbucket-server-integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/core-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/integration/bitbucketserver/core-test
+    to: backstage/packages/integration/bitbucketserver/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/core-test
+    to: backstage/packages/integration/bitbucketserver/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/bitbucket-server-integration
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/bitbucket-server-integration
+    to: backstage/packages/integration/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/bitbucket-server-integration
+    to: backstage/packages/integration/bitbucketserver/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/core
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/core
+    to: backstage/packages/integration/bitbucketserver/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/index
+    to: backstage/packages/integration/bitbucketserver/bitbucket-server-integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/index
+    to: backstage/packages/integration/bitbucketserver/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/index
+    to: backstage/packages/integration/bitbucketserver/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/config
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/bitbucketserver/config
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserver/config-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/bitbucketserver/config-test
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/bitbucketserver/config-test
+    to: backstage/packages/integration/bitbucketserver/config
+    type: direct-call
+    description: Calls module / service

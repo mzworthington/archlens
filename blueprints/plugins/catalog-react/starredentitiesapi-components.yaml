@@ -1,0 +1,64 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/starredentitiesapi
+  name: Starredentitiesapi Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/catalog-react/starredentitiesapi/starred-entities-api
+    type: rest-api
+    name: StarredEntitiesApi
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/StarredEntitiesApi/StarredEntitiesApi.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/starredentitiesapi/mock-starred-entities-api
+    type: rest-api
+    name: MockStarredEntitiesApi
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/StarredEntitiesApi/MockStarredEntitiesApi.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/starredentitiesapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/apis/StarredEntitiesApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-react/starredentitiesapi/mock-starred-entities-api-test
+    type: rest-api
+    name: MockStarredEntitiesApi
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/StarredEntitiesApi/MockStarredEntitiesApi.test.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+dependencies:
+  - from: backstage/plugins/catalog-react/starredentitiesapi/mock-starred-entities-api
+    to: backstage/plugins/catalog-react/starredentitiesapi/starred-entities-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/starredentitiesapi/index
+    to: backstage/plugins/catalog-react/starredentitiesapi/starred-entities-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/starredentitiesapi/index
+    to: backstage/plugins/catalog-react/starredentitiesapi/mock-starred-entities-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/starredentitiesapi/mock-starred-entities-api-test
+    to: backstage/plugins/catalog-react/starredentitiesapi/mock-starred-entities-api
+    type: direct-call
+    description: Calls module / service

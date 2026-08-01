@@ -1,0 +1,199 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/discovery
+  name: Discovery Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    type: background-worker
+    name: HostDiscovery
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/HostDiscovery.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery/srv-resolvers-test
+    type: background-worker
+    name: SrvResolvers
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/SrvResolvers.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery-test
+    type: background-worker
+    name: HostDiscovery
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/HostDiscovery.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery/srv-resolvers
+    type: background-worker
+    name: SrvResolvers
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/SrvResolvers.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery/parsing
+    type: background-worker
+    name: Parsing
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/parsing.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/discovery/discovery-service-factory
+    type: background-worker
+    name: DiscoveryServiceFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/discovery/discoveryServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config
+    type: rest-api
+    name: Config (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/config.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    to: backstage/packages/backend-defaults/entrypoints/discovery/srv-resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    to: backstage/packages/backend-defaults/entrypoints/discovery/parsing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/srv-resolvers-test
+    to: backstage/packages/backend-defaults/entrypoints/discovery/srv-resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery-test
+    to: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/srv-resolvers
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/index
+    to: backstage/packages/backend-defaults/entrypoints/discovery/discovery-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/index
+    to: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/parsing
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/parsing
+    to: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/discovery-service-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/discovery/discovery-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/discovery/host-discovery
+    type: direct-call
+    description: Calls module / service

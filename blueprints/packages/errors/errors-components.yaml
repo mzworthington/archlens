@@ -1,0 +1,196 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/errors/errors
+  name: Errors Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/errors/errors/response-error
+    type: background-worker
+    name: ResponseError
+    isTest: false
+    properties:
+      filepath: packages/errors/src/errors/ResponseError.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/errors/custom-error-base
+    type: background-worker
+    name: CustomErrorBase
+    isTest: false
+    properties:
+      filepath: packages/errors/src/errors/CustomErrorBase.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/errors/response-error-test
+    type: background-worker
+    name: ResponseError
+    isTest: true
+    properties:
+      filepath: packages/errors/src/errors/ResponseError.test.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/errors/common
+    type: background-worker
+    name: Common
+    isTest: false
+    properties:
+      filepath: packages/errors/src/errors/common.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/errors/common-test
+    type: background-worker
+    name: Common
+    isTest: true
+    properties:
+      filepath: packages/errors/src/errors/common.test.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/errors/assertion
+    type: background-worker
+    name: Assertion
+    isTest: false
+    properties:
+      filepath: packages/errors/src/errors/assertion.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/errors/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/errors/src/errors/types.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/errors/assertion-test
+    type: background-worker
+    name: Assertion
+    isTest: true
+    properties:
+      filepath: packages/errors/src/errors/assertion.test.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/errors/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/errors/src/errors/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/serialization/error
+    type: background-worker
+    name: Error (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/error.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/errors/serialization/response
+    type: background-worker
+    name: Response (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/response.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/errors/serialization
+    type: background-worker
+    name: Serialization (External)
+    external: true
+    properties:
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/packages/errors/errors/response-error
+    to: backstage/packages/errors/serialization/error
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/response-error
+    to: backstage/packages/errors/serialization/response
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/response-error
+    to: backstage/packages/errors/errors/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/custom-error-base
+    to: backstage/packages/errors/errors/assertion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/response-error-test
+    to: backstage/packages/errors/serialization
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/response-error-test
+    to: backstage/packages/errors/errors/response-error
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/common
+    to: backstage/packages/errors/errors/assertion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/common
+    to: backstage/packages/errors/errors/custom-error-base
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/common-test
+    to: backstage/packages/errors/errors/common
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/assertion-test
+    to: backstage/packages/errors/errors/assertion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/assertion-test
+    to: backstage/packages/errors/errors/common
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/assertion-test
+    to: backstage/packages/errors/errors/custom-error-base
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/index
+    to: backstage/packages/errors/errors/assertion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/index
+    to: backstage/packages/errors/errors/common
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/index
+    to: backstage/packages/errors/errors/custom-error-base
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/index
+    to: backstage/packages/errors/errors/response-error
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/errors/errors/index
+    to: backstage/packages/errors/errors/types
+    type: direct-call
+    description: Calls module / service

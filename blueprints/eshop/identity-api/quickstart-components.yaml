@@ -1,0 +1,255 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/identity-api/quickstart
+  name: Quickstart Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/identity-api/quickstart/error-view-model
+    type: background-worker
+    name: ErrorViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Home/ErrorViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/home-controller
+    type: rest-api
+    name: HomeController
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Home/HomeController.cs
+      containerId: identity-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/identity-api/quickstart/grants-controller
+    type: rest-api
+    name: GrantsController
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Grants/GrantsController.cs
+      containerId: identity-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/identity-api/quickstart/grants-view-model
+    type: background-worker
+    name: GrantsViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Grants/GrantsViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/security-headers-attribute
+    type: background-worker
+    name: SecurityHeadersAttribute
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/SecurityHeadersAttribute.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/consent-input-model
+    type: background-worker
+    name: ConsentInputModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Consent/ConsentInputModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/consent-view-model
+    type: background-worker
+    name: ConsentViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Consent/ConsentViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/scope-view-model
+    type: background-worker
+    name: ScopeViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Consent/ScopeViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/consent-controller
+    type: rest-api
+    name: ConsentController
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Consent/ConsentController.cs
+      containerId: identity-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/identity-api/quickstart/consent-options
+    type: background-worker
+    name: ConsentOptions
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Consent/ConsentOptions.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/process-consent-result
+    type: background-worker
+    name: ProcessConsentResult
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Consent/ProcessConsentResult.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/diagnostics-controller
+    type: rest-api
+    name: DiagnosticsController
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Diagnostics/DiagnosticsController.cs
+      containerId: identity-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/identity-api/quickstart/diagnostics-view-model
+    type: background-worker
+    name: DiagnosticsViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Diagnostics/DiagnosticsViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/device-authorization-input-model
+    type: background-worker
+    name: DeviceAuthorizationInputModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Device/DeviceAuthorizationInputModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/device-controller
+    type: rest-api
+    name: DeviceController
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Device/DeviceController.cs
+      containerId: identity-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/identity-api/quickstart/device-authorization-view-model
+    type: background-worker
+    name: DeviceAuthorizationViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Device/DeviceAuthorizationViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/extensions
+    type: background-worker
+    name: Extensions
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Extensions.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/account-controller
+    type: rest-api
+    name: AccountController
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/AccountController.cs
+      containerId: identity-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/identity-api/quickstart/logout-view-model
+    type: background-worker
+    name: LogoutViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/LogoutViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/external-provider
+    type: background-worker
+    name: ExternalProvider
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/ExternalProvider.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/login-input-model
+    type: background-worker
+    name: LoginInputModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/LoginInputModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/login-view-model
+    type: background-worker
+    name: LoginViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/LoginViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/logged-out-view-model
+    type: background-worker
+    name: LoggedOutViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/LoggedOutViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/external-controller
+    type: rest-api
+    name: ExternalController
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/ExternalController.cs
+      containerId: identity-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+  - entityRef: eshop/identity-api/quickstart/redirect-view-model
+    type: background-worker
+    name: RedirectViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/RedirectViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/account-options
+    type: background-worker
+    name: AccountOptions
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/AccountOptions.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/quickstart/logout-input-model
+    type: background-worker
+    name: LogoutInputModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Quickstart/Account/LogoutInputModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+dependencies: []

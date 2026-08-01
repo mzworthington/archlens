@@ -1,0 +1,99 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs/reader/transformers/styles
+  name: Styles Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs/reader/transformers/styles/rules
+    type: background-worker
+    name: Rules
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs/reader/transformers/styles/transformer
+    type: gateway-api
+    name: Transformer
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/styles/transformer.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/transformers/styles/transformer-test
+    type: gateway-api
+    name: Transformer
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/styles/transformer.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/transformers/styles/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/styles/index.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs/reader/transformers/transformer
+    type: background-worker
+    name: Transformer (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/transformer.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs/reader/transformers/styles/transformer
+    to: backstage/plugins/techdocs/reader/transformers/transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/transformer-test
+    to: backstage/plugins/techdocs/reader/transformers/styles/transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/rules
+    to: backstage/plugins/techdocs/reader/transformers/styles/rules/variables
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/rules
+    to: backstage/plugins/techdocs/reader/transformers/styles/rules/reset
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/rules
+    to: backstage/plugins/techdocs/reader/transformers/styles/rules/layout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/rules
+    to: backstage/plugins/techdocs/reader/transformers/styles/rules/typeset
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/rules
+    to: backstage/plugins/techdocs/reader/transformers/styles/rules/animations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/rules
+    to: backstage/plugins/techdocs/reader/transformers/styles/rules/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/rules
+    to: backstage/plugins/techdocs/reader/transformers/styles/rules/palette
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/styles/index
+    to: backstage/plugins/techdocs/reader/transformers/styles/transformer
+    type: direct-call
+    description: Calls module / service

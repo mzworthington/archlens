@@ -1,0 +1,194 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/example-todo-list/components
+  name: Components Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/example-todo-list/components/todolistpage
+    type: background-worker
+    name: Todolistpage
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/components/TodoListPage/index.ts
+      containerId: example-todo-list
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list/src/components/TodoListPage/TodoListPage.tsx
+          kind: direct
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/example-todo-list/components/todolist
+    type: background-worker
+    name: Todolist
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/components/TodoList/index.ts
+      containerId: example-todo-list
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/example-todo-list/src/components/TodoList/TodoList.tsx
+          kind: direct
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/example-todo-list/components/todo-list-page
+    type: gateway-api
+    name: TodoListPage
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/components/TodoListPage/TodoListPage.tsx
+      containerId: example-todo-list
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/example-todo-list/components/todo-list
+    type: gateway-api
+    name: TodoList
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list/src/components/TodoList/TodoList.tsx
+      containerId: example-todo-list
+      technology: React Component
+      classification: ui-import
+dependencies: []

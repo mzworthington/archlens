@@ -1,0 +1,148 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/techdocs-cli/commands
+  name: Commands Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/techdocs-cli/commands/serve
+    type: gateway-api
+    name: Serve
+    isTest: false
+    properties:
+      containerId: techdocs-cli
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/techdocs-cli/commands/publish
+    type: background-worker
+    name: Publish
+    isTest: false
+    properties:
+      filepath: packages/techdocs-cli/src/commands/publish/publish.ts
+      containerId: techdocs-cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/techdocs-cli/commands/migrate
+    type: background-worker
+    name: Migrate
+    isTest: false
+    properties:
+      filepath: packages/techdocs-cli/src/commands/migrate/migrate.ts
+      containerId: techdocs-cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/techdocs-cli/commands/generate
+    type: background-worker
+    name: Generate
+    isTest: false
+    properties:
+      filepath: packages/techdocs-cli/src/commands/generate/generate.ts
+      containerId: techdocs-cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/techdocs-cli/commands/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/techdocs-cli/src/commands/index.ts
+      containerId: techdocs-cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/model/sources/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/techdocs-cli/commands/publish
+    to: backstage/packages/techdocs-cli/utility/utility
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/publish
+    to: backstage/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/techdocs-cli/commands/publish
+    to: backstage/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: backstage/packages/techdocs-cli/commands/publish
+    to: backstage/packages/techdocs-cli/publisherconfig/publisher-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/migrate
+    to: backstage/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/techdocs-cli/commands/migrate
+    to: backstage/packages/techdocs-cli/utility/utility
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/migrate
+    to: backstage/packages/techdocs-cli/publisherconfig/publisher-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/generate
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/techdocs-cli/commands/generate
+    to: backstage/packages/techdocs-cli/utility/utility
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/serve
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/techdocs-cli/commands/serve
+    to: backstage/packages/techdocs-cli/httpserver/http-server
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/serve
+    to: backstage/packages/techdocs-cli/mkdocsserver/mkdocs-server
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/serve
+    to: backstage/packages/techdocs-cli/utility/utility
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/techdocs-cli/commands/serve
+    to: backstage/packages/techdocs-cli/commands/serve/utils
+    type: direct-call
+    description: Calls module / service

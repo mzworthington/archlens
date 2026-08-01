@@ -1,0 +1,49 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/paymentprocessor/integrationevents
+  name: IntegrationEvents Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/paymentprocessor/integrationevents/order-payment-failed-integration-event
+    type: event-broker
+    name: OrderPaymentFailedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/PaymentProcessor/IntegrationEvents/Events/OrderPaymentFailedIntegrationEvent.cs
+      containerId: paymentprocessor
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/paymentprocessor/integrationevents/order-status-changed-to-stock-confirmed-integration-event
+    type: event-broker
+    name: OrderStatusChangedToStockConfirmedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/PaymentProcessor/IntegrationEvents/Events/OrderStatusChangedToStockConfirmedIntegrationEvent.cs
+      containerId: paymentprocessor
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/paymentprocessor/integrationevents/order-payment-succeeded-integration-event
+    type: event-broker
+    name: OrderPaymentSucceededIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/PaymentProcessor/IntegrationEvents/Events/OrderPaymentSucceededIntegrationEvent.cs
+      containerId: paymentprocessor
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/paymentprocessor/integrationevents/order-status-changed-to-stock-confirmed-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToStockConfirmedIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: >-
+        src/PaymentProcessor/IntegrationEvents/EventHandling/OrderStatusChangedToStockConfirmedIntegrationEventHandler.cs
+      containerId: paymentprocessor
+      technology: C# Event Client
+      classification: event-marker
+dependencies: []

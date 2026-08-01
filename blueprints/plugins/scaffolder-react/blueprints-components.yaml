@@ -1,0 +1,103 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-react/blueprints
+  name: Blueprints Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-react/blueprints/form-decorator-blueprint
+    type: background-worker
+    name: FormDecoratorBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/blueprints/FormDecoratorBlueprint.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/blueprints/types
+    type: gateway-api
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/blueprints/types.ts
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/blueprints/form-field-blueprint
+    type: background-worker
+    name: FormFieldBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/blueprints/FormFieldBlueprint.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/blueprints/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/blueprints/index.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/extensions
+    type: gateway-api
+    name: Extensions (External)
+    external: true
+    properties:
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/lib/index.ts
+      containerId: scaffolder-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-react/blueprints/form-decorator-blueprint
+    to: backstage/plugins/scaffolder-react/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/blueprints/types
+    to: backstage/plugins/scaffolder-react/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-react'
+  - from: backstage/plugins/scaffolder-react/blueprints/form-field-blueprint
+    to: backstage/plugins/scaffolder-react/blueprints/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/blueprints/form-field-blueprint
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/blueprints/index
+    to: backstage/plugins/scaffolder-react/blueprints/types
+    type: direct-call
+    description: Calls module / service

@@ -19,18 +19,26 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 29
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      churn: 10
+      lineChurn: 219
+      churn30: 4
+      churn365: 10
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -39,33 +47,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -80,13 +62,38 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6
       authors:
         - email: poldsberg@gmail.com
+          commits: 5
+        - email: sebastian@poxhofer.at
+          commits: 3
+        - email: ivangonzalezacuna@gmail.com
           commits: 1
-      hotspotScore: 0
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.00048040845238345707
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-unprocessed-entities/routes
     type: background-worker
     name: Routes
@@ -175,14 +182,14 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 65
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      complexityPeak: 1
+      churn: 11
+      lineChurn: 227
+      churn30: 2
+      churn365: 11
       churnByWeek:
+        - 1
         - 0
         - 0
         - 0
@@ -198,28 +205,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -234,15 +220,38 @@ nodes:
         - 1
         - 0
         - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
         - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 11
+      hotspotScore: 0.0005680742283658398
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-unprocessed-entities/alpha
     type: background-worker
     name: Alpha
@@ -484,36 +493,18 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/catalog-unprocessed-entities/src/components/FailedEntities.tsx
       containerId: catalog-unprocessed-entities
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 287
-      churn30: 1
-      churn365: 1
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 8
+      lineChurn: 653
+      churn30: 5
+      churn365: 8
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -548,15 +539,35 @@ nodes:
         - 1
         - 0
         - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
         - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 8
+      hotspotScore: 0.0005189813938157055
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-react/api
     type: background-worker
     name: Api (External)

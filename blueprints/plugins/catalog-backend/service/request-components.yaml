@@ -1,0 +1,550 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend/service/request
+  name: Request Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-transform-params-test
+    type: background-worker
+    name: ParseEntityTransformParams
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityTransformParams.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-location-query
+    type: background-worker
+    name: ParseLocationQuery
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseLocationQuery.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-pagination-params
+    type: background-worker
+    name: ParseEntityPaginationParams
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityPaginationParams.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/entities-batch-request
+    type: rest-api
+    name: EntitiesBatchRequest
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/entitiesBatchRequest.ts
+      containerId: catalog-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-facets-query-test
+    type: background-worker
+    name: ParseEntityFacetsQuery
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityFacetsQuery.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    type: background-worker
+    name: ParseQueryEntitiesParams
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseQueryEntitiesParams.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-location-query-test
+    type: background-worker
+    name: ParseLocationQuery
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseLocationQuery.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-facet-params
+    type: background-worker
+    name: ParseEntityFacetParams
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityFacetParams.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-filter-params
+    type: background-worker
+    name: ParseEntityFilterParams
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityFilterParams.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query
+    type: relational-database
+    name: ApplyEntityFilterToQuery
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/applyEntityFilterToQuery.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-query-entities-params-test
+    type: background-worker
+    name: ParseQueryEntitiesParams
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseQueryEntitiesParams.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/common
+    type: background-worker
+    name: Common
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/common.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-facets-query
+    type: background-worker
+    name: ParseEntityFacetsQuery
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityFacetsQuery.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/apply-predicate-entity-filter-to-query
+    type: relational-database
+    name: ApplyPredicateEntityFilterToQuery
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/applyPredicateEntityFilterToQuery.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/service/request/basic-entity-filter
+    type: background-worker
+    name: BasicEntityFilter
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/basicEntityFilter.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/apply-predicate-entity-filter-to-query-test
+    type: relational-database
+    name: ApplyPredicateEntityFilterToQuery
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/applyPredicateEntityFilterToQuery.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-query
+    type: background-worker
+    name: ParseEntityQuery
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityQuery.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-pagination-params-test
+    type: background-worker
+    name: ParseEntityPaginationParams
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityPaginationParams.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/entity-filter-to-filter-predicate
+    type: background-worker
+    name: EntityFilterToFilterPredicate
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/entityFilterToFilterPredicate.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/entity-filter-to-filter-predicate-test
+    type: background-worker
+    name: EntityFilterToFilterPredicate
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/entityFilterToFilterPredicate.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-order-params
+    type: background-worker
+    name: ParseEntityOrderParams
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityOrderParams.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/index.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query-test
+    type: relational-database
+    name: ApplyEntityFilterToQuery
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/applyEntityFilterToQuery.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-filter-params-test
+    type: background-worker
+    name: ParseEntityFilterParams
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityFilterParams.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-order-params-test
+    type: background-worker
+    name: ParseEntityOrderParams
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityOrderParams.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-query-test
+    type: background-worker
+    name: ParseEntityQuery
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityQuery.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-order-field-params-test
+    type: background-worker
+    name: ParseEntityOrderFieldParams
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityOrderFieldParams.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-order-field-params
+    type: background-worker
+    name: ParseEntityOrderFieldParams
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityOrderFieldParams.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/parse-entity-transform-params
+    type: background-worker
+    name: ParseEntityTransformParams
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/parseEntityTransformParams.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/service/request/search-subquery
+    type: relational-database
+    name: SearchSubquery
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/service/request/searchSubquery.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/operations/stitcher/build-entity-search
+    type: relational-database
+    name: BuildEntitySearch (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/operations/stitcher/buildEntitySearch.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/migrations
+    type: relational-database
+    name: Migrations (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/migrations.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/app-node/schema
+    type: background-worker
+    name: Schema (External)
+    external: true
+    properties:
+      filepath: plugins/app-node/src/schema.ts
+      containerId: app-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/tables
+    type: relational-database
+    name: Tables (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/tables.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/service/util
+    type: rest-api
+    name: Util (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/util.ts
+      containerId: catalog-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-transform-params-test
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-transform-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-pagination-params
+    to: backstage/plugins/catalog-backend/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-facets-query-test
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-facets-query
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    to: backstage/plugins/catalog-backend/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    to: backstage/plugins/catalog-backend/service/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-filter-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-order-field-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-transform-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    to: backstage/plugins/app-node/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-location-query-test
+    to: backstage/plugins/catalog-backend/service/request/parse-location-query
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-facet-params
+    to: backstage/plugins/catalog-backend/service/request/common
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-filter-params
+    to: backstage/plugins/catalog-backend/service/request/common
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-filter-params
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query
+    to: backstage/plugins/catalog-backend/service/request/apply-predicate-entity-filter-to-query
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params-test
+    to: backstage/plugins/catalog-backend/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params-test
+    to: backstage/plugins/catalog-backend/service/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-query-entities-params-test
+    to: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/apply-predicate-entity-filter-to-query
+    to: backstage/plugins/catalog-backend/service/request/search-subquery
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/apply-predicate-entity-filter-to-query-test
+    to: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/apply-predicate-entity-filter-to-query-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/service/request/apply-predicate-entity-filter-to-query-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/service/request/apply-predicate-entity-filter-to-query-test
+    to: backstage/plugins/catalog-backend/database/operations/stitcher/build-entity-search
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-query
+    to: backstage/plugins/catalog-backend/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-query
+    to: backstage/plugins/catalog-backend/service/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-pagination-params-test
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-pagination-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/entity-filter-to-filter-predicate
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/service/request/entity-filter-to-filter-predicate-test
+    to: backstage/plugins/catalog-backend/service/request/entity-filter-to-filter-predicate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-order-params
+    to: backstage/plugins/catalog-backend/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-order-params
+    to: backstage/plugins/catalog-backend/service/request/common
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/index
+    to: backstage/plugins/catalog-backend/service/request/entities-batch-request
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/index
+    to: backstage/plugins/catalog-backend/service/request/basic-entity-filter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/index
+    to: backstage/plugins/catalog-backend/service/request/entity-filter-to-filter-predicate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/index
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-filter-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/index
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-transform-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/index
+    to: backstage/plugins/catalog-backend/service/request/parse-query-entities-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query-test
+    to: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/service/request/apply-entity-filter-to-query-test
+    to: backstage/plugins/catalog-backend/database/operations/stitcher/build-entity-search
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-filter-params-test
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-filter-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-order-params-test
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-order-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-query-test
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-query
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-query-test
+    to: backstage/plugins/catalog-backend/service/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-query-test
+    to: backstage/plugins/catalog-backend/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-order-field-params-test
+    to: backstage/plugins/catalog-backend/service/request/parse-entity-order-field-params
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-order-field-params
+    to: backstage/plugins/catalog-backend/catalog/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-order-field-params
+    to: backstage/plugins/catalog-backend/service/request/common
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-transform-params
+    to: backstage/plugins/catalog-backend/recursivepartial/recursive-partial
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/service/request/parse-entity-transform-params
+    to: backstage/plugins/catalog-backend/service/request/common
+    type: direct-call
+    description: Calls module / service

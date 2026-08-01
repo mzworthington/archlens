@@ -27,7 +27,7 @@ scan_context() {
     backstage) echo backstage ;;
     blueprint) echo blueprint ;;
     eshop) echo eshop ;;
-    examples) echo blueprint ;;
+    examples) echo infrastructure ;;
     gpio-build-monitor) echo application ;;
     terraform-examples) echo infrastructure ;;
     *) echo "$1" ;;
