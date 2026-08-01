@@ -11,7 +11,6 @@ import { ImportIacDialog } from '../components/ImportIacDialog/ImportIacDialog';
 import { StartupWorkspaceDialog } from '../components/StartupWorkspaceDialog/StartupWorkspaceDialog';
 import { CompareDialog } from '../components/CompareDialog/CompareDialog';
 import { KeyboardShortcutsDialog } from '../components/KeyboardShortcutsDialog/KeyboardShortcutsDialog';
-import { WorkspaceDisplayDialog } from '../components/WorkspaceDisplayDialog/WorkspaceDisplayDialog';
 import { ChildLevelExternalsDialog } from '../components/ChildLevelExternalsDialog/ChildLevelExternalsDialog';
 import { WorkspaceSourceCodeDialog } from '../components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 
@@ -33,8 +32,6 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setIsCompareOpen,
     isShortcutsOpen,
     setIsShortcutsOpen,
-    isDisplaySettingsOpen,
-    setIsDisplaySettingsOpen,
     childExternalsParentRef,
     isSourceCodeOpen,
     openWorkspaceDirectory,
@@ -94,12 +91,6 @@ export function useWorkspaceDialogs(): React.ReactNode {
         <KeyboardShortcutsDialog
           isOpen={isShortcutsOpen}
           onClose={() => setIsShortcutsOpen(false)}
-        />
-      </LazyMountOnOpen>
-      <LazyMountOnOpen isOpen={isDisplaySettingsOpen}>
-        <WorkspaceDisplayDialog
-          isOpen={isDisplaySettingsOpen}
-          onClose={() => setIsDisplaySettingsOpen(false)}
         />
       </LazyMountOnOpen>
       <LazyMountOnOpen isOpen={childExternalsParentRef != null}>

@@ -7,6 +7,11 @@ export function isEstateResilienceDiagramLevel(level: C4Level): boolean {
   return level === 'context' || level === 'container';
 }
 
+/** Whether the designer may run ChaosLens fault simulation on this diagram level. */
+export function isResilienceSimulationDiagramLevel(level: C4Level): boolean {
+  return isEstateResilienceDiagramLevel(level);
+}
+
 /** Roles that may receive outbound resilience safeguard advice (application runtime, not infra). */
 const SAFEGUARD_TARGET_ROLES: ReadonlySet<NodeRole> = new Set([
   'user-facing',

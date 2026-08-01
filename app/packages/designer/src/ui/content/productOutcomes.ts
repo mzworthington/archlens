@@ -28,12 +28,12 @@ export const WORKSPACE_STARTUP = {
 } as const;
 
 export const TRACE_LENS_HERO = {
+  pageTitle: 'Estate forensics',
   offenders: {
-    title: 'Worst offenders',
+    sectionTitle: 'Worst offenders',
     body: 'Estate-wide ranking by forensics signals — churn, complexity, and coupling on every loaded blueprint. Find nodes that amplify outage risk before you refactor.',
   },
   recommendations: {
-    title: 'All recommendations',
     body: 'Headless ChaosLens scenarios across every loaded diagram, merged with TraceLens signals. Click a row for evidence and the next action.',
   },
 } as const;

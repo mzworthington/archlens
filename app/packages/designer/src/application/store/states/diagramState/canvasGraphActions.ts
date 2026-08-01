@@ -1,4 +1,8 @@
 import { refreshGroupBoundsFromChildren, isDesktopViewport } from '../../layoutUtils';
+import {
+  includeExternalsInFocusFromMode,
+  showSelectedDependenciesOnlyFromMode,
+} from '../../../forensics/dependencyViewMode';
 import { applyStateUpdates } from './applyStateUpdates';
 import { addNodeMutation, updateNodeMutation, deleteNodeMutation } from './nodeMutations';
 import {
@@ -77,10 +81,18 @@ export function createCanvasGraphActions(set: SetFn, get: GetFn) {
 
     selectNode: (id: string | null, options?: SelectionOptions) => {
       const expandPanel = shouldExpandPropertyPanel(id !== null, options);
+      const dependencyViewMode = id
+        ? get().dependencyViewMode === 'full'
+          ? 'focus'
+          : get().dependencyViewMode
+        : 'full';
       set({
         selectedNodeId: id,
         selectedEdgeId: id ? null : get().selectedEdgeId,
         rightCollapsed: expandPanel ? false : get().rightCollapsed,
+        dependencyViewMode,
+        showSelectedDependenciesOnly: showSelectedDependenciesOnlyFromMode(dependencyViewMode),
+        includeExternalsInFocus: includeExternalsInFocusFromMode(dependencyViewMode),
       });
     },
 

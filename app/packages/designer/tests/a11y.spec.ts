@@ -4,6 +4,7 @@ import { expectNoSeriousA11yViolations } from './helpers/a11y';
 import {
   loadForensicsWorkspace,
   loadSandbox,
+  openExplorerTraceLensTab,
   waitForForensicsOffenders,
 } from './helpers/workspace';
 import { openImportMermaid } from './helpers/toolbar';
@@ -29,10 +30,10 @@ test.describe('Accessibility (axe)', () => {
     await expectNoSeriousA11yViolations(page, 'workspace canvas');
   });
 
-  test('workspace display controls dialog', async ({ page }) => {
+  test('workspace display controls in Explorer TraceLens tab', async ({ page }) => {
     await loadSandbox(page);
-    await page.getByTestId('toolbar-display-settings').click();
-    await expectNoSeriousA11yViolations(page, 'workspace display dialog');
+    await openExplorerTraceLensTab(page);
+    await expectNoSeriousA11yViolations(page, 'workspace display controls');
   });
 
   test('import Mermaid dialog', async ({ page }) => {
@@ -43,7 +44,7 @@ test.describe('Accessibility (axe)', () => {
   test('TraceLens refactor plan slide-over', async ({ page }) => {
     test.setTimeout(180_000);
     await loadForensicsWorkspace(page);
-    await page.getByRole('link', { name: 'TraceLens' }).click();
+    await page.getByRole('link', { name: 'Forensics' }).click();
     await waitForForensicsOffenders(page);
     await page
       .getByRole('button', { name: /Open refactor plan for/i })

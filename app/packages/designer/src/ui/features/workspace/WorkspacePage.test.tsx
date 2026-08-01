@@ -28,8 +28,8 @@ vi.mock('wouter', () => ({
   Router: ({ children }: any) => <>{children}</>,
 }));
 
-vi.mock('./components/CodeViewer/CodeViewer', () => ({
-  CodeViewer: () => <div data-testid="code-viewer">CodeViewer</div>,
+vi.mock('./layout/LeftWorkspacePanel', () => ({
+  LeftWorkspacePanel: () => <div data-testid="left-panel">Explorer</div>,
 }));
 
 vi.mock('./components/Canvas/Canvas', () => ({
@@ -102,11 +102,11 @@ describe('WorkspacePage Component', () => {
     });
   });
 
-  it('should render CodeViewer, Canvas, and PropertyPanel', () => {
-    useBlueprintStore.setState({ leftCollapsed: false });
+  it('should render Explorer, Canvas, and PropertyPanel', () => {
+    useBlueprintStore.setState({ leftCollapsed: false, rightCollapsed: false });
     render(<WorkspacePage />);
 
-    expect(screen.getByTestId('code-viewer')).toBeInTheDocument();
+    expect(screen.getByTestId('left-panel')).toBeInTheDocument();
     expect(screen.getByTestId('canvas')).toBeInTheDocument();
     expect(screen.getByTestId('property-panel')).toBeInTheDocument();
   });
@@ -114,9 +114,8 @@ describe('WorkspacePage Component', () => {
   it('should support expanding and collapsing left and right side panels', () => {
     render(<WorkspacePage />);
 
-    // Desktop edge rails. Mobile panel chips render inside Canvas → WorkspaceToolbar.
-    const leftToggle = screen.getByLabelText('Toggle Left Panel');
-    const rightToggle = screen.getByLabelText('Toggle Right Panel');
+    const leftToggle = screen.getByLabelText('Toggle left panel');
+    const rightToggle = screen.getByLabelText('Toggle right panel');
 
     fireEvent.click(leftToggle);
     expect(useBlueprintStore.getState().leftCollapsed).toBe(false);

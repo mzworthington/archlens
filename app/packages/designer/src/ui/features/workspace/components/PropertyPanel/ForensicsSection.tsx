@@ -37,6 +37,10 @@ interface ForensicsSectionProps {
   onSelectImportPeer?: (path: string) => void;
   /** ChaosLens blast exposure for the selected node (0–1). */
   blastRadius?: number;
+  /** Hide the link to full TraceLens page (shown in side panel header CTA instead). */
+  hideOpenLink?: boolean;
+  /** Hide inline schema-deps toggle (shown in canvas lens controls instead). */
+  hideSchemaDepsToggle?: boolean;
 }
 
 function basename(path: string): string {
@@ -96,6 +100,8 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
   onSelectCoupledPeer,
   onSelectImportPeer,
   blastRadius,
+  hideOpenLink = false,
+  hideSchemaDepsToggle = false,
 }) => {
   const {
     concern,
@@ -119,7 +125,7 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
           TraceLens
         </h4>
         <div className="flex items-center gap-2 shrink-0">
-          {entityRef ? (
+          {entityRef && !hideOpenLink ? (
             <Link
               href={buildTraceLensUrl(entityRef)}
               data-testid="forensics-open-tracelens"
@@ -225,9 +231,9 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
               ? hasSelectedNode
                 ? `Coupling lens is on — focusing ${focusableCouplingCount} peer${focusableCouplingCount === 1 ? '' : 's'} for this node.`
                 : 'Coupling lens is on — diagram-wide coupling is visible. Select this node to focus its peers.'
-              : 'Use the Lenses group in the toolbar or Workspace display to turn on coupling lens.'}
+              : 'Turn on Coupling Lens in Explorer → TraceLens → Workspace display.'}
           </p>
-          {onToggleShowCouplingSchemaDeps && showCoupling ? (
+          {onToggleShowCouplingSchemaDeps && showCoupling && !hideSchemaDepsToggle ? (
             <div className="flex items-center justify-between gap-2 pt-1">
               <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
                 Schema dependencies
@@ -254,7 +260,7 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
               </button>
             </div>
           ) : null}
-          {onToggleShowCouplingSchemaDeps && showCoupling ? (
+          {onToggleShowCouplingSchemaDeps && showCoupling && !hideSchemaDepsToggle ? (
             <p
               className="text-[10px] leading-snug text-slate-500"
               data-testid="forensics-help-coupling-schema-deps"

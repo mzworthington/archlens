@@ -32,7 +32,7 @@ const SHORTCUTS: { section: string; rows: ShortcutRow[] }[] = [
   {
     section: 'Panels',
     rows: [
-      { keys: ['Schema / Props'], description: 'Open side panels on mobile (bottom chips)' },
+      { keys: ['Explorer / Props'], description: 'Open side panels on mobile (toolbar chips)' },
       { keys: ['Edge arrows'], description: 'Collapse or expand panels on desktop' },
     ],
   },

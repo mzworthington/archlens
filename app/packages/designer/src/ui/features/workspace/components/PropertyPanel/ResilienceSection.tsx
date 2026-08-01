@@ -16,6 +16,7 @@ import { TelemetryViewToggle } from '../../../resilience/components/TelemetryVie
 import type { SimulationResult } from '@archlens/core/resilience';
 import type { EntityRef, SystemNode } from '@archlens/core';
 import type { Recommendation } from '@archlens/core/recommendations';
+import { GoToEntityButton } from '../GoToEntityButton';
 
 type Props = {
   telemetryView: TelemetryViewMode;
@@ -30,6 +31,9 @@ type Props = {
   monteCarlo: MonteCarloConfig;
   simulationResult: SimulationResult | null;
   recommendations?: Recommendation[];
+  resilienceUnavailable?: boolean;
+  containerEntityRef?: string | null;
+  containerName?: string | null;
   onTelemetryViewChange: (view: TelemetryViewMode) => void;
   onSelectFault: (nodeId: EntityRef) => void;
   onRemoveFault: (nodeId: EntityRef) => void;
@@ -151,22 +155,47 @@ export const ResilienceSection: React.FC<Props> = props => {
       ) : (
         <ExecutiveTelemetryPanel result={props.simulationResult} />
       )}
-      <div className="border-t border-slate-800 pt-6">
-        <FaultControls
-          selectedNodeLabel={props.selectedNodeLabel}
-          faultType={props.faultType}
-          severity={props.severity}
-          safeguards={props.safeguards}
-          isFaultInScenario={isFaultInScenario}
-          onFaultTypeChange={props.onFaultTypeChange}
-          onSeverityChange={props.onSeverityChange}
-          onSafeguardChange={props.onSafeguardChange}
-          onAddToScenario={props.onAddFaultToScenario}
-        />
-      </div>
-      <div className="border-t border-slate-800 pt-6">
-        <MonteCarloControls config={props.monteCarlo} onChange={props.onMonteCarloChange} />
-      </div>
+      {props.resilienceUnavailable ? (
+        <div
+          className="border-t border-slate-800 pt-6 space-y-3"
+          data-testid="resilience-unavailable-banner"
+        >
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Resilience faults apply to container services, not individual components. Open the{' '}
+            <span className="text-slate-200 font-semibold">
+              {props.containerName ?? 'container'}
+            </span>{' '}
+            container diagram to simulate blast radius.
+          </p>
+          {props.containerEntityRef ? (
+            <GoToEntityButton
+              entityRef={props.containerEntityRef}
+              label="Go to container diagram"
+              testId="resilience-go-to-container"
+              className="w-full flex items-center justify-center gap-2 rounded-lg border border-cyan-900/40 bg-cyan-950/20 px-3 py-2 text-xs font-semibold text-cyan-300 hover:text-cyan-200 hover:bg-cyan-950/40 transition cursor-pointer"
+            />
+          ) : null}
+        </div>
+      ) : (
+        <>
+          <div className="border-t border-slate-800 pt-6">
+            <FaultControls
+              selectedNodeLabel={props.selectedNodeLabel}
+              faultType={props.faultType}
+              severity={props.severity}
+              safeguards={props.safeguards}
+              isFaultInScenario={isFaultInScenario}
+              onFaultTypeChange={props.onFaultTypeChange}
+              onSeverityChange={props.onSeverityChange}
+              onSafeguardChange={props.onSafeguardChange}
+              onAddToScenario={props.onAddFaultToScenario}
+            />
+          </div>
+          <div className="border-t border-slate-800 pt-6">
+            <MonteCarloControls config={props.monteCarlo} onChange={props.onMonteCarloChange} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

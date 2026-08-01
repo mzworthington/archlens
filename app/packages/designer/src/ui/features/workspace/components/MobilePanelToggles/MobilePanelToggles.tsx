@@ -12,16 +12,22 @@ type MobilePanelTogglesProps = {
 
 /**
  * Mobile panel openers - labelled 44px-tall chips replace the thin edge rails,
- * which are hard to hit while panning the canvas. Hidden once either sheet is open
+ * which are hard to hit while panning the canvas. Hidden once any sheet is open
  * (panels already expose a close control in their headers).
  */
 export const MobilePanelToggles: React.FC<MobilePanelTogglesProps> = ({ variant = 'inline' }) => {
   const leftCollapsed = useBlueprintStore(s => s.leftCollapsed);
   const rightCollapsed = useBlueprintStore(s => s.rightCollapsed);
-  const toggleLeftCollapsed = useBlueprintStore(s => s.toggleLeftCollapsed);
   const toggleRightCollapsed = useBlueprintStore(s => s.toggleRightCollapsed);
 
   if (!leftCollapsed || !rightCollapsed) return null;
+
+  const openExplorer = () => {
+    useBlueprintStore.setState({
+      leftCollapsed: false,
+      isTraceLensPanelOpen: true,
+    });
+  };
 
   return (
     <div
@@ -35,12 +41,12 @@ export const MobilePanelToggles: React.FC<MobilePanelTogglesProps> = ({ variant 
     >
       <button
         type="button"
-        onClick={toggleLeftCollapsed}
+        onClick={openExplorer}
         className={`${panelToggleClass} flex-1 justify-center`}
-        aria-label="Open Schema Explorer"
+        aria-label="Open Explorer"
       >
         <Braces className="w-4 h-4 text-[#00f0ff] shrink-0" aria-hidden />
-        Schema
+        Explorer
       </button>
       <button
         type="button"

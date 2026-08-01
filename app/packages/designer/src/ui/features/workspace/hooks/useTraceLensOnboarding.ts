@@ -28,11 +28,12 @@ export function useTraceLensOnboarding(): void {
       type: 'info',
       title: 'TraceLens data loaded',
       message:
-        'Turn on coupling lens and risk heatmap to see refactor signals on the canvas. You can change these anytime in Display settings.',
+        'Turn on coupling lens and risk heatmap to see refactor signals on the canvas. Open the TraceLens side panel to adjust these anytime.',
       actions: [
         {
           label: 'Enable overlays',
           onClick: () => {
+            useBlueprintStore.getState().setTraceLensPanelOpen(true);
             useBlueprintStore.getState().setShowCoupling(true);
             if (!useBlueprintStore.getState().showHotspotHeatmap) {
               useBlueprintStore.getState().toggleShowHotspotHeatmap();

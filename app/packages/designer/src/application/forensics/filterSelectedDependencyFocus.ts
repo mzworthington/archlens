@@ -39,18 +39,173 @@ function buildAdjacency(nodes: BlueprintRFNode[], edges: BlueprintRFEdge[], node
   return { outgoing, incoming };
 }
 
-function walkClosure(startId: string, adjacency: Map<string, string[]>): Set<string> {
+function walkClosure(
+  startId: string,
+  adjacency: Map<string, string[]>,
+  nodes: BlueprintRFNode[]
+): Set<string> {
   const visited = new Set<string>();
   const stack = [startId];
   while (stack.length > 0) {
     const id = stack.pop()!;
     if (visited.has(id)) continue;
+    if (isExternalCanvasNode(id, nodes) && id !== startId) continue;
     visited.add(id);
     for (const next of adjacency.get(id) ?? []) {
-      if (!visited.has(next)) stack.push(next);
+      if (visited.has(next)) continue;
+      if (isExternalCanvasNode(next, nodes) && next !== startId) continue;
+      stack.push(next);
     }
   }
   return visited;
+}
+
+function isExternalCanvasNode(id: string, nodes: BlueprintRFNode[]): boolean {
+  return nodes.find(n => n.id === id)?.data.external === true;
+}
+
+function walkClosureWithHops(
+  startId: string,
+  adjacency: Map<string, string[]>,
+  nodes: BlueprintRFNode[]
+): Map<string, number> {
+  const hops = new Map<string, number>();
+  const queue: Array<{ id: string; hop: number }> = [{ id: startId, hop: 0 }];
+  while (queue.length > 0) {
+    const { id, hop } = queue.shift()!;
+    if (hops.has(id)) continue;
+    if (isExternalCanvasNode(id, nodes) && id !== startId) continue;
+    hops.set(id, hop);
+    for (const next of adjacency.get(id) ?? []) {
+      if (hops.has(next)) continue;
+      if (isExternalCanvasNode(next, nodes) && next !== startId) continue;
+      queue.push({ id: next, hop: hop + 1 });
+    }
+  }
+  return hops;
+}
+
+function nodeLabel(nodes: BlueprintRFNode[], id: string): string {
+  const node = nodes.find(n => n.id === id);
+  return node?.data?.name ?? id;
+}
+
+export const MAX_DEPENDENCY_GRAPH_PEERS = 6;
+
+export type DependencyGraphPeer = {
+  entityRef: string;
+  name: string;
+  hop: number;
+};
+
+export type DependencyGraphModel = {
+  upstream: DependencyGraphPeer[];
+  downstream: DependencyGraphPeer[];
+  upstreamTotal: number;
+  downstreamTotal: number;
+};
+
+function peersFromHops(
+  hops: Map<string, number>,
+  selectedNodeId: string,
+  nodes: BlueprintRFNode[]
+): DependencyGraphPeer[] {
+  return [...hops.entries()]
+    .filter(([id]) => id !== selectedNodeId)
+    .map(([entityRef, hop]) => ({
+      entityRef,
+      name: nodeLabel(nodes, entityRef),
+      hop,
+    }))
+    .sort((a, b) => a.hop - b.hop || a.name.localeCompare(b.name));
+}
+
+/** Collect transitive upstream callers (incoming edges only). Display-only. */
+export function collectUpstreamNeighborhood(
+  selectedNodeId: string | null | undefined,
+  nodes: BlueprintRFNode[],
+  edges: BlueprintRFEdge[]
+): Set<string> {
+  if (!selectedNodeId) return new Set<string>();
+  const nodeIds = new Set(nodes.map(n => n.id));
+  if (!nodeIds.has(selectedNodeId)) return new Set<string>();
+  const { incoming } = buildAdjacency(nodes, edges, nodeIds);
+  return expandGroupVisibility(walkClosure(selectedNodeId, incoming, nodes), nodes);
+}
+
+/** Collect transitive downstream targets (outgoing edges only). Display-only. */
+export function collectDownstreamNeighborhood(
+  selectedNodeId: string | null | undefined,
+  nodes: BlueprintRFNode[],
+  edges: BlueprintRFEdge[]
+): Set<string> {
+  if (!selectedNodeId) return new Set<string>();
+  const nodeIds = new Set(nodes.map(n => n.id));
+  if (!nodeIds.has(selectedNodeId)) return new Set<string>();
+  const { outgoing } = buildAdjacency(nodes, edges, nodeIds);
+  return expandGroupVisibility(walkClosure(selectedNodeId, outgoing, nodes), nodes);
+}
+
+/**
+ * Build upstream/downstream peer lists with hop distance from the selection.
+ * Display-only; does not mutate schema.
+ */
+export function buildDependencyGraphModel(
+  selectedNodeId: string | null | undefined,
+  nodes: BlueprintRFNode[],
+  edges: BlueprintRFEdge[]
+): DependencyGraphModel {
+  if (!selectedNodeId) {
+    return { upstream: [], downstream: [], upstreamTotal: 0, downstreamTotal: 0 };
+  }
+  const nodeIds = new Set(nodes.map(n => n.id));
+  if (!nodeIds.has(selectedNodeId)) {
+    return { upstream: [], downstream: [], upstreamTotal: 0, downstreamTotal: 0 };
+  }
+
+  const { outgoing, incoming } = buildAdjacency(nodes, edges, nodeIds);
+  const upstreamAll = peersFromHops(
+    walkClosureWithHops(selectedNodeId, incoming, nodes),
+    selectedNodeId,
+    nodes
+  );
+  const downstreamAll = peersFromHops(
+    walkClosureWithHops(selectedNodeId, outgoing, nodes),
+    selectedNodeId,
+    nodes
+  );
+
+  return {
+    upstream: upstreamAll.slice(0, MAX_DEPENDENCY_GRAPH_PEERS),
+    downstream: downstreamAll.slice(0, MAX_DEPENDENCY_GRAPH_PEERS),
+    upstreamTotal: upstreamAll.length,
+    downstreamTotal: downstreamAll.length,
+  };
+}
+
+export type DependencyRole = 'selected' | 'upstream' | 'downstream';
+
+/** Map each visible node to its dependency role relative to the selection. */
+export function resolveDependencyRoles(
+  selectedNodeId: string | null | undefined,
+  nodes: BlueprintRFNode[],
+  edges: BlueprintRFEdge[]
+): Map<string, DependencyRole> {
+  const roles = new Map<string, DependencyRole>();
+  if (!selectedNodeId) return roles;
+
+  const upstream = collectUpstreamNeighborhood(selectedNodeId, nodes, edges);
+  const downstream = collectDownstreamNeighborhood(selectedNodeId, nodes, edges);
+
+  roles.set(selectedNodeId, 'selected');
+  for (const id of upstream) {
+    if (id !== selectedNodeId) roles.set(id, 'upstream');
+  }
+  for (const id of downstream) {
+    if (id === selectedNodeId || roles.has(id)) continue;
+    roles.set(id, 'downstream');
+  }
+  return roles;
 }
 
 /**
@@ -106,8 +261,52 @@ export function collectDependencyNeighborhood(
   const { outgoing, incoming } = buildAdjacency(nodes, edges, nodeIds);
   // Walk each direction separately so reaching an upstream node does not
   // fan out into that node's sibling downstream branches.
-  for (const id of walkClosure(selectedNodeId, outgoing)) visible.add(id);
-  for (const id of walkClosure(selectedNodeId, incoming)) visible.add(id);
+  for (const id of walkClosure(selectedNodeId, outgoing, nodes)) visible.add(id);
+  for (const id of walkClosure(selectedNodeId, incoming, nodes)) visible.add(id);
+  return expandGroupVisibility(visible, nodes);
+}
+
+/**
+ * Transitive dependency neighborhood plus cross-diagram externals on any edge
+ * touched by that closure. Display-only.
+ */
+export function collectDependencyNeighborhoodWithExternals(
+  selectedNodeId: string | null | undefined,
+  nodes: BlueprintRFNode[],
+  edges: BlueprintRFEdge[],
+  includeExternals: boolean
+): Set<string> {
+  const visible = collectDependencyNeighborhood(selectedNodeId, nodes, edges);
+  if (!includeExternals || !selectedNodeId || visible.size === 0) return visible;
+
+  const allNodeIds = new Set(nodes.map(n => n.id));
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const edge of edges) {
+      const sourceIn = visible.has(edge.source);
+      const targetIn = visible.has(edge.target);
+      if (
+        sourceIn &&
+        !targetIn &&
+        allNodeIds.has(edge.target) &&
+        isExternalCanvasNode(edge.target, nodes)
+      ) {
+        visible.add(edge.target);
+        changed = true;
+      }
+      if (
+        targetIn &&
+        !sourceIn &&
+        allNodeIds.has(edge.source) &&
+        isExternalCanvasNode(edge.source, nodes)
+      ) {
+        visible.add(edge.source);
+        changed = true;
+      }
+    }
+  }
+
   return expandGroupVisibility(visible, nodes);
 }
 
@@ -119,10 +318,16 @@ export function filterSelectedDependencyFocusNodes(
   nodes: BlueprintRFNode[],
   edges: BlueprintRFEdge[],
   selectedNodeId: string | null | undefined,
-  enabled: boolean
+  enabled: boolean,
+  includeExternals = false
 ): BlueprintRFNode[] {
   if (!enabled || !selectedNodeId) return nodes;
-  const visible = collectDependencyNeighborhood(selectedNodeId, nodes, edges);
+  const visible = collectDependencyNeighborhoodWithExternals(
+    selectedNodeId,
+    nodes,
+    edges,
+    includeExternals
+  );
   if (visible.size === 0) return nodes;
   return nodes.filter(n => visible.has(n.id));
 }

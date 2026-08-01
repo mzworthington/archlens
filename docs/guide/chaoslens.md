@@ -76,7 +76,7 @@ Heat is transient canvas styling, same pattern as the TraceLens hotspot overlay.
 
 ## Persisting safeguards in YAML
 
-Safeguard toggles in ChaosLens are written to the active diagram draft as top-level `resilience` on the node (alongside `forensics`). They appear in **Schema Explorer** (YAML/JSON) and in **Pending Draft Changes** before you commit.
+Safeguard toggles in ChaosLens are written to the active diagram draft as top-level `resilience` on the node (alongside `forensics`). They appear in Explorer → **Schema** (YAML/JSON) and in **Pending Draft Changes** before you commit.
 
 You can also author them by hand:
 

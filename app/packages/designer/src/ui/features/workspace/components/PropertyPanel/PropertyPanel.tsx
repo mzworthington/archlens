@@ -12,27 +12,18 @@ import { NODE_TYPES } from './nodeTypes';
 import { IdentitySection } from './IdentitySection';
 import { GoToEntityButton } from '../GoToEntityButton';
 import { PropertiesSection } from './PropertiesSection';
-import { ForensicsSection } from './ForensicsSection';
 import { ConnectionsSection } from './ConnectionsSection';
 import { ComponentCatalog } from './ComponentCatalog';
 import { ExternalDependenciesSection } from './ExternalDependenciesSection';
 import { SelectedDependencySection } from './SelectedDependencySection';
 import { ValidationSection } from './ValidationSection';
 import { ViewChildExternalsButton } from '../ViewChildExternalsButton';
-import { resolveImportPeerPaths } from '../../../../../application/forensics/resolveCouplingEdges';
-import {
-  useCouplingLens,
-  useSelectCoupledPeer,
-} from '../../../../../application/forensics/useCouplingLens';
 import { formatAppVersionLabel } from '../../../../../application/pwa/buildInfo';
-import {
-  buildForensicsTrendDashboard,
-  collectDescendantForensics,
-} from '../../../../../application/forensics/buildForensicsTrendDashboard';
 import { ResilienceSection } from './ResilienceSection';
 import { ResiliencePanelTabs } from './ResiliencePanelTabs';
 import { mergeNodeSafeguards, resolveNodeResilience } from '@archlens/core/resilience';
 import { buildDiagramRecommendations } from '../../../../../application/recommendations/buildDiagramRecommendations';
+import { buildDependencyGraphModel } from '../../../../../application/forensics/filterSelectedDependencyFocus';
 
 export const PropertyPanel: React.FC = () => {
   const {
@@ -51,9 +42,6 @@ export const PropertyPanel: React.FC = () => {
     selectEdge,
     updateDependency,
     deleteDependency,
-    showCoupling,
-    showCouplingSchemaDeps,
-    toggleShowCouplingSchemaDeps,
     rightCollapsed,
     toggleRightCollapsed,
     workspaceName,
@@ -123,16 +111,6 @@ export const PropertyPanel: React.FC = () => {
         : [],
     [schema, resilienceSimulationResult, resilienceSafeguards]
   );
-
-  const { workspaceFilepathIndex, linkedCouplingPaths, linkedCouplingCount, focusCouplingCount } =
-    useCouplingLens({
-      showCoupling,
-      selectedNodeId,
-      nodes,
-      loadedSystems,
-    });
-
-  const handleSelectCoupledPeer = useSelectCoupledPeer(nodes, workspaceFilepathIndex, selectNode);
 
   const titleType = isResilienceMode
     ? 'ChaosLens'
@@ -217,15 +195,12 @@ export const PropertyPanel: React.FC = () => {
     e => e.source === selectedNodeId || e.target === selectedNodeId
   );
 
-  const forensicsTrendDashboard = useMemo(() => {
-    if (!selectedNode?.forensics) return undefined;
-    const descendants = collectDescendantForensics(
-      loadedSystems,
-      selectedNode.entityRef,
-      schema.level
-    );
-    return buildForensicsTrendDashboard(selectedNode.forensics, descendants, schema.level);
-  }, [loadedSystems, selectedNode, schema.level]);
+  const dependencyGraphModel = useMemo(() => {
+    if (!selectedNodeId) {
+      return { upstream: [], downstream: [], upstreamTotal: 0, downstreamTotal: 0 };
+    }
+    return buildDependencyGraphModel(selectedNodeId, nodes, edges);
+  }, [selectedNodeId, nodes, edges]);
 
   const childDiagramEntry = useMemo(() => {
     if (!selectedNode?.entityRef) return undefined;
@@ -359,36 +334,6 @@ export const PropertyPanel: React.FC = () => {
             />
           ) : isNode && selectedNode && showPropertiesPanel ? (
             <>
-              {selectedNode.forensics ? (
-                <ForensicsSection
-                  entityRef={selectedNode.entityRef}
-                  forensics={selectedNode.forensics}
-                  trendDashboard={forensicsTrendDashboard}
-                  centerLabel={selectedNode.name}
-                  blastRadius={
-                    selectedNode.entityRef
-                      ? resilienceSimulationResult?.heat.get(selectedNode.entityRef)
-                      : undefined
-                  }
-                  linkedCouplingPaths={linkedCouplingPaths}
-                  linkedImportPaths={
-                    new Set(
-                      resolveImportPeerPaths(selectedNodeId, nodes, workspaceFilepathIndex).map(
-                        edge => edge.path
-                      )
-                    )
-                  }
-                  showCoupling={showCoupling}
-                  hasSelectedNode={!!selectedNodeId}
-                  onToggleShowCouplingSchemaDeps={toggleShowCouplingSchemaDeps}
-                  showCouplingSchemaDeps={showCouplingSchemaDeps}
-                  linkedCouplingCount={linkedCouplingCount}
-                  focusCouplingCount={focusCouplingCount}
-                  onSelectCoupledPeer={handleSelectCoupledPeer}
-                  onSelectImportPeer={handleSelectCoupledPeer}
-                />
-              ) : null}
-
               <PropertiesSection
                 properties={selectedNode.properties}
                 propKey={propKey}
@@ -403,6 +348,11 @@ export const PropertyPanel: React.FC = () => {
                 selectedNodeId={selectedNodeId!}
                 schemaNodes={schema.nodes}
                 connections={nodeConnections}
+                upstreamTotal={dependencyGraphModel.upstreamTotal}
+                downstreamTotal={dependencyGraphModel.downstreamTotal}
+                selectedConnectionId={selectedEdgeId}
+                onSelectNode={selectNode}
+                onSpotlightConnection={selectEdge}
                 onUpdateDependency={updateDependency}
                 onDeleteDependency={deleteDependency}
               />

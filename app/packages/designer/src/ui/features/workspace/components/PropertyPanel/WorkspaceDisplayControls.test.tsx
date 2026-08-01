@@ -19,7 +19,6 @@ describe('WorkspaceDisplayControls', () => {
     const onToggleHeat = vi.fn();
     const onToggleCoupling = vi.fn();
     const onToggleCouplingSchemaDeps = vi.fn();
-    const onToggleLite = vi.fn();
     render(
       <WorkspaceDisplayControls
         showTests={false}
@@ -36,8 +35,6 @@ describe('WorkspaceDisplayControls', () => {
         onToggleShowCoupling={onToggleCoupling}
         showCouplingSchemaDeps={false}
         onToggleShowCouplingSchemaDeps={onToggleCouplingSchemaDeps}
-        liteCanvas={false}
-        onToggleLiteCanvas={onToggleLite}
         counts={defaultCounts}
         countsScopedToNode={false}
       />
@@ -59,14 +56,12 @@ describe('WorkspaceDisplayControls', () => {
     fireEvent.click(screen.getByTestId('toggle-show-selected-dependencies-only'));
     fireEvent.click(screen.getByTestId('toggle-show-hotspot-heatmap'));
     fireEvent.click(screen.getByTestId('toggle-show-coupling-lens'));
-    fireEvent.click(screen.getByTestId('toggle-lite-canvas'));
     expect(onToggleTests).toHaveBeenCalledTimes(1);
     expect(onToggleUpstreamExternals).toHaveBeenCalledTimes(1);
     expect(onToggleDownstreamExternals).toHaveBeenCalledTimes(1);
     expect(onToggleSelectedDeps).toHaveBeenCalledTimes(1);
     expect(onToggleHeat).toHaveBeenCalledTimes(1);
     expect(onToggleCoupling).toHaveBeenCalledTimes(1);
-    expect(onToggleLite).toHaveBeenCalledTimes(1);
     expect(screen.getByLabelText('Show Selected Dependencies Only (8)')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Show external callers (2)' })).toHaveTextContent(
       'Callers (2)'
@@ -76,9 +71,6 @@ describe('WorkspaceDisplayControls', () => {
     );
     expect(screen.getByTestId('workspace-heatmap-help')).toHaveTextContent(
       /TraceLens hotspot score/i
-    );
-    expect(screen.getByTestId('workspace-lite-canvas-help')).toHaveTextContent(
-      /Faster pan and zoom/i
     );
   });
 
@@ -99,8 +91,6 @@ describe('WorkspaceDisplayControls', () => {
         onToggleShowCoupling={vi.fn()}
         showCouplingSchemaDeps={false}
         onToggleShowCouplingSchemaDeps={vi.fn()}
-        liteCanvas={false}
-        onToggleLiteCanvas={vi.fn()}
         counts={{
           upstreamExternals: 1,
           downstreamExternals: 0,
@@ -115,5 +105,32 @@ describe('WorkspaceDisplayControls', () => {
     expect(screen.getByTestId('workspace-display-summary')).toHaveTextContent(
       '1 callers · 0 targets · 0 tests · 3 deps · node'
     );
+  });
+
+  it('disables caller and target toggles when dependency focus is active', () => {
+    render(
+      <WorkspaceDisplayControls
+        showTests={false}
+        onToggleShowTests={vi.fn()}
+        showUpstreamExternals={true}
+        onToggleShowUpstreamExternals={vi.fn()}
+        showDownstreamExternals={true}
+        onToggleShowDownstreamExternals={vi.fn()}
+        showSelectedDependenciesOnly={true}
+        onToggleShowSelectedDependenciesOnly={vi.fn()}
+        showHotspotHeatmap={false}
+        onToggleShowHotspotHeatmap={vi.fn()}
+        showCoupling={false}
+        onToggleShowCoupling={vi.fn()}
+        showCouplingSchemaDeps={false}
+        onToggleShowCouplingSchemaDeps={vi.fn()}
+        counts={defaultCounts}
+        countsScopedToNode={false}
+        dependencyFocusActive
+      />
+    );
+
+    expect(screen.getByRole('button', { name: 'Show external callers (2)' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Show external targets (3)' })).toBeDisabled();
   });
 });

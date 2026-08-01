@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { drillIntoFirstZoomable, expectCanvasReady } from './helpers/canvas';
 import { gotoApp } from './helpers/navigation';
-import { loadSandbox, keepStartupChooserOpen } from './helpers/workspace';
+import { loadSandbox, keepStartupChooserOpen, openExplorerTraceLensTab } from './helpers/workspace';
 import { openImportMermaid } from './helpers/toolbar';
 
 const SAMPLE_MERMAID = `flowchart TD
@@ -31,8 +31,8 @@ test.describe('Blueprint E2E Journeys', () => {
     test.setTimeout(120_000);
     await loadSandbox(page);
 
-    const leftPanelButton = page.getByRole('button', { name: 'Toggle Left Panel' });
-    const rightPanelButton = page.getByRole('button', { name: 'Toggle Right Panel' });
+    const leftPanelButton = page.getByRole('button', { name: 'Toggle left panel' });
+    const rightPanelButton = page.getByRole('button', { name: 'Toggle right panel' });
     const leftPanel = page.getByTestId('left-panel');
     const rightPanel = page.getByTestId('right-panel');
 
@@ -82,9 +82,7 @@ test.describe('Blueprint E2E Journeys', () => {
 
   test('Workspace display controls render', async ({ page }) => {
     await loadSandbox(page);
-
-    await page.getByTestId('toolbar-display-settings').click();
-    await expect(page.getByTestId('workspace-display-dialog')).toBeVisible();
+    await openExplorerTraceLensTab(page);
     await expect(page.getByTestId('workspace-display-controls')).toBeVisible();
     await expect(page.getByTestId('toggle-show-upstream-externals')).toBeVisible();
     await expect(page.getByTestId('toggle-show-downstream-externals')).toBeVisible();
@@ -111,7 +109,7 @@ test.describe('Blueprint E2E Journeys', () => {
     await expect(page.getByLabel('Open diagram location menu')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Open Properties Panel' })).toBeVisible();
 
-    await page.getByRole('button', { name: 'Open Schema Explorer' }).click();
+    await page.getByRole('button', { name: 'Open Explorer' }).click();
     await expect(page.getByTestId('left-panel')).not.toHaveClass(/w-0/);
   });
 });

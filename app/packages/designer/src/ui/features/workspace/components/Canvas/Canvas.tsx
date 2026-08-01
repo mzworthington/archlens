@@ -28,6 +28,9 @@ import { useCanvasDropNode } from './useCanvasDropNode';
 import { CanvasLensLegends } from './CanvasLensLegends';
 import { CanvasTopLeftPanel } from './CanvasTopLeftPanel';
 import { CanvasMiniMap } from './CanvasMiniMap';
+import { DependencyFocusChip } from './DependencyFocusChip';
+import { buildHiddenExternalConnectionGhosts } from '../../../../../application/forensics/hiddenExternalConnectionGhosts';
+import { useSpotlightEdge } from './useSpotlightEdge';
 
 export const Canvas: React.FC = () => {
   const [, setLocation] = useLocation();
@@ -48,6 +51,9 @@ export const Canvas: React.FC = () => {
     showUpstreamExternals,
     showDownstreamExternals,
     showSelectedDependenciesOnly,
+    includeExternalsInFocus,
+    dependencyViewMode,
+    setDependencyViewMode,
     showCoupling,
     showCouplingSchemaDeps,
     guidedRefactorEntityRefs,
@@ -91,6 +97,9 @@ export const Canvas: React.FC = () => {
       showUpstreamExternals: state.showUpstreamExternals,
       showDownstreamExternals: state.showDownstreamExternals,
       showSelectedDependenciesOnly: state.showSelectedDependenciesOnly,
+      includeExternalsInFocus: state.includeExternalsInFocus,
+      dependencyViewMode: state.dependencyViewMode,
+      setDependencyViewMode: state.setDependencyViewMode,
       showCoupling: state.showCoupling,
       showCouplingSchemaDeps: state.showCouplingSchemaDeps,
       guidedRefactorEntityRefs: state.guidedRefactorEntityRefs,
@@ -129,6 +138,7 @@ export const Canvas: React.FC = () => {
       showUpstreamExternals,
       showDownstreamExternals,
       expandedExternalHub,
+      includeExternalsInFocus,
     }),
     [
       schema,
@@ -138,6 +148,7 @@ export const Canvas: React.FC = () => {
       showUpstreamExternals,
       showDownstreamExternals,
       expandedExternalHub,
+      includeExternalsInFocus,
     ]
   );
 
@@ -183,6 +194,7 @@ export const Canvas: React.FC = () => {
         showDownstreamExternals,
         selectedNodeId,
         showSelectedDependenciesOnly,
+        includeExternalsInFocus,
         isResilienceMode,
         simulationScopeSet,
         showCoupling,
@@ -198,6 +210,7 @@ export const Canvas: React.FC = () => {
       showDownstreamExternals,
       selectedNodeId,
       showSelectedDependenciesOnly,
+      includeExternalsInFocus,
       isResilienceMode,
       simulationScopeSet,
       showCoupling,
@@ -208,6 +221,32 @@ export const Canvas: React.FC = () => {
   const filteredEdges = useMemo(
     () => buildCanvasVisibleEdges(edges, filteredNodes),
     [edges, filteredNodes]
+  );
+
+  const hiddenExternalGhosts = useMemo(
+    () =>
+      buildHiddenExternalConnectionGhosts({
+        selectedNodeId,
+        allNodes: nodes,
+        allEdges: edges,
+        visibleNodeIds: new Set(filteredNodes.map(node => node.id)),
+        enabled:
+          showSelectedDependenciesOnly &&
+          !includeExternalsInFocus &&
+          !showCoupling &&
+          !isResilienceMode &&
+          !!selectedNodeId,
+      }),
+    [
+      selectedNodeId,
+      nodes,
+      edges,
+      filteredNodes,
+      showSelectedDependenciesOnly,
+      includeExternalsInFocus,
+      showCoupling,
+      isResilienceMode,
+    ]
   );
 
   const reduceMotion = prefersReducedMotion();
@@ -249,9 +288,11 @@ export const Canvas: React.FC = () => {
     () =>
       buildCanvasDisplayNodes({
         filteredNodes,
+        filteredEdges,
         focusedCyclePath,
         couplingFocusMode,
         selectedNodeId,
+        showSelectedDependenciesOnly,
         couplingGhostNodes,
         workspaceFilepathIndex,
         showCoupling,
@@ -265,12 +306,15 @@ export const Canvas: React.FC = () => {
         resilienceSimulationScope,
         blastRipple,
         externalSummary: externalSummaryContext,
+        hiddenExternalGhostNodes: hiddenExternalGhosts.ghostNodes,
       }),
     [
       filteredNodes,
+      filteredEdges,
       focusedCyclePath,
       couplingFocusMode,
       selectedNodeId,
+      showSelectedDependenciesOnly,
       couplingGhostNodes,
       workspaceFilepathIndex,
       showCoupling,
@@ -284,6 +328,7 @@ export const Canvas: React.FC = () => {
       resilienceSimulationScope,
       blastRipple,
       externalSummaryContext,
+      hiddenExternalGhosts.ghostNodes,
     ]
   );
 
@@ -309,6 +354,7 @@ export const Canvas: React.FC = () => {
         isResilienceMode,
         propagationEdgeKeys: blastRipple.propagationEdgeKeys,
         externalSummary: externalSummaryContext,
+        hiddenExternalGhostEdges: hiddenExternalGhosts.ghostEdges,
       }),
     [
       filteredEdges,
@@ -330,8 +376,11 @@ export const Canvas: React.FC = () => {
       isResilienceMode,
       blastRipple.propagationEdgeKeys,
       externalSummaryContext,
+      hiddenExternalGhosts.ghostEdges,
     ]
   );
+
+  useSpotlightEdge(selectedEdgeId, displayEdges, displayNodes);
 
   const { onDragOver, onDrop } = useCanvasDropNode(addNode);
 
@@ -400,6 +449,15 @@ export const Canvas: React.FC = () => {
         />
 
         <CanvasTopLeftPanel parentEntityRef={parentEntityRef} onZoomOut={zoomOutToParent} />
+
+        <DependencyFocusChip
+          selectedNodeId={selectedNodeId}
+          nodes={nodes}
+          edges={edges}
+          dependencyViewMode={dependencyViewMode}
+          isResilienceMode={isResilienceMode}
+          onSetViewMode={setDependencyViewMode}
+        />
 
         <Panel
           position="bottom-center"

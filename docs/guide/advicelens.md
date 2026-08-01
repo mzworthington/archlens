@@ -18,13 +18,13 @@ TraceLens and ChaosLens **observe**. AdviceLens **prescribes**—synthesizing th
 
 AdviceLens is **cross-surface** — it prescribes fixes wherever TraceLens and ChaosLens observe signals. The canonical studio entry is **`/advicelens`**, which opens TraceLens on the estate recommendations tab (`/tracelens?view=recommendations`).
 
-| Surface           | Location                                                                     |
-| ----------------- | ---------------------------------------------------------------------------- |
-| **AdviceLens**    | `/advicelens` or `/tracelens?view=recommendations` — estate-wide ranked list |
-| **TraceLens**     | `/tracelens` → **AdviceLens** tab — same estate recommendations view         |
-| **Refactor plan** | Slide-over on an offender → AdviceLens list for that boundary                |
-| **ChaosLens**     | Workspace **Resilience** mode → telemetry panel advice list                  |
-| **CLI**           | `archlens resilience <path>` — headless estate sweep                         |
+| Surface           | Location                                                                                           |
+| ----------------- | -------------------------------------------------------------------------------------------------- |
+| **AdviceLens**    | `/advicelens` or `/tracelens?view=recommendations` — **Estate forensics** page, **AdviceLens** tab |
+| **TraceLens**     | `/tracelens` — **Estate forensics** page, **TraceLens** tab (ranked worst offenders)               |
+| **Refactor plan** | Slide-over on an offender → AdviceLens list for that boundary                                      |
+| **ChaosLens**     | Workspace **Resilience** mode → telemetry panel advice list                                        |
+| **CLI**           | `archlens resilience <path>` — headless estate sweep                                               |
 
 Product docs: [AdviceLens engine](../advicelens-engine.md) (contributors).
 
@@ -45,7 +45,7 @@ Recommendations are **display-only** by default—they are not written into Blue
 
 ## In TraceLens
 
-1. Open **`/advicelens`** or **`/tracelens?view=recommendations`**, or open **`/tracelens`** and switch to the **AdviceLens** tab.
+1. Open **`/advicelens`**, **`/tracelens?view=recommendations`**, or **`/tracelens`** and switch to the **AdviceLens** tab on the **Estate forensics** page.
 2. Load blueprints (sandbox or folder workspace).
 3. Filter by source (ChaosLens / TraceLens / all) or search by target name.
 4. Click a row to open the refactor slide-over with evidence.

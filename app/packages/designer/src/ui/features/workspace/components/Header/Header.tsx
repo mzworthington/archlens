@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const isTraceLensMode = useBlueprintStore(s => s.isTraceLensMode);
 
-  const badge = isTraceLensMode ? 'TRACELENS' : isResilienceMode ? 'CHAOSLENS' : 'CANVAS';
+  const badge = isTraceLensMode ? 'FORENSICS' : isResilienceMode ? 'CHAOSLENS' : 'CANVAS';
 
   return (
     <AppHeader badge={badge}>

@@ -1,5 +1,15 @@
+import type { BlueprintState } from '../store';
 import type { LayoutEngineId } from '../../../core';
 import type { ExternalSummaryBand, SourceProvenance } from '@archlens/core';
+import type { DependencyViewMode } from '../../forensics/dependencyViewMode';
+import type { LeftSlotPanelId } from '../../layout/workspacePanels';
+import {
+  includeExternalsInFocusFromMode,
+  showSelectedDependenciesOnlyFromMode,
+  toggleDependencyViewMode,
+} from '../../forensics/dependencyViewMode';
+
+export type { DependencyViewMode };
 
 export interface ToastAction {
   label: string;
@@ -17,7 +27,10 @@ export interface UiState {
   showTests: boolean;
   showUpstreamExternals: boolean;
   showDownstreamExternals: boolean;
+  dependencyViewMode: DependencyViewMode;
+  /** @deprecated Use dependencyViewMode — derived for backward compatibility. */
   showSelectedDependenciesOnly: boolean;
+  includeExternalsInFocus: boolean;
   showCoupling: boolean;
   showCouplingSchemaDeps: boolean;
   guidedRefactorEntityRefs: string[] | null;
@@ -26,6 +39,8 @@ export interface UiState {
   layoutEngine: LayoutEngineId | null;
   leftCollapsed: boolean;
   rightCollapsed: boolean;
+  activeLeftPanel: LeftSlotPanelId;
+  setActiveLeftPanel: (panel: LeftSlotPanelId) => void;
   showDesignSystem: boolean;
   isDiffOpen: boolean;
   isImportMermaidOpen: boolean;
@@ -33,7 +48,6 @@ export interface UiState {
   isStartupOpen: boolean;
   isCompareOpen: boolean;
   isShortcutsOpen: boolean;
-  isDisplaySettingsOpen: boolean;
   childExternalsParentRef: string | null;
   expandedExternalHub: ExternalSummaryBand | null;
   isSourceCodeOpen: boolean;
@@ -49,6 +63,7 @@ export interface UiState {
   toggleShowDownstreamExternals: () => void;
   setShowUpstreamExternals: (show: boolean) => void;
   setShowDownstreamExternals: (show: boolean) => void;
+  setDependencyViewMode: (mode: DependencyViewMode) => void;
   toggleShowSelectedDependenciesOnly: () => void;
   toggleShowCoupling: () => void;
   setShowCoupling: (show: boolean) => void;
@@ -66,7 +81,6 @@ export interface UiState {
   setIsStartupOpen: (open: boolean) => void;
   setIsCompareOpen: (open: boolean) => void;
   setIsShortcutsOpen: (open: boolean) => void;
-  setIsDisplaySettingsOpen: (open: boolean) => void;
   openChildLevelExternals: (parentEntityRef: string) => void;
   closeChildLevelExternals: () => void;
   setExpandedExternalHub: (band: ExternalSummaryBand | null) => void;
@@ -80,12 +94,16 @@ export interface UiState {
 }
 
 export const createUiState = (
-  set: (partial: Partial<UiState> | ((state: UiState) => Partial<UiState>)) => void
+  set: (
+    partial: Partial<BlueprintState> | ((state: BlueprintState) => Partial<BlueprintState>)
+  ) => void
 ): UiState => ({
   showTests: false,
   showUpstreamExternals: true,
   showDownstreamExternals: true,
+  dependencyViewMode: 'focus',
   showSelectedDependenciesOnly: true,
+  includeExternalsInFocus: false,
   showCoupling: false,
   showCouplingSchemaDeps: false,
   guidedRefactorEntityRefs: null,
@@ -94,6 +112,7 @@ export const createUiState = (
   layoutEngine: null,
   leftCollapsed: true,
   rightCollapsed: true,
+  activeLeftPanel: 'codeViewer',
   showDesignSystem: false,
   isDiffOpen: false,
   isImportMermaidOpen: false,
@@ -101,7 +120,6 @@ export const createUiState = (
   isStartupOpen: true,
   isCompareOpen: false,
   isShortcutsOpen: false,
-  isDisplaySettingsOpen: false,
   childExternalsParentRef: null,
   expandedExternalHub: null,
   isSourceCodeOpen: false,
@@ -119,8 +137,21 @@ export const createUiState = (
     set(state => ({ showDownstreamExternals: !state.showDownstreamExternals })),
   setShowUpstreamExternals: show => set({ showUpstreamExternals: show }),
   setShowDownstreamExternals: show => set({ showDownstreamExternals: show }),
+  setDependencyViewMode: mode =>
+    set({
+      dependencyViewMode: mode,
+      showSelectedDependenciesOnly: showSelectedDependenciesOnlyFromMode(mode),
+      includeExternalsInFocus: includeExternalsInFocusFromMode(mode),
+    }),
   toggleShowSelectedDependenciesOnly: () =>
-    set(state => ({ showSelectedDependenciesOnly: !state.showSelectedDependenciesOnly })),
+    set(state => {
+      const next = toggleDependencyViewMode(state.dependencyViewMode);
+      return {
+        dependencyViewMode: next,
+        showSelectedDependenciesOnly: showSelectedDependenciesOnlyFromMode(next),
+        includeExternalsInFocus: includeExternalsInFocusFromMode(next),
+      };
+    }),
   toggleShowCoupling: () => set(state => ({ showCoupling: !state.showCoupling })),
   setShowCoupling: show => set({ showCoupling: show }),
   toggleShowCouplingSchemaDeps: () =>
@@ -129,7 +160,17 @@ export const createUiState = (
   setGuidedRefactorEntityRefs: entityRefs => set({ guidedRefactorEntityRefs: entityRefs }),
   toggleShowHotspotHeatmap: () => set(state => ({ showHotspotHeatmap: !state.showHotspotHeatmap })),
   toggleLiteCanvas: () => set(state => ({ liteCanvas: !state.liteCanvas })),
-  toggleLeftCollapsed: () => set(state => ({ leftCollapsed: !state.leftCollapsed })),
+  setActiveLeftPanel: panel =>
+    set({
+      activeLeftPanel: panel,
+      leftCollapsed: false,
+      isTraceLensPanelOpen: true,
+    }),
+  toggleLeftCollapsed: () =>
+    set(state => ({
+      leftCollapsed: !state.leftCollapsed,
+      ...(!state.leftCollapsed ? { isTraceLensPanelOpen: false } : { isTraceLensPanelOpen: true }),
+    })),
   toggleRightCollapsed: () => set(state => ({ rightCollapsed: !state.rightCollapsed })),
   setShowDesignSystem: show => set({ showDesignSystem: show }),
   setIsDiffOpen: open => set({ isDiffOpen: open }),
@@ -138,7 +179,6 @@ export const createUiState = (
   setIsStartupOpen: open => set({ isStartupOpen: open }),
   setIsCompareOpen: open => set({ isCompareOpen: open }),
   setIsShortcutsOpen: open => set({ isShortcutsOpen: open }),
-  setIsDisplaySettingsOpen: open => set({ isDisplaySettingsOpen: open }),
   openChildLevelExternals: parentEntityRef => set({ childExternalsParentRef: parentEntityRef }),
   closeChildLevelExternals: () => set({ childExternalsParentRef: null }),
   setExpandedExternalHub: band => set({ expandedExternalHub: band }),

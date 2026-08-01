@@ -17,6 +17,7 @@ import {
   type SimulationResult,
   type TelemetryViewMode,
 } from '@archlens/core/resilience';
+import { isResilienceSimulationDiagramLevel } from '@archlens/core/recommendations';
 import { runResilienceSimulationAsync } from '../../resilience/runResilienceSimulationAsync';
 import type { BlueprintState } from '../store';
 import { isDesktopViewport } from '../layoutUtils';
@@ -110,6 +111,9 @@ export const createResilienceState = (
   chaosSpecMetadata: null,
   chaosSpecDialogMode: null,
   setResilienceMode: enabled => {
+    if (enabled && !isResilienceSimulationDiagramLevel(get().schema.level)) {
+      return;
+    }
     set({
       isResilienceMode: enabled,
       ...(enabled ? { isTraceLensMode: false, ...resilienceModePanelPatch() } : {}),
@@ -132,6 +136,9 @@ export const createResilienceState = (
     get().setResilienceMode(!get().isResilienceMode);
   },
   applyResilienceUrlState: faults => {
+    if (!isResilienceSimulationDiagramLevel(get().schema.level)) {
+      return;
+    }
     const first = faults[0];
     set({
       isResilienceMode: true,

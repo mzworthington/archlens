@@ -16,12 +16,13 @@ interface WorkspaceDisplayControlsProps {
   onToggleShowCoupling: () => void;
   showCouplingSchemaDeps: boolean;
   onToggleShowCouplingSchemaDeps: () => void;
-  liteCanvas: boolean;
-  onToggleLiteCanvas: () => void;
   counts: ForensicsDisplayMetrics;
   countsScopedToNode: boolean;
+  dependencyFocusActive?: boolean;
   className?: string;
   showHeader?: boolean;
+  /** When false, hides coupling, heatmap, and dependency-focus toggles (TraceLens panel owns those). */
+  includeTraceLensToggles?: boolean;
 }
 
 function ExternalVisibilityButtonGroup({
@@ -31,6 +32,7 @@ function ExternalVisibilityButtonGroup({
   onToggleShowDownstreamExternals,
   upstreamCount,
   downstreamCount,
+  dependencyFocusActive = false,
 }: {
   showUpstreamExternals: boolean;
   onToggleShowUpstreamExternals: () => void;
@@ -38,6 +40,7 @@ function ExternalVisibilityButtonGroup({
   onToggleShowDownstreamExternals: () => void;
   upstreamCount: number;
   downstreamCount: number;
+  dependencyFocusActive?: boolean;
 }) {
   const buttonClass = (active: boolean) =>
     `px-2 py-0.5 text-[10px] font-bold tracking-wide transition cursor-pointer ${
@@ -47,7 +50,14 @@ function ExternalVisibilityButtonGroup({
     }`;
 
   return (
-    <div className="flex items-center justify-between gap-2">
+    <div
+      className={`flex items-center justify-between gap-2 ${dependencyFocusActive ? 'opacity-50' : ''}`}
+      title={
+        dependencyFocusActive
+          ? 'Use Dependency view → Tree + externals while a node is selected'
+          : undefined
+      }
+    >
       <span className="text-[10px] font-bold font-mono text-slate-400 uppercase tracking-wider">
         Externals
       </span>
@@ -62,6 +72,7 @@ function ExternalVisibilityButtonGroup({
           aria-label={`Show external callers (${upstreamCount})`}
           data-testid="toggle-show-upstream-externals"
           onClick={onToggleShowUpstreamExternals}
+          disabled={dependencyFocusActive}
           className={buttonClass(showUpstreamExternals)}
         >
           Callers <span data-testid="toggle-show-upstream-externals-count">({upstreamCount})</span>
@@ -72,6 +83,7 @@ function ExternalVisibilityButtonGroup({
           aria-label={`Show external targets (${downstreamCount})`}
           data-testid="toggle-show-downstream-externals"
           onClick={onToggleShowDownstreamExternals}
+          disabled={dependencyFocusActive}
           className={buttonClass(showDownstreamExternals)}
         >
           Targets{' '}
@@ -148,12 +160,12 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
   onToggleShowCoupling,
   showCouplingSchemaDeps,
   onToggleShowCouplingSchemaDeps,
-  liteCanvas,
-  onToggleLiteCanvas,
   counts,
   countsScopedToNode,
+  dependencyFocusActive = false,
   className,
   showHeader = true,
+  includeTraceLensToggles = true,
 }) => (
   <div
     className={className ?? 'border-t border-slate-900 pt-4 space-y-3'}
@@ -189,6 +201,7 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
       onToggleShowDownstreamExternals={onToggleShowDownstreamExternals}
       upstreamCount={counts.upstreamExternals}
       downstreamCount={counts.downstreamExternals}
+      dependencyFocusActive={dependencyFocusActive}
     />
     <DisplaySwitch
       label="Show Test Components"
@@ -198,58 +211,59 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
       testId="toggle-show-tests"
       onClassName="bg-brand-600"
     />
-    <DisplaySwitch
-      label="Show Selected Dependencies Only"
-      count={counts.dependencies}
-      checked={showSelectedDependenciesOnly}
-      onToggle={onToggleShowSelectedDependenciesOnly}
-      testId="toggle-show-selected-dependencies-only"
-      onClassName="bg-brand-600"
-    />
-    <DisplaySwitch
-      label="Coupling Lens"
-      count={counts.coupledNodes}
-      checked={showCoupling}
-      onToggle={onToggleShowCoupling}
-      testId="toggle-show-coupling-lens"
-      onClassName="bg-amber-600"
-    />
-    <p
-      className="text-[10px] leading-snug text-slate-500"
-      data-testid="workspace-coupling-lens-help"
-    >
-      Amber dashed edges show files that change together in git. With no selection, coupling appears
-      across the whole diagram; select a node to focus its peers and reveal off-diagram ghosts.
-    </p>
-    {showCoupling ? (
-      <DisplaySwitch
-        label="Schema Dependencies in Focus"
-        checked={showCouplingSchemaDeps}
-        onToggle={onToggleShowCouplingSchemaDeps}
-        testId="toggle-show-coupling-schema-deps"
-        onClassName="bg-cyan-600"
-      />
+    {includeTraceLensToggles ? (
+      <>
+        <DisplaySwitch
+          label="Show Selected Dependencies Only"
+          count={counts.dependencies}
+          checked={showSelectedDependenciesOnly}
+          onToggle={onToggleShowSelectedDependenciesOnly}
+          testId="toggle-show-selected-dependencies-only"
+          onClassName="bg-brand-600"
+        />
+        {dependencyFocusActive ? (
+          <p className="text-[10px] leading-snug text-slate-500 -mt-1">
+            Dependency focus is active on the canvas. Use Dependency view in the TraceLens panel for
+            tree + externals.
+          </p>
+        ) : null}
+        <DisplaySwitch
+          label="Coupling Lens"
+          count={counts.coupledNodes}
+          checked={showCoupling}
+          onToggle={onToggleShowCoupling}
+          testId="toggle-show-coupling-lens"
+          onClassName="bg-amber-600"
+        />
+        <p
+          className="text-[10px] leading-snug text-slate-500"
+          data-testid="workspace-coupling-lens-help"
+        >
+          Amber dashed edges show files that change together in git. With no selection, coupling
+          appears across the whole diagram; select a node to focus its peers and reveal off-diagram
+          ghosts.
+        </p>
+        {showCoupling ? (
+          <DisplaySwitch
+            label="Schema Dependencies in Focus"
+            checked={showCouplingSchemaDeps}
+            onToggle={onToggleShowCouplingSchemaDeps}
+            testId="toggle-show-coupling-schema-deps"
+            onClassName="bg-cyan-600"
+          />
+        ) : null}
+        <DisplaySwitch
+          label="Risk Heatmap"
+          checked={showHotspotHeatmap}
+          onToggle={onToggleShowHotspotHeatmap}
+          testId="toggle-show-hotspot-heatmap"
+          onClassName="bg-red-700"
+        />
+        <p className="text-[10px] leading-snug text-slate-500" data-testid="workspace-heatmap-help">
+          Tint nodes by TraceLens hotspot score (fill). In ChaosLens, blast radius adds a red border
+          glow on top — both layers can show together.
+        </p>
+      </>
     ) : null}
-    <DisplaySwitch
-      label="Risk Heatmap"
-      checked={showHotspotHeatmap}
-      onToggle={onToggleShowHotspotHeatmap}
-      testId="toggle-show-hotspot-heatmap"
-      onClassName="bg-red-700"
-    />
-    <p className="text-[10px] leading-snug text-slate-500" data-testid="workspace-heatmap-help">
-      Tint nodes by TraceLens hotspot score (fill). In ChaosLens, blast radius adds a red border
-      glow on top — both layers can show together.
-    </p>
-    <DisplaySwitch
-      label="Lite Canvas"
-      checked={liteCanvas}
-      onToggle={onToggleLiteCanvas}
-      testId="toggle-lite-canvas"
-      onClassName="bg-brand-600"
-    />
-    <p className="text-[10px] leading-snug text-slate-500" data-testid="workspace-lite-canvas-help">
-      Faster pan and zoom on large diagrams: hide minimap/grid, simplify nodes, cap edge animation.
-    </p>
   </div>
 );

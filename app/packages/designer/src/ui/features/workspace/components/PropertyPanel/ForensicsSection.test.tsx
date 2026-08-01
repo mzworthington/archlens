@@ -84,7 +84,7 @@ describe('ForensicsSection', () => {
     );
 
     expect(screen.getByTestId('forensics-coupling-lens-hint')).toHaveTextContent(
-      /Lenses group in the toolbar/i
+      /Coupling Lens in Explorer → TraceLens → Workspace display/i
     );
   });
 

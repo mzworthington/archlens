@@ -11,7 +11,7 @@ export const BrandIcon: React.FC<{ className?: string }> = ({ className = 'w-8 h
 );
 
 type BrandMarkProps = {
-  /** Small cyan chip next to ARCHLENS (e.g. CANVAS, TRACELENS, DOCS). */
+  /** Small cyan chip next to ARCHLENS (e.g. CANVAS, FORENSICS, DOCS). */
   badge?: string;
   /** One-line subtitle under the title. */
   subtitle?: string;

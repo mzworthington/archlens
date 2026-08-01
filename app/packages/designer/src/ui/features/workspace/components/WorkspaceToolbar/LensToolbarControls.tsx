@@ -1,135 +1,33 @@
 import React from 'react';
-import { Link2, Play, ScanSearch, ShieldAlert } from 'lucide-react';
+import { Play, ShieldAlert } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { workspaceEntityRefFromPath } from '../../../../../application/navigation/workspaceUrl';
-import { buildTraceLensUrl } from '../../../forensics/traceLensUrl';
+import { isResilienceSimulationDiagramLevel } from '@archlens/core/recommendations';
 import { buildChaosLensUrl } from '../../../../../application/resilience/chaosLensUrl';
-import {
-  countCouplingCapableNodes,
-  countCouplingCapableSchemaNodes,
-} from '../../../../../application/forensics/resolveCouplingEdges';
 
 const lensBtnClass =
   'relative px-2 py-1 rounded-md text-[10px] font-bold tracking-wide transition cursor-pointer flex items-center justify-center gap-1.5 min-w-[2rem]';
 
-const COUPLING_UNAVAILABLE_MESSAGE =
-  'No temporal coupling on this diagram. Zoom into a component diagram with TraceLens data, or run forensics enrichment on your blueprint.';
-
-function CouplingLensButton() {
-  const { showCoupling, toggleShowCoupling, setShowCoupling, nodes, schema, setNotification } =
-    useBlueprintStore();
-  const couplingNodeCount = Math.max(
-    countCouplingCapableNodes(nodes),
-    countCouplingCapableSchemaNodes(schema.nodes)
-  );
-  const unavailable = couplingNodeCount === 0;
-
-  const handleClick = () => {
-    if (unavailable) {
-      setNotification({
-        type: 'info',
-        title: 'Coupling lens',
-        message: COUPLING_UNAVAILABLE_MESSAGE,
-      });
-      return;
-    }
-    if (showCoupling) {
-      toggleShowCoupling();
-    } else {
-      setShowCoupling(true);
-    }
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleClick}
-      aria-pressed={showCoupling && !unavailable}
-      data-testid="toolbar-coupling-lens"
-      title={
-        unavailable
-          ? COUPLING_UNAVAILABLE_MESSAGE
-          : showCoupling
-            ? 'Turn off coupling lens'
-            : 'Show temporal coupling across the diagram'
-      }
-      aria-label={
-        unavailable
-          ? 'Coupling lens — no data on this diagram'
-          : showCoupling
-            ? 'Turn off coupling lens'
-            : `Turn on coupling lens (${couplingNodeCount} nodes)`
-      }
-      className={`${lensBtnClass} ${
-        unavailable
-          ? 'text-slate-500 hover:text-slate-300 hover:bg-slate-900'
-          : showCoupling
-            ? 'bg-amber-500/20 text-amber-200'
-            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-      }`}
-    >
-      <Link2 className="w-3.5 h-3.5 shrink-0" aria-hidden />
-      <span className="hidden lg:inline">Coupling</span>
-      {couplingNodeCount > 0 ? (
-        <span
-          className={`tabular-nums text-[9px] font-mono ${
-            showCoupling ? 'text-amber-200/90' : 'text-slate-500'
-          }`}
-        >
-          {couplingNodeCount}
-        </span>
-      ) : null}
-    </button>
-  );
-}
-
-function TraceLensButton() {
-  const [location, setLocation] = useLocation();
-  const { isTraceLensMode, setTraceLensMode } = useBlueprintStore();
-
-  const handleClick = () => {
-    const next = !isTraceLensMode;
-    setTraceLensMode(next);
-    if (next) {
-      setLocation(buildTraceLensUrl(workspaceEntityRefFromPath(location)));
-      return;
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    params.delete('lens');
-    params.delete('view');
-    params.delete('plan');
-    params.delete('source');
-    const query = params.toString();
-    setLocation(`${window.location.pathname}${query ? `?${query}` : ''}`, { replace: true });
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleClick}
-      aria-pressed={isTraceLensMode}
-      data-testid="toolbar-tracelens-lens"
-      className={`${lensBtnClass} ${
-        isTraceLensMode
-          ? 'bg-[#00f0ff]/20 text-[#00f0ff]'
-          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
-      }`}
-      aria-label={isTraceLensMode ? 'Exit TraceLens' : 'Enter TraceLens'}
-      title={isTraceLensMode ? 'Exit TraceLens' : 'Rank estate-wide forensics signals'}
-    >
-      <ScanSearch className="w-3.5 h-3.5 shrink-0" aria-hidden />
-      <span className="hidden lg:inline">TraceLens</span>
-    </button>
-  );
-}
+const RESILIENCE_UNAVAILABLE_MESSAGE =
+  'Resilience simulation applies at the container level. Open the container diagram to model blast radius.';
 
 function ResilienceLensButton() {
   const [location, setLocation] = useLocation();
-  const { isResilienceMode, setResilienceMode, resilienceFaults } = useBlueprintStore();
+  const { isResilienceMode, setResilienceMode, resilienceFaults, schema, setNotification } =
+    useBlueprintStore();
+  const unavailable = !isResilienceSimulationDiagramLevel(schema.level);
 
   const handleClick = () => {
+    if (!isResilienceMode && unavailable) {
+      setNotification({
+        type: 'info',
+        title: 'Resilience lens',
+        message: RESILIENCE_UNAVAILABLE_MESSAGE,
+      });
+      return;
+    }
+
     const next = !isResilienceMode;
     setResilienceMode(next);
     if (next) {
@@ -154,15 +52,29 @@ function ResilienceLensButton() {
     <button
       type="button"
       onClick={handleClick}
-      aria-pressed={isResilienceMode}
+      aria-pressed={isResilienceMode && !unavailable}
       data-testid="toolbar-resilience-lens"
+      title={
+        unavailable && !isResilienceMode
+          ? RESILIENCE_UNAVAILABLE_MESSAGE
+          : isResilienceMode
+            ? 'Exit resilience mode'
+            : 'Enter resilience mode'
+      }
+      aria-label={
+        unavailable && !isResilienceMode
+          ? 'Resilience lens — unavailable on this diagram level'
+          : isResilienceMode
+            ? 'Exit resilience mode'
+            : 'Enter resilience mode'
+      }
       className={`${lensBtnClass} ${
-        isResilienceMode
-          ? 'bg-[#00f0ff]/20 text-[#00f0ff]'
-          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+        unavailable && !isResilienceMode
+          ? 'text-slate-500 hover:text-slate-300 hover:bg-slate-900'
+          : isResilienceMode
+            ? 'bg-[#00f0ff]/20 text-[#00f0ff]'
+            : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
       }`}
-      aria-label={isResilienceMode ? 'Exit resilience mode' : 'Enter resilience mode'}
-      title={isResilienceMode ? 'Exit resilience mode' : 'Enter resilience mode'}
     >
       <ShieldAlert className="w-3.5 h-3.5 shrink-0" aria-hidden />
       <span className="hidden lg:inline">Resilience</span>
@@ -193,23 +105,9 @@ function SimulateButton() {
   );
 }
 
-/** TraceLens + ChaosLens toggles — grouped like layout controls. */
+/** ChaosLens mode toggle — TraceLens lives in the Explorer side panel tabs. */
 export const LensToolbarControls: React.FC = () => {
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
-  const isTraceLensMode = useBlueprintStore(s => s.isTraceLensMode);
-
-  if (isTraceLensMode) {
-    return (
-      <div
-        className="flex items-center gap-1.5 bg-slate-900/40 border border-slate-850 px-1.5 py-1.5 rounded-lg text-xs shrink-0 select-none whitespace-nowrap"
-        data-testid="lens-toolbar-controls"
-        onPointerDown={e => e.stopPropagation()}
-        onClick={e => e.stopPropagation()}
-      >
-        <TraceLensButton />
-      </div>
-    );
-  }
 
   return (
     <div
@@ -226,8 +124,6 @@ export const LensToolbarControls: React.FC = () => {
         role="group"
         aria-label="Diagram lenses"
       >
-        <CouplingLensButton />
-        <TraceLensButton />
         <ResilienceLensButton />
       </div>
       {isResilienceMode ? <SimulateButton /> : null}

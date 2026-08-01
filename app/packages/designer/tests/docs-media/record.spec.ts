@@ -44,12 +44,12 @@ test.describe('docs media recordings', () => {
     await loadSandbox(page);
     await expectCanvasReady(page);
 
-    await page.getByRole('button', { name: 'Toggle Left Panel' }).click();
-    await page.getByRole('button', { name: 'Toggle Right Panel' }).click();
+    await page.getByRole('button', { name: 'Toggle left panel' }).click();
+    await page.getByRole('button', { name: 'Toggle right panel' }).click();
     await page.waitForTimeout(1_000);
 
-    await page.getByRole('button', { name: 'Toggle Left Panel' }).click();
-    await page.getByRole('button', { name: 'Toggle Right Panel' }).click();
+    await page.getByRole('button', { name: 'Toggle left panel' }).click();
+    await page.getByRole('button', { name: 'Toggle right panel' }).click();
     await page.waitForTimeout(800);
 
     await drillIntoZoomable(page, 'Golden Journey');

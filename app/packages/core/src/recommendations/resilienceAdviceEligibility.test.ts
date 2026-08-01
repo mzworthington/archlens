@@ -4,6 +4,7 @@ import {
   isAdviceActionable,
   isEstateResilienceDiagramLevel,
   isResilienceAdviceTarget,
+  isResilienceSimulationDiagramLevel,
   isThirdPartyDependency,
   resolveAdviceApplicability,
 } from './resilienceAdviceEligibility';
@@ -53,6 +54,15 @@ describe('isEstateResilienceDiagramLevel', () => {
   it('excludes component and code diagrams from estate resilience simulation', () => {
     expect(isEstateResilienceDiagramLevel('component')).toBe(false);
     expect(isEstateResilienceDiagramLevel('code')).toBe(false);
+  });
+});
+
+describe('isResilienceSimulationDiagramLevel', () => {
+  it('matches estate resilience diagram levels', () => {
+    expect(isResilienceSimulationDiagramLevel('context')).toBe(true);
+    expect(isResilienceSimulationDiagramLevel('container')).toBe(true);
+    expect(isResilienceSimulationDiagramLevel('component')).toBe(false);
+    expect(isResilienceSimulationDiagramLevel('code')).toBe(false);
   });
 });
 
