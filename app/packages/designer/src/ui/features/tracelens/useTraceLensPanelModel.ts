@@ -24,6 +24,11 @@ import { useTraceLensUrlSync } from '../forensics/useTraceLensUrlSync';
 import { useTraceLensScopeLoad } from '../forensics/useTraceLensScopeLoad';
 import { useTraceLensScopeFromUrl } from '../forensics/useTraceLensScopeFromUrl';
 import { parseTraceLensUrl, buildTraceLensUrl } from '../forensics/traceLensUrl';
+import {
+  buildAdviceLensUrl,
+  isAdviceLensUrl,
+  parseAdviceLensUrl,
+} from '../forensics/adviceLensUrl';
 
 export type TraceLensView = 'offenders' | 'recommendations';
 
@@ -60,14 +65,16 @@ export function useTraceLensPanelModel() {
 
   const [location, setLocation] = useLocation();
   const search = useSearch();
-  const urlState = parseTraceLensUrl(location, search);
+  const adviceLensActive = isAdviceLensUrl(location, search);
+  const urlState = adviceLensActive
+    ? parseAdviceLensUrl(location, search)
+    : parseTraceLensUrl(location, search);
   const scopeEntityRef = urlState.entityRef ?? null;
   const [scope, setScope] = useState<OffenderScope>('components');
   const [filter, setFilter] = useState<OffenderSignalFilter>('all');
   const [testFilter, setTestFilter] = useState<OffenderTestFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const traceLensView: TraceLensView =
-    urlState.view === 'recommendations' ? 'recommendations' : 'offenders';
+  const traceLensView: TraceLensView = adviceLensActive ? 'recommendations' : 'offenders';
   const [activePlan, setActivePlan] = useState<ActivePlan>(null);
 
   const clearActivePlan = useCallback(() => {
@@ -201,22 +208,18 @@ export function useTraceLensPanelModel() {
   const setEntityScope = useCallback(
     (entityRef: string | null) => {
       clearActivePlan();
-      setLocation(
-        buildTraceLensUrl(entityRef, {
-          view: traceLensView === 'recommendations' ? 'recommendations' : null,
-        })
-      );
+      setLocation(adviceLensActive ? buildAdviceLensUrl(entityRef) : buildTraceLensUrl(entityRef));
     },
-    [clearActivePlan, setLocation, traceLensView]
+    [adviceLensActive, clearActivePlan, setLocation]
   );
 
   const setTraceLensView = useCallback(
     (view: TraceLensView) => {
+      const buildUrl = view === 'recommendations' ? buildAdviceLensUrl : buildTraceLensUrl;
       setLocation(
-        buildTraceLensUrl(scopeEntityRef, {
+        buildUrl(scopeEntityRef, {
           planEntityRef: urlState.planEntityRef,
           showSource: urlState.showSource,
-          view: view === 'recommendations' ? 'recommendations' : null,
         }),
         { replace: true }
       );

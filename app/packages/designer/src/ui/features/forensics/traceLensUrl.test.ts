@@ -17,9 +17,6 @@ describe('traceLensUrl', () => {
     expect(buildTraceLensUrl('app/designer/db', { showSource: true })).toBe(
       '/workspace/app/designer/db?lens=tracelens&source=1'
     );
-    expect(buildTraceLensUrl(null, { view: 'recommendations' })).toBe(
-      '/workspace?lens=tracelens&view=recommendations'
-    );
     expect(
       buildTraceLensUrl('app/designer', {
         planEntityRef: 'app/designer/db',
@@ -45,16 +42,12 @@ describe('traceLensUrl', () => {
       entityRef: 'app/designer/db',
       showSource: true,
     });
-    expect(parseTraceLensUrl('/workspace', 'lens=tracelens&view=recommendations')).toEqual({
-      showSource: false,
-      view: 'recommendations',
-    });
   });
 
   it('redirects legacy /tracelens paths', () => {
     expect(redirectLegacyTraceLensUrl('/tracelens')).toBe('/workspace?lens=tracelens');
     expect(redirectLegacyTraceLensUrl('/tracelens/app/designer', 'view=recommendations')).toBe(
-      '/workspace/app/designer?lens=tracelens&view=recommendations'
+      '/workspace/app/designer?lens=advicelens'
     );
   });
 
@@ -62,6 +55,7 @@ describe('traceLensUrl', () => {
     expect(isTraceLensUrl('/workspace', 'lens=tracelens')).toBe(true);
     expect(isTraceLensUrl('/workspace/golden-paths', 'lens=tracelens')).toBe(true);
     expect(isTraceLensUrl('/workspace/golden-paths', '')).toBe(false);
+    expect(isTraceLensUrl('/workspace', 'lens=tracelens&view=recommendations')).toBe(false);
     expect(isTraceLensUrl('/tracelens')).toBe(true);
   });
 });

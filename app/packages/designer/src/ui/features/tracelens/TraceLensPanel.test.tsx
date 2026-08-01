@@ -57,7 +57,7 @@ describe('TraceLensPanel', () => {
       </Router>
     );
 
-    expect(screen.getByRole('heading', { name: 'TraceLens' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Forensics' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Worst offenders', level: 2 })).toBeInTheDocument();
     expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
 
@@ -453,18 +453,30 @@ describe('TraceLensPanel', () => {
   });
 
   it('shows estate recommendations when the recommendations tab is selected', () => {
-    const { hook } = memoryLocation({ path: '/workspace?lens=tracelens' });
+    const { hook } = memoryLocation({ path: '/workspace?lens=advicelens' });
     render(
       <Router hook={hook}>
         <TraceLensPanel />
       </Router>
     );
 
-    fireEvent.click(screen.getByRole('button', { name: /^AdviceLens$/i }));
     expect(screen.getByTestId('estate-recommendations-panel')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'TraceLens' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Forensics', level: 1 })).toBeInTheDocument();
     expect(
       screen.queryByRole('heading', { name: 'Worst offenders', level: 2 })
     ).not.toBeInTheDocument();
+  });
+
+  it('switches to AdviceLens URL when the recommendations tab is selected', () => {
+    const mem = memoryLocation({ path: '/workspace?lens=tracelens', record: true });
+    render(
+      <Router hook={mem.hook}>
+        <TraceLensPanel />
+      </Router>
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /^AdviceLens$/i }));
+
+    expect(mem.history?.[mem.history.length - 1]).toBe('/workspace?lens=advicelens');
   });
 });

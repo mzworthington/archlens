@@ -25,7 +25,7 @@ describe('GoldenJourneyTour', () => {
     );
     expect(screen.getByTestId('journey-step-5-cta')).toHaveAttribute(
       'href',
-      '/workspace/golden-paths/golden-journey?lens=tracelens&view=recommendations&plan=golden-paths%2Fgolden-journey%2Fcheckout-platform%2Fcheckout-api'
+      '/workspace/golden-paths/golden-journey?lens=advicelens&plan=golden-paths%2Fgolden-journey%2Fcheckout-platform%2Fcheckout-api'
     );
   });
 });

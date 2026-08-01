@@ -7,12 +7,13 @@ import {
   type BuildRefactorPlanOptions,
 } from '../../../application/forensics/buildRefactorPlan';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
+import { buildTraceLensUrl, currentTraceLensUrl, parseTraceLensUrl } from './traceLensUrl';
 import {
-  buildTraceLensUrl,
-  currentTraceLensUrl,
-  isTraceLensUrl,
-  parseTraceLensUrl,
-} from './traceLensUrl';
+  buildAdviceLensUrl,
+  isAdviceLensUrl,
+  isEstateLensUrl,
+  parseAdviceLensUrl,
+} from './adviceLensUrl';
 
 type ActivePlan = ReturnType<typeof buildRefactorPlanForOffender> & {
   offender: RankedOffender;
@@ -63,9 +64,11 @@ export function useTraceLensUrlSync({
   const prevSourceOpenRef = useRef<boolean | undefined>(undefined);
   const dismissedLegacyPlanRef = useRef(false);
 
+  const adviceLensActive = isAdviceLensUrl(location, search);
+
   // URL → UI (navigation, deep links, back/forward)
   useEffect(() => {
-    if (!isTraceLensUrl(location, search)) return;
+    if (!isEstateLensUrl(location, search)) return;
 
     const browserUrl = currentTraceLensUrl(location, search);
     const pathnameChanged = prevPathnameRef.current !== location;
@@ -82,7 +85,9 @@ export function useTraceLensUrlSync({
 
     if (!locationChanged && !isInitialSync) return;
 
-    const parsed = parseTraceLensUrl(location, search);
+    const parsed = adviceLensActive
+      ? parseAdviceLensUrl(location, search)
+      : parseTraceLensUrl(location, search);
     const planEntityRef =
       parsed.planEntityRef ??
       (!dismissedLegacyPlanRef.current ? legacyPlanEntityRef : null) ??
@@ -104,6 +109,7 @@ export function useTraceLensUrlSync({
   }, [
     location,
     search,
+    adviceLensActive,
     loadedSystems,
     activePlanEntityRef,
     isSourceCodeOpen,
@@ -116,9 +122,11 @@ export function useTraceLensUrlSync({
 
   // Open source after entity plan is active (zustand + react state can desync on hydration).
   useEffect(() => {
-    if (!isTraceLensUrl(location, search)) return;
+    if (!isEstateLensUrl(location, search)) return;
 
-    const parsed = parseTraceLensUrl(location, search);
+    const parsed = adviceLensActive
+      ? parseAdviceLensUrl(location, search)
+      : parseTraceLensUrl(location, search);
     if (!parsed.showSource || !activePlanEntityRef) return;
 
     const filepath =
@@ -131,6 +139,7 @@ export function useTraceLensUrlSync({
   }, [
     location,
     search,
+    adviceLensActive,
     loadedSystems,
     activePlanEntityRef,
     isSourceCodeOpen,
@@ -141,7 +150,7 @@ export function useTraceLensUrlSync({
 
   // UI → URL (user opened/closed plan or source)
   useEffect(() => {
-    if (!isTraceLensUrl(location, search)) return;
+    if (!isEstateLensUrl(location, search)) return;
 
     const planChanged = prevPlanEntityRef.current !== activePlanEntityRef;
     const sourceChanged = prevSourceOpenRef.current !== isSourceCodeOpen;
@@ -157,16 +166,26 @@ export function useTraceLensUrlSync({
     if (isInitialSync) return;
     if (!planChanged && !sourceChanged) return;
 
-    const parsed = parseTraceLensUrl(location, search);
+    const parsed = adviceLensActive
+      ? parseAdviceLensUrl(location, search)
+      : parseTraceLensUrl(location, search);
     const showSource = isSourceCodeOpen || (parsed.showSource && !sourceChanged);
-    const targetUrl = buildTraceLensUrl(scopeEntityRef, {
+    const buildUrl = adviceLensActive ? buildAdviceLensUrl : buildTraceLensUrl;
+    const targetUrl = buildUrl(scopeEntityRef, {
       planEntityRef: activePlanEntityRef,
       showSource,
-      view: parsed.view,
     });
 
     if (currentTraceLensUrl(location, search) !== targetUrl) {
       setLocation(targetUrl, { replace: true });
     }
-  }, [location, search, scopeEntityRef, activePlanEntityRef, isSourceCodeOpen, setLocation]);
+  }, [
+    location,
+    search,
+    scopeEntityRef,
+    activePlanEntityRef,
+    isSourceCodeOpen,
+    setLocation,
+    adviceLensActive,
+  ]);
 }

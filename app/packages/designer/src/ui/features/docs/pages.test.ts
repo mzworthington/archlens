@@ -34,7 +34,7 @@ describe('docs link resolution', () => {
     expect(chaoslens?.productAction?.href).toBe('/workspace/application?lens=chaoslens');
     expect(advicelens?.productAction).toEqual({
       label: 'Open AdviceLens',
-      href: '/workspace?lens=tracelens&view=recommendations',
+      href: '/workspace?lens=advicelens',
     });
   });
 

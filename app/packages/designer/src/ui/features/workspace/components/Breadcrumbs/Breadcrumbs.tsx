@@ -1,6 +1,6 @@
 import React from 'react';
 import { Folder, ChevronRight, Layers, Compass, Code, Network, ChevronDown } from 'lucide-react';
-import { Link } from 'wouter';
+import { Link, useLocation, useSearch } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 import { useBreadcrumbs } from './useBreadcrumbs';
 import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
@@ -69,7 +69,10 @@ export const Breadcrumbs: React.FC = () => {
     isSampleWorkspace,
     workspaceName,
   } = useBreadcrumbs();
-  const workspaceLink = (entityRef: string) => buildWorkspaceEntityHref(entityRef);
+  const [location] = useLocation();
+  const search = useSearch();
+  const workspaceLink = (entityRef: string) =>
+    buildWorkspaceEntityHref(entityRef, { pathname: location, search });
   const segmentList = segments as BreadcrumbSegmentView[];
 
   const menuOpen = openDropdownIdx === -1;

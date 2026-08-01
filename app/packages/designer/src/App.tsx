@@ -6,6 +6,7 @@ import { UpdateBanner } from './ui/components/UpdateBanner/UpdateBanner';
 import { AppNotificationToast } from './ui/components/AppNotificationToast/AppNotificationToast';
 import { useApp } from './application/context/AppContext';
 import { redirectLegacyTraceLensUrl } from './ui/features/forensics/traceLensUrl';
+import { redirectLegacyAdviceLensUrl } from './ui/features/forensics/adviceLensUrl';
 
 const DocsHome = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsHome })));
 const DocsPage = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsPage })));
@@ -23,6 +24,14 @@ function TraceLensRedirect() {
   const [location, setLocation] = useLocation();
   useEffect(() => {
     setLocation(redirectLegacyTraceLensUrl(location, window.location.search), { replace: true });
+  }, [location, setLocation]);
+  return null;
+}
+
+function AdviceLensRedirect() {
+  const [location, setLocation] = useLocation();
+  useEffect(() => {
+    setLocation(redirectLegacyAdviceLensUrl(location, window.location.search), { replace: true });
   }, [location, setLocation]);
   return null;
 }
@@ -48,6 +57,8 @@ function App() {
           <Route path="/design-system" component={DesignSystemDocsPage} />
           <Route path="/tracelens">{() => <TraceLensRedirect />}</Route>
           <Route path="/tracelens/*">{() => <TraceLensRedirect />}</Route>
+          <Route path="/advicelens">{() => <AdviceLensRedirect />}</Route>
+          <Route path="/advicelens/*">{() => <AdviceLensRedirect />}</Route>
           <Route path="/workspace" component={WorkspacePage} />
           <Route path="/workspace/*" component={WorkspacePage} />
           <Route path="/guide" component={DocsPage} />
