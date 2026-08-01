@@ -15,8 +15,8 @@ test.describe('Blueprint E2E Journeys', () => {
     await gotoApp(page, '/workspace');
 
     await expect(page.getByTestId('startup-workspace-dialog')).toBeVisible({ timeout: 10_000 });
-    await expect(page.getByTestId('startup-load-sandbox')).toBeVisible();
-    await expect(page.getByTestId('startup-open-directory')).toBeVisible();
+    await expect(page.getByTestId('workspace-load-sandbox-golden-paths')).toBeVisible();
+    await expect(page.getByTestId('workspace-open-directory')).toBeVisible();
     await expect(page.getByTestId('startup-import-mermaid')).toHaveCount(0);
   });
 

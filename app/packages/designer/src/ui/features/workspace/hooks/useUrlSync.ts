@@ -24,7 +24,6 @@ export function useUrlSync(): void {
     workspaceCatalog,
     isWorkspaceOpen,
     isStartupOpen,
-    loadBundledSandbox,
   } = useBlueprintStore();
 
   const [location, setLocation] = useLocation();
@@ -34,7 +33,6 @@ export function useUrlSync(): void {
   const prevSelectedNodeIdRef = useRef<string | null | undefined>(undefined);
   const systemSelectInFlight = useBlueprintStore(s => s.systemSelectInFlight);
   const diagramLoadCount = useBlueprintStore(s => s.diagramLoadCount);
-  const sandboxBootstrapRef = useRef(false);
 
   useEffect(() => {
     const isWorkspaceRoute =
@@ -52,23 +50,14 @@ export function useUrlSync(): void {
     prevSelectedNodeIdRef.current = selectedNodeId;
 
     const segments = splitWorkspacePath(pathAfterWorkspace);
-    const isWorkspaceRoot = location === '/workspace' || location === '/workspace/';
 
-    if (isWorkspaceRoot && isStartupOpen) return;
+    if (isStartupOpen) return;
 
     const entityRef = isWorkspaceOpen
       ? pathAfterWorkspace?.replace(/\/$/, '') || undefined
       : segments.length > 0
         ? segments.join('/')
         : undefined;
-
-    if (!isWorkspaceOpen && loadedSystems.length === 0 && !sandboxBootstrapRef.current) {
-      sandboxBootstrapRef.current = true;
-      void loadBundledSandbox().finally(() => {
-        sandboxBootstrapRef.current = false;
-      });
-      return;
-    }
 
     const diagramEntityRef = getSchemaEntityRef(
       schema,
@@ -166,7 +155,6 @@ export function useUrlSync(): void {
     params,
     isWorkspaceOpen,
     isStartupOpen,
-    loadBundledSandbox,
     systemSelectInFlight,
     diagramLoadCount,
   ]);

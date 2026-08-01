@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, FolderOpen, Loader2 } from 'lucide-react';
-import { FORENSICS_EMPTY } from '../../content/productOutcomes';
+import { FolderOpen, Loader2, Map } from 'lucide-react';
+import { WorkspaceEntryPanel } from '../../components/WorkspaceEntryPanel';
+import {
+  GOLDEN_PATHS_CONTEXT_PATH,
+  type SandboxContextPath,
+} from '../../../application/store/defaultData';
 
 const actionButtonClass =
   'inline-flex items-center gap-2 rounded-lg border border-[#00f0ff]/25 bg-[#040914]/80 px-3 py-2 text-xs font-semibold text-slate-100 transition-colors hover:border-[#00f0ff]/45 hover:bg-[#00f0ff]/10 disabled:opacity-50 disabled:pointer-events-none';
-
-const optionClass =
-  'w-full flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
 
 type ForensicsWorkspacePanelProps = {
   hasScope: boolean;
@@ -19,8 +20,9 @@ type ForensicsWorkspacePanelProps = {
   pendingFolderName?: string;
   rankLoadedOnly?: boolean;
   onRankLoadedOnly?: () => void;
-  onLoadSandbox: () => void;
+  onLoadSandbox: (contextPath: SandboxContextPath) => void;
   onOpenDirectory: () => void;
+  activeSandboxContextPath?: string | null;
 };
 
 export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = ({
@@ -36,6 +38,7 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
   onRankLoadedOnly,
   onLoadSandbox,
   onOpenDirectory,
+  activeSandboxContextPath = null,
 }) => {
   const busy = Boolean(isLoading);
   const showCatalogProgress = catalogCount > 0 && unloadedCount > 0 && !rankLoadedOnly;
@@ -49,60 +52,26 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
       : null;
 
   if (!hasScope) {
+    const description = pendingFolderSession ? (
+      <>
+        Load the demo estate to simulate failures and ranked advice in minutes — or open blueprints
+        from your own repo. Your last session used a local folder (
+        <span className="font-mono text-slate-300">{pendingFolderName || 'folder'}</span>) — re-open
+        it below to restore rankings.
+      </>
+    ) : undefined;
+
     return (
-      <section
-        className="mb-8 rounded-xl border border-[#00f0ff]/15 bg-[#040914]/80 p-5 md:p-6"
-        data-testid="forensics-workspace-load"
-      >
-        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#00f0ff] mb-2">
-          ArchLens Canvas
-        </p>
-        <h2 className="text-lg font-bold text-white tracking-tight">{FORENSICS_EMPTY.title}</h2>
-        <p className="mt-2 text-sm text-slate-400 leading-relaxed max-w-2xl">
-          {FORENSICS_EMPTY.body}
-          {pendingFolderSession ? (
-            <>
-              {' '}
-              Your last session used a local folder (
-              <span className="font-mono text-slate-300">{pendingFolderName || 'folder'}</span>) —
-              re-open it below to restore rankings.
-            </>
-          ) : null}
-        </p>
-
-        <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
-          <button
-            type="button"
-            data-testid="forensics-load-sandbox"
-            onClick={onLoadSandbox}
-            disabled={busy}
-            className={optionClass}
-          >
-            <Box className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />
-            <span>
-              <span className="block text-sm font-semibold text-slate-100">Load sandbox</span>
-              <span className="block text-xs text-slate-500 mt-0.5">
-                Bundled demo diagrams with sample hotspot data
-              </span>
-            </span>
-          </button>
-
-          <button
-            type="button"
-            data-testid="forensics-open-directory"
-            onClick={onOpenDirectory}
-            disabled={busy}
-            className={optionClass}
-          >
-            <FolderOpen className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />
-            <span>
-              <span className="block text-sm font-semibold text-slate-100">Open folder</span>
-              <span className="block text-xs text-slate-500 mt-0.5">
-                Pick a local directory of blueprint YAML files
-              </span>
-            </span>
-          </button>
-        </div>
+      <div className="mb-8">
+        <WorkspaceEntryPanel
+          className="rounded-xl border border-[#00f0ff]/15 bg-[#040914]/80 p-5 md:p-6"
+          layout="grid"
+          showCliPanel
+          disabled={busy}
+          description={description}
+          onLoadSandbox={onLoadSandbox}
+          onOpenDirectory={onOpenDirectory}
+        />
 
         {progressLabel ? (
           <div className="mt-4 space-y-2">
@@ -123,7 +92,7 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
             ) : null}
           </div>
         ) : null}
-      </section>
+      </div>
     );
   }
 
@@ -168,17 +137,21 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
         ) : null}
         <button
           type="button"
-          data-testid="forensics-load-sandbox"
-          onClick={onLoadSandbox}
+          data-testid="workspace-load-sandbox"
+          onClick={() =>
+            onLoadSandbox(
+              (activeSandboxContextPath as SandboxContextPath | null) ?? GOLDEN_PATHS_CONTEXT_PATH
+            )
+          }
           disabled={busy}
           className={actionButtonClass}
         >
-          <Box className="w-3.5 h-3.5 text-brand-400" />
+          <Map className="w-3.5 h-3.5 text-amber-400" />
           Sandbox
         </button>
         <button
           type="button"
-          data-testid="forensics-open-directory"
+          data-testid="workspace-open-directory"
           onClick={onOpenDirectory}
           disabled={busy}
           className={actionButtonClass}

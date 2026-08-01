@@ -106,13 +106,13 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
   set({
     isWorkspaceOpen: true,
     workspaceName,
-    sandboxKind: undefined,
     workspaceCatalog,
     loadedSystems: [entry],
     nodeRefMap: {
       [entry.path]: resolved.nodeRefMap[entry.path] || {},
     },
     currentFilePath: entry.path,
+    activeSandboxContextPath: null,
   });
   initSchema(entry.schema);
   saveWorkspaceSession({ mode: 'folder', workspaceName });

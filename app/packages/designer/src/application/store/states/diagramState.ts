@@ -71,10 +71,10 @@ import type { MermaidImportPreview } from './diagramState/importMermaid';
 import type { IacImportPreview } from './diagramState/importIac';
 import { createDiagramInitialState } from './diagramState/initialState';
 import { reloadBundledSandbox } from './diagramState/loadBundledSandbox';
+import { GOLDEN_PATHS_CONTEXT_PATH, type SandboxContextPath } from '../defaultData';
 import { prefetchAllWorkspaceSystems } from './diagramState/prefetchWorkspaceSystems';
 import { applyRefactorBoundaryAsDraft } from '../../forensics/applyRefactorBoundaryAsDraft';
 import type { RefactorBoundary } from '@archlens/core/forensics';
-import { restoreWorkspaceSession as restoreWorkspaceSessionAction } from '../restoreWorkspaceSession';
 import { resetToEmptyWorkspace as resetToEmptyWorkspaceAction } from './diagramState/resetToEmptyWorkspace';
 import {
   addNodeMutation,
@@ -115,8 +115,8 @@ export interface DiagramState {
   layoutSessionId: number;
   /** Path currently being loaded by selectSystem (prevents URL-sync loops). */
   systemSelectInFlight: string | null;
-  /** Active bundled sandbox when not using a folder workspace. */
-  sandboxKind?: undefined;
+  /** Active bundled sandbox context path when not using a folder workspace. */
+  activeSandboxContextPath: SandboxContextPath | null;
 
   recordHistory: () => void;
   undo: () => void;
@@ -169,8 +169,7 @@ export interface DiagramState {
     engine?: import('../../../core').LayoutEngineId;
   }) => Promise<void>;
   markLayoutCustomized: () => void;
-  loadBundledSandbox: () => Promise<void>;
-  restoreWorkspaceSession: () => Promise<boolean>;
+  loadBundledSandbox: (contextPath?: SandboxContextPath) => Promise<void>;
   prefetchAllWorkspaceSystems: () => Promise<void>;
   applyRefactorBoundaryAsDraft: (boundary: RefactorBoundary) => boolean;
 }
@@ -201,7 +200,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
   layoutCustomized: false,
   layoutSessionId: 0,
   systemSelectInFlight: null,
-  sandboxKind: undefined,
+  activeSandboxContextPath: null,
 
   checkPendingChanges: async () => {
     const { currentFilePath, hasPendingChanges, workingCopyPort } = get();
@@ -401,8 +400,8 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     set({ layoutSessionId: get().layoutSessionId + 1 });
   },
 
-  loadBundledSandbox: () => reloadBundledSandbox(set, get),
-  restoreWorkspaceSession: () => restoreWorkspaceSessionAction(get, set),
+  loadBundledSandbox: (contextPath?: SandboxContextPath) =>
+    reloadBundledSandbox(set, get, contextPath ?? GOLDEN_PATHS_CONTEXT_PATH),
   prefetchAllWorkspaceSystems: () => prefetchAllWorkspaceSystems(get, set),
   applyRefactorBoundaryAsDraft: boundary => applyRefactorBoundaryAsDraft(boundary, get, set),
 

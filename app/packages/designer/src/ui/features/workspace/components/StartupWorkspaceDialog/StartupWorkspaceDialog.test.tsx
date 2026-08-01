@@ -2,17 +2,20 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { StartupWorkspaceDialog } from './StartupWorkspaceDialog';
 import { WORKSPACE_STARTUP } from '../../../../content/productOutcomes';
+import { GOLDEN_PATHS_CONTEXT_PATH } from '../../../../../application/store/defaultData';
 
 describe('StartupWorkspaceDialog', () => {
   it('renders sandbox and open-directory choices when open', () => {
     render(<StartupWorkspaceDialog isOpen onLoadSandbox={vi.fn()} onOpenDirectory={vi.fn()} />);
 
     expect(screen.getByRole('dialog', { name: WORKSPACE_STARTUP.title })).toBeInTheDocument();
-    expect(screen.getByTestId('startup-load-sandbox')).toHaveTextContent(/Load sandbox/i);
-    expect(screen.getByTestId('startup-open-directory')).toHaveTextContent(
+    expect(screen.getByTestId('workspace-load-sandbox-golden-paths')).toHaveTextContent(
+      /Golden Paths/i
+    );
+    expect(screen.getByTestId('workspace-open-directory')).toHaveTextContent(
       /Open workspace from directory/i
     );
-    expect(screen.getByTestId('startup-cli-panel')).toHaveTextContent(
+    expect(screen.getByTestId('workspace-cli-panel')).toHaveTextContent(
       /Generate from your codebase/i
     );
     expect(screen.queryByTestId('startup-import-mermaid')).not.toBeInTheDocument();
@@ -39,10 +42,10 @@ describe('StartupWorkspaceDialog', () => {
       />
     );
 
-    fireEvent.click(screen.getByTestId('startup-load-sandbox'));
-    fireEvent.click(screen.getByTestId('startup-open-directory'));
+    fireEvent.click(screen.getByTestId('workspace-load-sandbox-golden-paths'));
+    fireEvent.click(screen.getByTestId('workspace-open-directory'));
 
-    expect(onLoadSandbox).toHaveBeenCalledTimes(1);
+    expect(onLoadSandbox).toHaveBeenCalledWith(GOLDEN_PATHS_CONTEXT_PATH);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
   });
 });

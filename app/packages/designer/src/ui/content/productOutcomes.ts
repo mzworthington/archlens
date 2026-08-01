@@ -37,8 +37,3 @@ export const TRACE_LENS_HERO = {
     body: 'Headless ChaosLens scenarios across every loaded diagram, merged with TraceLens signals. Click a row for evidence and the next action.',
   },
 } as const;
-
-export const FORENSICS_EMPTY = {
-  title: 'Load blueprints to start ranking',
-  body: 'TraceLens needs YAML blueprints in scope. Load the sandbox to explore hotspots and AdviceLens recommendations in minutes, or open a folder from your repo.',
-} as const;

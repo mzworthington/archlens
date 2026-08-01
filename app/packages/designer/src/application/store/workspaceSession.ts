@@ -3,6 +3,8 @@ export type WorkspaceSessionMode = 'sandbox' | 'folder';
 export type WorkspaceSession = {
   mode: WorkspaceSessionMode;
   workspaceName?: string;
+  /** Context diagram path for bundled sandbox mode (e.g. golden-journey/context.yaml). */
+  sandboxContextPath?: string;
 };
 
 const STORAGE_KEY = 'archlens.workspaceSession';

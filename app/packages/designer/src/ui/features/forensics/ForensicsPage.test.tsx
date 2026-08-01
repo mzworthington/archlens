@@ -83,9 +83,9 @@ describe('ForensicsPage', () => {
       </Router>
     );
 
-    expect(screen.getByTestId('forensics-workspace-load')).toBeInTheDocument();
-    expect(screen.getByTestId('forensics-load-sandbox')).toBeInTheDocument();
-    expect(screen.getByTestId('forensics-open-directory')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-entry')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-load-sandbox-golden-paths')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-open-directory')).toBeInTheDocument();
     expect(screen.queryByTestId('forensics-workspace-summary')).not.toBeInTheDocument();
   });
 

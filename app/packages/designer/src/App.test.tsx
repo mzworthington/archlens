@@ -29,10 +29,6 @@ vi.mock('./ui/features/workspace/components/Canvas/Canvas', () => ({
   Canvas: () => <div data-testid="canvas-mock">Canvas Mock</div>,
 }));
 
-vi.mock('./ui/features/workspace/hooks/useAutoLoadWorkspace', () => ({
-  useAutoLoadWorkspace: vi.fn(),
-}));
-
 vi.mock('@xyflow/react', () => ({
   ReactFlowProvider: ({ children }: any) => <>{children}</>,
   useReactFlow: () => ({
