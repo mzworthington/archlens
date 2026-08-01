@@ -1,59 +1,98 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useMemo } from 'react';
+import type {
+  FileSystemPort,
+  WorkspacePort,
+  LoggerPort,
+  NetworkStatusPort,
+  LayoutRegistryPort,
+  WorkingCopyPort,
+  GraphChangePort,
+  ResilienceEnginePort,
+} from '../../core';
 import {
-  BrowserFileSystemAdapter,
-  BrowserWorkspaceAdapter,
-} from '../../infrastructure/fileSystem/fileSync';
-import { createBrowserLayoutRegistry } from '../../infrastructure/layout/createBrowserLayoutRegistry';
-import { reactFlowGraphChangeAdapter } from '../../infrastructure/layout/reactFlowGraphChangeAdapter';
-import { ConsoleLoggerAdapter } from '../../infrastructure/logging/logger';
-import { BrowserNetworkStatusAdapter } from '../../infrastructure/network/browserNetworkStatus';
-import { dexieWorkingCopyAdapter } from '../../infrastructure/db/dexieWorkingCopyAdapter';
-import type { NetworkStatusPort } from '../../core';
+  noopFileSystem,
+  noopWorkspace,
+  noopLogger,
+  noopLayoutRegistry,
+  noopWorkingCopy,
+  noopGraphChange,
+  noopResilienceEngine,
+  alwaysOnlineNetworkStatus,
+} from '../../core';
 import { useBlueprintStore } from '../store/store';
 
+export type AppPorts = {
+  fileSystemPort: FileSystemPort;
+  folderWorkspacePort: WorkspacePort;
+  sampleWorkspacePort: WorkspacePort;
+  logger: LoggerPort;
+  layoutRegistry: LayoutRegistryPort;
+  workingCopyPort: WorkingCopyPort;
+  graphChangePort: GraphChangePort;
+  networkStatus: NetworkStatusPort;
+  resilienceEnginePort: ResilienceEnginePort;
+};
+
 interface AppContextProps {
-  fileSystemPort: typeof BrowserFileSystemAdapter;
-  workspacePort: typeof BrowserWorkspaceAdapter;
-  logger: typeof ConsoleLoggerAdapter;
+  fileSystemPort: FileSystemPort;
+  workspacePort: WorkspacePort;
+  logger: LoggerPort;
   networkStatus: NetworkStatusPort;
 }
 
 const AppContext = createContext<AppContextProps | null>(null);
 
-const browserLayoutRegistry = createBrowserLayoutRegistry();
+const defaultPorts: AppPorts = {
+  fileSystemPort: noopFileSystem,
+  folderWorkspacePort: noopWorkspace,
+  sampleWorkspacePort: noopWorkspace,
+  logger: noopLogger,
+  layoutRegistry: noopLayoutRegistry,
+  workingCopyPort: noopWorkingCopy,
+  graphChangePort: noopGraphChange,
+  networkStatus: alwaysOnlineNetworkStatus,
+  resilienceEnginePort: noopResilienceEngine,
+};
 
-export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Wire up the infrastructure adapters to the Zustand store at launch
+export const AppProvider: React.FC<{ children: React.ReactNode; ports?: AppPorts }> = ({
+  children,
+  ports: portsProp,
+}) => {
+  const ports = portsProp ?? defaultPorts;
+
+  // Wire infrastructure adapters into the Zustand store at launch (composition root).
   useEffect(() => {
     const state = useBlueprintStore.getState();
     state.setPorts({
-      fileSystemPort: BrowserFileSystemAdapter,
+      fileSystemPort: ports.fileSystemPort,
+      folderWorkspacePort: ports.folderWorkspacePort,
+      sampleWorkspacePort: ports.sampleWorkspacePort,
       // Preserve the bundled sample adapter when already open — StrictMode remounts
       // and races with "Open demo blueprints" used to overwrite it with the folder
       // adapter, breaking lazy diagram loads (zoom-out / URL sync).
-      ...(state.isSampleWorkspace ? {} : { workspacePort: BrowserWorkspaceAdapter }),
-      logger: ConsoleLoggerAdapter,
-      layoutRegistry: browserLayoutRegistry,
-      workingCopyPort: dexieWorkingCopyAdapter,
-      graphChangePort: reactFlowGraphChangeAdapter,
+      ...(state.isSampleWorkspace ? {} : { workspacePort: ports.folderWorkspacePort }),
+      logger: ports.logger,
+      layoutRegistry: ports.layoutRegistry,
+      workingCopyPort: ports.workingCopyPort,
+      graphChangePort: ports.graphChangePort,
+      resilienceEnginePort: ports.resilienceEnginePort,
     });
 
     // Deep-linked `/workspace/...` routes load diagrams via URL sync instead.
-  }, []);
+  }, [ports]);
 
-  return (
-    <AppContext.Provider
-      value={{
-        fileSystemPort: BrowserFileSystemAdapter,
-        workspacePort: BrowserWorkspaceAdapter,
-        logger: ConsoleLoggerAdapter,
-        networkStatus: BrowserNetworkStatusAdapter,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
+  const value = useMemo<AppContextProps>(
+    () => ({
+      fileSystemPort: ports.fileSystemPort,
+      workspacePort: ports.folderWorkspacePort,
+      logger: ports.logger,
+      networkStatus: ports.networkStatus,
+    }),
+    [ports]
   );
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
 export const useApp = () => {

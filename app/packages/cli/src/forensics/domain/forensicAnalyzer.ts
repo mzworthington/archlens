@@ -1,8 +1,11 @@
 import { throwIfAborted } from '../../analysis/domain/cancellation.ts';
-import { aggregateFileHistory } from './aggregateHistory.ts';
-import { classifyFile } from './classify.ts';
-import { computeHotspotScores } from './hotspotScoring.ts';
-import { buildImportCoupling } from '@archlens/core/forensics';
+import {
+  aggregateFileHistory,
+  buildImportCoupling,
+  classifyFile,
+  computeHotspotScores,
+  computeTemporalCoupling,
+} from '@archlens/core/forensics';
 import {
   DEFAULT_FORENSICS_OPTIONS,
   mergeForensicsOptions,
@@ -10,7 +13,6 @@ import {
 } from './options.ts';
 import { resolveEffectiveMinChurnForComplexity } from './forensicsGlob.ts';
 import type { ForensicAnalyzerPorts } from './ports.ts';
-import { computeTemporalCoupling } from './temporalCoupling.ts';
 import type { CoupledFileRef, FileMetrics, ForensicReport, StructuralMetrics } from './types.ts';
 
 export interface RunForensicsInput {

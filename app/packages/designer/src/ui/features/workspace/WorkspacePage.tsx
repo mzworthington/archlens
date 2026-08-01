@@ -3,7 +3,7 @@ import { ReactFlowProvider } from '@xyflow/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CodeViewer } from './components/CodeViewer/CodeViewer';
 import { Canvas } from './components/Canvas/Canvas';
-import { TraceLensPanel } from './components/TraceLensPanel/TraceLensPanel';
+import { TraceLensPanel } from '../tracelens/TraceLensPanel';
 import { PropertyPanel } from './components/PropertyPanel/PropertyPanel';
 import { Header } from './components/Header/Header';
 import { useBlueprintStore } from '../../../application/store/store';

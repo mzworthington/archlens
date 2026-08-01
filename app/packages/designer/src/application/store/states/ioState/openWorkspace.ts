@@ -6,7 +6,7 @@ import {
   assessSchemaVersion,
 } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
-import { resolveSchemaOnWorkspaceOpen } from '../../../../infrastructure/db/schemaCompare';
+import { resolveSchemaOnWorkspaceOpen } from '../../../workspace/schemaCompare';
 
 import type { ToastNotification } from '../uiState';
 

@@ -6,7 +6,6 @@ import {
   serializeChaosSpecToYaml,
   validateChaosSpecForDiagram,
 } from '@archlens/core/resilience';
-import { BrowserFileSystemAdapter } from '../../../../../infrastructure/fileSystem/fileSync';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 export type ChaosSpecDialogMode = 'import' | 'export';
@@ -44,6 +43,7 @@ export function useChaosSpecDialog(
   const applyChaosSpecYaml = useBlueprintStore(s => s.applyChaosSpecYaml);
   const runResilienceSimulation = useBlueprintStore(s => s.runResilienceSimulation);
   const setNotification = useBlueprintStore(s => s.setNotification);
+  const fileSystemPort = useBlueprintStore(s => s.fileSystemPort);
 
   const [yamlText, setYamlText] = useState('');
   const [parseError, setParseError] = useState<string | null>(null);
@@ -159,7 +159,7 @@ export function useChaosSpecDialog(
     if (!preview?.document) return;
     setDownloading(true);
     try {
-      const saved = await BrowserFileSystemAdapter.saveSchema(
+      const saved = await fileSystemPort.saveSchema(
         yamlText,
         chaosSpecFileName(preview.document.metadata.name)
       );
@@ -173,7 +173,7 @@ export function useChaosSpecDialog(
     } finally {
       setDownloading(false);
     }
-  }, [yamlText, preview, setNotification]);
+  }, [yamlText, preview, setNotification, fileSystemPort]);
 
   const canApply = Boolean(preview?.document && !parseError && yamlText.trim());
   const canCopyOrDownload = Boolean(preview?.document && !parseError && yamlText.trim());

@@ -24,7 +24,7 @@ import {
   useCouplingLens,
   useSelectCoupledPeer,
 } from '../../../../../application/forensics/useCouplingLens';
-import { formatAppVersionLabel } from '../../../../../infrastructure/pwa/buildId';
+import { formatAppVersionLabel } from '../../../../../application/pwa/buildInfo';
 import {
   buildForensicsTrendDashboard,
   collectDescendantForensics,
