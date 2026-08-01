@@ -5,6 +5,7 @@ import {
   loadForensicsWorkspace,
   loadSandbox,
   openExplorerTraceLensTab,
+  openTraceLensLens,
   waitForForensicsOffenders,
 } from './helpers/workspace';
 import { openImportMermaid } from './helpers/toolbar';
@@ -44,7 +45,7 @@ test.describe('Accessibility (axe)', () => {
   test('TraceLens refactor plan slide-over', async ({ page }) => {
     test.setTimeout(180_000);
     await loadForensicsWorkspace(page);
-    await page.getByRole('link', { name: 'Forensics' }).click();
+    await openTraceLensLens(page);
     await waitForForensicsOffenders(page);
     await page
       .getByRole('button', { name: /Open refactor plan for/i })

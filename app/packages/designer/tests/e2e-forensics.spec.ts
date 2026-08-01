@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { gotoApp } from './helpers/navigation';
-import { loadForensicsWorkspace, waitForForensicsOffenders } from './helpers/workspace';
+import {
+  loadForensicsWorkspace,
+  openTraceLensLens,
+  waitForForensicsOffenders,
+} from './helpers/workspace';
 
 test.describe('TraceLens lens', () => {
   test('renders the ranking shell', async ({ page }) => {
@@ -14,9 +18,7 @@ test.describe('TraceLens lens', () => {
   test('lists offenders when opened from a loaded workspace', async ({ page }) => {
     test.setTimeout(120_000);
     await loadForensicsWorkspace(page);
-    await page.getByRole('link', { name: 'Forensics' }).click();
-
-    await expect(page).toHaveURL(/lens=tracelens/);
+    await openTraceLensLens(page);
     await waitForForensicsOffenders(page);
   });
 });
