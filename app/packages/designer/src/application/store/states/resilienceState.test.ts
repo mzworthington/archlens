@@ -197,6 +197,136 @@ describe('resilienceState', () => {
           )
       ).toBe(true);
     });
+
+    expect(
+      useBlueprintStore
+        .getState()
+        .edges.some(
+          edge =>
+            edge.source === 'chaoslens-stress/external-scope/api' &&
+            edge.target === 'chaoslens-stress/external-auth/auth'
+        )
+    ).toBe(true);
+  });
+
+  it('rewires missing dependency edges when materializing resilience externals', async () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'chaoslens-stress/external-scope-containers.yaml',
+          name: 'External Scope',
+          schema: {
+            name: 'External Scope',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'chaoslens-stress/external-scope',
+            nodes: [
+              {
+                entityRef: 'chaoslens-stress/external-scope/web',
+                name: 'Web',
+                type: 'web-app',
+              },
+              {
+                entityRef: 'chaoslens-stress/external-scope/api',
+                name: 'API',
+                type: 'rest-api',
+              },
+            ],
+            dependencies: [
+              {
+                from: 'chaoslens-stress/external-scope/web',
+                to: 'chaoslens-stress/external-scope/api',
+                type: 'direct-call',
+              },
+              {
+                from: 'chaoslens-stress/external-scope/api',
+                to: 'chaoslens-stress/external-auth/auth',
+                type: 'direct-call',
+              },
+            ],
+          },
+        },
+        {
+          path: 'chaoslens-stress/external-auth-containers.yaml',
+          name: 'External Auth',
+          schema: {
+            name: 'External Auth',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'chaoslens-stress/external-auth',
+            nodes: [
+              {
+                entityRef: 'chaoslens-stress/external-auth/auth',
+                name: 'Auth Service',
+                type: 'microservice',
+              },
+            ],
+            dependencies: [],
+          },
+        },
+      ],
+      schema: {
+        name: 'External Scope',
+        version: '1.0.0',
+        level: 'container',
+        entityRef: 'chaoslens-stress/external-scope',
+        nodes: [
+          {
+            entityRef: 'chaoslens-stress/external-scope/web',
+            name: 'Web',
+            type: 'web-app',
+          },
+          {
+            entityRef: 'chaoslens-stress/external-scope/api',
+            name: 'API',
+            type: 'rest-api',
+          },
+        ],
+        dependencies: [
+          {
+            from: 'chaoslens-stress/external-scope/web',
+            to: 'chaoslens-stress/external-scope/api',
+            type: 'direct-call',
+          },
+          {
+            from: 'chaoslens-stress/external-scope/api',
+            to: 'chaoslens-stress/external-auth/auth',
+            type: 'direct-call',
+          },
+        ],
+      },
+      nodes: [],
+      edges: [],
+    });
+
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema(useBlueprintStore.getState().schema);
+
+    // Simulate orphan RF edges being dropped while schema still lists the dependency.
+    useBlueprintStore.setState({
+      edges: useBlueprintStore
+        .getState()
+        .edges.filter(edge => edge.target !== 'chaoslens-stress/external-auth/auth'),
+      schema: useBlueprintStore.getState().schema,
+    });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+
+    await vi.waitFor(() => {
+      const state = useBlueprintStore.getState();
+      expect(
+        state.nodes.some(
+          node => node.id === 'chaoslens-stress/external-auth/auth' && node.data.external
+        )
+      ).toBe(true);
+      expect(
+        state.edges.some(
+          edge =>
+            edge.source === 'chaoslens-stress/external-scope/api' &&
+            edge.target === 'chaoslens-stress/external-auth/auth'
+        )
+      ).toBe(true);
+    });
   });
 
   it('materializes connected external neighbors before simulating', async () => {
@@ -308,7 +438,10 @@ describe('resilienceState', () => {
       resilienceFaults: [
         { nodeId: 'shop/auth/session-db', faultType: 'region-outage', severity: 1 },
       ],
+      nodes: [],
+      edges: [],
     });
+    useBlueprintStore.getState().initSchema(storefront);
 
     useBlueprintStore.getState().setResilienceMode(true);
     useBlueprintStore.getState().runResilienceSimulation();
@@ -320,6 +453,16 @@ describe('resilienceState', () => {
     const state = useBlueprintStore.getState();
     expect(state.nodes.some(n => n.id === 'shop/auth/service' && n.data.external)).toBe(true);
     expect(state.nodes.some(n => n.id === 'shop/auth/session-db' && n.data.external)).toBe(true);
+    expect(
+      state.edges.some(
+        edge => edge.source === 'shop/storefront/api' && edge.target === 'shop/auth/service'
+      )
+    ).toBe(true);
+    expect(
+      state.edges.some(
+        edge => edge.source === 'shop/auth/service' && edge.target === 'shop/auth/session-db'
+      )
+    ).toBe(true);
     expect(state.resilienceSimulationScope).toEqual(
       expect.arrayContaining([
         'shop/storefront/web',
