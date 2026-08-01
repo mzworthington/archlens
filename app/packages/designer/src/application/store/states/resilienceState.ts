@@ -344,7 +344,14 @@ export const createResilienceState = (
     } = buildSimulationSchemaForFaults(schema, faultTargets, loadedSystems);
 
     if (materialized.length > 0) {
-      addExternalDependencies(materialized.map(entity => entity.entityRef));
+      addExternalDependencies(
+        materialized.map(entity => entity.entityRef),
+        simulationSchema.dependencies
+      );
+    } else if ((simulationSchema.dependencies?.length ?? 0) > 0) {
+      // Externals may already be on the canvas from entering resilience mode;
+      // still wire any enriched simulation dependency lines that are missing.
+      addExternalDependencies([], simulationSchema.dependencies);
     }
 
     set({ resilienceSimulationRunning: true, resilienceSimulationScope: scope });

@@ -87,7 +87,7 @@ export interface DiagramState {
   deleteDependency: (from: string, to: string) => void;
   selectSystem: (path: string) => Promise<void>;
   listWorkspaceExternalCandidates: (filters?: ExternalCandidateFilters) => WorkspaceEntity[];
-  addExternalDependencies: (entityRefs: string[]) => void;
+  addExternalDependencies: (entityRefs: string[], dependencies?: SystemDependency[]) => void;
   materializeCouplingGhost: (ghost: {
     entityRef?: string;
     filepath: string;
