@@ -281,10 +281,27 @@ export default defineConfig({
       workbox: {
         // App shell + hashed bundles. Skip docs screenshots (large, non-critical offline).
         globPatterns: ['**/*.{js,css,html,ico,svg,woff2,webmanifest,png,wasm}'],
+        // Demo YAML is large; cache on first use instead of bloating the install precache.
         globIgnores: ['**/docs-assets/**', '**/schemas/**', '**/bundled-blueprints/**'],
         navigateFallback: 'index.html',
-        // Keep /schemas/* as real JSON (IDE validators + browser), not the SPA shell.
-        navigateFallbackDenylist: [/^\/schemas\//],
+        // Keep /schemas/* and /bundled-blueprints/* as real assets, not the SPA shell.
+        navigateFallbackDenylist: [/^\/schemas\//, /^\/bundled-blueprints\//],
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.includes('/bundled-blueprints/'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'bundled-blueprints',
+              expiration: {
+                maxEntries: 2000,
+                maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
         cleanupOutdatedCaches: true,
         maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
       },
