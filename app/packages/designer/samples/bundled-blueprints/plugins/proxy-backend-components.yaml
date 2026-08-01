@@ -1,0 +1,330 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/proxy-backend
+  name: Proxy-backend Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/proxy-backend/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/proxy-backend/config.d.ts
+      containerId: proxy-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 180
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/proxy-backend/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/proxy-backend/dev/index.ts
+      containerId: proxy-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 49
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/proxy-backend/plugin
+    type: background-worker
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/proxy-backend/src/plugin.ts
+      containerId: proxy-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 57
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/proxy-backend/src/service/router.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/proxy-backend/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/proxy-backend/src/setupTests.ts
+      containerId: proxy-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/proxy-backend/router
+    type: rest-api
+    name: router Service
+    isTest: false
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 368
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/proxy-backend/router-config-test
+    type: rest-api
+    name: router.config.test Service
+    isTest: true
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.config.test.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 110
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/proxy-backend/router-test
+    type: rest-api
+    name: router.test Service
+    isTest: true
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.test.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 653
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/proxy-backend/src/service/router.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/proxy-backend/router-credentials-test
+    type: rest-api
+    name: router.credentials.test Service
+    isTest: true
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.credentials.test.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 298
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies:
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-proxy-node'
+  - from: backstage/plugins/proxy-backend/plugin
+    to: backstage/plugins/proxy-backend/router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/proxy-backend/plugin
+    to: backstage/plugins/proxy-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-proxy-node'
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-backend/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/proxy-backend/router
+    to: backstage/plugins/proxy-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-proxy-node'
+  - from: backstage/plugins/proxy-backend/router-test
+    to: backstage/plugins/proxy-backend/router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-backend/router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/proxy-backend/index
+    to: backstage/plugins/proxy-backend/router
+    type: direct-call
+    description: Calls module / service

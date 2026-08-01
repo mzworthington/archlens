@@ -14,12 +14,21 @@ const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => 
   {
     href: '/workspace',
     label: 'Canvas',
-    isActive: loc => loc === '/workspace' || loc.startsWith('/workspace/'),
+    isActive: loc => {
+      if (loc !== '/workspace' && !loc.startsWith('/workspace/')) return false;
+      const params = new URLSearchParams(window.location.search);
+      return params.get('lens') !== 'tracelens';
+    },
   },
   {
-    href: '/tracelens',
+    href: '/workspace?lens=tracelens',
     label: 'TraceLens',
-    isActive: loc => loc === '/tracelens' || loc.startsWith('/tracelens/'),
+    isActive: loc => {
+      if (loc === '/tracelens' || loc.startsWith('/tracelens/')) return true;
+      const onWorkspace = loc === '/workspace' || loc.startsWith('/workspace/');
+      if (!onWorkspace) return false;
+      return new URLSearchParams(window.location.search).get('lens') === 'tracelens';
+    },
   },
   {
     href: '/',

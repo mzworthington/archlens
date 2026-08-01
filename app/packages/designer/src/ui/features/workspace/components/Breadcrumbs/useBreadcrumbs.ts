@@ -8,6 +8,7 @@ import {
   type BreadcrumbSegmentData,
   type C4Level,
   type SystemSchema,
+  type WorkspaceCatalogEntry,
 } from '@archlens/core';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 
@@ -206,21 +207,46 @@ export function useBreadcrumbs() {
   }, [loadedSystems, currentFilePath, workspaceName, workspaceCatalog]);
 
   const segmentsWithSiblings = useMemo(() => {
+    const catalogStubSchema = (
+      entry: WorkspaceCatalogEntry
+    ): { path: string; name: string; schema: SystemSchema } => ({
+      path: entry.path,
+      name: entry.name,
+      schema: {
+        name: entry.name,
+        version: 'https://archlens.dev/schemas/v4/blueprint.schema.json',
+        level: entry.level,
+        entityRef: entry.entityRef,
+        nodes: [],
+        dependencies: [],
+      },
+    });
+
     return segments.map((seg, idx) => {
       const parentEntityRef = idx > 0 ? segments[idx - 1]?.entityRef : undefined;
 
-      const sameLevelSystems = loadedSystems.filter(s => {
-        const ref = getSchemaEntityRef(s.schema, workspaceName);
-        if (s.schema.level !== seg.level || ref === seg.entityRef) return false;
-
-        const entry = workspaceCatalog.find(item => item.entityRef === ref);
+      const isPeerDiagram = (level: C4Level, entityRef: string): boolean => {
+        if (level !== seg.level || entityRef === seg.entityRef) return false;
+        const entry = workspaceCatalog.find(item => item.entityRef === entityRef);
         if (!parentEntityRef) {
-          return seg.level === 'context' && s.schema.level === 'context' && !entry?.parentEntityRef;
+          return seg.level === 'context' && level === 'context' && !entry?.parentEntityRef;
         }
         return entry?.parentEntityRef === parentEntityRef;
+      };
+
+      const fromLoaded = loadedSystems.filter(s => {
+        const ref = getSchemaEntityRef(s.schema, workspaceName);
+        return isPeerDiagram(s.schema.level as C4Level, ref);
       });
 
-      return { ...seg, sameLevelSystems };
+      const loadedRefs = new Set(fromLoaded.map(s => getSchemaEntityRef(s.schema, workspaceName)));
+
+      const fromCatalog = workspaceCatalog
+        .filter(entry => isPeerDiagram(entry.level, entry.entityRef))
+        .filter(entry => !loadedRefs.has(entry.entityRef))
+        .map(catalogStubSchema);
+
+      return { ...seg, sameLevelSystems: [...fromLoaded, ...fromCatalog] };
     });
   }, [segments, loadedSystems, workspaceName, workspaceCatalog]);
 

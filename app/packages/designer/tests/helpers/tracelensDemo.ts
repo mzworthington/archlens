@@ -1,16 +1,14 @@
 import { expect, type Page } from '@playwright/test';
+import { continueWithSample } from './toolbar';
 import { gotoApp } from './navigation';
 
-/** TraceLens docs demo: ranked offenders list and refactor plan (stays on /tracelens). */
+/** TraceLens docs demo: ranked offenders list and refactor plan in workspace lens mode. */
 export async function runTraceLensDemo(page: Page) {
-  await gotoApp(page, '/tracelens');
+  await gotoApp(page, '/workspace');
+  await continueWithSample(page);
+  await page.getByTestId('toolbar-tracelens-lens').click();
+  await expect(page).toHaveURL(/lens=tracelens/);
   await expect(page.getByRole('heading', { name: 'Worst offenders' })).toBeVisible();
-
-  if (await page.getByTestId('workspace-entry').isVisible()) {
-    await page.getByTestId('workspace-open-sample').click();
-  }
-
-  await expect(page.getByTestId('forensics-workspace-summary')).toBeVisible({ timeout: 60_000 });
 
   const firstRow = page
     .locator('[data-testid^="estate-row-"], [data-testid^="offender-row-"]')

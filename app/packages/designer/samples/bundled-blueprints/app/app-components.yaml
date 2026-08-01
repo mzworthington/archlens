@@ -1,0 +1,62 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/app
+  name: App Service Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: fe7803e9cc0aaee4ba6eadbf96ac40815e40d77a
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/app/vitest-config
+    type: background-worker
+    name: vitest.config Service
+    isTest: false
+    properties:
+      filepath: app/vitest.config.ts
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      loc: 48
+      sloc: 45
+      churn: 4
+      lineChurn: 41
+      churn30: 4
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 4
+      hotspotScore: 0.0007384726224783862
+      sinceDays: 60
+  - entityRef: blueprint/app/reporters/vitestfeaturereporter
+    type: background-worker
+    name: vitestFeatureReporter Service (External)
+    external: true
+    properties:
+      filepath: app/reporters/vitestFeatureReporter.ts
+      containerId: reporters
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/app/app/vitest-config
+    to: blueprint/app/reporters/vitestfeaturereporter
+    type: direct-call
+    description: Calls module / service

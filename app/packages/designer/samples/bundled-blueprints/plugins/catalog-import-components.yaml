@@ -1,0 +1,2200 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-import
+  name: Catalog-import Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-import/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/config.d.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 40
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/index
+    type: gateway-api
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/dev/index.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 353
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/plugin
+    type: gateway-api
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/plugin.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 90
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/translation
+    type: background-worker
+    name: translation Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/translation.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 157
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/alpha
+    type: gateway-api
+    name: alpha Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/alpha.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 103
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/setupTests.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/plugin-test
+    type: background-worker
+    name: plugin.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/plugin.test.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 23
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/types.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 27
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/defaultimportpage-test
+    type: gateway-api
+    name: DefaultImportPage.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/DefaultImportPage/DefaultImportPage.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 64
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/defaultimportpage
+    type: background-worker
+    name: DefaultImportPage Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/DefaultImportPage/DefaultImportPage.tsx
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 74
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/helpers
+    type: gateway-api
+    name: helpers Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/helpers.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 48
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/useimportstate-test
+    type: gateway-api
+    name: useImportState.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/useImportState.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 368
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/importinfocard
+    type: background-worker
+    name: ImportInfoCard Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/ImportInfoCard/ImportInfoCard.tsx
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 112
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/importinfocard-test
+    type: gateway-api
+    name: ImportInfoCard.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/ImportInfoCard/ImportInfoCard.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 100
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/importstepper
+    type: gateway-api
+    name: ImportStepper Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/ImportStepper/ImportStepper.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 123
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/defaults
+    type: gateway-api
+    name: defaults Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/ImportStepper/defaults.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 356
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/stepinitanalyzeurl
+    type: gateway-api
+    name: StepInitAnalyzeUrl Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepInitAnalyzeUrl/StepInitAnalyzeUrl.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 179
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/stepinitanalyzeurl-test
+    type: gateway-api
+    name: StepInitAnalyzeUrl.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepInitAnalyzeUrl/StepInitAnalyzeUrl.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 397
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/entitylistcomponent
+    type: gateway-api
+    name: EntityListComponent Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/EntityListComponent/EntityListComponent.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 160
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/importpage-test
+    type: gateway-api
+    name: ImportPage.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/ImportPage/ImportPage.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 82
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/importpage
+    type: gateway-api
+    name: ImportPage Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/ImportPage/ImportPage.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 29
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/stepreviewlocation
+    type: gateway-api
+    name: StepReviewLocation Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepReviewLocation/StepReviewLocation.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 168
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/stepprepareselectlocations
+    type: gateway-api
+    name: StepPrepareSelectLocations Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareSelectLocations/StepPrepareSelectLocations.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 149
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/stepprepareselectlocations-test
+    type: gateway-api
+    name: StepPrepareSelectLocations.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareSelectLocations/StepPrepareSelectLocations.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 284
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/useimportstate
+    type: gateway-api
+    name: useImportState Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/useImportState.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 301
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/stepfinishimportlocation
+    type: gateway-api
+    name: StepFinishImportLocation Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepFinishImportLocation/StepFinishImportLocation.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 137
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/previewpullrequestcomponent
+    type: background-worker
+    name: PreviewPullRequestComponent Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewPullRequestComponent.tsx
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 57
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/previewpullrequestcomponent-test
+    type: gateway-api
+    name: PreviewPullRequestComponent.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewPullRequestComponent.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 89
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/preparepullrequestform-test
+    type: gateway-api
+    name: PreparePullRequestForm.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreparePullRequestForm.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 117
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/preparepullrequestform
+    type: gateway-api
+    name: PreparePullRequestForm Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreparePullRequestForm.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 74
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/autocompletetextfield
+    type: gateway-api
+    name: AutocompleteTextField Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/AutocompleteTextField.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 107
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/previewcataloginfocomponent-test
+    type: gateway-api
+    name: PreviewCatalogInfoComponent.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewCatalogInfoComponent.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 7
+      loc: 153
+      sloc: 120
+      churn: 3
+      lineChurn: 171
+      churn30: 1
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: freben@gmail.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.0009237650719564371
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    type: gateway-api
+    name: StepPrepareCreatePullRequest Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/StepPrepareCreatePullRequest.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 321
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/steppreparecreatepullrequest-test
+    type: gateway-api
+    name: StepPrepareCreatePullRequest.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/StepPrepareCreatePullRequest.test.tsx
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 336
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/previewcataloginfocomponent
+    type: background-worker
+    name: PreviewCatalogInfoComponent Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/components/StepPrepareCreatePullRequest/PreviewCatalogInfoComponent.tsx
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 67
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/usecatalogfilename
+    type: background-worker
+    name: useCatalogFilename Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/hooks/useCatalogFilename.ts
+      containerId: catalog-import
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 24
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/github
+    type: gateway-api
+    name: GitHub Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/api/GitHub.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 148
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/azuredevops
+    type: gateway-api
+    name: AzureDevops Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/api/AzureDevops.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 104
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/catalogimportclient-test
+    type: gateway-api
+    name: CatalogImportClient.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/api/CatalogImportClient.test.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 1085
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/azuredevops-test
+    type: rest-api
+    name: AzureDevops.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/api/AzureDevops.test.ts
+      containerId: catalog-import
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 52
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/azurerepoapiclient
+    type: rest-api
+    name: AzureRepoApiClient Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/api/AzureRepoApiClient.ts
+      containerId: catalog-import
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 296
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/catalogimportclient
+    type: gateway-api
+    name: CatalogImportClient Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/api/CatalogImportClient.ts
+      containerId: catalog-import
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 261
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/azurerepoapiclient-test
+    type: rest-api
+    name: AzureRepoApiClient.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-import/src/api/AzureRepoApiClient.test.ts
+      containerId: catalog-import
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 509
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-import/catalogimportapi
+    type: rest-api
+    name: CatalogImportApi Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-import/src/api/CatalogImportApi.ts
+      containerId: catalog-import
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 70
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-common/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/alpha.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: api Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: backstage/plugins/app/components
+    type: gateway-api
+    name: components Service (External)
+    external: true
+    properties:
+      filepath: plugins/app/src/extensions/components.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1740
+      y: 404
+  - entityRef: backstage/plugins/techdocs-module-addons-contrib/hooks
+    type: gateway-api
+    name: hooks Service (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/hooks.ts
+      containerId: techdocs-module-addons-contrib
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/catalog/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/testUtils.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/importpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/plugin
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/plugin
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/alpha
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/alpha
+    to: backstage/plugins/catalog-import/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/alpha
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/alpha
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/catalog-import/alpha
+    to: backstage/plugins/catalog-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-import/alpha
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/plugin-test
+    to: backstage/plugins/catalog-import/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaultimportpage-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/defaultimportpage-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/defaultimportpage-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaultimportpage-test
+    to: backstage/plugins/catalog-import/defaultimportpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaultimportpage
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaultimportpage
+    to: backstage/plugins/catalog-import/importinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaultimportpage
+    to: backstage/plugins/catalog-import/importstepper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/defaultimportpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/useimportstate-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/useimportstate-test
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importinfocard
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importinfocard
+    to: backstage/plugins/techdocs-module-addons-contrib/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importinfocard
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importinfocard-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importinfocard-test
+    to: backstage/plugins/catalog-import/importinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importinfocard-test
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/importinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/importinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importstepper
+    to: backstage/plugins/catalog-import/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-import'
+  - from: backstage/plugins/catalog-import/importstepper
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importstepper
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importstepper
+    to: backstage/plugins/catalog-import/defaults
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/importstepper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/importstepper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/defaults
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-import'
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/stepfinishimportlocation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/stepinitanalyzeurl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/stepprepareselectlocations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/stepreviewlocation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/defaults
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepinitanalyzeurl
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepinitanalyzeurl
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepinitanalyzeurl
+    to: backstage/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepinitanalyzeurl
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepinitanalyzeurl-test
+    to: backstage/plugins/catalog-import/stepinitanalyzeurl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepinitanalyzeurl-test
+    to: backstage/plugins/catalog-import/catalogimportapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/stepinitanalyzeurl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/stepinitanalyzeurl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/entitylistcomponent
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importpage-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/importpage-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/importpage-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importpage-test
+    to: backstage/plugins/catalog-import/importpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/importpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/importpage
+    to: backstage/plugins/catalog-import/defaultimportpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepreviewlocation
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/stepreviewlocation
+    to: backstage/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepreviewlocation
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepreviewlocation
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/stepreviewlocation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations
+    to: backstage/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations-test
+    to: backstage/plugins/catalog-import/stepprepareselectlocations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations-test
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/catalog-import/stepprepareselectlocations-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/stepprepareselectlocations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/types
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/useimportstate
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/stepfinishimportlocation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepfinishimportlocation
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/stepfinishimportlocation
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepfinishimportlocation
+    to: backstage/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/stepfinishimportlocation
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/defaultimportpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/entitylistcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/importinfocard
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/importstepper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/stepinitanalyzeurl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/previewpullrequestcomponent
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/previewpullrequestcomponent-test
+    to: backstage/plugins/catalog-import/previewpullrequestcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/preparepullrequestform-test
+    to: backstage/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/preparepullrequestform-test
+    to: backstage/plugins/catalog-import/preparepullrequestform
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/previewcataloginfocomponent-test
+    to: backstage/plugins/catalog-import/previewcataloginfocomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/techdocs-module-addons-contrib/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/catalog-import/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/catalog-import/useimportstate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/catalog-import/preparepullrequestform
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/catalog-import/previewcataloginfocomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    to: backstage/plugins/catalog-import/previewpullrequestcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest-test
+    to: backstage/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/steppreparecreatepullrequest-test
+    to: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/autocompletetextfield
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/autocompletetextfield
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/preparepullrequestform
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/preparepullrequestform
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/previewcataloginfocomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/previewcataloginfocomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/previewpullrequestcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/previewpullrequestcomponent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/steppreparecreatepullrequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/previewcataloginfocomponent
+    to: backstage/plugins/techdocs-module-addons-contrib/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/usecatalogfilename
+    to: backstage/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/usecatalogfilename
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/github
+    to: backstage/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/azuredevops
+    to: backstage/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/azuredevops
+    to: backstage/plugins/catalog-import/azurerepoapiclient
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/catalogimportclient-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-import/catalogimportclient-test
+    to: backstage/plugins/catalog-import/azurerepoapiclient
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/catalogimportclient-test
+    to: backstage/plugins/catalog-import/catalogimportclient
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/azuredevops-test
+    to: backstage/plugins/catalog-import/azuredevops
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/catalogimportclient
+    to: backstage/plugins/catalog-import/catalogimportapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/catalogimportclient
+    to: backstage/plugins/catalog-import/github
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/catalogimportclient
+    to: backstage/plugins/catalog-import/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/catalogimportclient
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-import/catalogimportclient
+    to: backstage/plugins/catalog-import/azuredevops
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/azurerepoapiclient-test
+    to: backstage/plugins/catalog-import/azurerepoapiclient
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/catalogimportapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/catalogimportclient
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/catalogimportapi
+    to: backstage/plugins/catalog-import/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/app/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-import/index
+    to: backstage/plugins/catalog-import/translation
+    type: direct-call
+    description: Calls module / service

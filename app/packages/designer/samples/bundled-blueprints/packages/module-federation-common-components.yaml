@@ -1,0 +1,348 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/module-federation-common
+  name: Module-federation-common Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/module-federation-common/defaults
+    type: background-worker
+    name: defaults Service
+    isTest: false
+    properties:
+      filepath: packages/module-federation-common/src/defaults.ts
+      containerId: module-federation-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 104
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/module-federation-common/defaults-test
+    type: background-worker
+    name: defaults.test Service
+    isTest: true
+    properties:
+      filepath: packages/module-federation-common/src/defaults.test.ts
+      containerId: module-federation-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 45
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/module-federation-common/loadmodulefederationhostshared-test
+    type: background-worker
+    name: loadModuleFederationHostShared.test Service
+    isTest: true
+    properties:
+      filepath: packages/module-federation-common/src/loadModuleFederationHostShared.test.ts
+      containerId: module-federation-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 315
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/module-federation-common/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: packages/module-federation-common/src/types.ts
+      containerId: module-federation-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 93
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/module-federation-common/loadmodulefederationhostshared
+    type: background-worker
+    name: loadModuleFederationHostShared Service
+    isTest: false
+    properties:
+      filepath: packages/module-federation-common/src/loadModuleFederationHostShared.ts
+      containerId: module-federation-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 71
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/module-federation-common/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/module-federation-common/src/index.ts
+      containerId: module-federation-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/app-defaults/createapp
+    type: background-worker
+    name: createApp Service (External)
+    external: true
+    properties:
+      filepath: packages/app-defaults/src/createApp.tsx
+      containerId: app-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: -204
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader
+    type: background-worker
+    name: loader Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-dynamic-feature-loader/src/loader.ts
+      containerId: frontend-dynamic-feature-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/modulefederation
+    type: event-broker
+    name: moduleFederation Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.ts
+      containerId: cli-module-build
+      technology: TypeScript Event Client
+      classification: event-marker
+    position:
+      x: -360
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/modulefederation-test
+    type: background-worker
+    name: moduleFederation.test Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/types
+    type: background-worker
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/builder/types.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: -204
+dependencies:
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader
+    to: backstage/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
+  - from: backstage/packages/module-federation-common/defaults
+    to: backstage/packages/module-federation-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/module-federation-common/defaults-test
+    to: backstage/packages/module-federation-common/defaults
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/module-federation-common/loadmodulefederationhostshared-test
+    to: backstage/packages/module-federation-common/loadmodulefederationhostshared
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/module-federation-common/loadmodulefederationhostshared-test
+    to: backstage/packages/module-federation-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/module-federation-common/loadmodulefederationhostshared-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/module-federation-common/loadmodulefederationhostshared
+    to: backstage/packages/module-federation-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/module-federation-common/loadmodulefederationhostshared
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/module-federation-common/index
+    to: backstage/packages/module-federation-common/loadmodulefederationhostshared
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/module-federation-common/index
+    to: backstage/packages/module-federation-common/defaults
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/module-federation-common/index
+    to: backstage/packages/module-federation-common/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/app-defaults/createapp
+    to: backstage/packages/module-federation-common/defaults
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/modulefederation-test
+    to: backstage/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
+  - from: backstage/packages/cli-module-build/types
+    to: backstage/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'
+  - from: backstage/packages/cli-module-build/modulefederation
+    to: backstage/packages/module-federation-common/index
+    type: direct-call
+    description: '@backstage/module-federation-common'

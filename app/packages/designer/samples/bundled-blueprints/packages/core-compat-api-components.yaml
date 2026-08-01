@@ -1,0 +1,1550 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-compat-api
+  name: Core-compat-api Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-compat-api/withapis
+    type: gateway-api
+    name: withApis Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/withApis.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 59
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/index
+    type: rest-api
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/apis/index.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/multipleanalyticsapi-test
+    type: rest-api
+    name: MultipleAnalyticsApi.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/MultipleAnalyticsApi.test.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 64
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/noopanalyticsapi
+    type: rest-api
+    name: NoOpAnalyticsApi Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/NoOpAnalyticsApi.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 30
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/multipleanalyticsapi
+    type: rest-api
+    name: MultipleAnalyticsApi Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/MultipleAnalyticsApi.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 76
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacyapp
+    type: gateway-api
+    name: convertLegacyApp Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyApp.ts
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 187
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/normalizeroutepath
+    type: background-worker
+    name: normalizeRoutePath Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/normalizeRoutePath.ts
+      containerId: core-compat-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 32
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/normalizeroutepath-test
+    type: background-worker
+    name: normalizeRoutePath.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/normalizeRoutePath.test.ts
+      containerId: core-compat-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/collectlegacyroutes
+    type: gateway-api
+    name: collectLegacyRoutes Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/collectLegacyRoutes.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 325
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/withapis-test
+    type: gateway-api
+    name: withApis.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/withApis.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 85
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/compatwrapper
+    type: gateway-api
+    name: compatWrapper Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 47
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/forwardscompatprovider
+    type: gateway-api
+    name: ForwardsCompatProvider Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/ForwardsCompatProvider.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 182
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/backwardscompatprovider
+    type: gateway-api
+    name: BackwardsCompatProvider Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/BackwardsCompatProvider.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 201
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/compatwrapper-test
+    type: gateway-api
+    name: compatWrapper.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 189
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacypageextension
+    type: gateway-api
+    name: convertLegacyPageExtension Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyPageExtension.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacyplugin
+    type: background-worker
+    name: convertLegacyPlugin Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyPlugin.ts
+      containerId: core-compat-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 44
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacypageextension-test
+    type: gateway-api
+    name: convertLegacyPageExtension.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyPageExtension.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 96
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacyrouteref-test
+    type: rest-api
+    name: convertLegacyRouteRef.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyRouteRef.test.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 193
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/setupTests.ts
+      containerId: core-compat-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacyappoptions-test
+    type: background-worker
+    name: convertLegacyAppOptions.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyAppOptions.test.tsx
+      containerId: core-compat-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 74
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacyplugin-test
+    type: background-worker
+    name: convertLegacyPlugin.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyPlugin.test.tsx
+      containerId: core-compat-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 98
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/collectentitypagecontents-test
+    type: gateway-api
+    name: collectEntityPageContents.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/collectEntityPageContents.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 171
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/collectentitypagecontents
+    type: gateway-api
+    name: collectEntityPageContents Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/collectEntityPageContents.ts
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 249
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: rest-api
+    name: convertLegacyRouteRef Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyRouteRef.ts
+      containerId: core-compat-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 308
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacyappoptions
+    type: gateway-api
+    name: convertLegacyAppOptions Service
+    isTest: false
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyAppOptions.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 210
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/collectlegacyroutes-test
+    type: gateway-api
+    name: collectLegacyRoutes.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/collectLegacyRoutes.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 405
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-compat-api/convertlegacyapp-test
+    type: gateway-api
+    name: convertLegacyApp.test Service
+    isTest: true
+    properties:
+      filepath: packages/core-compat-api/src/convertLegacyApp.test.tsx
+      containerId: core-compat-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 326
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/core-plugin-api/analyticsapi
+    type: rest-api
+    name: AnalyticsApi Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/definitions/AnalyticsApi.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/packages/core-app-api/apiprovider
+    type: gateway-api
+    name: ApiProvider Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/ApiProvider.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -2890
+      y: 404
+  - entityRef: backstage/packages/app-defaults/apis
+    type: gateway-api
+    name: apis Service (External)
+    external: true
+    properties:
+      filepath: packages/app-defaults/src/defaults/apis.ts
+      containerId: app-defaults
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -3350
+      y: 404
+  - entityRef: backstage/packages/app/app
+    type: gateway-api
+    name: App Service (External)
+    external: true
+    properties:
+      filepath: packages/app/src/App.tsx
+      containerId: app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: -204
+  - entityRef: backstage/packages/core-app-api/appcontext
+    type: gateway-api
+    name: AppContext Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/app/AppContext.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -2430
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/createfrontendmodule
+    type: background-worker
+    name: createFrontendModule Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/createFrontendModule.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/system/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/frontend-test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/AnalyticsApi/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2170
+      y: 404
+  - entityRef: backstage/packages/version-bridge/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3550
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2630
+      y: 404
+  - entityRef: backstage/packages/frontend-internal/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/apis/index.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/core-app-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/system/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1970
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/resolveextensiondefinition
+    type: background-worker
+    name: resolveExtensionDefinition Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/resolveExtensionDefinition.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/packages/ui/types
+    type: gateway-api
+    name: types Service (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/types.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3090
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/userouteref
+    type: gateway-api
+    name: useRouteRef Service (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/routing/useRouteRef.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/packages/app/app
+    to: backstage/packages/core-compat-api/index
+    type: direct-call
+    description: '@backstage/core-compat-api'
+  - from: backstage/packages/core-compat-api/withapis
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/withapis
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/core-compat-api/multipleanalyticsapi-test
+    to: backstage/packages/core-compat-api/multipleanalyticsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/noopanalyticsapi
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/noopanalyticsapi
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/multipleanalyticsapi
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/multipleanalyticsapi
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/multipleanalyticsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/noopanalyticsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-plugin-api/analyticsapi
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyapp
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyapp
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyapp
+    to: backstage/packages/core-compat-api/collectlegacyroutes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyapp
+    to: backstage/packages/core-compat-api/compatwrapper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/normalizeroutepath-test
+    to: backstage/packages/core-compat-api/normalizeroutepath
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/collectlegacyroutes
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/collectlegacyroutes
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/collectlegacyroutes
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/collectlegacyroutes
+    to: backstage/packages/core-compat-api/compatwrapper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/collectlegacyroutes
+    to: backstage/packages/core-compat-api/collectentitypagecontents
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/collectlegacyroutes
+    to: backstage/packages/core-compat-api/normalizeroutepath
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/withapis-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/withapis-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/core-compat-api/withapis-test
+    to: backstage/packages/core-compat-api/withapis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/compatwrapper
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-compat-api/compatwrapper
+    to: backstage/packages/core-compat-api/backwardscompatprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/compatwrapper
+    to: backstage/packages/core-compat-api/forwardscompatprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/compatwrapper
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/forwardscompatprovider
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/forwardscompatprovider
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/forwardscompatprovider
+    to: backstage/packages/core-compat-api/backwardscompatprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/forwardscompatprovider
+    to: backstage/packages/core-app-api/apiprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/forwardscompatprovider
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-compat-api/forwardscompatprovider
+    to: backstage/packages/core-plugin-api/userouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/forwardscompatprovider
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/backwardscompatprovider
+    to: backstage/packages/core-app-api/appcontext
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/backwardscompatprovider
+    to: backstage/packages/core-plugin-api/userouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/backwardscompatprovider
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/backwardscompatprovider
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/backwardscompatprovider
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-compat-api/backwardscompatprovider
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/compatwrapper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/compatwrapper-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/compatwrapper-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/core-compat-api/compatwrapper-test
+    to: backstage/packages/core-compat-api/compatwrapper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/compatwrapper-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/compatwrapper-test
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/compatwrapper-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-compat-api/convertlegacypageextension
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacypageextension
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacypageextension
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacypageextension
+    to: backstage/packages/core-compat-api/compatwrapper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyplugin
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyplugin
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyplugin
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacypageextension-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacypageextension-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacypageextension-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/core-compat-api/convertlegacypageextension-test
+    to: backstage/packages/core-compat-api/convertlegacypageextension
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacypageextension-test
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyrouteref-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyrouteref-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyrouteref-test
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyrouteref-test
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/core-compat-api/convertlegacyappoptions-test
+    to: backstage/packages/core-compat-api/convertlegacyappoptions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyappoptions-test
+    to: backstage/packages/frontend-plugin-api/createfrontendmodule
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyappoptions-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyplugin-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyplugin-test
+    to: backstage/packages/core-compat-api/convertlegacyplugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyplugin-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyplugin-test
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/core-compat-api/collectentitypagecontents-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/collectentitypagecontents-test
+    to: backstage/packages/core-compat-api/collectentitypagecontents
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/collectentitypagecontents-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/collectentitypagecontents-test
+    to: backstage/packages/frontend-plugin-api/resolveextensiondefinition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/collectentitypagecontents
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/collectentitypagecontents
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/collectentitypagecontents
+    to: backstage/packages/core-compat-api/normalizeroutepath
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyrouteref
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyrouteref
+    to: backstage/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyrouteref
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyrouteref
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/core-compat-api/convertlegacyappoptions
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyappoptions
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyappoptions
+    to: backstage/packages/core-compat-api/backwardscompatprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyappoptions
+    to: backstage/packages/core-compat-api/compatwrapper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/collectlegacyroutes-test
+    to: backstage/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: backstage/packages/core-compat-api/collectlegacyroutes-test
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/core-compat-api/collectlegacyroutes-test
+    to: backstage/packages/core-compat-api/collectlegacyroutes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/collectlegacyroutes-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/collectlegacyroutes-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/core-compat-api/convertlegacyapp-test
+    to: backstage/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: backstage/packages/core-compat-api/convertlegacyapp-test
+    to: backstage/packages/core-compat-api/convertlegacyapp
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/convertlegacyapp-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-compat-api/convertlegacyapp-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/compatwrapper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/app-defaults/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/convertlegacyapp
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/convertlegacyappoptions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/convertlegacyplugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/convertlegacypageextension
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/convertlegacyrouteref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-compat-api/index
+    to: backstage/packages/core-compat-api/withapis
+    type: direct-call
+    description: Calls module / service

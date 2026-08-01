@@ -1,0 +1,187 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/integrationeventlogef
+  name: IntegrationEventLogEF Service Components
+  source:
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+nodes:
+  - entityRef: eshop/integrationeventlogef/eventstateenum
+    type: background-worker
+    name: EventStateEnum
+    isTest: false
+    properties:
+      filepath: src/IntegrationEventLogEF/EventStateEnum.cs
+      containerId: integrationeventlogef
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 11
+      sloc: 8
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/integrationeventlogef/integrationeventlogentry
+    type: background-worker
+    name: IntegrationEventLogEntry
+    isTest: false
+    properties:
+      filepath: src/IntegrationEventLogEF/IntegrationEventLogEntry.cs
+      containerId: integrationeventlogef
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 3
+      loc: 41
+      sloc: 36
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/integrationeventlogef/integrationlogextensions
+    type: background-worker
+    name: IntegrationLogExtensions
+    isTest: false
+    properties:
+      filepath: src/IntegrationEventLogEF/IntegrationLogExtensions.cs
+      containerId: integrationeventlogef
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 15
+      sloc: 12
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/integrationeventlogef/utilities
+    type: background-worker
+    name: Utilities Layer
+    isTest: false
+    properties:
+      filepath: src/IntegrationEventLogEF/Utilities/ResilientTransaction.cs
+      containerId: integrationeventlogef
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 3
+      loc: 24
+      sloc: 18
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/integrationeventlogef/services
+    type: background-worker
+    name: Services Layer
+    isTest: false
+    properties:
+      filepath: src/IntegrationEventLogEF/Services/IntegrationEventLogService.cs
+      containerId: integrationeventlogef
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 9
+      loc: 92
+      sloc: 72
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.08333333333333333
+      sinceDays: 60
+  - entityRef: eshop/ordering-infrastructure/orderingcontext
+    type: relational-database
+    name: OrderingContext (External)
+    external: true
+    properties:
+      filepath: src/Ordering.Infrastructure/OrderingContext.cs
+      containerId: ordering-infrastructure
+      technology: Entity Framework / DB Context
+      classification: database-marker
+    position:
+      x: 100
+      y: -204
+dependencies:
+  - from: eshop/ordering-infrastructure/orderingcontext
+    to: eshop/integrationeventlogef/eventstateenum
+    type: direct-call
+    description: Calls module / service

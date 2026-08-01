@@ -15,7 +15,7 @@ test.describe('Accessibility (axe)', () => {
   });
 
   test('TraceLens ranking page', async ({ page }) => {
-    await gotoApp(page, '/tracelens');
+    await gotoApp(page, '/workspace?lens=tracelens');
     await expectNoSeriousA11yViolations(page, 'TraceLens');
   });
 

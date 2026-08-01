@@ -1,0 +1,2492 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-backend
+  name: Kubernetes-backend Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-backend/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/config.d.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 146
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: dybeck@spotify.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/dev/index.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 21
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/catalogclusterlocator-test
+    type: background-worker
+    name: CatalogClusterLocator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/cluster-locator/CatalogClusterLocator.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 110
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/localkubectlproxylocator
+    type: background-worker
+    name: LocalKubectlProxyLocator Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/cluster-locator/LocalKubectlProxyLocator.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 50
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/index-test
+    type: background-worker
+    name: index.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/cluster-locator/index.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 7
+      loc: 289
+      sloc: 250
+      churn: 4
+      lineChurn: 292
+      churn30: 4
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: dybeck@spotify.com
+          commits: 3
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.0015774233977267815
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/configclusterlocator
+    type: background-worker
+    name: ConfigClusterLocator Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/cluster-locator/ConfigClusterLocator.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 146
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/gkeclusterlocator-test
+    type: background-worker
+    name: GkeClusterLocator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/cluster-locator/GkeClusterLocator.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 670
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/gkeclusterlocator
+    type: background-worker
+    name: GkeClusterLocator Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/cluster-locator/GkeClusterLocator.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 223
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/catalogclusterlocator
+    type: background-worker
+    name: CatalogClusterLocator Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/cluster-locator/CatalogClusterLocator.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 119
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/configclusterlocator-test
+    type: background-worker
+    name: ConfigClusterLocator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/cluster-locator/ConfigClusterLocator.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 450
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/types/types.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 49
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy-test
+    type: background-worker
+    name: GoogleServiceAccountStrategy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 273
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
+    type: background-worker
+    name: GoogleServiceAccountStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 98
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/azureidentitystrategy
+    type: background-worker
+    name: AzureIdentityStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AzureIdentityStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 106
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/anonymousstrategy
+    type: background-worker
+    name: AnonymousStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AnonymousStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 39
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/awsiamstrategy-test
+    type: background-worker
+    name: AwsIamStrategy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AwsIamStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 254
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/dispatchstrategy
+    type: background-worker
+    name: DispatchStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/DispatchStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 79
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/serviceaccountstrategy-test
+    type: background-worker
+    name: ServiceAccountStrategy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/ServiceAccountStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 85
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/googlestrategy
+    type: background-worker
+    name: GoogleStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/GoogleStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 50
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/azureidentitystrategy-test
+    type: background-worker
+    name: AzureIdentityStrategy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AzureIdentityStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 135
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/dispatchstrategy-test
+    type: background-worker
+    name: DispatchStrategy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/DispatchStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 83
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/aksstrategy
+    type: background-worker
+    name: AksStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AksStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 46
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    type: background-worker
+    name: buildDefaultAuthStrategyMap Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/buildDefaultAuthStrategyMap.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 46
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/aksstrategy-test
+    type: background-worker
+    name: AksStrategy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AksStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 32
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/oidcstrategy
+    type: background-worker
+    name: OidcStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/OidcStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/oidcstrategy-test
+    type: background-worker
+    name: OidcStrategy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/OidcStrategy.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 85
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/awsiamstrategy
+    type: background-worker
+    name: AwsIamStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/AwsIamStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 184
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/requirepermission
+    type: rest-api
+    name: requirePermission Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/requirePermission.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 52
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/serviceaccountstrategy
+    type: background-worker
+    name: ServiceAccountStrategy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/ServiceAccountStrategy.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 63
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/plugin
+    type: background-worker
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/plugin.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 288
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+    type: background-worker
+    name: buildDefaultServiceLocator Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service-locator/buildDefaultServiceLocator.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 48
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/catalogrelationservicelocator
+    type: background-worker
+    name: CatalogRelationServiceLocator Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service-locator/CatalogRelationServiceLocator.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/singletenantservicelocator-test
+    type: background-worker
+    name: SingleTenantServiceLocator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/service-locator/SingleTenantServiceLocator.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 150
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/catalogrelationservicelocator-test
+    type: background-worker
+    name: CatalogRelationServiceLocator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/service-locator/CatalogRelationServiceLocator.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 169
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/singletenantservicelocator
+    type: background-worker
+    name: SingleTenantServiceLocator Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service-locator/SingleTenantServiceLocator.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 58
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/multitenantservicelocator
+    type: background-worker
+    name: MultiTenantServiceLocator Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service-locator/MultiTenantServiceLocator.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 43
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/multitenantservicelocator-test
+    type: background-worker
+    name: MultiTenantServiceLocator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/service-locator/MultiTenantServiceLocator.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 102
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/setupTests.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/proxyauditsession
+    type: rest-api
+    name: ProxyAuditSession Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/ProxyAuditSession.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 201
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
+    type: background-worker
+    name: KubernetesFanOutHandler Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 428
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    type: rest-api
+    name: KubernetesProxy.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesProxy.test.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      functionCount: 121
+      loc: 1736
+      sloc: 1428
+      churn: 3
+      lineChurn: 1769
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 1
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0.03822550672025585
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesrouter
+    type: rest-api
+    name: KubernetesRouter Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesRouter.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 403
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfetcher
+    type: background-worker
+    name: KubernetesFetcher Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesFetcher.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 403
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfetcher-test
+    type: background-worker
+    name: KubernetesFetcher.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesFetcher.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 1422
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
+    type: background-worker
+    name: KubernetesFanOutHandler.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.test.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 1588
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    type: background-worker
+    name: KubernetesInitializer Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesInitializer.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 238
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/runperiodically
+    type: background-worker
+    name: runPeriodically Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/runPeriodically.ts
+      containerId: kubernetes-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 54
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesproxy
+    type: rest-api
+    name: KubernetesProxy Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesProxy.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 37
+      functionCount: 22
+      loc: 473
+      sloc: 353
+      churn: 3
+      lineChurn: 1028
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 1
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0.06108734171744673
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/kubernetesrouter-test
+    type: rest-api
+    name: KubernetesRouter.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/service/KubernetesRouter.test.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 980
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/resourcesroutes
+    type: rest-api
+    name: resourcesRoutes Service
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/routes/resourcesRoutes.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 241
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-backend/resourceroutes-test
+    type: rest-api
+    name: resourceRoutes.test Service
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/routes/resourceRoutes.test.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 748
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 1
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/kubernetes-react/auth
+    type: background-worker
+    name: auth Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-react/src/hooks/auth.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-node/src/types/index.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/permission-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-node/src/integration/index.ts
+      containerId: permission-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-node/pinnipedhelper-test
+    type: background-worker
+    name: PinnipedHelper.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-node/src/auth/PinnipedHelper.test.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: backstage/plugins/events-node/service
+    type: background-worker
+    name: service Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/service.ts
+      containerId: events-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/testutils
+    type: background-worker
+    name: testUtils Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/testUtils.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+    to: backstage/plugins/kubernetes-backend/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-backend'
+  - from: backstage/plugins/kubernetes-backend/catalogclusterlocator-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/catalogclusterlocator-test
+    to: backstage/plugins/kubernetes-backend/catalogclusterlocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/catalogclusterlocator-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/localkubectlproxylocator
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/localkubectlproxylocator
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/index-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/index-test
+    to: backstage/plugins/kubernetes-backend/index
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/index-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/index-test
+    to: backstage/plugins/kubernetes-react/auth
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/configclusterlocator
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/configclusterlocator
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/gkeclusterlocator-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/gkeclusterlocator-test
+    to: backstage/plugins/kubernetes-backend/gkeclusterlocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/gkeclusterlocator
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/gkeclusterlocator
+    to: backstage/plugins/kubernetes-backend/runperiodically
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/gkeclusterlocator
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/catalogclusterlocator
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/catalogclusterlocator
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/catalogclusterlocator
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/configclusterlocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/gkeclusterlocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/catalogclusterlocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/localkubectlproxylocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/configclusterlocator-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/configclusterlocator-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/configclusterlocator-test
+    to: backstage/plugins/kubernetes-backend/configclusterlocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/types
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/types
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy-test
+    to: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/azureidentitystrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/anonymousstrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/awsiamstrategy-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/awsiamstrategy-test
+    to: backstage/plugins/kubernetes-backend/awsiamstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/dispatchstrategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/dispatchstrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/serviceaccountstrategy-test
+    to: backstage/plugins/kubernetes-backend/serviceaccountstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/googlestrategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/googlestrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/azureidentitystrategy-test
+    to: backstage/plugins/kubernetes-backend/azureidentitystrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/dispatchstrategy-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/dispatchstrategy-test
+    to: backstage/plugins/kubernetes-backend/dispatchstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/dispatchstrategy-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/aksstrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/aksstrategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-backend/aksstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-backend/awsiamstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-backend/azureidentitystrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-backend/googlestrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-backend/anonymousstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-backend/oidcstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    to: backstage/plugins/kubernetes-backend/serviceaccountstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/aksstrategy-test
+    to: backstage/plugins/kubernetes-backend/aksstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/oidcstrategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/oidcstrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/aksstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/anonymousstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/awsiamstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/azureidentitystrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/googlestrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/dispatchstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/serviceaccountstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/oidcstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/oidcstrategy-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/oidcstrategy-test
+    to: backstage/plugins/kubernetes-backend/oidcstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/awsiamstrategy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/awsiamstrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/requirepermission
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/kubernetes-backend/serviceaccountstrategy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/plugin
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/plugin
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/plugin
+    to: backstage/plugins/kubernetes-backend/kubernetesrouter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/plugin
+    to: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+    to: backstage/plugins/kubernetes-backend/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+    to: backstage/plugins/kubernetes-backend/multitenantservicelocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+    to: backstage/plugins/kubernetes-backend/singletenantservicelocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+    to: backstage/plugins/kubernetes-backend/catalogrelationservicelocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/catalogrelationservicelocator
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/singletenantservicelocator-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/singletenantservicelocator-test
+    to: backstage/plugins/kubernetes-backend/singletenantservicelocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/catalogrelationservicelocator-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/catalogrelationservicelocator-test
+    to: backstage/plugins/kubernetes-backend/catalogrelationservicelocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/singletenantservicelocator
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/multitenantservicelocator
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/multitenantservicelocator-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/multitenantservicelocator-test
+    to: backstage/plugins/kubernetes-backend/multitenantservicelocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-react/auth
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/events-node/service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
+    to: backstage/plugins/kubernetes-backend/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    to: backstage/plugins/kubernetes-backend/localkubectlproxylocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    to: backstage/plugins/kubernetes-backend/kubernetesproxy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
+    to: backstage/plugins/kubernetes-react/auth
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/permission-node/index
+    type: direct-call
+    description: '@backstage/plugin-permission-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/kubernetes-react/auth
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/kubernetes-backend/resourcesroutes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/kubernetes-backend/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/kubernetes-backend/kubernetesproxy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/kubernetes-backend/requirepermission
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher-test
+    to: backstage/plugins/kubernetes-backend/kubernetesfetcher
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/kubernetesproxy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/index
+    to: backstage/plugins/kubernetes-backend/kubernetesproxy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
+    to: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
+    to: backstage/plugins/kubernetes-backend/kubernetesfetcher
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    to: backstage/plugins/kubernetes-backend/kubernetesfetcher
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    to: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    to: backstage/plugins/kubernetes-backend/dispatchstrategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    to: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
+    to: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesproxy
+    to: backstage/plugins/kubernetes-backend/proxyauditsession
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter-test
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter-test
+    to: backstage/plugins/kubernetes-backend/kubernetesproxy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/kubernetesrouter-test
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/kubernetes-backend/resourcesroutes
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/resourcesroutes
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/kubernetes-backend/resourcesroutes
+    to: backstage/plugins/kubernetes-backend/requirepermission
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/resourcesroutes
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/resourcesroutes
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/resourceroutes-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/resourceroutes-test
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'

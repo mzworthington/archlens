@@ -1,0 +1,232 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/microsite/components
+  name: Components Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/microsite/components/contentblock
+    type: gateway-api
+    name: contentBlock Service
+    isTest: false
+    properties:
+      filepath: microsite/src/components/contentBlock/contentBlock.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 60
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/microsite/components/bannersectiongrid
+    type: gateway-api
+    name: bannerSectionGrid Service
+    isTest: false
+    properties:
+      filepath: microsite/src/components/bannerSection/bannerSectionGrid.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 32
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/microsite/components/bannersection
+    type: gateway-api
+    name: bannerSection Service
+    isTest: false
+    properties:
+      filepath: microsite/src/components/bannerSection/bannerSection.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 40
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/microsite/components/pluginssearch
+    type: gateway-api
+    name: pluginsSearch Service
+    isTest: false
+    properties:
+      filepath: microsite/src/components/pluginsSearch/pluginsSearch.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 19
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/microsite/components/pluginsfilter
+    type: gateway-api
+    name: pluginsFilter Service
+    isTest: false
+    properties:
+      filepath: microsite/src/components/pluginsFilter/pluginsFilter.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 39
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/microsite/components/simplecard
+    type: gateway-api
+    name: simpleCard Service
+    isTest: false
+    properties:
+      filepath: microsite/src/components/simpleCard/simpleCard.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/microsite/pages/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: microsite/src/pages/index.tsx
+      containerId: pages
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: -204
+dependencies:
+  - from: backstage/microsite/pages/index
+    to: backstage/microsite/components/contentblock
+    type: direct-call
+    description: Calls module / service

@@ -87,6 +87,9 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
   );
 
   const firstSystem =
+    (isSampleWorkspace &&
+      (resolvedSystems.find(s => s.path === 'golden-journey/containers.yaml') ||
+        resolvedSystems.find(s => s.path === 'golden-journey/context.yaml'))) ||
     resolvedSystems.find(s => s.schema.level === 'context') ||
     resolvedSystems.find(s => s.schema.level === 'container') ||
     resolvedSystems[0];

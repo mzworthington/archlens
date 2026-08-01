@@ -178,7 +178,7 @@ describe('ModelExtractor workspace package imports', () => {
         relativePath: 'app/packages/designer/src/db/db.ts',
         baseName: 'db',
         isTestFile: false,
-        imports: [{ moduleSpecifier: './App' }],
+        imports: [{ moduleSpecifier: '../App' }],
         newExpressions: [],
         callExpressions: [],
       },

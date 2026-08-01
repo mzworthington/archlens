@@ -1,0 +1,94 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: application/gpio-build-monitor/core
+  name: Core Service Components
+  source:
+    remoteUrl: https://github.com/mzworthington/gpio-build-monitor
+    defaultBranch: main
+    scannedAtCommit: 1b7f029c3f56e5a0948c4f90660a71cd7561244b
+    scanRoot: .
+nodes:
+  - entityRef: application/gpio-build-monitor/core/conftest
+    type: background-worker
+    name: conftest Service
+    isTest: true
+    properties:
+      filepath: test/conftest.py
+      containerId: core
+      technology: Python Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 3
+      loc: 34
+      sloc: 23
+      churn: 2
+      lineChurn: 33
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: application/gpio-build-monitor/core/test
+    type: background-worker
+    name: test Package
+    isTest: true
+    properties:
+      filepath: test/__init__.py
+      containerId: core
+      technology: Python Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 1
+      sloc: 0
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: application/gpio-build-monitor/gpio/constants
+    type: background-worker
+    name: constants Service (External)
+    external: true
+    properties:
+      filepath: monitor/gpio/constants.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: application/gpio-build-monitor/core/conftest
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: Calls module / service

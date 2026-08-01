@@ -1,0 +1,192 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: infrastructure/aws-reverse-proxy
+  name: Aws-reverse-proxy Infrastructure
+  source:
+    scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
+    scanRoot: .
+    remoteUrl: https://github.com/futurice/terraform-examples
+    defaultBranch: master
+nodes:
+  - entityRef: infrastructure/aws-reverse-proxy/data-aws-route53-zone-this
+    type: container
+    name: data.aws-route53-zone.this
+    external: true
+    properties:
+      iac.address: data.aws_route53_zone.this
+      iac.provider_type: aws_route53_zone
+      iac.kind: data
+      filepath: aws/aws_reverse_proxy/data.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-route53-record-ipv4
+    type: container
+    name: aws-route53-record.ipv4
+    external: false
+    properties:
+      iac.address: aws_route53_record.ipv4
+      iac.provider_type: aws_route53_record
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/route53.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-route53-record-ipv6
+    type: container
+    name: aws-route53-record.ipv6
+    external: false
+    properties:
+      iac.address: aws_route53_record.ipv6
+      iac.provider_type: aws_route53_record
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/route53.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-cloudfront-distribution-this
+    type: gateway-api
+    name: aws-cloudfront-distribution.this
+    external: false
+    properties:
+      iac.address: aws_cloudfront_distribution.this
+      iac.provider_type: aws_cloudfront_distribution
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/cloudfront.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-lambda-function-viewer-request
+    type: serverless-function
+    name: aws-lambda-function.viewer-request
+    external: false
+    properties:
+      iac.address: aws_lambda_function.viewer_request
+      iac.provider_type: aws_lambda_function
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/lambda.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-lambda-function-viewer-response
+    type: serverless-function
+    name: aws-lambda-function.viewer-response
+    external: false
+    properties:
+      iac.address: aws_lambda_function.viewer_response
+      iac.provider_type: aws_lambda_function
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/lambda.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-iam-role-this
+    type: container
+    name: aws-iam-role.this
+    external: false
+    properties:
+      iac.address: aws_iam_role.this
+      iac.provider_type: aws_iam_role
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/lambda.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-iam-policy-this
+    type: container
+    name: aws-iam-policy.this
+    external: false
+    properties:
+      iac.address: aws_iam_policy.this
+      iac.provider_type: aws_iam_policy
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/lambda.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-iam-role-policy-attachment-this
+    type: container
+    name: aws-iam-role-policy-attachment.this
+    external: false
+    properties:
+      iac.address: aws_iam_role_policy_attachment.this
+      iac.provider_type: aws_iam_role_policy_attachment
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/lambda.tf
+  - entityRef: infrastructure/aws-reverse-proxy/data-template-file-lambda
+    type: container
+    name: data.template-file.lambda
+    external: true
+    properties:
+      iac.address: data.template_file.lambda
+      iac.provider_type: template_file
+      iac.kind: data
+      filepath: aws/aws_reverse_proxy/lambda.tf
+  - entityRef: infrastructure/aws-reverse-proxy/data-archive-file-lambda-zip
+    type: container
+    name: data.archive-file.lambda-zip
+    external: true
+    properties:
+      iac.address: data.archive_file.lambda_zip
+      iac.provider_type: archive_file
+      iac.kind: data
+      filepath: aws/aws_reverse_proxy/lambda.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-acm-certificate-this
+    type: container
+    name: aws-acm-certificate.this
+    external: false
+    properties:
+      iac.address: aws_acm_certificate.this
+      iac.provider_type: aws_acm_certificate
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/certificate.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-route53-record-cert-validation
+    type: container
+    name: aws-route53-record.cert-validation
+    external: false
+    properties:
+      iac.address: aws_route53_record.cert_validation
+      iac.provider_type: aws_route53_record
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/certificate.tf
+  - entityRef: infrastructure/aws-reverse-proxy/aws-acm-certificate-validation-this
+    type: container
+    name: aws-acm-certificate-validation.this
+    external: false
+    properties:
+      iac.address: aws_acm_certificate_validation.this
+      iac.provider_type: aws_acm_certificate_validation
+      iac.kind: resource
+      filepath: aws/aws_reverse_proxy/certificate.tf
+dependencies:
+  - from: infrastructure/aws-reverse-proxy/aws-route53-record-ipv4
+    to: infrastructure/aws-reverse-proxy/data-aws-route53-zone-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-route53-record-ipv4
+    to: infrastructure/aws-reverse-proxy/aws-cloudfront-distribution-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-route53-record-ipv6
+    to: infrastructure/aws-reverse-proxy/data-aws-route53-zone-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-route53-record-ipv6
+    to: infrastructure/aws-reverse-proxy/aws-cloudfront-distribution-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-cloudfront-distribution-this
+    to: infrastructure/aws-reverse-proxy/aws-lambda-function-viewer-request
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-cloudfront-distribution-this
+    to: infrastructure/aws-reverse-proxy/aws-lambda-function-viewer-response
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-cloudfront-distribution-this
+    to: infrastructure/aws-reverse-proxy/aws-acm-certificate-validation-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-lambda-function-viewer-request
+    to: infrastructure/aws-reverse-proxy/data-archive-file-lambda-zip
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-lambda-function-viewer-request
+    to: infrastructure/aws-reverse-proxy/aws-iam-role-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-lambda-function-viewer-response
+    to: infrastructure/aws-reverse-proxy/data-archive-file-lambda-zip
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-lambda-function-viewer-response
+    to: infrastructure/aws-reverse-proxy/aws-iam-role-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-iam-role-policy-attachment-this
+    to: infrastructure/aws-reverse-proxy/aws-iam-role-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-iam-role-policy-attachment-this
+    to: infrastructure/aws-reverse-proxy/aws-iam-policy-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/data-archive-file-lambda-zip
+    to: infrastructure/aws-reverse-proxy/data-template-file-lambda
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-route53-record-cert-validation
+    to: infrastructure/aws-reverse-proxy/aws-acm-certificate-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-route53-record-cert-validation
+    to: infrastructure/aws-reverse-proxy/data-aws-route53-zone-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-acm-certificate-validation-this
+    to: infrastructure/aws-reverse-proxy/aws-acm-certificate-this
+    type: direct-call
+  - from: infrastructure/aws-reverse-proxy/aws-acm-certificate-validation-this
+    to: infrastructure/aws-reverse-proxy/aws-route53-record-cert-validation
+    type: direct-call

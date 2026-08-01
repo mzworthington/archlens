@@ -1,0 +1,636 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search-backend-module-pg
+  name: Search-backend-module-pg Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/search-backend-module-pg/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/config.d.ts
+      containerId: search-backend-module-pg
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 70
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/util-test
+    type: relational-database
+    name: util.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-pg/src/database/util.test.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 54
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/types
+    type: relational-database
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/src/database/types.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/databasedocumentstore-test
+    type: relational-database
+    name: DatabaseDocumentStore.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-pg/src/database/DatabaseDocumentStore.test.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 687
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/databasedocumentstore
+    type: relational-database
+    name: DatabaseDocumentStore Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/src/database/DatabaseDocumentStore.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 240
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/util
+    type: relational-database
+    name: util Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/src/database/util.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/index
+    type: relational-database
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/src/database/index.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 23
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengineindexer-test
+    type: relational-database
+    name: PgSearchEngineIndexer.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngineIndexer.test.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 262
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    type: relational-database
+    name: PgSearchEngineIndexer Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngineIndexer.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 159
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengine
+    type: relational-database
+    name: PgSearchEngine Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngine.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 293
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengine-test
+    type: relational-database
+    name: PgSearchEngine.test Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngine.test.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 392
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/module
+    type: relational-database
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/src/module.ts
+      containerId: search-backend-module-pg
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 54
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/alpha
+    type: background-worker
+    name: alpha Service
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-module-pg/src/alpha.ts
+      containerId: search-backend-module-pg
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 21
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-module-pg/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-module-pg/src/setupTests.ts
+      containerId: search-backend-module-pg
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/search-backend-node/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/alpha.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/search-backend-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-node/src/test-utils/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/search-backend-module-pg/util-test
+    to: backstage/plugins/search-backend-module-pg/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/types
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-module-pg/types
+    to: backstage/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/databasedocumentstore-test
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-module-pg/databasedocumentstore-test
+    to: backstage/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/databasedocumentstore-test
+    to: backstage/plugins/search-backend-module-pg/databasedocumentstore
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/databasedocumentstore
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-module-pg/databasedocumentstore
+    to: backstage/plugins/search-backend-module-pg/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/databasedocumentstore
+    to: backstage/plugins/search-backend-module-pg/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/index
+    to: backstage/plugins/search-backend-module-pg/databasedocumentstore
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/index
+    to: backstage/plugins/search-backend-module-pg/types
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengineindexer-test
+    to: backstage/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengineindexer-test
+    to: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    to: backstage/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengine
+    to: backstage/plugins/search-backend-node/index
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengine
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengine
+    to: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengine-test
+    to: backstage/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/pgsearchengine-test
+    to: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/index
+    to: backstage/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/index
+    to: backstage/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/index
+    to: backstage/plugins/search-backend-module-pg/pgsearchengineindexer
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/module
+    to: backstage/plugins/search-backend-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-search-backend-node'
+  - from: backstage/plugins/search-backend-module-pg/module
+    to: backstage/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/alpha
+    to: backstage/plugins/search-backend-module-pg/module
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/index
+    to: backstage/plugins/search-backend-module-pg/module
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/search-backend-module-pg/index
+    to: backstage/plugins/search-backend-module-pg/pgsearchengine
+    type: read-write
+    description: Queries datastore records

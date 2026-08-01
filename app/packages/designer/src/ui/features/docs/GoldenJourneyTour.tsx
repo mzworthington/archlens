@@ -14,8 +14,8 @@ import type { LucideIcon } from 'lucide-react';
 const CHECKOUT_API_REF = 'golden-paths/golden-journey/checkout-platform/checkout-api';
 const WORKSPACE_ESTATE = '/workspace/golden-paths/golden-journey';
 const WORKSPACE_RESILIENCE = `${WORKSPACE_ESTATE}?resilience=1`;
-const ADVICE_URL = '/tracelens?view=recommendations';
-const REFACTOR_PLAN_URL = `/tracelens?view=recommendations&plan=${encodeURIComponent(
+const ADVICE_URL = '/workspace/golden-paths/golden-journey?lens=tracelens&view=recommendations';
+const REFACTOR_PLAN_URL = `/workspace/golden-paths/golden-journey?lens=tracelens&view=recommendations&plan=${encodeURIComponent(
   CHECKOUT_API_REF
 )}`;
 

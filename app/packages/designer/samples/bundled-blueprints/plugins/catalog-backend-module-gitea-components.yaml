@@ -1,0 +1,490 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-gitea
+  name: Catalog-backend-module-gitea Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/config.d.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 58
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/module.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 47
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    type: background-worker
+    name: GiteaEntityProvider Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/providers/GiteaEntityProvider.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 266
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/core-test
+    type: background-worker
+    name: core.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/providers/core.test.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 42
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    type: background-worker
+    name: GiteaEntityProvider.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/providers/GiteaEntityProvider.test.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 476
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/providers/types.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/core
+    type: background-worker
+    name: core Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/providers/core.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 26
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/providers/index.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/config
+    type: background-worker
+    name: config Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/providers/config.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 58
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/config-test
+    type: background-worker
+    name: config.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/providers/config.test.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 125
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitea/module-test
+    type: background-worker
+    name: module.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitea/src/module.test.ts
+      containerId: catalog-backend-module-gitea
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 86
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-gitea/module
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitea/module
+    to: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-backend-module-gitea/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-backend-module-gitea/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    to: backstage/plugins/catalog-backend-module-gitea/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/core-test
+    to: backstage/plugins/catalog-backend-module-gitea/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitea/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitea/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/index
+    to: backstage/plugins/catalog-backend-module-gitea/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/config
+    to: backstage/plugins/catalog-backend-module-gitea/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/config-test
+    to: backstage/plugins/catalog-backend-module-gitea/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/module-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitea/module-test
+    to: backstage/plugins/catalog-backend-module-gitea/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/module-test
+    to: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/index
+    to: backstage/plugins/catalog-backend-module-gitea/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitea/index
+    to: backstage/plugins/catalog-backend-module-gitea/giteaentityprovider
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,257 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/ordering-api
+  name: Ordering.API Service Components
+  source:
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+nodes:
+  - entityRef: eshop/ordering-api/program-testing
+    type: background-worker
+    name: Program.Testing
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Program.Testing.cs
+      containerId: ordering-api
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 7
+      sloc: 1
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/ordering-api/apis
+    type: rest-api
+    name: Apis Layer
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Apis/OrderServices.cs
+      containerId: ordering-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+    forensics:
+      complexity: 1
+      loc: 12
+      sloc: 11
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/ordering-api/extensions
+    type: background-worker
+    name: Extensions Layer
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Extensions/LinqSelectExtensions.cs
+      containerId: ordering-api
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 4
+      loc: 46
+      sloc: 40
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+  - entityRef: eshop/ordering-api/application
+    type: event-broker
+    name: Application Layer
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Application/Queries/OrderQueries.cs
+      containerId: ordering-api
+      technology: C# Event Client
+      classification: event-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 3
+      loc: 54
+      sloc: 48
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+  - entityRef: eshop/ordering-api/infrastructure
+    type: background-worker
+    name: Infrastructure Layer
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Infrastructure/OrderingContextSeed.cs
+      containerId: ordering-api
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 2
+      loc: 26
+      sloc: 20
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+  - entityRef: eshop/ordering-api/program
+    type: background-worker
+    name: Program
+    isTest: false
+    properties:
+      filepath: src/Ordering.API/Program.cs
+      containerId: ordering-api
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 26
+      sloc: 16
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/ordering-domain/aggregatesmodel
+    type: relational-database
+    name: AggregatesModel Layer (External)
+    external: true
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs
+      containerId: ordering-domain
+      technology: Entity Framework / DB Context
+      classification: database-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: eshop/ordering-unittests/application
+    type: rest-api
+    name: Application Layer (External)
+    external: true
+    properties:
+      filepath: tests/Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs
+      containerId: ordering-unittests
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+    position:
+      x: 330
+      y: -204
+  - entityRef: eshop/ordering-functionaltests/orderingapitests
+    type: rest-api
+    name: OrderingApiTests (External)
+    external: true
+    properties:
+      filepath: tests/Ordering.FunctionalTests/OrderingApiTests.cs
+      containerId: ordering-functionaltests
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+    position:
+      x: -130
+      y: -204
+dependencies:
+  - from: eshop/ordering-unittests/application
+    to: eshop/ordering-api/application
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: eshop/ordering-functionaltests/orderingapitests
+    to: eshop/ordering-api/application
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: eshop/ordering-api/application
+    to: eshop/ordering-api/extensions
+    type: direct-call
+    description: Calls module / service
+  - from: eshop/ordering-api/application
+    to: eshop/ordering-domain/aggregatesmodel
+    type: read-write
+    description: Queries datastore records
+  - from: eshop/ordering-api/infrastructure
+    to: eshop/ordering-domain/aggregatesmodel
+    type: read-write
+    description: Queries datastore records

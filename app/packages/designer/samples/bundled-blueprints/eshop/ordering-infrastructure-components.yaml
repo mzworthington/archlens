@@ -1,0 +1,192 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/ordering-infrastructure
+  name: Ordering.Infrastructure Service Components
+  source:
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+nodes:
+  - entityRef: eshop/ordering-infrastructure/idempotency
+    type: background-worker
+    name: Idempotency Layer
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/Idempotency/RequestManager.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 3
+      loc: 39
+      sloc: 29
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+  - entityRef: eshop/ordering-infrastructure/repositories
+    type: relational-database
+    name: Repositories Layer
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/Repositories/BuyerRepository.cs
+      containerId: ordering-infrastructure
+      technology: Entity Framework / DB Context
+      classification: database-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 5
+      loc: 53
+      sloc: 43
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+  - entityRef: eshop/ordering-infrastructure/mediatorextension
+    type: background-worker
+    name: MediatorExtension
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/MediatorExtension.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 1
+      loc: 22
+      sloc: 17
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+  - entityRef: eshop/ordering-infrastructure/orderingcontext
+    type: relational-database
+    name: OrderingContext
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/OrderingContext.cs
+      containerId: ordering-infrastructure
+      technology: Entity Framework / DB Context
+      classification: database-marker
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      functionCount: 8
+      loc: 116
+      sloc: 82
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.16666666666666666
+      sinceDays: 60
+  - entityRef: eshop/ordering-infrastructure/entityconfigurations
+    type: background-worker
+    name: EntityConfigurations Layer
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/EntityConfigurations/PaymentMethodEntityTypeConfiguration.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 47
+      sloc: 36
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/integrationeventlogef/eventstateenum
+    type: background-worker
+    name: EventStateEnum (External)
+    external: true
+    properties:
+      filepath: src/IntegrationEventLogEF/EventStateEnum.cs
+      containerId: integrationeventlogef
+      technology: C# Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: eshop/ordering-infrastructure/orderingcontext
+    to: eshop/integrationeventlogef/eventstateenum
+    type: direct-call
+    description: Calls module / service

@@ -7,7 +7,12 @@ import {
   type BuildRefactorPlanOptions,
 } from '../../../application/forensics/buildRefactorPlan';
 import type { RankedOffender } from '../../../application/forensics/rankOffenders';
-import { buildTraceLensUrl, currentTraceLensUrl, parseTraceLensUrl } from './traceLensUrl';
+import {
+  buildTraceLensUrl,
+  currentTraceLensUrl,
+  isTraceLensUrl,
+  parseTraceLensUrl,
+} from './traceLensUrl';
 
 type ActivePlan = ReturnType<typeof buildRefactorPlanForOffender> & {
   offender: RankedOffender;
@@ -60,7 +65,7 @@ export function useTraceLensUrlSync({
 
   // URL → UI (navigation, deep links, back/forward)
   useEffect(() => {
-    if (!location.startsWith('/tracelens')) return;
+    if (!isTraceLensUrl(location, search)) return;
 
     const browserUrl = currentTraceLensUrl(location, search);
     const pathnameChanged = prevPathnameRef.current !== location;
@@ -111,7 +116,7 @@ export function useTraceLensUrlSync({
 
   // Open source after entity plan is active (zustand + react state can desync on hydration).
   useEffect(() => {
-    if (!location.startsWith('/tracelens')) return;
+    if (!isTraceLensUrl(location, search)) return;
 
     const parsed = parseTraceLensUrl(location, search);
     if (!parsed.showSource || !activePlanEntityRef) return;
@@ -136,7 +141,7 @@ export function useTraceLensUrlSync({
 
   // UI → URL (user opened/closed plan or source)
   useEffect(() => {
-    if (!location.startsWith('/tracelens')) return;
+    if (!isTraceLensUrl(location, search)) return;
 
     const planChanged = prevPlanEntityRef.current !== activePlanEntityRef;
     const sourceChanged = prevSourceOpenRef.current !== isSourceCodeOpen;

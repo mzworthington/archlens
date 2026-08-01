@@ -15,8 +15,9 @@ export type OpenRefactorOnCanvasActions = {
 export function openRefactorOnCanvas(
   boundary: RefactorBoundary,
   offender: RankedOffender,
-  actions: OpenRefactorOnCanvasActions
+  actions: OpenRefactorOnCanvasActions & { setTraceLensMode?: (enabled: boolean) => void }
 ): void {
+  actions.setTraceLensMode?.(false);
   actions.selectSystem(offender.schemaPath);
   actions.selectNode(offender.entityRef);
   actions.setShowCoupling(true);

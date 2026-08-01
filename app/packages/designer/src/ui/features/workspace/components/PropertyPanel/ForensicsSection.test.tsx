@@ -17,7 +17,7 @@ describe('ForensicsSection', () => {
     );
 
     const link = screen.getByTestId('forensics-open-tracelens');
-    expect(link).toHaveAttribute('href', '/tracelens/app/designer/db');
+    expect(link).toHaveAttribute('href', '/workspace/app/designer/db?lens=tracelens');
   });
 
   it('renders readonly metrics and hotspot concern badge', () => {

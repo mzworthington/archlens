@@ -56,7 +56,7 @@ export type WorkspaceEntryPanelProps = {
   titleId?: string;
 };
 
-/** Shared workspace entry — open the bundled Golden Paths sample or a local blueprint folder. */
+/** Shared workspace entry — open the bundled demo blueprints or a local blueprint folder. */
 export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
@@ -102,9 +102,9 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
         >
           <Map className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
           <span>
-            <span className="block text-sm font-semibold text-slate-100">Open sample</span>
+            <span className="block text-sm font-semibold text-slate-100">Open demo blueprints</span>
             <span className="block text-xs text-slate-500 mt-0.5">
-              Golden Paths estate — same navigation as a folder workspace
+              All peer context diagrams (Blueprint, Backstage, Golden Paths, stress fixtures)
             </span>
           </span>
         </button>

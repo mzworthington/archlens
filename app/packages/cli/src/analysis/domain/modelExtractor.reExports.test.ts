@@ -40,14 +40,8 @@ describe('ModelExtractor re-exports', () => {
     ]);
 
     const fromBarrel = 'blueprint/app/core/import-iac';
-    const toTerraform = 'blueprint/app/core/terraformimport';
-    const toIacImport = 'blueprint/app/core/iacimport';
+    const toRules = 'blueprint/app/core/rules';
 
-    expect(componentDependencies.some(d => d.from === fromBarrel && d.to === toTerraform)).toBe(
-      true
-    );
-    expect(componentDependencies.some(d => d.from === fromBarrel && d.to === toIacImport)).toBe(
-      true
-    );
+    expect(componentDependencies.some(d => d.from === fromBarrel && d.to === toRules)).toBe(true);
   });
 });

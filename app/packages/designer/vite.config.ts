@@ -15,7 +15,76 @@ import {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoDocs = path.resolve(__dirname, '../../../docs');
 const repoSchemas = path.resolve(__dirname, '../../../schemas');
+const repoBlueprints = path.resolve(__dirname, '../../../blueprints');
+const bundledBlueprintsDest = path.resolve(__dirname, 'public/bundled-blueprints');
 const base = process.env.VITE_BASE || '/';
+
+function collectBundledBlueprintPaths(srcDir: string, relativePrefix = ''): string[] {
+  const paths: string[] = [];
+  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+    const from = path.join(srcDir, entry.name);
+    const relativePath = relativePrefix ? `${relativePrefix}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      paths.push(...collectBundledBlueprintPaths(from, relativePath));
+    } else if (entry.isFile() && (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml'))) {
+      paths.push(relativePath);
+    }
+  }
+  return paths;
+}
+
+function copyBundledBlueprintsTree(srcDir: string, destDir: string): void {
+  fs.mkdirSync(destDir, { recursive: true });
+  for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+    const from = path.join(srcDir, entry.name);
+    const to = path.join(destDir, entry.name);
+    if (entry.isDirectory()) {
+      copyBundledBlueprintsTree(from, to);
+    } else if (entry.isFile() && (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml'))) {
+      fs.mkdirSync(path.dirname(to), { recursive: true });
+      fs.copyFileSync(from, to);
+    }
+  }
+}
+
+/** Mirror repo `blueprints/` into `public/bundled-blueprints/` for static demo serving. */
+function syncBundledBlueprints(): Plugin {
+  let lastSyncKey = '';
+
+  const sync = () => {
+    if (!fs.existsSync(repoBlueprints)) {
+      throw new Error(`Missing repo blueprints directory: ${repoBlueprints}`);
+    }
+
+    const manifestPaths = collectBundledBlueprintPaths(repoBlueprints).sort();
+    const syncKey = manifestPaths.join('\n');
+    if (
+      syncKey === lastSyncKey &&
+      fs.existsSync(path.join(bundledBlueprintsDest, 'manifest.json'))
+    ) {
+      return;
+    }
+
+    fs.rmSync(bundledBlueprintsDest, { recursive: true, force: true });
+    copyBundledBlueprintsTree(repoBlueprints, bundledBlueprintsDest);
+    fs.writeFileSync(
+      path.join(bundledBlueprintsDest, 'manifest.json'),
+      JSON.stringify(manifestPaths, null, 2)
+    );
+    lastSyncKey = syncKey;
+  };
+
+  return {
+    name: 'sync-bundled-blueprints',
+    buildStart: sync,
+    configureServer(server) {
+      sync();
+      server.watcher.unwatch(bundledBlueprintsDest);
+    },
+  };
+}
 
 function resolveBuildId(): string {
   const fromCi = process.env.GITHUB_SHA?.slice(0, 12);
@@ -157,6 +226,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    syncBundledBlueprints(),
     syncDocsAssets(),
     syncJsonSchemas(),
     syncTreeSitterWasms(),
@@ -196,7 +266,7 @@ export default defineConfig({
       workbox: {
         // App shell + hashed bundles. Skip docs screenshots (large, non-critical offline).
         globPatterns: ['**/*.{js,css,html,ico,svg,woff2,webmanifest,png,wasm}'],
-        globIgnores: ['**/docs-assets/**', '**/schemas/**'],
+        globIgnores: ['**/docs-assets/**', '**/schemas/**', '**/bundled-blueprints/**'],
         navigateFallback: 'index.html',
         // Keep /schemas/* as real JSON (IDE validators + browser), not the SPA shell.
         navigateFallbackDenylist: [/^\/schemas\//],

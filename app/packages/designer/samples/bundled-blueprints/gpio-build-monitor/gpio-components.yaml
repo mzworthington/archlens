@@ -1,0 +1,284 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: application/gpio-build-monitor/gpio
+  name: Gpio Service Components
+  source:
+    remoteUrl: https://github.com/mzworthington/gpio-build-monitor
+    defaultBranch: main
+    scannedAtCommit: 1b7f029c3f56e5a0948c4f90660a71cd7561244b
+    scanRoot: .
+nodes:
+  - entityRef: application/gpio-build-monitor/gpio/board
+    type: background-worker
+    name: board Service
+    isTest: false
+    properties:
+      filepath: monitor/gpio/board.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      functionCount: 6
+      loc: 89
+      sloc: 67
+      churn: 1
+      lineChurn: 33
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
+      hotspotScore: 0.037815126050420166
+      sinceDays: 60
+  - entityRef: application/gpio-build-monitor/gpio/constants
+    type: background-worker
+    name: constants Service
+    isTest: false
+    properties:
+      filepath: monitor/gpio/constants.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    forensics:
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      functionCount: 4
+      loc: 47
+      sloc: 35
+      churn: 1
+      lineChurn: 44
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
+      hotspotScore: 0.08403361344537816
+      sinceDays: 60
+  - entityRef: application/gpio-build-monitor/gpio/gpio
+    type: background-worker
+    name: gpio Package
+    isTest: false
+    properties:
+      filepath: monitor/gpio/__init__.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 1
+      sloc: 0
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: application/gpio-build-monitor/gpio/test_board
+    type: background-worker
+    name: test_board Service
+    isTest: true
+    properties:
+      filepath: test/monitor/gpio/test_board.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 8
+      loc: 84
+      sloc: 70
+      churn: 1
+      lineChurn: 56
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: application/gpio-build-monitor/monitor/app
+    type: background-worker
+    name: app Service (External)
+    external: true
+    properties:
+      filepath: monitor/app.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -590
+      y: -204
+  - entityRef: application/gpio-build-monitor/monitor/build_monitor
+    type: background-worker
+    name: build_monitor Service (External)
+    external: true
+    properties:
+      filepath: monitor/build_monitor.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -130
+      y: -204
+  - entityRef: application/gpio-build-monitor/monitor/config
+    type: background-worker
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: monitor/config.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 330
+      y: -204
+  - entityRef: application/gpio-build-monitor/core/conftest
+    type: background-worker
+    name: conftest Service (External)
+    external: true
+    properties:
+      filepath: test/conftest.py
+      containerId: core
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: -204
+  - entityRef: application/gpio-build-monitor/mock/mock
+    type: background-worker
+    name: Mock Package (External)
+    external: true
+    properties:
+      filepath: monitor/gpio/Mock/__init__.py
+      containerId: mock
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: application/gpio-build-monitor/monitor/test_app
+    type: background-worker
+    name: test_app Service (External)
+    external: true
+    properties:
+      filepath: test/monitor/test_app.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 790
+      y: -204
+  - entityRef: application/gpio-build-monitor/monitor/test_build_monitor
+    type: background-worker
+    name: test_build_monitor Service (External)
+    external: true
+    properties:
+      filepath: test/monitor/test_build_monitor.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: -204
+dependencies:
+  - from: application/gpio-build-monitor/monitor/config
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/monitor/build_monitor
+    to: application/gpio-build-monitor/gpio/board
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/monitor/build_monitor
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/monitor/app
+    to: application/gpio-build-monitor/gpio/board
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/gpio/board
+    to: application/gpio-build-monitor/mock/mock
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/gpio/board
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/core/conftest
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/monitor/test_build_monitor
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/gpio/test_board
+    to: application/gpio-build-monitor/gpio/board
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/gpio/test_board
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/monitor/test_app
+    to: application/gpio-build-monitor/gpio/board
+    type: direct-call
+    description: Calls module / service
+  - from: application/gpio-build-monitor/monitor/test_app
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: Calls module / service

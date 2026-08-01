@@ -26,6 +26,11 @@ import {
   resolvePythonComponent,
 } from './pythonDependencies.ts';
 import {
+  isTypeScriptSourcePath,
+  resolveTypeScriptComponent,
+  resolveTypeScriptImportComponentId,
+} from './typescriptGrouping.ts';
+import {
   isNodeBuiltinModule,
   isRelativeImport,
   mergeContainerDependency,
@@ -185,12 +190,14 @@ export class ModelExtractor {
           continue;
         }
 
-        const toComponentId = slugify(
-          imp.moduleSpecifier
-            .split(/[\\/]/)
-            .pop()
-            ?.replace(/\.(ts|tsx|js|jsx|cs|py)$/, '') || ''
-        );
+        const toComponentId =
+          resolveTypeScriptImportComponentId(file.relativePath, imp.moduleSpecifier) ??
+          slugify(
+            imp.moduleSpecifier
+              .split(/[\\/]/)
+              .pop()
+              ?.replace(/\.(ts|tsx|js|jsx|cs|py)$/, '') || ''
+          );
         const toComponent = findComponent(fromContainerId, toComponentId);
         if (!toComponent) continue;
         const toContainerId = String(toComponent.properties?.containerId || '');
@@ -281,6 +288,10 @@ export class ModelExtractor {
 
     if (isPythonSourcePath(file.relativePath)) {
       return resolvePythonComponent(file.relativePath, file.baseName);
+    }
+
+    if (isTypeScriptSourcePath(file.relativePath)) {
+      return resolveTypeScriptComponent(file.relativePath, file.baseName);
     }
 
     return {

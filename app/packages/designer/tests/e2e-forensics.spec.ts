@@ -2,11 +2,11 @@ import { test, expect } from '@playwright/test';
 import { gotoApp } from './helpers/navigation';
 import { loadForensicsWorkspace, waitForForensicsOffenders } from './helpers/workspace';
 
-test.describe('TraceLens page', () => {
+test.describe('TraceLens lens', () => {
   test('renders the ranking shell', async ({ page }) => {
     await gotoApp(page, '/tracelens');
 
-    await expect(page).toHaveURL(/\/tracelens$/);
+    await expect(page).toHaveURL(/\/workspace\?lens=tracelens/);
     await expect(page.getByRole('heading', { name: 'Worst offenders' })).toBeVisible();
     await expect(page.getByRole('textbox', { name: 'Search offenders' })).toBeVisible();
   });
@@ -16,7 +16,7 @@ test.describe('TraceLens page', () => {
     await loadForensicsWorkspace(page);
     await page.getByRole('link', { name: 'TraceLens' }).click();
 
-    await expect(page).toHaveURL(/\/tracelens$/);
+    await expect(page).toHaveURL(/lens=tracelens/);
     await waitForForensicsOffenders(page);
   });
 });

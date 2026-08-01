@@ -115,6 +115,13 @@ nodes:
       topAuthorPercent: 0.88
       hotspotScore: 0.52
       classifications: [hotspot]
+      coupledFiles:
+        - path: src/Checkout.Api/Clients/PaymentGatewayClient.cs
+          score: 0.58
+          sharedCommits: 14
+        - path: src/Billing.Worker/Dunning/DunningPolicyEngine.cs
+          score: 0.67
+          sharedCommits: 12
       sinceDays: 365
   - entityRef: golden-paths/golden-journey/billing-platform/billing-worker/ledger-writer
     type: component

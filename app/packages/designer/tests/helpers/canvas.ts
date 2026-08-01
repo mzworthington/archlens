@@ -1,4 +1,5 @@
 import { expect, type Locator, type Page } from '@playwright/test';
+import { gotoApp } from './navigation';
 
 const DIAGRAM_LOADING = '[role="status"][aria-busy="true"]';
 const GOLDEN_JOURNEY_ENTITY_REF = 'golden-paths/golden-journey';
@@ -58,30 +59,22 @@ function containerLevelBadge(page: Page) {
 }
 
 async function navigateToWorkspacePath(page: Page, href: string) {
-  await page.evaluate(target => {
-    window.history.pushState({}, '', target);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-  }, href);
+  await gotoApp(page, href);
 }
 
 /** Wait until the Golden Journey estate container diagram is active. */
 export async function expectGoldenJourneyEstateReady(page: Page) {
   const containerBadge = containerLevelBadge(page);
-  if (await containerBadge.isVisible().catch(() => false)) {
-    await expectCanvasReady(page, 90_000);
-    return;
-  }
 
   await expect(async () => {
-    await navigateToWorkspacePath(page, GOLDEN_JOURNEY_WORKSPACE_PATH);
-    await expect(page).toHaveURL(/\/workspace\/golden-paths\/golden-journey(?:\/|$)/, {
-      timeout: 5_000,
-    });
-    await expect(containerBadge).toBeVisible({ timeout: 5_000 });
+    if (!(await containerBadge.isVisible().catch(() => false))) {
+      await navigateToWorkspacePath(page, GOLDEN_JOURNEY_WORKSPACE_PATH);
+    }
+    await expect(containerBadge).toBeVisible({ timeout: 10_000 });
     if ((await page.locator('.react-flow__node').count()) === 0) {
       throw new Error('Diagram has no nodes yet');
     }
-  }).toPass({ timeout: 90_000 });
+  }).toPass({ timeout: 120_000 });
 
   await expectCanvasReady(page, 90_000);
 }

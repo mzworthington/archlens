@@ -44,6 +44,28 @@ describe('golden-journey estate fixture', () => {
     expect(orderEvents.dependencies.some(d => d.type === 'publish-subscribe')).toBe(true);
   });
 
+  it('models temporal coupling on Payment Client for Coupling lens demos', () => {
+    const checkout = loadFixture('checkout-platform/checkout-api-components.yaml');
+    const paymentClient = checkout.nodes.find(
+      node => node.entityRef === `${CHECKOUT_API}/payment-client`
+    );
+    expect(paymentClient?.forensics?.coupledFiles?.length).toBeGreaterThanOrEqual(2);
+
+    const coupledPaths = paymentClient?.forensics?.coupledFiles?.map(c => c.path) ?? [];
+    expect(coupledPaths).toContain('src/Checkout.Api/Controllers/OrderController.cs');
+    expect(coupledPaths).toContain('src/Billing.Worker/Clients/PaymentRetryClient.cs');
+
+    const billing = loadFixture('billing-platform/billing-worker-components.yaml');
+    const paymentRetry = billing.nodes.find(node =>
+      node.entityRef?.endsWith('/payment-retry-client')
+    );
+    expect(
+      paymentRetry?.forensics?.coupledFiles?.some(
+        c => c.path === 'src/Checkout.Api/Clients/PaymentGatewayClient.cs'
+      )
+    ).toBe(true);
+  });
+
   it('models product personas linked to each platform on the estate', () => {
     const schema = loadFixture('containers.yaml');
     const personas = schema.nodes.filter(node => node.type === 'person');

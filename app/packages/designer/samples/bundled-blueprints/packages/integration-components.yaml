@@ -1,0 +1,3668 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/integration
+  name: Integration Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/integration/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: packages/integration/config.d.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 458
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/helpers
+    type: background-worker
+    name: helpers Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/helpers.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 140
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/bitbucketserverintegration-test
+    type: background-worker
+    name: BitbucketServerIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/BitbucketServerIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 101
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/core-test
+    type: background-worker
+    name: core.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/core.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 283
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/bitbucketserverintegration
+    type: background-worker
+    name: BitbucketServerIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketServer/BitbucketServerIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 84
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/core
+    type: background-worker
+    name: core Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketServer/core.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 156
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketServer/index.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/config
+    type: background-worker
+    name: config Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketServer/config.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 123
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/config-test
+    type: background-worker
+    name: config.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/bitbucketServer/config.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 165
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/defaultgitlabcredentialsprovider
+    type: background-worker
+    name: DefaultGitlabCredentialsProvider Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/gitlab/DefaultGitlabCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 57
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/gitlabintegration-test
+    type: background-worker
+    name: GitLabIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/gitlab/GitLabIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 597
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/gitlabintegration
+    type: background-worker
+    name: GitLabIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/gitlab/GitLabIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 223
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/gitlab/types.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 30
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/singleinstancegitlabcredentialsprovider
+    type: background-worker
+    name: SingleInstanceGitlabCredentialsProvider Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/gitlab/SingleInstanceGitlabCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 43
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/bitbucketcloudintegration-test
+    type: background-worker
+    name: BitbucketCloudIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/bitbucketCloud/BitbucketCloudIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 72
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/bitbucketcloudintegration
+    type: background-worker
+    name: BitbucketCloudIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/bitbucketCloud/BitbucketCloudIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 85
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/managedidentityclientassertion-test
+    type: background-worker
+    name: ManagedIdentityClientAssertion.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/ManagedIdentityClientAssertion.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 124
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/clientassertion
+    type: background-worker
+    name: ClientAssertion Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/ClientAssertion.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 26
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/managedidentityclientassertion
+    type: background-worker
+    name: ManagedIdentityClientAssertion Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/ManagedIdentityClientAssertion.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 75
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/cachedazuredevopscredentialsprovider
+    type: cache-store
+    name: CachedAzureDevOpsCredentialsProvider Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/CachedAzureDevOpsCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 146
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/cachedazuredevopscredentialsprovider-test
+    type: cache-store
+    name: CachedAzureDevOpsCredentialsProvider.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/CachedAzureDevOpsCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 262
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/defaultazuredevopscredentialsprovider-test
+    type: background-worker
+    name: DefaultAzureDevOpsCredentialsProvider.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/DefaultAzureDevOpsCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 469
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/defaultazuredevopscredentialsprovider
+    type: background-worker
+    name: DefaultAzureDevOpsCredentialsProvider Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/DefaultAzureDevOpsCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 145
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/azureintegration
+    type: background-worker
+    name: AzureIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/AzureIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 98
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/azureurl-test
+    type: background-worker
+    name: AzureUrl.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/AzureUrl.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 322
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/azureurl
+    type: background-worker
+    name: AzureUrl Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azure/AzureUrl.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 294
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/azureintegration-test
+    type: background-worker
+    name: AzureIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azure/AzureIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 135
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/awscodecommitintegration-test
+    type: background-worker
+    name: AwsCodeCommitIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/awsCodeCommit/AwsCodeCommitIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 108
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/awscodecommitintegration
+    type: background-worker
+    name: AwsCodeCommitIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/awsCodeCommit/AwsCodeCommitIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 97
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/setupTests.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 18
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/harnessintegration
+    type: background-worker
+    name: HarnessIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/harness/HarnessIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 58
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/harnessintegration-test
+    type: background-worker
+    name: HarnessIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/harness/HarnessIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 123
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/giteaintegration-test
+    type: background-worker
+    name: GiteaIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/gitea/GiteaIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 128
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/giteaintegration
+    type: background-worker
+    name: GiteaIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/gitea/GiteaIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 58
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/scmintegrations-test
+    type: background-worker
+    name: ScmIntegrations.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/ScmIntegrations.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 200
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/singleinstancegithubcredentialsprovider
+    type: background-worker
+    name: SingleInstanceGithubCredentialsProvider Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/SingleInstanceGithubCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 390
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/githubintegration
+    type: background-worker
+    name: GithubIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/GithubIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 101
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/githubintegration-test
+    type: background-worker
+    name: GithubIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/github/GithubIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 137
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/singleinstancegithubcredentialsprovider-test
+    type: background-worker
+    name: SingleInstanceGithubCredentialsProvider.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/github/SingleInstanceGithubCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 976
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    type: background-worker
+    name: DefaultGithubCredentialsProvider.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/github/DefaultGithubCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 16
+      loc: 375
+      sloc: 329
+      churn: 8
+      lineChurn: 538
+      churn30: 7
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 6
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.875
+      authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 7
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.005812697177924715
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/defaultgithubcredentialsprovider
+    type: background-worker
+    name: DefaultGithubCredentialsProvider Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/DefaultGithubCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 49
+      functionCount: 7
+      loc: 185
+      sloc: 105
+      churn: 11
+      lineChurn: 330
+      churn30: 8
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 1
+        - 0
+        - 7
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9090909090909091
+      authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 10
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.019609749773110332
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/registry
+    type: background-worker
+    name: registry Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/registry.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 87
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/helpers-test
+    type: background-worker
+    name: helpers.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/helpers.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 416
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/gerritintegration
+    type: background-worker
+    name: GerritIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/gerrit/GerritIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 90
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/gerritintegration-test
+    type: background-worker
+    name: GerritIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/gerrit/GerritIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 174
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/creategithubcredentialsproviderfromconnection
+    type: background-worker
+    name: createGitHubCredentialsProviderFromConnection Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/alpha/github/createGitHubCredentialsProviderFromConnection.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/scmintegrations
+    type: background-worker
+    name: ScmIntegrations Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/ScmIntegrations.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 172
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/awss3integration
+    type: background-worker
+    name: AwsS3Integration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/awsS3/AwsS3Integration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 64
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/awss3integration-test
+    type: background-worker
+    name: AwsS3Integration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/awsS3/AwsS3Integration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 72
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/googlegcsintegration-test
+    type: background-worker
+    name: GoogleGcsIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/googleGcs/GoogleGcsIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 80
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/googlegcsintegration
+    type: background-worker
+    name: GoogleGcsIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/googleGcs/GoogleGcsIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 71
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/azureblobstorageintegration-test
+    type: background-worker
+    name: AzureBlobStorageIntegration.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azureBlobStorage/AzureBlobStorageIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 78
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/defaultazurecredentialsprovider
+    type: background-worker
+    name: DefaultAzureCredentialsProvider Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azureBlobStorage/DefaultAzureCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 97
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/azureblobstorageintegration
+    type: background-worker
+    name: AzureBlobStorageIntegration Service
+    isTest: false
+    properties:
+      filepath: packages/integration/src/azureBlobStorage/AzureBlobStorageIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 88
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/integration/defaultazurecredentialsmanager-test
+    type: background-worker
+    name: DefaultAzureCredentialsManager.test Service
+    isTest: true
+    properties:
+      filepath: packages/integration/src/azureBlobStorage/DefaultAzureCredentialsManager.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 149
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/connections/awscodecommit
+    type: background-worker
+    name: awsCodeCommit Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/awsCodeCommit.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/awscodecommiturlreader
+    type: background-worker
+    name: AwsCodeCommitUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -5650
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/awscodecommiturlreader-test
+    type: background-worker
+    name: AwsCodeCommitUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsCodeCommitUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -5190
+      y: -204
+  - entityRef: backstage/packages/connections/awss3
+    type: background-worker
+    name: awsS3 Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/awsS3.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/awss3urlreader
+    type: background-worker
+    name: AwsS3UrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4730
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/awss3urlreader-test
+    type: background-worker
+    name: AwsS3UrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AwsS3UrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4270
+      y: -204
+  - entityRef: backstage/packages/connections/azure
+    type: background-worker
+    name: azure Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/azure.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/packages/connections/azureblobstorage
+    type: background-worker
+    name: azureBlobStorage Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/azureBlobStorage.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/azureblobstorageurlreader
+    type: background-worker
+    name: AzureBlobStorageUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureBlobStorageUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3810
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/azureblobstorageurlreader-test
+    type: background-worker
+    name: AzureBlobStorageUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureBlobStorageUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3350
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/azureurlreader
+    type: background-worker
+    name: AzureUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2890
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/azureurlreader-test
+    type: background-worker
+    name: AzureUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/AzureUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
+      y: -204
+  - entityRef: backstage/packages/connections/bitbucketcloud
+    type: background-worker
+    name: bitbucketCloud Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/bitbucketCloud.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/bitbucketcloudurlreader
+    type: background-worker
+    name: BitbucketCloudUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketCloudUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1970
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/bitbucketcloudurlreader-test
+    type: background-worker
+    name: BitbucketCloudUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketCloudUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: -204
+  - entityRef: backstage/packages/connections/bitbucketserver
+    type: background-worker
+    name: bitbucketServer Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/bitbucketServer.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/bitbucketserverurlreader
+    type: background-worker
+    name: BitbucketServerUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketServerUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/bitbucketserverurlreader-test
+    type: background-worker
+    name: BitbucketServerUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/BitbucketServerUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: -204
+  - entityRef: backstage/packages/integration-react/devpage
+    type: background-worker
+    name: DevPage Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-react/dev/DevPage.tsx
+      containerId: integration-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4930
+      y: -204
+  - entityRef: backstage/packages/connections/gerrit
+    type: background-worker
+    name: gerrit Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/gerrit.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/gerriturlreader
+    type: background-worker
+    name: GerritUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GerritUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/gerriturlreader-test
+    type: background-worker
+    name: GerritUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GerritUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: -204
+  - entityRef: backstage/packages/connections/gitea
+    type: background-worker
+    name: gitea Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/gitea.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/giteaurlreader
+    type: background-worker
+    name: GiteaUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GiteaUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/giteaurlreader-test
+    type: background-worker
+    name: GiteaUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GiteaUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: -204
+  - entityRef: backstage/packages/connections/github
+    type: background-worker
+    name: github Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/github.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/githuburlreader
+    type: background-worker
+    name: GithubUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GithubUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/githuburlreader-test
+    type: background-worker
+    name: GithubUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GithubUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2170
+      y: -204
+  - entityRef: backstage/packages/connections/gitlab
+    type: background-worker
+    name: gitlab Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/gitlab.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/gitlaburlreader
+    type: background-worker
+    name: GitlabUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GitlabUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2630
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/gitlaburlreader-test
+    type: background-worker
+    name: GitlabUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GitlabUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3090
+      y: -204
+  - entityRef: backstage/packages/connections/googlegcs
+    type: background-worker
+    name: googleGcs Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/googleGcs.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2400
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/googlegcsurlreader
+    type: background-worker
+    name: GoogleGcsUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/GoogleGcsUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3550
+      y: -204
+  - entityRef: backstage/packages/connections/harness
+    type: background-worker
+    name: harness Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/schema/harness.ts
+      containerId: connections
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2860
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/harnessurlreader
+    type: background-worker
+    name: HarnessUrlReader Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/HarnessUrlReader.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4010
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/harnessurlreader-test
+    type: background-worker
+    name: HarnessUrlReader.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/HarnessUrlReader.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4470
+      y: -204
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2660
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -3580
+      y: 404
+  - entityRef: backstage/packages/config-loader/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/schema/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3120
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3780
+      y: 404
+  - entityRef: backstage/packages/connections/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/api/index.ts
+      containerId: connections
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 3320
+      y: 404
+  - entityRef: backstage/packages/integration-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-react/dev/index.tsx
+      containerId: integration-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 5390
+      y: -204
+  - entityRef: backstage/packages/integration-react/scmintegrationsapi
+    type: rest-api
+    name: ScmIntegrationsApi Service (External)
+    external: true
+    properties:
+      filepath: packages/integration-react/src/api/ScmIntegrationsApi.ts
+      containerId: integration-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 5850
+      y: -204
+dependencies:
+  - from: backstage/packages/integration/helpers
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserverintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/bitbucketserverintegration-test
+    to: backstage/packages/integration/bitbucketserverintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserverintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserverintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketserverintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/bitbucketserverintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/config
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgitlabcredentialsprovider
+    to: backstage/packages/integration/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgitlabcredentialsprovider
+    to: backstage/packages/integration/singleinstancegitlabcredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgitlabcredentialsprovider
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gitlabintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/gitlabintegration-test
+    to: backstage/packages/integration/gitlabintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gitlabintegration-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/integration/gitlabintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gitlabintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gitlabintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/singleinstancegitlabcredentialsprovider
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/singleinstancegitlabcredentialsprovider
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/gitlabintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/defaultgitlabcredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketcloudintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/bitbucketcloudintegration-test
+    to: backstage/packages/integration/bitbucketcloudintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketcloudintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketcloudintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/bitbucketcloudintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/bitbucketcloudintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/managedidentityclientassertion-test
+    to: backstage/packages/integration/managedidentityclientassertion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/managedidentityclientassertion
+    to: backstage/packages/integration/clientassertion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/cachedazuredevopscredentialsprovider
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/cachedazuredevopscredentialsprovider
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/cachedazuredevopscredentialsprovider
+    to: backstage/packages/integration/managedidentityclientassertion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/cachedazuredevopscredentialsprovider-test
+    to: backstage/packages/integration/cachedazuredevopscredentialsprovider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider-test
+    to: backstage/packages/integration/scmintegrations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider-test
+    to: backstage/packages/integration/cachedazuredevopscredentialsprovider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider-test
+    to: backstage/packages/integration/defaultazuredevopscredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/azureurl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider
+    to: backstage/packages/integration/cachedazuredevopscredentialsprovider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider
+    to: backstage/packages/integration/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazuredevopscredentialsprovider
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureintegration
+    to: backstage/packages/integration/azureurl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureurl-test
+    to: backstage/packages/integration/azureurl
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureurl
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/azureintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/defaultazuredevopscredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/azureintegration-test
+    to: backstage/packages/integration/azureintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awscodecommitintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/awscodecommitintegration-test
+    to: backstage/packages/integration/awscodecommitintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awscodecommitintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awscodecommitintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awscodecommitintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/awscodecommitintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/types
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/harnessintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/harnessintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/harnessintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/harnessintegration
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/harnessintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/harnessintegration-test
+    to: backstage/packages/integration/harnessintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/harnessintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/giteaintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/giteaintegration-test
+    to: backstage/packages/integration/giteaintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/giteaintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/giteaintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/giteaintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/giteaintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/giteaintegration
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/awss3
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/integration/awss3integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/azure
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/integration/azureintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/bitbucketcloud
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/bitbucketserver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/integration/gerritintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/github
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/integration/githubintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/integration/gitlabintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/integration/scmintegrations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/integration/awscodecommitintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/awscodecommit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/harness
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/azureblobstorage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations-test
+    to: backstage/packages/connections/googlegcs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/singleinstancegithubcredentialsprovider
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/singleinstancegithubcredentialsprovider
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/githubintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/githubintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/githubintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/githubintegration
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/integration/githubintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/githubintegration-test
+    to: backstage/packages/integration/githubintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/singleinstancegithubcredentialsprovider-test
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/singleinstancegithubcredentialsprovider-test
+    to: backstage/packages/integration/singleinstancegithubcredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/integration/scmintegrations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/integration/singleinstancegithubcredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/integration/defaultgithubcredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider
+    to: backstage/packages/integration/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider
+    to: backstage/packages/integration/singleinstancegithubcredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider
+    to: backstage/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/integration/defaultgithubcredentialsprovider
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/defaultgithubcredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/singleinstancegithubcredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/githubintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/awss3integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/connections/awscodecommit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/azureintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/bitbucketcloudintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/bitbucketserverintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/gerritintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/githubintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/gitlabintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/giteaintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/integration/harnessintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/registry
+    to: backstage/packages/connections/azureblobstorage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/helpers-test
+    to: backstage/packages/connections/bitbucketserver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/helpers-test
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/awss3
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/awscodecommit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/azureblobstorage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/azure
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/bitbucketcloud
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/bitbucketserver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/gerrit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/github
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/googlegcs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/connections/harness
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/scmintegrations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/scmintegrations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core-test
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/core
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gerritintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gerritintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gerritintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gerritintegration
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/gerritintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/gerritintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/gerritintegration-test
+    to: backstage/packages/integration/gerritintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/creategithubcredentialsproviderfromconnection
+    to: backstage/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: backstage/packages/integration/creategithubcredentialsproviderfromconnection
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/creategithubcredentialsproviderfromconnection
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/awss3integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/awscodecommitintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/azureintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/bitbucketcloudintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/bitbucketserverintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/gerritintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/githubintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/gitlabintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/connections/gitea
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/harnessintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/connections/azureblobstorage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/scmintegrations
+    to: backstage/packages/integration/googlegcsintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3integration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3integration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3integration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/awss3integration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/awss3integration-test
+    to: backstage/packages/integration/awss3integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/awss3integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/googlegcsintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/googlegcsintegration-test
+    to: backstage/packages/integration/googlegcsintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/googlegcsintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/googlegcsintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/googlegcsintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/googlegcsintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureblobstorageintegration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/azureblobstorageintegration-test
+    to: backstage/packages/integration/azureblobstorageintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazurecredentialsprovider
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazurecredentialsprovider
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazurecredentialsprovider
+    to: backstage/packages/integration/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureblobstorageintegration
+    to: backstage/packages/integration/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureblobstorageintegration
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/azureblobstorageintegration
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazurecredentialsmanager-test
+    to: backstage/packages/integration/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazurecredentialsmanager-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/defaultazurecredentialsmanager-test
+    to: backstage/packages/integration/defaultazurecredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/defaultazurecredentialsmanager-test
+    to: backstage/packages/integration/scmintegrations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/azureblobstorageintegration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/defaultazurecredentialsprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/index
+    to: backstage/packages/integration/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/config-test
+    to: backstage/packages/integration/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/azureurlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/googlegcsurlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/gitlaburlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/bitbucketcloudurlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/azureurlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/awss3urlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/bitbucketserverurlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/awss3urlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/gerriturlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/awscodecommiturlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/githuburlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/gitlaburlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/giteaurlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/githuburlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/azureblobstorageurlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/bitbucketserverurlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/harnessurlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/gerriturlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/bitbucketcloudurlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/awscodecommiturlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/giteaurlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/harnessurlreader
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/backend-defaults/azureblobstorageurlreader-test
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/integration-react/index
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/integration-react/devpage
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'
+  - from: backstage/packages/integration-react/scmintegrationsapi
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'

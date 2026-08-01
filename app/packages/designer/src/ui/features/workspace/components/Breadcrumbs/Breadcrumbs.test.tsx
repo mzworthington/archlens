@@ -522,4 +522,67 @@ describe('Breadcrumbs Component', () => {
     const rootLink = rootLinks.find(el => el.closest('a'))?.closest('a');
     expect(rootLink).toHaveAttribute('href', '/workspace/enterprise');
   });
+
+  it('lists peer context diagrams from the workspace catalog before they are lazy-loaded', () => {
+    const goldenPathsSchema = {
+      name: 'Golden Paths',
+      version: '1.0.0',
+      level: 'context' as const,
+      entityRef: 'golden-paths',
+      nodes: [],
+      dependencies: [],
+    };
+
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      isSampleWorkspace: true,
+      workspaceName: 'blueprints',
+      currentFilePath: 'golden-journey/context.yaml',
+      schema: goldenPathsSchema,
+      loadedSystems: [
+        {
+          path: 'golden-journey/context.yaml',
+          name: 'Golden Paths',
+          schema: goldenPathsSchema,
+        },
+      ],
+      workspaceCatalog: [
+        {
+          path: 'golden-journey/context.yaml',
+          name: 'Golden Paths',
+          level: 'context',
+          entityRef: 'golden-paths',
+          nodeEntityRefs: [],
+        },
+        {
+          path: 'backstage/context.yaml',
+          name: 'Backstage',
+          level: 'context',
+          entityRef: 'backstage',
+          nodeEntityRefs: [],
+        },
+        {
+          path: 'blueprint/context.yaml',
+          name: 'Blueprint',
+          level: 'context',
+          entityRef: 'blueprint',
+          nodeEntityRefs: [],
+        },
+      ],
+    });
+
+    render(<Breadcrumbs />);
+
+    fireEvent.click(screen.getByTitle('Other Context systems'));
+
+    expect(screen.getByText('Other Context Levels')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Backstage' })).toHaveAttribute(
+      'href',
+      '/workspace/backstage'
+    );
+    expect(screen.getByRole('link', { name: 'Blueprint' })).toHaveAttribute(
+      'href',
+      '/workspace/blueprint'
+    );
+  });
 });
