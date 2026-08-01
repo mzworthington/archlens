@@ -67,4 +67,11 @@ describe('BundledSampleWorkspaceAdapter', () => {
     const content = await BundledSampleWorkspaceAdapter.readFile('backstage/context.yaml');
     expect(content).toContain('entityRef: backstage');
   });
+
+  it('rejects non-blueprint source paths so callers can fall back to git raw', async () => {
+    const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
+    await expect(
+      BundledSampleWorkspaceAdapter.readFile('app/packages/designer/src/foo.ts')
+    ).rejects.toThrow(/only contains blueprint/i);
+  });
 });

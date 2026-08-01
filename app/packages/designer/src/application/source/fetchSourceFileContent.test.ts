@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { fetchSourceFileContent } from './fetchSourceFileContent';
+import { fetchSourceFileContent, looksLikeSpaHtmlFallback } from './fetchSourceFileContent';
 import type { SourceProvenance } from '@archlens/core';
 
 const source: SourceProvenance = {
@@ -46,6 +46,28 @@ describe('fetchSourceFileContent', () => {
     expect(fetchText).toHaveBeenCalledWith(
       'https://raw.githubusercontent.com/org/repo/abc123/app/packages/cli/foo.ts'
     );
+  });
+
+  it('falls back to raw URL when local read returns SPA HTML', async () => {
+    const readLocalFile = vi.fn().mockResolvedValue('<!doctype html><html><head></head></html>');
+    const fetchText = vi.fn().mockResolvedValue('export function useSearchbar() {}');
+
+    const result = await fetchSourceFileContent(source, 'packages/designer/foo.ts', {
+      readLocalFile,
+      fetchText,
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.origin).toBe('remote');
+      expect(result.content).toBe('export function useSearchbar() {}');
+    }
+    expect(fetchText).toHaveBeenCalled();
+  });
+
+  it('detects SPA HTML fallbacks for non-html paths', () => {
+    expect(looksLikeSpaHtmlFallback('<!doctype html><html></html>', 'src/a.ts')).toBe(true);
+    expect(looksLikeSpaHtmlFallback('export const x = 1;', 'src/a.ts')).toBe(false);
   });
 
   it('returns a helpful error when no source metadata exists', async () => {

@@ -46,6 +46,10 @@ export type ComponentNodeData = {
   blastRipple?: boolean;
   /** True when outside the active ChaosLens simulation scope (display-only). */
   resilienceOutOfScope?: boolean;
+  /** Ephemeral grouped external boundary (display-only). */
+  externalSummaryHub?: boolean;
+  externalSummaryBand?: 'callers' | 'targets';
+  externalSummaryCount?: number;
 };
 
 /** Canvas node DTO - structurally compatible with React Flow Node. */

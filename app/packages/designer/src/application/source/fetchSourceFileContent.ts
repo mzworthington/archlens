@@ -38,6 +38,14 @@ const defaultFetchText = async (url: string): Promise<string> => {
   return response.text();
 };
 
+/** Vite (and similar dev servers) return index.html with 200 for unknown asset paths. */
+export function looksLikeSpaHtmlFallback(content: string, requestedPath: string): boolean {
+  const head = content.trimStart().slice(0, 256).toLowerCase();
+  if (!head.startsWith('<!doctype html') && !head.startsWith('<html')) return false;
+  const ext = requestedPath.split('.').pop()?.toLowerCase();
+  return ext !== 'html' && ext !== 'htm';
+}
+
 /**
  * Load source text for a node filepath: prefer local workspace file, then git raw URL.
  */
@@ -60,6 +68,9 @@ export async function fetchSourceFileContent(
   if (deps.readLocalFile) {
     try {
       const content = await deps.readLocalFile(repoRelativePath);
+      if (looksLikeSpaHtmlFallback(content, repoRelativePath)) {
+        throw new Error('Received HTML instead of source file.');
+      }
       return {
         ok: true,
         content,

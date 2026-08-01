@@ -1,5 +1,5 @@
 import type { LayoutEngineId } from '../../../core';
-import type { SourceProvenance } from '@archlens/core';
+import type { ExternalSummaryBand, SourceProvenance } from '@archlens/core';
 
 export interface ToastAction {
   label: string;
@@ -35,6 +35,7 @@ export interface UiState {
   isShortcutsOpen: boolean;
   isDisplaySettingsOpen: boolean;
   childExternalsParentRef: string | null;
+  expandedExternalHub: ExternalSummaryBand | null;
   isSourceCodeOpen: boolean;
   sourceCodeFilepath: string | null;
   sourceCodeProvenance: SourceProvenance | null;
@@ -68,6 +69,7 @@ export interface UiState {
   setIsDisplaySettingsOpen: (open: boolean) => void;
   openChildLevelExternals: (parentEntityRef: string) => void;
   closeChildLevelExternals: () => void;
+  setExpandedExternalHub: (band: ExternalSummaryBand | null) => void;
   openSourceCodeDialog: (filepath: string, source?: SourceProvenance) => void;
   closeSourceCodeDialog: () => void;
   setNotification: (notification: ToastNotification | null) => void;
@@ -101,6 +103,7 @@ export const createUiState = (
   isShortcutsOpen: false,
   isDisplaySettingsOpen: false,
   childExternalsParentRef: null,
+  expandedExternalHub: null,
   isSourceCodeOpen: false,
   sourceCodeFilepath: null,
   sourceCodeProvenance: null,
@@ -138,6 +141,7 @@ export const createUiState = (
   setIsDisplaySettingsOpen: open => set({ isDisplaySettingsOpen: open }),
   openChildLevelExternals: parentEntityRef => set({ childExternalsParentRef: parentEntityRef }),
   closeChildLevelExternals: () => set({ childExternalsParentRef: null }),
+  setExpandedExternalHub: band => set({ expandedExternalHub: band }),
   openSourceCodeDialog: (filepath, source) =>
     set({
       isSourceCodeOpen: true,

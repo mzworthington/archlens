@@ -180,6 +180,10 @@ export function buildCouplingSchemaDependencyEdges(
   for (const dep of dependencies) {
     if (!focusRefs.has(dep.from) || !focusRefs.has(dep.to)) continue;
 
+    const selected = nodes.find(n => n.id === selectedNodeId);
+    const selectedRef = selected?.data.entityRef;
+    if (selectedRef && dep.from !== selectedRef && dep.to !== selectedRef) continue;
+
     const sourceId = entityRefToNodeId.get(dep.from);
     const targetId = entityRefToNodeId.get(dep.to);
     if (!sourceId || !targetId) continue;
@@ -279,6 +283,10 @@ export function filterCouplingFocusNodes(
   workspaceIndex?: WorkspaceFilepathIndex
 ): BlueprintRFNode[] {
   if (!enabled || !selectedNodeId) return nodes;
+
+  const selected = nodes.find(n => n.id === selectedNodeId);
+  // Cross-diagram externals are not temporal-coupling peers; keep the canvas stable when one is selected.
+  if (selected?.data.external) return nodes;
 
   const refs = resolveCouplingEdges(selectedNodeId, nodes, workspaceIndex);
   const peerIds = new Set(refs.map(ref => ref.targetId));

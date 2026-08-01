@@ -29,9 +29,17 @@ async function loadManifest(): Promise<string[]> {
 }
 
 async function fetchBlueprintContent(relativePath: string): Promise<string> {
-  const response = await fetch(bundledAssetUrl(relativePath));
+  const manifest = await loadManifest();
+  const normalized = relativePath.replace(/\\/g, '/').replace(/^\.\//, '');
+  if (!manifest.includes(normalized)) {
+    throw new Error(
+      `Bundled workspace only contains blueprint YAML files (missing: ${normalized})`
+    );
+  }
+
+  const response = await fetch(bundledAssetUrl(normalized));
   if (!response.ok) {
-    throw new Error(`Bundled blueprint not found: ${relativePath} (${response.status})`);
+    throw new Error(`Bundled blueprint not found: ${normalized} (${response.status})`);
   }
   return response.text();
 }

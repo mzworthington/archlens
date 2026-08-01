@@ -71,6 +71,9 @@ export const Canvas: React.FC = () => {
     redo,
     recordHistory,
     addNode,
+    expandedExternalHub,
+    setExpandedExternalHub,
+    expandExternalSummaryHub,
   } = useBlueprintStore(
     useShallow(state => ({
       nodes: state.nodes,
@@ -111,7 +114,31 @@ export const Canvas: React.FC = () => {
       redo: state.redo,
       recordHistory: state.recordHistory,
       addNode: state.addNode,
+      expandedExternalHub: state.expandedExternalHub,
+      setExpandedExternalHub: state.setExpandedExternalHub,
+      expandExternalSummaryHub: state.expandExternalSummaryHub,
     }))
+  );
+
+  const externalSummaryContext = useMemo(
+    () => ({
+      schema,
+      loadedSystems,
+      allNodes: nodes,
+      allEdges: edges,
+      showUpstreamExternals,
+      showDownstreamExternals,
+      expandedExternalHub,
+    }),
+    [
+      schema,
+      loadedSystems,
+      nodes,
+      edges,
+      showUpstreamExternals,
+      showDownstreamExternals,
+      expandedExternalHub,
+    ]
   );
 
   const nodeTypes = useMemo(
@@ -149,6 +176,8 @@ export const Canvas: React.FC = () => {
       buildCanvasVisibleNodes({
         nodes,
         edges,
+        schema,
+        loadedSystems,
         showTests,
         showUpstreamExternals,
         showDownstreamExternals,
@@ -156,10 +185,14 @@ export const Canvas: React.FC = () => {
         showSelectedDependenciesOnly,
         isResilienceMode,
         simulationScopeSet,
+        showCoupling,
+        expandedExternalHub,
       }),
     [
       nodes,
       edges,
+      schema,
+      loadedSystems,
       showTests,
       showUpstreamExternals,
       showDownstreamExternals,
@@ -167,6 +200,8 @@ export const Canvas: React.FC = () => {
       showSelectedDependenciesOnly,
       isResilienceMode,
       simulationScopeSet,
+      showCoupling,
+      expandedExternalHub,
     ]
   );
 
@@ -229,6 +264,7 @@ export const Canvas: React.FC = () => {
         resilienceSimulationResult,
         resilienceSimulationScope,
         blastRipple,
+        externalSummary: externalSummaryContext,
       }),
     [
       filteredNodes,
@@ -247,6 +283,7 @@ export const Canvas: React.FC = () => {
       resilienceSimulationResult,
       resilienceSimulationScope,
       blastRipple,
+      externalSummaryContext,
     ]
   );
 
@@ -271,6 +308,7 @@ export const Canvas: React.FC = () => {
         reduceMotion,
         isResilienceMode,
         propagationEdgeKeys: blastRipple.propagationEdgeKeys,
+        externalSummary: externalSummaryContext,
       }),
     [
       filteredEdges,
@@ -291,6 +329,7 @@ export const Canvas: React.FC = () => {
       reduceMotion,
       isResilienceMode,
       blastRipple.propagationEdgeKeys,
+      externalSummaryContext,
     ]
   );
 
@@ -306,6 +345,19 @@ export const Canvas: React.FC = () => {
         onConnect={onConnect}
         onNodeClick={(event, node) => {
           event.stopPropagation();
+          if (node.data?.externalSummaryHub) {
+            const band = node.data.externalSummaryBand as 'callers' | 'targets' | undefined;
+            if (!band) return;
+            if (expandedExternalHub === band) {
+              setExpandedExternalHub(null);
+              selectNode(null);
+              return;
+            }
+            expandExternalSummaryHub(band);
+            selectNode(null);
+            return;
+          }
+          setExpandedExternalHub(null);
           selectNode(node.id);
         }}
         onEdgeClick={(event, edge) => {
@@ -315,6 +367,7 @@ export const Canvas: React.FC = () => {
         onPaneClick={() => {
           selectNode(null);
           selectEdge(null);
+          setExpandedExternalHub(null);
         }}
         onNodeDragStart={() => recordHistory()}
         onNodeDoubleClick={(_, node) => {

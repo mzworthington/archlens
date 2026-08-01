@@ -41,9 +41,11 @@ export function createCanvasGraphActions(set: SetFn, get: GetFn) {
 
     onEdgesChange: (changes: CanvasEdgeChange[]) => {
       // Coupling overlays are display-only (id prefix `coupling-`) and must not mutate schema edges.
-      const persistedChanges = changes.filter(
-        change => !('id' in change) || !String(change.id).startsWith('coupling-')
-      );
+      const persistedChanges = changes.filter(change => {
+        if (!('id' in change)) return true;
+        const edgeId = String(change.id);
+        return !edgeId.startsWith('coupling-') && !edgeId.startsWith('external-summary-');
+      });
       if (persistedChanges.length === 0) return;
       const hasRemoval = persistedChanges.some(c => c.type === 'remove');
       if (hasRemoval) {
