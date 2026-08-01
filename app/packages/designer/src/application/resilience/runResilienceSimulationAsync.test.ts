@@ -1,6 +1,6 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { SystemSchema } from '@archlens/core';
-import * as wasmClient from '../../infrastructure/resilience/wasmClient';
+import type { ResilienceEnginePort } from '../../core';
 import { runResilienceSimulationAsync } from './runResilienceSimulationAsync';
 
 const schema: SystemSchema = {
@@ -14,20 +14,20 @@ const schema: SystemSchema = {
   dependencies: [{ from: 'shop/web', to: 'shop/payment', type: 'direct-call' }],
 };
 
+const unavailableEngine: ResilienceEnginePort = {
+  runSimulation: async () => null,
+};
+
 describe('runResilienceSimulationAsync', () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  beforeEach(() => {
-    vi.spyOn(wasmClient, 'runResilienceWasmSimulation').mockResolvedValue(null);
-  });
-
   it('falls back to the TypeScript engine when WASM is unavailable', async () => {
-    const result = await runResilienceSimulationAsync(schema, {
-      faults: [{ nodeId: 'shop/payment', faultType: 'region-outage' }],
-      entryPoints: ['shop/web'],
-    });
+    const result = await runResilienceSimulationAsync(
+      schema,
+      {
+        faults: [{ nodeId: 'shop/payment', faultType: 'region-outage' }],
+        entryPoints: ['shop/web'],
+      },
+      { engine: unavailableEngine }
+    );
 
     expect(result.engine).toBe('typescript');
     expect(result.overallSla).toBeLessThan(100);
@@ -35,15 +35,21 @@ describe('runResilienceSimulationAsync', () => {
   });
 
   it('propagates WASM simulation errors instead of falling back', async () => {
-    vi.spyOn(wasmClient, 'runResilienceWasmSimulation').mockRejectedValueOnce(
-      new Error('sim failed')
-    );
+    const engine: ResilienceEnginePort = {
+      runSimulation: async () => {
+        throw new Error('sim failed');
+      },
+    };
 
     await expect(
-      runResilienceSimulationAsync(schema, {
-        faults: [{ nodeId: 'shop/payment', faultType: 'region-outage' }],
-        entryPoints: ['shop/web'],
-      })
+      runResilienceSimulationAsync(
+        schema,
+        {
+          faults: [{ nodeId: 'shop/payment', faultType: 'region-outage' }],
+          entryPoints: ['shop/web'],
+        },
+        { engine }
+      )
     ).rejects.toThrow('sim failed');
   });
 
@@ -56,7 +62,7 @@ describe('runResilienceSimulationAsync', () => {
         faults: [{ nodeId: 'shop/payment', faultType: 'region-outage' }],
         entryPoints: ['shop/web'],
       },
-      { logger }
+      { logger, engine: unavailableEngine }
     );
 
     expect(logger.warn).toHaveBeenCalledWith(

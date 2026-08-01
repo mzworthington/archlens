@@ -4,6 +4,7 @@
  * from concrete external adapters (like DOM elements or local filesystem IO).
  */
 
+import type { LoggerPort } from '@archlens/core/logging';
 export type { LoggerPort } from '@archlens/core/logging';
 export { noopLogger } from '@archlens/core/logging';
 
@@ -151,6 +152,8 @@ export interface WorkingCopyPort {
   loadWorkingSchema(
     args: LoadWorkingCopyArgs
   ): Promise<import('@archlens/core').SystemSchema | null>;
+  /** Purge all IndexedDB working/baseline drafts (admin clear workspace). */
+  clearAllDrafts(): Promise<void>;
 }
 
 export const noopWorkingCopy: WorkingCopyPort = {
@@ -170,6 +173,7 @@ export const noopWorkingCopy: WorkingCopyPort = {
   }),
   pathHasStoredData: async () => false,
   loadWorkingSchema: async () => null,
+  clearAllDrafts: async () => {},
 };
 
 /** Opaque canvas graph change payloads (React Flow NodeChange / EdgeChange at the adapter). */
@@ -195,4 +199,19 @@ export interface GraphChangePort {
 export const noopGraphChange: GraphChangePort = {
   applyNodeChanges: (_changes, nodes) => nodes,
   applyEdgeChanges: (_changes, edges) => edges,
+};
+
+/** Driven port for ChaosLens WASM (or other) simulation engines. */
+export type ResilienceEngineRequest = import('@archlens/core/resilience').WasmSimulationRequest;
+export type ResilienceEngineResult = import('@archlens/core/resilience').WasmSimulationResult;
+
+export interface ResilienceEnginePort {
+  runSimulation(
+    request: ResilienceEngineRequest,
+    logger?: LoggerPort
+  ): Promise<ResilienceEngineResult | null>;
+}
+
+export const noopResilienceEngine: ResilienceEnginePort = {
+  runSimulation: async () => null,
 };

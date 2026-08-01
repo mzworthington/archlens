@@ -14,7 +14,7 @@ import { useBlueprintStore } from '../../../../../application/store/store';
 import { BlueprintNode } from './BlueprintNode';
 import { BlueprintGroupNode } from './BlueprintGroupNode';
 import { WorkspaceToolbar } from '../WorkspaceToolbar/WorkspaceToolbar';
-import { AlertTriangle, X, ZoomOut } from 'lucide-react';
+import { ZoomOut } from 'lucide-react';
 import { resolveChildDiagramEntry } from '@archlens/core';
 import type { NodeType } from '@archlens/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
@@ -64,6 +64,8 @@ import {
 import { yieldToUi } from '../../../../../application/store/yieldToUi';
 import { DiagramLoadingOverlay } from './DiagramLoadingOverlay';
 import { WorkspaceStatusBadges } from './WorkspaceStatusBadges';
+import { MermaidEnrichBanner } from './MermaidEnrichBanner';
+import { SchemaImportErrorBanner } from './SchemaImportErrorBanner';
 import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
 
 export const Canvas: React.FC = () => {
@@ -630,55 +632,11 @@ export const Canvas: React.FC = () => {
           </div>
         )}
 
-        {lastError && (
-          <Panel position="top-center" className="m-4 max-w-md w-full animate-bounce-short">
-            <div className="flex items-start gap-3 bg-red-950/90 border border-red-900/50 px-4 py-3 rounded-xl shadow-2xl shadow-red-950/40 backdrop-blur-md text-red-200 text-xs">
-              <AlertTriangle className="w-5 h-5 shrink-0 text-red-400 mt-0.5" />
-              <div className="flex-1">
-                <h5 className="font-bold text-red-300 mb-0.5">Schema Import Failed</h5>
-                <p className="leading-relaxed whitespace-pre-wrap">{lastError}</p>
-              </div>
-              <button
-                onClick={clearError}
-                className="text-red-400 hover:text-red-200 transition text-[10px] font-bold uppercase tracking-wider ml-2 shrink-0 self-center border border-red-900/40 hover:border-red-900/80 rounded px-1.5 py-0.5 bg-red-950/60"
-              >
-                Dismiss
-              </button>
-            </div>
-          </Panel>
-        )}
-
-        {mermaidEnrichBannerOpen ? (
-          <Panel position="top-center" className="m-4 max-w-lg w-full z-50">
-            <div
-              className="flex items-start gap-3 border border-amber-500/30 bg-amber-950/90 px-4 py-3 rounded-xl shadow-2xl backdrop-blur-md text-amber-100 text-xs"
-              data-testid="mermaid-enrich-banner"
-            >
-              <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-              <div className="flex-1 space-y-2">
-                <h5 className="font-bold text-amber-200">Mermaid import is lossy</h5>
-                <p className="leading-relaxed text-amber-100/90">
-                  Forensics and nested subgraphs are not preserved. Re-run an ArchLens scan to
-                  enrich YAML with git metrics and coupling data.
-                </p>
-                <a
-                  href="/guide/cli"
-                  className="inline-flex text-[10px] font-mono font-semibold text-[#00f0ff] hover:underline"
-                >
-                  See CLI scan guide
-                </a>
-              </div>
-              <button
-                type="button"
-                onClick={() => setMermaidEnrichBannerOpen(false)}
-                className="text-amber-300 hover:text-amber-100 transition shrink-0 p-0.5 rounded hover:bg-white/10"
-                aria-label="Dismiss enrich banner"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          </Panel>
-        ) : null}
+        <SchemaImportErrorBanner error={lastError} onDismiss={clearError} />
+        <MermaidEnrichBanner
+          open={mermaidEnrichBannerOpen}
+          onDismiss={() => setMermaidEnrichBannerOpen(false)}
+        />
         <DiagramLoadingOverlay />
       </ReactFlow>
     </div>

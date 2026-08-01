@@ -16,6 +16,7 @@ const mockWorkingCopy: WorkingCopyPort = {
     revertWorkingSchema(...args)) as WorkingCopyPort['revertWorkingSchema'],
   pathHasStoredData: vi.fn().mockResolvedValue(false),
   loadWorkingSchema: vi.fn().mockResolvedValue(null),
+  clearAllDrafts: vi.fn().mockResolvedValue(undefined),
 };
 
 describe('DiffMenu Component', () => {

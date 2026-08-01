@@ -325,6 +325,7 @@ export const createResilienceState = (
       resilienceSafeguards,
       resilienceMonteCarlo,
       logger,
+      resilienceEnginePort,
       addExternalDependencies,
     } = get();
 
@@ -350,6 +351,7 @@ export const createResilienceState = (
     void runResilienceSimulationAsync(simulationSchema, simulationSpec, {
       monteCarlo: resilienceMonteCarlo,
       logger,
+      engine: resilienceEnginePort,
     })
       .then((result: SimulationResult) => {
         set({
