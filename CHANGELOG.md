@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-08-01
+
+### 🧰 Maintenance & Dependencies
+
+- Bootstrap `agent-lifecycle-kit` into `~/.agents` from `bin/setup-dev-env.sh` (Cursor Cloud)
+
+### 📚 Documentation
+
+- Mark external simulation scope Phase 2 complete in PLAN
+
 ## 2026-07-29
 
 ### 🚀 Features

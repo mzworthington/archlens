@@ -23,7 +23,7 @@ pnpm install
 pnpm dev
 ```
 
-Cursor Cloud agents use `.cursor/environment.json` → `bin/setup-dev-env.sh`, which installs **bun** via mise (needed for CLI build / pre-push).
+Cursor Cloud agents use `.cursor/environment.json` → `bin/setup-dev-env.sh`, which installs **bun** via mise (needed for CLI build / pre-push) and bootstraps `agent-lifecycle-kit` into `~/.agents` when missing.
 
 ## Making changes
 
