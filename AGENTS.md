@@ -1,12 +1,22 @@
 # Agent guidance
 
-Lifecycle agents, skills, and SOPs live in `~/.agents` (user-global), not in this repo.
+## Lifecycle kit location
 
-Phase handover artifacts: `~/.agents/handover/archlens/`
+Lifecycle agents, skills, and SOPs are **not** in this repo. Resolve the kit root in this order:
+
+1. **`~/.agents`** — preferred. Local installs symlink this to a clone of [agent-lifecycle-kit](https://github.com/mzworthington/agent-lifecycle-kit) via that repo’s `install.sh`.
+2. **If `~/.agents` is missing** — use a checkout of `agent-lifecycle-kit` instead. Look for (first match wins):
+   - sibling of this repo: `../agent-lifecycle-kit`
+   - Cursor Cloud multi-repo path: `/agent/repos/agent-lifecycle-kit`
+   - otherwise clone: `git clone https://github.com/mzworthington/agent-lifecycle-kit.git` (then prefer `./install.sh` so `~/.agents` points at it)
+
+Treat that directory as the kit root (same layout as `~/.agents`: `AGENTS.md`, `CODING_PHILOSOPHY.md`, `skills/`, `SOPs/`, `handover/`). Read `<kit>/AGENTS.md` and `<kit>/CODING_PHILOSOPHY.md` before phase work. Skills live at `<kit>/skills/<name>/SKILL.md`.
+
+Phase handover artifacts: `<kit>/handover/archlens/` (when using `~/.agents`, that is `~/.agents/handover/archlens/`).
 
 Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-tdd`, `agent-adapter`, `agent-security`, `agent-arch-drift`, `agent-prune`, `agent-telemetry`, and `agent-pre-commit`.
 
-Dead-code backlog: `~/.agents/handover/blueprint/dead-code-backlog.md` (maintain via `agent-prune`).
+Dead-code backlog: `<kit>/handover/blueprint/dead-code-backlog.md` (maintain via `agent-prune`).
 
 Before handover or declaring work complete, run `agent-pre-commit` when `.husky/pre-commit` (or equivalent) exists — fix hook failures until green.
 
