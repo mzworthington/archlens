@@ -43,6 +43,14 @@ export async function keepStartupChooserOpen(page: Page) {
   await gotoApp(page, '/workspace');
 }
 
+/** Enter workspace TraceLens lens mode via URL (toolbar no longer has a Forensics link). */
+export async function openTraceLensLens(page: Page) {
+  const url = new URL(page.url());
+  url.searchParams.set('lens', 'tracelens');
+  await page.goto(url.toString());
+  await expect(page).toHaveURL(/lens=tracelens/);
+}
+
 /** Wait until TraceLens has ranked estate rows from loaded workspace diagrams. */
 export async function waitForForensicsOffenders(page: Page) {
   await expect(page.getByTestId('offender-list')).toBeVisible({ timeout: 90_000 });
