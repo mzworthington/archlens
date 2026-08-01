@@ -45,6 +45,11 @@ import { TRACE_LENS_HERO } from '../../content/productOutcomes';
 import { buildTraceLensScopeOptions } from '../../../application/forensics/buildTraceLensScopeOptions';
 import { loadWorkspaceSession } from '../../../application/store/workspaceSession';
 import {
+  GOLDEN_PATHS_CONTEXT_PATH,
+  getSandboxDefinition,
+  type SandboxContextPath,
+} from '../../../application/store/defaultData';
+import {
   DIAGRAM_LAYOUT_MESSAGE,
   DIAGRAM_LOADING_MESSAGE,
   FORENSICS_PREFETCH_MESSAGE,
@@ -266,10 +271,10 @@ export const ForensicsPage: React.FC = () => {
     isLoading,
     diagramLoadCount,
     loadBundledSandbox,
-    restoreWorkspaceSession,
     openWorkspaceDirectory,
     prefetchAllWorkspaceSystems,
     selectSystem,
+    activeSandboxContextPath,
     simulateResilienceFaultAtNode,
     selectNode,
     setShowCoupling,
@@ -295,10 +300,10 @@ export const ForensicsPage: React.FC = () => {
       isLoading: state.isLoading,
       diagramLoadCount: state.diagramLoadCount,
       loadBundledSandbox: state.loadBundledSandbox,
-      restoreWorkspaceSession: state.restoreWorkspaceSession,
       openWorkspaceDirectory: state.openWorkspaceDirectory,
       prefetchAllWorkspaceSystems: state.prefetchAllWorkspaceSystems,
       selectSystem: state.selectSystem,
+      activeSandboxContextPath: state.activeSandboxContextPath,
       simulateResilienceFaultAtNode: state.simulateResilienceFaultAtNode,
       selectNode: state.selectNode,
       setShowCoupling: state.setShowCoupling,
@@ -437,12 +442,6 @@ export const ForensicsPage: React.FC = () => {
     setScope,
   });
 
-  useEffect(() => {
-    if (!hasScope) {
-      void restoreWorkspaceSession();
-    }
-  }, [hasScope, restoreWorkspaceSession]);
-
   useTraceLensScopeLoad({
     scopeEntityRef,
     hasScope,
@@ -456,9 +455,19 @@ export const ForensicsPage: React.FC = () => {
     void prefetchAllWorkspaceSystems();
   }, [hasScope, unloadedCount, prefetchAllWorkspaceSystems, rankLoadedOnly]);
 
-  const handleLoadSandbox = useCallback(async () => {
-    await loadBundledSandbox();
-  }, [loadBundledSandbox]);
+  const handleLoadSandbox = useCallback(
+    async (
+      contextPath: SandboxContextPath = activeSandboxContextPath ?? GOLDEN_PATHS_CONTEXT_PATH
+    ) => {
+      const definition = getSandboxDefinition(contextPath);
+      if (!definition) return;
+
+      await loadBundledSandbox(contextPath);
+      await selectSystem(contextPath);
+      setLocation(`/tracelens/${definition.entityRef}`, { replace: true });
+    },
+    [activeSandboxContextPath, loadBundledSandbox, selectSystem, setLocation]
+  );
 
   const handleOpenDirectory = useCallback(async () => {
     const opened = await openWorkspaceDirectory();
@@ -727,8 +736,9 @@ export const ForensicsPage: React.FC = () => {
             pendingFolderName={pendingFolderName}
             rankLoadedOnly={rankLoadedOnly}
             onRankLoadedOnly={() => setRankLoadedOnly(true)}
-            onLoadSandbox={() => void handleLoadSandbox()}
+            onLoadSandbox={contextPath => void handleLoadSandbox(contextPath)}
             onOpenDirectory={() => void handleOpenDirectory()}
+            activeSandboxContextPath={activeSandboxContextPath}
           />
 
           <div className="mb-6">

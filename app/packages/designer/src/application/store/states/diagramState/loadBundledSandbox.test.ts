@@ -110,6 +110,7 @@ describe('loadBundledSandbox', () => {
           loadedSystems: typeof systems;
           workspaceName: string;
         },
+      APPLICATION_CONTEXT_PATH,
       systems
     );
 
@@ -165,11 +166,31 @@ describe('loadBundledSandbox', () => {
           loadedSystems: Array<{ path: string; name: string; schema: SystemSchema }>;
           workspaceName: string;
         },
+      APPLICATION_CONTEXT_PATH,
       [{ path: APPLICATION_CONTEXT_PATH, name: 'Context', schema: contextSchema }]
     );
 
     expect(store.currentFilePath).toBe(APPLICATION_CONTEXT_PATH);
     expect((store.schema as SystemSchema).nodes).toHaveLength(2);
+  });
+
+  it('buildSandboxInitialSystems loads only the selected sandbox tree', async () => {
+    const { buildSandboxInitialSystems, getBlueprintPathsForSandbox } =
+      await import('../../defaultData');
+
+    const applicationSystems = buildSandboxInitialSystems(APPLICATION_CONTEXT_PATH);
+    expect(applicationSystems).toHaveLength(1);
+    expect(applicationSystems[0]?.path).toBe(APPLICATION_CONTEXT_PATH);
+
+    const goldenSystems = buildSandboxInitialSystems(GOLDEN_PATHS_CONTEXT_PATH);
+    expect(goldenSystems.map(system => system.path)).toEqual([
+      GOLDEN_PATHS_CONTEXT_PATH,
+      GOLDEN_PATHS_CONTAINERS_PATH,
+    ]);
+
+    const applicationPaths = getBlueprintPathsForSandbox(APPLICATION_CONTEXT_PATH);
+    expect(applicationPaths.every(path => path.startsWith('application/'))).toBe(true);
+    expect(applicationPaths).not.toContain('infrastructure/context.yaml');
   });
 
   it('reloadBundledSandbox clears storage and resets workspace state even after a folder was open', async () => {

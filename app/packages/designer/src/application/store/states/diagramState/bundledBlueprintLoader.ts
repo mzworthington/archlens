@@ -14,12 +14,12 @@ import {
   CHAOSLENS_STRESS_CONTEXT_PATH,
   ESHOP_CONTEXT_PATH,
   getBlueprintPaths,
-  getDefaultLoadedSystems,
+  getBlueprintPathsForSandbox,
   INFRASTRUCTURE_CONTEXT_PATH,
   GOLDEN_PATHS_CONTEXT_PATH,
   loadBlueprintSchema,
+  type SandboxContextPath,
 } from '../../defaultData';
-import type { HydrateSystem } from './hydrateSandboxDrafts';
 import { seedDefaultSchemasSafely } from './defaultIdbSeed';
 import type { LoggerPort } from '../../../../core';
 
@@ -147,19 +147,24 @@ export function buildBundledPathCatalog(paths: string[]): WorkspaceCatalogEntry[
 
 function buildSandboxWorkspaceCatalogFromResolved(
   resolvedSystems: BundledSystem[],
-  workspaceName: string
+  workspaceName: string,
+  sandboxContextPath?: SandboxContextPath | null
 ): WorkspaceCatalogEntry[] {
   const fromLoaded = buildWorkspaceCatalog(
     resolvedSystems.map(s => ({ path: s.path, schema: s.schema })),
     workspaceName
   );
-  return mergeWorkspaceCatalogEntries(buildBundledPathCatalog(getBlueprintPaths()), fromLoaded);
+  const sandboxPaths = sandboxContextPath
+    ? getBlueprintPathsForSandbox(sandboxContextPath)
+    : getBlueprintPaths();
+  return mergeWorkspaceCatalogEntries(buildBundledPathCatalog(sandboxPaths), fromLoaded);
 }
 
 function commitBundledLoadedSystems(
   loadedSystems: BundledSystem[],
   workspaceName: string,
-  set: (partial: Record<string, unknown>) => void
+  set: (partial: Record<string, unknown>) => void,
+  sandboxContextPath?: SandboxContextPath | null
 ) {
   const resolved = resolveWorkspaceEntityRefs(
     loadedSystems.map(s => ({ path: s.path, schema: s.schema })),
@@ -172,7 +177,11 @@ function commitBundledLoadedSystems(
 
   set({
     loadedSystems: resolvedSystems,
-    workspaceCatalog: buildSandboxWorkspaceCatalogFromResolved(resolvedSystems, workspaceName),
+    workspaceCatalog: buildSandboxWorkspaceCatalogFromResolved(
+      resolvedSystems,
+      workspaceName,
+      sandboxContextPath
+    ),
     nodeRefMap: resolved.nodeRefMap,
   });
 
@@ -187,6 +196,7 @@ export async function ensureBundledSystemLoaded(
       workspaceName: string;
       nodeRefMap: Record<string, Record<string, string>>;
       isWorkspaceOpen: boolean;
+      activeSandboxContextPath?: SandboxContextPath | null;
     };
     set: (partial: Record<string, unknown>) => void;
     logger: LoggerPort;
@@ -212,7 +222,7 @@ export async function ensureBundledSystemLoaded(
           .split('/')
           .pop()!
           .replace(/\.ya?ml$/, '');
-      const { loadedSystems, workspaceName } = deps.get();
+      const { loadedSystems, workspaceName, activeSandboxContextPath } = deps.get();
 
       const nextLoaded = loadedSystems.some(s => s.path === path)
         ? loadedSystems
@@ -225,7 +235,7 @@ export async function ensureBundledSystemLoaded(
             },
           ];
 
-      commitBundledLoadedSystems(nextLoaded, workspaceName, deps.set);
+      commitBundledLoadedSystems(nextLoaded, workspaceName, deps.set, activeSandboxContextPath);
       deps.logger.info('Lazy-loaded bundled blueprint', { path, name });
       return true;
     } catch (err) {
@@ -251,6 +261,7 @@ export function startBundledBlueprintPrefetch(deps: {
     loadedSystems: BundledSystem[];
     workspaceName: string;
     isWorkspaceOpen: boolean;
+    activeSandboxContextPath?: SandboxContextPath | null;
     workingCopyPort?: {
       pathHasStoredData: (filePath: string) => Promise<boolean>;
       saveBaselineSchema: (args: {
@@ -273,7 +284,11 @@ export function startBundledBlueprintPrefetch(deps: {
   prefetchStarted = true;
 
   const loadedPaths = new Set(deps.get().loadedSystems.map(s => s.path));
-  const pendingPaths = getBlueprintPaths().filter(path => !loadedPaths.has(path));
+  const sandboxContextPath = deps.get().activeSandboxContextPath;
+  const scopedPaths = sandboxContextPath
+    ? getBlueprintPathsForSandbox(sandboxContextPath)
+    : getBlueprintPaths();
+  const pendingPaths = scopedPaths.filter(path => !loadedPaths.has(path));
   if (pendingPaths.length === 0) return;
 
   const BATCH_SIZE = 10;
@@ -307,7 +322,12 @@ export function startBundledBlueprintPrefetch(deps: {
         if (!merged.some(s => s.path === sys.path)) merged.push(sys);
       }
 
-      const { resolved } = commitBundledLoadedSystems(merged, deps.get().workspaceName, deps.set);
+      const { resolved } = commitBundledLoadedSystems(
+        merged,
+        deps.get().workspaceName,
+        deps.set,
+        deps.get().activeSandboxContextPath
+      );
 
       const workingCopy = deps.get().workingCopyPort;
       if (workingCopy) {
@@ -339,11 +359,14 @@ export function resetBundledBlueprintLoaderState(): void {
   inflightBundledLoads.clear();
 }
 
-export function guessBundledPathForEntityRef(entityRef: string): string | undefined {
+export function guessBundledPathForEntityRef(
+  entityRef: string,
+  sandboxContextPath?: SandboxContextPath | null
+): string | undefined {
   if (!entityRef) return undefined;
-  const matches = getBlueprintPaths().filter(
-    path => inferEntityRefFromBundledPath(path) === entityRef
-  );
+  const matches = (
+    sandboxContextPath ? getBlueprintPathsForSandbox(sandboxContextPath) : getBlueprintPaths()
+  ).filter(path => inferEntityRefFromBundledPath(path) === entityRef);
   if (matches.length === 0) return undefined;
   if (matches.length === 1) return matches[0];
   const containerPath = matches.find(
@@ -353,23 +376,22 @@ export function guessBundledPathForEntityRef(entityRef: string): string | undefi
 }
 
 /** Diagram YAML paths needed to rank offenders for a scoped entity in bundled sandbox mode. */
-export function resolveBundledPathsForEntityRef(entityRef: string): string[] {
+export function resolveBundledPathsForEntityRef(
+  entityRef: string,
+  sandboxContextPath?: SandboxContextPath | null
+): string[] {
   if (!entityRef) return [];
 
   const paths = new Set<string>();
-  const own = guessBundledPathForEntityRef(entityRef);
+  const own = guessBundledPathForEntityRef(entityRef, sandboxContextPath);
   if (own) paths.add(own);
 
   const segments = entityRef.split('/');
   for (let end = segments.length - 1; end >= 1; end--) {
     const prefix = segments.slice(0, end).join('/');
-    const diagramPath = guessBundledPathForEntityRef(prefix);
+    const diagramPath = guessBundledPathForEntityRef(prefix, sandboxContextPath);
     if (diagramPath) paths.add(diagramPath);
   }
 
   return [...paths];
-}
-
-export function resolveBundledContextSystems(): HydrateSystem[] {
-  return getDefaultLoadedSystems();
 }

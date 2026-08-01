@@ -21,7 +21,7 @@ export async function continueWithSandbox(page: Page) {
     }
   }
 
-  await page.getByTestId('startup-load-sandbox').click();
+  await page.getByTestId('workspace-load-sandbox-golden-paths').click();
   await expect(dialog).toHaveCount(0);
 }
 
@@ -32,7 +32,7 @@ async function openOverflowMenu(page: Page) {
 
 /** Opens a workspace folder via the startup chooser when present, else the toolbar overflow. */
 export async function openWorkspaceFolder(page: Page) {
-  const startupOpen = page.getByTestId('startup-open-directory');
+  const startupOpen = page.getByTestId('workspace-open-directory');
   // Prefer a quick visibility check - do not burn 5s waiting when the chooser is gone.
   if (await startupOpen.isVisible().catch(() => false)) {
     await startupOpen.click();

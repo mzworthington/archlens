@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ReactFlowProvider } from '@xyflow/react';
 import { useLocation } from 'wouter';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -7,57 +7,42 @@ import { Canvas } from './components/Canvas/Canvas';
 import { PropertyPanel } from './components/PropertyPanel/PropertyPanel';
 import { Header } from './components/Header/Header';
 import { useBlueprintStore } from '../../../application/store/store';
-import { DiffMenu } from './components/DiffMenu/DiffMenu';
-import { ImportMermaidDialog } from './components/ImportMermaidDialog/ImportMermaidDialog';
-import { ChaosSpecDialog } from './components/ChaosSpecDialog/ChaosSpecDialog';
-import { ImportIacDialog } from './components/ImportIacDialog/ImportIacDialog';
-import { StartupWorkspaceDialog } from './components/StartupWorkspaceDialog/StartupWorkspaceDialog';
-import { CompareDialog } from './components/CompareDialog/CompareDialog';
-import { KeyboardShortcutsDialog } from './components/KeyboardShortcutsDialog/KeyboardShortcutsDialog';
-import { WorkspaceDisplayDialog } from './components/WorkspaceDisplayDialog/WorkspaceDisplayDialog';
-import { ChildLevelExternalsDialog } from './components/ChildLevelExternalsDialog/ChildLevelExternalsDialog';
-import { WorkspaceSourceCodeDialog } from './components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { useUrlSync } from './hooks/useUrlSync';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
-import { useAutoLoadWorkspace } from './hooks/useAutoLoadWorkspace';
-import { GOLDEN_PATHS_CONTEXT_PATH } from '../../../application/store/defaultData';
-import { buildWorkspaceEntityHref } from '../../../application/store/sandboxWorkspace';
+import { useWorkspaceDialogs } from './hooks/useWorkspaceDialogs';
 
-function isWorkspaceRootPath(location: string): boolean {
-  return location === '/workspace' || location === '/workspace/';
+function isWorkspaceRoute(location: string): boolean {
+  return location === '/workspace' || location.startsWith('/workspace/');
 }
 
 export const WorkspacePage: React.FC = () => {
-  const [location, setLocation] = useLocation();
+  const [location] = useLocation();
   const {
     leftCollapsed,
     rightCollapsed,
     toggleLeftCollapsed,
     toggleRightCollapsed,
-    isDiffOpen,
-    setIsDiffOpen,
-    isImportMermaidOpen,
-    setIsImportMermaidOpen,
-    isImportIacOpen,
-    setIsImportIacOpen,
-    chaosSpecDialogMode,
-    openChaosSpecDialog,
-    closeChaosSpecDialog,
-    isStartupOpen,
     setIsStartupOpen,
-    isCompareOpen,
-    setIsCompareOpen,
-    isShortcutsOpen,
     setIsShortcutsOpen,
-    isDisplaySettingsOpen,
-    setIsDisplaySettingsOpen,
-    openWorkspaceDirectory,
-    loadBundledSandbox,
   } = useBlueprintStore();
+  const workspaceDialogs = useWorkspaceDialogs();
 
   useUrlSync();
 
-  useAutoLoadWorkspace(location, setIsStartupOpen);
+  const previousLocationRef = useRef<string | null>(null);
+
+  // Open the chooser whenever navigation enters the workspace route.
+  useEffect(() => {
+    const previous = previousLocationRef.current;
+    previousLocationRef.current = location;
+
+    const onWorkspace = isWorkspaceRoute(location);
+    const wasOnWorkspace = previous != null && isWorkspaceRoute(previous);
+
+    if (onWorkspace && !wasOnWorkspace) {
+      setIsStartupOpen(true);
+    }
+  }, [location, setIsStartupOpen]);
 
   useKeyboardNavigation({
     onShortcutsOpen: () => setIsShortcutsOpen(true),
@@ -73,31 +58,6 @@ export const WorkspacePage: React.FC = () => {
     const nextUrl = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
     window.history.replaceState(null, '', nextUrl);
   }, []);
-
-  // Deep links (/workspace/…) skip the chooser; only bare /workspace shows it.
-  useEffect(() => {
-    if (!isWorkspaceRootPath(location) && isStartupOpen) {
-      setIsStartupOpen(false);
-    }
-  }, [location, isStartupOpen, setIsStartupOpen]);
-
-  const handleLoadSandbox = useCallback(async () => {
-    await loadBundledSandbox();
-    setIsStartupOpen(false);
-    await useBlueprintStore.getState().selectSystem(GOLDEN_PATHS_CONTEXT_PATH);
-    setLocation(buildWorkspaceEntityHref('golden-paths'), { replace: true });
-  }, [loadBundledSandbox, setIsStartupOpen, setLocation]);
-
-  const handleOpenDirectory = useCallback(async () => {
-    try {
-      const opened = await openWorkspaceDirectory();
-      if (opened) setIsStartupOpen(false);
-    } catch (err) {
-      console.error('Failed to open workspace directory:', err);
-    }
-  }, [openWorkspaceDirectory, setIsStartupOpen]);
-
-  const showStartup = isStartupOpen && isWorkspaceRootPath(location);
 
   return (
     <ReactFlowProvider>
@@ -138,31 +98,7 @@ export const WorkspacePage: React.FC = () => {
           </button>
         </div>
       </div>
-      <DiffMenu isOpen={isDiffOpen} onClose={() => setIsDiffOpen(false)} />
-      <ImportMermaidDialog
-        isOpen={isImportMermaidOpen}
-        onClose={() => setIsImportMermaidOpen(false)}
-      />
-      <ImportIacDialog isOpen={isImportIacOpen} onClose={() => setIsImportIacOpen(false)} />
-      <ChaosSpecDialog
-        isOpen={chaosSpecDialogMode != null}
-        mode={chaosSpecDialogMode ?? 'import'}
-        onModeChange={openChaosSpecDialog}
-        onClose={closeChaosSpecDialog}
-      />
-      <StartupWorkspaceDialog
-        isOpen={showStartup}
-        onLoadSandbox={handleLoadSandbox}
-        onOpenDirectory={() => void handleOpenDirectory()}
-      />
-      <CompareDialog isOpen={isCompareOpen} onClose={() => setIsCompareOpen(false)} />
-      <KeyboardShortcutsDialog isOpen={isShortcutsOpen} onClose={() => setIsShortcutsOpen(false)} />
-      <WorkspaceDisplayDialog
-        isOpen={isDisplaySettingsOpen}
-        onClose={() => setIsDisplaySettingsOpen(false)}
-      />
-      <ChildLevelExternalsDialog />
-      <WorkspaceSourceCodeDialog />
+      {workspaceDialogs}
     </ReactFlowProvider>
   );
 };

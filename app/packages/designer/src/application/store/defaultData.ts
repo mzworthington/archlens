@@ -31,6 +31,94 @@ export const SANDBOX_CONTEXT_PATHS = [
   ADVICELENS_STRESS_CONTEXT_PATH,
 ] as const;
 
+export type SandboxContextPath = (typeof SANDBOX_CONTEXT_PATHS)[number];
+
+const BACKSTAGE_SANDBOX_PREFIXES = [
+  'backstage/',
+  'packages/',
+  'plugins/',
+  'microsite/',
+  'docs-ui/',
+  'techdocs-s3-storage/',
+  'gpio-build-monitor/',
+] as const;
+
+export type SandboxDefinition = {
+  contextPath: SandboxContextPath;
+  name: string;
+  entityRef: string;
+  pathPrefixes: readonly string[];
+  /** Extra diagrams to load eagerly with the context (e.g. golden-journey/containers.yaml). */
+  eagerPaths?: readonly string[];
+};
+
+export const SANDBOX_DEFINITIONS: readonly SandboxDefinition[] = [
+  {
+    contextPath: GOLDEN_PATHS_CONTEXT_PATH,
+    name: 'Golden Paths',
+    entityRef: 'golden-paths',
+    pathPrefixes: ['golden-journey/'],
+    eagerPaths: [GOLDEN_PATHS_CONTAINERS_PATH],
+  },
+  {
+    contextPath: APPLICATION_CONTEXT_PATH,
+    name: 'Application',
+    entityRef: 'application',
+    pathPrefixes: ['application/'],
+  },
+  {
+    contextPath: INFRASTRUCTURE_CONTEXT_PATH,
+    name: 'Infrastructure',
+    entityRef: 'infrastructure',
+    pathPrefixes: ['infrastructure/'],
+  },
+  {
+    contextPath: BACKSTAGE_CONTEXT_PATH,
+    name: 'Backstage',
+    entityRef: 'backstage',
+    pathPrefixes: BACKSTAGE_SANDBOX_PREFIXES,
+  },
+  {
+    contextPath: BLUEPRINT_CONTEXT_PATH,
+    name: 'Blueprint',
+    entityRef: 'blueprint',
+    pathPrefixes: ['blueprint/', 'app/'],
+  },
+  {
+    contextPath: ESHOP_CONTEXT_PATH,
+    name: 'E-Shop',
+    entityRef: 'eshop',
+    pathPrefixes: ['eshop/'],
+  },
+  {
+    contextPath: CHAOSLENS_STRESS_CONTEXT_PATH,
+    name: 'ChaosLens Stress Tests',
+    entityRef: 'chaoslens-stress',
+    pathPrefixes: ['chaoslens-stress/'],
+  },
+  {
+    contextPath: ADVICELENS_STRESS_CONTEXT_PATH,
+    name: 'AdviceLens Stress Tests',
+    entityRef: 'advicelens-stress',
+    pathPrefixes: ['advicelens-stress/'],
+  },
+];
+
+export function getSandboxDefinition(contextPath: string): SandboxDefinition | undefined {
+  return SANDBOX_DEFINITIONS.find(def => def.contextPath === contextPath);
+}
+
+export function pathBelongsToSandbox(path: string, contextPath: SandboxContextPath): boolean {
+  const definition = getSandboxDefinition(contextPath);
+  if (!definition) return false;
+  if (path === definition.contextPath) return true;
+  return definition.pathPrefixes.some(prefix => path.startsWith(prefix));
+}
+
+export function getBlueprintPathsForSandbox(contextPath: SandboxContextPath): string[] {
+  return getBlueprintPaths().filter(path => pathBelongsToSandbox(path, contextPath));
+}
+
 type ContextFallback = { yaml: string; name: string };
 
 const CONTEXT_FALLBACKS: Record<string, ContextFallback> = {
@@ -167,26 +255,27 @@ function buildContextLoadedSystem(path: string): {
   return { path, name: schema.name || fallback.name, schema };
 }
 
-function buildDefaultLoadedSystems(): Array<{ path: string; name: string; schema: SystemSchema }> {
-  const goldenContainersSchema = getGoldenPathsContainersSchema();
-  const goldenContainers = {
-    path: GOLDEN_PATHS_CONTAINERS_PATH,
-    name: goldenContainersSchema.name || 'Golden Journey Estate',
-    schema: goldenContainersSchema,
-  };
+/** Eager systems for one bundled sandbox tree (context + optional companion diagrams). */
+export function buildSandboxInitialSystems(
+  contextPath: SandboxContextPath = GOLDEN_PATHS_CONTEXT_PATH
+): Array<{ path: string; name: string; schema: SystemSchema }> {
+  const definition = getSandboxDefinition(contextPath);
+  if (!definition) return [];
 
-  const contexts = SANDBOX_CONTEXT_PATHS.map(buildContextLoadedSystem);
-  return [...contexts, goldenContainers];
-}
+  const systems = [buildContextLoadedSystem(definition.contextPath)];
 
-export const defaultLoadedSystems = buildDefaultLoadedSystems();
+  for (const eagerPath of definition.eagerPaths ?? []) {
+    if (eagerPath === GOLDEN_PATHS_CONTAINERS_PATH) {
+      const goldenContainersSchema = getGoldenPathsContainersSchema();
+      systems.push({
+        path: GOLDEN_PATHS_CONTAINERS_PATH,
+        name: goldenContainersSchema.name || 'Golden Journey Estate',
+        schema: goldenContainersSchema,
+      });
+    }
+  }
 
-export function getDefaultLoadedSystems(): Array<{
-  path: string;
-  name: string;
-  schema: SystemSchema;
-}> {
-  return defaultLoadedSystems;
+  return systems;
 }
 
 export async function loadBlueprintSchema(cleanPath: string): Promise<SystemSchema | null> {

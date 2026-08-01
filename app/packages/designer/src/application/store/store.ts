@@ -13,7 +13,7 @@ export type {
 
 export { resolveRelativePath, getFileName } from '@archlens/core';
 
-export { defaultLoadedSystems, defaultInitialSchema } from './defaultData';
+export { defaultInitialSchema, SANDBOX_DEFINITIONS } from './defaultData';
 
 export interface BlueprintState extends UiState, DiagramState, IoState, ResilienceState {}
 

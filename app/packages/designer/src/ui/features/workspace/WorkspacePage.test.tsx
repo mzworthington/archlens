@@ -45,10 +45,6 @@ vi.mock('@xyflow/react', () => ({
   }),
 }));
 
-vi.mock('./hooks/useAutoLoadWorkspace', () => ({
-  useAutoLoadWorkspace: vi.fn(),
-}));
-
 describe('WorkspacePage Component', () => {
   beforeEach(() => {
     mockLocation = '/';
@@ -163,32 +159,31 @@ describe('WorkspacePage Component', () => {
     });
   });
 
-  it('does not show the startup chooser on deep-linked workspace routes', () => {
+  it('opens the startup chooser when entering the workspace route', () => {
     mockLocation = '/workspace/application';
-    mockParams = { '*': 'blueprint' };
-    useBlueprintStore.setState({ isStartupOpen: true });
+    mockParams = { '*': 'application' };
+    useBlueprintStore.setState({ isStartupOpen: false });
 
     render(<WorkspacePage />);
 
-    expect(screen.queryByTestId('startup-workspace-dialog')).not.toBeInTheDocument();
-    expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+    expect(screen.getByTestId('startup-workspace-dialog')).toBeInTheDocument();
+    expect(useBlueprintStore.getState().isStartupOpen).toBe(true);
   });
 
-  it('auto-loads the sandbox on bare /workspace via useAutoLoadWorkspace', async () => {
-    const { useAutoLoadWorkspace } = await import('./hooks/useAutoLoadWorkspace');
-    const autoLoadMock = vi.mocked(useAutoLoadWorkspace);
+  it('does not reopen the startup chooser when navigating within the workspace', () => {
+    mockLocation = '/workspace/application';
+    mockParams = { '*': 'application' };
+    useBlueprintStore.setState({ isStartupOpen: false });
 
-    mockLocation = '/workspace';
-    mockParams = { '*': '' };
-    useBlueprintStore.setState({
-      isStartupOpen: false,
-      loadedSystems: [],
-      isWorkspaceOpen: false,
-    });
+    const { rerender } = render(<WorkspacePage />);
+    expect(useBlueprintStore.getState().isStartupOpen).toBe(true);
 
-    render(<WorkspacePage />);
+    useBlueprintStore.setState({ isStartupOpen: false });
+    mockLocation = '/workspace/application/deeper';
+    mockParams = { '*': 'application/deeper' };
+    rerender(<WorkspacePage />);
 
-    expect(autoLoadMock).toHaveBeenCalled();
+    expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
   });
 
   it('shows the startup chooser when a folder session needs re-open', () => {

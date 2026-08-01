@@ -67,14 +67,18 @@ describe('Breadcrumbs Component', () => {
 
     render(<Breadcrumbs />);
 
-    expect(screen.getByText('Demo sandbox')).toBeInTheDocument();
+    expect(screen.getByText('Sandboxes')).toBeInTheDocument();
     expect(screen.getByText('Application')).toBeInTheDocument();
   });
 
   it('renders demo sandbox label when no workspace folder is open', () => {
+    useBlueprintStore.setState({
+      activeSandboxContextPath: 'application/context.yaml',
+    });
+
     render(<Breadcrumbs />);
 
-    expect(screen.getByText('Demo sandbox')).toBeInTheDocument();
+    expect(screen.getByText('Sandboxes')).toBeInTheDocument();
     expect(screen.getByTestId('workspace-storage-badge')).toHaveTextContent('Demo (not on disk)');
     expect(screen.getByText('Main App System')).toBeInTheDocument();
   });
@@ -388,14 +392,14 @@ describe('Breadcrumbs Component', () => {
       ],
       currentFilePath: 'packages/core-components.yaml',
       schema: componentSchema,
+      activeSandboxContextPath: 'application/context.yaml',
     });
 
     render(<Breadcrumbs />);
 
-    const contextLink = screen.getByText('Application').closest('a');
-    expect(contextLink).toBeInTheDocument();
-    expect(contextLink).toHaveAttribute('href', '/workspace/application');
-    expect(screen.getByText('Application')).toBeInTheDocument();
+    const contextLink = screen.getAllByText('Application').find(el => el.closest('a'));
+    expect(contextLink?.closest('a')).toHaveAttribute('href', '/workspace/application');
+    expect(screen.getAllByText('Application').length).toBeGreaterThan(0);
     expect(screen.getByText('Packages System')).toBeInTheDocument();
     expect(screen.getByText('Core Service Components')).toBeInTheDocument();
   });

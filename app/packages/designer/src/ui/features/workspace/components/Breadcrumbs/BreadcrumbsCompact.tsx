@@ -4,7 +4,9 @@ import { Link } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 import { useBreadcrumbs } from './useBreadcrumbs';
 import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
+import { SandboxSwitcher } from './SandboxSwitcher';
 import { buildWorkspaceEntityHref } from '../../../../../application/store/sandboxWorkspace';
+import type { SandboxContextPath } from '../../../../../application/store/defaultData';
 
 const LEVEL_CONFIGS: Record<
   C4Level,
@@ -62,11 +64,13 @@ export const BreadcrumbsCompact: React.FC = () => {
     getNextLevel,
     isWorkspaceOpen,
     workspaceName,
+    activeSandboxContextPath,
   } = useBreadcrumbs();
   const workspaceLink = (entityRef: string) => buildWorkspaceEntityHref(entityRef);
 
   const menuOpen = openDropdownIdx === -1;
-  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox';
+  const sandboxMenuOpen = openDropdownIdx === -2;
+  const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Sandboxes';
   const lastSegment = segments[segments.length - 1];
   const summary =
     segments.length > 1 && segments[segments.length - 2]
@@ -101,7 +105,16 @@ export const BreadcrumbsCompact: React.FC = () => {
         >
           <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-900/60 mb-1 flex items-center gap-2">
             <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
-            <span className="truncate">{workspaceLabel}</span>
+            {isWorkspaceOpen ? (
+              <span className="truncate">{workspaceLabel}</span>
+            ) : (
+              <SandboxSwitcher
+                activeContextPath={activeSandboxContextPath as SandboxContextPath | null}
+                open={sandboxMenuOpen}
+                onToggle={() => setOpenDropdownIdx(sandboxMenuOpen ? null : -2)}
+                onClose={() => setOpenDropdownIdx(null)}
+              />
+            )}
           </div>
 
           <div className="px-2 space-y-0.5">

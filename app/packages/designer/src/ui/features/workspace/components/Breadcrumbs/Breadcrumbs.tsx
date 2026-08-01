@@ -4,7 +4,9 @@ import { Link } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 import { useBreadcrumbs } from './useBreadcrumbs';
 import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
+import { SandboxSwitcher } from './SandboxSwitcher';
 import { buildWorkspaceEntityHref } from '../../../../../application/store/sandboxWorkspace';
+import type { SandboxContextPath } from '../../../../../application/store/defaultData';
 
 const LEVEL_CONFIGS: Record<
   C4Level,
@@ -52,8 +54,10 @@ export const Breadcrumbs: React.FC = () => {
     getNextLevel,
     isWorkspaceOpen,
     workspaceName,
+    activeSandboxContextPath,
   } = useBreadcrumbs();
   const workspaceLink = (entityRef: string) => buildWorkspaceEntityHref(entityRef);
+  const sandboxMenuOpen = openDropdownIdx === -2;
 
   return (
     <div
@@ -62,14 +66,23 @@ export const Breadcrumbs: React.FC = () => {
     >
       <Folder className="w-3.5 h-3.5 text-brand-500 shrink-0" />
 
-      <div className="flex items-center gap-1.5 text-slate-400 font-medium">
+      <div className="flex items-center gap-1.5 min-w-0">
         <WorkspaceStorageBadge isWorkspaceOpen={isWorkspaceOpen} />
-        <span
-          className="max-w-[100px] sm:max-w-[150px] truncate"
-          title={isWorkspaceOpen ? workspaceName || 'Folder workspace' : 'Demo sandbox'}
-        >
-          {isWorkspaceOpen ? workspaceName : 'Demo sandbox'}
-        </span>
+        {isWorkspaceOpen ? (
+          <span
+            className="max-w-[100px] sm:max-w-[150px] truncate text-slate-400 font-medium"
+            title={workspaceName || 'Folder workspace'}
+          >
+            {workspaceName || 'Folder workspace'}
+          </span>
+        ) : (
+          <SandboxSwitcher
+            activeContextPath={activeSandboxContextPath as SandboxContextPath | null}
+            open={sandboxMenuOpen}
+            onToggle={() => setOpenDropdownIdx(sandboxMenuOpen ? null : -2)}
+            onClose={() => setOpenDropdownIdx(null)}
+          />
+        )}
       </div>
 
       <ChevronRight className="w-3.5 h-3.5 text-slate-700 shrink-0" />
