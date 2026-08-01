@@ -19,6 +19,12 @@ const repoBlueprints = path.resolve(__dirname, '../../../blueprints');
 const bundledBlueprintsDest = path.resolve(__dirname, 'public/bundled-blueprints');
 const base = process.env.VITE_BASE || '/';
 
+/** Merge overlays (e.g. context-overlay.yaml) are not standalone SystemSchema docs. */
+function isBundledBlueprintYaml(fileName: string): boolean {
+  if (!(fileName.endsWith('.yaml') || fileName.endsWith('.yml'))) return false;
+  return !fileName.includes('-overlay.');
+}
+
 function collectBundledBlueprintPaths(srcDir: string, relativePrefix = ''): string[] {
   const paths: string[] = [];
   for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
@@ -27,7 +33,7 @@ function collectBundledBlueprintPaths(srcDir: string, relativePrefix = ''): stri
     const relativePath = relativePrefix ? `${relativePrefix}/${entry.name}` : entry.name;
     if (entry.isDirectory()) {
       paths.push(...collectBundledBlueprintPaths(from, relativePath));
-    } else if (entry.isFile() && (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml'))) {
+    } else if (entry.isFile() && isBundledBlueprintYaml(entry.name)) {
       paths.push(relativePath);
     }
   }
@@ -42,14 +48,18 @@ function copyBundledBlueprintsTree(srcDir: string, destDir: string): void {
     const to = path.join(destDir, entry.name);
     if (entry.isDirectory()) {
       copyBundledBlueprintsTree(from, to);
-    } else if (entry.isFile() && (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml'))) {
+    } else if (entry.isFile() && isBundledBlueprintYaml(entry.name)) {
       fs.mkdirSync(path.dirname(to), { recursive: true });
       fs.copyFileSync(from, to);
     }
   }
 }
 
-/** Mirror repo `blueprints/` into `public/bundled-blueprints/` for static demo serving. */
+/**
+ * Mirror repo `blueprints/` into `public/bundled-blueprints/` for static demo serving.
+ * Must sync in `configResolved` so files exist before Vite builds its publicFiles allowlist
+ * (files created later in configureServer are invisible to servePublicMiddleware).
+ */
 function syncBundledBlueprints(): Plugin {
   let lastSyncKey = '';
 
@@ -78,6 +88,7 @@ function syncBundledBlueprints(): Plugin {
 
   return {
     name: 'sync-bundled-blueprints',
+    configResolved: sync,
     buildStart: sync,
     configureServer(server) {
       sync();
@@ -129,6 +140,7 @@ function syncDocsAssets(): Plugin {
 
   return {
     name: 'sync-docs-assets',
+    configResolved: sync,
     buildStart: sync,
     configureServer() {
       sync();
@@ -164,6 +176,8 @@ function syncJsonSchemas(): Plugin {
 
   return {
     name: 'sync-json-schemas',
+    // Before Vite's publicFiles scan — otherwise /schemas/* falls through to index.html.
+    configResolved: sync,
     buildStart: sync,
     configureServer() {
       sync();
@@ -209,6 +223,7 @@ function syncTreeSitterWasms(): Plugin {
 
   return {
     name: 'sync-tree-sitter-wasms',
+    configResolved: sync,
     buildStart: sync,
     configureServer() {
       sync();
