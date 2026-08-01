@@ -1,6 +1,6 @@
 # TraceLens
 
-**TraceLens** enriches generated architecture nodes with **structural** (AST complexity, LOC) and **behavioral** (churn, authors, temporal coupling) signals from git history.
+**TraceLens** enricifies architecture nodes with **git signals** (churn, authors, temporal coupling), **structural metrics** (AST complexity, LOC), and **blueprint connections** (schema dependencies, import/coupling overlays on the canvas).
 
 ![TraceLens ranked offenders](../screenshots/tracelens.gif)
 
@@ -44,19 +44,19 @@ forensics:
 
 ### Explorer panel (TraceLens tab)
 
-Open the **Explorer** panel on the left (chevron rail on desktop, **Explorer** chip on mobile). Select the **TraceLens** tab for forensics tools:
+Open the **Explorer** panel on the left (chevron rail on desktop, **Explorer** chip on mobile). Select the **TraceLens** tab for architecture signal tools:
 
 - **Workspace display** — test components, externals, dependency focus, risk heatmap, coupling lens
-- **Node forensics** — select a canvas node for metrics, coupled/import peers, dependency view, and mini-graph
-- **View worst offenders** — opens the full **Estate forensics** page
+- **Node details** — select a canvas node for git metrics, schema dependencies, coupled/import peers, and mini-graph
+- **View worst offenders** — opens the full **TraceLens** estate page
 
 The **Schema** tab in the same panel shows YAML / JSON / Mermaid for the active diagram (Mermaid is export-only).
 
-### Estate forensics (full page)
+### TraceLens estate (full page)
 
-Open **`/tracelens`** (header badge **FORENSICS**) or use **View worst offenders** in the TraceLens tab.
+Open **`/tracelens`** (header badge **TRACELENS**) or use **View worst offenders** in the TraceLens tab.
 
-The page title is **Estate forensics**, with tabs **TraceLens | AdviceLens**:
+The page title is **TraceLens**, with tabs **TraceLens | AdviceLens**:
 
 | Tab            | Content                                                                                                                                                                                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

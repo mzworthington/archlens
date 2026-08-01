@@ -57,7 +57,7 @@ describe('TraceLensPanel', () => {
       </Router>
     );
 
-    expect(screen.getByRole('heading', { name: 'Estate forensics' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'TraceLens' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Worst offenders', level: 2 })).toBeInTheDocument();
     expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
 
@@ -462,7 +462,7 @@ describe('TraceLensPanel', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /^AdviceLens$/i }));
     expect(screen.getByTestId('estate-recommendations-panel')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Estate forensics' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'TraceLens' })).toBeInTheDocument();
     expect(
       screen.queryByRole('heading', { name: 'Worst offenders', level: 2 })
     ).not.toBeInTheDocument();

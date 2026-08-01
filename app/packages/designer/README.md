@@ -15,7 +15,7 @@ It functions as a local-first, interactive diagramming canvas where designers ca
 - **Offline / PWA:** Production builds register a service worker that precaches the app shell so returning visits work offline; local IndexedDB and File System Access continue without a network. Installable via the browser “Install app” / Add to Home Screen prompt.
 - **Design System Showcase:** Includes a built-in Design System Showcase page (`/design-system`) demonstrating all atomic component states, buttons, property panel attributes, and visual styles.
 - **ChaosLens:** Toggle **Resilience** in the bottom toolbar to model fault injection and blast-radius impact on the active diagram (see [ChaosLens](../../../docs/guide/chaoslens.md)).
-- **TraceLens:** Explorer → **TraceLens** tab for forensics overlays, dependency view, and the **Estate forensics** full-page ranking (`?lens=tracelens`).
+- **TraceLens:** Explorer → **TraceLens** tab for git metrics, dependency/coupling overlays, and the **TraceLens** full-page estate ranking (`?lens=tracelens`).
 
 ---
 

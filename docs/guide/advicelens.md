@@ -20,8 +20,8 @@ AdviceLens is **cross-surface** — it prescribes fixes wherever TraceLens and C
 
 | Surface           | Location                                                                                           |
 | ----------------- | -------------------------------------------------------------------------------------------------- |
-| **AdviceLens**    | `/advicelens` or `/tracelens?view=recommendations` — **Estate forensics** page, **AdviceLens** tab |
-| **TraceLens**     | `/tracelens` — **Estate forensics** page, **TraceLens** tab (ranked worst offenders)               |
+| **AdviceLens**    | `/advicelens` or `/tracelens?view=recommendations` — **TraceLens** estate page, **AdviceLens** tab |
+| **TraceLens**     | `/tracelens` — **TraceLens** estate page, **TraceLens** tab (ranked worst offenders)               |
 | **Refactor plan** | Slide-over on an offender → AdviceLens list for that boundary                                      |
 | **ChaosLens**     | Workspace **Resilience** mode → telemetry panel advice list                                        |
 | **CLI**           | `archlens resilience <path>` — headless estate sweep                                               |
@@ -45,7 +45,7 @@ Recommendations are **display-only** by default—they are not written into Blue
 
 ## In TraceLens
 
-1. Open **`/advicelens`**, **`/tracelens?view=recommendations`**, or **`/tracelens`** and switch to the **AdviceLens** tab on the **Estate forensics** page.
+1. Open **`/advicelens`**, **`/tracelens?view=recommendations`**, or **`/tracelens`** and switch to the **AdviceLens** tab on the **TraceLens** estate page.
 2. Load blueprints (sandbox or folder workspace).
 3. Filter by source (ChaosLens / TraceLens / all) or search by target name.
 4. Click a row to open the refactor slide-over with evidence.

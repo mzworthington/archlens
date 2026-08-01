@@ -101,7 +101,7 @@ export const TraceLensPanel: React.FC = () => {
                   <p className="text-sm text-slate-300">
                     {searchQuery.trim()
                       ? 'No offenders match this search.'
-                      : 'No forensics offenders in this view.'}
+                      : 'No TraceLens signals in this view.'}
                   </p>
                   <p className="mt-2 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
                     {searchQuery.trim()

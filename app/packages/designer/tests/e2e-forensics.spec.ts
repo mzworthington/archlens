@@ -7,7 +7,7 @@ test.describe('TraceLens lens', () => {
     await gotoApp(page, '/tracelens');
 
     await expect(page).toHaveURL(/\/workspace\?lens=tracelens/);
-    await expect(page.getByRole('heading', { name: 'Estate forensics' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'TraceLens' })).toBeVisible();
     await expect(page.getByRole('textbox', { name: 'Search offenders' })).toBeVisible();
   });
 
