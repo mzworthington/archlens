@@ -1,3 +1,9 @@
+import {
+  buildWorkspacePath,
+  isWorkspacePath,
+  workspaceEntityRefFromPath,
+} from '../../../application/navigation/workspaceUrl';
+
 export type TraceLensView = 'offenders' | 'recommendations';
 
 export type TraceLensUrlState = {
@@ -20,27 +26,18 @@ export type TraceLensUrlOptions = {
 export const ADVICELENS_ENTRY_URL = '/workspace?lens=tracelens&view=recommendations';
 
 const LEGACY_TRACE_LENS_PREFIX = '/tracelens/';
-const WORKSPACE_PREFIX = '/workspace/';
-
-export function workspaceEntityRefFromPath(pathname: string): string | undefined {
-  if (!pathname.startsWith(WORKSPACE_PREFIX)) return undefined;
-  const rest = pathname.slice(WORKSPACE_PREFIX.length).replace(/\/$/, '');
-  return rest ? decodeURIComponent(rest) : undefined;
-}
 
 export function isTraceLensUrl(pathname: string, search = ''): boolean {
   if (pathname === '/tracelens' || pathname.startsWith(LEGACY_TRACE_LENS_PREFIX)) {
     return true;
   }
-  if (pathname !== '/workspace' && !pathname.startsWith(WORKSPACE_PREFIX)) {
-    return false;
-  }
+  if (!isWorkspacePath(pathname)) return false;
   const query = search.startsWith('?') ? search.slice(1) : search;
   return new URLSearchParams(query).get('lens') === 'tracelens';
 }
 
 export function buildTraceLensPath(scopeEntityRef?: string | null): string {
-  return scopeEntityRef ? `/workspace/${scopeEntityRef}` : '/workspace';
+  return buildWorkspacePath(scopeEntityRef);
 }
 
 export function buildTraceLensUrl(

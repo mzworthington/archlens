@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { EntityRef } from '@archlens/core';
 import type { SimulationResult } from '@archlens/core/resilience';
-import { BLAST_WAVE_MS, buildBlastRippleFrame, type BlastRippleFrame } from './blastRipple';
+import {
+  BLAST_WAVE_MS,
+  buildBlastRippleFrame,
+  type BlastRippleFrame,
+} from '../../../application/resilience/blastRipple';
 
 const EMPTY_FRAME: BlastRippleFrame = {
   animatedHeat: new Map(),

@@ -1,11 +1,8 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useLocation, useSearch } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
-import {
-  buildTraceLensUrl,
-  isTraceLensUrl,
-  workspaceEntityRefFromPath,
-} from '../../forensics/traceLensUrl';
+import { workspaceEntityRefFromPath } from '../../../../application/navigation/workspaceUrl';
+import { buildTraceLensUrl, isTraceLensUrl } from '../../forensics/traceLensUrl';
 import {
   buildChaosLensUrl,
   clearChaosLensSearchParams,

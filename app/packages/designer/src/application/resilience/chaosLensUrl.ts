@@ -3,6 +3,11 @@ import {
   type FaultType,
   type NodeFaultConfig,
 } from '@archlens/core/resilience';
+import {
+  buildWorkspacePath,
+  isWorkspacePath,
+  workspaceEntityRefFromPath,
+} from '../navigation/workspaceUrl';
 
 export type ChaosLensUrlState = {
   entityRef?: string;
@@ -13,18 +18,7 @@ export type ChaosLensUrlOptions = {
   faults?: NodeFaultConfig[];
 };
 
-const WORKSPACE_PREFIX = '/workspace/';
 const FAULT_TYPES = new Set<FaultType>(['latency', 'error-rate', 'packet-loss', 'region-outage']);
-
-function isWorkspacePath(pathname: string): boolean {
-  return pathname === '/workspace' || pathname.startsWith(WORKSPACE_PREFIX);
-}
-
-function workspaceEntityRefFromPath(pathname: string): string | undefined {
-  if (!pathname.startsWith(WORKSPACE_PREFIX)) return undefined;
-  const rest = pathname.slice(WORKSPACE_PREFIX.length).replace(/\/$/, '');
-  return rest ? decodeURIComponent(rest) : undefined;
-}
 
 function parseFaultType(value: string | null | undefined): FaultType | null {
   if (!value || !FAULT_TYPES.has(value as FaultType)) return null;
@@ -92,7 +86,7 @@ export function isChaosLensUrl(pathname: string, search = ''): boolean {
 }
 
 export function buildChaosLensPath(scopeEntityRef?: string | null): string {
-  return scopeEntityRef ? `/workspace/${scopeEntityRef}` : '/workspace';
+  return buildWorkspacePath(scopeEntityRef);
 }
 
 export function buildChaosLensUrl(

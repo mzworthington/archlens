@@ -41,7 +41,7 @@ import {
 } from '../../../../../application/resilience/blastHeatmap';
 import { applySafeguardHighlights } from '../../../../../application/resilience/safeguardHighlights';
 import { applySimulationScopeHighlights } from '../../../../../application/resilience/simulationScopeHighlights';
-import { useBlastRippleAnimation } from '../../../../../application/resilience/useBlastRippleAnimation';
+import { useBlastRippleAnimation } from '../../../resilience/useBlastRippleAnimation';
 import { blastPropagationEdgeKey } from '../../../../../application/resilience/blastRipple';
 import { ChaosLensLegend } from '../../../resilience/components/ChaosLensLegend';
 import { CouplingLensLegend } from '../../../forensics/components/CouplingLensLegend';

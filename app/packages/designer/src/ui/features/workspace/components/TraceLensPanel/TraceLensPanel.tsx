@@ -11,6 +11,7 @@ import {
   rankEstateItems,
 } from '../../../../../application/recommendations/buildEstateRecommendations';
 import { executeRecommendationAction } from '../../../../../application/recommendations/executeRecommendationAction';
+import { buildChaosRiskContextMap } from '@archlens/core/forensics';
 import {
   findForensicsOffenderByEntityRef,
   rankForensicsOffenders,
@@ -23,7 +24,6 @@ import {
   type RankedOffender,
 } from '../../../../../application/forensics/rankOffenders';
 import { buildRefactorPlanForOffender } from '../../../../../application/forensics/buildRefactorPlan';
-import { buildChaosRiskContextMap } from '../../../../../application/forensics/chaosRiskContext';
 import { openRefactorOnCanvas } from '../../../../../application/forensics/openRefactorOnCanvas';
 import { applyRefactorPlanAsDraft } from '../../../../../application/forensics/applyRefactorPlanAsDraft';
 import { openSimulateFailureOnCanvas } from '../../../../../application/forensics/openSimulateFailureOnCanvas';

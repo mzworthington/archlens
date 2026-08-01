@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
-import { hasRemoteBuildUpdate } from '../../../infrastructure/pwa/buildId';
+import { hasRemoteBuildUpdate } from '../../../application/pwa/buildInfo';
 
 /**
  * Prompt when a new production build is available (service worker or index.html build id).
