@@ -29,7 +29,9 @@ describe('openSimulateFailureOnCanvas', () => {
       simulateResilienceFaultAtNode,
     });
 
-    expect(setLocation).toHaveBeenCalledWith('/workspace/app/designer');
+    expect(setLocation).toHaveBeenCalledWith(
+      '/workspace/app/designer?lens=chaoslens&fault=app%2Fdesigner%2Fdb&type=region-outage'
+    );
     expect(selectSystem).toHaveBeenCalledWith('designer-components.yaml');
     expect(simulateResilienceFaultAtNode).toHaveBeenCalledWith('app/designer/db');
   });

@@ -2,6 +2,10 @@
 
 ## 2026-08-01
 
+### 🚀 Features
+
+- Shareable ChaosLens URL state (`?lens=chaoslens` + fault params; legacy `?resilience=1` redirects)
+
 ### 🧰 Maintenance & Dependencies
 
 - Bootstrap `agent-lifecycle-kit` into `~/.agents` from `bin/setup-dev-env.sh` (Cursor Cloud)

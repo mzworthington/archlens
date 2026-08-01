@@ -12,7 +12,14 @@ let mockMatch = true;
 let mockParams: { '*': string } = { '*': 'empty-workspace' };
 
 vi.mock('wouter', () => ({
-  useLocation: () => [mockLocation, mockSetLocation],
+  useLocation: () => {
+    const q = mockLocation.indexOf('?');
+    return [q >= 0 ? mockLocation.slice(0, q) : mockLocation, mockSetLocation];
+  },
+  useSearch: () => {
+    const q = mockLocation.indexOf('?');
+    return q >= 0 ? mockLocation.slice(q + 1) : '';
+  },
   useRoute: () => [mockMatch, mockParams],
   Link: ({ href, children, ...props }: any) => (
     <a href={href} {...props}>

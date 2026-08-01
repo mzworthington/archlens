@@ -21,7 +21,7 @@ describe('GoldenJourneyTour', () => {
     );
     expect(screen.getByTestId('journey-step-3-cta')).toHaveAttribute(
       'href',
-      '/workspace/golden-paths/golden-journey?resilience=1'
+      '/workspace/golden-paths/golden-journey?lens=chaoslens'
     );
     expect(screen.getByTestId('journey-step-5-cta')).toHaveAttribute(
       'href',
