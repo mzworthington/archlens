@@ -109,7 +109,7 @@ export const createResilienceState = (
   setResilienceMode: enabled => {
     set({
       isResilienceMode: enabled,
-      ...(enabled ? resilienceModePanelPatch() : {}),
+      ...(enabled ? { isTraceLensMode: false, ...resilienceModePanelPatch() } : {}),
       ...(!enabled
         ? {
             resilienceSimulationResult: null,

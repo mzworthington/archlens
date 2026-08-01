@@ -4,6 +4,7 @@ import { expectCanvasReady, expectGoldenJourneyEstateReady } from './canvas';
 import { gotoApp } from './navigation';
 
 const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/golden-paths/golden-journey';
+const GOLDEN_JOURNEY_WORKSPACE_PATH = GOLDEN_JOURNEY_ESTATE_PATH;
 
 /** Open the Golden Paths sample and wait for the diagram canvas. */
 export async function loadSandbox(page: Page, path = '/workspace/golden-paths') {
@@ -31,9 +32,10 @@ export async function loadSandbox(page: Page, path = '/workspace/golden-paths') 
   await expectCanvasReady(page);
 }
 
-/** Load Golden Paths and open the estate diagram so TraceLens can rank forensics signals. */
+/** Load Golden Paths estate so TraceLens can rank forensics signals. */
 export async function loadForensicsWorkspace(page: Page) {
-  await loadSandbox(page, GOLDEN_JOURNEY_ESTATE_PATH);
+  await gotoApp(page, GOLDEN_JOURNEY_WORKSPACE_PATH);
+  await expectGoldenJourneyEstateReady(page);
 }
 
 /** Navigate to bare workspace so the startup chooser stays visible. */

@@ -1,0 +1,828 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider
+  name: Auth-backend-module-cloudflare-access-provider Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/config.d.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 53
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/dev/index.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 24
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
+    type: rest-api
+    name: helpers Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/helpers.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 200
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
+    type: background-worker
+    name: resolvers.test Service
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/resolvers.test.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 49
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 57
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 108
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator-test
+    type: background-worker
+    name: authenticator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/authenticator.test.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 62
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    type: background-worker
+    name: resolvers Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/resolvers.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 66
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
+    type: background-worker
+    name: helpers.test Service
+    isTest: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/helpers.test.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 327
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    type: background-worker
+    name: authenticator Service
+    isTest: false
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/authenticator.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 59
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/alpha.ts
+      containerId: catalog-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3120
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-github/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-github/src/alpha.ts
+      containerId: catalog-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-gerrit/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gerrit/src/alpha.ts
+      containerId: catalog-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/alpha.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-aws/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/alpha.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4960
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-azure/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-azure/src/alpha.ts
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4040
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/alpha.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: -204
+  - entityRef: backstage/plugins/permission-common/createpermission
+    type: background-worker
+    name: createPermission Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/permissions/createPermission.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3780
+      y: -204
+  - entityRef: backstage/plugins/auth-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-node/src/oauth/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/module/index.ts
+      containerId: catalog-backend-module-bitbucket-cloud
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2660
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-openapi/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-openapi/src/module/index.ts
+      containerId: catalog-backend-module-openapi
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2860
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-github/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-github/dev/index.ts
+      containerId: catalog-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-gerrit/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gerrit/src/module/index.ts
+      containerId: catalog-backend-module-gerrit
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/index.ts
+      containerId: catalog-backend-module-bitbucket-server
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-aws/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/module/index.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4500
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-incremental-ingestion/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-incremental-ingestion/dev/index.ts
+      containerId: catalog-backend-module-incremental-ingestion
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-azure/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-azure/src/module/index.ts
+      containerId: catalog-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3580
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph-incremental/src/module/index.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: -204
+  - entityRef: backstage/plugins/search-backend-module-stack-overflow-collator/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/search-backend-module-stack-overflow-collator/src/module/index.ts
+      containerId: search-backend-module-stack-overflow-collator
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 5160
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-puppetdb/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-puppetdb/src/module/index.ts
+      containerId: catalog-backend-module-puppetdb
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3320
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/module/index.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: -204
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4240
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/index.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2400
+      y: -204
+  - entityRef: backstage/plugins/permission-common/util
+    type: background-worker
+    name: util Service (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/permissions/util.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4700
+      y: -204
+dependencies:
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
+    to: backstage/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    to: backstage/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    to: backstage/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/resolvers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    to: backstage/plugins/auth-node/index
+    type: direct-call
+    description: '@backstage/plugin-auth-node'
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-backend-module-cloudflare-access-provider/authenticator
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-bitbucket-cloud/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-bitbucket-cloud/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-openapi/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-github/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-github/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gerrit/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gerrit/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-bitbucket-server/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-incremental-ingestion/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-azure/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-azure/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-module-stack-overflow-collator/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-puppetdb/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gcp/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gcp/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/permission-common/createpermission
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/permission-common/util
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/permission-common/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service

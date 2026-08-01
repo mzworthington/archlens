@@ -7,7 +7,7 @@ describe('StartupWorkspaceDialog', () => {
     render(<StartupWorkspaceDialog isOpen onOpenSample={vi.fn()} onOpenDirectory={vi.fn()} />);
 
     expect(screen.getByTestId('startup-workspace-dialog')).toBeInTheDocument();
-    expect(screen.getByTestId('workspace-open-sample')).toHaveTextContent(/Open sample/i);
+    expect(screen.getByTestId('workspace-open-sample')).toHaveTextContent(/Open demo blueprints/i);
     expect(screen.getByTestId('workspace-open-directory')).toBeInTheDocument();
   });
 

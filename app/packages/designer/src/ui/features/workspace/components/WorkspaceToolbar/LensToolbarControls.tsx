@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link2, Play, ShieldAlert } from 'lucide-react';
+import { Link2, Play, ScanSearch, ShieldAlert } from 'lucide-react';
+import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { buildTraceLensUrl, workspaceEntityRefFromPath } from '../../../forensics/traceLensUrl';
 import {
   countCouplingCapableNodes,
   countCouplingCapableSchemaNodes,
@@ -80,6 +82,47 @@ function CouplingLensButton() {
   );
 }
 
+function TraceLensButton() {
+  const [location, setLocation] = useLocation();
+  const { isTraceLensMode, setTraceLensMode } = useBlueprintStore();
+
+  const handleClick = () => {
+    const next = !isTraceLensMode;
+    setTraceLensMode(next);
+    if (next) {
+      setLocation(buildTraceLensUrl(workspaceEntityRefFromPath(location)));
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    params.delete('lens');
+    params.delete('view');
+    params.delete('plan');
+    params.delete('source');
+    const query = params.toString();
+    setLocation(`${window.location.pathname}${query ? `?${query}` : ''}`, { replace: true });
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleClick}
+      aria-pressed={isTraceLensMode}
+      data-testid="toolbar-tracelens-lens"
+      className={`${lensBtnClass} ${
+        isTraceLensMode
+          ? 'bg-[#00f0ff]/20 text-[#00f0ff]'
+          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+      }`}
+      aria-label={isTraceLensMode ? 'Exit TraceLens' : 'Enter TraceLens'}
+      title={isTraceLensMode ? 'Exit TraceLens' : 'Rank estate-wide forensics signals'}
+    >
+      <ScanSearch className="w-3.5 h-3.5 shrink-0" aria-hidden />
+      <span className="hidden lg:inline">TraceLens</span>
+    </button>
+  );
+}
+
 function ResilienceLensButton() {
   const { isResilienceMode, toggleResilienceMode } = useBlueprintStore();
 
@@ -129,6 +172,20 @@ function SimulateButton() {
 /** TraceLens + ChaosLens toggles — grouped like layout controls. */
 export const LensToolbarControls: React.FC = () => {
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
+  const isTraceLensMode = useBlueprintStore(s => s.isTraceLensMode);
+
+  if (isTraceLensMode) {
+    return (
+      <div
+        className="flex items-center gap-1.5 bg-slate-900/40 border border-slate-850 px-1.5 py-1.5 rounded-lg text-xs shrink-0 select-none whitespace-nowrap"
+        data-testid="lens-toolbar-controls"
+        onPointerDown={e => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
+      >
+        <TraceLensButton />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -146,6 +203,7 @@ export const LensToolbarControls: React.FC = () => {
         aria-label="Diagram lenses"
       >
         <CouplingLensButton />
+        <TraceLensButton />
         <ResilienceLensButton />
       </div>
       {isResilienceMode ? <SimulateButton /> : null}

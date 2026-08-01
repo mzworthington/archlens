@@ -1,0 +1,322 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-gcp
+  name: Catalog-backend-module-gcp Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/config.d.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 61
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/alpha
+    type: background-worker
+    name: alpha Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/alpha.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 23
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
+    type: background-worker
+    name: catalogModuleGcpGkeEntityProvider Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/module/catalogModuleGcpGkeEntityProvider.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 51
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/module/index.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/gkeentityprovider
+    type: background-worker
+    name: GkeEntityProvider Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/providers/GkeEntityProvider.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 277
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/gkeentityprovider-test
+    type: background-worker
+    name: GkeEntityProvider.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/providers/GkeEntityProvider.test.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 664
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gcp/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gcp/src/setupTests.ts
+      containerId: catalog-backend-module-gcp
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
+    to: backstage/plugins/catalog-backend-module-gcp/gkeentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gcp/index
+    to: backstage/plugins/catalog-backend-module-gcp/catalogmodulegcpgkeentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gcp/gkeentityprovider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gcp/gkeentityprovider
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/catalog-backend-module-gcp/gkeentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gcp/gkeentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gcp/index
+    to: backstage/plugins/catalog-backend-module-gcp/gkeentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gcp/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gcp/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service

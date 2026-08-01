@@ -4,8 +4,8 @@ import type { LoadedSystemRef } from '../../../application/forensics/rankOffende
 import { useTraceLensUrlSync } from './useTraceLensUrlSync';
 
 const setLocation = vi.fn();
-let mockLocation = '/tracelens/backstage/plugins/devtools/app/App';
-let mockSearch = '?plan=backstage%2Fplugins%2Fdevtools%2Fapp%2FApp';
+let mockLocation = '/workspace/backstage/plugins/devtools/app/App';
+let mockSearch = '?lens=tracelens&plan=backstage%2Fplugins%2Fdevtools%2Fapp%2FApp';
 
 vi.mock('wouter', () => ({
   useLocation: () => [mockLocation, setLocation],
@@ -65,8 +65,8 @@ const loadedSystems: LoadedSystemRef[] = [
 
 describe('useTraceLensUrlSync', () => {
   beforeEach(() => {
-    mockLocation = '/tracelens/backstage/plugins/devtools/app/App';
-    mockSearch = '?plan=backstage%2Fplugins%2Fdevtools%2Fapp%2FApp';
+    mockLocation = '/workspace/backstage/plugins/devtools/app/App';
+    mockSearch = '?lens=tracelens&plan=backstage%2Fplugins%2Fdevtools%2Fapp%2FApp';
     setLocation.mockReset();
   });
 
@@ -95,9 +95,12 @@ describe('useTraceLensUrlSync', () => {
     rerender({ activePlan: offenderEntityRef });
 
     rerender({ activePlan: null });
-    expect(setLocation).toHaveBeenCalledWith('/tracelens/backstage/plugins/devtools/app/App', {
-      replace: true,
-    });
+    expect(setLocation).toHaveBeenCalledWith(
+      '/workspace/backstage/plugins/devtools/app/App?lens=tracelens',
+      {
+        replace: true,
+      }
+    );
 
     const callsBeforeQueryStrip = setActivePlan.mock.calls.length;
     mockSearch = '';

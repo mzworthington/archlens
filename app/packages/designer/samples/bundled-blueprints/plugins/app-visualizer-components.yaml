@@ -1,0 +1,287 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/app-visualizer
+  name: App-visualizer Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/app-visualizer/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/dev/index.ts
+      containerId: app-visualizer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 20
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/app-visualizer/src/index.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/app-visualizer/plugin
+    type: gateway-api
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/plugin.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 98
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/app-visualizer/copytreebutton
+    type: gateway-api
+    name: CopyTreeButton Service
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/CopyTreeButton.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 63
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/app-visualizer/textvisualizer
+    type: gateway-api
+    name: TextVisualizer Service
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TextVisualizer.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 110
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/app-visualizer/treevisualizer
+    type: gateway-api
+    name: TreeVisualizer Service
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TreeVisualizer.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 166
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/app-visualizer/appvisualizerpage
+    type: gateway-api
+    name: AppVisualizerPage Service
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/AppVisualizerPage.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 95
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/app-visualizer/src/components/AppVisualizerPage/DetailedVisualizer.tsx
+          kind: direct
+        - path: plugins/app-visualizer/src/components/AppVisualizerPage/TextVisualizer.tsx
+          kind: direct
+        - path: plugins/app-visualizer/src/components/AppVisualizerPage/TreeVisualizer.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/app-visualizer/detailedvisualizer
+    type: gateway-api
+    name: DetailedVisualizer Service
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/DetailedVisualizer.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 384
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies:
+  - from: backstage/plugins/app-visualizer/appvisualizerpage
+    to: backstage/plugins/app-visualizer/detailedvisualizer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-visualizer/appvisualizerpage
+    to: backstage/plugins/app-visualizer/textvisualizer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-visualizer/appvisualizerpage
+    to: backstage/plugins/app-visualizer/treevisualizer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-visualizer/index
+    to: backstage/plugins/app-visualizer/appvisualizerpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-visualizer/index
+    to: backstage/plugins/app-visualizer/plugin
+    type: direct-call
+    description: Calls module / service

@@ -8,7 +8,7 @@ describe('WorkspaceEntryPanel', () => {
     render(<WorkspaceEntryPanel onOpenSample={vi.fn()} onOpenDirectory={vi.fn()} />);
 
     expect(screen.getByRole('heading', { name: WORKSPACE_STARTUP.title })).toBeInTheDocument();
-    expect(screen.getByTestId('workspace-open-sample')).toHaveTextContent(/Open sample/i);
+    expect(screen.getByTestId('workspace-open-sample')).toHaveTextContent(/Open demo blueprints/i);
     expect(screen.getByTestId('workspace-open-directory')).toHaveTextContent(
       /Open workspace from directory/i
     );

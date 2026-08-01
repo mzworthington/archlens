@@ -1,0 +1,93 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/catalog-functionaltests
+  name: Catalog.FunctionalTests Service Components
+  source:
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+nodes:
+  - entityRef: eshop/catalog-functionaltests/catalogapifixture
+    type: rest-api
+    name: CatalogApiFixture
+    isTest: true
+    properties:
+      filepath: tests/Catalog.FunctionalTests/CatalogApiFixture.cs
+      containerId: catalog-functionaltests
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 4
+      loc: 59
+      sloc: 49
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+  - entityRef: eshop/catalog-functionaltests/catalogapitests
+    type: rest-api
+    name: CatalogApiTests
+    isTest: true
+    properties:
+      filepath: tests/Catalog.FunctionalTests/CatalogApiTests.cs
+      containerId: catalog-functionaltests
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 17
+      loc: 424
+      sloc: 307
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/catalog-api/model
+    type: rest-api
+    name: Model Layer (External)
+    external: true
+    properties:
+      filepath: src/Catalog.API/Model/CatalogServices.cs
+      containerId: catalog-api
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: eshop/catalog-functionaltests/catalogapitests
+    to: eshop/catalog-api/model
+    type: direct-call
+    description: Calls module / service

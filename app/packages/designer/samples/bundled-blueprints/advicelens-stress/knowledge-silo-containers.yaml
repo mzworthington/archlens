@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: advicelens-stress/knowledge-silo
+  name: AdviceLens - Knowledge Silo Cluster
+  description: >
+    Tightly coupled Notification and Billing services with solo-owner forensics.
+    TraceLens refactor boundaries and refactor-add-second-owner recommendations
+    should appear in the estate scan even without a chaos simulation.
+nodes:
+  - entityRef: advicelens-stress/knowledge-silo/api
+    type: rest-api
+    name: Platform API
+  - entityRef: advicelens-stress/knowledge-silo/notifications
+    type: microservice
+    name: Notifications Service
+    forensics:
+      complexity: 34
+      loc: 1680
+      sloc: 1240
+      churn: 0.58
+      churn30: 72
+      churn365: 520
+      churnByWeek: [8, 10, 12, 14, 16, 18, 20, 22]
+      authorCount: 1
+      topAuthorPercent: 0.98
+      hotspotScore: 0.74
+      classifications: [hotspot, knowledge-silo]
+      sinceDays: 365
+  - entityRef: advicelens-stress/knowledge-silo/billing
+    type: microservice
+    name: Billing Service
+    forensics:
+      complexity: 31
+      loc: 1520
+      sloc: 1100
+      churn: 0.52
+      churn30: 64
+      churn365: 470
+      churnByWeek: [7, 9, 11, 13, 15, 17, 19, 21]
+      authorCount: 1
+      topAuthorPercent: 0.96
+      hotspotScore: 0.69
+      classifications: [hotspot, knowledge-silo]
+      sinceDays: 365
+  - entityRef: advicelens-stress/knowledge-silo/customer-db
+    type: relational-database
+    name: Customer Database
+dependencies:
+  - from: advicelens-stress/knowledge-silo/api
+    to: advicelens-stress/knowledge-silo/notifications
+    type: direct-call
+  - from: advicelens-stress/knowledge-silo/api
+    to: advicelens-stress/knowledge-silo/billing
+    type: direct-call
+  - from: advicelens-stress/knowledge-silo/notifications
+    to: advicelens-stress/knowledge-silo/billing
+    type: direct-call
+    description: Shared DTOs and billing hooks
+  - from: advicelens-stress/knowledge-silo/billing
+    to: advicelens-stress/knowledge-silo/notifications
+    type: direct-call
+    description: Invoice-sent callbacks
+  - from: advicelens-stress/knowledge-silo/notifications
+    to: advicelens-stress/knowledge-silo/customer-db
+    type: read-write
+  - from: advicelens-stress/knowledge-silo/billing
+    to: advicelens-stress/knowledge-silo/customer-db
+    type: read-write

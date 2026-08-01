@@ -1,0 +1,473 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: application/gpio-build-monitor
+  name: Gpio-build-monitor Containers
+  source:
+    remoteUrl: https://github.com/mzworthington/gpio-build-monitor
+    defaultBranch: main
+    scannedAtCommit: 1b7f029c3f56e5a0948c4f90660a71cd7561244b
+    scanRoot: .
+nodes:
+  - entityRef: application/gpio-build-monitor/monitor
+    type: container
+    name: Monitor Service
+    isTest: false
+    forensics:
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 50
+      churn: 9
+      lineChurn: 665
+      churn30: 9
+      churn365: 9
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 9
+      hotspotScore: 0.6218487394957983
+      classifications:
+        - hotspot
+        - knowledge-silo
+      sinceDays: 60
+      fileCount: 10
+      hotspotCount: 1
+      knowledgeSiloCount: 1
+  - entityRef: application/gpio-build-monitor/service
+    type: container
+    name: Service Service
+    isTest: false
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 4
+      lineChurn: 353
+      churn30: 4
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 4
+      hotspotScore: 0.13292589763177998
+      sinceDays: 60
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: application/gpio-build-monitor/gpio
+    type: container
+    name: Gpio Service
+    isTest: false
+    forensics:
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      churn: 3
+      lineChurn: 133
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 3
+      hotspotScore: 0.08403361344537816
+      sinceDays: 60
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: application/gpio-build-monitor/mock
+    type: container
+    name: Mock Service
+    isTest: false
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      hotspotScore: 0
+      sinceDays: 60
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: application/gpio-build-monitor/ci_gateway
+    type: container
+    name: Ci_gateway Service
+    isTest: false
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 28
+      churn: 7
+      lineChurn: 612
+      churn30: 7
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 7
+      hotspotScore: 0.45989304812834225
+      sinceDays: 60
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: application/gpio-build-monitor/core
+    type: container
+    name: Core Service
+    isTest: true
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 2
+      lineChurn: 33
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: application/gpio-build-monitor/ci_gateway/constants
+    type: background-worker
+    name: constants Service (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/constants.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: application/gpio-build-monitor/ci_gateway/ci_gateway
+    type: background-worker
+    name: ci_gateway Package (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/__init__.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: 404
+  - entityRef: application/gpio-build-monitor/ci_gateway/circleci
+    type: background-worker
+    name: circleci Service (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/circleci.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: 404
+  - entityRef: application/gpio-build-monitor/ci_gateway/github
+    type: background-worker
+    name: github Service (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/github.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: application/gpio-build-monitor/ci_gateway/integration_actions
+    type: background-worker
+    name: integration_actions Service (External)
+    external: true
+    properties:
+      filepath: monitor/ci_gateway/integration_actions.py
+      containerId: ci_gateway
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: application/gpio-build-monitor/gpio/constants
+    type: background-worker
+    name: constants Service (External)
+    external: true
+    properties:
+      filepath: monitor/gpio/constants.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: application/gpio-build-monitor/gpio/board
+    type: background-worker
+    name: board Service (External)
+    external: true
+    properties:
+      filepath: monitor/gpio/board.py
+      containerId: gpio
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: application/gpio-build-monitor/mock/mock
+    type: background-worker
+    name: Mock Package (External)
+    external: true
+    properties:
+      filepath: monitor/gpio/Mock/__init__.py
+      containerId: mock
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: application/gpio-build-monitor/service/aggregator_service
+    type: background-worker
+    name: aggregator_service Service (External)
+    external: true
+    properties:
+      filepath: monitor/service/aggregator_service.py
+      containerId: service
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: application/gpio-build-monitor/service/integration_mapper
+    type: background-worker
+    name: integration_mapper Service (External)
+    external: true
+    properties:
+      filepath: monitor/service/integration_mapper.py
+      containerId: service
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 2400
+      y: 404
+  - entityRef: application/gpio-build-monitor/monitor/config
+    type: background-worker
+    name: config Service (External)
+    external: true
+    properties:
+      filepath: monitor/config.py
+      containerId: monitor
+      technology: Python Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+dependencies:
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/ci_gateway
+    type: inter-container
+    description: config Service → constants Service (+2 more)
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/gpio
+    type: inter-container
+    description: config Service → constants Service (+6 more)
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/service
+    type: inter-container
+    description: build_monitor Service → aggregator_service Service (+5 more)
+  - from: application/gpio-build-monitor/service
+    to: application/gpio-build-monitor/ci_gateway
+    type: inter-container
+    description: integration_mapper Service → constants Service (+6 more)
+  - from: application/gpio-build-monitor/service
+    to: application/gpio-build-monitor/monitor
+    type: inter-container
+    description: integration_mapper Service → config Service
+  - from: application/gpio-build-monitor/gpio
+    to: application/gpio-build-monitor/mock
+    type: inter-container
+    description: board Service → Mock Package
+  - from: application/gpio-build-monitor/core
+    to: application/gpio-build-monitor/gpio
+    type: inter-container
+    description: conftest Service → constants Service
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: config Service → constants Service
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: app Service → ci_gateway Package
+  - from: application/gpio-build-monitor/service
+    to: application/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: integration_mapper Service → constants Service
+  - from: application/gpio-build-monitor/service
+    to: application/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: test_integration_mapper Service → ci_gateway Package
+  - from: application/gpio-build-monitor/service
+    to: application/gpio-build-monitor/ci_gateway/circleci
+    type: direct-call
+    description: test_integration_mapper Service → circleci Service
+  - from: application/gpio-build-monitor/service
+    to: application/gpio-build-monitor/ci_gateway/github
+    type: direct-call
+    description: test_integration_mapper Service → github Service
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/ci_gateway/integration_actions
+    type: direct-call
+    description: test_app Service → integration_actions Service
+  - from: application/gpio-build-monitor/core
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: conftest Service → constants Service
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: config Service → constants Service
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/gpio/board
+    type: direct-call
+    description: build_monitor Service → board Service
+  - from: application/gpio-build-monitor/gpio
+    to: application/gpio-build-monitor/mock/mock
+    type: direct-call
+    description: board Service → Mock Package
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/service/aggregator_service
+    type: direct-call
+    description: build_monitor Service → aggregator_service Service
+  - from: application/gpio-build-monitor/monitor
+    to: application/gpio-build-monitor/service/integration_mapper
+    type: direct-call
+    description: app Service → integration_mapper Service
+  - from: application/gpio-build-monitor/service
+    to: application/gpio-build-monitor/monitor/config
+    type: direct-call
+    description: integration_mapper Service → config Service
+  - from: application/gpio-build-monitor/monitor/config
+    to: application/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: config Service → constants Service
+  - from: application/gpio-build-monitor/monitor/config
+    to: application/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: app Service → ci_gateway Package
+  - from: application/gpio-build-monitor/service/integration_mapper
+    to: application/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: integration_mapper Service → constants Service
+  - from: application/gpio-build-monitor/service/aggregator_service
+    to: application/gpio-build-monitor/ci_gateway/constants
+    type: direct-call
+    description: aggregator_service Service → constants Service
+  - from: application/gpio-build-monitor/service/aggregator_service
+    to: application/gpio-build-monitor/ci_gateway/ci_gateway
+    type: direct-call
+    description: test_integration_mapper Service → ci_gateway Package
+  - from: application/gpio-build-monitor/service/aggregator_service
+    to: application/gpio-build-monitor/ci_gateway/circleci
+    type: direct-call
+    description: test_integration_mapper Service → circleci Service
+  - from: application/gpio-build-monitor/service/aggregator_service
+    to: application/gpio-build-monitor/ci_gateway/github
+    type: direct-call
+    description: test_integration_mapper Service → github Service
+  - from: application/gpio-build-monitor/monitor/config
+    to: application/gpio-build-monitor/ci_gateway/integration_actions
+    type: direct-call
+    description: test_app Service → integration_actions Service
+  - from: application/gpio-build-monitor/monitor/config
+    to: application/gpio-build-monitor/gpio/constants
+    type: direct-call
+    description: config Service → constants Service
+  - from: application/gpio-build-monitor/monitor/config
+    to: application/gpio-build-monitor/gpio/board
+    type: direct-call
+    description: build_monitor Service → board Service
+  - from: application/gpio-build-monitor/gpio/board
+    to: application/gpio-build-monitor/mock/mock
+    type: direct-call
+    description: board Service → Mock Package
+  - from: application/gpio-build-monitor/monitor/config
+    to: application/gpio-build-monitor/service/aggregator_service
+    type: direct-call
+    description: build_monitor Service → aggregator_service Service
+  - from: application/gpio-build-monitor/monitor/config
+    to: application/gpio-build-monitor/service/integration_mapper
+    type: direct-call
+    description: app Service → integration_mapper Service
+  - from: application/gpio-build-monitor/service/integration_mapper
+    to: application/gpio-build-monitor/monitor/config
+    type: direct-call
+    description: integration_mapper Service → config Service

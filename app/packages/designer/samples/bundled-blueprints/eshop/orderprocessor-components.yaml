@@ -1,0 +1,206 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/orderprocessor
+  name: OrderProcessor Service Components
+  source:
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+nodes:
+  - entityRef: eshop/orderprocessor/extensions
+    type: background-worker
+    name: Extensions Layer
+    isTest: false
+    properties:
+      filepath: src/OrderProcessor/Extensions/Extensions.cs
+      containerId: orderprocessor
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 27
+      sloc: 19
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/orderprocessor/backgroundtaskoptions
+    type: background-worker
+    name: BackgroundTaskOptions
+    isTest: false
+    properties:
+      filepath: src/OrderProcessor/BackgroundTaskOptions.cs
+      containerId: orderprocessor
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 9
+      sloc: 6
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/orderprocessor/events
+    type: background-worker
+    name: Events Layer
+    isTest: false
+    properties:
+      filepath: src/OrderProcessor/Events/GracePeriodConfirmedIntegrationEvent.cs
+      containerId: orderprocessor
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 13
+      sloc: 10
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/orderprocessor/services
+    type: relational-database
+    name: Services Layer
+    isTest: false
+    properties:
+      filepath: src/OrderProcessor/Services/GracePeriodManagerService.cs
+      containerId: orderprocessor
+      technology: Entity Framework / DB Context
+      classification: database-marker
+    forensics:
+      complexity: 8
+      loc: 96
+      sloc: 78
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.2916666666666667
+      sinceDays: 60
+  - entityRef: eshop/orderprocessor/program
+    type: background-worker
+    name: Program
+    isTest: false
+    properties:
+      filepath: src/OrderProcessor/Program.cs
+      containerId: orderprocessor
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 11
+      sloc: 6
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/eventbus/abstractions
+    type: event-broker
+    name: Abstractions Layer (External)
+    external: true
+    properties:
+      filepath: src/EventBus/Abstractions/IEventBusBuilder.cs
+      containerId: eventbus
+      technology: C# Event Client
+      classification: event-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: eshop/eventbus/events
+    type: background-worker
+    name: Events Layer (External)
+    external: true
+    properties:
+      filepath: src/EventBus/Events/IntegrationEvent.cs
+      containerId: eventbus
+      technology: C# Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: eshop/orderprocessor/extensions
+    to: eshop/orderprocessor/events
+    type: direct-call
+    description: Calls module / service
+  - from: eshop/orderprocessor/events
+    to: eshop/eventbus/events
+    type: direct-call
+    description: Calls module / service
+  - from: eshop/orderprocessor/services
+    to: eshop/eventbus/abstractions
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics
+  - from: eshop/orderprocessor/services
+    to: eshop/orderprocessor/events
+    type: direct-call
+    description: Calls module / service

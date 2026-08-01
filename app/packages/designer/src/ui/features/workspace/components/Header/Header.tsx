@@ -5,9 +5,12 @@ import { useBlueprintStore } from '../../../../../application/store/store';
 
 export const Header: React.FC = () => {
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
+  const isTraceLensMode = useBlueprintStore(s => s.isTraceLensMode);
+
+  const badge = isTraceLensMode ? 'TRACELENS' : isResilienceMode ? 'CHAOSLENS' : 'CANVAS';
 
   return (
-    <AppHeader badge={isResilienceMode ? 'CHAOSLENS' : 'CANVAS'}>
+    <AppHeader badge={badge}>
       <div className="min-w-0 flex-1 border-l border-[#00f0ff]/15 pl-3 lg:pl-4">
         <Breadcrumbs />
       </div>

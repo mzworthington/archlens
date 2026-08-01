@@ -1,0 +1,1127 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-msgraph
+  name: Catalog-backend-module-msgraph Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/config.d.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 388
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/read
+    type: background-worker
+    name: read Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/read.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 620
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: mtlewis@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/org-test
+    type: background-worker
+    name: org.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/org.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 94
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/read-test
+    type: background-worker
+    name: read.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/read.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 1758
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: mtlewis@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/helper-test
+    type: background-worker
+    name: helper.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/helper.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 37
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/defaulttransformers-test
+    type: background-worker
+    name: defaultTransformers.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/defaultTransformers.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 120
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/helper
+    type: background-worker
+    name: helper Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/helper.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 40
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/types.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 59
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/constants
+    type: background-worker
+    name: constants Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/constants.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 45
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/client
+    type: background-worker
+    name: client Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/client.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 492
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/index.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 43
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/config
+    type: background-worker
+    name: config Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/config.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 407
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: mlewis@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/config-test
+    type: background-worker
+    name: config.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/config.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 307
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: mlewis@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/client-test
+    type: background-worker
+    name: client.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/client.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 533
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/org
+    type: background-worker
+    name: org Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/org.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 87
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/defaulttransformers
+    type: background-worker
+    name: defaultTransformers Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/microsoftGraph/defaultTransformers.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 164
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/alpha
+    type: background-worker
+    name: alpha Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/alpha.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 21
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider-test
+    type: background-worker
+    name: catalogModuleMicrosoftGraphOrgEntityProvider.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/module/catalogModuleMicrosoftGraphOrgEntityProvider.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 77
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider
+    type: background-worker
+    name: catalogModuleMicrosoftGraphOrgEntityProvider Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/module/catalogModuleMicrosoftGraphOrgEntityProvider.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 167
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/setupTests.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor-test
+    type: background-worker
+    name: MicrosoftGraphOrgReaderProcessor.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/processors/MicrosoftGraphOrgReaderProcessor.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 144
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider
+    type: background-worker
+    name: MicrosoftGraphOrgEntityProvider Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/processors/MicrosoftGraphOrgEntityProvider.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 477
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
+    type: background-worker
+    name: MicrosoftGraphOrgReaderProcessor Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/processors/MicrosoftGraphOrgReaderProcessor.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 154
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider-test
+    type: background-worker
+    name: MicrosoftGraphOrgEntityProvider.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph/src/processors/MicrosoftGraphOrgEntityProvider.test.ts
+      containerId: catalog-backend-module-msgraph
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 391
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    type: background-worker
+    name: catalogModuleMicrosoftGraphIncrementalEntityProvider Service (External)
+    external: true
+    properties:
+      filepath: >-
+        plugins/catalog-backend-module-msgraph-incremental/src/module/catalogModuleMicrosoftGraphIncrementalEntityProvider.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
+    type: background-worker
+    name: clientHelpers Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph-incremental/src/clientHelpers.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
+    type: background-worker
+    name: clientHelpers.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph-incremental/src/clientHelpers.test.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    type: background-worker
+    name: MicrosoftGraphIncrementalEntityProvider Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph-incremental/src/MicrosoftGraphIncrementalEntityProvider.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
+    type: background-worker
+    name: MicrosoftGraphIncrementalEntityProvider.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-msgraph-incremental/src/MicrosoftGraphIncrementalEntityProvider.test.ts
+      containerId: catalog-backend-module-msgraph-incremental
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: -204
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: background-worker
+    name: module Service (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/module.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers-test
+    to: backstage/plugins/catalog-backend-module-msgraph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/clienthelpers
+    to: backstage/plugins/catalog-backend-module-msgraph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/catalogmodulemicrosoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-backend-module-msgraph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider-test
+    to: backstage/plugins/catalog-backend-module-msgraph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
+  - from: backstage/plugins/catalog-backend-module-msgraph-incremental/microsoftgraphincrementalentityprovider
+    to: backstage/plugins/catalog-backend-module-msgraph/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-msgraph'
+  - from: backstage/plugins/catalog-backend-module-msgraph/read
+    to: backstage/plugins/catalog-backend-module-msgraph/client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/read
+    to: backstage/plugins/catalog-backend-module-msgraph/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/read
+    to: backstage/plugins/catalog-backend-module-msgraph/org
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/read
+    to: backstage/plugins/catalog-backend-module-msgraph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/read
+    to: backstage/plugins/catalog-backend-module-msgraph/defaulttransformers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/org-test
+    to: backstage/plugins/catalog-backend-module-msgraph/org
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/read-test
+    to: backstage/plugins/catalog-backend-module-msgraph/client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/read-test
+    to: backstage/plugins/catalog-backend-module-msgraph/read
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/helper-test
+    to: backstage/plugins/catalog-backend-module-msgraph/helper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/defaulttransformers-test
+    to: backstage/plugins/catalog-backend-module-msgraph/defaulttransformers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/types
+    to: backstage/plugins/catalog-backend-module-msgraph/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/client
+    to: backstage/plugins/catalog-backend-module-msgraph/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/helper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/defaulttransformers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/read
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/config-test
+    to: backstage/plugins/catalog-backend-module-msgraph/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/client-test
+    to: backstage/plugins/catalog-backend-module-msgraph/client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/defaulttransformers
+    to: backstage/plugins/catalog-backend-module-msgraph/constants
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/defaulttransformers
+    to: backstage/plugins/catalog-backend-module-msgraph/helper
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/alpha
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider-test
+    to: backstage/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider
+    to: backstage/plugins/catalog-backend-module-msgraph/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/catalogmodulemicrosoftgraphorgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor-test
+    to: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider
+    to: backstage/plugins/catalog-backend-module-msgraph/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider-test
+    to: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/catalog-backend-module-msgraph/microsoftgraphorgreaderprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-msgraph/index
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/module
+    type: direct-call
+    description: Calls module / service

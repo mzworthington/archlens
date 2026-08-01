@@ -1,53 +1,67 @@
 import { describe, it, expect } from 'vitest';
-import { buildTraceLensUrl, parseTraceLensUrl } from './traceLensUrl';
+import {
+  buildTraceLensUrl,
+  parseTraceLensUrl,
+  redirectLegacyTraceLensUrl,
+  isTraceLensUrl,
+} from './traceLensUrl';
 
 describe('traceLensUrl', () => {
-  it('builds base path without entity or source', () => {
-    expect(buildTraceLensUrl()).toBe('/tracelens');
-    expect(buildTraceLensUrl(null)).toBe('/tracelens');
-  });
-
-  it('builds scoped path and optional plan/source/view query', () => {
-    expect(buildTraceLensUrl('app/designer/db')).toBe('/tracelens/app/designer/db');
+  it('builds workspace lens URLs', () => {
+    expect(buildTraceLensUrl()).toBe('/workspace?lens=tracelens');
+    expect(buildTraceLensUrl(null)).toBe('/workspace?lens=tracelens');
+    expect(buildTraceLensUrl('app/designer/db')).toBe('/workspace/app/designer/db?lens=tracelens');
     expect(buildTraceLensUrl('app/designer', { planEntityRef: 'app/designer/db' })).toBe(
-      '/tracelens/app/designer?plan=app%2Fdesigner%2Fdb'
+      '/workspace/app/designer?lens=tracelens&plan=app%2Fdesigner%2Fdb'
     );
     expect(buildTraceLensUrl('app/designer/db', { showSource: true })).toBe(
-      '/tracelens/app/designer/db?source=1'
+      '/workspace/app/designer/db?lens=tracelens&source=1'
     );
     expect(buildTraceLensUrl(null, { view: 'recommendations' })).toBe(
-      '/tracelens?view=recommendations'
+      '/workspace?lens=tracelens&view=recommendations'
     );
     expect(
       buildTraceLensUrl('app/designer', {
         planEntityRef: 'app/designer/db',
         showSource: true,
       })
-    ).toBe('/tracelens/app/designer?plan=app%2Fdesigner%2Fdb&source=1');
+    ).toBe('/workspace/app/designer?lens=tracelens&plan=app%2Fdesigner%2Fdb&source=1');
   });
 
-  it('parses rankings-only URL', () => {
-    expect(parseTraceLensUrl('/tracelens')).toEqual({ showSource: false });
-    expect(parseTraceLensUrl('/tracelens/')).toEqual({ showSource: false });
-  });
-
-  it('parses scope entity, plan, source, and view from path + search', () => {
-    expect(parseTraceLensUrl('/tracelens/app/designer')).toEqual({
-      entityRef: 'app/designer',
+  it('parses workspace lens URLs', () => {
+    expect(parseTraceLensUrl('/workspace', 'lens=tracelens')).toEqual({ showSource: false });
+    expect(parseTraceLensUrl('/workspace/golden-paths', 'lens=tracelens')).toEqual({
+      entityRef: 'golden-paths',
       showSource: false,
     });
-    expect(parseTraceLensUrl('/tracelens/app/designer', 'plan=app/designer/db')).toEqual({
+    expect(
+      parseTraceLensUrl('/workspace/app/designer', 'lens=tracelens&plan=app/designer/db')
+    ).toEqual({
       entityRef: 'app/designer',
       planEntityRef: 'app/designer/db',
       showSource: false,
     });
-    expect(parseTraceLensUrl('/tracelens/app/designer/db', 'source=1')).toEqual({
+    expect(parseTraceLensUrl('/workspace/app/designer/db', 'lens=tracelens&source=1')).toEqual({
       entityRef: 'app/designer/db',
       showSource: true,
     });
-    expect(parseTraceLensUrl('/tracelens', 'view=recommendations')).toEqual({
+    expect(parseTraceLensUrl('/workspace', 'lens=tracelens&view=recommendations')).toEqual({
       showSource: false,
       view: 'recommendations',
     });
+  });
+
+  it('redirects legacy /tracelens paths', () => {
+    expect(redirectLegacyTraceLensUrl('/tracelens')).toBe('/workspace?lens=tracelens');
+    expect(redirectLegacyTraceLensUrl('/tracelens/app/designer', 'view=recommendations')).toBe(
+      '/workspace/app/designer?lens=tracelens&view=recommendations'
+    );
+  });
+
+  it('detects trace lens routes', () => {
+    expect(isTraceLensUrl('/workspace', 'lens=tracelens')).toBe(true);
+    expect(isTraceLensUrl('/workspace/golden-paths', 'lens=tracelens')).toBe(true);
+    expect(isTraceLensUrl('/workspace/golden-paths', '')).toBe(false);
+    expect(isTraceLensUrl('/tracelens')).toBe(true);
   });
 });

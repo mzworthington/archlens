@@ -1,10 +1,11 @@
-import { lazy, Suspense } from 'react';
-import { Route, Router, Switch } from 'wouter';
+import { lazy, Suspense, useEffect } from 'react';
+import { Route, Router, Switch, useLocation } from 'wouter';
 import { WorkspacePage } from './ui/features/workspace';
 import { OfflineBanner } from './ui/components/OfflineBanner/OfflineBanner';
 import { UpdateBanner } from './ui/components/UpdateBanner/UpdateBanner';
 import { AppNotificationToast } from './ui/components/AppNotificationToast/AppNotificationToast';
 import { useApp } from './application/context/AppContext';
+import { redirectLegacyTraceLensUrl } from './ui/features/forensics/traceLensUrl';
 
 const DocsHome = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsHome })));
 const DocsPage = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsPage })));
@@ -14,12 +15,17 @@ const JourneysPage = lazy(() =>
 const DesignSystemDocsPage = lazy(() =>
   import('./ui/features/docs').then(m => ({ default: m.DesignSystemDocsPage }))
 );
-const ForensicsPage = lazy(() =>
-  import('./ui/features/forensics').then(m => ({ default: m.ForensicsPage }))
-);
 
 /** Vite BASE_URL always has a trailing slash; wouter wants none. */
 const routerBase = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+
+function TraceLensRedirect() {
+  const [location, setLocation] = useLocation();
+  useEffect(() => {
+    setLocation(redirectLegacyTraceLensUrl(location, window.location.search), { replace: true });
+  }, [location, setLocation]);
+  return null;
+}
 
 function RouteFallback() {
   return (
@@ -40,8 +46,8 @@ function App() {
       <Suspense fallback={<RouteFallback />}>
         <Switch>
           <Route path="/design-system" component={DesignSystemDocsPage} />
-          <Route path="/tracelens" component={ForensicsPage} />
-          <Route path="/tracelens/*" component={ForensicsPage} />
+          <Route path="/tracelens">{() => <TraceLensRedirect />}</Route>
+          <Route path="/tracelens/*">{() => <TraceLensRedirect />}</Route>
           <Route path="/workspace" component={WorkspacePage} />
           <Route path="/workspace/*" component={WorkspacePage} />
           <Route path="/guide" component={DocsPage} />

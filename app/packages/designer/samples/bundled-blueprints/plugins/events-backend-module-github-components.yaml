@@ -1,0 +1,586 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend-module-github
+  name: Events-backend-module-github Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend-module-github/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-github/config.d.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 38
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/createappidresolver
+    type: background-worker
+    name: createAppIdResolver Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-github/src/util/createAppIdResolver.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 66
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/octokitproviderservice
+    type: background-worker
+    name: octokitProviderService Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-github/src/util/octokitProviderService.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 104
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-github/src/setupTests.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator
+    type: background-worker
+    name: createGithubSignatureValidator Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-github/src/http/createGithubSignatureValidator.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 98
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator-test
+    type: background-worker
+    name: createGithubSignatureValidator.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-github/src/http/createGithubSignatureValidator.test.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 166
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-github/src/index.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 39
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
+    type: rest-api
+    name: eventsModuleGithubEventRouter.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-github/src/service/eventsModuleGithubEventRouter.test.ts
+      containerId: events-backend-module-github
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 41
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook
+    type: background-worker
+    name: eventsModuleGithubWebhook Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-github/src/service/eventsModuleGithubWebhook.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 56
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook-test
+    type: background-worker
+    name: eventsModuleGithubWebhook.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-github/src/service/eventsModuleGithubWebhook.test.ts
+      containerId: events-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 116
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter
+    type: rest-api
+    name: eventsModuleGithubEventRouter Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-github/src/service/eventsModuleGithubEventRouter.ts
+      containerId: events-backend-module-github
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 42
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/githubeventrouter-test
+    type: rest-api
+    name: GithubEventRouter.test Service
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-github/src/router/GithubEventRouter.test.ts
+      containerId: events-backend-module-github
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 53
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-backend-module-github/githubeventrouter
+    type: rest-api
+    name: GithubEventRouter Service
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-github/src/router/GithubEventRouter.ts
+      containerId: events-backend-module-github
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 45
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/events-node/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/alpha.ts
+      containerId: events-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend-module-github/createappidresolver
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-github/createappidresolver
+    to: backstage/plugins/events-backend-module-github/octokitproviderservice
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator
+    to: backstage/plugins/events-backend-module-github/createappidresolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator
+    to: backstage/plugins/events-backend-module-github/octokitproviderservice
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator-test
+    to: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator-test
+    to: backstage/plugins/events-backend-module-github/octokitproviderservice
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/index
+    to: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/index
+    to: backstage/plugins/events-backend-module-github/githubeventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
+    to: backstage/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter-test
+    to: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook
+    to: backstage/plugins/events-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook
+    to: backstage/plugins/events-backend-module-github/creategithubsignaturevalidator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook
+    to: backstage/plugins/events-backend-module-github/octokitproviderservice
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook-test
+    to: backstage/plugins/events-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook-test
+    to: backstage/plugins/events-backend-module-github/eventsmodulegithubwebhook
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-github/eventsmodulegithubeventrouter
+    to: backstage/plugins/events-backend-module-github/githubeventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/githubeventrouter-test
+    to: backstage/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: backstage/plugins/events-backend-module-github/githubeventrouter-test
+    to: backstage/plugins/events-backend-module-github/githubeventrouter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-github/githubeventrouter
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'

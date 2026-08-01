@@ -1,0 +1,145 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/eventbusrabbitmq
+  name: EventBusRabbitMQ Service Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/eventbusrabbitmq/rabbitmqeventbus
+    type: background-worker
+    name: RabbitMQEventBus
+    isTest: false
+    properties:
+      filepath: src/EventBusRabbitMQ/RabbitMQEventBus.cs
+      containerId: eventbusrabbitmq
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 21
+      functionCount: 13
+      loc: 322
+      sloc: 244
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.25
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: eshop/eventbusrabbitmq/rabbitmqtelemetry
+    type: background-worker
+    name: RabbitMQTelemetry
+    isTest: false
+    properties:
+      filepath: src/EventBusRabbitMQ/RabbitMQTelemetry.cs
+      containerId: eventbusrabbitmq
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 13
+      sloc: 9
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: eshop/eventbusrabbitmq/rabbitmqdependencyinjectionextensions
+    type: background-worker
+    name: RabbitMqDependencyInjectionExtensions
+    isTest: false
+    properties:
+      filepath: src/EventBusRabbitMQ/RabbitMqDependencyInjectionExtensions.cs
+      containerId: eventbusrabbitmq
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 47
+      sloc: 26
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: eshop/eventbusrabbitmq/eventbusoptions
+    type: background-worker
+    name: EventBusOptions
+    isTest: false
+    properties:
+      filepath: src/EventBusRabbitMQ/EventBusOptions.cs
+      containerId: eventbusrabbitmq
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 8
+      sloc: 6
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies:
+  - from: eshop/eventbusrabbitmq/rabbitmqdependencyinjectionextensions
+    to: eshop/eventbusrabbitmq/rabbitmqeventbus
+    type: direct-call
+    description: Calls module / service

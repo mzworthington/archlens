@@ -1,0 +1,376 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-translations
+  name: Cli-module-translations Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-module-translations/messagefilepath
+    type: background-worker
+    name: messageFilePath Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-translations/src/lib/messageFilePath.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 73
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-module-translations/extracttranslations
+    type: background-worker
+    name: extractTranslations Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-translations/src/lib/extractTranslations.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 133
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-module-translations/extracttranslations-test
+    type: background-worker
+    name: extractTranslations.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-translations/src/lib/extractTranslations.test.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 124
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-module-translations/messagefilepath-test
+    type: background-worker
+    name: messageFilePath.test Service
+    isTest: true
+    properties:
+      filepath: packages/cli-module-translations/src/lib/messageFilePath.test.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 98
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-module-translations/discoverpackages
+    type: background-worker
+    name: discoverPackages Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-translations/src/lib/discoverPackages.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 207
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-module-translations/export
+    type: background-worker
+    name: export Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-translations/src/commands/export.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 165
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-module-translations/import
+    type: background-worker
+    name: import Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-translations/src/commands/import.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 238
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-module-translations/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/cli-module-translations/src/index.ts
+      containerId: cli-module-translations
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 36
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-node/index
+    type: cache-store
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/monorepo/index.ts
+      containerId: cli-node
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/cli-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-defaults/src/index.ts
+      containerId: cli-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+dependencies:
+  - from: backstage/packages/cli-module-translations/extracttranslations-test
+    to: backstage/packages/cli-module-translations/extracttranslations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-translations/messagefilepath-test
+    to: backstage/packages/cli-module-translations/messagefilepath
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-translations/discoverpackages
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-translations/export
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-translations/export
+    to: backstage/packages/cli-module-translations/discoverpackages
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-translations/export
+    to: backstage/packages/cli-module-translations/extracttranslations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-translations/export
+    to: backstage/packages/cli-module-translations/messagefilepath
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-translations/export
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-translations/import
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-translations/import
+    to: backstage/packages/cli-module-translations/discoverpackages
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-translations/import
+    to: backstage/packages/cli-module-translations/messagefilepath
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-translations/import
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-translations/index
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-defaults/index
+    to: backstage/packages/cli-module-translations/index
+    type: direct-call
+    description: '@backstage/cli-module-translations'

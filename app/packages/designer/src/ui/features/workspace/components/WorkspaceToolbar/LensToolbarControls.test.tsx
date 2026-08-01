@@ -7,10 +7,17 @@ describe('LensToolbarControls', () => {
   beforeEach(() => {
     useBlueprintStore.setState({
       isResilienceMode: false,
+      isTraceLensMode: false,
       selectedNodeId: 'shop/payment',
       showCoupling: false,
       notification: null,
     });
+  });
+
+  it('toggles trace lens mode from the lenses group', () => {
+    render(<LensToolbarControls />);
+    fireEvent.click(screen.getByTestId('toolbar-tracelens-lens'));
+    expect(useBlueprintStore.getState().isTraceLensMode).toBe(true);
   });
 
   it('toggles resilience mode from the lenses group', () => {

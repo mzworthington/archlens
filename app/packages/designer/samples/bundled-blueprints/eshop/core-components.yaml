@@ -1,0 +1,111 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/core
+  name: Core Service Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/core/playwright-config
+    type: background-worker
+    name: playwright.config Service
+    isTest: false
+    properties:
+      filepath: playwright.config.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      loc: 96
+      sloc: 40
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.125
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: eshop/core/migratedbcontextextensions
+    type: relational-database
+    name: MigrateDbContextExtensions
+    isTest: false
+    properties:
+      filepath: src/Shared/MigrateDbContextExtensions.cs
+      containerId: core
+      technology: Entity Framework / DB Context
+      classification: database-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 8
+      loc: 94
+      sloc: 74
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: eshop/core/activityextensions
+    type: background-worker
+    name: ActivityExtensions
+    isTest: false
+    properties:
+      filepath: src/Shared/ActivityExtensions.cs
+      containerId: core
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 1
+      loc: 19
+      sloc: 15
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies: []

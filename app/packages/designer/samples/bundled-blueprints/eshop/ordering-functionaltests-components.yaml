@@ -1,0 +1,125 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/ordering-functionaltests
+  name: Ordering.FunctionalTests Service Components
+  source:
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+nodes:
+  - entityRef: eshop/ordering-functionaltests/orderingapifixture
+    type: rest-api
+    name: OrderingApiFixture
+    isTest: true
+    properties:
+      filepath: tests/Ordering.FunctionalTests/OrderingApiFixture.cs
+      containerId: ordering-functionaltests
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 5
+      loc: 78
+      sloc: 67
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0.041666666666666664
+      sinceDays: 60
+  - entityRef: eshop/ordering-functionaltests/orderingapitests
+    type: rest-api
+    name: OrderingApiTests
+    isTest: true
+    properties:
+      filepath: tests/Ordering.FunctionalTests/OrderingApiTests.cs
+      containerId: ordering-functionaltests
+      technology: ASP.NET Core Controller / Minimal API
+      classification: api-marker
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 15
+      loc: 244
+      sloc: 191
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/ordering-functionaltests/autoauthorizemiddleware
+    type: background-worker
+    name: AutoAuthorizeMiddleware
+    isTest: true
+    properties:
+      filepath: tests/Ordering.FunctionalTests/AutoAuthorizeMiddleware.cs
+      containerId: ordering-functionaltests
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 2
+      loc: 27
+      sloc: 19
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: eshop/ordering-api/application
+    type: event-broker
+    name: Application Layer (External)
+    external: true
+    properties:
+      filepath: src/Ordering.API/Application/Queries/OrderQueries.cs
+      containerId: ordering-api
+      technology: C# Event Client
+      classification: event-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: eshop/ordering-functionaltests/orderingapitests
+    to: eshop/ordering-api/application
+    type: publish-subscribe
+    description: Publishes / consumes messaging topics

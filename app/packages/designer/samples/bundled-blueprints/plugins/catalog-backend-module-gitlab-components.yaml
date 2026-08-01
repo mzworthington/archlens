@@ -1,0 +1,1145 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-gitlab
+  name: Catalog-backend-module-gitlab Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/config.d.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 130
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    type: background-worker
+    name: GitLabDiscoveryProcessor Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/GitLabDiscoveryProcessor.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 229
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/alpha
+    type: background-worker
+    name: alpha Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/alpha.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 27
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    type: background-worker
+    name: catalogModuleGitlabDiscoveryEntityProvider.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/module/catalogModuleGitlabDiscoveryEntityProvider.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 116
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    type: background-worker
+    name: catalogModuleGitlabDiscoveryEntityProvider Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/module/catalogModuleGitlabDiscoveryEntityProvider.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 79
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    type: background-worker
+    name: GitlabDiscoveryEntityProvider Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabDiscoveryEntityProvider.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 690
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    type: background-worker
+    name: GitlabDiscoveryEntityProvider.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabDiscoveryEntityProvider.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 893
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/providers/index.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 18
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    type: background-worker
+    name: GitlabOrgDiscoveryEntityProvider.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabOrgDiscoveryEntityProvider.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 831
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config
+    type: background-worker
+    name: config Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/providers/config.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 133
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/config-test
+    type: background-worker
+    name: config.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/providers/config.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 545
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    type: background-worker
+    name: GitlabOrgDiscoveryEntityProvider Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabOrgDiscoveryEntityProvider.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 847
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/setupTests.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/lib/types.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 420
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/client
+    type: background-worker
+    name: client Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/lib/client.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 531
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/client-test
+    type: background-worker
+    name: client.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/lib/client.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 808
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/defaulttransformers
+    type: background-worker
+    name: defaultTransformers Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/lib/defaultTransformers.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 156
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/mocks
+    type: background-worker
+    name: mocks Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/__testUtils__/mocks.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 3128
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/handlers
+    type: background-worker
+    name: handlers Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/__testUtils__/handlers.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 18
+      complexityPeak: 18
+      cognitiveComplexity: 100
+      functionCount: 56
+      loc: 786
+      sloc: 678
+      churn: 3
+      lineChurn: 1526
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: jonkoops@gmail.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.14838584208479189
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    type: background-worker
+    name: GitLabDiscoveryProcessor.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/GitLabDiscoveryProcessor.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 697
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+    type: background-worker
+    name: analyzeGitLabWebhookEvent Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/events/analyzeGitLabWebhookEvent.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 521
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent-test
+    type: background-worker
+    name: analyzeGitLabWebhookEvent.test Service
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/events/analyzeGitLabWebhookEvent.test.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 264
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+    type: background-worker
+    name: GitLabScmEventsBridge Service
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab/src/events/GitLabScmEventsBridge.ts
+      containerId: catalog-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 149
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/catalog-node/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/alpha.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
+    type: background-worker
+    name: catalogModuleGitlabOrgDiscoveryEntityProvider Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab-org/src/catalogModuleGitlabOrgDiscoveryEntityProvider.ts
+      containerId: catalog-backend-module-gitlab-org
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: -204
+  - entityRef: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
+    type: background-worker
+    name: catalogModuleGitlabOrgDiscoveryEntityProvider.test Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-gitlab-org/src/catalogModuleGitlabOrgDiscoveryEntityProvider.test.ts
+      containerId: catalog-backend-module-gitlab-org
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: -204
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/schema/openapi/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-common/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/ingestion/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/signals-node/lib
+    type: background-worker
+    name: lib Service (External)
+    external: true
+    properties:
+      filepath: plugins/signals-node/src/lib.ts
+      containerId: signals-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-gitlab'
+  - from: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-backend-module-gitlab'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    to: backstage/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/alpha
+    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/alpha
+    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: backstage/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    to: backstage/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/handlers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/mocks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/handlers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/mocks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider-test
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/config
+    to: backstage/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/config-test
+    to: backstage/plugins/catalog-backend-module-gitlab/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/defaulttransformers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlaborgdiscoveryentityprovider
+    to: backstage/plugins/catalog-backend-module-gitlab/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/client
+    to: backstage/plugins/catalog-backend-module-gitlab/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/client-test
+    to: backstage/plugins/catalog-backend-module-gitlab/handlers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/client-test
+    to: backstage/plugins/catalog-backend-module-gitlab/mocks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/client-test
+    to: backstage/plugins/catalog-backend-module-gitlab/client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/client-test
+    to: backstage/plugins/catalog-backend-module-gitlab/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/defaulttransformers
+    to: backstage/plugins/catalog-backend-module-gitlab/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/mocks
+    to: backstage/plugins/catalog-backend-module-gitlab/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/handlers
+    to: backstage/plugins/catalog-backend-module-gitlab/mocks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/catalogmodulegitlabdiscoveryentityprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/index
+    to: backstage/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    to: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabdiscoveryprocessor-test
+    to: backstage/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent-test
+    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/catalog-backend-module-gitlab/gitlabscmeventsbridge
+    to: backstage/plugins/catalog-backend-module-gitlab/analyzegitlabwebhookevent
+    type: direct-call
+    description: Calls module / service

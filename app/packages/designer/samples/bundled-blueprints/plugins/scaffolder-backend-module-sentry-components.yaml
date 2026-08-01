@@ -1,0 +1,540 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend-module-sentry
+  name: Scaffolder-backend-module-sentry Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/config.d.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 24
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/module.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 46
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/alpha
+    type: background-worker
+    name: alpha Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/alpha.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 15
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/createproject-examples
+    type: background-worker
+    name: createProject.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/createProject.examples.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 123
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/createproject
+    type: background-worker
+    name: createProject Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/createProject.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 155
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-examples
+    type: background-worker
+    name: fetchDSN.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/fetchDSN.examples.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 76
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/createproject-examples-test
+    type: background-worker
+    name: createProject.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/createProject.examples.test.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 326
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/createproject-test
+    type: background-worker
+    name: createProject.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/createProject.test.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 309
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-test
+    type: background-worker
+    name: fetchDSN.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/fetchDSN.test.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 262
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn
+    type: background-worker
+    name: fetchDSN Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/fetchDSN.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 125
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-examples-test
+    type: background-worker
+    name: fetchDSN.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/fetchDSN.examples.test.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 197
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/index.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 19
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend-module-sentry/module
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/module
+    to: backstage/plugins/scaffolder-backend-module-sentry/createproject
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/module
+    to: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject-examples-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/createproject
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject-examples-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/createproject-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/createproject-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/createproject
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-examples-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-examples-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/index
+    to: backstage/plugins/scaffolder-backend-module-sentry/createproject
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/index
+    to: backstage/plugins/scaffolder-backend-module-sentry/fetchdsn
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/index
+    to: backstage/plugins/scaffolder-backend-module-sentry/module
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,192 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: golden-paths/golden-journey
+  name: Golden Journey Estate
+  description: >
+    Context-window estate for the day-in-the-life tour. Related product areas (catalog,
+    identity, checkout, billing) share a third-party Payment Gateway. Each area is a group
+    Each area is a group boundary — use Zoom on a platform group or API to open its
+    container and component diagrams (checkout Payment Client hotspot, billing retry fan-in).
+nodes:
+  - entityRef: golden-paths/golden-journey/shopper
+    type: person
+    name: Shopper
+    properties:
+      role: product-persona
+      product: catalog
+  - entityRef: golden-paths/golden-journey/member
+    type: person
+    name: Member
+    properties:
+      role: product-persona
+      product: identity
+  - entityRef: golden-paths/golden-journey/buyer
+    type: person
+    name: Buyer
+    properties:
+      role: product-persona
+      product: checkout
+  - entityRef: golden-paths/golden-journey/subscriber
+    type: person
+    name: Subscriber
+    properties:
+      role: product-persona
+      product: billing
+  - entityRef: golden-paths/golden-journey/web
+    type: web-app
+    name: Web Storefront
+  - entityRef: golden-paths/golden-journey/mobile
+    type: mobile-app
+    name: Mobile App
+  - entityRef: golden-paths/golden-journey/catalog-platform
+    type: group
+    name: Catalog Platform
+  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api
+    type: rest-api
+    name: Catalog API
+    parentEntityRef: golden-paths/golden-journey/catalog-platform
+    forensics:
+      complexity: 12
+      loc: 480
+      sloc: 360
+      churn: 0.18
+      churn30: 14
+      churn365: 96
+      churnByWeek: [2, 2, 2, 3, 3, 3, 4, 4]
+      authorCount: 3
+      topAuthorPercent: 0.55
+      hotspotScore: 0.2
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/identity-platform
+    type: group
+    name: Identity Platform
+  - entityRef: golden-paths/golden-journey/identity-platform/sso-api
+    type: rest-api
+    name: SSO API
+    parentEntityRef: golden-paths/golden-journey/identity-platform
+    forensics:
+      complexity: 10
+      loc: 380
+      sloc: 280
+      churn: 0.14
+      churn30: 10
+      churn365: 72
+      churnByWeek: [1, 1, 2, 2, 2, 2, 3, 3]
+      authorCount: 2
+      topAuthorPercent: 0.68
+      hotspotScore: 0.16
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/checkout-platform
+    type: group
+    name: Checkout Platform
+  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api
+    type: rest-api
+    name: Checkout API
+    parentEntityRef: golden-paths/golden-journey/checkout-platform
+    forensics:
+      complexity: 28
+      loc: 1120
+      sloc: 840
+      churn: 0.48
+      churn30: 62
+      churn365: 420
+      churnByWeek: [6, 8, 10, 12, 14, 16, 18, 20]
+      authorCount: 3
+      topAuthorPercent: 0.58
+      hotspotScore: 0.44
+      classifications: [hotspot]
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/billing-platform
+    type: group
+    name: Billing Platform
+  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker
+    type: background-worker
+    name: Billing Worker
+    parentEntityRef: golden-paths/golden-journey/billing-platform
+    forensics:
+      complexity: 14
+      loc: 520
+      sloc: 380
+      churn: 0.22
+      churn30: 18
+      churn365: 120
+      churnByWeek: [2, 2, 3, 3, 4, 4, 5, 5]
+      authorCount: 2
+      topAuthorPercent: 0.72
+      hotspotScore: 0.28
+      classifications: []
+      sinceDays: 365
+  - entityRef: golden-paths/golden-journey/payment-gateway
+    type: gateway-api
+    name: Payment Gateway
+    external: true
+    properties:
+      vendor: Stripe-compatible PSP
+      classification: third-party
+dependencies:
+  - from: golden-paths/golden-journey/shopper
+    to: golden-paths/golden-journey/web
+    type: direct-call
+    description: Browse catalog
+  - from: golden-paths/golden-journey/shopper
+    to: golden-paths/golden-journey/mobile
+    type: direct-call
+    description: Browse catalog
+  - from: golden-paths/golden-journey/shopper
+    to: golden-paths/golden-journey/catalog-platform
+    type: direct-call
+    description: Discover products
+  - from: golden-paths/golden-journey/member
+    to: golden-paths/golden-journey/identity-platform
+    type: direct-call
+    description: Sign in
+  - from: golden-paths/golden-journey/buyer
+    to: golden-paths/golden-journey/web
+    type: direct-call
+    description: Checkout journey
+  - from: golden-paths/golden-journey/buyer
+    to: golden-paths/golden-journey/mobile
+    type: direct-call
+    description: Checkout journey
+  - from: golden-paths/golden-journey/buyer
+    to: golden-paths/golden-journey/checkout-platform
+    type: direct-call
+    description: Complete purchase
+  - from: golden-paths/golden-journey/subscriber
+    to: golden-paths/golden-journey/billing-platform
+    type: direct-call
+    description: Renew subscription
+  - from: golden-paths/golden-journey/web
+    to: golden-paths/golden-journey/catalog-platform
+    type: direct-call
+    description: Browse catalog
+  - from: golden-paths/golden-journey/mobile
+    to: golden-paths/golden-journey/catalog-platform
+    type: direct-call
+    description: Browse catalog
+  - from: golden-paths/golden-journey/web
+    to: golden-paths/golden-journey/checkout-platform
+    type: direct-call
+    description: Checkout journey
+  - from: golden-paths/golden-journey/mobile
+    to: golden-paths/golden-journey/checkout-platform
+    type: direct-call
+    description: Checkout journey
+  - from: golden-paths/golden-journey/catalog-platform/catalog-api
+    to: golden-paths/golden-journey/checkout-platform/checkout-api
+    type: direct-call
+    description: Add to cart → checkout
+  - from: golden-paths/golden-journey/identity-platform/sso-api
+    to: golden-paths/golden-journey/checkout-platform/checkout-api
+    type: direct-call
+    description: Session handoff
+  - from: golden-paths/golden-journey/checkout-platform/checkout-api
+    to: golden-paths/golden-journey/payment-gateway
+    type: direct-call
+  - from: golden-paths/golden-journey/billing-platform/billing-worker
+    to: golden-paths/golden-journey/payment-gateway
+    type: direct-call

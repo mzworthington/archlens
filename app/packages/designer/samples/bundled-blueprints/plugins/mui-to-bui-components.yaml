@@ -1,0 +1,592 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/mui-to-bui
+  name: Mui-to-bui Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/mui-to-bui/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/dev/index.tsx
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 26
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/plugin.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/routes
+    type: background-worker
+    name: routes Service
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/routes.ts
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 20
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/plugin
+    type: background-worker
+    name: plugin Service
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/plugin.tsx
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 63
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/routes.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/plugin-test
+    type: background-worker
+    name: plugin.test Service
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/plugin.test.ts
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 22
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/plugin.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/buithemepreview
+    type: background-worker
+    name: BuiThemePreview Service
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemePreview.tsx
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 167
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/muithemeextractor-test
+    type: gateway-api
+    name: MuiThemeExtractor.test Service
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/MuiThemeExtractor.test.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 41
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/MuiThemeExtractor.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/convertmuitobuitheme
+    type: background-worker
+    name: convertMuiToBuiTheme Service
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/convertMuiToBuiTheme.ts
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 150
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/convertmuitobuitheme-test
+    type: background-worker
+    name: convertMuiToBuiTheme.test Service
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/convertMuiToBuiTheme.test.ts
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 251
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/convertMuiToBuiTheme.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/themecontent
+    type: gateway-api
+    name: ThemeContent Service
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/ThemeContent.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 127
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemePreview.tsx
+          kind: direct
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/convertMuiToBuiTheme.ts
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/buithemerpage-test
+    type: gateway-api
+    name: BuiThemerPage.test Service
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemerPage.test.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 67
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemerPage.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/themecontent-test
+    type: gateway-api
+    name: ThemeContent.test Service
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/ThemeContent.test.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 83
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/ThemeContent.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/buithemerpage
+    type: background-worker
+    name: BuiThemerPage Service
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemerPage.tsx
+      containerId: mui-to-bui
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 68
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/MuiThemeExtractor.tsx
+          kind: direct
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/ThemeContent.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/muithemeextractor
+    type: gateway-api
+    name: MuiThemeExtractor Service
+    isTest: false
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/MuiThemeExtractor.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 49
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/mui-to-bui/buithemepreview-test
+    type: gateway-api
+    name: BuiThemePreview.test Service
+    isTest: true
+    properties:
+      filepath: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemePreview.test.tsx
+      containerId: mui-to-bui
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 55
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      importedFiles:
+        - path: plugins/mui-to-bui/src/components/BuiThemerPage/BuiThemePreview.tsx
+          kind: direct
+      sinceDays: 60
+      shortChurnDays: 30
+dependencies:
+  - from: backstage/plugins/mui-to-bui/index
+    to: backstage/plugins/mui-to-bui/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/plugin
+    to: backstage/plugins/mui-to-bui/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/plugin-test
+    to: backstage/plugins/mui-to-bui/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/muithemeextractor-test
+    to: backstage/plugins/mui-to-bui/muithemeextractor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/convertmuitobuitheme-test
+    to: backstage/plugins/mui-to-bui/convertmuitobuitheme
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/themecontent
+    to: backstage/plugins/mui-to-bui/convertmuitobuitheme
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/themecontent
+    to: backstage/plugins/mui-to-bui/buithemepreview
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/buithemerpage-test
+    to: backstage/plugins/mui-to-bui/buithemerpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/themecontent-test
+    to: backstage/plugins/mui-to-bui/themecontent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/buithemerpage
+    to: backstage/plugins/mui-to-bui/themecontent
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/buithemerpage
+    to: backstage/plugins/mui-to-bui/muithemeextractor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/index
+    to: backstage/plugins/mui-to-bui/buithemerpage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/buithemepreview-test
+    to: backstage/plugins/mui-to-bui/buithemepreview
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mui-to-bui/index
+    to: backstage/plugins/mui-to-bui/plugin
+    type: direct-call
+    description: Calls module / service

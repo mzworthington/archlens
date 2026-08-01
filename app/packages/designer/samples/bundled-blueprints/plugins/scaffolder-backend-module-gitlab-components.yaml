@@ -1,0 +1,2718 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend-module-gitlab
+  name: Scaffolder-backend-module-gitlab Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
+    type: background-worker
+    name: autocomplete Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/autocomplete/autocomplete.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 108
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete-test
+    type: background-worker
+    name: autocomplete.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/autocomplete/autocomplete.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 152
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/module
+    type: background-worker
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/module.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 80
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/util-test
+    type: background-worker
+    name: util.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/util.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 388
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: background-worker
+    name: commonGitlabConfig Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/commonGitlabConfig.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 84
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
+    type: background-worker
+    name: gitlabUserInfo.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabUserInfo.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 157
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
+    type: background-worker
+    name: gitlabIssueEdit.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueEdit.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 819
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
+    type: background-worker
+    name: gitlabProjectDeployTokenCreate.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectDeployTokenCreate.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 189
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples
+    type: background-worker
+    name: gitlab.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlab.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 260
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+    type: background-worker
+    name: gitlabProjectMigrate.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectMigrate.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 96
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    type: background-worker
+    name: gitlab.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlab.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 114
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: background-worker
+    name: helpers Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/helpers.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 70
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    type: background-worker
+    name: gitlabPipelineTrigger Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabPipelineTrigger.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 173
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    type: background-worker
+    name: gitlabGroupAccessAction Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupAccessAction.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 259
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
+    type: background-worker
+    name: gitlabProjectVariableCreate.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectVariableCreate.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 180
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    type: background-worker
+    name: gitlabProjectDeployTokenCreate Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectDeployTokenCreate.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 119
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
+    type: background-worker
+    name: gitlabIssueEdit.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueEdit.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 213
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    type: background-worker
+    name: gitlabProjectAccessTokenCreate Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectAccessTokenCreate.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 145
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
+    type: background-worker
+    name: gitlabIssueCreate.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueCreate.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 214
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
+    type: background-worker
+    name: gitlabPipelineTrigger.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabPipelineTrigger.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 266
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+    type: background-worker
+    name: gitlabProjectDeployTokenCreate.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectDeployTokenCreate.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 114
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+    type: background-worker
+    name: gitlabGroupAccessAction.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupAccessAction.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 110
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    type: background-worker
+    name: gitlabMergeRequest.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabMergeRequest.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 355
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    type: background-worker
+    name: gitlabGroupEnsureExists Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupEnsureExists.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 151
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    type: background-worker
+    name: gitlabRepoPush Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabRepoPush.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 260
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
+    type: background-worker
+    name: gitlabProjectAccessTokenCreate.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectAccessTokenCreate.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 449
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    type: background-worker
+    name: gitlabMergeRequest Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabMergeRequest.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 477
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    type: background-worker
+    name: gitlabIssueCreate Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueCreate.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 264
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
+    type: background-worker
+    name: gitlabUserInfo.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabUserInfo.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 208
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    type: background-worker
+    name: gitlabUserInfo Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabUserInfo.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 136
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+    type: background-worker
+    name: gitlabMergeRequest.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabMergeRequest.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 142
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
+    type: background-worker
+    name: gitlabProjectDeployTokenCreate.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectDeployTokenCreate.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 128
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
+    type: background-worker
+    name: gitlabGroupEnsureExists.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupEnsureExists.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 287
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    type: background-worker
+    name: gitlabIssueEdit Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueEdit.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 310
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
+    type: background-worker
+    name: gitlabGroupEnsureExists.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupEnsureExists.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 294
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
+    type: background-worker
+    name: gitlabProjectVariableCreate.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectVariableCreate.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 269
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
+    type: background-worker
+    name: gitlabProjectAccessTokenCreate.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectAccessTokenCreate.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 219
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+    type: background-worker
+    name: gitlabUserInfo.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabUserInfo.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 84
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+    type: background-worker
+    name: gitlabMergeRequest.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabMergeRequest.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 1511
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+    type: background-worker
+    name: gitlabProjectAccessTokenCreate.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectAccessTokenCreate.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 263
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    type: background-worker
+    name: gitlab Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlab.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 532
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    type: background-worker
+    name: gitlabProjectMigrate Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectMigrate.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 141
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/index.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 28
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
+    type: background-worker
+    name: gitlabIssueCreate.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueCreate.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 713
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    type: background-worker
+    name: gitlabProjectMigrate.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectMigrate.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 91
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    type: background-worker
+    name: gitlabProjectVariableCreate Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectVariableCreate.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 138
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
+    type: background-worker
+    name: gitlabPipelineTrigger.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabPipelineTrigger.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 322
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    type: background-worker
+    name: gitlabPipelineTrigger.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabPipelineTrigger.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 105
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    type: background-worker
+    name: gitlabRepoPush.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabRepoPush.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 205
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-test
+    type: background-worker
+    name: gitlab.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlab.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 943
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
+    type: background-worker
+    name: gitlabProjectMigrate.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabProjectMigrate.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 40
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
+    type: background-worker
+    name: gitlabGroupAccessAction.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupAccessAction.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 690
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    type: background-worker
+    name: gitlabRepoPush.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabRepoPush.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 95
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
+    type: background-worker
+    name: gitlabGroupEnsureExists.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupEnsureExists.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 127
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    type: background-worker
+    name: gitlabIssueEdit.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueEdit.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 258
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
+    type: background-worker
+    name: gitlabGroupAccessAction.examples.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabGroupAccessAction.examples.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 164
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    type: background-worker
+    name: gitlabIssueCreate.examples Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabIssueCreate.examples.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 243
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+    type: background-worker
+    name: gitlabRepoPush.test Service
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/actions/gitlabRepoPush.test.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 546
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: background-worker
+    name: util Service
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-gitlab/src/util.ts
+      containerId: scaffolder-backend-module-gitlab
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 236
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/home/actions
+    type: gateway-api
+    name: Actions Service (External)
+    external: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/Actions.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node/alpha
+    type: background-worker
+    name: alpha Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/alpha.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/tasks/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/actions/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/scaffolder-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/scaffolder-backend-module-gitlab/autocomplete
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/module
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/util-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabmergerequest
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectaccesstokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectdeploytokencreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabuserinfo
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectvariablecreate-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabpipelinetrigger-examples
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlab
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlab-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabprojectmigrate-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupensureexists-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissueedit-examples
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabgroupaccessaction-examples
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabissuecreate-examples
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+    to: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/gitlabrepopush-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/util
+    to: backstage/plugins/scaffolder-backend-module-gitlab/commongitlabconfig
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/util
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/home/actions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-gitlab/index
+    to: backstage/plugins/scaffolder-backend-module-gitlab/module
+    type: direct-call
+    description: Calls module / service

@@ -133,7 +133,7 @@ describe('ModelExtractor', () => {
         relativePath: 'app/packages/designer/src/db/db.ts',
         baseName: 'db',
         isTestFile: false,
-        imports: [{ moduleSpecifier: 'dexie' }, { moduleSpecifier: './App' }],
+        imports: [{ moduleSpecifier: 'dexie' }, { moduleSpecifier: '../App' }],
         newExpressions: [],
         callExpressions: [],
       },
@@ -143,11 +143,9 @@ describe('ModelExtractor', () => {
     expect(containerNodesMap.has('designer')).toBe(true);
     expect(containerNodesMap.has('app')).toBe(false);
 
-    expect(componentNodesMap.get(componentMapKey('cli', 'archlens'))?.isTest).toBe(false);
-    expect(componentNodesMap.get(componentMapKey('cli', 'archlens'))?.type).toBe(
-      'background-worker'
-    );
-    expect(componentNodesMap.get(componentMapKey('cli', 'modelextractor-test'))?.isTest).toBe(true);
+    expect(componentNodesMap.get(componentMapKey('cli', 'cli'))?.isTest).toBe(false);
+    expect(componentNodesMap.get(componentMapKey('cli', 'cli'))?.type).toBe('background-worker');
+    expect(componentNodesMap.get(componentMapKey('cli', 'analysis/domain'))?.isTest).toBe(true);
     expect(containerNodesMap.get('cli')?.isTest).toBe(false);
     expect(componentNodesMap.get(componentMapKey('designer', 'app'))?.type).toBe('gateway-api');
     expect(componentNodesMap.get(componentMapKey('designer', 'app'))?.properties?.containerId).toBe(

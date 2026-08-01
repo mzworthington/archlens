@@ -1,0 +1,212 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-dev-utils
+  name: Frontend-dev-utils Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-dev-utils/createdevapp
+    type: gateway-api
+    name: createDevApp Service
+    isTest: false
+    properties:
+      filepath: packages/frontend-dev-utils/src/createDevApp.tsx
+      containerId: frontend-dev-utils
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 125
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/frontend-dev-utils/createdevapp-test
+    type: gateway-api
+    name: createDevApp.test Service
+    isTest: true
+    properties:
+      filepath: packages/frontend-dev-utils/src/createDevApp.test.tsx
+      containerId: frontend-dev-utils
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 193
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/frontend-dev-utils/buicss
+    type: background-worker
+    name: BuiCss Service
+    isTest: false
+    properties:
+      filepath: packages/frontend-dev-utils/src/BuiCss.tsx
+      containerId: frontend-dev-utils
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 25
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/frontend-dev-utils/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/frontend-dev-utils/src/index.ts
+      containerId: frontend-dev-utils
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 23
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/cli-module-new/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-new/templates/frontend-plugin/dev/index.tsx
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/frontend-defaults/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/frontend-defaults/src/index.ts
+      containerId: frontend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-module-new/index
+    to: backstage/packages/frontend-dev-utils/index
+    type: direct-call
+    description: '@backstage/frontend-dev-utils'
+  - from: backstage/packages/frontend-dev-utils/createdevapp
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-dev-utils/createdevapp
+    to: backstage/packages/frontend-defaults/index
+    type: direct-call
+    description: '@backstage/frontend-defaults'
+  - from: backstage/packages/frontend-dev-utils/createdevapp-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-dev-utils/createdevapp-test
+    to: backstage/packages/frontend-dev-utils/createdevapp
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-dev-utils/buicss
+    to: backstage/packages/ui/styles-css
+    type: direct-call
+    description: '@backstage/ui'
+  - from: backstage/packages/frontend-dev-utils/index
+    to: backstage/packages/frontend-dev-utils/createdevapp
+    type: direct-call
+    description: Calls module / service

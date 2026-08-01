@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: advicelens-stress/composite-risk
+  name: AdviceLens - Composite Risk
+  description: >
+    Classic fan-in on shared Inventory DB with a Payment service that is both a
+    structural weak point and a TraceLens hotspot. Run estate resilience or fault
+    Payment in ChaosLens, then open TraceLens Recommendations — Payment should
+    surface reduce-composite-risk alongside caller-targeted circuit breakers on
+    Orders and Billing.
+nodes:
+  - entityRef: advicelens-stress/composite-risk/web
+    type: web-app
+    name: Web Storefront
+  - entityRef: advicelens-stress/composite-risk/mobile
+    type: mobile-app
+    name: Mobile App
+  - entityRef: advicelens-stress/composite-risk/api
+    type: rest-api
+    name: API Gateway
+  - entityRef: advicelens-stress/composite-risk/orders
+    type: background-worker
+    name: Orders Service
+    forensics:
+      complexity: 22
+      loc: 980
+      sloc: 720
+      churn: 0.35
+      churn30: 48
+      churn365: 310
+      churnByWeek: [4, 6, 8, 10, 12, 14, 16, 18]
+      authorCount: 4
+      topAuthorPercent: 0.55
+      hotspotScore: 0.42
+      classifications: [hotspot]
+      sinceDays: 365
+  - entityRef: advicelens-stress/composite-risk/payment
+    type: microservice
+    name: Payment Service
+    forensics:
+      complexity: 48
+      loc: 2400
+      sloc: 1820
+      churn: 0.72
+      churn30: 118
+      churn365: 820
+      churnByWeek: [12, 15, 18, 22, 28, 35, 40, 38]
+      authorCount: 2
+      topAuthorPercent: 0.94
+      hotspotScore: 0.88
+      classifications: [hotspot, knowledge-silo]
+      sinceDays: 365
+  - entityRef: advicelens-stress/composite-risk/billing
+    type: background-worker
+    name: Billing Worker
+    forensics:
+      complexity: 18
+      loc: 640
+      sloc: 480
+      churn: 0.28
+      churn30: 32
+      churn365: 210
+      churnByWeek: [3, 4, 5, 6, 7, 8, 9, 10]
+      authorCount: 3
+      topAuthorPercent: 0.62
+      hotspotScore: 0.35
+      classifications: []
+      sinceDays: 365
+  - entityRef: advicelens-stress/composite-risk/inventory
+    type: database
+    name: Inventory Database
+dependencies:
+  - from: advicelens-stress/composite-risk/web
+    to: advicelens-stress/composite-risk/api
+    type: direct-call
+  - from: advicelens-stress/composite-risk/mobile
+    to: advicelens-stress/composite-risk/api
+    type: direct-call
+  - from: advicelens-stress/composite-risk/api
+    to: advicelens-stress/composite-risk/payment
+    type: direct-call
+  - from: advicelens-stress/composite-risk/api
+    to: advicelens-stress/composite-risk/orders
+    type: direct-call
+  - from: advicelens-stress/composite-risk/orders
+    to: advicelens-stress/composite-risk/inventory
+    type: direct-call
+  - from: advicelens-stress/composite-risk/billing
+    to: advicelens-stress/composite-risk/inventory
+    type: direct-call
+  - from: advicelens-stress/composite-risk/payment
+    to: advicelens-stress/composite-risk/inventory
+    type: read-write

@@ -1,0 +1,1069 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-app-api
+  name: Backend-app-api Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-app-api/config-d
+    type: background-worker
+    name: config.d Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/config.d.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 74
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/serviceregistry
+    type: background-worker
+    name: ServiceRegistry Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 364
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/helpers
+    type: background-worker
+    name: helpers Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/helpers.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 34
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/backendstartuperror
+    type: background-worker
+    name: BackendStartupError Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/BackendStartupError.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 71
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/backstagebackend
+    type: background-worker
+    name: BackstageBackend Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/BackstageBackend.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 54
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/withdeclaredconnections-test
+    type: background-worker
+    name: withDeclaredConnections.test Service
+    isTest: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 5
+      loc: 125
+      sloc: 95
+      churn: 3
+      lineChurn: 128
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
+      authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 2
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.0006914732702363973
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/createallowbootfailurepredicate-test
+    type: background-worker
+    name: createAllowBootFailurePredicate.test Service
+    isTest: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/createAllowBootFailurePredicate.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 520
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/createinitializationresultcollector
+    type: background-worker
+    name: createInitializationResultCollector Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/createInitializationResultCollector.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 220
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/types
+    type: background-worker
+    name: types Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/types.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 159
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/withdeclaredconnections
+    type: background-worker
+    name: withDeclaredConnections Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/withDeclaredConnections.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 42
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/serviceregistry-test
+    type: background-worker
+    name: ServiceRegistry.test Service
+    isTest: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 603
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/createspecializedbackend-test
+    type: background-worker
+    name: createSpecializedBackend.test Service
+    isTest: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/createSpecializedBackend.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 78
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/createallowbootfailurepredicate
+    type: background-worker
+    name: createAllowBootFailurePredicate Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/createAllowBootFailurePredicate.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 92
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/index.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 27
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/createspecializedbackend
+    type: background-worker
+    name: createSpecializedBackend Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/createSpecializedBackend.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 50
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/backendinitializer-test
+    type: background-worker
+    name: BackendInitializer.test Service
+    isTest: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/BackendInitializer.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 2329
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/backendinitializer
+    type: background-worker
+    name: BackendInitializer Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/wiring/BackendInitializer.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 22
+      complexityPeak: 22
+      cognitiveComplexity: 181
+      functionCount: 49
+      loc: 870
+      sloc: 719
+      churn: 8
+      lineChurn: 974
+      churn30: 3
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.875
+      authors:
+        - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 7
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0.1157569471455119
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/dependencygraph-test
+    type: background-worker
+    name: DependencyGraph.test Service
+    isTest: true
+    properties:
+      filepath: packages/backend-app-api/src/lib/DependencyGraph.test.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 534
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-app-api/dependencygraph
+    type: background-worker
+    name: DependencyGraph Service
+    isTest: false
+    properties:
+      filepath: packages/backend-app-api/src/lib/DependencyGraph.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 276
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/packages/backend-defaults/createbackend
+    type: background-worker
+    name: CreateBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/CreateBackend.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: -204
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/serialization/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/packages/backend-internal/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-internal/src/wiring/index.ts
+      containerId: backend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: relational-database
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/database/index.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/connections-node/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/connections-node/src/index.ts
+      containerId: connections-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/connections/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/api/index.ts
+      containerId: connections
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-manager-test
+    type: background-worker
+    name: plugin-manager.test Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+      containerId: backend-dynamic-feature-service
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: -204
+  - entityRef: backstage/packages/backend-test-utils/servicefactorytester
+    type: background-worker
+    name: ServiceFactoryTester Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: -204
+  - entityRef: backstage/packages/backend-test-utils/testbackend
+    type: rest-api
+    name: TestBackend Service (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: -204
+dependencies:
+  - from: backstage/packages/backend-test-utils/servicefactorytester
+    to: backstage/packages/backend-app-api/serviceregistry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/testbackend
+    to: backstage/packages/backend-app-api/index
+    type: direct-call
+    description: '@backstage/backend-app-api'
+  - from: backstage/packages/backend-dynamic-feature-service/plugin-manager-test
+    to: backstage/packages/backend-app-api/index
+    type: direct-call
+    description: '@backstage/backend-app-api'
+  - from: backstage/packages/backend-app-api/serviceregistry
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/serviceregistry
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-app-api/serviceregistry
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/serviceregistry
+    to: backstage/packages/backend-app-api/dependencygraph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendstartuperror
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-app-api/backendstartuperror
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backstagebackend
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/backstagebackend
+    to: backstage/packages/backend-internal/index
+    type: direct-call
+    description: '@internal/backend'
+  - from: backstage/packages/backend-app-api/backstagebackend
+    to: backstage/packages/backend-app-api/backendinitializer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backstagebackend
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/withdeclaredconnections-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-app-api/withdeclaredconnections-test
+    to: backstage/packages/connections-node/index
+    type: direct-call
+    description: '@backstage/connections-node'
+  - from: backstage/packages/backend-app-api/withdeclaredconnections-test
+    to: backstage/packages/backend-app-api/withdeclaredconnections
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/withdeclaredconnections-test
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-app-api/createallowbootfailurepredicate-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-app-api/createallowbootfailurepredicate-test
+    to: backstage/packages/backend-app-api/createallowbootfailurepredicate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/createinitializationresultcollector
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/createinitializationresultcollector
+    to: backstage/packages/backend-app-api/createallowbootfailurepredicate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/createinitializationresultcollector
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/types
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/types
+    to: backstage/packages/backend-internal/index
+    type: direct-call
+    description: '@internal/backend'
+  - from: backstage/packages/backend-app-api/withdeclaredconnections
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/withdeclaredconnections
+    to: backstage/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: backstage/packages/backend-app-api/withdeclaredconnections
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-app-api/serviceregistry-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/serviceregistry-test
+    to: backstage/packages/backend-app-api/serviceregistry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/createspecializedbackend-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/createspecializedbackend-test
+    to: backstage/packages/backend-app-api/createspecializedbackend
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/createallowbootfailurepredicate
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-app-api/index
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/index
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/index
+    to: backstage/packages/backend-app-api/createspecializedbackend
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/index
+    to: backstage/packages/backend-app-api/backendstartuperror
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/createspecializedbackend
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/createspecializedbackend
+    to: backstage/packages/backend-app-api/backstagebackend
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/createspecializedbackend
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/backendinitializer-test
+    to: backstage/packages/backend-app-api/backendinitializer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-app-api/backendinitializer-test
+    to: backstage/packages/backend-app-api/backendstartuperror
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer-test
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-internal/index
+    type: direct-call
+    description: '@internal/backend'
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/dependencygraph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/serviceregistry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/createinitializationresultcollector
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/backendstartuperror
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/createallowbootfailurepredicate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/connections-node/index
+    type: direct-call
+    description: '@backstage/connections-node'
+  - from: backstage/packages/backend-app-api/backendinitializer
+    to: backstage/packages/backend-app-api/withdeclaredconnections
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-app-api/dependencygraph-test
+    to: backstage/packages/backend-app-api/dependencygraph
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/createbackend
+    to: backstage/packages/backend-app-api/index
+    type: direct-call
+    description: '@backstage/backend-app-api'

@@ -1,0 +1,156 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/app-module-user-settings
+  name: App-module-user-settings Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/app-module-user-settings/setuptests
+    type: background-worker
+    name: setupTests Service
+    isTest: true
+    properties:
+      filepath: plugins/app-module-user-settings/src/setupTests.ts
+      containerId: app-module-user-settings
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 32
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/app-module-user-settings/module
+    type: gateway-api
+    name: module Service
+    isTest: false
+    properties:
+      filepath: plugins/app-module-user-settings/src/module.tsx
+      containerId: app-module-user-settings
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 50
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/app-module-user-settings/index
+    type: background-worker
+    name: index Service
+    isTest: false
+    properties:
+      filepath: plugins/app-module-user-settings/src/index.ts
+      containerId: app-module-user-settings
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 46
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 60
+  - entityRef: backstage/plugins/user-settings/index
+    type: gateway-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/user-settings/dev/index.tsx
+      containerId: user-settings
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/signals-react/index
+    type: rest-api
+    name: index Service (External)
+    external: true
+    properties:
+      filepath: plugins/signals-react/src/hooks/index.ts
+      containerId: signals-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/app-module-user-settings/module
+    to: backstage/plugins/user-settings/index
+    type: direct-call
+    description: '@backstage/plugin-user-settings'
+  - from: backstage/plugins/app-module-user-settings/module
+    to: backstage/plugins/signals-react/index
+    type: direct-call
+    description: '@backstage/plugin-signals-react'
+  - from: backstage/plugins/app-module-user-settings/index
+    to: backstage/plugins/app-module-user-settings/module
+    type: direct-call
+    description: Calls module / service

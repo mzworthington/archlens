@@ -1,7 +1,7 @@
 export type TraceLensView = 'offenders' | 'recommendations';
 
 export type TraceLensUrlState = {
-  /** Entity ref in the path — scopes ranked results to this subtree. */
+  /** Entity ref in the workspace path — scopes ranked results to this subtree. */
   entityRef?: string;
   /** When set, opens the refactor plan slide-over for this offender. */
   planEntityRef?: string;
@@ -17,12 +17,30 @@ export type TraceLensUrlOptions = {
 };
 
 /** Canonical in-app entry for AdviceLens (estate recommendations in TraceLens). */
-export const ADVICELENS_ENTRY_URL = '/tracelens?view=recommendations';
+export const ADVICELENS_ENTRY_URL = '/workspace?lens=tracelens&view=recommendations';
 
-const TRACE_LENS_PREFIX = '/tracelens/';
+const LEGACY_TRACE_LENS_PREFIX = '/tracelens/';
+const WORKSPACE_PREFIX = '/workspace/';
+
+export function workspaceEntityRefFromPath(pathname: string): string | undefined {
+  if (!pathname.startsWith(WORKSPACE_PREFIX)) return undefined;
+  const rest = pathname.slice(WORKSPACE_PREFIX.length).replace(/\/$/, '');
+  return rest ? decodeURIComponent(rest) : undefined;
+}
+
+export function isTraceLensUrl(pathname: string, search = ''): boolean {
+  if (pathname === '/tracelens' || pathname.startsWith(LEGACY_TRACE_LENS_PREFIX)) {
+    return true;
+  }
+  if (pathname !== '/workspace' && !pathname.startsWith(WORKSPACE_PREFIX)) {
+    return false;
+  }
+  const query = search.startsWith('?') ? search.slice(1) : search;
+  return new URLSearchParams(query).get('lens') === 'tracelens';
+}
 
 export function buildTraceLensPath(scopeEntityRef?: string | null): string {
-  return scopeEntityRef ? `${TRACE_LENS_PREFIX}${scopeEntityRef}` : '/tracelens';
+  return scopeEntityRef ? `/workspace/${scopeEntityRef}` : '/workspace';
 }
 
 export function buildTraceLensUrl(
@@ -33,6 +51,7 @@ export function buildTraceLensUrl(
     typeof options === 'boolean' ? { showSource: options } : options;
   const path = buildTraceLensPath(scopeEntityRef);
   const params = new URLSearchParams();
+  params.set('lens', 'tracelens');
   if (opts.planEntityRef) params.set('plan', opts.planEntityRef);
   if (opts.showSource) params.set('source', '1');
   if (opts.view === 'recommendations') params.set('view', 'recommendations');
@@ -40,17 +59,25 @@ export function buildTraceLensUrl(
   return qs ? `${path}?${qs}` : path;
 }
 
-export function parseTraceLensPath(pathname: string): Pick<TraceLensUrlState, 'entityRef'> {
-  if (pathname === '/tracelens' || pathname === '/tracelens/') {
-    return {};
+/** Map legacy `/tracelens` paths to workspace lens URLs. */
+export function redirectLegacyTraceLensUrl(pathname: string, search = ''): string {
+  const query = search.startsWith('?') ? search.slice(1) : search;
+  const existing = new URLSearchParams(query);
+
+  let entityRef: string | undefined;
+  if (pathname.startsWith(LEGACY_TRACE_LENS_PREFIX)) {
+    const rest = pathname.slice(LEGACY_TRACE_LENS_PREFIX.length).replace(/\/$/, '');
+    if (rest) entityRef = decodeURIComponent(rest);
   }
 
-  if (pathname.startsWith(TRACE_LENS_PREFIX)) {
-    const entityRef = pathname.slice(TRACE_LENS_PREFIX.length).replace(/\/$/, '');
-    if (entityRef) return { entityRef };
+  const path = buildTraceLensPath(entityRef);
+  const params = new URLSearchParams();
+  params.set('lens', 'tracelens');
+  for (const [key, value] of existing) {
+    if (key !== 'lens') params.append(key, value);
   }
-
-  return {};
+  const qs = params.toString();
+  return qs ? `${path}?${qs}` : path;
 }
 
 export function parseTraceLensUrl(pathname: string, search = ''): TraceLensUrlState {
@@ -59,7 +86,14 @@ export function parseTraceLensUrl(pathname: string, search = ''): TraceLensUrlSt
   const showSource = params.get('source') === '1';
   const planEntityRef = params.get('plan') ?? undefined;
   const view = params.get('view') === 'recommendations' ? 'recommendations' : undefined;
-  return { ...parseTraceLensPath(pathname), planEntityRef, showSource, view };
+
+  let entityRef = workspaceEntityRefFromPath(pathname);
+  if (!entityRef && pathname.startsWith(LEGACY_TRACE_LENS_PREFIX)) {
+    const rest = pathname.slice(LEGACY_TRACE_LENS_PREFIX.length).replace(/\/$/, '');
+    if (rest) entityRef = decodeURIComponent(rest);
+  }
+
+  return { entityRef, planEntityRef, showSource, view };
 }
 
 export function currentTraceLensUrl(pathname: string, search = ''): string {

@@ -112,7 +112,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     markdown: guideTraceLensMd,
     dir: 'guide',
     group: 'guide',
-    productAction: { label: 'Open TraceLens', href: '/tracelens' },
+    productAction: { label: 'Open TraceLens', href: '/workspace?lens=tracelens' },
   },
   {
     path: '/guide/chaoslens',

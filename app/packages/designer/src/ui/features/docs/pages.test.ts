@@ -30,11 +30,11 @@ describe('docs link resolution', () => {
       label: 'Install ArchLens',
       href: '/guide/getting-started',
     });
-    expect(tracelens?.productAction?.href).toBe('/tracelens');
+    expect(tracelens?.productAction?.href).toBe('/workspace?lens=tracelens');
     expect(chaoslens?.productAction?.href).toBe('/workspace/application?resilience=1');
     expect(advicelens?.productAction).toEqual({
       label: 'Open AdviceLens',
-      href: '/tracelens?view=recommendations',
+      href: '/workspace?lens=tracelens&view=recommendations',
     });
   });
 

@@ -4,7 +4,7 @@ import { expectCanvasReady } from './canvas';
 
 /** Dismiss the startup chooser by opening the bundled Golden Paths sample when shown. */
 export async function continueWithSample(page: Page) {
-  if (page.url().includes('/workspace/golden-paths')) {
+  if (page.url().includes('/workspace/golden-paths/golden-journey')) {
     await expectCanvasReady(page);
     return;
   }
@@ -15,7 +15,9 @@ export async function continueWithSample(page: Page) {
   }
 
   await page.getByTestId('workspace-open-sample').click();
-  await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/, { timeout: 90_000 });
+  await expect(page).toHaveURL(/\/workspace\/golden-paths\/golden-journey(?:\/|$)/, {
+    timeout: 120_000,
+  });
   await expect(dialog).toHaveCount(0, { timeout: 90_000 });
   await expectCanvasReady(page);
 }
