@@ -8,25 +8,34 @@ For **using** ArchLens (install CLI, scan a repo, open canvas), see the [Product
 
 ## Environment & Tooling Setup
 
-We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, Go, and docs-media tooling (`ffmpeg`, `vhs`) defined in `mise.toml`. **ttyd** (for `pnpm test:vhs`) is installed via apt in CI; on macOS use `brew install ttyd`.
+We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, Go, and docs-media tooling (`ffmpeg`, `vhs`) defined in `mise.toml`. **Bun is required** for `@archlens/cli` builds and the husky pre-push gate. **ttyd** (for `pnpm test:vhs`) is installed via apt in CI; on macOS use `brew install ttyd`.
 
 1. **Install Mise:** Refer to the [Mise Installation Guide](https://mise.jdx.dev/getting-started.html) (e.g., `brew install mise`).
 2. **Activate Mise:** e.g. add `eval "$(mise activate zsh)"` to your `~/.zshrc`.
 3. **Install Tools:** from the repository root:
    ```bash
-   mise install
+   mise install                 # full toolchain including ffmpeg/vhs
+   # or core only (matches Cursor Cloud agents):
+   mise run install-tools       # node, pnpm, bun, go
    ```
+
+One-shot bootstrap (also used by Cursor Cloud via `.cursor/environment.json`):
+
+```bash
+bin/setup-dev-env.sh
+```
 
 The production toolchain is TypeScript under `app/` plus Go for **ChaosLens** (`resilience-engine/`). An experimental Rust tree lives in `cli/` but is unmaintained and not required for local development.
 
 Common Mise tasks (from the repo root):
 
 ```bash
-mise run install      # pnpm install in app/
-mise run dev          # designer dev server
-mise run build-wasm   # compile ChaosLens WASM for the canvas (see ChaosLens engine doc)
-mise run test-go      # Go unit tests
-mise run build        # full production build
+mise run install-tools # node, pnpm, bun, go (skip docs-media)
+mise run install       # pnpm install in app/
+mise run dev           # designer dev server
+mise run build-wasm    # compile ChaosLens WASM for the canvas (see ChaosLens engine doc)
+mise run test-go       # Go unit tests
+mise run build         # full production build
 ```
 
 ---
