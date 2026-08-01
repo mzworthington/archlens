@@ -1,7 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 import { clickCanvasNode } from './canvas';
 import { releaseE2ePage } from './navigation';
-import { loadSandbox } from './workspace';
+import { loadSandbox, ensureRightPanelOpen } from './workspace';
 
 const LARGE_GRAPH_PATH = '/workspace/chaoslens-stress/large-graph';
 const EXTERNAL_SCOPE_PATH = '/workspace/chaoslens-stress/external-scope';
@@ -30,6 +30,7 @@ export async function runChaoslensDomainOrdersOutageDemo(
   await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
     timeout: 30_000,
   });
+  await ensureRightPanelOpen(page);
   await options?.onRecordingStart?.();
   await page.waitForTimeout(800);
 
@@ -71,6 +72,7 @@ export async function runChaoslensExternalScopeDemo(page: Page, options?: Chaosl
   await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
     timeout: 30_000,
   });
+  await ensureRightPanelOpen(page);
   await options?.onRecordingStart?.();
   await page.waitForTimeout(800);
 

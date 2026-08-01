@@ -1,7 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 import { clickCanvasNode } from './canvas';
 import { releaseE2ePage } from './navigation';
-import { loadSandbox } from './workspace';
+import { loadSandbox, ensureRightPanelOpen } from './workspace';
 
 export const GOLDEN_JOURNEY_PATH = '/workspace/golden-paths/golden-journey';
 export const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/golden-paths/golden-journey';
@@ -23,6 +23,8 @@ export async function runGoldenJourneyOutageDemo(page: Page, options?: GoldenJou
   await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
     timeout: 30_000,
   });
+  await ensureRightPanelOpen(page);
+  await expect(page.getByTestId('fault-controls')).toBeVisible({ timeout: 30_000 });
   await options?.onRecordingStart?.();
   await page.waitForTimeout(600);
 

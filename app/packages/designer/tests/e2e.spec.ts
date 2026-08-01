@@ -36,20 +36,19 @@ test.describe('Blueprint E2E Journeys', () => {
     const leftPanel = page.getByTestId('left-panel');
     const rightPanel = page.getByTestId('right-panel');
 
-    // Left panel unmounts when collapsed; right panel stays mounted with w-0.
+    // Both side panels unmount when collapsed.
     await expect(leftPanel).toHaveCount(0);
-    await expect(rightPanel).toHaveClass(/w-0/);
+    await expect(rightPanel).toHaveCount(0);
 
     await leftPanelButton.click();
     await expect(leftPanel).toBeVisible();
-    await expect(leftPanel).not.toHaveClass(/w-0/);
     await rightPanelButton.click();
-    await expect(rightPanel).not.toHaveClass(/w-0/);
+    await expect(rightPanel).toBeVisible();
 
     await leftPanelButton.click();
     await expect(leftPanel).toHaveCount(0);
     await rightPanelButton.click();
-    await expect(rightPanel).toHaveClass(/w-0/);
+    await expect(rightPanel).toHaveCount(0);
   });
 
   test('Diagram zoom in and out', async ({ page }) => {
