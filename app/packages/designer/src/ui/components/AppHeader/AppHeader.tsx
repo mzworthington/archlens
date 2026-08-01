@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Menu, X } from 'lucide-react';
-import { BrandMark, type BrandLensTab } from './BrandMark';
+import { BrandMark } from './BrandMark';
 import { isWorkspacePath } from '../../../application/navigation/workspaceUrl';
 import { isAdviceLensUrl } from '../../features/forensics/adviceLensUrl';
 import { isTraceLensUrl } from '../../features/forensics/traceLensUrl';
@@ -9,7 +9,6 @@ import { isChaosLensUrl } from '../../../application/resilience/chaosLensUrl';
 
 type Props = {
   badge?: string;
-  lensTabs?: BrandLensTab[];
   subtitle?: string;
   children?: React.ReactNode;
   sticky?: boolean;
@@ -58,13 +57,7 @@ const navLinkClass = (active: boolean, mobile = false) => {
  * Shared top chrome - brand, optional mid content, and site nav.
  * Desktop: inline links. Mobile: burger opens an accordion nav panel.
  */
-export const AppHeader: React.FC<Props> = ({
-  badge,
-  lensTabs,
-  subtitle,
-  children,
-  sticky = false,
-}) => {
+export const AppHeader: React.FC<Props> = ({ badge, subtitle, children, sticky = false }) => {
   const [location] = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -89,7 +82,7 @@ export const AppHeader: React.FC<Props> = ({
     >
       <div className="p-4 md:px-8 flex items-center justify-between gap-4">
         <div className="flex items-center gap-4 md:gap-6 min-w-0 flex-1">
-          <BrandMark badge={badge} lensTabs={lensTabs} subtitle={subtitle} />
+          <BrandMark badge={badge} subtitle={subtitle} />
           {children ? (
             <div className="min-w-0 flex items-center gap-3 flex-1">{children}</div>
           ) : null}
