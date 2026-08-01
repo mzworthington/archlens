@@ -38,6 +38,6 @@ Core import modules: `app/packages/core/src/rules/mermaidImport.ts`, `schemaMerg
 
 ## Cursor Cloud / agent toolchain
 
-Toolchain is declared in `mise.toml` (node, **bun**, pnpm, go). Cloud agents should boot via `.cursor/environment.json`, which runs `bin/setup-dev-env.sh` (installs mise if needed, `mise install node pnpm bun go`, `pnpm install`, ChaosLens WASM). Bun must be on `PATH` for CLI build and husky **pre-push**.
+Toolchain is declared in `mise.toml` (node, **bun**, pnpm, go). Cloud agents should boot via `.cursor/environment.json`, which runs `bin/setup-dev-env.sh` (installs mise if needed, `mise install node pnpm bun go`, `pnpm install`, ChaosLens WASM, and bootstraps [agent-lifecycle-kit](https://github.com/mzworthington/agent-lifecycle-kit) into `~/.agents` when missing). Bun must be on `PATH` for CLI build and husky **pre-push**.
 
-If a shell is missing tools: `eval "$(mise activate bash --shims)"` or re-run `bin/setup-dev-env.sh`. Docs-media (`ffmpeg`/`vhs`) and Playwright browsers are not part of the default agent install — add them only when needed (`mise install` / `pnpm --filter @archlens/designer exec playwright install`).
+If a shell is missing tools: `eval "$(mise activate bash --shims)"` or re-run `bin/setup-dev-env.sh`. Set `SKIP_LIFECYCLE_KIT=1` to skip the kit clone. Docs-media (`ffmpeg`/`vhs`) and Playwright browsers are not part of the default agent install — add them only when needed (`mise install` / `pnpm --filter @archlens/designer exec playwright install`).

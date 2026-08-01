@@ -144,27 +144,28 @@ The best approach isn't choosing only Go or TypeScript, but leveraging both wher
 
 ## 7. Implementation Status & Remaining Work
 
-_Last updated: July 2026 (external simulation scope Phase 1)_
+_Last updated: August 2026 (external simulation scope Phase 2)_
 
 **Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
 
 ### MVP (Version 1.0)
 
-| Item                                                                | Status | Notes                                                                                                                           |
-| ------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| Drag-and-drop canvas (reuse ArchLens Canvas workspace)              | ✅     | Same canvas under `/workspace`; no separate route.                                                                              |
-| Fault injection controls (latency, 5xx, packet loss, region outage) | ✅     | Right panel + **Simulate** toolbar action.                                                                                      |
-| Safeguard toggles (circuit breaker, bulkhead, retry, local cache)   | ✅     | Session toggles; optional YAML via `resilience` on the node.                                                                    |
-| Visual blast-radius heatmap                                         | ✅     | Node tint by heat, SPOF labels, fault-target border.                                                                            |
-| Animated blast-radius ripple                                        | ✅     | Hop-by-hop propagation via `useBlastRippleAnimation` / `blastRipple`; respects `preferReducedMotion` and `liteCanvas`.          |
-| TraceLens heatmap suppressed in resilience mode                     | ✅     | Hotspot overlay disabled while ChaosLens is active.                                                                             |
-| Simulation core (TypeScript fallback)                               | ✅     | Deterministic propagation, group-boundary parity, safeguards, SPOF detection, entry-point SLA, `heatHops` for animation.        |
-| Go/WASM Monte Carlo engine                                          | ✅     | `resilience-engine/` - blast radius, P5/mean/P95, group boundaries; bridge via `runResilienceSimulationAsync`.                  |
-| Docs & discoverability                                              | ✅     | [Product guide](../docs/guide/chaoslens.md) + [engine docs](../docs/chaoslens-engine.md); `mise.toml` `build-wasm` / `test-go`. |
-| CI (engine tests + WASM build)                                      | ✅     | Go tests in `.github/workflows/ci.yml`; WASM built during `pnpm build` (not checked into git).                                  |
-| Stress fixtures                                                     | ✅     | `blueprints/chaoslens-stress/` container scenarios for manual and automated validation.                                         |
-| Stress-test harness                                                 | ✅     | Vitest regression in `/core/resilience` loads fixtures, asserts SLA/SPOF/latency (KR3: &lt;5s).                                 |
-| External simulation scope (Phase 1)                                 | ✅     | `buildSimulationSchema` enriches graph with direct external neighbors; designer materializes on Simulate.                       |
+| Item                                                                | Status | Notes                                                                                                                                         |
+| ------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Drag-and-drop canvas (reuse ArchLens Canvas workspace)              | ✅     | Same canvas under `/workspace`; no separate route.                                                                                            |
+| Fault injection controls (latency, 5xx, packet loss, region outage) | ✅     | Right panel + **Simulate** toolbar action.                                                                                                    |
+| Safeguard toggles (circuit breaker, bulkhead, retry, local cache)   | ✅     | Session toggles; optional YAML via `resilience` on the node.                                                                                  |
+| Visual blast-radius heatmap                                         | ✅     | Node tint by heat, SPOF labels, fault-target border.                                                                                          |
+| Animated blast-radius ripple                                        | ✅     | Hop-by-hop propagation via `useBlastRippleAnimation` / `blastRipple`; respects `preferReducedMotion` and `liteCanvas`.                        |
+| TraceLens heatmap suppressed in resilience mode                     | ✅     | Hotspot overlay disabled while ChaosLens is active.                                                                                           |
+| Simulation core (TypeScript fallback)                               | ✅     | Deterministic propagation, group-boundary parity, safeguards, SPOF detection, entry-point SLA, `heatHops` for animation.                      |
+| Go/WASM Monte Carlo engine                                          | ✅     | `resilience-engine/` - blast radius, P5/mean/P95, group boundaries; bridge via `runResilienceSimulationAsync`.                                |
+| Docs & discoverability                                              | ✅     | [Product guide](../docs/guide/chaoslens.md) + [engine docs](../docs/chaoslens-engine.md); `mise.toml` `build-wasm` / `test-go`.               |
+| CI (engine tests + WASM build)                                      | ✅     | Go tests in `.github/workflows/ci.yml`; WASM built during `pnpm build` (not checked into git).                                                |
+| Stress fixtures                                                     | ✅     | `blueprints/chaoslens-stress/` container scenarios for manual and automated validation.                                                       |
+| Stress-test harness                                                 | ✅     | Vitest regression in `/core/resilience` loads fixtures, asserts SLA/SPOF/latency (KR3: &lt;5s).                                               |
+| External simulation scope (Phase 1)                                 | ✅     | `buildSimulationSchema` enriches graph with direct external neighbors; designer materializes on Simulate.                                     |
+| External simulation scope (Phase 2)                                 | ✅     | Upstream transitive closure (`collectSimulationUpstreamRefs`); force-show scope + dim out-of-scope on canvas via `resilienceSimulationScope`. |
 
 ### Iteration 2 (Version 2.0)
 
@@ -196,7 +197,7 @@ _Last updated: July 2026 (external simulation scope Phase 1)_
 ### Suggested next slice
 
 1. ⏳ **AdviceLens Phase 4** — CI guardrails and `archlens resilience` PR gate.
-2. ⏳ **External simulation scope Phase 2** — upstream transitive closure, force-show scope, dim out-of-scope nodes.
+2. ⏳ **External simulation scope Phase 3** — expand through external proxies into home diagrams (cross-boundary subgraph).
 3. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
 4. ⏳ OTel ingestion, then resilience comparison and executive mode.
 5. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
@@ -382,7 +383,7 @@ User selects node → buildSimulationSchema → materialize missing neighbors on
 | Phase | Scope                                                                                                                                                             | Status  |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | **1** | Direct dependency neighbors of fault target + unresolved endpoints on those edges; resolve from workspace index; materialize on canvas; simulate enriched schema. | ✅ Done |
-| **2** | Upstream transitive closure; force-show scope during resilience mode; dim out-of-scope nodes.                                                                     | ⏳      |
+| **2** | Upstream transitive closure; force-show scope during resilience mode; dim out-of-scope nodes.                                                                     | ✅ Done |
 | **3** | Expand through external proxies into home diagrams (cross-boundary subgraph).                                                                                     | ⏳      |
 
 ### Core API (Phase 1)
@@ -409,7 +410,7 @@ Reuses `buildWorkspaceEntityIndex`, `materializeExternalNodes`, `positionExterna
 1. Call `buildSimulationSchema(schema, selectedNodeId, loadedSystems)`.
 2. `addExternalDependencies(materialized entityRefs)` when workspace is loaded.
 3. Pass returned `schema` to `runResilienceSimulationAsync` (not the pre-enrichment store copy).
-4. Store `resilienceSimulationScope` for canvas filtering (Phase 2).
+4. Store `resilienceSimulationScope` for canvas filtering (Phase 2) — done; Canvas force-shows scope and dims out-of-scope.
 
 ### Edge cases
 
