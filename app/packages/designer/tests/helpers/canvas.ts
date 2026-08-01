@@ -3,7 +3,19 @@ import { expect, type Locator, type Page } from '@playwright/test';
 const DIAGRAM_LOADING = '[role="status"][aria-busy="true"]';
 
 export async function waitForDiagramIdle(page: Page) {
-  await expect(page.locator(DIAGRAM_LOADING)).toBeHidden({ timeout: 60_000 });
+  const loading = page.locator(DIAGRAM_LOADING);
+  const nodes = page.locator('.react-flow__node');
+
+  await expect(async () => {
+    const busy =
+      (await loading.count()) > 0 &&
+      (await loading
+        .first()
+        .isVisible()
+        .catch(() => false));
+    if (busy) throw new Error('Diagram still loading');
+    if ((await nodes.count()) === 0) throw new Error('Diagram has no nodes yet');
+  }).toPass({ timeout: 60_000 });
 }
 
 export async function expectCanvasReady(page: Page): Promise<Locator> {
@@ -48,5 +60,6 @@ export async function clickCanvasNode(page: Page, label: string) {
   const node = page.locator('.react-flow__node').filter({ hasText: label }).first();
   await expect(node).toBeVisible({ timeout: 30_000 });
   await node.scrollIntoViewIfNeeded();
-  await node.click();
+  // Large diagrams can stack nodes; force avoids flaky hit-testing on overlapping labels.
+  await node.click({ force: true });
 }
