@@ -279,15 +279,18 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     if (get().systemSelectInFlight === path) return;
 
     set({ systemSelectInFlight: path });
-    const { logger, workspacePort, workingCopyPort } = get();
-    // Sample mode sets workspacePort to the injected sample adapter at open time.
+    const { logger, workspacePort, sampleWorkspacePort, workingCopyPort, isSampleWorkspace } =
+      get();
+    // Sample workspace always reads from the injected sample adapter — never the
+    // folder picker port (StrictMode / setPorts races can otherwise leave the wrong port).
+    const activeWorkspacePort = isSampleWorkspace ? sampleWorkspacePort : workspacePort;
     beginDiagramLoad(get, set, DIAGRAM_LOADING_MESSAGE);
     await yieldToUi();
 
     try {
       if (!get().loadedSystems.some(s => s.path === path)) {
         const ok = await ensureSystemLoaded(path, {
-          workspacePort,
+          workspacePort: activeWorkspacePort,
           workingCopyPort,
           logger,
           get,
