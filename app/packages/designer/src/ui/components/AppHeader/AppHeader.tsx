@@ -23,7 +23,7 @@ const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => 
   },
   {
     href: '/workspace?lens=tracelens',
-    label: 'TraceLens',
+    label: 'Forensics',
     isActive: loc => {
       if (loc === '/tracelens' || loc.startsWith('/tracelens/')) return true;
       if (!isWorkspacePath(loc)) return false;

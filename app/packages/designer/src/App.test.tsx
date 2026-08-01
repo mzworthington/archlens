@@ -93,8 +93,8 @@ describe('App Layout and Collapsible Panels', () => {
       </AppProvider>
     );
 
-    const leftToggle = screen.getByLabelText('Toggle Left Panel');
-    const rightToggle = screen.getByLabelText('Toggle Right Panel');
+    const leftToggle = screen.getByLabelText('Toggle left panel');
+    const rightToggle = screen.getByLabelText('Toggle right panel');
     expect(leftToggle).toBeInTheDocument();
     expect(rightToggle).toBeInTheDocument();
 

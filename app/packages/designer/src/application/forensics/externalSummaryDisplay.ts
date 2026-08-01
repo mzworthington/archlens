@@ -9,6 +9,7 @@ import {
   type ExternalSummaryBand,
   type OverviewExternalBands,
 } from '@archlens/core';
+import { collectDependencyNeighborhoodWithExternals } from './filterSelectedDependencyFocus';
 import type { BlueprintRFEdge, BlueprintRFNode } from '../store/layoutUtils';
 import { dependencyArrowMarker, getClosestHandles } from '../store/layoutUtils';
 
@@ -25,6 +26,7 @@ export type ExternalSummaryDisplayInput = {
   expandedBand: ExternalSummaryBand | null;
   showCoupling: boolean;
   isResilienceMode: boolean;
+  includeExternalsInFocus?: boolean;
 };
 
 export function shouldUseExternalSummaryMode(input: {
@@ -112,6 +114,24 @@ export function resolveVisibleExternalEntityRefs(
   if (selectedNodeId) {
     const selected = nodes.find(node => node.id === selectedNodeId);
     const selectedRef = (selected?.data.entityRef ?? selectedNodeId) as EntityRef;
+
+    if (input.includeExternalsInFocus) {
+      const closure = collectDependencyNeighborhoodWithExternals(
+        selectedNodeId,
+        nodes,
+        input.edges,
+        true
+      );
+      const allowed = new Set<EntityRef>();
+      for (const id of closure) {
+        const node = nodes.find(entry => entry.id === id);
+        if (!node?.data.external) continue;
+        allowed.add((node.data.entityRef ?? id) as EntityRef);
+      }
+      if (selected?.data.external) allowed.add(selectedRef);
+      return allowed;
+    }
+
     const bands = resolveOverviewExternalBands(schema, loadedSystems);
     const deps = collectWorkspaceDependencies(schema, loadedSystems);
     const filtered = filterOverviewExternalsForSelection(selectedRef, bands, deps);

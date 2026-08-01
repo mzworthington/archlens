@@ -12,7 +12,6 @@ import {
   MoreHorizontal,
   FolderOpen,
   HelpCircle,
-  SlidersHorizontal,
   ShieldAlert,
 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -119,25 +118,6 @@ export const ToolbarShortcutsButton: React.FC = () => {
       data-testid="toolbar-shortcuts"
     >
       <HelpCircle className="w-3.5 h-3.5" />
-    </button>
-  );
-};
-
-export const ToolbarDisplayButton: React.FC = () => {
-  const controlsDisabled = useControlsDisabled();
-  const setIsDisplaySettingsOpen = useBlueprintStore(s => s.setIsDisplaySettingsOpen);
-
-  return (
-    <button
-      type="button"
-      onClick={() => setIsDisplaySettingsOpen(true)}
-      disabled={controlsDisabled}
-      className={iconBtnClass}
-      title="Workspace display settings"
-      aria-label="Workspace display settings"
-      data-testid="toolbar-display-settings"
-    >
-      <SlidersHorizontal className="w-3.5 h-3.5" />
     </button>
   );
 };

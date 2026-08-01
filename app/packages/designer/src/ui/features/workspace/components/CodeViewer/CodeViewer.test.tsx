@@ -17,6 +17,8 @@ describe('CodeViewer UI Component', () => {
       currentFilePath: 'blueprint.yaml',
       workspaceName: undefined,
       loadedSystems: [],
+      leftCollapsed: false,
+      activeLeftPanel: 'codeViewer',
     });
 
     const { initSchema } = useBlueprintStore.getState();
@@ -29,10 +31,11 @@ describe('CodeViewer UI Component', () => {
     });
   });
 
-  it('should render the Schema Explorer header and tabs', () => {
+  it('should render the explorer header and schema tabs', () => {
     render(<CodeViewer />);
 
-    expect(screen.getByText(/Schema Explorer/i)).toBeInTheDocument();
+    expect(screen.getByText(/^Explorer$/i)).toBeInTheDocument();
+    expect(screen.getByTestId('left-tab-schema')).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByRole('button', { name: /^yaml$/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /^json$/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /mermaid\.js/i })).toBeInTheDocument();

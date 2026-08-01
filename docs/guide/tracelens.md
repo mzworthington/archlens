@@ -42,23 +42,43 @@ forensics:
 
 ## In ArchLens Canvas
 
-Open **`/tracelens`** (header: **TraceLens**) for a ranked “worst offenders” list across loaded blueprints - components or containers, filterable by hotspots/silos/refactor. Click a row to open a **refactor plan** slide-over with boundary members, ownership breakdown, and rationale. Use **Open on canvas** for guided navigation (coupling focus + boundary highlights).
+### Explorer panel (TraceLens tab)
 
-Select an enriched node → **TraceLens** in the property panel shows metrics with helper text and a **lookback** value (e.g. `90d`). When ArchLens runs with `--git`, per-author commit counts are stored on `forensics.authors` and rolled up to containers.
+Open the **Explorer** panel on the left (chevron rail on desktop, **Explorer** chip on mobile). Select the **TraceLens** tab for forensics tools:
 
-Concern badges on the canvas:
+- **Workspace display** — test components, externals, dependency focus, risk heatmap, coupling lens
+- **Node forensics** — select a canvas node for metrics, coupled/import peers, dependency view, and mini-graph
+- **View worst offenders** — opens the full **Estate forensics** page
+
+The **Schema** tab in the same panel shows YAML / JSON / Mermaid for the active diagram (Mermaid is export-only).
+
+### Estate forensics (full page)
+
+Open **`/tracelens`** (header badge **FORENSICS**) or use **View worst offenders** in the TraceLens tab.
+
+The page title is **Estate forensics**, with tabs **TraceLens | AdviceLens**:
+
+| Tab            | Content                                                                                                                                                                                                                                                                      |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TraceLens**  | Ranked **Worst offenders** list — components or containers, filterable by hotspots / silos / refactor. Click a row for a **refactor plan** slide-over (boundary, ownership, rationale). **Open on canvas** enables guided navigation (coupling focus + boundary highlights). |
+| **AdviceLens** | Estate-wide recommendations — see [AdviceLens](./advicelens.md).                                                                                                                                                                                                             |
+
+### On the canvas
+
+Select an enriched node, then open Explorer → **TraceLens** for readonly metrics with helper text and a **lookback** value (e.g. `90d`). When ArchLens runs with `--git`, per-author commit counts are stored on `forensics.authors` and roll up to containers.
+
+Concern badges on nodes:
 
 - **HOT** - hotspot
 - **SILO** - knowledge silo
 
 ### Risk heatmap (opt-in)
 
-Heatmap is **off by default** and is a **workspace display** setting (not per-node):
+Heatmap is **off by default**:
 
-1. Open the properties panel → **Workspace display** → toggle **Risk Heatmap**
-2. Available with or without a node selected
-3. Nodes tint by `hotspotScore` (red intensity); MiniMap uses the same scale
-4. YAML is unchanged - heat is display-only
+1. Open Explorer → **TraceLens** tab → **Workspace display** → toggle **Risk Heatmap**
+2. Nodes tint by `hotspotScore` (red intensity); MiniMap uses the same scale
+3. YAML is unchanged - heat is display-only
 
 While **ChaosLens** is active (bottom toolbar **Resilience** button), the TraceLens risk heatmap is suppressed so blast-radius simulation heat can use the same visual channel. See [ChaosLens](./chaoslens.md).
 
@@ -66,12 +86,12 @@ While **ChaosLens** is active (bottom toolbar **Resilience** button), the TraceL
 
 Coupling focus is **off by default**. With a node selected that has coupled peers:
 
-1. Turn on **Coupling** in the bottom toolbar **Lenses** group (link icon), or use **Workspace display** → **Coupling lens**
+1. Open Explorer → **TraceLens** tab → **Workspace display** → toggle **Coupling lens**
 2. With a node selected, the canvas shows **only** that node and its coupled peers (diagram-wide coupling edges appear when nothing is selected)
 3. Schema dependency links are hidden during focus; amber dashed coupling edges remain
 4. Peers get a **COUPLED** highlight; unmapped filepaths appear as dashed ghost nodes
 
-In the property panel **TraceLens** section you can toggle **Schema dependencies** while coupling lens is active, and use coupled/import peer links to jump between on-canvas nodes.
+In the TraceLens tab forensics section you can use coupled/import peer links to jump between on-canvas nodes.
 
 Peers resolve via `coupledFiles[].path` ↔ `properties.filepath` on the current diagram (and workspace-wide `entityRef` matches for cross-diagram peers).
 

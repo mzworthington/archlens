@@ -8,6 +8,8 @@ describe('MobilePanelToggles', () => {
     useBlueprintStore.setState({
       leftCollapsed: true,
       rightCollapsed: true,
+      isTraceLensPanelOpen: false,
+      activeLeftPanel: 'codeViewer',
     });
   });
 
@@ -15,10 +17,11 @@ describe('MobilePanelToggles', () => {
     cleanup();
   });
 
-  it('opens the schema panel from a labelled button', () => {
+  it('opens the explorer panel from a labelled button', () => {
     render(<MobilePanelToggles />);
-    fireEvent.click(screen.getByRole('button', { name: 'Open Schema Explorer' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Open Explorer' }));
     expect(useBlueprintStore.getState().leftCollapsed).toBe(false);
+    expect(useBlueprintStore.getState().isTraceLensPanelOpen).toBe(true);
   });
 
   it('opens the properties panel from a labelled button', () => {
@@ -27,8 +30,14 @@ describe('MobilePanelToggles', () => {
     expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
   });
 
-  it('hides when a panel sheet is already open', () => {
+  it('hides when explorer is open', () => {
     useBlueprintStore.setState({ leftCollapsed: false, rightCollapsed: true });
+    const { container } = render(<MobilePanelToggles />);
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  it('hides when properties panel is open', () => {
+    useBlueprintStore.setState({ leftCollapsed: true, rightCollapsed: false });
     const { container } = render(<MobilePanelToggles />);
     expect(container).toBeEmptyDOMElement();
   });

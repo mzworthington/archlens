@@ -14,7 +14,11 @@ import {
   buildCouplingSchemaDependencyEdges,
   filterCouplingFocusNodes,
 } from '../../../../../application/forensics/buildCouplingOverlayEdges';
-import { filterSelectedDependencyFocusNodes } from '../../../../../application/forensics/filterSelectedDependencyFocus';
+import {
+  filterSelectedDependencyFocusNodes,
+  collectDependencyNeighborhoodWithExternals,
+} from '../../../../../application/forensics/filterSelectedDependencyFocus';
+import { applyDependencyHighlights } from '../../../../../application/forensics/applyDependencyHighlights';
 import { shouldShowCanvasExternalNode } from '../../../../../application/forensics/externalNodeVisibility';
 import {
   buildExternalSummaryHubEdges,
@@ -57,6 +61,7 @@ export type CanvasVisibleNodesInput = {
   showDownstreamExternals: boolean;
   selectedNodeId: string | null;
   showSelectedDependenciesOnly: boolean;
+  includeExternalsInFocus: boolean;
   isResilienceMode: boolean;
   simulationScopeSet: Set<string> | null;
   showCoupling: boolean;
@@ -73,11 +78,32 @@ export function buildCanvasVisibleNodes({
   showDownstreamExternals,
   selectedNodeId,
   showSelectedDependenciesOnly,
+  includeExternalsInFocus,
   isResilienceMode,
   simulationScopeSet,
   showCoupling,
   expandedExternalHub,
 }: CanvasVisibleNodesInput): BlueprintRFNode[] {
+  const focusActive = showSelectedDependenciesOnly && !isResilienceMode && !!selectedNodeId;
+
+  if (focusActive && includeExternalsInFocus) {
+    const candidates = nodes.filter(n => showTests || !n.data.isTest);
+    const closure = collectDependencyNeighborhoodWithExternals(
+      selectedNodeId,
+      candidates,
+      edges,
+      true
+    );
+    return candidates.filter(n => {
+      if (closure.has(n.id)) return true;
+      const entityRef = (n.data.entityRef ?? n.id) as string;
+      return !!(
+        simulationScopeSet &&
+        (simulationScopeSet.has(entityRef) || simulationScopeSet.has(n.id))
+      );
+    });
+  }
+
   const summaryInput = {
     nodes,
     edges,
@@ -89,6 +115,7 @@ export function buildCanvasVisibleNodes({
     expandedBand: expandedExternalHub,
     showCoupling,
     isResilienceMode,
+    includeExternalsInFocus,
   };
   const visibleExternalRefs = resolveVisibleExternalEntityRefs(summaryInput);
 
@@ -118,12 +145,7 @@ export function buildCanvasVisibleNodes({
   });
   const visibleIds = new Set(base.map(n => n.id));
   const baseEdges = edges.filter(e => visibleIds.has(e.source) && visibleIds.has(e.target));
-  return filterSelectedDependencyFocusNodes(
-    base,
-    baseEdges,
-    selectedNodeId,
-    showSelectedDependenciesOnly && !isResilienceMode
-  );
+  return filterSelectedDependencyFocusNodes(base, baseEdges, selectedNodeId, focusActive, false);
 }
 
 export function buildCanvasVisibleEdges(
@@ -142,13 +164,16 @@ export type CanvasExternalSummaryContext = {
   showUpstreamExternals: boolean;
   showDownstreamExternals: boolean;
   expandedExternalHub: ExternalSummaryBand | null;
+  includeExternalsInFocus: boolean;
 };
 
 export type CanvasDisplayNodesInput = {
   filteredNodes: BlueprintRFNode[];
+  filteredEdges: BlueprintRFEdge[];
   focusedCyclePath: string[] | null;
   couplingFocusMode: boolean;
   selectedNodeId: string | null;
+  showSelectedDependenciesOnly: boolean;
   couplingGhostNodes: BlueprintRFNode[];
   workspaceFilepathIndex: WorkspaceFilepathIndex;
   showCoupling: boolean;
@@ -162,13 +187,16 @@ export type CanvasDisplayNodesInput = {
   resilienceSimulationScope: EntityRef[] | null;
   blastRipple: BlastRippleFrame;
   externalSummary?: CanvasExternalSummaryContext;
+  hiddenExternalGhostNodes?: BlueprintRFNode[];
 };
 
 export function buildCanvasDisplayNodes({
   filteredNodes,
+  filteredEdges,
   focusedCyclePath,
   couplingFocusMode,
   selectedNodeId,
+  showSelectedDependenciesOnly,
   couplingGhostNodes,
   workspaceFilepathIndex,
   showCoupling,
@@ -182,6 +210,7 @@ export function buildCanvasDisplayNodes({
   resilienceSimulationScope,
   blastRipple,
   externalSummary,
+  hiddenExternalGhostNodes = [],
 }: CanvasDisplayNodesInput): BlueprintRFNode[] {
   let baseNodes = filteredNodes;
   if (focusedCyclePath) {
@@ -223,7 +252,19 @@ export function buildCanvasDisplayNodes({
     scope: resilienceSimulationScope,
   });
 
-  if (!externalSummary) return highlighted;
+  const withDependencyHighlights = applyDependencyHighlights(
+    highlighted,
+    selectedNodeId,
+    filteredEdges,
+    showSelectedDependenciesOnly && !isResilienceMode && !focusedCyclePath
+  );
+
+  const withHiddenExternalGhosts =
+    hiddenExternalGhostNodes.length > 0
+      ? [...withDependencyHighlights, ...hiddenExternalGhostNodes]
+      : withDependencyHighlights;
+
+  if (!externalSummary) return withHiddenExternalGhosts;
 
   const summaryInput = {
     nodes: externalSummary.allNodes,
@@ -236,10 +277,13 @@ export function buildCanvasDisplayNodes({
     expandedBand: externalSummary.expandedExternalHub,
     showCoupling,
     isResilienceMode,
+    includeExternalsInFocus: externalSummary.includeExternalsInFocus,
   };
   const bands = resolveOverviewExternalBands(externalSummary.schema, externalSummary.loadedSystems);
   const hubNodes = buildExternalSummaryHubNodes(summaryInput, bands);
-  return hubNodes.length > 0 ? [...highlighted, ...hubNodes] : highlighted;
+  return hubNodes.length > 0
+    ? [...withHiddenExternalGhosts, ...hubNodes]
+    : withHiddenExternalGhosts;
 }
 
 export type CanvasDisplayEdgesInput = {
@@ -262,6 +306,7 @@ export type CanvasDisplayEdgesInput = {
   isResilienceMode: boolean;
   propagationEdgeKeys: Set<string>;
   externalSummary?: CanvasExternalSummaryContext;
+  hiddenExternalGhostEdges?: BlueprintRFEdge[];
 };
 
 export function buildCanvasDisplayEdges({
@@ -284,6 +329,7 @@ export function buildCanvasDisplayEdges({
   isResilienceMode,
   propagationEdgeKeys,
   externalSummary,
+  hiddenExternalGhostEdges = [],
 }: CanvasDisplayEdgesInput): BlueprintRFEdge[] {
   if (focusedCyclePath) {
     return filteredEdges.filter(e => {
@@ -316,6 +362,12 @@ export function buildCanvasDisplayEdges({
     e => visibleNodeIds.has(e.source) && visibleNodeIds.has(e.target)
   );
 
+  if (hiddenExternalGhostEdges.length > 0) {
+    const ghostIds = new Set(hiddenExternalGhostEdges.map(edge => edge.id));
+    next = next.filter(edge => !ghostIds.has(edge.id));
+    next = [...next, ...hiddenExternalGhostEdges];
+  }
+
   if (externalSummary) {
     const summaryInput = {
       nodes: externalSummary.allNodes,
@@ -328,6 +380,7 @@ export function buildCanvasDisplayEdges({
       expandedBand: externalSummary.expandedExternalHub,
       showCoupling,
       isResilienceMode,
+      includeExternalsInFocus: externalSummary.includeExternalsInFocus,
     };
     const visibleExternalRefs = resolveVisibleExternalEntityRefs(summaryInput);
     const hiddenRefs = hiddenOverviewExternalRefs(externalSummary.allNodes, visibleExternalRefs);
@@ -340,9 +393,12 @@ export function buildCanvasDisplayEdges({
   }
 
   const animationOpts = { liteCanvas, preferReducedMotion: reduceMotion };
+  const dependencyFocusActive =
+    showSelectedDependenciesOnly && !!selectedNodeId && !isResilienceMode && !focusedCyclePath;
 
   const styled = next.map(e => {
     const isSelected = e.id === selectedEdgeId;
+    const isHiddenExternalGhost = e.data?.hiddenExternalGhost === true;
     const isPropagationRipple =
       isResilienceMode &&
       (propagationEdgeKeys.has(e.id) ||
@@ -352,11 +408,19 @@ export function buildCanvasDisplayEdges({
       (couplingEdges.length > 0 || schemaDepEdges.length > 0) &&
       !e.data?.coupling &&
       !e.data?.schemaDependency;
+    const isIncoming = dependencyFocusActive && e.target === selectedNodeId;
+    const isOutgoing = dependencyFocusActive && e.source === selectedNodeId;
     const stroke = isPropagationRipple
       ? '#f87171'
       : isSelected
         ? '#00f0ff'
-        : ((e.style?.stroke as string | undefined) ?? DEPENDENCY_EDGE_STROKE);
+        : isHiddenExternalGhost
+          ? '#22d3ee'
+          : isIncoming
+            ? '#a78bfa'
+            : isOutgoing
+              ? '#34d399'
+              : ((e.style?.stroke as string | undefined) ?? DEPENDENCY_EDGE_STROKE);
     return {
       ...e,
       selected: isSelected,
@@ -379,7 +443,7 @@ export function buildCanvasDisplayEdges({
         ...e.style,
         stroke,
         strokeWidth: isSelected ? 3 : ((e.style?.strokeWidth as number | undefined) ?? 2),
-        opacity: couplingDimmed ? 0.12 : e.style?.opacity,
+        opacity: couplingDimmed ? 0.12 : isHiddenExternalGhost ? 0.9 : e.style?.opacity,
       },
     };
   });
@@ -404,6 +468,7 @@ export function buildCanvasDisplayEdges({
       expandedBand: externalSummary.expandedExternalHub,
       showCoupling,
       isResilienceMode,
+      includeExternalsInFocus: externalSummary.includeExternalsInFocus,
     };
     const bands = resolveOverviewExternalBands(
       externalSummary.schema,

@@ -26,9 +26,13 @@ Deep links (`/workspace/…`) skip the chooser. You can open a folder, a single 
 ## Layout
 
 - **Canvas** - interactive diagram of systems, containers, and components
-- **Left / right panels** - catalog, identity, properties, forensics, connections
-- **Code viewer** - YAML / JSON / Mermaid of the active schema (Mermaid tab is export-only)
+- **Explorer** (left) - **TraceLens** and **Schema** tabs: forensics lenses, dependency view, and YAML / JSON / Mermaid for the active schema
+- **Properties** (right) - identity, metadata, connections, catalog, and validation
 - **Breadcrumbs** - where you are in the hierarchy
+
+On **desktop**, use the chevron rails at the panel edges to expand or collapse Explorer and Properties. On **mobile**, **Explorer** and **Props** chips in the toolbar open the left and right panels when both are collapsed.
+
+The **bottom toolbar** (row 2) has layout engine controls, **Lite** canvas, and **Resilience** (ChaosLens) with **Simulate** when a scenario is active.
 
 Collapse panels for a clean canvas:
 
@@ -36,13 +40,13 @@ Collapse panels for a clean canvas:
 
 ## Selection & properties
 
-Click a node to select it and open the right-hand property panel. Edit name, type, properties, and connection descriptions. External systems render with dashed borders.
+Click a node to select it and open the right-hand **Properties** panel. Edit name, type, properties, and connection descriptions. External systems render with dashed borders.
 
-When a node carries `forensics` from ArchLens, a **TraceLens** section appears in the property panel (readonly metrics + helper text). See [TraceLens](./tracelens.md).
+Forensics metrics, coupling lens, dependency view, and canvas display toggles live in Explorer → **TraceLens** — not in Properties. See [TraceLens](./tracelens.md).
 
 ## C4 navigation
 
-- **Single-click** a node to select it (opens the property panel). Nodes with a child diagram are **not** zoomed on single click.
+- **Single-click** a node to select it (opens the Properties panel). Nodes with a child diagram are **not** zoomed on single click.
 - **Double-click** a node that has a child diagram (`entityRef` match), or use its **Zoom** button, to drill in
 - Press **Esc** or use breadcrumbs / zoom-out control to go back up
 
@@ -53,7 +57,7 @@ When a node carries `forensics` from ArchLens, a **TraceLens** section appears i
 ## Canvas ↔ schema sync
 
 - Moving nodes, wiring edges, or editing properties updates the underlying schema
-- Editing YAML/JSON in the code viewer redraws the canvas
+- Editing YAML/JSON in Explorer → **Schema** redraws the canvas
 - Workspaces can load multiple systems from a `blueprints/` folder and switch via the canvas system picker
 
 ## Import Mermaid
@@ -126,23 +130,25 @@ The top header provides real-time semantic analysis of the workspace structure:
 - **Valid:** The schema structure complies with all syntactic guidelines.
 - **Cycle Detected:** The system has detected a circular dependency loop. Loop pathways will animate and highlight on the canvas in red to facilitate resolution.
 
-## Workspace display
+## Workspace display & Lite canvas
 
-Under **Workspace display** in the properties panel (visible with or without a node selected):
+Canvas visibility and TraceLens overlays are in Explorer → **TraceLens** tab → **Workspace display**:
 
 ![Workspace display](../screenshots/8-workspace-display.png)
 
-| Toggle                              | Effect                                                                   |
-| ----------------------------------- | ------------------------------------------------------------------------ |
-| **Show Test Components**            | Reveal nodes marked `isTest` (hidden by default)                         |
-| **Show Externals**                  | Show or hide external proxy nodes                                        |
-| **Show Selected Dependencies Only** | When a node is selected, show only its upstream + downstream deps        |
-| **Risk Heatmap**                    | Tint nodes by `hotspotScore` (see [TraceLens](./tracelens.md))           |
-| **Lite Canvas**                     | Faster pan/zoom: hide minimap & grid, simplify nodes, cap edge animation |
+| Toggle                              | Effect                                                              |
+| ----------------------------------- | ------------------------------------------------------------------- |
+| **Show Test Components**            | Reveal nodes marked `isTest` (hidden by default)                    |
+| **Show Externals**                  | Show or hide external proxy nodes (upstream / downstream bands)     |
+| **Show Selected Dependencies Only** | When a node is selected, show only its upstream + downstream deps   |
+| **Risk Heatmap**                    | Tint nodes by `hotspotScore` (see [TraceLens](./tracelens.md))      |
+| **Coupling Lens**                   | Focus coupled peers on the canvas (see [TraceLens](./tracelens.md)) |
+
+**Lite canvas** is a separate toggle on the bottom toolbar (**Lite** button): faster pan and zoom on large diagrams — hides minimap/grid, simplifies nodes, caps edge animation.
 
 Dependency edges draw an arrow toward the target (`from` → `to`). Selecting a node animates edges connected to it (all visible edges when focus mode is on; lite canvas caps animation to the selection neighborhood). `prefers-reduced-motion` disables edge dash animation entirely.
 
-A summary line shows live counts (`ext · tests · deps`), scoped to the whole diagram or the selected node.
+A summary line in **Workspace display** shows live counts (`callers · targets · tests · deps`), scoped to the whole diagram or the selected node.
 
 ## ChaosLens
 

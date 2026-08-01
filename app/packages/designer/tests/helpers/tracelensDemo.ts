@@ -6,9 +6,11 @@ import { gotoApp } from './navigation';
 export async function runTraceLensDemo(page: Page) {
   await gotoApp(page, '/workspace');
   await continueWithSample(page);
-  await page.getByTestId('toolbar-tracelens-lens').click();
+  const url = new URL(page.url());
+  url.searchParams.set('lens', 'tracelens');
+  await page.goto(url.toString());
   await expect(page).toHaveURL(/lens=tracelens/);
-  await expect(page.getByRole('heading', { name: 'Worst offenders' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Estate forensics' })).toBeVisible();
 
   const firstRow = page
     .locator('[data-testid^="estate-row-"], [data-testid^="offender-row-"]')

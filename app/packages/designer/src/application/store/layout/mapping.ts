@@ -33,9 +33,15 @@ export type ComponentNodeData = {
   /** Transient ChaosLens safeguard toggles for canvas badges (display-only). */
   resilienceSafeguards?: NodeSafeguards;
   couplingHighlight?: boolean;
+  /** Transient dependency trace role when focus mode is active (display-only). */
+  dependencyRole?: 'selected' | 'upstream' | 'downstream';
   /** Ephemeral coupling peer not yet on the diagram (display-only). */
   couplingGhost?: boolean;
   couplingGhostPosition?: { x: number; y: number };
+  /** Ephemeral stand-in for a hidden cross-diagram external (display-only). */
+  hiddenExternalGhost?: boolean;
+  hiddenExternalGhostPosition?: { x: number; y: number };
+  hiddenExternalSourceId?: string;
   refactorBoundaryHighlight?: boolean;
   hotspotHeat?: number;
   blastHeat?: number;
@@ -68,6 +74,7 @@ export type ComponentEdgeData = {
   [key: string]: unknown;
   type: DependencyType;
   description: string;
+  hiddenExternalGhost?: boolean;
 };
 
 /** Canvas edge DTO - structurally compatible with React Flow Edge. */

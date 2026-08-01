@@ -8,16 +8,22 @@ describe('LensToolbarControls', () => {
     useBlueprintStore.setState({
       isResilienceMode: false,
       isTraceLensMode: false,
+      isTraceLensPanelOpen: false,
       selectedNodeId: 'shop/payment',
       showCoupling: false,
       notification: null,
+      leftCollapsed: true,
     });
   });
 
-  it('toggles trace lens mode from the lenses group', () => {
+  it('does not render a TraceLens toolbar toggle', () => {
     render(<LensToolbarControls />);
-    fireEvent.click(screen.getByTestId('toolbar-tracelens-lens'));
-    expect(useBlueprintStore.getState().isTraceLensMode).toBe(true);
+    expect(screen.queryByTestId('toolbar-tracelens-lens')).not.toBeInTheDocument();
+  });
+
+  it('does not render coupling lens in the toolbar', () => {
+    render(<LensToolbarControls />);
+    expect(screen.queryByTestId('toolbar-coupling-lens')).not.toBeInTheDocument();
   });
 
   it('toggles resilience mode from the lenses group', () => {
@@ -27,36 +33,20 @@ describe('LensToolbarControls', () => {
     expect(screen.getByTestId('toolbar-resilience-simulate')).toBeInTheDocument();
   });
 
-  it('shows guidance when coupling data is missing', () => {
-    render(<LensToolbarControls />);
-    fireEvent.click(screen.getByTestId('toolbar-coupling-lens'));
-    expect(useBlueprintStore.getState().showCoupling).toBe(false);
-    expect(useBlueprintStore.getState().notification?.title).toBe('Coupling lens');
-  });
-
-  it('toggles coupling lens when coupling data exists', () => {
+  it('shows guidance when resilience is unavailable on component diagrams', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
-      name: 'Coupling',
+      name: 'Components',
       version: '1.0.0',
-      level: 'code',
-      nodes: [
-        {
-          entityRef: 'a',
-          type: 'component',
-          name: 'A',
-          position: { x: 0, y: 0 },
-          properties: { filepath: 'src/a.ts' },
-          forensics: {
-            coupledFiles: [{ path: 'src/b.ts', score: 0.8, sharedCommits: 3 }],
-          },
-        },
-      ],
+      level: 'component',
+      entityRef: 'shop/api',
+      nodes: [{ entityRef: 'shop/api/handlers', type: 'component', name: 'Handlers' }],
       dependencies: [],
     });
 
     render(<LensToolbarControls />);
-    fireEvent.click(screen.getByTestId('toolbar-coupling-lens'));
-    expect(useBlueprintStore.getState().showCoupling).toBe(true);
+    fireEvent.click(screen.getByTestId('toolbar-resilience-lens'));
+    expect(useBlueprintStore.getState().isResilienceMode).toBe(false);
+    expect(useBlueprintStore.getState().notification?.title).toBe('Resilience lens');
   });
 });

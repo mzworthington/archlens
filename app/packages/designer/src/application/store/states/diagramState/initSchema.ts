@@ -1,4 +1,5 @@
 import { dedupeDependencies, assessSchemaVersion, type SystemSchema } from '@archlens/core';
+import { isResilienceSimulationDiagramLevel } from '@archlens/core/recommendations';
 import {
   normalizeGroupedNodePositions,
   hasGroupedLayout,
@@ -22,6 +23,7 @@ import {
 } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
 import type { DiagramStateDeps } from './types';
+import type { BlueprintState } from '../../store';
 
 type SetFn = (partial: Record<string, unknown>) => void;
 type GetFn = () => DiagramStateDeps;
@@ -30,6 +32,12 @@ export function createInitSchema(set: SetFn, get: GetFn) {
   return (schema: SystemSchema) => {
     get().clearHistory();
     set({ focusedCyclePath: null });
+    if (
+      (get() as BlueprintState).isResilienceMode &&
+      !isResilienceSimulationDiagramLevel(schema.level)
+    ) {
+      (get() as BlueprintState).setResilienceMode(false);
+    }
     const filePath = get().currentFilePath;
     const fingerprint = schemaLayoutFingerprint(schema);
     const cachedLayout =

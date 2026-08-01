@@ -107,7 +107,7 @@ On first open you get a **startup chooser** on bare `/workspace`:
 1. **Load sandbox** - clear local drafts/cache and explore the bundled demo diagrams (shipped in the app build).
 2. **Open workspace from directory** - pick the folder that contains your generated `blueprints/` YAML.
 3. Use the system switcher and C4 zoom to explore context → container → component.
-4. Inspect TraceLens signals on nodes when ArchLens ran with git enabled.
+4. Inspect **TraceLens** signals — open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page.
 5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
 6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema - see [ArchLens Canvas](./canvas.md#import-mermaid).
 

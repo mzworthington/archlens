@@ -284,6 +284,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (data.hiddenExternalGhost) return;
     selectNode(id);
   };
 
@@ -295,23 +296,29 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         : null;
 
   const solidBg = showHotspotHeat ? 'bg-transparent' : 'bg-slate-950';
-  const borderClass = data.couplingGhost
-    ? 'border-dashed border-amber-500/70 bg-amber-950/30 hover:border-amber-400/80'
-    : data.external
-      ? 'border-dashed border-cyan-600/70 bg-cyan-950 hover:border-cyan-500/80'
-      : data.isResilienceFaultTarget
-        ? 'border-red-500/80 bg-slate-900'
-        : selected
-          ? 'border-brand-500 bg-slate-900 scale-102'
-          : data.couplingHighlight
-            ? 'border-amber-500/70 bg-slate-900'
-            : data.refactorBoundaryHighlight
+  const borderClass = data.hiddenExternalGhost
+    ? 'border-dashed border-cyan-500/70 bg-cyan-950/30 hover:border-cyan-400/80'
+    : data.couplingGhost
+      ? 'border-dashed border-amber-500/70 bg-amber-950/30 hover:border-amber-400/80'
+      : data.external
+        ? 'border-dashed border-cyan-600/70 bg-cyan-950 hover:border-cyan-500/80'
+        : data.isResilienceFaultTarget
+          ? 'border-red-500/80 bg-slate-900'
+          : selected
+            ? 'border-brand-500 bg-slate-900 scale-102'
+            : data.dependencyRole === 'upstream'
               ? 'border-violet-500/70 bg-slate-900'
-              : activeSafeguards
-                ? 'border-emerald-500/75 bg-slate-900 hover:border-emerald-400/80'
-                : concernBorder
-                  ? `${concernBorder} ${solidBg} hover:border-slate-700`
-                  : `${solidBg} border-slate-800 hover:border-slate-700`;
+              : data.dependencyRole === 'downstream'
+                ? 'border-emerald-500/70 bg-slate-900'
+                : data.couplingHighlight
+                  ? 'border-amber-500/70 bg-slate-900'
+                  : data.refactorBoundaryHighlight
+                    ? 'border-violet-500/70 bg-slate-900'
+                    : activeSafeguards
+                      ? 'border-emerald-500/75 bg-slate-900 hover:border-emerald-400/80'
+                      : concernBorder
+                        ? `${concernBorder} ${solidBg} hover:border-slate-700`
+                        : `${solidBg} border-slate-800 hover:border-slate-700`;
 
   const resilienceTitle =
     showAvailabilityRisk || showIntegrityRisk
@@ -514,7 +521,9 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       <div className={`${liteCanvas ? '' : 'mt-3'} min-w-0 overflow-hidden`}>
         <h4 className="font-semibold text-slate-100 truncate text-base leading-tight" title={name}>
           {name}
-          {data.couplingGhost ? (
+          {data.hiddenExternalGhost ? (
+            <span className="text-[10px] text-cyan-300/90 font-normal ml-1.5">(Hidden)</span>
+          ) : data.couplingGhost ? (
             <span className="text-[10px] text-amber-300/90 font-normal ml-1.5">(Coupled)</span>
           ) : externalKind ? (
             <span
@@ -572,6 +581,22 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
                 className="bg-violet-950/50 text-violet-200 px-1.5 py-0.5 rounded text-[9px] font-bold border border-violet-800/50 tracking-normal"
               >
                 BOUNDARY
+              </span>
+            )}
+            {data.dependencyRole === 'upstream' && (
+              <span
+                data-testid="dependency-badge-caller"
+                className="bg-violet-950/50 text-violet-200 px-1.5 py-0.5 rounded text-[9px] font-bold border border-violet-800/50 tracking-normal"
+              >
+                CALLER
+              </span>
+            )}
+            {data.dependencyRole === 'downstream' && (
+              <span
+                data-testid="dependency-badge-depends"
+                className="bg-emerald-950/50 text-emerald-200 px-1.5 py-0.5 rounded text-[9px] font-bold border border-emerald-800/50 tracking-normal"
+              >
+                DEPENDS
               </span>
             )}
             {activeSafeguards

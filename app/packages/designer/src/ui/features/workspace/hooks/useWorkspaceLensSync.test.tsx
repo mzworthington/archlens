@@ -95,4 +95,28 @@ describe('useWorkspaceLensSync', () => {
       { nodeId: 'shop/api', faultType: 'region-outage', severity: 1 },
     ]);
   });
+
+  it('does not enable ChaosLens from the URL on component diagrams', async () => {
+    const { hook } = memoryLocation({
+      path: '/workspace/shop/api?lens=chaoslens&fault=shop/api&type=latency&severity=0.55',
+    });
+
+    act(() => {
+      useBlueprintStore.getState().initSchema({
+        name: 'API Components',
+        version: '1.0.0',
+        level: 'component',
+        entityRef: 'shop/api',
+        nodes: [{ entityRef: 'shop/api/handlers', type: 'component', name: 'Handlers' }],
+        dependencies: [],
+      });
+    });
+
+    renderHook(() => useWorkspaceLensSync(), { wrapper: wrap(hook) });
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isResilienceMode).toBe(false);
+    });
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([]);
+  });
 });

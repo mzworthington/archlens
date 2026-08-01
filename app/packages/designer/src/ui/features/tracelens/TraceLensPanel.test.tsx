@@ -57,7 +57,8 @@ describe('TraceLensPanel', () => {
       </Router>
     );
 
-    expect(screen.getByRole('heading', { name: 'Worst offenders' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Estate forensics' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Worst offenders', level: 2 })).toBeInTheDocument();
     expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByRole('button', { name: /^Hotspots$/i }));
@@ -460,7 +461,10 @@ describe('TraceLensPanel', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: /^AdviceLens$/i }));
-    expect(screen.getByRole('heading', { name: 'All recommendations' })).toBeInTheDocument();
     expect(screen.getByTestId('estate-recommendations-panel')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Estate forensics' })).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', { name: 'Worst offenders', level: 2 })
+    ).not.toBeInTheDocument();
   });
 });

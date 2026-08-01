@@ -8,6 +8,7 @@ import { TraceLensHero } from './TraceLensHero';
 import { TraceLensSegmented } from './TraceLensSegmented';
 import { useTraceLensActions } from './useTraceLensActions';
 import { useTraceLensPanelModel } from './useTraceLensPanelModel';
+import { TRACE_LENS_HERO } from '../../content/productOutcomes';
 
 export const TraceLensPanel: React.FC = () => {
   const model = useTraceLensPanelModel();
@@ -59,7 +60,7 @@ export const TraceLensPanel: React.FC = () => {
               value={traceLensView}
               onChange={setTraceLensView}
               options={[
-                { id: 'offenders', label: 'Worst offenders' },
+                { id: 'offenders', label: 'TraceLens' },
                 { id: 'recommendations', label: 'AdviceLens' },
               ]}
             />
@@ -76,6 +77,9 @@ export const TraceLensPanel: React.FC = () => {
             />
           ) : (
             <>
+              <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-slate-300 mb-4">
+                {TRACE_LENS_HERO.offenders.sectionTitle}
+              </h2>
               <TraceLensFilters
                 scopeOptions={scopeOptions}
                 scopeEntityRef={scopeEntityRef}
