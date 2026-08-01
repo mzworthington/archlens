@@ -27,6 +27,8 @@ The right panel opens if it was collapsed. Re-run after changing fault or safegu
 
 When the Monte Carlo engine is available, telemetry also shows **P5 / mean / P95** SLA bands from jittered trials (typically 1,000 runs). Without WASM, the TypeScript fallback runs the same propagation rules (including group boundaries) and reports a single overall SLA.
 
+With a **workspace** loaded, Simulate also builds a **simulation closure**: missing external neighbors are materialized, upstream callers stay in scope, and edges from an external proxy’s **home diagram** are pulled in so blast radius can cross diagram boundaries (for example Auth Session DB → Auth → Storefront API).
+
 ## What the simulation models
 
 Dependencies use BlueprintSpec’s usual direction: `{ from: 'web', to: 'api' }` means **Web calls API**.
