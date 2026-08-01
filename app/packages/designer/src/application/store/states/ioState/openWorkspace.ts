@@ -12,21 +12,75 @@ import type { ToastNotification } from '../uiState';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
+type WorkspaceOpenLogger = {
+  info: (m: string, meta?: Record<string, unknown>) => void;
+  warn: (m: string, meta?: Record<string, unknown>) => void;
+  error: (m: string, err?: unknown) => void;
+};
+
 type OpenWorkspaceDeps = {
   selectDirectory: () => Promise<boolean>;
   readDirectoryFiles: () => Promise<Array<{ name: string; content: string }>>;
   getDirectoryName: () => string;
   workingCopy: WorkingCopyPort;
-  logger: {
-    info: (m: string, meta?: Record<string, unknown>) => void;
-    warn: (m: string, meta?: Record<string, unknown>) => void;
-    error: (m: string, err?: unknown) => void;
-  };
+  logger: WorkspaceOpenLogger;
   setNotification?: (n: ToastNotification | null) => void;
   initSchema: (schema: SystemSchema) => void;
   set: (partial: Record<string, unknown>) => void;
   isSampleWorkspace?: boolean;
 };
+
+export type LoadWorkspaceFromCatalogDeps = {
+  catalog: WorkspaceCatalogEntry[];
+  entryPath: string;
+  readFile: (relativePath: string) => Promise<string>;
+  getDirectoryName: () => string;
+  workingCopy: WorkingCopyPort;
+  logger: WorkspaceOpenLogger;
+  setNotification?: (n: ToastNotification | null) => void;
+  initSchema: (schema: SystemSchema) => void;
+  set: (partial: Record<string, unknown>) => void;
+  isSampleWorkspace?: boolean;
+};
+
+/** Resolve one diagram against already-loaded schemas + optional catalog context stub. */
+function resolveEntryAgainstCatalog(
+  path: string,
+  schema: SystemSchema,
+  catalog: WorkspaceCatalogEntry[],
+  workspaceName: string,
+  loadedSystems: LoadedSystem[] = []
+) {
+  const filesForResolve: Array<{ path: string; schema: SystemSchema }> = [
+    ...loadedSystems.map(s => ({ path: s.path, schema: s.schema })),
+    { path, schema },
+  ];
+
+  const contextEntry = catalog.find(e => e.level === 'context');
+  if (
+    contextEntry &&
+    !filesForResolve.some(f => f.path === contextEntry.path) &&
+    path !== contextEntry.path
+  ) {
+    filesForResolve.unshift({
+      path: contextEntry.path,
+      schema: {
+        name: contextEntry.name,
+        version: '1.0.0',
+        level: 'context',
+        entityRef: contextEntry.entityRef,
+        nodes: contextEntry.nodeEntityRefs.map(entityRef => ({
+          entityRef,
+          type: 'software-system',
+          name: entityRef,
+        })),
+        dependencies: [],
+      },
+    });
+  }
+
+  return resolveWorkspaceEntityRefs(filesForResolve, workspaceName);
+}
 
 /**
  * Parses YAML files from a workspace folder, builds a lightweight navigation catalog,
@@ -87,21 +141,111 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
   );
 
   const firstSystem =
-    (isSampleWorkspace &&
-      (resolvedSystems.find(s => s.path === 'golden-journey/containers.yaml') ||
-        resolvedSystems.find(s => s.path === 'golden-journey/context.yaml'))) ||
     resolvedSystems.find(s => s.schema.level === 'context') ||
     resolvedSystems.find(s => s.schema.level === 'container') ||
     resolvedSystems[0];
 
-  const { systems, discardedDraftCount } = await applyDiskFirstDraftResolution(
-    [firstSystem],
+  return finalizeWorkspaceOpen({
+    entryCandidate: firstSystem,
     resolved,
-    deps.workingCopy,
+    workspaceCatalog,
+    workspaceName,
+    isSampleWorkspace,
+    workingCopy: deps.workingCopy,
+    logger,
+    setNotification,
+    initSchema,
+    set,
+  });
+}
+
+/**
+ * Open a workspace from a prebuilt navigation catalog + a single entry YAML fetch.
+ * Used by the bundled demo so open does not download every blueprint file.
+ */
+export async function loadWorkspaceFromCatalog(
+  deps: LoadWorkspaceFromCatalogDeps
+): Promise<boolean> {
+  const {
+    catalog,
+    entryPath,
+    logger,
+    setNotification,
+    initSchema,
+    set,
+    isSampleWorkspace = false,
+  } = deps;
+
+  logger.info('Opening workspace from prebuilt catalog', {
+    catalogSize: catalog.length,
+    entryPath,
+    isSampleWorkspace,
+  });
+
+  if (catalog.length === 0) {
+    throw new Error('Bundled blueprints catalog is empty');
+  }
+
+  const catalogEntry = catalog.find(entry => entry.path === entryPath);
+  if (!catalogEntry) {
+    throw new Error(`Entry diagram missing from bundled catalog: ${entryPath}`);
+  }
+
+  const workspaceName = deps.getDirectoryName();
+  const content = await deps.readFile(entryPath);
+  const schema = parseSchemaFromYaml(content);
+  const name = schema.name || catalogEntry.name;
+  const resolved = resolveEntryAgainstCatalog(entryPath, schema, catalog, workspaceName);
+  const resolvedSchema = resolved.schemas[entryPath] || schema;
+  const entryCandidate: LoadedSystem = { path: entryPath, name, schema: resolvedSchema };
+
+  return finalizeWorkspaceOpen({
+    entryCandidate,
+    resolved,
+    workspaceCatalog: catalog,
+    workspaceName,
+    isSampleWorkspace,
+    workingCopy: deps.workingCopy,
+    logger,
+    setNotification,
+    initSchema,
+    set,
+  });
+}
+
+async function finalizeWorkspaceOpen(args: {
+  entryCandidate: LoadedSystem;
+  resolved: ReturnType<typeof resolveWorkspaceEntityRefs>;
+  workspaceCatalog: WorkspaceCatalogEntry[];
+  workspaceName: string;
+  isSampleWorkspace: boolean;
+  workingCopy: WorkingCopyPort;
+  logger: WorkspaceOpenLogger;
+  setNotification?: (n: ToastNotification | null) => void;
+  initSchema: (schema: SystemSchema) => void;
+  set: (partial: Record<string, unknown>) => void;
+}): Promise<boolean> {
+  const {
+    entryCandidate,
+    resolved,
+    workspaceCatalog,
+    workspaceName,
+    isSampleWorkspace,
+    workingCopy,
+    logger,
+    setNotification,
+    initSchema,
+    set,
+  } = args;
+
+  const { systems, discardedDraftCount } = await applyDiskFirstDraftResolution(
+    [entryCandidate],
+    resolved,
+    workingCopy,
     logger
   );
 
-  const entry = systems[0] ?? firstSystem;
+  const entry = systems[0] ?? entryCandidate;
 
   set({
     isWorkspaceOpen: true,

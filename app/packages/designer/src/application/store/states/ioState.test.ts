@@ -1,7 +1,10 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { useBlueprintStore } from '../store';
 import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
+import { GOLDEN_JOURNEY_CONTAINERS_PATH } from '../goldenPathsSample';
+import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 
 describe('ioState Actions & State Management', () => {
   const v3Version = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
@@ -334,6 +337,77 @@ nodes: []`,
       );
       expect(working?.nodes).toHaveLength(1);
       expect(working?.dependencies).toEqual([]);
+    });
+  });
+
+  describe('openBundledSample', () => {
+    it('opens from prebuilt catalog and only reads the entry YAML', async () => {
+      const catalog: WorkspaceCatalogEntry[] = [
+        {
+          path: 'golden-journey/context.yaml',
+          name: 'Golden Paths',
+          level: 'context',
+          entityRef: 'golden-paths',
+          nodeEntityRefs: ['golden-paths/golden-journey'],
+        },
+        {
+          path: GOLDEN_JOURNEY_CONTAINERS_PATH,
+          name: 'Golden Journey Estate',
+          level: 'container',
+          entityRef: 'golden-paths/golden-journey',
+          nodeEntityRefs: ['golden-paths/golden-journey/web'],
+          parentEntityRef: 'golden-paths',
+        },
+      ];
+      const readFile = vi.fn(async (path: string) => {
+        if (path !== GOLDEN_JOURNEY_CONTAINERS_PATH) {
+          throw new Error(`unexpected read: ${path}`);
+        }
+        return `
+version: ${v3Version}
+level: container
+metadata:
+  entityRef: golden-paths/golden-journey
+  name: Golden Journey Estate
+nodes:
+  - entityRef: golden-paths/golden-journey/web
+    type: web-app
+    name: Web
+dependencies: []
+`;
+      });
+      const samplePort = {
+        ...mockWorkspacePort,
+        getDirectoryName: () => 'blueprints',
+        readFile,
+        readDirectoryFiles: vi.fn(async () => {
+          throw new Error('readDirectoryFiles should not be used for bundled sample open');
+        }),
+      };
+
+      const loadCatalog = vi
+        .spyOn(bundledSampleWorkspace, 'loadBundledWorkspaceCatalog')
+        .mockResolvedValue(catalog);
+
+      useBlueprintStore.setState({
+        sampleWorkspacePort: samplePort,
+        workspacePort: samplePort,
+      });
+
+      const success = await useBlueprintStore.getState().openBundledSample();
+      expect(success).toBe(true);
+
+      const state = useBlueprintStore.getState();
+      expect(state.isSampleWorkspace).toBe(true);
+      expect(state.workspaceCatalog).toEqual(catalog);
+      expect(state.loadedSystems).toHaveLength(1);
+      expect(state.currentFilePath).toBe(GOLDEN_JOURNEY_CONTAINERS_PATH);
+      expect(state.schema.name).toBe('Golden Journey Estate');
+      expect(readFile).toHaveBeenCalledTimes(1);
+      expect(samplePort.readDirectoryFiles).not.toHaveBeenCalled();
+      expect(loadCatalog).toHaveBeenCalledTimes(1);
+
+      loadCatalog.mockRestore();
     });
   });
 });

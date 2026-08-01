@@ -1,3 +1,4 @@
+import { parseWorkspaceCatalogJson, type WorkspaceCatalogEntry } from '@archlens/core';
 import type { WorkspacePort } from '../../core';
 import {
   BUNDLED_WORKSPACE_NAME,
@@ -14,7 +15,7 @@ function bundledAssetUrl(relativePath: string): string {
   return new URL(assetPath, window.location.origin).toString();
 }
 
-let manifestPromise: Promise<string[]> | null = null;
+let catalogPromise: Promise<WorkspaceCatalogEntry[]> | null = null;
 
 function isTransientNetworkError(error: unknown): boolean {
   if (!(error instanceof Error)) return false;
@@ -58,7 +59,7 @@ async function fetchResponseWithRetry(url: string, attempts = FETCH_ATTEMPTS): P
   }
   throw sandboxFetchError(
     lastError,
-    'The demo loads many static YAML files from /bundled-blueprints/.'
+    'The demo loads catalog metadata and individual YAML files from /bundled-blueprints/.'
   );
 }
 
@@ -84,35 +85,37 @@ async function mapPool<T, R>(
   return results;
 }
 
-async function loadManifest(): Promise<string[]> {
-  if (!manifestPromise) {
-    manifestPromise = (async () => {
+/** Fetch and cache the prebuilt navigation catalog for the bundled demo workspace. */
+export async function loadBundledWorkspaceCatalog(): Promise<WorkspaceCatalogEntry[]> {
+  if (!catalogPromise) {
+    catalogPromise = (async () => {
       try {
-        const response = await fetchResponseWithRetry(bundledAssetUrl('manifest.json'));
+        const response = await fetchResponseWithRetry(bundledAssetUrl('catalog.json'));
         if (!response.ok) {
-          throw new Error(`Failed to load bundled blueprints manifest (${response.status})`);
+          throw new Error(`Failed to load bundled blueprints catalog (${response.status})`);
         }
-        const manifest = (await response.json()) as string[];
-        if (!Array.isArray(manifest) || manifest.length === 0) {
-          throw new Error('Bundled blueprints manifest is empty');
-        }
-        return manifest;
+        return parseWorkspaceCatalogJson(await response.json());
       } catch (error) {
-        manifestPromise = null;
+        catalogPromise = null;
         throw sandboxFetchError(
           error,
-          'The demo loads many static YAML files from /bundled-blueprints/.'
+          'The demo loads catalog metadata and individual YAML files from /bundled-blueprints/.'
         );
       }
     })();
   }
-  return manifestPromise;
+  return catalogPromise;
+}
+
+async function allowedBlueprintPaths(): Promise<Set<string>> {
+  const catalog = await loadBundledWorkspaceCatalog();
+  return new Set(catalog.map(entry => entry.path));
 }
 
 async function fetchBlueprintContent(relativePath: string): Promise<string> {
-  const manifest = await loadManifest();
   const normalized = relativePath.replace(/\\/g, '/').replace(/^\.\//, '');
-  if (!manifest.includes(normalized)) {
+  const allowed = await allowedBlueprintPaths();
+  if (!allowed.has(normalized)) {
     throw new Error(
       `Bundled workspace only contains blueprint YAML files (missing: ${normalized})`
     );
@@ -127,7 +130,7 @@ async function fetchBlueprintContent(relativePath: string): Promise<string> {
 
 /**
  * Read-only workspace over repo `blueprints/` mirrored to `public/bundled-blueprints/`
- * at build/dev start. Served as static assets (no Vite HMR on YAML imports).
+ * at build/dev start. Navigation uses prebuilt `catalog.json`; YAML is fetched on demand.
  */
 export const BundledSampleWorkspaceAdapter: WorkspacePort = {
   selectDirectory: async () => true,
@@ -136,11 +139,12 @@ export const BundledSampleWorkspaceAdapter: WorkspacePort = {
   getDirectoryName: () => BUNDLED_WORKSPACE_NAME,
   hasPermission: async () => false,
   readDirectoryFiles: async (): Promise<Array<{ name: string; content: string }>> => {
-    const manifest = await loadManifest();
-    const contents = await mapPool(manifest, BUNDLED_BLUEPRINT_FETCH_CONCURRENCY, async name =>
+    const catalog = await loadBundledWorkspaceCatalog();
+    const paths = catalog.map(entry => entry.path);
+    const contents = await mapPool(paths, BUNDLED_BLUEPRINT_FETCH_CONCURRENCY, async name =>
       fetchBlueprintContent(name)
     );
-    const entries = manifest.map((name, index) => ({
+    const entries = paths.map((name, index) => ({
       name,
       content: contents[index]!,
     }));
