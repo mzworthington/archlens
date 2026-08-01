@@ -10,10 +10,7 @@ type ForensicsWorkspacePanelProps = {
   workspaceLabel: string;
   loadedCount: number;
   catalogCount: number;
-  unloadedCount: number;
   isLoading: boolean | string;
-  rankLoadedOnly?: boolean;
-  onRankLoadedOnly?: () => void;
   onOpenSample: () => void;
   onOpenDirectory: () => void;
 };
@@ -23,23 +20,16 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
   workspaceLabel,
   loadedCount,
   catalogCount,
-  unloadedCount,
   isLoading,
-  rankLoadedOnly = false,
-  onRankLoadedOnly,
   onOpenSample,
   onOpenDirectory,
 }) => {
   const busy = Boolean(isLoading);
-  const showCatalogProgress = catalogCount > 0 && unloadedCount > 0 && !rankLoadedOnly;
-  const progressPct = catalogCount > 0 ? Math.round((loadedCount / catalogCount) * 100) : undefined;
-  const progressLabel = showCatalogProgress
-    ? `Loading ${loadedCount}/${catalogCount} diagrams`
-    : busy
-      ? typeof isLoading === 'string'
-        ? isLoading
-        : 'Loading workspace'
-      : null;
+  const progressLabel = busy
+    ? typeof isLoading === 'string'
+      ? isLoading
+      : 'Loading workspace'
+    : null;
 
   if (!hasScope) {
     return (
@@ -54,23 +44,10 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
         />
 
         {progressLabel ? (
-          <div className="mt-4 space-y-2">
-            <p className="inline-flex items-center gap-2 text-xs text-slate-400">
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#00f0ff]" />
-              {progressLabel}
-            </p>
-            {progressPct != null ? (
-              <div
-                className="h-1.5 max-w-xs rounded-full bg-slate-900 overflow-hidden"
-                data-testid="forensics-prefetch-progress"
-              >
-                <div
-                  className="h-full rounded-full bg-[#00f0ff]/70 transition-all duration-300"
-                  style={{ width: `${progressPct}%` }}
-                />
-              </div>
-            ) : null}
-          </div>
+          <p className="mt-4 inline-flex items-center gap-2 text-xs text-slate-400">
+            <Loader2 className="w-3.5 h-3.5 animate-spin text-[#00f0ff]" />
+            {progressLabel}
+          </p>
         ) : null}
       </div>
     );
@@ -94,25 +71,10 @@ export const ForensicsWorkspacePanel: React.FC<ForensicsWorkspacePanelProps> = (
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        {showCatalogProgress && onRankLoadedOnly ? (
-          <button
-            type="button"
-            data-testid="forensics-rank-loaded-only"
-            onClick={onRankLoadedOnly}
-            disabled={busy}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-slate-300 hover:border-[#00f0ff]/35 hover:text-[#00f0ff] transition-colors disabled:opacity-50"
-            title="Skip background prefetch and rank from diagrams already in memory"
-          >
-            Rank loaded only
-          </button>
-        ) : null}
         {progressLabel ? (
           <span className="inline-flex items-center gap-1.5 text-xs text-slate-400">
             <Loader2 className="w-3.5 h-3.5 animate-spin text-[#00f0ff]" />
             {progressLabel}
-            {progressPct != null ? (
-              <span className="font-mono text-[10px] text-slate-500">({progressPct}%)</span>
-            ) : null}
           </span>
         ) : null}
         <button

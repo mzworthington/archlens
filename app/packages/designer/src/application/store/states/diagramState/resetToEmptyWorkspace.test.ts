@@ -1,11 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { useBlueprintStore } from '../../store';
-import { resetDefaultIdbSeedFlag, isDefaultIdbSeedCancelled } from './defaultIdbSeed';
 import { EMPTY_WORKSPACE_PATH, EMPTY_WORKSPACE_SCHEMA } from './resetToEmptyWorkspace';
 
 describe('resetToEmptyWorkspace', () => {
   beforeEach(() => {
-    resetDefaultIdbSeedFlag();
     useBlueprintStore.setState({
       schema: {
         name: 'Sandbox Context',
@@ -60,6 +58,5 @@ describe('resetToEmptyWorkspace', () => {
     expect(state.loadedSystems[0]?.schema.nodes).toEqual([]);
     expect(state.workspaceName).toBe('Empty Workspace');
     expect(state.selectedNodeId).toBeNull();
-    expect(isDefaultIdbSeedCancelled()).toBe(true);
   });
 });

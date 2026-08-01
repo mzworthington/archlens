@@ -1,7 +1,11 @@
 import { test } from '@playwright/test';
 import { gotoApp, releaseE2ePage } from './helpers/navigation';
 import { expectNoSeriousA11yViolations } from './helpers/a11y';
-import { loadSandbox, waitForForensicsOffenders } from './helpers/workspace';
+import {
+  loadForensicsWorkspace,
+  loadSandbox,
+  waitForForensicsOffenders,
+} from './helpers/workspace';
 import { openImportMermaid } from './helpers/toolbar';
 
 test.describe('Accessibility (axe)', () => {
@@ -38,7 +42,7 @@ test.describe('Accessibility (axe)', () => {
 
   test('TraceLens refactor plan slide-over', async ({ page }) => {
     test.setTimeout(180_000);
-    await loadSandbox(page);
+    await loadForensicsWorkspace(page);
     await page.getByRole('link', { name: 'TraceLens' }).click();
     await waitForForensicsOffenders(page);
     await page
