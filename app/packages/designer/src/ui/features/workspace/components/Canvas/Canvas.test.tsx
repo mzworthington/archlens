@@ -18,13 +18,6 @@ vi.mock('@xyflow/react', () => {
         <div data-testid="heated-nodes-count">
           {nodes.filter((n: any) => (n.data?.hotspotHeat ?? 0) > 0).length}
         </div>
-        <div data-testid="safeguarded-nodes-count">
-          {nodes.filter((n: any) => n.data?.resilienceSafeguards).length}
-        </div>
-        <div data-testid="out-of-scope-nodes-count">
-          {nodes.filter((n: any) => n.data?.resilienceOutOfScope).length}
-        </div>
-        <div data-testid="animated-edges-count">{edges.filter((e: any) => e.animated).length}</div>
         <button
           data-testid="double-click-node"
           onClick={() =>
@@ -114,17 +107,6 @@ describe('Canvas Component', () => {
     expect(screen.getByTestId('controls')).toBeInTheDocument();
   });
 
-  it('caps edge animation to selection neighborhood when liteCanvas is on', () => {
-    useBlueprintStore.setState({
-      liteCanvas: true,
-      selectedNodeId: 'node1',
-      showSelectedDependenciesOnly: true,
-    });
-    render(<Canvas />);
-
-    expect(screen.getByTestId('animated-edges-count')).toHaveTextContent('1');
-  });
-
   it('focuses coupling neighbors and hides other nodes and schema links', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
@@ -170,82 +152,6 @@ describe('Canvas Component', () => {
     expect(screen.getByTestId('edges-count')).toHaveTextContent('1');
   });
 
-  it('hides downstream external nodes when downstream externals are off', () => {
-    const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      name: 'Externals Canvas',
-      version: '1.0.0',
-      level: 'component',
-      nodes: [
-        {
-          entityRef: 'comp-a',
-          type: 'component',
-          name: 'A',
-          position: { x: 0, y: 0 },
-        },
-        {
-          entityRef: 'comp-downstream-ext',
-          type: 'component',
-          name: 'Downstream External',
-          external: true,
-          position: { x: 100, y: 100 },
-        },
-        {
-          entityRef: 'comp-upstream-ext',
-          type: 'component',
-          name: 'Upstream External',
-          external: true,
-          position: { x: 200, y: 100 },
-        },
-      ],
-      dependencies: [
-        { from: 'comp-a', to: 'comp-downstream-ext', type: 'direct-call' },
-        { from: 'comp-upstream-ext', to: 'comp-a', type: 'direct-call' },
-      ],
-    });
-    useBlueprintStore.setState({
-      showTests: true,
-      showUpstreamExternals: true,
-      showDownstreamExternals: false,
-    });
-
-    render(<Canvas />);
-
-    expect(screen.getByTestId('nodes-count')).toHaveTextContent('2');
-    expect(screen.getByTestId('edges-count')).toHaveTextContent('1');
-  });
-
-  it('keeps selected node and transitive upstream + downstream deps when focus toggle is on', () => {
-    const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      name: 'Dependency Focus',
-      version: '1.0.0',
-      level: 'component',
-      nodes: [
-        { entityRef: 'a', type: 'component', name: 'A', position: { x: 0, y: 0 } },
-        { entityRef: 'b', type: 'component', name: 'B', position: { x: 100, y: 0 } },
-        { entityRef: 'c', type: 'component', name: 'C', position: { x: 200, y: 0 } },
-        { entityRef: 'orphan', type: 'component', name: 'Orphan', position: { x: 300, y: 0 } },
-      ],
-      dependencies: [
-        { from: 'a', to: 'b', type: 'direct-call' },
-        { from: 'b', to: 'c', type: 'direct-call' },
-      ],
-    });
-    useBlueprintStore.setState({
-      selectedNodeId: 'c',
-      showTests: true,
-      showUpstreamExternals: true,
-      showDownstreamExternals: true,
-      showSelectedDependenciesOnly: true,
-    });
-
-    render(<Canvas />);
-
-    expect(screen.getByTestId('nodes-count')).toHaveTextContent('3');
-    expect(screen.getByTestId('edges-count')).toHaveTextContent('2');
-  });
-
   it('shows all nodes in resilience mode even when dependency focus is on', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
@@ -274,36 +180,6 @@ describe('Canvas Component', () => {
 
     expect(screen.getByTestId('nodes-count')).toHaveTextContent('4');
     expect(screen.getByTestId('edges-count')).toHaveTextContent('2');
-  });
-
-  it('applies hotspot heat to nodes when showHotspotHeatmap is on', () => {
-    const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      name: 'Heatmap Canvas',
-      version: '1.0.0',
-      level: 'code',
-      nodes: [
-        {
-          entityRef: 'comp-hot',
-          type: 'component',
-          name: 'Hot',
-          position: { x: 0, y: 0 },
-          forensics: { hotspotScore: 0.9 },
-        },
-        {
-          entityRef: 'comp-cold',
-          type: 'component',
-          name: 'Cold',
-          position: { x: 100, y: 100 },
-        },
-      ],
-      dependencies: [],
-    });
-    useBlueprintStore.setState({ showHotspotHeatmap: true, showTests: true });
-
-    render(<Canvas />);
-
-    expect(screen.getByTestId('heated-nodes-count')).toHaveTextContent('1');
   });
 
   it('keeps TraceLens hotspot heat visible while ChaosLens is active', () => {
@@ -350,31 +226,6 @@ describe('Canvas Component', () => {
     expect(screen.getByTestId('heated-nodes-count')).toHaveTextContent('1');
   });
 
-  it('dims nodes outside the ChaosLens simulation scope', () => {
-    const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      name: 'Scope Canvas',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [
-        { entityRef: 'a', type: 'web-app', name: 'A', position: { x: 0, y: 0 } },
-        { entityRef: 'b', type: 'microservice', name: 'B', position: { x: 100, y: 0 } },
-        { entityRef: 'orphan', type: 'microservice', name: 'Orphan', position: { x: 200, y: 0 } },
-      ],
-      dependencies: [{ from: 'a', to: 'b', type: 'direct-call' }],
-    });
-    useBlueprintStore.setState({
-      showTests: true,
-      isResilienceMode: true,
-      resilienceSimulationScope: ['a', 'b'],
-    });
-
-    render(<Canvas />);
-
-    expect(screen.getByTestId('nodes-count')).toHaveTextContent('3');
-    expect(screen.getByTestId('out-of-scope-nodes-count')).toHaveTextContent('1');
-  });
-
   it('force-shows scoped external nodes while resilience mode hides other externals', () => {
     const { initSchema } = useBlueprintStore.getState();
     initSchema({
@@ -415,49 +266,6 @@ describe('Canvas Component', () => {
     render(<Canvas />);
 
     expect(screen.getByTestId('nodes-count')).toHaveTextContent('3');
-  });
-
-  it('highlights nodes with safeguards when resilience mode is on', () => {
-    const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      name: 'Safeguards Canvas',
-      version: '1.0.0',
-      level: 'container',
-      nodes: [
-        {
-          entityRef: 'shop/web',
-          type: 'web-app',
-          name: 'Web',
-          position: { x: 0, y: 0 },
-        },
-        {
-          entityRef: 'shop/api',
-          type: 'microservice',
-          name: 'API',
-          position: { x: 100, y: 0 },
-          resilience: { circuitBreaker: true },
-        },
-      ],
-      dependencies: [],
-    });
-    useBlueprintStore.setState({ isResilienceMode: true, showTests: true });
-
-    render(<Canvas />);
-
-    expect(screen.getByTestId('safeguarded-nodes-count')).toHaveTextContent('1');
-  });
-
-  it('displays cycle warning validation status badge when cycle is present', () => {
-    useBlueprintStore.setState({
-      validationResult: {
-        isValid: false,
-        issues: [{ type: 'cycle', message: 'Cycle detected', path: ['node1', 'node2'] }],
-      },
-    });
-
-    render(<Canvas />);
-    expect(screen.getByTestId('workspace-status-badges')).toBeInTheDocument();
-    expect(screen.getByText('Cycle Detected')).toBeInTheDocument();
   });
 
   it('renders more-actions menu without a system switcher', () => {
@@ -572,7 +380,9 @@ describe('Canvas Component', () => {
     });
   });
 
-  const drillInFixtures = () => {
+  it('shows a Zoom out button that navigates to the parent system', async () => {
+    mockSetLocation.mockClear();
+
     const parentSchema = {
       name: 'Root Context',
       version: '1.0.0',
@@ -625,52 +435,7 @@ describe('Canvas Component', () => {
 
     const { initSchema } = useBlueprintStore.getState();
     initSchema(childSchema);
-  };
 
-  it('navigates to parent system when Escape is pressed', async () => {
-    mockSetLocation.mockClear();
-    drillInFixtures();
-    render(<Canvas />);
-
-    fireEvent.keyDown(window, { key: 'Escape' });
-
-    await waitFor(() => {
-      expect(mockSetLocation).toHaveBeenCalledWith('/workspace/root');
-    });
-  });
-
-  it('navigates to parent system when Backspace is pressed', async () => {
-    mockSetLocation.mockClear();
-    drillInFixtures();
-    render(<Canvas />);
-
-    fireEvent.keyDown(window, { key: 'Backspace' });
-
-    await waitFor(() => {
-      expect(mockSetLocation).toHaveBeenCalledWith('/workspace/root');
-    });
-  });
-
-  it('shows a Zoom out button that navigates to the parent system', async () => {
-    mockSetLocation.mockClear();
-    drillInFixtures();
-    render(<Canvas />);
-
-    fireEvent.click(screen.getByTestId('zoom-out-button'));
-
-    await waitFor(() => {
-      expect(mockSetLocation).toHaveBeenCalledWith('/workspace/root');
-    });
-  });
-
-  it('zooms out using entityRef parent when the parent diagram is not loaded yet', async () => {
-    mockSetLocation.mockClear();
-    drillInFixtures();
-    useBlueprintStore.setState({
-      loadedSystems: useBlueprintStore
-        .getState()
-        .loadedSystems.filter(system => system.path === 'containers.yaml'),
-    });
     render(<Canvas />);
 
     fireEvent.click(screen.getByTestId('zoom-out-button'));

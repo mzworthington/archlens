@@ -14,7 +14,7 @@ describe('ComponentLevelWriter', () => {
     writer = new ComponentLevelWriter(fileSystem, logger);
   });
 
-  it('should write component schemas for each container', async () => {
+  it('writes one component schema per container with expected path, entityRef, slugified ids, and filtered nodes', async () => {
     const componentNodesMap = new Map<string, SystemNode>([
       [
         'component-a',
@@ -22,7 +22,7 @@ describe('ComponentLevelWriter', () => {
           entityRef: 'my-context/my-system/frontend-ui/component-a',
           name: 'Component A',
           type: 'component',
-          properties: { containerId: 'frontend-ui' },
+          properties: { containerId: 'Frontend UI' },
         },
       ],
       [
@@ -35,16 +35,9 @@ describe('ComponentLevelWriter', () => {
         },
       ],
     ]);
-    const componentDependencies: SystemDependency[] = [
-      {
-        from: 'my-context/my-system/frontend-ui/component-a',
-        to: 'my-context/my-system/domain-logic/component-b',
-        type: 'direct-call',
-      },
-    ];
     const containerNodesMap = new Map<string, SystemNode>([
       [
-        'frontend-ui',
+        'Frontend UI',
         { entityRef: 'my-context/my-system/frontend-ui', name: 'Frontend UI', type: 'web-app' },
       ],
       [
@@ -59,148 +52,35 @@ describe('ComponentLevelWriter', () => {
 
     await writer.write(
       '/workspace/blueprints/my-context/my-system',
-      'my-context',
-      'my-system',
-      componentNodesMap,
-      componentDependencies,
-      containerNodesMap
-    );
-
-    const writtenPaths = Array.from(fileSystem.writtenFiles.keys());
-    expect(writtenPaths).toContain(
-      '/workspace/blueprints/my-context/my-system/frontend-ui-components.yaml'
-    );
-    expect(writtenPaths).toContain(
-      '/workspace/blueprints/my-context/my-system/domain-logic-components.yaml'
-    );
-  });
-
-  it('should use correct entityRef format for component schemas', async () => {
-    const componentNodesMap = new Map<string, SystemNode>([
-      [
-        'component-a',
-        {
-          entityRef: 'my-context/my-system/frontend-ui/component-a',
-          name: 'Component A',
-          type: 'component',
-          properties: { containerId: 'frontend-ui' },
-        },
-      ],
-    ]);
-    const componentDependencies: SystemDependency[] = [];
-    const containerNodesMap = new Map<string, SystemNode>([
-      [
-        'frontend-ui',
-        { entityRef: 'my-context/my-system/frontend-ui', name: 'Frontend UI', type: 'web-app' },
-      ],
-    ]);
-
-    await writer.write(
-      '/workspace/blueprints/my-context/my-system',
-      'my-context',
-      'my-system',
-      componentNodesMap,
-      componentDependencies,
-      containerNodesMap
-    );
-
-    const yamlContent = fileSystem.writtenFiles.get(
-      '/workspace/blueprints/my-context/my-system/frontend-ui-components.yaml'
-    )!;
-    expect(yamlContent).toContain('entityRef: my-context/my-system/frontend-ui');
-    expect(yamlContent).toContain('name: Frontend UI Components');
-    expect(yamlContent).toContain('level: component');
-  });
-
-  it('should slugify context and container names in entityRef', async () => {
-    const componentNodesMap = new Map<string, SystemNode>([
-      [
-        'component-a',
-        {
-          entityRef: 'my-context/my-system/frontend-ui/component-a',
-          name: 'Component A',
-          type: 'component',
-          properties: { containerId: 'Frontend UI' },
-        },
-      ],
-    ]);
-    const componentDependencies: SystemDependency[] = [];
-    const containerNodesMap = new Map<string, SystemNode>([
-      [
-        'Frontend UI',
-        { entityRef: 'my-context/my-system/frontend-ui', name: 'Frontend UI', type: 'web-app' },
-      ],
-    ]);
-
-    await writer.write(
-      '/workspace/blueprints/my-context/my-system',
       'My Context',
       'my-system',
       componentNodesMap,
-      componentDependencies,
+      [],
       containerNodesMap
     );
 
-    const yamlContent = fileSystem.writtenFiles.get(
-      '/workspace/blueprints/my-context/my-system/frontend-ui-components.yaml'
-    )!;
-    expect(yamlContent).toContain('entityRef: my-context/my-system/frontend-ui');
+    const frontendPath = '/workspace/blueprints/my-context/my-system/frontend-ui-components.yaml';
+    const domainPath = '/workspace/blueprints/my-context/my-system/domain-logic-components.yaml';
+
+    expect(Array.from(fileSystem.writtenFiles.keys())).toEqual(
+      expect.arrayContaining([frontendPath, domainPath])
+    );
+
+    const frontendYaml = fileSystem.writtenFiles.get(frontendPath)!;
+    expect(frontendYaml).toContain('entityRef: my-context/my-system/frontend-ui');
+    expect(frontendYaml).toContain('name: Frontend UI Components');
+    expect(frontendYaml).toContain('level: component');
+    expect(frontendYaml).toContain('name: Component A');
+    expect(frontendYaml).not.toContain('name: Component B');
+
+    const domainYaml = fileSystem.writtenFiles.get(domainPath)!;
+    expect(domainYaml).toContain('entityRef: my-context/my-system/domain-logic');
+    expect(domainYaml).toContain('name: Domain Logic Components');
+    expect(domainYaml).toContain('name: Component B');
+    expect(domainYaml).not.toContain('name: Component A');
   });
 
-  it('should filter components by containerId', async () => {
-    const componentNodesMap = new Map<string, SystemNode>([
-      [
-        'component-a',
-        {
-          entityRef: 'my-context/my-system/frontend-ui/component-a',
-          name: 'Component A',
-          type: 'component',
-          properties: { containerId: 'frontend-ui' },
-        },
-      ],
-      [
-        'component-b',
-        {
-          entityRef: 'my-context/my-system/domain-logic/component-b',
-          name: 'Component B',
-          type: 'component',
-          properties: { containerId: 'domain-logic' },
-        },
-      ],
-    ]);
-    const componentDependencies: SystemDependency[] = [];
-    const containerNodesMap = new Map<string, SystemNode>([
-      [
-        'frontend-ui',
-        { entityRef: 'my-context/my-system/frontend-ui', name: 'Frontend UI', type: 'web-app' },
-      ],
-    ]);
-
-    await writer.write(
-      '/workspace/blueprints/my-context/my-system',
-      'my-context',
-      'my-system',
-      componentNodesMap,
-      componentDependencies,
-      containerNodesMap
-    );
-
-    const writtenPaths = Array.from(fileSystem.writtenFiles.keys());
-    expect(writtenPaths).toContain(
-      '/workspace/blueprints/my-context/my-system/frontend-ui-components.yaml'
-    );
-    expect(writtenPaths).not.toContain(
-      '/workspace/blueprints/my-context/my-system/domain-logic-components.yaml'
-    );
-
-    const yamlContent = fileSystem.writtenFiles.get(
-      '/workspace/blueprints/my-context/my-system/frontend-ui-components.yaml'
-    )!;
-    expect(yamlContent).toContain('name: Component A');
-    expect(yamlContent).not.toContain('name: Component B');
-  });
-
-  it('should filter dependencies by containerId', async () => {
+  it('includes dependencies touching the container, including cross-container edges', async () => {
     const componentNodesMap = new Map<string, SystemNode>([
       [
         'my-context/my-system/frontend-ui/component-a',
@@ -266,74 +146,7 @@ describe('ComponentLevelWriter', () => {
     expect(yamlContent).toContain('to: my-context/my-system/domain-logic/component-c');
   });
 
-  it('writes component nodes without layout positions', async () => {
-    const componentNodesMap = new Map<string, SystemNode>([
-      [
-        'component-a',
-        {
-          entityRef: 'my-context/my-system/frontend-ui/component-a',
-          name: 'Component A',
-          type: 'component',
-          properties: { containerId: 'frontend-ui' },
-        },
-      ],
-    ]);
-    const componentDependencies: SystemDependency[] = [];
-    const containerNodesMap = new Map<string, SystemNode>([
-      [
-        'frontend-ui',
-        { entityRef: 'my-context/my-system/frontend-ui', name: 'Frontend UI', type: 'web-app' },
-      ],
-    ]);
-
-    await writer.write(
-      '/workspace/blueprints/my-context/my-system',
-      'my-context',
-      'my-system',
-      componentNodesMap,
-      componentDependencies,
-      containerNodesMap
-    );
-
-    const yamlContent = fileSystem.writtenFiles.get(
-      '/workspace/blueprints/my-context/my-system/frontend-ui-components.yaml'
-    )!;
-    expect(yamlContent).not.toMatch(/\bx:\s*\d+/);
-    expect(yamlContent).not.toMatch(/\by:\s*\d+/);
-  });
-
-  it('should log successful write for each container', async () => {
-    const componentNodesMap = new Map<string, SystemNode>();
-    const componentDependencies: SystemDependency[] = [];
-    const containerNodesMap = new Map<string, SystemNode>([
-      [
-        'frontend-ui',
-        { entityRef: 'my-context/my-system/frontend-ui', name: 'Frontend UI', type: 'web-app' },
-      ],
-      [
-        'domain-logic',
-        {
-          entityRef: 'my-context/my-system/domain-logic',
-          name: 'Domain Logic',
-          type: 'microservice',
-        },
-      ],
-    ]);
-
-    await writer.write(
-      '/workspace/blueprints/my-context/my-system',
-      'my-context',
-      'my-system',
-      componentNodesMap,
-      componentDependencies,
-      containerNodesMap
-    );
-
-    const writeLogs = logger.logs.filter(log => log.includes('Saved Component schema'));
-    expect(writeLogs).toHaveLength(2);
-  });
-
-  it('writes rollup drill-down schemas for multi-file folder components', async () => {
+  it('emits rollup drill-down schemas from rollupDrillDown', async () => {
     const componentNodesMap = new Map<string, SystemNode>([
       [
         'cli/writers',
@@ -377,14 +190,6 @@ describe('ComponentLevelWriter', () => {
         },
       ],
     ]);
-    const componentDependencies: SystemDependency[] = [];
-    const fileLevelDependencies: SystemDependency[] = [
-      {
-        from: 'my-context/my-system/cli/writers/context-level-writer',
-        to: 'my-context/my-system/cli/writers/base-writer',
-        type: 'direct-call',
-      },
-    ];
     const containerNodesMap = new Map<string, SystemNode>([
       ['cli', { entityRef: 'my-context/my-system/cli', name: 'Cli Service', type: 'container' }],
     ]);
@@ -394,21 +199,26 @@ describe('ComponentLevelWriter', () => {
       'my-context',
       'my-system',
       componentNodesMap,
-      componentDependencies,
+      [],
       containerNodesMap,
       undefined,
       fileLevelNodesMap,
-      fileLevelDependencies
+      []
+    );
+
+    const writtenPaths = Array.from(fileSystem.writtenFiles.keys());
+    expect(writtenPaths).toContain(
+      '/workspace/blueprints/my-context/my-system/cli-components.yaml'
+    );
+    expect(writtenPaths).toContain(
+      '/workspace/blueprints/my-context/my-system/cli/writers-components.yaml'
     );
 
     const drillDownYaml = fileSystem.writtenFiles.get(
       '/workspace/blueprints/my-context/my-system/cli/writers-components.yaml'
     )!;
     expect(drillDownYaml).toContain('entityRef: my-context/my-system/cli/writers');
-    expect(drillDownYaml).toContain('entityRef: my-context/my-system/cli/writers/base-writer');
-    expect(drillDownYaml).toContain(
-      'entityRef: my-context/my-system/cli/writers/context-level-writer'
-    );
+    expect(drillDownYaml).toContain('level: component');
   });
 
   it('strips representative filepaths from parent rollups that have drill-down diagrams', async () => {

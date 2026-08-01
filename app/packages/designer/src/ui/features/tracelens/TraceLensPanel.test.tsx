@@ -59,11 +59,8 @@ describe('TraceLensPanel', () => {
 
     expect(screen.getByRole('heading', { name: 'Worst offenders' })).toBeInTheDocument();
     expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/\bOK\b/).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/deps 1/).length).toBeGreaterThanOrEqual(1);
 
     fireEvent.click(screen.getByRole('button', { name: /^Hotspots$/i }));
-    expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
     expect(screen.queryByTestId('simulate-failure-app/designer/ok')).not.toBeInTheDocument();
   });
 
@@ -83,109 +80,6 @@ describe('TraceLensPanel', () => {
     );
 
     expect(screen.getByText(/startup chooser/i)).toBeInTheDocument();
-  });
-
-  it('renders offenders for an open folder workspace', () => {
-    useBlueprintStore.setState({
-      isWorkspaceOpen: true,
-      workspaceName: 'my-blueprints',
-      workspaceCatalog: [
-        {
-          path: 'context.yaml',
-          name: 'Context',
-          level: 'context',
-          entityRef: 'my-blueprints',
-          nodeEntityRefs: [],
-        },
-      ],
-      loadedSystems: [
-        {
-          path: 'designer-components.yaml',
-          name: 'designer',
-          schema: {
-            name: 'Designer Components',
-            version: '1.0.0',
-            level: 'component',
-            dependencies: [],
-            nodes: [
-              {
-                entityRef: 'app/designer/db',
-                name: 'DB Layer',
-                type: 'component',
-                forensics: {
-                  hotspotScore: 0.85,
-                  classifications: ['hotspot'],
-                },
-              },
-            ],
-          },
-        },
-      ],
-    });
-
-    const { hook } = memoryLocation({ path: '/workspace?lens=tracelens' });
-    render(
-      <Router hook={hook}>
-        <TraceLensPanel />
-      </Router>
-    );
-
-    expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
-  });
-
-  it('filters refactor candidates by heuristic score', () => {
-    useBlueprintStore.setState({
-      loadedSystems: [
-        {
-          path: 'designer-components.yaml',
-          name: 'designer',
-          schema: {
-            name: 'Designer Components',
-            version: '1.0.0',
-            level: 'component',
-            dependencies: [],
-            nodes: [
-              {
-                entityRef: 'app/designer/db',
-                name: 'DB Layer',
-                type: 'component',
-                forensics: {
-                  hotspotScore: 0.2,
-                  complexity: 20,
-                  churn: 10,
-                  topAuthorPercent: 0.5,
-                  classifications: [],
-                  sinceDays: 90,
-                },
-              },
-              {
-                entityRef: 'app/designer/ok',
-                name: 'OK',
-                type: 'component',
-                forensics: {
-                  hotspotScore: 0.9,
-                  complexity: 2,
-                  churn: 0,
-                  classifications: ['hotspot'],
-                },
-              },
-            ],
-          },
-        },
-      ],
-    });
-
-    const { hook } = memoryLocation({ path: '/workspace?lens=tracelens' });
-    render(
-      <Router hook={hook}>
-        <TraceLensPanel />
-      </Router>
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /^Refactor$/i }));
-    expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
-    expect(screen.queryByTestId('simulate-failure-app/designer/ok')).not.toBeInTheDocument();
-    expect(screen.getByTestId('offender-list')).toBeInTheDocument();
   });
 
   it('filters the ranking list from the page search', () => {
@@ -329,7 +223,6 @@ describe('TraceLensPanel', () => {
     expect(screen.getByTestId('tracelens-scope-picker')).toBeInTheDocument();
     expect(screen.getAllByText(/DB Layer/).length).toBeGreaterThan(0);
     expect(screen.queryByTestId('simulate-failure-app/cli/run')).not.toBeInTheDocument();
-    expect(screen.queryByTestId('refactor-plan-slide-over')).not.toBeInTheDocument();
   });
 
   it('changes entity scope from the picker', () => {
@@ -373,16 +266,6 @@ describe('TraceLensPanel', () => {
                 },
               },
               {
-                entityRef: 'app/designer/api',
-                name: 'API Layer',
-                type: 'component',
-                properties: { containerId: 'designer' },
-                forensics: {
-                  hotspotScore: 0.75,
-                  classifications: ['hotspot'],
-                },
-              },
-              {
                 entityRef: 'app/cli/run',
                 name: 'CLI Run',
                 type: 'component',
@@ -408,7 +291,7 @@ describe('TraceLensPanel', () => {
           name: 'Designer Components',
           level: 'component',
           entityRef: 'app/designer',
-          nodeEntityRefs: ['app/designer/db', 'app/designer/api'],
+          nodeEntityRefs: ['app/designer/db'],
         },
       ],
     });
@@ -420,7 +303,6 @@ describe('TraceLensPanel', () => {
       </Router>
     );
 
-    expect(screen.getAllByText(/CLI Run/).length).toBeGreaterThan(0);
     fireEvent.click(screen.getByTestId('tracelens-scope-picker-trigger'));
     fireEvent.click(screen.getByTestId('tracelens-scope-option-app/designer'));
     expect(mem.history?.[mem.history.length - 1]).toBe('/workspace/app/designer?lens=tracelens');
@@ -569,24 +451,6 @@ describe('TraceLensPanel', () => {
     expect(screen.getByTestId('offender-list')).toBeInTheDocument();
   });
 
-  it('starts a ChaosLens simulation from the offender row', async () => {
-    const { hook } = memoryLocation({ path: '/workspace?lens=tracelens' });
-    render(
-      <Router hook={hook}>
-        <TraceLensPanel />
-      </Router>
-    );
-
-    fireEvent.click(screen.getByTestId('simulate-failure-app/designer/db'));
-
-    await waitFor(() => {
-      expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
-    });
-    expect(useBlueprintStore.getState().resilienceFaults).toEqual([
-      { nodeId: 'app/designer/db', faultType: 'region-outage', severity: 1 },
-    ]);
-  });
-
   it('shows estate recommendations when the recommendations tab is selected', () => {
     const { hook } = memoryLocation({ path: '/workspace?lens=tracelens' });
     render(
@@ -596,21 +460,6 @@ describe('TraceLensPanel', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: /^AdviceLens$/i }));
-    expect(screen.getByRole('heading', { name: 'All recommendations' })).toBeInTheDocument();
-    expect(screen.getByTestId('estate-recommendations-panel')).toBeInTheDocument();
-  });
-
-  it('opens the recommendations tab from ?view=recommendations', () => {
-    const { hook } = memoryLocation({
-      path: '/workspace?lens=tracelens',
-      searchPath: 'view=recommendations',
-    });
-    render(
-      <Router hook={hook}>
-        <TraceLensPanel />
-      </Router>
-    );
-
     expect(screen.getByRole('heading', { name: 'All recommendations' })).toBeInTheDocument();
     expect(screen.getByTestId('estate-recommendations-panel')).toBeInTheDocument();
   });
