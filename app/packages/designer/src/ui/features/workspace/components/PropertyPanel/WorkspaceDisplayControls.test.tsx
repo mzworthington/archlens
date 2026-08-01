@@ -45,7 +45,7 @@ describe('WorkspaceDisplayControls', () => {
 
     expect(screen.getByTestId('workspace-display-controls')).toBeInTheDocument();
     expect(screen.getByTestId('workspace-display-summary')).toHaveTextContent(
-      '2↑ 3↓ ext · 4 tests · 8 deps'
+      '2 callers · 3 targets · 4 tests · 8 deps'
     );
     expect(screen.getByTestId('toggle-show-tests-count')).toHaveTextContent('(4)');
     expect(screen.getByTestId('toggle-show-upstream-externals-count')).toHaveTextContent('(2)');
@@ -68,11 +68,11 @@ describe('WorkspaceDisplayControls', () => {
     expect(onToggleCoupling).toHaveBeenCalledTimes(1);
     expect(onToggleLite).toHaveBeenCalledTimes(1);
     expect(screen.getByLabelText('Show Selected Dependencies Only (8)')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Show upstream externals (2)' })).toHaveTextContent(
-      'Upstream (2)'
+    expect(screen.getByRole('button', { name: 'Show external callers (2)' })).toHaveTextContent(
+      'Callers (2)'
     );
-    expect(screen.getByRole('button', { name: 'Show downstream externals (3)' })).toHaveTextContent(
-      'Downstream (3)'
+    expect(screen.getByRole('button', { name: 'Show external targets (3)' })).toHaveTextContent(
+      'Targets (3)'
     );
     expect(screen.getByTestId('workspace-heatmap-help')).toHaveTextContent(
       /TraceLens hotspot score/i
@@ -113,7 +113,7 @@ describe('WorkspaceDisplayControls', () => {
     );
 
     expect(screen.getByTestId('workspace-display-summary')).toHaveTextContent(
-      '1↑ 0↓ ext · 0 tests · 3 deps · node'
+      '1 callers · 0 targets · 0 tests · 3 deps · node'
     );
   });
 });

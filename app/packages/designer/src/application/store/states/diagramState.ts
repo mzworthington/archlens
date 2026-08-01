@@ -1,7 +1,9 @@
+import type { ExternalSummaryBand } from '@archlens/core';
 import { parseSchemaFromYaml, parseSchemaFromJson, assessSchemaVersion } from '@archlens/core';
 import { applyStateUpdates } from './diagramState/applyStateUpdates';
 import {
   addExternalDependencies as addExternalDependenciesAction,
+  expandExternalSummaryHub as expandExternalSummaryHubAction,
   listWorkspaceExternalCandidates as listWorkspaceExternalCandidatesAction,
   syncSuggestedExternals as syncSuggestedExternalsAction,
 } from './diagramState/externalDependencies';
@@ -177,6 +179,11 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     syncSuggestedExternals: () => {
       get().recordHistory();
       syncSuggestedExternalsAction(set, get);
+    },
+
+    expandExternalSummaryHub: (band: ExternalSummaryBand) => {
+      get().recordHistory();
+      expandExternalSummaryHubAction(set, get, band);
     },
   };
 };

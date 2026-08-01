@@ -12,6 +12,7 @@ export const WorkspaceSourceCodeDialog: React.FC = () => {
     loadedSystems,
     currentFilePath,
     isWorkspaceOpen,
+    isSampleWorkspace,
     workspacePort,
   } = useBlueprintStore();
 
@@ -32,7 +33,7 @@ export const WorkspaceSourceCodeDialog: React.FC = () => {
       onClose={closeSourceCodeDialog}
       filepath={sourceCodeFilepath ?? undefined}
       source={sourceProvenance}
-      isWorkspaceOpen={isWorkspaceOpen}
+      isWorkspaceOpen={isWorkspaceOpen && !isSampleWorkspace}
       readLocalFile={readLocalFile}
     />
   );

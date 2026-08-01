@@ -1,5 +1,4 @@
 import type { EntityRef, SystemSchema } from '../../models/schema';
-import { EntityRef as EntityRefUtil } from '../../models/schema';
 import type {
   EnrichExternalsOptions,
   ExternalCandidateFilters,
@@ -11,6 +10,7 @@ import {
   isExcludedFromExternalCandidates,
   listUnresolvedDependencyEndpoints,
 } from './diagramScope';
+import { collectComponentDiagramNeighborRefs } from './containerDiagramScope';
 
 function normalizeSearch(value: string): string {
   return value.trim().toLowerCase();
@@ -78,21 +78,7 @@ function collectContainerNeighborRefs(
 
   if (activeSchema.level !== 'component' || !activeSchema.entityRef) return [];
 
-  const parentRef = EntityRefUtil.getParent(activeSchema.entityRef);
-  const parentSystem = loadedSystems.find(
-    s => s.schema.level === 'container' && s.schema.entityRef === parentRef
-  );
-  if (!parentSystem) return [];
-
-  const activeContainerRef = activeSchema.entityRef;
-  const related = new Set<EntityRef>();
-
-  for (const dep of parentSystem.schema.dependencies) {
-    if (dep.from === activeContainerRef) related.add(dep.to);
-    if (dep.to === activeContainerRef) related.add(dep.from);
-  }
-
-  return [...related];
+  return collectComponentDiagramNeighborRefs(activeSchema, loadedSystems);
 }
 
 function collectCrossDiagramRefs(

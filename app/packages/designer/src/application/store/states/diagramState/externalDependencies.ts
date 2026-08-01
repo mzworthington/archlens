@@ -7,9 +7,11 @@ import type {
 import {
   buildWorkspaceEntityIndex,
   enrichContainerSchemaFromComponentDeps,
+  groupOverviewExternalsByBand,
   listExternalCandidates,
   materializeExternalNodes,
-  suggestExternalDependencies,
+  suggestOverviewExternalDependencies,
+  type ExternalSummaryBand,
 } from '@archlens/core';
 import {
   mapDomainDepToRFEdge,
@@ -231,7 +233,11 @@ export function syncSuggestedExternals(
     return;
   }
 
-  const suggested = suggestExternalDependencies(context.schema, context.loadedSystems, index);
+  const suggested = suggestOverviewExternalDependencies(
+    context.schema,
+    context.loadedSystems,
+    index
+  );
 
   if (suggested.length === 0) {
     get().logger.info('No external dependencies to sync for this diagram.');
@@ -259,4 +265,24 @@ export function syncSuggestedExternals(
       message: 'All suggested external dependencies are already on the canvas.',
     });
   }
+}
+
+export function expandExternalSummaryHub(
+  set: (partial: Record<string, unknown>) => void,
+  get: StoreGet,
+  band: ExternalSummaryBand
+) {
+  const context = requireWorkspaceContext(get);
+  if (!context) return;
+
+  const index = buildWorkspaceEntityIndex(context.loadedSystems);
+  const overview = suggestOverviewExternalDependencies(
+    context.schema,
+    context.loadedSystems,
+    index
+  );
+  const bands = groupOverviewExternalsByBand(context.schema, overview);
+  const members = band === 'callers' ? bands.callers : bands.targets;
+  mergeExternalNodesOntoCanvas(set, get, members);
+  set({ expandedExternalHub: band });
 }

@@ -47,10 +47,14 @@ export function useCouplingLens({
 
   const couplingFocusMode = showCoupling && !!selectedNodeId;
 
+  const MAX_COUPLING_FOCUS_PEERS = 8;
+
   const couplingRefs = useMemo(() => {
     if (!showCoupling) return [];
     if (selectedNodeId) {
-      return resolveCouplingEdges(selectedNodeId, nodes, workspaceFilepathIndex);
+      return resolveCouplingEdges(selectedNodeId, nodes, workspaceFilepathIndex)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, MAX_COUPLING_FOCUS_PEERS);
     }
     return resolveAllCanvasCouplingEdges(nodes, workspaceFilepathIndex);
   }, [showCoupling, selectedNodeId, nodes, workspaceFilepathIndex]);

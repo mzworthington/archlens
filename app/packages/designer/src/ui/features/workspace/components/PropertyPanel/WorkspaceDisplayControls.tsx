@@ -59,22 +59,22 @@ function ExternalVisibilityButtonGroup({
         <button
           type="button"
           aria-pressed={showUpstreamExternals}
-          aria-label={`Show upstream externals (${upstreamCount})`}
+          aria-label={`Show external callers (${upstreamCount})`}
           data-testid="toggle-show-upstream-externals"
           onClick={onToggleShowUpstreamExternals}
           className={buttonClass(showUpstreamExternals)}
         >
-          Upstream <span data-testid="toggle-show-upstream-externals-count">({upstreamCount})</span>
+          Callers <span data-testid="toggle-show-upstream-externals-count">({upstreamCount})</span>
         </button>
         <button
           type="button"
           aria-pressed={showDownstreamExternals}
-          aria-label={`Show downstream externals (${downstreamCount})`}
+          aria-label={`Show external targets (${downstreamCount})`}
           data-testid="toggle-show-downstream-externals"
           onClick={onToggleShowDownstreamExternals}
           className={buttonClass(showDownstreamExternals)}
         >
-          Downstream{' '}
+          Targets{' '}
           <span data-testid="toggle-show-downstream-externals-count">({downstreamCount})</span>
         </button>
       </div>
@@ -168,8 +168,8 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
           className="font-mono text-[10px] text-slate-500 tabular-nums"
           data-testid="workspace-display-summary"
         >
-          {counts.upstreamExternals}↑ {counts.downstreamExternals}↓ ext · {counts.tests} tests ·{' '}
-          {counts.dependencies} deps
+          {counts.upstreamExternals} callers · {counts.downstreamExternals} targets · {counts.tests}{' '}
+          tests · {counts.dependencies} deps
           {countsScopedToNode ? ' · node' : ''}
         </span>
       </div>
@@ -178,8 +178,8 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
         className="block font-mono text-[10px] text-slate-500 tabular-nums"
         data-testid="workspace-display-summary"
       >
-        {counts.upstreamExternals}↑ {counts.downstreamExternals}↓ ext · {counts.tests} tests ·{' '}
-        {counts.dependencies} deps
+        {counts.upstreamExternals} callers · {counts.downstreamExternals} targets · {counts.tests}{' '}
+        tests · {counts.dependencies} deps
       </span>
     )}
     <ExternalVisibilityButtonGroup

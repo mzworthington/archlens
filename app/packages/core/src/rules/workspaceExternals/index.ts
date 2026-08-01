@@ -23,6 +23,21 @@ export {
   filterEntitiesForDiagramLevel,
   selectEntitiesForEnrichment,
 } from './externalCandidates';
+export {
+  EXTERNAL_SUMMARY_HUB_CALLERS_ID,
+  EXTERNAL_SUMMARY_HUB_TARGETS_ID,
+  externalSummaryHubId,
+  resolveExternalDisplayLevel,
+  rollupEntityRefToDisplayLevel,
+  suggestOverviewExternalDependencies,
+  classifyOverviewExternalDirection,
+  groupOverviewExternalsByBand,
+  computeExternalSummaryEdgePairs,
+  filterOverviewExternalsForSelection,
+  type ExternalSummaryBand,
+  type OverviewExternalBands,
+  type ExternalSummaryEdgePair,
+} from './externalScope';
 export { enrichSchemaWithExternals, enrichWorkspaceWithExternals } from './externalEnrichment';
 export {
   listCrossContainerComponentDependencies,

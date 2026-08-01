@@ -323,6 +323,39 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           .join(' · ')
       : name;
 
+  if (data.externalSummaryHub) {
+    const band = data.externalSummaryBand === 'callers' ? 'callers' : 'targets';
+    const count = data.externalSummaryCount ?? 0;
+    const bandLabel = band === 'callers' ? 'External callers' : 'External targets';
+    return (
+      <div
+        onClick={handleClick}
+        data-testid={`external-summary-hub-${band}`}
+        className={`relative w-72 rounded-xl border border-dashed p-4 cursor-pointer transition-colors ${
+          band === 'callers'
+            ? 'border-sky-500/60 bg-sky-950/40 hover:border-sky-400'
+            : 'border-cyan-500/60 bg-cyan-950/40 hover:border-cyan-400'
+        }`}
+      >
+        <Handle
+          type="target"
+          position={Position.Top}
+          id="top-target"
+          className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
+        />
+        <Handle
+          type="source"
+          position={Position.Bottom}
+          id="bottom-source"
+          className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
+        />
+        <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400">{bandLabel}</p>
+        <h4 className="mt-1 text-2xl font-bold text-slate-100 tabular-nums">{count}</h4>
+        <p className="mt-2 text-xs text-slate-400">Click to expand cross-diagram dependencies</p>
+      </div>
+    );
+  }
+
   return (
     <div
       onClick={handleClick}

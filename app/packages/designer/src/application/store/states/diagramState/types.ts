@@ -94,6 +94,7 @@ export interface DiagramState {
     position: { x: number; y: number };
   }) => void;
   syncSuggestedExternals: () => void;
+  expandExternalSummaryHub: (band: import('@archlens/core').ExternalSummaryBand) => void;
   /**
    * Apply the selected layout engine and sync positions into schema / YAML.
    * Pass `persistToSchema: true` when the user explicitly requested layout.
