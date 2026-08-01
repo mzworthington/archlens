@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/module-federation-common/defaults
     type: background-worker
-    name: defaults Service
+    name: Defaults
     isTest: false
     properties:
       filepath: packages/module-federation-common/src/defaults.ts
@@ -19,14 +19,17 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 104
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 4
+      loc: 105
+      sloc: 61
+      churn: 4
+      lineChurn: 366
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +39,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
+          commits: 3
+        - email: dfestal@redhat.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0012834269603820825
+      sinceDays: 365
   - entityRef: backstage/packages/module-federation-common/defaults-test
     type: background-worker
-    name: defaults.test Service
+    name: Defaults test
     isTest: true
     properties:
       filepath: packages/module-federation-common/src/defaults.test.ts
@@ -53,14 +101,17 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 45
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 4
+      loc: 46
+      sloc: 25
+      churn: 3
+      lineChurn: 90
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +121,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: dfestal@redhat.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.00031559679353657767
+      sinceDays: 365
   - entityRef: backstage/packages/module-federation-common/loadmodulefederationhostshared-test
     type: background-worker
-    name: loadModuleFederationHostShared.test Service
+    name: Loadmodulefederationhostshared test
     isTest: true
     properties:
       filepath: packages/module-federation-common/src/loadModuleFederationHostShared.test.ts
@@ -90,11 +186,34 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 315
+      churn: 2
+      lineChurn: 630
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +223,37 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/module-federation-common/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: packages/module-federation-common/src/types.ts
@@ -121,14 +261,15 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 93
+      complexity: 1
+      loc: 94
+      sloc: 36
+      churn: 3
+      lineChurn: 244
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -138,16 +279,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: dfestal@redhat.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0008556179735880549
+      sinceDays: 365
   - entityRef: backstage/packages/module-federation-common/loadmodulefederationhostshared
     type: background-worker
-    name: loadModuleFederationHostShared Service
+    name: Loadmodulefederationhostshared
     isTest: false
     properties:
       filepath: packages/module-federation-common/src/loadModuleFederationHostShared.ts
@@ -158,11 +344,34 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 71
+      churn: 2
+      lineChurn: 142
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,16 +381,37 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/module-federation-common/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/module-federation-common/src/index.ts
@@ -189,14 +419,15 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 36
+      complexity: 1
+      loc: 37
+      sloc: 12
+      churn: 3
+      lineChurn: 82
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -206,31 +437,76 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: dfestal@redhat.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/app-defaults/createapp
-    type: background-worker
-    name: createApp Service (External)
+      hotspotScore: 0.0002875437452222152
+      sinceDays: 365
+  - entityRef: backstage/packages/cli-module-build/bundler
+    type: gateway-api
+    name: Bundler (External)
     external: true
     properties:
-      filepath: packages/app-defaults/src/createApp.tsx
-      containerId: app-defaults
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
     position:
-      x: -820
+      x: -130
       y: -204
   - entityRef: backstage/packages/errors/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/errors/src/serialization/index.ts
+      filepath: packages/errors/src/index.ts
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
@@ -239,7 +515,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader
     type: background-worker
-    name: loader Service (External)
+    name: Loader (External)
     external: true
     properties:
       filepath: packages/frontend-dynamic-feature-loader/src/loader.ts
@@ -247,43 +523,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
-      y: -204
-  - entityRef: backstage/packages/cli-module-build/modulefederation
-    type: event-broker
-    name: moduleFederation Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.ts
-      containerId: cli-module-build
-      technology: TypeScript Event Client
-      classification: event-marker
-    position:
-      x: -360
-      y: -204
-  - entityRef: backstage/packages/cli-module-build/modulefederation-test
-    type: background-worker
-    name: moduleFederation.test Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
-      containerId: cli-module-build
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 100
-      y: -204
-  - entityRef: backstage/packages/cli-module-build/types
-    type: background-worker
-    name: types Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-build/src/lib/builder/types.ts
-      containerId: cli-module-build
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 560
+      x: 330
       y: -204
 dependencies:
   - from: backstage/packages/frontend-dynamic-feature-loader/loader
@@ -330,19 +570,7 @@ dependencies:
     to: backstage/packages/module-federation-common/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/app-defaults/createapp
-    to: backstage/packages/module-federation-common/defaults
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-build/modulefederation-test
-    to: backstage/packages/module-federation-common/index
-    type: direct-call
-    description: '@backstage/module-federation-common'
-  - from: backstage/packages/cli-module-build/types
-    to: backstage/packages/module-federation-common/index
-    type: direct-call
-    description: '@backstage/module-federation-common'
-  - from: backstage/packages/cli-module-build/modulefederation
+  - from: backstage/packages/cli-module-build/bundler
     to: backstage/packages/module-federation-common/index
     type: direct-call
     description: '@backstage/module-federation-common'

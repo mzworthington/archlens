@@ -1,6 +1,11 @@
 import type { SystemNode, SystemDependency } from '@archlens/core';
-import { EntityRef, slugify } from '@archlens/core';
+import { EntityRef } from '@archlens/core';
 import { parseCsprojProjectReferences, resolveCsprojReferencePath } from '@archlens/core/cli';
+import {
+  resolveComponentIdentity,
+  resolveImportComponentId,
+  usesDedicatedImportPass,
+} from './componentResolver.ts';
 import {
   resolveContainerFromPath,
   componentMapKey,
@@ -8,28 +13,14 @@ import {
 } from './containerGrouping.ts';
 import type { ParsedSourceFile } from './types.ts';
 import { classifyParsedSource, dependencyTypeForTarget } from './nodeTypeHydrator.ts';
-import {
-  classifyCSharpContainer,
-  isCSharpSourcePath,
-  nodeTypePriority,
-  resolveCSharpComponent,
-} from './csharpGrouping.ts';
+import { classifyCSharpContainer, isCSharpSourcePath, nodeTypePriority } from './csharpGrouping.ts';
 import {
   extractCSharpDependencies,
   extractCsprojContainerDependencies,
   mergeContainerDependencies,
   type CsprojFile,
 } from './csharpDependencies.ts';
-import {
-  extractPythonDependencies,
-  isPythonSourcePath,
-  resolvePythonComponent,
-} from './pythonDependencies.ts';
-import {
-  isTypeScriptSourcePath,
-  resolveTypeScriptComponent,
-  resolveTypeScriptImportComponentId,
-} from './typescriptGrouping.ts';
+import { extractPythonDependencies } from './pythonDependencies.ts';
 import {
   isNodeBuiltinModule,
   isRelativeImport,
@@ -39,6 +30,15 @@ import {
   resolveWorkspacePackageEntryComponentId,
   subpathComponentIdFromSpecifier,
 } from './workspacePackages.ts';
+import { slugify } from '@archlens/core';
+
+function componentEntityRef(parentRef: string, containerId: string, componentId: string): string {
+  let ref = EntityRef.child(parentRef, containerId);
+  for (const segment of componentId.split('/').filter(Boolean)) {
+    ref = EntityRef.child(ref, segment);
+  }
+  return ref;
+}
 
 export class ModelExtractor {
   public parentRef: string;
@@ -61,14 +61,14 @@ export class ModelExtractor {
         this.resolveOptions
       );
 
-      const componentIdentity = this.resolveComponentIdentity(file);
+      const componentIdentity = resolveComponentIdentity(file);
       if (!componentIdentity) continue;
 
       const { componentId, componentName } = componentIdentity;
       const mapKey = componentMapKey(containerId, componentId);
 
       const containerRef = EntityRef.child(this.parentRef, containerId);
-      const componentRef = EntityRef.child(containerRef, componentId);
+      const componentRef = componentEntityRef(this.parentRef, containerId, componentId);
       const hydration = classifyParsedSource(file);
 
       const existing = componentNodesMap.get(mapKey);
@@ -131,11 +131,11 @@ export class ModelExtractor {
     };
 
     for (const file of sourceFiles) {
-      if (isCSharpSourcePath(file.relativePath) || isPythonSourcePath(file.relativePath)) {
+      if (usesDedicatedImportPass(file.relativePath)) {
         continue;
       }
 
-      const componentIdentity = this.resolveComponentIdentity(file);
+      const componentIdentity = resolveComponentIdentity(file);
       if (!componentIdentity) continue;
 
       const fromComponentId = componentIdentity.componentId;
@@ -160,7 +160,11 @@ export class ModelExtractor {
           );
           const subpathComponentId = subpathComponentIdFromSpecifier(imp.moduleSpecifier);
           const toComponentId = subpathComponentId ?? entryComponentId;
-          const toComponentRef = EntityRef.child(toContainerRef, toComponentId);
+          const toComponentRef = componentEntityRef(
+            this.parentRef,
+            workspaceTargetContainerId,
+            toComponentId
+          );
 
           if (fromComponent.entityRef !== toComponentRef) {
             const edgeExists = componentDependencies.some(
@@ -191,12 +195,12 @@ export class ModelExtractor {
         }
 
         const toComponentId =
-          resolveTypeScriptImportComponentId(file.relativePath, imp.moduleSpecifier) ??
+          resolveImportComponentId(file, imp.moduleSpecifier) ??
           slugify(
             imp.moduleSpecifier
               .split(/[\\/]/)
               .pop()
-              ?.replace(/\.(ts|tsx|js|jsx|cs|py)$/, '') || ''
+              ?.replace(/\.(ts|tsx|js|jsx|go|java|kt|kts|cs|py)$/, '') || ''
           );
         const toComponent = findComponent(fromContainerId, toComponentId);
         if (!toComponent) continue;
@@ -277,26 +281,5 @@ export class ModelExtractor {
         register(resolveCsprojReferencePath(fromPath, refPath));
       }
     }
-  }
-
-  private resolveComponentIdentity(
-    file: ParsedSourceFile
-  ): { componentId: string; componentName: string } | null {
-    if (isCSharpSourcePath(file.relativePath)) {
-      return resolveCSharpComponent(file.relativePath, file.baseName);
-    }
-
-    if (isPythonSourcePath(file.relativePath)) {
-      return resolvePythonComponent(file.relativePath, file.baseName);
-    }
-
-    if (isTypeScriptSourcePath(file.relativePath)) {
-      return resolveTypeScriptComponent(file.relativePath, file.baseName);
-    }
-
-    return {
-      componentId: slugify(file.baseName),
-      componentName: `${file.baseName} Service`,
-    };
   }
 }

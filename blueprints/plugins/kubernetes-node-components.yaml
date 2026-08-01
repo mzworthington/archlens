@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/kubernetes-node/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: plugins/kubernetes-node/src/types/types.ts
@@ -22,11 +22,31 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 272
+      churn: 2
+      lineChurn: 276
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +56,42 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: 63000843+kingbj940429@users.noreply.github.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/kubernetes-node/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/kubernetes-node/src/types/index.ts
@@ -66,7 +112,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,11 +166,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/kubernetes-node/pinnipedhelper-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/kubernetes-node/auth
     type: background-worker
-    name: PinnipedHelper.test Service
-    isTest: true
+    name: Auth
+    isTest: false
     properties:
       filepath: plugins/kubernetes-node/src/auth/PinnipedHelper.test.ts
       containerId: kubernetes-node
@@ -100,7 +190,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,44 +244,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/kubernetes-node/pinnipedhelper
-    type: background-worker
-    name: PinnipedHelper Service
-    isTest: false
-    properties:
-      filepath: plugins/kubernetes-node/src/auth/PinnipedHelper.ts
-      containerId: kubernetes-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 152
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/kubernetes-node/extensions
     type: rest-api
-    name: extensions Service
+    name: Extensions
     isTest: false
     properties:
       filepath: plugins/kubernetes-node/src/extensions.ts
@@ -155,14 +255,18 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 203
+      complexity: 1
+      loc: 204
+      sloc: 86
+      churn: 6
+      lineChurn: 398
       churn30: 1
-      churn365: 1
+      churn365: 6
       churnByWeek:
+        - 0
+        - 1
+        - 1
+        - 0
         - 0
         - 0
         - 0
@@ -172,31 +276,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/kubernetes-node/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/kubernetes-node/src/setupTests.ts
-      containerId: kubernetes-node
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
@@ -206,220 +285,77 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.3333333333333333
       authors:
+        - email: isavich@box.com
+          commits: 2
+        - email: ben@blam.sh
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/kubernetes-backend/aksstrategy
-    type: background-worker
-    name: AksStrategy Service (External)
+        - email: maratd@spotify.com
+          commits: 1
+      hotspotScore: 0.0013956391536395323
+      sinceDays: 365
+  - entityRef: backstage/plugins/kubernetes-backend/auth
+    type: rest-api
+    name: Auth (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/auth/AksStrategy.ts
+      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.test.ts
       containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
+      technology: REST Controller / Router
+      classification: api-marker
     position:
-      x: -8410
+      x: -1280
       y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/anonymousstrategy
+  - entityRef: backstage/plugins/kubernetes-backend/cluster-locator
     type: background-worker
-    name: AnonymousStrategy Service (External)
+    name: Cluster locator (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/auth/AnonymousStrategy.ts
+      filepath: plugins/kubernetes-backend/src/cluster-locator/CatalogClusterLocator.test.ts
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7950
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-react/auth
-    type: background-worker
-    name: auth Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-react/src/hooks/auth.ts
-      containerId: kubernetes-react
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
-      y: 404
-  - entityRef: backstage/plugins/kubernetes-backend/awsiamstrategy
-    type: background-worker
-    name: AwsIamStrategy Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/auth/AwsIamStrategy.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -7490
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/azureidentitystrategy
-    type: background-worker
-    name: AzureIdentityStrategy Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/auth/AzureIdentityStrategy.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -7030
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
-    type: background-worker
-    name: buildDefaultAuthStrategyMap Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/auth/buildDefaultAuthStrategyMap.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -6570
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/builddefaultservicelocator
-    type: background-worker
-    name: buildDefaultServiceLocator Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/buildDefaultServiceLocator.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -6110
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/catalogclusterlocator
-    type: background-worker
-    name: CatalogClusterLocator Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/CatalogClusterLocator.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -5650
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/catalogrelationservicelocator
-    type: background-worker
-    name: CatalogRelationServiceLocator Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/CatalogRelationServiceLocator.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -5190
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/catalogrelationservicelocator-test
-    type: background-worker
-    name: CatalogRelationServiceLocator.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/CatalogRelationServiceLocator.test.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -4730
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/configclusterlocator
-    type: background-worker
-    name: ConfigClusterLocator Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/ConfigClusterLocator.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -4270
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/configclusterlocator-test
-    type: background-worker
-    name: ConfigClusterLocator.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/ConfigClusterLocator.test.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -3810
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/dispatchstrategy
-    type: background-worker
-    name: DispatchStrategy Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/auth/DispatchStrategy.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -3350
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/dispatchstrategy-test
-    type: background-worker
-    name: DispatchStrategy.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/auth/DispatchStrategy.test.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -2890
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/gkeclusterlocator
-    type: background-worker
-    name: GkeClusterLocator Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/GkeClusterLocator.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -2430
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
-    type: background-worker
-    name: GoogleServiceAccountStrategy Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1970
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/googlestrategy
-    type: background-worker
-    name: GoogleStrategy Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/auth/GoogleStrategy.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1510
+      x: -820
       y: -204
   - entityRef: backstage/plugins/kubernetes-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/kubernetes-common/src/util/index.ts
@@ -427,11 +363,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: 330
       y: 404
   - entityRef: backstage/plugins/kubernetes-backend/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/kubernetes-backend/dev/index.ts
@@ -439,179 +375,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1050
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/index-test
-    type: background-worker
-    name: index.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/index.test.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -590
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
-    type: background-worker
-    name: KubernetesFanOutHandler Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
       x: -130
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
-    type: background-worker
-    name: KubernetesFanOutHandler.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.test.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfetcher
-    type: background-worker
-    name: KubernetesFetcher Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesFetcher.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 790
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesfetcher-test
-    type: background-worker
-    name: KubernetesFetcher.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesFetcher.test.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 1250
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesinitializer
-    type: background-worker
-    name: KubernetesInitializer Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesInitializer.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 1710
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesproxy
-    type: rest-api
-    name: KubernetesProxy Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesProxy.ts
-      containerId: kubernetes-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 2170
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesproxy-test
-    type: rest-api
-    name: KubernetesProxy.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesProxy.test.ts
-      containerId: kubernetes-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 2630
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesrouter
-    type: rest-api
-    name: KubernetesRouter Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesRouter.ts
-      containerId: kubernetes-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 3090
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/kubernetesrouter-test
-    type: rest-api
-    name: KubernetesRouter.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service/KubernetesRouter.test.ts
-      containerId: kubernetes-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 3550
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/localkubectlproxylocator
-    type: background-worker
-    name: LocalKubectlProxyLocator Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/LocalKubectlProxyLocator.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4010
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/multitenantservicelocator
-    type: background-worker
-    name: MultiTenantServiceLocator Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/MultiTenantServiceLocator.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4470
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/multitenantservicelocator-test
-    type: background-worker
-    name: MultiTenantServiceLocator.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/MultiTenantServiceLocator.test.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4930
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/oidcstrategy
-    type: background-worker
-    name: OidcStrategy Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/auth/OidcStrategy.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 5390
-      y: -204
+      y: 404
   - entityRef: backstage/plugins/kubernetes-backend/plugin
     type: background-worker
-    name: plugin Service (External)
+    name: Plugin (External)
     external: true
     properties:
       filepath: plugins/kubernetes-backend/src/plugin.ts
@@ -619,23 +387,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 5850
+      x: -360
       y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/resourceroutes-test
+  - entityRef: backstage/plugins/kubernetes-backend/routes
     type: rest-api
-    name: resourceRoutes.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/routes/resourceRoutes.test.ts
-      containerId: kubernetes-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 6310
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/resourcesroutes
-    type: rest-api
-    name: resourcesRoutes Service (External)
+    name: Routes (External)
     external: true
     properties:
       filepath: plugins/kubernetes-backend/src/routes/resourcesRoutes.ts
@@ -643,47 +399,35 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 6770
+      x: 100
       y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/serviceaccountstrategy
-    type: background-worker
-    name: ServiceAccountStrategy Service (External)
+  - entityRef: backstage/plugins/kubernetes-backend/service
+    type: rest-api
+    name: Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/auth/ServiceAccountStrategy.ts
+      filepath: plugins/kubernetes-backend/src/service/ProxyAuditSession.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: -204
+  - entityRef: backstage/plugins/kubernetes-backend/service-locator
+    type: background-worker
+    name: Service locator (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/service-locator/buildDefaultServiceLocator.ts
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 7230
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/singletenantservicelocator
-    type: background-worker
-    name: SingleTenantServiceLocator Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/SingleTenantServiceLocator.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 7690
-      y: -204
-  - entityRef: backstage/plugins/kubernetes-backend/singletenantservicelocator-test
-    type: background-worker
-    name: SingleTenantServiceLocator.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/SingleTenantServiceLocator.test.ts
-      containerId: kubernetes-backend
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 8150
+      x: 1020
       y: -204
   - entityRef: backstage/plugins/kubernetes-backend/types
     type: background-worker
-    name: types Service (External)
+    name: Types (External)
     external: true
     properties:
       filepath: plugins/kubernetes-backend/src/types/types.ts
@@ -691,7 +435,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8610
+      x: 1480
       y: -204
 dependencies:
   - from: backstage/plugins/kubernetes-node/types
@@ -702,31 +446,23 @@ dependencies:
     to: backstage/plugins/kubernetes-node/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+  - from: backstage/plugins/kubernetes-node/auth
     to: backstage/plugins/kubernetes-node/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+  - from: backstage/plugins/kubernetes-node/auth
     to: backstage/plugins/kubernetes-node/extensions
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+  - from: backstage/plugins/kubernetes-node/auth
     to: backstage/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
-  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
-    to: backstage/plugins/kubernetes-node/pinnipedhelper
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/kubernetes-node/pinnipedhelper-test
+  - from: backstage/plugins/kubernetes-node/auth
     to: backstage/plugins/kubernetes-backend/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-backend'
-  - from: backstage/plugins/kubernetes-node/index
-    to: backstage/plugins/kubernetes-node/pinnipedhelper
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/kubernetes-node/pinnipedhelper
+  - from: backstage/plugins/kubernetes-node/auth
     to: backstage/plugins/kubernetes-node/types
     type: direct-call
     description: Calls module / service
@@ -743,34 +479,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/kubernetes-node/index
-    to: backstage/plugins/kubernetes-react/auth
+    to: backstage/plugins/kubernetes-node/auth
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/kubernetes-backend/localkubectlproxylocator
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/index-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/configclusterlocator
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/gkeclusterlocator
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/catalogclusterlocator
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/index
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/configclusterlocator-test
+  - from: backstage/plugins/kubernetes-backend/cluster-locator
     to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
@@ -778,47 +490,7 @@ dependencies:
     to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/googleserviceaccountstrategy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/azureidentitystrategy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/anonymousstrategy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/dispatchstrategy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/googlestrategy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/dispatchstrategy-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/aksstrategy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/builddefaultauthstrategymap
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/oidcstrategy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/awsiamstrategy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/serviceaccountstrategy
+  - from: backstage/plugins/kubernetes-backend/auth
     to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
@@ -826,75 +498,15 @@ dependencies:
     to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/builddefaultservicelocator
+  - from: backstage/plugins/kubernetes-backend/service-locator
     to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/catalogrelationservicelocator
+  - from: backstage/plugins/kubernetes-backend/service
     to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/singletenantservicelocator-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/catalogrelationservicelocator-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/singletenantservicelocator
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/multitenantservicelocator
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/multitenantservicelocator-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesproxy-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesrouter
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesfetcher-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesfanouthandler-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesinitializer
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesproxy
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/kubernetesrouter-test
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/resourcesroutes
-    to: backstage/plugins/kubernetes-node/index
-    type: direct-call
-    description: '@backstage/plugin-kubernetes-node'
-  - from: backstage/plugins/kubernetes-backend/resourceroutes-test
+  - from: backstage/plugins/kubernetes-backend/routes
     to: backstage/plugins/kubernetes-node/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-node'

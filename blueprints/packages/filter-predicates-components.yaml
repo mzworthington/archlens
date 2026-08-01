@@ -9,9 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/packages/filter-predicates/schema
+  - entityRef: backstage/packages/filter-predicates/predicates
     type: background-worker
-    name: schema Service
+    name: Predicates
     isTest: false
     properties:
       filepath: packages/filter-predicates/src/predicates/schema.ts
@@ -19,14 +19,40 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 141
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 7
+      loc: 142
+      sloc: 91
+      churn: 4
+      lineChurn: 206
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,31 +62,17 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/schema-test
-    type: background-worker
-    name: schema.test Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/schema.test.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 227
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,155 +82,24 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/evaluate
-    type: background-worker
-    name: evaluate Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/evaluate.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 152
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/evaluate-test
-    type: background-worker
-    name: evaluate.test Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/evaluate.test.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 291
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/getjsonvalueatpath
-    type: background-worker
-    name: getJsonValueAtPath Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/getJsonValueAtPath.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 69
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/types.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 200
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0014447319881896667
+      sinceDays: 365
   - entityRef: backstage/packages/filter-predicates/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
-      filepath: packages/filter-predicates/src/predicates/index.ts
+      filepath: packages/filter-predicates/src/index.ts
       containerId: filter-predicates
       technology: TypeScript Domain Service
       classification: default
@@ -227,10 +108,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 39
+      lineChurn: 23
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -240,39 +164,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: packages/filter-predicates/src/predicates/config.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 75
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -280,124 +171,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/config-test
-    type: background-worker
-    name: config.test Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/config.test.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 112
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/getjsonvalueatpath-test
-    type: background-worker
-    name: getJsonValueAtPath.test Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/getJsonValueAtPath.test.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 63
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/filter-predicates/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: packages/filter-predicates/src/setupTests.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-plugin-api/alpha
-    type: background-worker
-    name: alpha Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/alpha.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 790
-      y: -204
+      sinceDays: 365
   - entityRef: backstage/packages/catalog-client/api
     type: background-worker
-    name: api Service (External)
+    name: Api (External)
     external: true
     properties:
       filepath: packages/catalog-client/src/types/api.ts
@@ -405,23 +182,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4270
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/apptreeapi
-    type: rest-api
-    name: AppTreeApi Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/apis/definitions/AppTreeApi.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 1250
+      x: -1740
       y: -204
   - entityRef: backstage/packages/catalog-client/catalogclient
     type: background-worker
-    name: CatalogClient Service (External)
+    name: Catalogclient (External)
     external: true
     properties:
       filepath: packages/catalog-client/src/CatalogClient.ts
@@ -429,86 +194,26 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3810
+      x: -1280
       y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createextension
-    type: background-worker
-    name: createExtension Service (External)
+  - entityRef: backstage/packages/frontend-plugin-api/definitions
+    type: rest-api
+    name: Definitions (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtension.ts
+      filepath: packages/frontend-plugin-api/src/apis/definitions/AlertApi.ts
       containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
+      technology: REST Controller / Router
+      classification: api-marker
     position:
-      x: 1710
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createextension-test
-    type: background-worker
-    name: createExtension.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtension.test.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 2170
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createextensionblueprint
-    type: background-worker
-    name: createExtensionBlueprint Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtensionBlueprint.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 2630
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createfrontendmodule
-    type: background-worker
-    name: createFrontendModule Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendModule.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 3090
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createfrontendplugin
-    type: background-worker
-    name: createFrontendPlugin Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendPlugin.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 3550
-      y: -204
-  - entityRef: backstage/packages/config-loader/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/config-loader/src/schema/index.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -2430
+      x: 1480
       y: -204
   - entityRef: backstage/packages/errors/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/errors/src/serialization/index.ts
+      filepath: packages/errors/src/index.ts
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
@@ -517,7 +222,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/core/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/types/src/index.ts
@@ -529,7 +234,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/config/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/config/src/index.ts
@@ -539,33 +244,21 @@ nodes:
     position:
       x: -360
       y: 404
-  - entityRef: backstage/packages/frontend-plugin-api/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 4010
-      y: -204
-  - entityRef: backstage/packages/catalog-client/inmemorycatalogclient
+  - entityRef: backstage/packages/catalog-client/testutils
     type: background-worker
-    name: InMemoryCatalogClient Service (External)
+    name: Testutils (External)
     external: true
     properties:
-      filepath: packages/catalog-client/src/testUtils/InMemoryCatalogClient.ts
+      filepath: packages/catalog-client/src/testUtils.ts
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3350
+      x: -820
       y: -204
-  - entityRef: backstage/packages/frontend-app-api/instantiateappnodetree
+  - entityRef: backstage/packages/frontend-app-api/tree
     type: background-worker
-    name: instantiateAppNodeTree Service (External)
+    name: Tree (External)
     external: true
     properties:
       filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
@@ -573,83 +266,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1970
-      y: -204
-  - entityRef: backstage/packages/frontend-internal/internalextensiondefinition
-    type: background-worker
-    name: InternalExtensionDefinition Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalExtensionDefinition.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -130
-      y: -204
-  - entityRef: backstage/packages/frontend-internal/internalfrontendplugin
-    type: background-worker
-    name: InternalFrontendPlugin Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalFrontendPlugin.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/predicates
-    type: background-worker
-    name: predicates Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/predicates.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1510
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/resolveappnodespecs
-    type: background-worker
-    name: resolveAppNodeSpecs Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/tree/resolveAppNodeSpecs.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1050
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/resolveextensiondefinition
-    type: background-worker
-    name: resolveExtensionDefinition Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/resolveExtensionDefinition.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4470
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/treelifecycle
-    type: background-worker
-    name: treeLifecycle Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/treeLifecycle.tsx
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -590
+      x: 100
       y: -204
   - entityRef: backstage/packages/catalog-client/utils
     type: background-worker
-    name: utils Service (External)
+    name: Utils (External)
     external: true
     properties:
       filepath: packages/catalog-client/src/utils.ts
@@ -657,161 +278,69 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2890
+      x: -360
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/wiring
+    type: gateway-api
+    name: Wiring (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1940
+      y: -204
+  - entityRef: backstage/packages/frontend-app-api/wiring
+    type: gateway-api
+    name: Wiring (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: -204
+  - entityRef: backstage/packages/frontend-internal/wiring
+    type: background-worker
+    name: Wiring (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/wiring/createExtensionDataContainer.ts
+      containerId: frontend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
       y: -204
 dependencies:
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/schema
+  - from: backstage/packages/filter-predicates/predicates
     to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: backstage/packages/filter-predicates/schema
-    to: backstage/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/schema-test
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/schema-test
-    to: backstage/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/evaluate
-    to: backstage/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: backstage/packages/filter-predicates/evaluate
+  - from: backstage/packages/filter-predicates/predicates
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/filter-predicates/evaluate
-    to: backstage/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/evaluate
-    to: backstage/packages/filter-predicates/getjsonvalueatpath
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/evaluate-test
-    to: backstage/packages/filter-predicates/evaluate
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/evaluate-test
-    to: backstage/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/getjsonvalueatpath
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/filter-predicates/types
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/filter-predicates/index
-    to: backstage/packages/filter-predicates/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/index
-    to: backstage/packages/filter-predicates/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/index
-    to: backstage/packages/filter-predicates/evaluate
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/index
-    to: backstage/packages/filter-predicates/getjsonvalueatpath
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/index
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/index
-    to: backstage/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/config
+  - from: backstage/packages/filter-predicates/predicates
     to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: backstage/packages/filter-predicates/config
-    to: backstage/packages/errors/index
-    type: direct-call
-    description: '@backstage/errors'
-  - from: backstage/packages/filter-predicates/config
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/config
-    to: backstage/packages/filter-predicates/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/config-test
-    to: backstage/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: backstage/packages/filter-predicates/config-test
-    to: backstage/packages/filter-predicates/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/filter-predicates/getjsonvalueatpath-test
-    to: backstage/packages/filter-predicates/getjsonvalueatpath
-    type: direct-call
-    description: Calls module / service
   - from: backstage/packages/filter-predicates/index
-    to: backstage/packages/frontend-app-api/predicates
+    to: backstage/packages/filter-predicates/predicates
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/frontend-plugin-api/apptreeapi
+  - from: backstage/packages/frontend-plugin-api/definitions
     to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-plugin-api/alpha
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-plugin-api/resolveextensiondefinition
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-plugin-api/resolveextensiondefinition
+  - from: backstage/packages/frontend-plugin-api/wiring
     to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-plugin-api/createfrontendmodule
-    to: backstage/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-plugin-api/createextension
-    to: backstage/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-plugin-api/createfrontendplugin
-    to: backstage/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-plugin-api/createextension-test
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-plugin-api/createextensionblueprint
-    to: backstage/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-plugin-api/index
-    to: backstage/packages/filter-predicates/schema
-    type: direct-call
-    description: Calls module / service
   - from: backstage/packages/catalog-client/api
     to: backstage/packages/filter-predicates/index
     type: direct-call
@@ -824,31 +353,19 @@ dependencies:
     to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: backstage/packages/catalog-client/inmemorycatalogclient
+  - from: backstage/packages/catalog-client/testutils
     to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-app-api/instantiateappnodetree
+  - from: backstage/packages/frontend-app-api/tree
     to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-app-api/resolveappnodespecs
+  - from: backstage/packages/frontend-app-api/wiring
     to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-app-api/treelifecycle
-    to: backstage/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-app-api/predicates
-    to: backstage/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-internal/internalfrontendplugin
-    to: backstage/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-internal/internalextensiondefinition
+  - from: backstage/packages/frontend-internal/wiring
     to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'

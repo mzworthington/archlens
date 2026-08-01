@@ -1,20 +1,14 @@
-# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
 metadata:
   entityRef: application
   name: Application
   source:
-    scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
+    scannedAtCommit: 1b7f029c3f56e5a0948c4f90660a71cd7561244b
     scanRoot: .
-    remoteUrl: https://github.com/futurice/terraform-examples
-    defaultBranch: master
+    remoteUrl: https://github.com/mzworthington/gpio-build-monitor
+    defaultBranch: main
 nodes:
-  - entityRef: application/user
-    type: person
-    name: User
-    properties:
-      role: context-actor
   - entityRef: application/gpio-build-monitor
     type: software-system
     name: Gpio Build Monitor System
@@ -25,10 +19,21 @@ nodes:
       complexity: 12
       complexityPeak: 12
       cognitiveComplexity: 50
-      churn: 25
-      lineChurn: 1796
-      churn30: 25
-      churn365: 25
+      churn: 23
+      lineChurn: 1763
+      churn30: 23
+      churn365: 23
+      hotspotScore: 0.6218487394957983
+      authorCount: 1
+      fileCount: 30
+      hotspotCount: 1
+      knowledgeSiloCount: 1
+      classifications:
+        - hotspot
+        - knowledge-silo
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 23
       churnByWeek:
         - 0
         - 0
@@ -37,21 +42,60 @@ nodes:
         - 0
         - 0
         - 0
-        - 25
         - 0
-      authorCount: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 23
+        - 0
+        - 0
       topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 25
-      hotspotScore: 0.6218487394957983
-      classifications:
-        - hotspot
-        - knowledge-silo
-      sinceDays: 60
-      fileCount: 31
-      hotspotCount: 1
-      knowledgeSiloCount: 1
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: application/user
+    type: person
+    name: User
+    properties:
+      role: context-actor
 dependencies:
   - from: application/user
     to: application/gpio-build-monitor

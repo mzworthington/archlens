@@ -9,9 +9,9 @@ metadata:
     scannedAtCommit: 1b7f029c3f56e5a0948c4f90660a71cd7561244b
     scanRoot: .
 nodes:
-  - entityRef: application/gpio-build-monitor/mock/mock
+  - entityRef: application/gpio-build-monitor/mock/__init__
     type: background-worker
-    name: Mock Package
+    name: __init__
     isTest: false
     properties:
       filepath: monitor/gpio/Mock/__init__.py
@@ -35,13 +35,57 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 0
       topAuthorPercent: 0
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: application/gpio-build-monitor/mock/gpio
     type: background-worker
-    name: GPIO Service
+    name: Gpio
     isTest: false
     properties:
       filepath: monitor/gpio/Mock/GPIO.py
@@ -68,13 +112,57 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 0
       topAuthorPercent: 0
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: application/gpio-build-monitor/gpio/board
     type: background-worker
-    name: board Service (External)
+    name: Board (External)
     external: true
     properties:
       filepath: monitor/gpio/board.py
@@ -86,6 +174,6 @@ nodes:
       y: -204
 dependencies:
   - from: application/gpio-build-monitor/gpio/board
-    to: application/gpio-build-monitor/mock/mock
+    to: application/gpio-build-monitor/mock/__init__
     type: direct-call
     description: Calls module / service

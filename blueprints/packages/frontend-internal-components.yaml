@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/frontend-internal/opaqueapiref
     type: rest-api
-    name: OpaqueApiRef Service
+    name: Opaqueapiref
     isTest: false
     properties:
       filepath: packages/frontend-internal/src/apis/OpaqueApiRef.ts
@@ -19,14 +19,57 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 31
+      complexity: 1
+      loc: 32
+      sloc: 14
+      churn: 4
+      lineChurn: 118
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +79,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 4
+      hotspotScore: 0.0004137824626368463
+      sinceDays: 365
   - entityRef: backstage/packages/frontend-internal/index
     type: rest-api
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/frontend-internal/src/apis/index.ts
@@ -53,14 +97,57 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
+      complexity: 1
+      loc: 18
+      sloc: 1
+      churn: 4
+      lineChurn: 68
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +157,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-internal/createextensiondatacontainer
+          commits: 4
+      hotspotScore: 0.00023845091067208087
+      sinceDays: 365
+  - entityRef: backstage/packages/frontend-internal/wiring
     type: background-worker
-    name: createExtensionDataContainer Service
+    name: Wiring
     isTest: false
     properties:
       filepath: packages/frontend-internal/src/wiring/createExtensionDataContainer.ts
@@ -87,14 +175,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 70
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 30
+      functionCount: 6
+      loc: 71
+      sloc: 49
+      churn: 3
+      lineChurn: 78
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,152 +238,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-internal/internalextensioninput
-    type: background-worker
-    name: InternalExtensionInput Service
-    isTest: false
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalExtensionInput.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 36
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-internal/internalswappablecomponentref
-    type: background-worker
-    name: InternalSwappableComponentRef Service
-    isTest: false
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalSwappableComponentRef.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 30
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-internal/internalfrontendplugin
-    type: background-worker
-    name: InternalFrontendPlugin Service
-    isTest: false
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalFrontendPlugin.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 44
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-internal/internalextensiondefinition
-    type: background-worker
-    name: InternalExtensionDefinition Service
-    isTest: false
-    properties:
-      filepath: packages/frontend-internal/src/wiring/InternalExtensionDefinition.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 90
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-internal/opaquerouteref
+          commits: 3
+      hotspotScore: 0.0027351722106503397
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+  - entityRef: backstage/packages/frontend-internal/routing
     type: rest-api
-    name: OpaqueRouteRef Service
+    name: Routing
     isTest: false
     properties:
       filepath: packages/frontend-internal/src/routing/OpaqueRouteRef.ts
@@ -260,11 +261,21 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 35
+      churn: 2
+      lineChurn: 70
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -274,65 +285,30 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-internal/opaqueexternalrouteref
-    type: rest-api
-    name: OpaqueExternalRouteRef Service
-    isTest: false
-    properties:
-      filepath: packages/frontend-internal/src/routing/OpaqueExternalRouteRef.ts
-      containerId: frontend-internal
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 34
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-internal/opaquesubrouteref
-    type: rest-api
-    name: OpaqueSubRouteRef Service
-    isTest: false
-    properties:
-      filepath: packages/frontend-internal/src/routing/OpaqueSubRouteRef.ts
-      containerId: frontend-internal
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 32
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -342,52 +318,41 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-app-api/apifactories
-    type: background-worker
-    name: apiFactories Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/apiFactories.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -5650
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/apiref
-    type: rest-api
-    name: ApiRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/ApiRef.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: -1050
-      y: -204
-  - entityRef: backstage/packages/app-defaults/apis
+      sinceDays: 365
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
     type: gateway-api
-    name: apis Service (External)
+    name: Apis (External)
     external: true
     properties:
-      filepath: packages/app-defaults/src/defaults/apis.ts
-      containerId: app-defaults
+      filepath: packages/techdocs-cli-embedded-app/src/apis.ts
+      containerId: techdocs-cli-embedded-app
       technology: React Component
       classification: ui-import
     position:
-      x: -820
+      x: 1020
       y: 404
+  - entityRef: backstage/packages/frontend-test-utils/app
+    type: gateway-api
+    name: App (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/app/createExtensionTester.test.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2630
+      y: -204
   - entityRef: backstage/packages/core-compat-api/collectlegacyroutes-test
     type: gateway-api
-    name: collectLegacyRoutes.test Service (External)
+    name: Collectlegacyroutes test (External)
     external: true
     properties:
       filepath: packages/core-compat-api/src/collectLegacyRoutes.test.tsx
@@ -395,23 +360,23 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -7490
+      x: -2430
       y: -204
-  - entityRef: backstage/packages/frontend-app-api/collectrouteids
-    type: background-worker
-    name: collectRouteIds Service (External)
+  - entityRef: backstage/packages/frontend-plugin-api/components
+    type: gateway-api
+    name: Components (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/routing/collectRouteIds.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
+      filepath: packages/frontend-plugin-api/src/components/ExtensionSuspense.tsx
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
     position:
-      x: -5190
+      x: 790
       y: -204
   - entityRef: backstage/packages/core-compat-api/convertlegacyplugin-test
     type: background-worker
-    name: convertLegacyPlugin.test Service (External)
+    name: Convertlegacyplugin test (External)
     external: true
     properties:
       filepath: packages/core-compat-api/src/convertLegacyPlugin.test.tsx
@@ -419,11 +384,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7030
+      x: -1970
       y: -204
   - entityRef: backstage/packages/core-compat-api/convertlegacyrouteref
     type: rest-api
-    name: convertLegacyRouteRef Service (External)
+    name: Convertlegacyrouteref (External)
     external: true
     properties:
       filepath: packages/core-compat-api/src/convertLegacyRouteRef.ts
@@ -431,11 +396,11 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -6570
+      x: -1510
       y: -204
   - entityRef: backstage/packages/core-compat-api/convertlegacyrouteref-test
     type: rest-api
-    name: convertLegacyRouteRef.test Service (External)
+    name: Convertlegacyrouteref test (External)
     external: true
     properties:
       filepath: packages/core-compat-api/src/convertLegacyRouteRef.test.ts
@@ -443,167 +408,23 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -6110
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createextension
-    type: background-worker
-    name: createExtension Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtension.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -590
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createextensionblueprint
-    type: background-worker
-    name: createExtensionBlueprint Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtensionBlueprint.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -130
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createextensionblueprint-test
-    type: background-worker
-    name: createExtensionBlueprint.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtensionBlueprint.test.tsx
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createextensioninput
-    type: background-worker
-    name: createExtensionInput Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtensionInput.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 790
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createextensioninput-test
-    type: background-worker
-    name: createExtensionInput.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createExtensionInput.test.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 1250
-      y: -204
-  - entityRef: backstage/packages/frontend-test-utils/createextensiontester
-    type: background-worker
-    name: createExtensionTester Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-test-utils/src/app/createExtensionTester.tsx
-      containerId: frontend-test-utils
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 6770
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createfrontendplugin
-    type: background-worker
-    name: createFrontendPlugin Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendPlugin.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 1710
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/createplugininfoattacher
-    type: background-worker
-    name: createPluginInfoAttacher Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/createPluginInfoAttacher.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -4730
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/createplugininfoattacher-test
-    type: background-worker
-    name: createPluginInfoAttacher.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/wiring/createPluginInfoAttacher.test.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -4270
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/createswappablecomponent
-    type: gateway-api
-    name: createSwappableComponent Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/components/createSwappableComponent.tsx
-      containerId: frontend-plugin-api
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 2170
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/externalrouteref
-    type: rest-api
-    name: ExternalRouteRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/routing/ExternalRouteRef.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 2630
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/externalrouteref-test
-    type: rest-api
-    name: ExternalRouteRef.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/routing/ExternalRouteRef.test.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 3090
+      x: -1050
       y: -204
   - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 560
+      x: 100
       y: 404
   - entityRef: backstage/packages/opaque-internal/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/opaque-internal/src/index.ts
@@ -611,23 +432,23 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: 560
       y: 404
   - entityRef: backstage/packages/filter-predicates/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/filter-predicates/src/predicates/index.ts
+      filepath: packages/filter-predicates/src/index.ts
       containerId: filter-predicates
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: -360
       y: 404
   - entityRef: backstage/packages/core/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/types/src/index.ts
@@ -635,11 +456,47 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -360
+      x: -820
       y: 404
-  - entityRef: backstage/packages/frontend-app-api/instantiateappnodetree
+  - entityRef: backstage/packages/frontend-plugin-api/routing
+    type: gateway-api
+    name: Routing (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/routing/describeParentCallSite.test.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: -204
+  - entityRef: backstage/packages/frontend-app-api/routing
+    type: gateway-api
+    name: Routing (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteTracker.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: -204
+  - entityRef: backstage/packages/frontend-plugin-api/system
+    type: rest-api
+    name: System (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/system/helpers.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1710
+      y: -204
+  - entityRef: backstage/packages/frontend-app-api/tree
     type: background-worker
-    name: instantiateAppNodeTree Service (External)
+    name: Tree (External)
     external: true
     properties:
       filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
@@ -647,242 +504,46 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3810
+      x: -130
       y: -204
-  - entityRef: backstage/packages/frontend-app-api/preparespecializedapp
+  - entityRef: backstage/packages/frontend-plugin-api/wiring
     type: gateway-api
-    name: prepareSpecializedApp Service (External)
+    name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/wiring/prepareSpecializedApp.tsx
+      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2170
+      y: -204
+  - entityRef: backstage/packages/frontend-app-api/wiring
+    type: gateway-api
+    name: Wiring (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
     position:
-      x: -3350
-      y: -204
-  - entityRef: backstage/packages/frontend-test-utils/renderintestapp
-    type: gateway-api
-    name: renderInTestApp Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-test-utils/src/app/renderInTestApp.tsx
-      containerId: frontend-test-utils
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 7230
-      y: -204
-  - entityRef: backstage/packages/frontend-test-utils/rendertestapp
-    type: gateway-api
-    name: renderTestApp Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-test-utils/src/app/renderTestApp.tsx
-      containerId: frontend-test-utils
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 7690
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/resolveappnodespecs
-    type: background-worker
-    name: resolveAppNodeSpecs Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/tree/resolveAppNodeSpecs.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -2890
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/resolveextensiondefinition
-    type: background-worker
-    name: resolveExtensionDefinition Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/resolveExtensionDefinition.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 3550
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/resolveextensiondefinition-test
-    type: background-worker
-    name: resolveExtensionDefinition.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/resolveExtensionDefinition.test.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4010
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/resolveinputoverrides
-    type: background-worker
-    name: resolveInputOverrides Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/wiring/resolveInputOverrides.ts
-      containerId: frontend-plugin-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4470
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/resolveroutebindings
-    type: background-worker
-    name: resolveRouteBindings Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/routing/resolveRouteBindings.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -2430
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/routealiasresolver
-    type: background-worker
-    name: RouteAliasResolver Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/routing/RouteAliasResolver.ts
-      containerId: frontend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1970
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/routeref
-    type: rest-api
-    name: RouteRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/routing/RouteRef.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 4930
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/routeref-test
-    type: rest-api
-    name: RouteRef.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/routing/RouteRef.test.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 5390
-      y: -204
-  - entityRef: backstage/packages/frontend-app-api/routeresolver
-    type: gateway-api
-    name: RouteResolver Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-app-api/src/routing/RouteResolver.ts
-      containerId: frontend-app-api
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -1510
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/subrouteref
-    type: rest-api
-    name: SubRouteRef Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/routing/SubRouteRef.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 5850
-      y: -204
-  - entityRef: backstage/packages/frontend-plugin-api/subrouteref-test
-    type: rest-api
-    name: SubRouteRef.test Service (External)
-    external: true
-    properties:
-      filepath: packages/frontend-plugin-api/src/routing/SubRouteRef.test.ts
-      containerId: frontend-plugin-api
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 6310
+      x: 330
       y: -204
 dependencies:
-  - from: backstage/packages/frontend-plugin-api/apiref
+  - from: backstage/packages/frontend-plugin-api/system
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/resolveextensiondefinition
+  - from: backstage/packages/frontend-plugin-api/wiring
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/createextension
+  - from: backstage/packages/frontend-plugin-api/components
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/createfrontendplugin
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/createextensionblueprint-test
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/createextensioninput-test
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/resolveinputoverrides
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/createextensioninput
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/createextensionblueprint
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/resolveextensiondefinition-test
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/createswappablecomponent
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/subrouteref
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/subrouteref-test
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/routeref-test
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/externalrouteref
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/routeref
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-plugin-api/externalrouteref-test
+  - from: backstage/packages/frontend-plugin-api/routing
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'
@@ -902,43 +563,15 @@ dependencies:
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/instantiateappnodetree
+  - from: backstage/packages/frontend-app-api/tree
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/resolveappnodespecs
+  - from: backstage/packages/frontend-app-api/wiring
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/apifactories
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/preparespecializedapp
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/createplugininfoattacher-test
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/createplugininfoattacher
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/resolveroutebindings
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/routealiasresolver
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/routeresolver
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-app-api/collectrouteids
+  - from: backstage/packages/frontend-app-api/routing
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'
@@ -954,127 +587,43 @@ dependencies:
     to: backstage/packages/frontend-internal/opaqueapiref
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/frontend-internal/createextensiondatacontainer
+  - from: backstage/packages/frontend-internal/wiring
     to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/frontend-internal/internalextensioninput
-    to: backstage/packages/frontend-plugin-api/index
-    type: direct-call
-    description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/frontend-internal/internalextensioninput
+  - from: backstage/packages/frontend-internal/wiring
     to: backstage/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
-  - from: backstage/packages/frontend-internal/internalswappablecomponentref
-    to: backstage/packages/frontend-plugin-api/index
-    type: direct-call
-    description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/frontend-internal/internalswappablecomponentref
-    to: backstage/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: backstage/packages/frontend-internal/internalfrontendplugin
-    to: backstage/packages/frontend-plugin-api/index
-    type: direct-call
-    description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/frontend-internal/internalfrontendplugin
+  - from: backstage/packages/frontend-internal/wiring
     to: backstage/packages/filter-predicates/index
     type: direct-call
     description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-internal/internalfrontendplugin
+  - from: backstage/packages/frontend-internal/wiring
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/frontend-internal/internalfrontendplugin
-    to: backstage/packages/opaque-internal/index
+  - from: backstage/packages/frontend-internal/index
+    to: backstage/packages/frontend-internal/routing
     type: direct-call
-    description: '@internal/opaque'
-  - from: backstage/packages/frontend-internal/internalextensiondefinition
+    description: Calls module / service
+  - from: backstage/packages/frontend-internal/index
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-internal/index
+    to: backstage/packages/frontend-internal/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-internal/routing
     to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/frontend-internal/internalextensiondefinition
-    to: backstage/packages/frontend-plugin-api/createextension
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/internalextensiondefinition
+  - from: backstage/packages/frontend-internal/routing
     to: backstage/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
-  - from: backstage/packages/frontend-internal/internalextensiondefinition
-    to: backstage/packages/filter-predicates/index
-    type: direct-call
-    description: '@backstage/filter-predicates'
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/frontend-internal/createextensiondatacontainer
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/frontend-internal/internalextensiondefinition
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/frontend-internal/internalextensioninput
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/frontend-internal/internalfrontendplugin
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/frontend-internal/internalswappablecomponentref
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/app-defaults/apis
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/opaquerouteref
-    to: backstage/packages/frontend-plugin-api/index
-    type: direct-call
-    description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/frontend-internal/opaquerouteref
-    to: backstage/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: backstage/packages/frontend-internal/opaqueexternalrouteref
-    to: backstage/packages/frontend-plugin-api/index
-    type: direct-call
-    description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/frontend-internal/opaqueexternalrouteref
-    to: backstage/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/frontend-internal/opaquerouteref
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/frontend-internal/opaquesubrouteref
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/index
-    to: backstage/packages/frontend-internal/opaqueexternalrouteref
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/frontend-internal/opaquesubrouteref
-    to: backstage/packages/frontend-plugin-api/index
-    type: direct-call
-    description: '@backstage/frontend-plugin-api'
-  - from: backstage/packages/frontend-internal/opaquesubrouteref
-    to: backstage/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: backstage/packages/frontend-test-utils/renderintestapp
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-test-utils/createextensiontester
-    to: backstage/packages/frontend-internal/index
-    type: direct-call
-    description: '@internal/frontend'
-  - from: backstage/packages/frontend-test-utils/rendertestapp
+  - from: backstage/packages/frontend-test-utils/app
     to: backstage/packages/frontend-internal/index
     type: direct-call
     description: '@internal/frontend'

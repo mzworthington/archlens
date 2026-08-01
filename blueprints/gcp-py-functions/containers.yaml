@@ -1,7 +1,7 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: infrastructure/gcp-py-functions
+  entityRef: blueprint/gcp-py-functions
   name: Gcp-py-functions Infrastructure
   source:
     scannedAtCommit: 63ae0bceb16a3a7903ec7e6c25c86bbd556e6065
@@ -9,7 +9,7 @@ metadata:
     remoteUrl: https://github.com/pulumi/examples
     defaultBranch: master
 nodes:
-  - entityRef: infrastructure/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
+  - entityRef: blueprint/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
     type: container
     name: gcp:storage:Bucket.eta-demo-bucket
     external: false
@@ -18,7 +18,7 @@ nodes:
       iac.provider_type: gcp_storage_bucket
       iac.kind: resource
       filepath: gcp-py-functions/__main__.py
-  - entityRef: infrastructure/gcp-py-functions/gcp-storage-bucketobject-eta-demo-object
+  - entityRef: blueprint/gcp-py-functions/gcp-storage-bucketobject-eta-demo-object
     type: container
     name: gcp:storage:BucketObject.eta-demo-object
     external: false
@@ -27,7 +27,7 @@ nodes:
       iac.provider_type: gcp_storage_bucketobject
       iac.kind: resource
       filepath: gcp-py-functions/__main__.py
-  - entityRef: infrastructure/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
+  - entityRef: blueprint/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
     type: serverless-function
     name: gcp:cloudfunctions:Function.eta-demo-function
     external: false
@@ -36,7 +36,7 @@ nodes:
       iac.provider_type: gcp_cloudfunctions_function
       iac.kind: resource
       filepath: gcp-py-functions/__main__.py
-  - entityRef: infrastructure/gcp-py-functions/gcp-cloudfunctions-functioniammember-invoker
+  - entityRef: blueprint/gcp-py-functions/gcp-cloudfunctions-functioniammember-invoker
     type: serverless-function
     name: gcp:cloudfunctions:FunctionIamMember.invoker
     external: false
@@ -46,18 +46,18 @@ nodes:
       iac.kind: resource
       filepath: gcp-py-functions/__main__.py
 dependencies:
-  - from: infrastructure/gcp-py-functions/gcp-storage-bucketobject-eta-demo-object
-    to: infrastructure/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
+  - from: blueprint/gcp-py-functions/gcp-storage-bucketobject-eta-demo-object
+    to: blueprint/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
     type: direct-call
-  - from: infrastructure/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
-    to: infrastructure/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
+  - from: blueprint/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
+    to: blueprint/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
     type: direct-call
-  - from: infrastructure/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
-    to: infrastructure/gcp-py-functions/gcp-storage-bucketobject-eta-demo-object
+  - from: blueprint/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
+    to: blueprint/gcp-py-functions/gcp-storage-bucketobject-eta-demo-object
     type: direct-call
-  - from: infrastructure/gcp-py-functions/gcp-cloudfunctions-functioniammember-invoker
-    to: infrastructure/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
+  - from: blueprint/gcp-py-functions/gcp-cloudfunctions-functioniammember-invoker
+    to: blueprint/gcp-py-functions/gcp-storage-bucket-eta-demo-bucket
     type: direct-call
-  - from: infrastructure/gcp-py-functions/gcp-cloudfunctions-functioniammember-invoker
-    to: infrastructure/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
+  - from: blueprint/gcp-py-functions/gcp-cloudfunctions-functioniammember-invoker
+    to: blueprint/gcp-py-functions/gcp-cloudfunctions-function-eta-demo-function
     type: direct-call

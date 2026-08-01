@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/config-loader/loader
     type: background-worker
-    name: loader Service
+    name: Loader
     isTest: false
     properties:
       filepath: packages/config-loader/src/loader.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/load
+      sinceDays: 365
+  - entityRef: backstage/packages/config-loader/schema
     type: background-worker
-    name: load Service
+    name: Schema
     isTest: false
     properties:
       filepath: packages/config-loader/src/schema/load.ts
@@ -67,10 +111,54 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 2
         - 0
         - 1
         - 3
+        - 0
         - 0
         - 0
       authorCount: 1
@@ -78,399 +166,11 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 6
-      hotspotScore: 0.005888327066856822
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/compile
-    type: background-worker
-    name: compile Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/schema/compile.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 259
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: rohanjethwani17@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/utils
-    type: background-worker
-    name: utils Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/schema/utils.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 29
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/load-test
-    type: background-worker
-    name: load.test Service
-    isTest: true
-    properties:
-      filepath: packages/config-loader/src/schema/load.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 20
-      loc: 346
-      sloc: 300
-      churn: 4
-      lineChurn: 349
-      churn30: 4
-      churn365: 4
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 3
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 4
-      hotspotScore: 0.0018853450883789273
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/collect-test
-    type: background-worker
-    name: collect.test Service
-    isTest: true
-    properties:
-      filepath: packages/config-loader/src/schema/collect.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      complexityPeak: 4
-      cognitiveComplexity: 4
-      functionCount: 27
-      loc: 740
-      sloc: 675
-      churn: 12
-      lineChurn: 1129
-      churn30: 10
-      churn365: 12
-      churnByWeek:
-        - 0
-        - 0
-        - 1
-        - 1
-        - 0
-        - 1
-        - 9
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 12
-      hotspotScore: 0.024396041315527896
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/types
-    type: background-worker
-    name: types Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/schema/types.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 182
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/filtering
-    type: background-worker
-    name: filtering Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/schema/filtering.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 198
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/index
-    type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/schema/index.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 26
-      churn30: 2
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 1
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/compile-test
-    type: background-worker
-    name: compile.test Service
-    isTest: true
-    properties:
-      filepath: packages/config-loader/src/schema/compile.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 462
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/collect
-    type: background-worker
-    name: collect Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/schema/collect.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 17
-      complexityPeak: 17
-      cognitiveComplexity: 128
-      functionCount: 27
-      loc: 466
-      sloc: 385
-      churn: 11
-      lineChurn: 1002
-      churn30: 8
-      churn365: 11
-      churnByWeek:
-        - 0
-        - 0
-        - 1
-        - 2
-        - 0
-        - 1
-        - 7
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 11
-      hotspotScore: 0.09201996629067809
-      classifications:
-        - knowledge-silo
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/configschemaerror
-    type: background-worker
-    name: ConfigSchemaError Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/schema/ConfigSchemaError.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 1
-      loc: 44
-      sloc: 16
-      churn: 9
-      lineChurn: 85
-      churn30: 9
-      churn365: 9
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 9
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 9
-      hotspotScore: 0.0004591814685163576
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/filtering-test
-    type: background-worker
-    name: filtering.test Service
-    isTest: true
-    properties:
-      filepath: packages/config-loader/src/schema/filtering.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 453
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.003822227832831885
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/configsources
     type: background-worker
-    name: ConfigSources Service
+    name: Configsources
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/ConfigSources.ts
@@ -478,14 +178,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 376
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 31
+      functionCount: 9
+      loc: 325
+      sloc: 171
+      churn: 9
+      lineChurn: 454
       churn30: 1
-      churn365: 2
+      churn365: 9
       churnByWeek:
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -495,18 +241,25 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
+        - email: heikki.hellgren@op.fi
+          commits: 3
         - email: 52410024+jabrks@users.noreply.github.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: freben@gmail.com
+          commits: 1
+        - email: kyle.opperman@ing.com
+          commits: 1
+      hotspotScore: 0.014328094426560627
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/remoteconfigsource-test
     type: background-worker
-    name: RemoteConfigSource.test Service
+    name: Remoteconfigsource test
     isTest: true
     properties:
       filepath: packages/config-loader/src/sources/RemoteConfigSource.test.ts
@@ -517,11 +270,23 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 124
+      churn: 2
+      lineChurn: 148
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -531,16 +296,50 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: johanopersson@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/fileconfigsource
     type: background-worker
-    name: FileConfigSource Service
+    name: Fileconfigsource
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/FileConfigSource.ts
@@ -551,11 +350,31 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 232
+      churn: 2
+      lineChurn: 239
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -565,16 +384,42 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: freben@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/mergedconfigsource-test
     type: background-worker
-    name: MergedConfigSource.test Service
+    name: Mergedconfigsource test
     isTest: true
     properties:
       filepath: packages/config-loader/src/sources/MergedConfigSource.test.ts
@@ -595,7 +440,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -605,10 +494,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/mutableconfigsource-test
     type: background-worker
-    name: MutableConfigSource.test Service
+    name: Mutableconfigsource test
     isTest: true
     properties:
       filepath: packages/config-loader/src/sources/MutableConfigSource.test.ts
@@ -629,7 +518,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -639,13 +572,98 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/envconfigsource
     type: background-worker
-    name: EnvConfigSource Service
+    name: Envconfigsource
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/EnvConfigSource.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 74
+      functionCount: 7
+      loc: 171
+      sloc: 82
+      churn: 5
+      lineChurn: 187
+      churn30: 1
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.4
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: sarabadu@gmail.com
+          commits: 2
+        - email: heikki.hellgren@op.fi
+          commits: 1
+      hotspotScore: 0.008524620056526891
+      sinceDays: 365
+  - entityRef: backstage/packages/config-loader/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/utils.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
@@ -654,10 +672,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 170
+      lineChurn: 51
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -667,16 +728,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/staticconfigsource
     type: background-worker
-    name: StaticConfigSource Service
+    name: Staticconfigsource
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/StaticConfigSource.ts
@@ -687,11 +749,12 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 156
+      churn: 2
+      lineChurn: 179
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -701,16 +764,139 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/packages/config-loader/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/types.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 107
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/fileconfigsource-test
     type: background-worker
-    name: FileConfigSource.test Service
+    name: Fileconfigsource test
     isTest: true
     properties:
       filepath: packages/config-loader/src/sources/FileConfigSource.test.ts
@@ -721,11 +907,31 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 225
+      churn: 2
+      lineChurn: 229
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -735,16 +941,42 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: freben@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/envconfigsource-test
     type: background-worker
-    name: EnvConfigSource.test Service
+    name: Envconfigsource test
     isTest: true
     properties:
       filepath: packages/config-loader/src/sources/EnvConfigSource.test.ts
@@ -765,7 +997,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -775,10 +1051,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/mutableconfigsource
     type: background-worker
-    name: MutableConfigSource Service
+    name: Mutableconfigsource
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/MutableConfigSource.ts
@@ -799,7 +1075,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -809,10 +1129,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/testutils
+      sinceDays: 365
+  - entityRef: backstage/packages/config-loader/__testutils__
     type: background-worker
-    name: testUtils Service
+    name: __testutils__
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/__testUtils__/testUtils.ts
@@ -833,7 +1153,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -843,10 +1207,88 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
+  - entityRef: backstage/packages/config-loader/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/config-loader/src/sources/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 42
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/remoteconfigsource
     type: background-worker
-    name: RemoteConfigSource Service
+    name: Remoteconfigsource
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/RemoteConfigSource.ts
@@ -867,7 +1309,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -877,10 +1363,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/observableconfigproxy-test
     type: background-worker
-    name: ObservableConfigProxy.test Service
+    name: Observableconfigproxy test
     isTest: true
     properties:
       filepath: packages/config-loader/src/sources/ObservableConfigProxy.test.ts
@@ -901,7 +1387,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -911,10 +1441,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/apply
+      sinceDays: 365
+  - entityRef: backstage/packages/config-loader/transform
     type: background-worker
-    name: apply Service
+    name: Transform
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/transform/apply.ts
@@ -925,11 +1455,40 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 124
+      churn: 2
+      lineChurn: 129
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -939,31 +1498,11 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/include-test
-    type: background-worker
-    name: include.test Service
-    isTest: true
-    properties:
-      filepath: packages/config-loader/src/sources/transform/include.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 195
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -973,152 +1512,17 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/include
-    type: background-worker
-    name: include Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/sources/transform/include.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 151
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/apply-test
-    type: background-worker
-    name: apply.test Service
-    isTest: true
-    properties:
-      filepath: packages/config-loader/src/sources/transform/apply.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 115
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/substitution-test
-    type: background-worker
-    name: substitution.test Service
-    isTest: true
-    properties:
-      filepath: packages/config-loader/src/sources/transform/substitution.test.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 118
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/config-loader/substitution
-    type: background-worker
-    name: substitution Service
-    isTest: false
-    properties:
-      filepath: packages/config-loader/src/sources/transform/substitution.ts
-      containerId: config-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 64
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/configsources-test
     type: background-worker
-    name: ConfigSources.test Service
+    name: Configsources test
     isTest: true
     properties:
       filepath: packages/config-loader/src/sources/ConfigSources.test.ts
@@ -1126,14 +1530,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 481
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 2
+      functionCount: 26
+      loc: 376
+      sloc: 320
+      churn: 7
+      lineChurn: 511
       churn30: 1
-      churn365: 2
+      churn365: 7
       churnByWeek:
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1143,18 +1593,25 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.42857142857142855
       authors:
+        - email: heikki.hellgren@op.fi
+          commits: 3
         - email: poldsberg@gmail.com
           commits: 1
         - email: 52410024+jabrks@users.noreply.github.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: freben@gmail.com
+          commits: 1
+        - email: kyle.opperman@ing.com
+          commits: 1
+      hotspotScore: 0.005375665383239706
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/staticconfigsource-test
     type: background-worker
-    name: StaticConfigSource.test Service
+    name: Staticconfigsource test
     isTest: true
     properties:
       filepath: packages/config-loader/src/sources/StaticConfigSource.test.ts
@@ -1175,7 +1632,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1185,10 +1686,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/mergedconfigsource
     type: background-worker
-    name: MergedConfigSource Service
+    name: Mergedconfigsource
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/MergedConfigSource.ts
@@ -1209,7 +1710,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -1219,10 +1764,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/observableconfigproxy
     type: background-worker
-    name: ObservableConfigProxy Service
+    name: Observableconfigproxy
     isTest: false
     properties:
       filepath: packages/config-loader/src/sources/ObservableConfigProxy.ts
@@ -1233,11 +1778,12 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 158
+      churn: 2
+      lineChurn: 171
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -1247,16 +1793,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/config-loader/loader-test
     type: background-worker
-    name: loader.test Service
+    name: Loader test
     isTest: true
     properties:
       filepath: packages/config-loader/src/loader.test.ts
@@ -1267,11 +1858,23 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 496
+      churn: 2
+      lineChurn: 518
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1281,40 +1884,146 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: johanopersson@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-build/command
-    type: background-worker
-    name: command Service (External)
+      sinceDays: 365
+  - entityRef: backstage/packages/integration/azure
+    type: cache-store
+    name: Azure (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/commands/package/start/command.ts
-      containerId: cli-module-build
+      filepath: packages/integration/src/azure/ManagedIdentityClientAssertion.test.ts
+      containerId: integration
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    position:
+      x: 2170
+      y: -204
+  - entityRef: backstage/packages/integration/bitbucketcloud
+    type: background-worker
+    name: Bitbucketcloud (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/bitbucketCloud/core.test.ts
+      containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -820
+      x: 2630
       y: -204
-  - entityRef: backstage/packages/cli-module-build/config
-    type: gateway-api
-    name: config Service (External)
+  - entityRef: backstage/packages/integration/bitbucketserver
+    type: background-worker
+    name: Bitbucketserver (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/config.ts
+      filepath: packages/integration/src/bitbucketServer/BitbucketServerIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3090
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/bundler
+    type: gateway-api
+    name: Bundler (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
     position:
-      x: -360
+      x: -1970
+      y: -204
+  - entityRef: backstage/packages/catalog-client/catalogclient
+    type: background-worker
+    name: Catalogclient (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/CatalogClient.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3810
+      y: -204
+  - entityRef: backstage/packages/catalog-client/catalogclient-test
+    type: background-worker
+    name: Catalogclient test (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/CatalogClient.test.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3350
+      y: -204
+  - entityRef: backstage/packages/cli-module-config/commands
+    type: gateway-api
+    name: Commands (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-config/src/commands/schema.ts
+      containerId: cli-module-config
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: -204
+  - entityRef: backstage/packages/cli-module-build/config
+    type: background-worker
+    name: Config (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/config.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
       y: -204
   - entityRef: backstage/packages/cli-module-config/config
     type: background-worker
-    name: config Service (External)
+    name: Config (External)
     external: true
     properties:
       filepath: packages/cli-module-config/src/lib/config.ts
@@ -1322,71 +2031,71 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1480
+      x: 790
       y: -204
-  - entityRef: backstage/packages/integration/config-test
+  - entityRef: backstage/packages/integration/gerrit
     type: background-worker
-    name: config.test Service (External)
+    name: Gerrit (External)
     external: true
     properties:
-      filepath: packages/integration/src/bitbucketServer/config.test.ts
+      filepath: packages/integration/src/gerrit/core.test.ts
       containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3320
+      x: 3550
       y: -204
-  - entityRef: backstage/packages/backend-defaults/createconfigsecretenumerator
+  - entityRef: backstage/packages/integration/gitea
     type: background-worker
-    name: createConfigSecretEnumerator Service (External)
+    name: Gitea (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
-      containerId: backend-defaults
+      filepath: packages/integration/src/gitea/core.test.ts
+      containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4040
+      x: 4010
       y: -204
-  - entityRef: backstage/packages/backend-defaults/createconfigsecretenumerator-test
+  - entityRef: backstage/packages/integration/github
     type: background-worker
-    name: createConfigSecretEnumerator.test Service (External)
+    name: Github (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.test.ts
-      containerId: backend-defaults
+      filepath: packages/integration/src/github/SingleInstanceGithubCredentialsProvider.ts
+      containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3580
+      x: 4470
       y: -204
-  - entityRef: backstage/packages/cli-module-config/docs
-    type: gateway-api
-    name: docs Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-config/src/commands/docs.ts
-      containerId: cli-module-config
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 1940
-      y: -204
-  - entityRef: backstage/packages/repo-tools/fuzz
+  - entityRef: backstage/packages/integration/gitlab
     type: background-worker
-    name: fuzz Service (External)
+    name: Gitlab (External)
     external: true
     properties:
-      filepath: packages/repo-tools/src/commands/repo/schema/openapi/fuzz.ts
-      containerId: repo-tools
+      filepath: packages/integration/src/gitlab/DefaultGitlabCredentialsProvider.ts
+      containerId: integration
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3780
+      x: 4930
+      y: -204
+  - entityRef: backstage/packages/integration/harness
+    type: background-worker
+    name: Harness (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/harness/core.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 5390
       y: -204
   - entityRef: backstage/packages/config/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/config/src/index.ts
@@ -1394,11 +2103,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: 100
       y: 404
   - entityRef: backstage/packages/core/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/types/src/index.ts
@@ -1406,35 +2115,35 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: 560
       y: 404
   - entityRef: backstage/packages/backend-test-utils/index
-    type: relational-database
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/database/index.ts
+      filepath: packages/backend-test-utils/src/util/index.ts
       containerId: backend-test-utils
-      technology: Prisma / SQL Database Client
-      classification: database-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: -1050
+      x: -820
       y: 404
   - entityRef: backstage/packages/errors/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/errors/src/serialization/index.ts
+      filepath: packages/errors/src/index.ts
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 790
+      x: 1020
       y: 404
   - entityRef: backstage/packages/cli-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-common/src/index.ts
@@ -1442,131 +2151,95 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -590
+      x: -360
       y: 404
-  - entityRef: backstage/packages/test-utils/index
-    type: rest-api
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/test-utils/src/index.ts
-      containerId: test-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 4240
-      y: -204
-  - entityRef: backstage/packages/backend-test-utils/mockservices
-    type: relational-database
-    name: mockServices Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-test-utils/src/services/mockServices.ts
-      containerId: backend-test-utils
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    position:
-      x: -1280
-      y: -204
-  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-manager-test
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader
     type: background-worker
-    name: plugin-manager.test Service (External)
+    name: Loader (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.test.ts
+      filepath: packages/frontend-dynamic-feature-loader/src/loader.ts
+      containerId: frontend-dynamic-feature-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: -204
+  - entityRef: backstage/packages/backend-dynamic-feature-service/manager
+    type: background-worker
+    name: Manager (External)
+    external: true
+    properties:
+      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2660
+      x: -5190
       y: -204
-  - entityRef: backstage/packages/cli-module-config/print
-    type: background-worker
-    name: print Service (External)
+  - entityRef: backstage/packages/cli-module-build/commands/package
+    type: gateway-api
+    name: Package (External)
     external: true
     properties:
-      filepath: packages/cli-module-config/src/commands/print.ts
-      containerId: cli-module-config
+      filepath: packages/cli-module-build/src/commands/package/prepack.ts
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1510
+      y: -204
+  - entityRef: backstage/packages/repo-tools/commands/package
+    type: background-worker
+    name: Package (External)
+    external: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package/schema/openapi/fuzz.ts
+      containerId: repo-tools
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2400
+      x: 5850
       y: -204
-  - entityRef: backstage/packages/cli-module-build/productionpack
+  - entityRef: backstage/packages/cli-module-build/packager
     type: background-worker
-    name: productionPack Service (External)
+    name: Packager (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/packager/productionPack.ts
+      filepath: packages/cli-module-build/src/lib/packager/createDistWorkspace.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: -590
       y: -204
-  - entityRef: backstage/packages/backend-defaults/rootconfigservicefactory
+  - entityRef: backstage/packages/catalog-model/entity/policies
     type: background-worker
-    name: rootConfigServiceFactory Service (External)
+    name: Policies (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootConfig/rootConfigServiceFactory.ts
+      filepath: packages/catalog-model/src/entity/policies/GroupDefaultParentEntityPolicy.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2890
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootconfig
+    type: background-worker
+    name: Rootconfig (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3120
+      x: -5650
       y: -204
-  - entityRef: backstage/packages/backend-dynamic-feature-service/rootlogger
+  - entityRef: backstage/packages/cli-module-build/runner
     type: background-worker
-    name: rootLogger Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-dynamic-feature-service/src/schemas/rootLogger.ts
-      containerId: backend-dynamic-feature-service
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -2200
-      y: -204
-  - entityRef: backstage/packages/filter-predicates/schema
-    type: background-worker
-    name: schema Service (External)
-    external: true
-    properties:
-      filepath: packages/filter-predicates/src/predicates/schema.ts
-      containerId: filter-predicates
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 1250
-      y: 404
-  - entityRef: backstage/packages/cli-module-config/schema
-    type: background-worker
-    name: schema Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-config/src/commands/schema.ts
-      containerId: cli-module-config
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 2860
-      y: -204
-  - entityRef: backstage/packages/backend-dynamic-feature-service/schemas
-    type: background-worker
-    name: schemas Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
-      containerId: backend-dynamic-feature-service
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -1740
-      y: -204
-  - entityRef: backstage/packages/cli-module-build/startembeddeddb
-    type: background-worker
-    name: startEmbeddedDb Service (External)
+    name: Runner (External)
     external: true
     properties:
       filepath: packages/cli-module-build/src/lib/runner/startEmbeddedDb.ts
@@ -1574,22 +2247,62 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 560
+      x: -130
       y: -204
-  - entityRef: backstage/packages/cli-module-build/types
+  - entityRef: backstage/packages/backend-dynamic-feature-service/schemas
     type: background-worker
-    name: types Service (External)
+    name: Schemas (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/builder/types.ts
-      containerId: cli-module-build
+      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
+      containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: -4730
+      y: -204
+  - entityRef: backstage/packages/backend-test-utils/services
+    type: rest-api
+    name: Services (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.test.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -4270
+      y: -204
+  - entityRef: backstage/packages/frontend-app-api/tree
+    type: background-worker
+    name: Tree (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: -204
+  - entityRef: backstage/packages/catalog-model/validation
+    type: background-worker
+    name: Validation (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/validation/entitySchemaValidator.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
       y: -204
 dependencies:
-  - from: backstage/packages/backend-test-utils/mockservices
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services
     to: backstage/packages/config-loader/observableconfigproxy
     type: direct-call
     description: Calls module / service
@@ -1597,154 +2310,22 @@ dependencies:
     to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: backstage/packages/config-loader/load
+  - from: backstage/packages/config-loader/schema
     to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: backstage/packages/config-loader/load
+  - from: backstage/packages/config-loader/schema
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/config-loader/load
-    to: backstage/packages/config-loader/compile
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/load
-    to: backstage/packages/config-loader/collect
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/load
-    to: backstage/packages/config-loader/filtering
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/load
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/load
-    to: backstage/packages/config-loader/utils
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/load
-    to: backstage/packages/config-loader/configschemaerror
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/compile
-    to: backstage/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: backstage/packages/config-loader/compile
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/compile
-    to: backstage/packages/config-loader/utils
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/load-test
+  - from: backstage/packages/config-loader/schema
     to: backstage/packages/backend-test-utils/index
     type: direct-call
     description: '@backstage/backend-test-utils'
-  - from: backstage/packages/config-loader/load-test
-    to: backstage/packages/config-loader/load
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/load-test
-    to: backstage/packages/config-loader/configschemaerror
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/collect-test
-    to: backstage/packages/backend-test-utils/index
-    type: direct-call
-    description: '@backstage/backend-test-utils'
-  - from: backstage/packages/config-loader/collect-test
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/config-loader/collect-test
-    to: backstage/packages/config-loader/collect
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/collect-test
-    to: backstage/packages/config-loader/compile
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/collect-test
-    to: backstage/packages/config-loader/configschemaerror
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/types
-    to: backstage/packages/config/index
-    type: direct-call
-    description: '@backstage/config'
-  - from: backstage/packages/config-loader/types
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/config-loader/filtering
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/config-loader/filtering
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/filtering
-    to: backstage/packages/config-loader/utils
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/config-loader/compile
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/config-loader/load
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/config-loader/configschemaerror
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/config-loader/load
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/compile-test
-    to: backstage/packages/config-loader/compile
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/collect
+  - from: backstage/packages/config-loader/schema
     to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: backstage/packages/config-loader/collect
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/collect
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/config-loader/collect
-    to: backstage/packages/config-loader/configschemaerror
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/filtering-test
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/config-loader/filtering-test
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/filtering-test
-    to: backstage/packages/config-loader/filtering
-    type: direct-call
-    description: Calls module / service
   - from: backstage/packages/config-loader/configsources
     to: backstage/packages/config/index
     type: direct-call
@@ -1786,11 +2367,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/remoteconfigsource-test
-    to: backstage/packages/config-loader/testutils
+    to: backstage/packages/config-loader/__testutils__
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/fileconfigsource
     to: backstage/packages/config-loader/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/config-loader/fileconfigsource
+    to: backstage/packages/config-loader/transform
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/fileconfigsource
@@ -1810,7 +2395,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/mergedconfigsource-test
-    to: backstage/packages/config-loader/testutils
+    to: backstage/packages/config-loader/__testutils__
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/mergedconfigsource-test
@@ -1826,7 +2411,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/mutableconfigsource-test
-    to: backstage/packages/config-loader/testutils
+    to: backstage/packages/config-loader/__testutils__
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/envconfigsource
@@ -1857,12 +2442,20 @@ dependencies:
     to: backstage/packages/config-loader/types
     type: direct-call
     description: Calls module / service
+  - from: backstage/packages/config-loader/types
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/config-loader/types
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: backstage/packages/config-loader/fileconfigsource-test
     to: backstage/packages/config-loader/fileconfigsource
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/fileconfigsource-test
-    to: backstage/packages/config-loader/testutils
+    to: backstage/packages/config-loader/__testutils__
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/envconfigsource-test
@@ -1885,11 +2478,11 @@ dependencies:
     to: backstage/packages/config-loader/utils
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/config-loader/testutils
+  - from: backstage/packages/config-loader/__testutils__
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/config-loader/testutils
+  - from: backstage/packages/config-loader/__testutils__
     to: backstage/packages/config-loader/types
     type: direct-call
     description: Calls module / service
@@ -1953,6 +2546,10 @@ dependencies:
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
+  - from: backstage/packages/config-loader/remoteconfigsource
+    to: backstage/packages/config-loader/transform
+    type: direct-call
+    description: Calls module / service
   - from: backstage/packages/config-loader/remoteconfigsource
     to: backstage/packages/config-loader/types
     type: direct-call
@@ -1969,91 +2566,23 @@ dependencies:
     to: backstage/packages/config-loader/observableconfigproxy
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/config-loader/apply
+  - from: backstage/packages/config-loader/transform
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/config-loader/apply
+  - from: backstage/packages/config-loader/transform
     to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: backstage/packages/config-loader/apply
+  - from: backstage/packages/config-loader/transform
     to: backstage/packages/config-loader/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/config-loader/apply
-    to: backstage/packages/config-loader/utils
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/apply
-    to: backstage/packages/config-loader/substitution
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/apply
-    to: backstage/packages/config-loader/include
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/apply
+  - from: backstage/packages/config-loader/transform
     to: backstage/packages/config-loader/types
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/config-loader/include-test
-    to: backstage/packages/config-loader/include
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/include-test
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/include
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/config-loader/include
-    to: backstage/packages/config-loader/utils
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/include
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/include
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/apply-test
-    to: backstage/packages/config-loader/apply
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/substitution-test
-    to: backstage/packages/config-loader/substitution
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/utils
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/config-loader/substitution
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/config-loader/substitution
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/substitution
-    to: backstage/packages/config-loader/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/config-loader/apply
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
-    to: backstage/packages/config-loader/apply
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/config-loader/index
+  - from: backstage/packages/config-loader/transform
     to: backstage/packages/config-loader/types
     type: direct-call
     description: Calls module / service
@@ -2078,7 +2607,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/staticconfigsource-test
-    to: backstage/packages/config-loader/testutils
+    to: backstage/packages/config-loader/__testutils__
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/mergedconfigsource
@@ -2094,11 +2623,11 @@ dependencies:
     type: direct-call
     description: '@backstage/types'
   - from: backstage/packages/config-loader/index
-    to: backstage/packages/filter-predicates/schema
+    to: backstage/packages/config-loader/schema
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/index
-    to: backstage/packages/filter-predicates/schema
+    to: backstage/packages/config-loader/schema
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/config-loader/index
@@ -2125,31 +2654,87 @@ dependencies:
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/test-utils/index
-    to: backstage/packages/config-loader/testutils
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/integration/config-test
+  - from: backstage/packages/integration/bitbucketserver
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
+  - from: backstage/packages/integration/gitlab
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/bitbucketcloud
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/azure
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/harness
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/gitea
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/github
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/gerrit
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/catalog-model/entity/policies
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/entity/policies
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
   - from: backstage/packages/backend-dynamic-feature-service/schemas
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/backend-dynamic-feature-service/rootlogger
+  - from: backstage/packages/backend-dynamic-feature-service/manager
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/backend-dynamic-feature-service/plugin-manager-test
+  - from: backstage/packages/cli-module-build/runner
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-build/startembeddeddb
-    to: backstage/packages/config-loader/index
-    type: direct-call
-    description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-build/productionpack
+  - from: backstage/packages/cli-module-build/packager
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
@@ -2157,43 +2742,39 @@ dependencies:
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-build/types
+  - from: backstage/packages/cli-module-build/bundler
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-build/command
+  - from: backstage/packages/cli-module-build/commands/package
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/repo-tools/fuzz
+  - from: backstage/packages/catalog-client/catalogclient-test
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-client/catalogclient
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/package
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
+  - from: backstage/packages/frontend-app-api/tree
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
   - from: backstage/packages/cli-module-config/config
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-config/schema
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-config/print
-    to: backstage/packages/config-loader/index
-    type: direct-call
-    description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-config/docs
-    to: backstage/packages/config-loader/index
-    type: direct-call
-    description: '@backstage/config-loader'
-  - from: backstage/packages/backend-defaults/createconfigsecretenumerator
-    to: backstage/packages/config-loader/index
-    type: direct-call
-    description: '@backstage/config-loader'
-  - from: backstage/packages/backend-defaults/createconfigsecretenumerator-test
-    to: backstage/packages/config-loader/index
-    type: direct-call
-    description: '@backstage/config-loader'
-  - from: backstage/packages/backend-defaults/rootconfigservicefactory
+  - from: backstage/packages/backend-defaults/entrypoints/rootconfig
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'

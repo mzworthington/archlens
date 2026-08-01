@@ -9,9 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/packages/cli-module-info/info
+  - entityRef: backstage/packages/cli-module-info/commands
     type: background-worker
-    name: info Service
+    name: Commands
     isTest: false
     properties:
       filepath: packages/cli-module-info/src/commands/info.ts
@@ -19,20 +19,67 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 260
+      complexity: 28
+      complexityPeak: 28
+      cognitiveComplexity: 359
+      functionCount: 12
+      loc: 259
+      sloc: 194
+      churn: 3
+      lineChurn: 290
       churn30: 1
-      churn365: 2
+      churn365: 3
       churnByWeek:
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
         - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -40,12 +87,14 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 3
+      hotspotScore: 0.028473844039077895
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-info/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/cli-module-info/src/index.ts
@@ -66,7 +115,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,10 +169,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-defaults/src/index.ts
@@ -91,7 +184,7 @@ nodes:
       y: -204
   - entityRef: backstage/packages/cli-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-common/src/index.ts
@@ -102,14 +195,14 @@ nodes:
       x: -130
       y: 404
   - entityRef: backstage/packages/cli-node/index
-    type: cache-store
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/monorepo/index.ts
+      filepath: packages/cli-node/src/index.ts
       containerId: cli-node
-      technology: TypeScript Cache Client
-      classification: cache-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: 330
       y: 404
@@ -118,11 +211,11 @@ dependencies:
     to: backstage/packages/cli-module-info/index
     type: direct-call
     description: '@backstage/cli-module-info'
-  - from: backstage/packages/cli-module-info/info
+  - from: backstage/packages/cli-module-info/commands
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
-  - from: backstage/packages/cli-module-info/info
+  - from: backstage/packages/cli-module-info/commands
     to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'

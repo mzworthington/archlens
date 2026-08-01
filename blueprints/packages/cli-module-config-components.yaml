@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/cli-module-config/config
     type: background-worker
-    name: config Service
+    name: Config
     isTest: false
     properties:
       filepath: packages/cli-module-config/src/lib/config.ts
@@ -35,8 +35,52 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 2
+        - 0
         - 0
         - 0
       authorCount: 1
@@ -44,17 +88,17 @@ nodes:
       authors:
         - email: poldsberg@gmail.com
           commits: 3
-      hotspotScore: 0.00675807078957604
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-config/schema
-    type: background-worker
-    name: schema Service
+      hotspotScore: 0.0043867954301584295
+      sinceDays: 365
+  - entityRef: backstage/packages/cli-module-config/commands
+    type: gateway-api
+    name: Commands
     isTest: false
     properties:
       filepath: packages/cli-module-config/src/commands/schema.ts
       containerId: cli-module-config
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 3
       complexityPeak: 3
@@ -68,12 +112,56 @@ nodes:
       churn365: 4
       churnByWeek:
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
         - 0
         - 1
         - 1
+        - 0
         - 0
         - 0
       authorCount: 2
@@ -83,118 +171,11 @@ nodes:
           commits: 3
         - email: rohanjethwani17@gmail.com
           commits: 1
-      hotspotScore: 0.0013127187864644106
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-config/print
-    type: background-worker
-    name: print Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-config/src/commands/print.ts
-      containerId: cli-module-config
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 106
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-config/validate
-    type: background-worker
-    name: validate Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-config/src/commands/validate.ts
-      containerId: cli-module-config
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 63
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-config/docs
-    type: gateway-api
-    name: docs Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-config/src/commands/docs.ts
-      containerId: cli-module-config
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 2
-      loc: 79
-      sloc: 54
-      churn: 3
-      lineChurn: 82
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-        - email: rohanjethwani17@gmail.com
-          commits: 1
-      hotspotScore: 0.0008859501274903842
-      sinceDays: 60
+      hotspotScore: 0.0008521113425487597
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-config/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/cli-module-config/src/index.ts
@@ -205,11 +186,38 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 54
+      churn: 2
+      lineChurn: 61
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -219,16 +227,33 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-defaults/src/index.ts
@@ -240,10 +265,10 @@ nodes:
       y: -204
   - entityRef: backstage/packages/config-loader/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/schema/index.ts
+      filepath: packages/config-loader/src/sources/index.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
@@ -252,7 +277,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/config/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/config/src/index.ts
@@ -264,7 +289,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-common/src/index.ts
@@ -275,20 +300,20 @@ nodes:
       x: -1050
       y: 404
   - entityRef: backstage/packages/cli-node/index
-    type: cache-store
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/monorepo/index.ts
+      filepath: packages/cli-node/src/index.ts
       containerId: cli-node
-      technology: TypeScript Cache Client
-      classification: cache-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: -590
       y: 404
   - entityRef: backstage/packages/cli/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli/src/index.ts
@@ -300,7 +325,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/core/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/types/src/index.ts
@@ -335,62 +360,38 @@ dependencies:
     to: backstage/packages/cli/index
     type: direct-call
     description: '@backstage/cli'
-  - from: backstage/packages/cli-module-config/schema
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/cli-module-config/config
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-config/schema
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/cli-module-config/schema
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/config-loader/index
     type: direct-call
     description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-config/schema
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-config/print
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/config/index
     type: direct-call
     description: '@backstage/config'
-  - from: backstage/packages/cli-module-config/print
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/cli-module-config/config
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-config/print
-    to: backstage/packages/config-loader/index
-    type: direct-call
-    description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-config/print
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-config/validate
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/cli-module-config/config
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-config/validate
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-config/docs
-    to: backstage/packages/core/index
-    type: direct-call
-    description: '@backstage/types'
-  - from: backstage/packages/cli-module-config/docs
-    to: backstage/packages/config-loader/index
-    type: direct-call
-    description: '@backstage/config-loader'
-  - from: backstage/packages/cli-module-config/docs
+  - from: backstage/packages/cli-module-config/commands
     to: backstage/packages/cli-module-config/config
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-config/docs
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
   - from: backstage/packages/cli-module-config/index
     to: backstage/packages/cli-node/index
     type: direct-call

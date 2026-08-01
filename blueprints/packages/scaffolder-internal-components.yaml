@@ -9,9 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/packages/scaffolder-internal/internalformfield
+  - entityRef: backstage/packages/scaffolder-internal/wiring
     type: gateway-api
-    name: InternalFormField Service
+    name: Wiring
     isTest: false
     properties:
       filepath: packages/scaffolder-internal/src/wiring/InternalFormField.ts
@@ -22,11 +22,29 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 31
+      churn: 2
+      lineChurn: 33
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,19 +54,47 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/scaffolder-internal/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
-      filepath: packages/scaffolder-internal/src/wiring/index.ts
+      filepath: packages/scaffolder-internal/src/index.ts
       containerId: scaffolder-internal
       technology: TypeScript Domain Service
       classification: default
@@ -66,7 +112,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,44 +166,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/scaffolder-internal/internalformdecorator
-    type: gateway-api
-    name: InternalFormDecorator Service
-    isTest: false
-    properties:
-      filepath: packages/scaffolder-internal/src/wiring/InternalFormDecorator.ts
-      containerId: scaffolder-internal
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 42
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/opaque-internal/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/opaque-internal/src/index.ts
@@ -125,10 +181,10 @@ nodes:
       y: 404
   - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
@@ -136,23 +192,15 @@ nodes:
       x: -130
       y: 404
 dependencies:
-  - from: backstage/packages/scaffolder-internal/internalformfield
+  - from: backstage/packages/scaffolder-internal/wiring
     to: backstage/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
-  - from: backstage/packages/scaffolder-internal/index
-    to: backstage/packages/scaffolder-internal/internalformfield
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/scaffolder-internal/index
-    to: backstage/packages/scaffolder-internal/internalformdecorator
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/scaffolder-internal/internalformdecorator
-    to: backstage/packages/opaque-internal/index
-    type: direct-call
-    description: '@internal/opaque'
-  - from: backstage/packages/scaffolder-internal/internalformdecorator
+  - from: backstage/packages/scaffolder-internal/wiring
     to: backstage/packages/frontend-plugin-api/index
     type: direct-call
     description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/scaffolder-internal/index
+    to: backstage/packages/scaffolder-internal/wiring
+    type: direct-call
+    description: Calls module / service

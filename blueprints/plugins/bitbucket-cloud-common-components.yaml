@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/bitbucket-cloud-common/pagination
     type: background-worker
-    name: pagination Service
+    name: Pagination
     isTest: false
     properties:
       filepath: plugins/bitbucket-cloud-common/src/pagination.ts
@@ -19,14 +19,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 75
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      functionCount: 4
+      loc: 76
+      sloc: 51
+      churn: 3
+      lineChurn: 98
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +82,21 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: pschultz@pobox.com
+          commits: 1
+        - email: robertoj921@yahoo.com
+          commits: 1
+      hotspotScore: 0.0013745993674037604
+      sinceDays: 365
   - entityRef: backstage/plugins/bitbucket-cloud-common/bitbucketcloudclient-test
     type: background-worker
-    name: BitbucketCloudClient.test Service
+    name: Bitbucketcloudclient test
     isTest: true
     properties:
       filepath: plugins/bitbucket-cloud-common/src/BitbucketCloudClient.test.ts
@@ -53,35 +104,84 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 307
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 16
+      loc: 224
+      sloc: 177
+      churn: 3
+      lineChurn: 342
       churn30: 1
-      churn365: 2
+      churn365: 3
       churnByWeek:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 1
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
           commits: 1
         - email: jonkoops@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: robertoj921@yahoo.com
+          commits: 1
+      hotspotScore: 0.0035978034463169852
+      sinceDays: 365
   - entityRef: backstage/plugins/bitbucket-cloud-common/pagination-test
     type: background-worker
-    name: pagination.test Service
+    name: Pagination test
     isTest: true
     properties:
       filepath: plugins/bitbucket-cloud-common/src/pagination.test.ts
@@ -92,11 +192,12 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 138
+      churn: 2
+      lineChurn: 154
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -106,16 +207,61 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: robertoj921@yahoo.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/bitbucket-cloud-common/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/bitbucket-cloud-common/src/models/index.ts
@@ -136,7 +282,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -146,44 +336,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/bitbucket-cloud-common/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/bitbucket-cloud-common/src/setupTests.ts
-      containerId: bitbucket-cloud-common
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/bitbucket-cloud-common/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: plugins/bitbucket-cloud-common/src/types.ts
@@ -204,7 +360,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -214,13 +414,100 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/bitbucket-cloud-common/bitbucketcloudclient
     type: background-worker
-    name: BitbucketCloudClient Service
+    name: Bitbucketcloudclient
     isTest: false
     properties:
       filepath: plugins/bitbucket-cloud-common/src/BitbucketCloudClient.ts
+      containerId: bitbucket-cloud-common
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 8
+      functionCount: 24
+      loc: 187
+      sloc: 147
+      churn: 4
+      lineChurn: 238
+      churn30: 1
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.25
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: jakemgsmith@gmail.com
+          commits: 1
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: robertoj921@yahoo.com
+          commits: 1
+      hotspotScore: 0.004172890936761415
+      sinceDays: 365
+  - entityRef: backstage/plugins/bitbucket-cloud-common/events
+    type: background-worker
+    name: Events
+    isTest: false
+    properties:
+      filepath: plugins/bitbucket-cloud-common/src/events/index.ts
       containerId: bitbucket-cloud-common
       technology: TypeScript Domain Service
       classification: default
@@ -229,10 +516,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 186
+      lineChurn: 79
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -242,16 +572,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
     type: background-worker
-    name: autocomplete Service (External)
+    name: Autocomplete (External)
     external: true
     properties:
       filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.ts
@@ -261,68 +592,24 @@ nodes:
     position:
       x: 330
       y: -204
-  - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
+  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/providers
     type: background-worker
-    name: autocomplete.test Service (External)
+    name: Providers (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.test.ts
-      containerId: scaffolder-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 790
-      y: -204
-  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
-    type: background-worker
-    name: BitbucketCloudEntityProvider Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProvider.ts
-      containerId: catalog-backend-module-bitbucket-cloud
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -590
-      y: -204
-  - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
-    type: background-worker
-    name: BitbucketCloudEntityProvider.test Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProvider.test.ts
+      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProviderConfig.ts
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
     position:
       x: -130
       y: -204
-  - entityRef: backstage/plugins/kubernetes-react/events
-    type: background-worker
-    name: Events Service (External)
-    external: true
-    properties:
-      filepath: plugins/kubernetes-react/src/components/Pods/Events/Events.tsx
-      containerId: kubernetes-react
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 100
-      y: 404
 dependencies:
-  - from: backstage/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider
-    to: backstage/plugins/bitbucket-cloud-common/index
-    type: direct-call
-    description: '@backstage/plugin-bitbucket-cloud-common'
-  - from: backstage/plugins/catalog-backend-module-bitbucket-cloud/bitbucketcloudentityprovider-test
+  - from: backstage/plugins/catalog-backend-module-bitbucket-cloud/providers
     to: backstage/plugins/bitbucket-cloud-common/index
     type: direct-call
     description: '@backstage/plugin-bitbucket-cloud-common'
   - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete
-    to: backstage/plugins/bitbucket-cloud-common/index
-    type: direct-call
-    description: '@backstage/plugin-bitbucket-cloud-common'
-  - from: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/autocomplete-test
     to: backstage/plugins/bitbucket-cloud-common/index
     type: direct-call
     description: '@backstage/plugin-bitbucket-cloud-common'
@@ -351,7 +638,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/bitbucket-cloud-common/index
-    to: backstage/plugins/kubernetes-react/events
+    to: backstage/plugins/bitbucket-cloud-common/events
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/bitbucket-cloud-common/index

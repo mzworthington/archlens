@@ -9,44 +9,10 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/events-backend-module-aws-sqs/config-d
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/publisher
     type: background-worker
-    name: config.d Service
+    name: Publisher
     isTest: false
-    properties:
-      filepath: plugins/events-backend-module-aws-sqs/config.d.ts
-      containerId: events-backend-module-aws-sqs
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 77
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
-    type: background-worker
-    name: AwsSqsConsumingEventPublisher.test Service
-    isTest: true
     properties:
       filepath: plugins/events-backend-module-aws-sqs/src/publisher/AwsSqsConsumingEventPublisher.test.ts
       containerId: events-backend-module-aws-sqs
@@ -68,8 +34,52 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
         - 0
         - 0
         - 0
@@ -80,113 +90,11 @@ nodes:
           commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0.00999394960888543
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend-module-aws-sqs/config
-    type: background-worker
-    name: config Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-aws-sqs/src/publisher/config.ts
-      containerId: events-backend-module-aws-sqs
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 120
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
-    type: background-worker
-    name: AwsSqsConsumingEventPublisher Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-aws-sqs/src/publisher/AwsSqsConsumingEventPublisher.ts
-      containerId: events-backend-module-aws-sqs
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 204
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend-module-aws-sqs/config-test
-    type: background-worker
-    name: config.test Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-aws-sqs/src/publisher/config.test.ts
-      containerId: events-backend-module-aws-sqs
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 224
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.006487267422696319
+      sinceDays: 365
   - entityRef: backstage/plugins/events-backend-module-aws-sqs/alpha
     type: background-worker
-    name: alpha Service
+    name: Alpha
     isTest: false
     properties:
       filepath: plugins/events-backend-module-aws-sqs/src/alpha.ts
@@ -207,7 +115,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -217,44 +169,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend-module-aws-sqs/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/events-backend-module-aws-sqs/src/setupTests.ts
-      containerId: events-backend-module-aws-sqs
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/events-backend-module-aws-sqs/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/events-backend-module-aws-sqs/src/index.ts
@@ -275,7 +193,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -285,11 +247,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/events-backend-module-aws-sqs/service
     type: background-worker
-    name: eventsModuleAwsSqsConsumingEventPublisher.test Service
-    isTest: true
+    name: Service
+    isTest: false
     properties:
       filepath: plugins/events-backend-module-aws-sqs/src/service/eventsModuleAwsSqsConsumingEventPublisher.test.ts
       containerId: events-backend-module-aws-sqs
@@ -309,7 +271,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -319,44 +325,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
-    type: background-worker
-    name: eventsModuleAwsSqsConsumingEventPublisher Service
-    isTest: false
-    properties:
-      filepath: plugins/events-backend-module-aws-sqs/src/service/eventsModuleAwsSqsConsumingEventPublisher.ts
-      containerId: events-backend-module-aws-sqs
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 52
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/events-backend-test-utils/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/events-backend-test-utils/src/index.ts
@@ -368,10 +340,10 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/events-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/events-node/src/schema/openapi/index.ts
+      filepath: plugins/events-node/src/api/index.ts
       containerId: events-node
       technology: REST Controller / Router
       classification: api-marker
@@ -379,55 +351,35 @@ nodes:
       x: 330
       y: 404
 dependencies:
-  - from: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
+  - from: backstage/plugins/events-backend-module-aws-sqs/publisher
     to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher-test
-    to: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+  - from: backstage/plugins/events-backend-module-aws-sqs/publisher
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
-    to: backstage/plugins/events-backend-module-aws-sqs/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend-module-aws-sqs/config-test
-    to: backstage/plugins/events-backend-module-aws-sqs/config
-    type: direct-call
-    description: Calls module / service
   - from: backstage/plugins/events-backend-module-aws-sqs/alpha
-    to: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+    to: backstage/plugins/events-backend-module-aws-sqs/service
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/events-backend-module-aws-sqs/index
-    to: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
+    to: backstage/plugins/events-backend-module-aws-sqs/service
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/events-backend-module-aws-sqs/index
-    to: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+    to: backstage/plugins/events-backend-module-aws-sqs/publisher
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+  - from: backstage/plugins/events-backend-module-aws-sqs/service
     to: backstage/plugins/events-node/index
     type: direct-call
     description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
+  - from: backstage/plugins/events-backend-module-aws-sqs/service
     to: backstage/plugins/events-backend-test-utils/index
     type: direct-call
     description: '@backstage/plugin-events-backend-test-utils'
-  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher-test
-    to: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
-    to: backstage/plugins/events-node/index
-    type: direct-call
-    description: '@backstage/plugin-events-node'
-  - from: backstage/plugins/events-backend-module-aws-sqs/eventsmoduleawssqsconsumingeventpublisher
-    to: backstage/plugins/events-backend-module-aws-sqs/awssqsconsumingeventpublisher
+  - from: backstage/plugins/events-backend-module-aws-sqs/service
+    to: backstage/plugins/events-backend-module-aws-sqs/publisher
     type: direct-call
     description: Calls module / service

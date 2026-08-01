@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/plugins/example-todo-list-backend/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/example-todo-list-backend/dev/index.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,11 +86,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/example-todo-list-backend/plugin
     type: background-worker
-    name: plugin Service
+    name: Plugin
     isTest: false
     properties:
       filepath: plugins/example-todo-list-backend/src/plugin.ts
@@ -67,7 +111,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -80,46 +168,11 @@ nodes:
       importedFiles:
         - path: plugins/example-todo-list-backend/src/service/router.ts
           kind: direct
-      sinceDays: 60
+      sinceDays: 365
       shortChurnDays: 30
-  - entityRef: backstage/plugins/example-todo-list-backend/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/example-todo-list-backend/src/setupTests.ts
-      containerId: example-todo-list-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-      shortChurnDays: 30
-  - entityRef: backstage/plugins/example-todo-list-backend/router
+  - entityRef: backstage/plugins/example-todo-list-backend/service
     type: rest-api
-    name: router Service
+    name: Service
     isTest: false
     properties:
       filepath: plugins/example-todo-list-backend/src/service/router.ts
@@ -140,7 +193,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -153,95 +250,14 @@ nodes:
       importedFiles:
         - path: plugins/example-todo-list-backend/src/service/todos.ts
           kind: direct
-      sinceDays: 60
-      shortChurnDays: 30
-  - entityRef: backstage/plugins/example-todo-list-backend/router-test
-    type: rest-api
-    name: router.test Service
-    isTest: true
-    properties:
-      filepath: plugins/example-todo-list-backend/src/service/router.test.ts
-      containerId: example-todo-list-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 45
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      importedFiles:
-        - path: plugins/example-todo-list-backend/src/service/router.ts
-          kind: direct
-      sinceDays: 60
-      shortChurnDays: 30
-  - entityRef: backstage/plugins/example-todo-list-backend/todos
-    type: background-worker
-    name: todos Service
-    isTest: false
-    properties:
-      filepath: plugins/example-todo-list-backend/src/service/todos.ts
-      containerId: example-todo-list-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 91
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
       shortChurnDays: 30
 dependencies:
   - from: backstage/plugins/example-todo-list-backend/plugin
-    to: backstage/plugins/example-todo-list-backend/router
+    to: backstage/plugins/example-todo-list-backend/service
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/example-todo-list-backend/index
     to: backstage/plugins/example-todo-list-backend/plugin
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/example-todo-list-backend/router
-    to: backstage/plugins/example-todo-list-backend/todos
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/example-todo-list-backend/router-test
-    to: backstage/plugins/example-todo-list-backend/router
     type: direct-call
     description: Calls module / service

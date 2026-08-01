@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/notifications-backend-module-email/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/notifications-backend-module-email/config.d.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 184
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/notifications-backend-module-email/module
     type: background-worker
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-email/src/module.ts
@@ -66,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-backend-module-email/smtp
+      sinceDays: 365
+  - entityRef: backstage/plugins/notifications-backend-module-email/processor/transports
     type: background-worker
-    name: smtp Service
+    name: Transports
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-email/src/processor/transports/smtp.ts
@@ -100,69 +110,44 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-backend-module-email/sendmail
-    type: background-worker
-    name: sendmail Service
-    isTest: false
-    properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/transports/sendmail.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 25
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-backend-module-email/stream
-    type: background-worker
-    name: stream Service
-    isTest: false
-    properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/transports/stream.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 20
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,39 +157,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-backend-module-email/azure
-    type: background-worker
-    name: azure Service
-    isTest: false
-    properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/transports/azure.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 80
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -212,78 +164,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-backend-module-email/index
+      sinceDays: 365
+  - entityRef: backstage/plugins/notifications-backend-module-email/processor
     type: background-worker
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/transports/index.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 20
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-backend-module-email/ses
-    type: background-worker
-    name: ses Service
-    isTest: false
-    properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/transports/ses.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 42
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
-    type: background-worker
-    name: NotificationsEmailProcessor Service
+    name: Processor
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-email/src/processor/NotificationsEmailProcessor.ts
@@ -291,14 +175,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 399
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 21
+      functionCount: 23
+      loc: 400
+      sloc: 342
+      churn: 6
+      lineChurn: 466
       churn30: 1
-      churn365: 1
+      churn365: 6
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -308,31 +196,39 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor-test
-    type: background-worker
-    name: NotificationsEmailProcessor.test Service
-    isTest: true
-    properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/NotificationsEmailProcessor.test.ts
-      containerId: notifications-backend-module-email
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 509
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -342,16 +238,21 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: colt.mckissick.ycbp@statefarm.com
+          commits: 4
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.011438630450181292
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-backend-module-email/extensions
     type: background-worker
-    name: extensions Service
+    name: Extensions
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-email/src/extensions.ts
@@ -372,7 +273,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -382,34 +327,100 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/notifications-common/index
+      sinceDays: 365
+  - entityRef: backstage/plugins/notifications-backend-module-email/index
     type: background-worker
-    name: index Service (External)
-    external: true
+    name: Index
+    isTest: false
     properties:
-      filepath: plugins/notifications-common/src/index.ts
-      containerId: notifications-common
+      filepath: plugins/notifications-backend-module-email/src/index.ts
+      containerId: notifications-backend-module-email
       technology: TypeScript Domain Service
       classification: default
-    position:
-      x: 560
-      y: 404
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 24
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      filepath: plugins/catalog-node/src/api/index.ts
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -820
+      x: -590
       y: 404
   - entityRef: backstage/plugins/notifications-node/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/notifications-node/src/index.ts
@@ -417,23 +428,23 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: 790
       y: 404
-  - entityRef: backstage/plugins/catalog-node/processor
-    type: rest-api
-    name: processor Service (External)
+  - entityRef: backstage/plugins/notifications-common/index
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/api/processor.ts
-      containerId: catalog-node
-      technology: REST Controller / Router
-      classification: api-marker
+      filepath: plugins/notifications-common/src/index.ts
+      containerId: notifications-common
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: -360
+      x: 330
       y: 404
   - entityRef: backstage/plugins/catalog-node/testutils
     type: background-worker
-    name: testUtils Service (External)
+    name: Testutils (External)
     external: true
     properties:
       filepath: plugins/catalog-node/src/testUtils.ts
@@ -441,13 +452,9 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: -130
       y: 404
 dependencies:
-  - from: backstage/plugins/notifications-backend-module-email/config-d
-    to: backstage/plugins/notifications-common/index
-    type: direct-call
-    description: '@backstage/plugin-notifications-common'
   - from: backstage/plugins/notifications-backend-module-email/module
     to: backstage/plugins/catalog-node/index
     type: direct-call
@@ -457,61 +464,33 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-notifications-node'
   - from: backstage/plugins/notifications-backend-module-email/module
-    to: backstage/plugins/catalog-node/processor
+    to: backstage/plugins/notifications-backend-module-email/processor
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/notifications-backend-module-email/module
     to: backstage/plugins/notifications-backend-module-email/extensions
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/notifications-backend-module-email/index
-    to: backstage/plugins/notifications-backend-module-email/smtp
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/notifications-backend-module-email/index
-    to: backstage/plugins/notifications-backend-module-email/ses
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/notifications-backend-module-email/index
-    to: backstage/plugins/notifications-backend-module-email/sendmail
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/notifications-backend-module-email/index
-    to: backstage/plugins/notifications-backend-module-email/stream
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/notifications-backend-module-email/index
-    to: backstage/plugins/notifications-backend-module-email/azure
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
+  - from: backstage/plugins/notifications-backend-module-email/processor
     to: backstage/plugins/notifications-node/index
     type: direct-call
     description: '@backstage/plugin-notifications-node'
-  - from: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
+  - from: backstage/plugins/notifications-backend-module-email/processor
     to: backstage/plugins/notifications-common/index
     type: direct-call
     description: '@backstage/plugin-notifications-common'
-  - from: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
+  - from: backstage/plugins/notifications-backend-module-email/processor
     to: backstage/plugins/catalog-node/index
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
+  - from: backstage/plugins/notifications-backend-module-email/processor
     to: backstage/plugins/notifications-backend-module-email/extensions
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor-test
-    to: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor-test
+  - from: backstage/plugins/notifications-backend-module-email/processor
     to: backstage/plugins/catalog-node/testutils
     type: direct-call
     description: '@backstage/plugin-catalog-node'
-  - from: backstage/plugins/notifications-backend-module-email/index
-    to: backstage/plugins/notifications-backend-module-email/notificationsemailprocessor
-    type: direct-call
-    description: Calls module / service
   - from: backstage/plugins/notifications-backend-module-email/extensions
     to: backstage/plugins/notifications-common/index
     type: direct-call

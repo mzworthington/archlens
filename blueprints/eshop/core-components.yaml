@@ -9,37 +9,6 @@ metadata:
     remoteUrl: https://github.com/dotnet/eShop
     defaultBranch: main
 nodes:
-  - entityRef: eshop/core/playwright-config
-    type: background-worker
-    name: playwright.config Service
-    isTest: false
-    properties:
-      filepath: playwright.config.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      loc: 96
-      sloc: 40
-      churn: 0
-      churn30: 0
-      churn365: 0
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0.125
-      sinceDays: 60
-      shortChurnDays: 30
   - entityRef: eshop/core/migratedbcontextextensions
     type: relational-database
     name: MigrateDbContextExtensions
@@ -56,23 +25,71 @@ nodes:
       functionCount: 8
       loc: 94
       sloc: 74
-      churn: 0
+      churn: 1
+      lineChurn: 6
       churn30: 0
-      churn365: 0
+      churn365: 1
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
         - 0
         - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0.041666666666666664
-      sinceDays: 60
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: mikekistler@microsoft.com
+          commits: 1
+      hotspotScore: 0.002577319587628866
+      sinceDays: 365
       shortChurnDays: 30
   - entityRef: eshop/core/activityextensions
     type: background-worker
@@ -103,9 +120,53 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 0
       topAuthorPercent: 0
-      hotspotScore: 0.041666666666666664
-      sinceDays: 60
+      hotspotScore: 0
+      sinceDays: 365
       shortChurnDays: 30
 dependencies: []

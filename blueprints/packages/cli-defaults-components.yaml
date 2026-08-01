@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/cli-defaults/src/index.ts
@@ -19,14 +19,57 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 47
+      complexity: 1
+      loc: 48
+      sloc: 26
+      churn: 5
+      lineChurn: 98
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +79,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
         - email: poldsberg@gmail.com
+          commits: 4
+        - email: ben@blam.sh
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0003436498418509401
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-actions/src/index.ts
@@ -57,7 +103,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-auth/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-auth/src/index.ts
@@ -69,10 +115,10 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-build/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/cli-module-build/src/lib/runner/index.ts
+      filepath: packages/cli-module-build/src/index.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
@@ -81,7 +127,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-config/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-config/src/index.ts
@@ -92,20 +138,20 @@ nodes:
       x: -1050
       y: 404
   - entityRef: backstage/packages/cli-module-github/index
-    type: gateway-api
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/cli-module-github/src/commands/create-github-app/index.ts
+      filepath: packages/cli-module-github/src/index.ts
       containerId: cli-module-github
-      technology: React Component
-      classification: ui-import
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: -590
       y: 404
   - entityRef: backstage/packages/cli-module-info/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-info/src/index.ts
@@ -117,7 +163,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-lint/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-lint/src/index.ts
@@ -129,7 +175,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-maintenance/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-maintenance/src/index.ts
@@ -141,7 +187,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-migrate/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-migrate/src/index.ts
@@ -153,7 +199,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-new/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-new/templates/frontend-plugin/dev/index.tsx
@@ -165,7 +211,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-test-jest/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-test-jest/src/index.ts
@@ -177,7 +223,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-module-translations/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-module-translations/src/index.ts

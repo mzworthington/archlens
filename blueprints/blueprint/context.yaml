@@ -1,16 +1,14 @@
-# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
 metadata:
   entityRef: blueprint
   name: Blueprint
-  description: ArchLens application monorepo (CLI, designer, and core packages).
+  source:
+    scannedAtCommit: 63ae0bceb16a3a7903ec7e6c25c86bbd556e6065
+    scanRoot: .
+    remoteUrl: https://github.com/pulumi/examples
+    defaultBranch: master
 nodes:
-  - entityRef: blueprint/user
-    type: person
-    name: User
-    properties:
-      role: context-actor
   - entityRef: blueprint/sim
     type: group
     name: Sim System
@@ -25,57 +23,149 @@ nodes:
       rootPath: app
       productId: sim
     forensics:
-      complexity: 80
-      complexityPeak: 80
-      cognitiveComplexity: 2218
-      churn: 2257
-      lineChurn: 98738
-      churn30: 2257
-      churn365: 2257
+      complexity: 32
+      complexityPeak: 32
+      cognitiveComplexity: 365
+      churn: 275
+      lineChurn: 7678
+      churn30: 275
+      churn365: 275
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 15
-        - 727
-        - 574
-        - 941
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 62
+        - 66
+        - 118
+        - 29
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2257
-      hotspotScore: 0.3854466858789625
+          commits: 275
+      hotspotScore: 0.07759893160891262
       classifications:
         - knowledge-silo
       coupledFiles:
-        - path: app/packages/cli/src/writers/componentLevelWriter.ts
-          score: 1
-          sharedCommits: 6
         - path: app/packages/cli/src/writers/containerLevelWriter.ts
           score: 1
           sharedCommits: 6
-        - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.test.ts
-          score: 1
-          sharedCommits: 5
-        - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.ts
-          score: 1
-          sharedCommits: 5
-        - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/WorkspaceDisplayControls.test.tsx
-          score: 0.8888888888888888
-          sharedCommits: 8
-      sinceDays: 60
-      fileCount: 652
+      sinceDays: 365
+      fileCount: 70
       hotspotCount: 0
-      knowledgeSiloCount: 62
+      knowledgeSiloCount: 6
+  - entityRef: blueprint/user
+    type: person
+    name: User
+    properties:
+      role: context-actor
+  - entityRef: blueprint/helloworld
+    type: group
+    name: Helloworld System
+    properties:
+      rootPath: ''
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-gke
+    type: software-system
+    name: Gcp-py-gke System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-gke
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-functions
+    type: software-system
+    name: Gcp-py-functions System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-functions
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-webserver
+    type: software-system
+    name: Gcp-py-webserver System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-webserver
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-instance-nginx
+    type: software-system
+    name: Gcp-py-instance-nginx System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-instance-nginx
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-serverless-raw
+    type: software-system
+    name: Gcp-py-serverless-raw System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-serverless-raw
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-network-component
+    type: software-system
+    name: Gcp-py-network-component System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-network-component
+      productId: helloworld
+  - entityRef: blueprint/gcp-py-cloudrun-cloudsql
+    type: software-system
+    name: Gcp-py-cloudrun-cloudsql System
+    parentEntityRef: blueprint/helloworld
+    properties:
+      rootPath: gcp-py-cloudrun-cloudsql
+      productId: helloworld
 dependencies:
-  - from: application/user
+  - from: blueprint/user
     to: blueprint/sim
     type: direct-call
     description: Uses
   - from: blueprint/user
-    to: blueprint/sim
+    to: blueprint/helloworld
     type: direct-call
     description: Uses

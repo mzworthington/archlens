@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/cli-module-actions/httpjson
     type: background-worker
-    name: httpJson Service
+    name: Httpjson
     isTest: false
     properties:
       filepath: packages/cli-module-actions/src/lib/httpJson.ts
@@ -19,14 +19,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 44
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      functionCount: 1
+      loc: 45
+      sloc: 26
+      churn: 3
+      lineChurn: 90
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,16 +82,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: ben@blam.sh
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0015779839676828883
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/pluginsources
     type: background-worker
-    name: pluginSources Service
+    name: Pluginsources
     isTest: false
     properties:
       filepath: packages/cli-module-actions/src/lib/pluginSources.ts
@@ -56,11 +105,41 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 19
+      churn: 2
+      lineChurn: 38
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +149,32 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: ben@blam.sh
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/actionsclient
     type: background-worker
-    name: ActionsClient Service
+    name: Actionsclient
     isTest: false
     properties:
       filepath: packages/cli-module-actions/src/lib/ActionsClient.ts
@@ -87,14 +182,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 98
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 8
+      loc: 99
+      sloc: 70
+      churn: 5
+      lineChurn: 232
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +245,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 3
+        - email: ben@blam.sh
+          commits: 2
+      hotspotScore: 0.0016270768022330227
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/schematoflags-test
     type: background-worker
-    name: schemaToFlags.test Service
+    name: Schematoflags test
     isTest: true
     properties:
       filepath: packages/cli-module-actions/src/lib/schemaToFlags.test.ts
@@ -121,14 +265,59 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 199
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 14
+      loc: 200
+      sloc: 158
+      churn: 3
+      lineChurn: 432
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,16 +327,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: ben@blam.sh
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0015148646089755728
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/format-test
     type: background-worker
-    name: format.test Service
+    name: Format test
     isTest: true
     properties:
       filepath: packages/cli-module-actions/src/lib/format.test.ts
@@ -158,11 +350,41 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 183
+      churn: 2
+      lineChurn: 366
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,16 +394,32 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: ben@blam.sh
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/resolveauth-test
     type: background-worker
-    name: resolveAuth.test Service
+    name: Resolveauth test
     isTest: true
     properties:
       filepath: packages/cli-module-actions/src/lib/resolveAuth.test.ts
@@ -189,14 +427,59 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 96
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 7
+      loc: 97
+      sloc: 66
+      churn: 5
+      lineChurn: 376
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -206,16 +489,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 5
+      hotspotScore: 0.0013184932707750356
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/format
     type: background-worker
-    name: format Service
+    name: Format
     isTest: false
     properties:
       filepath: packages/cli-module-actions/src/lib/format.ts
@@ -226,11 +510,41 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 159
+      churn: 2
+      lineChurn: 318
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -240,16 +554,32 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: ben@blam.sh
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/resolveauth
     type: background-worker
-    name: resolveAuth Service
+    name: Resolveauth
     isTest: false
     properties:
       filepath: packages/cli-module-actions/src/lib/resolveAuth.ts
@@ -257,14 +587,59 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 38
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 1
+      loc: 39
+      sloc: 20
+      churn: 6
+      lineChurn: 138
       churn30: 1
-      churn365: 1
+      churn365: 6
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -274,50 +649,26 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/declarations-d
-    type: background-worker
-    name: declarations.d Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-actions/src/lib/declarations.d.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 23
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 4
+        - email: ben@blam.sh
+          commits: 2
+      hotspotScore: 0.00048391508342275245
+      coupledFiles:
+        - path: packages/cli-module-actions/src/commands/sourcesAdd.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+        - path: packages/cli-module-actions/src/commands/sourcesRemove.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/schematoflags
     type: background-worker
-    name: schemaToFlags Service
+    name: Schematoflags
     isTest: false
     properties:
       filepath: packages/cli-module-actions/src/lib/schemaToFlags.ts
@@ -325,14 +676,60 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 107
+      complexity: 16
+      complexityPeak: 16
+      cognitiveComplexity: 109
+      functionCount: 4
+      loc: 108
+      sloc: 75
+      churn: 3
+      lineChurn: 240
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -342,16 +739,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: ben@blam.sh
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.01346546319089398
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/actionsclient-test
     type: background-worker
-    name: ActionsClient.test Service
+    name: Actionsclient test
     isTest: true
     properties:
       filepath: packages/cli-module-actions/src/lib/ActionsClient.test.ts
@@ -359,14 +759,59 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 132
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 11
+      loc: 133
+      sloc: 96
+      churn: 5
+      lineChurn: 296
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -376,17 +821,20 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/sourcesremove-test
+          commits: 3
+        - email: ben@blam.sh
+          commits: 2
+      hotspotScore: 0.001037962787631411
+      sinceDays: 365
+  - entityRef: backstage/packages/cli-module-actions/commands
     type: background-worker
-    name: sourcesRemove.test Service
-    isTest: true
+    name: Commands
+    isTest: false
     properties:
       filepath: packages/cli-module-actions/src/commands/sourcesRemove.test.ts
       containerId: cli-module-actions
@@ -396,11 +844,41 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 114
+      churn: 2
+      lineChurn: 228
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -410,254 +888,32 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/sourcesadd-test
-    type: background-worker
-    name: sourcesAdd.test Service
-    isTest: true
-    properties:
-      filepath: packages/cli-module-actions/src/commands/sourcesAdd.test.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 121
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: ben@blam.sh
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/sourcesremove
-    type: background-worker
-    name: sourcesRemove Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-actions/src/commands/sourcesRemove.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 66
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/execute
-    type: background-worker
-    name: execute Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-actions/src/commands/execute.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 179
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/sourceslist
-    type: background-worker
-    name: sourcesList Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-actions/src/commands/sourcesList.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 39
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/list
-    type: background-worker
-    name: list Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-actions/src/commands/list.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 63
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/execute-test
-    type: background-worker
-    name: execute.test Service
-    isTest: true
-    properties:
-      filepath: packages/cli-module-actions/src/commands/execute.test.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 303
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-actions/sourcesadd
-    type: background-worker
-    name: sourcesAdd Service
-    isTest: false
-    properties:
-      filepath: packages/cli-module-actions/src/commands/sourcesAdd.ts
-      containerId: cli-module-actions
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 63
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/cli-module-actions/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/cli-module-actions/src/index.ts
@@ -668,11 +924,38 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 49
+      churn: 2
+      lineChurn: 98
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -682,19 +965,38 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: ben@blam.sh
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/errors/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/errors/src/serialization/index.ts
+      filepath: packages/errors/src/index.ts
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
@@ -702,20 +1004,20 @@ nodes:
       x: 330
       y: 404
   - entityRef: backstage/packages/cli-node/index
-    type: cache-store
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/monorepo/index.ts
+      filepath: packages/cli-node/src/index.ts
       containerId: cli-node
-      technology: TypeScript Cache Client
-      classification: cache-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: -130
       y: 404
   - entityRef: backstage/packages/cli-defaults/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-defaults/src/index.ts
@@ -774,91 +1076,51 @@ dependencies:
     to: backstage/packages/cli-module-actions/httpjson
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/sourcesremove-test
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-node/index
     type: direct-call
     description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-actions/sourcesremove-test
-    to: backstage/packages/cli-module-actions/sourcesremove
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-actions/sourcesadd-test
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-actions/sourcesadd-test
-    to: backstage/packages/cli-module-actions/sourcesadd
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-actions/sourcesremove
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-actions/sourcesremove
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/pluginsources
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/execute
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-actions/execute
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/actionsclient
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/execute
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/schematoflags
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/execute
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/resolveauth
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/execute
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/format
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/sourceslist
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-actions/sourceslist
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/pluginsources
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/list
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-actions/list
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/actionsclient
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/list
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/resolveauth
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/list
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/format
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/execute-test
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-actions/execute-test
-    to: backstage/packages/cli-module-actions/execute
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/cli-module-actions/execute-test
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/resolveauth
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-actions/sourcesadd
-    to: backstage/packages/cli-node/index
-    type: direct-call
-    description: '@backstage/cli-node'
-  - from: backstage/packages/cli-module-actions/sourcesadd
+  - from: backstage/packages/cli-module-actions/commands
     to: backstage/packages/cli-module-actions/pluginsources
     type: direct-call
     description: Calls module / service

@@ -9,45 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend-module-backstage-openapi/config.d.ts
-      containerId: catalog-backend-module-backstage-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 47
-      churn30: 2
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: aramis.sennyey@doordash.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider
     type: background-worker
-    name: InternalOpenApiDocumentationProvider Service
+    name: Internalopenapidocumentationprovider
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-backstage-openapi/src/InternalOpenApiDocumentationProvider.ts
@@ -61,22 +25,66 @@ nodes:
       functionCount: 16
       loc: 333
       sloc: 293
-      churn: 4
-      lineChurn: 346
+      churn: 6
+      lineChurn: 366
       churn30: 4
-      churn365: 4
+      churn365: 6
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
-        - 3
+        - 0
+        - 0
         - 1
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.3333333333333333
       authors:
         - email: aramis.sennyey@doordash.com
           commits: 2
@@ -84,45 +92,15 @@ nodes:
           commits: 1
         - email: 159921952+aramissennyeydd@users.noreply.github.com
           commits: 1
-      hotspotScore: 0.009345693418038809
-      sinceDays: 60
-  - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/catalog-backend-module-backstage-openapi/src/setupTests.ts
-      containerId: catalog-backend-module-backstage-openapi
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.006417134801910413
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/internalopenapidocumentationprovider-test
     type: background-worker
-    name: InternalOpenApiDocumentationProvider.test Service
+    name: Internalopenapidocumentationprovider test
     isTest: true
     properties:
       filepath: plugins/catalog-backend-module-backstage-openapi/src/InternalOpenApiDocumentationProvider.test.ts
@@ -142,6 +120,50 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
@@ -153,10 +175,10 @@ nodes:
         - email: aramis.sennyey@doordash.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-backend-module-backstage-openapi/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/catalog-backend-module-backstage-openapi/src/index.ts
@@ -164,38 +186,84 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 76
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 2
+      loc: 75
+      sloc: 45
+      churn: 3
+      lineChurn: 78
       churn30: 2
-      churn365: 2
+      churn365: 3
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
-        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: aramis.sennyey@doordash.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.000273517221065034
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      filepath: plugins/catalog-node/src/api/index.ts
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker

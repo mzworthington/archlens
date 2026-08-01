@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/notifications-backend-module-slack/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/notifications-backend-module-slack/config.d.ts
-      containerId: notifications-backend-module-slack
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 68
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/notifications-backend-module-slack/module
     type: relational-database
-    name: module Service
+    name: Module
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-slack/src/module.ts
@@ -53,14 +19,39 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 142
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      functionCount: 5
+      loc: 143
+      sloc: 106
+      churn: 5
+      lineChurn: 259
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +61,44 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 1
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.4
       authors:
+        - email: erik.miller@gusto.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: kai.dubauskas@doordash.com
+          commits: 1
+      hotspotScore: 0.003632869756709938
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-backend-module-slack/extensions
     type: background-worker
-    name: extensions Service
+    name: Extensions
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-slack/src/extensions.ts
@@ -87,14 +106,57 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 43
+      complexity: 1
+      loc: 44
+      sloc: 13
+      churn: 3
+      lineChurn: 86
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +166,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: kai.dubauskas@doordash.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0003015702693793965
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-backend-module-slack/slacknotificationprocessor
     type: relational-database
-    name: SlackNotificationProcessor Service
+    name: Slacknotificationprocessor
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-slack/src/lib/SlackNotificationProcessor.ts
@@ -121,35 +186,94 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 669
+      complexity: 15
+      complexityPeak: 15
+      cognitiveComplexity: 69
+      functionCount: 36
+      loc: 654
+      sloc: 537
+      churn: 19
+      lineChurn: 1125
       churn30: 2
-      churn365: 2
+      churn365: 19
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 0
+        - 2
         - 1
+        - 0
         - 0
         - 1
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 2
+        - 0
+        - 2
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+      authorCount: 8
+      topAuthorPercent: 0.3684210526315789
       authors:
+        - email: kai.dubauskas@doordash.com
+          commits: 7
+        - email: henrik.edegard@fortnox.se
+          commits: 3
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: erik.miller@gusto.com
+          commits: 2
+        - email: gabriel.dugny@believe.com
+          commits: 2
         - email: 141795754+sspadotto@users.noreply.github.com
           commits: 1
-        - email: poldsberg@gmail.com
+        - email: kc9ddi@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.05917439878810832
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-backend-module-slack/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-slack/src/lib/types.ts
@@ -160,11 +284,22 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 33
+      churn: 2
+      lineChurn: 46
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -174,16 +309,51 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: henrik.edegard@fortnox.se
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-backend-module-slack/constants
     type: background-worker
-    name: constants Service
+    name: Constants
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-slack/src/lib/constants.ts
@@ -191,14 +361,57 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 29
+      complexity: 1
+      loc: 30
+      sloc: 1
+      churn: 4
+      lineChurn: 43
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -208,16 +421,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
       authors:
+        - email: kai.dubauskas@doordash.com
+          commits: 3
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.00015078513468969824
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-backend-module-slack/util
     type: background-worker
-    name: util Service
+    name: Util
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-slack/src/lib/util.ts
@@ -225,14 +441,39 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 136
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      functionCount: 8
+      loc: 137
+      sloc: 108
+      churn: 4
+      lineChurn: 149
       churn30: 1
-      churn365: 1
+      churn365: 4
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -242,16 +483,42 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5
       authors:
+        - email: henrik.edegard@fortnox.se
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: kai.dubauskas@doordash.com
+          commits: 1
+      hotspotScore: 0.002612440124275004
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-backend-module-slack/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/notifications-backend-module-slack/src/lib/index.ts
@@ -272,7 +539,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -282,10 +593,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-backend-module-slack/slacknotificationprocessor-test
     type: relational-database
-    name: SlackNotificationProcessor.test Service
+    name: Slacknotificationprocessor test
     isTest: true
     properties:
       filepath: plugins/notifications-backend-module-slack/src/lib/SlackNotificationProcessor.test.ts
@@ -293,14 +604,60 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 2002
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 71
+      loc: 2003
+      sloc: 1818
+      churn: 13
+      lineChurn: 3461
       churn30: 1
-      churn365: 1
+      churn365: 13
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -310,16 +667,25 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.46153846153846156
       authors:
+        - email: kai.dubauskas@doordash.com
+          commits: 6
+        - email: henrik.edegard@fortnox.se
+          commits: 3
+        - email: erik.miller@gusto.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.03640935008100317
+      sinceDays: 365
   - entityRef: backstage/plugins/notifications-node/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/notifications-node/src/index.ts
@@ -331,10 +697,10 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/catalog-node/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/scmEvents/index.ts
+      filepath: plugins/catalog-node/src/api/index.ts
       containerId: catalog-node
       technology: REST Controller / Router
       classification: api-marker
@@ -343,7 +709,7 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/notifications-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/notifications-common/src/index.ts
@@ -355,7 +721,7 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/signals-node/lib
     type: background-worker
-    name: lib Service (External)
+    name: Lib (External)
     external: true
     properties:
       filepath: plugins/signals-node/src/lib.ts
@@ -367,7 +733,7 @@ nodes:
       y: 404
   - entityRef: backstage/plugins/catalog-node/testutils
     type: background-worker
-    name: testUtils Service (External)
+    name: Testutils (External)
     external: true
     properties:
       filepath: plugins/catalog-node/src/testUtils.ts

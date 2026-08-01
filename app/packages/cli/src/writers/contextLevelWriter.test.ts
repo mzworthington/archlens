@@ -96,7 +96,7 @@ describe('ContextLevelWriter', () => {
   });
 
   it('should use an explicit display name when provided', async () => {
-    await writer.write('/workspace/blueprints', 'blueprint', 'packages', 'Packages');
+    await writer.write('/workspace/blueprints', 'backstage', 'packages', 'Packages');
 
     const yamlContent = fileSystem.writtenFiles.get(
       '/workspace/blueprints/backstage/context.yaml'
@@ -115,9 +115,50 @@ describe('ContextLevelWriter', () => {
     expect(yamlContent).toContain('name: My Context Name');
   });
 
+  it('writes the context diagram under the --context slug', async () => {
+    await writer.writeSystems('/workspace/blueprints', 'backstage', [
+      {
+        entityRef: 'backstage',
+        displayName: 'Backstage',
+        rootPath: '',
+        productId: 'backstage',
+        isProductHub: true,
+      },
+      {
+        entityRef: 'packages',
+        displayName: 'Packages',
+        rootPath: 'packages',
+        productId: 'backstage',
+      },
+    ]);
+
+    const schema = parseSchemaFromYaml(
+      fileSystem.writtenFiles.get('/workspace/blueprints/backstage/context.yaml')!
+    );
+    expect(schema.entityRef).toBe('backstage');
+    expect(schema.name).toBe('Backstage');
+  });
+
+  it('uses curated display names for peer contexts like E-Shop', async () => {
+    await writer.writeSystems('/workspace/blueprints', 'eshop', [
+      {
+        entityRef: 'eshop',
+        displayName: 'EShop',
+        rootPath: '',
+        productId: 'eshop',
+        isProductHub: true,
+      },
+    ]);
+
+    const schema = parseSchemaFromYaml(
+      fileSystem.writtenFiles.get('/workspace/blueprints/eshop/context.yaml')!
+    );
+    expect(schema.name).toBe('E-Shop');
+  });
+
   it('should merge a second software-system into an existing context diagram', async () => {
     await writer.write('/workspace/blueprints', 'blueprint', 'blueprint');
-    await writer.write('/workspace/blueprints', 'blueprint', 'backstage');
+    await writer.write('/workspace/blueprints', 'backstage', 'backstage');
 
     const blueprintYaml = fileSystem.writtenFiles.get(
       '/workspace/blueprints/blueprint/context.yaml'
@@ -131,7 +172,7 @@ describe('ContextLevelWriter', () => {
   });
 
   it('emits a group frame when systems nest under a shared folder parent', async () => {
-    await writer.writeSystems('/workspace/blueprints', 'ctx', [
+    await writer.writeSystems('/workspace/blueprints', 'infrastructure', [
       {
         entityRef: 'aws',
         displayName: 'Aws',
@@ -155,18 +196,23 @@ describe('ContextLevelWriter', () => {
     ]);
 
     const schema = parseSchemaFromYaml(
-      fileSystem.writtenFiles.get('/workspace/blueprints/ctx/context.yaml')!
+      fileSystem.writtenFiles.get('/workspace/blueprints/infrastructure/context.yaml')!
     );
-    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws')?.type).toBe('group');
-    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws-lambda-api')?.parentEntityRef).toBe(
-      'ctx/aws'
-    );
+    expect(schema.nodes.find(n => n.entityRef === 'infrastructure/aws')?.type).toBe('group');
+    expect(
+      schema.nodes.find(n => n.entityRef === 'infrastructure/aws-lambda-api')?.parentEntityRef
+    ).toBe('infrastructure/aws');
   });
 
   it('folds IaC folder groups into an existing product hub', async () => {
-    await writer.write('/workspace/blueprints', 'ctx', 'terraform-examples', 'Terraform Examples');
+    await writer.write(
+      '/workspace/blueprints',
+      'infrastructure',
+      'terraform-examples',
+      'Terraform Examples'
+    );
 
-    await writer.writeSystems('/workspace/blueprints', 'ctx', [
+    await writer.writeSystems('/workspace/blueprints', 'infrastructure', [
       {
         entityRef: 'aws',
         displayName: 'Aws',
@@ -190,23 +236,25 @@ describe('ContextLevelWriter', () => {
     ]);
 
     const schema = parseSchemaFromYaml(
-      fileSystem.writtenFiles.get('/workspace/blueprints/ctx/context.yaml')!
+      fileSystem.writtenFiles.get('/workspace/blueprints/infrastructure/context.yaml')!
     );
-    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws')).toBeUndefined();
-    expect(schema.nodes.find(n => n.entityRef === 'ctx/terraform-examples')?.type).toBe('group');
-    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws-lambda-api')?.parentEntityRef).toBe(
-      'ctx/terraform-examples'
+    expect(schema.nodes.find(n => n.entityRef === 'infrastructure/aws')).toBeUndefined();
+    expect(schema.nodes.find(n => n.entityRef === 'infrastructure/terraform-examples')?.type).toBe(
+      'group'
     );
-    expect(schema.nodes.find(n => n.entityRef === 'ctx/aws-domain-redirect')?.parentEntityRef).toBe(
-      'ctx/terraform-examples'
-    );
+    expect(
+      schema.nodes.find(n => n.entityRef === 'infrastructure/aws-lambda-api')?.parentEntityRef
+    ).toBe('infrastructure/terraform-examples');
+    expect(
+      schema.nodes.find(n => n.entityRef === 'infrastructure/aws-domain-redirect')?.parentEntityRef
+    ).toBe('infrastructure/terraform-examples');
 
-    const personEdges = schema.dependencies.filter(d => d.from === 'ctx/user');
-    expect(personEdges.map(d => d.to)).toEqual(['ctx/terraform-examples']);
+    const personEdges = schema.dependencies.filter(d => d.from === 'infrastructure/user');
+    expect(personEdges.map(d => d.to)).toEqual(['infrastructure/terraform-examples']);
   });
 
   it('nests subsystems under the product group and leaves other products disconnected', async () => {
-    await writer.writeSystems('/workspace/blueprints', 'ctx', [
+    await writer.writeSystems('/workspace/blueprints', 'blueprint', [
       {
         entityRef: 'blueprint',
         displayName: 'Blueprint',
@@ -216,7 +264,7 @@ describe('ContextLevelWriter', () => {
       },
     ]);
 
-    await writer.writeSystems('/workspace/blueprints', 'ctx', [
+    await writer.writeSystems('/workspace/blueprints', 'backstage', [
       {
         entityRef: 'backstage',
         displayName: 'Backstage',
@@ -280,8 +328,8 @@ describe('ContextLevelWriter', () => {
   });
 
   it('should upsert rather than duplicate when rewriting the same system', async () => {
-    await writer.write('/workspace/blueprints', 'blueprint', 'backstage');
-    await writer.write('/workspace/blueprints', 'blueprint', 'backstage');
+    await writer.write('/workspace/blueprints', 'backstage', 'backstage');
+    await writer.write('/workspace/blueprints', 'backstage', 'backstage');
 
     const yamlContent = fileSystem.writtenFiles.get(
       '/workspace/blueprints/backstage/context.yaml'

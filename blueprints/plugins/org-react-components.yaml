@@ -9,44 +9,10 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/org-react/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/org-react/src/setupTests.ts
-      containerId: org-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/org-react/grouplistpicker-test
+  - entityRef: backstage/plugins/org-react/components/grouplistpicker
     type: gateway-api
-    name: GroupListPicker.test Service
-    isTest: true
+    name: Grouplistpicker
+    isTest: false
     properties:
       filepath: plugins/org-react/src/components/GroupListPicker/GroupListPicker.test.tsx
       containerId: org-react
@@ -56,11 +22,28 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 87
+      churn: 2
+      lineChurn: 107
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,31 +53,23 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/org-react/grouplistpickerbutton
-    type: gateway-api
-    name: GroupListPickerButton Service
-    isTest: false
-    properties:
-      filepath: plugins/org-react/src/components/GroupListPicker/GroupListPickerButton.tsx
-      containerId: org-react
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 71
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,16 +79,19 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: freben@gmail.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/org-react/grouplistpicker
+      sinceDays: 365
+  - entityRef: backstage/plugins/org-react/components
     type: gateway-api
-    name: GroupListPicker Service
+    name: Components
     isTest: false
     properties:
       filepath: plugins/org-react/src/components/GroupListPicker/GroupListPicker.tsx
@@ -121,14 +99,60 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 127
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 9
+      loc: 128
+      sloc: 93
+      churn: 3
+      lineChurn: 144
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,19 +162,22 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: maratd@spotify.com
+          commits: 2
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.0010099097393170484
+      sinceDays: 365
   - entityRef: backstage/plugins/org-react/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
-      filepath: plugins/org-react/src/components/GroupListPicker/index.ts
+      filepath: plugins/org-react/src/index.ts
       containerId: org-react
       technology: TypeScript Domain Service
       classification: default
@@ -159,10 +186,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 18
+      lineChurn: 17
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,71 +242,52 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/apis/EntityPresentationApi/index.ts
+      filepath: plugins/catalog-react/src/apis/index.ts
       containerId: catalog-react
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -130
-      y: 404
-  - entityRef: backstage/plugins/catalog-react/testutils
-    type: background-worker
-    name: testUtils Service (External)
-    external: true
-    properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
-      containerId: catalog-react
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
+      x: 100
       y: 404
 dependencies:
-  - from: backstage/plugins/org-react/grouplistpicker-test
+  - from: backstage/plugins/org-react/components/grouplistpicker
+    to: backstage/plugins/org-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/org-react/components
     to: backstage/plugins/catalog-react/index
     type: direct-call
     description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/org-react/grouplistpicker-test
-    to: backstage/plugins/org-react/grouplistpicker
+  - from: backstage/plugins/org-react/components
+    to: backstage/plugins/org-react/components/grouplistpicker
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/org-react/grouplistpicker-test
-    to: backstage/plugins/catalog-react/testutils
+  - from: backstage/plugins/org-react/components/grouplistpicker
+    to: backstage/plugins/org-react/components
     type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/org-react/grouplistpicker
-    to: backstage/plugins/catalog-react/index
-    type: direct-call
-    description: '@backstage/plugin-catalog-react'
-  - from: backstage/plugins/org-react/grouplistpicker
-    to: backstage/plugins/org-react/grouplistpickerbutton
+    description: Calls module / service
+  - from: backstage/plugins/org-react/components/grouplistpicker
+    to: backstage/plugins/org-react/components
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/org-react/index
-    to: backstage/plugins/org-react/grouplistpicker
+    to: backstage/plugins/org-react/components
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/org-react/index
-    to: backstage/plugins/org-react/grouplistpicker
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/org-react/index
-    to: backstage/plugins/org-react/grouplistpicker
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/org-react/index
-    to: backstage/plugins/org-react/grouplistpicker
+    to: backstage/plugins/org-react/components
     type: direct-call
     description: Calls module / service

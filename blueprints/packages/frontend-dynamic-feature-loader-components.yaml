@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/packages/frontend-dynamic-feature-loader/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: packages/frontend-dynamic-feature-loader/config.d.ts
-      containerId: frontend-dynamic-feature-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 22
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader
     type: background-worker
-    name: loader Service
+    name: Loader
     isTest: false
     properties:
       filepath: packages/frontend-dynamic-feature-loader/src/loader.ts
@@ -53,14 +19,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 217
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 45
+      functionCount: 11
+      loc: 218
+      sloc: 169
+      churn: 5
+      lineChurn: 336
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
         - 0
         - 0
         - 0
@@ -70,31 +40,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-dynamic-feature-loader/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: packages/frontend-dynamic-feature-loader/src/setupTests.ts
-      containerId: frontend-dynamic-feature-loader
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
@@ -104,16 +49,52 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
       authors:
+        - email: dfestal@redhat.com
+          commits: 3
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-dynamic-feature-loader/index
+          commits: 2
+      hotspotScore: 0.011782280292032231
+      sinceDays: 365
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/schema/openapi
     type: background-worker
-    name: index Service
+    name: Openapi
     isTest: false
     properties:
       filepath: packages/frontend-dynamic-feature-loader/src/schema/openapi/index.ts
@@ -124,11 +105,36 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 17
+      churn: 2
+      lineChurn: 19
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -138,19 +144,40 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
           commits: 1
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader-test
+      sinceDays: 365
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/index
     type: background-worker
-    name: loader.test Service
-    isTest: true
+    name: Index
+    isTest: false
     properties:
-      filepath: packages/frontend-dynamic-feature-loader/src/loader.test.tsx
+      filepath: packages/frontend-dynamic-feature-loader/src/index.ts
       containerId: frontend-dynamic-feature-loader
       technology: TypeScript Domain Service
       classification: default
@@ -159,10 +186,53 @@ nodes:
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 1298
+      lineChurn: 23
       churn30: 1
       churn365: 1
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -172,43 +242,108 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/frontend-plugin-api/createfrontendfeatureloader
+      sinceDays: 365
+  - entityRef: backstage/packages/frontend-dynamic-feature-loader/loader-test
     type: background-worker
-    name: createFrontendFeatureLoader Service (External)
-    external: true
+    name: Loader test
+    isTest: true
     properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
-      containerId: frontend-plugin-api
+      filepath: packages/frontend-dynamic-feature-loader/src/loader.test.tsx
+      containerId: frontend-dynamic-feature-loader
       technology: TypeScript Domain Service
       classification: default
-    position:
-      x: -360
-      y: 404
-  - entityRef: backstage/packages/backend-openapi-utils/generated
-    type: rest-api
-    name: generated Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-openapi-utils/src/types/generated.ts
-      containerId: backend-openapi-utils
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: -1280
-      y: 404
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 129
+      loc: 1299
+      sloc: 1210
+      churn: 9
+      lineChurn: 2510
+      churn30: 1
+      churn365: 9
+      churnByWeek:
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.3333333333333333
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: dfestal@redhat.com
+          commits: 3
+        - email: sebastian@poxhofer.at
+          commits: 1
+        - email: johanopersson@gmail.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.008801643908631222
+      sinceDays: 365
   - entityRef: backstage/packages/frontend-plugin-api/index
     type: rest-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/index.ts
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
@@ -217,7 +352,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/module-federation-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/module-federation-common/src/index.ts
@@ -228,20 +363,20 @@ nodes:
       x: 560
       y: 404
   - entityRef: backstage/packages/test-utils/index
-    type: rest-api
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
       filepath: packages/test-utils/src/index.ts
       containerId: test-utils
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: 1020
       y: 404
   - entityRef: backstage/packages/config/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/config/src/index.ts
@@ -249,35 +384,23 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/config-loader/schema
+    type: background-worker
+    name: Schema (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/schema/load.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
       x: -820
       y: 404
-  - entityRef: backstage/packages/backend-dynamic-feature-service/index
-    type: background-worker
-    name: index Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-dynamic-feature-service/src/features/index.ts
-      containerId: backend-dynamic-feature-service
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -130
-      y: -204
-  - entityRef: backstage/packages/backend-dynamic-feature-service/plugin-manager
-    type: background-worker
-    name: plugin-manager Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
-      containerId: backend-dynamic-feature-service
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 330
-      y: -204
   - entityRef: backstage/packages/ui/types
     type: gateway-api
-    name: types Service (External)
+    name: Types (External)
     external: true
     properties:
       filepath: packages/ui/src/types.ts
@@ -287,7 +410,23 @@ nodes:
     position:
       x: 1480
       y: 404
+  - entityRef: backstage/packages/backend-test-utils/wiring
+    type: rest-api
+    name: Wiring (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1280
+      y: 404
 dependencies:
+  - from: backstage/packages/frontend-dynamic-feature-loader/loader
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
   - from: backstage/packages/frontend-dynamic-feature-loader/loader
     to: backstage/packages/frontend-plugin-api/index
     type: direct-call
@@ -296,10 +435,6 @@ dependencies:
     to: backstage/packages/module-federation-common/index
     type: direct-call
     description: '@backstage/module-federation-common'
-  - from: backstage/packages/frontend-dynamic-feature-loader/index
-    to: backstage/packages/backend-openapi-utils/generated
-    type: direct-call
-    description: Calls module / service
   - from: backstage/packages/frontend-dynamic-feature-loader/index
     to: backstage/packages/frontend-dynamic-feature-loader/loader
     type: direct-call
@@ -317,7 +452,7 @@ dependencies:
     type: direct-call
     description: '@backstage/frontend-plugin-api'
   - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
-    to: backstage/packages/frontend-plugin-api/createfrontendfeatureloader
+    to: backstage/packages/backend-test-utils/wiring
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
@@ -326,13 +461,5 @@ dependencies:
     description: '@backstage/config'
   - from: backstage/packages/frontend-dynamic-feature-loader/loader-test
     to: backstage/packages/ui/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/backend-dynamic-feature-service/plugin-manager
-    to: backstage/packages/frontend-dynamic-feature-loader/loader
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/packages/backend-dynamic-feature-service/index
-    to: backstage/packages/frontend-dynamic-feature-loader/loader
     type: direct-call
     description: Calls module / service

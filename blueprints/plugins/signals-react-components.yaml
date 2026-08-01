@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/signals-react/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/signals-react/src/setupTests.ts
-      containerId: signals-react
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/signals-react/usesignal
+  - entityRef: backstage/plugins/signals-react/hooks
     type: gateway-api
-    name: useSignal Service
+    name: Hooks
     isTest: false
     properties:
       filepath: plugins/signals-react/src/hooks/useSignal.ts
@@ -66,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,44 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/signals-react/index
-    type: rest-api
-    name: index Service
-    isTest: false
-    properties:
-      filepath: plugins/signals-react/src/hooks/index.ts
-      containerId: signals-react
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/signals-react/signalapi
     type: rest-api
-    name: SignalApi Service
+    name: Signalapi
     isTest: false
     properties:
       filepath: plugins/signals-react/src/api/SignalApi.ts
@@ -134,7 +110,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -144,10 +164,88 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
+  - entityRef: backstage/plugins/signals-react/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/signals-react/src/api/index.ts
+      containerId: signals-react
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 16
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
   - entityRef: backstage/plugins/signals/alpha
     type: gateway-api
-    name: alpha Service (External)
+    name: Alpha (External)
     external: true
     properties:
       filepath: plugins/signals/src/alpha.tsx
@@ -155,11 +253,11 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -130
+      x: -360
       y: -204
   - entityRef: backstage/plugins/techdocs-react/api
     type: background-worker
-    name: api Service (External)
+    name: Api (External)
     external: true
     properties:
       filepath: plugins/techdocs-react/src/api.ts
@@ -167,23 +265,23 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: 100
       y: 404
-  - entityRef: backstage/plugins/techdocs-module-addons-contrib/hooks
+  - entityRef: backstage/plugins/notifications/components
     type: gateway-api
-    name: hooks Service (External)
+    name: Components (External)
     external: true
     properties:
-      filepath: plugins/techdocs-module-addons-contrib/src/ReportIssue/hooks.ts
-      containerId: techdocs-module-addons-contrib
+      filepath: plugins/notifications/src/components/UserNotificationSettingsCard/UserNotificationSettingsCard.tsx
+      containerId: notifications
       technology: React Component
       classification: ui-import
     position:
-      x: -130
-      y: 404
+      x: -820
+      y: -204
   - entityRef: backstage/plugins/signals/index
     type: gateway-api
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/signals/dev/index.tsx
@@ -191,11 +289,11 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 330
+      x: 100
       y: -204
   - entityRef: backstage/plugins/app-module-user-settings/module
     type: gateway-api
-    name: module Service (External)
+    name: Module (External)
     external: true
     properties:
       filepath: plugins/app-module-user-settings/src/module.tsx
@@ -203,35 +301,11 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -1510
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationspage
-    type: gateway-api
-    name: NotificationsPage Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsPage/NotificationsPage.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -1050
-      y: -204
-  - entityRef: backstage/plugins/notifications/notificationssidebaritem
-    type: gateway-api
-    name: NotificationsSideBarItem Service (External)
-    external: true
-    properties:
-      filepath: plugins/notifications/src/components/NotificationsSideBarItem/NotificationsSideBarItem.tsx
-      containerId: notifications
-      technology: React Component
-      classification: ui-import
-    position:
-      x: -590
+      x: -1280
       y: -204
   - entityRef: backstage/plugins/signals/plugin
     type: gateway-api
-    name: plugin Service (External)
+    name: Plugin (External)
     external: true
     properties:
       filepath: plugins/signals/src/plugin.ts
@@ -239,11 +313,11 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 790
+      x: 560
       y: -204
   - entityRef: backstage/plugins/signals/signalclient
     type: gateway-api
-    name: SignalClient Service (External)
+    name: Signalclient (External)
     external: true
     properties:
       filepath: plugins/signals/src/api/SignalClient.ts
@@ -251,11 +325,11 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 1250
+      x: 1020
       y: -204
-  - entityRef: backstage/plugins/user-settings/usersettingsstorage
+  - entityRef: backstage/plugins/user-settings/storageapi
     type: gateway-api
-    name: UserSettingsStorage Service (External)
+    name: Storageapi (External)
     external: true
     properties:
       filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
@@ -263,23 +337,19 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 1710
+      x: 1480
       y: -204
 dependencies:
   - from: backstage/plugins/app-module-user-settings/module
     to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: backstage/plugins/user-settings/usersettingsstorage
+  - from: backstage/plugins/user-settings/storageapi
     to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: backstage/plugins/signals-react/usesignal
+  - from: backstage/plugins/signals-react/hooks
     to: backstage/plugins/techdocs-react/api
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/signals-react/index
-    to: backstage/plugins/signals-react/usesignal
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/signals-react/index
@@ -291,7 +361,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/signals-react/index
-    to: backstage/plugins/techdocs-module-addons-contrib/hooks
+    to: backstage/plugins/signals-react/hooks
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/signals/index
@@ -310,11 +380,7 @@ dependencies:
     to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'
-  - from: backstage/plugins/notifications/notificationspage
-    to: backstage/plugins/signals-react/index
-    type: direct-call
-    description: '@backstage/plugin-signals-react'
-  - from: backstage/plugins/notifications/notificationssidebaritem
+  - from: backstage/plugins/notifications/components
     to: backstage/plugins/signals-react/index
     type: direct-call
     description: '@backstage/plugin-signals-react'

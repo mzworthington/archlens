@@ -11,7 +11,7 @@ metadata:
 nodes:
   - entityRef: backstage/packages/release-manifests/manifest-test
     type: background-worker
-    name: manifest.test Service
+    name: Manifest test
     isTest: true
     properties:
       filepath: packages/release-manifests/src/manifest.test.ts
@@ -32,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -42,10 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/release-manifests/manifest
     type: background-worker
-    name: manifest Service
+    name: Manifest
     isTest: false
     properties:
       filepath: packages/release-manifests/src/manifest.ts
@@ -66,7 +110,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,10 +164,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/release-manifests/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: packages/release-manifests/src/index.ts
@@ -100,7 +188,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,22 +242,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/cli-module-migrate/bump
-    type: background-worker
-    name: bump Service (External)
-    external: true
-    properties:
-      filepath: packages/cli-module-migrate/src/commands/versions/bump.ts
-      containerId: cli-module-migrate
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -360
-      y: -204
+      sinceDays: 365
   - entityRef: backstage/packages/yarn-plugin/getpackageversion
     type: background-worker
-    name: getPackageVersion Service (External)
+    name: Getpackageversion (External)
     external: true
     properties:
       filepath: packages/yarn-plugin/src/util/getPackageVersion.ts
@@ -137,7 +257,7 @@ nodes:
       y: -204
   - entityRef: backstage/packages/yarn-plugin/getpackageversion-test
     type: background-worker
-    name: getPackageVersion.test Service (External)
+    name: Getpackageversion test (External)
     external: true
     properties:
       filepath: packages/yarn-plugin/src/util/getPackageVersion.test.ts
@@ -148,19 +268,31 @@ nodes:
       x: 560
       y: -204
   - entityRef: backstage/packages/test-utils/index
-    type: rest-api
-    name: index Service (External)
+    type: background-worker
+    name: Index (External)
     external: true
     properties:
       filepath: packages/test-utils/src/index.ts
       containerId: test-utils
-      technology: REST Controller / Router
-      classification: api-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: 100
       y: 404
+  - entityRef: backstage/packages/cli-module-migrate/commands/versions
+    type: background-worker
+    name: Versions (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-migrate/src/commands/versions/migrate.test.ts
+      containerId: cli-module-migrate
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: -204
 dependencies:
-  - from: backstage/packages/cli-module-migrate/bump
+  - from: backstage/packages/cli-module-migrate/commands/versions
     to: backstage/packages/release-manifests/index
     type: direct-call
     description: '@backstage/release-manifests'

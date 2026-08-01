@@ -9,52 +9,9 @@ metadata:
     remoteUrl: https://github.com/backstage/backstage
     defaultBranch: master
 nodes:
-  - entityRef: backstage/microsite/microsite/docusaurus-config
-    type: gateway-api
-    name: docusaurus.config Service
-    isTest: false
-    properties:
-      filepath: microsite/docusaurus.config.ts
-      containerId: microsite
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 14
-      loc: 701
-      sloc: 652
-      churn: 5
-      lineChurn: 708
-      churn30: 1
-      churn365: 5
-      churnByWeek:
-        - 0
-        - 0
-        - 2
-        - 2
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.8
-      authors:
-        - email: 108491788+milliehartnt123@users.noreply.github.com
-          commits: 4
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.011474134577985219
-      importedFiles:
-        - path: microsite/releases.js
-          kind: direct
-      sinceDays: 60
-      shortChurnDays: 30
   - entityRef: backstage/microsite/microsite/sidebars
     type: background-worker
-    name: sidebars Service
+    name: Sidebars
     isTest: false
     properties:
       filepath: microsite/sidebars.ts
@@ -68,81 +25,114 @@ nodes:
       functionCount: 3
       loc: 852
       sloc: 847
-      churn: 9
-      lineChurn: 860
+      churn: 60
+      lineChurn: 2498
       churn30: 5
-      churn365: 9
+      churn365: 60
       churnByWeek:
+        - 0
         - 0
         - 1
         - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 1
+        - 2
+        - 0
+        - 1
+        - 0
+        - 1
+        - 1
+        - 1
+        - 1
+        - 0
         - 3
+        - 4
+        - 1
+        - 0
+        - 2
+        - 0
         - 1
         - 1
         - 1
         - 2
+        - 3
+        - 1
+        - 2
         - 0
-      authorCount: 7
-      topAuthorPercent: 0.3333333333333333
-      authors:
-        - email: peterm4c@pm.me
-          commits: 3
-        - email: 113269381+04kash@users.noreply.github.com
-          commits: 1
-        - email: 67169551+awanlin@users.noreply.github.com
-          commits: 1
-        - email: awanlin@spotify.com
-          commits: 1
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: 108491788+milliehartnt123@users.noreply.github.com
-          commits: 1
-        - email: aminehamdifcb@gmail.com
-          commits: 1
-      hotspotScore: 0.009291672068801589
-      importedFiles:
-        - path: microsite/releases.js
-          kind: direct
-      sinceDays: 60
-      shortChurnDays: 30
-  - entityRef: backstage/microsite/microsite/typings-d
-    type: background-worker
-    name: typings.d Service
-    isTest: false
-    properties:
-      filepath: microsite/typings.d.ts
-      containerId: microsite
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 1
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 11
+        - 2
+        - 2
+        - 1
         - 0
+        - 1
         - 0
         - 0
         - 0
         - 0
         - 1
         - 0
+        - 1
+        - 0
+        - 3
+        - 0
+        - 2
+        - 1
+        - 2
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 19
+      topAuthorPercent: 0.18333333333333332
       authors:
+        - email: awanlin@spotify.com
+          commits: 11
         - email: poldsberg@gmail.com
+          commits: 10
+        - email: 108491788+milliehartnt123@users.noreply.github.com
+          commits: 9
+        - email: 159921952+aramissennyeydd@users.noreply.github.com
+          commits: 7
+        - email: peterm4c@pm.me
+          commits: 6
+        - email: charles.dedreuille@gmail.com
+          commits: 3
+        - email: aramis.sennyey@doordash.com
+          commits: 2
+        - email: 113269381+04kash@users.noreply.github.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 1
+        - email: aminehamdifcb@gmail.com
+          commits: 1
+        - email: 122875619+ryoku4@users.noreply.github.com
+          commits: 1
+        - email: heikki.hellgren@op.fi
+          commits: 1
+        - email: maratd@spotify.com
+          commits: 1
+        - email: jonkoops@gmail.com
+          commits: 1
+        - email: chanchal.khatri01@infosys.com
+          commits: 1
+        - email: kurtaking@gmail.com
+          commits: 1
+        - email: dfestal@redhat.com
+          commits: 1
+        - email: freben@gmail.com
+          commits: 1
+        - email: kmittal@redhat.com
+          commits: 1
+      hotspotScore: 0.017519128672319355
+      importedFiles:
+        - path: microsite/releases.js
+          kind: direct
+      sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/microsite/microsite/calcisnewplugin
     type: background-worker
-    name: calcIsNewPlugin Service
+    name: Calcisnewplugin
     isTest: false
     properties:
       filepath: microsite/src/util/calcIsNewPlugin.tsx
@@ -163,7 +153,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -173,11 +207,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/microsite/microsite/types
     type: background-worker
-    name: types Service
+    name: Types
     isTest: false
     properties:
       filepath: microsite/src/util/types.ts
@@ -198,7 +232,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -208,11 +286,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/microsite/microsite/truncatedescription
     type: background-worker
-    name: truncateDescription Service
+    name: Truncatedescription
     isTest: false
     properties:
       filepath: microsite/src/util/truncateDescription.tsx
@@ -233,7 +311,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -243,6 +365,6 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
       shortChurnDays: 30
 dependencies: []

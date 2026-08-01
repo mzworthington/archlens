@@ -71,7 +71,7 @@ function syncBundledBlueprints(): Plugin {
     copyBundledBlueprintsTree(repoBlueprints, bundledBlueprintsDest);
     fs.writeFileSync(
       path.join(bundledBlueprintsDest, 'manifest.json'),
-      JSON.stringify(manifestPaths, null, 2)
+      `${JSON.stringify(manifestPaths, null, 2)}\n`
     );
     lastSyncKey = syncKey;
   };

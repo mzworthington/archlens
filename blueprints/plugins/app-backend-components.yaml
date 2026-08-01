@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/plugins/app-backend/config-d
-    type: background-worker
-    name: config.d Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/config.d.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 55
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/plugins/app-backend/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
       filepath: plugins/app-backend/dev/index.ts
@@ -66,7 +32,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -76,44 +86,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/setuptests
-    type: background-worker
-    name: setupTests Service
-    isTest: true
-    properties:
-      filepath: plugins/app-backend/src/setupTests.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 21
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/app-backend/headers
     type: background-worker
-    name: headers Service
+    name: Headers
     isTest: false
     properties:
       filepath: plugins/app-backend/src/lib/headers.ts
@@ -134,7 +110,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -144,11 +164,11 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/injectconfigintostatic-test
+      sinceDays: 365
+  - entityRef: backstage/plugins/app-backend/config
     type: background-worker
-    name: injectConfigIntoStatic.test Service
-    isTest: true
+    name: Config
+    isTest: false
     properties:
       filepath: plugins/app-backend/src/lib/config/injectConfigIntoStatic.test.ts
       containerId: app-backend
@@ -168,7 +188,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -178,254 +242,16 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/types
-    type: background-worker
-    name: types Service
+      sinceDays: 365
+  - entityRef: backstage/plugins/app-backend/assets
+    type: rest-api
+    name: Assets
     isTest: false
-    properties:
-      filepath: plugins/app-backend/src/lib/config/types.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 27
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/injectconfigintohtml-test
-    type: background-worker
-    name: injectConfigIntoHtml.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-backend/src/lib/config/injectConfigIntoHtml.test.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 96
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/readfrontendconfig-test
-    type: background-worker
-    name: readFrontendConfig.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-backend/src/lib/config/readFrontendConfig.test.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 99
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/injectconfig
-    type: background-worker
-    name: injectConfig Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/src/lib/config/injectConfig.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 35
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/injectconfigintohtml
-    type: background-worker
-    name: injectConfigIntoHtml Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/src/lib/config/injectConfigIntoHtml.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 79
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/readfrontendconfig
-    type: background-worker
-    name: readFrontendConfig Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/src/lib/config/readFrontendConfig.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 65
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/injectconfigintostatic
-    type: background-worker
-    name: injectConfigIntoStatic Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/src/lib/config/injectConfigIntoStatic.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 61
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/findstaticassets-test
-    type: background-worker
-    name: findStaticAssets.test Service
-    isTest: true
     properties:
       filepath: plugins/app-backend/src/lib/assets/findStaticAssets.test.ts
       containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
+      technology: REST Controller / Router
+      classification: api-marker
     forensics:
       complexity: 0
       loc: 0
@@ -440,69 +266,44 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/createstaticassetmiddleware-test
-    type: rest-api
-    name: createStaticAssetMiddleware.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-backend/src/lib/assets/createStaticAssetMiddleware.test.ts
-      containerId: app-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 109
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/staticassetsstore
-    type: relational-database
-    name: StaticAssetsStore Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/src/lib/assets/StaticAssetsStore.ts
-      containerId: app-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 171
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -512,39 +313,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/findstaticassets
-    type: background-worker
-    name: findStaticAssets Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/src/lib/assets/findStaticAssets.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 40
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -552,78 +320,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/staticassetsstore-test
-    type: background-worker
-    name: StaticAssetsStore.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-backend/src/lib/assets/StaticAssetsStore.test.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 193
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/createstaticassetmiddleware
-    type: rest-api
-    name: createStaticAssetMiddleware Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/src/lib/assets/createStaticAssetMiddleware.ts
-      containerId: app-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 64
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/plugins/app-backend/migrations-test
     type: relational-database
-    name: migrations.test Service
+    name: Migrations test
     isTest: true
     properties:
       filepath: plugins/app-backend/src/migrations.test.ts
@@ -631,35 +331,82 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 135
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      functionCount: 6
+      loc: 132
+      sloc: 91
+      churn: 4
+      lineChurn: 303
       churn30: 1
-      churn365: 2
+      churn365: 4
       churnByWeek:
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.75
       authors:
+        - email: freben@gmail.com
+          commits: 3
         - email: poldsberg@gmail.com
           commits: 1
-        - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/appplugin
+      hotspotScore: 0.003187527614719434
+      sinceDays: 365
+  - entityRef: backstage/plugins/app-backend/service
     type: rest-api
-    name: appPlugin Service
+    name: Service
     isTest: false
     properties:
       filepath: plugins/app-backend/src/service/appPlugin.ts
@@ -680,69 +427,44 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/appplugin-test
-    type: background-worker
-    name: appPlugin.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-backend/src/service/appPlugin.test.ts
-      containerId: app-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 124
-      churn30: 1
-      churn365: 1
-      churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/router
-    type: rest-api
-    name: router Service
-    isTest: false
-    properties:
-      filepath: plugins/app-backend/src/service/router.ts
-      containerId: app-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 338
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -752,39 +474,6 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/app-backend/router-test
-    type: rest-api
-    name: router.test Service
-    isTest: true
-    properties:
-      filepath: plugins/app-backend/src/service/router.test.ts
-      containerId: app-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 329
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
         - 0
       authorCount: 1
       topAuthorPercent: 1
@@ -792,22 +481,10 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/plugins/home/config
-    type: rest-api
-    name: config Service (External)
-    external: true
-    properties:
-      filepath: plugins/home/src/api/config.ts
-      containerId: home
-      technology: REST Controller / Router
-      classification: api-marker
-    position:
-      x: 330
-      y: 404
+      sinceDays: 365
   - entityRef: backstage/plugins/app-node/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: plugins/app-node/src/index.ts
@@ -815,122 +492,30 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: 100
       y: 404
 dependencies:
-  - from: backstage/plugins/app-backend/injectconfigintostatic-test
-    to: backstage/plugins/app-backend/injectconfigintostatic
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/injectconfigintohtml-test
-    to: backstage/plugins/app-backend/injectconfigintohtml
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/readfrontendconfig-test
-    to: backstage/plugins/app-backend/readfrontendconfig
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/index
-    to: backstage/plugins/app-backend/injectconfig
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/index
-    to: backstage/plugins/app-backend/readfrontendconfig
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/injectconfig
-    to: backstage/plugins/app-backend/injectconfigintohtml
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/injectconfig
-    to: backstage/plugins/app-backend/injectconfigintostatic
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/injectconfig
-    to: backstage/plugins/app-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/injectconfigintohtml
-    to: backstage/plugins/app-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/injectconfigintostatic
-    to: backstage/plugins/app-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/findstaticassets-test
-    to: backstage/plugins/app-backend/findstaticassets
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/createstaticassetmiddleware-test
-    to: backstage/plugins/app-backend/createstaticassetmiddleware
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/createstaticassetmiddleware-test
-    to: backstage/plugins/app-backend/staticassetsstore
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/plugins/app-backend/staticassetsstore
-    to: backstage/plugins/app-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/findstaticassets
-    to: backstage/plugins/app-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/staticassetsstore-test
-    to: backstage/plugins/app-backend/staticassetsstore
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/plugins/app-backend/index
-    to: backstage/plugins/app-backend/staticassetsstore
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/plugins/app-backend/index
-    to: backstage/plugins/app-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/index
-    to: backstage/plugins/app-backend/findstaticassets
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/index
-    to: backstage/plugins/app-backend/createstaticassetmiddleware
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/createstaticassetmiddleware
-    to: backstage/plugins/app-backend/types
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/createstaticassetmiddleware
+  - from: backstage/plugins/app-backend/assets
     to: backstage/plugins/app-backend/headers
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/app-backend/index
-    to: backstage/plugins/app-backend/appplugin
+    to: backstage/plugins/app-backend/service
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/app-backend/appplugin
-    to: backstage/plugins/app-backend/router
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/appplugin
+  - from: backstage/plugins/app-backend/service
     to: backstage/plugins/app-node/index
     type: direct-call
     description: '@backstage/plugin-app-node'
-  - from: backstage/plugins/app-backend/appplugin-test
-    to: backstage/plugins/app-backend/appplugin
+  - from: backstage/plugins/app-backend/service
+    to: backstage/plugins/app-backend/assets
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/app-backend/router
+  - from: backstage/plugins/app-backend/service
     to: backstage/plugins/app-backend/headers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/app-backend/router
-    to: backstage/plugins/home/config
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/app-backend/router-test
-    to: backstage/plugins/app-backend/router
+  - from: backstage/plugins/app-backend/service
+    to: backstage/plugins/app-backend/config
     type: direct-call
     description: Calls module / service

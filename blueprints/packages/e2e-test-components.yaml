@@ -9,43 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/packages/e2e-test/types-d
-    type: background-worker
-    name: types.d Service
-    isTest: false
-    properties:
-      filepath: packages/e2e-test/src/types.d.ts
-      containerId: e2e-test
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 18
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
   - entityRef: backstage/packages/e2e-test/helpers
     type: background-worker
-    name: helpers Service
+    name: Helpers
     isTest: false
     properties:
       filepath: packages/e2e-test/src/lib/helpers.ts
@@ -56,11 +22,23 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 42
+      churn: 2
+      lineChurn: 129
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,16 +48,48 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/e2e-test/helpers-test
     type: background-worker
-    name: helpers.test Service
+    name: Helpers test
     isTest: true
     properties:
       filepath: packages/e2e-test/src/lib/helpers.test.ts
@@ -100,7 +110,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -110,13 +164,91 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/e2e-test/index
-    type: background-worker
-    name: index Service
+      sinceDays: 365
+  - entityRef: backstage/packages/e2e-test/commands
+    type: relational-database
+    name: Commands
     isTest: false
     properties:
       filepath: packages/e2e-test/src/commands/index.ts
+      containerId: e2e-test
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 2
+      lineChurn: 30
+      churn30: 1
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/packages/e2e-test/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/e2e-test/src/index.ts
       containerId: e2e-test
       technology: TypeScript Domain Service
       classification: default
@@ -124,17 +256,61 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 26
+      churn: 2
+      lineChurn: 57
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
         - 0
         - 0
         - 0
@@ -142,54 +318,15 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/e2e-test/runcommand
-    type: relational-database
-    name: runCommand Service
-    isTest: false
-    properties:
-      filepath: packages/e2e-test/src/commands/runCommand.ts
-      containerId: e2e-test
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 14
-      complexityPeak: 14
-      cognitiveComplexity: 91
-      functionCount: 34
-      loc: 594
-      sloc: 474
-      churn: 7
-      lineChurn: 684
-      churn30: 1
-      churn365: 7
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 6
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.8571428571428571
-      authors:
-        - email: freben@gmail.com
-          commits: 6
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.051730844029560484
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/errors/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/errors/src/serialization/index.ts
+      filepath: packages/errors/src/index.ts
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
@@ -198,7 +335,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/cli-common/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/cli-common/src/index.ts
@@ -213,19 +350,19 @@ dependencies:
     to: backstage/packages/e2e-test/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/e2e-test/index
-    to: backstage/packages/e2e-test/runcommand
-    type: read-write
-    description: Queries datastore records
-  - from: backstage/packages/e2e-test/runcommand
+  - from: backstage/packages/e2e-test/commands
     to: backstage/packages/e2e-test/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/e2e-test/runcommand
+  - from: backstage/packages/e2e-test/commands
     to: backstage/packages/errors/index
     type: direct-call
     description: '@backstage/errors'
-  - from: backstage/packages/e2e-test/runcommand
+  - from: backstage/packages/e2e-test/commands
     to: backstage/packages/cli-common/index
     type: direct-call
     description: '@backstage/cli-common'
+  - from: backstage/packages/e2e-test/index
+    to: backstage/packages/e2e-test/commands
+    type: read-write
+    description: Queries datastore records

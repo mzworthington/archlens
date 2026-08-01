@@ -9,9 +9,9 @@ metadata:
     scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
     scanRoot: .
 nodes:
-  - entityRef: backstage/packages/backend-internal/helpers
+  - entityRef: backstage/packages/backend-internal/wiring
     type: background-worker
-    name: helpers Service
+    name: Wiring
     isTest: false
     properties:
       filepath: packages/backend-internal/src/wiring/helpers.ts
@@ -22,11 +22,42 @@ nodes:
       complexity: 0
       loc: 0
       sloc: 0
-      churn: 1
-      lineChurn: 50
+      churn: 2
+      lineChurn: 100
       churn30: 1
-      churn365: 1
+      churn365: 2
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -36,31 +67,9 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/backend-internal/opaqueextensionpointfactorymiddleware
-    type: background-worker
-    name: OpaqueExtensionPointFactoryMiddleware Service
-    isTest: false
-    properties:
-      filepath: packages/backend-internal/src/wiring/OpaqueExtensionPointFactoryMiddleware.ts
-      containerId: backend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 29
-      churn30: 1
-      churn365: 1
-      churnByWeek:
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -70,31 +79,75 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
   - entityRef: backstage/packages/backend-internal/index
     type: background-worker
-    name: index Service
+    name: Index
     isTest: false
     properties:
-      filepath: packages/backend-internal/src/wiring/index.ts
+      filepath: packages/backend-internal/src/index.ts
       containerId: backend-internal
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 18
+      complexity: 1
+      loc: 19
+      sloc: 2
+      churn: 3
+      lineChurn: 36
       churn30: 1
-      churn365: 1
+      churn365: 3
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -104,43 +157,22 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 2
+        - email: jackpalmer@spotify.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
-  - entityRef: backstage/packages/backend-app-api/backendinitializer
-    type: background-worker
-    name: BackendInitializer Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/BackendInitializer.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -590
-      y: -204
-  - entityRef: backstage/packages/backend-app-api/backstagebackend
-    type: background-worker
-    name: BackstageBackend Service (External)
-    external: true
-    properties:
-      filepath: packages/backend-app-api/src/wiring/BackstageBackend.ts
-      containerId: backend-app-api
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -130
-      y: -204
+      hotspotScore: 0.00012623871741463105
+      sinceDays: 365
   - entityRef: backstage/packages/backend-plugin-api/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
-      filepath: packages/backend-plugin-api/src/wiring/index.ts
+      filepath: packages/backend-plugin-api/src/index.ts
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
@@ -149,7 +181,7 @@ nodes:
       y: 404
   - entityRef: backstage/packages/opaque-internal/index
     type: background-worker
-    name: index Service (External)
+    name: Index (External)
     external: true
     properties:
       filepath: packages/opaque-internal/src/index.ts
@@ -159,60 +191,52 @@ nodes:
     position:
       x: 330
       y: 404
-  - entityRef: backstage/packages/backend-test-utils/testbackend
+  - entityRef: backstage/packages/backend-test-utils/wiring
     type: rest-api
-    name: TestBackend Service (External)
+    name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
+      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 790
+      x: 330
       y: -204
-  - entityRef: backstage/packages/backend-app-api/types
+  - entityRef: backstage/packages/backend-app-api/wiring
     type: background-worker
-    name: types Service (External)
+    name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-app-api/src/wiring/types.ts
+      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: -130
       y: -204
 dependencies:
-  - from: backstage/packages/backend-test-utils/testbackend
+  - from: backstage/packages/backend-test-utils/wiring
     to: backstage/packages/backend-internal/index
     type: direct-call
     description: '@internal/backend'
-  - from: backstage/packages/backend-internal/helpers
+  - from: backstage/packages/backend-internal/wiring
     to: backstage/packages/backend-plugin-api/index
     type: direct-call
     description: '@backstage/backend-plugin-api'
-  - from: backstage/packages/backend-internal/opaqueextensionpointfactorymiddleware
+  - from: backstage/packages/backend-internal/wiring
     to: backstage/packages/opaque-internal/index
     type: direct-call
     description: '@internal/opaque'
   - from: backstage/packages/backend-internal/index
-    to: backstage/packages/backend-internal/helpers
+    to: backstage/packages/backend-internal/wiring
     type: direct-call
     description: Calls module / service
   - from: backstage/packages/backend-internal/index
-    to: backstage/packages/backend-internal/opaqueextensionpointfactorymiddleware
+    to: backstage/packages/backend-internal/wiring
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/backend-app-api/backstagebackend
-    to: backstage/packages/backend-internal/index
-    type: direct-call
-    description: '@internal/backend'
-  - from: backstage/packages/backend-app-api/types
-    to: backstage/packages/backend-internal/index
-    type: direct-call
-    description: '@internal/backend'
-  - from: backstage/packages/backend-app-api/backendinitializer
+  - from: backstage/packages/backend-app-api/wiring
     to: backstage/packages/backend-internal/index
     type: direct-call
     description: '@internal/backend'

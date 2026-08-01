@@ -159,6 +159,24 @@ describe('ModelExtractor', () => {
     ).toBe(true);
   });
 
+  it('preserves slash segments in rolled-up component entity refs', () => {
+    const extractor = new ModelExtractor('blueprint/app');
+    const { componentNodesMap } = extractor.extractGraph([
+      {
+        filePath: 'app/packages/designer/src/application/forensics/openRefactorOnCanvas.ts',
+        relativePath: 'app/packages/designer/src/application/forensics/openRefactorOnCanvas.ts',
+        baseName: 'openRefactorOnCanvas',
+        isTestFile: false,
+        imports: [],
+        newExpressions: [],
+        callExpressions: [],
+      },
+    ]);
+
+    const node = componentNodesMap.get(componentMapKey('designer', 'application/forensics'));
+    expect(node?.entityRef).toBe('blueprint/app/designer/application/forensics');
+  });
+
   it('marks containers as tests when every source file in them is a test', () => {
     const extractor = new ModelExtractor('ctx/sys');
     const { containerNodesMap } = extractor.extractGraph([

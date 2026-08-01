@@ -14,12 +14,27 @@ nodes:
     name: Snippets Service
     isTest: false
     forensics:
-      complexity: 0
-      churn: 1
-      lineChurn: 32
+      complexity: 1
+      churn: 5
+      lineChurn: 50
       churn30: 1
-      churn365: 1
+      churn365: 5
       churnByWeek:
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -29,13 +44,44 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 4
         - email: poldsberg@gmail.com
           commits: 1
-      hotspotScore: 0
-      sinceDays: 60
+      hotspotScore: 0.00017533155196476535
+      sinceDays: 365
       fileCount: 1
       hotspotCount: 0
       knowledgeSiloCount: 0
@@ -44,29 +90,81 @@ nodes:
     name: App Service
     isTest: false
     forensics:
-      complexity: 0
-      churn: 5
-      lineChurn: 311
-      churn30: 5
-      churn365: 5
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 24
+      lineChurn: 440
+      churn30: 6
+      churn365: 24
       churnByWeek:
         - 0
+        - 1
         - 0
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
         - 5
         - 0
+        - 2
+        - 1
+        - 1
+        - 0
+        - 1
+        - 1
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7083333333333334
       authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 14
         - email: poldsberg@gmail.com
-          commits: 5
-      hotspotScore: 0
-      sinceDays: 60
-      fileCount: 5
+          commits: 6
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: antony.bouyon@believe.com
+          commits: 1
+      hotspotScore: 0.0013044667466178543
+      sinceDays: 365
+      fileCount: 6
       hotspotCount: 0
       knowledgeSiloCount: 0
   - entityRef: backstage/docs-ui/docs-ui
@@ -74,34 +172,98 @@ nodes:
     name: Docs-ui Service
     isTest: false
     forensics:
-      complexity: 1
-      churn: 16
-      lineChurn: 1013
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 93
+      lineChurn: 2519
       churn30: 9
-      churn365: 16
+      churn365: 93
       churnByWeek:
-        - 0
-        - 3
+        - 1
         - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 1
+        - 5
+        - 0
+        - 8
+        - 4
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 2
+        - 3
+        - 10
+        - 6
+        - 2
+        - 2
+        - 0
+        - 2
+        - 3
+        - 9
+        - 0
+        - 1
+        - 3
+        - 3
+        - 1
+        - 0
+        - 1
+        - 1
+        - 0
+        - 1
+        - 0
+        - 2
+        - 3
         - 2
         - 0
         - 9
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.75
+        - 0
+      authorCount: 13
+      topAuthorPercent: 0.4731182795698925
       authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 36
+        - email: johanopersson@gmail.com
+          commits: 21
         - email: poldsberg@gmail.com
-          commits: 9
+          commits: 13
+        - email: ambrish.r@infosys.com
+          commits: 5
+        - email: antony.bouyon@believe.com
+          commits: 5
         - email: clairep@spotify.com
           commits: 3
-        - email: johanopersson@gmail.com
-          commits: 3
+        - email: 52410024+jabrks@users.noreply.github.com
+          commits: 2
+        - email: 80819276+deepthi-28@users.noreply.github.com
+          commits: 2
+        - email: hermioneb@spotify.com
+          commits: 2
         - email: vanessaliuchen@gmail.com
           commits: 1
-      hotspotScore: 0.0011290461990578677
-      sinceDays: 60
+        - email: erik.hughes@outlook.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: ssjoblad@spotify.com
+          commits: 1
+      hotspotScore: 0.0035346840876096693
+      sinceDays: 365
       fileCount: 9
       hotspotCount: 0
       knowledgeSiloCount: 0
@@ -110,12 +272,55 @@ nodes:
     name: Changelogs Service
     isTest: false
     forensics:
-      complexity: 0
-      churn: 24
-      lineChurn: 3934
+      complexity: 1
+      churn: 74
+      lineChurn: 10000
       churn30: 22
-      churn365: 24
+      churn365: 74
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 13
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 30
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 1
         - 1
@@ -125,15 +330,20 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.9166666666666666
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.47297297297297297
       authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 30
         - email: poldsberg@gmail.com
-          commits: 22
+          commits: 24
         - email: johanopersson@gmail.com
-          commits: 2
-      hotspotScore: 0
-      sinceDays: 60
+          commits: 19
+        - email: antony.bouyon@believe.com
+          commits: 1
+      hotspotScore: 0.00525994655894296
+      sinceDays: 365
       fileCount: 22
       hotspotCount: 0
       knowledgeSiloCount: 0
@@ -142,29 +352,85 @@ nodes:
     name: Components Service
     isTest: false
     forensics:
-      complexity: 0
-      churn: 31
-      lineChurn: 2343
-      churn30: 31
-      churn365: 31
+      complexity: 20
+      complexityPeak: 20
+      cognitiveComplexity: 66
+      churn: 108
+      lineChurn: 4225
+      churn30: 42
+      churn365: 108
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 31
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 13
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 15
+        - 6
+        - 15
+        - 1
+        - 0
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 42
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.6111111111111112
       authors:
+        - email: charles.dedreuille@gmail.com
+          commits: 47
         - email: poldsberg@gmail.com
-          commits: 31
-      hotspotScore: 0
-      sinceDays: 60
-      fileCount: 31
+          commits: 42
+        - email: johanopersson@gmail.com
+          commits: 11
+        - email: antony.bouyon@believe.com
+          commits: 6
+        - email: ambrish.r@infosys.com
+          commits: 1
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0.026369865415500713
+      sinceDays: 365
+      fileCount: 42
       hotspotCount: 0
       knowledgeSiloCount: 0
   - entityRef: backstage/docs-ui/hooks
@@ -183,7 +449,51 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
         - 0
         - 0
         - 0
@@ -193,49 +503,13 @@ nodes:
         - email: poldsberg@gmail.com
           commits: 1
       hotspotScore: 0
-      sinceDays: 60
+      sinceDays: 365
       fileCount: 1
       hotspotCount: 0
       knowledgeSiloCount: 0
-  - entityRef: backstage/docs-ui/components/flex
-    type: background-worker
-    name: flex Service (External)
-    external: true
-    properties:
-      filepath: docs-ui/src/components/LayoutComponents/svgs/flex.tsx
-      containerId: components
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4930
-      y: 404
-  - entityRef: backstage/docs-ui/components/box
-    type: background-worker
-    name: box Service (External)
-    external: true
-    properties:
-      filepath: docs-ui/src/components/LayoutComponents/svgs/box.tsx
-      containerId: components
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4010
-      y: 404
-  - entityRef: backstage/docs-ui/components/container
-    type: background-worker
-    name: container Service (External)
-    external: true
-    properties:
-      filepath: docs-ui/src/components/LayoutComponents/svgs/container.tsx
-      containerId: components
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 4470
-      y: 404
   - entityRef: backstage/docs-ui/components/table
     type: gateway-api
-    name: Table Service (External)
+    name: Table (External)
     external: true
     properties:
       filepath: docs-ui/src/components/Table/Table.tsx
@@ -243,23 +517,11 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 5850
-      y: 404
-  - entityRef: backstage/docs-ui/components/grid
-    type: background-worker
-    name: grid Service (External)
-    external: true
-    properties:
-      filepath: docs-ui/src/components/LayoutComponents/svgs/grid.tsx
-      containerId: components
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: 5390
+      x: 10680
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-16-0
     type: background-worker
-    name: v0.16.0 Service (External)
+    name: V0 16 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.16.0.ts
@@ -267,11 +529,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2890
+      x: -8640
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-15-0
     type: background-worker
-    name: v0.15.0 Service (External)
+    name: V0 15 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.15.0.ts
@@ -279,11 +541,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3350
+      x: -9100
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-14-0
     type: background-worker
-    name: v0.14.0 Service (External)
+    name: V0 14 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.14.0.ts
@@ -291,11 +553,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3810
+      x: -9560
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-13-0
     type: background-worker
-    name: v0.13.0 Service (External)
+    name: V0 13 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.13.0.ts
@@ -303,11 +565,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4270
+      x: -10020
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-12-0
     type: background-worker
-    name: v0.12.0 Service (External)
+    name: V0 12 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.12.0.ts
@@ -315,11 +577,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4730
+      x: -10480
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-11-0
     type: background-worker
-    name: v0.11.0 Service (External)
+    name: V0 11 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.11.0.ts
@@ -327,11 +589,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5190
+      x: -10940
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-10-0
     type: background-worker
-    name: v0.10.0 Service (External)
+    name: V0 10 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.10.0.ts
@@ -339,11 +601,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5650
+      x: -11400
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-9-1
     type: background-worker
-    name: v0.9.1 Service (External)
+    name: V0 9 1 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.9.1.ts
@@ -351,11 +613,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3550
+      x: -2200
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-9-0
     type: background-worker
-    name: v0.9.0 Service (External)
+    name: V0 9 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.9.0.ts
@@ -363,11 +625,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3090
+      x: -2660
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-8-2
     type: background-worker
-    name: v0.8.2 Service (External)
+    name: V0 8 2 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.8.2.ts
@@ -375,11 +637,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2630
+      x: -3120
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-8-0
     type: background-worker
-    name: v0.8.0 Service (External)
+    name: V0 8 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.8.0.ts
@@ -387,11 +649,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2170
+      x: -3580
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-7-2
     type: background-worker
-    name: v0.7.2 Service (External)
+    name: V0 7 2 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.7.2.ts
@@ -399,11 +661,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1710
+      x: -4040
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-7-1
     type: background-worker
-    name: v0.7.1 Service (External)
+    name: V0 7 1 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.7.1.ts
@@ -411,11 +673,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1250
+      x: -4500
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-7-0
     type: background-worker
-    name: v0.7.0 Service (External)
+    name: V0 7 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.7.0.ts
@@ -423,11 +685,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 790
+      x: -4960
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-6-0
     type: background-worker
-    name: v0.6.0 Service (External)
+    name: V0 6 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.6.0.ts
@@ -435,11 +697,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: -5420
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-5-0
     type: background-worker
-    name: v0.5.0 Service (External)
+    name: V0 5 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.5.0.ts
@@ -447,11 +709,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: -5880
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-4-0
     type: background-worker
-    name: v0.4.0 Service (External)
+    name: V0 4 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.4.0.ts
@@ -459,11 +721,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -590
+      x: -6340
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-3-2
     type: background-worker
-    name: v0.3.2 Service (External)
+    name: V0 3 2 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.3.2.ts
@@ -471,11 +733,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1050
+      x: -6800
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-3-0
     type: background-worker
-    name: v0.3.0 Service (External)
+    name: V0 3 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.3.0.ts
@@ -483,11 +745,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1510
+      x: -7260
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-2-1
     type: background-worker
-    name: v0.2.1 Service (External)
+    name: V0 2 1 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.2.1.ts
@@ -495,11 +757,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1970
+      x: -7720
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-2-0
     type: background-worker
-    name: v0.2.0 Service (External)
+    name: V0 2 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.2.0.ts
@@ -507,11 +769,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2430
+      x: -8180
       y: 404
   - entityRef: backstage/docs-ui/changelogs/v0-1-0
     type: background-worker
-    name: v0.1.0 Service (External)
+    name: V0 1 0 (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/changelogs/v0.1.0.ts
@@ -519,11 +781,11 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -6110
+      x: -11860
       y: 404
   - entityRef: backstage/docs-ui/docs-ui/types
     type: background-worker
-    name: types Service (External)
+    name: Types (External)
     external: true
     properties:
       filepath: docs-ui/src/utils/types.ts
@@ -531,318 +793,930 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 6310
+      x: 12060
       y: 404
+  - entityRef: backstage/docs-ui/components/components/sidebar
+    type: background-worker
+    name: Sidebar (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Sidebar/Logo.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 6080
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/componentgrid
+    type: background-worker
+    name: Componentgrid (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/ComponentGrid/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2860
+      y: 404
+  - entityRef: backstage/docs-ui/components/componentgrid
+    type: background-worker
+    name: Componentgrid (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/ComponentGrid/ComponentGrid.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/chip
+    type: background-worker
+    name: Chip (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Chip/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/docs-ui/components/chip
+    type: gateway-api
+    name: Chip (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Chip/Chip.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/toolbar
+    type: background-worker
+    name: Toolbar (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Toolbar/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 7460
+      y: 404
+  - entityRef: backstage/docs-ui/components/toolbar
+    type: gateway-api
+    name: Toolbar (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Toolbar/Toolbar.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 11600
+      y: 404
+  - entityRef: backstage/docs-ui/components/navigation
+    type: gateway-api
+    name: Navigation (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Navigation/Navigation.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 9300
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/navigation
+    type: background-worker
+    name: Navigation (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Navigation/index.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4700
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/reactarialink
+    type: background-worker
+    name: Reactarialink (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/ReactAriaLink/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 5620
+      y: 404
+  - entityRef: backstage/docs-ui/components/reactarialink
+    type: background-worker
+    name: Reactarialink (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/ReactAriaLink/ReactAriaLink.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 10220
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/table
+    type: background-worker
+    name: Table (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Table/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 6540
+      y: 404
+  - entityRef: backstage/docs-ui/components/propstable
+    type: background-worker
+    name: Propstable (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/PropsTable/PropsTable.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 9760
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/propstable
+    type: gateway-api
+    name: Propstable (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/PropsTable/SpacingGroupRow.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5160
+      y: 404
+  - entityRef: backstage/docs-ui/components/mobilebottomnav
+    type: gateway-api
+    name: Mobilebottomnav (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/MobileBottomNav/MobileBottomNav.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 8840
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/mobilebottomnav
+    type: gateway-api
+    name: Mobilebottomnav (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/MobileBottomNav/index.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4240
+      y: 404
+  - entityRef: backstage/docs-ui/components/tableofcontents
+    type: gateway-api
+    name: Tableofcontents (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/TableOfContents/TableOfContents.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 11140
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/tableofcontents
+    type: background-worker
+    name: Tableofcontents (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/TableOfContents/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 7000
+      y: 404
+  - entityRef: backstage/docs-ui/components/columns
+    type: gateway-api
+    name: Columns (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Columns/Columns.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/commandpalette
+    type: background-worker
+    name: Commandpalette (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/CommandPalette/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2400
+      y: 404
+  - entityRef: backstage/docs-ui/components/commandpalette
+    type: gateway-api
+    name: Commandpalette (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/CommandPalette/CommandPalette.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/docs-ui/components/customtheme
+    type: gateway-api
+    name: Customtheme (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/CustomTheme/customTheme.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 7920
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/customtheme
+    type: background-worker
+    name: Customtheme (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/CustomTheme/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3320
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/colorfamily
+    type: background-worker
+    name: Colorfamily (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/ColorFamily/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: backstage/docs-ui/components/colorfamily
+    type: background-worker
+    name: Colorfamily (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/ColorFamily/ColorFamily.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/hookgrid
+    type: background-worker
+    name: Hookgrid (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/HookGrid/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3780
+      y: 404
+  - entityRef: backstage/docs-ui/components/hookgrid
+    type: background-worker
+    name: Hookgrid (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/HookGrid/HookGrid.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 8380
+      y: 404
+  - entityRef: backstage/docs-ui/components/components/banner
+    type: background-worker
+    name: Banner (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Banner/index.ts
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/docs-ui/components/banner
+    type: background-worker
+    name: Banner (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/Banner/Banner.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: 404
+  - entityRef: backstage/docs-ui/app/app
+    type: container
+    name: App Service (External)
+    external: true
+    position:
+      x: -130
+      y: -204
+  - entityRef: backstage/docs-ui/components/components
+    type: container
+    name: Components Service (External)
+    external: true
+    position:
+      x: 330
+      y: -204
 dependencies:
   - from: backstage/docs-ui/app
     to: backstage/docs-ui/components
     type: inter-container
-    description: components Service → flex Service (+4 more)
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs
     type: inter-container
-    description: changelog Service → v0.16.0 Service (+21 more)
+    description: Changelog → V0 16 0 (+21 more)
   - from: backstage/docs-ui/changelogs
     to: backstage/docs-ui/docs-ui
     type: inter-container
-    description: v0.7.0 Service → types Service (+21 more)
+    description: V0 7 0 → Types (+21 more)
   - from: backstage/docs-ui/components
     to: backstage/docs-ui/docs-ui
     type: inter-container
-    description: index Service → types Service
-  - from: backstage/docs-ui/app
-    to: backstage/docs-ui/components/flex
-    type: direct-call
-    description: components Service → flex Service
-  - from: backstage/docs-ui/app
-    to: backstage/docs-ui/components/box
-    type: direct-call
-    description: components Service → box Service
-  - from: backstage/docs-ui/app
-    to: backstage/docs-ui/components/container
-    type: direct-call
-    description: components Service → container Service
   - from: backstage/docs-ui/app
     to: backstage/docs-ui/components/table
     type: direct-call
-    description: components Service → Table Service
-  - from: backstage/docs-ui/app
-    to: backstage/docs-ui/components/grid
-    type: direct-call
-    description: components Service → grid Service
+    description: Components → Table
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-16-0
     type: direct-call
-    description: changelog Service → v0.16.0 Service
+    description: Changelog → V0 16 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-15-0
     type: direct-call
-    description: changelog Service → v0.15.0 Service
+    description: Changelog → V0 15 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-14-0
     type: direct-call
-    description: changelog Service → v0.14.0 Service
+    description: Changelog → V0 14 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-13-0
     type: direct-call
-    description: changelog Service → v0.13.0 Service
+    description: Changelog → V0 13 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-12-0
     type: direct-call
-    description: changelog Service → v0.12.0 Service
+    description: Changelog → V0 12 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-11-0
     type: direct-call
-    description: changelog Service → v0.11.0 Service
+    description: Changelog → V0 11 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-10-0
     type: direct-call
-    description: changelog Service → v0.10.0 Service
+    description: Changelog → V0 10 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-9-1
     type: direct-call
-    description: changelog Service → v0.9.1 Service
+    description: Changelog → V0 9 1
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-9-0
     type: direct-call
-    description: changelog Service → v0.9.0 Service
+    description: Changelog → V0 9 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-8-2
     type: direct-call
-    description: changelog Service → v0.8.2 Service
+    description: Changelog → V0 8 2
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-8-0
     type: direct-call
-    description: changelog Service → v0.8.0 Service
+    description: Changelog → V0 8 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-7-2
     type: direct-call
-    description: changelog Service → v0.7.2 Service
+    description: Changelog → V0 7 2
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-7-1
     type: direct-call
-    description: changelog Service → v0.7.1 Service
+    description: Changelog → V0 7 1
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-7-0
     type: direct-call
-    description: changelog Service → v0.7.0 Service
+    description: Changelog → V0 7 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-6-0
     type: direct-call
-    description: changelog Service → v0.6.0 Service
+    description: Changelog → V0 6 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-5-0
     type: direct-call
-    description: changelog Service → v0.5.0 Service
+    description: Changelog → V0 5 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-4-0
     type: direct-call
-    description: changelog Service → v0.4.0 Service
+    description: Changelog → V0 4 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-3-2
     type: direct-call
-    description: changelog Service → v0.3.2 Service
+    description: Changelog → V0 3 2
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-3-0
     type: direct-call
-    description: changelog Service → v0.3.0 Service
+    description: Changelog → V0 3 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-2-1
     type: direct-call
-    description: changelog Service → v0.2.1 Service
+    description: Changelog → V0 2 1
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-2-0
     type: direct-call
-    description: changelog Service → v0.2.0 Service
+    description: Changelog → V0 2 0
   - from: backstage/docs-ui/docs-ui
     to: backstage/docs-ui/changelogs/v0-1-0
     type: direct-call
-    description: changelog Service → v0.1.0 Service
+    description: Changelog → V0 1 0
   - from: backstage/docs-ui/changelogs
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.7.0 Service → types Service
+    description: V0 7 0 → Types
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/sidebar
+    type: direct-call
+    description: Sidebar → Sidebar
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/componentgrid
+    type: direct-call
+    description: Componentgrid → Componentgrid
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/componentgrid
+    type: direct-call
+    description: Componentgrid → Componentgrid
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/chip
+    type: direct-call
+    description: Chip → Chip
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/chip
+    type: direct-call
+    description: Chip → Chip
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/toolbar
+    type: direct-call
+    description: Toolbar → Toolbar
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/toolbar
+    type: direct-call
+    description: Toolbar → Toolbar
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/navigation
+    type: direct-call
+    description: Navigation → Navigation
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/navigation
+    type: direct-call
+    description: Navigation → Navigation
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/reactarialink
+    type: direct-call
+    description: Reactarialink → Reactarialink
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/reactarialink
+    type: direct-call
+    description: Reactarialink → Reactarialink
   - from: backstage/docs-ui/components
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: index Service → types Service
+    description: Theming → Types
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/table
+    type: direct-call
+    description: Table → Table
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/table
+    type: direct-call
+    description: Table → Table
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/propstable
+    type: direct-call
+    description: Propstable → Propstable
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/propstable
+    type: direct-call
+    description: Propstable → Propstable
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/mobilebottomnav
+    type: direct-call
+    description: Mobilebottomnav → Mobilebottomnav
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/mobilebottomnav
+    type: direct-call
+    description: Mobilebottomnav → Mobilebottomnav
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/tableofcontents
+    type: direct-call
+    description: Tableofcontents → Tableofcontents
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/tableofcontents
+    type: direct-call
+    description: Tableofcontents → Tableofcontents
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/columns
+    type: direct-call
+    description: Columns → Columns
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/commandpalette
+    type: direct-call
+    description: Commandpalette → Commandpalette
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/commandpalette
+    type: direct-call
+    description: Commandpalette → Commandpalette
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/customtheme
+    type: direct-call
+    description: Customtheme → Customtheme
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/customtheme
+    type: direct-call
+    description: Customtheme → Customtheme
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/colorfamily
+    type: direct-call
+    description: Colorfamily → Colorfamily
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/colorfamily
+    type: direct-call
+    description: Colorfamily → Colorfamily
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/hookgrid
+    type: direct-call
+    description: Hookgrid → Hookgrid
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/hookgrid
+    type: direct-call
+    description: Hookgrid → Hookgrid
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components/banner
+    type: direct-call
+    description: Banner → Banner
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/banner
+    type: direct-call
+    description: Banner → Banner
+  - from: backstage/docs-ui/app/app
+    to: backstage/docs-ui/components
+    type: inter-container
+    description: Components → Table
+  - from: backstage/docs-ui/components
+    to: backstage/docs-ui/components/components
+    type: inter-container
+    description: Sidebar → Sidebar (+14 more)
+  - from: backstage/docs-ui/components/components
+    to: backstage/docs-ui/components
+    type: inter-container
+    description: Componentgrid → Componentgrid (+16 more)
+  - from: backstage/docs-ui/components/components
+    to: backstage/docs-ui/docs-ui
+    type: inter-container
+    description: Theming → Types
+  - from: backstage/docs-ui/app/app
+    to: backstage/docs-ui/components/table
+    type: direct-call
+    description: Components → Table
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-16-0
     type: direct-call
-    description: changelog Service → v0.16.0 Service
+    description: Changelog → V0 16 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-15-0
     type: direct-call
-    description: changelog Service → v0.15.0 Service
+    description: Changelog → V0 15 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-14-0
     type: direct-call
-    description: changelog Service → v0.14.0 Service
+    description: Changelog → V0 14 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-13-0
     type: direct-call
-    description: changelog Service → v0.13.0 Service
+    description: Changelog → V0 13 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-12-0
     type: direct-call
-    description: changelog Service → v0.12.0 Service
+    description: Changelog → V0 12 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-11-0
     type: direct-call
-    description: changelog Service → v0.11.0 Service
+    description: Changelog → V0 11 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-10-0
     type: direct-call
-    description: changelog Service → v0.10.0 Service
+    description: Changelog → V0 10 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-9-1
     type: direct-call
-    description: changelog Service → v0.9.1 Service
+    description: Changelog → V0 9 1
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-9-0
     type: direct-call
-    description: changelog Service → v0.9.0 Service
+    description: Changelog → V0 9 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-8-2
     type: direct-call
-    description: changelog Service → v0.8.2 Service
+    description: Changelog → V0 8 2
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-8-0
     type: direct-call
-    description: changelog Service → v0.8.0 Service
+    description: Changelog → V0 8 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-7-2
     type: direct-call
-    description: changelog Service → v0.7.2 Service
+    description: Changelog → V0 7 2
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-7-1
     type: direct-call
-    description: changelog Service → v0.7.1 Service
+    description: Changelog → V0 7 1
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-7-0
     type: direct-call
-    description: changelog Service → v0.7.0 Service
+    description: Changelog → V0 7 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-6-0
     type: direct-call
-    description: changelog Service → v0.6.0 Service
+    description: Changelog → V0 6 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-5-0
     type: direct-call
-    description: changelog Service → v0.5.0 Service
+    description: Changelog → V0 5 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-4-0
     type: direct-call
-    description: changelog Service → v0.4.0 Service
+    description: Changelog → V0 4 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-3-2
     type: direct-call
-    description: changelog Service → v0.3.2 Service
+    description: Changelog → V0 3 2
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-3-0
     type: direct-call
-    description: changelog Service → v0.3.0 Service
+    description: Changelog → V0 3 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-2-1
     type: direct-call
-    description: changelog Service → v0.2.1 Service
+    description: Changelog → V0 2 1
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-2-0
     type: direct-call
-    description: changelog Service → v0.2.0 Service
+    description: Changelog → V0 2 0
   - from: backstage/docs-ui/docs-ui/types
     to: backstage/docs-ui/changelogs/v0-1-0
     type: direct-call
-    description: changelog Service → v0.1.0 Service
+    description: Changelog → V0 1 0
   - from: backstage/docs-ui/changelogs/v0-7-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.7.0 Service → types Service
+    description: V0 7 0 → Types
   - from: backstage/docs-ui/changelogs/v0-16-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.16.0 Service → types Service
+    description: V0 16 0 → Types
   - from: backstage/docs-ui/changelogs/v0-7-1
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.7.1 Service → types Service
+    description: V0 7 1 → Types
   - from: backstage/docs-ui/changelogs/v0-8-2
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.8.2 Service → types Service
+    description: V0 8 2 → Types
   - from: backstage/docs-ui/changelogs/v0-6-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.6.0 Service → types Service
+    description: V0 6 0 → Types
   - from: backstage/docs-ui/changelogs/v0-3-2
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.3.2 Service → types Service
+    description: V0 3 2 → Types
   - from: backstage/docs-ui/changelogs/v0-10-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.10.0 Service → types Service
+    description: V0 10 0 → Types
   - from: backstage/docs-ui/changelogs/v0-1-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.1.0 Service → types Service
+    description: V0 1 0 → Types
   - from: backstage/docs-ui/changelogs/v0-11-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.11.0 Service → types Service
+    description: V0 11 0 → Types
   - from: backstage/docs-ui/changelogs/v0-12-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.12.0 Service → types Service
+    description: V0 12 0 → Types
   - from: backstage/docs-ui/changelogs/v0-2-1
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.2.1 Service → types Service
+    description: V0 2 1 → Types
   - from: backstage/docs-ui/changelogs/v0-3-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.3.0 Service → types Service
+    description: V0 3 0 → Types
   - from: backstage/docs-ui/changelogs/v0-2-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.2.0 Service → types Service
+    description: V0 2 0 → Types
   - from: backstage/docs-ui/changelogs/v0-13-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.13.0 Service → types Service
+    description: V0 13 0 → Types
   - from: backstage/docs-ui/changelogs/v0-5-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.5.0 Service → types Service
+    description: V0 5 0 → Types
   - from: backstage/docs-ui/changelogs/v0-14-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.14.0 Service → types Service
+    description: V0 14 0 → Types
   - from: backstage/docs-ui/changelogs/v0-7-2
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.7.2 Service → types Service
+    description: V0 7 2 → Types
   - from: backstage/docs-ui/changelogs/v0-9-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.9.0 Service → types Service
+    description: V0 9 0 → Types
   - from: backstage/docs-ui/changelogs/v0-8-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.8.0 Service → types Service
+    description: V0 8 0 → Types
   - from: backstage/docs-ui/changelogs/v0-9-1
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.9.1 Service → types Service
+    description: V0 9 1 → Types
   - from: backstage/docs-ui/changelogs/v0-15-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.15.0 Service → types Service
+    description: V0 15 0 → Types
   - from: backstage/docs-ui/changelogs/v0-4-0
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: v0.4.0 Service → types Service
-  - from: backstage/docs-ui/components/container
+    description: V0 4 0 → Types
+  - from: backstage/docs-ui/components/components/mobilebottomnav
+    to: backstage/docs-ui/components/components/sidebar
+    type: direct-call
+    description: Sidebar → Sidebar
+  - from: backstage/docs-ui/components/componentgrid
+    to: backstage/docs-ui/components/components/componentgrid
+    type: direct-call
+    description: Componentgrid → Componentgrid
+  - from: backstage/docs-ui/components/components/componentgrid
+    to: backstage/docs-ui/components/componentgrid
+    type: direct-call
+    description: Componentgrid → Componentgrid
+  - from: backstage/docs-ui/components/chip
+    to: backstage/docs-ui/components/components/chip
+    type: direct-call
+    description: Chip → Chip
+  - from: backstage/docs-ui/components/components/chip
+    to: backstage/docs-ui/components/chip
+    type: direct-call
+    description: Chip → Chip
+  - from: backstage/docs-ui/components/toolbar
+    to: backstage/docs-ui/components/components/toolbar
+    type: direct-call
+    description: Toolbar → Toolbar
+  - from: backstage/docs-ui/components/components/toolbar
+    to: backstage/docs-ui/components/toolbar
+    type: direct-call
+    description: Toolbar → Toolbar
+  - from: backstage/docs-ui/components/components/navigation
+    to: backstage/docs-ui/components/navigation
+    type: direct-call
+    description: Navigation → Navigation
+  - from: backstage/docs-ui/components/navigation
+    to: backstage/docs-ui/components/components/navigation
+    type: direct-call
+    description: Navigation → Navigation
+  - from: backstage/docs-ui/components/reactarialink
+    to: backstage/docs-ui/components/components/reactarialink
+    type: direct-call
+    description: Reactarialink → Reactarialink
+  - from: backstage/docs-ui/components/components/reactarialink
+    to: backstage/docs-ui/components/reactarialink
+    type: direct-call
+    description: Reactarialink → Reactarialink
+  - from: backstage/docs-ui/components/components/mobilebottomnav
     to: backstage/docs-ui/docs-ui/types
     type: direct-call
-    description: index Service → types Service
+    description: Theming → Types
+  - from: backstage/docs-ui/components/table
+    to: backstage/docs-ui/components/components/table
+    type: direct-call
+    description: Table → Table
+  - from: backstage/docs-ui/components/components/table
+    to: backstage/docs-ui/components/table
+    type: direct-call
+    description: Table → Table
+  - from: backstage/docs-ui/components/components/propstable
+    to: backstage/docs-ui/components/table
+    type: direct-call
+    description: Propstable → Table
+  - from: backstage/docs-ui/components/components/propstable
+    to: backstage/docs-ui/components/chip
+    type: direct-call
+    description: Propstable → Chip
+  - from: backstage/docs-ui/components/components/propstable
+    to: backstage/docs-ui/components/propstable
+    type: direct-call
+    description: Propstable → Propstable
+  - from: backstage/docs-ui/components/propstable
+    to: backstage/docs-ui/components/components/propstable
+    type: direct-call
+    description: Propstable → Propstable
+  - from: backstage/docs-ui/components/components/mobilebottomnav
+    to: backstage/docs-ui/components/mobilebottomnav
+    type: direct-call
+    description: Mobilebottomnav → Mobilebottomnav
+  - from: backstage/docs-ui/components/mobilebottomnav
+    to: backstage/docs-ui/components/components/mobilebottomnav
+    type: direct-call
+    description: Mobilebottomnav → Mobilebottomnav
+  - from: backstage/docs-ui/components/components/tableofcontents
+    to: backstage/docs-ui/components/tableofcontents
+    type: direct-call
+    description: Tableofcontents → Tableofcontents
+  - from: backstage/docs-ui/components/tableofcontents
+    to: backstage/docs-ui/components/components/tableofcontents
+    type: direct-call
+    description: Tableofcontents → Tableofcontents
+  - from: backstage/docs-ui/components/components/mobilebottomnav
+    to: backstage/docs-ui/components/columns
+    type: direct-call
+    description: Columns → Columns
+  - from: backstage/docs-ui/components/commandpalette
+    to: backstage/docs-ui/components/components/commandpalette
+    type: direct-call
+    description: Commandpalette → Commandpalette
+  - from: backstage/docs-ui/components/components/commandpalette
+    to: backstage/docs-ui/components/commandpalette
+    type: direct-call
+    description: Commandpalette → Commandpalette
+  - from: backstage/docs-ui/components/components/customtheme
+    to: backstage/docs-ui/components/customtheme
+    type: direct-call
+    description: Customtheme → Customtheme
+  - from: backstage/docs-ui/components/customtheme
+    to: backstage/docs-ui/components/components/customtheme
+    type: direct-call
+    description: Customtheme → Customtheme
+  - from: backstage/docs-ui/components/colorfamily
+    to: backstage/docs-ui/components/components/colorfamily
+    type: direct-call
+    description: Colorfamily → Colorfamily
+  - from: backstage/docs-ui/components/components/colorfamily
+    to: backstage/docs-ui/components/colorfamily
+    type: direct-call
+    description: Colorfamily → Colorfamily
+  - from: backstage/docs-ui/components/hookgrid
+    to: backstage/docs-ui/components/components/hookgrid
+    type: direct-call
+    description: Hookgrid → Hookgrid
+  - from: backstage/docs-ui/components/components/hookgrid
+    to: backstage/docs-ui/components/hookgrid
+    type: direct-call
+    description: Hookgrid → Hookgrid
+  - from: backstage/docs-ui/components/banner
+    to: backstage/docs-ui/components/components/banner
+    type: direct-call
+    description: Banner → Banner
+  - from: backstage/docs-ui/components/components/banner
+    to: backstage/docs-ui/components/banner
+    type: direct-call
+    description: Banner → Banner
