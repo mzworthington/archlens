@@ -27,7 +27,7 @@ bin/setup-dev-env.sh
 
 That script also ensures [agent-lifecycle-kit](https://github.com/mzworthington/agent-lifecycle-kit) is available (prefers `~/.agents`, then a sibling/`/agent/repos` checkout, otherwise clones and runs `install.sh`). Skip with `SKIP_LIFECYCLE_KIT=1`.
 
-The production toolchain is TypeScript under `app/` plus Go for **ChaosLens** (`resilience-engine/`). An experimental Rust tree lives in `cli/` but is unmaintained and not required for local development.
+The production toolchain is TypeScript under `app/` plus Go for **ChaosLens** (`resilience-engine/`).
 
 Common Mise tasks (from the repo root):
 

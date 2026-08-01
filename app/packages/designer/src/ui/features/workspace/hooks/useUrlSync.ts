@@ -2,11 +2,10 @@ import { useEffect, useRef } from 'react';
 import { useLocation, useRoute } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { resolveEntityHome } from '@archlens/core';
-
-function workspaceEntityRefFromUrl(pathAfterWorkspace: string | undefined): string | undefined {
-  const trimmed = pathAfterWorkspace?.replace(/\/$/, '');
-  return trimmed || undefined;
-}
+import {
+  isWorkspacePath,
+  workspaceEntityRefFromRouteParam,
+} from '../../../../application/navigation/workspaceUrl';
 
 /**
  * Load the active diagram from `/workspace/<entityRef>` when the URL changes.
@@ -23,12 +22,12 @@ export function useUrlSync(): void {
   const lastAppliedRef = useRef<string | null>(null);
 
   useEffect(() => {
-    const onWorkspace = location === '/' || location === '' || location.startsWith('/workspace');
+    const onWorkspace = location === '/' || location === '' || isWorkspacePath(location);
     if (!onWorkspace) return;
     if (diagramLoadCount > 0) return;
     if (isStartupOpen) return;
 
-    const entityRef = workspaceEntityRefFromUrl(params?.['*']);
+    const entityRef = workspaceEntityRefFromRouteParam(params?.['*']);
     if (!entityRef) {
       lastAppliedRef.current = location;
       return;

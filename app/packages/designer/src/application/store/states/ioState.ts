@@ -7,34 +7,40 @@ import {
   type LayoutRegistryPort,
   type WorkingCopyPort,
   type GraphChangePort,
+  type ResilienceEnginePort,
   noopFileSystem,
   noopWorkspace,
   noopLogger,
+  noopLayoutRegistry,
   noopWorkingCopy,
   noopGraphChange,
+  noopResilienceEngine,
 } from '../../../core';
-import { createBrowserLayoutRegistry } from '../../../infrastructure/layout/createBrowserLayoutRegistry';
-import { BrowserWorkspaceAdapter } from '../../../infrastructure/fileSystem/fileSync';
-import { BundledSampleWorkspaceAdapter } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { loadWorkspaceFromDirectory } from './ioState/openWorkspace';
-
-const browserLayoutRegistry = createBrowserLayoutRegistry();
 
 export interface IoState {
   fileSystemPort: FileSystemPort;
   workspacePort: WorkspacePort;
+  /** Folder-picker workspace adapter (browser FS access). */
+  folderWorkspacePort: WorkspacePort;
+  /** Bundled demo blueprints adapter. */
+  sampleWorkspacePort: WorkspacePort;
   logger: LoggerPort;
   layoutRegistry: LayoutRegistryPort;
   workingCopyPort: WorkingCopyPort;
   graphChangePort: GraphChangePort;
+  resilienceEnginePort: ResilienceEnginePort;
   setPorts: (
     ports: Partial<{
       fileSystemPort: FileSystemPort;
       workspacePort: WorkspacePort;
+      folderWorkspacePort: WorkspacePort;
+      sampleWorkspacePort: WorkspacePort;
       logger: LoggerPort;
       layoutRegistry: LayoutRegistryPort;
       workingCopyPort: WorkingCopyPort;
       graphChangePort: GraphChangePort;
+      resilienceEnginePort: ResilienceEnginePort;
     }>
   ) => void;
 
@@ -43,6 +49,7 @@ export interface IoState {
   openWorkspaceDirectory: () => Promise<boolean>;
   openBundledSample: () => Promise<boolean>;
   saveActiveDiagram: () => Promise<boolean>;
+  clearWorkspaceDrafts: () => Promise<void>;
 }
 
 type IoStateDeps = IoState & DiagramState & UiState;
@@ -50,10 +57,13 @@ type IoStateDeps = IoState & DiagramState & UiState;
 export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
   fileSystemPort: noopFileSystem,
   workspacePort: noopWorkspace,
+  folderWorkspacePort: noopWorkspace,
+  sampleWorkspacePort: noopWorkspace,
   logger: noopLogger,
-  layoutRegistry: browserLayoutRegistry,
+  layoutRegistry: noopLayoutRegistry,
   workingCopyPort: noopWorkingCopy,
   graphChangePort: noopGraphChange,
+  resilienceEnginePort: noopResilienceEngine,
   setPorts: ports => set((state: IoStateDeps) => ({ ...state, ...ports })),
 
   saveSchema: async () => {
@@ -134,6 +144,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
   openWorkspaceDirectory: async () => {
     const {
       workspacePort,
+      folderWorkspacePort,
       workingCopyPort,
       logger,
       setNotification,
@@ -143,7 +154,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
     } = get();
     setIsLoading(true);
     try {
-      const port = isSampleWorkspace ? BrowserWorkspaceAdapter : workspacePort;
+      const port = isSampleWorkspace ? folderWorkspacePort : workspacePort;
       set({ workspacePort: port, isSampleWorkspace: false });
       return await loadWorkspaceFromDirectory({
         selectDirectory: () => port.selectDirectory(),
@@ -166,14 +177,21 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
   },
 
   openBundledSample: async () => {
-    const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
+    const {
+      sampleWorkspacePort,
+      workingCopyPort,
+      logger,
+      setNotification,
+      initSchema,
+      setIsLoading,
+    } = get();
     setIsLoading(true);
     try {
-      set({ workspacePort: BundledSampleWorkspaceAdapter, isSampleWorkspace: true });
+      set({ workspacePort: sampleWorkspacePort, isSampleWorkspace: true });
       return await loadWorkspaceFromDirectory({
-        selectDirectory: () => BundledSampleWorkspaceAdapter.selectDirectory(),
-        readDirectoryFiles: () => BundledSampleWorkspaceAdapter.readDirectoryFiles(),
-        getDirectoryName: () => BundledSampleWorkspaceAdapter.getDirectoryName(),
+        selectDirectory: () => sampleWorkspacePort.selectDirectory(),
+        readDirectoryFiles: () => sampleWorkspacePort.readDirectoryFiles(),
+        getDirectoryName: () => sampleWorkspacePort.getDirectoryName(),
         workingCopy: workingCopyPort,
         logger,
         setNotification,
@@ -187,6 +205,15 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       return false;
     } finally {
       setIsLoading(false);
+    }
+  },
+
+  clearWorkspaceDrafts: async () => {
+    const { workingCopyPort, logger } = get();
+    try {
+      await workingCopyPort.clearAllDrafts();
+    } catch (err) {
+      logger.error('Failed to purge working-copy drafts', err);
     }
   },
 

@@ -80,21 +80,14 @@ function useOpenActions() {
 function useClearAction() {
   const initSchema = useBlueprintStore(s => s.initSchema);
   const setIsLoading = useBlueprintStore(s => s.setIsLoading);
+  const clearWorkspaceDrafts = useBlueprintStore(s => s.clearWorkspaceDrafts);
   const controlsDisabled = useControlsDisabled();
 
   const handleClear = useCallback(async () => {
     if (confirm('Clear the workspace, purge all IndexedDB drafts, and create a blank canvas?')) {
       setIsLoading('Cleaning workspace...');
-      const { db } = await import('../../../../../infrastructure/db/db');
       try {
-        await Promise.all([
-          db.originalNodes.clear(),
-          db.workingNodes.clear(),
-          db.originalDependencies.clear(),
-          db.workingDependencies.clear(),
-        ]);
-      } catch (err) {
-        console.error('Failed to purge IndexedDB databases:', err);
+        await clearWorkspaceDrafts();
       } finally {
         setIsLoading(false);
       }
@@ -106,7 +99,7 @@ function useClearAction() {
         dependencies: [],
       });
     }
-  }, [initSchema, setIsLoading]);
+  }, [clearWorkspaceDrafts, initSchema, setIsLoading]);
 
   return { controlsDisabled, handleClear };
 }

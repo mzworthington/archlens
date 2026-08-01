@@ -143,16 +143,12 @@ describe('ActionControls Component', () => {
   it('triggers initSchema on clearing canvas if confirmed', async () => {
     const initSchemaMock = vi.fn();
     const setIsLoadingMock = vi.fn();
-    useBlueprintStore.setState({ initSchema: initSchemaMock, setIsLoading: setIsLoadingMock });
-
-    vi.mock('../../../../../infrastructure/db/db', () => ({
-      db: {
-        originalNodes: { clear: vi.fn().mockResolvedValue(undefined) },
-        workingNodes: { clear: vi.fn().mockResolvedValue(undefined) },
-        originalDependencies: { clear: vi.fn().mockResolvedValue(undefined) },
-        workingDependencies: { clear: vi.fn().mockResolvedValue(undefined) },
-      },
-    }));
+    const clearWorkspaceDraftsMock = vi.fn().mockResolvedValue(undefined);
+    useBlueprintStore.setState({
+      initSchema: initSchemaMock,
+      setIsLoading: setIsLoadingMock,
+      clearWorkspaceDrafts: clearWorkspaceDraftsMock,
+    });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
 
@@ -165,6 +161,7 @@ describe('ActionControls Component', () => {
     expect(confirmSpy).toHaveBeenCalledWith(
       'Clear the workspace, purge all IndexedDB drafts, and create a blank canvas?'
     );
+    expect(clearWorkspaceDraftsMock).toHaveBeenCalled();
     expect(initSchemaMock).toHaveBeenCalledWith({
       name: 'Empty Workspace',
       version: '1.0.0',

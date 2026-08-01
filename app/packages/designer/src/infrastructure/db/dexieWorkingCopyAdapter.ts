@@ -6,6 +6,7 @@ import type {
   SchemaDiff,
 } from '../../core';
 import {
+  db,
   saveBaselineSchema as dexieSaveBaseline,
   saveWorkingSchema as dexieSaveWorking,
   computeSchemaDiff as dexieComputeDiff,
@@ -42,4 +43,12 @@ export const dexieWorkingCopyAdapter: WorkingCopyPort = {
     systemEntityRef,
   }: LoadWorkingCopyArgs) =>
     dexieLoadWorking(filePath, systemName, systemVersion, systemLevel, systemEntityRef),
+  clearAllDrafts: async () => {
+    await Promise.all([
+      db.originalNodes.clear(),
+      db.workingNodes.clear(),
+      db.originalDependencies.clear(),
+      db.workingDependencies.clear(),
+    ]);
+  },
 };

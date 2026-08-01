@@ -6,5 +6,3 @@ export * from './recommendations/forensicsRecommendations';
 export * from './recommendations/resilienceAdviceEligibility';
 export * from './recommendations/estateScenarios';
 export * from './recommendations/runEstateResilience';
-export * from './recommendations/evidenceCitations';
-export * from './recommendations/narrateRecommendations';

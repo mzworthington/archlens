@@ -2,7 +2,8 @@ import React from 'react';
 import { Link2, Play, ScanSearch, ShieldAlert } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import { buildTraceLensUrl, workspaceEntityRefFromPath } from '../../../forensics/traceLensUrl';
+import { workspaceEntityRefFromPath } from '../../../../../application/navigation/workspaceUrl';
+import { buildTraceLensUrl } from '../../../forensics/traceLensUrl';
 import { buildChaosLensUrl } from '../../../../../application/resilience/chaosLensUrl';
 import {
   countCouplingCapableNodes,

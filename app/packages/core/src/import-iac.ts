@@ -1,8 +1,14 @@
-export * from './rules/iacResourceMap';
-export * from './rules/infraIr';
-export * from './rules/terraformImport';
-export * from './rules/pulumiImport';
-export * from './rules/pulumiStack';
-export * from './rules/iacImport';
-export * from './rules/pulumiTypeMap';
-export * from './rules/infraSchemaMap';
+/** Public IaC import facade — parsers/IR stay internal to this package. */
+export {
+  defaultIacPathForKind,
+  parseIacBatchToSchema,
+  type IacParseResult,
+  type IacSourceFile,
+  type IacSourceKind,
+} from './rules/iacImport';
+export {
+  isPulumiProjectFileName,
+  isPulumiSourceFileForRuntime,
+  readPulumiProjectRuntime,
+  type PulumiRuntime,
+} from './rules/pulumiStack';

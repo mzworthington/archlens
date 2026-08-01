@@ -27,7 +27,6 @@ import {
   positionExternalNodes,
 } from '@archlens/core/layout';
 import { ensureSystemLoaded } from './ioState/ensureSystemLoaded';
-import { BundledSampleWorkspaceAdapter } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import {
   clearSessionLayout,
   getSessionLayout,
@@ -280,9 +279,11 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     if (get().systemSelectInFlight === path) return;
 
     set({ systemSelectInFlight: path });
-    const { logger, workspacePort, workingCopyPort, isSampleWorkspace } = get();
-    // Sample workspace always reads from bundled static assets — never the folder picker port.
-    const activeWorkspacePort = isSampleWorkspace ? BundledSampleWorkspaceAdapter : workspacePort;
+    const { logger, workspacePort, sampleWorkspacePort, workingCopyPort, isSampleWorkspace } =
+      get();
+    // Sample workspace always reads from the injected sample adapter — never the
+    // folder picker port (StrictMode / setPorts races can otherwise leave the wrong port).
+    const activeWorkspacePort = isSampleWorkspace ? sampleWorkspacePort : workspacePort;
     beginDiagramLoad(get, set, DIAGRAM_LOADING_MESSAGE);
     await yieldToUi();
 

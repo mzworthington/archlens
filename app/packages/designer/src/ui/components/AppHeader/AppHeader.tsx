@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Menu, X } from 'lucide-react';
 import { BrandMark } from './BrandMark';
+import { isWorkspacePath } from '../../../application/navigation/workspaceUrl';
 
 type Props = {
   badge?: string;
@@ -15,7 +16,7 @@ const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => 
     href: '/workspace',
     label: 'Canvas',
     isActive: loc => {
-      if (loc !== '/workspace' && !loc.startsWith('/workspace/')) return false;
+      if (!isWorkspacePath(loc)) return false;
       const params = new URLSearchParams(window.location.search);
       return params.get('lens') !== 'tracelens';
     },
@@ -25,15 +26,14 @@ const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => 
     label: 'TraceLens',
     isActive: loc => {
       if (loc === '/tracelens' || loc.startsWith('/tracelens/')) return true;
-      const onWorkspace = loc === '/workspace' || loc.startsWith('/workspace/');
-      if (!onWorkspace) return false;
+      if (!isWorkspacePath(loc)) return false;
       return new URLSearchParams(window.location.search).get('lens') === 'tracelens';
     },
   },
   {
     href: '/',
     label: 'Docs',
-    isActive: loc => !loc.startsWith('/workspace') && !loc.startsWith('/tracelens'),
+    isActive: loc => !isWorkspacePath(loc) && !loc.startsWith('/tracelens'),
   },
 ];
 

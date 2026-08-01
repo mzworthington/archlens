@@ -10,11 +10,13 @@ import {
   type MonteCarloConfig,
   type SimulationResult,
 } from '@archlens/core/resilience';
-import { runResilienceWasmSimulation } from '../../infrastructure/resilience/wasmClient';
+import type { ResilienceEnginePort } from '../../core';
+import { noopResilienceEngine } from '../../core';
 
 export interface ResilienceSimulationOptions {
   monteCarlo?: MonteCarloConfig;
   logger?: LoggerPort;
+  engine?: ResilienceEnginePort;
 }
 
 export async function runResilienceSimulationAsync(
@@ -23,8 +25,9 @@ export async function runResilienceSimulationAsync(
   options?: ResilienceSimulationOptions
 ): Promise<SimulationResult> {
   const logger = options?.logger ?? noopLogger;
+  const engine = options?.engine ?? noopResilienceEngine;
 
-  const wasmResult = await runResilienceWasmSimulation(
+  const wasmResult = await engine.runSimulation(
     {
       schema: { nodes: schema.nodes, dependencies: schema.dependencies },
       spec,
