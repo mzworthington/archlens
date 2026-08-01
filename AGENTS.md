@@ -25,3 +25,9 @@ Before handover, also run `cd app && pnpm typecheck && pnpm build` when you touc
 3. **Refactor:** Only after green; keep parsers and merge logic in core, UI in designer adapters.
 
 Core import modules: `app/packages/core/src/rules/mermaidImport.ts`, `schemaMerge.ts`. Terraform parsing: `terraformImport.ts` (CLI only).
+
+## Cursor Cloud / agent toolchain
+
+Toolchain is declared in `mise.toml` (node, **bun**, pnpm, go). Cloud agents should boot via `.cursor/environment.json`, which runs `bin/setup-dev-env.sh` (installs mise if needed, `mise install node pnpm bun go`, `pnpm install`, ChaosLens WASM). Bun must be on `PATH` for CLI build and husky **pre-push**.
+
+If a shell is missing tools: `eval "$(mise activate bash --shims)"` or re-run `bin/setup-dev-env.sh`. Docs-media (`ffmpeg`/`vhs`) and Playwright browsers are not part of the default agent install — add them only when needed (`mise install` / `pnpm --filter @archlens/designer exec playwright install`).

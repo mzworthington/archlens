@@ -16,11 +16,14 @@ See [Setup & Local Development](docs/setup.md) for tooling (Mise, Node, pnpm, Bu
 Quick start:
 
 ```bash
+# Full toolchain (or: bin/setup-dev-env.sh for mise + core tools + deps + WASM)
 mise install
 cd app
 pnpm install
 pnpm dev
 ```
+
+Cursor Cloud agents use `.cursor/environment.json` → `bin/setup-dev-env.sh`, which installs **bun** via mise (needed for CLI build / pre-push).
 
 ## Making changes
 
