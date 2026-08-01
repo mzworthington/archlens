@@ -26,7 +26,7 @@ describe('LensToolbarControls', () => {
     expect(screen.queryByTestId('toolbar-coupling-lens')).not.toBeInTheDocument();
   });
 
-  it('toggles resilience mode from the lenses group', () => {
+  it('toggles resilience mode from the toolbar', () => {
     render(<LensToolbarControls />);
     fireEvent.click(screen.getByTestId('toolbar-resilience-lens'));
     expect(useBlueprintStore.getState().isResilienceMode).toBe(true);

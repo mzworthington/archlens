@@ -111,21 +111,12 @@ export const LensToolbarControls: React.FC = () => {
 
   return (
     <div
-      className="flex items-center gap-1.5 bg-slate-900/40 border border-slate-850 px-1.5 py-1.5 rounded-lg text-xs shrink-0 select-none whitespace-nowrap"
+      className="flex items-center gap-1.5 shrink-0 select-none whitespace-nowrap"
       data-testid="lens-toolbar-controls"
       onPointerDown={e => e.stopPropagation()}
       onClick={e => e.stopPropagation()}
     >
-      <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 hidden md:inline pl-0.5">
-        Lenses
-      </span>
-      <div
-        className="flex items-center gap-0.5 rounded-md border border-slate-850 overflow-hidden"
-        role="group"
-        aria-label="Diagram lenses"
-      >
-        <ResilienceLensButton />
-      </div>
+      <ResilienceLensButton />
       {isResilienceMode ? <SimulateButton /> : null}
     </div>
   );
