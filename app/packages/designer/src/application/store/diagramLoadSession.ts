@@ -4,11 +4,6 @@ import { hasSessionLayout, schemaLayoutFingerprint } from './sessionLayoutCache'
 
 export const DIAGRAM_LOADING_MESSAGE = 'Loading diagram...';
 export const DIAGRAM_LAYOUT_MESSAGE = 'Arranging diagram...';
-export const SANDBOX_LOADING_MESSAGE = 'Loading sandbox...';
-export const FORENSICS_PREFETCH_MESSAGE = 'Loading diagrams for forensics…';
-
-/** Sentinel value for systemSelectInFlight during full sandbox reload. */
-export const SANDBOX_RELOAD_IN_FLIGHT = '__sandbox_reload__';
 
 export type DiagramLoadStoreSlice = {
   diagramLoadCount: number;

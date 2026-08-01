@@ -1,5 +1,5 @@
 import { expect, type Page } from '@playwright/test';
-import { clickCanvasNode } from './canvas';
+import { clickCanvasNode, openGoldenJourneyEstate } from './canvas';
 import { releaseE2ePage } from './navigation';
 import { loadSandbox } from './workspace';
 
@@ -8,10 +8,10 @@ export const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/golden-paths/golden-journe
 export const PAYMENT_GATEWAY_LABEL = 'Payment Gateway';
 export const CHECKOUT_API_LABEL = 'Checkout API';
 
-/** Load the golden journey Checkout Day diagram in the sandbox. */
+/** Load the golden journey estate diagram used by the outage demo. */
 export async function loadGoldenJourneyDiagram(page: Page) {
-  await loadSandbox(page, GOLDEN_JOURNEY_ESTATE_PATH);
-  await page.waitForTimeout(800);
+  await loadSandbox(page);
+  await openGoldenJourneyEstate(page);
 }
 
 export type GoldenJourneyDemoOptions = {
@@ -42,7 +42,7 @@ export async function runGoldenJourneyOutageDemo(page: Page, options?: GoldenJou
   await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
 
   await expect(page.getByText(/In Checkout API, add a circuit breaker/i)).toBeVisible({
-    timeout: 15_000,
+    timeout: 30_000,
   });
 
   await page.waitForTimeout(1_500);

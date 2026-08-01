@@ -2,7 +2,7 @@ import { expect, type Locator, type Page } from '@playwright/test';
 
 const DIAGRAM_LOADING = '[role="status"][aria-busy="true"]';
 
-export async function waitForDiagramIdle(page: Page) {
+export async function waitForDiagramIdle(page: Page, timeout = 60_000) {
   const loading = page.locator(DIAGRAM_LOADING);
   const nodes = page.locator('.react-flow__node');
 
@@ -15,11 +15,11 @@ export async function waitForDiagramIdle(page: Page) {
         .catch(() => false));
     if (busy) throw new Error('Diagram still loading');
     if ((await nodes.count()) === 0) throw new Error('Diagram has no nodes yet');
-  }).toPass({ timeout: 60_000 });
+  }).toPass({ timeout });
 }
 
-export async function expectCanvasReady(page: Page): Promise<Locator> {
-  await waitForDiagramIdle(page);
+export async function expectCanvasReady(page: Page, timeout = 60_000): Promise<Locator> {
+  await waitForDiagramIdle(page, timeout);
   const nodes = page.locator('.react-flow__node');
   await expect(nodes.first()).toBeVisible({ timeout: 30_000 });
   return nodes;
@@ -40,11 +40,33 @@ export async function drillIntoZoomable(page: Page, nodeName: string) {
     (await zoomButton.count()) > 0 ? zoomButton : node.getByTestId('zoom-in-button').first();
 
   await expect(button).toBeVisible({ timeout: 30_000 });
-  await button.scrollIntoViewIfNeeded();
   // Canvas nodes can overlap zoom controls at large viewports; force avoids flaky hit-testing.
-  await button.click({ force: true });
+  await button.click({ force: true, timeout: 45_000 });
 
   await expectCanvasReady(page);
+}
+
+/** Open the Golden Journey estate container diagram from the Golden Paths context view. */
+export async function openGoldenJourneyEstate(page: Page) {
+  await expectCanvasReady(page);
+  const statusBadges = page.getByTestId('workspace-status-badges');
+  const containerBadge = statusBadges.getByText('container', { exact: true });
+  if (await containerBadge.isVisible().catch(() => false)) {
+    return;
+  }
+
+  const zoom = page.getByRole('button', { name: 'Zoom into Golden Journey' });
+  await expect(zoom).toBeVisible({ timeout: 30_000 });
+
+  await expect(async () => {
+    await zoom.click({ force: true, timeout: 5_000 });
+    await expect(containerBadge).toBeVisible({ timeout: 5_000 });
+    if ((await page.locator('.react-flow__node').count()) === 0) {
+      throw new Error('Diagram has no nodes yet');
+    }
+  }).toPass({ timeout: 90_000 });
+
+  await expectCanvasReady(page, 90_000);
 }
 
 export async function openPropertiesPanel(page: Page) {

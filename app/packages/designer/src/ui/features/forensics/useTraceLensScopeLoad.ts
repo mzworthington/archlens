@@ -8,9 +8,7 @@ type LoadedSystem = { path: string };
 
 /**
  * Priority-load diagrams referenced by a TraceLens scope deep link so rankings
- * appear without waiting for the full background prefetch queue.
- *
- * Loads into `loadedSystems` only — does not switch the active canvas diagram.
+ * appear for the scoped entity without switching the active canvas diagram.
  */
 export function useTraceLensScopeLoad({
   scopeEntityRef,

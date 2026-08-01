@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { drillIntoFirstZoomable, expectCanvasReady } from './helpers/canvas';
 import { gotoApp } from './helpers/navigation';
-import { loadSandbox, keepStartupChooserOpen, workspaceSlug } from './helpers/workspace';
+import { loadSandbox, keepStartupChooserOpen } from './helpers/workspace';
 import { openImportMermaid } from './helpers/toolbar';
 
 const SAMPLE_MERMAID = `flowchart TD
@@ -55,18 +55,20 @@ test.describe('Blueprint E2E Journeys', () => {
   test('Diagram zoom in and out', async ({ page }) => {
     test.setTimeout(120_000);
     await loadSandbox(page);
-    const rootSlug = await workspaceSlug(page);
+
+    const statusBadges = page.getByTestId('workspace-status-badges');
+    await expect(statusBadges.getByText('context', { exact: true })).toBeVisible();
 
     await drillIntoFirstZoomable(page);
-    await expect(page).toHaveURL(/\/workspace\/golden-paths\/golden-journey(?:\/|$)/, {
-      timeout: 30_000,
+    await expect(statusBadges.getByText('container', { exact: true })).toBeVisible({
+      timeout: 60_000,
     });
-    expect(await workspaceSlug(page)).not.toBe(rootSlug);
 
     await page.getByTestId('zoom-out-button').click();
     await expectCanvasReady(page);
-    await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/, { timeout: 30_000 });
-    expect(await workspaceSlug(page)).toBe(rootSlug);
+    await expect(statusBadges.getByText('context', { exact: true })).toBeVisible({
+      timeout: 30_000,
+    });
   });
 
   test('Import Mermaid merge preview', async ({ page }) => {

@@ -69,7 +69,6 @@ import { importSchemaContent } from './diagramState/importSchema';
 import type { MermaidImportPreview } from './diagramState/importMermaid';
 import type { IacImportPreview } from './diagramState/importIac';
 import { createDiagramInitialState } from './diagramState/initialState';
-import { prefetchAllWorkspaceSystems } from './diagramState/prefetchWorkspaceSystems';
 import { applyRefactorBoundaryAsDraft } from '../../forensics/applyRefactorBoundaryAsDraft';
 import type { RefactorBoundary } from '@archlens/core/forensics';
 import { resetToEmptyWorkspace as resetToEmptyWorkspaceAction } from './diagramState/resetToEmptyWorkspace';
@@ -166,7 +165,6 @@ export interface DiagramState {
     engine?: import('../../../core').LayoutEngineId;
   }) => Promise<void>;
   markLayoutCustomized: () => void;
-  prefetchAllWorkspaceSystems: () => Promise<void>;
   applyRefactorBoundaryAsDraft: (boundary: RefactorBoundary) => boolean;
 }
 
@@ -394,7 +392,6 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     set({ layoutSessionId: get().layoutSessionId + 1 });
   },
 
-  prefetchAllWorkspaceSystems: () => prefetchAllWorkspaceSystems(get, set),
   applyRefactorBoundaryAsDraft: boundary => applyRefactorBoundaryAsDraft(boundary, get, set),
 
   markLayoutCustomized: () => {

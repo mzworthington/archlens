@@ -38,7 +38,6 @@ import { ForensicsWorkspacePanel } from './ForensicsWorkspacePanel';
 import { WorkspaceSourceCodeDialog } from '../workspace/components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { useTraceLensUrlSync } from './useTraceLensUrlSync';
 import { useTraceLensScopeLoad } from './useTraceLensScopeLoad';
-import { useDeferredLoadedSystems } from './useDeferredLoadedSystems';
 import { useTraceLensScopeFromUrl } from './useTraceLensScopeFromUrl';
 import { parseTraceLensUrl, buildTraceLensUrl } from './traceLensUrl';
 import { TRACE_LENS_HERO } from '../../content/productOutcomes';
@@ -50,14 +49,7 @@ import {
 import {
   DIAGRAM_LAYOUT_MESSAGE,
   DIAGRAM_LOADING_MESSAGE,
-  FORENSICS_PREFETCH_MESSAGE,
 } from '../../../application/store/diagramLoadSession';
-
-function isForensicsLoadingState(isLoading: boolean | string): boolean {
-  if (!isLoading) return false;
-  if (isLoading === true) return true;
-  return isLoading === FORENSICS_PREFETCH_MESSAGE;
-}
 
 function scoreBarColor(level: ConcernLevel): string {
   switch (level) {
@@ -266,10 +258,8 @@ export const ForensicsPage: React.FC = () => {
     isWorkspaceOpen,
     workspaceName,
     isLoading,
-    diagramLoadCount,
     openBundledSample,
     openWorkspaceDirectory,
-    prefetchAllWorkspaceSystems,
     selectSystem,
     simulateResilienceFaultAtNode,
     selectNode,
@@ -294,10 +284,8 @@ export const ForensicsPage: React.FC = () => {
       isWorkspaceOpen: state.isWorkspaceOpen,
       workspaceName: state.workspaceName,
       isLoading: state.isLoading,
-      diagramLoadCount: state.diagramLoadCount,
       openBundledSample: state.openBundledSample,
       openWorkspaceDirectory: state.openWorkspaceDirectory,
-      prefetchAllWorkspaceSystems: state.prefetchAllWorkspaceSystems,
       selectSystem: state.selectSystem,
       simulateResilienceFaultAtNode: state.simulateResilienceFaultAtNode,
       selectNode: state.selectNode,
@@ -325,7 +313,6 @@ export const ForensicsPage: React.FC = () => {
   const [filter, setFilter] = useState<OffenderSignalFilter>('all');
   const [testFilter, setTestFilter] = useState<OffenderTestFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [rankLoadedOnly, setRankLoadedOnly] = useState(false);
   const traceLensView: TraceLensView =
     urlState.view === 'recommendations' ? 'recommendations' : 'offenders';
   const [activePlan, setActivePlan] = useState<
@@ -344,8 +331,7 @@ export const ForensicsPage: React.FC = () => {
     []
   );
 
-  const forensicsBusy =
-    diagramLoadCount > 0 ? isForensicsLoadingState(isLoading) : isLoading === true;
+  const forensicsBusy = Boolean(isLoading);
 
   useEffect(() => {
     const { diagramLoadCount: loadCount, isLoading: loading } = useBlueprintStore.getState();
@@ -357,17 +343,10 @@ export const ForensicsPage: React.FC = () => {
 
   const loadedCount = loadedSystems.length;
   const catalogCount = workspaceCatalog.length > 0 ? workspaceCatalog.length : loadedCount;
-  const unloadedCount = useMemo(
-    () =>
-      workspaceCatalog.filter(entry => !loadedSystems.some(system => system.path === entry.path))
-        .length,
-    [workspaceCatalog, loadedSystems]
-  );
   const hasScope = loadedCount > 0 || isWorkspaceOpen;
   const hasForensicsData = loadedSystemsHaveForensics(loadedSystems);
   const workspaceLabel = isWorkspaceOpen ? workspaceName || 'Workspace' : 'No workspace';
-  const deferRankingWhilePrefetch = unloadedCount > 0 && !rankLoadedOnly;
-  const rankingSystems = useDeferredLoadedSystems(loadedSystems, deferRankingWhilePrefetch);
+  const rankingSystems = loadedSystems;
 
   const chaosContext = useMemo(
     () =>
@@ -433,11 +412,6 @@ export const ForensicsPage: React.FC = () => {
     loadedSystems,
   });
 
-  useEffect(() => {
-    if (!hasScope || unloadedCount === 0 || rankLoadedOnly) return;
-    void prefetchAllWorkspaceSystems();
-  }, [hasScope, unloadedCount, prefetchAllWorkspaceSystems, rankLoadedOnly]);
-
   const handleOpenSample = useCallback(async () => {
     const opened = await openBundledSample();
     if (!opened) return;
@@ -447,11 +421,8 @@ export const ForensicsPage: React.FC = () => {
   }, [openBundledSample, selectSystem, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {
-    const opened = await openWorkspaceDirectory();
-    if (opened) {
-      await prefetchAllWorkspaceSystems();
-    }
-  }, [openWorkspaceDirectory, prefetchAllWorkspaceSystems]);
+    await openWorkspaceDirectory();
+  }, [openWorkspaceDirectory]);
 
   const scopedOffenders = useMemo(() => {
     if (!scopeEntityRef) return ranked;
@@ -707,10 +678,7 @@ export const ForensicsPage: React.FC = () => {
             workspaceLabel={workspaceLabel}
             loadedCount={loadedCount}
             catalogCount={catalogCount}
-            unloadedCount={unloadedCount}
             isLoading={forensicsBusy}
-            rankLoadedOnly={rankLoadedOnly}
-            onRankLoadedOnly={() => setRankLoadedOnly(true)}
             onOpenSample={() => void handleOpenSample()}
             onOpenDirectory={() => void handleOpenDirectory()}
           />

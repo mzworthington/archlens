@@ -7,7 +7,6 @@ import {
 } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
 import { resolveSchemaOnWorkspaceOpen } from '../../../../infrastructure/db/schemaCompare';
-import { cancelDefaultIdbSeed } from '../diagramState/defaultIdbSeed';
 
 import type { ToastNotification } from '../uiState';
 
@@ -42,8 +41,6 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
 
   const ok = await deps.selectDirectory();
   if (!ok) return false;
-
-  cancelDefaultIdbSeed();
 
   const files = await deps.readDirectoryFiles();
   if (files.length === 0) {
