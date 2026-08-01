@@ -157,9 +157,9 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
       return listWorkspaceExternalCandidatesAction(get, filters);
     },
 
-    addExternalDependencies: (entityRefs: string[]) => {
+    addExternalDependencies: (entityRefs, dependencies) => {
       get().recordHistory();
-      addExternalDependenciesAction(set, get, entityRefs);
+      addExternalDependenciesAction(set, get, entityRefs, dependencies);
     },
 
     materializeCouplingGhost: ghost => {

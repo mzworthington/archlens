@@ -1,6 +1,7 @@
 import type {
   EntityRef,
   ExternalCandidateFilters,
+  SystemDependency,
   SystemSchema,
   WorkspaceEntity,
 } from '@archlens/core';
@@ -33,6 +34,39 @@ type StoreGet = () => {
   setNotification?: (notification: ToastNotification | null) => void;
 };
 
+function canvasNodeIds(nodes: BlueprintRFNode[]): Set<string> {
+  const ids = new Set<string>();
+  for (const node of nodes) {
+    ids.add(node.id);
+    const entityRef = node.data.entityRef;
+    if (typeof entityRef === 'string' && entityRef) ids.add(entityRef);
+  }
+  return ids;
+}
+
+/** Ensure dependency lines exist for any dep whose endpoints are both on the canvas. */
+function mergeDependencyEdgesOntoCanvas(
+  currentNodes: BlueprintRFNode[],
+  currentEdges: BlueprintRFEdge[],
+  dependencies: SystemDependency[]
+): { edges: BlueprintRFEdge[]; edgesAdded: number } {
+  const nodeIds = canvasNodeIds(currentNodes);
+  const edges = [...currentEdges];
+  const edgeKeys = new Set(edges.map(edge => `${edge.source}\0${edge.target}`));
+  let edgesAdded = 0;
+
+  for (const dep of dependencies) {
+    if (!nodeIds.has(dep.from) || !nodeIds.has(dep.to)) continue;
+    const key = `${dep.from}\0${dep.to}`;
+    if (edgeKeys.has(key)) continue;
+    edges.push(mapDomainDepToRFEdge(dep));
+    edgeKeys.add(key);
+    edgesAdded++;
+  }
+
+  return { edges, edgesAdded };
+}
+
 function requireWorkspaceContext(get: StoreGet) {
   const { schema, loadedSystems, logger } = get();
   if (!loadedSystems.length) {
@@ -56,13 +90,16 @@ export function listWorkspaceExternalCandidates(
 function mergeExternalNodesOntoCanvas(
   set: (partial: Record<string, unknown>) => void,
   get: StoreGet,
-  entities: WorkspaceEntity[]
-): number {
-  if (entities.length === 0) return 0;
+  entities: WorkspaceEntity[],
+  dependencies?: SystemDependency[]
+): { nodesAdded: number; edgesAdded: number } {
+  if (entities.length === 0 && !dependencies?.length) {
+    return { nodesAdded: 0, edgesAdded: 0 };
+  }
 
   let currentNodes = [...get().nodes] as BlueprintRFNode[];
   const entityRefs = new Set(entities.map(e => e.entityRef));
-  let changedCount = 0;
+  let nodesAdded = 0;
 
   for (let i = 0; i < currentNodes.length; i++) {
     const node = currentNodes[i];
@@ -75,7 +112,7 @@ function mergeExternalNodesOntoCanvas(
         external: true,
       },
     };
-    changedCount++;
+    nodesAdded++;
   }
 
   const missing = entities.filter(
@@ -89,16 +126,23 @@ function mergeExternalNodesOntoCanvas(
     );
     for (const domainNode of domainNodes) {
       currentNodes.push(mapDomainNodeToRFNode(domainNode));
-      changedCount++;
+      nodesAdded++;
     }
   }
 
-  if (changedCount > 0) {
-    currentNodes = repositionExternalRfNodes(currentNodes, get().schema.dependencies ?? []);
-    applyStateUpdates(set, get, currentNodes, get().edges as BlueprintRFEdge[]);
+  const deps = dependencies ?? get().schema.dependencies ?? [];
+  const { edges: nextEdges, edgesAdded } = mergeDependencyEdgesOntoCanvas(
+    currentNodes,
+    get().edges as BlueprintRFEdge[],
+    deps
+  );
+
+  if (nodesAdded > 0 || edgesAdded > 0) {
+    currentNodes = repositionExternalRfNodes(currentNodes, deps);
+    applyStateUpdates(set, get, currentNodes, nextEdges);
   }
 
-  return changedCount;
+  return { nodesAdded, edgesAdded };
 }
 
 /**
@@ -169,25 +213,28 @@ function applyContainerRollupToCanvas(
 export function addExternalDependencies(
   set: (partial: Record<string, unknown>) => void,
   get: StoreGet,
-  entityRefs: EntityRef[]
+  entityRefs: EntityRef[],
+  dependencies?: SystemDependency[]
 ) {
   void set;
   const context = requireWorkspaceContext(get);
-  if (!context || entityRefs.length === 0) return;
+  if (!context || (entityRefs.length === 0 && !dependencies?.length)) return;
 
   const index = buildWorkspaceEntityIndex(context.loadedSystems);
   const entities = entityRefs
     .map(ref => index.byRef.get(ref))
     .filter((entity): entity is WorkspaceEntity => !!entity);
 
-  const addedCount = mergeExternalNodesOntoCanvas(set, get, entities);
-  if (addedCount > 0) {
-    get().logger.info(`Added ${addedCount} external node(s) to the diagram.`);
+  const { nodesAdded, edgesAdded } = mergeExternalNodesOntoCanvas(set, get, entities, dependencies);
+  if (nodesAdded > 0) {
+    get().logger.info(`Added ${nodesAdded} external node(s) to the diagram.`);
     get().setNotification?.({
       type: 'success',
       title: 'External dependencies',
-      message: `Added ${addedCount} external node${addedCount === 1 ? '' : 's'} to the diagram.`,
+      message: `Added ${nodesAdded} external node${nodesAdded === 1 ? '' : 's'} to the diagram.`,
     });
+  } else if (edgesAdded > 0) {
+    get().logger.info(`Wired ${edgesAdded} external dependency edge(s) on the diagram.`);
   }
 }
 
@@ -249,13 +296,17 @@ export function syncSuggestedExternals(
     return;
   }
 
-  const addedCount = mergeExternalNodesOntoCanvas(set, get, suggested);
-  if (addedCount > 0) {
-    get().logger.info(`Synced ${addedCount} external node(s).`);
+  const { nodesAdded, edgesAdded } = mergeExternalNodesOntoCanvas(set, get, suggested);
+  if (nodesAdded > 0 || edgesAdded > 0) {
+    get().logger.info(
+      `Synced ${nodesAdded} external node(s) and ${edgesAdded} dependency edge(s).`
+    );
     get().setNotification?.({
       type: 'success',
       title: 'Sync externals',
-      message: `Synced ${addedCount} external node${addedCount === 1 ? '' : 's'}.`,
+      message: `Synced ${nodesAdded} external node${nodesAdded === 1 ? '' : 's'}${
+        edgesAdded > 0 ? ` and ${edgesAdded} coupling line${edgesAdded === 1 ? '' : 's'}` : ''
+      }.`,
     });
   } else {
     get().logger.info('All suggested external dependencies are already on the canvas.');
