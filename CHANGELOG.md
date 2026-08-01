@@ -12,6 +12,7 @@
 - Bootstrap `agent-lifecycle-kit` into `~/.agents` from `bin/setup-dev-env.sh` (Cursor Cloud)
 - Architecture prune: remove dead designer `samples/` mirrors and quarantined Rust `cli/`; narrow core barrels; drop forensics/layout shims; unify workspace URL helpers; move TraceLens UI under `ui/features/tracelens`
 - Architecture prune (continued): browser composition root + injected workspace/resilience ports; split DesignSystemShowcase / graph / layoutUtils; archive completed `docs/plans`; ChaosSpec suite no longer re-simulates stress fixtures
+- Carve TraceLensPanel / Canvas / diagramState; trim overlapping UI + CLI writer tests; move PWA buildInfo into application (drop infra re-export)
 
 ### 📚 Documentation
 

@@ -51,38 +51,6 @@ describe('diagramState Actions & State Management', () => {
     expect(state.validationResult.isValid).toBe(true);
   });
 
-  it('preserves metadata.source through initSchema and canvas rebuild', () => {
-    const { initSchema } = useBlueprintStore.getState();
-    initSchema({
-      name: 'Reporters',
-      version: 'https://archlens.dev/schemas/v4/blueprint.schema.json',
-      level: 'component',
-      entityRef: 'blueprint/app/reporters',
-      source: {
-        remoteUrl: 'https://github.com/mzworthington/archlens',
-        scannedAtCommit: 'abc123',
-        scanRoot: '.',
-      },
-      nodes: [
-        {
-          entityRef: 'comp',
-          type: 'component',
-          name: 'Comp',
-          properties: { filepath: 'app/reporters/foo.ts' },
-        },
-      ],
-      dependencies: [],
-    });
-
-    const state = useBlueprintStore.getState();
-    expect(state.schema.source).toEqual({
-      remoteUrl: 'https://github.com/mzworthington/archlens',
-      scannedAtCommit: 'abc123',
-      scanRoot: '.',
-    });
-    expect(state.yamlCode).toContain('remoteUrl: https://github.com/mzworthington/archlens');
-  });
-
   it('should successfully add a new node and serialize to YAML', () => {
     const store = useBlueprintStore.getState();
     store.addNode('relational-database' as NodeType);
@@ -634,31 +602,5 @@ describe('diagramState Actions & State Management', () => {
     const fingerprint = schemaLayoutFingerprint(useBlueprintStore.getState().schema);
 
     expect(hasSessionLayout('context.yaml', fingerprint)).toBe(false);
-  });
-
-  it('should merge mermaid import into active diagram without removing existing nodes', async () => {
-    const store = useBlueprintStore.getState();
-    const beforeCount = store.schema.nodes.length;
-
-    const mermaid = `graph TD
-      Cache[("Redis Cache")]`;
-
-    const success = await store.importMermaid(mermaid, {});
-    expect(success).toBe(true);
-
-    const updated = useBlueprintStore.getState();
-    expect(updated.schema.nodes.length).toBeGreaterThan(beforeCount);
-    expect(updated.schema.nodes.some(n => n.name === 'Redis Cache')).toBe(true);
-    expect(updated.schema.nodes.some(n => n.name === 'Node A')).toBe(true);
-    expect(updated.schema.nodes.some(n => n.name === 'Node B')).toBe(true);
-  });
-
-  it('should preview mermaid import merge plan', async () => {
-    const store = useBlueprintStore.getState();
-    const preview = await store.previewMermaidImport(`graph TD
-      NewSvc["New Service"]`);
-
-    expect(preview.parseResult.format).toBe('flowchart');
-    expect(preview.mergePlan.additions.nodes.length).toBeGreaterThanOrEqual(1);
   });
 });

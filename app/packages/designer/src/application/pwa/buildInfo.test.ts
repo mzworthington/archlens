@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { parseBuildIdFromHtml, formatAppVersionLabel } from './buildId';
+import { parseBuildIdFromHtml, formatAppVersionLabel } from './buildInfo';
 
 describe('parseBuildIdFromHtml', () => {
   it('reads app-build-id meta tag from html', () => {
