@@ -14,7 +14,7 @@ export const WHY_IT_MATTERS = [
   },
   {
     title: 'See fragile code on the diagram',
-    body: 'TraceLens attaches churn, complexity, and coupling to the nodes you already maintain — hotspots visible where architects actually work.',
+    body: 'TraceLens attaches git churn, complexity, and schema dependencies to the nodes you already maintain — hotspots and connection risk visible where architects actually work.',
   },
   {
     title: 'Know what to fix first',
@@ -28,12 +28,12 @@ export const WORKSPACE_STARTUP = {
 } as const;
 
 export const TRACE_LENS_HERO = {
-  pageTitle: 'Estate forensics',
+  pageTitle: 'TraceLens',
   offenders: {
     sectionTitle: 'Worst offenders',
-    body: 'Estate-wide ranking by forensics signals — churn, complexity, and coupling on every loaded blueprint. Find nodes that amplify outage risk before you refactor.',
+    body: 'Estate-wide ranking by git metrics, temporal coupling, and blueprint dependency hotspots on every loaded diagram. Find nodes that amplify outage risk before you refactor.',
   },
   recommendations: {
-    body: 'Headless ChaosLens scenarios across every loaded diagram, merged with TraceLens signals. Click a row for evidence and the next action.',
+    body: 'Headless ChaosLens scenarios across every loaded diagram, merged with TraceLens git and connection signals. Click a row for evidence and the next action.',
   },
 } as const;
