@@ -165,10 +165,10 @@ export default defineConfig({
       registerType: 'prompt',
       includeAssets: ['favicon.svg', 'favicon.png', 'icons/apple-touch-icon-dark.png'],
       manifest: {
-        name: 'Blueprint',
-        short_name: 'Blueprint',
+        name: 'ArchLens',
+        short_name: 'ArchLens',
         description:
-          'Maps your codebase as an interactive C4-style diagram - explore systems, containers, and components.',
+          'ArchLens maps your codebase as an interactive C4-style diagram - explore systems, containers, and components.',
         theme_color: '#040914',
         background_color: '#040914',
         display: 'standalone',

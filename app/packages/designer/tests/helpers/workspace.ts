@@ -39,5 +39,9 @@ export async function waitForForensicsOffenders(page: Page) {
 }
 
 export async function workspaceSlug(page: Page): Promise<string> {
-  return page.locator('#workspace-slug-input').inputValue();
+  const { pathname } = new URL(page.url());
+  const prefix = '/workspace/';
+  if (!pathname.startsWith(prefix)) return '';
+  const rest = pathname.slice(prefix.length).replace(/\/$/, '');
+  return decodeURIComponent(rest);
 }

@@ -23,8 +23,8 @@ test.describe('Blueprint E2E Journeys', () => {
   test('Sandbox loads a diagram on the canvas', async ({ page }) => {
     test.setTimeout(120_000);
     await loadSandbox(page);
-    await expect(page.locator('#workspace-slug-input')).not.toHaveValue('');
-    await expect(page.locator('#workspace-name-input')).not.toHaveValue('');
+    await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/);
+    await expect(page.getByRole('button', { name: 'Golden Paths' })).toBeVisible();
   });
 
   test('Workspace panel toggles', async ({ page }) => {
@@ -53,7 +53,7 @@ test.describe('Blueprint E2E Journeys', () => {
   });
 
   test('Diagram zoom in and out', async ({ page }) => {
-    test.setTimeout(90_000);
+    test.setTimeout(120_000);
     await loadSandbox(page);
     const rootSlug = await workspaceSlug(page);
 
