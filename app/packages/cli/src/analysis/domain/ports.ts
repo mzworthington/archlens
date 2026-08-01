@@ -1,5 +1,7 @@
 import type { ParsedSourceFile } from './types.ts';
 
+export type { LoggerPort } from '@archlens/core/logging';
+
 export interface CodebaseParserPort {
   parseSourceFiles(globPattern: string, signal?: AbortSignal): Promise<ParsedSourceFile[]>;
 }
@@ -18,10 +20,4 @@ export interface AnalysisFileSystemPort {
   getRelativePath(from: string, to: string): string;
   getAbsolutePath(...parts: string[]): string;
   getCurrentWorkingDirectory(): string;
-}
-
-export interface LoggerPort {
-  info(message: string, context?: Record<string, unknown>): void;
-  warn(message: string, context?: Record<string, unknown>): void;
-  error(message: string, error?: unknown, context?: Record<string, unknown>): void;
 }
