@@ -64,4 +64,35 @@ describe('useWorkspaceLensSync', () => {
       expect(mem.history?.[mem.history.length - 1]).toBe('/workspace/shop?lens=chaoslens');
     });
   });
+
+  it('keeps faults when the user adds one before the URL has caught up', async () => {
+    const mem = memoryLocation({ path: '/workspace/shop?lens=chaoslens', record: true });
+
+    renderHook(() => useWorkspaceLensSync(), { wrapper: wrap(mem.hook) });
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
+    });
+
+    act(() => {
+      useBlueprintStore.setState({
+        selectedNodeId: 'shop/api',
+        resilienceFaultType: 'region-outage',
+        resilienceSeverity: 1,
+      });
+      useBlueprintStore.getState().addResilienceFaultFromDraft();
+    });
+
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([
+      { nodeId: 'shop/api', faultType: 'region-outage', severity: 1 },
+    ]);
+
+    await waitFor(() => {
+      expect(mem.history?.[mem.history.length - 1]).toContain('fault=shop%2Fapi');
+    });
+
+    expect(useBlueprintStore.getState().resilienceFaults).toEqual([
+      { nodeId: 'shop/api', faultType: 'region-outage', severity: 1 },
+    ]);
+  });
 });

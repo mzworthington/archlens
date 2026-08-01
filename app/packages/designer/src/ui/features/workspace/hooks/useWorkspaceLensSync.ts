@@ -46,21 +46,26 @@ export function useWorkspaceLensSync(): void {
     }
   }, [location, search, isTraceLensMode, setTraceLensMode]);
 
-  // URL → ChaosLens mode + faults
+  // URL → ChaosLens mode + faults.
+  // Depend only on the URL — not store faults — so adding a fault cannot re-apply a
+  // stale empty URL and wipe the scenario before store→URL rewrites the query.
   useEffect(() => {
     const active = isChaosLensUrl(location, search);
     if (!active) return;
     if (isTraceLensUrl(location, search)) return;
 
     const parsed = parseChaosLensUrl(location, search);
-    if (isResilienceMode && resilienceFaultsEqual(resilienceFaults, parsed.faults)) return;
+    const state = useBlueprintStore.getState();
+    if (state.isResilienceMode && resilienceFaultsEqual(state.resilienceFaults, parsed.faults)) {
+      return;
+    }
 
     applyingUrlRef.current = true;
     applyResilienceUrlState(parsed.faults);
     queueMicrotask(() => {
       applyingUrlRef.current = false;
     });
-  }, [location, search, isResilienceMode, resilienceFaults, applyResilienceUrlState]);
+  }, [location, search, applyResilienceUrlState]);
 
   // Store → ChaosLens URL while resilience mode is active
   useEffect(() => {
