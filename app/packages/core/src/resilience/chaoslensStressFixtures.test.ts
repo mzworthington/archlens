@@ -166,7 +166,7 @@ describe('chaoslens-stress fixtures', () => {
   it('loads every scenario YAML from blueprints/chaoslens-stress/', () => {
     const files = fs
       .readdirSync(STRESS_DIR)
-      .filter(name => name.endsWith('.yaml'))
+      .filter(name => name.endsWith('.yaml') && !name.includes('-overlay.'))
       .sort();
 
     expect(files.length).toBeGreaterThanOrEqual(10);

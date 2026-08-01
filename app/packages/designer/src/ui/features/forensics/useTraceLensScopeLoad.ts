@@ -3,6 +3,7 @@ import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { resolveDiagramPathsForEntityScope } from '../../../application/forensics/resolveTraceLensScopeDiagrams';
 import { ensureSystemLoaded } from '../../../application/store/states/ioState/ensureSystemLoaded';
 import { useBlueprintStore } from '../../../application/store/store';
+import { BundledSampleWorkspaceAdapter } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 
 type LoadedSystem = { path: string };
 
@@ -36,13 +37,14 @@ export function useTraceLensScopeLoad({
 
     void (async () => {
       const state = useBlueprintStore.getState();
-      const { logger, workspacePort, workingCopyPort } = state;
+      const { logger, workspacePort, workingCopyPort, isSampleWorkspace } = state;
+      const activeWorkspacePort = isSampleWorkspace ? BundledSampleWorkspaceAdapter : workspacePort;
 
       for (const path of paths) {
         if (cancelled) return;
 
         await ensureSystemLoaded(path, {
-          workspacePort,
+          workspacePort: activeWorkspacePort,
           workingCopyPort,
           logger,
           get: () => useBlueprintStore.getState(),

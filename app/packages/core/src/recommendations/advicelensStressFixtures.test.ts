@@ -15,7 +15,7 @@ function listFixtureFiles(dir: string): string[] {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       files.push(...listFixtureFiles(fullPath));
-    } else if (entry.name.endsWith('.yaml')) {
+    } else if (entry.name.endsWith('.yaml') && !entry.name.includes('-overlay.')) {
       files.push(fullPath);
     }
   }

@@ -26,9 +26,13 @@ const browserLayoutRegistry = createBrowserLayoutRegistry();
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Wire up the infrastructure adapters to the Zustand store at launch
   useEffect(() => {
-    useBlueprintStore.getState().setPorts({
+    const state = useBlueprintStore.getState();
+    state.setPorts({
       fileSystemPort: BrowserFileSystemAdapter,
-      workspacePort: BrowserWorkspaceAdapter,
+      // Preserve the bundled sample adapter when already open — StrictMode remounts
+      // and races with "Open demo blueprints" used to overwrite it with the folder
+      // adapter, breaking lazy diagram loads (zoom-out / URL sync).
+      ...(state.isSampleWorkspace ? {} : { workspacePort: BrowserWorkspaceAdapter }),
       logger: ConsoleLoggerAdapter,
       layoutRegistry: browserLayoutRegistry,
       workingCopyPort: dexieWorkingCopyAdapter,
