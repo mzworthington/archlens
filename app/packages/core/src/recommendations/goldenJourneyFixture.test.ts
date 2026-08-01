@@ -135,7 +135,28 @@ describe('golden-journey estate fixture', () => {
     expect(checkoutBreaker).toBeDefined();
     expect(checkoutBreaker?.targetName).toBe('Checkout API');
     expect(checkoutBreaker?.evidence.simulation?.dependencyEntityRef).toBe(PAYMENT_GATEWAY);
+    expect(checkoutBreaker?.evidence.simulation?.dependencyOwnership).toBe('third-party');
+    expect(checkoutBreaker?.detail).toMatch(/third-party/i);
     expect(recommendations[0]?.kind).toBe('add-circuit-breaker');
+  });
+
+  it('does not target personas with circuit-breaker advice on the context diagram', () => {
+    const schema = loadFixture('context.yaml');
+    const simulation = runResilienceSimulation(schema, {
+      faults: [{ nodeId: 'golden-paths/golden-journey', faultType: 'region-outage' }],
+    });
+    const recommendations = buildRecommendations({ schema, simulation });
+    const personaRefs = [
+      'golden-paths/golden-journey/shopper',
+      'golden-paths/golden-journey/member',
+      'golden-paths/golden-journey/buyer',
+      'golden-paths/golden-journey/subscriber',
+    ];
+
+    expect(recommendations.some(r => r.kind === 'add-circuit-breaker')).toBe(false);
+    for (const ref of personaRefs) {
+      expect(recommendations.some(r => r.targetEntityRef === ref)).toBe(false);
+    }
   });
 
   it('propagates blast through checkout group boundary to entry points', () => {

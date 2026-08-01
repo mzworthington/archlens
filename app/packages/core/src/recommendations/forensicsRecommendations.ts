@@ -5,6 +5,7 @@ import {
   type ChaosRefactorContext,
 } from '../forensics/compositeRisk';
 import { computeRefactorScore } from '../forensics/refactorScore';
+import { isHumanActorNode } from '../taxonomy/nodeOwnership';
 import {
   applicabilityEvidence,
   isResilienceAdviceTarget,
@@ -36,6 +37,8 @@ export function buildForensicsRecommendations(
   const seen = new Set<string>();
 
   for (const node of nodes) {
+    if (isHumanActorNode(node)) continue;
+
     const forensics = node.forensics;
     if (!forensics) continue;
 

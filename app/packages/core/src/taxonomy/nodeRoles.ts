@@ -1,6 +1,7 @@
 import type { NodeType } from '../models/schema';
 
 export type NodeRole =
+  | 'actor'
   | 'user-facing'
   | 'sync-service'
   | 'async-worker'
@@ -10,7 +11,7 @@ export type NodeRole =
   | 'structural';
 
 const NODE_ROLE_BY_TYPE: Record<NodeType, NodeRole> = {
-  person: 'user-facing',
+  person: 'actor',
   'web-app': 'user-facing',
   'mobile-app': 'user-facing',
   'single-page-app': 'user-facing',
@@ -43,6 +44,8 @@ export function isUserFacingRole(role: NodeRole): boolean {
 /** Prefer more specific roles when merging inferred types (e.g. CLI rollups). */
 export function nodeRolePriority(role: NodeRole): number {
   switch (role) {
+    case 'actor':
+      return 5;
     case 'user-facing':
       return 50;
     case 'message-infrastructure':

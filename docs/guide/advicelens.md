@@ -78,6 +78,10 @@ Optional chaos specs in `chaos-specs/*.yaml` extend the default scenario set (re
 
 AdviceLens distinguishes **where signals are observed** from **where actions belong**. Resilience safeguards are **application-runtime** concerns (outbound clients, consumer logic, retries) — not IaC or shared infrastructure provisioning.
 
+**Who can receive advice:** owned services, apps, and workers — never C4 persons/product personas, and never third-party vendors (safeguards apply on **your** outbound clients instead).
+
+**External nodes:** `external: true` means a workspace proxy (another diagram in your estate). Add `properties.classification: third-party` for vendors/SaaS outside your control. Canvas shows `(Workspace)` vs `(Third-party)` badges.
+
 | Diagram level | Estate chaos simulation | Resilience safeguards (`add-circuit-breaker`, timeouts, staleness) | TraceLens composite risk |
 | ------------- | ----------------------- | ------------------------------------------------------------------ | ------------------------ |
 | `context`     | Yes                     | On **calling** services, APIs, and workers (not on brokers/DBs)    | Yes                      |
@@ -85,9 +89,9 @@ AdviceLens distinguishes **where signals are observed** from **where actions bel
 | `component`   | No                      | No — forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
 | `code`        | No                      | No — forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
 
-**SPOF handling:** shared dependencies (databases, brokers) are still detected, but `add-circuit-breaker` targets **callers** — add isolation in the calling service's outbound client, not on the shared resource or its Terraform module. IaC-imported nodes (`iac.address` / `iac.kind` properties) are never safeguard targets. Evidence includes `simulation.dependencyEntityRef` and `evidence.applicabilityScope` for the shared dependency.
+**SPOF handling:** shared dependencies (databases, brokers) are still detected, but `add-circuit-breaker` targets **callers** — add isolation in the calling service's outbound client, not on the shared resource or its Terraform module. Third-party dependencies (`classification: third-party`) use caller-side wording and `dependencyOwnership: third-party` in evidence. IaC-imported nodes (`iac.address` / `iac.kind` properties) are never safeguard targets. Evidence includes `simulation.dependencyEntityRef` and `evidence.applicabilityScope` for the shared dependency.
 
-Core helpers: `isResilienceAdviceTarget()`, `isEstateResilienceDiagramLevel()`, `resolveAdviceApplicability()` in `@archlens/core/recommendations`.
+Core helpers: `isResilienceAdviceTarget()`, `isAdviceActionable()`, `isThirdPartyDependency()`, `isEstateResilienceDiagramLevel()`, `resolveAdviceApplicability()` in `@archlens/core/recommendations`. Ownership helpers: `isHumanActorNode()`, `resolveExternalNodeKind()` in `@archlens/core`.
 
 ## Signal → recommendation mapping
 

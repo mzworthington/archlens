@@ -16,7 +16,13 @@ import {
   Code,
   ZoomIn,
 } from 'lucide-react';
-import { listChildDiagramExternals, resolveChildDiagramEntry, type NodeType } from '@archlens/core';
+import {
+  listChildDiagramExternals,
+  resolveChildDiagramEntry,
+  resolveExternalNodeKind,
+  externalNodeBadgeLabel,
+  type NodeType,
+} from '@archlens/core';
 import { SAFEGUARD_KEY_ORDER, SAFEGUARD_SHORT_LABELS } from '@archlens/core/resilience';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { ComponentNodeData } from '../../../../../application/store/store';
@@ -255,6 +261,9 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
   const concern = React.useMemo(() => evaluateForensicsConcern(data.forensics), [data.forensics]);
   const classifications = data.forensics?.classifications ?? [];
+  const externalKind = data.external
+    ? resolveExternalNodeKind({ external: data.external, properties: data.properties })
+    : null;
   const showHotBadge = classifications.includes('hotspot') || concern.level === 'danger';
   const showSiloBadge =
     classifications.includes('knowledge-silo') ||
@@ -473,8 +482,16 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
           {name}
           {data.couplingGhost ? (
             <span className="text-[10px] text-amber-300/90 font-normal ml-1.5">(Coupled)</span>
-          ) : data.external ? (
-            <span className="text-[10px] text-cyan-400/90 font-normal ml-1.5">(External)</span>
+          ) : externalKind ? (
+            <span
+              className={
+                externalKind === 'third-party'
+                  ? 'text-[10px] text-amber-400/90 font-normal ml-1.5'
+                  : 'text-[10px] text-cyan-400/90 font-normal ml-1.5'
+              }
+            >
+              {externalNodeBadgeLabel(externalKind)}
+            </span>
           ) : null}
         </h4>
         <p

@@ -1,4 +1,5 @@
 import type { C4Level, EntityRef, SystemNode, SystemSchema } from '../models/schema';
+import { isHumanActorNode, isThirdPartyNode } from '../taxonomy/nodeOwnership';
 import { nodeRole, type NodeRole } from '../taxonomy/nodeRoles';
 
 /** Diagram levels that receive full ChaosLens estate resilience simulation. */
@@ -20,17 +21,40 @@ function isIacImportedNode(node: SystemNode): boolean {
   return props['iac.address'] != null || props['iac.kind'] != null;
 }
 
+function findNode(schema: SystemSchema, entityRef: EntityRef): SystemNode | undefined {
+  return schema.nodes.find(candidate => candidate.entityRef === entityRef);
+}
+
 /**
  * Whether a node is an appropriate target for outbound resilience safeguards
  * (circuit breakers, timeouts, staleness handling). Targets calling application
- * services and workers — not shared data stores, brokers, structural C4 nodes,
- * or IaC-imported resources.
+ * services and workers — not human actors, third-party vendors, shared data
+ * stores, brokers, structural C4 nodes, or IaC-imported resources.
  */
 export function isResilienceAdviceTarget(schema: SystemSchema, entityRef: EntityRef): boolean {
-  const node = schema.nodes.find(candidate => candidate.entityRef === entityRef);
+  const node = findNode(schema, entityRef);
   if (!node) return false;
+  if (isHumanActorNode(node)) return false;
+  if (isThirdPartyNode(node)) return false;
   if (isIacImportedNode(node)) return false;
   return SAFEGUARD_TARGET_ROLES.has(nodeRole(node.type));
+}
+
+/**
+ * Whether AdviceLens may prescribe implementation actions on this entity
+ * (safeguard toggles, refactor plans). Alias for resilience eligibility today;
+ * kept separate so ownership rules can diverge later.
+ */
+export function isAdviceActionable(schema: SystemSchema, entityRef: EntityRef): boolean {
+  return isResilienceAdviceTarget(schema, entityRef);
+}
+
+export function isThirdPartyDependency(
+  schema: SystemSchema,
+  dependencyEntityRef: EntityRef
+): boolean {
+  const node = findNode(schema, dependencyEntityRef);
+  return node != null && isThirdPartyNode(node);
 }
 
 export interface AdviceApplicability {
@@ -43,13 +67,13 @@ export interface AdviceApplicability {
 }
 
 function nodeName(schema: SystemSchema, entityRef: EntityRef): string {
-  return schema.nodes.find(node => node.entityRef === entityRef)?.name ?? entityRef;
+  return findNode(schema, entityRef)?.name ?? entityRef;
 }
 
 function resolveContainerScope(schema: SystemSchema, entityRef: EntityRef): EntityRef {
   if (schema.entityRef) return schema.entityRef;
 
-  const node = schema.nodes.find(candidate => candidate.entityRef === entityRef);
+  const node = findNode(schema, entityRef);
   if (node?.parentEntityRef && isResilienceAdviceTarget(schema, node.parentEntityRef)) {
     return node.parentEntityRef;
   }

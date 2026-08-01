@@ -234,16 +234,30 @@ describe('BlueprintNode Component', () => {
     expect(screen.getByText('TEST')).toBeInTheDocument();
   });
 
-  it('renders (External) indicator and styling when external is true', () => {
+  it('renders workspace proxy indicator when external is true without third-party classification', () => {
     const props = {
       ...defaultProps,
       data: { ...defaultProps.data, external: true },
     };
     const { container } = render(<BlueprintNode {...props} />);
 
-    expect(screen.getByText('(External)')).toBeInTheDocument();
+    expect(screen.getByText('(Workspace)')).toBeInTheDocument();
     const card = container.querySelector('.bg-cyan-950');
     expect(card).toBeTruthy();
+  });
+
+  it('renders third-party indicator when external has classification third-party', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        external: true,
+        properties: { classification: 'third-party' },
+      },
+    };
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.getByText('(Third-party)')).toBeInTheDocument();
   });
 
   it('shows Go to entity button for external nodes present elsewhere in the workspace', () => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Trash2 } from 'lucide-react';
-import type { SystemDependency, SystemNode } from '@archlens/core';
+import type { ExternalNodeKind, SystemDependency, SystemNode } from '@archlens/core';
+import { externalNodeBadgeLabel, resolveExternalNodeKind } from '@archlens/core';
 import type { BlueprintRFEdge } from '../../../../../application/store/layoutUtils';
 
 interface SelectedDependencySectionProps {
@@ -15,11 +16,13 @@ interface SelectedDependencySectionProps {
 
 function resolveEndpoint(schemaNodes: SystemNode[], ref: string) {
   const node = schemaNodes.find(n => n.entityRef === ref);
+  const externalKind = node ? resolveExternalNodeKind(node) : null;
   return {
     name: node?.name || ref,
     entityRef: ref,
     found: !!node,
-    external: !!node?.external,
+    externalKind,
+    externalBadge: externalKind ? externalNodeBadgeLabel(externalKind) : null,
   };
 }
 
@@ -56,7 +59,8 @@ export const SelectedDependencySection: React.FC<SelectedDependencySectionProps>
           name={from.name}
           entityRef={from.entityRef}
           found={from.found}
-          external={from.external}
+          externalKind={from.externalKind}
+          externalBadge={from.externalBadge}
           onSelect={() => onSelectNode(from.entityRef)}
         />
         <EndpointCard
@@ -64,7 +68,8 @@ export const SelectedDependencySection: React.FC<SelectedDependencySectionProps>
           name={to.name}
           entityRef={to.entityRef}
           found={to.found}
-          external={to.external}
+          externalKind={to.externalKind}
+          externalBadge={to.externalBadge}
           onSelect={() => onSelectNode(to.entityRef)}
         />
       </div>
@@ -125,14 +130,16 @@ function EndpointCard({
   name,
   entityRef,
   found,
-  external,
+  externalKind,
+  externalBadge,
   onSelect,
 }: {
   label: string;
   name: string;
   entityRef: string;
   found: boolean;
-  external: boolean;
+  externalKind: ExternalNodeKind | null;
+  externalBadge: string | null;
   onSelect: () => void;
 }) {
   return (
@@ -155,8 +162,16 @@ function EndpointCard({
       </div>
       <p className="text-sm font-semibold text-slate-100 truncate" title={name}>
         {name}
-        {external ? (
-          <span className="text-[10px] text-cyan-400/90 font-normal ml-1.5">(External)</span>
+        {externalBadge ? (
+          <span
+            className={
+              externalKind === 'third-party'
+                ? 'text-[10px] text-amber-400/90 font-normal ml-1.5'
+                : 'text-[10px] text-cyan-400/90 font-normal ml-1.5'
+            }
+          >
+            {externalBadge}
+          </span>
         ) : null}
       </p>
       <p className="text-[10px] font-mono text-slate-500 truncate" title={entityRef}>

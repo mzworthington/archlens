@@ -41,6 +41,9 @@ export function listEvidenceCitations(evidence: RecommendationEvidence): string[
     pushBoolean(citations, 'onCriticalPath', simulation.onCriticalPath);
     pushNumeric(citations, 'overallSla', simulation.overallSla);
     pushNumeric(citations, 'safeguardCoverage', simulation.safeguardCoverage);
+    if (simulation.dependencyOwnership) {
+      citations.push(`dependencyOwnership:${simulation.dependencyOwnership}`);
+    }
   }
 
   return citations;

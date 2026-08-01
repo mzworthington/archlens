@@ -3,7 +3,7 @@ import { pubSubBrokersForPublisher, pubSubPeersOnBroker } from '../resilience/gr
 import { INTEGRITY_PEER_FACTOR } from '../resilience/integrityRadius';
 import { resolveNodeResilience } from '../resilience/nodeResilience';
 import { detectSpofCallSites } from '../resilience/simulation';
-import { isResilienceAdviceTarget } from './resilienceAdviceEligibility';
+import { isResilienceAdviceTarget, isThirdPartyDependency } from './resilienceAdviceEligibility';
 import type { Recommendation } from './types';
 
 const HIGH_BLAST_THRESHOLD = 0.7;
@@ -54,6 +54,10 @@ export function buildResilienceRecommendations(
   for (const { dependencyEntityRef, callerEntityRefs } of detectSpofCallSites(schema)) {
     const dependencyName = nodeName(schema, dependencyEntityRef);
     const dependencyBlast = heat.get(dependencyEntityRef) ?? 0;
+    const thirdPartyDependency = isThirdPartyDependency(schema, dependencyEntityRef);
+    const dependencyNote = thirdPartyDependency
+      ? 'shared third-party dependency with fan-in — isolation must be in your application code, not on the vendor'
+      : 'shared dependency with fan-in and no caller-side isolation in application code';
 
     for (const caller of callerEntityRefs) {
       if (!isResilienceAdviceTarget(schema, caller)) continue;
@@ -69,7 +73,7 @@ export function buildResilienceRecommendations(
         targetEntityRef: caller,
         targetName: callerName,
         title: 'Add caller-side circuit breaker',
-        detail: `In ${callerName}, add a circuit breaker on the outbound client to ${dependencyName} — shared dependency with fan-in and no caller-side isolation in application code.`,
+        detail: `In ${callerName}, add a circuit breaker on the outbound client to ${dependencyName} — ${dependencyNote}.`,
         priority: 95,
         evidence: {
           simulation: {
@@ -77,6 +81,7 @@ export function buildResilienceRecommendations(
             isSpof: true,
             onCriticalPath: true,
             dependencyEntityRef,
+            dependencyOwnership: thirdPartyDependency ? 'third-party' : 'owned',
           },
           applicabilityScope: {
             entityRef: dependencyEntityRef,

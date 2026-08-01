@@ -38,6 +38,8 @@ export interface RecommendationEvidence {
     safeguardCoverage?: number;
     /** Shared dependency when the recommendation targets outbound callers. */
     dependencyEntityRef?: EntityRef;
+    /** Whether the shared dependency is a vendor outside your control. */
+    dependencyOwnership?: 'third-party' | 'owned';
   };
   applicabilityScope?: {
     entityRef: EntityRef;
