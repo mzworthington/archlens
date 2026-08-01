@@ -248,21 +248,17 @@ nodes:
     name: Runner
     isTest: false
     properties:
-      filepath: packages/cli-module-build/src/lib/runner/startEmbeddedDb.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 9
-      complexityPeak: 9
-      cognitiveComplexity: 36
-      functionCount: 15
-      loc: 241
-      sloc: 195
-      churn: 16
-      lineChurn: 620
-      churn30: 1
-      churn365: 16
+      complexity: 16
+      complexityPeak: 16
+      cognitiveComplexity: 91
+      churn: 38
+      lineChurn: 1900
+      churn30: 4
+      churn365: 38
       churnByWeek:
         - 0
         - 0
@@ -296,36 +292,41 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
-        - 0
-        - 8
+        - 15
         - 1
+        - 2
+        - 0
+        - 9
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
         - 0
         - 0
         - 2
         - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 2
-        - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.875
+      topAuthorPercent: 0.9473684210526315
       authors:
         - email: poldsberg@gmail.com
-          commits: 14
+          commits: 36
         - email: mtlewis@users.noreply.github.com
           commits: 2
-      hotspotScore: 0.019567001199267815
+      hotspotScore: 0.025416061772812384
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: backstage/packages/cli-module-build/entrypoints
     type: background-worker
     name: Entrypoints
@@ -799,21 +800,17 @@ nodes:
     name: Packager
     isTest: false
     properties:
-      filepath: packages/cli-module-build/src/lib/packager/createDistWorkspace.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 15
-      complexityPeak: 15
-      cognitiveComplexity: 105
-      functionCount: 18
-      loc: 444
-      sloc: 300
-      churn: 9
-      lineChurn: 626
-      churn30: 2
-      churn365: 9
+      complexity: 21
+      complexityPeak: 21
+      cognitiveComplexity: 193
+      churn: 28
+      lineChurn: 2015
+      churn30: 14
+      churn365: 28
       churnByWeek:
         - 0
         - 0
@@ -840,7 +837,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -849,7 +846,7 @@ nodes:
         - 0
         - 4
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
@@ -861,41 +858,43 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
-        - 1
-        - 1
+        - 6
+        - 8
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.7777777777777778
+      topAuthorPercent: 0.8214285714285714
       authors:
         - email: poldsberg@gmail.com
-          commits: 7
+          commits: 21
         - email: mtlewis@users.noreply.github.com
-          commits: 1
+          commits: 5
         - email: dfestal@redhat.com
-          commits: 1
-      hotspotScore: 0.03292726545898294
+          commits: 2
+      hotspotScore: 0.03431589135054388
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: backstage/packages/cli-module-build/ipc
     type: background-worker
     name: Ipc
     isTest: false
     properties:
-      filepath: packages/cli-module-build/src/lib/ipc/IpcServer.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 102
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 198
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -945,7 +944,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -954,9 +953,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-build/__testutils__
     type: background-worker
     name: __testutils__
@@ -1202,18 +1204,15 @@ nodes:
     name: Builder
     isTest: false
     properties:
-      filepath: packages/cli-module-build/src/lib/builder/plugins.test.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 348
-      churn30: 1
-      churn365: 1
+      churn: 8
+      lineChurn: 1224
+      churn30: 8
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -1263,7 +1262,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 8
         - 0
         - 0
         - 0
@@ -1272,26 +1271,28 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 8
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-build/bundler
     type: gateway-api
     name: Bundler
     isTest: false
     properties:
-      filepath: packages/cli-module-build/src/lib/bundler/moduleFederation.test.ts
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 158
-      churn30: 1
-      churn365: 1
+      complexity: 26
+      complexityPeak: 26
+      cognitiveComplexity: 318
+      churn: 32
+      lineChurn: 2266
+      churn30: 18
+      churn365: 32
       churnByWeek:
         - 0
         - 0
@@ -1325,34 +1326,45 @@ nodes:
         - 0
         - 0
         - 0
+        - 6
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 1
         - 0
         - 0
         - 0
+        - 2
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 4
+        - 0
+        - 16
+        - 2
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.875
       authors:
         - email: poldsberg@gmail.com
+          commits: 28
+        - email: freben@gmail.com
+          commits: 2
+        - email: awanlin@spotify.com
           commits: 1
-      hotspotScore: 0
+        - email: dfestal@redhat.com
+          commits: 1
+      hotspotScore: 0.04440096221955718
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: backstage/packages/cli-module-build/urls-test
     type: background-worker
     name: Urls test
@@ -1514,18 +1526,15 @@ nodes:
     name: Repo
     isTest: false
     properties:
-      filepath: packages/cli-module-build/src/commands/repo/start.test.ts
       containerId: cli-module-build
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 217
-      churn30: 1
-      churn365: 1
+      churn: 7
+      lineChurn: 733
+      churn30: 4
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -1571,11 +1580,11 @@ nodes:
         - 0
         - 0
         - 0
+        - 3
         - 0
         - 0
         - 0
-        - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -1584,24 +1593,267 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 7
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-build/commands/package
-    type: gateway-api
+    type: background-worker
     name: Package
     isTest: false
     properties:
-      filepath: packages/cli-module-build/src/commands/package/prepack.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 6
+      lineChurn: 95
+      churn30: 3
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-module-build/commands/package/start
+    type: gateway-api
+    name: Start
+    isTest: false
+    properties:
       containerId: cli-module-build
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
+      churn: 10
+      lineChurn: 475
+      churn30: 7
+      churn365: 10
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-module-build/commands/package/bundle
+    type: background-worker
+    name: Bundle
+    isTest: false
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 54
+      complexityPeak: 54
+      cognitiveComplexity: 1256
+      churn: 11
+      lineChurn: 4255
+      churn30: 7
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 3
+        - 4
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7272727272727273
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 8
+        - email: dfestal@redhat.com
+          commits: 3
+      hotspotScore: 0.3717099034273812
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-module-build/commands/package/bundle/__fixtures__/packed/frontend
+    type: background-worker
+    name: Frontend
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/bundle/__fixtures__/packed/frontend/src/index.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
       loc: 0
       sloc: 0
       churn: 2
-      lineChurn: 39
+      lineChurn: 34
       churn30: 1
       churn365: 2
       churnByWeek:
@@ -1630,6 +1882,10 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -1653,7 +1909,80 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+        - email: dfestal@redhat.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/packages/cli-module-build/commands/package/build
+    type: background-worker
+    name: Build
+    isTest: false
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 182
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -1662,9 +1991,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-build/index
     type: background-worker
     name: Index
@@ -1752,7 +2084,6 @@ nodes:
     name: Actions (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/actionsServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
@@ -1764,7 +2095,6 @@ nodes:
     name: Actionsregistry (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actionsRegistry/actionsRegistryServiceFactory.test.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
@@ -1776,7 +2106,6 @@ nodes:
     name: Auditor (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auditor/auditorServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
@@ -1784,14 +2113,13 @@ nodes:
       x: -360
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/auth
-    type: relational-database
+    type: background-worker
     name: Auth (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.ts
       containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: 100
       y: -204
@@ -1800,7 +2128,6 @@ nodes:
     name: Httprouter (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpRouter/httpRouterServiceFactory.test.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
@@ -2180,27 +2507,27 @@ dependencies:
     to: backstage/packages/cli-module-build/typedistproject
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/start
     to: backstage/packages/cli-module-build/bundler
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/start
     to: backstage/packages/cli-module-build/bundler
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/start
     to: backstage/packages/cli-module-build/runner
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/start
     to: backstage/packages/cli-module-build/role
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/bundle
     to: backstage/packages/cli-module-build/buildfrontend
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/bundle
     to: backstage/packages/cli-module-build/packager
     type: direct-call
     description: Calls module / service
@@ -2208,23 +2535,23 @@ dependencies:
     to: backstage/packages/cli-module-build/packager
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/build
     to: backstage/packages/cli-module-build/builder
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/build
     to: backstage/packages/cli-module-build/role
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/build
     to: backstage/packages/cli-module-build/buildfrontend
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/build
     to: backstage/packages/cli-module-build/buildbackend
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/cli-module-build/commands/package
+  - from: backstage/packages/cli-module-build/commands/package/build
     to: backstage/packages/cli-module-build/urls
     type: direct-call
     description: Calls module / service

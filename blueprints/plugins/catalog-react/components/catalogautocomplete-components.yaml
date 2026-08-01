@@ -1,0 +1,62 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/components/catalogautocomplete
+  name: Catalogautocomplete Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-react/components/catalogautocomplete/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/CatalogAutocomplete/index.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/catalogautocomplete/catalog-autocomplete-stories
+    type: gateway-api
+    name: CatalogAutocomplete.stories
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/CatalogAutocomplete/CatalogAutocomplete.stories.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/catalogautocomplete/catalog-autocomplete-test
+    type: gateway-api
+    name: CatalogAutocomplete
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/CatalogAutocomplete/CatalogAutocomplete.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-react/components/catalogautocomplete/index
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/catalogautocomplete/catalog-autocomplete-stories
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/catalogautocomplete/catalog-autocomplete-test
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service

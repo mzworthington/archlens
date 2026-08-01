@@ -1,0 +1,273 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-components/components/logviewer
+  name: Logviewer Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-components/components/logviewer/log-line
+    type: gateway-api
+    name: LogLine
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/LogLine.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/logviewer/ansi-processor-test
+    type: background-worker
+    name: AnsiProcessor
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/AnsiProcessor.test.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/logviewer/use-log-viewer-selection-test
+    type: gateway-api
+    name: UseLogViewerSelection
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/useLogViewerSelection.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/logviewer/styles
+    type: background-worker
+    name: Styles
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/styles.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/logviewer/log-line-test
+    type: background-worker
+    name: LogLine
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/LogLine.test.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: background-worker
+    name: AnsiProcessor
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/AnsiProcessor.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/logviewer/use-log-viewer-search
+    type: gateway-api
+    name: UseLogViewerSearch
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/useLogViewerSearch.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/logviewer/log-viewer-stories
+    type: gateway-api
+    name: LogViewer.stories
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/LogViewer.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/logviewer/use-log-viewer-selection
+    type: gateway-api
+    name: UseLogViewerSelection
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/useLogViewerSelection.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/logviewer/use-log-viewer-search-test
+    type: gateway-api
+    name: UseLogViewerSearch
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/useLogViewerSearch.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/logviewer/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/logviewer/log-viewer-controls
+    type: gateway-api
+    name: LogViewerControls
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/LogViewerControls.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/logviewer/real-log-viewer
+    type: gateway-api
+    name: RealLogViewer
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/RealLogViewer.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/logviewer/real-log-viewer-test
+    type: gateway-api
+    name: RealLogViewer
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/LogViewer/RealLogViewer.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/alpha.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core-components/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/core-components/components/logviewer/log-line
+    to: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/log-line
+    to: backstage/packages/core-components/components/logviewer/styles
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/log-line
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/ansi-processor-test
+    to: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/use-log-viewer-selection-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/components/logviewer/use-log-viewer-selection-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/components/logviewer/use-log-viewer-selection-test
+    to: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/log-line-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/components/logviewer/log-line-test
+    to: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/use-log-viewer-search
+    to: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/log-viewer-stories
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/components/logviewer/log-viewer-stories
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/use-log-viewer-selection
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/components/logviewer/use-log-viewer-selection
+    to: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/use-log-viewer-search-test
+    to: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/index
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/index
+    to: backstage/packages/core-components/components/logviewer/styles
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/log-viewer-controls
+    to: backstage/packages/core-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/components/logviewer/log-viewer-controls
+    to: backstage/packages/core-components/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/real-log-viewer
+    to: backstage/packages/core-components/components/logviewer/ansi-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/real-log-viewer
+    to: backstage/packages/core-components/components/logviewer/styles
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/logviewer/real-log-viewer-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'

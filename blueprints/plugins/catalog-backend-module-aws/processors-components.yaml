@@ -1,0 +1,204 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-aws/processors
+  name: Processors Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor
+    type: background-worker
+    name: AwsEKSClusterProcessor
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/processors/AwsEKSClusterProcessor.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/processors/aws-organization-cloud-account-processor-test
+    type: background-worker
+    name: AwsOrganizationCloudAccountProcessor
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/processors/AwsOrganizationCloudAccountProcessor.test.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor-test
+    type: background-worker
+    name: AwsEKSClusterProcessor
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/processors/AwsEKSClusterProcessor.test.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/processors/aws-organization-cloud-account-processor
+    type: background-worker
+    name: AwsOrganizationCloudAccountProcessor
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/processors/AwsOrganizationCloudAccountProcessor.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/processors/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/processors/types.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/processors/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/processors/index.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/processors/aws-s3-discovery-processor-test
+    type: background-worker
+    name: AwsS3DiscoveryProcessor
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/processors/AwsS3DiscoveryProcessor.test.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/processors/aws-s3-discovery-processor
+    type: background-worker
+    name: AwsS3DiscoveryProcessor
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/processors/AwsS3DiscoveryProcessor.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/awsorganization/config
+    type: background-worker
+    name: Config (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/awsOrganization/config.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-common/src/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/signals-node/lib
+    type: background-worker
+    name: Lib (External)
+    external: true
+    properties:
+      filepath: plugins/signals-node/src/lib.ts
+      containerId: signals-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor
+    to: backstage/plugins/catalog-backend-module-aws/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor
+    to: backstage/plugins/catalog-backend-module-aws/processors/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor
+    to: backstage/plugins/signals-node/lib
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-organization-cloud-account-processor-test
+    to: backstage/plugins/catalog-backend-module-aws/processors/aws-organization-cloud-account-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor-test
+    to: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-organization-cloud-account-processor
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-organization-cloud-account-processor
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-organization-cloud-account-processor
+    to: backstage/plugins/catalog-backend-module-aws/awsorganization/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/index
+    to: backstage/plugins/catalog-backend-module-aws/processors/aws-eks-cluster-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/index
+    to: backstage/plugins/catalog-backend-module-aws/processors/aws-organization-cloud-account-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/index
+    to: backstage/plugins/catalog-backend-module-aws/processors/aws-s3-discovery-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/index
+    to: backstage/plugins/catalog-backend-module-aws/processors/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-s3-discovery-processor-test
+    to: backstage/plugins/catalog-backend-module-aws/processors/aws-s3-discovery-processor
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-s3-discovery-processor-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-s3-discovery-processor
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend-module-aws/processors/aws-s3-discovery-processor
+    to: backstage/plugins/catalog-common/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-common'

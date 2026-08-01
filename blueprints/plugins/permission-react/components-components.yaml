@@ -1,0 +1,78 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/permission-react/components
+  name: Components Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/permission-react/components/require-permission-test
+    type: background-worker
+    name: RequirePermission
+    isTest: true
+    properties:
+      filepath: plugins/permission-react/src/components/RequirePermission.test.tsx
+      containerId: permission-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/permission-react/components/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/permission-react/src/components/index.ts
+      containerId: permission-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/permission-react/components/require-permission
+    type: gateway-api
+    name: RequirePermission
+    isTest: false
+    properties:
+      filepath: plugins/permission-react/src/components/RequirePermission.tsx
+      containerId: permission-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/permission-react/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: permission-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/permission-react/components/require-permission-test
+    to: backstage/plugins/permission-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/permission-react/components/require-permission-test
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/permission-react/components/require-permission
+    to: backstage/plugins/permission-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/permission-react/components/require-permission
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'

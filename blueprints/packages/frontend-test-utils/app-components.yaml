@@ -1,0 +1,353 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-test-utils/app
+  name: App Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-test-utils/app/create-extension-tester-test
+    type: gateway-api
+    name: CreateExtensionTester
+    isTest: true
+    properties:
+      filepath: packages/frontend-test-utils/src/app/createExtensionTester.test.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-test-utils/app/render-in-test-app
+    type: gateway-api
+    name: RenderInTestApp
+    isTest: false
+    properties:
+      filepath: packages/frontend-test-utils/src/app/renderInTestApp.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-test-utils/app/create-extension-tester
+    type: background-worker
+    name: CreateExtensionTester
+    isTest: false
+    properties:
+      filepath: packages/frontend-test-utils/src/app/createExtensionTester.tsx
+      containerId: frontend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-test-utils/app/render-in-test-app-test
+    type: gateway-api
+    name: RenderInTestApp
+    isTest: true
+    properties:
+      filepath: packages/frontend-test-utils/src/app/renderInTestApp.test.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-test-utils/app/render-test-app
+    type: gateway-api
+    name: RenderTestApp
+    isTest: false
+    properties:
+      filepath: packages/frontend-test-utils/src/app/renderTestApp.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-test-utils/app/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-test-utils/src/app/index.ts
+      containerId: frontend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/wiring/create-error-collector
+    type: background-worker
+    name: CreateErrorCollector (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/index.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1970
+      y: 404
+  - entityRef: backstage/packages/frontend-internal/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/apis/index.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/frontend-test-utils/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/index.ts
+      containerId: frontend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 2630
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/tree/instantiate-app-node-tree
+    type: background-worker
+    name: InstantiateAppNodeTree (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/tree/read-app-extensions-config
+    type: background-worker
+    name: ReadAppExtensionsConfig (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/readAppExtensionsConfig.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/tree/resolve-app-node-specs
+    type: background-worker
+    name: ResolveAppNodeSpecs (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/resolveAppNodeSpecs.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/tree/resolve-app-tree
+    type: background-worker
+    name: ResolveAppTree (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/resolveAppTree.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/wiring/resolve-extension-definition
+    type: background-worker
+    name: ResolveExtensionDefinition (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/resolveExtensionDefinition.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2170
+      y: 404
+  - entityRef: backstage/packages/frontend-test-utils/testapiprovider
+    type: gateway-api
+    name: Testapiprovider (External)
+    external: true
+    properties:
+      filepath: packages/frontend-test-utils/src/apis/TestApiProvider.tsx
+      containerId: frontend-test-utils
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3090
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/wiring
+    type: rest-api
+    name: Wiring (External)
+    external: true
+    properties:
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -2890
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app
+    to: backstage/packages/frontend-app-api/index
+    type: direct-call
+    description: '@backstage/frontend-app-api'
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app
+    to: backstage/packages/frontend-test-utils/mockwithapifactory/mock-with-api-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app
+    to: backstage/packages/backend-test-utils/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app
+    to: backstage/packages/frontend-test-utils/testapiprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-plugin-api/wiring/resolve-extension-definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-app-api/tree/resolve-app-tree
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-app-api/tree/resolve-app-node-specs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-app-api/tree/instantiate-app-node-tree
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-app-api/tree/read-app-extensions-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-app-api/wiring/create-error-collector
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/frontend-test-utils/app/create-extension-tester
+    to: backstage/packages/frontend-test-utils/testapiprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app-test
+    to: backstage/packages/frontend-test-utils/index
+    type: direct-call
+    description: '@backstage/frontend-test-utils'
+  - from: backstage/packages/frontend-test-utils/app/render-in-test-app-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-test-utils/app/render-test-app
+    to: backstage/packages/frontend-app-api/index
+    type: direct-call
+    description: '@backstage/frontend-app-api'
+  - from: backstage/packages/frontend-test-utils/app/render-test-app
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-test-utils/app/render-test-app
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/frontend-test-utils/app/render-test-app
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/frontend-test-utils/app/render-test-app
+    to: backstage/packages/frontend-test-utils/mockwithapifactory/mock-with-api-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/render-test-app
+    to: backstage/packages/backend-test-utils/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/render-test-app
+    to: backstage/packages/frontend-test-utils/testapiprovider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-test-utils/app/render-test-app
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'

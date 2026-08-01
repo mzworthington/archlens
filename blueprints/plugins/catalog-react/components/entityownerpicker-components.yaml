@@ -1,0 +1,167 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/components/entityownerpicker
+  name: Entityownerpicker Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/use-facets-entities-test
+    type: gateway-api
+    name: UseFacetsEntities
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/useFacetsEntities.test.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/entity-owner-picker-test
+    type: gateway-api
+    name: EntityOwnerPicker
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/EntityOwnerPicker.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/virtualized-listbox
+    type: gateway-api
+    name: VirtualizedListbox
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/VirtualizedListbox.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/use-fetch-entities
+    type: gateway-api
+    name: UseFetchEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/useFetchEntities.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/use-query-entities-test
+    type: gateway-api
+    name: UseQueryEntities
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/useQueryEntities.test.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/use-query-entities
+    type: gateway-api
+    name: UseQueryEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/useQueryEntities.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/virtualized-listbox-test
+    type: background-worker
+    name: VirtualizedListbox
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/VirtualizedListbox.test.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/index.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entityownerpicker/use-facets-entities
+    type: gateway-api
+    name: UseFacetsEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityOwnerPicker/useFacetsEntities.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-facets-entities-test
+    to: backstage/plugins/catalog-react/components/entityownerpicker/use-facets-entities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-facets-entities-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/entity-owner-picker-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/entity-owner-picker-test
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/entity-owner-picker-test
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-fetch-entities
+    to: backstage/plugins/catalog-react/components/entityownerpicker/use-facets-entities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-fetch-entities
+    to: backstage/plugins/catalog-react/components/entityownerpicker/use-query-entities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-fetch-entities
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-query-entities-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-query-entities-test
+    to: backstage/plugins/catalog-react/components/entityownerpicker/use-query-entities
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-query-entities
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/index
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entityownerpicker/use-facets-entities
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service

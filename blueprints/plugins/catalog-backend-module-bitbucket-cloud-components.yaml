@@ -94,20 +94,16 @@ nodes:
     name: Module
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/module/catalogModuleBitbucketCloudEntityProvider.ts
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 4
-      loc: 83
-      sloc: 60
-      churn: 3
-      lineChurn: 102
-      churn30: 1
-      churn365: 3
+      churn: 7
+      lineChurn: 230
+      churn30: 3
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -134,21 +130,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -157,37 +146,46 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.7142857142857143
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 5
         - email: lokeshkaki1@gmail.com
-          commits: 1
-      hotspotScore: 0.00035767636600812135
+          commits: 2
+      hotspotScore: 0.0003892360453617791
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/providers
     type: background-worker
     name: Providers
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProviderConfig.ts
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 113
-      churn30: 1
-      churn365: 2
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 6
+      churn: 9
+      lineChurn: 1780
+      churn30: 4
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -195,18 +193,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -242,15 +229,33 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.4444444444444444
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
         - email: robertoj921@yahoo.com
+          commits: 3
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
+        - email: jonkoops@gmail.com
+          commits: 1
+      hotspotScore: 0.008626312356666456
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-bitbucket-cloud/index
     type: background-worker
     name: Index
@@ -334,7 +339,6 @@ nodes:
     name: Events
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/events/analyzeBitbucketCloudWebhookEvent.ts
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
@@ -342,13 +346,10 @@ nodes:
       complexity: 6
       complexityPeak: 6
       cognitiveComplexity: 15
-      functionCount: 9
-      loc: 243
-      sloc: 172
-      churn: 3
-      lineChurn: 514
-      churn30: 1
-      churn365: 3
+      churn: 9
+      lineChurn: 1530
+      churn30: 3
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -382,7 +383,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
+        - 6
         - 0
         - 0
         - 0
@@ -398,7 +399,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -407,11 +408,14 @@ nodes:
       topAuthorPercent: 0.6666666666666666
       authors:
         - email: lokeshkaki1@gmail.com
-          commits: 2
+          commits: 6
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0.010814450125186727
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: Alpha (External)
@@ -489,7 +493,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

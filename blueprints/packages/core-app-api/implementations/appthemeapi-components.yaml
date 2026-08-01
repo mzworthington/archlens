@@ -1,0 +1,87 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-app-api/implementations/appthemeapi
+  name: Appthemeapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector
+    type: rest-api
+    name: AppThemeSelector
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/AppThemeApi/AppThemeSelector.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-app-api/implementations/appthemeapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/AppThemeApi/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector-test
+    type: rest-api
+    name: AppThemeSelector
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/AppThemeApi/AppThemeSelector.test.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector
+    to: backstage/packages/core-app-api/subjects/subjects
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/appthemeapi/index
+    to: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector-test
+    to: backstage/packages/core-app-api/implementations/appthemeapi/app-theme-selector
+    type: direct-call
+    description: Calls module / service

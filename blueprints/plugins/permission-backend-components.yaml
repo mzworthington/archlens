@@ -248,18 +248,17 @@ nodes:
     name: Service
     isTest: false
     properties:
-      filepath: plugins/permission-backend/src/service/PermissionIntegrationClient.ts
       containerId: permission-backend
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 105
-      churn30: 1
-      churn365: 2
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 15
+      churn: 14
+      lineChurn: 1846
+      churn30: 5
+      churn365: 14
       churnByWeek:
         - 0
         - 0
@@ -267,22 +266,24 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 1
         - 0
@@ -299,6 +300,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -306,23 +308,29 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 5
+      topAuthorPercent: 0.35714285714285715
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 5
         - email: gabriel.dugny@believe.com
+          commits: 3
+        - email: freben@gmail.com
+          commits: 3
+        - email: pschultz@pobox.com
+          commits: 2
+        - email: johanopersson@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.007069368175219339
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/permission-node/alpha
     type: background-worker
     name: Alpha (External)

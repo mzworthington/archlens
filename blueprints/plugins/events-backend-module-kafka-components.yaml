@@ -412,18 +412,17 @@ nodes:
     name: Kafkaconsumingeventpublisher
     isTest: false
     properties:
-      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/module.ts
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 56
-      churn30: 1
-      churn365: 1
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 20
+      lineChurn: 2846
+      churn30: 7
+      churn365: 20
       churnByWeek:
         - 0
         - 0
@@ -441,6 +440,9 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
+        - 0
+        - 9
         - 0
         - 0
         - 0
@@ -470,38 +472,39 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 3
+      topAuthorPercent: 0.5
       authors:
+        - email: dev@jonasbeck.dk
+          commits: 9
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 7
+        - email: imod@fortysix.ch
+          commits: 4
+      hotspotScore: 0.005575543352479538
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/events-backend-module-kafka/kafkapublishingeventconsumer
     type: event-broker
     name: Kafkapublishingeventconsumer
     isTest: false
     properties:
-      filepath: plugins/events-backend-module-kafka/src/KafkaPublishingEventConsumer/module.ts
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 112
-      churn30: 1
-      churn365: 2
+      churn: 14
+      lineChurn: 1714
+      churn30: 7
+      churn365: 14
       churnByWeek:
         - 0
         - 0
@@ -521,7 +524,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
@@ -551,7 +554,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
@@ -560,11 +563,14 @@ nodes:
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 7
         - email: dev@jonasbeck.dk
-          commits: 1
+          commits: 7
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/events-backend-module-kafka/index
     type: background-worker
     name: Index

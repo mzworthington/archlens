@@ -1,0 +1,409 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/ui/features/forensics
+  name: Forensics Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/ui/features/forensics/components
+    type: gateway-api
+    name: Components
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/components/CouplingLensLegend.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 38
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: blueprint/app/designer/ui/features/forensics/use-trace-lens-scope-from-url
+    type: gateway-api
+    name: UseTraceLensScopeFromUrl
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/useTraceLensScopeFromUrl.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    type: background-worker
+    name: TraceLensUrl
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/traceLensUrl.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-scope-picker-test
+    type: gateway-api
+    name: TraceLensScopePicker
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/TraceLensScopePicker.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/use-trace-lens-url-sync-test
+    type: gateway-api
+    name: UseTraceLensUrlSync
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/useTraceLensUrlSync.test.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/refactor-plan-slide-over
+    type: gateway-api
+    name: RefactorPlanSlideOver
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/RefactorPlanSlideOver.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/forensics-searchbar
+    type: gateway-api
+    name: ForensicsSearchbar
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/ForensicsSearchbar.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/use-trace-lens-scope-load
+    type: gateway-api
+    name: UseTraceLensScopeLoad
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/useTraceLensScopeLoad.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-scope-picker
+    type: gateway-api
+    name: TraceLensScopePicker
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/TraceLensScopePicker.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/estate-recommendations-panel
+    type: gateway-api
+    name: EstateRecommendationsPanel
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/EstateRecommendationsPanel.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/use-trace-lens-url-sync
+    type: gateway-api
+    name: UseTraceLensUrlSync
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/useTraceLensUrlSync.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-url-test
+    type: background-worker
+    name: TraceLensUrl
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/traceLensUrl.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/recommendations/build-estate-recommendations
+    type: background-worker
+    name: BuildEstateRecommendations (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/recommendations/buildEstateRecommendations.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/build-refactor-plan
+    type: background-worker
+    name: BuildRefactorPlan (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildRefactorPlan.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/build-trace-lens-scope-options
+    type: background-worker
+    name: BuildTraceLensScopeOptions (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildTraceLensScopeOptions.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
+    type: background-worker
+    name: EnsureSystemLoaded (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/states/ioState/ensureSystemLoaded.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: Forensics (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/rank-offenders
+    type: background-worker
+    name: RankOffenders (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/rankOffenders.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: blueprint/app/core/recommendations
+    type: background-worker
+    name: Recommendations (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: blueprint/app/designer/ui/features/recommendations
+    type: gateway-api
+    name: Recommendations (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2400
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/resolve-trace-lens-scope-diagrams
+    type: background-worker
+    name: ResolveTraceLensScopeDiagrams (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/resolveTraceLensScopeDiagrams.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/app/designer/application/store
+    type: background-worker
+    name: Store (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-scope-from-url
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-scope-from-url
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-url-sync-test
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-url-sync-test
+    to: blueprint/app/designer/ui/features/forensics/use-trace-lens-url-sync
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/refactor-plan-slide-over
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics/refactor-plan-slide-over
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics/refactor-plan-slide-over
+    to: blueprint/app/core/recommendations
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics/refactor-plan-slide-over
+    to: blueprint/app/designer/ui/features/recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/refactor-plan-slide-over
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/refactor-plan-slide-over
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-scope-load
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-scope-load
+    to: blueprint/app/designer/application/forensics/resolve-trace-lens-scope-diagrams
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-scope-load
+    to: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-scope-load
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/trace-lens-scope-picker
+    to: blueprint/app/designer/application/forensics/build-trace-lens-scope-options
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/estate-recommendations-panel
+    to: blueprint/app/designer/application/recommendations/build-estate-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/estate-recommendations-panel
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/estate-recommendations-panel
+    to: blueprint/app/core/recommendations
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics/estate-recommendations-panel
+    to: blueprint/app/designer/ui/features/recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-url-sync
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-url-sync
+    to: blueprint/app/designer/application/forensics/build-refactor-plan
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/use-trace-lens-url-sync
+    to: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics/trace-lens-url-test
+    to: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    type: direct-call
+    description: Calls module / service

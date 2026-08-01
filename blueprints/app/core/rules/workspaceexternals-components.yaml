@@ -1,0 +1,233 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/core/rules/workspaceexternals
+  name: Workspaceexternals Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/core/rules/workspaceexternals/container-rollup
+    type: background-worker
+    name: ContainerRollup
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/containerRollup.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspaceexternals/filepath
+    type: background-worker
+    name: Filepath
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/filepath.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspaceexternals/external-nodes
+    type: background-worker
+    name: ExternalNodes
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/externalNodes.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspaceexternals/diagram-scope
+    type: background-worker
+    name: DiagramScope
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/diagramScope.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    type: background-worker
+    name: ExternalEnrichment
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/externalEnrichment.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspaceexternals/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/types.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspaceexternals/external-candidates
+    type: background-worker
+    name: ExternalCandidates
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/externalCandidates.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspaceexternals/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/workspaceexternals/entity-index
+    type: background-worker
+    name: EntityIndex
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/entityIndex.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/rules/external-node-layout
+    type: background-worker
+    name: ExternalNodeLayout (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/rules/externalNodeLayout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/app/core/rules/workspaceexternals/container-rollup
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-rollup
+    to: blueprint/app/core/rules/external-node-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-rollup
+    to: blueprint/app/core/rules/workspaceexternals/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-rollup
+    to: blueprint/app/core/rules/workspaceexternals/diagram-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-rollup
+    to: blueprint/app/core/rules/workspaceexternals/external-nodes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/filepath
+    to: blueprint/app/core/rules/workspaceexternals/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/filepath
+    to: blueprint/app/core/rules/workspaceexternals/entity-index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-nodes
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-nodes
+    to: blueprint/app/core/rules/workspaceexternals/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/diagram-scope
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    to: blueprint/app/core/rules/external-node-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    to: blueprint/app/core/rules/workspaceexternals/container-rollup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    to: blueprint/app/core/rules/workspaceexternals/diagram-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    to: blueprint/app/core/rules/workspaceexternals/external-nodes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    to: blueprint/app/core/rules/workspaceexternals/entity-index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    to: blueprint/app/core/rules/workspaceexternals/external-candidates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    to: blueprint/app/core/rules/workspaceexternals/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/types
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-candidates
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-candidates
+    to: blueprint/app/core/rules/workspaceexternals/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-candidates
+    to: blueprint/app/core/rules/workspaceexternals/diagram-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/filepath
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/entity-index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/diagram-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/external-nodes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/external-candidates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/external-enrichment
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/container-rollup
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/entity-index
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/entity-index
+    to: blueprint/app/core/rules/workspaceexternals/types
+    type: direct-call
+    description: Calls module / service

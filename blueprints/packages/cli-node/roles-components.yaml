@@ -1,0 +1,64 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-node/roles
+  name: Roles Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/packages/cli-node/roles/package-roles-test
+    type: background-worker
+    name: PackageRoles
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/roles/PackageRoles.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/roles/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/roles/types.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/roles/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/roles/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/roles/package-roles
+    type: background-worker
+    name: PackageRoles
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/roles/PackageRoles.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/packages/cli-node/roles/package-roles-test
+    to: backstage/packages/cli-node/roles/package-roles
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/roles/index
+    to: backstage/packages/cli-node/roles/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/roles/index
+    to: backstage/packages/cli-node/roles/package-roles
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/roles/package-roles
+    to: backstage/packages/cli-node/roles/types
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,133 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/app-backend/config
+  name: Config Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/app-backend/config/inject-config-into-static-test
+    type: background-worker
+    name: InjectConfigIntoStatic
+    isTest: true
+    properties:
+      filepath: plugins/app-backend/src/lib/config/injectConfigIntoStatic.test.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/config/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/config/types.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/config/inject-config-into-html-test
+    type: background-worker
+    name: InjectConfigIntoHtml
+    isTest: true
+    properties:
+      filepath: plugins/app-backend/src/lib/config/injectConfigIntoHtml.test.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/config/read-frontend-config-test
+    type: background-worker
+    name: ReadFrontendConfig
+    isTest: true
+    properties:
+      filepath: plugins/app-backend/src/lib/config/readFrontendConfig.test.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/config/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/config/index.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/config/inject-config
+    type: background-worker
+    name: InjectConfig
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/config/injectConfig.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/config/inject-config-into-html
+    type: background-worker
+    name: InjectConfigIntoHtml
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/config/injectConfigIntoHtml.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/config/read-frontend-config
+    type: background-worker
+    name: ReadFrontendConfig
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/config/readFrontendConfig.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-backend/config/inject-config-into-static
+    type: background-worker
+    name: InjectConfigIntoStatic
+    isTest: false
+    properties:
+      filepath: plugins/app-backend/src/lib/config/injectConfigIntoStatic.ts
+      containerId: app-backend
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/app-backend/config/inject-config-into-static-test
+    to: backstage/plugins/app-backend/config/inject-config-into-static
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/inject-config-into-html-test
+    to: backstage/plugins/app-backend/config/inject-config-into-html
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/read-frontend-config-test
+    to: backstage/plugins/app-backend/config/read-frontend-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/index
+    to: backstage/plugins/app-backend/config/inject-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/index
+    to: backstage/plugins/app-backend/config/read-frontend-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/inject-config
+    to: backstage/plugins/app-backend/config/inject-config-into-html
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/inject-config
+    to: backstage/plugins/app-backend/config/inject-config-into-static
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/inject-config
+    to: backstage/plugins/app-backend/config/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/inject-config-into-html
+    to: backstage/plugins/app-backend/config/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-backend/config/inject-config-into-static
+    to: backstage/plugins/app-backend/config/types
+    type: direct-call
+    description: Calls module / service

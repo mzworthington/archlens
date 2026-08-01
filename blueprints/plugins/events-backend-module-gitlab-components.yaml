@@ -14,18 +14,15 @@ nodes:
     name: Http
     isTest: false
     properties:
-      filepath: plugins/events-backend-module-gitlab/src/http/createGitlabTokenValidator.ts
       containerId: events-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 57
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 152
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -75,7 +72,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -84,9 +81,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/events-backend-module-gitlab/index
     type: background-worker
     name: Index
@@ -170,18 +170,15 @@ nodes:
     name: Service
     isTest: false
     properties:
-      filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabWebhook.test.ts
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 102
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 238
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -231,7 +228,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -240,26 +237,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/events-backend-module-gitlab/router
     type: rest-api
     name: Router
     isTest: false
     properties:
-      filepath: plugins/events-backend-module-gitlab/src/router/GitlabEventRouter.ts
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 56
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 146
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -309,7 +306,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -318,9 +315,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/events-node/alpha
     type: background-worker
     name: Alpha (External)

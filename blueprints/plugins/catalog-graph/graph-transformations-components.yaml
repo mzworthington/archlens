@@ -1,0 +1,176 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-graph/graph-transformations
+  name: Graph transformations Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations/set-distance
+    type: background-worker
+    name: Set distance
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/lib/graph-transformations/set-distance.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations/order-forward
+    type: background-worker
+    name: Order forward
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/lib/graph-transformations/order-forward.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations/strip-distant-edges
+    type: background-worker
+    name: Strip distant edges
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/lib/graph-transformations/strip-distant-edges.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/lib/graph-transformations/types.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations/reduce-edges
+    type: background-worker
+    name: Reduce edges
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/lib/graph-transformations/reduce-edges.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/lib/graph-transformations/index.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations/remove-backward-edges
+    type: background-worker
+    name: Remove backward edges
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/lib/graph-transformations/remove-backward-edges.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/graph-transformations/merge-relations
+    type: background-worker
+    name: Merge relations
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/lib/graph-transformations/merge-relations.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-graph/graph-transformations/set-distance
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/set-distance
+    to: backstage/plugins/catalog-graph/graph-transformations/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/order-forward
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/order-forward
+    to: backstage/plugins/catalog-graph/graph-transformations/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/strip-distant-edges
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/strip-distant-edges
+    to: backstage/plugins/catalog-graph/graph-transformations/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/types
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/reduce-edges
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/reduce-edges
+    to: backstage/plugins/catalog-graph/graph-transformations/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/index
+    to: backstage/plugins/catalog-graph/graph-transformations/reduce-edges
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/index
+    to: backstage/plugins/catalog-graph/graph-transformations/set-distance
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/index
+    to: backstage/plugins/catalog-graph/graph-transformations/order-forward
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/index
+    to: backstage/plugins/catalog-graph/graph-transformations/strip-distant-edges
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/index
+    to: backstage/plugins/catalog-graph/graph-transformations/merge-relations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/index
+    to: backstage/plugins/catalog-graph/graph-transformations/remove-backward-edges
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/index
+    to: backstage/plugins/catalog-graph/graph-transformations/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/remove-backward-edges
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/remove-backward-edges
+    to: backstage/plugins/catalog-graph/graph-transformations/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/merge-relations
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/graph-transformations/merge-relations
+    to: backstage/plugins/catalog-graph/graph-transformations/types
+    type: direct-call
+    description: Calls module / service

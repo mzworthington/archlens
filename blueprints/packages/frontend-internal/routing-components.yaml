@@ -1,0 +1,108 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-internal/routing
+  name: Routing Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-internal/routing/opaque-route-ref
+    type: rest-api
+    name: OpaqueRouteRef
+    isTest: false
+    properties:
+      filepath: packages/frontend-internal/src/routing/OpaqueRouteRef.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-internal/routing/opaque-external-route-ref
+    type: rest-api
+    name: OpaqueExternalRouteRef
+    isTest: false
+    properties:
+      filepath: packages/frontend-internal/src/routing/OpaqueExternalRouteRef.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-internal/routing/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-internal/src/routing/index.ts
+      containerId: frontend-internal
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-internal/routing/opaque-sub-route-ref
+    type: rest-api
+    name: OpaqueSubRouteRef
+    isTest: false
+    properties:
+      filepath: packages/frontend-internal/src/routing/OpaqueSubRouteRef.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/opaque-internal/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/opaque-internal/src/index.ts
+      containerId: opaque-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-internal/routing/opaque-route-ref
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-internal/routing/opaque-route-ref
+    to: backstage/packages/opaque-internal/index
+    type: direct-call
+    description: '@internal/opaque'
+  - from: backstage/packages/frontend-internal/routing/opaque-external-route-ref
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-internal/routing/opaque-external-route-ref
+    to: backstage/packages/opaque-internal/index
+    type: direct-call
+    description: '@internal/opaque'
+  - from: backstage/packages/frontend-internal/routing/index
+    to: backstage/packages/frontend-internal/routing/opaque-route-ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-internal/routing/index
+    to: backstage/packages/frontend-internal/routing/opaque-sub-route-ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-internal/routing/index
+    to: backstage/packages/frontend-internal/routing/opaque-external-route-ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-internal/routing/opaque-sub-route-ref
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-internal/routing/opaque-sub-route-ref
+    to: backstage/packages/opaque-internal/index
+    type: direct-call
+    description: '@internal/opaque'

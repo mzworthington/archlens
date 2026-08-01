@@ -1,0 +1,63 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/app-visualizer/components/appvisualizerpage
+  name: Appvisualizerpage Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/app-visualizer/components/appvisualizerpage/text-visualizer
+    type: gateway-api
+    name: TextVisualizer
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TextVisualizer.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-visualizer/components/appvisualizerpage/tree-visualizer
+    type: gateway-api
+    name: TreeVisualizer
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TreeVisualizer.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-visualizer/components/appvisualizerpage/detailed-visualizer
+    type: gateway-api
+    name: DetailedVisualizer
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/DetailedVisualizer.tsx
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-visualizer/components/appvisualizerpage/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/index.ts
+      containerId: app-visualizer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-visualizer/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: app-visualizer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/app-visualizer/components/appvisualizerpage/index
+    to: backstage/plugins/app-visualizer/components
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,57 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/identity-api/services
+  name: Services Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/identity-api/services/profile-service
+    type: background-worker
+    name: ProfileService
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Services/ProfileService.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/services/i-login-service
+    type: background-worker
+    name: ILoginService
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Services/ILoginService.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/services/i-redirect-service
+    type: background-worker
+    name: IRedirectService
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Services/IRedirectService.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/services/redirect-service
+    type: background-worker
+    name: RedirectService
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Services/RedirectService.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/services/ef-login-service
+    type: background-worker
+    name: EFLoginService
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Services/EFLoginService.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+dependencies: []

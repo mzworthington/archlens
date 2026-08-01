@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/docs-ui/components/components/tabs
+  name: Tabs Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/docs-ui/components/components/tabs/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: docs-ui/src/components/Tabs/index.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/docs-ui/components/components/tabs/parts
+    type: gateway-api
+    name: Parts
+    isTest: false
+    properties:
+      filepath: docs-ui/src/components/Tabs/parts.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+dependencies: []

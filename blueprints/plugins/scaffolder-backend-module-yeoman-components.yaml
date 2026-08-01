@@ -172,18 +172,16 @@ nodes:
     name: Run
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-yeoman/src/actions/run/yeoman.examples.test.ts
       containerId: scaffolder-backend-module-yeoman
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 117
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      complexityPeak: 1
+      churn: 12
+      lineChurn: 675
+      churn30: 10
+      churn365: 12
       churnByWeek:
         - 0
         - 0
@@ -210,7 +208,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -233,20 +231,25 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 10
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 8
         - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 2
+        - email: 33824904+Elhefes@users.noreply.github.com
+          commits: 2
+      hotspotScore: 0.0008556179735880549
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-yeoman/index
     type: background-worker
     name: Index

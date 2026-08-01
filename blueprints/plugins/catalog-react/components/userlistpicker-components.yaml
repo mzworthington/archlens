@@ -1,0 +1,249 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/components/userlistpicker
+  name: Userlistpicker Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count
+    type: gateway-api
+    name: UseStarredEntitiesCount
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/UserListPicker/useStarredEntitiesCount.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count-test
+    type: gateway-api
+    name: UseStarredEntitiesCount
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/UserListPicker/useStarredEntitiesCount.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/userlistpicker/user-list-picker-test
+    type: gateway-api
+    name: UserListPicker
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/UserListPicker/UserListPicker.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count
+    type: gateway-api
+    name: UseAllEntitiesCount
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/UserListPicker/useAllEntitiesCount.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count-test
+    type: gateway-api
+    name: UseOwnedEntitiesCount
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/UserListPicker/useOwnedEntitiesCount.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count-test
+    type: gateway-api
+    name: UseAllEntitiesCount
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/UserListPicker/useAllEntitiesCount.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count
+    type: gateway-api
+    name: UseOwnedEntitiesCount
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/UserListPicker/useOwnedEntitiesCount.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/userlistpicker/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/UserListPicker/index.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/alpha/apis.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count
+    to: backstage/plugins/catalog-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count-test
+    to: backstage/plugins/catalog-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count-test
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count-test
+    to: backstage/plugins/catalog-react/components/userlistpicker/use-starred-entities-count
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/user-list-picker-test
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/user-list-picker-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/userlistpicker/user-list-picker-test
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/user-list-picker-test
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/user-list-picker-test
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/user-list-picker-test
+    to: backstage/plugins/catalog-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count
+    to: backstage/plugins/catalog-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count-test
+    to: backstage/plugins/catalog-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count-test
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count-test
+    to: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count-test
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count-test
+    to: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count-test
+    to: backstage/plugins/catalog-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count-test
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-all-entities-count-test
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count
+    to: backstage/plugins/catalog-react/filters/filters
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/use-owned-entities-count
+    to: backstage/plugins/catalog-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/userlistpicker/index
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service

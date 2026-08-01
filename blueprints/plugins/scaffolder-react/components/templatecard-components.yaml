@@ -1,0 +1,294 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-react/components/templatecard
+  name: Templatecard Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/template-card-tags
+    type: background-worker
+    name: TemplateCardTags
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardTags.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/template-card-impl
+    type: gateway-api
+    name: TemplateCardImpl
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardImpl.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/card-link
+    type: background-worker
+    name: CardLink
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/CardLink.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/template-card-test
+    type: gateway-api
+    name: TemplateCard
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCard.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/card-header
+    type: gateway-api
+    name: CardHeader
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/CardHeader.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/template-detail-button
+    type: gateway-api
+    name: TemplateDetailButton
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateDetailButton.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/template-card-actions
+    type: gateway-api
+    name: TemplateCardActions
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardActions.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/template-card-links
+    type: background-worker
+    name: TemplateCardLinks
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardLinks.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/index.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/card-header-test
+    type: gateway-api
+    name: CardHeader
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/CardHeader.test.tsx
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/scaffolder-react/components/templatecard/template-card-content
+    type: background-worker
+    name: TemplateCardContent
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/next/components/TemplateCard/TemplateCardContent.tsx
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-common/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/alpha.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: scaffolder-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-common/src/index.ts
+      containerId: scaffolder-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/dev/index.tsx
+      containerId: catalog
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-tags
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-impl
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-impl
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-impl
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-impl
+    to: backstage/plugins/scaffolder-common/alpha
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-test
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-test
+    to: backstage/plugins/scaffolder-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-test
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-test
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-test
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/card-header
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/card-header
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/card-header
+    to: backstage/plugins/scaffolder-react/components/templatecard/template-detail-button
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-detail-button
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-detail-button
+    to: backstage/plugins/scaffolder-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-actions
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-actions
+    to: backstage/plugins/scaffolder-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-links
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/index
+    to: backstage/plugins/scaffolder-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/components/templatecard/card-header-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/card-header-test
+    to: backstage/plugins/catalog/index
+    type: direct-call
+    description: '@backstage/plugin-catalog'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/card-header-test
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-content
+    to: backstage/plugins/scaffolder-common/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-common'
+  - from: backstage/plugins/scaffolder-react/components/templatecard/template-card-content
+    to: backstage/plugins/scaffolder-react/translation/translation
+    type: direct-call
+    description: Calls module / service

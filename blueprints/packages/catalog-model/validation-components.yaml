@@ -1,0 +1,269 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/catalog-model/validation
+  name: Validation Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/catalog-model/validation/entity-schema-validator-test
+    type: background-worker
+    name: EntitySchemaValidator
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/validation/entitySchemaValidator.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/kubernetes-validator-functions
+    type: background-worker
+    name: KubernetesValidatorFunctions
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/KubernetesValidatorFunctions.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/entity-kind-schema-validator-test
+    type: background-worker
+    name: EntityKindSchemaValidator
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/validation/entityKindSchemaValidator.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/kubernetes-validator-functions-test
+    type: background-worker
+    name: KubernetesValidatorFunctions
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/validation/KubernetesValidatorFunctions.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/entity-envelope-schema-validator-test
+    type: background-worker
+    name: EntityEnvelopeSchemaValidator
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/validation/entityEnvelopeSchemaValidator.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/ajv
+    type: background-worker
+    name: Ajv
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/ajv.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/types.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/entity-kind-schema-validator
+    type: background-worker
+    name: EntityKindSchemaValidator
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/entityKindSchemaValidator.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/entity-envelope-schema-validator
+    type: background-worker
+    name: EntityEnvelopeSchemaValidator
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/entityEnvelopeSchemaValidator.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/entity-schema-validator
+    type: background-worker
+    name: EntitySchemaValidator
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/entitySchemaValidator.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/common-validator-functions
+    type: background-worker
+    name: CommonValidatorFunctions
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/CommonValidatorFunctions.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/make-validator
+    type: background-worker
+    name: MakeValidator
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/validation/makeValidator.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/validation/common-validator-functions-test
+    type: background-worker
+    name: CommonValidatorFunctions
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/validation/CommonValidatorFunctions.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/entity
+    type: background-worker
+    name: Entity (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/entity/Entity.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/catalog-model/entity/entity-envelope
+    type: background-worker
+    name: EntityEnvelope (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/entity/EntityEnvelope.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/config-loader/schema
+    type: background-worker
+    name: Schema (External)
+    external: true
+    properties:
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: backstage/packages/catalog-model/validation/entity-schema-validator-test
+    to: backstage/packages/catalog-model/validation/entity-schema-validator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/kubernetes-validator-functions
+    to: backstage/packages/catalog-model/validation/common-validator-functions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-kind-schema-validator-test
+    to: backstage/packages/catalog-model/validation/entity-kind-schema-validator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/kubernetes-validator-functions-test
+    to: backstage/packages/catalog-model/validation/kubernetes-validator-functions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-envelope-schema-validator-test
+    to: backstage/packages/catalog-model/validation/entity-envelope-schema-validator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/ajv
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-kind-schema-validator
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-kind-schema-validator
+    to: backstage/packages/catalog-model/validation/ajv
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-envelope-schema-validator
+    to: backstage/packages/catalog-model/entity/entity-envelope
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-envelope-schema-validator
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-envelope-schema-validator
+    to: backstage/packages/catalog-model/validation/ajv
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/index
+    to: backstage/packages/catalog-model/validation/common-validator-functions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/index
+    to: backstage/packages/catalog-model/validation/entity-envelope-schema-validator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/index
+    to: backstage/packages/catalog-model/validation/entity-kind-schema-validator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/index
+    to: backstage/packages/catalog-model/validation/entity-schema-validator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/index
+    to: backstage/packages/catalog-model/validation/kubernetes-validator-functions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/index
+    to: backstage/packages/catalog-model/validation/make-validator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/index
+    to: backstage/packages/catalog-model/validation/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-schema-validator
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-schema-validator
+    to: backstage/packages/config-loader/schema
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/entity-schema-validator
+    to: backstage/packages/catalog-model/validation/ajv
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/make-validator
+    to: backstage/packages/catalog-model/validation/kubernetes-validator-functions
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/make-validator
+    to: backstage/packages/catalog-model/validation/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/validation/common-validator-functions-test
+    to: backstage/packages/catalog-model/validation/common-validator-functions
+    type: direct-call
+    description: Calls module / service

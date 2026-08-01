@@ -1,0 +1,100 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog
+  name: Chaosspecdialog Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog-test
+    type: gateway-api
+    name: UseChaosSpecDialog
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/ChaosSpecDialog/useChaosSpecDialog.test.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog
+    type: gateway-api
+    name: UseChaosSpecDialog
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/ChaosSpecDialog/useChaosSpecDialog.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/infrastructure/filesystem/file-sync
+    type: background-worker
+    name: FileSync (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/infrastructure/fileSystem/fileSync.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/core/resilience
+    type: background-worker
+    name: Resilience (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/app/designer/application/store
+    type: background-worker
+    name: Store (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog-test
+    to: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog
+    to: blueprint/app/designer/infrastructure/filesystem/file-sync
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog/use-chaos-spec-dialog
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service

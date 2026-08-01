@@ -20,12 +20,18 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 29
-      churn30: 1
-      churn365: 2
+      churn: 3
+      lineChurn: 46
+      churn30: 2
+      churn365: 3
+      hotspotScore: 0
+      authorCount: 1
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
       churnByWeek:
         - 0
         - 0
@@ -75,20 +81,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
       topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
-      importedFiles:
-        - path: plugins/app-visualizer/src/index.ts
-          kind: direct
       sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/app-visualizer/plugin
@@ -177,18 +175,25 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/app-visualizer/src/components/CopyTreeButton.tsx
       containerId: app-visualizer
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 126
-      churn30: 1
-      churn365: 2
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 5
+      lineChurn: 240
+      churn30: 2
+      churn365: 5
+      hotspotScore: 0.00079951187695933
+      authorCount: 1
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
       churnByWeek:
         - 0
         - 0
@@ -203,20 +208,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
         - 0
@@ -231,6 +222,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -238,17 +230,25 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
       topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
       sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/app-visualizer/components/appvisualizerpage
@@ -256,7 +256,6 @@ nodes:
     name: Appvisualizerpage
     isTest: false
     properties:
-      filepath: plugins/app-visualizer/src/components/AppVisualizerPage/TextVisualizer.tsx
       containerId: app-visualizer
       technology: React Component
       classification: ui-import
@@ -264,13 +263,22 @@ nodes:
       complexity: 7
       complexityPeak: 7
       cognitiveComplexity: 11
-      functionCount: 9
-      loc: 111
-      sloc: 88
-      churn: 7
-      lineChurn: 184
-      churn30: 1
-      churn365: 7
+      churn: 26
+      lineChurn: 2019
+      churn30: 4
+      churn365: 26
+      hotspotScore: 0.0271237910889492
+      authorCount: 3
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 21
+        - email: charles.dedreuille@gmail.com
+          commits: 4
+        - email: freben@gmail.com
+          commits: 1
       churnByWeek:
         - 0
         - 0
@@ -285,31 +293,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 3
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 5
         - 0
         - 0
         - 0
@@ -321,20 +305,35 @@ nodes:
         - 0
         - 0
         - 1
+        - 2
+        - 0
+        - 7
+        - 4
         - 0
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.5714285714285714
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 4
-        - email: charles.dedreuille@gmail.com
-          commits: 2
-        - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0.0045165407786123555
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.8076923076923077
       sinceDays: 365
       shortChurnDays: 30
 dependencies:

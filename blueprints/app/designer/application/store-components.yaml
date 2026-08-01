@@ -1,0 +1,355 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/application/store
+  name: Store Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/application/store/states
+    type: gateway-api
+    name: States
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 15
+      complexityPeak: 15
+      cognitiveComplexity: 57
+      churn: 151
+      lineChurn: 6463
+      churn30: 151
+      churn365: 151
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 48
+        - 42
+        - 51
+        - 10
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 151
+      hotspotScore: 0.16826371914948843
+      classifications:
+        - knowledge-silo
+      coupledFiles:
+        - path: app/packages/designer/src/application/store/states/resilienceState.test.ts
+          score: 0.7692307692307693
+          sharedCommits: 10
+        - path: app/packages/designer/src/application/store/states/resilienceState.ts
+          score: 0.7692307692307693
+          sharedCommits: 10
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: blueprint/app/designer/application/store/golden-paths-sample
+    type: background-worker
+    name: GoldenPathsSample
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/goldenPathsSample.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/layout-utils-test
+    type: background-worker
+    name: LayoutUtils
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/store/layoutUtils.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/store-test
+    type: background-worker
+    name: Store
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/store/store.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/diagram-load-session
+    type: background-worker
+    name: DiagramLoadSession
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/diagramLoadSession.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/yield-to-ui
+    type: background-worker
+    name: YieldToUi
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/yieldToUi.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/session-layout-cache
+    type: cache-store
+    name: SessionLayoutCache
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/sessionLayoutCache.ts
+      containerId: designer
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: blueprint/app/designer/application/store/sandbox-workspace-test
+    type: background-worker
+    name: SandboxWorkspace
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/store/sandboxWorkspace.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/diagram-load-session-test
+    type: background-worker
+    name: DiagramLoadSession
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/store/diagramLoadSession.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/layout-utils
+    type: background-worker
+    name: LayoutUtils
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/layoutUtils.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/sandbox-workspace
+    type: background-worker
+    name: SandboxWorkspace
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/sandboxWorkspace.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/session-layout-cache-test
+    type: cache-store
+    name: SessionLayoutCache
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/store/sessionLayoutCache.test.ts
+      containerId: designer
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: blueprint/app/designer/application/store/layout-utils-direction-test
+    type: background-worker
+    name: LayoutUtils.direction
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/store/layoutUtils.direction.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/layout/compute-client-layout
+    type: background-worker
+    name: ComputeClientLayout (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/layout/computeClientLayout.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/designer/application/layout/constants
+    type: background-worker
+    name: Constants (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/layout/constants.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/app/designer/core
+    type: background-worker
+    name: Core (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/core/layout
+    type: background-worker
+    name: Layout (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/layout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/core/resilience
+    type: background-worker
+    name: Resilience (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/application/store/layout-utils-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/layout-utils-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/store-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/diagram-load-session
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/diagram-load-session
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/diagram-load-session
+    to: blueprint/app/designer/application/store/session-layout-cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/session-layout-cache
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/session-layout-cache
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/sandbox-workspace-test
+    to: blueprint/app/designer/application/store/sandbox-workspace
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/diagram-load-session-test
+    to: blueprint/app/designer/application/store/diagram-load-session
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/layout-utils
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/layout-utils
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/layout-utils
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/layout-utils
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout-utils
+    to: blueprint/app/designer/application/layout/compute-client-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout-utils
+    to: blueprint/app/designer/application/layout/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/session-layout-cache-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/session-layout-cache-test
+    to: blueprint/app/designer/application/store/session-layout-cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/layout-utils-direction-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records

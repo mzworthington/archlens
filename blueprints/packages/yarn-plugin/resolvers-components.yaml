@@ -1,0 +1,51 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/yarn-plugin/resolvers
+  name: Resolvers Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/packages/yarn-plugin/resolvers/backstage-npm-resolver-test
+    type: background-worker
+    name: BackstageNpmResolver
+    isTest: true
+    properties:
+      filepath: packages/yarn-plugin/src/resolvers/BackstageNpmResolver.test.ts
+      containerId: yarn-plugin
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/yarn-plugin/resolvers/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/yarn-plugin/src/resolvers/index.ts
+      containerId: yarn-plugin
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/yarn-plugin/resolvers/backstage-npm-resolver
+    type: background-worker
+    name: BackstageNpmResolver
+    isTest: false
+    properties:
+      filepath: packages/yarn-plugin/src/resolvers/BackstageNpmResolver.ts
+      containerId: yarn-plugin
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/packages/yarn-plugin/resolvers/backstage-npm-resolver-test
+    to: backstage/packages/yarn-plugin/resolvers/backstage-npm-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/yarn-plugin/resolvers/index
+    to: backstage/packages/yarn-plugin/resolvers/backstage-npm-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/yarn-plugin/resolvers/backstage-npm-resolver
+    to: backstage/packages/yarn-plugin/constants/constants
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,99 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-react/components/podexecterminal
+  name: Podexecterminal Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-react/components/podexecterminal/pod-exec-terminal-test
+    type: gateway-api
+    name: PodExecTerminal
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/PodExecTerminal/PodExecTerminal.test.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/podexecterminal/pod-exec-terminal-attach-addon
+    type: background-worker
+    name: PodExecTerminalAttachAddon
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/PodExecTerminal/PodExecTerminalAttachAddon.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/podexecterminal/match-media-mock
+    type: background-worker
+    name: MatchMedia.mock
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/PodExecTerminal/matchMedia.mock.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/podexecterminal/pod-exec-terminal-dialog
+    type: background-worker
+    name: PodExecTerminalDialog
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/PodExecTerminal/PodExecTerminalDialog.tsx
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/podexecterminal/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/PodExecTerminal/index.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-react/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-react/components/podexecterminal/pod-exec-terminal-test
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/podexecterminal/pod-exec-terminal-dialog
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/podexecterminal/pod-exec-terminal-dialog
+    to: backstage/plugins/kubernetes-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/podexecterminal/pod-exec-terminal-dialog
+    to: backstage/plugins/kubernetes-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/podexecterminal/index
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service

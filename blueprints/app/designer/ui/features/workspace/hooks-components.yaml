@@ -1,0 +1,271 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/ui/features/workspace/hooks
+  name: Hooks Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync-test
+    type: gateway-api
+    name: UseUrlSync
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useUrlSync.test.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-keyboard-navigation-test
+    type: gateway-api
+    name: UseKeyboardNavigation
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.test.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-keyboard-navigation
+    type: gateway-api
+    name: UseKeyboardNavigation
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync
+    type: gateway-api
+    name: UseUrlSync
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useUrlSync.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-trace-lens-onboarding
+    type: gateway-api
+    name: UseTraceLensOnboarding
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useTraceLensOnboarding.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-lens-sync
+    type: gateway-api
+    name: UseWorkspaceLensSync
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useWorkspaceLensSync.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-dialogs
+    type: gateway-api
+    name: UseWorkspaceDialogs
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useWorkspaceDialogs.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity-test
+    type: gateway-api
+    name: UseActiveDiagramEntity
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useActiveDiagramEntity.test.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-bundled-workspace-bootstrap
+    type: gateway-api
+    name: UseBundledWorkspaceBootstrap
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useBundledWorkspaceBootstrap.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity
+    type: gateway-api
+    name: UseActiveDiagramEntity
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useActiveDiagramEntity.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/golden-paths-sample
+    type: background-worker
+    name: GoldenPathsSample (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/goldenPathsSample.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/rank-offenders
+    type: background-worker
+    name: RankOffenders (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/rankOffenders.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/sandbox-workspace
+    type: background-worker
+    name: SandboxWorkspace (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/sandboxWorkspace.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/sourcecodedialog
+    type: gateway-api
+    name: Sourcecodedialog (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/app/designer/application/store
+    type: background-worker
+    name: Store (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    type: background-worker
+    name: TraceLensUrl (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/traceLensUrl.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync-test
+    to: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-keyboard-navigation-test
+    to: blueprint/app/designer/ui/features/workspace/hooks/use-keyboard-navigation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-trace-lens-onboarding
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-trace-lens-onboarding
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-lens-sync
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-lens-sync
+    to: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-dialogs
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-dialogs
+    to: blueprint/app/designer/ui/features/workspace/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-dialogs
+    to: blueprint/app/designer/application/store/golden-paths-sample
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-dialogs
+    to: blueprint/app/designer/application/store/sandbox-workspace
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-workspace-dialogs
+    to: blueprint/app/designer/ui/features/workspace/components/sourcecodedialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity-test
+    to: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-bundled-workspace-bootstrap
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service

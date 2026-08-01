@@ -169,17 +169,13 @@ nodes:
     name: Extensions Layer
     isTest: false
     properties:
-      filepath: src/Catalog.API/Extensions/HostEnvironmentExtensions.cs
       containerId: catalog-api
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 1
-      loc: 15
-      sloc: 9
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 9
       churn: 0
       churn30: 0
       churn365: 0
@@ -238,30 +234,33 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/catalog-api/model
     type: rest-api
     name: Model Layer
     isTest: false
     properties:
-      filepath: src/Catalog.API/Model/CatalogServices.cs
       containerId: catalog-api
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
     forensics:
-      complexity: 1
-      loc: 17
-      sloc: 15
-      churn: 0
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 3
+      lineChurn: 26
       churn30: 0
-      churn365: 0
+      churn365: 3
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
+        - 3
         - 0
         - 0
         - 0
@@ -310,34 +309,38 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: mikekistler@microsoft.com
+          commits: 3
+      hotspotScore: 0.012027491408934707
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/catalog-api/integrationevents
     type: event-broker
     name: IntegrationEvents Layer
     isTest: false
     properties:
-      filepath: src/Catalog.API/IntegrationEvents/ICatalogIntegrationEventService.cs
       containerId: catalog-api
       technology: C# Event Client
       classification: event-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 2
-      loc: 8
-      sloc: 6
-      churn: 0
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 2
+      lineChurn: 11
       churn30: 0
-      churn365: 0
+      churn365: 2
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -386,36 +389,38 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: mikekistler@microsoft.com
+          commits: 2
+      hotspotScore: 0.007731958762886598
       sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/catalog-api/infrastructure
     type: relational-database
     name: Infrastructure Layer
     isTest: false
     properties:
-      filepath: src/Catalog.API/Infrastructure/CatalogContext.cs
       containerId: catalog-api
       technology: Entity Framework / DB Context
       classification: database-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 2
-      loc: 29
-      sloc: 18
-      churn: 1
-      lineChurn: 6
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 10
+      churn: 2
+      lineChurn: 37
       churn30: 0
-      churn365: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -469,14 +474,18 @@ nodes:
       authors:
         - email: joperezr@microsoft.com
           commits: 1
-      hotspotScore: 0
+        - email: mikekistler@microsoft.com
+          commits: 1
+      hotspotScore: 0.0665807560137457
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/catalog-api/services
     type: relational-database
     name: Services Layer
     isTest: false
     properties:
-      filepath: src/Catalog.API/Services/CatalogAI.cs
       containerId: catalog-api
       technology: Entity Framework / DB Context
       classification: database-marker
@@ -484,19 +493,16 @@ nodes:
       complexity: 3
       complexityPeak: 3
       cognitiveComplexity: 3
-      functionCount: 5
-      loc: 77
-      sloc: 53
-      churn: 1
-      lineChurn: 18
+      churn: 2
+      lineChurn: 24
       churn30: 0
-      churn365: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -549,9 +555,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: mikekistler@microsoft.com
-          commits: 1
+          commits: 2
       hotspotScore: 0.015463917525773196
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/catalog-api/program
     type: background-worker
     name: Program

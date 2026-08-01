@@ -172,33 +172,16 @@ nodes:
     name: Prepare
     isTest: false
     properties:
-      filepath: plugins/techdocs-node/src/stages/prepare/preparers.ts
       containerId: techdocs-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 91
-      churn30: 1
-      churn365: 1
+      churn: 7
+      lineChurn: 514
+      churn30: 6
+      churn365: 7
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -238,30 +221,44 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 7
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-node/stages
     type: background-worker
     name: Stages
     isTest: false
     properties:
-      filepath: plugins/techdocs-node/src/stages/publish/publish.ts
       containerId: techdocs-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 138
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 157
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -311,7 +308,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -320,26 +317,28 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-node/stages/publish
     type: rest-api
     name: Publish
     isTest: false
     properties:
-      filepath: plugins/techdocs-node/src/stages/publish/publish.test.ts
       containerId: techdocs-node
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 200
-      churn30: 1
-      churn365: 1
+      complexity: 14
+      complexityPeak: 14
+      cognitiveComplexity: 87
+      churn: 56
+      lineChurn: 8466
+      churn30: 18
+      churn365: 56
       churnByWeek:
         - 0
         - 0
@@ -347,6 +346,35 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 0
+        - 0
+        - 3
+        - 0
+        - 1
+        - 0
+        - 0
+        - 5
+        - 0
+        - 6
+        - 4
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 11
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
         - 0
         - 0
         - 0
@@ -360,10 +388,50 @@ nodes:
         - 0
         - 0
         - 0
+        - 18
         - 0
         - 0
         - 0
         - 0
+      authorCount: 6
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 20
+        - email: freben@gmail.com
+          commits: 11
+        - email: vidhans958@gmail.com
+          commits: 11
+        - email: vincenzos@spotify.com
+          commits: 5
+        - email: rudra099999@gmail.com
+          commits: 4
+        - email: kmittal@redhat.com
+          commits: 3
+        - email: pschultz@pobox.com
+          commits: 2
+      hotspotScore: 0.10073849649687559
+      sinceDays: 365
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs-node/stages/publish/migrations
+    type: background-worker
+    name: Migrations
+    isTest: false
+    properties:
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 4
+      lineChurn: 108
+      churn30: 2
+      churn365: 4
+      churnByWeek:
         - 0
         - 0
         - 0
@@ -394,73 +462,58 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
+          commits: 3
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0015955171228793647
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-node/stages/generate
     type: background-worker
     name: Generate
     isTest: false
     properties:
-      filepath: plugins/techdocs-node/src/stages/generate/techdocs.test.ts
       containerId: techdocs-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 180
-      churn30: 1
-      churn365: 1
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 47
+      churn: 56
+      lineChurn: 5312
+      churn30: 11
+      churn365: 56
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -472,13 +525,76 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 6
+        - 12
+        - 0
+        - 0
+        - 4
+        - 2
+        - 0
+        - 1
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 11
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 8
+      topAuthorPercent: 0.35714285714285715
       authors:
         - email: poldsberg@gmail.com
+          commits: 13
+        - email: ben@blam.sh
+          commits: 10
+        - email: karthik.jk11@gmail.com
+          commits: 9
+        - email: ruslan@tarasovs.com
+          commits: 7
+        - email: freben@gmail.com
+          commits: 6
+        - email: charles.dedreuille@gmail.com
+          commits: 4
+        - email: bondy@spotify.com
+          commits: 4
+        - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0
+        - email: rtarasov@evolution.com
+          commits: 1
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.015674640745650024
       sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-node/extensions
     type: background-worker
     name: Extensions
@@ -720,7 +836,6 @@ nodes:
     name: Collators (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.test.ts
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
@@ -732,7 +847,6 @@ nodes:
     name: Docsbuilder (External)
     external: true
     properties:
-      filepath: plugins/techdocs-backend/src/DocsBuilder/BuildMetadataStorage.ts
       containerId: techdocs-backend
       technology: TypeScript Domain Service
       classification: default
@@ -780,7 +894,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/techdocs-backend/src/service/DefaultDocsBuildStrategy.test.ts
       containerId: techdocs-backend
       technology: REST Controller / Router
       classification: api-marker

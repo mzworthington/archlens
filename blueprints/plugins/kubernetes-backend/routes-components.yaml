@@ -1,0 +1,118 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-backend/routes
+  name: Routes Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-backend/routes/resources-routes
+    type: rest-api
+    name: ResourcesRoutes
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-backend/src/routes/resourcesRoutes.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/kubernetes-backend/routes/resource-routes-test
+    type: rest-api
+    name: ResourceRoutes
+    isTest: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/routes/resourceRoutes.test.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/kubernetes-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-node/src/types/index.ts
+      containerId: kubernetes-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-backend/auth/require-permission
+    type: rest-api
+    name: RequirePermission (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-backend/src/auth/requirePermission.ts
+      containerId: kubernetes-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-backend/routes/resources-routes
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/routes/resources-routes
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/kubernetes-backend/routes/resources-routes
+    to: backstage/plugins/kubernetes-backend/auth/require-permission
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-backend/routes/resources-routes
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-backend/routes/resources-routes
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/kubernetes-backend/routes/resource-routes-test
+    to: backstage/plugins/kubernetes-node/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-node'
+  - from: backstage/plugins/kubernetes-backend/routes/resource-routes-test
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'

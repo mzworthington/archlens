@@ -1,0 +1,238 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend/providers
+  name: Providers Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider-test
+    type: relational-database
+    name: GenericScmEventRefreshProvider
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/providers/GenericScmEventRefreshProvider.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/providers/default-location-store-test
+    type: background-worker
+    name: DefaultLocationStore
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/providers/DefaultLocationStore.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/providers/config-location-entity-provider-test
+    type: background-worker
+    name: ConfigLocationEntityProvider
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/providers/ConfigLocationEntityProvider.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/providers/default-location-store
+    type: relational-database
+    name: DefaultLocationStore
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/providers/DefaultLocationStore.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/providers/config-location-entity-provider
+    type: background-worker
+    name: ConfigLocationEntityProvider
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/providers/ConfigLocationEntityProvider.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider
+    type: relational-database
+    name: GenericScmEventRefreshProvider
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/providers/GenericScmEventRefreshProvider.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-node/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/alpha.ts
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/migrations
+    type: relational-database
+    name: Migrations (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/migrations.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/tables
+    type: relational-database
+    name: Tables (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/tables.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/service/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/service/types.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/processing/util
+    type: background-worker
+    name: Util (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/processing/util.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider-test
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider-test
+    to: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/default-location-store-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/default-location-store-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/default-location-store-test
+    to: backstage/plugins/catalog-backend/providers/default-location-store
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/default-location-store-test
+    to: backstage/plugins/catalog-backend/conversion/conversion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/providers/default-location-store-test
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/providers/config-location-entity-provider-test
+    to: backstage/plugins/catalog-backend/providers/config-location-entity-provider
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/config-location-entity-provider-test
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/providers/default-location-store
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/default-location-store
+    to: backstage/plugins/catalog-backend/processing/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/default-location-store
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/providers/default-location-store
+    to: backstage/plugins/catalog-backend/conversion/conversion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/providers/default-location-store
+    to: backstage/plugins/catalog-backend/service/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/providers/default-location-store
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/providers/default-location-store
+    to: backstage/plugins/catalog-backend/readscmeventhandlingconfig/read-scm-event-handling-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/providers/config-location-entity-provider
+    to: backstage/plugins/catalog-backend/processing/util
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/config-location-entity-provider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/providers/config-location-entity-provider
+    to: backstage/plugins/catalog-backend/conversion/conversion
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider
+    to: backstage/plugins/catalog-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/providers/generic-scm-event-refresh-provider
+    to: backstage/plugins/catalog-backend/readscmeventhandlingconfig/read-scm-event-handling-config
+    type: direct-call
+    description: Calls module / service

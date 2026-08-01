@@ -94,20 +94,16 @@ nodes:
     name: Module
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.ts
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 4
-      loc: 83
-      sloc: 60
-      churn: 3
-      lineChurn: 102
-      churn30: 1
-      churn365: 3
+      churn: 7
+      lineChurn: 235
+      churn30: 3
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -134,7 +130,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -151,55 +147,44 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.7142857142857143
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 5
         - email: alien2003@protonmail.ch
-          commits: 1
-      hotspotScore: 0.00035767636600812135
+          commits: 2
+      hotspotScore: 0.0004067692005582557
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/providers
     type: background-worker
     name: Providers
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerLocationParser.ts
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 40
-      churn30: 1
-      churn365: 1
+      churn: 8
+      lineChurn: 2090
+      churn30: 6
+      churn365: 8
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -242,13 +227,31 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
+          commits: 6
+        - email: freben@spotify.com
+          commits: 1
+        - email: jonkoops@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient
     type: background-worker
     name: Bitbucketserverclient
@@ -416,12 +419,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 28
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 64
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -471,7 +472,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -480,9 +481,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-bitbucket-server/bitbucketserverclient-test
     type: background-worker
     name: Bitbucketserverclient test
@@ -568,18 +572,15 @@ nodes:
     name: Events
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/events/analyzeBitbucketServerWebhookEvent.ts
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 326
-      churn30: 1
-      churn365: 2
+      churn: 6
+      lineChurn: 898
+      churn30: 3
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -623,13 +624,13 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -638,11 +639,14 @@ nodes:
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
         - email: alien2003@protonmail.ch
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: Alpha (External)
@@ -720,7 +724,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

@@ -1,0 +1,114 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/home/homepagecomponents/starredentities
+  name: Starredentities Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/home/homepagecomponents/starredentities/starred-entities-stories
+    type: gateway-api
+    name: StarredEntities.stories
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/StarredEntities/StarredEntities.stories.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/starredentities/content
+    type: gateway-api
+    name: Content
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/StarredEntities/Content.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/starredentities/content-test
+    type: gateway-api
+    name: Content
+    isTest: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/StarredEntities/Content.test.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/starredentities/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/StarredEntities/index.ts
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/home/homepagecomponents/starredentities/starred-entities-stories
+    to: backstage/plugins/home/plugin/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/starredentities/starred-entities-stories
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/home/homepagecomponents/starredentities/starred-entities-stories
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/home/homepagecomponents/starredentities/content
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/home/homepagecomponents/starredentities/content
+    to: backstage/plugins/home/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/starredentities/content
+    to: backstage/plugins/home/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/starredentities/content-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/home/homepagecomponents/starredentities/content-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'

@@ -14,14 +14,13 @@ nodes:
     name: SeedWork Layer
     isTest: false
     properties:
-      filepath: src/Ordering.Domain/SeedWork/IAggregateRoot.cs
       containerId: ordering-domain
       technology: Entity Framework / DB Context
       classification: database-marker
     forensics:
-      complexity: 1
-      loc: 6
-      sloc: 2
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 17
       churn: 0
       churn30: 0
       churn365: 0
@@ -80,25 +79,23 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-domain/aggregatesmodel
     type: relational-database
     name: AggregatesModel Layer
     isTest: false
     properties:
-      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs
       containerId: ordering-domain
       technology: Entity Framework / DB Context
       classification: database-marker
     forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 14
-      loc: 187
-      sloc: 137
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
       churn: 0
       churn30: 0
       churn365: 0
@@ -157,9 +154,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-domain/exceptions
     type: background-worker
     name: Exceptions Layer
@@ -241,16 +240,12 @@ nodes:
     name: Events Layer
     isTest: false
     properties:
-      filepath: src/Ordering.Domain/Events/OrderShippedDomainEvent.cs
       containerId: ordering-domain
       technology: C# Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 1
-      loc: 12
-      sloc: 9
       churn: 0
       churn30: 0
       churn365: 0
@@ -309,15 +304,16 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-unittests/application
     type: rest-api
     name: Application Layer (External)
     external: true
     properties:
-      filepath: tests/Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs
       containerId: ordering-unittests
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
@@ -329,7 +325,6 @@ nodes:
     name: Application Layer (External)
     external: true
     properties:
-      filepath: src/Ordering.API/Application/Queries/OrderQueries.cs
       containerId: ordering-api
       technology: C# Event Client
       classification: event-marker
@@ -353,7 +348,6 @@ nodes:
     name: Domain Layer (External)
     external: true
     properties:
-      filepath: tests/Ordering.UnitTests/Domain/BuyerAggregateTest.cs
       containerId: ordering-unittests
       technology: C# Domain Service
       classification: default
@@ -365,7 +359,6 @@ nodes:
     name: Infrastructure Layer (External)
     external: true
     properties:
-      filepath: src/Ordering.API/Infrastructure/OrderingContextSeed.cs
       containerId: ordering-api
       technology: C# Domain Service
       classification: default

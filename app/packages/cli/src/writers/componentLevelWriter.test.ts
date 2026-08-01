@@ -332,4 +332,163 @@ describe('ComponentLevelWriter', () => {
     const writeLogs = logger.logs.filter(log => log.includes('Saved Component schema'));
     expect(writeLogs).toHaveLength(2);
   });
+
+  it('writes rollup drill-down schemas for multi-file folder components', async () => {
+    const componentNodesMap = new Map<string, SystemNode>([
+      [
+        'cli/writers',
+        {
+          entityRef: 'my-context/my-system/cli/writers',
+          name: 'Writers',
+          type: 'background-worker',
+          properties: {
+            containerId: 'cli',
+            memberFilepaths: [
+              'app/packages/cli/src/writers/baseWriter.ts',
+              'app/packages/cli/src/writers/contextLevelWriter.ts',
+            ],
+          },
+        },
+      ],
+    ]);
+    const fileLevelNodesMap = new Map<string, SystemNode>([
+      [
+        'my-context/my-system/cli/writers/base-writer',
+        {
+          entityRef: 'my-context/my-system/cli/writers/base-writer',
+          name: 'Base Writer',
+          type: 'background-worker',
+          properties: {
+            containerId: 'cli',
+            filepath: 'app/packages/cli/src/writers/baseWriter.ts',
+          },
+        },
+      ],
+      [
+        'my-context/my-system/cli/writers/context-level-writer',
+        {
+          entityRef: 'my-context/my-system/cli/writers/context-level-writer',
+          name: 'Context Level Writer',
+          type: 'background-worker',
+          properties: {
+            containerId: 'cli',
+            filepath: 'app/packages/cli/src/writers/contextLevelWriter.ts',
+          },
+        },
+      ],
+    ]);
+    const componentDependencies: SystemDependency[] = [];
+    const fileLevelDependencies: SystemDependency[] = [
+      {
+        from: 'my-context/my-system/cli/writers/context-level-writer',
+        to: 'my-context/my-system/cli/writers/base-writer',
+        type: 'direct-call',
+      },
+    ];
+    const containerNodesMap = new Map<string, SystemNode>([
+      ['cli', { entityRef: 'my-context/my-system/cli', name: 'Cli Service', type: 'container' }],
+    ]);
+
+    await writer.write(
+      '/workspace/blueprints/my-context/my-system',
+      'my-context',
+      'my-system',
+      componentNodesMap,
+      componentDependencies,
+      containerNodesMap,
+      undefined,
+      fileLevelNodesMap,
+      fileLevelDependencies
+    );
+
+    const drillDownYaml = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/my-context/my-system/cli/writers-components.yaml'
+    )!;
+    expect(drillDownYaml).toContain('entityRef: my-context/my-system/cli/writers');
+    expect(drillDownYaml).toContain('entityRef: my-context/my-system/cli/writers/base-writer');
+    expect(drillDownYaml).toContain(
+      'entityRef: my-context/my-system/cli/writers/context-level-writer'
+    );
+  });
+
+  it('strips representative filepaths from parent rollups that have drill-down diagrams', async () => {
+    const componentNodesMap = new Map<string, SystemNode>([
+      [
+        'cli/writers',
+        {
+          entityRef: 'my-context/my-system/cli/writers',
+          name: 'Writers',
+          type: 'background-worker',
+          properties: {
+            containerId: 'cli',
+            filepath: 'app/packages/cli/src/writers/baseWriter.ts',
+            memberFilepaths: [
+              'app/packages/cli/src/writers/baseWriter.ts',
+              'app/packages/cli/src/writers/contextLevelWriter.ts',
+            ],
+          },
+        },
+      ],
+      [
+        'cli/emitbuildversion',
+        {
+          entityRef: 'my-context/my-system/cli/emitbuildversion',
+          name: 'Emitbuildversion',
+          type: 'background-worker',
+          properties: {
+            containerId: 'cli',
+            filepath: 'app/packages/cli/scripts/emitBuildVersion.ts',
+          },
+        },
+      ],
+    ]);
+    const fileLevelNodesMap = new Map<string, SystemNode>([
+      [
+        'my-context/my-system/cli/writers/base-writer',
+        {
+          entityRef: 'my-context/my-system/cli/writers/base-writer',
+          name: 'Base Writer',
+          type: 'background-worker',
+          properties: {
+            containerId: 'cli',
+            filepath: 'app/packages/cli/src/writers/baseWriter.ts',
+          },
+        },
+      ],
+      [
+        'my-context/my-system/cli/writers/context-level-writer',
+        {
+          entityRef: 'my-context/my-system/cli/writers/context-level-writer',
+          name: 'Context Level Writer',
+          type: 'background-worker',
+          properties: {
+            containerId: 'cli',
+            filepath: 'app/packages/cli/src/writers/contextLevelWriter.ts',
+          },
+        },
+      ],
+    ]);
+    const containerNodesMap = new Map<string, SystemNode>([
+      ['cli', { entityRef: 'my-context/my-system/cli', name: 'Cli Service', type: 'container' }],
+    ]);
+
+    await writer.write(
+      '/workspace/blueprints/my-context/my-system',
+      'my-context',
+      'my-system',
+      componentNodesMap,
+      [],
+      containerNodesMap,
+      undefined,
+      fileLevelNodesMap,
+      []
+    );
+
+    const parentYaml = fileSystem.writtenFiles.get(
+      '/workspace/blueprints/my-context/my-system/cli-components.yaml'
+    )!;
+    expect(parentYaml).toContain('entityRef: my-context/my-system/cli/writers');
+    expect(parentYaml).not.toContain('filepath: app/packages/cli/src/writers/baseWriter.ts');
+    expect(parentYaml).toContain('filepath: app/packages/cli/scripts/emitBuildVersion.ts');
+  });
 });

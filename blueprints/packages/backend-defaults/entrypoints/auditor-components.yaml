@@ -1,0 +1,252 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/auditor
+  name: Auditor Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory
+    type: background-worker
+    name: AuditorServiceFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/auditorServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    type: rest-api
+    name: DefaultAuditorService
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/DefaultAuditorService.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service-test
+    type: background-worker
+    name: DefaultAuditorService
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/DefaultAuditorService.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/utils.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service-test
+    type: background-worker
+    name: WinstonRootAuditorService
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/WinstonRootAuditorService.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    type: background-worker
+    name: WinstonRootAuditorService
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/WinstonRootAuditorService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory-test
+    type: background-worker
+    name: AuditorServiceFactory
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auditor/auditorServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/entrypoints
+    type: background-worker
+    name: Entrypoints (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/entryPoints.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/auditor/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service-test
+    to: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/utils
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/utils
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service-test
+    to: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service-test
+    to: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    to: backstage/packages/cli-module-build/entrypoints
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    to: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    to: backstage/packages/backend-defaults/entrypoints/auditor/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/index
+    to: backstage/packages/backend-defaults/entrypoints/auditor/default-auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/index
+    to: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/index
+    to: backstage/packages/backend-defaults/entrypoints/auditor/winston-root-auditor-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/auditor/auditor-service-factory
+    type: direct-call
+    description: Calls module / service

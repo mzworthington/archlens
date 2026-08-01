@@ -1,0 +1,170 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-node/identity
+  name: Identity Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/auth-node/identity/default-identity-client
+    type: background-worker
+    name: DefaultIdentityClient
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/identity/DefaultIdentityClient.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/identity/identity-api
+    type: rest-api
+    name: IdentityApi
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/identity/IdentityApi.ts
+      containerId: auth-node
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/auth-node/identity/prepare-backstage-identity-response
+    type: background-worker
+    name: PrepareBackstageIdentityResponse
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/identity/prepareBackstageIdentityResponse.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/identity/prepare-backstage-identity-response-test
+    type: background-worker
+    name: PrepareBackstageIdentityResponse
+    isTest: true
+    properties:
+      filepath: plugins/auth-node/src/identity/prepareBackstageIdentityResponse.test.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/identity/identity-client-test
+    type: background-worker
+    name: IdentityClient
+    isTest: true
+    properties:
+      filepath: plugins/auth-node/src/identity/IdentityClient.test.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/identity/default-identity-client-test
+    type: background-worker
+    name: DefaultIdentityClient
+    isTest: true
+    properties:
+      filepath: plugins/auth-node/src/identity/DefaultIdentityClient.test.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/identity/get-bearer-token-from-authorization-header
+    type: background-worker
+    name: GetBearerTokenFromAuthorizationHeader
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/identity/getBearerTokenFromAuthorizationHeader.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/identity/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/identity/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/identity/identity-client
+    type: background-worker
+    name: IdentityClient
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/identity/IdentityClient.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/identity/get-bearer-token-from-authorization-header-test
+    type: background-worker
+    name: GetBearerTokenFromAuthorizationHeader
+    isTest: true
+    properties:
+      filepath: plugins/auth-node/src/identity/getBearerTokenFromAuthorizationHeader.test.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/auth-node/identity/default-identity-client
+    to: backstage/plugins/auth-node/identity/get-bearer-token-from-authorization-header
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/default-identity-client
+    to: backstage/plugins/auth-node/identity/identity-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/default-identity-client
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/identity-api
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/prepare-backstage-identity-response
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/prepare-backstage-identity-response-test
+    to: backstage/plugins/auth-node/identity/prepare-backstage-identity-response
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/identity-client-test
+    to: backstage/plugins/auth-node/identity/identity-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/default-identity-client-test
+    to: backstage/plugins/auth-node/identity/default-identity-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/default-identity-client-test
+    to: backstage/plugins/auth-node/identity/identity-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/index
+    to: backstage/plugins/auth-node/identity/prepare-backstage-identity-response
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/index
+    to: backstage/plugins/auth-node/identity/get-bearer-token-from-authorization-header
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/index
+    to: backstage/plugins/auth-node/identity/default-identity-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/index
+    to: backstage/plugins/auth-node/identity/identity-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/index
+    to: backstage/plugins/auth-node/identity/identity-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/identity-client
+    to: backstage/plugins/auth-node/identity/default-identity-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/identity-client
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/identity/get-bearer-token-from-authorization-header-test
+    to: backstage/plugins/auth-node/identity/get-bearer-token-from-authorization-header
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,69 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents
+  name: Cardactioncomponents Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents/group-card-actions
+    type: background-worker
+    name: GroupCardActions
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityPeekAheadPopover/CardActionComponents/GroupCardActions.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents/user-card-actions
+    type: background-worker
+    name: UserCardActions
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityPeekAheadPopover/CardActionComponents/UserCardActions.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityPeekAheadPopover/CardActionComponents/index.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents/entity-card-actions
+    type: background-worker
+    name: EntityCardActions
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityPeekAheadPopover/CardActionComponents/EntityCardActions.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents/email-card-action
+    type: background-worker
+    name: EmailCardAction
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/EntityPeekAheadPopover/CardActionComponents/EmailCardAction.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents/entity-card-actions
+    to: backstage/plugins/catalog-react/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents/entity-card-actions
+    to: backstage/plugins/catalog-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/entitypeekaheadpopover/cardactioncomponents/email-card-action
+    to: backstage/plugins/catalog-react/translation/translation
+    type: direct-call
+    description: Calls module / service

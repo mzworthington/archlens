@@ -1,0 +1,94 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend/processors/codeowners
+  name: Codeowners Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/catalog-backend/processors/codeowners/read
+    type: background-worker
+    name: Read
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/processors/codeowners/read.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/processors/codeowners/read-test
+    type: background-worker
+    name: Read
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/processors/codeowners/read.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/processors/codeowners/scm
+    type: background-worker
+    name: Scm
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/processors/codeowners/scm.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/processors/codeowners/resolve-test
+    type: background-worker
+    name: Resolve
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/processors/codeowners/resolve.test.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/processors/codeowners/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/processors/codeowners/index.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend/processors/codeowners/resolve
+    type: background-worker
+    name: Resolve
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/processors/codeowners/resolve.ts
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/catalog-backend/processors/codeowners/read
+    to: backstage/plugins/catalog-backend/processors/codeowners/resolve
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/processors/codeowners/read
+    to: backstage/plugins/catalog-backend/processors/codeowners/scm
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/processors/codeowners/read-test
+    to: backstage/plugins/catalog-backend/processors/codeowners/read
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/processors/codeowners/resolve-test
+    to: backstage/plugins/catalog-backend/processors/codeowners/resolve
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/processors/codeowners/index
+    to: backstage/plugins/catalog-backend/processors/codeowners/read
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/processors/codeowners/index
+    to: backstage/plugins/catalog-backend/processors/codeowners/resolve
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-backend/processors/codeowners/index
+    to: backstage/plugins/catalog-backend/processors/codeowners/scm
+    type: direct-call
+    description: Calls module / service

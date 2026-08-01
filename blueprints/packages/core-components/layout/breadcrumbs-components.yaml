@@ -1,0 +1,97 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-components/layout/breadcrumbs
+  name: Breadcrumbs Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-components/layout/breadcrumbs/breadcrumbs-test
+    type: gateway-api
+    name: Breadcrumbs
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Breadcrumbs/Breadcrumbs.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/breadcrumbs/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Breadcrumbs/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/breadcrumbs/breadcrumbs-stories
+    type: gateway-api
+    name: Breadcrumbs.stories
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Breadcrumbs/Breadcrumbs.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/core-components/layout
+    type: gateway-api
+    name: Layout (External)
+    external: true
+    properties:
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/core-components/layout/breadcrumbs/breadcrumbs-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/layout/breadcrumbs/breadcrumbs-test
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/breadcrumbs/breadcrumbs-test
+    to: backstage/packages/core-components/layout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/breadcrumbs/index
+    to: backstage/packages/core-components/layout
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/breadcrumbs/breadcrumbs-stories
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/breadcrumbs/breadcrumbs-stories
+    to: backstage/packages/core-components/layout
+    type: direct-call
+    description: Calls module / service

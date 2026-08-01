@@ -1,0 +1,47 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/example-todo-list-backend/service
+  name: Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/example-todo-list-backend/service/router
+    type: rest-api
+    name: Router
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list-backend/src/service/router.ts
+      containerId: example-todo-list-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/example-todo-list-backend/service/router-test
+    type: rest-api
+    name: Router
+    isTest: true
+    properties:
+      filepath: plugins/example-todo-list-backend/src/service/router.test.ts
+      containerId: example-todo-list-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/example-todo-list-backend/service/todos
+    type: background-worker
+    name: Todos
+    isTest: false
+    properties:
+      filepath: plugins/example-todo-list-backend/src/service/todos.ts
+      containerId: example-todo-list-backend
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/example-todo-list-backend/service/router
+    to: backstage/plugins/example-todo-list-backend/service/todos
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/example-todo-list-backend/service/router-test
+    to: backstage/plugins/example-todo-list-backend/service/router
+    type: direct-call
+    description: Calls module / service

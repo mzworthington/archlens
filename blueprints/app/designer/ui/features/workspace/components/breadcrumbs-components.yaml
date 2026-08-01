@@ -1,0 +1,105 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/ui/features/workspace/components/breadcrumbs
+  name: Breadcrumbs Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/breadcrumbs/workspace-storage-badge
+    type: gateway-api
+    name: WorkspaceStorageBadge
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Breadcrumbs/WorkspaceStorageBadge.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/breadcrumbs/breadcrumbs-test
+    type: gateway-api
+    name: Breadcrumbs
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Breadcrumbs/Breadcrumbs.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/breadcrumbs/use-breadcrumbs
+    type: gateway-api
+    name: UseBreadcrumbs
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Breadcrumbs/useBreadcrumbs.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/designer/application/store
+    type: background-worker
+    name: Store (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity
+    type: gateway-api
+    name: UseActiveDiagramEntity (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/hooks/useActiveDiagramEntity.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/ui/features/workspace/components/breadcrumbs/breadcrumbs-test
+    to: blueprint/app/designer/ui/features/workspace/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/breadcrumbs/breadcrumbs-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/breadcrumbs/use-breadcrumbs
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/breadcrumbs/use-breadcrumbs
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/breadcrumbs/use-breadcrumbs
+    to: blueprint/app/designer/ui/features/workspace/hooks/use-active-diagram-entity
+    type: direct-call
+    description: Calls module / service

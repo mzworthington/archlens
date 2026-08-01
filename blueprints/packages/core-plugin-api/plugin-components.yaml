@@ -1,0 +1,91 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-plugin-api/plugin
+  name: Plugin Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-plugin-api/plugin/plugin
+    type: background-worker
+    name: Plugin
+    isTest: false
+    properties:
+      filepath: packages/core-plugin-api/src/plugin/Plugin.tsx
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-plugin-api/plugin/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/core-plugin-api/src/plugin/types.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-plugin-api/plugin/plugin-test
+    type: background-worker
+    name: Plugin
+    isTest: true
+    properties:
+      filepath: packages/core-plugin-api/src/plugin/Plugin.test.tsx
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-plugin-api/plugin/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-plugin-api/src/plugin/index.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/apis.ts
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/routing
+    type: gateway-api
+    name: Routing (External)
+    external: true
+    properties:
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/core-plugin-api/plugin/plugin
+    to: backstage/packages/core-plugin-api/plugin/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/plugin/plugin
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/plugin/types
+    to: backstage/packages/core-plugin-api/routing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/plugin/types
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/plugin/index
+    to: backstage/packages/core-plugin-api/plugin/types
+    type: direct-call
+    description: Calls module / service

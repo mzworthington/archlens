@@ -1,0 +1,135 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/catalog-client/testutils
+  name: Testutils Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/catalog-client/testutils/test-utils
+    type: background-worker
+    name: TestUtils
+    isTest: false
+    properties:
+      filepath: packages/catalog-client/src/testUtils.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-client/testutils/in-memory-catalog-client-test
+    type: background-worker
+    name: InMemoryCatalogClient
+    isTest: true
+    properties:
+      filepath: packages/catalog-client/src/testUtils/InMemoryCatalogClient.test.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-client/testutils/in-memory-catalog-client
+    type: background-worker
+    name: InMemoryCatalogClient
+    isTest: false
+    properties:
+      filepath: packages/catalog-client/src/testUtils/InMemoryCatalogClient.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/model/sources/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/catalog-client/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/catalog-client/src/types/index.ts
+      containerId: catalog-client
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/filter-predicates/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/filter-predicates/src/index.ts
+      containerId: filter-predicates
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/ui/types
+    type: gateway-api
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/types.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: 404
+dependencies:
+  - from: backstage/packages/catalog-client/testutils/test-utils
+    to: backstage/packages/catalog-client/testutils/in-memory-catalog-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-client/testutils/in-memory-catalog-client-test
+    to: backstage/packages/ui/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-client/testutils/in-memory-catalog-client-test
+    to: backstage/packages/catalog-client/testutils/in-memory-catalog-client
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-client/testutils/in-memory-catalog-client-test
+    to: backstage/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: backstage/packages/catalog-client/testutils/in-memory-catalog-client
+    to: backstage/packages/catalog-client/index
+    type: direct-call
+    description: '@backstage/catalog-client'
+  - from: backstage/packages/catalog-client/testutils/in-memory-catalog-client
+    to: backstage/packages/catalog-model/index
+    type: direct-call
+    description: '@backstage/catalog-model'
+  - from: backstage/packages/catalog-client/testutils/in-memory-catalog-client
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/catalog-client/testutils/in-memory-catalog-client
+    to: backstage/packages/filter-predicates/index
+    type: direct-call
+    description: '@backstage/filter-predicates'
+  - from: backstage/packages/catalog-client/testutils/in-memory-catalog-client
+    to: backstage/packages/catalog-client/constants/constants
+    type: direct-call
+    description: Calls module / service

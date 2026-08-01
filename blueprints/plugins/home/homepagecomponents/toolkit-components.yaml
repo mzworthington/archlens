@@ -1,0 +1,91 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/home/homepagecomponents/toolkit
+  name: Toolkit Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/home/homepagecomponents/toolkit/toolkit-stories
+    type: gateway-api
+    name: Toolkit.stories
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/Toolkit/Toolkit.stories.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/toolkit/content
+    type: background-worker
+    name: Content
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/Toolkit/Content.tsx
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/homepagecomponents/toolkit/content-test
+    type: background-worker
+    name: Content
+    isTest: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/Toolkit/Content.test.tsx
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/homepagecomponents/toolkit/context
+    type: gateway-api
+    name: Context
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/Toolkit/Context.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/toolkit/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/Toolkit/index.ts
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/assets
+    type: background-worker
+    name: Assets (External)
+    external: true
+    properties:
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/home/componentrenderers
+    type: gateway-api
+    name: Componentrenderers (External)
+    external: true
+    properties:
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/home/homepagecomponents/toolkit/toolkit-stories
+    to: backstage/plugins/home/componentrenderers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/toolkit/toolkit-stories
+    to: backstage/plugins/home/plugin/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/toolkit/toolkit-stories
+    to: backstage/plugins/home/assets
+    type: direct-call
+    description: Calls module / service

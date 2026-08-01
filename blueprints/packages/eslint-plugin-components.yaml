@@ -263,12 +263,93 @@ nodes:
           kind: direct
       sinceDays: 365
       shortChurnDays: 30
-  - entityRef: backstage/packages/eslint-plugin/__fixtures__/monorepo
+  - entityRef: backstage/packages/eslint-plugin/__fixtures__/monorepo/packages/self-import-pkg
     type: background-worker
-    name: Monorepo
+    name: Self import pkg
     isTest: false
     properties:
-      filepath: packages/eslint-plugin/src/__fixtures__/monorepo/packages/self-import-pkg/src/next/foo.ts
+      containerId: eslint-plugin
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      churn: 21
+      lineChurn: 348
+      churn30: 10
+      churn365: 21
+      hotspotScore: 0.0001402652415718123
+      authorCount: 2
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: maratd@spotify.com
+          commits: 11
+        - email: poldsberg@gmail.com
+          commits: 10
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 11
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 0.5238095238095238
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/packages/eslint-plugin/__fixtures__/monorepo/packages/self-import-pkg/testutils
+    type: background-worker
+    name: Testutils
+    isTest: false
+    properties:
+      filepath: packages/eslint-plugin/src/__fixtures__/monorepo/packages/self-import-pkg/src/testUtils/helper.ts
       containerId: eslint-plugin
       technology: TypeScript Domain Service
       classification: default

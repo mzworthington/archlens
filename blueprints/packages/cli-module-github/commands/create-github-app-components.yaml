@@ -1,0 +1,66 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-github/commands/create-github-app
+  name: Create github app Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-module-github/commands/create-github-app/github-create-app-server
+    type: gateway-api
+    name: GithubCreateAppServer
+    isTest: false
+    properties:
+      filepath: packages/cli-module-github/src/commands/create-github-app/GithubCreateAppServer.ts
+      containerId: cli-module-github
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/cli-module-github/commands/create-github-app/index
+    type: gateway-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/cli-module-github/src/commands/create-github-app/index.ts
+      containerId: cli-module-github
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-module-github/commands/create-github-app/index
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-github/commands/create-github-app/index
+    to: backstage/packages/cli-module-github/commands/create-github-app/github-create-app-server
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-github/commands/create-github-app/index
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'

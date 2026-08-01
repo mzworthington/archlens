@@ -1,0 +1,79 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-node/git
+  name: Git Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-node/git/git-utils-test
+    type: background-worker
+    name: GitUtils
+    isTest: true
+    properties:
+      filepath: packages/cli-node/src/git/GitUtils.test.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/git/git-utils
+    type: background-worker
+    name: GitUtils
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/git/GitUtils.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/git/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/cli-node/src/git/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-node/git/git-utils-test
+    to: backstage/packages/cli-node/git/git-utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-node/git/git-utils
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/cli-node/git/git-utils
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-node/git/index
+    to: backstage/packages/cli-node/git/git-utils
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,186 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search-react/components/searchfilter
+  name: Searchfilter Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/search-react/components/searchfilter/search-filter-stories
+    type: gateway-api
+    name: SearchFilter.stories
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.stories.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchfilter/hooks-test
+    type: gateway-api
+    name: Hooks
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/hooks.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete
+    type: gateway-api
+    name: SearchFilter.Autocomplete
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.Autocomplete.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchfilter/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/types.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete-test
+    type: gateway-api
+    name: SearchFilter.Autocomplete
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.Autocomplete.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchfilter/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/index.ts
+      containerId: search-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-react/components/searchfilter/search-filter-test
+    type: gateway-api
+    name: SearchFilter
+    isTest: true
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/SearchFilter.test.tsx
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components/searchfilter/hooks
+    type: gateway-api
+    name: Hooks
+    isTest: false
+    properties:
+      filepath: plugins/search-react/src/components/SearchFilter/hooks.ts
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/search-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/search-react/context
+    type: gateway-api
+    name: Context (External)
+    external: true
+    properties:
+      containerId: search-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-stories
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-stories
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-stories
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/hooks-test
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/hooks-test
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/hooks-test
+    to: backstage/plugins/search-react/components/searchfilter/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete
+    to: backstage/plugins/search-react/components/searchfilter/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete
+    to: backstage/plugins/search-react/components/searchfilter/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete-test
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete-test
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-autocomplete-test
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/index
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/index
+    to: backstage/plugins/search-react/components/searchfilter/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-test
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-test
+    to: backstage/plugins/search-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/search-filter-test
+    to: backstage/plugins/search-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/hooks
+    to: backstage/plugins/search-react/context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-react/components/searchfilter/hooks
+    to: backstage/plugins/search-react/components/searchfilter/types
+    type: direct-call
+    description: Calls module / service

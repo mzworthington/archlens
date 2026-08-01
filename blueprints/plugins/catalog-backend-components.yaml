@@ -20,12 +20,10 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 29
-      sloc: 10
-      churn: 3
-      lineChurn: 39
-      churn30: 1
-      churn365: 3
+      churn: 4
+      lineChurn: 64
+      churn30: 2
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -75,37 +73,39 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+      topAuthorPercent: 0.75
       authors:
         - email: freben@spotify.com
           commits: 2
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0.000136758610532517
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/database
     type: relational-database
     name: Database
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/database/DefaultCatalogDatabase.ts
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 113
-      churn30: 1
-      churn365: 1
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 66
+      churn: 45
+      lineChurn: 5475
+      churn30: 15
+      churn365: 45
       churnByWeek:
         - 0
         - 0
@@ -113,31 +113,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
+        - 2
         - 0
         - 0
         - 0
@@ -159,178 +136,53 @@ nodes:
         - 0
         - 0
         - 0
+        - 7
+        - 1
+        - 1
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 1
+        - 0
+        - 4
+        - 0
+        - 4
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 15
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.5777777777777777
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 16
+        - email: freben@gmail.com
+          commits: 14
+        - email: freben@spotify.com
+          commits: 10
+        - email: ben@blam.sh
+          commits: 3
+        - email: pschultz@pobox.com
+          commits: 2
+      hotspotScore: 0.014769929937511835
       sinceDays: 365
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/database/operations
     type: relational-database
     name: Operations
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/database/operations/util/deleteOrphanedEntities.ts
-      containerId: catalog-backend
-      technology: Prisma / SQL Database Client
-      classification: database-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 94
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog-backend/ingestion
-    type: background-worker
-    name: Ingestion
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend/src/ingestion/LocationAnalyzer.ts
-      containerId: catalog-backend
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 107
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/catalog-backend/stitching
-    type: relational-database
-    name: Stitching
-    isTest: false
-    properties:
-      filepath: plugins/catalog-backend/src/stitching/progressTracker.ts
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
@@ -338,14 +190,183 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 6
-      loc: 113
-      sloc: 82
-      churn: 3
-      lineChurn: 138
-      churn30: 1
-      churn365: 3
+      churn: 8
+      lineChurn: 676
+      churn30: 2
+      churn365: 8
       churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5
+      authors:
+        - email: freben@gmail.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 2
+      hotspotScore: 0.004081718529739738
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/database/operations/refreshstate
+    type: relational-database
+    name: Refreshstate
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 185
+      churn30: 3
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/database/operations/provider
+    type: relational-database
+    name: Provider
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 11
+      lineChurn: 964
+      churn30: 4
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 0
         - 0
@@ -378,6 +399,149 @@ nodes:
         - 2
         - 0
         - 0
+        - 2
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5454545454545454
+      authors:
+        - email: freben@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: freben@spotify.com
+          commits: 2
+      hotspotScore: 0.0034996177772167168
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/database/operations/stitcher
+    type: relational-database
+    name: Stitcher
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 20
+      complexityPeak: 20
+      cognitiveComplexity: 167
+      churn: 103
+      lineChurn: 6846
+      churn30: 13
+      churn365: 103
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 5
+        - 0
+        - 7
+        - 8
+        - 8
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 18
+        - 23
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 13
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.5339805825242718
+      authors:
+        - email: freben@gmail.com
+          commits: 51
+        - email: freben@spotify.com
+          commits: 25
+        - email: poldsberg@gmail.com
+          commits: 13
+        - email: pnastasi@expediagroup.com
+          commits: 5
+        - email: andreas@berger-ecommerce.com
+          commits: 4
+        - email: ben@blam.sh
+          commits: 3
+        - email: kyle.opperman@ing.com
+          commits: 2
+      hotspotScore: 0.037731349982817505
+      sinceDays: 365
+      fileCount: 13
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/ingestion
+    type: background-worker
+    name: Ingestion
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 26
+      churn: 13
+      lineChurn: 812
+      churn30: 3
+      churn365: 13
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 2
         - 0
         - 0
         - 0
@@ -396,20 +560,136 @@ nodes:
         - 0
         - 1
         - 0
+        - 1
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.3333333333333333
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.6153846153846154
       authors:
+        - email: vincenzos@spotify.com
+          commits: 7
         - email: poldsberg@gmail.com
+          commits: 3
+        - email: gabriel.dugny@believe.com
           commits: 1
         - email: freben@gmail.com
           commits: 1
-        - email: ben@blam.sh
+        - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0.0009678301668455049
+      hotspotScore: 0.009622195571826322
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/stitching
+    type: relational-database
+    name: Stitching
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 19
+      churn: 22
+      lineChurn: 1460
+      churn30: 6
+      churn365: 22
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 7
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6818181818181818
+      authors:
+        - email: freben@gmail.com
+          commits: 14
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: ben@blam.sh
+          commits: 3
+      hotspotScore: 0.008784110753434745
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/parse
     type: background-worker
     name: Parse
@@ -1055,79 +1335,95 @@ nodes:
     name: Processing
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/processing/ProcessorCacheManager.test.ts
       containerId: catalog-backend
       technology: TypeScript Cache Client
       classification: cache-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 122
-      churn30: 1
-      churn365: 1
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 66
+      churn: 49
+      lineChurn: 4195
+      churn30: 15
+      churn365: 49
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 4
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 1
+        - 0
+        - 2
+        - 4
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 2
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 15
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.5918367346938775
       authors:
         - email: poldsberg@gmail.com
+          commits: 21
+        - email: freben@gmail.com
+          commits: 17
+        - email: pschultz@pobox.com
+          commits: 4
+        - email: walshmichael310@gmail.com
+          commits: 2
+        - email: ben@blam.sh
+          commits: 2
+        - email: awanlin@spotify.com
           commits: 1
-      hotspotScore: 0
+        - email: heikki.hellgren@op.fi
+          commits: 1
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0.019503881840560497
       sinceDays: 365
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/alpha
     type: background-worker
     name: Alpha
@@ -1211,20 +1507,17 @@ nodes:
     name: Providers
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/providers/GenericScmEventRefreshProvider.test.ts
       containerId: catalog-backend
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 10
-      loc: 282
-      sloc: 220
-      churn: 8
-      lineChurn: 570
-      churn30: 1
-      churn365: 8
+      complexity: 18
+      complexityPeak: 18
+      cognitiveComplexity: 142
+      churn: 56
+      lineChurn: 5823
+      churn30: 6
+      churn365: 56
       churnByWeek:
         - 0
         - 0
@@ -1232,64 +1525,69 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
         - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 7
+        - 6
+        - 4
+        - 2
+        - 6
+        - 0
+        - 0
+        - 0
+        - 10
+        - 4
+        - 2
+        - 0
+        - 0
+        - 0
         - 1
-        - 1
-        - 1
         - 0
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 6
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 3
-      topAuthorPercent: 0.625
+      authorCount: 4
+      topAuthorPercent: 0.5714285714285714
       authors:
         - email: freben@gmail.com
-          commits: 5
+          commits: 24
         - email: freben@spotify.com
-          commits: 2
+          commits: 24
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.0019987796923983253
+          commits: 6
+        - email: pschultz@pobox.com
+          commits: 2
+      hotspotScore: 0.1357697405794357
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/catalog
     type: background-worker
     name: Catalog
@@ -1379,18 +1677,17 @@ nodes:
     name: Rules
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/permissions/rules/hasMetadata.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 28
-      churn30: 1
-      churn365: 1
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 30
+      churn: 27
+      lineChurn: 1605
+      churn30: 14
+      churn365: 27
       churnByWeek:
         - 0
         - 0
@@ -1415,6 +1712,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 5
         - 0
         - 0
         - 0
@@ -1436,39 +1734,42 @@ nodes:
         - 0
         - 0
         - 0
+        - 8
+        - 0
+        - 0
+        - 14
         - 0
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 3
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 14
+        - email: kmittal@redhat.com
+          commits: 8
+        - email: gabriel.dugny@believe.com
+          commits: 5
+      hotspotScore: 0.0044814744682194025
       sinceDays: 365
+      fileCount: 14
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/permissions
     type: background-worker
     name: Permissions
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/permissions/index.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 21
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 86
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -1518,7 +1819,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -1527,9 +1828,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/schema/openapi
     type: background-worker
     name: Openapi
@@ -1617,53 +1921,28 @@ nodes:
     name: Processors
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/processors/ModelProcessor.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 338
-      churn30: 1
-      churn365: 2
+      complexity: 14
+      complexityPeak: 14
+      cognitiveComplexity: 72
+      churn: 49
+      lineChurn: 5542
+      churn30: 21
+      churn365: 49
       churnByWeek:
         - 0
+        - 1
+        - 2
         - 0
         - 0
         - 0
+        - 4
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
+        - 1
         - 1
         - 0
         - 0
@@ -1678,37 +1957,75 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 12
+        - 0
         - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 21
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6530612244897959
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 23
         - email: freben@spotify.com
-          commits: 1
-      hotspotScore: 0
+          commits: 11
+        - email: pschultz@pobox.com
+          commits: 4
+        - email: dharmik.gangani17@gmail.com
+          commits: 4
+        - email: freben@gmail.com
+          commits: 3
+        - email: heikki.hellgren@op.fi
+          commits: 2
+        - email: awanlin@spotify.com
+          commits: 2
+      hotspotScore: 0.008542153211723368
+      coupledFiles:
+        - path: packages/cli-module-test-jest/config/jest.js
+          score: 0.8571428571428571
+          sharedCommits: 6
       sinceDays: 365
+      fileCount: 21
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/processors/codeowners
     type: background-worker
     name: Codeowners
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/processors/codeowners/read.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 76
-      churn30: 1
-      churn365: 1
+      churn: 6
+      lineChurn: 390
+      churn30: 6
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -1758,7 +2075,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 6
         - 0
         - 0
         - 0
@@ -1767,9 +2084,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 6
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/constants
     type: background-worker
     name: Constants
@@ -1936,7 +2256,6 @@ nodes:
     name: Actions
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/actions/createGetCatalogEntityAction.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
@@ -1944,13 +2263,10 @@ nodes:
       complexity: 5
       complexityPeak: 5
       cognitiveComplexity: 10
-      functionCount: 5
-      loc: 101
-      sloc: 76
-      churn: 3
-      lineChurn: 109
-      churn30: 1
-      churn365: 3
+      churn: 45
+      lineChurn: 4679
+      churn30: 13
+      churn365: 45
       churnByWeek:
         - 0
         - 0
@@ -1959,6 +2275,7 @@ nodes:
         - 0
         - 1
         - 0
+        - 3
         - 0
         - 0
         - 0
@@ -1969,76 +2286,94 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 13
         - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.3333333333333333
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 13
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.4888888888888889
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 13
         - email: ben@blam.sh
-          commits: 1
+          commits: 13
+        - email: gmontero@redhat.com
+          commits: 10
+        - email: freben@spotify.com
+          commits: 5
+        - email: heikki.hellgren@op.fi
+          commits: 3
         - email: g.rantila@gmail.com
           commits: 1
-      hotspotScore: 0.0019111139164159426
+      hotspotScore: 0.004684859068498531
       sinceDays: 365
+      fileCount: 13
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/service
     type: rest-api
     name: Service
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/service/AuthorizedRefreshService.ts
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 60
-      churn30: 1
-      churn365: 2
+      complexity: 33
+      complexityPeak: 33
+      cognitiveComplexity: 423
+      churn: 226
+      lineChurn: 20369
+      churn30: 27
+      churn365: 226
       churnByWeek:
+        - 1
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 11
+        - 13
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 0
+        - 2
+        - 1
         - 0
         - 1
         - 0
@@ -2046,106 +2381,94 @@ nodes:
         - 0
         - 0
         - 0
+        - 8
+        - 3
+        - 10
+        - 0
+        - 10
+        - 8
+        - 21
+        - 1
+        - 22
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
+        - 16
+        - 3
+        - 10
+        - 1
+        - 1
+        - 14
+        - 13
         - 1
         - 0
+        - 4
+        - 0
+        - 17
+        - 2
+        - 24
         - 0
         - 0
+        - 3
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 8
+      topAuthorPercent: 0.5442477876106194
       authors:
+        - email: freben@gmail.com
+          commits: 97
+        - email: freben@spotify.com
+          commits: 58
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 31
+        - email: nilayparmar19@gmail.com
+          commits: 10
+        - email: ben@blam.sh
+          commits: 9
+        - email: heikki.hellgren@op.fi
+          commits: 8
         - email: pschultz@pobox.com
+          commits: 6
+        - email: gabriel.dugny@believe.com
+          commits: 3
+        - email: stuartman9@hotmail.co.uk
+          commits: 2
+        - email: johanopersson@gmail.com
           commits: 1
-      hotspotScore: 0
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.2601359170190831
+      coupledFiles:
+        - path: plugins/catalog-backend/src/service/DefaultLocationService.test.ts
+          score: 0.7777777777777778
+          sharedCommits: 7
+        - path: plugins/catalog-backend/src/service/DefaultLocationService.ts
+          score: 0.7777777777777778
+          sharedCommits: 7
+        - path: plugins/catalog-backend/src/service/types.ts
+          score: 0.75
+          sharedCommits: 6
       sinceDays: 365
+      fileCount: 24
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/service/response
     type: rest-api
     name: Response
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/service/response/write.test.ts
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 454
-      churn30: 1
-      churn365: 2
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 45
+      churn: 11
+      lineChurn: 978
+      churn30: 6
+      churn365: 11
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 4
         - 0
         - 0
         - 0
@@ -2163,36 +2486,71 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.7272727272727273
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 6
+        - email: freben@gmail.com
+          commits: 4
         - email: johanopersson@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.007924986148807394
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend/service/request
     type: rest-api
     name: Request
     isTest: false
     properties:
-      filepath: plugins/catalog-backend/src/service/request/parseEntityTransformParams.test.ts
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 200
-      churn30: 1
-      churn365: 1
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 55
+      churn: 109
+      lineChurn: 6555
+      churn30: 30
+      churn365: 109
       churnByWeek:
         - 0
         - 0
@@ -2217,43 +2575,56 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
+        - 16
+        - 23
+        - 2
         - 1
         - 0
         - 0
+        - 6
+        - 0
+        - 1
+        - 2
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 19
+        - 0
+        - 28
+        - 0
+        - 0
+        - 2
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.6513761467889908
       authors:
+        - email: freben@gmail.com
+          commits: 57
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 29
+        - email: freben@spotify.com
+          commits: 10
+        - email: ben@blam.sh
+          commits: 9
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: nilayparmar19@gmail.com
+          commits: 2
+      hotspotScore: 0.05539074389670867
       sinceDays: 365
+      fileCount: 30
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: Alpha (External)
@@ -2379,7 +2750,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
@@ -2411,119 +2781,119 @@ dependencies:
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/refreshstate
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/refreshstate
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/refreshstate
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/provider
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/provider
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/provider
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/provider
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/provider
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/provider
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/provider
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/provider
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
-  - from: backstage/plugins/catalog-backend/database/operations
+  - from: backstage/plugins/catalog-backend/database/operations/stitcher
     to: backstage/plugins/catalog-backend/database
     type: read-write
     description: Queries datastore records
@@ -2540,15 +2910,15 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
@@ -2568,23 +2938,23 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/provider
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/provider
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/refreshstate
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/database
@@ -2608,11 +2978,11 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend/stitching
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/stitcher
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/stitching
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/stitcher
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/stitching
@@ -2624,7 +2994,7 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/stitching
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/stitcher
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/stitching
@@ -2668,7 +3038,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend/processing
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/stitcher
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/processing
@@ -2976,7 +3346,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/catalog-backend/service
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/stitcher
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/service
@@ -3092,7 +3462,7 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/service
-    to: backstage/plugins/catalog-backend/database/operations
+    to: backstage/plugins/catalog-backend/database/operations/stitcher
     type: read-write
     description: Queries datastore records
   - from: backstage/plugins/catalog-backend/service

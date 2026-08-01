@@ -88,14 +88,13 @@ nodes:
     name: Apis Layer
     isTest: false
     properties:
-      filepath: src/Ordering.API/Apis/OrderServices.cs
       containerId: ordering-api
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
     forensics:
-      complexity: 1
-      loc: 12
-      sloc: 11
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
       churn: 0
       churn30: 0
       churn365: 0
@@ -154,15 +153,16 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-api/extensions
     type: background-worker
     name: Extensions Layer
     isTest: false
     properties:
-      filepath: src/Ordering.API/Extensions/LinqSelectExtensions.cs
       containerId: ordering-api
       technology: C# Domain Service
       classification: default
@@ -170,12 +170,10 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 4
-      loc: 46
-      sloc: 40
-      churn: 0
+      churn: 1
+      lineChurn: 9
       churn30: 0
-      churn365: 0
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -185,6 +183,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
@@ -229,30 +228,32 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: joperezr@microsoft.com
+          commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-api/application
     type: event-broker
     name: Application Layer
     isTest: false
     properties:
-      filepath: src/Ordering.API/Application/Queries/OrderQueries.cs
       containerId: ordering-api
       technology: C# Event Client
       classification: event-marker
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 3
-      loc: 54
-      sloc: 48
-      churn: 0
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 1
+      lineChurn: 6
       churn30: 0
-      churn365: 0
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -262,6 +263,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
@@ -306,17 +308,21 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: joperezr@microsoft.com
+          commits: 1
+      hotspotScore: 0.002577319587628866
       sinceDays: 365
+      fileCount: 56
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-api/infrastructure
     type: background-worker
     name: Infrastructure Layer
     isTest: false
     properties:
-      filepath: src/Ordering.API/Infrastructure/OrderingContextSeed.cs
       containerId: ordering-api
       technology: C# Domain Service
       classification: default
@@ -324,9 +330,6 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 2
-      loc: 26
-      sloc: 20
       churn: 0
       churn30: 0
       churn365: 0
@@ -385,9 +388,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-api/program
     type: background-worker
     name: Program
@@ -471,7 +476,6 @@ nodes:
     name: AggregatesModel Layer (External)
     external: true
     properties:
-      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs
       containerId: ordering-domain
       technology: Entity Framework / DB Context
       classification: database-marker
@@ -483,7 +487,6 @@ nodes:
     name: Application Layer (External)
     external: true
     properties:
-      filepath: tests/Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs
       containerId: ordering-unittests
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker

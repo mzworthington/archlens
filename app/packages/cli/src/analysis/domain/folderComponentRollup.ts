@@ -10,8 +10,16 @@ export const DEFAULT_LAYOUT_ROOTS = new Set(['src', 'lib', 'source', 'sources'])
 
 export const MONOREPO_PACKAGE_ROOTS = new Set(['packages', 'plugins', 'apps', 'libs', 'services']);
 
-/** Max folder depth for a rolled-up component (after denylist filtering). */
-export const DEFAULT_MAX_COMPONENT_DEPTH = 2;
+/**
+ * @deprecated Folder rollups no longer cap depth; all meaningful segments are kept.
+ * Kept for callers that pass an explicit `maxDepth` in tests.
+ */
+export const DEFAULT_MAX_COMPONENT_DEPTH = Number.POSITIVE_INFINITY;
+
+function rollFolderSegments(meaningful: string[], maxDepth?: number): string[] {
+  if (maxDepth === undefined || !Number.isFinite(maxDepth)) return meaningful;
+  return meaningful.slice(0, maxDepth);
+}
 
 export function isDeniedLayoutSegment(segment: string): boolean {
   return LAYOUT_IDENTITY_DENYLIST.has(segment.toLowerCase());
@@ -105,7 +113,6 @@ export function resolveFolderRolledComponent(
   }
 ): ComponentIdentity {
   const layoutRoots = options.layoutRoots ?? DEFAULT_LAYOUT_ROOTS;
-  const maxDepth = options.maxDepth ?? DEFAULT_MAX_COMPONENT_DEPTH;
   const meaningful = meaningfulDirSegments(relativePath, {
     layoutRoots,
     stripExtension: options.stripExtension,
@@ -132,7 +139,7 @@ export function resolveFolderRolledComponent(
     };
   }
 
-  const rolled = meaningful.slice(0, maxDepth);
+  const rolled = rollFolderSegments(meaningful, options.maxDepth);
   const componentId = rolled.map(slugify).join('/');
   return {
     componentId,
@@ -151,7 +158,6 @@ export function resolveTrailingFolderComponent(
     skipSegments?: Set<string>;
   }
 ): ComponentIdentity {
-  const maxDepth = options.maxDepth ?? DEFAULT_MAX_COMPONENT_DEPTH;
   const meaningful = meaningfulDirSegments(relativePath, options);
 
   if (meaningful.length === 0) {
@@ -159,7 +165,7 @@ export function resolveTrailingFolderComponent(
     return { componentId: leaf, componentName: formatFolderComponentName(leaf) };
   }
 
-  const rolled = meaningful.slice(-maxDepth);
+  const rolled = rollFolderSegments(meaningful, options.maxDepth);
   const componentId = rolled.map(slugify).join('/');
   return { componentId, componentName: formatFolderComponentName(componentId) };
 }

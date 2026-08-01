@@ -1,0 +1,280 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/cli/analysis/adapters/parsing
+  name: Parsing Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser-test
+    type: background-worker
+    name: TreeSitterParser
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterParser.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-wasm-paths-test
+    type: background-worker
+    name: TreeSitterWasmPaths
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterWasmPaths.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser
+    type: background-worker
+    name: TsMorphParser
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/tsMorphParser.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    type: background-worker
+    name: TreeSitterForensics
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterForensics.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics-test
+    type: background-worker
+    name: TreeSitterForensics
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterForensics.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-wasm-paths
+    type: background-worker
+    name: TreeSitterWasmPaths
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterWasmPaths.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-loader
+    type: background-worker
+    name: TreeSitterLoader
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterLoader.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser-test
+    type: background-worker
+    name: TsMorphParser
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/tsMorphParser.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    type: background-worker
+    name: TreeSitterParser
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterParser.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/analysis-options
+    type: background-worker
+    name: AnalysisOptions (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/analysisOptions.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/cancellation
+    type: background-worker
+    name: Cancellation (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/cancellation.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: Forensics (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/ports
+    type: background-worker
+    name: Ports (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/ports.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/adapters/pathfilter/source-path-filter
+    type: background-worker
+    name: SourcePathFilter (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/pathFilter/sourcePathFilter.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/test-path
+    type: background-worker
+    name: TestPath (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/testPath.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/types.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser-test
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-wasm-paths-test
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-wasm-paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser
+    to: blueprint/app/cli/analysis/domain/ports
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser
+    to: blueprint/app/cli/analysis/domain/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser
+    to: blueprint/app/cli/analysis/domain/analysis-options
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser
+    to: blueprint/app/cli/analysis/domain/test-path
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser
+    to: blueprint/app/cli/analysis/adapters/pathfilter/source-path-filter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser
+    to: blueprint/app/cli/analysis/domain/cancellation
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics-test
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-loader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics-test
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-wasm-paths
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-loader
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-loader
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-wasm-paths
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser-test
+    to: blueprint/app/cli/analysis/adapters/parsing/ts-morph-parser
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    to: blueprint/app/cli/analysis/domain/ports
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    to: blueprint/app/cli/analysis/domain/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    to: blueprint/app/cli/analysis/domain/analysis-options
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    to: blueprint/app/cli/analysis/domain/test-path
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    to: blueprint/app/cli/analysis/adapters/pathfilter/source-path-filter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    to: blueprint/app/cli/analysis/domain/cancellation
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-loader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-parser
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    type: direct-call
+    description: Calls module / service

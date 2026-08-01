@@ -1,0 +1,204 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/theme/unified
+  name: Unified Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/theme/unified/use-apply-theme-attributes
+    type: gateway-api
+    name: UseApplyThemeAttributes
+    isTest: false
+    properties:
+      filepath: packages/theme/src/unified/useApplyThemeAttributes.ts
+      containerId: theme
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/theme/unified/unified-theme-provider-test
+    type: gateway-api
+    name: UnifiedThemeProvider
+    isTest: true
+    properties:
+      filepath: packages/theme/src/unified/UnifiedThemeProvider.test.tsx
+      containerId: theme
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/theme/unified/unified-theme
+    type: background-worker
+    name: UnifiedTheme
+    isTest: false
+    properties:
+      filepath: packages/theme/src/unified/UnifiedTheme.tsx
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/theme/unified/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/theme/src/unified/types.ts
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/theme/unified/overrides
+    type: gateway-api
+    name: Overrides
+    isTest: false
+    properties:
+      filepath: packages/theme/src/unified/overrides.ts
+      containerId: theme
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/theme/unified/unified-theme-provider
+    type: gateway-api
+    name: UnifiedThemeProvider
+    isTest: false
+    properties:
+      filepath: packages/theme/src/unified/UnifiedThemeProvider.tsx
+      containerId: theme
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/theme/unified/use-apply-theme-attributes-test
+    type: gateway-api
+    name: UseApplyThemeAttributes
+    isTest: true
+    properties:
+      filepath: packages/theme/src/unified/useApplyThemeAttributes.test.tsx
+      containerId: theme
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/theme/unified/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/theme/src/unified/index.ts
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/theme/unified/overrides-test
+    type: background-worker
+    name: Overrides
+    isTest: true
+    properties:
+      filepath: packages/theme/src/unified/overrides.test.ts
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/theme/unified/themes
+    type: background-worker
+    name: Themes
+    isTest: false
+    properties:
+      filepath: packages/theme/src/unified/themes.ts
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/theme/base
+    type: background-worker
+    name: Base (External)
+    external: true
+    properties:
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/theme/base/create-base-theme-options
+    type: background-worker
+    name: CreateBaseThemeOptions (External)
+    external: true
+    properties:
+      filepath: packages/theme/src/base/createBaseThemeOptions.ts
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/theme/base/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/theme/src/base/types.ts
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/theme/v5
+    type: background-worker
+    name: V5 (External)
+    external: true
+    properties:
+      containerId: theme
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: backstage/packages/theme/unified/unified-theme-provider-test
+    to: backstage/packages/theme/unified/themes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/unified-theme
+    to: backstage/packages/theme/base/create-base-theme-options
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/unified-theme
+    to: backstage/packages/theme/base/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/unified-theme
+    to: backstage/packages/theme/v5
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/unified-theme
+    to: backstage/packages/theme/unified/overrides
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/unified-theme
+    to: backstage/packages/theme/unified/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/unified-theme-provider
+    to: backstage/packages/theme/unified/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/unified-theme-provider
+    to: backstage/packages/theme/unified/use-apply-theme-attributes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/use-apply-theme-attributes-test
+    to: backstage/packages/theme/unified/use-apply-theme-attributes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/index
+    to: backstage/packages/theme/unified/overrides
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/index
+    to: backstage/packages/theme/unified/themes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/index
+    to: backstage/packages/theme/unified/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/overrides-test
+    to: backstage/packages/theme/unified/overrides
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/theme/unified/themes
+    to: backstage/packages/theme/base
+    type: direct-call
+    description: Calls module / service

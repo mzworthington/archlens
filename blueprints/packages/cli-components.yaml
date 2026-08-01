@@ -14,29 +14,21 @@ nodes:
     name: Wiring
     isTest: false
     properties:
-      filepath: packages/cli/src/wiring/CliInitializer.test.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 59
-      loc: 389
-      sloc: 342
-      churn: 7
-      lineChurn: 735
-      churn30: 1
-      churn365: 7
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 31
+      churn: 47
+      lineChurn: 1649
+      churn30: 6
+      churn365: 47
       churnByWeek:
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -60,36 +52,45 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 6
+        - 3
+        - 20
+        - 7
+        - 0
+        - 0
+        - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 2
-        - 1
+        - 0
+        - 0
+        - 6
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.9787234042553191
       authors:
         - email: poldsberg@gmail.com
-          commits: 7
-      hotspotScore: 0.007732121441646152
+          commits: 46
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0.017326263965158115
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli/index
     type: background-worker
     name: Index
@@ -178,7 +179,6 @@ nodes:
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-migrate/src/commands/packageRole.ts
       containerId: cli-module-migrate
       technology: REST Controller / Router
       classification: api-marker

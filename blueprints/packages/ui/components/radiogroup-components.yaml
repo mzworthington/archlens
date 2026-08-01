@@ -1,0 +1,110 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/ui/components/radiogroup
+  name: Radiogroup Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/ui/components/radiogroup/definition
+    type: background-worker
+    name: Definition
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/RadioGroup/definition.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/radiogroup/types
+    type: gateway-api
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/RadioGroup/types.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/radiogroup/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/RadioGroup/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/radiogroup/radio-group-stories
+    type: background-worker
+    name: RadioGroup.stories
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/RadioGroup/RadioGroup.stories.tsx
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/ui/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/ui/components/fieldlabel/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/components/FieldLabel/types.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/ui/components/radiogroup/definition
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/radiogroup/definition
+    to: backstage/packages/ui/components/radiogroup/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/radiogroup/types
+    to: backstage/packages/ui/components/fieldlabel/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/radiogroup/index
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/radiogroup/index
+    to: backstage/packages/ui/components/radiogroup/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/radiogroup/index
+    to: backstage/packages/ui/components/radiogroup/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/radiogroup/radio-group-stories
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service

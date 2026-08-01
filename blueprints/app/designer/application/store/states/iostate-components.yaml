@@ -1,0 +1,105 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/application/store/states/iostate
+  name: Iostate Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/application/store/states/iostate/open-workspace
+    type: background-worker
+    name: OpenWorkspace
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/ioState/openWorkspace.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
+    type: background-worker
+    name: EnsureSystemLoaded
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/ioState/ensureSystemLoaded.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/core
+    type: background-worker
+    name: Core (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/designer/infrastructure/db/schema-compare
+    type: relational-database
+    name: SchemaCompare (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/infrastructure/db/schemaCompare.ts
+      containerId: designer
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/states/ui-state
+    type: background-worker
+    name: UiState (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/states/uiState.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/application/store/states/iostate/open-workspace
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/iostate/open-workspace
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/iostate/open-workspace
+    to: blueprint/app/designer/infrastructure/db/schema-compare
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/iostate/open-workspace
+    to: blueprint/app/designer/application/store/states/ui-state
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
+    to: blueprint/app/designer/application/store/states/iostate/open-workspace
+    type: direct-call
+    description: Calls module / service

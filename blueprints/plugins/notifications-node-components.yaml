@@ -250,61 +250,16 @@ nodes:
     name: Service
     isTest: false
     properties:
-      filepath: plugins/notifications-node/src/service/NotificationService.ts
       containerId: notifications-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 22
-      churn30: 1
-      churn365: 1
+      churn: 6
+      lineChurn: 257
+      churn30: 5
+      churn365: 6
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -316,19 +271,67 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 1
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 4
+        - email: lukasz.jernas@allegro.com
+          commits: 1
+        - email: pschultz@pobox.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-notifications/actions
     type: background-worker
     name: Actions (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend-module-notifications/src/actions/sendNotification.ts
       containerId: scaffolder-backend-module-notifications
       technology: TypeScript Domain Service
       classification: default
@@ -412,7 +415,6 @@ nodes:
     name: Processor (External)
     external: true
     properties:
-      filepath: plugins/notifications-backend-module-email/src/processor/NotificationsEmailProcessor.ts
       containerId: notifications-backend-module-email
       technology: TypeScript Domain Service
       classification: default
@@ -424,7 +426,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/notifications-backend/src/service/DefaultNotificationRecipientResolver.test.ts
       containerId: notifications-backend
       technology: REST Controller / Router
       classification: api-marker

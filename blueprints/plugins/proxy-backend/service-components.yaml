@@ -1,0 +1,69 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/proxy-backend/service
+  name: Service Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/proxy-backend/service/router
+    type: rest-api
+    name: Router
+    isTest: false
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/proxy-backend/service/router-config-test
+    type: rest-api
+    name: Router.config
+    isTest: true
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.config.test.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/proxy-backend/service/router-test
+    type: rest-api
+    name: Router
+    isTest: true
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.test.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/proxy-backend/service/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/proxy-backend/src/service/index.ts
+      containerId: proxy-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/proxy-backend/service/router-credentials-test
+    type: rest-api
+    name: Router.credentials
+    isTest: true
+    properties:
+      filepath: plugins/proxy-backend/src/service/router.credentials.test.ts
+      containerId: proxy-backend
+      technology: REST Controller / Router
+      classification: api-marker
+dependencies:
+  - from: backstage/plugins/proxy-backend/service/router
+    to: backstage/plugins/proxy-node/alpha
+    type: direct-call
+    description: '@backstage/plugin-proxy-node'
+  - from: backstage/plugins/proxy-backend/service/router-test
+    to: backstage/plugins/proxy-backend/service/router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/proxy-backend/service/index
+    to: backstage/plugins/proxy-backend/service/router
+    type: direct-call
+    description: Calls module / service

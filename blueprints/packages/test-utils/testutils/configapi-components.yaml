@@ -1,0 +1,95 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/test-utils/testutils/configapi
+  name: Configapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/test-utils/testutils/configapi/mock-config-api
+    type: rest-api
+    name: MockConfigApi
+    isTest: false
+    properties:
+      filepath: packages/test-utils/src/testUtils/apis/ConfigApi/MockConfigApi.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/test-utils/testutils/configapi/mock-config-api-test
+    type: rest-api
+    name: MockConfigApi
+    isTest: true
+    properties:
+      filepath: packages/test-utils/src/testUtils/apis/ConfigApi/MockConfigApi.test.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/test-utils/testutils/configapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/test-utils/src/testUtils/apis/ConfigApi/index.ts
+      containerId: test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/test-utils/testutils/configapi/mock-config-api
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/test-utils/testutils/configapi/mock-config-api
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/test-utils/testutils/configapi/mock-config-api
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/test-utils/testutils/configapi/mock-config-api-test
+    to: backstage/packages/test-utils/testutils/configapi/mock-config-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/test-utils/testutils/configapi/index
+    to: backstage/packages/test-utils/testutils/configapi/mock-config-api
+    type: direct-call
+    description: Calls module / service

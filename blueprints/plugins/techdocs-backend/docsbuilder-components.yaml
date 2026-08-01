@@ -1,0 +1,95 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs-backend/docsbuilder
+  name: Docsbuilder Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs-backend/docsbuilder/build-metadata-storage
+    type: background-worker
+    name: BuildMetadataStorage
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/DocsBuilder/BuildMetadataStorage.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-backend/docsbuilder/build-metadata-storage-test
+    type: background-worker
+    name: BuildMetadataStorage
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-backend/src/DocsBuilder/BuildMetadataStorage.test.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-backend/docsbuilder/builder
+    type: background-worker
+    name: Builder
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/DocsBuilder/builder.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-backend/docsbuilder/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/DocsBuilder/index.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-backend/cache
+    type: rest-api
+    name: Cache (External)
+    external: true
+    properties:
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/techdocs-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-node/src/index.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs-backend/docsbuilder/build-metadata-storage-test
+    to: backstage/plugins/techdocs-backend/docsbuilder/build-metadata-storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/docsbuilder/builder
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: backstage/plugins/techdocs-backend/docsbuilder/builder
+    to: backstage/plugins/techdocs-backend/docsbuilder/build-metadata-storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/docsbuilder/builder
+    to: backstage/plugins/techdocs-backend/cache
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/docsbuilder/index
+    to: backstage/plugins/techdocs-backend/docsbuilder/build-metadata-storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/docsbuilder/index
+    to: backstage/plugins/techdocs-backend/docsbuilder/builder
+    type: direct-call
+    description: Calls module / service

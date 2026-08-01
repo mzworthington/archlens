@@ -2,99 +2,73 @@ version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
 metadata:
   entityRef: infrastructure
-  name: Application
+  name: Infrastructure Examples
   source:
     scannedAtCommit: c191f7bcb0fa786b68c7b3904b6f3bbb90881fc6
     scanRoot: .
     remoteUrl: https://github.com/futurice/terraform-examples
     defaultBranch: master
 nodes:
-  - entityRef: application/gpio-build-monitor
-    type: software-system
-    name: Gpio Build Monitor System
+  - entityRef: infrastructure/helloworld
+    type: group
+    name: Pulumi Examples System
     properties:
       rootPath: ''
-      productId: gpio-build-monitor
-    forensics:
-      complexity: 12
-      complexityPeak: 12
-      cognitiveComplexity: 50
-      churn: 23
-      lineChurn: 1763
-      churn30: 23
-      churn365: 23
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 23
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 23
-      hotspotScore: 0.6218487394957983
-      classifications:
-        - hotspot
-        - knowledge-silo
-      sinceDays: 365
-      fileCount: 30
-      hotspotCount: 1
-      knowledgeSiloCount: 1
+      productId: helloworld
   - entityRef: infrastructure/user
     type: person
     name: User
     properties:
       role: context-actor
+  - entityRef: infrastructure/gcp-py-gke
+    type: software-system
+    name: Gcp-py-gke System
+    parentEntityRef: infrastructure/helloworld
+    properties:
+      rootPath: gcp-py-gke
+      productId: helloworld
+  - entityRef: infrastructure/gcp-py-functions
+    type: software-system
+    name: Gcp-py-functions System
+    parentEntityRef: infrastructure/helloworld
+    properties:
+      rootPath: gcp-py-functions
+      productId: helloworld
+  - entityRef: infrastructure/gcp-py-webserver
+    type: software-system
+    name: Gcp-py-webserver System
+    parentEntityRef: infrastructure/helloworld
+    properties:
+      rootPath: gcp-py-webserver
+      productId: helloworld
+  - entityRef: infrastructure/gcp-py-instance-nginx
+    type: software-system
+    name: Gcp-py-instance-nginx System
+    parentEntityRef: infrastructure/helloworld
+    properties:
+      rootPath: gcp-py-instance-nginx
+      productId: helloworld
+  - entityRef: infrastructure/gcp-py-serverless-raw
+    type: software-system
+    name: Gcp-py-serverless-raw System
+    parentEntityRef: infrastructure/helloworld
+    properties:
+      rootPath: gcp-py-serverless-raw
+      productId: helloworld
+  - entityRef: infrastructure/gcp-py-network-component
+    type: software-system
+    name: Gcp-py-network-component System
+    parentEntityRef: infrastructure/helloworld
+    properties:
+      rootPath: gcp-py-network-component
+      productId: helloworld
+  - entityRef: infrastructure/gcp-py-cloudrun-cloudsql
+    type: software-system
+    name: Gcp-py-cloudrun-cloudsql System
+    parentEntityRef: infrastructure/helloworld
+    properties:
+      rootPath: gcp-py-cloudrun-cloudsql
+      productId: helloworld
   - entityRef: infrastructure/terraform-examples
     type: group
     name: Terraform Examples System
@@ -190,7 +164,7 @@ nodes:
       productId: terraform-examples
 dependencies:
   - from: infrastructure/user
-    to: application/gpio-build-monitor
+    to: infrastructure/helloworld
     type: direct-call
     description: Uses
   - from: infrastructure/user

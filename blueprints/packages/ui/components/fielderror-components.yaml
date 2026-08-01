@@ -1,0 +1,94 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/ui/components/fielderror
+  name: Fielderror Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/ui/components/fielderror/field-error-stories
+    type: gateway-api
+    name: FieldError.stories
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/FieldError/FieldError.stories.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/fielderror/definition
+    type: background-worker
+    name: Definition
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/FieldError/definition.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/fielderror/types
+    type: gateway-api
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/FieldError/types.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/fielderror/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/FieldError/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/ui/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/ui/components/fielderror/field-error-stories
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/fielderror/definition
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/fielderror/definition
+    to: backstage/packages/ui/components/fielderror/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/fielderror/index
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/fielderror/index
+    to: backstage/packages/ui/components/fielderror/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/fielderror/index
+    to: backstage/packages/ui/components/fielderror/types
+    type: direct-call
+    description: Calls module / service

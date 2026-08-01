@@ -14,6 +14,7 @@ import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from './entityR
 import { throwIfAborted } from './cancellation.ts';
 import {
   attachForensicsToSchema,
+  aggregateNodeForensics,
   fileMetricsToNodeForensics,
   normalizeFilePath,
 } from '../../forensics/domain/attachForensics.ts';
@@ -128,6 +129,22 @@ export class CodebaseAnalyzer {
     forensicsByPath: ReadonlyMap<string, FileMetrics>
   ): SystemNode[] {
     for (const [key, node] of componentNodesMap) {
+      const memberFilepaths = node.properties?.memberFilepaths;
+      if (Array.isArray(memberFilepaths) && memberFilepaths.length > 1) {
+        const childNodes = memberFilepaths
+          .filter((path): path is string => typeof path === 'string')
+          .map(filepath => {
+            const metrics = forensicsByPath.get(normalizeFilePath(filepath));
+            return metrics ? { forensics: fileMetricsToNodeForensics(metrics) } : null;
+          })
+          .filter((entry): entry is { forensics: NonNullable<SystemNode['forensics']> } => !!entry);
+        const forensics = aggregateNodeForensics(childNodes);
+        if (forensics) {
+          componentNodesMap.set(key, { ...node, forensics });
+        }
+        continue;
+      }
+
       const filepath = node.properties?.filepath;
       if (typeof filepath !== 'string') continue;
       const metrics = forensicsByPath.get(normalizeFilePath(filepath));
@@ -259,8 +276,14 @@ export class CodebaseAnalyzer {
         workspacePackageIndex,
         workspacePackageEntryIndex,
       });
-      const { componentNodesMap, componentDependencies, containerNodesMap, containerDependencies } =
-        extractor.extractGraph(files, systemCsprojFiles);
+      const {
+        componentNodesMap,
+        componentDependencies,
+        containerNodesMap,
+        containerDependencies,
+        fileLevelNodesMap,
+        fileLevelDependencies,
+      } = extractor.extractGraph(files, systemCsprojFiles);
 
       if (forensicsByPath && forensicsByPath.size > 0) {
         allComponentNodes.push(
@@ -294,7 +317,9 @@ export class CodebaseAnalyzer {
         componentNodesMap,
         componentDependencies,
         containerNodesMap,
-        options.source
+        options.source,
+        fileLevelNodesMap,
+        fileLevelDependencies
       );
     }
 

@@ -1,0 +1,45 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/app-legacy/components/root
+  name: Root Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/app-legacy/components/root/logo-full
+    type: background-worker
+    name: LogoFull
+    isTest: false
+    properties:
+      filepath: packages/app-legacy/src/components/Root/LogoFull.tsx
+      containerId: app-legacy
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/app-legacy/components/root/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/app-legacy/src/components/Root/index.ts
+      containerId: app-legacy
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/app-legacy/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/app-legacy/components/root/index
+    to: backstage/packages/app-legacy/components
+    type: direct-call
+    description: Calls module / service

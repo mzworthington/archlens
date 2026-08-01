@@ -1,0 +1,115 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend-module-azure/http
+  name: Http Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend-module-azure/http/http-integration-test
+    type: background-worker
+    name: HttpIntegration
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/http/httpIntegration.test.ts
+      containerId: events-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-azure/http/create-azure-dev-ops-webhook-validator
+    type: background-worker
+    name: CreateAzureDevOpsWebhookValidator
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-azure/src/http/createAzureDevOpsWebhookValidator.ts
+      containerId: events-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-azure/http/create-azure-dev-ops-webhook-validator-test
+    type: background-worker
+    name: CreateAzureDevOpsWebhookValidator
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/http/createAzureDevOpsWebhookValidator.test.ts
+      containerId: events-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook
+    type: background-worker
+    name: EventsModuleAzureDevOpsWebhook (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-module-azure/src/service/eventsModuleAzureDevOpsWebhook.ts
+      containerId: events-backend-module-azure
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/events-backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend-test-utils/src/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/events-backend/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend/dev/index.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend-module-azure/http/http-integration-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-azure/http/http-integration-test
+    to: backstage/plugins/events-backend-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend-test-utils'
+  - from: backstage/plugins/events-backend-module-azure/http/http-integration-test
+    to: backstage/plugins/events-backend/index
+    type: direct-call
+    description: '@backstage/plugin-events-backend'
+  - from: backstage/plugins/events-backend-module-azure/http/http-integration-test
+    to: backstage/plugins/events-backend-module-azure/service/events-module-azure-dev-ops-webhook
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-azure/http/create-azure-dev-ops-webhook-validator
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-azure/http/create-azure-dev-ops-webhook-validator-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-azure/http/create-azure-dev-ops-webhook-validator-test
+    to: backstage/plugins/events-backend-module-azure/http/create-azure-dev-ops-webhook-validator
+    type: direct-call
+    description: Calls module / service

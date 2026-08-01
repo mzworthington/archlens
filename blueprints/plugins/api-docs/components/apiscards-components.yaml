@@ -1,0 +1,206 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/api-docs/components/apiscards
+  name: Apiscards Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/api-docs/components/apiscards/consumed-apis-card
+    type: gateway-api
+    name: ConsumedApisCard
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/ApisCards/ConsumedApisCard.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components/apiscards/consumed-apis-card-test
+    type: gateway-api
+    name: ConsumedApisCard
+    isTest: true
+    properties:
+      filepath: plugins/api-docs/src/components/ApisCards/ConsumedApisCard.test.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components/apiscards/provided-apis-card-test
+    type: gateway-api
+    name: ProvidedApisCard
+    isTest: true
+    properties:
+      filepath: plugins/api-docs/src/components/ApisCards/ProvidedApisCard.test.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components/apiscards/has-apis-card
+    type: gateway-api
+    name: HasApisCard
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/ApisCards/HasApisCard.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components/apiscards/presets
+    type: gateway-api
+    name: Presets
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/ApisCards/presets.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components/apiscards/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/ApisCards/index.ts
+      containerId: api-docs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/api-docs/components/apiscards/provided-apis-card
+    type: gateway-api
+    name: ProvidedApisCard
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/ApisCards/ProvidedApisCard.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components/apiscards/has-apis-card-test
+    type: gateway-api
+    name: HasApisCard
+    isTest: true
+    properties:
+      filepath: plugins/api-docs/src/components/ApisCards/HasApisCard.test.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: backstage/plugins/api-docs/components/apiscards/consumed-apis-card
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/consumed-apis-card
+    to: backstage/plugins/catalog-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/consumed-apis-card
+    to: backstage/plugins/api-docs/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/components/apiscards/consumed-apis-card-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/consumed-apis-card-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/consumed-apis-card-test
+    to: backstage/plugins/api-docs/config/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/components/apiscards/provided-apis-card-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/provided-apis-card-test
+    to: backstage/plugins/api-docs/config/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/components/apiscards/provided-apis-card-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/has-apis-card
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/has-apis-card
+    to: backstage/plugins/catalog-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/has-apis-card
+    to: backstage/plugins/api-docs/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/components/apiscards/presets
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/presets
+    to: backstage/plugins/catalog-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/presets
+    to: backstage/plugins/api-docs/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/components/apiscards/presets
+    to: backstage/plugins/api-docs/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/components/apiscards/provided-apis-card
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/provided-apis-card
+    to: backstage/plugins/catalog-react/alpha
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/provided-apis-card
+    to: backstage/plugins/api-docs/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/components/apiscards/has-apis-card-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/api-docs/components/apiscards/has-apis-card-test
+    to: backstage/plugins/api-docs/config/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/api-docs/components/apiscards/has-apis-card-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'

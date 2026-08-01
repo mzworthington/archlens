@@ -1,0 +1,190 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components
+  name: Components Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/json-page-test
+    type: gateway-api
+    name: JsonPage
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/JsonPage.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/overview-page
+    type: gateway-api
+    name: OverviewPage
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/OverviewPage.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/colocated-page
+    type: gateway-api
+    name: ColocatedPage
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/ColocatedPage.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/yaml-page
+    type: background-worker
+    name: YamlPage
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/YamlPage.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/ancestry-page
+    type: gateway-api
+    name: AncestryPage
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/AncestryPage.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/entity-kind-icon
+    type: background-worker
+    name: EntityKindIcon
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/EntityKindIcon.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/overview-page-test
+    type: gateway-api
+    name: OverviewPage
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/OverviewPage.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/yaml-page-test
+    type: gateway-api
+    name: YamlPage
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/YamlPage.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/util
+    type: background-worker
+    name: Util
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/util.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/json-page
+    type: background-worker
+    name: JsonPage
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/JsonPage.tsx
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/inspectentitydialog/components/common
+    type: gateway-api
+    name: Common
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/InspectEntityDialog/components/common.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: plugins/catalog/src/alpha/apis.tsx
+      containerId: catalog
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/overview-page
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/overview-page
+    to: backstage/plugins/catalog-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/colocated-page
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/colocated-page
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/colocated-page
+    to: backstage/plugins/catalog-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/yaml-page
+    to: backstage/plugins/catalog-react/components/inspectentitydialog/components/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/yaml-page
+    to: backstage/plugins/catalog-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/ancestry-page
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/ancestry-page
+    to: backstage/plugins/catalog-react/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/ancestry-page
+    to: backstage/plugins/catalog/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/ancestry-page
+    to: backstage/plugins/catalog-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/overview-page-test
+    to: backstage/plugins/catalog-react/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/json-page
+    to: backstage/plugins/catalog-react/components/inspectentitydialog/components/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/inspectentitydialog/components/json-page
+    to: backstage/plugins/catalog-react/translation/translation
+    type: direct-call
+    description: Calls module / service

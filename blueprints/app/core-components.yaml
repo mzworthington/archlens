@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: 5dcf083457706497817668300b7377a04a111e27
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/core/generatejsonschema
@@ -88,25 +88,24 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.0017001124622197232
+      hotspotScore: 0.0016742012935043583
       sinceDays: 365
   - entityRef: blueprint/app/core/resilience
     type: background-worker
     name: Resilience
     isTest: false
     properties:
-      filepath: app/packages/core/src/resilience.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 17
-      sloc: 16
-      churn: 9
-      lineChurn: 20
-      churn30: 9
-      churn365: 9
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 66
+      churn: 71
+      lineChurn: 3421
+      churn30: 71
+      churn365: 71
       churnByWeek:
         - 0
         - 0
@@ -159,15 +158,20 @@ nodes:
         - 0
         - 0
         - 0
-        - 9
-        - 0
+        - 67
+        - 4
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 9
-      hotspotScore: 0.00008786110915864202
+          commits: 71
+      hotspotScore: 0.024918344833553242
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 24
+      hotspotCount: 0
+      knowledgeSiloCount: 2
   - entityRef: blueprint/app/core/import-mermaid
     type: background-worker
     name: Import mermaid
@@ -403,7 +407,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 18
-      hotspotScore: 0.01254656638785408
+      hotspotScore: 0.012355345979970149
       sinceDays: 365
   - entityRef: blueprint/app/core/schema-test
     type: background-worker
@@ -483,7 +487,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.001036761088071976
+      hotspotScore: 0.0010209599619303066
       sinceDays: 365
   - entityRef: blueprint/app/core/chaosversion
     type: background-worker
@@ -642,7 +646,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 7
-      hotspotScore: 0.005166233218528151
+      hotspotScore: 0.00508749540351712
       sinceDays: 365
   - entityRef: blueprint/app/core/schemaversion-test
     type: background-worker
@@ -722,25 +726,24 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 6
-      hotspotScore: 0.0003997680466718212
+      hotspotScore: 0.0003936752395578724
       sinceDays: 365
   - entityRef: blueprint/app/core/forensics
     type: background-worker
     name: Forensics
     isTest: false
     properties:
-      filepath: app/packages/core/src/forensics/ownership.test.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 44
-      churn30: 1
-      churn365: 1
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 70
+      churn: 58
+      lineChurn: 2691
+      churn30: 58
+      churn365: 58
       churnByWeek:
         - 0
         - 0
@@ -792,33 +795,37 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
+        - 8
+        - 50
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 58
+      hotspotScore: 0.01822153965953581
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 41
+      hotspotCount: 0
+      knowledgeSiloCount: 2
   - entityRef: blueprint/app/core/recommendations
     type: background-worker
     name: Recommendations
     isTest: false
     properties:
-      filepath: app/packages/core/src/recommendations/advicelensStressFixtures.test.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 81
-      churn30: 1
-      churn365: 1
+      complexity: 19
+      complexityPeak: 19
+      cognitiveComplexity: 171
+      churn: 43
+      lineChurn: 2379
+      churn30: 43
+      churn365: 43
       churnByWeek:
         - 0
         - 0
@@ -871,32 +878,34 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
+        - 32
+        - 11
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 43
+      hotspotScore: 0.028932967056736824
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 19
+      hotspotCount: 0
+      knowledgeSiloCount: 2
   - entityRef: blueprint/app/core/taxonomy
     type: background-worker
     name: Taxonomy
     isTest: false
     properties:
-      filepath: app/packages/core/src/taxonomy/nodeOwnership.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 38
-      churn30: 1
-      churn365: 1
+      churn: 8
+      lineChurn: 248
+      churn30: 8
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -949,15 +958,18 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
+        - 4
+        - 4
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
+          commits: 8
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/core/layout
     type: background-worker
     name: Layout
@@ -1041,18 +1053,17 @@ nodes:
     name: Rules
     isTest: false
     properties:
-      filepath: app/packages/core/src/rules/compareBlueprintTrees.test.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 55
-      churn30: 1
-      churn365: 1
+      complexity: 26
+      complexityPeak: 26
+      cognitiveComplexity: 194
+      churn: 142
+      lineChurn: 8684
+      churn30: 142
+      churn365: 142
       churnByWeek:
         - 0
         - 0
@@ -1103,34 +1114,36 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 1
-        - 0
+        - 13
+        - 48
+        - 75
+        - 6
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
-      hotspotScore: 0
+          commits: 142
+      hotspotScore: 0.08109709934892172
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 40
+      hotspotCount: 0
+      knowledgeSiloCount: 7
   - entityRef: blueprint/app/core/rules/workspaceexternals
     type: background-worker
     name: Workspaceexternals
     isTest: false
     properties:
-      filepath: app/packages/core/src/rules/workspaceExternals/containerRollup.ts
       containerId: core
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 277
-      churn30: 1
-      churn365: 1
+      churn: 9
+      lineChurn: 743
+      churn30: 9
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -1183,15 +1196,18 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 9
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
+          commits: 9
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/core/treesitterlanguages
     type: background-worker
     name: Treesitterlanguages
@@ -1349,7 +1365,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 8
-      hotspotScore: 0.07759893160891262
+      hotspotScore: 0.07641625748956328
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -1509,7 +1525,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 7
-      hotspotScore: 0.000953293034371266
+      hotspotScore: 0.0009387640327918497
       sinceDays: 365
   - entityRef: blueprint/app/core/treesitterlanguages-test
     type: background-worker
@@ -1824,7 +1840,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 8
-      hotspotScore: 0.005377099880508891
+      hotspotScore: 0.005295148277130064
       sinceDays: 365
   - entityRef: blueprint/app/core/slug-test
     type: background-worker
@@ -1982,7 +1998,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.0012651999718844452
+      hotspotScore: 0.0012459172416776623
       sinceDays: 365
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -2060,7 +2076,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 22
-      hotspotScore: 0.0002460111056441977
+      hotspotScore: 0.00024226168588176766
       sinceDays: 365
   - entityRef: blueprint/app/core/import-iac
     type: background-worker
@@ -2223,48 +2239,88 @@ nodes:
     name: Adapters (External)
     external: true
     properties:
-      filepath: app/packages/cli/src/analysis/adapters/loadAnalysisConfig.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4500
+      x: -8640
       y: -204
   - entityRef: blueprint/app/cli/forensics/adapters
     type: background-worker
     name: Adapters (External)
     external: true
     properties:
-      filepath: app/packages/cli/src/forensics/adapters/sourceFileWalk.test.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3120
+      x: -6340
       y: -204
   - entityRef: blueprint/app/designer/application
     type: background-worker
     name: Application (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/source/fetchSourceFileContent.test.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1740
+      x: -4960
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/breadcrumbs
+    type: gateway-api
+    name: Breadcrumbs (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4700
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas
+    type: gateway-api
+    name: Canvas (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5160
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog
+    type: gateway-api
+    name: Chaosspecdialog (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5620
       y: -204
   - entityRef: blueprint/app/cli/cli
     type: background-worker
     name: Cli (External)
     external: true
     properties:
-      filepath: app/packages/cli/src/cli/buildVersion.generated.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3580
+      x: -6800
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/codeviewer
+    type: gateway-api
+    name: Codeviewer (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 6080
       y: -204
   - entityRef: blueprint/app/designer/comparesystemschemas
     type: background-worker
@@ -2276,7 +2332,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1940
+      x: 100
       y: -204
   - entityRef: blueprint/app/designer/comparesystemschemas-test
     type: background-worker
@@ -2288,79 +2344,139 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2400
+      x: 560
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4240
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/resilience/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3780
       y: -204
   - entityRef: blueprint/app/designer/core
     type: background-worker
     name: Core (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/core/models/ports.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2860
+      x: 1020
       y: -204
   - entityRef: blueprint/app/designer/infrastructure/db
     type: relational-database
     name: Db (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/infrastructure/db/schemaCompare.test.ts
       containerId: designer
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: 3780
+      x: 1940
+      y: -204
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate
+    type: background-worker
+    name: Diagramstate (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
       y: -204
   - entityRef: blueprint/app/cli/analysis/domain
     type: relational-database
     name: Domain (External)
     external: true
     properties:
-      filepath: app/packages/cli/src/analysis/domain/pythonDependencies.test.ts
       containerId: cli
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -4040
+      x: -7720
       y: -204
   - entityRef: blueprint/app/cli/forensics/domain
     type: background-worker
     name: Domain (External)
     external: true
     properties:
-      filepath: app/packages/cli/src/forensics/domain/forensicAnalyzer.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2660
+      x: -5880
       y: -204
-  - entityRef: blueprint/app/designer/ui/features
+  - entityRef: blueprint/app/designer/ui/features/forensics
     type: gateway-api
-    name: Features (External)
+    name: Forensics (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/ui/features/workspace/WorkspacePage.tsx
       containerId: designer
       technology: React Component
       classification: ui-import
     position:
-      x: 4700
+      x: 2860
       y: -204
   - entityRef: blueprint/app/designer/application/forensics
     type: gateway-api
     name: Forensics (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/forensics/resolveCouplingEdges.ts
       containerId: designer
       technology: React Component
       classification: ui-import
     position:
-      x: -1280
+      x: -4500
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 8840
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/importiacdialog
+    type: gateway-api
+    name: Importiacdialog (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 6540
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog
+    type: gateway-api
+    name: Importmermaiddialog (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 7000
       y: -204
   - entityRef: blueprint/app/designer/infrastructure
     type: relational-database
@@ -2372,55 +2488,106 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: 3320
+      x: 1480
       y: -204
-  - entityRef: blueprint/app/designer/application/navigation
+  - entityRef: blueprint/app/designer/application/store/states/iostate
     type: background-worker
-    name: Navigation (External)
+    name: Iostate (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/navigation/navigateToWorkspaceEntity.test.ts
-      containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -820
-      y: -204
-  - entityRef: blueprint/app/designer/application/parsing
-    type: background-worker
-    name: Parsing (External)
-    external: true
-    properties:
-      filepath: app/packages/designer/src/application/parsing/highlightQuerySources.test.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
     position:
       x: -360
       y: -204
+  - entityRef: blueprint/app/cli/analysis/domain/languages
+    type: background-worker
+    name: Languages (External)
+    external: true
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -7260
+      y: -204
+  - entityRef: blueprint/app/designer/application/navigation
+    type: background-worker
+    name: Navigation (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4040
+      y: -204
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing
+    type: background-worker
+    name: Parsing (External)
+    external: true
+    properties:
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -8180
+      y: -204
+  - entityRef: blueprint/app/designer/application/parsing
+    type: background-worker
+    name: Parsing (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3580
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel
+    type: gateway-api
+    name: Propertypanel (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 7460
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/recommendations
+    type: gateway-api
+    name: Recommendations (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 3320
+      y: -204
   - entityRef: blueprint/app/designer/application/recommendations
     type: background-worker
     name: Recommendations (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/recommendations/executeRecommendationAction.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: -3120
       y: -204
   - entityRef: blueprint/app/designer/application/resilience
     type: gateway-api
     name: Resilience (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/resilience/blastRipple.test.ts
       containerId: designer
       technology: React Component
       classification: ui-import
     position:
-      x: 560
+      x: -2660
       y: -204
   - entityRef: blueprint/app/designer/infrastructure/resilience
     type: background-worker
@@ -2432,43 +2599,73 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4240
+      x: 2400
       y: -204
   - entityRef: blueprint/app/designer/application/search
     type: background-worker
     name: Search (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/search/searchWorkspaceNodes.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: -2200
       y: -204
-  - entityRef: blueprint/app/designer/application/store
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/searchbar
     type: gateway-api
-    name: Store (External)
+    name: Searchbar (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/store/goldenPathsSample.ts
       containerId: designer
       technology: React Component
       classification: ui-import
     position:
-      x: 1480
+      x: 7920
+      y: -204
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/sourcecodedialog
+    type: gateway-api
+    name: Sourcecodedialog (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 8380
+      y: -204
+  - entityRef: blueprint/app/designer/application/store/states
+    type: gateway-api
+    name: States (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1280
+      y: -204
+  - entityRef: blueprint/app/designer/application/store
+    type: background-worker
+    name: Store (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1740
       y: -204
   - entityRef: blueprint/app/cli/writers
     type: background-worker
     name: Writers (External)
     external: true
     properties:
-      filepath: app/packages/cli/src/writers/componentLevelWriter.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2200
+      x: -5420
       y: -204
 dependencies:
   - from: blueprint/app/core/generatejsonschema
@@ -3255,8 +3452,12 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/cli/analysis/adapters
+  - from: blueprint/app/cli/analysis/adapters/parsing
     to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/adapters/parsing
+    to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
   - from: blueprint/app/cli/analysis/domain
@@ -3267,6 +3468,10 @@ dependencies:
     to: blueprint/app/core/cli
     type: direct-call
     description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/domain/languages
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
   - from: blueprint/app/cli/analysis/domain
     to: blueprint/app/core/import-iac
     type: direct-call
@@ -3311,28 +3516,112 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/ui/features
+  - from: blueprint/app/designer/ui/features/workspace/components/searchbar
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/ui/features
+  - from: blueprint/app/designer/ui/features/workspace/components/importiacdialog
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/importiacdialog
     to: blueprint/app/core/import-iac
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/ui/features
+  - from: blueprint/app/designer/ui/features/workspace/components
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/propertypanel
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components
     to: blueprint/app/core/resilience
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/ui/features
+  - from: blueprint/app/designer/ui/features/workspace/components/propertypanel
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/propertypanel
     to: blueprint/app/core/recommendations
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/ui/features
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog
     to: blueprint/app/core/import-mermaid
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/ui/features
+  - from: blueprint/app/designer/ui/features/workspace/components
+    to: blueprint/app/core/import-mermaid
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/sourcecodedialog
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/codeviewer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/breadcrumbs
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/hooks
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics
     to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/forensics
+    to: blueprint/app/core/recommendations
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/recommendations
+    to: blueprint/app/core/recommendations
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/resilience/components
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/resilience/components
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/resilience/components
+    to: blueprint/app/core/recommendations
     type: direct-call
     description: '@archlens/core'
   - from: blueprint/app/designer/core
@@ -3415,15 +3704,39 @@ dependencies:
     to: blueprint/app/core/layout
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/application/store
+  - from: blueprint/app/designer/application/store/states
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/iostate
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states
     to: blueprint/app/core/import-iac
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/application/store
+  - from: blueprint/app/designer/application/store/states
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states
     to: blueprint/app/core/forensics
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/application/store
+  - from: blueprint/app/designer/application/store/states
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate
     to: blueprint/app/core/import-mermaid
     type: direct-call
     description: '@archlens/core'

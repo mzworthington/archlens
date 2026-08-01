@@ -98,12 +98,10 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 1
-      loc: 18
-      sloc: 1
-      churn: 4
-      lineChurn: 68
-      churn30: 1
-      churn365: 4
+      churn: 9
+      lineChurn: 91
+      churn30: 2
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -120,6 +118,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
@@ -136,7 +135,86 @@ nodes:
         - 0
         - 0
         - 0
+        - 6
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+      hotspotScore: 0.00023845091067208087
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/frontend-internal/wiring
+    type: background-worker
+    name: Wiring
+    isTest: false
+    properties:
+      containerId: frontend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 30
+      churn: 26
+      lineChurn: 409
+      churn30: 6
+      churn365: 26
+      churnByWeek:
+        - 3
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 3
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 2
         - 3
         - 0
         - 0
@@ -153,118 +231,41 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 6
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.8076923076923077
       authors:
         - email: poldsberg@gmail.com
-          commits: 4
-      hotspotScore: 0.00023845091067208087
-      sinceDays: 365
-  - entityRef: backstage/packages/frontend-internal/wiring
-    type: background-worker
-    name: Wiring
-    isTest: false
-    properties:
-      filepath: packages/frontend-internal/src/wiring/createExtensionDataContainer.ts
-      containerId: frontend-internal
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 10
-      complexityPeak: 10
-      cognitiveComplexity: 30
-      functionCount: 6
-      loc: 71
-      sloc: 49
-      churn: 3
-      lineChurn: 78
-      churn30: 1
-      churn365: 3
-      churnByWeek:
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
+          commits: 21
+        - email: ben@blam.sh
           commits: 3
+        - email: aramis.sennyey@doordash.com
+          commits: 2
       hotspotScore: 0.0027351722106503397
       classifications:
         - knowledge-silo
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 1
   - entityRef: backstage/packages/frontend-internal/routing
     type: rest-api
     name: Routing
     isTest: false
     properties:
-      filepath: packages/frontend-internal/src/routing/OpaqueRouteRef.ts
       containerId: frontend-internal
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 70
-      churn30: 1
-      churn365: 2
+      churn: 8
+      lineChurn: 240
+      churn30: 4
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -281,7 +282,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -314,7 +315,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -323,9 +324,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 8
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
     type: gateway-api
     name: Apis (External)
@@ -343,7 +347,6 @@ nodes:
     name: App (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/app/createExtensionTester.test.tsx
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
@@ -367,7 +370,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/components/ExtensionSuspense.tsx
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -463,7 +465,6 @@ nodes:
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/routing/describeParentCallSite.test.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -475,7 +476,6 @@ nodes:
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/routing/RouteTracker.tsx
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
@@ -487,7 +487,6 @@ nodes:
     name: System (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/system/helpers.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
@@ -499,7 +498,6 @@ nodes:
     name: Tree (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
@@ -511,7 +509,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -523,7 +520,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import

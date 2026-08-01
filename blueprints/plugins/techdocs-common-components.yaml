@@ -248,7 +248,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/scaffolder/src/components/TemplateTypePicker/TemplateTypePicker.tsx
       containerId: scaffolder
       technology: React Component
       classification: ui-import
@@ -260,31 +259,17 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/catalog/src/components/EntityOrphanWarning/EntityOrphanWarning.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
     position:
       x: -2430
       y: -204
-  - entityRef: backstage/plugins/techdocs/reader/components
-    type: gateway-api
-    name: Components (External)
-    external: true
-    properties:
-      filepath: plugins/techdocs/src/reader/components/TechDocsRedirectNotification/TechDocsRedirectNotification.tsx
-      containerId: techdocs
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 2170
-      y: -204
   - entityRef: backstage/plugins/techdocs/home/components
     type: gateway-api
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/techdocs/src/home/components/TechDocsPageWrapper.tsx
       containerId: techdocs
       technology: React Component
       classification: ui-import
@@ -344,7 +329,6 @@ nodes:
     name: Hooks (External)
     external: true
     properties:
-      filepath: plugins/techdocs/src/hooks/useTechDocsSearch.ts
       containerId: techdocs
       technology: React Component
       classification: ui-import
@@ -356,7 +340,6 @@ nodes:
     name: Prepare (External)
     external: true
     properties:
-      filepath: plugins/techdocs-node/src/stages/prepare/preparers.ts
       containerId: techdocs-node
       technology: TypeScript Domain Service
       classification: default
@@ -375,12 +358,22 @@ nodes:
     position:
       x: 2630
       y: -204
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage
+    type: gateway-api
+    name: Techdocsreaderpage (External)
+    external: true
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 2170
+      y: -204
   - entityRef: backstage/plugins/scaffolder/components/templatelistpage
     type: gateway-api
     name: Templatelistpage (External)
     external: true
     properties:
-      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/TemplateListPage.test.tsx
       containerId: scaffolder
       technology: React Component
       classification: ui-import
@@ -408,7 +401,7 @@ dependencies:
     to: backstage/plugins/techdocs-common/constants
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/reader/components
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage
     to: backstage/plugins/techdocs-common/index
     type: direct-call
     description: '@backstage/plugin-techdocs-common'

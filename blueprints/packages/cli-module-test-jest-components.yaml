@@ -14,21 +14,17 @@ nodes:
     name: Repo
     isTest: false
     properties:
-      filepath: packages/cli-module-test-jest/src/commands/repo/test.test.ts
       containerId: cli-module-test-jest
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 8
-      loc: 104
-      sloc: 74
-      churn: 3
-      lineChurn: 107
-      churn30: 1
-      churn365: 3
+      complexity: 27
+      complexityPeak: 27
+      cognitiveComplexity: 241
+      churn: 7
+      lineChurn: 567
+      churn30: 2
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -62,13 +58,9 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
-        - 0
-        - 2
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -82,18 +74,25 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 0
+        - 0
+        - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.3333333333333333
+      topAuthorPercent: 0.5714285714285714
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
+        - email: freben@spotify.com
+          commits: 2
         - email: freben@gmail.com
           commits: 1
-        - email: freben@spotify.com
-          commits: 1
-      hotspotScore: 0.0007504190424091957
+      hotspotScore: 0.043552357508047715
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-test-jest/commands/package
     type: background-worker
     name: Package

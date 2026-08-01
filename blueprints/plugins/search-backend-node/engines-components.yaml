@@ -1,0 +1,151 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search-backend-node/engines
+  name: Engines Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/search-backend-node/engines/lunr-search-engine-test
+    type: background-worker
+    name: LunrSearchEngine
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-node/src/engines/LunrSearchEngine.test.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-node/engines/lunr-search-engine
+    type: background-worker
+    name: LunrSearchEngine
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-node/src/engines/LunrSearchEngine.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer
+    type: background-worker
+    name: LunrSearchEngineIndexer
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-node/src/engines/LunrSearchEngineIndexer.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-node/engines/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-node/src/engines/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer-test
+    type: background-worker
+    name: LunrSearchEngineIndexer
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-node/src/engines/LunrSearchEngineIndexer.test.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/search-backend-node/indexing
+    type: background-worker
+    name: Indexing (External)
+    external: true
+    properties:
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/search-backend-node/test-utils
+    type: background-worker
+    name: Test utils (External)
+    external: true
+    properties:
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-test
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-test
+    to: backstage/plugins/search-backend-node/engines/lunr-search-engine
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-test
+    to: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-test
+    to: backstage/plugins/search-backend-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-test
+    to: backstage/plugins/search-backend-node/test-utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine
+    to: backstage/plugins/search-backend-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine
+    to: backstage/plugins/search-backend-node/errors/errors
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine
+    to: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer
+    to: backstage/plugins/search-backend-node/indexing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/index
+    to: backstage/plugins/search-backend-node/engines/lunr-search-engine
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/index
+    to: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer-test
+    to: backstage/plugins/search-backend-node/test-utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer-test
+    to: backstage/plugins/search-backend-node/engines/lunr-search-engine-indexer
+    type: direct-call
+    description: Calls module / service

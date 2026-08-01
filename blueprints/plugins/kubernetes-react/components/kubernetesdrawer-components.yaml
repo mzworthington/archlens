@@ -1,0 +1,109 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-react/components/kubernetesdrawer
+  name: Kubernetesdrawer Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-react/components/kubernetesdrawer/manifest-yaml
+    type: gateway-api
+    name: ManifestYaml
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/KubernetesDrawer/ManifestYaml.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/kubernetesdrawer/kubernetes-structured-metadata-table-drawer
+    type: gateway-api
+    name: KubernetesStructuredMetadataTableDrawer
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/KubernetesDrawer/KubernetesStructuredMetadataTableDrawer.tsx
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-react/components/kubernetesdrawer/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/KubernetesDrawer/index.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-react/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-react/components/kubernetesdrawer/manifest-yaml
+    to: backstage/plugins/kubernetes-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/kubernetesdrawer/kubernetes-structured-metadata-table-drawer
+    to: backstage/plugins/kubernetes-react/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/kubernetesdrawer/kubernetes-structured-metadata-table-drawer
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/components/kubernetesdrawer/kubernetes-structured-metadata-table-drawer
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/kubernetesdrawer/kubernetes-structured-metadata-table-drawer
+    to: backstage/plugins/kubernetes-react/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/kubernetesdrawer/index
+    to: backstage/plugins/kubernetes-react/components
+    type: direct-call
+    description: Calls module / service

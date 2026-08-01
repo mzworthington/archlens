@@ -1,0 +1,137 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/repo-tools/commands/package-docs
+  name: Package docs Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/repo-tools/commands/package-docs/cache-test
+    type: cache-store
+    name: Cache
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/Cache.test.ts
+      containerId: repo-tools
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/repo-tools/commands/package-docs/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/utils.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/package-docs/cache
+    type: cache-store
+    name: Cache
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/Cache.ts
+      containerId: repo-tools
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/packages/repo-tools/commands/package-docs/constants
+    type: background-worker
+    name: Constants
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/constants.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/package-docs/command
+    type: background-worker
+    name: Command
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/package-docs/command.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/repo-tools/commands/package-docs/cache-test
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/repo-tools/commands/package-docs/cache-test
+    to: backstage/packages/repo-tools/commands/package-docs/cache
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/package-docs/cache-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/repo-tools/commands/package-docs/utils
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/package-docs/cache
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/repo-tools/commands/package-docs/cache
+    to: backstage/packages/repo-tools/commands/package-docs/constants
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/package-docs/command
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/package-docs/command
+    to: backstage/packages/repo-tools/paths/paths
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/package-docs/command
+    to: backstage/packages/repo-tools/commands/package-docs/utils
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/package-docs/command
+    to: backstage/packages/repo-tools/commands/package-docs/cache
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/repo-tools/commands/package-docs/command
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'

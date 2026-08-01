@@ -1,0 +1,301 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage
+  name: Cataloggraphpage Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-kinds-filter-test
+    type: gateway-api
+    name: SelectedKindsFilter
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SelectedKindsFilter.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/direction-filter
+    type: gateway-api
+    name: DirectionFilter
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/DirectionFilter.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/direction-filter-test
+    type: gateway-api
+    name: DirectionFilter
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/DirectionFilter.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/use-catalog-graph-page
+    type: gateway-api
+    name: UseCatalogGraphPage
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/useCatalogGraphPage.ts
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/curve-filter
+    type: gateway-api
+    name: CurveFilter
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/CurveFilter.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/switch-filter
+    type: gateway-api
+    name: SwitchFilter
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SwitchFilter.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/use-catalog-graph-page-test
+    type: gateway-api
+    name: UseCatalogGraphPage
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/useCatalogGraphPage.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-kinds-filter
+    type: gateway-api
+    name: SelectedKindsFilter
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SelectedKindsFilter.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/curve-filter-test
+    type: gateway-api
+    name: CurveFilter
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/CurveFilter.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-relations-filter-test
+    type: gateway-api
+    name: SelectedRelationsFilter
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SelectedRelationsFilter.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/max-depth-filter-test
+    type: gateway-api
+    name: MaxDepthFilter
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/MaxDepthFilter.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/index.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/max-depth-filter
+    type: gateway-api
+    name: MaxDepthFilter
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/MaxDepthFilter.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-relations-filter
+    type: gateway-api
+    name: SelectedRelationsFilter
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SelectedRelationsFilter.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/catalog-graph-page-test
+    type: gateway-api
+    name: CatalogGraphPage
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/CatalogGraphPage.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/components/cataloggraphpage/switch-filter-test
+    type: gateway-api
+    name: SwitchFilter
+    isTest: true
+    properties:
+      filepath: plugins/catalog-graph/src/components/CatalogGraphPage/SwitchFilter.test.tsx
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/plugins/catalog-graph/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/catalog-graph/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-kinds-filter-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/direction-filter
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/direction-filter
+    to: backstage/plugins/catalog-graph/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/direction-filter-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/use-catalog-graph-page
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/curve-filter
+    to: backstage/plugins/catalog-graph/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/use-catalog-graph-page-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/use-catalog-graph-page-test
+    to: backstage/plugins/catalog-graph/components/cataloggraphpage/use-catalog-graph-page
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-kinds-filter
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-kinds-filter
+    to: backstage/plugins/catalog-graph/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-relations-filter-test
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-relations-filter-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/index
+    to: backstage/plugins/catalog-graph/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/max-depth-filter
+    to: backstage/plugins/catalog-graph/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-relations-filter
+    to: backstage/plugins/catalog-graph/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/selected-relations-filter
+    to: backstage/plugins/catalog-graph/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/catalog-graph-page-test
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/catalog-graph-page-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-graph/components/cataloggraphpage/catalog-graph-page-test
+    to: backstage/plugins/catalog-graph/components
+    type: direct-call
+    description: Calls module / service

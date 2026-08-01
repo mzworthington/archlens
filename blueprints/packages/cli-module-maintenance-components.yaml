@@ -14,18 +14,17 @@ nodes:
     name: Repo
     isTest: false
     properties:
-      filepath: packages/cli-module-maintenance/src/commands/repo/list-deprecations.ts
       containerId: cli-module-maintenance
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 107
-      churn30: 1
-      churn365: 2
+      complexity: 24
+      complexityPeak: 24
+      cognitiveComplexity: 245
+      churn: 10
+      lineChurn: 700
+      churn30: 2
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -58,6 +57,8 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 4
         - 0
         - 0
         - 0
@@ -69,24 +70,27 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.7
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
-      hotspotScore: 0
+          commits: 5
+        - email: vincenzos@spotify.com
+          commits: 5
+      hotspotScore: 0.04990637295125081
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/cli-module-maintenance/index
     type: background-worker
     name: Index

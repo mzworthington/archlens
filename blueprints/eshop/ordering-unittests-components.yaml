@@ -90,7 +90,6 @@ nodes:
     name: Application Layer
     isTest: true
     properties:
-      filepath: tests/Ordering.UnitTests/Application/NewOrderCommandHandlerTest.cs
       containerId: ordering-unittests
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
@@ -98,93 +97,8 @@ nodes:
       complexity: 25
       complexityPeak: 25
       cognitiveComplexity: 168
-      functionCount: 6
-      loc: 84
-      sloc: 65
-      churn: 1
-      lineChurn: 2
-      churn30: 0
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: joperezr@microsoft.com
-          commits: 1
-      hotspotScore: 0.020618556701030927
-      classifications:
-        - knowledge-silo
-      sinceDays: 365
-  - entityRef: eshop/ordering-unittests/domain
-    type: background-worker
-    name: Domain Layer
-    isTest: true
-    properties:
-      filepath: tests/Ordering.UnitTests/Domain/BuyerAggregateTest.cs
-      containerId: ordering-unittests
-      technology: C# Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 8
-      loc: 131
-      sloc: 91
       churn: 2
-      lineChurn: 6
+      lineChurn: 4
       churn30: 0
       churn365: 2
       churnByWeek:
@@ -241,21 +155,107 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 1
+      topAuthorPercent: 1
       authors:
-        - email: amauryleve@microsoft.com
-          commits: 1
         - email: joperezr@microsoft.com
           commits: 1
-      hotspotScore: 0
+        - email: amauryleve@microsoft.com
+          commits: 1
+      hotspotScore: 0.020618556701030927
+      classifications:
+        - knowledge-silo
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: eshop/ordering-unittests/domain
+    type: background-worker
+    name: Domain Layer
+    isTest: true
+    properties:
+      containerId: ordering-unittests
+      technology: C# Domain Service
+      classification: default
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 2
+      churn: 5
+      lineChurn: 24
+      churn30: 0
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
+      authors:
+        - email: amauryleve@microsoft.com
+          commits: 3
+        - email: joperezr@microsoft.com
+          commits: 2
+      hotspotScore: 0.003436426116838488
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-domain/aggregatesmodel
     type: relational-database
     name: AggregatesModel Layer (External)
     external: true
     properties:
-      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs
       containerId: ordering-domain
       technology: Entity Framework / DB Context
       classification: database-marker
@@ -267,7 +267,6 @@ nodes:
     name: Application Layer (External)
     external: true
     properties:
-      filepath: src/Ordering.API/Application/Queries/OrderQueries.cs
       containerId: ordering-api
       technology: C# Event Client
       classification: event-marker

@@ -1,0 +1,277 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/ui/components/table
+  name: Table Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/ui/components/table/components
+    type: gateway-api
+    name: Components
+    isTest: false
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 31
+      churn: 99
+      lineChurn: 2802
+      churn30: 10
+      churn365: 99
+      churnByWeek:
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 16
+        - 0
+        - 0
+        - 1
+        - 8
+        - 0
+        - 6
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 5
+        - 0
+        - 3
+        - 1
+        - 0
+        - 8
+        - 0
+        - 9
+        - 8
+        - 1
+        - 10
+        - 1
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 7
+      topAuthorPercent: 0.48484848484848486
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 42
+        - email: charles.dedreuille@gmail.com
+          commits: 33
+        - email: poldsberg@gmail.com
+          commits: 10
+        - email: jroebuck@spotify.com
+          commits: 8
+        - email: g.rantila@gmail.com
+          commits: 4
+        - email: rgileborg@spotify.com
+          commits: 1
+        - email: 52410024+jabrks@users.noreply.github.com
+          commits: 1
+      hotspotScore: 0.04682755089874953
+      sinceDays: 365
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/ui/components/table/hooks
+    type: gateway-api
+    name: Hooks
+    isTest: false
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 68
+      churn: 52
+      lineChurn: 3162
+      churn30: 11
+      churn365: 52
+      churnByWeek:
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 2
+        - 6
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 5
+        - 1
+        - 0
+        - 0
+        - 6
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 11
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.46153846153846156
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 21
+        - email: charles.dedreuille@gmail.com
+          commits: 12
+        - email: poldsberg@gmail.com
+          commits: 11
+        - email: jroebuck@spotify.com
+          commits: 4
+        - email: g.rantila@gmail.com
+          commits: 4
+      hotspotScore: 0.02643999803628662
+      sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/ui/components/table/definition
+    type: background-worker
+    name: Definition
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/definition.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/table/types
+    type: gateway-api
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/types.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/index.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/ui/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/ui/components/table/definition
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/definition
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/types
+    to: backstage/packages/ui/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/types
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/index
+    to: backstage/packages/ui/components/table/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/index
+    to: backstage/packages/ui/components/table/hooks/use-table
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/index
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/index
+    to: backstage/packages/ui/components/table/hooks/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/index
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service

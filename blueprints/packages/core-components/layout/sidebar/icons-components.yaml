@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-components/layout/sidebar/icons
+  name: Icons Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/packages/core-components/layout/sidebar/icons/double-arrow-right
+    type: background-worker
+    name: DoubleArrowRight
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/icons/DoubleArrowRight.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/sidebar/icons/double-arrow-left
+    type: background-worker
+    name: DoubleArrowLeft
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/icons/DoubleArrowLeft.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+dependencies: []

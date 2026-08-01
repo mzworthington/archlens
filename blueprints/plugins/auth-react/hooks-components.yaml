@@ -1,0 +1,109 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-react/hooks
+  name: Hooks Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/auth-react/hooks/usecookieauthrefresh
+    type: gateway-api
+    name: Usecookieauthrefresh
+    isTest: false
+    properties:
+      containerId: auth-react
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 398
+      churn30: 2
+      churn365: 2
+      hotspotScore: 0
+      authorCount: 1
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      topAuthorPercent: 1
+      sinceDays: 365
+      shortChurnDays: 30
+  - entityRef: backstage/plugins/auth-react/hooks/use-cookie-auth-refresh
+    type: gateway-api
+    name: UseCookieAuthRefresh
+    isTest: false
+    properties:
+      filepath: plugins/auth-react/src/hooks/useCookieAuthRefresh/useCookieAuthRefresh.tsx
+      containerId: auth-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/auth-react/hooks/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/auth-react/src/hooks/index.ts
+      containerId: auth-react
+      technology: TypeScript Domain Service
+      classification: default
+dependencies: []

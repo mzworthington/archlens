@@ -248,18 +248,15 @@ nodes:
     name: Collators
     isTest: false
     properties:
-      filepath: plugins/search-backend-module-catalog/src/collators/defaultCatalogCollatorEntityTransformer.ts
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 54
-      churn30: 1
-      churn365: 1
+      churn: 10
+      lineChurn: 836
+      churn30: 8
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -286,6 +283,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
@@ -308,19 +306,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
+        - 8
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 8
+        - email: freben@gmail.com
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend-node/alpha
     type: background-worker
     name: Alpha (External)
@@ -410,7 +412,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

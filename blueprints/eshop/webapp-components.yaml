@@ -95,16 +95,13 @@ nodes:
     name: Components Layer
     isTest: false
     properties:
-      filepath: src/WebApp/Components/Chatbot/MessageProcessor.cs
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 2
-      loc: 36
-      sloc: 25
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
       churn: 0
       churn30: 0
       churn365: 0
@@ -163,24 +160,23 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/webapp/services
     type: rest-api
     name: Services Layer
     isTest: false
     properties:
-      filepath: src/WebApp/Services/OrderingService.cs
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 2
-      loc: 26
-      sloc: 21
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
       churn: 0
       churn30: 0
       churn365: 0
@@ -239,9 +235,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 21
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/webapp/program
     type: background-worker
     name: Program
@@ -321,7 +319,6 @@ nodes:
     name: Abstractions Layer (External)
     external: true
     properties:
-      filepath: src/EventBus/Abstractions/IEventBusBuilder.cs
       containerId: eventbus
       technology: C# Event Client
       classification: event-marker
@@ -381,7 +378,6 @@ nodes:
     name: Services Layer (External)
     external: true
     properties:
-      filepath: src/WebAppComponents/Services/IProductImageUrlProvider.cs
       containerId: webappcomponents
       technology: C# Domain Service
       classification: default

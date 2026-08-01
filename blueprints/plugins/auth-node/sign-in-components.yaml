@@ -1,0 +1,76 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-node/sign-in
+  name: Sign in Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/auth-node/sign-in/common-sign-in-resolvers
+    type: background-worker
+    name: CommonSignInResolvers
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/sign-in/commonSignInResolvers.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/sign-in/read-declarative-sign-in-resolver
+    type: background-worker
+    name: ReadDeclarativeSignInResolver
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/sign-in/readDeclarativeSignInResolver.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/sign-in/create-sign-in-resolver-factory
+    type: background-worker
+    name: CreateSignInResolverFactory
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/sign-in/createSignInResolverFactory.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/sign-in/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/sign-in/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/auth-node/sign-in/common-sign-in-resolvers
+    to: backstage/plugins/auth-node/sign-in/create-sign-in-resolver-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/sign-in/read-declarative-sign-in-resolver
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/sign-in/read-declarative-sign-in-resolver
+    to: backstage/plugins/auth-node/sign-in/create-sign-in-resolver-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/sign-in/create-sign-in-resolver-factory
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/sign-in/index
+    to: backstage/plugins/auth-node/sign-in/create-sign-in-resolver-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/sign-in/index
+    to: backstage/plugins/auth-node/sign-in/read-declarative-sign-in-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/sign-in/index
+    to: backstage/plugins/auth-node/sign-in/common-sign-in-resolvers
+    type: direct-call
+    description: Calls module / service

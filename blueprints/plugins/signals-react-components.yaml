@@ -14,18 +14,15 @@ nodes:
     name: Hooks
     isTest: false
     properties:
-      filepath: plugins/signals-react/src/hooks/useSignal.ts
       containerId: signals-react
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 52
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 68
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -75,7 +72,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -84,9 +81,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/signals-react/signalapi
     type: rest-api
     name: Signalapi
@@ -176,12 +176,10 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 34
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -231,7 +229,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -240,9 +238,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/signals/alpha
     type: gateway-api
     name: Alpha (External)
@@ -272,7 +273,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/notifications/src/components/UserNotificationSettingsCard/UserNotificationSettingsCard.tsx
       containerId: notifications
       technology: React Component
       classification: ui-import
@@ -332,7 +332,6 @@ nodes:
     name: Storageapi (External)
     external: true
     properties:
-      filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
       containerId: user-settings
       technology: React Component
       classification: ui-import

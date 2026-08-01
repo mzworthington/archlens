@@ -1,0 +1,92 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/user-settings/storageapi
+  name: Storageapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/user-settings/storageapi/user-settings-storage
+    type: gateway-api
+    name: UserSettingsStorage
+    isTest: false
+    properties:
+      filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.ts
+      containerId: user-settings
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/user-settings/storageapi/cache-map
+    type: rest-api
+    name: CacheMap
+    isTest: false
+    properties:
+      filepath: plugins/user-settings/src/apis/StorageApi/CacheMap.ts
+      containerId: user-settings
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/user-settings/storageapi/user-settings-storage-test
+    type: rest-api
+    name: UserSettingsStorage
+    isTest: true
+    properties:
+      filepath: plugins/user-settings/src/apis/StorageApi/UserSettingsStorage.test.ts
+      containerId: user-settings
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/user-settings/storageapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/user-settings/src/apis/StorageApi/index.ts
+      containerId: user-settings
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/signals-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/signals-react/src/api/index.ts
+      containerId: signals-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/user-settings-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/user-settings-common/src/index.ts
+      containerId: user-settings-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/user-settings/storageapi/user-settings-storage
+    to: backstage/plugins/signals-react/index
+    type: direct-call
+    description: '@backstage/plugin-signals-react'
+  - from: backstage/plugins/user-settings/storageapi/user-settings-storage
+    to: backstage/plugins/user-settings-common/index
+    type: direct-call
+    description: '@backstage/plugin-user-settings-common'
+  - from: backstage/plugins/user-settings/storageapi/user-settings-storage
+    to: backstage/plugins/user-settings/storageapi/cache-map
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/storageapi/user-settings-storage-test
+    to: backstage/plugins/user-settings/storageapi/user-settings-storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/user-settings/storageapi/index
+    to: backstage/plugins/user-settings/storageapi/user-settings-storage
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,55 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/create-app/components/root
+  name: Root Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/create-app/components/root/logo-full
+    type: background-worker
+    name: LogoFull
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/LogoFull.tsx
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/create-app/components/root/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/index.ts
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/create-app/components/root/logo-icon
+    type: background-worker
+    name: LogoIcon
+    isTest: false
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/LogoIcon.tsx
+      containerId: create-app
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/create-app/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      filepath: packages/create-app/templates/legacy-app/packages/app/src/components/Root/Root.tsx
+      containerId: create-app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/create-app/components/root/index
+    to: backstage/packages/create-app/components
+    type: direct-call
+    description: Calls module / service

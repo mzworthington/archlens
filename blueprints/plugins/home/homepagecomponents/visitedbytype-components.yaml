@@ -1,0 +1,168 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/home/homepagecomponents/visitedbytype
+  name: Visitedbytype Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/actions
+    type: gateway-api
+    name: Actions
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/Actions.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/visited-by-type-test
+    type: gateway-api
+    name: VisitedByType
+    isTest: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/VisitedByType.test.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/home-page-visited-by-type-stories
+    type: gateway-api
+    name: HomePageVisitedByType.stories
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/HomePageVisitedByType.stories.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/recently-visited
+    type: background-worker
+    name: RecentlyVisited
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/RecentlyVisited.tsx
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/content
+    type: gateway-api
+    name: Content
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/Content.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/top-visited
+    type: background-worker
+    name: TopVisited
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/TopVisited.tsx
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/content-test
+    type: gateway-api
+    name: Content
+    isTest: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/Content.test.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/context
+    type: gateway-api
+    name: Context
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/Context.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents/visitedbytype/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/VisitedByType/index.ts
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/home/homepagecomponents
+    type: gateway-api
+    name: Homepagecomponents (External)
+    external: true
+    properties:
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/home-react/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/home-react/src/index.ts
+      containerId: home-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/actions
+    to: backstage/plugins/home/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/visited-by-type-test
+    to: backstage/plugins/home/homepagecomponents
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/home-page-visited-by-type-stories
+    to: backstage/plugins/home/plugin/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/home-page-visited-by-type-stories
+    to: backstage/plugins/home/visitsapi/visits-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/home-page-visited-by-type-stories
+    to: backstage/plugins/home-react/index
+    type: direct-call
+    description: '@backstage/plugin-home-react'
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/content
+    to: backstage/plugins/home/config/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/content
+    to: backstage/plugins/home/homepagecomponents
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/content
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/content-test
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/visitedbytype/context
+    to: backstage/plugins/home/visitsapi/visits-api
+    type: direct-call
+    description: Calls module / service

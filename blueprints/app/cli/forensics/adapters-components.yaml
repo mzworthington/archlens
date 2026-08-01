@@ -1,0 +1,337 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/cli/forensics/adapters
+  name: Adapters Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/cli/forensics/adapters/source-file-walk-test
+    type: background-worker
+    name: SourceFileWalk
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/sourceFileWalk.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/tree-sitter-complexity-test
+    type: background-worker
+    name: TreeSitterComplexity
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/treeSitterComplexity.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/source-file-walk
+    type: background-worker
+    name: SourceFileWalk
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/sourceFileWalk.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    type: background-worker
+    name: TreeSitterComplexity
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/treeSitterComplexity.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/git-log-history
+    type: background-worker
+    name: GitLogHistory
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/gitLogHistory.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/tree-sitter-import-graph
+    type: background-worker
+    name: TreeSitterImportGraph
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/treeSitterImportGraph.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/load-forensics-config
+    type: background-worker
+    name: LoadForensicsConfig
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/loadForensicsConfig.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/git-log-history-test
+    type: background-worker
+    name: GitLogHistory
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/gitLogHistory.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/source-file-lister
+    type: background-worker
+    name: SourceFileLister
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/sourceFileLister.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/adapters/source-file-lister-test
+    type: background-worker
+    name: SourceFileLister
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/forensics/adapters/sourceFileLister.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/cancellation
+    type: background-worker
+    name: Cancellation (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/cancellation.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: Forensics (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1710
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2170
+      y: 404
+  - entityRef: blueprint/app/cli/forensics/domain/options
+    type: background-worker
+    name: Options (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/forensics/domain/options.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/ports
+    type: background-worker
+    name: Ports (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/ports.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/app/cli/forensics/domain/ports
+    type: background-worker
+    name: Ports (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/forensics/domain/ports.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/adapters/pathfilter/source-path-filter
+    type: background-worker
+    name: SourcePathFilter (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/pathFilter/sourcePathFilter.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    type: background-worker
+    name: TreeSitterForensics (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterForensics.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1970
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-loader
+    type: background-worker
+    name: TreeSitterLoader (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/adapters/parsing/treeSitterLoader.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: blueprint/app/cli/forensics/domain/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/forensics/domain/types.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+dependencies:
+  - from: blueprint/app/cli/forensics/adapters/source-file-walk-test
+    to: blueprint/app/cli/forensics/adapters/source-file-walk
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity-test
+    to: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/cli/analysis/domain/ports
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/cli/analysis/domain/cancellation
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/cli/forensics/domain/options
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/cli/forensics/domain/ports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/cli/forensics/domain/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-loader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-complexity
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/git-log-history
+    to: blueprint/app/cli/analysis/domain/cancellation
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/forensics/adapters/git-log-history
+    to: blueprint/app/cli/forensics/domain/options
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/git-log-history
+    to: blueprint/app/cli/forensics/domain/ports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/git-log-history
+    to: blueprint/app/cli/forensics/domain/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-import-graph
+    to: blueprint/app/cli/analysis/domain/cancellation
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-import-graph
+    to: blueprint/app/cli/forensics/domain/options
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-import-graph
+    to: blueprint/app/cli/forensics/domain/ports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-import-graph
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-forensics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-import-graph
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/forensics/adapters/tree-sitter-import-graph
+    to: blueprint/app/cli/analysis/adapters/parsing/tree-sitter-loader
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/load-forensics-config
+    to: blueprint/app/cli/forensics/domain/options
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/git-log-history-test
+    to: blueprint/app/cli/forensics/adapters/git-log-history
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/source-file-lister
+    to: blueprint/app/cli/analysis/adapters/pathfilter/source-path-filter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/source-file-lister
+    to: blueprint/app/cli/analysis/domain/cancellation
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/forensics/adapters/source-file-lister
+    to: blueprint/app/cli/forensics/domain/options
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/source-file-lister
+    to: blueprint/app/cli/forensics/domain/ports
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/source-file-lister
+    to: blueprint/app/cli/forensics/adapters/source-file-walk
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/forensics/adapters/source-file-lister-test
+    to: blueprint/app/cli/forensics/adapters/source-file-lister
+    type: direct-call
+    description: Calls module / service

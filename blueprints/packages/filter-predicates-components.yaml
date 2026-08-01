@@ -14,21 +14,17 @@ nodes:
     name: Predicates
     isTest: false
     properties:
-      filepath: packages/filter-predicates/src/predicates/schema.ts
       containerId: filter-predicates
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 7
-      loc: 142
-      sloc: 91
-      churn: 4
-      lineChurn: 206
-      churn30: 1
-      churn365: 4
+      complexity: 14
+      complexityPeak: 14
+      cognitiveComplexity: 70
+      churn: 26
+      lineChurn: 1918
+      churn30: 10
+      churn365: 26
       churnByWeek:
         - 0
         - 0
@@ -53,24 +49,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 1
+        - 4
+        - 3
+        - 2
         - 0
         - 0
         - 0
@@ -78,22 +62,39 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 4
         - 0
         - 0
         - 0
         - 0
-      authorCount: 3
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
-        - email: freben@spotify.com
-          commits: 1
+          commits: 12
         - email: freben@gmail.com
+          commits: 9
+        - email: freben@spotify.com
+          commits: 4
+        - email: gabriel.dugny@believe.com
           commits: 1
-      hotspotScore: 0.0014447319881896667
+      hotspotScore: 0.008443967542623101
       sinceDays: 365
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/filter-predicates/index
     type: background-worker
     name: Index
@@ -201,7 +202,6 @@ nodes:
     name: Definitions (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/definitions/AlertApi.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
@@ -249,7 +249,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: packages/catalog-client/src/testUtils.ts
       containerId: catalog-client
       technology: TypeScript Domain Service
       classification: default
@@ -261,7 +260,6 @@ nodes:
     name: Tree (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
@@ -285,7 +283,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -297,7 +294,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
@@ -309,7 +305,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-internal/src/wiring/createExtensionDataContainer.ts
       containerId: frontend-internal
       technology: TypeScript Domain Service
       classification: default

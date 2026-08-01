@@ -170,26 +170,24 @@ nodes:
     name: Defaults
     isTest: false
     properties:
-      filepath: packages/app-defaults/src/defaults/themes.tsx
       containerId: app-defaults
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 2
-      loc: 45
-      sloc: 27
-      churn: 3
-      lineChurn: 60
-      churn30: 1
-      churn365: 3
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 12
+      churn: 15
+      lineChurn: 780
+      churn30: 6
+      churn365: 15
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
@@ -198,23 +196,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 2
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
+        - 1
         - 0
         - 0
         - 0
@@ -238,15 +221,40 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
+        - 1
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
       topAuthorPercent: 0.6666666666666666
       authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: kamezaki@ap-com.co.jp
+          commits: 4
         - email: gothuey.gael@gmail.com
           commits: 2
-        - email: poldsberg@gmail.com
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0.00021039786235771844
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: yannik@daellenbach.org
+          commits: 1
+      hotspotScore: 0.010646131835300554
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/app-defaults/index
     type: background-worker
     name: Index
@@ -354,7 +362,6 @@ nodes:
     name: Devapp (External)
     external: true
     properties:
-      filepath: packages/dev-utils/src/devApp/index.tsx
       containerId: dev-utils
       technology: React Component
       classification: ui-import
@@ -462,7 +469,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import

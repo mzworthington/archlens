@@ -14,7 +14,6 @@ nodes:
     name: Idempotency Layer
     isTest: false
     properties:
-      filepath: src/Ordering.Infrastructure/Idempotency/RequestManager.cs
       containerId: ordering-infrastructure
       technology: C# Domain Service
       classification: default
@@ -22,9 +21,6 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 3
-      loc: 39
-      sloc: 29
       churn: 0
       churn30: 0
       churn365: 0
@@ -83,15 +79,16 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-infrastructure/repositories
     type: relational-database
     name: Repositories Layer
     isTest: false
     properties:
-      filepath: src/Ordering.Infrastructure/Repositories/BuyerRepository.cs
       containerId: ordering-infrastructure
       technology: Entity Framework / DB Context
       classification: database-marker
@@ -99,9 +96,6 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 5
-      loc: 53
-      sloc: 43
       churn: 0
       churn30: 0
       churn365: 0
@@ -160,9 +154,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/ordering-infrastructure/mediatorextension
     type: background-worker
     name: MediatorExtension
@@ -322,16 +318,12 @@ nodes:
     name: EntityConfigurations Layer
     isTest: false
     properties:
-      filepath: src/Ordering.Infrastructure/EntityConfigurations/PaymentMethodEntityTypeConfiguration.cs
       containerId: ordering-infrastructure
       technology: C# Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 1
-      loc: 47
-      sloc: 36
       churn: 0
       churn30: 0
       churn365: 0
@@ -390,9 +382,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/integrationeventlogef/eventstateenum
     type: background-worker
     name: EventStateEnum (External)

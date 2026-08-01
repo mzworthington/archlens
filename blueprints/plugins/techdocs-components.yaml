@@ -19,56 +19,14 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 218
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      complexityPeak: 1
+      churn: 24
+      lineChurn: 909
+      churn30: 3
+      churn365: 24
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -80,34 +38,101 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 2
+        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 1
+        - 1
+        - 1
+        - 0
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 7
+      topAuthorPercent: 0.625
       authors:
         - email: poldsberg@gmail.com
+          commits: 14
+        - email: itsmiteshkumar98@gmail.com
+          commits: 3
+        - email: bbera@coveo.com
+          commits: 2
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: heikki.hellgren@op.fi
           commits: 1
-      hotspotScore: 0
+        - email: johanopersson@gmail.com
+          commits: 1
+        - email: andreas@berger-ecommerce.com
+          commits: 1
+      hotspotScore: 0.0021670979822844996
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs/reader/components
     type: gateway-api
     name: Components
     isTest: false
     properties:
-      filepath: plugins/techdocs/src/reader/components/TechDocsRedirectNotification/TechDocsRedirectNotification.tsx
       containerId: techdocs
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 75
-      churn30: 1
-      churn365: 2
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 34
+      churn: 35
+      lineChurn: 3255
+      churn30: 15
+      churn365: 35
       churnByWeek:
         - 0
         - 0
         - 0
+        - 2
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 6
         - 0
         - 0
         - 0
@@ -119,6 +144,13 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 3
         - 1
         - 0
         - 0
@@ -134,54 +166,50 @@ nodes:
         - 0
         - 0
         - 0
+        - 15
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 5
+      topAuthorPercent: 0.5142857142857142
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 17
         - email: itsmiteshkumar98@gmail.com
+          commits: 7
+        - email: gabriel.dugny@believe.com
+          commits: 3
+        - email: timeloveinvent+github@gmail.com
+          commits: 2
+        - email: kyle.opperman@ing.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
+        - email: luc@spreadshirt.net
+          commits: 1
+      hotspotScore: 0.010144683596681324
       sinceDays: 365
-  - entityRef: backstage/plugins/techdocs/reader/transformers
-    type: gateway-api
-    name: Transformers
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsredirectnotification
+    type: background-worker
+    name: Techdocsredirectnotification
     isTest: false
     properties:
-      filepath: plugins/techdocs/src/reader/transformers/renderReactElement.ts
+      filepath: plugins/techdocs/src/reader/components/TechDocsRedirectNotification/index.ts
       containerId: techdocs
-      technology: React Component
-      classification: ui-import
+      technology: TypeScript Domain Service
+      classification: default
     forensics:
       complexity: 0
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 35
+      lineChurn: 17
       churn30: 1
       churn365: 1
       churnByWeek:
@@ -245,6 +273,764 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpagesubheader
+    type: background-worker
+    name: Techdocsreaderpagesubheader
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/components/TechDocsReaderPageSubheader/index.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpage
+    type: gateway-api
+    name: Techdocsreaderpage
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 8
+      churn: 14
+      lineChurn: 1748
+      churn30: 6
+      churn365: 14
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7142857142857143
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: gabriel.dugny@believe.com
+          commits: 4
+        - email: timeloveinvent+github@gmail.com
+          commits: 3
+        - email: kyle.opperman@ing.com
+          commits: 1
+      hotspotScore: 0.004278089867940275
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpagecontent
+    type: gateway-api
+    name: Techdocsreaderpagecontent
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 8
+      lineChurn: 968
+      churn30: 7
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.875
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: johanopersson@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/components/techdocsreaderpageheader
+    type: gateway-api
+    name: Techdocsreaderpageheader
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 4
+      lineChurn: 317
+      churn30: 2
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: luc@spreadshirt.net
+          commits: 1
+      hotspotScore: 0.0010484826807492969
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/transformers
+    type: gateway-api
+    name: Transformers
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 34
+      lineChurn: 2089
+      churn30: 27
+      churn365: 34
+      churnByWeek:
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 27
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.8529411764705882
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 27
+        - email: MegaManSec@users.noreply.github.com
+          commits: 4
+        - email: gabriel.dugny@believe.com
+          commits: 1
+        - email: johanopersson@gmail.com
+          commits: 1
+        - email: itsmiteshkumar98@gmail.com
+          commits: 1
+      hotspotScore: 0.0015429176572899351
+      sinceDays: 365
+      fileCount: 27
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/transformers/html
+    type: gateway-api
+    name: Html
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 8
+      churn: 13
+      lineChurn: 665
+      churn30: 7
+      churn365: 13
+      churnByWeek:
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.38461538461538464
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: gptdasmat@gmail.com
+          commits: 2
+        - email: kyle.opperman@ing.com
+          commits: 2
+        - email: jacksonc@spotify.com
+          commits: 2
+        - email: MegaManSec@users.noreply.github.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.0036468962808671197
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/transformers/html/hooks
+    type: background-worker
+    name: Hooks
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 15
+      lineChurn: 379
+      churn30: 5
+      churn365: 15
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: kyle.opperman@ing.com
+          commits: 5
+        - email: jacksonc@spotify.com
+          commits: 5
+      hotspotScore: 0.0017252624713332912
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/transformers/styles
+    type: gateway-api
+    name: Styles
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 6
+      lineChurn: 292
+      churn30: 4
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: jphilip@spotify.com
+          commits: 2
+      hotspotScore: 0.0003401432108116448
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/transformers/styles/rules
+    type: background-worker
+    name: Rules
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 17
+      lineChurn: 943
+      churn30: 9
+      churn365: 17
+      churnByWeek:
+        - 0
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.6470588235294118
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: jphilip@spotify.com
+          commits: 4
+        - email: thomas.cardonne@adevinta.com
+          commits: 2
+        - email: johanopersson@gmail.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.002545814134528393
+      sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs/reader
     type: background-worker
     name: Reader
@@ -406,18 +1192,15 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/techdocs/src/home/components/TechDocsPageWrapper.tsx
       containerId: techdocs
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 73
-      churn30: 1
-      churn365: 2
+      churn: 12
+      lineChurn: 890
+      churn30: 9
+      churn365: 12
       churnByWeek:
         - 0
         - 0
@@ -433,7 +1216,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -467,20 +1250,191 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 9
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 9
         - email: itsmiteshkumar98@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/home/components/tables
+    type: gateway-api
+    name: Tables
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 20
+      churn: 36
+      lineChurn: 1604
+      churn30: 12
+      churn365: 36
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 2
+        - 0
+        - 0
+        - 4
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 12
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6944444444444444
+      authors:
+        - email: itsmiteshkumar98@gmail.com
+          commits: 18
+        - email: poldsberg@gmail.com
+          commits: 12
+        - email: maratd@spotify.com
+          commits: 3
+        - email: ferinpatel79@gmail.com
+          commits: 2
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0.006816890740390078
+      sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/home/components/grids
+    type: gateway-api
+    name: Grids
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 9
+      lineChurn: 993
+      churn30: 7
+      churn365: 9
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7777777777777778
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+        - email: johanopersson@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs/home
     type: background-worker
     name: Home
@@ -642,18 +1596,15 @@ nodes:
     name: Test utils
     isTest: false
     properties:
-      filepath: plugins/techdocs/src/test-utils/fixtures/mkdocs-index.ts
       containerId: techdocs
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 1576
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 3254
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -703,7 +1654,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -712,9 +1663,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs/plugin
     type: gateway-api
     name: Plugin
@@ -1034,7 +1988,6 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/techdocs/src/search/components/TechDocsSearch.tsx
       containerId: techdocs
       technology: React Component
       classification: ui-import
@@ -1042,13 +1995,10 @@ nodes:
       complexity: 3
       complexityPeak: 3
       cognitiveComplexity: 3
-      functionCount: 9
-      loc: 132
-      sloc: 99
-      churn: 4
-      lineChurn: 204
-      churn30: 1
-      churn365: 4
+      churn: 9
+      lineChurn: 765
+      churn30: 5
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -1057,7 +2007,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -1098,22 +2048,27 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6666666666666666
       authors:
+        - email: poldsberg@gmail.com
+          commits: 5
         - email: itsmiteshkumar98@gmail.com
           commits: 2
-        - email: poldsberg@gmail.com
-          commits: 1
         - email: johanopersson@gmail.com
+          commits: 1
+        - email: sydneynicoleachinger@spotify.com
           commits: 1
       hotspotScore: 0.002146058196048728
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs/search/hooks
     type: gateway-api
     name: Hooks
@@ -1509,18 +2464,15 @@ nodes:
     name: Hooks
     isTest: false
     properties:
-      filepath: plugins/techdocs/src/hooks/useTechDocsSearch.ts
       containerId: techdocs
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 172
-      churn30: 1
-      churn365: 2
+      churn: 13
+      lineChurn: 1615
+      churn30: 7
+      churn365: 13
       churnByWeek:
         - 0
         - 0
@@ -1554,7 +2506,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 6
         - 0
         - 0
         - 0
@@ -1570,20 +2522,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.5384615384615384
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 7
         - email: johanopersson@gmail.com
-          commits: 1
+          commits: 6
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs/client
     type: gateway-api
     name: Client
@@ -1901,18 +2856,17 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/techdocs/src/alpha/components/TechDocsReaderLayout.tsx
       containerId: techdocs
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 80
-      churn30: 1
-      churn365: 2
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 7
+      churn: 25
+      lineChurn: 2920
+      churn30: 11
+      churn365: 25
       churnByWeek:
         - 0
         - 0
@@ -1946,7 +2900,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 14
         - 0
         - 0
         - 0
@@ -1962,20 +2916,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 11
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.56
       authors:
-        - email: poldsberg@gmail.com
-          commits: 1
         - email: johanopersson@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 14
+        - email: poldsberg@gmail.com
+          commits: 11
+      hotspotScore: 0.0061716706291597406
       sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-react/alpha
     type: gateway-api
     name: Alpha (External)
@@ -2065,7 +3022,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
       containerId: catalog-react
       technology: React Component
       classification: ui-import
@@ -2109,15 +3065,15 @@ dependencies:
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/reader/components
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/reader/components
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage
     to: backstage/plugins/techdocs/api
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/reader/components
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpage
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
@@ -2129,7 +3085,7 @@ dependencies:
     to: backstage/plugins/techdocs/hooks
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/reader/components
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpagecontent
     to: backstage/plugins/techdocs/reader
     type: direct-call
     description: Calls module / service
@@ -2141,7 +3097,7 @@ dependencies:
     to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/reader/components
+  - from: backstage/plugins/techdocs/reader/components/techdocsreaderpageheader
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
@@ -2221,31 +3177,43 @@ dependencies:
     to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/tables
     to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/tables
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/tables
     to: backstage/plugins/techdocs/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/tables
     to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/tables
     to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/tables
     to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/tables
+    to: backstage/plugins/techdocs/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/tables
+    to: backstage/plugins/techdocs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/tables
+    to: backstage/plugins/techdocs/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/home/components/tables
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
@@ -2257,43 +3225,31 @@ dependencies:
     to: backstage/plugins/techdocs/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/grids
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
-    to: backstage/plugins/techdocs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
-    to: backstage/plugins/techdocs/translation
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/grids
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/grids
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
-    to: backstage/plugins/techdocs/routes
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/grids
     to: backstage/plugins/techdocs/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/grids
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/grids
     to: backstage/plugins/techdocs/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/techdocs/home/components
+  - from: backstage/plugins/techdocs/home/components/grids
     to: backstage/plugins/techdocs/routes
     type: direct-call
     description: Calls module / service
@@ -2418,7 +3374,7 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-techdocs-react'
   - from: backstage/plugins/techdocs/hooks
-    to: backstage/plugins/techdocs/reader/components
+    to: backstage/plugins/techdocs/reader/components/techdocsreaderpagecontent
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/techdocs/hooks
@@ -2474,7 +3430,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/techdocs/overridablecomponents
-    to: backstage/plugins/techdocs/home/components
+    to: backstage/plugins/techdocs/home/components/grids
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/techdocs/client-test
@@ -2546,7 +3502,7 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/techdocs/components
-    to: backstage/plugins/techdocs/reader/components
+    to: backstage/plugins/techdocs/reader/components/techdocsreaderpagecontent
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/techdocs/components

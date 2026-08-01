@@ -20,12 +20,10 @@ nodes:
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 76
-      churn30: 1
-      churn365: 2
+      churn: 5
+      lineChurn: 114
+      churn30: 3
+      churn365: 5
       churnByWeek:
         - 0
         - 0
@@ -59,7 +57,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 0
         - 1
         - 0
@@ -75,20 +73,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.8
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
         - email: heikki.hellgren@op.fi
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/notifications/routes
     type: background-worker
     name: Routes
@@ -496,43 +497,19 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/notifications/src/components/UserNotificationSettingsCard/UserNotificationSettingsCard.tsx
       containerId: notifications
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 138
-      churn30: 1
-      churn365: 2
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 15
+      churn: 24
+      lineChurn: 2660
+      churn30: 6
+      churn365: 24
       churnByWeek:
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
         - 0
@@ -544,62 +521,80 @@ nodes:
         - 0
         - 0
         - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
         - 0
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 1
         - 0
+        - 4
         - 0
         - 0
         - 0
-      authorCount: 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 9
+        - email: heikki.hellgren@op.fi
+          commits: 8
         - email: yicai@redhat.com
-          commits: 1
-      hotspotScore: 0
+          commits: 5
+        - email: mukul.ambulgekar@autodesk.com
+          commits: 2
+      hotspotScore: 0.017084306423446737
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/notifications/components/usernotificationsettingscard
     type: gateway-api
     name: Usernotificationsettingscard
     isTest: false
     properties:
-      filepath: plugins/notifications/src/components/UserNotificationSettingsCard/NoBorderTableCell.tsx
       containerId: notifications
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 50
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      complexityPeak: 1
+      churn: 12
+      lineChurn: 668
+      churn30: 6
+      churn365: 12
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -633,44 +628,55 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 6
         - email: heikki.hellgren@op.fi
+          commits: 5
+        - email: yicai@redhat.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0004348222488726181
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/notifications/components/notificationstable
     type: gateway-api
     name: Notificationstable
     isTest: false
     properties:
-      filepath: plugins/notifications/src/components/NotificationsTable/SelectAll.tsx
       containerId: notifications
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 2
-      functionCount: 2
-      loc: 44
-      sloc: 27
-      churn: 3
-      lineChurn: 108
-      churn30: 1
-      churn365: 3
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      churn: 21
+      lineChurn: 865
+      churn30: 7
+      churn365: 21
       churnByWeek:
         - 0
         - 0
@@ -684,31 +690,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -725,15 +707,46 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.6666666666666666
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5238095238095238
       authors:
         - email: heikki.hellgren@op.fi
-          commits: 2
+          commits: 7
         - email: poldsberg@gmail.com
+          commits: 7
+        - email: freben@spotify.com
+          commits: 6
+        - email: yicai@redhat.com
           commits: 1
-      hotspotScore: 0.0011361484567316796
+      hotspotScore: 0.004881230406699068
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/notifications/components/notificationspage
     type: background-worker
     name: Notificationspage
@@ -973,18 +986,15 @@ nodes:
     name: Hooks
     isTest: false
     properties:
-      filepath: plugins/notifications/src/hooks/useWebNotifications.ts
       containerId: notifications
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 76
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 196
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -1034,7 +1044,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -1043,9 +1053,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/notifications/notificationsclient-test
     type: rest-api
     name: Notificationsclient test

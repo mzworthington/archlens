@@ -92,18 +92,16 @@ nodes:
     name: Integration
     isTest: false
     properties:
-      filepath: plugins/permission-node/src/integration/createPermissionIntegrationRouter.test.ts
       containerId: permission-node
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 1243
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      complexityPeak: 1
+      churn: 20
+      lineChurn: 2955
+      churn30: 13
+      churn365: 20
       churnByWeek:
         - 0
         - 0
@@ -111,23 +109,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
         - 0
@@ -145,6 +126,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 6
         - 0
         - 0
         - 0
@@ -153,20 +135,41 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 13
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.65
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 13
         - email: gabriel.dugny@believe.com
+          commits: 6
+        - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.000490928345501343
       sinceDays: 365
+      fileCount: 13
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/permission-node/plugin
     type: background-worker
     name: Plugin
@@ -564,18 +567,15 @@ nodes:
     name: Policy
     isTest: false
     properties:
-      filepath: plugins/permission-node/src/policy/types.ts
       containerId: permission-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 101
-      churn30: 1
-      churn365: 2
+      churn: 3
+      lineChurn: 118
+      churn30: 2
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -625,20 +625,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: freben@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-node/alpha
     type: background-worker
     name: Alpha (External)
@@ -668,7 +671,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/catalog/src/components/EntityOrphanWarning/EntityOrphanWarning.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
@@ -716,7 +718,6 @@ nodes:
     name: Permissions (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/permissions/index.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
@@ -752,7 +753,6 @@ nodes:
     name: Rules (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/permissions/rules/hasMetadata.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
@@ -764,7 +764,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/service/AuthorizedRefreshService.ts
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -776,7 +775,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/service/rules.test.ts
       containerId: scaffolder-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -788,7 +786,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/permission-backend/src/service/PermissionIntegrationClient.ts
       containerId: permission-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -800,7 +797,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/service/ProxyAuditSession.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -812,7 +808,6 @@ nodes:
     name: Tasks (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-backend/src/scaffolder/tasks/helper.test.ts
       containerId: scaffolder-backend
       technology: TypeScript Event Client
       classification: event-marker
@@ -824,7 +819,6 @@ nodes:
     name: Tasks (External)
     external: true
     properties:
-      filepath: plugins/scaffolder-node/src/tasks/serializer.test.ts
       containerId: scaffolder-node
       technology: TypeScript Domain Service
       classification: default

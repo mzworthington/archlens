@@ -1,0 +1,223 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/cli/analysis/domain/languages
+  name: Languages Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/cli/analysis/domain/languages/csharp-analyzer-test
+    type: background-worker
+    name: CsharpAnalyzer
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/csharpAnalyzer.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/java-analyzer-test
+    type: background-worker
+    name: JavaAnalyzer
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/javaAnalyzer.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/java-analyzer
+    type: background-worker
+    name: JavaAnalyzer
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/javaAnalyzer.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/go-analyzer
+    type: background-worker
+    name: GoAnalyzer
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/goAnalyzer.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/csharp-analyzer
+    type: background-worker
+    name: CsharpAnalyzer
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/csharpAnalyzer.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/python-analyzer
+    type: background-worker
+    name: PythonAnalyzer
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/pythonAnalyzer.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/python-analyzer-test
+    type: background-worker
+    name: PythonAnalyzer
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/pythonAnalyzer.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/typescript-analyzer-test
+    type: background-worker
+    name: TypescriptAnalyzer
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/typescriptAnalyzer.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/typescript-analyzer
+    type: background-worker
+    name: TypescriptAnalyzer
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/typescriptAnalyzer.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/go-analyzer-test
+    type: background-worker
+    name: GoAnalyzer
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/goAnalyzer.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/analysis/domain/languages/language-analyzer
+    type: background-worker
+    name: LanguageAnalyzer
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/languages/languageAnalyzer.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/types.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/app/cli/analysis/domain/languages/csharp-analyzer-test
+    to: blueprint/app/cli/analysis/domain/languages/csharp-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/java-analyzer-test
+    to: blueprint/app/cli/analysis/domain/languages/java-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/java-analyzer
+    to: blueprint/app/cli/analysis/domain/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/domain/languages/java-analyzer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/domain/languages/java-analyzer
+    to: blueprint/app/cli/analysis/domain/languages/language-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/go-analyzer
+    to: blueprint/app/cli/analysis/domain/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/domain/languages/go-analyzer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/domain/languages/go-analyzer
+    to: blueprint/app/cli/analysis/domain/languages/language-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/csharp-analyzer
+    to: blueprint/app/cli/analysis/domain/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/domain/languages/csharp-analyzer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/domain/languages/csharp-analyzer
+    to: blueprint/app/cli/analysis/domain/languages/language-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/python-analyzer
+    to: blueprint/app/cli/analysis/domain/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/domain/languages/python-analyzer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/domain/languages/python-analyzer
+    to: blueprint/app/cli/analysis/domain/languages/language-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/python-analyzer-test
+    to: blueprint/app/cli/analysis/domain/languages/python-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/typescript-analyzer-test
+    to: blueprint/app/cli/analysis/domain/languages/typescript-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/typescript-analyzer
+    to: blueprint/app/cli/analysis/domain/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/domain/languages/typescript-analyzer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/analysis/domain/languages/typescript-analyzer
+    to: blueprint/app/cli/analysis/domain/languages/language-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/go-analyzer-test
+    to: blueprint/app/cli/analysis/domain/languages/go-analyzer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/analysis/domain/languages/language-analyzer
+    to: blueprint/app/cli/analysis/domain/types
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/analysis/domain/languages/language-analyzer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'

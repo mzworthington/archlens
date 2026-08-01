@@ -1,0 +1,378 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-cluster/components
+  name: Components Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-cluster/components/kubernetesclustercontent
+    type: background-worker
+    name: Kubernetesclustercontent
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-cluster/src/components/KubernetesClusterContent/index.ts
+      containerId: kubernetes-cluster
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 0
+      sloc: 0
+      churn: 1
+      lineChurn: 17
+      churn30: 1
+      churn365: 1
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: backstage/plugins/kubernetes-cluster/components/nodes
+    type: gateway-api
+    name: Nodes
+    isTest: false
+    properties:
+      containerId: kubernetes-cluster
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-cluster/components/apiresources
+    type: gateway-api
+    name: Apiresources
+    isTest: false
+    properties:
+      containerId: kubernetes-cluster
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 111
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-cluster/components/clusteroverview
+    type: gateway-api
+    name: Clusteroverview
+    isTest: false
+    properties:
+      containerId: kubernetes-cluster
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 116
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/kubernetes-cluster/components/kubernetes-cluster-content
+    type: gateway-api
+    name: KubernetesClusterContent
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-cluster/src/components/KubernetesClusterContent/KubernetesClusterContent.tsx
+      containerId: kubernetes-cluster
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-cluster/components/kubernetes-cluster-error-context
+    type: gateway-api
+    name: KubernetesClusterErrorContext
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-cluster/src/components/KubernetesClusterErrorContext/KubernetesClusterErrorContext.tsx
+      containerId: kubernetes-cluster
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-cluster/components/api-resources
+    type: gateway-api
+    name: ApiResources
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-cluster/src/components/ApiResources/ApiResources.tsx
+      containerId: kubernetes-cluster
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-cluster/components/cluster-overview
+    type: gateway-api
+    name: ClusterOverview
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-cluster/src/components/ClusterOverview/ClusterOverview.tsx
+      containerId: kubernetes-cluster
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/kubernetes-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-common/src/util/index.ts
+      containerId: kubernetes-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/permission-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-react/src/apis/index.ts
+      containerId: permission-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-react/src/apis/index.ts
+      containerId: catalog-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/kubernetes-react/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-react/src/types/index.ts
+      containerId: kubernetes-react
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-cluster/components/kubernetes-cluster-content
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-cluster/components/kubernetes-cluster-content
+    to: backstage/plugins/permission-react/index
+    type: direct-call
+    description: '@backstage/plugin-permission-react'
+  - from: backstage/plugins/kubernetes-cluster/components/kubernetes-cluster-content
+    to: backstage/plugins/kubernetes-cluster/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-cluster/components/nodes
+    to: backstage/plugins/kubernetes-cluster/components/nodes/use-nodes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-cluster/components/nodes
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/kubernetes-cluster/components/nodes
+    to: backstage/plugins/kubernetes-react/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-react'
+  - from: backstage/plugins/kubernetes-cluster/components/api-resources
+    to: backstage/plugins/kubernetes-cluster/components/apiresources/use-api-resources
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-cluster/components/api-resources
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/kubernetes-cluster/components/cluster-overview
+    to: backstage/plugins/catalog-react/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/kubernetes-cluster/components/cluster-overview
+    to: backstage/plugins/kubernetes-cluster/components/clusteroverview/use-cluster
+    type: direct-call
+    description: Calls module / service

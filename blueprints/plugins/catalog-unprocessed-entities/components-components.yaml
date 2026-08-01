@@ -1,0 +1,89 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-unprocessed-entities/components
+  name: Components Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-unprocessed-entities/components/failed-entities
+    type: gateway-api
+    name: FailedEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/FailedEntities.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-unprocessed-entities/components/unprocessed-entities
+    type: gateway-api
+    name: UnprocessedEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/UnprocessedEntities.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-unprocessed-entities/components/pending-entities
+    type: gateway-api
+    name: PendingEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/PendingEntities.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-unprocessed-entities/components/entity-dialog
+    type: gateway-api
+    name: EntityDialog
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/EntityDialog.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-unprocessed-entities/components/delete-entity-confirmation-dialog
+    type: gateway-api
+    name: DeleteEntityConfirmationDialog
+    isTest: false
+    properties:
+      filepath: plugins/catalog-unprocessed-entities/src/components/DeleteEntityConfirmationDialog.tsx
+      containerId: catalog-unprocessed-entities
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-unprocessed-entities/components/failed-entities
+    to: backstage/plugins/catalog-unprocessed-entities/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-unprocessed-entities/components/failed-entities
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-unprocessed-entities/components/pending-entities
+    to: backstage/plugins/catalog-unprocessed-entities/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-unprocessed-entities/components/pending-entities
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-unprocessed-entities/components/entity-dialog
+    to: backstage/plugins/catalog-unprocessed-entities/types/types
+    type: direct-call
+    description: Calls module / service

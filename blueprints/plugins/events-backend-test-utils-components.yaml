@@ -170,18 +170,15 @@ nodes:
     name: Testutils
     isTest: false
     properties:
-      filepath: plugins/events-backend-test-utils/src/testUtils/TestEventsService.ts
       containerId: events-backend-test-utils
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 48
-      churn30: 1
-      churn365: 1
+      churn: 5
+      lineChurn: 180
+      churn30: 5
+      churn365: 5
       churnByWeek:
         - 0
         - 0
@@ -231,7 +228,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
@@ -240,9 +237,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 5
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-gitlab-org/catalogmodulegitlaborgdiscoveryentityprovider-test
     type: background-worker
     name: Catalogmodulegitlaborgdiscoveryentityprovider test (External)
@@ -260,7 +260,6 @@ nodes:
     name: Http (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/http/HttpPostIngressEventPublisher.ts
       containerId: events-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -272,7 +271,6 @@ nodes:
     name: Http (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-azure/src/http/httpIntegration.test.ts
       containerId: events-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
@@ -296,7 +294,6 @@ nodes:
     name: Kafkaconsumingeventpublisher (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-kafka/src/KafkaConsumingEventPublisher/module.ts
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
@@ -308,7 +305,6 @@ nodes:
     name: Kafkapublishingeventconsumer (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-kafka/src/KafkaPublishingEventConsumer/module.ts
       containerId: events-backend-module-kafka
       technology: TypeScript Event Client
       classification: event-marker
@@ -320,7 +316,6 @@ nodes:
     name: Module (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/module/catalogModuleBitbucketCloudEntityProvider.ts
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
@@ -332,7 +327,6 @@ nodes:
     name: Module (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/module/catalogModuleBitbucketServerEntityProvider.ts
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
@@ -344,7 +338,6 @@ nodes:
     name: Module (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/module/catalogModuleGitlabDiscoveryEntityProvider.test.ts
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
@@ -368,7 +361,6 @@ nodes:
     name: Publisher (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-aws-sqs/src/publisher/AwsSqsConsumingEventPublisher.test.ts
       containerId: events-backend-module-aws-sqs
       technology: TypeScript Domain Service
       classification: default
@@ -380,7 +372,6 @@ nodes:
     name: Router (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-gerrit/src/router/GerritEventRouter.ts
       containerId: events-backend-module-gerrit
       technology: REST Controller / Router
       classification: api-marker
@@ -392,7 +383,6 @@ nodes:
     name: Router (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-bitbucket-server/src/router/BitbucketServerEventRouter.test.ts
       containerId: events-backend-module-bitbucket-server
       technology: REST Controller / Router
       classification: api-marker
@@ -404,7 +394,6 @@ nodes:
     name: Router (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-bitbucket-cloud/src/router/BitbucketCloudEventRouter.ts
       containerId: events-backend-module-bitbucket-cloud
       technology: REST Controller / Router
       classification: api-marker
@@ -416,7 +405,6 @@ nodes:
     name: Router (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-github/src/router/GithubEventRouter.test.ts
       containerId: events-backend-module-github
       technology: REST Controller / Router
       classification: api-marker
@@ -428,7 +416,6 @@ nodes:
     name: Router (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-gitlab/src/router/GitlabEventRouter.ts
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
@@ -440,7 +427,6 @@ nodes:
     name: Router (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-azure/src/router/AzureDevOpsEventRouter.ts
       containerId: events-backend-module-azure
       technology: REST Controller / Router
       classification: api-marker
@@ -452,7 +438,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-gerrit/src/service/eventsModuleGerritEventRouter.ts
       containerId: events-backend-module-gerrit
       technology: REST Controller / Router
       classification: api-marker
@@ -464,7 +449,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-bitbucket-server/src/service/eventsModuleBitbucketServerEventRouter.ts
       containerId: events-backend-module-bitbucket-server
       technology: REST Controller / Router
       classification: api-marker
@@ -476,7 +460,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-bitbucket-cloud/src/service/eventsModuleBitbucketCloudEventRouter.ts
       containerId: events-backend-module-bitbucket-cloud
       technology: REST Controller / Router
       classification: api-marker
@@ -488,7 +471,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend/src/service/EventsPlugin.test.ts
       containerId: events-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -500,7 +482,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-github/src/service/eventsModuleGithubEventRouter.test.ts
       containerId: events-backend-module-github
       technology: REST Controller / Router
       classification: api-marker
@@ -512,7 +493,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-gitlab/src/service/eventsModuleGitlabWebhook.test.ts
       containerId: events-backend-module-gitlab
       technology: REST Controller / Router
       classification: api-marker
@@ -524,7 +504,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-aws-sqs/src/service/eventsModuleAwsSqsConsumingEventPublisher.test.ts
       containerId: events-backend-module-aws-sqs
       technology: TypeScript Domain Service
       classification: default
@@ -536,7 +515,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/events-backend-module-azure/src/service/eventsModuleAzureDevOpsWebhook.test.ts
       containerId: events-backend-module-azure
       technology: REST Controller / Router
       classification: api-marker

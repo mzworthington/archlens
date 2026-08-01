@@ -1,0 +1,48 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/clientapp/validations
+  name: Validations Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/clientapp/validations/i-validity
+    type: background-worker
+    name: IValidity
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Validations/IValidity.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/validations/validatable-object
+    type: background-worker
+    name: ValidatableObject
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Validations/ValidatableObject.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/validations/i-validation-rule
+    type: background-worker
+    name: IValidationRule
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Validations/IValidationRule.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/validations/is-not-null-or-empty-rule
+    type: background-worker
+    name: IsNotNullOrEmptyRule
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Validations/IsNotNullOrEmptyRule.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+dependencies: []

@@ -1,0 +1,772 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/application/forensics
+  name: Forensics Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: background-worker
+    name: ResolveCouplingEdges
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/resolveCouplingEdges.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/use-coupling-lens
+    type: gateway-api
+    name: UseCouplingLens
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/useCouplingLens.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/application/forensics/build-forensics-panel-model-test
+    type: background-worker
+    name: BuildForensicsPanelModel
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildForensicsPanelModel.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/materialize-coupling-ghost
+    type: background-worker
+    name: MaterializeCouplingGhost
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/materializeCouplingGhost.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/filter-selected-dependency-focus
+    type: background-worker
+    name: FilterSelectedDependencyFocus
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/filterSelectedDependencyFocus.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft-test
+    type: background-worker
+    name: ApplyRefactorBoundaryAsDraft
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/applyRefactorBoundaryAsDraft.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/rank-offenders-test
+    type: background-worker
+    name: RankOffenders
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/rankOffenders.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-refactor-plan-test
+    type: background-worker
+    name: BuildRefactorPlan
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildRefactorPlan.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/resolve-coupling-edges-test
+    type: background-worker
+    name: ResolveCouplingEdges
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/resolveCouplingEdges.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft
+    type: background-worker
+    name: ApplyRefactorBoundaryAsDraft
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/applyRefactorBoundaryAsDraft.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-refactor-plan
+    type: background-worker
+    name: BuildRefactorPlan
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildRefactorPlan.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard-test
+    type: background-worker
+    name: BuildForensicsTrendDashboard
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildForensicsTrendDashboard.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard
+    type: background-worker
+    name: BuildForensicsTrendDashboard
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildForensicsTrendDashboard.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/external-node-visibility-test
+    type: background-worker
+    name: ExternalNodeVisibility
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/externalNodeVisibility.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/concern
+    type: background-worker
+    name: Concern
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/concern.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-coupling-overlay-edges-test
+    type: background-worker
+    name: BuildCouplingOverlayEdges
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildCouplingOverlayEdges.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/count-forensics-metrics-test
+    type: background-worker
+    name: CountForensicsMetrics
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/countForensicsMetrics.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-forensics-panel-model
+    type: background-worker
+    name: BuildForensicsPanelModel
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildForensicsPanelModel.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/open-simulate-failure-on-canvas-test
+    type: background-worker
+    name: OpenSimulateFailureOnCanvas
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/openSimulateFailureOnCanvas.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-trace-lens-scope-options
+    type: background-worker
+    name: BuildTraceLensScopeOptions
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildTraceLensScopeOptions.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/open-simulate-failure-on-canvas
+    type: background-worker
+    name: OpenSimulateFailureOnCanvas
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/openSimulateFailureOnCanvas.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/resolve-trace-lens-scope-diagrams
+    type: background-worker
+    name: ResolveTraceLensScopeDiagrams
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/resolveTraceLensScopeDiagrams.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/concern-test
+    type: background-worker
+    name: Concern
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/concern.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/open-refactor-on-canvas
+    type: background-worker
+    name: OpenRefactorOnCanvas
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/openRefactorOnCanvas.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/hotspot-heatmap-test
+    type: background-worker
+    name: HotspotHeatmap
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/hotspotHeatmap.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/hotspot-heatmap
+    type: background-worker
+    name: HotspotHeatmap
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/hotspotHeatmap.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/filter-selected-dependency-focus-test
+    type: background-worker
+    name: FilterSelectedDependencyFocus
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/filterSelectedDependencyFocus.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-trace-lens-scope-options-test
+    type: background-worker
+    name: BuildTraceLensScopeOptions
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildTraceLensScopeOptions.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/resolve-trace-lens-scope-diagrams-test
+    type: background-worker
+    name: ResolveTraceLensScopeDiagrams
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/resolveTraceLensScopeDiagrams.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/chaos-risk-context
+    type: background-worker
+    name: ChaosRiskContext
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/chaosRiskContext.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/apply-refactor-plan-as-draft
+    type: background-worker
+    name: ApplyRefactorPlanAsDraft
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/applyRefactorPlanAsDraft.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/build-coupling-overlay-edges
+    type: background-worker
+    name: BuildCouplingOverlayEdges
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildCouplingOverlayEdges.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/count-forensics-metrics
+    type: background-worker
+    name: CountForensicsMetrics
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/countForensicsMetrics.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/apply-refactor-plan-as-draft-test
+    type: background-worker
+    name: ApplyRefactorPlanAsDraft
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/applyRefactorPlanAsDraft.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/external-node-visibility
+    type: background-worker
+    name: ExternalNodeVisibility
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/externalNodeVisibility.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/rank-offenders
+    type: background-worker
+    name: RankOffenders
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/forensics/rankOffenders.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/materialize-coupling-ghost-test
+    type: background-worker
+    name: MaterializeCouplingGhost
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/materializeCouplingGhost.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/forensics/open-refactor-on-canvas-test
+    type: background-worker
+    name: OpenRefactorOnCanvas
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/openRefactorOnCanvas.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
+    type: background-worker
+    name: ApplyStateUpdates (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/states/diagramState/applyStateUpdates.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/designer/application/recommendations/build-diagram-recommendations
+    type: background-worker
+    name: BuildDiagramRecommendations (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/recommendations/buildDiagramRecommendations.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: Forensics (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/layout-utils
+    type: background-worker
+    name: LayoutUtils (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/layoutUtils.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/app/core/resilience
+    type: background-worker
+    name: Resilience (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/use-coupling-lens
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/use-coupling-lens
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/use-coupling-lens
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/use-coupling-lens
+    to: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/use-coupling-lens
+    to: blueprint/app/designer/application/forensics/build-coupling-overlay-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-forensics-panel-model-test
+    to: blueprint/app/designer/application/forensics/build-forensics-panel-model
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/materialize-coupling-ghost
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/materialize-coupling-ghost
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/materialize-coupling-ghost
+    to: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/filter-selected-dependency-focus
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft-test
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft-test
+    to: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/rank-offenders-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/rank-offenders-test
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-refactor-plan-test
+    to: blueprint/app/designer/application/forensics/build-refactor-plan
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-refactor-plan-test
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/resolve-coupling-edges-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/resolve-coupling-edges-test
+    to: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/resolve-coupling-edges-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft
+    to: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-refactor-plan
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-refactor-plan
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-refactor-plan
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-refactor-plan
+    to: blueprint/app/designer/application/recommendations/build-diagram-recommendations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-refactor-plan
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard-test
+    to: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/external-node-visibility-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/external-node-visibility-test
+    to: blueprint/app/designer/application/forensics/external-node-visibility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/concern
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-coupling-overlay-edges-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/build-coupling-overlay-edges-test
+    to: blueprint/app/designer/application/forensics/build-coupling-overlay-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-coupling-overlay-edges-test
+    to: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/count-forensics-metrics-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/count-forensics-metrics-test
+    to: blueprint/app/designer/application/forensics/count-forensics-metrics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-forensics-panel-model
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-forensics-panel-model
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-forensics-panel-model
+    to: blueprint/app/designer/application/forensics/concern
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/open-simulate-failure-on-canvas-test
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/open-simulate-failure-on-canvas-test
+    to: blueprint/app/designer/application/forensics/open-simulate-failure-on-canvas
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-trace-lens-scope-options
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-trace-lens-scope-options
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/open-simulate-failure-on-canvas
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/resolve-trace-lens-scope-diagrams
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/concern-test
+    to: blueprint/app/designer/application/forensics/concern
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/open-refactor-on-canvas
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/open-refactor-on-canvas
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/hotspot-heatmap-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/hotspot-heatmap-test
+    to: blueprint/app/designer/application/forensics/hotspot-heatmap
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/hotspot-heatmap
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/hotspot-heatmap
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/filter-selected-dependency-focus-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/filter-selected-dependency-focus-test
+    to: blueprint/app/designer/application/forensics/filter-selected-dependency-focus
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-trace-lens-scope-options-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-trace-lens-scope-options-test
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-trace-lens-scope-options-test
+    to: blueprint/app/designer/application/forensics/build-trace-lens-scope-options
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/resolve-trace-lens-scope-diagrams-test
+    to: blueprint/app/designer/application/forensics/resolve-trace-lens-scope-diagrams
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/chaos-risk-context
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/apply-refactor-plan-as-draft
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/apply-refactor-plan-as-draft
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/build-coupling-overlay-edges
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/build-coupling-overlay-edges
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/build-coupling-overlay-edges
+    to: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/count-forensics-metrics
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/count-forensics-metrics
+    to: blueprint/app/designer/application/forensics/external-node-visibility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/apply-refactor-plan-as-draft-test
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/apply-refactor-plan-as-draft-test
+    to: blueprint/app/designer/application/forensics/apply-refactor-plan-as-draft
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/apply-refactor-plan-as-draft-test
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/external-node-visibility
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/external-node-visibility
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/rank-offenders
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/rank-offenders
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/rank-offenders
+    to: blueprint/app/designer/application/forensics/concern
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/materialize-coupling-ghost-test
+    to: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/materialize-coupling-ghost-test
+    to: blueprint/app/designer/application/forensics/materialize-coupling-ghost
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/materialize-coupling-ghost-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/forensics/open-refactor-on-canvas-test
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/forensics/open-refactor-on-canvas-test
+    to: blueprint/app/designer/application/forensics/rank-offenders
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/forensics/open-refactor-on-canvas-test
+    to: blueprint/app/designer/application/forensics/open-refactor-on-canvas
+    type: direct-call
+    description: Calls module / service

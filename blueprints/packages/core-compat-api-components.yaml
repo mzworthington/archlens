@@ -100,35 +100,15 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      churn: 5
+      lineChurn: 58
+      churn30: 2
+      churn365: 5
       churnByWeek:
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -161,30 +141,50 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 3
+        - email: camilaibs@gmail.com
+          commits: 2
+      hotspotScore: 0.0001437718726111076
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-compat-api/implementations/analyticsapi
     type: rest-api
     name: Analyticsapi
     isTest: false
     properties:
-      filepath: packages/core-compat-api/src/apis/implementations/AnalyticsApi/MultipleAnalyticsApi.test.ts
       containerId: core-compat-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 64
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 188
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -234,7 +234,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -243,9 +243,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-compat-api/implementations
     type: rest-api
     name: Implementations
@@ -727,45 +730,21 @@ nodes:
     name: Compatwrapper
     isTest: false
     properties:
-      filepath: packages/core-compat-api/src/compatWrapper/compatWrapper.tsx
       containerId: core-compat-api
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 59
-      churn30: 1
-      churn365: 2
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 24
+      lineChurn: 851
+      churn30: 5
+      churn365: 24
       churnByWeek:
-        - 0
-        - 0
+        - 14
         - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -789,19 +768,45 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.7083333333333334
       authors:
-        - email: poldsberg@gmail.com
-          commits: 1
         - email: ben@blam.sh
-          commits: 1
-      hotspotScore: 0
+          commits: 16
+        - email: poldsberg@gmail.com
+          commits: 8
+      hotspotScore: 0.003955479812325107
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-compat-api/convertlegacypageextension
     type: gateway-api
     name: Convertlegacypageextension
@@ -1801,7 +1806,6 @@ nodes:
     name: App (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/app/useApp.tsx
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -1909,7 +1913,6 @@ nodes:
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/routing/useRouteRefParams.test.tsx
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -1921,7 +1924,6 @@ nodes:
     name: System (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/apis/system/helpers.ts
       containerId: core-plugin-api
       technology: REST Controller / Router
       classification: api-marker
@@ -1933,7 +1935,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker

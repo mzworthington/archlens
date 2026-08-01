@@ -1,0 +1,355 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-build/commands/package
+  name: Package Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-module-build/commands/package/start
+    type: gateway-api
+    name: Start
+    isTest: false
+    properties:
+      containerId: cli-module-build
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 10
+      lineChurn: 475
+      churn30: 7
+      churn365: 10
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 9
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-module-build/commands/package/bundle
+    type: background-worker
+    name: Bundle
+    isTest: false
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 54
+      complexityPeak: 54
+      cognitiveComplexity: 1256
+      churn: 11
+      lineChurn: 4255
+      churn30: 7
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 3
+        - 4
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.7272727272727273
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 8
+        - email: dfestal@redhat.com
+          commits: 3
+      hotspotScore: 0.3717099034273812
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-module-build/commands/package/build
+    type: background-worker
+    name: Build
+    isTest: false
+    properties:
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 182
+      churn30: 2
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/cli-module-build/commands/package/prepack
+    type: background-worker
+    name: Prepack
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/prepack.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/commands/package/postpack
+    type: background-worker
+    name: Postpack
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/postpack.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-build/commands/package/clean
+    type: background-worker
+    name: Clean
+    isTest: false
+    properties:
+      filepath: packages/cli-module-build/src/commands/package/clean.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/cli-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-node/src/index.ts
+      containerId: cli-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/cli-module-build/packager/production-pack
+    type: background-worker
+    name: ProductionPack (External)
+    external: true
+    properties:
+      filepath: packages/cli-module-build/src/lib/packager/productionPack.ts
+      containerId: cli-module-build
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-module-build/commands/package/prepack
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/commands/package/prepack
+    to: backstage/packages/cli-module-build/packager/production-pack
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/prepack
+    to: backstage/packages/cli-module-build/publishing/publishing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/prepack
+    to: backstage/packages/cli-module-build/typedistproject/type-dist-project
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/prepack
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/commands/package/postpack
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/commands/package/postpack
+    to: backstage/packages/cli-module-build/packager/production-pack
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-build/commands/package/postpack
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'
+  - from: backstage/packages/cli-module-build/commands/package/clean
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/cli-module-build/commands/package/clean
+    to: backstage/packages/cli-node/index
+    type: direct-call
+    description: '@backstage/cli-node'

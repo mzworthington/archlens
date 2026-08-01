@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/basket-api/repositories
+  name: Repositories Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/basket-api/repositories/redis-basket-repository
+    type: relational-database
+    name: RedisBasketRepository
+    isTest: false
+    properties:
+      filepath: src/Basket.API/Repositories/RedisBasketRepository.cs
+      containerId: basket-api
+      technology: Entity Framework / DB Context
+      classification: database-marker
+  - entityRef: eshop/basket-api/repositories/i-basket-repository
+    type: relational-database
+    name: IBasketRepository
+    isTest: false
+    properties:
+      filepath: src/Basket.API/Repositories/IBasketRepository.cs
+      containerId: basket-api
+      technology: Entity Framework / DB Context
+      classification: database-marker
+dependencies: []

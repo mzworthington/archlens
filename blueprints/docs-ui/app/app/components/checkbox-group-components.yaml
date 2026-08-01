@@ -1,0 +1,39 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/docs-ui/app/app/components/checkbox-group
+  name: Checkbox group Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/docs-ui/app/app/components/checkbox-group/props-definition
+    type: background-worker
+    name: Props definition
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/components/checkbox-group/props-definition.tsx
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/docs-ui/app/app/components/checkbox-group/snippets
+    type: background-worker
+    name: Snippets
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/components/checkbox-group/snippets.ts
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/docs-ui/app/app/components/checkbox-group/components
+    type: background-worker
+    name: Components
+    isTest: false
+    properties:
+      filepath: docs-ui/src/app/components/checkbox-group/components.tsx
+      containerId: app
+      technology: TypeScript Domain Service
+      classification: default
+dependencies: []

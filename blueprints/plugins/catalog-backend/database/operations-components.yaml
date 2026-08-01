@@ -1,0 +1,330 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend/database/operations
+  name: Operations Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-backend/database/operations/refreshstate
+    type: relational-database
+    name: Refreshstate
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 185
+      churn30: 3
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: freben@spotify.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/database/operations/provider
+    type: relational-database
+    name: Provider
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 11
+      lineChurn: 964
+      churn30: 4
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 2
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5454545454545454
+      authors:
+        - email: freben@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: freben@spotify.com
+          commits: 2
+      hotspotScore: 0.0034996177772167168
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/database/operations/stitcher
+    type: relational-database
+    name: Stitcher
+    isTest: false
+    properties:
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    forensics:
+      complexity: 20
+      complexityPeak: 20
+      cognitiveComplexity: 167
+      churn: 103
+      lineChurn: 6846
+      churn30: 13
+      churn365: 103
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 5
+        - 0
+        - 7
+        - 8
+        - 8
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 18
+        - 23
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 13
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.5339805825242718
+      authors:
+        - email: freben@gmail.com
+          commits: 51
+        - email: freben@spotify.com
+          commits: 25
+        - email: poldsberg@gmail.com
+          commits: 13
+        - email: pnastasi@expediagroup.com
+          commits: 5
+        - email: andreas@berger-ecommerce.com
+          commits: 4
+        - email: ben@blam.sh
+          commits: 3
+        - email: kyle.opperman@ing.com
+          commits: 2
+      hotspotScore: 0.037731349982817505
+      sinceDays: 365
+      fileCount: 13
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/catalog-backend/database/operations/delete-orphaned-entities
+    type: relational-database
+    name: DeleteOrphanedEntities
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend/src/database/operations/util/deleteOrphanedEntities.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/operations/delete-orphaned-entities-test
+    type: relational-database
+    name: DeleteOrphanedEntities
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/operations/util/deleteOrphanedEntities.test.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/catalog-backend/database/migrations
+    type: relational-database
+    name: Migrations (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/migrations.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-backend/database/tables
+    type: relational-database
+    name: Tables (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-backend/src/database/tables.ts
+      containerId: catalog-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-backend/database/operations/delete-orphaned-entities
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/operations/delete-orphaned-entities
+    to: backstage/plugins/catalog-backend/database/operations/stitcher/mark-for-stitching
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/operations/delete-orphaned-entities-test
+    to: backstage/plugins/catalog-backend/database/migrations
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/operations/delete-orphaned-entities-test
+    to: backstage/plugins/catalog-backend/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/catalog-backend/database/operations/delete-orphaned-entities-test
+    to: backstage/plugins/catalog-backend/database/operations/delete-orphaned-entities
+    type: read-write
+    description: Queries datastore records

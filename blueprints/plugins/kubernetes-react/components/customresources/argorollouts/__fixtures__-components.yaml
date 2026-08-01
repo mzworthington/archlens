@@ -1,0 +1,63 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+  name: __fixtures__ Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__/analysis-steps
+    type: background-worker
+    name: Analysis steps
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/CustomResources/ArgoRollouts/__fixtures__/analysis-steps.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__/pause-steps
+    type: background-worker
+    name: Pause steps
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/CustomResources/ArgoRollouts/__fixtures__/pause-steps.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__/setweight-steps
+    type: background-worker
+    name: Setweight steps
+    isTest: false
+    properties:
+      filepath: plugins/kubernetes-react/src/components/CustomResources/ArgoRollouts/__fixtures__/setweight-steps.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/kubernetes-react/src/components/CustomResources/ArgoRollouts/types.ts
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__/analysis-steps
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__/pause-steps
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__/setweight-steps
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/types
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,47 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-plugin-api/icons
+  name: Icons Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/packages/frontend-plugin-api/icons/types-test
+    type: gateway-api
+    name: Types
+    isTest: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/icons/types.test.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/icons/types
+    type: gateway-api
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/icons/types.ts
+      containerId: frontend-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-plugin-api/icons/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-plugin-api/src/icons/index.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/packages/frontend-plugin-api/icons/types-test
+    to: backstage/packages/frontend-plugin-api/icons/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-plugin-api/icons/index
+    to: backstage/packages/frontend-plugin-api/icons/types
+    type: direct-call
+    description: Calls module / service

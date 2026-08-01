@@ -1,0 +1,96 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/catalog-model/location
+  name: Location Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/catalog-model/location/helpers
+    type: background-worker
+    name: Helpers
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/location/helpers.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/location/helpers-test
+    type: background-worker
+    name: Helpers
+    isTest: true
+    properties:
+      filepath: packages/catalog-model/src/location/helpers.test.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/location/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/location/index.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/location/annotation
+    type: background-worker
+    name: Annotation
+    isTest: false
+    properties:
+      filepath: packages/catalog-model/src/location/annotation.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/catalog-model/entity/entity
+    type: background-worker
+    name: Entity (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/entity/Entity.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/catalog-model/entity/ref
+    type: background-worker
+    name: Ref (External)
+    external: true
+    properties:
+      filepath: packages/catalog-model/src/entity/ref.ts
+      containerId: catalog-model
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/catalog-model/location/helpers
+    to: backstage/packages/catalog-model/entity/entity
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/location/helpers
+    to: backstage/packages/catalog-model/entity/ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/location/helpers
+    to: backstage/packages/catalog-model/location/annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/location/helpers-test
+    to: backstage/packages/catalog-model/location/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/location/index
+    to: backstage/packages/catalog-model/location/annotation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/catalog-model/location/index
+    to: backstage/packages/catalog-model/location/helpers
+    type: direct-call
+    description: Calls module / service

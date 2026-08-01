@@ -1,0 +1,55 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/auth-node/extensions
+  name: Extensions Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/auth-node/extensions/auth-providers-extension-point
+    type: background-worker
+    name: AuthProvidersExtensionPoint
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/extensions/AuthProvidersExtensionPoint.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/extensions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/extensions/index.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/auth-node/extensions/auth-ownership-resolution-extension-point
+    type: background-worker
+    name: AuthOwnershipResolutionExtensionPoint
+    isTest: false
+    properties:
+      filepath: plugins/auth-node/src/extensions/AuthOwnershipResolutionExtensionPoint.ts
+      containerId: auth-node
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/auth-node/extensions/auth-providers-extension-point
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/extensions/index
+    to: backstage/plugins/auth-node/extensions/auth-providers-extension-point
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/extensions/index
+    to: backstage/plugins/auth-node/extensions/auth-ownership-resolution-extension-point
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/auth-node/extensions/auth-ownership-resolution-extension-point
+    to: backstage/plugins/auth-node/types/types
+    type: direct-call
+    description: Calls module / service

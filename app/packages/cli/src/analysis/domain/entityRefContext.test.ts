@@ -4,6 +4,7 @@ import { resolveContextDisplayName, resolveSystemEntityRef } from './entityRefCo
 describe('entityRefContext', () => {
   it('maps known context slugs to display titles', () => {
     expect(resolveContextDisplayName('backstage')).toBe('Backstage');
+    expect(resolveContextDisplayName('blueprint')).toBe('ArchLens');
     expect(resolveContextDisplayName('infrastructure')).toBe('Infrastructure Examples');
   });
 

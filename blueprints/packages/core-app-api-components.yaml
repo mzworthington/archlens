@@ -14,18 +14,17 @@ nodes:
     name: System
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/system/ApiProvider.tsx
       containerId: core-app-api
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 59
-      churn30: 1
-      churn365: 1
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 15
+      lineChurn: 1247
+      churn30: 12
+      churn365: 15
       churnByWeek:
         - 0
         - 0
@@ -38,31 +37,13 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -80,13 +61,38 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 12
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8666666666666667
       authors:
         - email: poldsberg@gmail.com
+          commits: 13
+        - email: johanopersson@gmail.com
           commits: 1
-      hotspotScore: 0
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.0022793101755419496
       sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-app-api/index
     type: rest-api
     name: Index
@@ -98,328 +104,9 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 18
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/analyticsapi
-    type: rest-api
-    name: Analyticsapi
-    isTest: false
-    properties:
-      filepath: packages/core-app-api/src/apis/implementations/AnalyticsApi/MultipleAnalyticsApi.test.ts
-      containerId: core-app-api
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 64
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/applanguageapi
-    type: rest-api
-    name: Applanguageapi
-    isTest: false
-    properties:
-      filepath: packages/core-app-api/src/apis/implementations/AppLanguageApi/AppLanguageSelector.ts
-      containerId: core-app-api
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 185
-      churn30: 1
-      churn365: 2
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: sanchit2662@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/oauthrequestapi
-    type: rest-api
-    name: Oauthrequestapi
-    isTest: false
-    properties:
-      filepath: packages/core-app-api/src/apis/implementations/OAuthRequestApi/OAuthRequestManager.ts
-      containerId: core-app-api
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 94
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/alertapi
-    type: rest-api
-    name: Alertapi
-    isTest: false
-    properties:
-      filepath: packages/core-app-api/src/apis/implementations/AlertApi/AlertApiForwarder.ts
-      containerId: core-app-api
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 3
-      complexityPeak: 3
-      cognitiveComplexity: 3
-      functionCount: 3
-      loc: 64
-      sloc: 34
       churn: 3
-      lineChurn: 92
-      churn30: 1
+      lineChurn: 70
+      churn30: 3
       churn365: 3
       churnByWeek:
         - 0
@@ -440,6 +127,322 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/analyticsapi
+    type: rest-api
+    name: Analyticsapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 177
+      churn30: 4
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/applanguageapi
+    type: rest-api
+    name: Applanguageapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 374
+      churn30: 3
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: sanchit2662@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/oauthrequestapi
+    type: rest-api
+    name: Oauthrequestapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 7
+      lineChurn: 545
+      churn30: 7
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 7
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/alertapi
+    type: rest-api
+    name: Alertapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 4
+      lineChurn: 109
+      churn30: 2
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 1
         - 0
         - 0
@@ -470,7 +473,87 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+      hotspotScore: 0.0009678301668455047
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/identityapi
+    type: rest-api
+    name: Identityapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 6
+      lineChurn: 601
+      churn30: 4
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
         - 0
         - 0
         - 0
@@ -479,28 +562,28 @@ nodes:
       topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 4
+        - email: johanopersson@gmail.com
           commits: 2
-        - email: charles.dedreuille@gmail.com
-          commits: 1
-      hotspotScore: 0.0009678301668455047
+      hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/identityapi
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/bitbucketserver
     type: rest-api
-    name: Identityapi
+    name: Bitbucketserver
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/IdentityApi/startCookieAuthRefresh.test.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 171
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 176
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -550,7 +633,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -559,26 +642,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/auth
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/gitlab
     type: rest-api
-    name: Auth
+    name: Gitlab
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/auth/bitbucketServer/types.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 35
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 123
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -628,7 +711,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -637,26 +720,26 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/featureflagsapi
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/google
     type: rest-api
-    name: Featureflagsapi
+    name: Google
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/FeatureFlagsApi/LocalStorageFeatureFlags.test.tsx
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 221
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 165
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -706,7 +789,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -715,25 +798,25 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/appthemeapi
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/vmwarecloud
     type: rest-api
-    name: Appthemeapi
+    name: Vmwarecloud
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/AppThemeApi/AppThemeSelector.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 137
-      churn30: 1
+      lineChurn: 69
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -759,7 +842,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -784,36 +866,273 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 2
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 1
+      topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-        - email: sanchit2662@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/translationapi
-    type: gateway-api
-    name: Translationapi
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/microsoft
+    type: rest-api
+    name: Microsoft
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/TranslationApi/I18nextTranslationApi.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 362
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/oauth2
+    type: gateway-api
+    name: Oauth2
+    isTest: false
+    properties:
       containerId: core-app-api
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
+      churn: 4
+      lineChurn: 482
+      churn30: 4
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth
+    type: rest-api
+    name: Auth
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 1
+      churn: 5
+      lineChurn: 312
+      churn30: 3
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: yannik@daellenbach.org
+          commits: 1
+      hotspotScore: 0.00011221219325744983
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/onelogin
+    type: rest-api
+    name: Onelogin
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
       churn: 2
-      lineChurn: 444
-      churn30: 1
+      lineChurn: 113
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -832,7 +1151,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -864,7 +1182,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -876,23 +1195,23 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/implementations/storageapi
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/github
     type: rest-api
-    name: Storageapi
+    name: Github
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/StorageApi/WebStorage.test.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 310
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 119
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -942,7 +1261,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -951,9 +1270,727 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/openshift
+    type: rest-api
+    name: Openshift
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 5
+      lineChurn: 190
+      churn30: 2
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.4
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: yannik@daellenbach.org
+          commits: 2
+        - email: kyle.opperman@ing.com
+          commits: 1
+      hotspotScore: 0.000547034442130068
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/atlassian
+    type: rest-api
+    name: Atlassian
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 67
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/okta
+    type: rest-api
+    name: Okta
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 158
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/bitbucket
+    type: rest-api
+    name: Bitbucket
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 171
+      churn30: 4
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/auth/saml
+    type: rest-api
+    name: Saml
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 169
+      churn30: 3
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: gabriel.dugny@believe.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/featureflagsapi
+    type: rest-api
+    name: Featureflagsapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 350
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/appthemeapi
+    type: rest-api
+    name: Appthemeapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 239
+      churn30: 3
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: sanchit2662@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/translationapi
+    type: gateway-api
+    name: Translationapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 5
+      lineChurn: 1068
+      churn30: 3
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/implementations/storageapi
+    type: rest-api
+    name: Storageapi
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 4
+      lineChurn: 488
+      churn30: 3
+      churn365: 4
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-app-api/implementations
     type: rest-api
     name: Implementations
@@ -1037,18 +2074,17 @@ nodes:
     name: Fetchapi
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/FetchApi/PluginProtocolResolverFetchMiddleware.test.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 133
-      churn30: 1
-      churn365: 2
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 17
+      churn: 27
+      lineChurn: 1139
+      churn30: 16
+      churn365: 27
       churnByWeek:
         - 0
         - 0
@@ -1056,7 +2092,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -1084,6 +2120,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 9
         - 0
         - 0
         - 0
@@ -1097,81 +2134,46 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
+        - 16
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7407407407407407
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 16
+        - email: freben@spotify.com
+          commits: 7
+        - email: freben@gmail.com
+          commits: 2
         - email: johanopersson@gmail.com
           commits: 1
-      hotspotScore: 0
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.003976519598560878
       sinceDays: 365
+      fileCount: 10
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-app-api/implementations/discoveryapi
     type: rest-api
     name: Discoveryapi
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/DiscoveryApi/UrlPatternDiscovery.test.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 84
-      churn30: 1
-      churn365: 1
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 8
+      lineChurn: 510
+      churn30: 7
+      churn365: 8
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -1183,13 +2185,60 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.875
       authors:
         - email: poldsberg@gmail.com
+          commits: 7
+        - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.001199267815438995
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-app-api/implementations/configapi
     type: rest-api
     name: Configapi
@@ -1273,17 +2322,262 @@ nodes:
     name: Errorapi
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/ErrorApi/ErrorAlerter.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
+      churn: 5
+      lineChurn: 162
+      churn30: 4
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 4
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/app
+    type: gateway-api
+    name: App
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 21
+      complexityPeak: 21
+      cognitiveComplexity: 196
+      churn: 30
+      lineChurn: 3668
+      churn30: 21
+      churn365: 30
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 21
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.7666666666666667
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 21
+        - email: gothuey.gael@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: sanchit2662@gmail.com
+          commits: 1
+        - email: elaine.de-mattos-silva-bezerra@deutschebahn.com
+          commits: 1
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.043668076332344465
+      sinceDays: 365
+      fileCount: 21
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/plugins
+    type: gateway-api
+    name: Plugins
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      churn: 3
+      lineChurn: 162
+      churn30: 3
+      churn365: 3
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 3
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-app-api/extensions
+    type: gateway-api
+    name: Extensions
+    isTest: false
+    properties:
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
       churn: 2
-      lineChurn: 60
-      churn30: 1
+      lineChurn: 233
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -1292,7 +2586,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -1334,87 +2627,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: pschultz@pobox.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/app
-    type: gateway-api
-    name: App
-    isTest: false
-    properties:
-      filepath: packages/core-app-api/src/app/AppContext.test.tsx
-      containerId: core-app-api
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 62
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -1423,182 +2637,28 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/plugins
-    type: gateway-api
-    name: Plugins
-    isTest: false
-    properties:
-      filepath: packages/core-app-api/src/plugins/collectors.test.tsx
-      containerId: core-app-api
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 117
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/packages/core-app-api/extensions
-    type: gateway-api
-    name: Extensions
-    isTest: false
-    properties:
-      filepath: packages/core-app-api/src/extensions/traversal.ts
-      containerId: core-app-api
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 129
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-app-api/authconnector
     type: rest-api
     name: Authconnector
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/lib/AuthConnector/types.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 56
-      churn30: 1
-      churn365: 1
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 20
+      churn: 9
+      lineChurn: 845
+      churn30: 5
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -1634,6 +2694,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
         - 0
         - 0
         - 0
@@ -1647,19 +2708,25 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
+        - 5
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.5555555555555556
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 5
+        - email: jackpalmer@spotify.com
+          commits: 2
+        - email: jroebuck@spotify.com
+          commits: 2
+      hotspotScore: 0.008026678448946958
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-app-api/subjects
     type: background-worker
     name: Subjects
@@ -1977,18 +3044,17 @@ nodes:
     name: Authsessionmanager
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/lib/AuthSessionManager/StaticAuthSessionManager.ts
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 88
-      churn30: 1
-      churn365: 1
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 15
+      lineChurn: 1469
+      churn30: 12
+      churn365: 15
       churnByWeek:
         - 0
         - 0
@@ -2013,23 +3079,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -2043,73 +3093,49 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 12
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8666666666666667
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 12
+        - email: gabriel.dugny@believe.com
+          commits: 3
+      hotspotScore: 0.002314376485934903
       sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-app-api/routing
     type: gateway-api
     name: Routing
     isTest: false
     properties:
-      filepath: packages/core-app-api/src/routing/validation.ts
       containerId: core-app-api
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 96
-      churn30: 1
-      churn365: 1
+      churn: 25
+      lineChurn: 5651
+      churn30: 24
+      churn365: 25
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -2121,19 +3147,65 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 24
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.96
       authors:
         - email: poldsberg@gmail.com
+          commits: 24
+        - email: pschultz@pobox.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 24
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/core-components/components/alertdisplay
     type: gateway-api
     name: Alertdisplay (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/AlertDisplay/AlertDisplay.test.tsx
       containerId: core-components
       technology: React Component
       classification: ui-import
@@ -2229,7 +3301,6 @@ nodes:
     name: Autologout (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/AutoLogout/StillTherePrompt.stories.tsx
       containerId: core-components
       technology: React Component
       classification: ui-import
@@ -2289,7 +3360,6 @@ nodes:
     name: Defaults (External)
     external: true
     properties:
-      filepath: packages/app-defaults/src/defaults/themes.tsx
       containerId: app-defaults
       technology: React Component
       classification: ui-import
@@ -2301,7 +3371,6 @@ nodes:
     name: Devapp (External)
     external: true
     properties:
-      filepath: packages/dev-utils/src/devApp/index.tsx
       containerId: dev-utils
       technology: React Component
       classification: ui-import
@@ -2313,7 +3382,6 @@ nodes:
     name: Dismissablebanner (External)
     external: true
     properties:
-      filepath: packages/core-components/src/components/DismissableBanner/DismissableBanner.test.tsx
       containerId: core-components
       technology: React Component
       classification: ui-import
@@ -2325,7 +3393,6 @@ nodes:
     name: Extensions (External)
     external: true
     properties:
-      filepath: packages/core-plugin-api/src/extensions/componentData.test.tsx
       containerId: core-plugin-api
       technology: React Component
       classification: ui-import
@@ -2337,7 +3404,6 @@ nodes:
     name: Fetchapi (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/apis/FetchApi/MockFetchApi.test.ts
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -2349,7 +3415,6 @@ nodes:
     name: Fetchapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/FetchApi/MockFetchApi.test.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -2357,14 +3422,13 @@ nodes:
       x: 3090
       y: -204
   - entityRef: backstage/packages/core-components/layout/header
-    type: background-worker
+    type: gateway-api
     name: Header (External)
     external: true
     properties:
-      filepath: packages/core-components/src/layout/Header/Header.test.tsx
       containerId: core-components
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     position:
       x: 330
       y: -204
@@ -2457,7 +3521,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/index.tsx
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
@@ -2469,7 +3532,6 @@ nodes:
     name: Translation (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/translation/TranslationResource.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
@@ -2481,7 +3543,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
@@ -2553,27 +3614,27 @@ dependencies:
     to: backstage/packages/core-app-api/subjects
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/bitbucketserver
     to: backstage/packages/core-app-api/implementations
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/gitlab
     to: backstage/packages/core-app-api/implementations
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/google
     to: backstage/packages/core-app-api/implementations
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/microsoft
     to: backstage/packages/core-app-api/implementations
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/oauth2
     to: backstage/packages/core-app-api/index
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/oauth2
     to: backstage/packages/core-app-api/authconnector
     type: direct-call
     description: Calls module / service
@@ -2589,35 +3650,35 @@ dependencies:
     to: backstage/packages/core-app-api/authsessionmanager
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/oauth2
     to: backstage/packages/core-app-api/implementations
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/oauth2
     to: backstage/packages/core-app-api/index
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/github
     to: backstage/packages/core-app-api/implementations
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/okta
     to: backstage/packages/core-app-api/implementations
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/bitbucket
     to: backstage/packages/core-app-api/implementations
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/saml
     to: backstage/packages/core-app-api/authconnector
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/saml
     to: backstage/packages/core-app-api/authsessionmanager
     type: direct-call
     description: Calls module / service
-  - from: backstage/packages/core-app-api/implementations/auth
+  - from: backstage/packages/core-app-api/implementations/auth/saml
     to: backstage/packages/core-app-api/authsessionmanager
     type: direct-call
     description: Calls module / service

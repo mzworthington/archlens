@@ -1,0 +1,50 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-common/search
+  name: Search Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-common/search/catalog-entity-document
+    type: background-worker
+    name: CatalogEntityDocument
+    isTest: false
+    properties:
+      filepath: plugins/catalog-common/src/search/CatalogEntityDocument.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-common/search/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-common/src/search/index.ts
+      containerId: catalog-common
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-common/search/catalog-entity-document
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/catalog-common/search/index
+    to: backstage/plugins/catalog-common/search/catalog-entity-document
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,703 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-test-utils/services
+  name: Services Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-test-utils/services/mock-actions-registry-test
+    type: rest-api
+    name: MockActionsRegistry
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.test.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-test-utils/services/actions-service-mock
+    type: background-worker
+    name: ActionsServiceMock
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/ActionsServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/tracing-service-mock
+    type: background-worker
+    name: TracingServiceMock
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/TracingServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/metrics-service-mock
+    type: background-worker
+    name: MetricsServiceMock
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/MetricsServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/actions-registry-service-mock
+    type: background-worker
+    name: ActionsRegistryServiceMock
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/ActionsRegistryServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/tracing-service-mock-test
+    type: background-worker
+    name: TracingServiceMock
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/TracingServiceMock.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-actions-registry
+    type: background-worker
+    name: MockActionsRegistry
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/alpha-create-service-mock
+    type: background-worker
+    name: AlphaCreateServiceMock
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/alpha/services/alphaCreateServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-events-service-test
+    type: background-worker
+    name: MockEventsService
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockEventsService.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-permissions-service
+    type: background-worker
+    name: MockPermissionsService
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockPermissionsService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-http-auth-service
+    type: rest-api
+    name: MockHttpAuthService
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockHttpAuthService.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-test-utils/services/mock-scheduler-service-test
+    type: background-worker
+    name: MockSchedulerService
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockSchedulerService.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-user-info-service
+    type: background-worker
+    name: MockUserInfoService
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockUserInfoService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-services-test
+    type: background-worker
+    name: MockServices
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/mockServices.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-credentials-test
+    type: background-worker
+    name: MockCredentials
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/mockCredentials.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-http-auth-service-test
+    type: rest-api
+    name: MockHttpAuthService
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockHttpAuthService.test.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-test-utils/services/mock-permissions-service-test
+    type: background-worker
+    name: MockPermissionsService
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockPermissionsService.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-auth-service
+    type: background-worker
+    name: MockAuthService
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockAuthService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-root-logger-service
+    type: background-worker
+    name: MockRootLoggerService
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockRootLoggerService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-events-service
+    type: background-worker
+    name: MockEventsService
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockEventsService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-scheduler-service
+    type: background-worker
+    name: MockSchedulerService
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockSchedulerService.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/create-service-mock
+    type: background-worker
+    name: CreateServiceMock
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/createServiceMock.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-auth-service-test
+    type: background-worker
+    name: MockAuthService
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockAuthService.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-root-logger-service-test
+    type: background-worker
+    name: MockRootLoggerService
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockRootLoggerService.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-user-info-service-test
+    type: background-worker
+    name: MockUserInfoService
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/services/MockUserInfoService.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/services/mock-services
+    type: relational-database
+    name: MockServices
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/mockServices.ts
+      containerId: backend-test-utils
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-test-utils/services/mock-credentials
+    type: background-worker
+    name: MockCredentials
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/services/mockCredentials.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/wiring
+    type: rest-api
+    name: Wiring (External)
+    external: true
+    properties:
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-test-utils/services/mock-actions-registry-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-actions-registry-test
+    to: backstage/packages/backend-test-utils/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-actions-registry-test
+    to: backstage/packages/backend-test-utils/services/actions-registry-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-actions-registry-test
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/actions-service-mock
+    to: backstage/packages/backend-test-utils/services/alpha-create-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/actions-service-mock
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/actions-service-mock
+    to: backstage/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/tracing-service-mock
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/tracing-service-mock
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/tracing-service-mock
+    to: backstage/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/metrics-service-mock
+    to: backstage/packages/backend-test-utils/services/alpha-create-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/metrics-service-mock
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/metrics-service-mock
+    to: backstage/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/actions-registry-service-mock
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/actions-registry-service-mock
+    to: backstage/packages/backend-test-utils/services/mock-actions-registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/actions-registry-service-mock
+    to: backstage/packages/backend-test-utils/services/alpha-create-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/actions-registry-service-mock
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/actions-registry-service-mock
+    to: backstage/packages/backend-defaults/alpha
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/tracing-service-mock-test
+    to: backstage/packages/backend-test-utils/services/tracing-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-actions-registry
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-actions-registry
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-test-utils/services/mock-actions-registry
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-test-utils/services/mock-actions-registry
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/actions-registry-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/mock-actions-registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/actions-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/metrics-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/tracing-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/alpha-create-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/alpha-create-service-mock
+    to: backstage/packages/backend-test-utils/services/create-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-events-service-test
+    to: backstage/packages/backend-test-utils/services/mock-events-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-permissions-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-http-auth-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-http-auth-service
+    to: backstage/packages/backend-test-utils/services/mock-auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-http-auth-service
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-test-utils/services/mock-http-auth-service
+    to: backstage/packages/backend-test-utils/services/mock-credentials
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-scheduler-service-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-scheduler-service-test
+    to: backstage/packages/backend-test-utils/wiring
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-scheduler-service-test
+    to: backstage/packages/backend-test-utils/services/mock-scheduler-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-scheduler-service-test
+    to: backstage/packages/backend-test-utils/services/mock-services
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-user-info-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-user-info-service
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-test-utils/services/mock-services-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-services-test
+    to: backstage/packages/backend-test-utils/services/mock-services
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-credentials-test
+    to: backstage/packages/backend-test-utils/services/mock-credentials
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-http-auth-service-test
+    to: backstage/packages/backend-test-utils/services/mock-http-auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-http-auth-service-test
+    to: backstage/packages/backend-test-utils/services/mock-credentials
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-http-auth-service-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-test-utils/services/mock-permissions-service-test
+    to: backstage/packages/backend-test-utils/services/mock-permissions-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-auth-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-auth-service
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-test-utils/services/mock-auth-service
+    to: backstage/packages/backend-test-utils/services/mock-credentials
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-auth-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-test-utils/services/mock-root-logger-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-root-logger-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-test-utils/services/mock-root-logger-service
+    to: backstage/packages/backend-test-utils/services/mock-services
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-scheduler-service
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-scheduler-service
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-test-utils/services/mock-scheduler-service
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-test-utils/services/create-service-mock
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-auth-service-test
+    to: backstage/packages/backend-test-utils/services/mock-auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-auth-service-test
+    to: backstage/packages/backend-test-utils/services/mock-credentials
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/mock-services
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/mock-credentials
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/index
+    to: backstage/packages/backend-test-utils/services/create-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-root-logger-service-test
+    to: backstage/packages/backend-test-utils/services/mock-root-logger-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-user-info-service-test
+    to: backstage/packages/backend-test-utils/services/mock-user-info-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-user-info-service-test
+    to: backstage/packages/backend-test-utils/services/mock-credentials
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/auditor
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/cache
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/database
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/httprouter
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/lifecycle
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/logger
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/permissions
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/permissionsregistry
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/roothealth
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/roothttprouter
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/rootlifecycle
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-defaults/urlreader
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/mock-auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/mock-http-auth-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/mock-root-logger-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/mock-user-info-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/mock-credentials
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/mock-events-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/mock-permissions-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/create-service-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/backend-test-utils/services/mock-scheduler-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-services
+    to: backstage/packages/config-loader/observableconfigproxy/observable-config-proxy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/services/mock-credentials
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'

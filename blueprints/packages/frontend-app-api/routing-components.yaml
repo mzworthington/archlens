@@ -1,0 +1,503 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/frontend-app-api/routing
+  name: Routing Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/frontend-app-api/routing/route-tracker
+    type: gateway-api
+    name: RouteTracker
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteTracker.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-app-api/routing/join-paths
+    type: background-worker
+    name: JoinPaths
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/joinPaths.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    type: background-worker
+    name: ResolveRouteBindings
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/resolveRouteBindings.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/route-alias-resolver
+    type: background-worker
+    name: RouteAliasResolver
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteAliasResolver.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node
+    type: background-worker
+    name: ExtractRouteInfoFromAppNode
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/extractRouteInfoFromAppNode.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/route-tracker-test
+    type: gateway-api
+    name: RouteTracker
+    isTest: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteTracker.test.tsx
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-app-api/routing/resolve-route-bindings-test
+    type: background-worker
+    name: ResolveRouteBindings
+    isTest: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/resolveRouteBindings.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/types.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/route-resolver
+    type: gateway-api
+    name: RouteResolver
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteResolver.ts
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    type: gateway-api
+    name: ExtractRouteInfoFromAppNode
+    isTest: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/extractRouteInfoFromAppNode.test.ts
+      containerId: frontend-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/frontend-app-api/routing/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/index.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/get-base-path
+    type: background-worker
+    name: GetBasePath
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/getBasePath.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/route-resolver-test
+    type: rest-api
+    name: RouteResolver
+    isTest: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/RouteResolver.test.ts
+      containerId: frontend-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/frontend-app-api/routing/collect-route-ids
+    type: background-worker
+    name: CollectRouteIds
+    isTest: false
+    properties:
+      filepath: packages/frontend-app-api/src/routing/collectRouteIds.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/routing/collect-route-ids-test
+    type: background-worker
+    name: CollectRouteIds
+    isTest: true
+    properties:
+      filepath: packages/frontend-app-api/src/routing/collectRouteIds.test.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/frontend-app-api/wiring/create-error-collector
+    type: background-worker
+    name: CreateErrorCollector (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/apis/index.ts
+      containerId: frontend-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1710
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
+      y: 404
+  - entityRef: backstage/packages/frontend-internal/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/frontend-internal/src/apis/index.ts
+      containerId: frontend-internal
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2630
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1970
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/tree/instantiate-app-node-tree
+    type: background-worker
+    name: InstantiateAppNodeTree (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/tree/read-app-extensions-config
+    type: background-worker
+    name: ReadAppExtensionsConfig (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/readAppExtensionsConfig.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/tree/resolve-app-node-specs
+    type: background-worker
+    name: ResolveAppNodeSpecs (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/resolveAppNodeSpecs.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/frontend-app-api/tree/resolve-app-tree
+    type: background-worker
+    name: ResolveAppTree (External)
+    external: true
+    properties:
+      filepath: packages/frontend-app-api/src/tree/resolveAppTree.ts
+      containerId: frontend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/wiring/resolve-extension-definition
+    type: background-worker
+    name: ResolveExtensionDefinition (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/wiring/resolveExtensionDefinition.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2170
+      y: 404
+dependencies:
+  - from: backstage/packages/frontend-app-api/routing/route-tracker
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/route-tracker
+    to: backstage/packages/frontend-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    to: backstage/packages/frontend-app-api/routing/collect-route-ids
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    to: backstage/packages/frontend-app-api/wiring/create-error-collector
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/frontend-app-api/routing/route-alias-resolver
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/route-alias-resolver
+    to: backstage/packages/frontend-app-api/routing/collect-route-ids
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/route-alias-resolver
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node
+    to: backstage/packages/frontend-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node
+    to: backstage/packages/frontend-app-api/routing/route-alias-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node
+    to: backstage/packages/frontend-app-api/routing/join-paths
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/route-tracker-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/frontend-app-api/routing/route-tracker-test
+    to: backstage/packages/frontend-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/route-tracker-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/route-tracker-test
+    to: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings-test
+    to: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/frontend-app-api/routing/resolve-route-bindings-test
+    to: backstage/packages/frontend-app-api/wiring/create-error-collector
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/types
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/route-resolver
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/route-resolver
+    to: backstage/packages/frontend-app-api/routing/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/route-resolver
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/frontend-app-api/routing/route-resolver
+    to: backstage/packages/frontend-app-api/routing/route-alias-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/route-resolver
+    to: backstage/packages/frontend-app-api/routing/join-paths
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-app-api/tree/read-app-extensions-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-app-api/tree/resolve-app-node-specs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-app-api/tree/resolve-app-tree
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-app-api/tree/instantiate-app-node-tree
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-app-api/extensions/root
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-plugin-api/wiring/resolve-extension-definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-app-api/routing/route-alias-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node-test
+    to: backstage/packages/frontend-app-api/wiring/create-error-collector
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/index
+    to: backstage/packages/frontend-app-api/routing/resolve-route-bindings
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/get-base-path
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/route-resolver-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/route-resolver-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/route-resolver-test
+    to: backstage/packages/frontend-app-api/routing/route-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/route-resolver-test
+    to: backstage/packages/frontend-app-api/routing/extract-route-info-from-app-node
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/route-resolver-test
+    to: backstage/packages/frontend-app-api/routing/route-alias-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/collect-route-ids
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/collect-route-ids
+    to: backstage/packages/frontend-internal/index
+    type: direct-call
+    description: '@internal/frontend'
+  - from: backstage/packages/frontend-app-api/routing/collect-route-ids
+    to: backstage/packages/frontend-app-api/wiring/create-error-collector
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/collect-route-ids-test
+    to: backstage/packages/frontend-plugin-api/index
+    type: direct-call
+    description: '@backstage/frontend-plugin-api'
+  - from: backstage/packages/frontend-app-api/routing/collect-route-ids-test
+    to: backstage/packages/frontend-app-api/routing/collect-route-ids
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/frontend-app-api/routing/collect-route-ids-test
+    to: backstage/packages/frontend-app-api/wiring/create-error-collector
+    type: direct-call
+    description: Calls module / service

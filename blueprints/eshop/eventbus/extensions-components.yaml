@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/eventbus/extensions
+  name: Extensions Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/eventbus/extensions/generic-type-extensions
+    type: background-worker
+    name: GenericTypeExtensions
+    isTest: false
+    properties:
+      filepath: src/EventBus/Extensions/GenericTypeExtensions.cs
+      containerId: eventbus
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/eventbus/extensions/event-bus-builder-extensions
+    type: background-worker
+    name: EventBusBuilderExtensions
+    isTest: false
+    properties:
+      filepath: src/EventBus/Extensions/EventBusBuilderExtensions.cs
+      containerId: eventbus
+      technology: C# Domain Service
+      classification: default
+dependencies: []

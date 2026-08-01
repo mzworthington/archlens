@@ -14,18 +14,15 @@ nodes:
     name: Ingestion
     isTest: false
     properties:
-      filepath: plugins/catalog-common/src/ingestion/LocationAnalyzer.ts
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 88
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 169
+      churn30: 4
+      churn365: 4
       churnByWeek:
         - 0
         - 0
@@ -75,7 +72,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
         - 0
         - 0
         - 0
@@ -84,9 +81,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 4
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-common/permissions
     type: background-worker
     name: Permissions
@@ -326,18 +326,15 @@ nodes:
     name: Search
     isTest: false
     properties:
-      filepath: plugins/catalog-common/src/search/CatalogEntityDocument.ts
       containerId: catalog-common
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 31
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 47
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -387,7 +384,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -396,9 +393,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-common/index
     type: background-worker
     name: Index
@@ -506,24 +506,11 @@ nodes:
     name: Apiexplorerpage (External)
     external: true
     properties:
-      filepath: plugins/api-docs/src/components/ApiExplorerPage/ApiExplorerPage.test.tsx
       containerId: api-docs
       technology: React Component
       classification: ui-import
     position:
       x: -8870
-      y: -204
-  - entityRef: backstage/plugins/org/components/cards
-    type: gateway-api
-    name: Cards (External)
-    external: true
-    properties:
-      filepath: plugins/org/src/components/Cards/Group/GroupProfile/index.ts
-      containerId: org
-      technology: React Component
-      classification: ui-import
-    position:
-      x: 7690
       y: -204
   - entityRef: backstage/plugins/catalog-import/catalogimportclient
     type: gateway-api
@@ -542,7 +529,6 @@ nodes:
     name: Catalogpage (External)
     external: true
     properties:
-      filepath: plugins/catalog/src/components/CatalogPage/DefaultCatalogPage.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
@@ -566,7 +552,6 @@ nodes:
     name: Collators (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.test.ts
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
@@ -578,7 +563,6 @@ nodes:
     name: Collators (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-catalog/src/collators/defaultCatalogCollatorEntityTransformer.ts
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
@@ -602,7 +586,6 @@ nodes:
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/catalog/src/components/EntityOrphanWarning/EntityOrphanWarning.tsx
       containerId: catalog
       technology: React Component
       classification: ui-import
@@ -645,12 +628,22 @@ nodes:
     position:
       x: 3550
       y: -204
+  - entityRef: backstage/plugins/org/components/cards/group/groupprofile
+    type: gateway-api
+    name: Groupprofile (External)
+    external: true
+    properties:
+      containerId: org
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 7690
+      y: -204
   - entityRef: backstage/plugins/catalog-react/hooks
     type: gateway-api
     name: Hooks (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/hooks/useEntityTypeFilter.tsx
       containerId: catalog-react
       technology: React Component
       classification: ui-import
@@ -686,7 +679,6 @@ nodes:
     name: Ingestion (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/ingestion/LocationAnalyzer.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
@@ -722,7 +714,6 @@ nodes:
     name: Processing (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processing/ProcessorCacheManager.test.ts
       containerId: catalog-backend
       technology: TypeScript Cache Client
       classification: cache-marker
@@ -734,7 +725,6 @@ nodes:
     name: Processing (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/processing/parse.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
@@ -758,7 +748,6 @@ nodes:
     name: Processor (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-scaffolder-entity-model/src/processor/ScaffolderEntitiesProcessor.ts
       containerId: catalog-backend-module-scaffolder-entity-model
       technology: TypeScript Domain Service
       classification: default
@@ -782,7 +771,6 @@ nodes:
     name: Processors (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/processors/ModelProcessor.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
@@ -794,7 +782,6 @@ nodes:
     name: Processors (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-ldap/src/processors/index.ts
       containerId: catalog-backend-module-ldap
       technology: TypeScript Domain Service
       classification: default
@@ -806,7 +793,6 @@ nodes:
     name: Processors (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-aws/src/processors/AwsEKSClusterProcessor.ts
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
@@ -818,7 +804,6 @@ nodes:
     name: Processors (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-azure/src/processors/AzureDevOpsDiscoveryProcessor.test.ts
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
@@ -830,7 +815,6 @@ nodes:
     name: Processors (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-msgraph/src/processors/MicrosoftGraphOrgReaderProcessor.test.ts
       containerId: catalog-backend-module-msgraph
       technology: TypeScript Domain Service
       classification: default
@@ -842,7 +826,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-cloud/src/providers/BitbucketCloudEntityProviderConfig.ts
       containerId: catalog-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
@@ -854,7 +837,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-github/src/providers/GithubEntityProviderConfig.test.ts
       containerId: catalog-backend-module-github
       technology: TypeScript Domain Service
       classification: default
@@ -866,7 +848,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitea/src/providers/GiteaEntityProvider.ts
       containerId: catalog-backend-module-gitea
       technology: TypeScript Domain Service
       classification: default
@@ -878,7 +859,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gerrit/src/providers/types.ts
       containerId: catalog-backend-module-gerrit
       technology: TypeScript Domain Service
       classification: default
@@ -890,7 +870,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-bitbucket-server/src/providers/BitbucketServerLocationParser.ts
       containerId: catalog-backend-module-bitbucket-server
       technology: TypeScript Domain Service
       classification: default
@@ -902,7 +881,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-aws/src/providers/AwsS3EntityProvider.test.ts
       containerId: catalog-backend-module-aws
       technology: TypeScript Domain Service
       classification: default
@@ -914,7 +892,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-azure/src/providers/AzureBlobStorageEntityProvider.ts
       containerId: catalog-backend-module-azure
       technology: TypeScript Domain Service
       classification: default
@@ -926,7 +903,6 @@ nodes:
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gitlab/src/providers/GitlabDiscoveryEntityProvider.ts
       containerId: catalog-backend-module-gitlab
       technology: TypeScript Domain Service
       classification: default
@@ -938,7 +914,6 @@ nodes:
     name: Rules (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/permissions/rules/hasMetadata.ts
       containerId: catalog-backend
       technology: TypeScript Domain Service
       classification: default
@@ -950,7 +925,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend/src/service/AuthorizedRefreshService.ts
       containerId: catalog-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -962,7 +936,6 @@ nodes:
     name: Templatelistpage (External)
     external: true
     properties:
-      filepath: plugins/scaffolder/src/alpha/components/TemplateListPage/TemplateListPage.test.tsx
       containerId: scaffolder
       technology: React Component
       classification: ui-import
@@ -974,7 +947,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default
@@ -1050,7 +1022,7 @@ dependencies:
     to: backstage/plugins/catalog-common/index
     type: direct-call
     description: '@backstage/plugin-catalog-common'
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/group/groupprofile
     to: backstage/plugins/catalog-common/alpha
     type: direct-call
     description: '@backstage/plugin-catalog-common'

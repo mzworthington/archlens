@@ -92,18 +92,15 @@ nodes:
     name: Test utils
     isTest: false
     properties:
-      filepath: plugins/search-backend-node/src/test-utils/TestPipeline.ts
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 219
-      churn30: 1
-      churn365: 2
+      churn: 3
+      lineChurn: 237
+      churn30: 2
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -153,20 +150,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: freben@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend-node/indexbuilder-test
     type: background-worker
     name: Indexbuilder test
@@ -566,18 +566,16 @@ nodes:
     name: Engines
     isTest: false
     properties:
-      filepath: plugins/search-backend-node/src/engines/LunrSearchEngine.test.ts
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 1301
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      complexityPeak: 1
+      churn: 10
+      lineChurn: 1905
+      churn30: 5
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -594,6 +592,27 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
         - 0
         - 1
         - 0
@@ -606,41 +625,25 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 5
         - email: jordans@spotify.com
+          commits: 4
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.0005785941214837257
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend-node/index
     type: background-worker
     name: Index
@@ -724,18 +727,17 @@ nodes:
     name: Indexing
     isTest: false
     properties:
-      filepath: plugins/search-backend-node/src/indexing/DecoratorBase.test.ts
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 157
-      churn30: 1
-      churn365: 1
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 9
+      lineChurn: 586
+      churn30: 5
+      churn365: 9
       churnByWeek:
         - 0
         - 0
@@ -762,6 +764,16 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -775,28 +787,23 @@ nodes:
         - 0
         - 0
         - 0
+        - 5
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
+      authorCount: 2
+      topAuthorPercent: 0.7777777777777778
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 7
+        - email: freben@gmail.com
+          commits: 2
+      hotspotScore: 0.0017813685679620161
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend-node/indexbuilder
     type: background-worker
     name: Indexbuilder
@@ -882,18 +889,17 @@ nodes:
     name: Collators
     isTest: false
     properties:
-      filepath: plugins/search-backend-node/src/collators/NewlineDelimitedJsonCollatorFactory.test.ts
       containerId: search-backend-node
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 159
-      churn30: 1
-      churn365: 2
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      churn: 6
+      lineChurn: 344
+      churn30: 3
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -901,25 +907,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
         - 0
         - 0
@@ -939,30 +926,53 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
         - email: freben@gmail.com
+          commits: 2
+        - email: pschultz@pobox.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.001164201505046042
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend/actions
     type: background-worker
     name: Actions (External)
     external: true
     properties:
-      filepath: plugins/search-backend/src/actions/createQueryAction.ts
       containerId: search-backend
       technology: TypeScript Domain Service
       classification: default
@@ -974,7 +984,6 @@ nodes:
     name: Collators (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-techdocs/src/collators/DefaultTechDocsCollatorFactory.test.ts
       containerId: search-backend-module-techdocs
       technology: TypeScript Domain Service
       classification: default
@@ -986,7 +995,6 @@ nodes:
     name: Collators (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-catalog/src/collators/defaultCatalogCollatorEntityTransformer.ts
       containerId: search-backend-module-catalog
       technology: TypeScript Domain Service
       classification: default
@@ -998,7 +1006,6 @@ nodes:
     name: Collators (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-explore/src/collators/ToolDocumentCollatorFactory.ts
       containerId: search-backend-module-explore
       technology: TypeScript Domain Service
       classification: default
@@ -1010,7 +1017,6 @@ nodes:
     name: Collators (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/src/collators/StackOverflowQuestionsCollatorFactory.ts
       containerId: search-backend-module-stack-overflow-collator
       technology: TypeScript Domain Service
       classification: default
@@ -1022,7 +1028,6 @@ nodes:
     name: Engines (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-elasticsearch/src/engines/ElasticSearchSearchEngine.test.ts
       containerId: search-backend-module-elasticsearch
       technology: TypeScript Domain Service
       classification: default
@@ -1106,7 +1111,6 @@ nodes:
     name: Module (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-stack-overflow-collator/src/module/SearchStackOverflowCollatorModule.ts
       containerId: search-backend-module-stack-overflow-collator
       technology: TypeScript Domain Service
       classification: default
@@ -1166,7 +1170,6 @@ nodes:
     name: Pgsearchengine (External)
     external: true
     properties:
-      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngineIndexer.test.ts
       containerId: search-backend-module-pg
       technology: Prisma / SQL Database Client
       classification: database-marker
@@ -1190,7 +1193,6 @@ nodes:
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/search-backend/src/service/router.ts
       containerId: search-backend
       technology: REST Controller / Router
       classification: api-marker

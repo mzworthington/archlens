@@ -1,0 +1,86 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/notifications-backend/actions
+  name: Actions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/notifications-backend/actions/create-get-notifications-action
+    type: background-worker
+    name: CreateGetNotificationsAction
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend/src/actions/createGetNotificationsAction.ts
+      containerId: notifications-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/notifications-backend/actions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/notifications-backend/src/actions/index.ts
+      containerId: notifications-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/notifications-backend/actions/create-get-notifications-action-test
+    type: background-worker
+    name: CreateGetNotificationsAction
+    isTest: true
+    properties:
+      filepath: plugins/notifications-backend/src/actions/createGetNotificationsAction.test.ts
+      containerId: notifications-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/notifications-backend/database
+    type: relational-database
+    name: Database (External)
+    external: true
+    properties:
+      containerId: notifications-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/notifications-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/notifications-common/src/index.ts
+      containerId: notifications-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/notifications-backend/actions/create-get-notifications-action
+    to: backstage/plugins/notifications-backend/database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/notifications-backend/actions/index
+    to: backstage/plugins/notifications-backend/database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/notifications-backend/actions/index
+    to: backstage/plugins/notifications-backend/actions/create-get-notifications-action
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/notifications-backend/actions/create-get-notifications-action-test
+    to: backstage/plugins/notifications-backend/actions/create-get-notifications-action
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/notifications-backend/actions/create-get-notifications-action-test
+    to: backstage/plugins/notifications-backend/database
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/notifications-backend/actions/create-get-notifications-action-test
+    to: backstage/plugins/notifications-common/index
+    type: direct-call
+    description: '@backstage/plugin-notifications-common'

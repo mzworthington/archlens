@@ -1,0 +1,218 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/app-react/blueprints
+  name: Blueprints Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/app-react/blueprints/app-root-wrapper-blueprint-test
+    type: gateway-api
+    name: AppRootWrapperBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/AppRootWrapperBlueprint.test.tsx
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/blueprints/router-blueprint-test
+    type: gateway-api
+    name: RouterBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/RouterBlueprint.test.tsx
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/blueprints/sign-in-page-blueprint-test
+    type: gateway-api
+    name: SignInPageBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/SignInPageBlueprint.test.tsx
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/blueprints/icon-bundle-blueprint
+    type: background-worker
+    name: IconBundleBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/IconBundleBlueprint.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/sign-in-page-blueprint
+    type: gateway-api
+    name: SignInPageBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/SignInPageBlueprint.tsx
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/blueprints/translation-blueprint-test
+    type: background-worker
+    name: TranslationBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/TranslationBlueprint.test.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/app-root-wrapper-blueprint
+    type: gateway-api
+    name: AppRootWrapperBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/AppRootWrapperBlueprint.tsx
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/blueprints/theme-blueprint-test
+    type: background-worker
+    name: ThemeBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/ThemeBlueprint.test.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/swappable-component-blueprint
+    type: background-worker
+    name: SwappableComponentBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/SwappableComponentBlueprint.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/swappable-component-blueprint-test
+    type: gateway-api
+    name: SwappableComponentBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/SwappableComponentBlueprint.test.tsx
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/blueprints/nav-content-blueprint-test
+    type: gateway-api
+    name: NavContentBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/NavContentBlueprint.test.tsx
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/blueprints/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/index.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/theme-blueprint
+    type: background-worker
+    name: ThemeBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/ThemeBlueprint.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/translation-blueprint
+    type: background-worker
+    name: TranslationBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/TranslationBlueprint.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/router-blueprint
+    type: gateway-api
+    name: RouterBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/RouterBlueprint.tsx
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/app-react/blueprints/analytics-implementation-blueprint-test
+    type: background-worker
+    name: AnalyticsImplementationBlueprint
+    isTest: true
+    properties:
+      filepath: plugins/app-react/src/blueprints/AnalyticsImplementationBlueprint.test.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/analytics-implementation-blueprint
+    type: background-worker
+    name: AnalyticsImplementationBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/AnalyticsImplementationBlueprint.ts
+      containerId: app-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/app-react/blueprints/nav-content-blueprint
+    type: gateway-api
+    name: NavContentBlueprint
+    isTest: false
+    properties:
+      filepath: plugins/app-react/src/blueprints/NavContentBlueprint.ts
+      containerId: app-react
+      technology: React Component
+      classification: ui-import
+dependencies:
+  - from: backstage/plugins/app-react/blueprints/translation-blueprint-test
+    to: backstage/plugins/app-react/blueprints/translation-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/theme-blueprint-test
+    to: backstage/plugins/app-react/blueprints/theme-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/swappable-component-blueprint-test
+    to: backstage/plugins/app-react/blueprints/swappable-component-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/nav-content-blueprint-test
+    to: backstage/plugins/app-react/blueprints/nav-content-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/index
+    to: backstage/plugins/app-react/blueprints/analytics-implementation-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/index
+    to: backstage/plugins/app-react/blueprints/icon-bundle-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/index
+    to: backstage/plugins/app-react/blueprints/nav-content-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/index
+    to: backstage/plugins/app-react/blueprints/swappable-component-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/index
+    to: backstage/plugins/app-react/blueprints/theme-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/index
+    to: backstage/plugins/app-react/blueprints/translation-blueprint
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/app-react/blueprints/analytics-implementation-blueprint-test
+    to: backstage/plugins/app-react/blueprints/analytics-implementation-blueprint
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,187 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-components/components/autologout
+  name: Autologout Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-components/components/autologout/still-there-prompt-stories
+    type: background-worker
+    name: StillTherePrompt.stories
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/StillTherePrompt.stories.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/autologout/still-there-prompt
+    type: gateway-api
+    name: StillTherePrompt
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/StillTherePrompt.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/autologout/timestamp-store
+    type: background-worker
+    name: TimestampStore
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/timestampStore.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/autologout/timestamp-store-test
+    type: background-worker
+    name: TimestampStore
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/timestampStore.test.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/autologout/disconnected-users-test
+    type: gateway-api
+    name: DisconnectedUsers
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/disconnectedUsers.test.ts
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/autologout/disconnected-users
+    type: gateway-api
+    name: DisconnectedUsers
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/disconnectedUsers.ts
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components/autologout/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/autologout/autologout-test
+    type: gateway-api
+    name: Autologout
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/AutoLogout/Autologout.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/alpha.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/core-components/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/core-app-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+dependencies:
+  - from: backstage/packages/core-components/components/autologout/still-there-prompt
+    to: backstage/packages/core-components/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/autologout/still-there-prompt
+    to: backstage/packages/core-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/components/autologout/timestamp-store-test
+    to: backstage/packages/core-components/components/autologout/timestamp-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/autologout/disconnected-users-test
+    to: backstage/packages/core-components/components/autologout/disconnected-users
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/autologout/disconnected-users
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/components/autologout/disconnected-users
+    to: backstage/packages/core-components/components/autologout/timestamp-store
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/autologout/index
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/autologout/autologout-test
+    to: backstage/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: backstage/packages/core-components/components/autologout/autologout-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/components/autologout/autologout-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/components/autologout/autologout-test
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service

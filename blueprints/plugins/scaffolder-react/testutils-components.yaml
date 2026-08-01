@@ -1,0 +1,51 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-react/testutils
+  name: Testutils Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/scaffolder-react/testutils/test-utils
+    type: background-worker
+    name: TestUtils
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/testUtils.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/testutils/scaffolder-api-mock-test
+    type: background-worker
+    name: ScaffolderApiMock
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-react/src/testUtils/scaffolderApiMock.test.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-react/testutils/scaffolder-api-mock
+    type: background-worker
+    name: ScaffolderApiMock
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-react/src/testUtils/scaffolderApiMock.ts
+      containerId: scaffolder-react
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/scaffolder-react/testutils/test-utils
+    to: backstage/plugins/scaffolder-react/testutils/scaffolder-api-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/testutils/scaffolder-api-mock-test
+    to: backstage/plugins/scaffolder-react/testutils/scaffolder-api-mock
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-react/testutils/scaffolder-api-mock
+    to: backstage/plugins/scaffolder-react/ref/ref
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,332 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/cli/writers
+  name: Writers Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/cli/writers/component-level-writer
+    type: background-worker
+    name: ComponentLevelWriter
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/writers/componentLevelWriter.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/external-dependencies-pass
+    type: background-worker
+    name: ExternalDependenciesPass
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/writers/externalDependenciesPass.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/context-level-writer
+    type: background-worker
+    name: ContextLevelWriter
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/writers/contextLevelWriter.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/rollup-drill-down
+    type: background-worker
+    name: RollupDrillDown
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/writers/rollupDrillDown.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/context-level-writer-test
+    type: background-worker
+    name: ContextLevelWriter
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/writers/contextLevelWriter.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/base-writer-test
+    type: background-worker
+    name: BaseWriter
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/writers/baseWriter.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/container-level-writer-test
+    type: background-worker
+    name: ContainerLevelWriter
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/writers/containerLevelWriter.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/rollup-drill-down-test
+    type: background-worker
+    name: RollupDrillDown
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/writers/rollupDrillDown.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/component-level-writer-test
+    type: background-worker
+    name: ComponentLevelWriter
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/writers/componentLevelWriter.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/external-dependencies-pass-test
+    type: background-worker
+    name: ExternalDependenciesPass
+    isTest: true
+    properties:
+      filepath: app/packages/cli/src/writers/externalDependenciesPass.test.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/base-writer
+    type: background-worker
+    name: BaseWriter
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/writers/baseWriter.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/writers/container-level-writer
+    type: background-worker
+    name: ContainerLevelWriter
+    isTest: false
+    properties:
+      filepath: app/packages/cli/src/writers/containerLevelWriter.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/cli/forensics/domain/attach-forensics
+    type: background-worker
+    name: AttachForensics (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/forensics/domain/attachForensics.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/entity-ref-context
+    type: background-worker
+    name: EntityRefContext (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/entityRefContext.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/app/core/layout
+    type: background-worker
+    name: Layout (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/layout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/ports
+    type: background-worker
+    name: Ports (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/ports.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/cli/analysis/domain/system-discovery
+    type: background-worker
+    name: SystemDiscovery (External)
+    external: true
+    properties:
+      filepath: app/packages/cli/src/analysis/domain/systemDiscovery.ts
+      containerId: cli
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/app/cli/writers/component-level-writer
+    to: blueprint/app/cli/writers/base-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/component-level-writer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/component-level-writer
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/component-level-writer
+    to: blueprint/app/cli/analysis/domain/entity-ref-context
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/writers/component-level-writer
+    to: blueprint/app/cli/writers/rollup-drill-down
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/external-dependencies-pass
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/external-dependencies-pass
+    to: blueprint/app/cli/analysis/domain/ports
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/writers/context-level-writer
+    to: blueprint/app/cli/writers/base-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/context-level-writer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/context-level-writer
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/context-level-writer
+    to: blueprint/app/cli/forensics/domain/attach-forensics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/context-level-writer
+    to: blueprint/app/cli/analysis/domain/system-discovery
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/writers/context-level-writer
+    to: blueprint/app/cli/analysis/domain/entity-ref-context
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/writers/rollup-drill-down
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/context-level-writer-test
+    to: blueprint/app/cli/writers/context-level-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/context-level-writer-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/base-writer-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/base-writer-test
+    to: blueprint/app/cli/writers/context-level-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/base-writer-test
+    to: blueprint/app/cli/writers/container-level-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/base-writer-test
+    to: blueprint/app/cli/writers/component-level-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/base-writer-test
+    to: blueprint/app/cli/writers/base-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/container-level-writer-test
+    to: blueprint/app/cli/writers/container-level-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/container-level-writer-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/rollup-drill-down-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/rollup-drill-down-test
+    to: blueprint/app/cli/writers/rollup-drill-down
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/component-level-writer-test
+    to: blueprint/app/cli/writers/component-level-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/component-level-writer-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/external-dependencies-pass-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/external-dependencies-pass-test
+    to: blueprint/app/cli/writers/external-dependencies-pass
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/base-writer
+    to: blueprint/app/cli/analysis/domain/ports
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/cli/writers/base-writer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/container-level-writer
+    to: blueprint/app/cli/writers/base-writer
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/cli/writers/container-level-writer
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/container-level-writer
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/cli/writers/container-level-writer
+    to: blueprint/app/cli/analysis/domain/entity-ref-context
+    type: read-write
+    description: Queries datastore records

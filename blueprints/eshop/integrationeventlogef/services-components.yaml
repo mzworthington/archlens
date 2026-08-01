@@ -1,0 +1,30 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/integrationeventlogef/services
+  name: Services Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/integrationeventlogef/services/integration-event-log-service
+    type: background-worker
+    name: IntegrationEventLogService
+    isTest: false
+    properties:
+      filepath: src/IntegrationEventLogEF/Services/IntegrationEventLogService.cs
+      containerId: integrationeventlogef
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/integrationeventlogef/services/i-integration-event-log-service
+    type: background-worker
+    name: IIntegrationEventLogService
+    isTest: false
+    properties:
+      filepath: src/IntegrationEventLogEF/Services/IIntegrationEventLogService.cs
+      containerId: integrationeventlogef
+      technology: C# Domain Service
+      classification: default
+dependencies: []

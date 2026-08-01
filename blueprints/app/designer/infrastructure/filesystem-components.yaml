@@ -1,0 +1,91 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/infrastructure/filesystem
+  name: Filesystem Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace-test
+    type: background-worker
+    name: BundledSampleWorkspace
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/infrastructure/fileSystem/bundledSampleWorkspace.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/infrastructure/filesystem/file-sync-test
+    type: background-worker
+    name: FileSync
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/infrastructure/fileSystem/fileSync.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
+    type: background-worker
+    name: BundledSampleWorkspace
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/infrastructure/fileSystem/bundledSampleWorkspace.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/infrastructure/filesystem/file-sync
+    type: background-worker
+    name: FileSync
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/infrastructure/fileSystem/fileSync.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/core
+    type: background-worker
+    name: Core (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/golden-paths-sample
+    type: background-worker
+    name: GoldenPathsSample (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/goldenPathsSample.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace-test
+    to: blueprint/app/designer/application/store/golden-paths-sample
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/infrastructure/filesystem/file-sync-test
+    to: blueprint/app/designer/infrastructure/filesystem/file-sync
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
+    to: blueprint/app/designer/application/store/golden-paths-sample
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/infrastructure/filesystem/file-sync
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service

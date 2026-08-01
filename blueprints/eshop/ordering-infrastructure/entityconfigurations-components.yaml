@@ -1,0 +1,66 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/ordering-infrastructure/entityconfigurations
+  name: EntityConfigurations Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/ordering-infrastructure/entityconfigurations/payment-method-entity-type-configuration
+    type: background-worker
+    name: PaymentMethodEntityTypeConfiguration
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/EntityConfigurations/PaymentMethodEntityTypeConfiguration.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-infrastructure/entityconfigurations/order-item-entity-type-configuration
+    type: background-worker
+    name: OrderItemEntityTypeConfiguration
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/EntityConfigurations/OrderItemEntityTypeConfiguration.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-infrastructure/entityconfigurations/card-type-entity-type-configuration
+    type: background-worker
+    name: CardTypeEntityTypeConfiguration
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/EntityConfigurations/CardTypeEntityTypeConfiguration.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-infrastructure/entityconfigurations/order-entity-type-configuration
+    type: background-worker
+    name: OrderEntityTypeConfiguration
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/EntityConfigurations/OrderEntityTypeConfiguration.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-infrastructure/entityconfigurations/buyer-entity-type-configuration
+    type: background-worker
+    name: BuyerEntityTypeConfiguration
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/EntityConfigurations/BuyerEntityTypeConfiguration.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-infrastructure/entityconfigurations/client-request-entity-type-configuration
+    type: background-worker
+    name: ClientRequestEntityTypeConfiguration
+    isTest: false
+    properties:
+      filepath: src/Ordering.Infrastructure/EntityConfigurations/ClientRequestEntityTypeConfiguration.cs
+      containerId: ordering-infrastructure
+      technology: C# Domain Service
+      classification: default
+dependencies: []

@@ -1,0 +1,196 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/ui/features/workspace/components/canvas
+  name: Canvas Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-group-node
+    type: gateway-api
+    name: BlueprintGroupNode
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/BlueprintGroupNode.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/workspace-status-badges-test
+    type: gateway-api
+    name: WorkspaceStatusBadges
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/WorkspaceStatusBadges.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/diagram-loading-overlay
+    type: gateway-api
+    name: DiagramLoadingOverlay
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/DiagramLoadingOverlay.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node-test
+    type: gateway-api
+    name: BlueprintNode
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/BlueprintNode.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-test
+    type: gateway-api
+    name: Canvas
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/Canvas.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/workspace-status-badges
+    type: gateway-api
+    name: WorkspaceStatusBadges
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/WorkspaceStatusBadges.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
+    type: gateway-api
+    name: BlueprintNode
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/BlueprintNode.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/concern
+    type: background-worker
+    name: Concern (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/concern.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/designer/application/navigation/navigate-to-workspace-entity
+    type: background-worker
+    name: NavigateToWorkspaceEntity (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/navigation/navigateToWorkspaceEntity.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/core/resilience
+    type: background-worker
+    name: Resilience (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/designer/application/store
+    type: background-worker
+    name: Store (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-group-node
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/workspace-status-badges-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/diagram-loading-overlay
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-test
+    to: blueprint/app/designer/ui/features/workspace/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/workspace-status-badges
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
+    to: blueprint/app/designer/application/forensics/concern
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
+    to: blueprint/app/designer/application/navigation/navigate-to-workspace-entity
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
+    to: blueprint/app/designer/ui/features/workspace/components
+    type: direct-call
+    description: Calls module / service

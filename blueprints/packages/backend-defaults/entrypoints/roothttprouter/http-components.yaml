@@ -1,0 +1,305 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http
+  name: Http Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-helmet-options-test
+    type: rest-api
+    name: ReadHelmetOptions
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/readHelmetOptions.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-cors-options-test
+    type: rest-api
+    name: ReadCorsOptions
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/readCorsOptions.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    type: rest-api
+    name: MiddlewareFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/MiddlewareFactory.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/get-generated-certificate
+    type: rest-api
+    name: GetGeneratedCertificate
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/getGeneratedCertificate.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-helmet-options
+    type: rest-api
+    name: ReadHelmetOptions
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/readHelmetOptions.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/types
+    type: rest-api
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/types.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-cors-options
+    type: rest-api
+    name: ReadCorsOptions
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/readCorsOptions.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/create-http-server
+    type: rest-api
+    name: CreateHttpServer
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/createHttpServer.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory-test
+    type: rest-api
+    name: MiddlewareFactory
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/MiddlewareFactory.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/index.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/apply-internal-error-filter
+    type: rest-api
+    name: ApplyInternalErrorFilter
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/applyInternalErrorFilter.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config
+    type: rest-api
+    name: Config
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/config.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config-test
+    type: rest-api
+    name: Config
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/http/config.test.ts
+      containerId: backend-defaults
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-helmet-options-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-helmet-options-test
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-helmet-options
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-cors-options-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-cors-options-test
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-cors-options
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-helmet-options
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-cors-options
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/apply-internal-error-filter
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    to: backstage/packages/backend-defaults/ratelimitstorefactory/rate-limit-store-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    to: backstage/packages/backend-defaults/ratelimitmiddleware/rate-limit-middleware
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/get-generated-certificate
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-helmet-options
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-cors-options
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/create-http-server
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/create-http-server
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/create-http-server
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/get-generated-certificate
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/index
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/index
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/create-http-server
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/index
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/middleware-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/index
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-cors-options
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/index
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/read-helmet-options
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/index
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/apply-internal-error-filter
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/apply-internal-error-filter
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config-test
+    to: backstage/packages/backend-defaults/entrypoints/roothttprouter/http/config
+    type: direct-call
+    description: Calls module / service

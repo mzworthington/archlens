@@ -1,0 +1,93 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/ordering-domain/aggregatesmodel
+  name: AggregatesModel Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/ordering-domain/aggregatesmodel/order
+    type: background-worker
+    name: Order
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Order.cs
+      containerId: ordering-domain
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-domain/aggregatesmodel/address
+    type: background-worker
+    name: Address
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/Address.cs
+      containerId: ordering-domain
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-domain/aggregatesmodel/order-status
+    type: background-worker
+    name: OrderStatus
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/OrderStatus.cs
+      containerId: ordering-domain
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-domain/aggregatesmodel/order-item
+    type: background-worker
+    name: OrderItem
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/OrderItem.cs
+      containerId: ordering-domain
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-domain/aggregatesmodel/i-order-repository
+    type: relational-database
+    name: IOrderRepository
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/OrderAggregate/IOrderRepository.cs
+      containerId: ordering-domain
+      technology: Entity Framework / DB Context
+      classification: database-marker
+  - entityRef: eshop/ordering-domain/aggregatesmodel/buyer
+    type: background-worker
+    name: Buyer
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/BuyerAggregate/Buyer.cs
+      containerId: ordering-domain
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-domain/aggregatesmodel/i-buyer-repository
+    type: relational-database
+    name: IBuyerRepository
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/BuyerAggregate/IBuyerRepository.cs
+      containerId: ordering-domain
+      technology: Entity Framework / DB Context
+      classification: database-marker
+  - entityRef: eshop/ordering-domain/aggregatesmodel/card-type
+    type: background-worker
+    name: CardType
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/BuyerAggregate/CardType.cs
+      containerId: ordering-domain
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/ordering-domain/aggregatesmodel/payment-method
+    type: background-worker
+    name: PaymentMethod
+    isTest: false
+    properties:
+      filepath: src/Ordering.Domain/AggregatesModel/BuyerAggregate/PaymentMethod.cs
+      containerId: ordering-domain
+      technology: C# Domain Service
+      classification: default
+dependencies: []

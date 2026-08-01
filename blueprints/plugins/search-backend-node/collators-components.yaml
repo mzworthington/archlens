@@ -1,0 +1,94 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/search-backend-node/collators
+  name: Collators Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/search-backend-node/collators/newline-delimited-json-collator-factory-test
+    type: background-worker
+    name: NewlineDelimitedJsonCollatorFactory
+    isTest: true
+    properties:
+      filepath: plugins/search-backend-node/src/collators/NewlineDelimitedJsonCollatorFactory.test.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-node/collators/newline-delimited-json-collator-factory
+    type: background-worker
+    name: NewlineDelimitedJsonCollatorFactory
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-node/src/collators/NewlineDelimitedJsonCollatorFactory.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-backend-node/collators/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/search-backend-node/src/collators/index.ts
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/search-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/search-common/src/index.ts
+      containerId: search-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/permission-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/permission-common/src/types/index.ts
+      containerId: permission-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/plugins/search-backend-node/test-utils
+    type: background-worker
+    name: Test utils (External)
+    external: true
+    properties:
+      containerId: search-backend-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/search-backend-node/collators/newline-delimited-json-collator-factory-test
+    to: backstage/plugins/search-backend-node/collators/newline-delimited-json-collator-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/collators/newline-delimited-json-collator-factory-test
+    to: backstage/plugins/search-backend-node/test-utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/search-backend-node/collators/newline-delimited-json-collator-factory
+    to: backstage/plugins/search-common/index
+    type: direct-call
+    description: '@backstage/plugin-search-common'
+  - from: backstage/plugins/search-backend-node/collators/newline-delimited-json-collator-factory
+    to: backstage/plugins/permission-common/index
+    type: direct-call
+    description: '@backstage/plugin-permission-common'
+  - from: backstage/plugins/search-backend-node/collators/index
+    to: backstage/plugins/search-backend-node/collators/newline-delimited-json-collator-factory
+    type: direct-call
+    description: Calls module / service

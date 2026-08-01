@@ -88,20 +88,17 @@ nodes:
     name: ViewModels Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/ViewModels/BasketViewModel.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 8
-      loc: 114
-      sloc: 91
-      churn: 0
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      churn: 1
+      lineChurn: 18
       churn30: 0
-      churn365: 0
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -111,6 +108,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
@@ -155,11 +153,16 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: joperezr@microsoft.com
+          commits: 1
+      hotspotScore: 0.030927835051546393
       sinceDays: 365
+      fileCount: 14
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/app-xaml
     type: background-worker
     name: App.xaml
@@ -319,16 +322,12 @@ nodes:
     name: Platforms Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Platforms/iOS/AppDelegate.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 1
-      loc: 10
-      sloc: 7
       churn: 0
       churn30: 0
       churn365: 0
@@ -387,9 +386,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/messages
     type: background-worker
     name: Messages Layer
@@ -623,7 +624,6 @@ nodes:
     name: Converters Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Converters/DoubleConverter.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
@@ -631,12 +631,10 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 2
-      loc: 21
-      sloc: 16
-      churn: 0
+      churn: 1
+      lineChurn: 21
       churn30: 0
-      churn365: 0
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -646,6 +644,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
         - 0
         - 0
         - 0
@@ -690,24 +689,28 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: joperezr@microsoft.com
+          commits: 1
+      hotspotScore: 0.00902061855670103
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/models
     type: background-worker
     name: Models Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Models/Token/UserToken.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 17
-      sloc: 11
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
       churn: 0
       churn30: 0
       churn365: 0
@@ -766,9 +769,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 26
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/exceptions
     type: background-worker
     name: Exceptions Layer
@@ -850,14 +855,13 @@ nodes:
     name: Validations Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Validations/IValidity.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 7
-      sloc: 5
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
       churn: 0
       churn30: 0
       churn365: 0
@@ -916,15 +920,16 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/extensions
     type: rest-api
     name: Extensions Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Extensions/DictionaryExtensions.cs
       containerId: clientapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
@@ -932,9 +937,6 @@ nodes:
       complexity: 3
       complexityPeak: 3
       cognitiveComplexity: 3
-      functionCount: 3
-      loc: 26
-      sloc: 22
       churn: 0
       churn30: 0
       churn365: 0
@@ -993,24 +995,23 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/controls
     type: background-worker
     name: Controls Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Controls/CustomTabbedPage.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 4
-      loc: 31
-      sloc: 24
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 8
       churn: 0
       churn30: 0
       churn365: 0
@@ -1069,15 +1070,16 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/effects
     type: background-worker
     name: Effects Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Effects/ThemeEffects.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
@@ -1085,9 +1087,6 @@ nodes:
       complexity: 4
       complexityPeak: 4
       cognitiveComplexity: 6
-      functionCount: 4
-      loc: 50
-      sloc: 42
       churn: 0
       churn30: 0
       churn365: 0
@@ -1146,24 +1145,23 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/views
     type: background-worker
     name: Views Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Views/FiltersView.xaml.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 1
-      loc: 12
-      sloc: 9
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
       churn: 0
       churn30: 0
       churn365: 0
@@ -1222,9 +1220,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 19
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/globalsuppressions
     type: background-worker
     name: GlobalSuppressions
@@ -1304,7 +1304,6 @@ nodes:
     name: Helpers Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Helpers/UriHelper.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
@@ -1312,9 +1311,6 @@ nodes:
       complexity: 4
       complexityPeak: 4
       cognitiveComplexity: 5
-      functionCount: 1
-      loc: 22
-      sloc: 18
       churn: 0
       churn30: 0
       churn365: 0
@@ -1373,24 +1369,23 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/services
     type: rest-api
     name: Services Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Services/Order/OrderMockService.cs
       containerId: clientapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 5
-      loc: 188
-      sloc: 172
+      complexity: 7
+      complexityPeak: 7
+      cognitiveComplexity: 17
       churn: 0
       churn30: 0
       churn365: 0
@@ -1449,25 +1444,23 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 36
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp/animations
     type: background-worker
     name: Animations Layer
     isTest: false
     properties:
-      filepath: src/ClientApp/Animations/FadeToAnimation.cs
       containerId: clientapp
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 8
-      loc: 156
-      sloc: 122
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
       churn: 0
       churn30: 0
       churn365: 0
@@ -1526,15 +1519,16 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/clientapp-unittests/mocks
     type: background-worker
     name: Mocks Layer (External)
     external: true
     properties:
-      filepath: tests/ClientApp.UnitTests/Mocks/MockSettingsService.cs
       containerId: clientapp-unittests
       technology: C# Domain Service
       classification: default
@@ -1546,7 +1540,6 @@ nodes:
     name: ViewModels Layer (External)
     external: true
     properties:
-      filepath: tests/ClientApp.UnitTests/ViewModels/MockViewModelTests.cs
       containerId: clientapp-unittests
       technology: C# Domain Service
       classification: default

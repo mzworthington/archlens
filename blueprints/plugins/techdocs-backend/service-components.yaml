@@ -1,0 +1,237 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs-backend/service
+  name: Service Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs-backend/service/default-docs-build-strategy-test
+    type: background-worker
+    name: DefaultDocsBuildStrategy
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-backend/src/service/DefaultDocsBuildStrategy.test.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-backend/service/router
+    type: rest-api
+    name: Router
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/service/router.ts
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/techdocs-backend/service/router-test
+    type: rest-api
+    name: Router
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-backend/src/service/router.test.ts
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/techdocs-backend/service/cached-entity-loader-test
+    type: cache-store
+    name: CachedEntityLoader
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-backend/src/service/CachedEntityLoader.test.ts
+      containerId: techdocs-backend
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/plugins/techdocs-backend/service/docs-synchronizer
+    type: background-worker
+    name: DocsSynchronizer
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/service/DocsSynchronizer.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-backend/service/cached-entity-loader
+    type: cache-store
+    name: CachedEntityLoader
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/service/CachedEntityLoader.ts
+      containerId: techdocs-backend
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/plugins/techdocs-backend/service/docs-synchronizer-test
+    type: background-worker
+    name: DocsSynchronizer
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-backend/src/service/DocsSynchronizer.test.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-backend/service/default-docs-build-strategy
+    type: background-worker
+    name: DefaultDocsBuildStrategy
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/service/DefaultDocsBuildStrategy.ts
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-backend/cache
+    type: rest-api
+    name: Cache (External)
+    external: true
+    properties:
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/plugins/techdocs-backend/docsbuilder
+    type: background-worker
+    name: Docsbuilder (External)
+    external: true
+    properties:
+      containerId: techdocs-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/plugins/techdocs-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-node/src/index.ts
+      containerId: techdocs-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/testutils
+    type: background-worker
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs-backend/service/default-docs-build-strategy-test
+    to: backstage/plugins/techdocs-backend/service/default-docs-build-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: backstage/plugins/techdocs-backend/service/router
+    to: backstage/plugins/techdocs-backend/service/docs-synchronizer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router
+    to: backstage/plugins/techdocs-backend/cache
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router
+    to: backstage/plugins/techdocs-backend/service/cached-entity-loader
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router
+    to: backstage/plugins/techdocs-backend/service/default-docs-build-strategy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/techdocs-backend/service/router-test
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: backstage/plugins/techdocs-backend/service/router-test
+    to: backstage/plugins/techdocs-backend/service/docs-synchronizer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router-test
+    to: backstage/plugins/techdocs-backend/service/cached-entity-loader
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router-test
+    to: backstage/plugins/techdocs-backend/service/router
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router-test
+    to: backstage/plugins/techdocs-backend/cache
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/router-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/techdocs-backend/service/cached-entity-loader-test
+    to: backstage/plugins/techdocs-backend/service/cached-entity-loader
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/cached-entity-loader-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/techdocs-backend/service/docs-synchronizer
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: backstage/plugins/techdocs-backend/service/docs-synchronizer
+    to: backstage/plugins/techdocs-backend/cache
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/docs-synchronizer
+    to: backstage/plugins/techdocs-backend/docsbuilder
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/cached-entity-loader
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/techdocs-backend/service/docs-synchronizer-test
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'
+  - from: backstage/plugins/techdocs-backend/service/docs-synchronizer-test
+    to: backstage/plugins/techdocs-backend/cache
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/docs-synchronizer-test
+    to: backstage/plugins/techdocs-backend/docsbuilder
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/docs-synchronizer-test
+    to: backstage/plugins/techdocs-backend/service/docs-synchronizer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/service/default-docs-build-strategy
+    to: backstage/plugins/techdocs-node/index
+    type: direct-call
+    description: '@backstage/plugin-techdocs-node'

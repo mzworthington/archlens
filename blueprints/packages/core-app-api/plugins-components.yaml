@@ -1,0 +1,87 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-app-api/plugins
+  name: Plugins Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-app-api/plugins/collectors-test
+    type: gateway-api
+    name: Collectors
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/plugins/collectors.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/plugins/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/plugins/index.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-app-api/plugins/collectors
+    type: background-worker
+    name: Collectors
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/plugins/collectors.ts
+      containerId: core-app-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/core-app-api/extensions/traversal
+    type: gateway-api
+    name: Traversal (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/extensions/traversal.ts
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/core-app-api/plugins/collectors-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/plugins/collectors-test
+    to: backstage/packages/core-app-api/extensions/traversal
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/plugins/collectors-test
+    to: backstage/packages/core-app-api/plugins/collectors
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/plugins/index
+    to: backstage/packages/core-app-api/plugins/collectors
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/plugins/collectors
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/plugins/collectors
+    to: backstage/packages/core-app-api/extensions/traversal
+    type: direct-call
+    description: Calls module / service

@@ -417,12 +417,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 23
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 62
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -472,7 +470,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -481,9 +479,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-openapi-utils/generated
     type: rest-api
     name: Generated
@@ -964,21 +965,16 @@ nodes:
     name: Schema
     isTest: false
     properties:
-      filepath: packages/backend-openapi-utils/src/schema/response-body-validation.ts
       containerId: backend-openapi-utils
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 169
-      churn30: 1
-      churn365: 1
+      churn: 12
+      lineChurn: 2746
+      churn30: 11
+      churn365: 12
       churnByWeek:
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -1027,16 +1023,23 @@ nodes:
         - 0
         - 1
         - 0
+        - 11
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.9166666666666666
       authors:
         - email: poldsberg@gmail.com
+          commits: 11
+        - email: jonkoops@gmail.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 11
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-openapi-utils/stub-test
     type: rest-api
     name: Stub test

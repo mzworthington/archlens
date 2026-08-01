@@ -1,0 +1,84 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-components/components/avatar
+  name: Avatar Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-components/components/avatar/util-test
+    type: background-worker
+    name: Util
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/Avatar/util.test.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/avatar/avatar-stories
+    type: background-worker
+    name: Avatar.stories
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/Avatar/Avatar.stories.tsx
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/avatar/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/Avatar/utils.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/avatar/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/components/Avatar/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/components/avatar/avatar-test
+    type: gateway-api
+    name: Avatar
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/components/Avatar/Avatar.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/core-components/components/avatar/util-test
+    to: backstage/packages/core-components/components/avatar/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/avatar/avatar-stories
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/avatar/index
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/components/avatar/avatar-test
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service

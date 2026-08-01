@@ -1,0 +1,70 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend/service/http/body-parser
+  name: Body parser Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend/service/http/body-parser/http-application-json-body-parser
+    type: background-worker
+    name: HttpApplicationJsonBodyParser
+    isTest: false
+    properties:
+      filepath: plugins/events-backend/src/service/http/body-parser/HttpApplicationJsonBodyParser.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend/service/http/body-parser/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/events-backend/src/service/http/body-parser/index.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend/service/http/errors
+    type: background-worker
+    name: Errors (External)
+    external: true
+    properties:
+      filepath: plugins/events-backend/src/service/http/errors.ts
+      containerId: events-backend
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend/service/http/body-parser/http-application-json-body-parser
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend/service/http/body-parser/http-application-json-body-parser
+    to: backstage/plugins/events-backend/service/http/errors
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend/service/http/body-parser/index
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend/service/http/body-parser/index
+    to: backstage/plugins/events-backend/service/http/body-parser/http-application-json-body-parser
+    type: direct-call
+    description: Calls module / service

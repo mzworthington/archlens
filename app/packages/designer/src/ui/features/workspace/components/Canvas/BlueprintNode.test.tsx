@@ -520,4 +520,32 @@ describe('BlueprintNode Component', () => {
     fireEvent.click(screen.getByRole('button', { name: /view source code/i }));
     expect(openSourceCodeDialog).toHaveBeenCalledWith('src/service.ts', undefined);
   });
+
+  it('hides the Code button when the node can zoom into a child diagram', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'cli/forensics-components.yaml',
+          name: 'Forensics Components',
+          level: 'component',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: ['default/test-node-1/file-a'],
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        entityRef: 'default/test-node-1',
+        properties: { filepath: 'src/forensics/collectFileMetrics.test.ts' },
+      },
+    };
+
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.queryByRole('button', { name: /view source code/i })).not.toBeInTheDocument();
+    expect(screen.getByTestId('zoom-in-button')).toBeInTheDocument();
+  });
 });

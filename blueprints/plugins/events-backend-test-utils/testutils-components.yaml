@@ -1,0 +1,89 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend-test-utils/testutils
+  name: Testutils Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend-test-utils/testutils/test-events-service
+    type: background-worker
+    name: TestEventsService
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-test-utils/src/testUtils/TestEventsService.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-test-utils/testutils/test-event-subscriber
+    type: background-worker
+    name: TestEventSubscriber
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-test-utils/src/testUtils/TestEventSubscriber.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-test-utils/testutils/test-event-broker
+    type: background-worker
+    name: TestEventBroker
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-test-utils/src/testUtils/TestEventBroker.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-test-utils/testutils/test-event-publisher
+    type: background-worker
+    name: TestEventPublisher
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-test-utils/src/testUtils/TestEventPublisher.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-test-utils/testutils/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-test-utils/src/testUtils/index.ts
+      containerId: events-backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend-test-utils/testutils/test-events-service
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-test-utils/testutils/test-event-subscriber
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-test-utils/testutils/test-event-broker
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-test-utils/testutils/test-event-publisher
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-test-utils/testutils/index
+    to: backstage/plugins/events-backend-test-utils/testutils/test-events-service
+    type: direct-call
+    description: Calls module / service

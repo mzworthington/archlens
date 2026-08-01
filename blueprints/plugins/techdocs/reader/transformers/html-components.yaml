@@ -1,0 +1,169 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs/reader/transformers/html
+  name: Html Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/techdocs/reader/transformers/html/hooks
+    type: background-worker
+    name: Hooks
+    isTest: false
+    properties:
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 15
+      lineChurn: 379
+      churn30: 5
+      churn365: 15
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 10
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.3333333333333333
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: kyle.opperman@ing.com
+          commits: 5
+        - email: jacksonc@spotify.com
+          commits: 5
+      hotspotScore: 0.0017252624713332912
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs/reader/transformers/html/transformer-sanitizer-test
+    type: gateway-api
+    name: Transformer.sanitizer
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/html/transformer.sanitizer.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/transformers/html/transformer
+    type: gateway-api
+    name: Transformer
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/html/transformer.ts
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/transformers/html/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/html/utils.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs/reader/transformers/html/transformer-test
+    type: gateway-api
+    name: Transformer
+    isTest: true
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/html/transformer.test.tsx
+      containerId: techdocs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs/reader/transformers/html/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/html/index.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs/reader/transformers/transformer
+    type: background-worker
+    name: Transformer (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs/src/reader/transformers/transformer.ts
+      containerId: techdocs
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/techdocs/reader/transformers/html/transformer-sanitizer-test
+    to: backstage/plugins/techdocs/reader/transformers/html/transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/html/transformer
+    to: backstage/plugins/techdocs/reader/transformers/transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/html/transformer-test
+    to: backstage/plugins/techdocs/reader/transformers/html/transformer
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs/reader/transformers/html/index
+    to: backstage/plugins/techdocs/reader/transformers/html/transformer
+    type: direct-call
+    description: Calls module / service

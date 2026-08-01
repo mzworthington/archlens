@@ -14,20 +14,17 @@ nodes:
     name: Database
     isTest: false
     properties:
-      filepath: plugins/search-backend-module-pg/src/database/util.test.ts
       containerId: search-backend-module-pg
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 5
-      loc: 55
-      sloc: 32
-      churn: 3
-      lineChurn: 120
-      churn30: 1
-      churn365: 3
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 26
+      churn: 18
+      lineChurn: 2550
+      churn30: 6
+      churn365: 18
       churnByWeek:
         - 0
         - 0
@@ -35,11 +32,11 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 1
+        - 3
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -53,24 +50,13 @@ nodes:
         - 0
         - 0
         - 0
+        - 3
         - 0
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
         - 0
         - 0
         - 0
@@ -81,38 +67,56 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
-      authorCount: 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
       topAuthorPercent: 0.3333333333333333
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 6
+        - email: pkuang@factset.com
+          commits: 3
+        - email: 150145013+stanislav-c@users.noreply.github.com
+          commits: 3
         - email: freben@gmail.com
-          commits: 1
+          commits: 2
         - email: awanlin@spotify.com
+          commits: 2
+        - email: freben@spotify.com
           commits: 1
-      hotspotScore: 0.00042079572471543687
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.007462110851620414
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend-module-pg/pgsearchengine
     type: relational-database
     name: Pgsearchengine
     isTest: false
     properties:
-      filepath: plugins/search-backend-module-pg/src/PgSearchEngine/PgSearchEngineIndexer.test.ts
       containerId: search-backend-module-pg
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 14
-      loc: 263
-      sloc: 213
-      churn: 4
-      lineChurn: 337
-      churn30: 1
-      churn365: 4
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 27
+      churn: 17
+      lineChurn: 1300
+      churn30: 5
+      churn365: 17
       churnByWeek:
         - 0
         - 0
@@ -120,7 +124,25 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
+        - 4
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 1
         - 0
         - 0
@@ -132,25 +154,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
+        - 2
+        - 2
         - 0
         - 0
         - 0
@@ -161,23 +166,33 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
+        - 5
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.5
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.4117647058823529
       authors:
-        - email: 150145013+stanislav-c@users.noreply.github.com
-          commits: 2
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 5
+        - email: 150145013+stanislav-c@users.noreply.github.com
+          commits: 4
+        - email: freben@spotify.com
+          commits: 2
+        - email: pkuang@factset.com
+          commits: 2
+        - email: 32046496+yu-kkurii@users.noreply.github.com
+          commits: 2
         - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0.0023634693204850374
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.006227776725788466
       sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/search-backend-module-pg/module
     type: relational-database
     name: Module

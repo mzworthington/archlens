@@ -1,0 +1,142 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher
+  name: Eventconsuminggooglepubsubpublisher Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/module
+    type: background-worker
+    name: Module
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/module.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher
+    type: background-worker
+    name: EventConsumingGooglePubSubPublisher
+    isTest: false
+    properties:
+      filepath: >-
+        plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/EventConsumingGooglePubSubPublisher.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher-test
+    type: background-worker
+    name: EventConsumingGooglePubSubPublisher
+    isTest: true
+    properties:
+      filepath: >-
+        plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/EventConsumingGooglePubSubPublisher.test.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/types.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/index.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/config.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/config.test.ts
+      containerId: events-backend-module-google-pubsub
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/events-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/events-node/src/api/index.ts
+      containerId: events-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/module
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/module
+    to: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher
+    type: direct-call
+    description: Calls module / service
+  - from: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher
+    to: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/config
+    type: direct-call
+    description: Calls module / service
+  - from: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher
+    to: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/types
+    type: direct-call
+    description: Calls module / service
+  - from: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher-test
+    to: backstage/plugins/events-node/index
+    type: direct-call
+    description: '@backstage/plugin-events-node'
+  - from: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher-test
+    to: >-
+      backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/event-consuming-google-pub-sub-publisher
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/index
+    to: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/module
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/config
+    to: backstage/plugins/events-backend-module-google-pubsub/createpatternresolver/create-pattern-resolver
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/config
+    to: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/config-test
+    to: backstage/plugins/events-backend-module-google-pubsub/eventconsuminggooglepubsubpublisher/config
+    type: direct-call
+    description: Calls module / service

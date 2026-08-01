@@ -105,12 +105,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 17
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 50
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -160,7 +158,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -169,9 +167,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-common/permissions
     type: background-worker
     name: Permissions
@@ -335,30 +336,16 @@ nodes:
     name: Error detection
     isTest: false
     properties:
-      filepath: plugins/kubernetes-common/src/error-detection/pods.ts
       containerId: kubernetes-common
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 257
-      churn30: 1
-      churn365: 1
+      churn: 9
+      lineChurn: 1045
+      churn30: 8
+      churn365: 9
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -401,13 +388,29 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8888888888888888
       authors:
         - email: poldsberg@gmail.com
+          commits: 8
+        - email: maratd@spotify.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-common/certificate-authority-constants
     type: background-worker
     name: Certificate authority constants
@@ -571,60 +574,55 @@ nodes:
     name: Auth (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-node/src/auth/PinnipedHelper.test.ts
       containerId: kubernetes-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1280
+      x: -1970
       y: -204
   - entityRef: backstage/plugins/kubernetes-backend/auth
     type: rest-api
     name: Auth (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.test.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -4500
+      x: -5190
       y: -204
   - entityRef: backstage/plugins/kubernetes-backend/cluster-locator
     type: background-worker
     name: Cluster locator (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/CatalogClusterLocator.test.ts
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4040
+      x: -4730
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/components
     type: gateway-api
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/components/JobsAccordions/JobsAccordions.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     position:
-      x: -360
+      x: -1050
       y: -204
   - entityRef: backstage/plugins/kubernetes-cluster/components
     type: gateway-api
     name: Components (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-cluster/src/components/KubernetesClusterContent/KubernetesClusterContent.tsx
       containerId: kubernetes-cluster
       technology: React Component
       classification: ui-import
     position:
-      x: -2200
+      x: -2890
       y: -204
   - entityRef: backstage/plugins/catalog-backend-module-aws/defaulttransformers
     type: background-worker
@@ -636,31 +634,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5420
+      x: -6110
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/components/errorreporting
     type: gateway-api
     name: Errorreporting (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/components/ErrorReporting/index.ts
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     position:
-      x: 100
+      x: -590
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/hooks
     type: gateway-api
     name: Hooks (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/hooks/useIsPodDeleteEnabled.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     position:
-      x: 1480
+      x: 2170
       y: -204
   - entityRef: backstage/plugins/kubernetes/index
     type: gateway-api
@@ -672,7 +668,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 4240
+      x: 4930
       y: -204
   - entityRef: backstage/plugins/permission-common/index
     type: background-worker
@@ -691,12 +687,11 @@ nodes:
     name: Kubernetes auth provider (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/kubernetes-auth-provider/types.ts
       containerId: kubernetes-react
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1940
+      x: 2630
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/kubernetesbackendclient
     type: rest-api
@@ -708,7 +703,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 2400
+      x: 3090
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/kubernetesbackendclient-test
     type: rest-api
@@ -720,7 +715,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 2860
+      x: 3550
       y: -204
   - entityRef: backstage/plugins/kubernetes/kubernetescontent
     type: gateway-api
@@ -732,19 +727,18 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 4700
+      x: 5390
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/components/kubernetesdrawer
     type: gateway-api
     name: Kubernetesdrawer (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/components/KubernetesDrawer/ManifestYaml.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     position:
-      x: 560
+      x: -130
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/pod
     type: gateway-api
@@ -756,31 +750,62 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 3320
+      x: 4010
+      y: -204
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/poddelete
+    type: gateway-api
+    name: Poddelete (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: -204
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/poddrawer
+    type: gateway-api
+    name: Poddrawer (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1250
+      y: -204
+  - entityRef: backstage/plugins/kubernetes-react/components/pods/podlogs
+    type: gateway-api
+    name: Podlogs (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1710
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/components/pods
     type: gateway-api
     name: Pods (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-react/src/components/Pods/PodsTable.test.tsx
       containerId: kubernetes-react
       technology: React Component
       classification: ui-import
     position:
-      x: 1020
+      x: 330
       y: -204
   - entityRef: backstage/plugins/catalog-backend-module-gcp/providers
     type: background-worker
     name: Providers (External)
     external: true
     properties:
-      filepath: plugins/catalog-backend-module-gcp/src/providers/GkeEntityProvider.ts
       containerId: catalog-backend-module-gcp
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4960
+      x: -5650
       y: -204
   - entityRef: backstage/plugins/kubernetes/requirekubernetespermissions
     type: gateway-api
@@ -792,7 +817,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 5160
+      x: 5850
       y: -204
   - entityRef: backstage/plugins/kubernetes-cluster/router
     type: gateway-api
@@ -804,7 +829,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: -1740
+      x: -2430
       y: -204
   - entityRef: backstage/plugins/kubernetes/router
     type: gateway-api
@@ -816,31 +841,29 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 5620
+      x: 6310
       y: -204
   - entityRef: backstage/plugins/kubernetes-backend/routes
     type: rest-api
     name: Routes (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/routes/resourcesRoutes.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -3580
+      x: -4270
       y: -204
   - entityRef: backstage/plugins/kubernetes-backend/service
     type: rest-api
     name: Service (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-backend/src/service/ProxyAuditSession.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -3120
+      x: -3810
       y: -204
   - entityRef: backstage/plugins/kubernetes-node/types
     type: background-worker
@@ -852,7 +875,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -820
+      x: -1510
       y: -204
   - entityRef: backstage/plugins/kubernetes-react/types
     type: rest-api
@@ -864,7 +887,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 3780
+      x: 4470
       y: -204
   - entityRef: backstage/plugins/kubernetes-backend/types
     type: background-worker
@@ -876,7 +899,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2660
+      x: -3350
       y: -204
   - entityRef: backstage/plugins/catalog-backend-module-github/util
     type: background-worker
@@ -916,6 +939,18 @@ dependencies:
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
   - from: backstage/plugins/kubernetes-react/components/pods
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/components/pods/poddrawer
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/components/pods/poddelete
+    to: backstage/plugins/kubernetes-common/index
+    type: direct-call
+    description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes-react/components/pods/podlogs
     to: backstage/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'

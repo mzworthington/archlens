@@ -20,12 +20,10 @@ nodes:
       classification: default
     forensics:
       complexity: 1
-      loc: 64
-      sloc: 27
-      churn: 5
-      lineChurn: 166
-      churn30: 3
-      churn365: 5
+      churn: 7
+      lineChurn: 198
+      churn30: 4
+      churn365: 7
       churnByWeek:
         - 0
         - 0
@@ -64,7 +62,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -75,20 +73,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 2
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.8
+      topAuthorPercent: 0.7142857142857143
       authors:
         - email: 58849535+neoreddog@users.noreply.github.com
-          commits: 4
+          commits: 5
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0.000582100752523021
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/connections-example-backend/router
     type: rest-api
     name: Router
@@ -339,7 +340,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

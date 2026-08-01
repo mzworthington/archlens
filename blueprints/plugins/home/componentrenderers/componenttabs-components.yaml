@@ -1,0 +1,58 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/home/componentrenderers/componenttabs
+  name: Componenttabs Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/home/componentrenderers/componenttabs/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/home/src/componentRenderers/ComponentTabs/index.ts
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/componentrenderers/componenttabs/component-tabs-test
+    type: gateway-api
+    name: ComponentTabs
+    isTest: true
+    properties:
+      filepath: plugins/home/src/componentRenderers/ComponentTabs/ComponentTabs.test.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/componentrenderers/componenttabs/component-tab
+    type: background-worker
+    name: ComponentTab
+    isTest: false
+    properties:
+      filepath: plugins/home/src/componentRenderers/ComponentTabs/ComponentTab.tsx
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/componentrenderers
+    type: gateway-api
+    name: Componentrenderers (External)
+    external: true
+    properties:
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/home/componentrenderers/componenttabs/index
+    to: backstage/plugins/home/componentrenderers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/componentrenderers/componenttabs/component-tabs-test
+    to: backstage/plugins/home/componentrenderers
+    type: direct-call
+    description: Calls module / service

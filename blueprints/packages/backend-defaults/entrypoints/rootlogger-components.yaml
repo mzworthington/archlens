@@ -1,0 +1,246 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger
+  name: Rootlogger Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/utils-test
+    type: background-worker
+    name: Utils
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/utils.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/utils.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory
+    type: background-worker
+    name: RootLoggerServiceFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/rootLoggerServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/types.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory-test
+    type: background-worker
+    name: RootLoggerServiceFactory
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/rootLoggerServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger-test
+    type: background-worker
+    name: WinstonLogger
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/WinstonLogger.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/config.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/config.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    type: background-worker
+    name: WinstonLogger
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLogger/WinstonLogger.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootconfig/create-config-secret-enumerator
+    type: background-worker
+    name: CreateConfigSecretEnumerator (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootConfig/createConfigSecretEnumerator.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/utils-test
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/utils
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/rootconfig/create-config-secret-enumerator
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/types
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger-test
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/index
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/root-logger-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/index
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/index
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/config
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/config
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/config
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/config-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/config-test
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    to: backstage/packages/backend-defaults/escaperegexp/escape-reg-exp
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlogger/winston-logger
+    to: backstage/packages/backend-defaults/entrypoints/rootlogger/utils
+    type: direct-call
+    description: Calls module / service

@@ -14,18 +14,15 @@ nodes:
     name: Autocomplete
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/autocomplete/autocomplete.ts
       containerId: scaffolder-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 108
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 257
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -75,7 +72,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -84,9 +81,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/module
     type: background-worker
     name: Module
@@ -172,18 +172,17 @@ nodes:
     name: Actions
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-bitbucket-cloud/src/actions/bitbucketCloud.examples.ts
       containerId: scaffolder-backend-module-bitbucket-cloud
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 148
-      churn30: 1
-      churn365: 1
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 35
+      churn: 41
+      lineChurn: 5335
+      churn30: 20
+      churn365: 41
       churnByWeek:
         - 0
         - 0
@@ -200,29 +199,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 3
+        - 8
         - 0
         - 0
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
+        - 7
+        - 1
         - 0
         - 0
         - 0
@@ -238,13 +225,40 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 20
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.5609756097560976
       authors:
         - email: poldsberg@gmail.com
+          commits: 21
+        - email: jakemgsmith@gmail.com
+          commits: 8
+        - email: robertoj921@yahoo.com
+          commits: 6
+        - email: freben@gmail.com
+          commits: 3
+        - email: 91907455+robertoj921@users.noreply.github.com
           commits: 1
-      hotspotScore: 0
+        - email: awanlin@spotify.com
+          commits: 1
+        - email: gabriel.dugny@believe.com
+          commits: 1
+      hotspotScore: 0.015495802562645962
       sinceDays: 365
+      fileCount: 20
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-bitbucket-cloud/index
     type: background-worker
     name: Index

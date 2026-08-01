@@ -1,0 +1,39 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/clientapp/controls
+  name: Controls Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/clientapp/controls/custom-tabbed-page
+    type: background-worker
+    name: CustomTabbedPage
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Controls/CustomTabbedPage.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/controls/add-basket-button-xaml
+    type: background-worker
+    name: AddBasketButton.xaml
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Controls/AddBasketButton.xaml.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp/controls/toggle-button
+    type: background-worker
+    name: ToggleButton
+    isTest: false
+    properties:
+      filepath: src/ClientApp/Controls/ToggleButton.cs
+      containerId: clientapp
+      technology: C# Domain Service
+      classification: default
+dependencies: []

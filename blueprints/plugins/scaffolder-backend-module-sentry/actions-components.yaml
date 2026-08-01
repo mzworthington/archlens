@@ -1,0 +1,172 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions
+  name: Actions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-examples
+    type: background-worker
+    name: CreateProject.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/createProject.examples.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project
+    type: background-worker
+    name: CreateProject
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/createProject.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-examples
+    type: background-worker
+    name: FetchDSN.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/fetchDSN.examples.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-examples-test
+    type: background-worker
+    name: CreateProject.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/createProject.examples.test.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-test
+    type: background-worker
+    name: CreateProject
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/createProject.test.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-test
+    type: background-worker
+    name: FetchDSN
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/fetchDSN.test.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn
+    type: background-worker
+    name: FetchDSN
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/fetchDSN.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-examples-test
+    type: background-worker
+    name: FetchDSN.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-sentry/src/actions/fetchDSN.examples.test.ts
+      containerId: scaffolder-backend-module-sentry
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-examples-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/actions/create-project
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn-examples-test
+    to: backstage/plugins/scaffolder-backend-module-sentry/actions/fetch-dsn
+    type: direct-call
+    description: Calls module / service

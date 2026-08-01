@@ -14,7 +14,6 @@ nodes:
     name: Autocomplete
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-github/src/autocomplete/autocomplete.ts
       containerId: scaffolder-backend-module-github
       technology: TypeScript Domain Service
       classification: default
@@ -22,13 +21,10 @@ nodes:
       complexity: 6
       complexityPeak: 6
       cognitiveComplexity: 14
-      functionCount: 4
-      loc: 81
-      sloc: 55
-      churn: 4
-      lineChurn: 93
-      churn30: 1
-      churn365: 4
+      churn: 6
+      lineChurn: 272
+      churn30: 2
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -48,7 +44,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 2
         - 0
         - 0
@@ -78,20 +74,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.75
+      topAuthorPercent: 0.6666666666666666
       authors:
         - email: benji.janssens@gmail.com
-          commits: 3
+          commits: 4
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0.0019567001199267816
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-github/module
     type: background-worker
     name: Module
@@ -259,23 +258,24 @@ nodes:
     name: Actions
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-github/src/actions/githubEnvironment.ts
       containerId: scaffolder-backend-module-github
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 361
-      churn30: 1
-      churn365: 2
+      complexity: 21
+      complexityPeak: 21
+      cognitiveComplexity: 197
+      churn: 117
+      lineChurn: 22393
+      churn30: 57
+      churn365: 117
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
+        - 5
+        - 7
         - 0
         - 0
         - 0
@@ -292,48 +292,63 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 8
+        - 2
         - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
+        - 7
+        - 3
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 5
+        - 0
+        - 2
+        - 0
+        - 5
+        - 0
+        - 4
+        - 3
+        - 0
+        - 0
+        - 0
+        - 57
         - 0
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 5
+      topAuthorPercent: 0.7264957264957265
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 63
+        - email: mpolasko@redhat.com
+          commits: 19
+        - email: fearphage@gmail.com
+          commits: 9
+        - email: abdellahhanane44@gmail.com
+          commits: 9
+        - email: adam.ostor@fundingcircle.com
+          commits: 6
+        - email: 1288395+praphull-purohit@users.noreply.github.com
+          commits: 6
+        - email: gabriel.dugny@believe.com
+          commits: 2
+        - email: freben@gmail.com
+          commits: 2
         - email: cftad@protonmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.09794020492751793
       sinceDays: 365
+      fileCount: 57
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-github/util
     type: background-worker
     name: Util
@@ -538,7 +553,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

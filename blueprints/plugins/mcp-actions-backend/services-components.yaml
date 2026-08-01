@@ -1,0 +1,76 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/mcp-actions-backend/services
+  name: Services Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/mcp-actions-backend/services/handle-errors
+    type: background-worker
+    name: HandleErrors
+    isTest: false
+    properties:
+      filepath: plugins/mcp-actions-backend/src/services/handleErrors.ts
+      containerId: mcp-actions-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/mcp-actions-backend/services/mcp-service-test
+    type: background-worker
+    name: McpService
+    isTest: true
+    properties:
+      filepath: plugins/mcp-actions-backend/src/services/McpService.test.ts
+      containerId: mcp-actions-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/mcp-actions-backend/services/handle-errors-test
+    type: background-worker
+    name: HandleErrors
+    isTest: true
+    properties:
+      filepath: plugins/mcp-actions-backend/src/services/handleErrors.test.ts
+      containerId: mcp-actions-backend
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/mcp-actions-backend/services/mcp-service
+    type: rest-api
+    name: McpService
+    isTest: false
+    properties:
+      filepath: plugins/mcp-actions-backend/src/services/McpService.ts
+      containerId: mcp-actions-backend
+      technology: REST Controller / Router
+      classification: api-marker
+dependencies:
+  - from: backstage/plugins/mcp-actions-backend/services/mcp-service-test
+    to: backstage/plugins/mcp-actions-backend/services/mcp-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mcp-actions-backend/services/mcp-service-test
+    to: backstage/plugins/mcp-actions-backend/config/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mcp-actions-backend/services/handle-errors-test
+    to: backstage/plugins/mcp-actions-backend/services/handle-errors
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mcp-actions-backend/services/mcp-service
+    to: backstage/plugins/mcp-actions-backend/package-json
+    type: direct-call
+    description: '@backstage/plugin-mcp-actions-backend'
+  - from: backstage/plugins/mcp-actions-backend/services/mcp-service
+    to: backstage/plugins/mcp-actions-backend/services/handle-errors
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mcp-actions-backend/services/mcp-service
+    to: backstage/plugins/mcp-actions-backend/metrics/metrics
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/mcp-actions-backend/services/mcp-service
+    to: backstage/plugins/mcp-actions-backend/config/config
+    type: direct-call
+    description: Calls module / service

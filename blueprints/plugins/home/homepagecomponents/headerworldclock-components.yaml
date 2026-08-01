@@ -1,0 +1,62 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/home/homepagecomponents/headerworldclock
+  name: Headerworldclock Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/home/homepagecomponents/headerworldclock/header-world-clock-test
+    type: background-worker
+    name: HeaderWorldClock
+    isTest: true
+    properties:
+      filepath: plugins/home/src/homePageComponents/HeaderWorldClock/HeaderWorldClock.test.tsx
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/homepagecomponents/headerworldclock/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/HeaderWorldClock/index.ts
+      containerId: home
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/home/homepagecomponents/headerworldclock/header-world-clock-stories
+    type: gateway-api
+    name: HeaderWorldClock.stories
+    isTest: false
+    properties:
+      filepath: plugins/home/src/homePageComponents/HeaderWorldClock/HeaderWorldClock.stories.tsx
+      containerId: home
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/home/homepagecomponents
+    type: gateway-api
+    name: Homepagecomponents (External)
+    external: true
+    properties:
+      containerId: home
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/home/homepagecomponents/headerworldclock/header-world-clock-test
+    to: backstage/plugins/home/homepagecomponents
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/headerworldclock/index
+    to: backstage/plugins/home/homepagecomponents
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/home/homepagecomponents/headerworldclock/header-world-clock-stories
+    to: backstage/plugins/home/homepagecomponents
+    type: direct-call
+    description: Calls module / service

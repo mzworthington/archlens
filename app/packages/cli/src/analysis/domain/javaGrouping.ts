@@ -1,8 +1,4 @@
-import {
-  formatFolderComponentName,
-  type ComponentIdentity,
-  DEFAULT_MAX_COMPONENT_DEPTH,
-} from './folderComponentRollup.ts';
+import { formatFolderComponentName, type ComponentIdentity } from './folderComponentRollup.ts';
 import { slugify } from '@archlens/core';
 
 const JAVA_EXTENSIONS = new Set(['java', 'kt', 'kts']);
@@ -75,7 +71,6 @@ export function resolveJavaComponent(
     return { componentId: leaf, componentName: formatFolderComponentName(leaf) };
   }
 
-  const rolled = meaningful.slice(0, DEFAULT_MAX_COMPONENT_DEPTH);
-  const componentId = rolled.map(slugify).join('/');
+  const componentId = meaningful.map(slugify).join('/');
   return { componentId, componentName: formatFolderComponentName(componentId) };
 }

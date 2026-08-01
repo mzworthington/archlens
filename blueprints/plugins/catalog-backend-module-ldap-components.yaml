@@ -92,49 +92,25 @@ nodes:
     name: Ldap
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-ldap/src/ldap/read.ts
       containerId: catalog-backend-module-ldap
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 584
-      churn30: 1
-      churn365: 2
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 30
+      churn: 27
+      lineChurn: 4846
+      churn30: 12
+      churn365: 27
       churnByWeek:
         - 0
+        - 8
+        - 2
+        - 0
         - 1
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
@@ -158,44 +134,62 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 12
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 5
+      topAuthorPercent: 0.5555555555555556
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 12
         - email: ganiev@pm.me
+          commits: 11
+        - email: awanlin@spotify.com
+          commits: 2
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+        - email: pschultz@pobox.com
+          commits: 1
+      hotspotScore: 0.017989017231584928
       sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-ldap/processors
     type: background-worker
     name: Processors
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-ldap/src/processors/index.ts
       containerId: catalog-backend-module-ldap
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 22
-      churn30: 1
-      churn365: 1
+      churn: 4
+      lineChurn: 544
+      churn30: 3
+      churn365: 4
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -238,13 +232,29 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.75
       authors:
         - email: poldsberg@gmail.com
+          commits: 3
+        - email: freben@spotify.com
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-ldap/index
     type: background-worker
     name: Index

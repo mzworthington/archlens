@@ -1,0 +1,142 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/devtools/hooks
+  name: Hooks Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/devtools/hooks/use-config
+    type: gateway-api
+    name: UseConfig
+    isTest: false
+    properties:
+      filepath: plugins/devtools/src/hooks/useConfig.ts
+      containerId: devtools
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/devtools/hooks/use-info
+    type: gateway-api
+    name: UseInfo
+    isTest: false
+    properties:
+      filepath: plugins/devtools/src/hooks/useInfo.ts
+      containerId: devtools
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/devtools/hooks/use-scheduled-tasks-operations
+    type: gateway-api
+    name: UseScheduledTasksOperations
+    isTest: false
+    properties:
+      filepath: plugins/devtools/src/hooks/useScheduledTasksOperations.ts
+      containerId: devtools
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/devtools/hooks/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/devtools/src/hooks/index.ts
+      containerId: devtools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/devtools/hooks/use-external-dependencies
+    type: gateway-api
+    name: UseExternalDependencies
+    isTest: false
+    properties:
+      filepath: plugins/devtools/src/hooks/useExternalDependencies.ts
+      containerId: devtools
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/devtools/hooks/use-scheduled-tasks
+    type: gateway-api
+    name: UseScheduledTasks
+    isTest: false
+    properties:
+      filepath: plugins/devtools/src/hooks/useScheduledTasks.ts
+      containerId: devtools
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/devtools-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/devtools-common/src/index.ts
+      containerId: devtools-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/devtools/hooks/use-config
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/use-config
+    to: backstage/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: backstage/plugins/devtools/hooks/use-info
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/use-info
+    to: backstage/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: backstage/plugins/devtools/hooks/use-scheduled-tasks-operations
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/index
+    to: backstage/plugins/devtools/hooks/use-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/index
+    to: backstage/plugins/devtools/hooks/use-external-dependencies
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/index
+    to: backstage/plugins/devtools/hooks/use-info
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/index
+    to: backstage/plugins/devtools/hooks/use-scheduled-tasks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/index
+    to: backstage/plugins/devtools/hooks/use-scheduled-tasks-operations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/use-external-dependencies
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/devtools/hooks/use-external-dependencies
+    to: backstage/plugins/devtools-common/index
+    type: direct-call
+    description: '@backstage/plugin-devtools-common'
+  - from: backstage/plugins/devtools/hooks/use-scheduled-tasks
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service

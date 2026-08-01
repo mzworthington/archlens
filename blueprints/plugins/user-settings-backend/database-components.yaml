@@ -1,0 +1,47 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/user-settings-backend/database
+  name: Database Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/user-settings-backend/database/database-user-settings-store
+    type: relational-database
+    name: DatabaseUserSettingsStore
+    isTest: false
+    properties:
+      filepath: plugins/user-settings-backend/src/database/DatabaseUserSettingsStore.ts
+      containerId: user-settings-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/user-settings-backend/database/database-user-settings-store-test
+    type: relational-database
+    name: DatabaseUserSettingsStore
+    isTest: true
+    properties:
+      filepath: plugins/user-settings-backend/src/database/DatabaseUserSettingsStore.test.ts
+      containerId: user-settings-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/plugins/user-settings-backend/database/user-settings-store
+    type: relational-database
+    name: UserSettingsStore
+    isTest: false
+    properties:
+      filepath: plugins/user-settings-backend/src/database/UserSettingsStore.ts
+      containerId: user-settings-backend
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+dependencies:
+  - from: backstage/plugins/user-settings-backend/database/database-user-settings-store
+    to: backstage/plugins/user-settings-backend/database/user-settings-store
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/plugins/user-settings-backend/database/database-user-settings-store-test
+    to: backstage/plugins/user-settings-backend/database/database-user-settings-store
+    type: read-write
+    description: Queries datastore records

@@ -166,16 +166,12 @@ nodes:
     name: Platforms Layer
     isTest: false
     properties:
-      filepath: src/HybridApp/Platforms/iOS/AppDelegate.cs
       containerId: hybridapp
       technology: C# Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 1
-      loc: 10
-      sloc: 7
       churn: 0
       churn30: 0
       churn365: 0
@@ -234,9 +230,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/hybridapp/mainpage-xaml
     type: background-worker
     name: MainPage.xaml
@@ -396,18 +394,17 @@ nodes:
     name: Services Layer
     isTest: false
     properties:
-      filepath: src/HybridApp/Services/CatalogJsonContext.cs
       containerId: hybridapp
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 1
-      loc: 16
-      sloc: 14
-      churn: 1
-      lineChurn: 16
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      churn: 2
+      lineChurn: 28
       churn30: 0
-      churn365: 1
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -417,7 +414,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -466,9 +463,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: joperezr@microsoft.com
-          commits: 1
-      hotspotScore: 0
+          commits: 2
+      hotspotScore: 0.010309278350515464
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/webappcomponents/catalog
     type: background-worker
     name: Catalog Layer (External)
@@ -486,7 +486,6 @@ nodes:
     name: Services Layer (External)
     external: true
     properties:
-      filepath: src/WebAppComponents/Services/IProductImageUrlProvider.cs
       containerId: webappcomponents
       technology: C# Domain Service
       classification: default

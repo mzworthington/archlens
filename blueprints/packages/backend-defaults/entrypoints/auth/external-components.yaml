@@ -1,0 +1,303 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/auth/external
+  name: External Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    type: background-worker
+    name: Helpers
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/helpers.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/static-test
+    type: background-worker
+    name: Static
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/static.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler-test
+    type: background-worker
+    name: ExternalAuthTokenHandler
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/ExternalAuthTokenHandler.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/static
+    type: background-worker
+    name: Static
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/static.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/types.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/jwks
+    type: background-worker
+    name: Jwks
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/jwks.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/legacy-test
+    type: background-worker
+    name: Legacy
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/legacy.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/helpers-test
+    type: background-worker
+    name: Helpers
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/helpers.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/legacy
+    type: background-worker
+    name: Legacy
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/legacy.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/jwks-test
+    type: background-worker
+    name: Jwks
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/jwks.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    type: background-worker
+    name: ExternalAuthTokenHandler
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/auth/external/ExternalAuthTokenHandler.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/static-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/static-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/static
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/static
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/static
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/jwks
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/jwks
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/legacy-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/legacy-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/legacy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/helpers-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/helpers-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/helpers-test
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/helpers-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/legacy
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/legacy
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/jwks-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/jwks-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/jwks-test
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/jwks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/legacy
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/static
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/jwks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external/external-auth-token-handler
+    to: backstage/packages/backend-defaults/entrypoints/auth/external/helpers
+    type: direct-call
+    description: Calls module / service

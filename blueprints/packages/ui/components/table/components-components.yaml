@@ -1,0 +1,284 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/ui/components/table/components
+  name: Components Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/ui/components/table/components/table-header
+    type: gateway-api
+    name: TableHeader
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/TableHeader.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/components/table-root
+    type: gateway-api
+    name: TableRoot
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/TableRoot.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/components/cell-text
+    type: gateway-api
+    name: CellText
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/CellText.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/components/row
+    type: gateway-api
+    name: Row
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/Row.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/components/cell
+    type: gateway-api
+    name: Cell
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/Cell.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/components/cell-profile
+    type: gateway-api
+    name: CellProfile
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/CellProfile.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/components/table
+    type: gateway-api
+    name: Table
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/Table.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/components/table-body
+    type: gateway-api
+    name: TableBody
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/TableBody.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components/table/components/table-body-skeleton
+    type: background-worker
+    name: TableBodySkeleton
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/TableBodySkeleton.tsx
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/ui/components/table/components/column
+    type: gateway-api
+    name: Column
+    isTest: false
+    properties:
+      filepath: packages/ui/src/components/Table/components/Column.tsx
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/ui/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/ui/components/table/definition
+    type: background-worker
+    name: Definition (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/components/Table/definition.ts
+      containerId: ui
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/ui/hooks
+    type: gateway-api
+    name: Hooks (External)
+    external: true
+    properties:
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/ui/components/table/types
+    type: gateway-api
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/ui/src/components/Table/types.ts
+      containerId: ui
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/ui/components/table/components/table-header
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-header
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-header
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-header
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-root
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-root
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-root
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell-text
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell-text
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell-text
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell-text
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/row
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/row
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/row
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/row
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/row
+    to: backstage/packages/ui/linkutils/link-utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell-profile
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell-profile
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell-profile
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/cell-profile
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-body
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-body
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-body
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/table-body-skeleton
+    to: backstage/packages/ui/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/column
+    to: backstage/packages/ui/hooks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/column
+    to: backstage/packages/ui/components/table/definition
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/ui/components/table/components/column
+    to: backstage/packages/ui/components/table/types
+    type: direct-call
+    description: Calls module / service

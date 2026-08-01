@@ -20,12 +20,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 81
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 113
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -75,7 +73,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -84,30 +82,28 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/events-backend-module-google-pubsub/googlepubsubconsumingeventpublisher
     type: background-worker
     name: Googlepubsubconsumingeventpublisher
     isTest: false
     properties:
-      filepath: >-
-        plugins/events-backend-module-google-pubsub/src/GooglePubSubConsumingEventPublisher/GooglePubSubConsumingEventPublisher.test.ts
       containerId: events-backend-module-google-pubsub
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 2
-      complexityPeak: 2
-      cognitiveComplexity: 1
-      functionCount: 12
-      loc: 125
-      sloc: 85
-      churn: 3
-      lineChurn: 130
-      churn30: 1
-      churn365: 3
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 16
+      lineChurn: 1083
+      churn30: 7
+      churn365: 16
       churnByWeek:
         - 0
         - 0
@@ -124,28 +120,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
+        - 5
         - 0
         - 0
         - 0
@@ -158,21 +133,45 @@ nodes:
         - 0
         - 0
         - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 7
         - 0
         - 0
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.3333333333333333
+      topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-        - email: kurtaking@gmail.com
-          commits: 1
+          commits: 7
         - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0.0009117240702167799
+          commits: 6
+        - email: kurtaking@gmail.com
+          commits: 3
+      hotspotScore: 0.004095745053896919
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/events-backend-module-google-pubsub/createpatternresolver
     type: background-worker
     name: Createpatternresolver
@@ -338,18 +337,17 @@ nodes:
     name: Eventconsuminggooglepubsubpublisher
     isTest: false
     properties:
-      filepath: plugins/events-backend-module-google-pubsub/src/EventConsumingGooglePubSubPublisher/module.ts
       containerId: events-backend-module-google-pubsub
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 60
-      churn30: 1
-      churn365: 2
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 15
+      lineChurn: 1117
+      churn30: 7
+      churn365: 15
       churnByWeek:
         - 0
         - 0
@@ -366,6 +364,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 5
         - 0
         - 0
         - 0
@@ -384,9 +383,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -399,20 +396,26 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 7
         - 0
         - 0
         - 0
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+      authorCount: 3
+      topAuthorPercent: 0.4666666666666667
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 7
+        - email: freben@gmail.com
+          commits: 5
         - email: kurtaking@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 3
+      hotspotScore: 0.0036994957464565495
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/events-node/index
     type: rest-api
     name: Index (External)

@@ -1,0 +1,516 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-components/layout/sidebar
+  name: Sidebar Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-components/layout/sidebar/icons
+    type: background-worker
+    name: Icons
+    isTest: false
+    properties:
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 94
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-submenu-item
+    type: gateway-api
+    name: SidebarSubmenuItem
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarSubmenuItem.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-group
+    type: gateway-api
+    name: SidebarGroup
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarGroup.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/utils-test
+    type: background-worker
+    name: Utils
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/utils.test.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/sidebar/mobile-sidebar
+    type: gateway-api
+    name: MobileSidebar
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/MobileSidebar.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-group-test
+    type: gateway-api
+    name: SidebarGroup
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarGroup.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-open-state-context
+    type: gateway-api
+    name: SidebarOpenStateContext
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarOpenStateContext.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/local-storage
+    type: background-worker
+    name: LocalStorage
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/localStorage.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/sidebar/items
+    type: gateway-api
+    name: Items
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Items.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/utils
+    type: background-worker
+    name: Utils
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/utils.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-open-state-context-test
+    type: gateway-api
+    name: SidebarOpenStateContext
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarOpenStateContext.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-submenu
+    type: gateway-api
+    name: SidebarSubmenu
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarSubmenu.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/local-storage-test
+    type: background-worker
+    name: LocalStorage
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/localStorage.test.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/sidebar/mobile-sidebar-context
+    type: gateway-api
+    name: MobileSidebarContext
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/MobileSidebarContext.ts
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/mobile-sidebar-test
+    type: gateway-api
+    name: MobileSidebar
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/MobileSidebar.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/bar-test
+    type: gateway-api
+    name: Bar
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Bar.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-pin-state-context
+    type: gateway-api
+    name: SidebarPinStateContext
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarPinStateContext.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/bar
+    type: gateway-api
+    name: Bar
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Bar.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-components/layout/sidebar/config
+    type: gateway-api
+    name: Config
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/config.ts
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-stories
+    type: gateway-api
+    name: Sidebar.stories
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Sidebar.stories.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/items-test
+    type: gateway-api
+    name: Items
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Items.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/page
+    type: gateway-api
+    name: Page
+    isTest: false
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/Page.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-components/layout/sidebar/sidebar-pin-state-context-test
+    type: gateway-api
+    name: SidebarPinStateContext
+    isTest: true
+    properties:
+      filepath: packages/core-components/src/layout/Sidebar/SidebarPinStateContext.test.tsx
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/alpha.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core-components/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/version-bridge/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: backstage/packages/core-components/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/testUtils.ts
+      containerId: core-components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-submenu-item
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-submenu-item
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-submenu-item
+    to: backstage/packages/core-components/layout/sidebar/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-submenu-item
+    to: backstage/packages/core-components/layout/sidebar/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-group
+    to: backstage/packages/core-components/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-group
+    to: backstage/packages/core-components/layout/sidebar/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-group
+    to: backstage/packages/core-components/layout/sidebar/mobile-sidebar-context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/utils-test
+    to: backstage/packages/core-components/layout/sidebar/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/mobile-sidebar
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/layout/sidebar/mobile-sidebar
+    to: backstage/packages/core-components/layout/sidebar/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/mobile-sidebar
+    to: backstage/packages/core-components/layout/sidebar/mobile-sidebar-context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-group-test
+    to: backstage/packages/core-components/testutils
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-group-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-group-test
+    to: backstage/packages/core-components/layout/sidebar/mobile-sidebar-context
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-open-state-context
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-components/layout/sidebar/items
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/layout/sidebar/items
+    to: backstage/packages/core-components/layout/sidebar/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/items
+    to: backstage/packages/core-components/layout/sidebar/icons
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/items
+    to: backstage/packages/core-components/layout/sidebar/utils
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-open-state-context-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-submenu
+    to: backstage/packages/core-components/layout/sidebar/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/local-storage-test
+    to: backstage/packages/core-components/layout/sidebar/local-storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/mobile-sidebar-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/layout/sidebar/mobile-sidebar-test
+    to: backstage/packages/core-components/testutils
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: backstage/packages/core-components/layout/sidebar/bar-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-pin-state-context
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'
+  - from: backstage/packages/core-components/layout/sidebar/bar
+    to: backstage/packages/core-components/layout/sidebar/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/bar
+    to: backstage/packages/core-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/layout/sidebar/bar
+    to: backstage/packages/core-components/translation/translation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/index
+    to: backstage/packages/core-components/layout/sidebar/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-stories
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-stories
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/layout/sidebar/items-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-components/layout/sidebar/items-test
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-components/layout/sidebar/page
+    to: backstage/packages/core-components/layout/sidebar/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/page
+    to: backstage/packages/core-components/layout/sidebar/local-storage
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-components/layout/sidebar/sidebar-pin-state-context-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'

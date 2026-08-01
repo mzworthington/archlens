@@ -91,7 +91,6 @@ nodes:
     name: Repositories Layer
     isTest: false
     properties:
-      filepath: src/Basket.API/Repositories/RedisBasketRepository.cs
       containerId: basket-api
       technology: Entity Framework / DB Context
       classification: database-marker
@@ -99,9 +98,6 @@ nodes:
       complexity: 3
       complexityPeak: 3
       cognitiveComplexity: 3
-      functionCount: 4
-      loc: 57
-      sloc: 39
       churn: 0
       churn30: 0
       churn365: 0
@@ -160,24 +156,22 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/basket-api/extensions
     type: background-worker
     name: Extensions Layer
     isTest: false
     properties:
-      filepath: src/Basket.API/Extensions/ServerCallContextIdentityExtensions.cs
       containerId: basket-api
       technology: C# Domain Service
       classification: default
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 2
-      loc: 10
-      sloc: 7
       churn: 0
       churn30: 0
       churn365: 0
@@ -236,24 +230,23 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/basket-api/model
     type: background-worker
     name: Model Layer
     isTest: false
     properties:
-      filepath: src/Basket.API/Model/CustomerBasket.cs
       containerId: basket-api
       technology: C# Domain Service
       classification: default
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 2
-      loc: 16
-      sloc: 11
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
       churn: 0
       churn30: 0
       churn365: 0
@@ -312,22 +305,22 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/basket-api/integrationevents
     type: event-broker
     name: IntegrationEvents Layer
     isTest: false
     properties:
-      filepath: src/Basket.API/IntegrationEvents/Events/OrderStartedIntegrationEvent.cs
       containerId: basket-api
       technology: C# Event Client
       classification: event-marker
     forensics:
       complexity: 1
-      loc: 7
-      sloc: 2
+      complexityPeak: 1
       churn: 0
       churn30: 0
       churn365: 0
@@ -386,9 +379,11 @@ nodes:
         - 0
         - 0
       authorCount: 0
-      topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: eshop/basket-api/program
     type: background-worker
     name: Program
@@ -492,7 +487,6 @@ nodes:
     name: Services Layer (External)
     external: true
     properties:
-      filepath: src/WebApp/Services/OrderingService.cs
       containerId: webapp
       technology: ASP.NET Core Controller / Minimal API
       classification: api-marker

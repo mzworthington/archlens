@@ -1,0 +1,75 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/webhooks-api/integrationevents
+  name: IntegrationEvents Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/webhooks-api/integrationevents/order-status-changed-to-paid-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToPaidIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/IntegrationEvents/OrderStatusChangedToPaidIntegrationEventHandler.cs
+      containerId: webhooks-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webhooks-api/integrationevents/product-price-changed-integration-event-handler
+    type: event-broker
+    name: ProductPriceChangedIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/IntegrationEvents/ProductPriceChangedIntegrationEventHandler.cs
+      containerId: webhooks-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webhooks-api/integrationevents/order-status-changed-to-shipped-integration-event-handler
+    type: event-broker
+    name: OrderStatusChangedToShippedIntegrationEventHandler
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/IntegrationEvents/OrderStatusChangedToShippedIntegrationEventHandler.cs
+      containerId: webhooks-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webhooks-api/integrationevents/order-status-changed-to-paid-integration-event
+    type: event-broker
+    name: OrderStatusChangedToPaidIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/IntegrationEvents/OrderStatusChangedToPaidIntegrationEvent.cs
+      containerId: webhooks-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webhooks-api/integrationevents/order-status-changed-to-shipped-integration-event
+    type: event-broker
+    name: OrderStatusChangedToShippedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/IntegrationEvents/OrderStatusChangedToShippedIntegrationEvent.cs
+      containerId: webhooks-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webhooks-api/integrationevents/product-price-changed-integration-event
+    type: event-broker
+    name: ProductPriceChangedIntegrationEvent
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/IntegrationEvents/ProductPriceChangedIntegrationEvent.cs
+      containerId: webhooks-api
+      technology: C# Event Client
+      classification: event-marker
+  - entityRef: eshop/webhooks-api/integrationevents/order-stock-item
+    type: event-broker
+    name: OrderStockItem
+    isTest: false
+    properties:
+      filepath: src/Webhooks.API/IntegrationEvents/OrderStockItem.cs
+      containerId: webhooks-api
+      technology: C# Event Client
+      classification: event-marker
+dependencies: []

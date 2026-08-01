@@ -1,0 +1,48 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/clientapp-unittests/mocks
+  name: Mocks Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/clientapp-unittests/mocks/mock-settings-service
+    type: background-worker
+    name: MockSettingsService
+    isTest: true
+    properties:
+      filepath: tests/ClientApp.UnitTests/Mocks/MockSettingsService.cs
+      containerId: clientapp-unittests
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp-unittests/mocks/mock-view-model
+    type: background-worker
+    name: MockViewModel
+    isTest: true
+    properties:
+      filepath: tests/ClientApp.UnitTests/Mocks/MockViewModel.cs
+      containerId: clientapp-unittests
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp-unittests/mocks/mock-dialog-service
+    type: background-worker
+    name: MockDialogService
+    isTest: true
+    properties:
+      filepath: tests/ClientApp.UnitTests/Mocks/MockDialogService.cs
+      containerId: clientapp-unittests
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/clientapp-unittests/mocks/mock-navigation-service
+    type: background-worker
+    name: MockNavigationService
+    isTest: true
+    properties:
+      filepath: tests/ClientApp.UnitTests/Mocks/MockNavigationService.cs
+      containerId: clientapp-unittests
+      technology: C# Domain Service
+      classification: default
+dependencies: []

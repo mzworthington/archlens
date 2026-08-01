@@ -1,0 +1,66 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-graph/hooks
+  name: Hooks Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-graph/hooks/use-relations
+    type: gateway-api
+    name: UseRelations
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/hooks/useRelations.ts
+      containerId: catalog-graph
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-graph/hooks/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-graph/src/hooks/index.ts
+      containerId: catalog-graph
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: plugins/auth-backend-module-cloudflare-access-provider/src/types.ts
+      containerId: auth-backend-module-cloudflare-access-provider
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-graph/hooks/use-relations
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/hooks/use-relations
+    to: backstage/plugins/auth-backend-module-cloudflare-access-provider/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-graph/hooks/index
+    to: backstage/plugins/catalog-graph/hooks/use-relations
+    type: direct-call
+    description: Calls module / service

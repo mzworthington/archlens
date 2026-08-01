@@ -1,0 +1,95 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/database
+  name: Database Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    type: relational-database
+    name: MigrateBackendTasks
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/database/migrateBackendTasks.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/database/tables
+    type: relational-database
+    name: Tables
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/database/tables.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrations-test
+    type: relational-database
+    name: Migrations
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/scheduler/database/migrations.test.ts
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/backend-defaults/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-defaults/src/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/tables
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    to: backstage/packages/backend-defaults/index
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrations-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrations-test
+    to: backstage/packages/backend-defaults/entrypoints/scheduler/database/migrate-backend-tasks
+    type: read-write
+    description: Queries datastore records

@@ -879,7 +879,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4960
+      x: -4270
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/__testutils__
     type: background-worker
@@ -891,19 +891,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -12780
+      x: -12090
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/actions
     type: rest-api
     name: Actions (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/alpha/entrypoints/actions/actionsServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -18300
+      x: -19450
       y: -204
   - entityRef: backstage/packages/backend-plugin-api/actionsservice
     type: background-worker
@@ -915,151 +914,139 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10480
+      x: -9790
       y: -204
   - entityRef: backstage/packages/core-app-api/implementations/alertapi
     type: rest-api
     name: Alertapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/AlertApi/AlertApiForwarder.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 5160
+      x: 5850
       y: -204
   - entityRef: backstage/packages/frontend-test-utils/alertapi
     type: rest-api
     name: Alertapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/AlertApi/MockAlertApi.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 13440
+      x: 14590
       y: -204
   - entityRef: backstage/packages/core-app-api/app
     type: gateway-api
     name: App (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/app/AppContext.test.tsx
       containerId: core-app-api
       technology: React Component
       classification: ui-import
     position:
-      x: 4240
+      x: 4930
       y: -204
   - entityRef: backstage/packages/frontend-test-utils/app
     type: gateway-api
     name: App (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/app/createExtensionTester.test.tsx
       containerId: frontend-test-utils
       technology: React Component
       classification: ui-import
     position:
-      x: 13900
+      x: 15050
       y: -204
   - entityRef: backstage/packages/core-app-api/implementations/applanguageapi
     type: rest-api
     name: Applanguageapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/AppLanguageApi/AppLanguageSelector.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 5620
+      x: 6310
       y: -204
   - entityRef: backstage/packages/core-app-api/implementations/appthemeapi
     type: rest-api
     name: Appthemeapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/AppThemeApi/AppThemeSelector.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 6080
+      x: 6770
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/auditor
     type: rest-api
     name: Auditor (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auditor/auditorServiceFactory.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -17840
+      x: -18990
       y: -204
   - entityRef: backstage/packages/core-app-api/implementations/auth
     type: rest-api
     name: Auth (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/auth/bitbucketServer/types.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 6540
+      x: 7230
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/auth
-    type: relational-database
+    type: background-worker
     name: Auth (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/auth/authServiceFactory.ts
       containerId: backend-defaults
-      technology: Prisma / SQL Database Client
-      classification: database-marker
+      technology: TypeScript Domain Service
+      classification: default
     position:
-      x: -17380
+      x: -18530
       y: -204
   - entityRef: backstage/packages/core-app-api/authsessionmanager
     type: background-worker
     name: Authsessionmanager (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/lib/AuthSessionManager/StaticAuthSessionManager.ts
       containerId: core-app-api
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 4700
+      x: 5390
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/cache
     type: event-broker
     name: Cache (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/cache/CacheClient.test.ts
       containerId: backend-defaults
       technology: TypeScript Event Client
       classification: event-marker
     position:
-      x: -16920
+      x: -16230
       y: -204
   - entityRef: backstage/packages/cli-module-config/commands
     type: gateway-api
     name: Commands (External)
     external: true
     properties:
-      filepath: packages/cli-module-config/src/commands/schema.ts
       containerId: cli-module-config
       technology: React Component
       classification: ui-import
     position:
-      x: -6340
+      x: -5650
       y: -204
   - entityRef: backstage/packages/catalog-model/compilecatalogmodel
     type: background-worker
@@ -1071,31 +1058,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -9100
+      x: -8410
       y: -204
   - entityRef: backstage/packages/test-utils/testutils/configapi
     type: rest-api
     name: Configapi (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/apis/ConfigApi/MockConfigApi.ts
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 17580
+      x: 18730
       y: -204
   - entityRef: backstage/packages/frontend-test-utils/configapi
     type: rest-api
     name: Configapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/ConfigApi/MockConfigApi.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 14360
+      x: 15510
       y: -204
   - entityRef: backstage/packages/connections/connectiontype
     type: rest-api
@@ -1107,19 +1092,18 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 3320
+      x: 4010
       y: -204
-  - entityRef: backstage/packages/backend-defaults/entrypoints/database
+  - entityRef: backstage/packages/backend-defaults/entrypoints/database/connectors
     type: relational-database
-    name: Database (External)
+    name: Connectors (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/database/connectors/mysql.ts
       containerId: backend-defaults
       technology: Prisma / SQL Database Client
       classification: database-marker
     position:
-      x: -16460
+      x: -15770
       y: -204
   - entityRef: backstage/packages/connections-node/defaultconnectionsservice
     type: background-worker
@@ -1131,7 +1115,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1940
+      x: 2630
       y: -204
   - entityRef: backstage/packages/connections-node/defaultconnectionsservice-test
     type: background-worker
@@ -1143,31 +1127,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2400
+      x: 3090
       y: -204
   - entityRef: backstage/packages/backend-plugin-api/services/definitions
     type: rest-api
     name: Definitions (External)
     external: true
     properties:
-      filepath: packages/backend-plugin-api/src/services/definitions/LoggerService.ts
       containerId: backend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -10020
+      x: -9330
       y: -204
   - entityRef: backstage/packages/frontend-plugin-api/definitions
     type: rest-api
     name: Definitions (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/apis/definitions/AlertApi.ts
       containerId: frontend-plugin-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 12060
+      x: 13210
       y: -204
   - entityRef: backstage/packages/config/deprecatedtypes
     type: background-worker
@@ -1179,19 +1161,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: 790
       y: -204
   - entityRef: backstage/packages/catalog-model/entity
     type: background-worker
     name: Entity (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/entity/conditions.test.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8640
+      x: -7950
       y: -204
   - entityRef: backstage/packages/config-loader/envconfigsource
     type: background-worker
@@ -1203,43 +1184,51 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4500
+      x: -3810
       y: -204
   - entityRef: backstage/packages/test-utils/testutils/errorapi
     type: rest-api
     name: Errorapi (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/apis/ErrorApi/MockErrorApi.test.ts
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 18040
+      x: 19190
       y: -204
   - entityRef: backstage/packages/core-app-api/implementations/errorapi
     type: rest-api
     name: Errorapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/ErrorApi/ErrorAlerter.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 7000
+      x: 8150
       y: -204
   - entityRef: backstage/packages/frontend-test-utils/errorapi
     type: rest-api
     name: Errorapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/ErrorApi/MockErrorApi.test.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 14820
+      x: 15970
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/external
+    type: background-worker
+    name: External (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -18070
       y: -204
   - entityRef: backstage/packages/connections-node/getlegacyintegrations
     type: background-worker
@@ -1251,7 +1240,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 2860
+      x: 3550
       y: -204
   - entityRef: backstage/packages/repo-tools/getpackageexportdetails
     type: background-worker
@@ -1263,43 +1252,51 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 16660
+      x: 17810
       y: -204
-  - entityRef: backstage/packages/backend-defaults/entrypoints/httprouter
+  - entityRef: backstage/packages/backend-defaults/entrypoints/httprouter/http
     type: rest-api
-    name: Httprouter (External)
+    name: Http (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/httpRouter/httpRouterServiceFactory.test.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -16000
+      x: -15310
       y: -204
   - entityRef: backstage/packages/catalog-model/jsonschema
     type: background-worker
     name: Jsonschema (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/model/jsonSchema/reduceKindSchema.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -8180
+      x: -7490
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/plugin/keys
+    type: relational-database
+    name: Keys (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+    position:
+      x: -17150
       y: -204
   - entityRef: backstage/packages/catalog-model/kinds
     type: background-worker
     name: Kinds (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/kinds/ComponentEntityV1alpha1.test.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7720
+      x: -7030
       y: -204
   - entityRef: backstage/packages/config-loader/loader-test
     type: background-worker
@@ -1311,7 +1308,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -4040
+      x: -3350
       y: -204
   - entityRef: backstage/packages/frontend-test-utils/mockapis
     type: gateway-api
@@ -1323,31 +1320,29 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 15280
+      x: 16430
       y: -204
   - entityRef: backstage/packages/catalog-model/modelactions
     type: background-worker
     name: Modelactions (External)
     external: true
     properties:
-      filepath: packages/catalog-model/src/model/modelActions/addTag.ts
       containerId: catalog-model
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -7260
+      x: -6570
       y: -204
   - entityRef: backstage/packages/cli-node/monorepo
     type: background-worker
     name: Monorepo (External)
     external: true
     properties:
-      filepath: packages/cli-node/src/monorepo/isMonorepo.test.ts
       containerId: cli-node
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5420
+      x: -4730
       y: -204
   - entityRef: backstage/packages/config-loader/mutableconfigsource
     type: background-worker
@@ -1359,19 +1354,18 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3580
+      x: -2890
       y: -204
   - entityRef: backstage/packages/core-app-api/implementations/oauthrequestapi
     type: rest-api
     name: Oauthrequestapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/OAuthRequestApi/OAuthRequestManager.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 7460
+      x: 8610
       y: -204
   - entityRef: backstage/packages/config-loader/observableconfigproxy
     type: background-worker
@@ -1383,19 +1377,29 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -3120
+      x: -2430
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/plugin
+    type: background-worker
+    name: Plugin (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -17610
       y: -204
   - entityRef: backstage/packages/filter-predicates/predicates
     type: background-worker
     name: Predicates (External)
     external: true
     properties:
-      filepath: packages/filter-predicates/src/predicates/schema.ts
       containerId: filter-predicates
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9760
+      x: 10910
       y: -204
   - entityRef: backstage/packages/backend-defaults/ratelimitmiddleware
     type: rest-api
@@ -1407,7 +1411,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -13240
+      x: -12550
       y: -204
   - entityRef: backstage/packages/config/readdurationfromconfig
     type: background-worker
@@ -1419,7 +1423,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 560
+      x: 1250
       y: -204
   - entityRef: backstage/packages/config/reader
     type: background-worker
@@ -1431,7 +1435,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1020
+      x: 1710
       y: -204
   - entityRef: backstage/packages/config-loader/remoteconfigsource
     type: background-worker
@@ -1443,151 +1447,150 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2660
+      x: -1970
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/roothttprouter
     type: rest-api
     name: Roothttprouter (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootHttpRouter/DefaultRootHttpRouter.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -15540
+      x: -14850
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/rootlogger
     type: background-worker
     name: Rootlogger (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/rootLogger/utils.test.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -15080
+      x: -14390
       y: -204
   - entityRef: backstage/packages/frontend-app-api/routing
     type: gateway-api
     name: Routing (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/routing/RouteTracker.tsx
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
     position:
-      x: 10220
+      x: 11370
+      y: -204
+  - entityRef: backstage/packages/core-app-api/implementations/auth/saml
+    type: rest-api
+    name: Saml (External)
+    external: true
+    properties:
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 7690
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/scanner
     type: background-worker
     name: Scanner (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/scanner/plugin-scanner-watcher.test.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -12320
+      x: -11630
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/scheduler
     type: rest-api
     name: Scheduler (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/scheduler/database/migrateBackendTasks.ts
       containerId: backend-defaults
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -14620
+      x: -13930
       y: -204
   - entityRef: backstage/packages/config-loader/schema
     type: background-worker
     name: Schema (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/schema/load.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2200
+      x: -1510
       y: -204
   - entityRef: backstage/packages/frontend-plugin-api/schema
     type: background-worker
     name: Schema (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/schema/createPortableSchema.test.ts
       containerId: frontend-plugin-api
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 12520
+      x: 13670
       y: -204
   - entityRef: backstage/packages/backend-openapi-utils/schema
     type: background-worker
     name: Schema (External)
     external: true
     properties:
-      filepath: packages/backend-openapi-utils/src/schema/response-body-validation.ts
       containerId: backend-openapi-utils
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -10940
+      x: -10250
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/schemas
     type: background-worker
     name: Schemas (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/schemas/schemas.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -11860
+      x: -11170
       y: -204
   - entityRef: backstage/packages/errors/serialization
     type: background-worker
     name: Serialization (External)
     external: true
     properties:
-      filepath: packages/errors/src/serialization/response.test.ts
       containerId: errors
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 9300
+      x: 10450
       y: -204
   - entityRef: backstage/packages/backend-dynamic-feature-service/server
     type: rest-api
     name: Server (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/server/router.ts
       containerId: backend-dynamic-feature-service
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -11400
+      x: -10710
       y: -204
   - entityRef: backstage/packages/backend-test-utils/services
     type: rest-api
     name: Services (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/alpha/services/MockActionsRegistry.test.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -9560
+      x: -8870
       y: -204
   - entityRef: backstage/packages/cli-module-new/services
     type: background-worker
@@ -1599,7 +1602,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -5880
+      x: -5190
       y: -204
   - entityRef: backstage/packages/config-loader/staticconfigsource
     type: background-worker
@@ -1611,7 +1614,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1740
+      x: -1050
       y: -204
   - entityRef: backstage/packages/config-loader/staticconfigsource-test
     type: background-worker
@@ -1623,43 +1626,40 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1280
+      x: -590
       y: -204
   - entityRef: backstage/packages/test-utils/testutils/storageapi
     type: rest-api
     name: Storageapi (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/apis/StorageApi/MockStorageApi.test.ts
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 18500
+      x: 19650
       y: -204
   - entityRef: backstage/packages/core-app-api/implementations/storageapi
     type: rest-api
     name: Storageapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/StorageApi/WebStorage.test.ts
       containerId: core-app-api
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 7920
+      x: 9070
       y: -204
   - entityRef: backstage/packages/frontend-test-utils/storageapi
     type: rest-api
     name: Storageapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/StorageApi/MockStorageApi.test.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 15740
+      x: 16890
       y: -204
   - entityRef: backstage/packages/core-app-api/subjects
     type: background-worker
@@ -1671,91 +1671,84 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 8840
+      x: 9990
       y: -204
   - entityRef: backstage/packages/connections/system
     type: background-worker
     name: System (External)
     external: true
     properties:
-      filepath: packages/connections/src/system/createConnectionType.test.ts
       containerId: connections
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 3780
+      x: 4470
       y: -204
   - entityRef: backstage/packages/test-utils/testutils
     type: rest-api
     name: Testutils (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/index.tsx
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 17120
+      x: 18270
       y: -204
   - entityRef: backstage/packages/config-loader/transform
     type: background-worker
     name: Transform (External)
     external: true
     properties:
-      filepath: packages/config-loader/src/sources/transform/apply.ts
       containerId: config-loader
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -820
+      x: -130
       y: -204
   - entityRef: backstage/packages/test-utils/testutils/translationapi
     type: rest-api
     name: Translationapi (External)
     external: true
     properties:
-      filepath: packages/test-utils/src/testUtils/apis/TranslationApi/MockTranslationApi.ts
       containerId: test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 18960
+      x: 20110
       y: -204
   - entityRef: backstage/packages/core-app-api/implementations/translationapi
     type: gateway-api
     name: Translationapi (External)
     external: true
     properties:
-      filepath: packages/core-app-api/src/apis/implementations/TranslationApi/I18nextTranslationApi.ts
       containerId: core-app-api
       technology: React Component
       classification: ui-import
     position:
-      x: 8380
+      x: 9530
       y: -204
   - entityRef: backstage/packages/frontend-test-utils/translationapi
     type: rest-api
     name: Translationapi (External)
     external: true
     properties:
-      filepath: packages/frontend-test-utils/src/apis/TranslationApi/MockTranslationApi.ts
       containerId: frontend-test-utils
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 16200
+      x: 17350
       y: -204
   - entityRef: backstage/packages/frontend-app-api/tree
     type: background-worker
     name: Tree (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/tree/instantiateAppNodeTree.ts
       containerId: frontend-app-api
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 10680
+      x: 11830
       y: -204
   - entityRef: backstage/packages/config-loader/types
     type: background-worker
@@ -1767,7 +1760,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -360
+      x: 330
       y: -204
   - entityRef: backstage/packages/config/types
     type: background-worker
@@ -1779,7 +1772,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1480
+      x: 2170
       y: -204
   - entityRef: backstage/packages/catalog-model/types
     type: background-worker
@@ -1791,79 +1784,84 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -6800
+      x: -6110
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/urlreader
     type: background-worker
     name: Urlreader (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/urlReader/lib/tree/TarArchiveResponse.test.ts
       containerId: backend-defaults
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -14160
+      x: -13470
+      y: -204
+  - entityRef: backstage/packages/backend-defaults/entrypoints/auth/user
+    type: background-worker
+    name: User (External)
+    external: true
+    properties:
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -16690
       y: -204
   - entityRef: backstage/packages/backend-defaults/entrypoints/userinfo
     type: cache-store
     name: Userinfo (External)
     external: true
     properties:
-      filepath: packages/backend-defaults/src/entrypoints/userInfo/DefaultUserInfoService.test.ts
       containerId: backend-defaults
       technology: TypeScript Cache Client
       classification: cache-marker
     position:
-      x: -13700
+      x: -13010
       y: -204
   - entityRef: backstage/packages/frontend-plugin-api/wiring
     type: gateway-api
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-plugin-api/src/wiring/createFrontendFeatureLoader.ts
       containerId: frontend-plugin-api
       technology: React Component
       classification: ui-import
     position:
-      x: 12980
+      x: 14130
       y: -204
   - entityRef: backstage/packages/backend-app-api/wiring
     type: background-worker
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -18760
+      x: -19910
       y: -204
   - entityRef: backstage/packages/frontend-app-api/wiring
     type: gateway-api
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-app-api/src/wiring/createErrorCollector.ts
       containerId: frontend-app-api
       technology: React Component
       classification: ui-import
     position:
-      x: 11140
+      x: 12290
       y: -204
   - entityRef: backstage/packages/frontend-internal/wiring
     type: background-worker
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/frontend-internal/src/wiring/createExtensionDataContainer.ts
       containerId: frontend-internal
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 11600
+      x: 12750
       y: -204
 dependencies:
   - from: backstage/packages/backend-test-utils/services
@@ -2062,6 +2060,10 @@ dependencies:
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
+  - from: backstage/packages/core-app-api/implementations/auth/saml
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: backstage/packages/core-app-api/implementations/appthemeapi
     to: backstage/packages/core/index
     type: direct-call
@@ -2162,11 +2164,11 @@ dependencies:
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/backend-defaults/entrypoints/httprouter
+  - from: backstage/packages/backend-defaults/entrypoints/httprouter/http
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
-  - from: backstage/packages/backend-defaults/entrypoints/database
+  - from: backstage/packages/backend-defaults/entrypoints/database/connectors
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
@@ -2178,7 +2180,23 @@ dependencies:
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/plugin/keys
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/plugin
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/user
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
   - from: backstage/packages/backend-defaults/entrypoints/auth
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/backend-defaults/entrypoints/auth/external
     to: backstage/packages/core/index
     type: direct-call
     description: '@backstage/types'

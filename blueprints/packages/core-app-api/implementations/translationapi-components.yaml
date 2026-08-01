@@ -1,0 +1,151 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-app-api/implementations/translationapi
+  name: Translationapi Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api
+    type: gateway-api
+    name: I18nextTranslationApi
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/TranslationApi/I18nextTranslationApi.ts
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api-test
+    type: gateway-api
+    name: I18nextTranslationApi
+    isTest: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/TranslationApi/I18nextTranslationApi.test.tsx
+      containerId: core-app-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-app-api/implementations/translationapi/index
+    type: rest-api
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/TranslationApi/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/core-plugin-api/alpha
+    type: background-worker
+    name: Alpha (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/alpha.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core-app-api/implementations/applanguageapi/app-language-selector
+    type: rest-api
+    name: AppLanguageSelector (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/AppLanguageApi/AppLanguageSelector.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/packages/core-app-api/implementations
+    type: rest-api
+    name: Implementations (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/implementations/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -1050
+      y: 404
+  - entityRef: backstage/packages/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/types/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/translation/translation-ref
+    type: background-worker
+    name: TranslationRef (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/TranslationRef.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/frontend-plugin-api/translation/translation-resource
+    type: background-worker
+    name: TranslationResource (External)
+    external: true
+    properties:
+      filepath: packages/frontend-plugin-api/src/translation/TranslationResource.ts
+      containerId: frontend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+dependencies:
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api
+    to: backstage/packages/core-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api
+    to: backstage/packages/frontend-plugin-api/translation/translation-resource
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api
+    to: backstage/packages/frontend-plugin-api/translation/translation-ref
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api
+    to: backstage/packages/core-app-api/implementations/applanguageapi/app-language-selector
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api-test
+    to: backstage/packages/core-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api-test
+    to: backstage/packages/core/index
+    type: direct-call
+    description: '@backstage/types'
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api-test
+    to: backstage/packages/core-app-api/implementations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api-test
+    to: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-app-api/implementations/translationapi/index
+    to: backstage/packages/core-app-api/implementations/translationapi/i18next-translation-api
+    type: direct-call
+    description: Calls module / service

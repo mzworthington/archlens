@@ -94,18 +94,16 @@ nodes:
     name: Fetch
     isTest: false
     properties:
-      filepath: plugins/scaffolder-backend-module-cookiecutter/src/actions/fetch/ContainerRunner.ts
       containerId: scaffolder-backend-module-cookiecutter
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 52
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      complexityPeak: 1
+      churn: 12
+      lineChurn: 976
+      churn30: 6
+      churn365: 12
       churnByWeek:
         - 0
         - 0
@@ -132,7 +130,11 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 4
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -151,24 +153,25 @@ nodes:
         - 0
         - 0
         - 0
+        - 6
         - 0
         - 0
         - 0
         - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 2
+      authorCount: 3
       topAuthorPercent: 0.5
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 6
         - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 4
+        - email: awanlin@spotify.com
+          commits: 2
+      hotspotScore: 0.0010064031082777532
       sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/scaffolder-backend-module-cookiecutter/actions
     type: background-worker
     name: Actions

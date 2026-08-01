@@ -1,0 +1,55 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/docs-ui/components/components/mobilebottomnav
+  name: Mobilebottomnav Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/docs-ui/components/components/mobilebottomnav/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: docs-ui/src/components/MobileBottomNav/index.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/docs-ui/components/components/mobilebottomnav/animated-menu-icon
+    type: background-worker
+    name: AnimatedMenuIcon
+    isTest: false
+    properties:
+      filepath: docs-ui/src/components/MobileBottomNav/AnimatedMenuIcon.tsx
+      containerId: components
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/docs-ui/components/components/mobilebottomnav/mobile-menu
+    type: gateway-api
+    name: MobileMenu
+    isTest: false
+    properties:
+      filepath: docs-ui/src/components/MobileBottomNav/MobileMenu.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/docs-ui/components/mobilebottomnav
+    type: gateway-api
+    name: Mobilebottomnav (External)
+    external: true
+    properties:
+      filepath: docs-ui/src/components/MobileBottomNav/MobileBottomNav.tsx
+      containerId: components
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/docs-ui/components/components/mobilebottomnav/index
+    to: backstage/docs-ui/components/mobilebottomnav
+    type: direct-call
+    description: Calls module / service

@@ -1,0 +1,1180 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/scaffolder-backend-module-github/actions
+  name: Actions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-environment
+    type: background-worker
+    name: GithubEnvironment
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubEnvironment.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-test
+    type: background-worker
+    name: GithubPagesEnable
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPagesEnable.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-test
+    type: background-worker
+    name: GithubRepoCreate
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoCreate.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-examples-test
+    type: background-worker
+    name: GithubDeployKey.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubDeployKey.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create
+    type: background-worker
+    name: GithubIssuesCreate
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesCreate.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-examples-test
+    type: background-worker
+    name: GithubWebhook.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubWebhook.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-test
+    type: background-worker
+    name: GithubWebhook
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubWebhook.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-examples
+    type: background-worker
+    name: GithubIssuesLabel.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesLabel.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/helpers
+    type: background-worker
+    name: Helpers
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/helpers.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-examples-test
+    type: background-worker
+    name: GithubAutolinks.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubAutolinks.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-examples
+    type: background-worker
+    name: GithubDeployKey.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubDeployKey.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-examples-test
+    type: background-worker
+    name: Github.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/github.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-examples
+    type: background-worker
+    name: GithubBranchProtection.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubBranchProtection.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-examples-test
+    type: background-worker
+    name: GithubPullRequest.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPullRequest.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-test
+    type: background-worker
+    name: GithubAutolinks
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubAutolinks.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-test
+    type: background-worker
+    name: GithubBranchProtection
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubBranchProtection.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github
+    type: background-worker
+    name: Github
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/github.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create-examples
+    type: background-worker
+    name: GithubIssuesCreate.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesCreate.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-examples
+    type: background-worker
+    name: Github.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/github.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-test
+    type: background-worker
+    name: GithubDeployKey
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubDeployKey.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    type: background-worker
+    name: GithubRepoCreate
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoCreate.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-examples
+    type: background-worker
+    name: GithubPagesEnable.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPagesEnable.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/input-properties
+    type: background-worker
+    name: InputProperties
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/inputProperties.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    type: background-worker
+    name: GithubRepoPush
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoPush.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch
+    type: background-worker
+    name: GithubActionsDispatch
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubActionsDispatch.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable
+    type: background-worker
+    name: GithubPagesEnable
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPagesEnable.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-test
+    type: background-worker
+    name: Github
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/github.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-examples-test
+    type: background-worker
+    name: GithubRepoPush.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoPush.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-test
+    type: background-worker
+    name: GithubEnvironment
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubEnvironment.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-examples
+    type: background-worker
+    name: GithubPullRequest.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPullRequest.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-examples-test
+    type: background-worker
+    name: GithubBranchProtection.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubBranchProtection.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-examples
+    type: background-worker
+    name: GithubAutolinks.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubAutolinks.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-test
+    type: background-worker
+    name: GithubActionsDispatch
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubActionsDispatch.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request
+    type: background-worker
+    name: GithubPullRequest
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPullRequest.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create-test
+    type: background-worker
+    name: GithubIssuesCreate
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesCreate.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-examples
+    type: background-worker
+    name: GithubRepoPush.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoPush.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks
+    type: background-worker
+    name: GithubAutolinks
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubAutolinks.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-test
+    type: background-worker
+    name: GithubPullRequest
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPullRequest.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-examples-test
+    type: background-worker
+    name: GithubPagesEnable.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubPagesEnable.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-examples
+    type: background-worker
+    name: GithubWebhook.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubWebhook.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/git-helpers
+    type: background-worker
+    name: GitHelpers
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/gitHelpers.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-examples-test
+    type: background-worker
+    name: GithubActionsDispatch.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubActionsDispatch.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook
+    type: background-worker
+    name: GithubWebhook
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubWebhook.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-examples
+    type: background-worker
+    name: GithubRepoCreate.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoCreate.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/helpers-test
+    type: background-worker
+    name: Helpers
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/helpers.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-examples
+    type: background-worker
+    name: GithubActionsDispatch.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubActionsDispatch.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection
+    type: background-worker
+    name: GithubBranchProtection
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubBranchProtection.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-examples-test
+    type: background-worker
+    name: GithubRepoCreate.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoCreate.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-test
+    type: background-worker
+    name: GithubIssuesLabel
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesLabel.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/index.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-test
+    type: background-worker
+    name: GithubRepoPush
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubRepoPush.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/output-properties
+    type: background-worker
+    name: OutputProperties
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/outputProperties.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key
+    type: background-worker
+    name: GithubDeployKey
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubDeployKey.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-examples-test
+    type: background-worker
+    name: GithubIssuesLabel.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesLabel.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label
+    type: background-worker
+    name: GithubIssuesLabel
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubIssuesLabel.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-examples-test
+    type: background-worker
+    name: GithubEnvironment.examples
+    isTest: true
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/githubEnvironment.examples.test.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-backend-module-github/actions/git-hub-environment-examples
+    type: background-worker
+    name: GitHubEnvironment.examples
+    isTest: false
+    properties:
+      filepath: plugins/scaffolder-backend-module-github/src/actions/gitHubEnvironment.examples.ts
+      containerId: scaffolder-backend-module-github
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/scaffolder-node/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node/src/index.ts
+      containerId: scaffolder-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/catalog-node/src/api/index.ts
+      containerId: catalog-node
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -590
+      y: 404
+  - entityRef: backstage/plugins/scaffolder-node-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: plugins/scaffolder-node-test-utils/src/index.ts
+      containerId: scaffolder-node-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/plugins/catalog-node/testutils
+    type: background-worker
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-node
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment
+    to: backstage/plugins/catalog-node/index
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/git-helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/helpers
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/helpers
+    to: backstage/plugins/scaffolder-backend-module-github/actions/git-helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/git-helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github
+    to: backstage/plugins/scaffolder-backend-module-github/actions/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github
+    to: backstage/plugins/scaffolder-backend-module-github/actions/input-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github
+    to: backstage/plugins/scaffolder-backend-module-github/actions/output-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    to: backstage/plugins/scaffolder-backend-module-github/actions/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    to: backstage/plugins/scaffolder-backend-module-github/actions/input-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    to: backstage/plugins/scaffolder-backend-module-github/actions/output-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    to: backstage/plugins/scaffolder-backend-module-github/actions/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    to: backstage/plugins/scaffolder-backend-module-github/actions/input-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    to: backstage/plugins/scaffolder-backend-module-github/actions/output-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/git-helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-environment
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create-test
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/helpers-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection
+    to: backstage/plugins/scaffolder-backend-module-github/actions/input-properties
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection
+    to: backstage/plugins/scaffolder-backend-module-github/actions/git-helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/git-helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-test
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-actions-dispatch
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-create
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-create
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-webhook
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-environment
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-pull-request
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-autolinks
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-pages-enable
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/index
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-branch-protection
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/git-helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-repo-push
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-deploy-key
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-issues-label
+    to: backstage/plugins/scaffolder-backend-module-github/util/util
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-examples-test
+    to: backstage/plugins/scaffolder-backend-module-github/actions/github-environment
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-examples-test
+    to: backstage/plugins/scaffolder-node-test-utils/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node-test-utils'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-examples-test
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/github-environment-examples-test
+    to: backstage/plugins/catalog-node/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-node'
+  - from: backstage/plugins/scaffolder-backend-module-github/actions/git-hub-environment-examples
+    to: backstage/plugins/scaffolder-node/index
+    type: direct-call
+    description: '@backstage/plugin-scaffolder-node'

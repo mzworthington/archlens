@@ -20,12 +20,18 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 49
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 72
+      churn30: 2
+      churn365: 2
+      hotspotScore: 0
+      authorCount: 1
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
       churnByWeek:
         - 0
         - 0
@@ -75,17 +81,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
       topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
       sinceDays: 365
       shortChurnDays: 30
   - entityRef: backstage/plugins/proxy-backend/plugin
@@ -175,7 +176,6 @@ nodes:
     name: Service
     isTest: false
     properties:
-      filepath: plugins/proxy-backend/src/service/router.ts
       containerId: proxy-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -183,13 +183,22 @@ nodes:
       complexity: 19
       complexityPeak: 19
       cognitiveComplexity: 142
-      functionCount: 18
-      loc: 369
-      sloc: 261
-      churn: 4
-      lineChurn: 377
-      churn30: 1
-      churn365: 4
+      churn: 9
+      lineChurn: 1458
+      churn30: 5
+      churn365: 9
+      hotspotScore: 0.025117998134472286
+      authorCount: 3
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 5
+        - email: amintong@tencent.com
+          commits: 2
+        - email: freben@gmail.com
+          commits: 2
       churnByWeek:
         - 0
         - 2
@@ -216,7 +225,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -239,21 +248,12 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 5
         - 0
         - 0
         - 0
         - 0
-      authorCount: 3
-      topAuthorPercent: 0.5
-      authors:
-        - email: amintong@tencent.com
-          commits: 2
-        - email: poldsberg@gmail.com
-          commits: 1
-        - email: freben@gmail.com
-          commits: 1
-      hotspotScore: 0.025117998134472286
+      topAuthorPercent: 0.6666666666666666
       sinceDays: 365
       shortChurnDays: 30
 dependencies:

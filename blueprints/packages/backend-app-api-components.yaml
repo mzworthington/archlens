@@ -14,53 +14,35 @@ nodes:
     name: Wiring
     isTest: false
     properties:
-      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
       containerId: backend-app-api
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 364
-      churn30: 1
-      churn365: 2
+      complexity: 22
+      complexityPeak: 22
+      cognitiveComplexity: 181
+      churn: 93
+      lineChurn: 9571
+      churn30: 20
+      churn365: 93
       churnByWeek:
         - 0
         - 0
         - 0
         - 0
+        - 3
         - 0
         - 0
+        - 1
+        - 7
+        - 1
         - 0
+        - 8
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
+        - 1
+        - 15
+        - 2
         - 0
         - 0
         - 0
@@ -69,26 +51,56 @@ nodes:
         - 0
         - 1
         - 0
+        - 4
         - 0
         - 0
         - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
         - 1
+        - 10
+        - 5
         - 0
         - 0
         - 0
+        - 3
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.5
+        - 1
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 16
+        - 4
+        - 0
+        - 0
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.5376344086021505
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 45
+        - email: aramis.sennyey@doordash.com
+          commits: 19
         - email: 58849535+neoreddog@users.noreply.github.com
+          commits: 12
+        - email: jackpalmer@spotify.com
+          commits: 10
+        - email: sarabadu@gmail.com
+          commits: 4
+        - email: cbergstrom@spotify.com
+          commits: 2
+        - email: sanchit2662@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.1382454220931782
       sinceDays: 365
+      fileCount: 16
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/packages/backend-app-api/dependencygraph-test
     type: background-worker
     name: Dependencygraph test
@@ -438,7 +450,6 @@ nodes:
     name: Manager (External)
     external: true
     properties:
-      filepath: packages/backend-dynamic-feature-service/src/manager/plugin-manager.ts
       containerId: backend-dynamic-feature-service
       technology: TypeScript Domain Service
       classification: default
@@ -450,7 +461,6 @@ nodes:
     name: System (External)
     external: true
     properties:
-      filepath: packages/backend-plugin-api/src/services/system/types.test.ts
       containerId: backend-plugin-api
       technology: TypeScript Domain Service
       classification: default
@@ -462,7 +472,6 @@ nodes:
     name: Wiring (External)
     external: true
     properties:
-      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
       containerId: backend-test-utils
       technology: REST Controller / Router
       classification: api-marker

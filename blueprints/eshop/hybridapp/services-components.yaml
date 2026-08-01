@@ -1,0 +1,39 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/hybridapp/services
+  name: Services Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/hybridapp/services/catalog-json-context
+    type: background-worker
+    name: CatalogJsonContext
+    isTest: false
+    properties:
+      filepath: src/HybridApp/Services/CatalogJsonContext.cs
+      containerId: hybridapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/hybridapp/services/product-image-url-provider
+    type: background-worker
+    name: ProductImageUrlProvider
+    isTest: false
+    properties:
+      filepath: src/HybridApp/Services/ProductImageUrlProvider.cs
+      containerId: hybridapp
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/hybridapp/services/catalog-service
+    type: background-worker
+    name: CatalogService
+    isTest: false
+    properties:
+      filepath: src/HybridApp/Services/CatalogService.cs
+      containerId: hybridapp
+      technology: C# Domain Service
+      classification: default
+dependencies: []

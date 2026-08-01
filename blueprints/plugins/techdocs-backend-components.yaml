@@ -20,89 +20,9 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 21
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: backstage/plugins/techdocs-backend/cache
-    type: rest-api
-    name: Cache
-    isTest: false
-    properties:
-      filepath: plugins/techdocs-backend/src/cache/TechDocsCache.ts
-      containerId: techdocs-backend
-      technology: REST Controller / Router
-      classification: api-marker
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
       churn: 2
-      lineChurn: 125
-      churn30: 1
+      lineChurn: 44
+      churn30: 2
       churn365: 2
       churnByWeek:
         - 0
@@ -139,7 +59,6 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 0
         - 0
         - 0
@@ -153,7 +72,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -165,6 +85,89 @@ nodes:
           commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/techdocs-backend/cache
+    type: rest-api
+    name: Cache
+    isTest: false
+    properties:
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+    forensics:
+      complexity: 0
+      churn: 7
+      lineChurn: 539
+      churn30: 5
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: freben@gmail.com
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-backend/plugin
     type: background-worker
     name: Plugin
@@ -331,42 +334,18 @@ nodes:
     name: Docsbuilder
     isTest: false
     properties:
-      filepath: plugins/techdocs-backend/src/DocsBuilder/BuildMetadataStorage.ts
       containerId: techdocs-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 54
-      churn30: 1
-      churn365: 1
+      complexity: 16
+      complexityPeak: 16
+      cognitiveComplexity: 89
+      churn: 6
+      lineChurn: 364
+      churn30: 4
+      churn365: 6
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -397,30 +376,57 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: poldsberg@gmail.com
+          commits: 5
+        - email: freben@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.014924221703240828
       sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-backend/service
     type: rest-api
     name: Service
     isTest: false
     properties:
-      filepath: plugins/techdocs-backend/src/service/DefaultDocsBuildStrategy.test.ts
       containerId: techdocs-backend
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 67
-      churn30: 1
-      churn365: 1
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 31
+      churn: 23
+      lineChurn: 2053
+      churn30: 8
+      churn365: 23
       churnByWeek:
         - 0
         - 0
@@ -447,21 +453,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -471,17 +463,38 @@ nodes:
         - 0
         - 0
         - 1
+        - 11
+        - 1
         - 0
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.6956521739130435
       authors:
+        - email: freben@spotify.com
+          commits: 11
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 10
+        - email: freben@gmail.com
+          commits: 2
+      hotspotScore: 0.010376121245274815
       sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/techdocs-node/index
     type: background-worker
     name: Index (External)
@@ -511,7 +524,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

@@ -1,0 +1,65 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/integration-react/components/scmintegrationicon
+  name: Scmintegrationicon Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/integration-react/components/scmintegrationicon/scm-integration-icon-test
+    type: background-worker
+    name: ScmIntegrationIcon
+    isTest: true
+    properties:
+      filepath: packages/integration-react/src/components/ScmIntegrationIcon/ScmIntegrationIcon.test.tsx
+      containerId: integration-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration-react/components/scmintegrationicon/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/integration-react/src/components/ScmIntegrationIcon/index.ts
+      containerId: integration-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration-react/components
+    type: background-worker
+    name: Components (External)
+    external: true
+    properties:
+      containerId: integration-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/integration-react/components/scmintegrationicon/scm-integration-icon-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/integration-react/components/scmintegrationicon/scm-integration-icon-test
+    to: backstage/packages/integration-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration-react/components/scmintegrationicon/index
+    to: backstage/packages/integration-react/components
+    type: direct-call
+    description: Calls module / service

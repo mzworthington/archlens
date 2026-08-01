@@ -110,8 +110,8 @@ describe('typescriptGrouping', () => {
           'TraceLensPanel'
         )
       ).toEqual({
-        componentId: 'ui/features',
-        componentName: 'Features',
+        componentId: 'ui/features/workspace/components',
+        componentName: 'Components',
       });
     });
   });

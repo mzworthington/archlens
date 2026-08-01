@@ -1,0 +1,70 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/e2e-test/commands
+  name: Commands Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/e2e-test/commands/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/e2e-test/src/commands/index.ts
+      containerId: e2e-test
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/e2e-test/commands/run-command
+    type: relational-database
+    name: RunCommand
+    isTest: false
+    properties:
+      filepath: packages/e2e-test/src/commands/runCommand.ts
+      containerId: e2e-test
+      technology: Prisma / SQL Database Client
+      classification: database-marker
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/e2e-test/commands/index
+    to: backstage/packages/e2e-test/commands/run-command
+    type: read-write
+    description: Queries datastore records
+  - from: backstage/packages/e2e-test/commands/run-command
+    to: backstage/packages/e2e-test/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/e2e-test/commands/run-command
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/e2e-test/commands/run-command
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'

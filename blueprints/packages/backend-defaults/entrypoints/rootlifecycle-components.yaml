@@ -1,0 +1,79 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/rootlifecycle
+  name: Rootlifecycle Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlifecycle/root-lifecycle-service-factory
+    type: background-worker
+    name: RootLifecycleServiceFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLifecycle/rootLifecycleServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlifecycle/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLifecycle/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/rootlifecycle/root-lifecycle-service-factory-test
+    type: background-worker
+    name: RootLifecycleServiceFactory
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/entrypoints/rootLifecycle/rootLifecycleServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/rootlifecycle/root-lifecycle-service-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/rootlifecycle/index
+    to: backstage/packages/backend-defaults/entrypoints/rootlifecycle/root-lifecycle-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlifecycle/root-lifecycle-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/rootlifecycle/root-lifecycle-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/rootlifecycle/root-lifecycle-service-factory-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'

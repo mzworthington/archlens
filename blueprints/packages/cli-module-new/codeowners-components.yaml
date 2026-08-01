@@ -1,0 +1,63 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/cli-module-new/codeowners
+  name: Codeowners Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/cli-module-new/codeowners/codeowners-test
+    type: background-worker
+    name: Codeowners
+    isTest: true
+    properties:
+      filepath: packages/cli-module-new/src/lib/codeowners/codeowners.test.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-new/codeowners/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/codeowners/index.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-module-new/codeowners/codeowners
+    type: background-worker
+    name: Codeowners
+    isTest: false
+    properties:
+      filepath: packages/cli-module-new/src/lib/codeowners/codeowners.ts
+      containerId: cli-module-new
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/packages/cli-module-new/codeowners/codeowners-test
+    to: backstage/packages/cli-module-new/codeowners/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-new/codeowners/index
+    to: backstage/packages/cli-module-new/codeowners/codeowners
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/cli-module-new/codeowners/codeowners
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'

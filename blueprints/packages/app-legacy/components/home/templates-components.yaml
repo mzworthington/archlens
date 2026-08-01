@@ -1,0 +1,106 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/app-legacy/components/home/templates
+  name: Templates Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/app-legacy/components/home/templates/default-template-stories
+    type: gateway-api
+    name: DefaultTemplate.stories
+    isTest: false
+    properties:
+      filepath: packages/app-legacy/src/components/home/templates/DefaultTemplate.stories.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/app-legacy/components/home/templates/customizable-template-stories
+    type: gateway-api
+    name: CustomizableTemplate.stories
+    isTest: false
+    properties:
+      filepath: packages/app-legacy/src/components/home/templates/CustomizableTemplate.stories.tsx
+      containerId: app-legacy
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: backstage/packages/core-components/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-components/src/index.ts
+      containerId: core-components
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/apis/index.ts
+      containerId: core-plugin-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+dependencies:
+  - from: backstage/packages/app-legacy/components/home/templates/default-template-stories
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/app-legacy/components/home/templates/default-template-stories
+    to: backstage/packages/core-components/index
+    type: direct-call
+    description: '@backstage/core-components'
+  - from: backstage/packages/app-legacy/components/home/templates/default-template-stories
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/app-legacy/components/home/templates/default-template-stories
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/app-legacy/components/home/templates/customizable-template-stories
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/app-legacy/components/home/templates/customizable-template-stories
+    to: backstage/packages/core-plugin-api/index
+    type: direct-call
+    description: '@backstage/core-plugin-api'
+  - from: backstage/packages/app-legacy/components/home/templates/customizable-template-stories
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'

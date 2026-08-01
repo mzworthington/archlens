@@ -20,29 +20,11 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 19
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 52
+      churn30: 2
+      churn365: 3
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -80,13 +62,32 @@ nodes:
         - 0
         - 0
         - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/org/routes
     type: background-worker
     name: Routes
@@ -493,18 +494,15 @@ nodes:
     name: Components
     isTest: false
     properties:
-      filepath: plugins/org/src/components/MyGroupsSidebarItem/MyGroupsSidebarItem.tsx
       containerId: org
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 113
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 131
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -554,7 +552,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -563,24 +561,275 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/org/components/mygroupssidebaritem
     type: gateway-api
     name: Mygroupssidebaritem
     isTest: false
     properties:
-      filepath: plugins/org/src/components/MyGroupsSidebarItem/MyGroupsSidebarItem.test.tsx
       containerId: org
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
+      churn: 2
+      lineChurn: 346
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/org/components/cards/group/groupprofile
+    type: gateway-api
+    name: Groupprofile
+    isTest: false
+    properties:
+      containerId: org
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 39
+      churn: 7
+      lineChurn: 470
+      churn30: 2
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7142857142857143
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 2
+        - email: benji.janssens@gmail.com
+          commits: 1
+      hotspotScore: 0.019104125902080833
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/org/components/cards/group/memberslist
+    type: gateway-api
+    name: Memberslist
+    isTest: false
+    properties:
+      containerId: org
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 56
+      churn: 9
+      lineChurn: 1320
+      churn30: 3
+      churn365: 9
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.4444444444444444
+      authors:
+        - email: arupchauhan.connect@gmail.com
+          commits: 3
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
+          commits: 2
+        - email: peterm4c@pm.me
+          commits: 1
+      hotspotScore: 0.03300441134184744
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/org/components/cards/group
+    type: background-worker
+    name: Group
+    isTest: false
+    properties:
+      filepath: plugins/org/src/components/Cards/Group/index.ts
+      containerId: org
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
       loc: 0
       sloc: 0
       churn: 1
-      lineChurn: 329
+      lineChurn: 17
       churn30: 1
       churn365: 1
       churnByWeek:
@@ -644,43 +893,268 @@ nodes:
           commits: 1
       hotspotScore: 0
       sinceDays: 365
+  - entityRef: backstage/plugins/org/components/cards/meta
+    type: background-worker
+    name: Meta
+    isTest: false
+    properties:
+      containerId: org
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      churn: 2
+      lineChurn: 82
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/org/components/cards/user/userprofilecard
+    type: gateway-api
+    name: Userprofilecard
+    isTest: false
+    properties:
+      containerId: org
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      churn: 8
+      lineChurn: 545
+      churn30: 3
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.625
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 4
+        - email: poldsberg@gmail.com
+          commits: 3
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+      hotspotScore: 0.0013360264259715121
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/org/components/cards/user
+    type: gateway-api
+    name: User
+    isTest: false
+    properties:
+      containerId: org
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 33
+      churn: 7
+      lineChurn: 419
+      churn30: 2
+      churn365: 7
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 3
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8571428571428571
+      authors:
+        - email: johanopersson@gmail.com
+          commits: 5
+        - email: poldsberg@gmail.com
+          commits: 2
+      hotspotScore: 0.015544895397196097
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/org/components/cards
     type: gateway-api
     name: Cards
     isTest: false
     properties:
-      filepath: plugins/org/src/components/Cards/Group/GroupProfile/index.ts
       containerId: org
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 16
-      churn30: 1
-      churn365: 1
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      churn: 7
+      lineChurn: 320
+      churn30: 3
+      churn365: 7
       churnByWeek:
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -715,13 +1189,129 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.7142857142857143
       authors:
         - email: poldsberg@gmail.com
+          commits: 3
+        - email: benji.janssens@gmail.com
+          commits: 3
+        - email: johanopersson@gmail.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.003969506336482288
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: backstage/plugins/org/components/cards/ownershipcard
+    type: gateway-api
+    name: Ownershipcard
+    isTest: false
+    properties:
+      containerId: org
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 8
+      churn: 21
+      lineChurn: 1796
+      churn30: 6
+      churn365: 21
+      churnByWeek:
+        - 0
+        - 4
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 6
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 4
+      topAuthorPercent: 0.47619047619047616
+      authors:
+        - email: poldsberg@gmail.com
+          commits: 6
+        - email: benji.janssens@gmail.com
+          commits: 4
+        - email: johanopersson@gmail.com
+          commits: 3
+        - email: peterm4c@pm.me
+          commits: 3
+        - email: maratd@spotify.com
+          commits: 3
+        - email: ben@blam.sh
+          commits: 1
+        - email: charles.dedreuille@gmail.com
+          commits: 1
+      hotspotScore: 0.006743251488564876
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/org/__testutils__
     type: gateway-api
     name: __testutils__
@@ -1133,7 +1723,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-react/src/testUtils.ts
       containerId: catalog-react
       technology: React Component
       classification: ui-import
@@ -1177,39 +1766,39 @@ dependencies:
     to: backstage/plugins/org/components
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/group/groupprofile
     to: backstage/plugins/org/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/group/memberslist
     to: backstage/plugins/org/helpers
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/group/memberslist
     to: backstage/plugins/org/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/group/memberslist
     to: backstage/plugins/org/__testutils__
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/user
     to: backstage/plugins/org/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/ownershipcard
+    to: backstage/plugins/org/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/org/components/cards/ownershipcard
     to: backstage/plugins/org/routes
     type: direct-call
     description: Calls module / service
   - from: backstage/plugins/org/components/cards
-    to: backstage/plugins/org/routes
-    type: direct-call
-    description: Calls module / service
-  - from: backstage/plugins/org/components/cards
     to: backstage/plugins/org/translation
     type: direct-call
     description: Calls module / service
-  - from: backstage/plugins/org/components/cards
+  - from: backstage/plugins/org/components/cards/ownershipcard
     to: backstage/plugins/org/routes
     type: direct-call
     description: Calls module / service

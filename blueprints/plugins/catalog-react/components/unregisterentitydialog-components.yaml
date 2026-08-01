@@ -1,0 +1,110 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-react/components/unregisterentitydialog
+  name: Unregisterentitydialog Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/catalog-react/components/unregisterentitydialog/use-unregister-entity-dialog-state-test
+    type: gateway-api
+    name: UseUnregisterEntityDialogState
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/UnregisterEntityDialog/useUnregisterEntityDialogState.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/unregisterentitydialog/unregister-entity-dialog-test
+    type: gateway-api
+    name: UnregisterEntityDialog
+    isTest: true
+    properties:
+      filepath: plugins/catalog-react/src/components/UnregisterEntityDialog/UnregisterEntityDialog.test.tsx
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components/unregisterentitydialog/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/UnregisterEntityDialog/index.ts
+      containerId: catalog-react
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-react/components/unregisterentitydialog/use-unregister-entity-dialog-state
+    type: gateway-api
+    name: UseUnregisterEntityDialogState
+    isTest: false
+    properties:
+      filepath: plugins/catalog-react/src/components/UnregisterEntityDialog/useUnregisterEntityDialogState.ts
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/catalog-react/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -130
+      y: 404
+  - entityRef: backstage/plugins/catalog-react/testutils
+    type: gateway-api
+    name: Testutils (External)
+    external: true
+    properties:
+      containerId: catalog-react
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
+      y: 404
+dependencies:
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/use-unregister-entity-dialog-state-test
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/use-unregister-entity-dialog-state-test
+    to: backstage/plugins/catalog-react/components/unregisterentitydialog/use-unregister-entity-dialog-state
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/use-unregister-entity-dialog-state-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/unregister-entity-dialog-test
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/unregister-entity-dialog-test
+    to: backstage/plugins/catalog-react/testutils
+    type: direct-call
+    description: '@backstage/plugin-catalog-react'
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/unregister-entity-dialog-test
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/unregister-entity-dialog-test
+    to: backstage/plugins/catalog-react/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/unregister-entity-dialog-test
+    to: backstage/plugins/catalog-react/components/unregisterentitydialog/use-unregister-entity-dialog-state
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/index
+    to: backstage/plugins/catalog-react/components
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/catalog-react/components/unregisterentitydialog/use-unregister-entity-dialog-state
+    to: backstage/plugins/catalog-react/api/api
+    type: direct-call
+    description: Calls module / service

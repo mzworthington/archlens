@@ -1,0 +1,361 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/integration/github
+  name: Github Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/integration/github/single-instance-github-credentials-provider
+    type: background-worker
+    name: SingleInstanceGithubCredentialsProvider
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/SingleInstanceGithubCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/github-integration
+    type: background-worker
+    name: GithubIntegration
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/GithubIntegration.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/github-integration-test
+    type: background-worker
+    name: GithubIntegration
+    isTest: true
+    properties:
+      filepath: packages/integration/src/github/GithubIntegration.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/core-test
+    type: background-worker
+    name: Core
+    isTest: true
+    properties:
+      filepath: packages/integration/src/github/core.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/single-instance-github-credentials-provider-test
+    type: background-worker
+    name: SingleInstanceGithubCredentialsProvider
+    isTest: true
+    properties:
+      filepath: packages/integration/src/github/SingleInstanceGithubCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/default-github-credentials-provider-test
+    type: background-worker
+    name: DefaultGithubCredentialsProvider
+    isTest: true
+    properties:
+      filepath: packages/integration/src/github/DefaultGithubCredentialsProvider.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/types.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/default-github-credentials-provider
+    type: background-worker
+    name: DefaultGithubCredentialsProvider
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/DefaultGithubCredentialsProvider.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/core
+    type: background-worker
+    name: Core
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/core.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/index.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: packages/integration/src/github/config.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: packages/integration/src/github/config.test.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/integration/github/create-git-hub-credentials-provider-from-connection
+    type: background-worker
+    name: CreateGitHubCredentialsProviderFromConnection
+    isTest: false
+    properties:
+      filepath: packages/integration/src/alpha/github/createGitHubCredentialsProviderFromConnection.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/connections/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/connections/src/api/index.ts
+      containerId: connections
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/config-loader/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config-loader/src/sources/index.ts
+      containerId: config-loader
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/integration/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/integration/src/index.ts
+      containerId: integration
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+dependencies:
+  - from: backstage/packages/integration/github/single-instance-github-credentials-provider
+    to: backstage/packages/integration/github/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/single-instance-github-credentials-provider
+    to: backstage/packages/integration/github/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/github-integration
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/github-integration
+    to: backstage/packages/integration/types/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/github-integration
+    to: backstage/packages/integration/github/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/github-integration
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/integration/github/github-integration-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/github/github-integration-test
+    to: backstage/packages/integration/github/github-integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/core-test
+    to: backstage/packages/integration/github/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/core-test
+    to: backstage/packages/integration/github/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/core-test
+    to: backstage/packages/integration/github/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/single-instance-github-credentials-provider-test
+    to: backstage/packages/integration/github/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/single-instance-github-credentials-provider-test
+    to: backstage/packages/integration/github/single-instance-github-credentials-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider-test
+    to: backstage/packages/integration/scmintegrations/scm-integrations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider-test
+    to: backstage/packages/integration/github/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider-test
+    to: backstage/packages/integration/github/single-instance-github-credentials-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider-test
+    to: backstage/packages/integration/github/default-github-credentials-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/github/default-github-credentials-provider-test
+    to: backstage/packages/integration/github/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider-test
+    to: backstage/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: backstage/packages/integration/github/default-github-credentials-provider-test
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/integration/github/default-github-credentials-provider
+    to: backstage/packages/integration/github/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider
+    to: backstage/packages/integration/registry/registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider
+    to: backstage/packages/integration/github/single-instance-github-credentials-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/default-github-credentials-provider
+    to: backstage/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: backstage/packages/integration/github/default-github-credentials-provider
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/integration/github/default-github-credentials-provider
+    to: backstage/packages/integration/github/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/core
+    to: backstage/packages/integration/github/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/core
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/core
+    to: backstage/packages/integration/github/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/index
+    to: backstage/packages/integration/github/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/index
+    to: backstage/packages/integration/github/core
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/index
+    to: backstage/packages/integration/github/default-github-credentials-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/index
+    to: backstage/packages/integration/github/single-instance-github-credentials-provider
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/index
+    to: backstage/packages/integration/github/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/index
+    to: backstage/packages/integration/github/github-integration
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/config
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/github/config
+    to: backstage/packages/integration/helpers/helpers
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/config-test
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/integration/github/config-test
+    to: backstage/packages/config-loader/index
+    type: direct-call
+    description: '@backstage/config-loader'
+  - from: backstage/packages/integration/github/config-test
+    to: backstage/packages/integration/github/config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/integration/github/create-git-hub-credentials-provider-from-connection
+    to: backstage/packages/connections/index
+    type: direct-call
+    description: '@backstage/connections'
+  - from: backstage/packages/integration/github/create-git-hub-credentials-provider-from-connection
+    to: backstage/packages/integration/index
+    type: direct-call
+    description: '@backstage/integration'

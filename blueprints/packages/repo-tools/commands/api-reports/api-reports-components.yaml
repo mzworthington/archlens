@@ -1,0 +1,150 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports
+  name: Api reports Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports/patch-api-report-generation
+    type: background-worker
+    name: PatchApiReportGeneration
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/patchApiReportGeneration.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports/build-docs
+    type: background-worker
+    name: BuildDocs
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/buildDocs.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction
+    type: rest-api
+    name: RunApiExtraction
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/runApiExtraction.ts
+      containerId: repo-tools
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports/generate-type-declarations
+    type: background-worker
+    name: GenerateTypeDeclarations
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/generateTypeDeclarations.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/index.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports/create-temporary-ts-config
+    type: background-worker
+    name: CreateTemporaryTsConfig
+    isTest: false
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/createTemporaryTsConfig.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction-test
+    type: background-worker
+    name: RunApiExtraction
+    isTest: true
+    properties:
+      filepath: packages/repo-tools/src/commands/api-reports/api-reports/runApiExtraction.test.ts
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/repo-tools/commands/api-reports
+    type: background-worker
+    name: Api reports (External)
+    external: true
+    properties:
+      containerId: repo-tools
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/cli-common/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/cli-common/src/index.ts
+      containerId: cli-common
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/patch-api-report-generation
+    to: backstage/packages/repo-tools/commands/api-reports
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/patch-api-report-generation
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction
+    to: backstage/packages/repo-tools/getpackageexportdetails/get-package-export-details
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction
+    to: backstage/packages/repo-tools/commands/api-reports
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction
+    to: backstage/packages/repo-tools/commands/api-reports/api-reports/patch-api-report-generation
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/generate-type-declarations
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/index
+    to: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/index
+    to: backstage/packages/repo-tools/commands/api-reports/api-reports/build-docs
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/index
+    to: backstage/packages/repo-tools/commands/api-reports/api-reports/create-temporary-ts-config
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/index
+    to: backstage/packages/repo-tools/commands/api-reports/api-reports/generate-type-declarations
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/create-temporary-ts-config
+    to: backstage/packages/cli-common/index
+    type: direct-call
+    description: '@backstage/cli-common'
+  - from: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction-test
+    to: backstage/packages/repo-tools/commands/api-reports/api-reports/run-api-extraction
+    type: direct-call
+    description: Calls module / service

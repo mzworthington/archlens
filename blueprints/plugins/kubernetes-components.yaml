@@ -19,13 +19,11 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 258
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      churn: 6
+      lineChurn: 324
+      churn30: 3
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -59,6 +57,7 @@ nodes:
         - 0
         - 0
         - 0
+        - 3
         - 0
         - 0
         - 0
@@ -74,8 +73,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -84,9 +82,12 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0
+          commits: 6
+      hotspotScore: 0.00011571882429674514
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes/plugin
     type: gateway-api
     name: Plugin
@@ -97,46 +98,13 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 141
-      churn30: 1
-      churn365: 1
+      complexity: 1
+      complexityPeak: 1
+      churn: 6
+      lineChurn: 218
+      churn30: 2
+      churn365: 6
       churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
         - 0
         - 0
         - 0
@@ -158,13 +126,50 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 2
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: poldsberg@gmail.com
+          commits: 5
+        - email: vincenzos@spotify.com
           commits: 1
-      hotspotScore: 0
+      hotspotScore: 0.00027001059002573866
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes/alpha
     type: background-worker
     name: Alpha
@@ -951,6 +956,17 @@ nodes:
           commits: 3
       hotspotScore: 0.0001437718726111076
       sinceDays: 365
+  - entityRef: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: background-worker
+    name: __fixtures__ (External)
+    external: true
+    properties:
+      containerId: kubernetes-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
   - entityRef: backstage/plugins/catalog-react/index
     type: rest-api
     name: Index (External)
@@ -961,7 +977,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: -590
+      x: -820
       y: 404
   - entityRef: backstage/plugins/kubernetes-common/index
     type: background-worker
@@ -973,7 +989,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: -360
       y: 404
   - entityRef: backstage/plugins/permission-react/index
     type: rest-api
@@ -985,7 +1001,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 790
+      x: 1020
       y: 404
   - entityRef: backstage/plugins/kubernetes-react/index
     type: rest-api
@@ -997,7 +1013,7 @@ nodes:
       technology: REST Controller / Router
       classification: api-marker
     position:
-      x: 330
+      x: 560
       y: 404
 dependencies:
   - from: backstage/plugins/kubernetes/index
@@ -1008,6 +1024,34 @@ dependencies:
     to: backstage/plugins/kubernetes-common/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-common'
+  - from: backstage/plugins/kubernetes/index
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes/index
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes/index
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes/index
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes/index
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes/index
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes/index
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
   - from: backstage/plugins/kubernetes/index
     to: backstage/plugins/permission-react/index
     type: direct-call
@@ -1064,6 +1108,14 @@ dependencies:
     to: backstage/plugins/kubernetes-react/index
     type: direct-call
     description: '@backstage/plugin-kubernetes-react'
+  - from: backstage/plugins/kubernetes/kubernetescontent-test
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/kubernetes/kubernetescontent-test
+    to: backstage/plugins/kubernetes-react/components/customresources/argorollouts/__fixtures__
+    type: direct-call
+    description: Calls module / service
   - from: backstage/plugins/kubernetes/kubernetescontent-test
     to: backstage/plugins/permission-react/index
     type: direct-call

@@ -1,0 +1,284 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/core-plugin-api/extensions
+  name: Extensions Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/core-plugin-api/extensions/component-data-test
+    type: background-worker
+    name: ComponentData
+    isTest: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/componentData.test.tsx
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-plugin-api/extensions/use-element-filter
+    type: gateway-api
+    name: UseElementFilter
+    isTest: false
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/useElementFilter.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/extensions/extensions-test
+    type: gateway-api
+    name: Extensions
+    isTest: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/extensions.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/extensions/use-element-filter-test
+    type: gateway-api
+    name: UseElementFilter
+    isTest: true
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/useElementFilter.test.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/extensions/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/index.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/core-plugin-api/extensions/plugin-error-boundary
+    type: gateway-api
+    name: PluginErrorBoundary
+    isTest: false
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/PluginErrorBoundary.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/extensions/extensions
+    type: gateway-api
+    name: Extensions
+    isTest: false
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/extensions.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/extensions/component-data
+    type: gateway-api
+    name: ComponentData
+    isTest: false
+    properties:
+      filepath: packages/core-plugin-api/src/extensions/componentData.tsx
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/packages/core-plugin-api/analytics
+    type: gateway-api
+    name: Analytics (External)
+    external: true
+    properties:
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -1740
+      y: 404
+  - entityRef: backstage/packages/techdocs-cli-embedded-app/apis
+    type: gateway-api
+    name: Apis (External)
+    external: true
+    properties:
+      filepath: packages/techdocs-cli-embedded-app/src/apis.ts
+      containerId: techdocs-cli-embedded-app
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/app
+    type: gateway-api
+    name: App (External)
+    external: true
+    properties:
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/test-utils/src/index.ts
+      containerId: test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
+      y: 404
+  - entityRef: backstage/packages/core-app-api/index
+    type: rest-api
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/core-app-api/src/apis/index.ts
+      containerId: core-app-api
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: -2200
+      y: 404
+  - entityRef: backstage/packages/errors/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/errors/src/index.ts
+      containerId: errors
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/packages/version-bridge/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/version-bridge/src/lib/index.ts
+      containerId: version-bridge
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2400
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/plugin
+    type: background-worker
+    name: Plugin (External)
+    external: true
+    properties:
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/routing
+    type: gateway-api
+    name: Routing (External)
+    external: true
+    properties:
+      containerId: core-plugin-api
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 560
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/analytics/tracker
+    type: background-worker
+    name: Tracker (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/analytics/Tracker.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/packages/core-plugin-api/app/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/core-plugin-api/src/app/types.ts
+      containerId: core-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+dependencies:
+  - from: backstage/packages/core-plugin-api/extensions/use-element-filter
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-plugin-api/extensions/extensions-test
+    to: backstage/packages/core-plugin-api/analytics
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions-test
+    to: backstage/packages/core-plugin-api/app
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions-test
+    to: backstage/packages/core-plugin-api/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions-test
+    to: backstage/packages/core-plugin-api/routing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/use-element-filter-test
+    to: backstage/packages/techdocs-cli-embedded-app/apis
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/use-element-filter-test
+    to: backstage/packages/core-app-api/index
+    type: direct-call
+    description: '@backstage/core-app-api'
+  - from: backstage/packages/core-plugin-api/extensions/use-element-filter-test
+    to: backstage/packages/test-utils/index
+    type: direct-call
+    description: '@backstage/test-utils'
+  - from: backstage/packages/core-plugin-api/extensions/plugin-error-boundary
+    to: backstage/packages/core-plugin-api/app/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/plugin-error-boundary
+    to: backstage/packages/core-plugin-api/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions
+    to: backstage/packages/core-plugin-api/analytics
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions
+    to: backstage/packages/core-plugin-api/app
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions
+    to: backstage/packages/core-plugin-api/routing
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions
+    to: backstage/packages/core-plugin-api/plugin
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions
+    to: backstage/packages/core-plugin-api/analytics/tracker
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/core-plugin-api/extensions/extensions
+    to: backstage/packages/errors/index
+    type: direct-call
+    description: '@backstage/errors'
+  - from: backstage/packages/core-plugin-api/extensions/component-data
+    to: backstage/packages/version-bridge/index
+    type: direct-call
+    description: '@backstage/version-bridge'

@@ -1,0 +1,212 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-test-utils/wiring
+  name: Wiring Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-test-utils/wiring/service-factory-tester
+    type: background-worker
+    name: ServiceFactoryTester
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/wiring/service-factory-tester-test
+    type: background-worker
+    name: ServiceFactoryTester
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/ServiceFactoryTester.test.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/wiring/test-backend
+    type: rest-api
+    name: TestBackend
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/TestBackend.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-test-utils/wiring/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/wiring/test-backend-test
+    type: rest-api
+    name: TestBackend
+    isTest: true
+    properties:
+      filepath: packages/backend-test-utils/src/wiring/TestBackend.test.ts
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+  - entityRef: backstage/packages/backend-app-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/index.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: backstage/packages/config/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/config/src/index.ts
+      containerId: config
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+  - entityRef: backstage/packages/backend-internal/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-internal/src/index.ts
+      containerId: backend-internal
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: backstage/packages/backend-app-api/wiring/service-registry
+    type: background-worker
+    name: ServiceRegistry (External)
+    external: true
+    properties:
+      filepath: packages/backend-app-api/src/wiring/ServiceRegistry.ts
+      containerId: backend-app-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: backstage/packages/backend-test-utils/services
+    type: rest-api
+    name: Services (External)
+    external: true
+    properties:
+      containerId: backend-test-utils
+      technology: REST Controller / Router
+      classification: api-marker
+    position:
+      x: 1020
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/wiring/types
+    type: background-worker
+    name: Types (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/wiring/types.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-test-utils/wiring/service-factory-tester
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/wiring/service-factory-tester
+    to: backstage/packages/backend-test-utils/wiring/test-backend
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/wiring/service-factory-tester
+    to: backstage/packages/backend-app-api/wiring/service-registry
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/wiring/service-factory-tester-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/wiring/service-factory-tester-test
+    to: backstage/packages/backend-test-utils/wiring/service-factory-tester
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/wiring/test-backend
+    to: backstage/packages/backend-app-api/index
+    type: direct-call
+    description: '@backstage/backend-app-api'
+  - from: backstage/packages/backend-test-utils/wiring/test-backend
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/wiring/test-backend
+    to: backstage/packages/backend-test-utils/services
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/wiring/test-backend
+    to: backstage/packages/config/index
+    type: direct-call
+    description: '@backstage/config'
+  - from: backstage/packages/backend-test-utils/wiring/test-backend
+    to: backstage/packages/backend-internal/index
+    type: direct-call
+    description: '@internal/backend'
+  - from: backstage/packages/backend-test-utils/wiring/test-backend
+    to: backstage/packages/backend-plugin-api/wiring/types
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/wiring/test-backend
+    to: backstage/packages/backend-defaults/roothttprouter
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/wiring/test-backend
+    to: backstage/packages/backend-defaults/discovery
+    type: direct-call
+    description: '@backstage/backend-defaults'
+  - from: backstage/packages/backend-test-utils/wiring/index
+    to: backstage/packages/backend-test-utils/wiring/service-factory-tester
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/wiring/index
+    to: backstage/packages/backend-test-utils/wiring/test-backend
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/wiring/test-backend-test
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-test-utils/wiring/test-backend-test
+    to: backstage/packages/backend-test-utils/wiring/test-backend
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-test-utils/wiring/test-backend-test
+    to: backstage/packages/backend-test-utils/services
+    type: direct-call
+    description: Calls module / service

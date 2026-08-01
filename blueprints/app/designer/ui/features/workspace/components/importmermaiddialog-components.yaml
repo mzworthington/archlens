@@ -1,0 +1,117 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog
+  name: Importmermaiddialog Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog-test
+    type: gateway-api
+    name: UseImportMermaidDialog
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/ImportMermaidDialog/useImportMermaidDialog.test.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog
+    type: gateway-api
+    name: UseImportMermaidDialog
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/ImportMermaidDialog/useImportMermaidDialog.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/infrastructure/layout/create-browser-layout-registry
+    type: background-worker
+    name: CreateBrowserLayoutRegistry (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/infrastructure/layout/createBrowserLayoutRegistry.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/app/core/import-mermaid
+    type: background-worker
+    name: Import mermaid (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/import-mermaid.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/app/designer/infrastructure/layout/react-flow-graph-change-adapter
+    type: gateway-api
+    name: ReactFlowGraphChangeAdapter (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/infrastructure/layout/reactFlowGraphChangeAdapter.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 1020
+      y: 404
+  - entityRef: blueprint/app/designer/application/store
+    type: background-worker
+    name: Store (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog-test
+    to: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog-test
+    to: blueprint/app/designer/infrastructure/layout/create-browser-layout-registry
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog-test
+    to: blueprint/app/designer/infrastructure/layout/react-flow-graph-change-adapter
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog
+    to: blueprint/app/core/import-mermaid
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog/use-import-mermaid-dialog
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service

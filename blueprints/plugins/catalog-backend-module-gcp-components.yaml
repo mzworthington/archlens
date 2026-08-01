@@ -92,18 +92,15 @@ nodes:
     name: Module
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-gcp/src/module/catalogModuleGcpGkeEntityProvider.ts
       containerId: catalog-backend-module-gcp
       technology: TypeScript Domain Service
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 53
-      churn30: 1
-      churn365: 2
+      churn: 3
+      lineChurn: 70
+      churn30: 2
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -153,7 +150,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
         - 0
         - 0
@@ -162,15 +159,17 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 2
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-gcp/providers
     type: background-worker
     name: Providers
     isTest: false
     properties:
-      filepath: plugins/catalog-backend-module-gcp/src/providers/GkeEntityProvider.ts
       containerId: catalog-backend-module-gcp
       technology: TypeScript Domain Service
       classification: default
@@ -178,16 +177,13 @@ nodes:
       complexity: 8
       complexityPeak: 8
       cognitiveComplexity: 13
-      functionCount: 16
-      loc: 278
-      sloc: 232
-      churn: 5
-      lineChurn: 322
-      churn30: 1
-      churn365: 5
+      churn: 12
+      lineChurn: 1471
+      churn30: 3
+      churn365: 12
       churnByWeek:
         - 0
-        - 4
+        - 9
         - 0
         - 0
         - 0
@@ -234,20 +230,23 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.8
+      topAuthorPercent: 0.8333333333333334
       authors:
         - email: raghunandan@spotify.com
-          commits: 4
+          commits: 9
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.009033081557224711
+          commits: 3
+      hotspotScore: 0.011908519009446865
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/catalog-backend-module-gcp/index
     type: background-worker
     name: Index

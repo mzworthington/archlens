@@ -1,0 +1,54 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/api-docs/components/openapidefinitionwidget
+  name: Openapidefinitionwidget Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/api-docs/components/openapidefinitionwidget/open-api-definition-test
+    type: gateway-api
+    name: OpenApiDefinition
+    isTest: true
+    properties:
+      filepath: plugins/api-docs/src/components/OpenApiDefinitionWidget/OpenApiDefinition.test.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components/openapidefinitionwidget/open-api-definition
+    type: gateway-api
+    name: OpenApiDefinition
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/OpenApiDefinitionWidget/OpenApiDefinition.tsx
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/api-docs/components/openapidefinitionwidget/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/api-docs/src/components/OpenApiDefinitionWidget/index.ts
+      containerId: api-docs
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/api-docs/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: api-docs
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/api-docs/components/openapidefinitionwidget/index
+    to: backstage/plugins/api-docs/components
+    type: direct-call
+    description: Calls module / service

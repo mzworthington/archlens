@@ -1,0 +1,117 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/packages/backend-defaults/entrypoints/metrics
+  name: Metrics Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/packages/backend-defaults/entrypoints/metrics/default-metrics-service
+    type: background-worker
+    name: DefaultMetricsService
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/DefaultMetricsService.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/metrics/default-metrics-service-test
+    type: background-worker
+    name: DefaultMetricsService
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/DefaultMetricsService.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory-test
+    type: background-worker
+    name: MetricsServiceFactory
+    isTest: true
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/metricsServiceFactory.test.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/metrics/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/index.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory
+    type: background-worker
+    name: MetricsServiceFactory
+    isTest: false
+    properties:
+      filepath: packages/backend-defaults/src/alpha/entrypoints/metrics/metricsServiceFactory.ts
+      containerId: backend-defaults
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/packages/backend-test-utils/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-test-utils/src/util/index.ts
+      containerId: backend-test-utils
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: backstage/packages/backend-plugin-api/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: packages/backend-plugin-api/src/index.ts
+      containerId: backend-plugin-api
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/default-metrics-service
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/default-metrics-service-test
+    to: backstage/packages/backend-defaults/entrypoints/metrics/default-metrics-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory-test
+    to: backstage/packages/backend-test-utils/index
+    type: direct-call
+    description: '@backstage/backend-test-utils'
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory-test
+    to: backstage/packages/backend-defaults/entrypoints/metrics/default-metrics-service
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/index
+    to: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory
+    to: backstage/packages/backend-plugin-api/alpha
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory
+    to: backstage/packages/backend-plugin-api/index
+    type: direct-call
+    description: '@backstage/backend-plugin-api'
+  - from: backstage/packages/backend-defaults/entrypoints/metrics/metrics-service-factory
+    to: backstage/packages/backend-defaults/entrypoints/metrics/default-metrics-service
+    type: direct-call
+    description: Calls module / service

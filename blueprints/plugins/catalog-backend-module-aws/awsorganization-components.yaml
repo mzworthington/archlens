@@ -1,0 +1,34 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/catalog-backend-module-aws/awsorganization
+  name: Awsorganization Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/catalog-backend-module-aws/awsorganization/config
+    type: background-worker
+    name: Config
+    isTest: false
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/awsOrganization/config.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/catalog-backend-module-aws/awsorganization/config-test
+    type: background-worker
+    name: Config
+    isTest: true
+    properties:
+      filepath: plugins/catalog-backend-module-aws/src/awsOrganization/config.test.ts
+      containerId: catalog-backend-module-aws
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: backstage/plugins/catalog-backend-module-aws/awsorganization/config-test
+    to: backstage/plugins/catalog-backend-module-aws/awsorganization/config
+    type: direct-call
+    description: Calls module / service

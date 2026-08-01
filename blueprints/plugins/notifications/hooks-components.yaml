@@ -1,0 +1,84 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/notifications/hooks
+  name: Hooks Components
+  source:
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+nodes:
+  - entityRef: backstage/plugins/notifications/hooks/use-web-notifications
+    type: gateway-api
+    name: UseWebNotifications
+    isTest: false
+    properties:
+      filepath: plugins/notifications/src/hooks/useWebNotifications.ts
+      containerId: notifications
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/notifications/hooks/use-title-counter
+    type: gateway-api
+    name: UseTitleCounter
+    isTest: false
+    properties:
+      filepath: plugins/notifications/src/hooks/useTitleCounter.ts
+      containerId: notifications
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/notifications/hooks/use-notifications-api
+    type: gateway-api
+    name: UseNotificationsApi
+    isTest: false
+    properties:
+      filepath: plugins/notifications/src/hooks/useNotificationsApi.ts
+      containerId: notifications
+      technology: React Component
+      classification: ui-import
+  - entityRef: backstage/plugins/notifications/hooks/index
+    type: background-worker
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/notifications/src/hooks/index.ts
+      containerId: notifications
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: backstage/plugins/techdocs-react/api
+    type: background-worker
+    name: Api (External)
+    external: true
+    properties:
+      filepath: plugins/techdocs-react/src/api.ts
+      containerId: techdocs-react
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: backstage/plugins/notifications/hooks/use-web-notifications
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/notifications/hooks/use-web-notifications
+    to: backstage/plugins/notifications/routes/routes
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/notifications/hooks/use-notifications-api
+    to: backstage/plugins/techdocs-react/api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/notifications/hooks/index
+    to: backstage/plugins/notifications/hooks/use-notifications-api
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/notifications/hooks/index
+    to: backstage/plugins/notifications/hooks/use-web-notifications
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/notifications/hooks/index
+    to: backstage/plugins/notifications/hooks/use-title-counter
+    type: direct-call
+    description: Calls module / service

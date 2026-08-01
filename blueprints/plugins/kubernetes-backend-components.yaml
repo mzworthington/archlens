@@ -20,12 +20,10 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 21
-      churn30: 1
-      churn365: 1
+      churn: 3
+      lineChurn: 64
+      churn30: 3
+      churn365: 3
       churnByWeek:
         - 0
         - 0
@@ -75,7 +73,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 3
         - 0
         - 0
         - 0
@@ -84,29 +82,36 @@ nodes:
       topAuthorPercent: 1
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 3
       hotspotScore: 0
       sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-backend/cluster-locator
     type: background-worker
     name: Cluster locator
     isTest: false
     properties:
-      filepath: plugins/kubernetes-backend/src/cluster-locator/CatalogClusterLocator.test.ts
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 111
-      churn30: 1
-      churn365: 2
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      churn: 32
+      lineChurn: 2640
+      churn30: 15
+      churn365: 32
       churnByWeek:
         - 0
-        - 1
+        - 11
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
         - 0
         - 0
         - 0
@@ -131,24 +136,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 3
         - 0
         - 0
         - 0
@@ -158,15 +146,34 @@ nodes:
         - 0
         - 0
         - 0
-      authorCount: 2
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 9
+        - 6
+        - 0
+        - 0
+        - 0
+      authorCount: 4
       topAuthorPercent: 0.5
       authors:
-        - email: poldsberg@gmail.com
-          commits: 1
         - email: ben@blam.sh
-          commits: 1
-      hotspotScore: 0
+          commits: 11
+        - email: poldsberg@gmail.com
+          commits: 10
+        - email: dybeck@spotify.com
+          commits: 9
+        - email: pschultz@pobox.com
+          commits: 2
+      hotspotScore: 0.0036819625912600726
       sinceDays: 365
+      fileCount: 9
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-backend/types
     type: background-worker
     name: Types
@@ -332,83 +339,91 @@ nodes:
     name: Auth
     isTest: false
     properties:
-      filepath: plugins/kubernetes-backend/src/auth/GoogleServiceAccountStrategy.test.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 23
-      loc: 274
-      sloc: 197
-      churn: 6
-      lineChurn: 616
-      churn30: 1
-      churn365: 6
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 14
+      churn: 39
+      lineChurn: 2285
+      churn30: 21
+      churn365: 39
       churnByWeek:
-        - 0
-        - 5
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
+        - 12
         - 1
         - 0
         - 0
         - 0
+        - 2
+        - 2
         - 0
-      authorCount: 2
-      topAuthorPercent: 0.8333333333333334
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 19
+        - 0
+        - 2
+        - 0
+        - 0
+      authorCount: 3
+      topAuthorPercent: 0.6923076923076923
       authors:
-        - email: raghunandan@spotify.com
-          commits: 5
         - email: poldsberg@gmail.com
-          commits: 1
-      hotspotScore: 0.0021600847202059093
+          commits: 19
+        - email: raghunandan@spotify.com
+          commits: 9
+        - email: ben@blam.sh
+          commits: 5
+        - email: pschultz@pobox.com
+          commits: 2
+        - email: 67169551+awanlin@users.noreply.github.com
+          commits: 2
+        - email: ivangonzalezacuna@gmail.com
+          commits: 2
+      hotspotScore: 0.003913400239853563
       sinceDays: 365
+      fileCount: 19
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-backend/plugin
     type: background-worker
     name: Plugin
@@ -503,21 +518,19 @@ nodes:
     name: Service locator
     isTest: false
     properties:
-      filepath: plugins/kubernetes-backend/src/service-locator/buildDefaultServiceLocator.ts
       containerId: kubernetes-backend
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 2
-      lineChurn: 96
-      churn30: 1
-      churn365: 2
+      complexity: 1
+      complexityPeak: 1
+      churn: 14
+      lineChurn: 696
+      churn30: 7
+      churn365: 14
       churnByWeek:
         - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
@@ -564,39 +577,66 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 7
         - 0
         - 0
         - 0
         - 0
       authorCount: 2
-      topAuthorPercent: 0.5
+      topAuthorPercent: 0.6428571428571429
       authors:
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 7
         - email: ben@blam.sh
-          commits: 1
-      hotspotScore: 0
+          commits: 7
+      hotspotScore: 0.000536514549012182
       sinceDays: 365
+      fileCount: 7
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-backend/service
     type: rest-api
     name: Service
     isTest: false
     properties:
-      filepath: plugins/kubernetes-backend/src/service/ProxyAuditSession.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
     forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 1
-      lineChurn: 201
-      churn30: 1
-      churn365: 1
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 37
+      churn: 44
+      lineChurn: 9239
+      churn30: 18
+      churn365: 44
       churnByWeek:
         - 0
+        - 6
+        - 1
+        - 0
+        - 1
+        - 1
+        - 2
+        - 0
+        - 0
+        - 4
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
         - 0
         - 0
         - 0
@@ -607,61 +647,56 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
         - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+        - 1
         - 0
         - 0
         - 0
         - 1
         - 0
-      authorCount: 1
-      topAuthorPercent: 1
+        - 0
+        - 0
+        - 0
+        - 0
+        - 11
+        - 0
+        - 4
+        - 3
+        - 0
+      authorCount: 6
+      topAuthorPercent: 0.4090909090909091
       authors:
         - email: poldsberg@gmail.com
+          commits: 16
+        - email: ben@blam.sh
+          commits: 7
+        - email: isavich@box.com
+          commits: 5
+        - email: 113269381+04kash@users.noreply.github.com
+          commits: 4
+        - email: freben@gmail.com
+          commits: 4
+        - email: 63000843+kingbj940429@users.noreply.github.com
+          commits: 3
+        - email: pschultz@pobox.com
+          commits: 2
+        - email: mclarke@spotify.com
           commits: 1
-      hotspotScore: 0
+        - email: kyle.opperman@ing.com
+          commits: 1
+        - email: awanlin@spotify.com
+          commits: 1
+      hotspotScore: 0.04088731791818328
       sinceDays: 365
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-backend/routes
     type: rest-api
     name: Routes
     isTest: false
     properties:
-      filepath: plugins/kubernetes-backend/src/routes/resourcesRoutes.ts
       containerId: kubernetes-backend
       technology: REST Controller / Router
       classification: api-marker
@@ -669,13 +704,10 @@ nodes:
       complexity: 7
       complexityPeak: 7
       cognitiveComplexity: 21
-      functionCount: 6
-      loc: 162
-      sloc: 134
-      churn: 3
-      lineChurn: 255
-      churn30: 2
-      churn365: 3
+      churn: 5
+      lineChurn: 1003
+      churn30: 4
+      churn365: 5
       churnByWeek:
         - 0
         - 1
@@ -725,28 +757,30 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
+        - 2
         - 0
-        - 1
+        - 2
         - 0
         - 0
       authorCount: 3
-      topAuthorPercent: 0.3333333333333333
+      topAuthorPercent: 0.4
       authors:
         - email: 113269381+04kash@users.noreply.github.com
-          commits: 1
+          commits: 2
         - email: poldsberg@gmail.com
-          commits: 1
+          commits: 2
         - email: ben@blam.sh
           commits: 1
       hotspotScore: 0.006259336405142124
       sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: backstage/plugins/kubernetes-node/auth
     type: background-worker
     name: Auth (External)
     external: true
     properties:
-      filepath: plugins/kubernetes-node/src/auth/PinnipedHelper.test.ts
       containerId: kubernetes-node
       technology: TypeScript Domain Service
       classification: default
@@ -818,7 +852,6 @@ nodes:
     name: Testutils (External)
     external: true
     properties:
-      filepath: plugins/catalog-node/src/testUtils.ts
       containerId: catalog-node
       technology: TypeScript Domain Service
       classification: default

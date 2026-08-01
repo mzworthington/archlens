@@ -1,0 +1,219 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: eshop/identity-api/models
+  name: Models Layer Components
+  source:
+    scannedAtCommit: 9b4f9434f46fdc5c1a6e9e936af2868340cdbc48
+    scanRoot: .
+    remoteUrl: https://github.com/dotnet/eShop
+    defaultBranch: main
+nodes:
+  - entityRef: eshop/identity-api/models/error-view-model
+    type: background-worker
+    name: ErrorViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ErrorViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/add-phone-number-view-model
+    type: background-worker
+    name: AddPhoneNumberViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ManageViewModels/AddPhoneNumberViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/index-view-model
+    type: background-worker
+    name: IndexViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ManageViewModels/IndexViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/change-password-view-model
+    type: background-worker
+    name: ChangePasswordViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ManageViewModels/ChangePasswordViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/configure-two-factor-view-model
+    type: background-worker
+    name: ConfigureTwoFactorViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ManageViewModels/ConfigureTwoFactorViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/verify-phone-number-view-model
+    type: background-worker
+    name: VerifyPhoneNumberViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ManageViewModels/VerifyPhoneNumberViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/factor-view-model
+    type: background-worker
+    name: FactorViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ManageViewModels/FactorViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/set-password-view-model
+    type: background-worker
+    name: SetPasswordViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ManageViewModels/SetPasswordViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/verify-code-view-model
+    type: background-worker
+    name: VerifyCodeViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/VerifyCodeViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/register-view-model
+    type: background-worker
+    name: RegisterViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/RegisterViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/logout-view-model
+    type: background-worker
+    name: LogoutViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/LogoutViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/reset-password-view-model
+    type: background-worker
+    name: ResetPasswordViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/ResetPasswordViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/send-code-view-model
+    type: background-worker
+    name: SendCodeViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/SendCodeViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/login-view-model
+    type: background-worker
+    name: LoginViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/LoginViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/forgot-password-view-model
+    type: background-worker
+    name: ForgotPasswordViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/ForgotPasswordViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/logged-out-view-model
+    type: background-worker
+    name: LoggedOutViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/LoggedOutViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/redirect-view-model
+    type: background-worker
+    name: RedirectViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/AccountViewModels/RedirectViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/application-user
+    type: background-worker
+    name: ApplicationUser
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ApplicationUser.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/consent-input-model
+    type: background-worker
+    name: ConsentInputModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ConsentViewModels/ConsentInputModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/consent-view-model
+    type: background-worker
+    name: ConsentViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ConsentViewModels/ConsentViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/scope-view-model
+    type: background-worker
+    name: ScopeViewModel
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ConsentViewModels/ScopeViewModel.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/consent-options
+    type: background-worker
+    name: ConsentOptions
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ConsentViewModels/ConsentOptions.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+  - entityRef: eshop/identity-api/models/process-consent-result
+    type: background-worker
+    name: ProcessConsentResult
+    isTest: false
+    properties:
+      filepath: src/Identity.API/Models/ConsentViewModels/ProcessConsentResult.cs
+      containerId: identity-api
+      technology: C# Domain Service
+      classification: default
+dependencies: []

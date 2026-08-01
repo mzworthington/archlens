@@ -1,0 +1,81 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: backstage/plugins/techdocs-backend/cache
+  name: Cache Components
+  source:
+    scannedAtCommit: a052aea0e24911fcac803085ed79f3fe23e0a46e
+    scanRoot: .
+    remoteUrl: https://github.com/backstage/backstage
+    defaultBranch: master
+nodes:
+  - entityRef: backstage/plugins/techdocs-backend/cache/tech-docs-cache
+    type: cache-store
+    name: TechDocsCache
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/cache/TechDocsCache.ts
+      containerId: techdocs-backend
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/plugins/techdocs-backend/cache/cache-middleware
+    type: rest-api
+    name: CacheMiddleware
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/cache/cacheMiddleware.ts
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/techdocs-backend/cache/tech-docs-cache-test
+    type: cache-store
+    name: TechDocsCache
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-backend/src/cache/TechDocsCache.test.ts
+      containerId: techdocs-backend
+      technology: TypeScript Cache Client
+      classification: cache-marker
+  - entityRef: backstage/plugins/techdocs-backend/cache/cache-middleware-test
+    type: rest-api
+    name: CacheMiddleware
+    isTest: true
+    properties:
+      filepath: plugins/techdocs-backend/src/cache/cacheMiddleware.test.ts
+      containerId: techdocs-backend
+      technology: REST Controller / Router
+      classification: api-marker
+  - entityRef: backstage/plugins/techdocs-backend/cache/index
+    type: cache-store
+    name: Index
+    isTest: false
+    properties:
+      filepath: plugins/techdocs-backend/src/cache/index.ts
+      containerId: techdocs-backend
+      technology: TypeScript Cache Client
+      classification: cache-marker
+dependencies:
+  - from: backstage/plugins/techdocs-backend/cache/cache-middleware
+    to: backstage/plugins/techdocs-backend/cache/tech-docs-cache
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/cache/tech-docs-cache-test
+    to: backstage/plugins/techdocs-backend/cache/tech-docs-cache
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/cache/cache-middleware-test
+    to: backstage/plugins/techdocs-backend/cache/cache-middleware
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/cache/cache-middleware-test
+    to: backstage/plugins/techdocs-backend/cache/tech-docs-cache
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/cache/index
+    to: backstage/plugins/techdocs-backend/cache/cache-middleware
+    type: direct-call
+    description: Calls module / service
+  - from: backstage/plugins/techdocs-backend/cache/index
+    to: backstage/plugins/techdocs-backend/cache/tech-docs-cache
+    type: direct-call
+    description: Calls module / service
