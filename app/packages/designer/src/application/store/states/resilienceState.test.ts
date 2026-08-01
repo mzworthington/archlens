@@ -265,6 +265,74 @@ describe('resilienceState', () => {
     expect(state.resilienceSimulationResult!.entryPointSlas['shop/web']).toBeLessThan(100);
   });
 
+  it('expands through an auth proxy into its home diagram when faulting session-db', async () => {
+    const storefront = {
+      name: 'Storefront',
+      version: '1.0.0' as const,
+      level: 'container' as const,
+      entityRef: 'shop/storefront',
+      nodes: [
+        { entityRef: 'shop/storefront/web', name: 'Web', type: 'web-app' as const },
+        { entityRef: 'shop/storefront/api', name: 'API', type: 'microservice' as const },
+      ],
+      dependencies: [
+        { from: 'shop/storefront/web', to: 'shop/storefront/api', type: 'direct-call' as const },
+        { from: 'shop/storefront/api', to: 'shop/auth/service', type: 'direct-call' as const },
+      ],
+    };
+    const authHome = {
+      name: 'Auth',
+      version: '1.0.0' as const,
+      level: 'container' as const,
+      entityRef: 'shop/auth',
+      nodes: [
+        { entityRef: 'shop/auth/service', name: 'Auth Service', type: 'microservice' as const },
+        { entityRef: 'shop/auth/session-db', name: 'Session DB', type: 'database' as const },
+      ],
+      dependencies: [
+        {
+          from: 'shop/auth/service',
+          to: 'shop/auth/session-db',
+          type: 'read-write' as const,
+        },
+      ],
+    };
+
+    useBlueprintStore.setState({
+      loadedSystems: [
+        { path: 'storefront.yaml', name: 'Storefront', schema: storefront },
+        { path: 'auth.yaml', name: 'Auth', schema: authHome },
+      ],
+      schema: storefront,
+      selectedNodeId: 'shop/auth/session-db',
+      resilienceFaults: [
+        { nodeId: 'shop/auth/session-db', faultType: 'region-outage', severity: 1 },
+      ],
+    });
+
+    useBlueprintStore.getState().setResilienceMode(true);
+    useBlueprintStore.getState().runResilienceSimulation();
+
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().resilienceSimulationResult).not.toBeNull();
+    });
+
+    const state = useBlueprintStore.getState();
+    expect(state.nodes.some(n => n.id === 'shop/auth/service' && n.data.external)).toBe(true);
+    expect(state.nodes.some(n => n.id === 'shop/auth/session-db' && n.data.external)).toBe(true);
+    expect(state.resilienceSimulationScope).toEqual(
+      expect.arrayContaining([
+        'shop/storefront/web',
+        'shop/storefront/api',
+        'shop/auth/service',
+        'shop/auth/session-db',
+      ])
+    );
+    expect(state.resilienceSimulationResult!.entryPointSlas['shop/storefront/web']).toBeLessThan(
+      100
+    );
+  });
+
   it('includes upstream transitive callers in the simulation scope', async () => {
     useBlueprintStore.setState({
       schema: {

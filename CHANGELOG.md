@@ -5,6 +5,7 @@
 ### 🚀 Features
 
 - Shareable ChaosLens URL state (`?lens=chaoslens` + fault params; legacy `?resilience=1` redirects)
+- External simulation scope Phase 3: expand→materialize proxy home-diagram closure to a bounded fixpoint
 
 ### 🧰 Maintenance & Dependencies
 

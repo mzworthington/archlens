@@ -129,4 +129,80 @@ describe('buildSimulationSchema cross-boundary expansion', () => {
     expect(result.heat.get('shop/storefront/api')).toBeGreaterThan(0);
     expect(result.entryPointSlas['shop/storefront/web']).toBeLessThan(100);
   });
+
+  it('rematerializes deep home-diagram callers so blast can cross a long proxy chain', () => {
+    const activeSchema: SystemSchema = {
+      name: 'Storefront',
+      version: '1.0.0',
+      level: 'container',
+      entityRef: 'shop/storefront',
+      nodes: [
+        { entityRef: 'shop/storefront/web', name: 'Web', type: 'web-app' },
+        { entityRef: 'shop/storefront/api', name: 'API', type: 'microservice' },
+      ],
+      dependencies: [
+        { from: 'shop/storefront/web', to: 'shop/storefront/api', type: 'direct-call' },
+        { from: 'shop/storefront/api', to: 'shop/auth/hop-b', type: 'direct-call' },
+      ],
+    };
+
+    const deepAuthHome: SystemSchema = {
+      name: 'Auth',
+      version: '1.0.0',
+      level: 'container',
+      entityRef: 'shop/auth',
+      nodes: [
+        { entityRef: 'shop/auth/hop-a', name: 'Hop A', type: 'microservice' },
+        { entityRef: 'shop/auth/hop-b', name: 'Hop B', type: 'microservice' },
+        { entityRef: 'shop/auth/hop-c', name: 'Hop C', type: 'microservice' },
+        { entityRef: 'shop/auth/hop-d', name: 'Hop D', type: 'microservice' },
+        { entityRef: 'shop/auth/leaf', name: 'Leaf', type: 'database' },
+      ],
+      dependencies: [
+        { from: 'shop/auth/hop-a', to: 'shop/auth/hop-b', type: 'direct-call' },
+        { from: 'shop/auth/hop-b', to: 'shop/auth/hop-c', type: 'direct-call' },
+        { from: 'shop/auth/hop-c', to: 'shop/auth/hop-d', type: 'direct-call' },
+        { from: 'shop/auth/hop-d', to: 'shop/auth/leaf', type: 'read-write' },
+      ],
+    };
+
+    const systems = [
+      { path: 'storefront.yaml', name: 'Storefront', schema: activeSchema },
+      { path: 'auth.yaml', name: 'Auth', schema: deepAuthHome },
+    ];
+
+    const {
+      schema: simSchema,
+      materialized,
+      scope,
+    } = buildSimulationSchema(activeSchema, 'shop/auth/leaf', systems);
+
+    expect(materialized.map(entity => entity.entityRef).sort()).toEqual(
+      [
+        'shop/auth/hop-a',
+        'shop/auth/hop-b',
+        'shop/auth/hop-c',
+        'shop/auth/hop-d',
+        'shop/auth/leaf',
+      ].sort()
+    );
+    expect(scope).toEqual(
+      expect.arrayContaining([
+        'shop/storefront/web',
+        'shop/storefront/api',
+        'shop/auth/hop-a',
+        'shop/auth/leaf',
+      ])
+    );
+    expect(simSchema.nodes.some(n => n.entityRef === 'shop/auth/hop-a' && n.external)).toBe(true);
+
+    const result = runResilienceSimulation(simSchema, {
+      faults: [{ nodeId: 'shop/auth/leaf', faultType: 'region-outage' }],
+      entryPoints: ['shop/storefront/web'],
+    });
+
+    expect(result.heat.get('shop/auth/hop-a')).toBeGreaterThan(0);
+    expect(result.heat.get('shop/storefront/api')).toBeGreaterThan(0);
+    expect(result.entryPointSlas['shop/storefront/web']).toBeLessThan(100);
+  });
 });
