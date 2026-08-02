@@ -32,6 +32,8 @@ export interface ArchlensCliPlan {
 }
 
 export type OutputFormat = 'text' | 'json';
+/** Resilience supports YAML for human-readable artifacts; CI keeps JSON. */
+export type ResilienceOutputFormat = OutputFormat | 'yaml';
 
 export interface ValidateCliPlan {
   targetPath: string;
@@ -46,8 +48,10 @@ export interface DiffCliPlan {
 
 export interface ResilienceCliPlan {
   targetPath: string;
-  format: OutputFormat;
+  format: ResilienceOutputFormat;
   chaosSpecsDir?: string;
+  /** Write AdviceLens artifact to this path (format from --format, or .yaml/.json extension). */
+  outputPath?: string;
   minSla: number;
   failOnRecommendations: boolean;
   maxRegionOutageTargets?: number;
@@ -131,6 +135,13 @@ function parseOutputFormat(argv: string[]): OutputFormat {
   return raw === 'json' ? 'json' : 'text';
 }
 
+function parseResilienceOutputFormat(argv: string[]): ResilienceOutputFormat {
+  const raw = flagValue(argv, '--format');
+  if (raw === 'json') return 'json';
+  if (raw === 'yaml' || raw === 'yml') return 'yaml';
+  return 'text';
+}
+
 function positionalArgs(argv: string[]): string[] {
   return argv.filter(arg => !arg.startsWith('-'));
 }
@@ -175,8 +186,9 @@ export function parseResilienceArgv(argv: string[]): ResilienceCliPlan {
   const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
   return {
     targetPath,
-    format: parseOutputFormat(rest),
+    format: parseResilienceOutputFormat(rest),
     chaosSpecsDir: flagValue(rest, '--chaos-specs'),
+    outputPath: flagValue(rest, '--output'),
     minSla: parseSlaThreshold(flagValue(rest, '--min-sla')),
     failOnRecommendations: rest.includes('--fail-on-recommendations'),
     maxRegionOutageTargets: parsePositiveInt(flagValue(rest, '--max-region-outages')),

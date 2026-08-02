@@ -66,13 +66,33 @@ From a directory of blueprint YAML files:
 
 ```bash
 archlens resilience ./blueprints
-archlens resilience ./blueprints --format=json
+archlens resilience ./blueprints --format=json --output=.archlens/advicelens-report.json --min-sla=95
+archlens resilience ./blueprints --format=yaml --output=advicelens-report.yaml
 archlens resilience ./blueprints --chaos-specs=./chaos-specs
 ```
 
 Output header: **AdviceLens estate report** — diagram count, worst SLA, SPOF totals, and top ranked recommendations with evidence.
 
+Structured output is a versioned artifact (`kind: advicelens-estate-report`) with plain-object heat maps. **CI uses JSON**; the studio **Copy YAML** / **Download** defaults to YAML (same fields).
+
+Gate flags:
+
+| Flag                        | Default | Effect                                                         |
+| --------------------------- | ------- | -------------------------------------------------------------- |
+| `--min-sla=<percent>`       | `100`   | Exit `1` when `summary.worstOverallSla` is below the threshold |
+| `--fail-on-recommendations` | off     | Also exit `1` when any recommendation is emitted               |
+| `--format=text\|json\|yaml` | `text`  | Human summary, or structured JSON/YAML artifact                |
+| `--output=<file>`           | unset   | Write the structured artifact to disk (CI-friendly)            |
+
 Optional chaos specs in `chaos-specs/*.yaml` extend the default scenario set (region outage sweep, high fan-in latency probes, publisher faults).
+
+## CI guardrails
+
+Use the composite action [`.github/actions/advicelens-gate`](../../.github/actions/advicelens-gate) to upload the AdviceLens artifact and fail PRs when SLA drops below your threshold. See [AdviceLens gate in CI](./ci-advicelens.md).
+
+## Export from the studio
+
+On **TraceLens → AdviceLens**, use **Copy YAML** or **Download** (`advicelens-report.yaml`) for RFCs and PR attachments. Same artifact shape as `archlens resilience --format=yaml` (CI gates still prefer `--format=json`).
 
 ## Applicability matrix
 
