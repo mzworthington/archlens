@@ -1,6 +1,12 @@
 import {
+  buildAdviceLensArtifact,
   buildRefactorRecommendations,
+  formatAdviceLensArtifact,
+  formatAdviceLensArtifactJson,
   runEstateResilience,
+  type AdviceLensArtifact,
+  type AdviceLensArtifactFormat,
+  type DiagramResilienceReport,
   type Recommendation,
 } from '@archlens/core/recommendations';
 import {
@@ -41,6 +47,8 @@ export interface EstateRecommendationsReport {
     totalSpofs: number;
     recommendationCount: number;
   };
+  /** Worst-case per-diagram reports from the estate resilience sweep (for CI/UI export). */
+  diagrams: DiagramResilienceReport[];
 }
 
 export interface BuildEstateRecommendationsOptions {
@@ -154,7 +162,35 @@ export function buildEstateRecommendations(
       ...resilienceReport.summary,
       recommendationCount: recommendations.length,
     },
+    diagrams: resilienceReport.diagrams,
   };
+}
+
+function toCoreRecommendation(recommendation: EstateRecommendation): Recommendation {
+  const { diagramPath: _diagramPath, diagramName: _diagramName, ...core } = recommendation;
+  return core;
+}
+
+/** Same JSON artifact shape as `archlens resilience --format=json`. */
+export function estateRecommendationsToAdviceLensArtifact(
+  report: EstateRecommendationsReport
+): AdviceLensArtifact {
+  return buildAdviceLensArtifact({
+    summary: report.summary,
+    recommendations: report.recommendations.map(toCoreRecommendation),
+    diagrams: report.diagrams,
+  });
+}
+
+export function formatEstateAdviceLensArtifactJson(report: EstateRecommendationsReport): string {
+  return formatAdviceLensArtifactJson(estateRecommendationsToAdviceLensArtifact(report));
+}
+
+export function formatEstateAdviceLensArtifact(
+  report: EstateRecommendationsReport,
+  format: AdviceLensArtifactFormat = 'yaml'
+): string {
+  return formatAdviceLensArtifact(estateRecommendationsToAdviceLensArtifact(report), format);
 }
 
 function offenderFallbackRecommendation(
@@ -261,7 +297,12 @@ function matchesOffenderFilter(offender: RankedOffender, filter: OffenderSignalF
 export function rankEstateItems(
   systems: readonly LoadedSystemRef[],
   options: BuildEstateRecommendationsOptions = {}
-): { items: RankedEstateItem[]; summary: EstateRecommendationsReport['summary'] } {
+): {
+  items: RankedEstateItem[];
+  summary: EstateRecommendationsReport['summary'];
+  diagrams: DiagramResilienceReport[];
+  report: EstateRecommendationsReport;
+} {
   const report = buildEstateRecommendations(systems, options);
   const offenders = rankForensicsOffenders(systems, 'components', 'all');
   const offenderByRef = new Map(offenders.map(offender => [offender.entityRef, offender]));
@@ -288,7 +329,12 @@ export function rankEstateItems(
 
   items.sort((a, b) => b.recommendation.priority - a.recommendation.priority);
 
-  return { items, summary: report.summary };
+  return {
+    items,
+    summary: report.summary,
+    diagrams: report.diagrams,
+    report,
+  };
 }
 
 export function filterRankedEstateItems(

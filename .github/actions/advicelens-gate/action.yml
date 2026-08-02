@@ -1,0 +1,134 @@
+name: AdviceLens Gate
+description: Run estate ChaosLens simulations, upload an AdviceLens JSON artifact, and fail when SLA drops below threshold.
+
+inputs:
+  blueprints-path:
+    description: Path to the blueprint tree (relative to repository root)
+    required: false
+    default: blueprints
+  chaos-specs-path:
+    description: Optional ChaosSpec YAML directory
+    required: false
+    default: ''
+  min-sla:
+    description: Fail when worst estate SLA falls below this percent
+    required: false
+    default: '95'
+  fail-on-recommendations:
+    description: Also fail when any AdviceLens recommendation is emitted
+    required: false
+    default: 'false'
+  archlens-version:
+    description: ArchLens CLI version to install (release tag)
+    required: false
+    default: latest
+  post-comment:
+    description: Post a PR comment summarizing the AdviceLens report
+    required: false
+    default: 'true'
+  artifact-path:
+    description: Path for the AdviceLens JSON artifact
+    required: false
+    default: .archlens/advicelens-report.json
+
+runs:
+  using: composite
+  steps:
+    - name: Install ArchLens CLI
+      shell: bash
+      run: |
+        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+        archlens --version
+
+    - name: Run AdviceLens estate sweep
+      id: advicelens
+      shell: bash
+      run: |
+        set -euo pipefail
+        ARTIFACT_PATH="${{ inputs.artifact-path }}"
+        mkdir -p "$(dirname "${ARTIFACT_PATH}")"
+        ARGS=(
+          resilience
+          "${{ inputs.blueprints-path }}"
+          --format=json
+          --min-sla="${{ inputs.min-sla }}"
+        )
+        if [ -n "${{ inputs.chaos-specs-path }}" ]; then
+          ARGS+=(--chaos-specs="${{ inputs.chaos-specs-path }}")
+        fi
+        if [ "${{ inputs.fail-on-recommendations }}" = "true" ]; then
+          ARGS+=(--fail-on-recommendations)
+        fi
+
+        set +e
+        # Prefer --output when available; always capture stdout for older CLIs.
+        if archlens resilience --help 2>/dev/null | grep -q -- '--output'; then
+          ARGS+=(--output="${ARTIFACT_PATH}")
+          archlens "${ARGS[@]}" > /tmp/advicelens-stdout.json
+        else
+          archlens "${ARGS[@]}" > "${ARTIFACT_PATH}"
+        fi
+        STATUS=$?
+        set -e
+
+        if [ ! -s "${ARTIFACT_PATH}" ] && [ -s /tmp/advicelens-stdout.json ]; then
+          cp /tmp/advicelens-stdout.json "${ARTIFACT_PATH}"
+        fi
+
+        if [ -s "${ARTIFACT_PATH}" ]; then
+          WORST_SLA="$(jq -r '.summary.worstOverallSla // empty' "${ARTIFACT_PATH}")"
+          REC_COUNT="$(jq -r '.summary.recommendationCount // 0' "${ARTIFACT_PATH}")"
+          DIAGRAM_COUNT="$(jq -r '.summary.diagramCount // 0' "${ARTIFACT_PATH}")"
+          echo "has_report=true" >> "$GITHUB_OUTPUT"
+          echo "worst_sla=${WORST_SLA}" >> "$GITHUB_OUTPUT"
+          echo "recommendation_count=${REC_COUNT}" >> "$GITHUB_OUTPUT"
+          echo "diagram_count=${DIAGRAM_COUNT}" >> "$GITHUB_OUTPUT"
+        else
+          echo "has_report=false" >> "$GITHUB_OUTPUT"
+        fi
+        echo "exit_code=${STATUS}" >> "$GITHUB_OUTPUT"
+        exit "${STATUS}"
+
+    - name: Upload AdviceLens artifact
+      if: always() && steps.advicelens.outputs.has_report == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: advicelens-report
+        path: ${{ inputs.artifact-path }}
+
+    - name: Comment PR with AdviceLens summary
+      if: >-
+        always() &&
+        github.event_name == 'pull_request' &&
+        inputs.post-comment == 'true' &&
+        steps.advicelens.outputs.has_report == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('node:fs');
+          const report = JSON.parse(fs.readFileSync('${{ inputs.artifact-path }}', 'utf8'));
+          const summary = report.summary ?? {};
+          const top = (report.recommendations ?? []).slice(0, 8).map((rec, index) => {
+            return `${index + 1}. **${rec.title}** — \`${rec.targetName}\` (${rec.source}, priority ${rec.priority})`;
+          });
+          const failed = Number('${{ steps.advicelens.outputs.exit_code }}') !== 0;
+          const body = [
+            '## AdviceLens estate report',
+            '',
+            failed ? '❌ Gate failed.' : '✅ Gate passed.',
+            '',
+            `- Diagrams scanned: **${summary.diagramCount ?? 0}**`,
+            `- Scenarios run: **${summary.totalScenarios ?? 0}**`,
+            `- Worst SLA: **${summary.worstOverallSla ?? 'n/a'}%** (threshold ${{ inputs.min-sla }}%)`,
+            `- SPOFs: **${summary.totalSpofs ?? 0}**`,
+            `- Recommendations: **${summary.recommendationCount ?? 0}**`,
+            '',
+            ...(top.length > 0 ? ['### Top recommendations', '', ...top, ''] : []),
+            'Download the `advicelens-report` artifact for the full JSON report.',
+          ].join('\n');
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body,
+          });

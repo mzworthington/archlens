@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { Copy, Download } from 'lucide-react';
 import type {
   EstateRecommendation,
   RankedEstateItem,
@@ -10,12 +11,14 @@ import {
 import type { LoadedSystemRef } from '../../../application/forensics/rankOffenders';
 import type { Recommendation, RecommendationAction } from '@archlens/core/recommendations';
 import { RecommendationsList } from '../recommendations/RecommendationsList';
+import { useAdviceLensExport } from './useAdviceLensExport';
 
 type SourceFilter = 'all' | Recommendation['source'];
 
 type Props = {
   items: readonly RankedEstateItem[];
   summary: EstateRecommendationsReport['summary'];
+  report: EstateRecommendationsReport | null;
   systems: readonly LoadedSystemRef[];
   scopeEntityRef: string | null;
   onOpenRecommendation: (recommendation: EstateRecommendation) => void;
@@ -66,6 +69,7 @@ function SummaryStat({ label, value }: { label: string; value: string | number }
 export const EstateRecommendationsPanel: React.FC<Props> = ({
   items,
   summary,
+  report,
   systems,
   scopeEntityRef,
   onOpenRecommendation,
@@ -73,6 +77,8 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
 }) => {
   const [sourceFilter, setSourceFilter] = useState<SourceFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const { canExport, copying, downloading, handleCopy, handleDownload } =
+    useAdviceLensExport(report);
 
   const recommendations = useMemo(() => items.map(item => item.recommendation), [items]);
 
@@ -117,7 +123,27 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
             { id: 'tracelens', label: 'TraceLens' },
           ]}
         />
-        <div className="w-full sm:w-auto sm:ml-auto flex items-center gap-3">
+        <div className="w-full sm:w-auto sm:ml-auto flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => void handleCopy()}
+            disabled={!canExport || copying}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#00f0ff]/20 bg-[#040914]/80 px-3 py-2 text-xs font-mono uppercase tracking-wider text-[#00f0ff] transition-colors hover:border-[#00f0ff]/40 disabled:opacity-40 disabled:cursor-not-allowed"
+            data-testid="advicelens-export-copy"
+          >
+            <Copy className="w-3.5 h-3.5" />
+            {copying ? 'Copying…' : 'Copy YAML'}
+          </button>
+          <button
+            type="button"
+            onClick={() => void handleDownload()}
+            disabled={!canExport || downloading}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#00f0ff]/20 bg-[#040914]/80 px-3 py-2 text-xs font-mono uppercase tracking-wider text-[#00f0ff] transition-colors hover:border-[#00f0ff]/40 disabled:opacity-40 disabled:cursor-not-allowed"
+            data-testid="advicelens-export-download"
+          >
+            <Download className="w-3.5 h-3.5" />
+            {downloading ? 'Saving…' : 'Download'}
+          </button>
           <input
             type="search"
             value={searchQuery}

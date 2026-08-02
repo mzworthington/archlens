@@ -22,8 +22,9 @@ Then verify with `archlens --version`. Full options, manual downloads, and the s
 2. **Enrich existing YAML** - `archlens enrich` re-runs the externals pass on blueprint files already on disk (no source re-scan)
 3. **Validate blueprints** - `archlens validate [path]` checks schema, cycles, and entityRef links (CI-friendly)
 4. **Diff blueprint trees** - `archlens diff <baseline> <current>` structural compare for PR gates
-5. **Interactive** - bare `archlens` prompts for context, glob, output, and TraceLens (git signals)
-6. **Headless** - flags or non-TTY / CI; suitable for automation
+5. **AdviceLens estate sweep** - `archlens resilience [path]` runs ChaosLens scenarios and ranks recommendations
+6. **Interactive** - bare `archlens` prompts for context, glob, output, and TraceLens (git signals)
+7. **Headless** - flags or non-TTY / CI; suitable for automation
 
 ```bash
 archlens scan
@@ -31,10 +32,11 @@ archlens enrich
 archlens enrich --output=custom-blueprints
 archlens validate blueprints/
 archlens diff base-blueprints/ pr-blueprints/
+archlens resilience blueprints/ --format=json --output=.archlens/advicelens-report.json --min-sla=95
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
-See [Blueprint contract in CI](./ci-blueprints.md) for a GitHub Actions workflow that validates and diffs on pull requests.
+See [Blueprint contract in CI](./ci-blueprints.md) and [AdviceLens gate in CI](./ci-advicelens.md) for GitHub Actions workflows.
 
 ## Useful flags
 
@@ -46,7 +48,8 @@ See [Blueprint contract in CI](./ci-blueprints.md) for a GitHub Actions workflow
 | `--enrich-only`                    | Same as `enrich` subcommand                                      |
 | `validate [path]`                  | Validate blueprint tree (schema, cycles, entityRef links)        |
 | `diff [baseline] [current]`        | Structural diff between two blueprint trees                      |
-| `--format=text \| json`            | Output format for `validate` / `diff` (default `text`)           |
+| `resilience [path]`                | AdviceLens estate sweep + SLA gate (`--min-sla`, `--output`)     |
+| `--format=text \| json`            | Output format for `validate` / `diff` / `resilience`             |
 | `--version`, `-V`                  | Print installed CLI version and exit                             |
 | `update`                           | Download and install the latest release, then re-launch          |
 | `--no-update-check`                | Skip interactive startup update prompt                           |

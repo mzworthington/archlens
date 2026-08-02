@@ -182,6 +182,7 @@ describe('parseResilienceArgv', () => {
       targetPath: 'blueprints',
       format: 'text',
       chaosSpecsDir: undefined,
+      outputPath: undefined,
       minSla: 100,
       failOnRecommendations: false,
       maxRegionOutageTargets: undefined,
@@ -196,6 +197,7 @@ describe('parseResilienceArgv', () => {
         '--min-sla=95',
         '--fail-on-recommendations',
         '--format=json',
+        '--output=.archlens/advicelens-report.json',
         '--max-region-outages=10',
         '--max-fan-in-probes=3',
       ])
@@ -203,10 +205,13 @@ describe('parseResilienceArgv', () => {
       targetPath: 'custom/',
       format: 'json',
       chaosSpecsDir: 'chaos-specs',
+      outputPath: '.archlens/advicelens-report.json',
       minSla: 95,
       failOnRecommendations: true,
       maxRegionOutageTargets: 10,
       maxFanInProbes: 3,
     });
+
+    expect(parseResilienceArgv(['resilience', '--format=yaml']).format).toBe('yaml');
   });
 });
