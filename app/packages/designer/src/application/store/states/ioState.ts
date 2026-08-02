@@ -18,7 +18,10 @@ import {
 } from '../../../core';
 import { loadWorkspaceFromCatalog, loadWorkspaceFromDirectory } from './ioState/openWorkspace';
 import { selectBundledSampleEntryPath } from '../goldenPathsSample';
-import { loadBundledWorkspaceCatalog } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
+import {
+  loadBundledWorkspaceCatalog,
+  scheduleBundledBlueprintPreload,
+} from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { SANDBOX_LOADING_MESSAGE } from '../diagramLoadSession';
 
 export interface IoState {
@@ -193,7 +196,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       set({ workspacePort: sampleWorkspacePort, isSampleWorkspace: true });
       const catalog = await loadBundledWorkspaceCatalog();
       const entryPath = selectBundledSampleEntryPath(catalog);
-      return await loadWorkspaceFromCatalog({
+      const opened = await loadWorkspaceFromCatalog({
         catalog,
         entryPath,
         readFile: relativePath => sampleWorkspacePort.readFile(relativePath),
@@ -205,6 +208,11 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
         set,
         isSampleWorkspace: true,
       });
+      if (opened) {
+        // Full peer list stays in catalog; warm golden + stress YAML in the background.
+        scheduleBundledBlueprintPreload(catalog);
+      }
+      return opened;
     } catch (err) {
       logger.error('Failed to open bundled sample workspace', err);
       set({ lastError: (err as Error).message || 'Failed to open bundled sample workspace' });

@@ -391,6 +391,9 @@ dependencies: []
           expect(useBlueprintStore.getState().isLoading).toBe('Loading sandbox...');
           return catalog;
         });
+      const schedulePreload = vi
+        .spyOn(bundledSampleWorkspace, 'scheduleBundledBlueprintPreload')
+        .mockImplementation(() => undefined);
 
       useBlueprintStore.setState({
         sampleWorkspacePort: samplePort,
@@ -411,8 +414,11 @@ dependencies: []
       expect(readFile).toHaveBeenCalledTimes(1);
       expect(samplePort.readDirectoryFiles).not.toHaveBeenCalled();
       expect(loadCatalog).toHaveBeenCalledTimes(1);
+      expect(schedulePreload).toHaveBeenCalledTimes(1);
+      expect(schedulePreload).toHaveBeenCalledWith(catalog);
 
       loadCatalog.mockRestore();
+      schedulePreload.mockRestore();
     });
   });
 });

@@ -305,10 +305,19 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // App shell + hashed bundles. Skip docs screenshots (large, non-critical offline).
-        globPatterns: ['**/*.{js,css,html,ico,svg,woff2,webmanifest,png,wasm}'],
-        // Demo YAML is large; cache on first use instead of bloating the install precache.
-        globIgnores: ['**/docs-assets/**', '**/schemas/**', '**/bundled-blueprints/**'],
+        // App shell + hashed bundles. Precache catalog + golden/stress demo YAML only
+        // (keep in sync with BUNDLED_PRELOAD_PREFIXES in bundledSamplePreload.ts).
+        // Remaining /bundled-blueprints/* stay on CacheFirst after first ad-hoc fetch.
+        globPatterns: [
+          '**/*.{js,css,html,ico,svg,woff2,webmanifest,png,wasm}',
+          'bundled-blueprints/catalog.json',
+          'bundled-blueprints/golden-journey/**/*.{yaml,yml}',
+          'bundled-blueprints/chaoslens-stress/**/*.{yaml,yml}',
+          'bundled-blueprints/advicelens-stress/**/*.{yaml,yml}',
+        ],
+        // Docs screenshots + schema pack are large and non-critical offline.
+        // Do not glob-ignore all bundled-blueprints — that would drop the preload globs above.
+        globIgnores: ['**/docs-assets/**', '**/schemas/**'],
         navigateFallback: 'index.html',
         // Keep /schemas/* and /bundled-blueprints/* as real assets, not the SPA shell.
         navigateFallbackDenylist: [/^\/schemas\//, /^\/bundled-blueprints\//],

@@ -1,6 +1,9 @@
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 
-/** Bundled demo workspace — full repo `blueprints/` tree baked into the production build. */
+/**
+ * Bundled demo workspace — full repo `blueprints/` tree is mirrored for ad-hoc open;
+ * golden-journey + stress YAML are preloaded (see `bundledSamplePreload.ts`).
+ */
 export const BUNDLED_WORKSPACE_NAME = 'blueprints';
 /** Default landing diagram when opening the bundled demo. */
 export const GOLDEN_PATHS_CONTEXT_PATH = 'golden-journey/context.yaml';

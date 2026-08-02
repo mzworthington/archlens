@@ -112,6 +112,37 @@ describe('BundledSampleWorkspaceAdapter', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(String(fetchMock.mock.calls[0]?.[0])).toContain('/bundled-blueprints/catalog.json');
   });
+
+  it('warms only golden-journey and stress YAML bodies from the full catalog', async () => {
+    const { warmBundledBlueprintBodies, scheduleBundledBlueprintPreload } =
+      await import('./bundledSampleWorkspace');
+    const { listBundledPreloadPaths } =
+      await import('../../application/store/bundledSamplePreload');
+    const fetchMock = fetch as unknown as ReturnType<typeof vi.fn>;
+    fetchMock.mockClear();
+
+    const preloadPaths = listBundledPreloadPaths(realCatalog);
+    expect(preloadPaths.length).toBeGreaterThan(10);
+    expect(
+      preloadPaths.every(p => /^(golden-journey|chaoslens-stress|advicelens-stress)\//.test(p))
+    ).toBe(true);
+
+    await warmBundledBlueprintBodies(preloadPaths);
+    const warmed = fetchMock.mock.calls.map(call => String(call[0]));
+    expect(warmed).toHaveLength(preloadPaths.length);
+    expect(warmed.every(url => url.includes('/bundled-blueprints/'))).toBe(true);
+    expect(warmed.some(url => url.includes('/packages/'))).toBe(false);
+
+    vi.stubGlobal('requestIdleCallback', (cb: IdleRequestCallback) => {
+      cb({ didTimeout: false, timeRemaining: () => 50 } as IdleDeadline);
+      return 1;
+    });
+    fetchMock.mockClear();
+    scheduleBundledBlueprintPreload(realCatalog);
+    await vi.waitFor(() => {
+      expect(fetchMock.mock.calls.length).toBe(preloadPaths.length);
+    });
+  });
 });
 
 describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
