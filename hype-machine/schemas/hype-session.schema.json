@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hype-machine.dev/schemas/hype-session.schema.json",
+  "title": "HypeSession",
+  "type": "object",
+  "required": ["schemaVersion", "sessionId"],
+  "properties": {
+    "schemaVersion": { "const": "0.1.0" },
+    "sessionId": { "type": "string", "minLength": 1 },
+    "title": { "type": "string" },
+    "venue": { "type": "string" },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "durationSec": { "type": "number", "exclusiveMinimum": 0 },
+    "streams": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "role", "path"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "role": {
+            "type": "string",
+            "enum": ["room_mic", "booth", "master", "camera", "mixer_midi", "other"]
+          },
+          "path": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "facesBlurred": { "type": "boolean" },
+        "localOnly": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
