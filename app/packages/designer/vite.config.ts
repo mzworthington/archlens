@@ -305,12 +305,13 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // App shell + hashed bundles. Precache catalog + golden/stress demo YAML only
-        // (keep in sync with BUNDLED_PRELOAD_PREFIXES in bundledSamplePreload.ts).
+        // App shell + hashed bundles. Precache catalog + ArchLens context + golden/stress
+        // demo YAML only (keep in sync with BUNDLED_PRELOAD_PREFIXES in bundledSamplePreload.ts).
         // Remaining /bundled-blueprints/* stay on CacheFirst after first ad-hoc fetch.
         globPatterns: [
           '**/*.{js,css,html,ico,svg,woff2,webmanifest,png,wasm}',
           'bundled-blueprints/catalog.json',
+          'bundled-blueprints/blueprint/**/*.{yaml,yml}',
           'bundled-blueprints/golden-journey/**/*.{yaml,yml}',
           'bundled-blueprints/chaoslens-stress/**/*.{yaml,yml}',
           'bundled-blueprints/advicelens-stress/**/*.{yaml,yml}',
