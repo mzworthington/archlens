@@ -1,0 +1,23 @@
+name: AdviceLens gate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'blueprints/**'
+      - 'chaos-specs/**'
+      - 'blueprint.config.json'
+
+jobs:
+  advicelens:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/advicelens-gate
+        with:
+          blueprints-path: blueprints
+          # Optional ChaosSpec library:
+          # chaos-specs-path: chaos-specs
+          min-sla: '95'
+          # fail-on-recommendations: 'true'

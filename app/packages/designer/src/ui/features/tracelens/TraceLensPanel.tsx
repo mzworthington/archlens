@@ -70,6 +70,7 @@ export const TraceLensPanel: React.FC = () => {
             <EstateRecommendationsPanel
               items={estateRanking.items}
               summary={estateRanking.summary}
+              report={estateRanking.report}
               systems={loadedSystems}
               scopeEntityRef={scopeEntityRef}
               onOpenRecommendation={openRecommendationFromEstate}

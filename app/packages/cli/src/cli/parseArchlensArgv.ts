@@ -48,6 +48,8 @@ export interface ResilienceCliPlan {
   targetPath: string;
   format: OutputFormat;
   chaosSpecsDir?: string;
+  /** Write AdviceLens JSON artifact to this path (in addition to stdout when format=json). */
+  outputPath?: string;
   minSla: number;
   failOnRecommendations: boolean;
   maxRegionOutageTargets?: number;
@@ -177,6 +179,7 @@ export function parseResilienceArgv(argv: string[]): ResilienceCliPlan {
     targetPath,
     format: parseOutputFormat(rest),
     chaosSpecsDir: flagValue(rest, '--chaos-specs'),
+    outputPath: flagValue(rest, '--output'),
     minSla: parseSlaThreshold(flagValue(rest, '--min-sla')),
     failOnRecommendations: rest.includes('--fail-on-recommendations'),
     maxRegionOutageTargets: parsePositiveInt(flagValue(rest, '--max-region-outages')),

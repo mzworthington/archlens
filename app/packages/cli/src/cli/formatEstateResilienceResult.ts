@@ -1,5 +1,9 @@
 import pc from 'picocolors';
-import type { EstateResilienceReport } from '@archlens/core/recommendations';
+import {
+  formatAdviceLensArtifactJson,
+  serializeEstateResilienceReport,
+  type EstateResilienceReport,
+} from '@archlens/core/recommendations';
 import type { OutputFormat } from './formatValidationResult.ts';
 
 function formatRecommendationLine(
@@ -17,7 +21,7 @@ export function formatEstateResilienceResult(
   format: OutputFormat
 ): string {
   if (format === 'json') {
-    return `${JSON.stringify(report, null, 2)}\n`;
+    return formatAdviceLensArtifactJson(serializeEstateResilienceReport(report));
   }
 
   const lines: string[] = [];

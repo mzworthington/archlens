@@ -144,7 +144,7 @@ The best approach isn't choosing only Go or TypeScript, but leveraging both wher
 
 ## 7. Implementation Status & Remaining Work
 
-_Last updated: August 2026 (WASM Monte Carlo KR3 perf budget)_
+_Last updated: August 2026 (AdviceLens Phase 4 CI + UI export)_
 
 **Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
 
@@ -180,12 +180,12 @@ _Last updated: August 2026 (WASM Monte Carlo KR3 perf budget)_
 
 ### Iteration 3 (Version 3.0)
 
-| Item                                | Status | Notes                                                                                                     |
-| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------- |
-| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                                  |
-| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                                   |
-| URL hash / shareable scenario state | ✅     | Sticky `?lens=chaoslens` with `fault`/`type`/`severity` (or `faults=`); legacy `?resilience=1` redirects. |
-| AdviceLens (recommendation engine)  | 🚧     | Core ranking + estate CLI + designer wiring shipped; CI guardrails and narration layer pending.           |
+| Item                                | Status | Notes                                                                                                       |
+| ----------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------- |
+| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                                    |
+| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                                     |
+| URL hash / shareable scenario state | ✅     | Sticky `?lens=chaoslens` with `fault`/`type`/`severity` (or `faults=`); legacy `?resilience=1` redirects.   |
+| AdviceLens (recommendation engine)  | 🚧     | Core ranking + estate CLI + designer wiring + CI gate/artifact + UI JSON export shipped; narration pending. |
 
 ### OKR validation (ongoing)
 
@@ -197,7 +197,7 @@ _Last updated: August 2026 (WASM Monte Carlo KR3 perf budget)_
 
 ### Suggested next slice
 
-1. ⏳ **AdviceLens Phase 4** — CI guardrails and `archlens resilience` PR gate.
+1. ✅ **AdviceLens Phase 4** — CI guardrails, AdviceLens JSON artifact, and studio Copy/Download export.
 2. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
 3. ⏳ OTel ingestion, then resilience comparison and executive mode.
 4. ✅ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR3; KR1 FPS still open).
@@ -273,7 +273,7 @@ Recommendations are **ephemeral** (display-only) by default — not written to B
 | **2**  | Headless estate simulation — batch-run default chaos scenarios per diagram; `archlens resilience` CLI command.                                         | ✅     |
 | **3**  | Designer integration — TraceLens ranked list shows unified recommendations; slide-over evidence panel; wire `rankOffenders` to `buildRecommendations`. | ✅     |
 | **3b** | Product naming, docs (`docs/guide/advicelens.md`), narration types + `narrateRecommendations()` contract stub.                                         | ✅     |
-| **4**  | CI guardrails — PR check when blast radius exceeds SLO threshold; AdviceLens artifact in CI output.                                                    | ⏳     |
+| **4**  | CI guardrails — PR check when worst estate SLA exceeds threshold; AdviceLens artifact in CI + designer Copy/Download JSON export.                      | ✅     |
 | **5**  | Narration implementation — LLM proposes concrete infra/code fixes grounded on structured `Recommendation.evidence` (not as ranker).                    | ⏳     |
 
 ### Core API

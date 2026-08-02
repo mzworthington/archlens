@@ -1,7 +1,12 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { parseChaosSpecFromYaml, type ChaosSpecDocument } from '@archlens/core/resilience';
-import { runEstateResilience } from '@archlens/core/recommendations';
+import {
+  evaluateAdviceLensGate,
+  formatAdviceLensArtifactJson,
+  runEstateResilience,
+  serializeEstateResilienceReport,
+} from '@archlens/core/recommendations';
 import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import type { ResilienceCliPlan } from './parseArchlensArgv.ts';
@@ -73,19 +78,44 @@ export async function executeResilienceRun(plan: ResilienceCliPlan): Promise<voi
     logger.warn(`No ChaosSpec YAML files found under ${path.resolve(plan.chaosSpecsDir)}.`);
   }
 
+  const loadedSystems = files.map(file => ({
+    path: file.relativePath,
+    name: file.schema.name ?? file.relativePath,
+    schema: file.schema,
+  }));
+
   const report = runEstateResilience(files, {
     chaosSpecs,
     maxRegionOutageTargets: plan.maxRegionOutageTargets,
     maxFanInProbes: plan.maxFanInProbes,
+    loadedSystems,
   });
 
-  process.stdout.write(formatEstateResilienceResult(report, plan.format));
+  const artifact = serializeEstateResilienceReport(report);
+  const artifactJson = formatAdviceLensArtifactJson(artifact);
 
-  const belowSlaThreshold = report.summary.worstOverallSla < plan.minSla;
-  const hasRecommendations = report.summary.recommendationCount > 0;
-  const shouldFail = plan.failOnRecommendations
-    ? hasRecommendations || belowSlaThreshold
-    : belowSlaThreshold;
+  if (plan.outputPath) {
+    const absoluteOutput = path.resolve(process.cwd(), plan.outputPath);
+    await fs.mkdir(path.dirname(absoluteOutput), { recursive: true });
+    await fs.writeFile(absoluteOutput, artifactJson, 'utf8');
+    logger.info(`Wrote AdviceLens artifact to ${absoluteOutput}`);
+  }
 
-  process.exit(shouldFail ? 1 : 0);
+  if (plan.format === 'json') {
+    process.stdout.write(artifactJson);
+  } else {
+    process.stdout.write(formatEstateResilienceResult(report, plan.format));
+  }
+
+  const gate = evaluateAdviceLensGate(report.summary, {
+    minSla: plan.minSla,
+    failOnRecommendations: plan.failOnRecommendations,
+  });
+  if (!gate.ok) {
+    for (const reason of gate.reasons) {
+      logger.error(reason);
+    }
+  }
+
+  process.exit(gate.ok ? 0 : 1);
 }
