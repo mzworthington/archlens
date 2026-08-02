@@ -1,5 +1,5 @@
 import React from 'react';
-import { FolderOpen, Map, Terminal, Copy, Check, ArrowRight } from 'lucide-react';
+import { FolderOpen, Map, Terminal, Copy, Check, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from 'wouter';
 import {
   CLI_GETTING_STARTED_PATH,
@@ -46,6 +46,8 @@ export type WorkspaceEntryPanelProps = {
   onOpenSample: () => void;
   onOpenDirectory: () => void;
   disabled?: boolean;
+  /** Shown while sandbox/workspace open is in progress (disables actions). */
+  loadingMessage?: string | false | null;
   showCliPanel?: boolean;
   title?: string;
   description?: React.ReactNode;
@@ -61,6 +63,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
   disabled = false,
+  loadingMessage = null,
   showCliPanel = false,
   title = WORKSPACE_STARTUP.title,
   description = WORKSPACE_STARTUP.lede,
@@ -71,6 +74,9 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   titleId,
 }) => {
   const [copiedKey, setCopiedKey] = React.useState<'install' | 'scan' | null>(null);
+  const statusMessage =
+    typeof loadingMessage === 'string' && loadingMessage.trim() ? loadingMessage : null;
+  const actionsDisabled = disabled || Boolean(statusMessage);
 
   const handleCopyCommand = async (key: 'install' | 'scan', command: string) => {
     try {
@@ -92,12 +98,27 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
       </h2>
       <p className="mt-2 text-sm text-slate-400 leading-relaxed max-w-2xl">{description}</p>
 
+      {statusMessage ? (
+        <div
+          className="mt-4 flex items-center gap-2 rounded-xl border border-[#00f0ff]/25 bg-[#061125]/70 px-4 py-3"
+          role="status"
+          aria-live="polite"
+          aria-busy="true"
+          data-testid="workspace-entry-loading"
+        >
+          <Loader2 className="w-4 h-4 animate-spin text-[#00f0ff] shrink-0" aria-hidden />
+          <span className="text-xs font-mono tracking-wider text-slate-300 uppercase">
+            {statusMessage}
+          </span>
+        </div>
+      ) : null}
+
       <div className={layout === 'grid' ? 'mt-4 grid gap-2 sm:grid-cols-2' : 'mt-4'}>
         <button
           type="button"
           data-testid="workspace-open-sample"
           onClick={onOpenSample}
-          disabled={disabled}
+          disabled={actionsDisabled}
           className={optionClass}
         >
           <Map className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
@@ -115,7 +136,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           type="button"
           data-testid="workspace-open-directory"
           onClick={onOpenDirectory}
-          disabled={disabled}
+          disabled={actionsDisabled}
           className={optionClass}
         >
           <FolderOpen className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />
