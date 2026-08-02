@@ -113,7 +113,7 @@ describe('BundledSampleWorkspaceAdapter', () => {
     expect(String(fetchMock.mock.calls[0]?.[0])).toContain('/bundled-blueprints/catalog.json');
   });
 
-  it('warms only golden-journey and stress YAML bodies from the full catalog', async () => {
+  it('warms ArchLens context, golden-journey, and stress YAML bodies from the full catalog', async () => {
     const { warmBundledBlueprintBodies, scheduleBundledBlueprintPreload } =
       await import('./bundledSampleWorkspace');
     const { listBundledPreloadPaths } =
@@ -123,8 +123,11 @@ describe('BundledSampleWorkspaceAdapter', () => {
 
     const preloadPaths = listBundledPreloadPaths(realCatalog);
     expect(preloadPaths.length).toBeGreaterThan(10);
+    expect(preloadPaths.some(p => p.startsWith('blueprint/'))).toBe(true);
     expect(
-      preloadPaths.every(p => /^(golden-journey|chaoslens-stress|advicelens-stress)\//.test(p))
+      preloadPaths.every(p =>
+        /^(blueprint|golden-journey|chaoslens-stress|advicelens-stress)\//.test(p)
+      )
     ).toBe(true);
 
     await warmBundledBlueprintBodies(preloadPaths);

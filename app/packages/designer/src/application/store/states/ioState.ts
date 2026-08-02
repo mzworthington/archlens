@@ -209,7 +209,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
         isSampleWorkspace: true,
       });
       if (opened) {
-        // Full peer list stays in catalog; warm golden + stress YAML in the background.
+        // Full peer list stays in catalog; warm ArchLens context + golden/stress YAML.
         scheduleBundledBlueprintPreload(catalog);
       }
       return opened;

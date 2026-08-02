@@ -56,6 +56,10 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
   let complexity = 0;
   let complexityPeak = 0;
   let cognitiveComplexity = 0;
+  let loc = 0;
+  let sloc = 0;
+  let hasLoc = false;
+  let hasSloc = false;
   let churn = 0;
   let lineChurn = 0;
   let hasLineChurn = false;
@@ -80,6 +84,14 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
     if ((f.complexityPeak ?? 0) > complexityPeak) complexityPeak = f.complexityPeak ?? 0;
     if ((f.cognitiveComplexity ?? 0) > cognitiveComplexity) {
       cognitiveComplexity = f.cognitiveComplexity ?? 0;
+    }
+    if (f.loc != null) {
+      loc += f.loc;
+      hasLoc = true;
+    }
+    if (f.sloc != null) {
+      sloc += f.sloc;
+      hasSloc = true;
     }
     churn += f.churn ?? 0;
     if (f.lineChurn != null) {
@@ -122,6 +134,8 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
     complexity,
     ...(complexityPeak > 0 ? { complexityPeak } : {}),
     ...(cognitiveComplexity > 0 ? { cognitiveComplexity } : {}),
+    ...(hasLoc ? { loc } : {}),
+    ...(hasSloc ? { sloc } : {}),
     churn,
     ...(hasLineChurn ? { lineChurn } : {}),
     ...(hasChurn30 ? { churn30 } : {}),

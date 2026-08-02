@@ -28,6 +28,8 @@ describe('aggregateNodeForensics', () => {
         name: 'c1',
         forensics: {
           complexity: 10,
+          loc: 100,
+          sloc: 80,
           churn: 3,
           hotspotScore: 0.4,
           authorCount: 2,
@@ -41,6 +43,8 @@ describe('aggregateNodeForensics', () => {
         name: 'c2',
         forensics: {
           complexity: 20,
+          loc: 250,
+          sloc: 200,
           churn: 5,
           hotspotScore: 0.9,
           authorCount: 1,
@@ -52,6 +56,8 @@ describe('aggregateNodeForensics', () => {
 
     expect(aggregateNodeForensics(children)).toEqual({
       complexity: 20,
+      loc: 350,
+      sloc: 280,
       churn: 8,
       hotspotScore: 0.9,
       authorCount: 2,
@@ -60,6 +66,28 @@ describe('aggregateNodeForensics', () => {
       knowledgeSiloCount: 1,
       sinceDays: 90,
       classifications: ['hotspot', 'knowledge-silo'],
+    });
+  });
+
+  it('omits loc/sloc on rollups when no child reports them', () => {
+    const children: SystemNode[] = [
+      {
+        entityRef: 'a/b/c1',
+        type: 'component',
+        name: 'c1',
+        forensics: { complexity: 4, churn: 1, classifications: [] },
+      },
+    ];
+
+    expect(aggregateNodeForensics(children)).toEqual({
+      complexity: 4,
+      churn: 1,
+      hotspotScore: 0,
+      authorCount: 0,
+      fileCount: 1,
+      hotspotCount: 0,
+      knowledgeSiloCount: 0,
+      classifications: [],
     });
   });
 
