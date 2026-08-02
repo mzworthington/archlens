@@ -66,12 +66,18 @@ export class ForensicAnalyzer {
       : null;
     const shortHistoryByPath = historyShort ? new Map(historyShort.map(h => [h.path, h])) : null;
 
-    const pathsForComplexity =
+    // Cold files skip expensive AST analysis, but loc/sloc must still be counted
+    // so estate totals are not stuck near zero after large-repo churn gating.
+    const skipAstPaths =
       effectiveMinChurn > 0
-        ? paths.filter(p => (historyByPath.get(p)?.churn ?? 0) >= effectiveMinChurn)
-        : paths;
+        ? paths.filter(p => (historyByPath.get(p)?.churn ?? 0) < effectiveMinChurn)
+        : [];
 
-    const structural = await this.ports.complexity.analyze(pathsForComplexity, options, signal);
+    const structural = await this.ports.complexity.analyze(
+      paths,
+      skipAstPaths.length > 0 ? { ...options, skipAstPaths } : options,
+      signal
+    );
     throwIfAborted(signal);
     const structuralByPath = new Map(structural.map(s => [s.path, s]));
 

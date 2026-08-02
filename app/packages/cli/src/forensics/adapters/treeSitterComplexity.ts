@@ -74,7 +74,7 @@ export class TreeSitterComplexityAdapter implements ComplexityAnalyzerPort {
 
   async analyze(
     paths: string[],
-    _options: ForensicsOptions,
+    options: ForensicsOptions,
     signal?: AbortSignal
   ): Promise<StructuralMetrics[]> {
     throwIfAborted(signal);
@@ -82,6 +82,7 @@ export class TreeSitterComplexityAdapter implements ComplexityAnalyzerPort {
 
     const parser = new Parser();
     const results: StructuralMetrics[] = [];
+    const skipAstPaths = new Set((options.skipAstPaths ?? []).map(p => p.replace(/\\/g, '/')));
 
     for (const relativePath of paths) {
       throwIfAborted(signal);
@@ -97,13 +98,14 @@ export class TreeSitterComplexityAdapter implements ComplexityAnalyzerPort {
         const text = fs.readFileSync(absolute, 'utf8');
         const { loc, sloc } = countLocAndSloc(text);
         const cyclomaticLang = cyclomaticLanguageForPath(normalizedPath);
+        const skipAst = skipAstPaths.has(normalizedPath);
 
         let complexity = 0;
         let complexityPeak: number | undefined;
         let cognitiveComplexity: number | undefined;
         let functionCount: number | undefined;
 
-        if (cyclomaticLang) {
+        if (cyclomaticLang && !skipAst) {
           const ext = extensionOf(normalizedPath);
           let cached = this.scanCache?.get(normalizedPath);
 

@@ -22,9 +22,14 @@ export interface ForensicsOptions {
   maxFilesPerCommitForCoupling: number;
   /**
    * When > 0, skip AST complexity for files with churn below this value.
-   * Default 0 (always compute structural metrics).
+   * LOC/SLOC are still counted for every scanned file. Default 0 (always run AST).
    */
   minChurnForComplexity: number;
+  /**
+   * Paths for which AST cyclomatic analysis is skipped (loc/sloc still counted).
+   * Set internally when minChurnForComplexity filters cold files.
+   */
+  skipAstPaths?: readonly string[];
   /** Glob for structural scan. Default common source extensions. */
   glob: string;
   ignore: string[];
@@ -61,6 +66,7 @@ export function mergeForensicsOptions(
     maxFilesPerCommitForCoupling:
       overrides.maxFilesPerCommitForCoupling ?? base.maxFilesPerCommitForCoupling,
     minChurnForComplexity: overrides.minChurnForComplexity ?? base.minChurnForComplexity,
+    skipAstPaths: overrides.skipAstPaths ?? base.skipAstPaths,
     glob: overrides.glob ?? base.glob,
     ignore: overrides.ignore !== undefined ? overrides.ignore : base.ignore,
     include: overrides.include !== undefined ? overrides.include : base.include,

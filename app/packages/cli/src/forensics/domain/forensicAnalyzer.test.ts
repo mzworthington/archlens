@@ -19,9 +19,17 @@ class FakeLister implements SourceFileListerPort {
 class FakeComplexity implements ComplexityAnalyzerPort {
   constructor(public metrics: StructuralMetrics[] = []) {}
   analyzedPaths: string[] = [];
-  async analyze(paths: string[]): Promise<StructuralMetrics[]> {
+  astPaths: string[] = [];
+  async analyze(
+    paths: string[],
+    options: { skipAstPaths?: readonly string[] } = {}
+  ): Promise<StructuralMetrics[]> {
     this.analyzedPaths = [...paths];
-    return this.metrics.filter(m => paths.includes(m.path));
+    const skipAst = new Set(options.skipAstPaths ?? []);
+    this.astPaths = paths.filter(p => !skipAst.has(p));
+    return this.metrics
+      .filter(m => paths.includes(m.path))
+      .map(m => (skipAst.has(m.path) ? { ...m, complexity: 0 } : m));
   }
 }
 
@@ -101,9 +109,12 @@ describe('ForensicAnalyzer', () => {
     expect(reporter.report).toHaveBeenCalledTimes(1);
   });
 
-  it('skips AST for cold files when minChurnForComplexity is set', async () => {
+  it('skips AST for cold files when minChurnForComplexity is set but still counts loc', async () => {
     const lister = new FakeLister(['cold.ts', 'warm.ts']);
-    const complexity = new FakeComplexity([{ path: 'warm.ts', complexity: 8, loc: 20, sloc: 18 }]);
+    const complexity = new FakeComplexity([
+      { path: 'warm.ts', complexity: 8, loc: 20, sloc: 18 },
+      { path: 'cold.ts', complexity: 99, loc: 12, sloc: 10 },
+    ]);
     const git = new FakeGit([
       {
         hash: '1',
@@ -143,8 +154,12 @@ describe('ForensicAnalyzer', () => {
       options: { minChurnForComplexity: 3 },
     });
 
-    expect(complexity.analyzedPaths).toEqual(['warm.ts']);
-    expect(report.files.find(f => f.path === 'cold.ts')!.complexity).toBe(0);
+    expect(complexity.analyzedPaths).toEqual(['cold.ts', 'warm.ts']);
+    expect(complexity.astPaths).toEqual(['warm.ts']);
+    const cold = report.files.find(f => f.path === 'cold.ts')!;
+    expect(cold.complexity).toBe(0);
+    expect(cold.loc).toBe(12);
+    expect(cold.sloc).toBe(10);
     expect(report.files.find(f => f.path === 'warm.ts')!.complexity).toBe(8);
   });
 
