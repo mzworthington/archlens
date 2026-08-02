@@ -48,13 +48,15 @@ This compiles `chaoslens.wasm` and copies `wasm_exec.js` into `app/packages/desi
 ```bash
 cd resilience-engine
 
-make test          # unit tests
+make test          # unit tests (includes KR3 Monte Carlo budget on large-graph)
 make build-wasm    # dist/chaoslens.wasm
 make build-cli     # dist/chaoslens (stdin/stdout CLI - planned)
 make copy-wasm     # WASM + wasm_exec.js → designer public/
 make build         # CLI + copy-wasm
 make all           # test + build
 ```
+
+`go test ./internal/sim` loads `blueprints/chaoslens-stress/large-graph-containers.yaml` and asserts default WASM Monte Carlo settings (`1000` iterations, `severityJitter` `0.12`) finish in under 5 seconds via both `sim.RunMonteCarlo` and `api.RunRequest` (the WASM bridge path).
 
 ---
 
