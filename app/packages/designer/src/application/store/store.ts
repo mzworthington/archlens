@@ -14,7 +14,7 @@ export type {
 
 export { resolveRelativePath, getFileName } from '@archlens/core';
 
-export { GOLDEN_PATHS_ENTITY_REF } from './goldenPathsSample';
+export { GOLDEN_JOURNEY_ENTITY_REF, GOLDEN_PATHS_ENTITY_REF } from './goldenPathsSample';
 
 export interface BlueprintState
   extends UiState, DiagramState, IoState, ResilienceState, TraceLensState {}

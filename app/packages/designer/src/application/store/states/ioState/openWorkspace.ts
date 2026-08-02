@@ -56,7 +56,13 @@ function resolveEntryAgainstCatalog(
     { path, schema },
   ];
 
-  const contextEntry = catalog.find(e => e.level === 'context');
+  const catalogEntry = catalog.find(e => e.path === path);
+  const contextEntry =
+    (catalogEntry?.parentEntityRef
+      ? catalog.find(e => e.level === 'context' && e.entityRef === catalogEntry.parentEntityRef)
+      : undefined) ||
+    catalog.find(e => e.level === 'context' && path.startsWith(`${e.path.split('/')[0]}/`)) ||
+    catalog.find(e => e.level === 'context');
   if (
     contextEntry &&
     !filesForResolve.some(f => f.path === contextEntry.path) &&
