@@ -9,12 +9,12 @@ export const GOLDEN_PATHS_ENTITY_REF = 'golden-paths';
 export const GOLDEN_JOURNEY_ENTITY_REF = 'golden-paths/golden-journey';
 export const GOLDEN_JOURNEY_CONTAINERS_PATH = 'golden-journey/containers.yaml';
 
-/** Prefer the golden-journey estate diagram, then context, then any catalog entry. */
+/** Prefer the golden-paths context diagram, then estate, then any catalog entry. */
 export function selectBundledSampleEntryPath(catalog: readonly WorkspaceCatalogEntry[]): string {
   if (catalog.length === 0) {
     throw new Error('Bundled catalog has no diagrams');
   }
-  const preferred = [GOLDEN_JOURNEY_CONTAINERS_PATH, GOLDEN_PATHS_CONTEXT_PATH];
+  const preferred = [GOLDEN_PATHS_CONTEXT_PATH, GOLDEN_JOURNEY_CONTAINERS_PATH];
   for (const path of preferred) {
     if (catalog.some(entry => entry.path === path)) return path;
   }
