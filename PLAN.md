@@ -144,7 +144,7 @@ The best approach isn't choosing only Go or TypeScript, but leveraging both wher
 
 ## 7. Implementation Status & Remaining Work
 
-_Last updated: August 2026 (external simulation scope Phase 3)_
+_Last updated: August 2026 (WASM Monte Carlo KR3 perf budget)_
 
 **Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
 
@@ -189,18 +189,18 @@ _Last updated: August 2026 (external simulation scope Phase 3)_
 
 ### OKR validation (ongoing)
 
-| KR      | Target                                        | Status | Gap                                                                                                |
-| ------- | --------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------- |
-| **KR1** | 50+ node topology at 60 FPS with WASM sim     | 🚧     | `large-graph` stress fixture exists; no automated FPS/latency benchmark.                           |
-| **KR2** | 100% SPOF / missing circuit-breaker detection | 🚧     | Structural SPOF detection shipped; no OTel-derived graph validation.                               |
-| **KR3** | Deterministic SLA report in &lt;5s            | 🚧     | TS regression harness enforces &lt;5s on stress fixtures; WASM Monte Carlo perf budget still open. |
+| KR      | Target                                        | Status | Gap                                                                                                             |
+| ------- | --------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------- |
+| **KR1** | 50+ node topology at 60 FPS with WASM sim     | 🚧     | `large-graph` stress fixture (30 nodes) + Go Monte Carlo latency budget in CI; canvas FPS benchmark still open. |
+| **KR2** | 100% SPOF / missing circuit-breaker detection | 🚧     | Structural SPOF detection shipped; no OTel-derived graph validation.                                            |
+| **KR3** | Deterministic SLA report in &lt;5s            | ✅     | TS stress harness + Go/WASM Monte Carlo (`1000` trials on `large-graph`) both enforce &lt;5s in CI.             |
 
 ### Suggested next slice
 
 1. ⏳ **AdviceLens Phase 4** — CI guardrails and `archlens resilience` PR gate.
 2. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
 3. ⏳ OTel ingestion, then resilience comparison and executive mode.
-4. ⏳ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR1/KR3).
+4. ✅ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR3; KR1 FPS still open).
 
 ## 9. AdviceLens
 
