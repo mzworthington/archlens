@@ -133,4 +133,35 @@ describe('WorkspaceDisplayControls', () => {
     expect(screen.getByRole('button', { name: 'Show external callers (2)' })).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Show external targets (3)' })).toBeDisabled();
   });
+
+  it('locks caller and target toggles on at C4 context level', () => {
+    render(
+      <WorkspaceDisplayControls
+        showTests={false}
+        onToggleShowTests={vi.fn()}
+        showUpstreamExternals={false}
+        onToggleShowUpstreamExternals={vi.fn()}
+        showDownstreamExternals={false}
+        onToggleShowDownstreamExternals={vi.fn()}
+        showSelectedDependenciesOnly={false}
+        onToggleShowSelectedDependenciesOnly={vi.fn()}
+        showHotspotHeatmap={false}
+        onToggleShowHotspotHeatmap={vi.fn()}
+        showCoupling={false}
+        onToggleShowCoupling={vi.fn()}
+        showCouplingSchemaDeps={false}
+        onToggleShowCouplingSchemaDeps={vi.fn()}
+        counts={defaultCounts}
+        countsScopedToNode={false}
+        contextLevelAlwaysShowExternals
+      />
+    );
+
+    const callers = screen.getByRole('button', { name: 'Show external callers (2)' });
+    const targets = screen.getByRole('button', { name: 'Show external targets (3)' });
+    expect(callers).toBeDisabled();
+    expect(targets).toBeDisabled();
+    expect(callers).toHaveAttribute('aria-pressed', 'true');
+    expect(targets).toHaveAttribute('aria-pressed', 'true');
+  });
 });

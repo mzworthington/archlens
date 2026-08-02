@@ -19,6 +19,8 @@ interface WorkspaceDisplayControlsProps {
   counts: ForensicsDisplayMetrics;
   countsScopedToNode: boolean;
   dependencyFocusActive?: boolean;
+  /** C4 context always shows actors/externals; caller/target toggles are locked on. */
+  contextLevelAlwaysShowExternals?: boolean;
   className?: string;
   showHeader?: boolean;
   /** When false, hides coupling, heatmap, and dependency-focus toggles (TraceLens panel owns those). */
@@ -33,6 +35,7 @@ function ExternalVisibilityButtonGroup({
   upstreamCount,
   downstreamCount,
   dependencyFocusActive = false,
+  contextLevelAlwaysShowExternals = false,
 }: {
   showUpstreamExternals: boolean;
   onToggleShowUpstreamExternals: () => void;
@@ -41,7 +44,9 @@ function ExternalVisibilityButtonGroup({
   upstreamCount: number;
   downstreamCount: number;
   dependencyFocusActive?: boolean;
+  contextLevelAlwaysShowExternals?: boolean;
 }) {
+  const locked = dependencyFocusActive || contextLevelAlwaysShowExternals;
   const buttonClass = (active: boolean) =>
     `px-2 py-0.5 text-[10px] font-bold tracking-wide transition cursor-pointer ${
       active
@@ -51,11 +56,13 @@ function ExternalVisibilityButtonGroup({
 
   return (
     <div
-      className={`flex items-center justify-between gap-2 ${dependencyFocusActive ? 'opacity-50' : ''}`}
+      className={`flex items-center justify-between gap-2 ${locked ? 'opacity-50' : ''}`}
       title={
-        dependencyFocusActive
-          ? 'Use Dependency view → Tree + externals while a node is selected'
-          : undefined
+        contextLevelAlwaysShowExternals
+          ? 'C4 context level always shows actors and external dependencies'
+          : dependencyFocusActive
+            ? 'Use Dependency view → Tree + externals while a node is selected'
+            : undefined
       }
     >
       <span className="text-[10px] font-bold font-mono text-slate-400 uppercase tracking-wider">
@@ -68,23 +75,23 @@ function ExternalVisibilityButtonGroup({
       >
         <button
           type="button"
-          aria-pressed={showUpstreamExternals}
+          aria-pressed={contextLevelAlwaysShowExternals ? true : showUpstreamExternals}
           aria-label={`Show external callers (${upstreamCount})`}
           data-testid="toggle-show-upstream-externals"
           onClick={onToggleShowUpstreamExternals}
-          disabled={dependencyFocusActive}
-          className={buttonClass(showUpstreamExternals)}
+          disabled={locked}
+          className={buttonClass(contextLevelAlwaysShowExternals ? true : showUpstreamExternals)}
         >
           Callers <span data-testid="toggle-show-upstream-externals-count">({upstreamCount})</span>
         </button>
         <button
           type="button"
-          aria-pressed={showDownstreamExternals}
+          aria-pressed={contextLevelAlwaysShowExternals ? true : showDownstreamExternals}
           aria-label={`Show external targets (${downstreamCount})`}
           data-testid="toggle-show-downstream-externals"
           onClick={onToggleShowDownstreamExternals}
-          disabled={dependencyFocusActive}
-          className={buttonClass(showDownstreamExternals)}
+          disabled={locked}
+          className={buttonClass(contextLevelAlwaysShowExternals ? true : showDownstreamExternals)}
         >
           Targets{' '}
           <span data-testid="toggle-show-downstream-externals-count">({downstreamCount})</span>
@@ -163,6 +170,7 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
   counts,
   countsScopedToNode,
   dependencyFocusActive = false,
+  contextLevelAlwaysShowExternals = false,
   className,
   showHeader = true,
   includeTraceLensToggles = true,
@@ -202,6 +210,7 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
       upstreamCount={counts.upstreamExternals}
       downstreamCount={counts.downstreamExternals}
       dependencyFocusActive={dependencyFocusActive}
+      contextLevelAlwaysShowExternals={contextLevelAlwaysShowExternals}
     />
     <DisplaySwitch
       label="Show Test Components"

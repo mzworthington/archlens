@@ -24,6 +24,7 @@ import {
   buildExternalSummaryHubEdges,
   buildExternalSummaryHubNodes,
   hiddenOverviewExternalRefs,
+  isContextLevelDiagram,
   resolveOverviewExternalBands,
   resolveVisibleExternalEntityRefs,
   stripExternalIndividualEdges,
@@ -68,6 +69,22 @@ export type CanvasVisibleNodesInput = {
   expandedExternalHub: ExternalSummaryBand | null;
 };
 
+function isContextLevelAnchorNode(node: BlueprintRFNode): boolean {
+  return node.data.type === 'person' || !!node.data.external;
+}
+
+/** Context diagrams always keep actors and external dependencies on canvas. */
+function withContextLevelAnchors(
+  level: SystemSchema['level'],
+  visible: BlueprintRFNode[],
+  candidates: BlueprintRFNode[]
+): BlueprintRFNode[] {
+  if (!isContextLevelDiagram(level)) return visible;
+  const ids = new Set(visible.map(n => n.id));
+  const anchors = candidates.filter(n => isContextLevelAnchorNode(n) && !ids.has(n.id));
+  return anchors.length === 0 ? visible : [...visible, ...anchors];
+}
+
 export function buildCanvasVisibleNodes({
   nodes,
   edges,
@@ -85,6 +102,7 @@ export function buildCanvasVisibleNodes({
   expandedExternalHub,
 }: CanvasVisibleNodesInput): BlueprintRFNode[] {
   const focusActive = showSelectedDependenciesOnly && !isResilienceMode && !!selectedNodeId;
+  const contextLevel = isContextLevelDiagram(schema.level);
 
   if (focusActive && includeExternalsInFocus) {
     const candidates = nodes.filter(n => showTests || !n.data.isTest);
@@ -94,7 +112,7 @@ export function buildCanvasVisibleNodes({
       edges,
       true
     );
-    return candidates.filter(n => {
+    const focused = candidates.filter(n => {
       if (closure.has(n.id)) return true;
       const entityRef = (n.data.entityRef ?? n.id) as string;
       return !!(
@@ -102,6 +120,7 @@ export function buildCanvasVisibleNodes({
         (simulationScopeSet.has(entityRef) || simulationScopeSet.has(n.id))
       );
     });
+    return withContextLevelAnchors(schema.level, focused, candidates);
   }
 
   const summaryInput = {
@@ -124,6 +143,7 @@ export function buildCanvasVisibleNodes({
     const entityRef = (n.data.entityRef ?? n.id) as string;
     const forceShowScope =
       simulationScopeSet && (simulationScopeSet.has(entityRef) || simulationScopeSet.has(n.id));
+    if (contextLevel && isContextLevelAnchorNode(n)) return true;
     if (n.data.external && visibleExternalRefs !== null) {
       if (forceShowScope) return true;
       return visibleExternalRefs.has(entityRef);
@@ -145,7 +165,14 @@ export function buildCanvasVisibleNodes({
   });
   const visibleIds = new Set(base.map(n => n.id));
   const baseEdges = edges.filter(e => visibleIds.has(e.source) && visibleIds.has(e.target));
-  return filterSelectedDependencyFocusNodes(base, baseEdges, selectedNodeId, focusActive, false);
+  const focused = filterSelectedDependencyFocusNodes(
+    base,
+    baseEdges,
+    selectedNodeId,
+    focusActive,
+    false
+  );
+  return withContextLevelAnchors(schema.level, focused, base);
 }
 
 export function buildCanvasVisibleEdges(

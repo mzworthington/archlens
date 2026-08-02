@@ -35,6 +35,7 @@ export const TraceLensSidePanelContent: React.FC = () => {
     displayCounts,
     showTests,
     toggleShowTests,
+    contextLevelAlwaysShowExternals,
     showUpstreamExternals,
     toggleShowUpstreamExternals,
     showDownstreamExternals,
@@ -90,6 +91,7 @@ export const TraceLensSidePanelContent: React.FC = () => {
         counts={displayCounts}
         countsScopedToNode={!!selectedNode?.entityRef}
         dependencyFocusActive={!!selectedNodeId && dependencyViewMode !== 'full'}
+        contextLevelAlwaysShowExternals={contextLevelAlwaysShowExternals}
         className="border-t border-slate-900 pt-4 space-y-3"
       />
 
