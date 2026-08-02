@@ -1,9 +1,11 @@
 import {
   buildAdviceLensArtifact,
   buildRefactorRecommendations,
+  formatAdviceLensArtifact,
   formatAdviceLensArtifactJson,
   runEstateResilience,
   type AdviceLensArtifact,
+  type AdviceLensArtifactFormat,
   type DiagramResilienceReport,
   type Recommendation,
 } from '@archlens/core/recommendations';
@@ -182,6 +184,13 @@ export function estateRecommendationsToAdviceLensArtifact(
 
 export function formatEstateAdviceLensArtifactJson(report: EstateRecommendationsReport): string {
   return formatAdviceLensArtifactJson(estateRecommendationsToAdviceLensArtifact(report));
+}
+
+export function formatEstateAdviceLensArtifact(
+  report: EstateRecommendationsReport,
+  format: AdviceLensArtifactFormat = 'yaml'
+): string {
+  return formatAdviceLensArtifact(estateRecommendationsToAdviceLensArtifact(report), format);
 }
 
 function offenderFallbackRecommendation(

@@ -69,6 +69,13 @@ describe('formatEstateResilienceResult', () => {
     expect(json.endsWith('\n')).toBe(true);
   });
 
+  it('serializes YAML as a versioned AdviceLens artifact', () => {
+    const yamlText = formatEstateResilienceResult(sampleReport(), 'yaml');
+    expect(yamlText).toContain('kind: advicelens-estate-report');
+    expect(yamlText).toContain('version: 1');
+    expect(yamlText).toContain('shop/api');
+  });
+
   it('keeps a human-readable text summary', () => {
     const text = formatEstateResilienceResult(sampleReport(), 'text');
     expect(text).toContain('AdviceLens estate report');

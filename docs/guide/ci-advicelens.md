@@ -51,7 +51,7 @@ archlens resilience blueprints/ \
 archlens resilience blueprints/ --fail-on-recommendations --min-sla=95
 ```
 
-Artifact shape (same as designer **Copy JSON** / **Download** on the AdviceLens tab):
+Artifact shape (CI uses JSON; the studio exports the same payload as YAML by default):
 
 ```json
 {
@@ -69,7 +69,7 @@ Artifact shape (same as designer **Copy JSON** / **Download** on the AdviceLens 
 }
 ```
 
-Heat maps are plain JSON objects (not `Map`), so the file is safe for artifacts and PR tooling.
+Heat maps are plain objects (not `Map`), so the file is safe for artifacts and PR tooling. Local/human export: `archlens resilience --format=yaml`.
 
 ## Action inputs
 
@@ -84,4 +84,4 @@ Heat maps are plain JSON objects (not `Map`), so the file is safe for artifacts 
 
 ## Designer export
 
-On **TraceLens → AdviceLens**, use **Copy JSON** or **Download** to export the same artifact from the loaded estate (handy for RFCs and attaching to PRs without the CLI).
+On **TraceLens → AdviceLens**, use **Copy YAML** or **Download** to export the estate report as YAML (same `kind` / fields as the CI JSON artifact — handy for RFCs without the CLI).

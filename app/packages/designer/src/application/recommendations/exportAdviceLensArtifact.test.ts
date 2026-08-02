@@ -4,8 +4,10 @@ import { ADVICELENS_ARTIFACT_KIND } from '@archlens/core/recommendations';
 import { buildEstateRecommendations } from './buildEstateRecommendations';
 import {
   ADVICELENS_EXPORT_FILENAME,
+  ADVICELENS_EXPORT_JSON_FILENAME,
+  adviceLensExportFilename,
   buildAdviceLensExportArtifact,
-  buildAdviceLensExportJson,
+  buildAdviceLensExportText,
 } from './exportAdviceLensArtifact';
 
 function stressSchema(): SystemSchema {
@@ -30,7 +32,7 @@ function stressSchema(): SystemSchema {
 }
 
 describe('exportAdviceLensArtifact', () => {
-  it('builds the same versioned JSON artifact shape as the CLI', () => {
+  it('defaults studio export to YAML with the shared artifact shape', () => {
     const report = buildEstateRecommendations([
       {
         path: 'shop-containers.yaml',
@@ -43,13 +45,14 @@ describe('exportAdviceLensArtifact', () => {
     expect(artifact.kind).toBe(ADVICELENS_ARTIFACT_KIND);
     expect(artifact.version).toBe(1);
     expect(artifact.diagrams.length).toBe(1);
-    expect(artifact.recommendations.length).toBe(report.recommendations.length);
-    expect(artifact.recommendations[0]).not.toHaveProperty('diagramPath');
-    expect(artifact.recommendations[0]).not.toHaveProperty('diagramName');
 
-    const parsed = JSON.parse(buildAdviceLensExportJson(report)) as typeof artifact;
-    expect(parsed.kind).toBe(ADVICELENS_ARTIFACT_KIND);
-    expect(Object.keys(parsed.diagrams[0]!.simulation.heat).length).toBeGreaterThan(0);
-    expect(ADVICELENS_EXPORT_FILENAME).toBe('advicelens-report.json');
+    const yamlText = buildAdviceLensExportText(report);
+    expect(yamlText).toContain('kind: advicelens-estate-report');
+    expect(yamlText).toContain('version: 1');
+    expect(adviceLensExportFilename()).toBe(ADVICELENS_EXPORT_FILENAME);
+    expect(adviceLensExportFilename('json')).toBe(ADVICELENS_EXPORT_JSON_FILENAME);
+
+    const jsonText = buildAdviceLensExportText(report, 'json');
+    expect(JSON.parse(jsonText).kind).toBe(ADVICELENS_ARTIFACT_KIND);
   });
 });

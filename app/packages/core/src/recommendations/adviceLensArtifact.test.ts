@@ -8,7 +8,9 @@ import {
   ADVICELENS_ARTIFACT_VERSION,
   buildAdviceLensArtifact,
   evaluateAdviceLensGate,
+  formatAdviceLensArtifact,
   formatAdviceLensArtifactJson,
+  formatAdviceLensArtifactYaml,
   serializeEstateResilienceReport,
 } from './adviceLensArtifact';
 import { runEstateResilience } from './runEstateResilience';
@@ -63,6 +65,18 @@ describe('serializeEstateResilienceReport', () => {
 
     expect(artifact.diagrams).toEqual([]);
     expect(artifact.recommendations.length).toBe(report.recommendations.length);
+  });
+
+  it('formats the artifact as YAML for studio / human-readable export', () => {
+    const report = loadEcommerceReport();
+    const artifact = serializeEstateResilienceReport(report);
+    const yamlText = formatAdviceLensArtifactYaml(artifact);
+
+    expect(yamlText).toContain('kind: advicelens-estate-report');
+    expect(yamlText).toContain('version: 1');
+    expect(yamlText).toContain('summary:');
+    expect(formatAdviceLensArtifact(artifact, 'yaml')).toBe(yamlText);
+    expect(formatAdviceLensArtifact(artifact, 'json')).toBe(formatAdviceLensArtifactJson(artifact));
   });
 });
 

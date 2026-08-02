@@ -32,7 +32,7 @@ Use this guide if you want to understand the product, not just the internals.
 - [ArchLens](./cli.md) - scanners, flags, outputs
 - [TraceLens](./tracelens.md) - metrics, coupling overlay, lookback
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry
-- [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, studio export, narration (planned)
+- [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, YAML studio export, narration (planned)
 - [AdviceLens CI gate](./ci-advicelens.md) - PR SLA guardrails and JSON artifact
 - [Blueprint contract CI](./ci-blueprints.md) - validate/diff BlueprintSpec on pull requests
 - [BlueprintSpec](./schema.md) - public contract URLs, entity references, live latest schema

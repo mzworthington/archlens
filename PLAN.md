@@ -273,7 +273,7 @@ Recommendations are **ephemeral** (display-only) by default — not written to B
 | **2**  | Headless estate simulation — batch-run default chaos scenarios per diagram; `archlens resilience` CLI command.                                         | ✅     |
 | **3**  | Designer integration — TraceLens ranked list shows unified recommendations; slide-over evidence panel; wire `rankOffenders` to `buildRecommendations`. | ✅     |
 | **3b** | Product naming, docs (`docs/guide/advicelens.md`), narration types + `narrateRecommendations()` contract stub.                                         | ✅     |
-| **4**  | CI guardrails — PR check when worst estate SLA exceeds threshold; AdviceLens artifact in CI + designer Copy/Download JSON export.                      | ✅     |
+| **4**  | CI guardrails — PR check when worst estate SLA exceeds threshold; AdviceLens artifact in CI (JSON) + designer Copy/Download YAML export.               | ✅     |
 | **5**  | Narration implementation — LLM proposes concrete infra/code fixes grounded on structured `Recommendation.evidence` (not as ranker).                    | ⏳     |
 
 ### Core API

@@ -1,7 +1,10 @@
+import * as yaml from 'js-yaml';
 import type { EntityRef } from '../models/schema';
 import type { SimulationResult } from '../resilience/simulation';
 import type { EstateResilienceReport, DiagramResilienceReport } from './runEstateResilience';
 import type { Recommendation } from './types';
+
+export type AdviceLensArtifactFormat = 'json' | 'yaml';
 
 export const ADVICELENS_ARTIFACT_KIND = 'advicelens-estate-report' as const;
 export const ADVICELENS_ARTIFACT_VERSION = 1 as const;
@@ -21,8 +24,8 @@ export type AdviceLensDiagramArtifact = Omit<DiagramResilienceReport, 'simulatio
 };
 
 /**
- * Stable AdviceLens estate report for CLI `--format=json`, CI artifacts,
- * and designer Download/Copy export.
+ * Stable AdviceLens estate report for CLI (`--format=json|yaml`), CI artifacts
+ * (JSON), and designer Download/Copy export (YAML by default).
  */
 export type AdviceLensArtifact = {
   kind: typeof ADVICELENS_ARTIFACT_KIND;
@@ -92,6 +95,19 @@ export function buildAdviceLensArtifact(input: {
 
 export function formatAdviceLensArtifactJson(artifact: AdviceLensArtifact): string {
   return `${JSON.stringify(artifact, null, 2)}\n`;
+}
+
+export function formatAdviceLensArtifactYaml(artifact: AdviceLensArtifact): string {
+  return yaml.dump(artifact, { noRefs: true, lineWidth: 120, sortKeys: false });
+}
+
+export function formatAdviceLensArtifact(
+  artifact: AdviceLensArtifact,
+  format: AdviceLensArtifactFormat = 'json'
+): string {
+  return format === 'yaml'
+    ? formatAdviceLensArtifactYaml(artifact)
+    : formatAdviceLensArtifactJson(artifact);
 }
 
 /**

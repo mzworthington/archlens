@@ -1,10 +1,10 @@
 import pc from 'picocolors';
 import {
-  formatAdviceLensArtifactJson,
+  formatAdviceLensArtifact,
   serializeEstateResilienceReport,
   type EstateResilienceReport,
 } from '@archlens/core/recommendations';
-import type { OutputFormat } from './formatValidationResult.ts';
+import type { ResilienceOutputFormat } from './parseArchlensArgv.ts';
 
 function formatRecommendationLine(
   recommendation: EstateResilienceReport['recommendations'][number],
@@ -18,10 +18,10 @@ function formatRecommendationLine(
 
 export function formatEstateResilienceResult(
   report: EstateResilienceReport,
-  format: OutputFormat
+  format: ResilienceOutputFormat
 ): string {
-  if (format === 'json') {
-    return formatAdviceLensArtifactJson(serializeEstateResilienceReport(report));
+  if (format === 'json' || format === 'yaml') {
+    return formatAdviceLensArtifact(serializeEstateResilienceReport(report), format);
   }
 
   const lines: string[] = [];
@@ -49,7 +49,7 @@ export function formatEstateResilienceResult(
   if (report.recommendations.length > top.length) {
     lines.push(
       pc.dim(
-        `  … and ${report.recommendations.length - top.length} more (use --format=json for full output)`
+        `  … and ${report.recommendations.length - top.length} more (use --format=json|yaml for full output)`
       )
     );
   }

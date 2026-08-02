@@ -3,13 +3,14 @@ import path from 'node:path';
 import { parseChaosSpecFromYaml, type ChaosSpecDocument } from '@archlens/core/resilience';
 import {
   evaluateAdviceLensGate,
-  formatAdviceLensArtifactJson,
+  formatAdviceLensArtifact,
   runEstateResilience,
   serializeEstateResilienceReport,
+  type AdviceLensArtifactFormat,
 } from '@archlens/core/recommendations';
 import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import type { ResilienceCliPlan } from './parseArchlensArgv.ts';
+import type { ResilienceCliPlan, ResilienceOutputFormat } from './parseArchlensArgv.ts';
 import { loadBlueprintTree } from './blueprintLoader.ts';
 import { formatEstateResilienceResult } from './formatEstateResilienceResult.ts';
 
@@ -53,6 +54,17 @@ async function loadChaosSpecs(rootDir: string): Promise<ChaosSpecDocument[]> {
   return documents;
 }
 
+/** Structured artifact format for --output / machine-readable stdout. */
+export function resolveAdviceLensArtifactFormat(
+  format: ResilienceOutputFormat,
+  outputPath?: string
+): AdviceLensArtifactFormat {
+  if (format === 'yaml') return 'yaml';
+  if (format === 'json') return 'json';
+  if (outputPath && /\.ya?ml$/i.test(outputPath)) return 'yaml';
+  return 'json';
+}
+
 export async function executeResilienceRun(plan: ResilienceCliPlan): Promise<void> {
   const rootDir = path.resolve(process.cwd(), plan.targetPath);
   const fileSystem = new NodeFileSystemAdapter();
@@ -92,19 +104,20 @@ export async function executeResilienceRun(plan: ResilienceCliPlan): Promise<voi
   });
 
   const artifact = serializeEstateResilienceReport(report);
-  const artifactJson = formatAdviceLensArtifactJson(artifact);
+  const artifactFormat = resolveAdviceLensArtifactFormat(plan.format, plan.outputPath);
+  const artifactText = formatAdviceLensArtifact(artifact, artifactFormat);
 
   if (plan.outputPath) {
     const absoluteOutput = path.resolve(process.cwd(), plan.outputPath);
     await fs.mkdir(path.dirname(absoluteOutput), { recursive: true });
-    await fs.writeFile(absoluteOutput, artifactJson, 'utf8');
-    logger.info(`Wrote AdviceLens artifact to ${absoluteOutput}`);
+    await fs.writeFile(absoluteOutput, artifactText, 'utf8');
+    logger.info(`Wrote AdviceLens ${artifactFormat.toUpperCase()} artifact to ${absoluteOutput}`);
   }
 
-  if (plan.format === 'json') {
-    process.stdout.write(artifactJson);
-  } else {
+  if (plan.format === 'json' || plan.format === 'yaml') {
     process.stdout.write(formatEstateResilienceResult(report, plan.format));
+  } else {
+    process.stdout.write(formatEstateResilienceResult(report, 'text'));
   }
 
   const gate = evaluateAdviceLensGate(report.summary, {

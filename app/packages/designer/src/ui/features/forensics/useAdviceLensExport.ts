@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react';
 import type { EstateRecommendationsReport } from '../../../application/recommendations/buildEstateRecommendations';
 import {
-  ADVICELENS_EXPORT_FILENAME,
-  buildAdviceLensExportJson,
+  ADVICELENS_DEFAULT_EXPORT_FORMAT,
+  adviceLensExportFilename,
+  buildAdviceLensExportText,
 } from '../../../application/recommendations/exportAdviceLensArtifact';
 import { useBlueprintStore } from '../../../application/store/store';
 
@@ -13,16 +14,19 @@ export function useAdviceLensExport(report: EstateRecommendationsReport | null) 
   const [downloading, setDownloading] = useState(false);
 
   const canExport = Boolean(report && report.summary.diagramCount > 0);
+  const filename = adviceLensExportFilename(ADVICELENS_DEFAULT_EXPORT_FORMAT);
 
   const handleCopy = useCallback(async () => {
     if (!report) return;
     setCopying(true);
     try {
-      await navigator.clipboard.writeText(buildAdviceLensExportJson(report));
+      await navigator.clipboard.writeText(
+        buildAdviceLensExportText(report, ADVICELENS_DEFAULT_EXPORT_FORMAT)
+      );
       setNotification({
         type: 'success',
         title: 'Copied',
-        message: 'AdviceLens JSON report copied to clipboard.',
+        message: 'AdviceLens YAML report copied to clipboard.',
       });
     } finally {
       setCopying(false);
@@ -34,20 +38,20 @@ export function useAdviceLensExport(report: EstateRecommendationsReport | null) 
     setDownloading(true);
     try {
       const saved = await fileSystemPort.saveSchema(
-        buildAdviceLensExportJson(report),
-        ADVICELENS_EXPORT_FILENAME
+        buildAdviceLensExportText(report, ADVICELENS_DEFAULT_EXPORT_FORMAT),
+        filename
       );
       if (saved) {
         setNotification({
           type: 'success',
           title: 'AdviceLens saved',
-          message: `Downloaded ${ADVICELENS_EXPORT_FILENAME}.`,
+          message: `Downloaded ${filename}.`,
         });
       }
     } finally {
       setDownloading(false);
     }
-  }, [report, fileSystemPort, setNotification]);
+  }, [report, fileSystemPort, setNotification, filename]);
 
   return {
     canExport,

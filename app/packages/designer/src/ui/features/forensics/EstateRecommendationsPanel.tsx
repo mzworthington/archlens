@@ -132,7 +132,7 @@ export const EstateRecommendationsPanel: React.FC<Props> = ({
             data-testid="advicelens-export-copy"
           >
             <Copy className="w-3.5 h-3.5" />
-            {copying ? 'Copying…' : 'Copy JSON'}
+            {copying ? 'Copying…' : 'Copy YAML'}
           </button>
           <button
             type="button"

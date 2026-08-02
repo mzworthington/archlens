@@ -228,13 +228,14 @@ function printResilienceHelp(): void {
   flag('--fail-on-recommendations', 'Exit 1 when any recommendation is emitted');
   flag('--max-region-outages=<n>', 'Cap region-outage scenarios per diagram (default: 15)');
   flag('--max-fan-in-probes=<n>', 'Cap fan-in latency probes per diagram (default: 5)');
-  flag('--format=text|json', 'Output format (default: text)');
-  flag('--output=<file>', 'Write AdviceLens JSON artifact to a file (CI-friendly)');
+  flag('--format=text|json|yaml', 'Output format (default: text; CI uses json)');
+  flag('--output=<file>', 'Write AdviceLens artifact to a file (.json or .yaml)');
 
   heading('EXAMPLES');
   example('archlens resilience blueprints/chaoslens-stress/');
   example('archlens resilience --chaos-specs=chaos-specs --min-sla=95');
   example('archlens resilience --format=json --output=.archlens/advicelens-report.json');
+  example('archlens resilience --format=yaml --output=advicelens-report.yaml');
   example('archlens resilience --format=json --fail-on-recommendations');
 }
 

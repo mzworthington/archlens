@@ -211,5 +211,7 @@ describe('parseResilienceArgv', () => {
       maxRegionOutageTargets: 10,
       maxFanInProbes: 3,
     });
+
+    expect(parseResilienceArgv(['resilience', '--format=yaml']).format).toBe('yaml');
   });
 });
