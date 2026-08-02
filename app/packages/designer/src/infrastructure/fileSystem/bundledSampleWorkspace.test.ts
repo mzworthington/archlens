@@ -1,5 +1,5 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { buildWorkspaceCatalogFromYamlFiles, type WorkspaceCatalogEntry } from '@archlens/core';
+import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { GOLDEN_PATHS_CONTEXT_PATH } from '../../application/store/goldenPathsSample';
 
 const blueprintLoaders = import.meta.glob<string>(
@@ -20,19 +20,28 @@ const yamlByRelativePath = Object.fromEntries(
   Object.entries(blueprintLoaders).map(([key, loader]) => [relativePathFromGlobKey(key), loader])
 );
 
-let realCatalog: WorkspaceCatalogEntry[] = [];
-
-async function buildRealCatalog(): Promise<WorkspaceCatalogEntry[]> {
-  const files = await Promise.all(
-    Object.entries(yamlByRelativePath).map(async ([path, loader]) => ({
+/** Path-only catalog stub — avoids parsing ~1300 YAML files in beforeAll (CI hook timeout). */
+function catalogFromBundledPaths(): WorkspaceCatalogEntry[] {
+  return Object.keys(yamlByRelativePath)
+    .sort((a, b) => a.localeCompare(b))
+    .map(path => ({
       path,
-      content: await loader(),
-    }))
-  );
-  return buildWorkspaceCatalogFromYamlFiles(files, 'blueprints', {
-    onInvalid: () => undefined,
-  });
+      name:
+        path
+          .replace(/\.ya?ml$/, '')
+          .split('/')
+          .pop() || path,
+      level: path.includes('/containers')
+        ? ('container' as const)
+        : path.includes('/components')
+          ? ('component' as const)
+          : ('context' as const),
+      entityRef: path.replace(/\.ya?ml$/, ''),
+      nodeEntityRefs: [],
+    }));
 }
+
+let realCatalog: WorkspaceCatalogEntry[] = [];
 
 function installBundledBlueprintFetchStub(catalog: WorkspaceCatalogEntry[]) {
   vi.stubGlobal(
@@ -59,9 +68,10 @@ function installBundledBlueprintFetchStub(catalog: WorkspaceCatalogEntry[]) {
 }
 
 describe('BundledSampleWorkspaceAdapter', () => {
-  beforeAll(async () => {
+  beforeAll(() => {
     window.location.href = 'http://localhost:5188/';
-    realCatalog = await buildRealCatalog();
+    realCatalog = catalogFromBundledPaths();
+    expect(realCatalog.length).toBeGreaterThan(100);
     installBundledBlueprintFetchStub(realCatalog);
   });
 
@@ -69,13 +79,13 @@ describe('BundledSampleWorkspaceAdapter', () => {
     vi.resetModules();
   });
 
-  it('loads checked-in blueprints from the repo root', async () => {
-    const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
-    const files = await BundledSampleWorkspaceAdapter.readDirectoryFiles();
-    expect(files.length).toBeGreaterThan(100);
-    expect(files.some(f => f.name === GOLDEN_PATHS_CONTEXT_PATH)).toBe(true);
-    expect(files.some(f => f.name === 'blueprint/context.yaml')).toBe(true);
-    expect(files.some(f => f.name === 'backstage/context.yaml')).toBe(true);
+  it('exposes the checked-in blueprints catalog for navigation', async () => {
+    const { loadBundledWorkspaceCatalog } = await import('./bundledSampleWorkspace');
+    const catalog = await loadBundledWorkspaceCatalog();
+    expect(catalog.length).toBeGreaterThan(100);
+    expect(catalog.some(e => e.path === GOLDEN_PATHS_CONTEXT_PATH)).toBe(true);
+    expect(catalog.some(e => e.path === 'blueprint/context.yaml')).toBe(true);
+    expect(catalog.some(e => e.path === 'backstage/context.yaml')).toBe(true);
   });
 
   it('reads a single blueprint file by relative path', async () => {
