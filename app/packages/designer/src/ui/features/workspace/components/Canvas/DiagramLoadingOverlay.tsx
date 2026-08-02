@@ -12,6 +12,7 @@ export const DiagramLoadingOverlay: React.FC = () => {
       role="status"
       aria-live="polite"
       aria-busy="true"
+      data-testid="diagram-loading-overlay"
     >
       <div className="p-4 rounded-2xl bg-[#061125]/85 border border-[#00f0ff]/20 shadow-[0_0_30px_rgba(0,240,255,0.15)] flex flex-col items-center gap-3 min-w-[180px] max-w-[240px] text-center">
         <Loader2 className="w-8 h-8 animate-spin text-[#00f0ff]" aria-hidden />

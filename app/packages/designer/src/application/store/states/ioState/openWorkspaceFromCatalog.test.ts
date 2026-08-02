@@ -7,6 +7,13 @@ const v4 = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
 
 const catalog: WorkspaceCatalogEntry[] = [
   {
+    path: 'advicelens-stress/context.yaml',
+    name: 'AdviceLens Stress',
+    level: 'context',
+    entityRef: 'advicelens-stress',
+    nodeEntityRefs: [],
+  },
+  {
     path: 'golden-journey/context.yaml',
     name: 'Golden Paths',
     level: 'context',
