@@ -3,7 +3,7 @@ import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { useBlueprintStore } from '../store';
 import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
-import { GOLDEN_JOURNEY_CONTAINERS_PATH } from '../goldenPathsSample';
+import { GOLDEN_PATHS_CONTEXT_PATH } from '../goldenPathsSample';
 import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 
 describe('ioState Actions & State Management', () => {
@@ -344,14 +344,14 @@ nodes: []`,
     it('opens from prebuilt catalog and only reads the entry YAML', async () => {
       const catalog: WorkspaceCatalogEntry[] = [
         {
-          path: 'golden-journey/context.yaml',
+          path: GOLDEN_PATHS_CONTEXT_PATH,
           name: 'Golden Paths',
           level: 'context',
           entityRef: 'golden-paths',
           nodeEntityRefs: ['golden-paths/golden-journey'],
         },
         {
-          path: GOLDEN_JOURNEY_CONTAINERS_PATH,
+          path: 'golden-journey/containers.yaml',
           name: 'Golden Journey Estate',
           level: 'container',
           entityRef: 'golden-paths/golden-journey',
@@ -360,19 +360,19 @@ nodes: []`,
         },
       ];
       const readFile = vi.fn(async (path: string) => {
-        if (path !== GOLDEN_JOURNEY_CONTAINERS_PATH) {
+        if (path !== GOLDEN_PATHS_CONTEXT_PATH) {
           throw new Error(`unexpected read: ${path}`);
         }
         return `
 version: ${v3Version}
-level: container
+level: context
 metadata:
-  entityRef: golden-paths/golden-journey
-  name: Golden Journey Estate
+  entityRef: golden-paths
+  name: Golden Paths
 nodes:
-  - entityRef: golden-paths/golden-journey/web
-    type: web-app
-    name: Web
+  - entityRef: golden-paths/golden-journey
+    type: software-system
+    name: Golden Journey
 dependencies: []
 `;
       });
@@ -405,8 +405,8 @@ dependencies: []
       expect(state.isSampleWorkspace).toBe(true);
       expect(state.workspaceCatalog).toEqual(catalog);
       expect(state.loadedSystems).toHaveLength(1);
-      expect(state.currentFilePath).toBe(GOLDEN_JOURNEY_CONTAINERS_PATH);
-      expect(state.schema.name).toBe('Golden Journey Estate');
+      expect(state.currentFilePath).toBe(GOLDEN_PATHS_CONTEXT_PATH);
+      expect(state.schema.name).toBe('Golden Paths');
       expect(state.isLoading).toBe(false);
       expect(readFile).toHaveBeenCalledTimes(1);
       expect(samplePort.readDirectoryFiles).not.toHaveBeenCalled();

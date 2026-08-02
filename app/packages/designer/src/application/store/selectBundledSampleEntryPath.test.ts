@@ -7,7 +7,7 @@ import {
 } from './goldenPathsSample';
 
 describe('selectBundledSampleEntryPath', () => {
-  it('prefers golden-journey containers when present', () => {
+  it('prefers golden-paths context when present', () => {
     const catalog: WorkspaceCatalogEntry[] = [
       {
         path: GOLDEN_PATHS_CONTEXT_PATH,
@@ -31,7 +31,7 @@ describe('selectBundledSampleEntryPath', () => {
         nodeEntityRefs: [],
       },
     ];
-    expect(selectBundledSampleEntryPath(catalog)).toBe(GOLDEN_JOURNEY_CONTAINERS_PATH);
+    expect(selectBundledSampleEntryPath(catalog)).toBe(GOLDEN_PATHS_CONTEXT_PATH);
   });
 
   it('falls back to context then first entry', () => {
