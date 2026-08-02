@@ -120,6 +120,7 @@ export function useTraceLensSidePanelModel() {
     displayCounts,
     showTests,
     toggleShowTests,
+    contextLevelAlwaysShowExternals: schema.level === 'context',
     showUpstreamExternals,
     toggleShowUpstreamExternals,
     showDownstreamExternals,

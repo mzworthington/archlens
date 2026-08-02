@@ -1,4 +1,10 @@
-import type { EntityRef, LoadedSystemInput, SystemDependency, SystemSchema } from '@archlens/core';
+import type {
+  C4Level,
+  EntityRef,
+  LoadedSystemInput,
+  SystemDependency,
+  SystemSchema,
+} from '@archlens/core';
 import {
   buildWorkspaceEntityIndex,
   computeExternalSummaryEdgePairs,
@@ -14,6 +20,11 @@ import type { BlueprintRFEdge, BlueprintRFNode } from '../store/layoutUtils';
 import { dependencyArrowMarker, getClosestHandles } from '../store/layoutUtils';
 
 export const EXTERNAL_SUMMARY_HUB_EDGE_PREFIX = 'external-summary-';
+
+/** C4 context diagrams always show actors and external dependencies individually. */
+export function isContextLevelDiagram(level: C4Level | undefined): boolean {
+  return level === 'context';
+}
 
 export type ExternalSummaryDisplayInput = {
   nodes: BlueprintRFNode[];
@@ -34,7 +45,9 @@ export function shouldUseExternalSummaryMode(input: {
   expandedBand: ExternalSummaryBand | null;
   showCoupling: boolean;
   isResilienceMode: boolean;
+  level?: C4Level;
 }): boolean {
+  if (isContextLevelDiagram(input.level)) return false;
   if (input.showCoupling || input.isResilienceMode) return false;
   if (input.selectedNodeId) return false;
   return true;
@@ -97,13 +110,22 @@ export function resolveVisibleExternalEntityRefs(
     isResilienceMode,
   } = input;
 
+  // Context level is defined by actors + external dependencies — never collapse or hide them.
+  if (isContextLevelDiagram(schema.level)) return null;
+
   if (!input.showCallers && !input.showTargets) return new Set();
 
   // Coupling lens owns its own focus rules; do not apply external whitelist filtering.
   if (showCoupling) return null;
 
   if (
-    shouldUseExternalSummaryMode({ selectedNodeId, expandedBand, showCoupling, isResilienceMode })
+    shouldUseExternalSummaryMode({
+      selectedNodeId,
+      expandedBand,
+      showCoupling,
+      isResilienceMode,
+      level: schema.level,
+    })
   ) {
     if (!expandedBand) return new Set();
     const bands = resolveOverviewExternalBands(schema, loadedSystems);
@@ -188,6 +210,7 @@ export function buildExternalSummaryHubNodes(
       expandedBand: input.expandedBand,
       showCoupling: input.showCoupling,
       isResilienceMode: input.isResilienceMode,
+      level: input.schema.level,
     })
   ) {
     return [];

@@ -65,4 +65,23 @@ describe('externalNodeVisibility', () => {
   it('counts externals per direction', () => {
     expect(countExternalNodesByDirection(diagram)).toEqual({ upstream: 2, downstream: 2 });
   });
+
+  it('always shows external dependencies on C4 context diagrams', () => {
+    const contextDiagram = schema({
+      level: 'context',
+      nodes: [
+        { entityRef: 'a/system', name: 'System', type: 'software-system' },
+        { entityRef: 'a/downstream-ext', name: 'Downstream', type: 'component', external: true },
+        { entityRef: 'a/upstream-ext', name: 'Upstream', type: 'component', external: true },
+      ],
+      dependencies: [
+        { from: 'a/system', to: 'a/downstream-ext', type: 'direct-call' },
+        { from: 'a/upstream-ext', to: 'a/system', type: 'direct-call' },
+      ],
+    });
+
+    expect(isExternalNodeVisible('a/downstream-ext', contextDiagram, false, false)).toBe(true);
+    expect(isExternalNodeVisible('a/upstream-ext', contextDiagram, false, true)).toBe(true);
+    expect(isExternalNodeVisible('a/upstream-ext', contextDiagram, true, false)).toBe(true);
+  });
 });
