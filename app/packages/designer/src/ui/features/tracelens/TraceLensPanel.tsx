@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { EstateRecommendationsPanel } from '../forensics/EstateRecommendationsPanel';
 import { RefactorPlanSlideOver } from '../forensics/RefactorPlanSlideOver';
 import { WorkspaceSourceCodeDialog } from '../workspace/components/SourceCodeDialog/WorkspaceSourceCodeDialog';
+import { summarizeWorkspaceForensics } from '../../../application/forensics/summarizeWorkspaceForensics';
 import { EstateRankedRow } from './EstateRankedRow';
 import { TraceLensFilters } from './TraceLensFilters';
 import { TraceLensHero } from './TraceLensHero';
 import { TraceLensSegmented } from './TraceLensSegmented';
+import { WorkspaceComplexitySummary } from './WorkspaceComplexitySummary';
 import { useTraceLensActions } from './useTraceLensActions';
 import { useTraceLensPanelModel } from './useTraceLensPanelModel';
 import { TRACE_LENS_HERO } from '../../content/productOutcomes';
@@ -49,6 +51,11 @@ export const TraceLensPanel: React.FC = () => {
     simulateActivePlanFailure,
   } = actions;
 
+  const complexitySummary = useMemo(
+    () => summarizeWorkspaceForensics(loadedSystems),
+    [loadedSystems]
+  );
+
   return (
     <div className="flex-1 min-h-0 overflow-y-auto blueprint-grid text-slate-100">
       <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
@@ -65,6 +72,8 @@ export const TraceLensPanel: React.FC = () => {
               ]}
             />
           </div>
+
+          <WorkspaceComplexitySummary summary={complexitySummary} />
 
           {traceLensView === 'recommendations' ? (
             <EstateRecommendationsPanel
