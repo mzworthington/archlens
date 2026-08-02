@@ -60,8 +60,17 @@ export async function ensureSystemLoaded(
         { path, schema },
       ];
 
-      // Stub context when the context diagram is not yet cached so short refs still resolve.
-      const contextEntry = workspaceCatalog.find(e => e.level === 'context');
+      // Stub the parent context (not the first catalog context) so short refs resolve.
+      const contextEntry =
+        (catalogEntry?.parentEntityRef
+          ? workspaceCatalog.find(
+              e => e.level === 'context' && e.entityRef === catalogEntry.parentEntityRef
+            )
+          : undefined) ||
+        workspaceCatalog.find(
+          e => e.level === 'context' && path.startsWith(`${e.path.split('/')[0]}/`)
+        ) ||
+        workspaceCatalog.find(e => e.level === 'context');
       if (
         contextEntry &&
         !filesForResolve.some(f => f.path === contextEntry.path) &&
