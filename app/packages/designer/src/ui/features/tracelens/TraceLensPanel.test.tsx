@@ -65,6 +65,67 @@ describe('TraceLensPanel', () => {
     expect(screen.queryByTestId('simulate-failure-app/designer/ok')).not.toBeInTheDocument();
   });
 
+  it('shows workspace complexity summary for the loaded estate', () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'designer-components.yaml',
+          name: 'designer',
+          schema: {
+            name: 'Designer Components',
+            version: '1.0.0',
+            level: 'component',
+            dependencies: [{ from: 'app/designer/db', to: 'app/designer/ok', type: 'direct-call' }],
+            nodes: [
+              {
+                entityRef: 'app/designer/db',
+                name: 'DB Layer',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.85,
+                  complexity: 40,
+                  loc: 1200,
+                  sloc: 900,
+                  churn: 6,
+                  authorCount: 2,
+                  classifications: ['hotspot'],
+                  sinceDays: 90,
+                },
+              },
+              {
+                entityRef: 'app/designer/ok',
+                name: 'OK',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.05,
+                  complexity: 2,
+                  loc: 80,
+                  sloc: 60,
+                  classifications: [],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    const { hook } = memoryLocation({ path: '/workspace?lens=tracelens' });
+    render(
+      <Router hook={hook}>
+        <TraceLensPanel />
+      </Router>
+    );
+
+    const summary = screen.getByTestId('workspace-complexity-summary');
+    expect(summary).toBeInTheDocument();
+    expect(summary).toHaveTextContent('Workspace complexity');
+    expect(summary).toHaveTextContent('1,280');
+    expect(summary).toHaveTextContent('960');
+    expect(summary).toHaveTextContent('Max complexity');
+    expect(summary).toHaveTextContent('40');
+  });
+
   it('shows guidance when no blueprints are in scope', () => {
     useBlueprintStore.setState({
       loadedSystems: [],

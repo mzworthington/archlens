@@ -56,7 +56,9 @@ The **Schema** tab in the same panel shows YAML / JSON / Mermaid for the active 
 
 Open **`/tracelens`** (header badge **TRACELENS**) or use **View worst offenders** in the TraceLens tab.
 
-The page title is **TraceLens**, with tabs **TraceLens | AdviceLens**:
+The page title is **TraceLens**, with tabs **TraceLens | AdviceLens**.
+
+**Workspace complexity** (top of the page) summarizes the loaded estate: diagrams, nodes, dependencies, forensics file coverage, LOC/SLOC, max/avg complexity, hotspot and knowledge-silo counts. Totals come from TraceLens blocks on blueprint nodes (re-scan with git enabled if they are missing).
 
 | Tab            | Content                                                                                                                                                                                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
