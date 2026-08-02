@@ -4,6 +4,7 @@ import { hasSessionLayout, schemaLayoutFingerprint } from './sessionLayoutCache'
 
 export const DIAGRAM_LOADING_MESSAGE = 'Loading diagram...';
 export const DIAGRAM_LAYOUT_MESSAGE = 'Arranging diagram...';
+export const SANDBOX_LOADING_MESSAGE = 'Loading sandbox...';
 
 export type DiagramLoadStoreSlice = {
   diagramLoadCount: number;

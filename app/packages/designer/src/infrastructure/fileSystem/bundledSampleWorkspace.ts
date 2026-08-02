@@ -1,8 +1,13 @@
+import { parseWorkspaceCatalogJson, type WorkspaceCatalogEntry } from '@archlens/core';
 import type { WorkspacePort } from '../../core';
 import {
   BUNDLED_WORKSPACE_NAME,
   GOLDEN_PATHS_CONTEXT_PATH,
 } from '../../application/store/goldenPathsSample';
+
+/** Cap parallel blueprint downloads so browsers/GitHub Pages don't drop connections. */
+export const BUNDLED_BLUEPRINT_FETCH_CONCURRENCY = 24;
+const FETCH_ATTEMPTS = 3;
 
 function bundledAssetUrl(relativePath: string): string {
   const base = import.meta.env.BASE_URL || '/';
@@ -10,34 +15,113 @@ function bundledAssetUrl(relativePath: string): string {
   return new URL(assetPath, window.location.origin).toString();
 }
 
-let manifestPromise: Promise<string[]> | null = null;
+let catalogPromise: Promise<WorkspaceCatalogEntry[]> | null = null;
 
-async function loadManifest(): Promise<string[]> {
-  if (!manifestPromise) {
-    manifestPromise = fetch(bundledAssetUrl('manifest.json')).then(async response => {
-      if (!response.ok) {
-        throw new Error(`Failed to load bundled blueprints manifest (${response.status})`);
-      }
-      const manifest = (await response.json()) as string[];
-      if (!Array.isArray(manifest) || manifest.length === 0) {
-        throw new Error('Bundled blueprints manifest is empty');
-      }
-      return manifest;
-    });
+function isTransientNetworkError(error: unknown): boolean {
+  if (!(error instanceof Error)) return false;
+  return /failed to fetch|networkerror|load failed|network request failed/i.test(error.message);
+}
+
+function sandboxFetchError(error: unknown, context: string): Error {
+  if (error instanceof Error && isTransientNetworkError(error)) {
+    return new Error(
+      `Failed to fetch sandbox blueprints (${error.message}). ${context} Check your network connection and retry.`
+    );
   }
-  return manifestPromise;
+  return error instanceof Error ? error : new Error(String(error));
+}
+
+async function sleep(ms: number): Promise<void> {
+  await new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function fetchResponseWithRetry(url: string, attempts = FETCH_ATTEMPTS): Promise<Response> {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url);
+      if (
+        response.ok ||
+        (response.status >= 400 && response.status < 500 && response.status !== 429)
+      ) {
+        return response;
+      }
+      lastError = new Error(`HTTP ${response.status}`);
+    } catch (error) {
+      lastError = error;
+    }
+
+    const retryable =
+      isTransientNetworkError(lastError) ||
+      /HTTP (429|5\d\d)/.test(String(lastError instanceof Error ? lastError.message : lastError));
+    if (!retryable || attempt === attempts) break;
+    await sleep(50 * attempt);
+  }
+  throw sandboxFetchError(
+    lastError,
+    'The demo loads catalog metadata and individual YAML files from /bundled-blueprints/.'
+  );
+}
+
+async function mapPool<T, R>(
+  items: readonly T[],
+  concurrency: number,
+  mapper: (item: T) => Promise<R>
+): Promise<R[]> {
+  if (items.length === 0) return [];
+  const results = new Array<R>(items.length);
+  let nextIndex = 0;
+
+  async function worker(): Promise<void> {
+    while (nextIndex < items.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      results[index] = await mapper(items[index]!);
+    }
+  }
+
+  const workerCount = Math.min(concurrency, items.length);
+  await Promise.all(Array.from({ length: workerCount }, () => worker()));
+  return results;
+}
+
+/** Fetch and cache the prebuilt navigation catalog for the bundled demo workspace. */
+export async function loadBundledWorkspaceCatalog(): Promise<WorkspaceCatalogEntry[]> {
+  if (!catalogPromise) {
+    catalogPromise = (async () => {
+      try {
+        const response = await fetchResponseWithRetry(bundledAssetUrl('catalog.json'));
+        if (!response.ok) {
+          throw new Error(`Failed to load bundled blueprints catalog (${response.status})`);
+        }
+        return parseWorkspaceCatalogJson(await response.json());
+      } catch (error) {
+        catalogPromise = null;
+        throw sandboxFetchError(
+          error,
+          'The demo loads catalog metadata and individual YAML files from /bundled-blueprints/.'
+        );
+      }
+    })();
+  }
+  return catalogPromise;
+}
+
+async function allowedBlueprintPaths(): Promise<Set<string>> {
+  const catalog = await loadBundledWorkspaceCatalog();
+  return new Set(catalog.map(entry => entry.path));
 }
 
 async function fetchBlueprintContent(relativePath: string): Promise<string> {
-  const manifest = await loadManifest();
   const normalized = relativePath.replace(/\\/g, '/').replace(/^\.\//, '');
-  if (!manifest.includes(normalized)) {
+  const allowed = await allowedBlueprintPaths();
+  if (!allowed.has(normalized)) {
     throw new Error(
       `Bundled workspace only contains blueprint YAML files (missing: ${normalized})`
     );
   }
 
-  const response = await fetch(bundledAssetUrl(normalized));
+  const response = await fetchResponseWithRetry(bundledAssetUrl(normalized));
   if (!response.ok) {
     throw new Error(`Bundled blueprint not found: ${normalized} (${response.status})`);
   }
@@ -46,7 +130,7 @@ async function fetchBlueprintContent(relativePath: string): Promise<string> {
 
 /**
  * Read-only workspace over repo `blueprints/` mirrored to `public/bundled-blueprints/`
- * at build/dev start. Served as static assets (no Vite HMR on YAML imports).
+ * at build/dev start. Navigation uses prebuilt `catalog.json`; YAML is fetched on demand.
  */
 export const BundledSampleWorkspaceAdapter: WorkspacePort = {
   selectDirectory: async () => true,
@@ -55,13 +139,15 @@ export const BundledSampleWorkspaceAdapter: WorkspacePort = {
   getDirectoryName: () => BUNDLED_WORKSPACE_NAME,
   hasPermission: async () => false,
   readDirectoryFiles: async (): Promise<Array<{ name: string; content: string }>> => {
-    const manifest = await loadManifest();
-    const entries = await Promise.all(
-      manifest.map(async name => ({
-        name,
-        content: await fetchBlueprintContent(name),
-      }))
+    const catalog = await loadBundledWorkspaceCatalog();
+    const paths = catalog.map(entry => entry.path);
+    const contents = await mapPool(paths, BUNDLED_BLUEPRINT_FETCH_CONCURRENCY, async name =>
+      fetchBlueprintContent(name)
     );
+    const entries = paths.map((name, index) => ({
+      name,
+      content: contents[index]!,
+    }));
     return entries.sort((a, b) => a.name.localeCompare(b.name));
   },
 };

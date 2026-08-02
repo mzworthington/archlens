@@ -37,4 +37,18 @@ describe('StartupWorkspaceDialog', () => {
     expect(onOpenSample).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
   });
+
+  it('surfaces sandbox loading feedback while open is in progress', () => {
+    render(
+      <StartupWorkspaceDialog
+        isOpen
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        loadingMessage="Loading sandbox..."
+      />
+    );
+
+    expect(screen.getByTestId('workspace-entry-loading')).toHaveTextContent(/Loading sandbox/i);
+    expect(screen.getByTestId('workspace-open-sample')).toBeDisabled();
+  });
 });
