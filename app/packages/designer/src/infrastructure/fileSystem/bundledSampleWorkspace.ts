@@ -4,9 +4,12 @@ import {
   BUNDLED_WORKSPACE_NAME,
   GOLDEN_PATHS_CONTEXT_PATH,
 } from '../../application/store/goldenPathsSample';
+import { listBundledPreloadPaths } from '../../application/store/bundledSamplePreload';
 
 /** Cap parallel blueprint downloads so browsers/GitHub Pages don't drop connections. */
 export const BUNDLED_BLUEPRINT_FETCH_CONCURRENCY = 24;
+/** Keep idle warm gentle so it does not contend with the first user navigation. */
+export const BUNDLED_PRELOAD_FETCH_CONCURRENCY = 4;
 const FETCH_ATTEMPTS = 3;
 
 function bundledAssetUrl(relativePath: string): string {
@@ -126,6 +129,37 @@ async function fetchBlueprintContent(relativePath: string): Promise<string> {
     throw new Error(`Bundled blueprint not found: ${normalized} (${response.status})`);
   }
   return response.text();
+}
+
+/**
+ * Prefetch demo YAML bodies into HTTP/SW CacheFirst without parsing them.
+ * Failures are ignored — ad-hoc `readFile` remains the source of truth.
+ */
+export async function warmBundledBlueprintBodies(paths: readonly string[]): Promise<void> {
+  if (paths.length === 0) return;
+  await mapPool(paths, BUNDLED_PRELOAD_FETCH_CONCURRENCY, async relativePath => {
+    try {
+      await fetchResponseWithRetry(bundledAssetUrl(relativePath));
+    } catch {
+      // Best-effort warm; open/navigation fetch will surface real errors.
+    }
+  });
+}
+
+/** After sandbox open: idle-warm golden + stress YAML; rest of catalog stays on demand. */
+export function scheduleBundledBlueprintPreload(catalog: readonly WorkspaceCatalogEntry[]): void {
+  const paths = listBundledPreloadPaths(catalog);
+  if (paths.length === 0) return;
+
+  const run = () => {
+    void warmBundledBlueprintBodies(paths);
+  };
+
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(run, { timeout: 2_000 });
+    return;
+  }
+  setTimeout(run, 0);
 }
 
 /**
