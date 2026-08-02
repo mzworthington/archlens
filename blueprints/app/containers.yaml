@@ -17,6 +17,8 @@ nodes:
       complexity: 32
       complexityPeak: 32
       cognitiveComplexity: 365
+      loc: 1825
+      sloc: 1511
       churn: 436
       lineChurn: 20799
       churn30: 436
@@ -81,12 +83,12 @@ nodes:
         - email: matt@siliconpanda.com
           commits: 436
       hotspotScore: 0.08109709934892172
-      classifications:
-        - knowledge-silo
-      sinceDays: 365
       fileCount: 28
       hotspotCount: 0
       knowledgeSiloCount: 5
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
   - entityRef: blueprint/app/cli
     type: container
     name: Cli Service
@@ -95,6 +97,8 @@ nodes:
       complexity: 64
       complexityPeak: 64
       cognitiveComplexity: 1467
+      loc: 41
+      sloc: 30
       churn: 482
       lineChurn: 24788
       churn30: 482
@@ -159,6 +163,9 @@ nodes:
         - email: matt@siliconpanda.com
           commits: 482
       hotspotScore: 0.1927710843373494
+      fileCount: 12
+      hotspotCount: 0
+      knowledgeSiloCount: 7
       classifications:
         - knowledge-silo
       coupledFiles:
@@ -175,9 +182,6 @@ nodes:
           score: 0.75
           sharedCommits: 6
       sinceDays: 365
-      fileCount: 12
-      hotspotCount: 0
-      knowledgeSiloCount: 7
   - entityRef: blueprint/app/designer
     type: container
     name: Designer Service
@@ -186,6 +190,8 @@ nodes:
       complexity: 83
       complexityPeak: 83
       cognitiveComplexity: 2360
+      loc: 995
+      sloc: 825
       churn: 1468
       lineChurn: 57432
       churn30: 1468
@@ -250,6 +256,9 @@ nodes:
         - email: matt@siliconpanda.com
           commits: 1468
       hotspotScore: 0.39245960502693
+      fileCount: 65
+      hotspotCount: 0
+      knowledgeSiloCount: 18
       classifications:
         - knowledge-silo
       coupledFiles:
@@ -270,9 +279,6 @@ nodes:
           score: 0.8
           sharedCommits: 8
       sinceDays: 365
-      fileCount: 65
-      hotspotCount: 0
-      knowledgeSiloCount: 18
   - entityRef: blueprint/app/reporters
     type: container
     name: Reporters Service
@@ -281,6 +287,8 @@ nodes:
       complexity: 4
       complexityPeak: 4
       cognitiveComplexity: 6
+      loc: 189
+      sloc: 150
       churn: 6
       lineChurn: 390
       churn30: 6
@@ -345,10 +353,10 @@ nodes:
         - email: matt@siliconpanda.com
           commits: 6
       hotspotScore: 0.0042914927213341695
-      sinceDays: 365
       fileCount: 2
       hotspotCount: 0
       knowledgeSiloCount: 0
+      sinceDays: 365
   - entityRef: blueprint/app/cli/analysis/adapters/parsing
     type: background-worker
     name: Parsing (External)

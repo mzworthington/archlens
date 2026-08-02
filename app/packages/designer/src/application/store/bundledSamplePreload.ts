@@ -2,9 +2,12 @@
  * Demo diagrams to warm after sandbox open (and SW-precache at build).
  * Full catalog peers stay available; non-matching YAML stays fetch-on-demand.
  *
- * There is no archlens-/tracelens-stress estate — TraceLens runs on golden-journey.
+ * Includes ArchLens product context (`blueprint/`) plus golden-journey and the
+ * ChaosLens / AdviceLens stress estates. TraceLens demos use golden-journey;
+ * there is no separate tracelens-stress tree.
  */
 export const BUNDLED_PRELOAD_PREFIXES = [
+  'blueprint/',
   'golden-journey/',
   'chaoslens-stress/',
   'advicelens-stress/',
