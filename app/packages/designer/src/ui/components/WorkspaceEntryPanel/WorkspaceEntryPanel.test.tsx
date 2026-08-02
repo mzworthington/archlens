@@ -35,4 +35,26 @@ describe('WorkspaceEntryPanel', () => {
     expect(onOpenSample).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
   });
+
+  it('shows loading feedback and disables actions while sandbox opens', () => {
+    const onOpenSample = vi.fn();
+    const onOpenDirectory = vi.fn();
+
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={onOpenSample}
+        onOpenDirectory={onOpenDirectory}
+        loadingMessage="Loading sandbox..."
+      />
+    );
+
+    expect(screen.getByTestId('workspace-entry-loading')).toHaveTextContent(/Loading sandbox/i);
+    expect(screen.getByTestId('workspace-open-sample')).toBeDisabled();
+    expect(screen.getByTestId('workspace-open-directory')).toBeDisabled();
+
+    fireEvent.click(screen.getByTestId('workspace-open-sample'));
+    fireEvent.click(screen.getByTestId('workspace-open-directory'));
+    expect(onOpenSample).not.toHaveBeenCalled();
+    expect(onOpenDirectory).not.toHaveBeenCalled();
+  });
 });

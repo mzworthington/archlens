@@ -387,11 +387,15 @@ dependencies: []
 
       const loadCatalog = vi
         .spyOn(bundledSampleWorkspace, 'loadBundledWorkspaceCatalog')
-        .mockResolvedValue(catalog);
+        .mockImplementation(async () => {
+          expect(useBlueprintStore.getState().isLoading).toBe('Loading sandbox...');
+          return catalog;
+        });
 
       useBlueprintStore.setState({
         sampleWorkspacePort: samplePort,
         workspacePort: samplePort,
+        isLoading: false,
       });
 
       const success = await useBlueprintStore.getState().openBundledSample();
@@ -403,6 +407,7 @@ dependencies: []
       expect(state.loadedSystems).toHaveLength(1);
       expect(state.currentFilePath).toBe(GOLDEN_JOURNEY_CONTAINERS_PATH);
       expect(state.schema.name).toBe('Golden Journey Estate');
+      expect(state.isLoading).toBe(false);
       expect(readFile).toHaveBeenCalledTimes(1);
       expect(samplePort.readDirectoryFiles).not.toHaveBeenCalled();
       expect(loadCatalog).toHaveBeenCalledTimes(1);

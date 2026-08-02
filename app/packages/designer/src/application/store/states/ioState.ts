@@ -19,6 +19,7 @@ import {
 import { loadWorkspaceFromCatalog, loadWorkspaceFromDirectory } from './ioState/openWorkspace';
 import { selectBundledSampleEntryPath } from '../goldenPathsSample';
 import { loadBundledWorkspaceCatalog } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
+import { SANDBOX_LOADING_MESSAGE } from '../diagramLoadSession';
 
 export interface IoState {
   fileSystemPort: FileSystemPort;
@@ -187,7 +188,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       initSchema,
       setIsLoading,
     } = get();
-    setIsLoading(true);
+    setIsLoading(SANDBOX_LOADING_MESSAGE);
     try {
       set({ workspacePort: sampleWorkspacePort, isSampleWorkspace: true });
       const catalog = await loadBundledWorkspaceCatalog();

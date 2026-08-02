@@ -34,6 +34,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setIsShortcutsOpen,
     childExternalsParentRef,
     isSourceCodeOpen,
+    isLoading,
     openWorkspaceDirectory,
     openBundledSample,
   } = useBlueprintStore();
@@ -82,6 +83,9 @@ export function useWorkspaceDialogs(): React.ReactNode {
           isOpen={isStartupOpen}
           onOpenSample={() => void handleOpenSample()}
           onOpenDirectory={() => void handleOpenDirectory()}
+          loadingMessage={
+            typeof isLoading === 'string' ? isLoading : isLoading ? 'Loading...' : null
+          }
         />
       ) : null}
       <LazyMountOnOpen isOpen={isCompareOpen}>
