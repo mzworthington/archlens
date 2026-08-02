@@ -82,6 +82,8 @@ export function isExternalNodeVisible(
     n => n.entityRef === entityRef || n.entityRef.endsWith('/' + entityRef)
   );
   if (!node?.external) return true;
+  // C4 context diagrams always surface external dependencies alongside actors.
+  if (schema.level === 'context') return true;
   return shouldShowExternalNode(
     classifyExternalNode(entityRef, schema),
     showUpstreamExternals,
