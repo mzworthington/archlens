@@ -1,12 +1,12 @@
 /**
- * Public JSON Schema hosting for ChaosSpec YAML (GitHub Pages / custom domain).
+ * Public JSON Schema hosting for ChaosSpec YAML (Cloudflare Pages / archlens.dev).
  * Bump {@link CHAOS_SCHEMA_MAJOR_VERSION} only for breaking contract changes.
  */
 export const CHAOS_SCHEMA_MAJOR_VERSION = 1;
 
 export const CHAOS_SCHEMA_PUBLIC_ORIGIN = 'https://archlens.dev';
 
-/** Canonical $id / docs URL (GitHub Pages). */
+/** Canonical $id / docs URL (archlens.dev). */
 export function chaosSchemaPublicUrl(
   channel: 'latest' | `v${number}` = `v${CHAOS_SCHEMA_MAJOR_VERSION}`
 ): string {

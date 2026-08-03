@@ -45,7 +45,7 @@ pnpm --filter @archlens/core generate:schema
 
 Writes `schemas/blueprint.schema.json` plus `schemas/v{n}/` and `schemas/latest/` copies at the repo root. Use `-- --check` in CI and pre-commit to fail if files are stale.
 
-Public URLs (after GitHub Pages deploy):
+Public URLs (after Cloudflare Pages deploy):
 
 - https://archlens.dev/schemas/v4/blueprint.schema.json
 - https://archlens.dev/schemas/latest/blueprint.schema.json
