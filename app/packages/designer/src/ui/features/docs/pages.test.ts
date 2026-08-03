@@ -9,6 +9,7 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('./schema.md', 'guide')).toBe('/guide/schema');
     expect(resolveDocsHref('../setup.md', 'guide')).toBe('/setup');
     expect(resolveDocsHref('./advicelens.md', 'guide')).toBe('/guide/advicelens');
+    expect(resolveDocsHref('../tech-stack.md', 'guide')).toBe('/tech-stack');
     expect(resolveDocsHref('../advicelens-engine.md', 'guide')).toBe('/advicelens-engine');
   });
 
@@ -46,6 +47,10 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('/guide/', '')).toBe('/guide');
     expect(resolveDocsHref('/setup', '')).toBe('/setup');
     expect(resolveDocsHref('/chaoslens-engine', '')).toBe('/chaoslens-engine');
+  });
+
+  it('registers the technology stack reference page', () => {
+    expect(DOCS_PAGES.some(p => p.path === '/tech-stack')).toBe(true);
   });
 
   it('registers the AdviceLens engine reference page', () => {

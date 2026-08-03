@@ -43,6 +43,7 @@ For building ArchLens or extending the engine - still Markdown in this repo:
 
 - [Design system](../design-system.md) - visual assets & identity sandbox
 - [Setup & local development](../setup.md)
+- [Technology stack](../tech-stack.md) — React, Pulumi, Cloudflare, CI, and toolchain
 - [ChaosLens engine](../chaoslens-engine.md) - Go/WASM core, local build, contributor API
 - [AdviceLens engine](../advicelens-engine.md) - recommendation pipeline, estate runner, narration contract
 - [Architecture & security](../architecture.md)

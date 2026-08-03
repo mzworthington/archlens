@@ -2,6 +2,8 @@
 
 Contributor reference: local toolchain, package install, dev server, builds, and quality commands.
 
+For an overview of frameworks and infrastructure (React, Pulumi, Cloudflare, etc.), see [Technology stack](./tech-stack.md).
+
 For **using** ArchLens (install CLI, scan a repo, open canvas), see the [Product guide](./guide/) - especially [Getting started](./guide/getting-started.md).
 
 ---
