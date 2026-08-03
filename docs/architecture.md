@@ -2,6 +2,8 @@
 
 Contributor reference: high-level system architecture, dependency flow, module responsibilities, and validation boundaries.
 
+Hard-to-reverse design choices are recorded as sparse MADRs under [Architecture Decision Records](./ADRs/README.md).
+
 For using ArchLens products, start with the [Product guide](./guide/index.md).
 
 ---
