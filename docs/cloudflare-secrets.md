@@ -51,6 +51,22 @@ Create at [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/p
 
 Push to `main` — CI builds and `wrangler pages deploy` publishes.
 
+## Cutover checklist (fix sandbox 404s)
+
+If the app loads but `/bundled-blueprints/*` returns 404, the custom domain is probably still on **GitHub Pages**:
+
+```bash
+curl -sI https://archlens.dev/ | grep -i x-github-request-id   # should be empty
+curl -sI https://archlens.dev/bundled-blueprints/catalog.json  # should be HTTP 200
+```
+
+1. **GitHub repo → Settings → Pages** — remove `archlens.dev` custom domain; disable GitHub Pages
+2. **`cd infra/cloudflare && pulumi up`** — attaches apex + `www` to the Cloudflare Pages project
+3. **Cloudflare DNS** — apex/`www` should point at Pages (Pulumi `PagesDomain` + active zone)
+4. Re-test `https://archlens.dev/bundled-blueprints/catalog.json` (200) before relying on sandbox
+
+Until cutover completes, the Cloudflare deploy URL (e.g. `archlens-ek7.pages.dev`) serves the full build including sandbox assets.
+
 ## Optional env overrides
 
 ```bash
