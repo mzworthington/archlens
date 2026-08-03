@@ -1,5 +1,6 @@
 import setupMd from '@docs/setup.md?raw';
 import architectureMd from '@docs/architecture.md?raw';
+import techStackMd from '@docs/tech-stack.md?raw';
 import featuresUnitMd from '@docs/features-unit.md?raw';
 import guideIndexMd from '@docs/guide/index.md?raw';
 import guideGettingStartedMd from '@docs/guide/getting-started.md?raw';
@@ -69,6 +70,7 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
     items: [
       { label: 'Design system', path: '/design-system' },
       { label: 'Setup & local development', path: '/setup' },
+      { label: 'Technology stack', path: '/tech-stack' },
       { label: 'ChaosLens engine', path: '/chaoslens-engine' },
       { label: 'AdviceLens engine', path: '/advicelens-engine' },
       { label: 'Architecture & security', path: '/architecture' },
@@ -149,6 +151,13 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     path: '/setup',
     title: 'Setup & local development',
     markdown: setupMd,
+    dir: '',
+    group: 'reference',
+  },
+  {
+    path: '/tech-stack',
+    title: 'Technology stack',
+    markdown: techStackMd,
     dir: '',
     group: 'reference',
   },
