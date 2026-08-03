@@ -120,5 +120,28 @@ pulumi config set accountId "$CLOUDFLARE_ACCOUNT_ID"
 pulumi config set zoneId "$CLOUDFLARE_ZONE_ID"
 pulumi config set --secret cloudflare:apiToken "$CLOUDFLARE_API_TOKEN"
 
+echo "→ Custom domain routing"
+DOMAIN_HEADERS=$(curl -sSI "https://${DOMAIN}/" 2>/dev/null | tr -d '\r' || true)
+if echo "$DOMAIN_HEADERS" | grep -qi 'x-github-request-id'; then
+  echo "  ⚠ ${DOMAIN} still serves from GitHub Pages"
+  echo "    Fix: GitHub repo → Settings → Pages → remove custom domain; disable GitHub Pages"
+  echo "    Then: cd infra/cloudflare && pulumi up (attaches domain to Cloudflare Pages)"
+elif echo "$DOMAIN_HEADERS" | grep -qi '^HTTP/.* 404'; then
+  echo "  ⚠ ${DOMAIN} returns 404 — run pulumi up and confirm Pages custom domain + DNS"
+elif echo "$DOMAIN_HEADERS" | grep -qi '^HTTP/.* 200'; then
+  echo "  ${DOMAIN} ok (Cloudflare Pages)"
+else
+  echo "  Could not verify ${DOMAIN} (check DNS / Pages custom domain)"
+fi
+
+SANDBOX_CHECK=$(curl -sSI "https://${DOMAIN}/bundled-blueprints/catalog.json" 2>/dev/null | tr -d '\r' || true)
+if echo "$SANDBOX_CHECK" | grep -qi '^HTTP/.* 200'; then
+  echo "  Sandbox catalog ok at /bundled-blueprints/catalog.json"
+elif echo "$SANDBOX_CHECK" | grep -qi 'x-github-request-id'; then
+  echo "  Sandbox assets missing — domain still on GitHub Pages (see above)"
+else
+  echo "  Sandbox catalog not reachable yet — confirm latest CI deploy finished"
+fi
+
 echo "Done. Run 'cd infra/cloudflare && pulumi up' or merge to main (CI runs pulumi + deploy)."
 EOF

@@ -6,7 +6,7 @@ import {
 } from '../../application/store/goldenPathsSample';
 import { listBundledPreloadPaths } from '../../application/store/bundledSamplePreload';
 
-/** Cap parallel blueprint downloads so browsers/GitHub Pages don't drop connections. */
+/** Cap parallel blueprint downloads so browsers do not saturate the CDN connection pool. */
 export const BUNDLED_BLUEPRINT_FETCH_CONCURRENCY = 24;
 /** Keep idle warm gentle so it does not contend with the first user navigation. */
 export const BUNDLED_PRELOAD_FETCH_CONCURRENCY = 4;
