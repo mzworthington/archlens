@@ -12,5 +12,6 @@ Sparse [MADR](https://adr.github.io/madr/)-style records for choices that are **
 | [0006](./0006-import-as-merge-into-active-diagram.md)              | Import external diagrams as merge into the active diagram  | Accepted | 2026-08-03 |
 | [0007](./0007-shared-archlens-core-as-published-language.md)       | Shared `@archlens/core` as published language              | Accepted | 2026-08-03 |
 | [0008](./0008-workspace-external-proxy-nodes.md)                   | Workspace external proxy nodes for cross-diagram endpoints | Accepted | 2026-08-03 |
+| [0009](./0009-cloudflare-pages-static-hosting.md)                  | Cloudflare Pages static hosting with Pulumi and Wrangler   | Accepted | 2026-08-03 |
 
 New ADRs: copy the kit template (`~/.agents/templates/adr.md`) to `docs/ADRs/NNNN-short-title.md`. Prefer not adding an ADR unless the gate in `agent-adr` applies.

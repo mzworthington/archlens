@@ -9,12 +9,10 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
   pull-requests: write
 
 concurrency:
-  group: 'pages'
+  group: deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -216,23 +214,37 @@ jobs:
         run: pnpm build
         working-directory: app
 
-      - name: Upload Pages Artifact
+      - name: Upload designer dist
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
-          path: './app/packages/designer/dist'
+          name: designer-dist
+          path: app/packages/designer/dist
+          retention-days: 1
 
-  deploy:
+  deploy-cloudflare:
     needs: [build, e2e]
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: production
+      url: https://archlens.dev
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Download designer dist
+        uses: actions/download-artifact@v8
+        with:
+          name: designer-dist
+          path: app/packages/designer/dist
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy app/packages/designer/dist --project-name=archlens --branch=main
 
   check-release:
     needs: [build, e2e]

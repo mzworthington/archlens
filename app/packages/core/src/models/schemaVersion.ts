@@ -1,12 +1,12 @@
 /**
- * Public JSON Schema hosting for blueprint YAML (GitHub Pages / custom domain).
+ * Public JSON Schema hosting for blueprint YAML (Cloudflare Pages / archlens.dev).
  * Bump {@link SYSTEM_SCHEMA_MAJOR_VERSION} only for breaking contract changes.
  */
 export const SYSTEM_SCHEMA_MAJOR_VERSION = 4;
 
 export const SYSTEM_SCHEMA_PUBLIC_ORIGIN = 'https://archlens.dev';
 
-/** Canonical $id / docs URL (GitHub Pages). */
+/** Canonical $id / docs URL (archlens.dev). */
 export function systemSchemaPublicUrl(
   channel: 'latest' | `v${number}` = `v${SYSTEM_SCHEMA_MAJOR_VERSION}`
 ): string {

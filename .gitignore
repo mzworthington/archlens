@@ -45,7 +45,13 @@ app/packages/designer/public/tree-sitter/
 *.sw?
 *.tsbuildinfo
 
-# Playwright
+# Pulumi (infra/cloudflare)
+infra/cloudflare/node_modules/
+infra/cloudflare/bin/
+infra/cloudflare/.pulumi/
+# Stack config may contain account IDs and encrypted API tokens after bootstrap
+infra/cloudflare/Pulumi.prod.yaml
+
 playwright-report/
 test-results/
 lighthouse-report/
