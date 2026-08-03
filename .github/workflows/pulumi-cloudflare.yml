@@ -42,6 +42,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Setup Pulumi CLI
+        uses: pulumi/setup-pulumi@v2
+
+      - name: Configure Pulumi stack
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          pulumi stack select prod 2>/dev/null || pulumi stack init prod
+          pulumi config set accountId "$CLOUDFLARE_ACCOUNT_ID"
+          pulumi config set zoneId "$CLOUDFLARE_ZONE_ID"
+          pulumi config set --secret cloudflare:apiToken "$CLOUDFLARE_API_TOKEN"
+
       - name: Pulumi preview
         if: github.event_name == 'pull_request'
         uses: pulumi/actions@v6

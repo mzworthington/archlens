@@ -34,7 +34,7 @@ After bootstrap, apply infra locally (`cd infra/cloudflare && pulumi up`) or mer
 | ----------------------- | -------------------------------------------------------- |
 | `CLOUDFLARE_API_TOKEN`  | GitHub Actions (wrangler) + Pulumi                       |
 | `CLOUDFLARE_ACCOUNT_ID` | GitHub Actions + Pulumi (auto-resolved if missing)       |
-| `CLOUDFLARE_ZONE_ID`    | Pulumi (auto-resolved if missing)                        |
+| `CLOUDFLARE_ZONE_ID`    | GitHub Actions + Pulumi (auto-resolved if missing)       |
 | `PULUMI_ACCESS_TOKEN`   | GitHub Actions (pulumi workflow; auto-minted if missing) |
 
 ## Cloudflare API token
