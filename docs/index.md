@@ -14,6 +14,7 @@ Product docs are Markdown in this folder. The designer app renders them at:
 | `/advicelens`                          | AdviceLens recommendations (live app; opens TraceLens tab) |
 | `/workspace`                           | ArchLens Canvas (live app)                                 |
 | `/setup`, `/architecture`, `/journeys` | Contributor reference                                      |
+| [ADRs](./ADRs/README.md)               | Architecture Decision Records (sparse MADR)                |
 | `/chaoslens-engine`                    | ChaosLens engine (contributors)                            |
 | `/advicelens-engine`                   | AdviceLens engine (contributors)                           |
 | `/features-unit`                       | Generated unit test feature report                         |
