@@ -39,6 +39,10 @@ Sleep 1.5s
 Enter
 Sleep 900ms
 
+# Optional software system name - leave blank
+Enter
+Sleep 900ms
+
 # Rollup confirm - accept initialValue (false / No)
 Enter
 Sleep 900ms
