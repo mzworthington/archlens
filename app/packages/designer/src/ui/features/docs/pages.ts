@@ -10,6 +10,7 @@ import guideTraceLensMd from '@docs/guide/tracelens.md?raw';
 import guideChaosLensMd from '@docs/guide/chaoslens.md?raw';
 import guideAdviceLensMd from '@docs/guide/advicelens.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
+import guideChaosSpecMd from '@docs/guide/chaos-spec.md?raw';
 import guideCiWorkflowsMd from '@docs/guide/ci-workflows.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 import advicelensEngineMd from '@docs/advicelens-engine.md?raw';
@@ -59,6 +60,7 @@ const SURFACES_PATH_PREFIXES = [
   '/guide/chaoslens',
   '/guide/advicelens',
   '/guide/schema',
+  '/guide/chaos-spec',
 ];
 
 const TECH_PATH_PREFIXES = [
@@ -99,6 +101,7 @@ export const DOCS_SIDEBAR: DocsSidebarSection[] = [
       { label: 'ChaosLens', path: '/guide/chaoslens' },
       { label: 'AdviceLens', path: '/guide/advicelens' },
       { label: 'BlueprintSpec', path: '/guide/schema' },
+      { label: 'ChaosSpec', path: '/guide/chaos-spec' },
     ],
   },
   {
@@ -190,6 +193,18 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     productAction: {
       label: 'View BlueprintSpec JSON',
       href: '/schemas/latest/blueprint.schema.json',
+      external: true,
+    },
+  },
+  {
+    path: '/guide/chaos-spec',
+    title: 'ChaosSpec',
+    markdown: guideChaosSpecMd,
+    dir: 'guide',
+    group: 'guide',
+    productAction: {
+      label: 'View ChaosSpec JSON',
+      href: '/schemas/latest/chaos.schema.json',
       external: true,
     },
   },

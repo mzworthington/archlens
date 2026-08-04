@@ -84,7 +84,7 @@ Gate flags:
 | `--format=text\|json\|yaml` | `text`  | Human summary, or structured JSON/YAML artifact                |
 | `--output=<file>`           | unset   | Write the structured artifact to disk (CI-friendly)            |
 
-Optional chaos specs in `chaos-specs/*.yaml` extend the default scenario set (region outage sweep, high fan-in latency probes, publisher faults).
+Optional [ChaosSpec](./chaos-spec.md) files in `chaos-specs/*.yaml` extend the default scenario set (region outage sweep, high fan-in latency probes, publisher faults).
 
 ## CI guardrails
 

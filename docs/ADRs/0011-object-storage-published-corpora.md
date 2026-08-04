@@ -34,13 +34,13 @@ Chosen option: "**Option B**" — dedicated R2 bucket `archlens-blueprint-catalo
 
 Dogfood base URL (historical bucket root): `https://blueprints.archlens.dev/`.
 
-**Phase 0 key prefixes (ADR-0014):** concurrent whole-tree publishers must not share one `latest`. Dogfood writes under dedicated prefixes; Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/archlens/`. Under each prefix the ADR-0010 layout (`latest/`, `snapshots/{revisionId}/`) is unchanged.
+**Dogfood estate (ADR-0014):** concurrent publishers stage **fragments** under one prefix and compose. Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/samples/`. Under that prefix the ADR-0010 layout (`latest/`, `snapshots/{revisionId}/`) is unchanged.
 
-| Prefix                | Publisher                             |
-| --------------------- | ------------------------------------- |
-| `estates/archlens/`   | `publish-blueprint-catalog.yml`       |
-| `estates/samples/`    | `publish-samples.yml`                 |
-| `estates/demos/{id}/` | `publish-demo-catalog.yml` matrix leg |
+| Fragment product | Workflow                              |
+| ---------------- | ------------------------------------- |
+| `samples`        | `publish-samples.yml`                 |
+| `archlens`       | `publish-blueprint-catalog.yml`       |
+| `{id}`           | `publish-demo-catalog.yml` matrix leg |
 
 Compose-before-publish (fragments → one estate `latest`) is [ADR-0014](./0014-estate-fragments-and-compose-before-publish.md).
 

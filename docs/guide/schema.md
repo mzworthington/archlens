@@ -134,6 +134,7 @@ Compose merges fragments (+ accepted overlays) into a normal ADR-0010 catalog of
 
 ## Next
 
+- [ChaosSpec](./chaos-spec.md) - failure scenarios that reference BlueprintSpec diagrams
 - [ArchLens](./cli.md) - generating diagrams that follow BlueprintSpec
 - [ArchLens Canvas](./canvas.md) - editing and validating in the workspace
 - [Getting started](./getting-started.md)

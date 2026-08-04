@@ -13,7 +13,7 @@ Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev).
 | `R2BucketCors` | Browser GET/HEAD from `archlens.dev` and local dev |
 | `R2CustomDomain` | Public read at `blueprints.archlens.dev` |
 
-Catalog objects follow ADR-0010 under **per-publisher prefixes** (ADR-0014 Phase 0): `estates/archlens/`, `estates/samples/`, `estates/demos/{id}/`. Production Canvas uses `https://blueprints.archlens.dev/estates/archlens/`.
+Catalog objects follow ADR-0010 under `estates/samples/` for dogfood (ADR-0014): hand-authored samples, ArchLens scan, and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
 
 ## Quick setup
 
@@ -66,11 +66,11 @@ pulumi up
 | `app/packages/designer/public/_redirects` | SPA routing |
 | `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
-| `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/archlens/` |
-| `.github/workflows/publish-demo-catalog.yml` | Matrix demos → fragment → compose `estates/demos/{id}/` |
+| `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/samples/` (product `archlens`) |
+| `.github/workflows/publish-demo-catalog.yml` | Matrix demos → fragment → compose `estates/samples/` |
 | `.github/workflows/publish-samples.yml` | `samples/` → fragment → compose `estates/samples/` |
-| `.github/workflows/compose-catalog.yml` | Hourly safety-net compose for dogfood estates |
-| `.github/actions/setup-archlens-cli` | Build CLI from checkout for catalog workflows |
+| `.github/workflows/compose-catalog.yml` | Hourly safety-net compose for `estates/samples/` |
+| `.github/actions/setup-archlens-cli` | Install CLI from GitHub Releases for catalog workflows |
 
 Workflow index (all triggers): [docs/guide/ci-workflows.md](../../docs/guide/ci-workflows.md).
 

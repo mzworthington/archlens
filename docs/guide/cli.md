@@ -55,7 +55,7 @@ BlueprintSpec YAML is unchanged. Multi-pipeline publishing stages **fragments** 
 
 Publish/compose paths prefer **visibility over gating**: validation does not block upload by default. Use `archlens validate` or `--validate` for an optional hard gate; `--skip-validation` is always allowed.
 
-Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets](../cloudflare-secrets.md)). Dogfood key prefixes: `estates/archlens/`, `estates/samples/`, `estates/demos/{id}/`.
+Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets](../cloudflare-secrets.md)). Dogfood key prefix: `estates/samples/` (shared estate; products `samples`, `archlens`, demo ids).
 
 ## Useful flags
 

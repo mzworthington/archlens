@@ -14,16 +14,26 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('./getting-started.md', 'guide')).toBe('/guide/getting-started');
     expect(resolveDocsHref('./canvas.md', 'guide')).toBe('/guide/canvas');
     expect(resolveDocsHref('./schema.md', 'guide')).toBe('/guide/schema');
+    expect(resolveDocsHref('./chaos-spec.md', 'guide')).toBe('/guide/chaos-spec');
     expect(resolveDocsHref('../setup.md', 'guide')).toBe('/setup');
     expect(resolveDocsHref('./advicelens.md', 'guide')).toBe('/guide/advicelens');
     expect(resolveDocsHref('../tech-stack.md', 'guide')).toBe('/tech-stack');
     expect(resolveDocsHref('../advicelens-engine.md', 'guide')).toBe('/advicelens-engine');
   });
 
-  it('registers the BlueprintSpec guide page', () => {
+  it('registers the BlueprintSpec and ChaosSpec guide pages', () => {
     const schemaPage = DOCS_PAGES.find(p => p.path === '/guide/schema');
     expect(schemaPage).toBeDefined();
     expect(schemaPage?.productAction?.label).toBe('View BlueprintSpec JSON');
+
+    const chaosSpecPage = DOCS_PAGES.find(p => p.path === '/guide/chaos-spec');
+    expect(chaosSpecPage).toBeDefined();
+    expect(chaosSpecPage?.title).toBe('ChaosSpec');
+    expect(chaosSpecPage?.productAction).toEqual({
+      label: 'View ChaosSpec JSON',
+      href: '/schemas/latest/chaos.schema.json',
+      external: true,
+    });
   });
 
   it('registers product CTAs for each product guide chapter', () => {

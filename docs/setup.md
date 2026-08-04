@@ -168,19 +168,31 @@ Pre-commit and CI run `generate:schema -- --check` when `app/packages/core/` cha
 
 Product walkthrough (with a live render of latest): [BlueprintSpec](./guide/schema.md).
 
+### ChaosSpec JSON Schema
+
+ChaosSpec rules live in `@archlens/core` (`chaosSpecDocument`). The same `pnpm generate:schema` command writes `schemas/chaos.schema.json` and versioned / `latest` copies. Bump `CHAOS_SCHEMA_MAJOR_VERSION` in core only when the wire format breaks.
+
+Product walkthrough (with a live render of latest): [ChaosSpec](./guide/chaos-spec.md).
+
 ### Public schema URLs (external repos)
 
-After deploy, the same schema is served from the designer site:
+After deploy, the same schemas are served from the designer site:
 
-- **Versioned (preferred):** https://archlens.dev/schemas/v4/blueprint.schema.json
-- **Latest:** https://archlens.dev/schemas/latest/blueprint.schema.json
+| Contract          | Versioned (preferred)                                 | Latest                                                    |
+| ----------------- | ----------------------------------------------------- | --------------------------------------------------------- |
+| **BlueprintSpec** | https://archlens.dev/schemas/v4/blueprint.schema.json | https://archlens.dev/schemas/latest/blueprint.schema.json |
+| **ChaosSpec**     | https://archlens.dev/schemas/v1/chaos.schema.json     | https://archlens.dev/schemas/latest/chaos.schema.json     |
 
-In any blueprint YAML file outside this repo, either set `version` to one of those URLs (as above) or add an IDE directive:
+In any blueprint or chaos-spec YAML file outside this repo, either set `version` to one of those URLs (as above) or add an IDE directive:
 
 ```yaml
 # yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 ```
 
-Bump `SYSTEM_SCHEMA_MAJOR_VERSION` in `/core` only when the contract breaks; `latest` always tracks main.
+```yaml
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
+```
+
+Bump `SYSTEM_SCHEMA_MAJOR_VERSION` / `CHAOS_SCHEMA_MAJOR_VERSION` in `/core` only when the corresponding contract breaks; `latest` always tracks main.
 
 ChaosLens WASM build, Go layout, and TypeScript API: [ChaosLens engine](./chaoslens-engine.md).
