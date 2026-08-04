@@ -86,9 +86,10 @@ Dogfood sample YAML under `blueprints/` is regenerated from upstream demo repos 
 Workflow shape:
 
 1. **prepare** — emit the Actions matrix from the JSON catalog.
-2. **build-cli** — compile `app/dist/archlens` once and share it as an artifact.
-3. **scan** (matrix) — shallow-clone each repo (`--shallow-since` = `gitSinceDays`), run headless scan into a per-repo artifact. `repo: "self"` scans this monorepo.
-4. **assemble** — merge artifacts into `blueprints/`, reinstall sandbox products, validate, open a PR on `chore/regenerate-sample-blueprints`.
+2. **scan** (matrix) — install released `archlens` via [`scripts/install.sh`](../../scripts/install.sh) (same as publish), shallow-clone each repo, run headless scan into a per-repo artifact. `repo: "self"` scans this monorepo.
+3. **assemble** — merge artifacts into `blueprints/`, reinstall sandbox products, validate, open a PR on `chore/regenerate-sample-blueprints`.
+
+Optional `workflow_dispatch` input `archlens-version` pins the CLI release tag (leave empty for latest).
 
 Schedule: Monday 03:00 UTC (+ `workflow_dispatch`). Merge the PR to refresh the committed corpus; the nightly publish workflow then uploads to R2.
 

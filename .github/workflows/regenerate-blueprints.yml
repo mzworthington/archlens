@@ -2,11 +2,17 @@ name: Regenerate sample blueprints
 
 # Weekly matrix: clone each sample repo, run archlens scan, open a PR with YAML.
 # Catalog: scripts/blueprint-sample-repos.json (shared with scripts/run-blueprint-batch.sh).
+# CLI comes from GitHub releases via scripts/install.sh (same as publish-blueprint-catalog).
 
 on:
   schedule:
     - cron: '0 3 * * 1' # Monday 03:00 UTC
   workflow_dispatch:
+    inputs:
+      archlens-version:
+        description: CLI release tag (e.g. v0.1.6); leave empty for latest
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -37,70 +43,30 @@ jobs:
           } ] }' scripts/blueprint-sample-repos.json)"
           echo "matrix=${matrix}" >> "${GITHUB_OUTPUT}"
 
-  build-cli:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 11.10.0
-          run_install: false
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: pnpm
-          cache-dependency-path: app/pnpm-lock.yaml
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-        working-directory: app
-
-      - name: Build ArchLens CLI
-        run: pnpm --filter @archlens/cli build
-        working-directory: app
-
-      - name: Upload CLI binary
-        uses: actions/upload-artifact@v4
-        with:
-          name: archlens-cli
-          path: |
-            app/dist/archlens
-            app/dist/*.wasm
-          if-no-files-found: error
-          retention-days: 2
-
   scan:
-    needs: [prepare, build-cli]
+    needs: [prepare]
     runs-on: ubuntu-latest
     timeout-minutes: ${{ fromJSON(matrix.timeoutMinutes) }}
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
     steps:
-      - name: Checkout ArchLens (for self scans + scripts)
+      - name: Checkout ArchLens (for self scans + install script)
         uses: actions/checkout@v7
         with:
           path: archlens
           fetch-depth: 0
 
-      - name: Download CLI
-        uses: actions/download-artifact@v4
-        with:
-          name: archlens-cli
-          path: cli
-
-      - name: Make CLI executable
+      - name: Install ArchLens CLI
         run: |
-          chmod +x cli/archlens
-          echo "${GITHUB_WORKSPACE}/cli" >> "${GITHUB_PATH}"
+          set -euo pipefail
+          install_args=(--dir "$HOME/.local/bin")
+          if [[ -n "${{ inputs.archlens-version }}" ]]; then
+            install_args+=(--version "${{ inputs.archlens-version }}")
+          fi
+          ./archlens/scripts/install.sh "${install_args[@]}"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          archlens --version
 
       - name: Prepare sample checkout
         id: sample
@@ -142,9 +108,9 @@ jobs:
           retention-days: 2
 
   assemble:
-    needs: [scan, build-cli]
+    needs: [scan]
     # Run with whatever matrix legs succeeded (fail-fast is false on scan).
-    if: ${{ always() && !cancelled() && needs.build-cli.result == 'success' }}
+    if: ${{ always() && !cancelled() }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -152,14 +118,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download CLI
-        uses: actions/download-artifact@v4
-        with:
-          name: archlens-cli
-          path: app/dist
-
-      - name: Make CLI executable
-        run: chmod +x app/dist/archlens
+      - name: Install ArchLens CLI
+        run: |
+          set -euo pipefail
+          install_args=(--dir "$HOME/.local/bin")
+          if [[ -n "${{ inputs.archlens-version }}" ]]; then
+            install_args+=(--version "${{ inputs.archlens-version }}")
+          fi
+          ./scripts/install.sh "${install_args[@]}"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          archlens --version
 
       - name: Download scan artifacts
         uses: actions/download-artifact@v4
@@ -171,7 +139,7 @@ jobs:
       - name: Assemble blueprints tree
         run: |
           chmod +x scripts/assemble-blueprint-scan-artifacts.sh
-          ARCHLENS_BIN="${GITHUB_WORKSPACE}/app/dist/archlens" \
+          ARCHLENS_BIN="$(command -v archlens)" \
             scripts/assemble-blueprint-scan-artifacts.sh .scan-artifacts
 
       - name: Install pnpm
@@ -205,6 +173,7 @@ jobs:
             Automated weekly regeneration of `blueprints/` from the sample repos in
             [`scripts/blueprint-sample-repos.json`](../blob/main/scripts/blueprint-sample-repos.json).
 
+            Uses the released `archlens` CLI (`scripts/install.sh`, optional pin via workflow input).
             Each matrix job clones (or uses this repo for `self`) and runs:
 
             ```bash
