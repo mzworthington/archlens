@@ -78,6 +78,17 @@ describe('ContainerLevelWriter', () => {
     expect(yamlContent).toContain('name: My-system Containers');
   });
 
+  it('nests under system when system id matches the context root', async () => {
+    const containerNodesMap = new Map<string, SystemNode>([
+      ['api', { entityRef: 'eshop/system/api', name: 'API', type: 'microservice' }],
+    ]);
+
+    await writer.write('/workspace/blueprints', 'eshop', 'eshop', containerNodesMap, []);
+
+    const yamlContent = fileSystem.writtenFiles.get('/workspace/blueprints/containers.yaml')!;
+    expect(yamlContent).toContain('entityRef: eshop/system');
+  });
+
   it('writes container nodes without layout positions', async () => {
     const containerNodesMap = new Map<string, SystemNode>([
       [

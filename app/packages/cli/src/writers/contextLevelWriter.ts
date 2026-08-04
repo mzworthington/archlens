@@ -8,7 +8,10 @@ import {
   normalizeContextGrouping,
   pruneEmptyProductHubs,
 } from '../analysis/domain/systemDiscovery.ts';
-import { resolveContextDisplayName } from '../analysis/domain/entityRefContext.ts';
+import {
+  resolveContextDisplayName,
+  resolveSystemEntityRef,
+} from '../analysis/domain/entityRefContext.ts';
 
 /** Human label for a new context diagram from a slugified entityRef root. */
 export function contextDisplayName(contextName: string): string {
@@ -47,13 +50,29 @@ function contextRelativePathForEntityRef(diagramEntityRef: string): string {
   return `${diagramEntityRef}/context.yaml`;
 }
 
-function hubSystemRef(system: ContextSystemInput, diagramEntityRef: string): string {
+function hubSystemRef(
+  system: ContextSystemInput,
+  diagramEntityRef: string,
+  systems: readonly ContextSystemInput[]
+): string {
+  const systemSlug = EntityRef.parse(system.entityRef);
   if (
     system.isProductHub &&
-    system.entityRef === system.productId &&
-    system.entityRef === diagramEntityRef
+    systemSlug === EntityRef.parse(system.productId) &&
+    systemSlug === diagramEntityRef
   ) {
-    return diagramEntityRef;
+    // Group hubs (sibling systems under the same product) stay on the context ref
+    // as a non-drill frame. A lone matching product/fallback owns containers and
+    // must use the nested system ref so Zoom identity matches ADR-0002.
+    const hasNestedMembers = systems.some(s => {
+      if (s.entityRef === system.entityRef) return false;
+      if (s.parentEntityRef === system.entityRef) return true;
+      return s.productId === system.productId && EntityRef.parse(s.entityRef) !== diagramEntityRef;
+    });
+    if (hasNestedMembers) {
+      return diagramEntityRef;
+    }
+    return resolveSystemEntityRef(diagramEntityRef, system.entityRef);
   }
   return EntityRef.parse(system.entityRef, diagramEntityRef);
 }
@@ -208,7 +227,7 @@ export class ContextLevelWriter extends BaseWriter {
 
     for (const system of systems) {
       const isHub = !!system.isProductHub || system.entityRef === system.productId;
-      const systemRef = hubSystemRef(system, diagramEntityRef);
+      const systemRef = hubSystemRef(system, diagramEntityRef, systems);
       touchedRefs.add(systemRef);
       if (isHub) {
         batchHubByProduct.set(system.productId, systemRef);
@@ -217,7 +236,7 @@ export class ContextLevelWriter extends BaseWriter {
 
     for (const system of systems) {
       const isHub = !!system.isProductHub || system.entityRef === system.productId;
-      const systemRef = hubSystemRef(system, diagramEntityRef);
+      const systemRef = hubSystemRef(system, diagramEntityRef, systems);
       const isGroup = shouldEmitAsGroup(
         system,
         systemRef,

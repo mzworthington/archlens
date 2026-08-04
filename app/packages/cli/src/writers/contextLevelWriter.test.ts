@@ -154,6 +154,32 @@ describe('ContextLevelWriter', () => {
       fileSystem.writtenFiles.get('/workspace/blueprints/eshop/context.yaml')!
     );
     expect(schema.name).toBe('E-Shop');
+    expect(schema.nodes.some(n => n.entityRef === 'eshop/system')).toBe(true);
+    expect(schema.nodes.some(n => n.entityRef === 'eshop' && n.type !== 'person')).toBe(false);
+  });
+
+  it('keeps multi-system product hubs on the context entityRef', async () => {
+    await writer.writeSystems('/workspace/blueprints', 'backstage', [
+      {
+        entityRef: 'backstage',
+        displayName: 'Backstage',
+        rootPath: '',
+        productId: 'backstage',
+        isProductHub: true,
+      },
+      {
+        entityRef: 'packages',
+        displayName: 'Packages',
+        rootPath: 'packages',
+        productId: 'backstage',
+      },
+    ]);
+
+    const schema = parseSchemaFromYaml(
+      fileSystem.writtenFiles.get('/workspace/blueprints/backstage/context.yaml')!
+    );
+    expect(schema.nodes.some(n => n.entityRef === 'backstage' && n.type === 'group')).toBe(true);
+    expect(schema.nodes.some(n => n.entityRef === 'backstage/packages')).toBe(true);
   });
 
   it('should merge a second software-system into an existing context diagram', async () => {
@@ -317,7 +343,7 @@ describe('ContextLevelWriter', () => {
     const backstagePersonEdges = backstageSchema.dependencies.filter(
       d => d.from === 'backstage/user'
     );
-    expect(blueprintPersonEdges.map(d => d.to)).toEqual(['blueprint']);
+    expect(blueprintPersonEdges.map(d => d.to)).toEqual(['blueprint/system']);
     expect(backstagePersonEdges.map(d => d.to).sort()).toEqual(['backstage']);
     expect(blueprintPersonEdges.every(d => d.description === PERSON_EDGE_DESCRIPTION)).toBe(true);
     expect(backstagePersonEdges.every(d => d.description === PERSON_EDGE_DESCRIPTION)).toBe(true);
@@ -335,7 +361,7 @@ describe('ContextLevelWriter', () => {
       '/workspace/blueprints/backstage/context.yaml'
     )!;
     const schema = parseSchemaFromYaml(yamlContent);
-    const backstageHubs = schema.nodes.filter(n => n.entityRef === 'backstage');
+    const backstageHubs = schema.nodes.filter(n => n.entityRef === 'backstage/system');
     expect(backstageHubs).toHaveLength(1);
   });
 

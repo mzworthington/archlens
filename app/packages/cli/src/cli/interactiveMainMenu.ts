@@ -24,7 +24,7 @@ export const INTERACTIVE_MAIN_ACTIONS: Array<{
   {
     value: 'publish',
     label: 'Publish catalog snapshot',
-    hint: 'Whole tree → ADR-0010 latest (single pipeline)',
+    hint: 'Whole tree',
   },
   {
     value: 'publish-fragment',

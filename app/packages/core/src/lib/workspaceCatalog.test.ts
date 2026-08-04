@@ -247,6 +247,23 @@ describe('workspaceCatalog', () => {
       expect(resolveChildDiagramEntry(catalog, 'billing')?.path).toBe('containers.yaml');
     });
 
+    it('returns undefined when only a context diagram shares the entityRef', () => {
+      const contextOnly = buildWorkspaceCatalog([
+        {
+          path: 'gpio/context.yaml',
+          schema: {
+            name: 'GPIO',
+            version: '1.0.0',
+            level: 'context',
+            entityRef: 'gpio',
+            nodes: [{ entityRef: 'gpio', type: 'software-system', name: 'GPIO' }],
+            dependencies: [],
+          },
+        },
+      ]);
+      expect(resolveChildDiagramEntry(contextOnly, 'gpio')).toBeUndefined();
+    });
+
     it('returns undefined when no child diagram exists', () => {
       expect(resolveChildDiagramEntry(catalog, 'missing')).toBeUndefined();
     });
