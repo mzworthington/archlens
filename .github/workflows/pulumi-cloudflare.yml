@@ -11,6 +11,14 @@ on:
       - 'infra/cloudflare/**'
       - '.github/workflows/pulumi-cloudflare.yml'
   workflow_dispatch:
+    inputs:
+      command:
+        description: Pulumi command (manual run from Actions tab)
+        type: choice
+        default: up
+        options:
+          - up
+          - preview
 
 permissions:
   contents: read
@@ -58,7 +66,9 @@ jobs:
           pulumi config set --secret cloudflare:apiToken "$CLOUDFLARE_API_TOKEN"
 
       - name: Pulumi preview
-        if: github.event_name == 'pull_request'
+        if: >-
+          github.event_name == 'pull_request'
+          || (github.event_name == 'workflow_dispatch' && inputs.command == 'preview')
         uses: pulumi/actions@v6
         with:
           command: preview
@@ -70,7 +80,9 @@ jobs:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
       - name: Pulumi up
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: >-
+          (github.ref == 'refs/heads/main' && github.event_name == 'push')
+          || (github.event_name == 'workflow_dispatch' && inputs.command == 'up')
         uses: pulumi/actions@v6
         with:
           command: up

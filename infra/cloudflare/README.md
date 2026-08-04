@@ -7,8 +7,7 @@ Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev).
 | Resource | Purpose |
 |----------|---------|
 | `PagesProject` | Direct-upload project (`archlens`) |
-| `DnsRecord` (`apex-pages`, `www-pages`) | Proxied CNAMEs → `pagesProject.subdomain` (apex uses CNAME flattening) |
-| `PagesDomain` | Attaches apex + `www` to the Pages project (SSL / hostname binding) |
+| `PagesDomain` | Attaches apex + `www` to the Pages project (SSL, hostname binding, and DNS when the zone is on Cloudflare) |
 
 ## Quick setup
 
@@ -29,6 +28,8 @@ pulumi up
 
 Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` runs Pulumi on CI.
 
+**Manual run:** GitHub → Actions → **Pulumi Cloudflare** → Run workflow → choose `up` or `preview` (no path filter on dispatch).
+
 ## Local Pulumi commands
 
 ```bash
@@ -39,22 +40,9 @@ pulumi preview
 pulumi up
 ```
 
-## First apply with existing DNS
-
-Pulumi creates apex/`www` CNAMEs. If the zone already has those names (common after GitHub Pages), either:
-
-1. **Delete** the conflicting records in Cloudflare DNS, then `pulumi up`, or
-2. **Import** them into the stack (record id from the Cloudflare DNS UI or API):
-
-```bash
-pulumi import 'cloudflare:index/dnsRecord:DnsRecord' apex-pages "<zoneId>/<recordId>"
-pulumi import 'cloudflare:index/dnsRecord:DnsRecord' www-pages "<zoneId>/<recordId>"
-pulumi up   # updates content to the Pages subdomain if needed
-```
-
 ## Token permissions
 
-`CLOUDFLARE_API_TOKEN` must include **Zone → DNS: Edit** for the `archlens.dev` zone. Pages-only tokens return `403 Authentication error` when creating `DnsRecord` resources. Full scope list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+`CLOUDFLARE_API_TOKEN` needs **Account → Cloudflare Pages: Edit** and **Zone → DNS: Edit** (PagesDomain may create or update apex/`www` records when the zone is on Cloudflare). Full scope list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
 
 ## Stack config
 
@@ -66,7 +54,7 @@ pulumi up   # updates content to the Pages subdomain if needed
 |------|---------|
 | `wrangler.toml` | Pages project name + output directory |
 | `app/packages/designer/public/_redirects` | SPA routing |
-| `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main |
-| `.github/workflows/ci.yml` | Build + wrangler deploy |
+| `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
+| `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
 | `Pulumi.prod.yaml.example` | Committed stack defaults (local `Pulumi.prod.yaml` is gitignored) |
 | `bin/setup-cloudflare-hosting.sh` | Bootstrap: bws → gh + pulumi config |

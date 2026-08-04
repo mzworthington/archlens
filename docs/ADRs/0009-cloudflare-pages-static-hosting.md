@@ -26,7 +26,7 @@ ArchLens production (docs + designer SPA, JSON Schema hosting, PWA) was deployed
 
 ## Decision Outcome
 
-Chosen option: "**Option C**", with Pulumi over Terraform because the maintainer prefers Pulumi for IaC. Pulumi manages the Pages project, custom domains, and apex/`www` DNS (proxied CNAMEs to the Pages subdomain); CI builds `app/packages/designer/dist` and runs `wrangler pages deploy`. SPA fallback uses `public/_redirects` instead of GitHub Pages redirect scripts.
+Chosen option: "**Option C**", with Pulumi over Terraform because the maintainer prefers Pulumi for IaC. Pulumi manages the Pages project and custom domains (`PagesDomain` for apex + `www`, including DNS when the zone is on Cloudflare); CI builds `app/packages/designer/dist` and runs `wrangler pages deploy`. SPA fallback uses `public/_redirects` instead of GitHub Pages redirect scripts.
 
 ### Consequences
 
@@ -45,9 +45,8 @@ flowchart LR
   Wrangler --> CFP[Cloudflare Pages]
   Pulumi[Pulumi stack prod] --> CFP
   Pulumi --> Domains[PagesDomain apex + www]
-  Pulumi --> DnsRec[DnsRecord CNAME → pages.dev]
-  DNS[GoDaddy NS → Cloudflare] --> DnsRec
-  DnsRec --> Domains
+  DNS[GoDaddy NS → Cloudflare] --> Domains
+  Domains --> CFP
 ```
 
 ## Links
