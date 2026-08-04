@@ -1,24 +1,20 @@
 import { expect, type Page } from '@playwright/test';
-import { continueWithSample } from './toolbar';
-import { gotoApp } from './navigation';
+import { loadForensicsWorkspace, openTraceLensLens, waitForForensicsOffenders } from './workspace';
 
 /** TraceLens docs demo: ranked offenders list and refactor plan in workspace lens mode. */
 export async function runTraceLensDemo(page: Page) {
-  await gotoApp(page, '/workspace');
-  await continueWithSample(page);
-  const url = new URL(page.url());
-  url.searchParams.set('lens', 'tracelens');
-  await page.goto(url.toString());
-  await expect(page).toHaveURL(/lens=tracelens/);
+  // Golden Journey estate carries TraceLens blocks; context-only sandbox does not.
+  await loadForensicsWorkspace(page);
+  await openTraceLensLens(page);
   await expect(page.getByRole('heading', { name: 'Forensics' })).toBeVisible();
-
-  const firstRow = page
-    .locator('[data-testid^="estate-row-"], [data-testid^="offender-row-"]')
-    .first();
-  await expect(firstRow).toBeVisible({ timeout: 90_000 });
+  await waitForForensicsOffenders(page);
   await page.waitForTimeout(1_500);
 
-  await firstRow.click();
+  // Top rows are often ChaosLens advice without a refactor boundary (openOffender no-ops).
+  // The "Review refactor plan" action only appears on forensics rows that can open the slide-over.
+  const reviewPlan = page.getByRole('button', { name: /Review refactor plan/i }).first();
+  await expect(reviewPlan).toBeVisible({ timeout: 30_000 });
+  await reviewPlan.click();
   await expect(page.getByTestId('open-refactor-on-canvas')).toBeVisible({ timeout: 15_000 });
   await page.waitForTimeout(1_500);
 }

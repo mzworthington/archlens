@@ -14,6 +14,13 @@ export async function loadGoldenJourneyDiagram(page: Page) {
   await loadSandbox(page, GOLDEN_JOURNEY_ESTATE_PATH);
 }
 
+async function paymentGatewayTargetVisible(page: Page): Promise<boolean> {
+  return page
+    .getByText(`Target: ${PAYMENT_GATEWAY_LABEL}`)
+    .isVisible()
+    .catch(() => false);
+}
+
 /**
  * Select Payment Gateway even when onlyRenderVisibleElements has culled it
  * (common after context → estate navigation leaves the viewport tight).
@@ -35,7 +42,11 @@ export async function selectPaymentGateway(page: Page) {
   if ((await paymentNode.count()) > 0) {
     await paymentNode.scrollIntoViewIfNeeded();
     await paymentNode.click({ force: true });
-    return;
+    if (await paymentGatewayTargetVisible(page)) return;
+
+    // Playwright mouse hits can miss nested RF nodes; the React click path still selects.
+    await paymentNode.dispatchEvent('click');
+    if (await paymentGatewayTargetVisible(page)) return;
   }
 
   // URL sync selects the node even when the canvas still hasn't mounted it.
