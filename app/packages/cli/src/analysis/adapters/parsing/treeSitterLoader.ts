@@ -2,7 +2,11 @@ import path from 'path';
 import pc from 'picocolors';
 import Parser from 'web-tree-sitter';
 import { extensionToTreeSitterLanguage, wasmFileName } from '@archlens/core';
-import { resolveTreeSitterWasmPath, treeSitterWasmSearchDirs } from './treeSitterWasmPaths.ts';
+import {
+  resolveTreeSitterRuntimeWasmPath,
+  resolveTreeSitterWasmPath,
+  treeSitterWasmSearchDirs,
+} from './treeSitterWasmPaths.ts';
 
 export class TreeSitterWasmLoader {
   private static initPromise: Promise<void> | null = null;
@@ -11,7 +15,14 @@ export class TreeSitterWasmLoader {
 
   static async ensureInitialized(): Promise<void> {
     if (!this.initPromise) {
-      this.initPromise = Parser.init();
+      this.initPromise = Parser.init({
+        locateFile(scriptName: string) {
+          const resolved = resolveTreeSitterRuntimeWasmPath(scriptName);
+          if (resolved) return resolved;
+          // Last resort: next to the compiled binary (install/release layout).
+          return path.join(path.dirname(path.resolve(process.execPath)), path.basename(scriptName));
+        },
+      });
     }
     await this.initPromise;
   }
