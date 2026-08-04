@@ -100,9 +100,11 @@ export async function openPropertiesPanel(page: Page) {
 }
 
 export async function clickCanvasNode(page: Page, label: string) {
-  const node = page.locator('.react-flow__node').filter({ hasText: label }).first();
-  await expect(node).toBeVisible({ timeout: 30_000 });
-  await node.scrollIntoViewIfNeeded();
-  // Large diagrams can stack nodes; force avoids flaky hit-testing on overlapping labels.
-  await node.click({ force: true });
+  // onlyRenderVisibleElements remounts culled nodes during pan/scroll — re-query on each try.
+  await expect(async () => {
+    const node = page.locator('.react-flow__node').filter({ hasText: label }).first();
+    await expect(node).toBeVisible({ timeout: 5_000 });
+    // Large diagrams can stack nodes; force avoids flaky hit-testing on overlapping labels.
+    await node.click({ force: true });
+  }).toPass({ timeout: 30_000 });
 }

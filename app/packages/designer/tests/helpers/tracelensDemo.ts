@@ -8,13 +8,14 @@ export async function runTraceLensDemo(page: Page) {
   await openTraceLensLens(page);
   await expect(page.getByRole('heading', { name: 'Forensics' })).toBeVisible();
   await waitForForensicsOffenders(page);
-
-  const firstRow = page
-    .locator('[data-testid^="estate-row-"], [data-testid^="offender-row-"]')
-    .first();
   await page.waitForTimeout(1_500);
 
-  await firstRow.click();
+  // Top estate rows are often ChaosLens circuit-breaker advice without a refactor boundary
+  // (openOffender no-ops). Prefer the Refactor filter so the slide-over can open.
+  await page.getByRole('button', { name: 'Refactor', exact: true }).click();
+  const openPlan = page.getByRole('button', { name: /Open refactor plan/i }).first();
+  await expect(openPlan).toBeVisible({ timeout: 30_000 });
+  await openPlan.click();
   await expect(page.getByTestId('open-refactor-on-canvas')).toBeVisible({ timeout: 15_000 });
   await page.waitForTimeout(1_500);
 }
