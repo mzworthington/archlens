@@ -20,8 +20,12 @@ See [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md), then from th
 ```bash
 export BWS_ACCESS_TOKEN=...
 export BWS_PROJECT_ID=...
+DOMAIN=… WWW_DOMAIN=… PAGES_PROJECT_NAME=… \
+CATALOG_BUCKET_NAME=… CATALOG_DOMAIN=… PULUMI_STACK=prod \
 bin/setup-cloudflare-hosting.sh
 ```
+
+(No hard-coded product defaults — see [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).)
 
 Then apply infrastructure:
 

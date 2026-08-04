@@ -1,25 +1,43 @@
 #!/usr/bin/env bash
-# Bootstrap Cloudflare Pages hosting: validate bws secrets, mint Pulumi token if needed,
-# sync to GitHub Actions, configure the Pulumi stack. Does not run pulumi preview/up.
+# Bootstrap Cloudflare Pages + catalog publish secrets:
+# validate bws secrets, mint Pulumi / R2 catalog credentials if needed,
+# sync to GitHub Actions, configure the Pulumi stack.
+# Does not run pulumi preview/up.
 #
-# Requires: BWS_ACCESS_TOKEN, BWS_PROJECT_ID, gh auth, pulumi login (to mint token if missing)
-# bws project secrets: CLOUDFLARE_API_TOKEN (+ optional CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID, PULUMI_ACCESS_TOKEN)
+# Requires env (no product defaults):
+#   BWS_ACCESS_TOKEN, BWS_PROJECT_ID
+#   PULUMI_STACK
+#   DOMAIN, WWW_DOMAIN, PAGES_PROJECT_NAME
+#   CATALOG_BUCKET_NAME, CATALOG_DOMAIN
 #
-# Usage: bin/setup-cloudflare-hosting.sh
+# bws project secrets: CLOUDFLARE_API_TOKEN
+# optional in bws: CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID, PULUMI_ACCESS_TOKEN,
+#   R2_BLUEPRINT_CATALOG_BUCKET, R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID,
+#   R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY
+#
+# Also requires: gh auth, pulumi login (to mint Pulumi token if missing)
+#
+# Usage:
+#   DOMAIN=example.com WWW_DOMAIN=www.example.com \
+#   PAGES_PROJECT_NAME=my-pages CATALOG_BUCKET_NAME=my-catalog \
+#   CATALOG_DOMAIN=blueprints.example.com PULUMI_STACK=prod \
+#   bin/setup-cloudflare-hosting.sh
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DOMAIN="${DOMAIN:-archlens.dev}"
-PAGES_PROJECT_NAME="${PAGES_PROJECT_NAME:-archlens}"
-WWW_DOMAIN="${WWW_DOMAIN:-www.${DOMAIN}}"
-CATALOG_BUCKET_NAME="${CATALOG_BUCKET_NAME:-archlens-blueprint-catalog}"
-CATALOG_DOMAIN="${CATALOG_DOMAIN:-blueprints.${DOMAIN}}"
-STACK="${PULUMI_STACK:-prod}"
 
 : "${BWS_ACCESS_TOKEN:?Set BWS_ACCESS_TOKEN}"
 : "${BWS_PROJECT_ID:?Set BWS_PROJECT_ID}"
+: "${PULUMI_STACK:?Set PULUMI_STACK (Pulumi stack name)}"
+: "${DOMAIN:?Set DOMAIN (apex hostname)}"
+: "${WWW_DOMAIN:?Set WWW_DOMAIN}"
+: "${PAGES_PROJECT_NAME:?Set PAGES_PROJECT_NAME}"
+: "${CATALOG_BUCKET_NAME:?Set CATALOG_BUCKET_NAME}"
+: "${CATALOG_DOMAIN:?Set CATALOG_DOMAIN}"
 
-for c in bws gh pulumi jq curl pnpm; do
+STACK="${PULUMI_STACK}"
+
+for c in bws gh pulumi jq curl pnpm openssl; do
   command -v "$c" >/dev/null || { echo "Missing: $c"; exit 1; }
 done
 gh auth status >/dev/null 2>&1 || { echo "Run: gh auth login"; exit 1; }
@@ -43,9 +61,9 @@ bws_put() {
   id=$(bws -t "$BWS_ACCESS_TOKEN" secret list "$BWS_PROJECT_ID" -o json \
     | jq -r --arg k "$key" '.[]?|select(.key==$k)|.id' | head -1)
   if [[ -n "$id" && "$id" != "null" ]]; then
-    bws -t "$BWS_ACCESS_TOKEN" secret edit --key "$key" --value "$val" "$id"
+    bws -t "$BWS_ACCESS_TOKEN" secret edit --key "$key" --value "$val" "$id" >/dev/null
   else
-    bws -t "$BWS_ACCESS_TOKEN" secret create "$key" "$val" "$BWS_PROJECT_ID"
+    bws -t "$BWS_ACCESS_TOKEN" secret create "$key" "$val" "$BWS_PROJECT_ID" >/dev/null
   fi
 }
 
@@ -64,7 +82,7 @@ mint_pulumi_token() {
   local token
   token=$( ( unset PULUMI_ACCESS_TOKEN
     pulumi whoami >/dev/null 2>&1 || pulumi login
-    pulumi api CreatePersonalToken -F description="archlens-ci" -F expires=0 --output json
+    pulumi api CreatePersonalToken -F description="cloudflare-hosting-ci-${DOMAIN}" -F expires=0 --output json
   ) | jq -r '.tokenValue // empty')
   [[ -n "$token" ]] || die "pulumi api CreatePersonalToken failed — run: pulumi login"
   PULUMI_ACCESS_TOKEN="$token"
@@ -73,14 +91,97 @@ mint_pulumi_token() {
   bws_put PULUMI_ACCESS_TOKEN "$PULUMI_ACCESS_TOKEN"
 }
 
+# Cloudflare platform permission group id (not account-specific).
+# Workers R2 Storage Bucket Item Write — see Cloudflare API permission_groups docs.
+R2_BUCKET_ITEM_WRITE_PERMISSION_GROUP_ID="2efd5506f9c8494dacb1fa10a3e7d5b6"
+
+mint_r2_catalog_credentials() {
+  echo "→ Minting R2 catalog S3 credentials (scoped to ${CATALOG_BUCKET_NAME})"
+  local resource payload resp token_id token_value secret_key
+  resource="com.cloudflare.edge.r2.bucket.${CLOUDFLARE_ACCOUNT_ID}_default_${CATALOG_BUCKET_NAME}"
+  payload=$(jq -n \
+    --arg name "r2-catalog-publish-${CATALOG_BUCKET_NAME}" \
+    --arg pg "$R2_BUCKET_ITEM_WRITE_PERMISSION_GROUP_ID" \
+    --arg resource "$resource" \
+    '{
+      name: $name,
+      policies: [{
+        effect: "allow",
+        resources: {($resource): "*"},
+        permission_groups: [{id: $pg}]
+      }]
+    }')
+
+  resp=$(cf_api -X POST "https://api.cloudflare.com/client/v4/user/tokens" --data "$payload")
+  if [[ "$(jq -r '.success // false' <<<"$resp")" != "true" ]]; then
+    echo "$resp" | jq -r '.errors[]? | "  Cloudflare: \(.message // .)"' >&2 || true
+    cat >&2 <<HINT
+
+Could not create an R2-scoped API token automatically.
+Your CLOUDFLARE_API_TOKEN likely lacks "User API Tokens: Edit" (or Account API Tokens).
+
+Create an R2 API token in the dashboard (Object Read & Write on bucket ${CATALOG_BUCKET_NAME}),
+then store in bws and re-run:
+
+  bws secret create R2_BLUEPRINT_CATALOG_BUCKET '${CATALOG_BUCKET_NAME}' '${BWS_PROJECT_ID}'
+  bws secret create R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID '<access-key-id>' '${BWS_PROJECT_ID}'
+  bws secret create R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY '<secret-access-key>' '${BWS_PROJECT_ID}'
+
+HINT
+    die "R2 catalog credentials missing"
+  fi
+
+  token_id=$(jq -r '.result.id // empty' <<<"$resp")
+  token_value=$(jq -r '.result.value // empty' <<<"$resp")
+  [[ -n "$token_id" && -n "$token_value" ]] || die "Cloudflare token create returned no id/value"
+
+  # S3 Secret Access Key = SHA-256 hex of the API token value (Cloudflare R2 docs).
+  secret_key=$(printf '%s' "$token_value" | openssl dgst -sha256 -hex | awk '{print $NF}')
+
+  R2_BLUEPRINT_CATALOG_BUCKET="$CATALOG_BUCKET_NAME"
+  R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID="$token_id"
+  R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY="$secret_key"
+  export R2_BLUEPRINT_CATALOG_BUCKET R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY
+
+  echo "→ Saving R2 catalog credentials to bws"
+  bws_put R2_BLUEPRINT_CATALOG_BUCKET "$R2_BLUEPRINT_CATALOG_BUCKET"
+  bws_put R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID "$R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID"
+  bws_put R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY "$R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY"
+}
+
+ensure_r2_catalog_credentials() {
+  if [[ -n "${R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID:-}" && -n "${R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY:-}" ]]; then
+    R2_BLUEPRINT_CATALOG_BUCKET="${R2_BLUEPRINT_CATALOG_BUCKET:-$CATALOG_BUCKET_NAME}"
+    export R2_BLUEPRINT_CATALOG_BUCKET
+    if [[ "$R2_BLUEPRINT_CATALOG_BUCKET" != "$CATALOG_BUCKET_NAME" ]]; then
+      echo "→ Updating R2_BLUEPRINT_CATALOG_BUCKET in bws to match CATALOG_BUCKET_NAME"
+      R2_BLUEPRINT_CATALOG_BUCKET="$CATALOG_BUCKET_NAME"
+      export R2_BLUEPRINT_CATALOG_BUCKET
+      bws_put R2_BLUEPRINT_CATALOG_BUCKET "$R2_BLUEPRINT_CATALOG_BUCKET"
+    fi
+    echo "→ R2 catalog credentials ok (from bws)"
+    return 0
+  fi
+  mint_r2_catalog_credentials
+}
+
 echo "→ Checking bws secrets"
 require_secret CLOUDFLARE_API_TOKEN
 echo "  CLOUDFLARE_API_TOKEN ok (${#CLOUDFLARE_API_TOKEN} chars)"
 
 if [[ -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]]; then
-  CLOUDFLARE_ACCOUNT_ID=$(cf_api "https://api.cloudflare.com/client/v4/accounts?page=1&per_page=1" \
-    | jq -r '.result[0].id // empty')
-  [[ -n "$CLOUDFLARE_ACCOUNT_ID" ]] && bws_put CLOUDFLARE_ACCOUNT_ID "$CLOUDFLARE_ACCOUNT_ID"
+  accounts_json=$(cf_api "https://api.cloudflare.com/client/v4/accounts?page=1&per_page=50")
+  account_count=$(jq -r '.result | length // 0' <<<"$accounts_json")
+  if [[ "$account_count" == "1" ]]; then
+    CLOUDFLARE_ACCOUNT_ID=$(jq -r '.result[0].id // empty' <<<"$accounts_json")
+    [[ -n "$CLOUDFLARE_ACCOUNT_ID" ]] && bws_put CLOUDFLARE_ACCOUNT_ID "$CLOUDFLARE_ACCOUNT_ID"
+  elif [[ "$account_count" == "0" ]]; then
+    die "No Cloudflare accounts visible to CLOUDFLARE_API_TOKEN — set CLOUDFLARE_ACCOUNT_ID in bws"
+  else
+    echo "Multiple Cloudflare accounts visible; set CLOUDFLARE_ACCOUNT_ID in bws:" >&2
+    jq -r '.result[] | "  \(.id)  \(.name)"' <<<"$accounts_json" >&2
+    die "CLOUDFLARE_ACCOUNT_ID required when more than one account is visible"
+  fi
 fi
 require_secret CLOUDFLARE_ACCOUNT_ID
 
@@ -110,11 +211,16 @@ else
   mint_pulumi_token
 fi
 
+ensure_r2_catalog_credentials
+
 echo "→ GitHub Actions secrets"
 printf '%s' "$CLOUDFLARE_API_TOKEN" | gh secret set CLOUDFLARE_API_TOKEN
 printf '%s' "$CLOUDFLARE_ACCOUNT_ID" | gh secret set CLOUDFLARE_ACCOUNT_ID
 printf '%s' "$CLOUDFLARE_ZONE_ID" | gh secret set CLOUDFLARE_ZONE_ID
 printf '%s' "$PULUMI_ACCESS_TOKEN" | gh secret set PULUMI_ACCESS_TOKEN
+printf '%s' "$R2_BLUEPRINT_CATALOG_BUCKET" | gh secret set R2_BLUEPRINT_CATALOG_BUCKET
+printf '%s' "$R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID" | gh secret set R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID
+printf '%s' "$R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY" | gh secret set R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY
 
 echo "→ Pulumi stack ${STACK}"
 cd "${ROOT}/infra/cloudflare"
@@ -152,4 +258,5 @@ else
 fi
 
 echo "Done. Run 'cd infra/cloudflare && pulumi up' or merge to main (CI runs pulumi + deploy)."
+echo "Then run the Publish blueprint catalog workflow (or wait for nightly)."
 EOF
