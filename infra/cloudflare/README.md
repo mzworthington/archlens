@@ -1,6 +1,14 @@
 # Cloudflare infrastructure (Pulumi)
 
-Pages project + custom domains for [archlens.dev](https://archlens.dev). The SPA is built in CI and deployed with `wrangler pages deploy`.
+Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev). The SPA is built in CI and deployed with `wrangler pages deploy`.
+
+## Resources
+
+| Resource | Purpose |
+|----------|---------|
+| `PagesProject` | Direct-upload project (`archlens`) |
+| `DnsRecord` (`apex-pages`, `www-pages`) | Proxied CNAMEs → `pagesProject.subdomain` (apex uses CNAME flattening) |
+| `PagesDomain` | Attaches apex + `www` to the Pages project (SSL / hostname binding) |
 
 ## Quick setup
 
@@ -29,6 +37,19 @@ pnpm install
 pulumi stack select prod
 pulumi preview
 pulumi up
+```
+
+## First apply with existing DNS
+
+Pulumi creates apex/`www` CNAMEs. If the zone already has those names (common after GitHub Pages), either:
+
+1. **Delete** the conflicting records in Cloudflare DNS, then `pulumi up`, or
+2. **Import** them into the stack (record id from the Cloudflare DNS UI or API):
+
+```bash
+pulumi import 'cloudflare:index/dnsRecord:DnsRecord' apex-pages "<zoneId>/<recordId>"
+pulumi import 'cloudflare:index/dnsRecord:DnsRecord' www-pages "<zoneId>/<recordId>"
+pulumi up   # updates content to the Pages subdomain if needed
 ```
 
 ## Stack config
