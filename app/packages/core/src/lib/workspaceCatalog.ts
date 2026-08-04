@@ -129,13 +129,37 @@ export function mergeWorkspaceCatalogEntries(
  * Returns the diagram entry when `entityRef` is the diagram identity, or the
  * first diagram that lists the ref as a native node.
  */
+function diagramsWithEntityRef(
+  catalog: readonly WorkspaceCatalogEntry[],
+  entityRef: string
+): WorkspaceCatalogEntry[] {
+  return catalog.filter(entry => entry.entityRef === entityRef);
+}
+
+/**
+ * When context and a child diagram incorrectly share an entityRef, URL navigation
+ * should open the context (peer context switching). Drill-down uses
+ * {@link resolveChildDiagramEntry}, which prefers the non-context diagram.
+ */
+function pickOwnDiagram(matches: WorkspaceCatalogEntry[]): WorkspaceCatalogEntry | undefined {
+  if (matches.length === 0) return undefined;
+  if (matches.length === 1) return matches[0];
+  return matches.find(entry => entry.level === 'context') ?? matches[0];
+}
+
+function pickChildDiagram(matches: WorkspaceCatalogEntry[]): WorkspaceCatalogEntry | undefined {
+  if (matches.length === 0) return undefined;
+  if (matches.length === 1) return matches[0];
+  return matches.find(entry => entry.level !== 'context') ?? matches[0];
+}
+
 export function resolveEntityHome(
   catalog: readonly WorkspaceCatalogEntry[],
   entityRef: string
 ): WorkspaceCatalogEntry | undefined {
   if (!entityRef) return undefined;
 
-  const ownDiagram = catalog.find(entry => entry.entityRef === entityRef);
+  const ownDiagram = pickOwnDiagram(diagramsWithEntityRef(catalog, entityRef));
   if (ownDiagram) return ownDiagram;
 
   return catalog.find(entry => entry.nodeEntityRefs.includes(entityRef));
@@ -150,7 +174,7 @@ export function resolveChildDiagramEntry(
   parentEntityRef: string
 ): WorkspaceCatalogEntry | undefined {
   if (!parentEntityRef) return undefined;
-  return catalog.find(entry => entry.entityRef === parentEntityRef);
+  return pickChildDiagram(diagramsWithEntityRef(catalog, parentEntityRef));
 }
 
 /** External nodes on the child diagram for a parent canvas node, when that child exists. */

@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { stripHtmlComments } from './stripHtmlComments';
-import { DOCS_PAGES, resolveDocsAssetSrc, resolveDocsHref } from './pages';
+import {
+  DOCS_PAGES,
+  DOCS_NAV,
+  DOCS_SIDEBAR,
+  isDocsNavActive,
+  resolveDocsAssetSrc,
+  resolveDocsHref,
+} from './pages';
 
 describe('docs link resolution', () => {
   it('resolves relative markdown links within the guide', () => {
@@ -54,6 +61,40 @@ describe('docs link resolution', () => {
     expect(DOCS_PAGES.some(p => p.path === '/guide/ci-blueprints')).toBe(false);
     expect(DOCS_PAGES.some(p => p.path === '/guide/ci-advicelens')).toBe(false);
     expect(resolveDocsHref('./ci-workflows.md', 'guide')).toBe('/guide/ci-workflows');
+  });
+
+  it('groups docs nav into Start/Surfaces/Tech hubs and sidebar', () => {
+    expect(DOCS_NAV.map(i => i.label)).toEqual(['Start', 'Surfaces', 'Tech']);
+    expect(DOCS_SIDEBAR.map(s => s.title)).toEqual(['Start', 'Surfaces', 'Tech']);
+    const start = DOCS_SIDEBAR.find(s => s.title === 'Start');
+    const surfaces = DOCS_SIDEBAR.find(s => s.title === 'Surfaces');
+    const tech = DOCS_SIDEBAR.find(s => s.title === 'Tech');
+    expect(start?.items.map(i => i.path)).toEqual([
+      '/guide',
+      '/guide/getting-started',
+      '/journeys',
+    ]);
+    expect(surfaces?.items.at(-1)).toEqual({ label: 'BlueprintSpec', path: '/guide/schema' });
+    expect(tech?.items.map(i => i.label)).toContain('Design system');
+    expect(DOCS_SIDEBAR.some(s => s.title === 'Contract')).toBe(false);
+  });
+
+  it('marks Start vs Surfaces vs Tech hubs active without colliding on CI workflows', () => {
+    const start = DOCS_NAV.find(i => i.label === 'Start')!;
+    const surfaces = DOCS_NAV.find(i => i.label === 'Surfaces')!;
+    const tech = DOCS_NAV.find(i => i.label === 'Tech')!;
+    expect(isDocsNavActive('/guide', start)).toBe(true);
+    expect(isDocsNavActive('/guide/getting-started', start)).toBe(true);
+    expect(isDocsNavActive('/journeys', start)).toBe(true);
+    expect(isDocsNavActive('/guide/canvas', start)).toBe(false);
+    expect(isDocsNavActive('/guide/canvas', surfaces)).toBe(true);
+    expect(isDocsNavActive('/guide/schema', surfaces)).toBe(true);
+    expect(isDocsNavActive('/guide/canvas', tech)).toBe(false);
+    expect(isDocsNavActive('/guide/ci-workflows', start)).toBe(false);
+    expect(isDocsNavActive('/guide/ci-workflows', surfaces)).toBe(false);
+    expect(isDocsNavActive('/guide/ci-workflows', tech)).toBe(true);
+    expect(isDocsNavActive('/design-system', tech)).toBe(true);
+    expect(isDocsNavActive('/design-system', start)).toBe(false);
   });
 
   it('registers the AdviceLens engine reference page', () => {

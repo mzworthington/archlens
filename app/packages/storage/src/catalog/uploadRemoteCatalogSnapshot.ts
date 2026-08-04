@@ -12,18 +12,30 @@ export type CatalogSnapshotUploadResult = {
   uploadedObjects: number;
 };
 
+export type UploadRemoteCatalogSnapshotOptions = {
+  /** CAS: update `latest/manifest.json` only if ETag matches. */
+  latestIfMatch?: string;
+  /** CAS: create `latest/manifest.json` only if missing (`*`). */
+  latestIfNoneMatch?: string;
+};
+
 export async function uploadRemoteCatalogSnapshot(
   plan: RemoteCatalogSnapshotPlan,
-  storage: ObjectStoragePort
+  storage: ObjectStoragePort,
+  options: UploadRemoteCatalogSnapshotOptions = {}
 ): Promise<CatalogSnapshotUploadResult> {
-  const bodies = materializeRemoteCatalogSnapshotBodies(plan).map(object => ({
-    key: object.key,
-    body: object.body,
-    contentType: object.contentType,
-  }));
+  const latestKey = remoteCatalogLatestManifestKey();
+  const bodies = materializeRemoteCatalogSnapshotBodies(plan).map(object => {
+    if (object.key !== latestKey) return object;
+    return {
+      ...object,
+      ...(options.latestIfMatch ? { ifMatch: options.latestIfMatch } : {}),
+      ...(options.latestIfNoneMatch ? { ifNoneMatch: options.latestIfNoneMatch } : {}),
+    };
+  });
 
   const result = await uploadObjects(storage, bodies, {
-    writeLastKeys: [remoteCatalogLatestManifestKey()],
+    writeLastKeys: [latestKey],
   });
 
   return {

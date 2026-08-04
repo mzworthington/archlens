@@ -1,8 +1,9 @@
 name: Publish blueprint catalog
 
 # Customer-facing example: install the latest CLI release, scan this repo, publish.
-# Dogfood skips validation (scan output can be incomplete). For a strict customer gate, omit
-# --skip-validation or run `archlens validate` before publish.
+# Publish prefers visibility (validation does not block by default). Use `archlens validate`
+# or `scan/publish --validate` only when you want a hard CI gate.
+# ADR-0014 Phase 0: publish under estates/archlens/ so samples/demos do not share this latest.
 # Copy into your pipeline as:
 #   archlens scan --headless --output=blueprints --context=my-app --publish
 
@@ -41,7 +42,16 @@ jobs:
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          OBJECT_STORAGE_KEY_PREFIX: estates/archlens
           R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
-        run: archlens scan --headless --output=blueprints --context=archlens --publish --skip-validation
+        run: |
+          set -euo pipefail
+          archlens scan --headless \
+            --output=blueprints \
+            --context=archlens \
+            --workspace-name=archlens \
+            --key-prefix=estates/archlens \
+            --publish \
+            --skip-validation

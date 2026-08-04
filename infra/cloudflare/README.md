@@ -13,6 +13,8 @@ Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev).
 | `R2BucketCors` | Browser GET/HEAD from `archlens.dev` and local dev |
 | `R2CustomDomain` | Public read at `blueprints.archlens.dev` |
 
+Catalog objects follow ADR-0010 under **per-publisher prefixes** (ADR-0014 Phase 0): `estates/archlens/`, `estates/samples/`, `estates/demos/{id}/`. Production Canvas uses `https://blueprints.archlens.dev/estates/archlens/`.
+
 ## Quick setup
 
 See [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md), then from the repo root:
@@ -64,9 +66,9 @@ pulumi up
 | `app/packages/designer/public/_redirects` | SPA routing |
 | `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
-| `.github/workflows/publish-blueprint-catalog.yml` | Install CLI → scan this repo → publish to R2 (`--skip-validation`) |
-| `.github/workflows/publish-demo-catalog.yml` | Matrix over example codebases → scan → publish to R2 (`--skip-validation`) |
-| `.github/workflows/publish-samples.yml` | When `samples/**` changes on `main` → publish `samples/` to R2 (`--skip-validation`) |
+| `.github/workflows/publish-blueprint-catalog.yml` | Scan this repo → `estates/archlens/` (`--skip-validation`) |
+| `.github/workflows/publish-demo-catalog.yml` | Matrix demo repos → `estates/demos/{id}/` (`--skip-validation`) |
+| `.github/workflows/publish-samples.yml` | `samples/` → `estates/samples/` (`--skip-validation`) |
 
 Workflow index (all triggers): [docs/guide/ci-workflows.md](../../docs/guide/ci-workflows.md).
 

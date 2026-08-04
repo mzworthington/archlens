@@ -14,6 +14,9 @@ import { executeValidateRun } from './validateRun.ts';
 import { executeDiffRun } from './diffRun.ts';
 import { executeResilienceRun } from './resilienceRun.ts';
 import { executePublishRun } from './publishRun.ts';
+import { executeComposeCatalogRun } from './composeCatalogRun.ts';
+import { executePublishFragmentRun } from './publishFragmentRun.ts';
+import { executeAcceptOverlayRun, executeRejectOverlayRun } from './suggestionOverlayRun.ts';
 import { resolveWatchOptions, watchAndRerun } from './watchAndRerun.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
@@ -83,6 +86,8 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<void> {
       format: 'json',
       dryRun: false,
       skipValidation: plan.publishSkipValidation,
+      keyPrefix: plan.publishKeyPrefix,
+      workspaceName: plan.publishWorkspaceName,
     });
   }
 }
@@ -111,7 +116,8 @@ async function run() {
     args[0] === 'validate' ||
     args[0] === 'diff' ||
     args[0] === 'resilience' ||
-    args[0] === 'publish'
+    args[0] === 'publish' ||
+    args[0] === 'catalog'
   ) {
     const command = parseArchlensCommand(args);
     if (command.kind === 'validate') {
@@ -128,6 +134,22 @@ async function run() {
     }
     if (command.kind === 'publish') {
       await executePublishRun(command.plan);
+      return;
+    }
+    if (command.kind === 'catalog-compose') {
+      await executeComposeCatalogRun(command.plan);
+      return;
+    }
+    if (command.kind === 'catalog-publish-fragment') {
+      await executePublishFragmentRun(command.plan);
+      return;
+    }
+    if (command.kind === 'catalog-accept-overlay') {
+      await executeAcceptOverlayRun(command.plan);
+      return;
+    }
+    if (command.kind === 'catalog-reject-overlay') {
+      await executeRejectOverlayRun(command.plan);
       return;
     }
   }

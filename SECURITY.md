@@ -21,7 +21,7 @@ Security fixes are applied to the latest release and `main`. Older versions may 
 
 ## Scope
 
-ArchLens is a local-first tool. Reports we are especially interested in include:
+Authoring is local-first (browser drafts and folders you open); CI publish writes only to storage you configure. Reports we are especially interested in include:
 
 - Remote code execution or arbitrary file access via the CLI or import parsers
 - Cross-site scripting or other issues in the Designer web app

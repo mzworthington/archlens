@@ -1,14 +1,25 @@
 import {
   GetObjectCommand,
+  ListObjectsV2Command,
   PutObjectCommand,
   S3Client,
   type S3ClientConfig,
 } from '@aws-sdk/client-s3';
 import type { S3CompatibleStorageConfig } from '../config/objectStorageConfig';
-import type { ObjectStoragePort, ObjectStoragePutRequest } from '../ports/objectStoragePort';
+import type {
+  ObjectStorageObjectMeta,
+  ObjectStoragePort,
+  ObjectStoragePutRequest,
+} from '../ports/objectStoragePort';
+import { ObjectStoragePreconditionFailedError } from '../ports/objectStoragePort';
 
 function toBodyBytes(body: string | Uint8Array): Uint8Array {
   return typeof body === 'string' ? new TextEncoder().encode(body) : body;
+}
+
+function normalizeEtag(etag: string | undefined): string | undefined {
+  if (!etag) return undefined;
+  return etag.replaceAll('"', '');
 }
 
 async function streamToBytes(body: unknown): Promise<Uint8Array> {
@@ -33,6 +44,16 @@ async function streamToBytes(body: unknown): Promise<Uint8Array> {
     offset += chunk.length;
   }
   return merged;
+}
+
+function isPreconditionFailed(error: unknown): boolean {
+  if (!error || typeof error !== 'object') return false;
+  const record = error as { name?: string; $metadata?: { httpStatusCode?: number } };
+  return (
+    record.name === 'PreconditionFailed' ||
+    record.name === '412' ||
+    record.$metadata?.httpStatusCode === 412
+  );
 }
 
 export type S3ObjectStorageDeps = {
@@ -64,30 +85,71 @@ export function createS3ObjectStorage(
     return `${prefix.replace(/^\/+|\/+$/g, '')}/${normalized}`;
   };
 
+  const stripPrefix = (fullKey: string): string => {
+    const normalizedPrefix = prefix.replace(/^\/+|\/+$/g, '');
+    if (!normalizedPrefix) return fullKey;
+    const withSlash = `${normalizedPrefix}/`;
+    return fullKey.startsWith(withSlash) ? fullKey.slice(withSlash.length) : fullKey;
+  };
+
   return {
     provider: config.provider,
     async getObject(key: string): Promise<Uint8Array> {
+      return (await this.getObjectWithMeta(key)).body;
+    },
+    async getObjectText(key: string): Promise<string> {
+      const bytes = await this.getObject(key);
+      return new TextDecoder().decode(bytes);
+    },
+    async getObjectWithMeta(key: string): Promise<ObjectStorageObjectMeta> {
       const response = await send(
         new GetObjectCommand({
           Bucket: config.bucket,
           Key: resolveKey(key),
         })
       );
-      return streamToBytes(response.Body);
+      return {
+        body: await streamToBytes(response.Body),
+        etag: normalizeEtag(response.ETag),
+      };
     },
-    async getObjectText(key: string): Promise<string> {
-      const bytes = await this.getObject(key);
-      return new TextDecoder().decode(bytes);
+    async listObjectKeys(listPrefix: string): Promise<string[]> {
+      const fullPrefix = resolveKey(listPrefix);
+      const keys: string[] = [];
+      let continuationToken: string | undefined;
+      do {
+        const response = await send(
+          new ListObjectsV2Command({
+            Bucket: config.bucket,
+            Prefix: fullPrefix,
+            ContinuationToken: continuationToken,
+          })
+        );
+        for (const item of response.Contents ?? []) {
+          if (item.Key) keys.push(stripPrefix(item.Key));
+        }
+        continuationToken = response.IsTruncated ? response.NextContinuationToken : undefined;
+      } while (continuationToken);
+      return keys.sort((a, b) => a.localeCompare(b));
     },
     async putObject(request: ObjectStoragePutRequest): Promise<void> {
-      await send(
-        new PutObjectCommand({
-          Bucket: config.bucket,
-          Key: resolveKey(request.key),
-          Body: toBodyBytes(request.body),
-          ContentType: request.contentType,
-        })
-      );
+      try {
+        await send(
+          new PutObjectCommand({
+            Bucket: config.bucket,
+            Key: resolveKey(request.key),
+            Body: toBodyBytes(request.body),
+            ContentType: request.contentType,
+            ...(request.ifMatch ? { IfMatch: request.ifMatch } : {}),
+            ...(request.ifNoneMatch ? { IfNoneMatch: request.ifNoneMatch } : {}),
+          })
+        );
+      } catch (error) {
+        if (isPreconditionFailed(error)) {
+          throw new ObjectStoragePreconditionFailedError(request.key);
+        }
+        throw error;
+      }
     },
   };
 }

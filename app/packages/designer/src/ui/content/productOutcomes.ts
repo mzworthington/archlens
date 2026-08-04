@@ -4,7 +4,7 @@ export const PRODUCT_HERO = {
   headline: 'Catch architecture risk before it becomes an outage',
   lede: 'Model failures on your diagram, surface code hotspots, and get a ranked fix list — while design is still cheap to change.',
   trustLine:
-    'Free, open source, and local-first. Diagrams stay in your browser or folders you open — no account, no uploads to ArchLens servers.',
+    'Free and open source. Author locally in your browser or folders you open — no account, no uploads to ArchLens servers. Publish BlueprintSpec from CI when the team needs a shared, living estate view.',
 } as const;
 
 export const WHY_IT_MATTERS = [

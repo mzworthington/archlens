@@ -25,8 +25,11 @@ export interface ArchlensCliPlan {
   runGitForensics: boolean;
   /** After a successful scan, upload the output tree via `archlens publish --no-dry-run`. */
   publishAfterScan: boolean;
-  /** Forwarded to publish-after-scan when `--skip-validation` is set with `--publish`. */
+  /** Forwarded to publish-after-scan (default skip; `--validate` gates; `--skip-validation` always allows). */
   publishSkipValidation: boolean;
+  /** Forwarded to publish-after-scan (`--key-prefix` / `--workspace-name`). */
+  publishKeyPrefix?: string;
+  publishWorkspaceName?: string;
   /** True when CLI flags already decided git on/off (skip interactive git prompt). */
   gitDecisionExplicit: boolean;
   watch: boolean;
@@ -66,9 +69,65 @@ export interface PublishCliPlan {
   targetPath: string;
   format: OutputFormat;
   dryRun: boolean;
-  /** Opt-in only: when true, do not run or enforce workspace validation before upload. */
+  /**
+   * When true, do not fail publish/compose on workspace validation.
+   * Default true: catalogs show reality; use `--validate` for an optional hard gate.
+   * `--skip-validation` always allows push even if `--validate` is also set.
+   */
   skipValidation: boolean;
   workspaceName?: string;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogComposeCliPlan {
+  estateId: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  skipValidation: boolean;
+  workspaceName?: string;
+  maxRetries: number;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogPublishFragmentCliPlan {
+  targetPath: string;
+  estateId: string;
+  productId: string;
+  systemId?: string;
+  fragmentKey?: string;
+  sourceRef: string;
+  runId?: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  skipValidation: boolean;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogAcceptOverlayCliPlan {
+  estateId: string;
+  overlayFile: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
+export interface CatalogRejectOverlayCliPlan {
+  estateId: string;
+  overlayId: string;
+  format: OutputFormat;
+  dryRun: boolean;
   storageProvider?: 'r2' | 's3' | 'azure';
   bucket?: string;
   accountId?: string;
@@ -80,7 +139,11 @@ export type ArchlensCommandPlan =
   | { kind: 'validate'; plan: ValidateCliPlan }
   | { kind: 'diff'; plan: DiffCliPlan }
   | { kind: 'resilience'; plan: ResilienceCliPlan }
-  | { kind: 'publish'; plan: PublishCliPlan };
+  | { kind: 'publish'; plan: PublishCliPlan }
+  | { kind: 'catalog-compose'; plan: CatalogComposeCliPlan }
+  | { kind: 'catalog-publish-fragment'; plan: CatalogPublishFragmentCliPlan }
+  | { kind: 'catalog-accept-overlay'; plan: CatalogAcceptOverlayCliPlan }
+  | { kind: 'catalog-reject-overlay'; plan: CatalogRejectOverlayCliPlan };
 
 export const DEFAULT_WATCH_DEBOUNCE_MS = 500;
 
@@ -150,6 +213,137 @@ export function isResilienceSubcommand(argv: string[]): boolean {
 
 export function isPublishSubcommand(argv: string[]): boolean {
   return argv[0] === 'publish';
+}
+
+export function isCatalogSubcommand(argv: string[]): boolean {
+  return argv[0] === 'catalog';
+}
+
+function parseStorageProvider(argv: string[]): 'r2' | 's3' | 'azure' | undefined {
+  const providerRaw = flagValue(argv, '--provider');
+  return providerRaw === 'r2' || providerRaw === 's3' || providerRaw === 'azure'
+    ? providerRaw
+    : undefined;
+}
+
+export function defaultEstateKeyPrefix(estateId: string): string {
+  return `estates/${estateId.replace(/^\/+|\/+$/g, '')}`;
+}
+
+/**
+ * Publish / compose / fragment push paths favour visibility over gating.
+ * Default: skip validation. `--validate` opts into a hard gate.
+ * `--skip-validation` is always allowed and wins over `--validate`.
+ */
+export function resolvePublishSkipValidation(argv: string[]): boolean {
+  if (argv.includes('--skip-validation')) return true;
+  if (argv.includes('--validate')) return false;
+  return true;
+}
+
+export function parseCatalogComposeArgv(argv: string[]): CatalogComposeCliPlan {
+  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
+  const estateId = flagValue(rest, '--estate');
+  if (!estateId?.trim()) {
+    throw new Error('archlens catalog compose requires --estate=<id>');
+  }
+  const maxRetriesRaw = flagValue(rest, '--max-retries');
+  const maxRetriesParsed = maxRetriesRaw === undefined ? 3 : Number(maxRetriesRaw);
+  const maxRetries =
+    Number.isFinite(maxRetriesParsed) && maxRetriesParsed >= 1 ? Math.trunc(maxRetriesParsed) : 3;
+
+  return {
+    estateId: estateId.trim(),
+    format: parseOutputFormat(rest),
+    dryRun: !rest.includes('--no-dry-run'),
+    skipValidation: resolvePublishSkipValidation(rest),
+    workspaceName: flagValue(rest, '--workspace-name'),
+    maxRetries,
+    storageProvider: parseStorageProvider(rest),
+    bucket: flagValue(rest, '--bucket'),
+    accountId: flagValue(rest, '--account-id'),
+    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+  };
+}
+
+export function parseCatalogPublishFragmentArgv(argv: string[]): CatalogPublishFragmentCliPlan {
+  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
+  const positional = positionalArgs(rest);
+  const estateId = flagValue(rest, '--estate');
+  const productId = flagValue(rest, '--product') ?? flagValue(rest, '--product-id');
+  const sourceRef = flagValue(rest, '--source-ref');
+  if (!estateId?.trim()) {
+    throw new Error('archlens catalog publish-fragment requires --estate=<id>');
+  }
+  if (!productId?.trim()) {
+    throw new Error('archlens catalog publish-fragment requires --product=<id>');
+  }
+  if (!sourceRef?.trim()) {
+    throw new Error('archlens catalog publish-fragment requires --source-ref=<ref>');
+  }
+
+  const systemId = flagValue(rest, '--system') ?? flagValue(rest, '--system-id');
+  return {
+    targetPath: flagValue(rest, '--path') ?? positional[0] ?? 'blueprints',
+    estateId: estateId.trim(),
+    productId: productId.trim(),
+    ...(systemId?.trim() ? { systemId: systemId.trim() } : {}),
+    fragmentKey: flagValue(rest, '--fragment-key'),
+    sourceRef: sourceRef.trim(),
+    runId: flagValue(rest, '--run-id'),
+    format: parseOutputFormat(rest),
+    dryRun: !rest.includes('--no-dry-run'),
+    skipValidation: resolvePublishSkipValidation(rest),
+    storageProvider: parseStorageProvider(rest),
+    bucket: flagValue(rest, '--bucket'),
+    accountId: flagValue(rest, '--account-id'),
+    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+  };
+}
+
+export function parseCatalogAcceptOverlayArgv(argv: string[]): CatalogAcceptOverlayCliPlan {
+  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
+  const positional = positionalArgs(rest);
+  const estateId = flagValue(rest, '--estate');
+  const overlayFile = flagValue(rest, '--file') ?? positional[0];
+  if (!estateId?.trim()) {
+    throw new Error('archlens catalog accept-overlay requires --estate=<id>');
+  }
+  if (!overlayFile?.trim()) {
+    throw new Error('archlens catalog accept-overlay requires --file=<overlay.yaml>');
+  }
+  return {
+    estateId: estateId.trim(),
+    overlayFile: overlayFile.trim(),
+    format: parseOutputFormat(rest),
+    dryRun: !rest.includes('--no-dry-run'),
+    storageProvider: parseStorageProvider(rest),
+    bucket: flagValue(rest, '--bucket'),
+    accountId: flagValue(rest, '--account-id'),
+    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+  };
+}
+
+export function parseCatalogRejectOverlayArgv(argv: string[]): CatalogRejectOverlayCliPlan {
+  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
+  const estateId = flagValue(rest, '--estate');
+  const overlayId = flagValue(rest, '--overlay-id') ?? flagValue(rest, '--id');
+  if (!estateId?.trim()) {
+    throw new Error('archlens catalog reject-overlay requires --estate=<id>');
+  }
+  if (!overlayId?.trim()) {
+    throw new Error('archlens catalog reject-overlay requires --overlay-id=<id>');
+  }
+  return {
+    estateId: estateId.trim(),
+    overlayId: overlayId.trim(),
+    format: parseOutputFormat(rest),
+    dryRun: !rest.includes('--no-dry-run'),
+    storageProvider: parseStorageProvider(rest),
+    bucket: flagValue(rest, '--bucket'),
+    accountId: flagValue(rest, '--account-id'),
+    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+  };
 }
 
 function parseOutputFormat(argv: string[]): OutputFormat {
@@ -223,18 +417,13 @@ export function parsePublishArgv(argv: string[]): PublishCliPlan {
   const positional = positionalArgs(rest);
   const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
   const workspaceName = flagValue(rest, '--workspace-name');
-  const providerRaw = flagValue(rest, '--provider');
-  const storageProvider =
-    providerRaw === 'r2' || providerRaw === 's3' || providerRaw === 'azure'
-      ? providerRaw
-      : undefined;
   return {
     targetPath,
     format: parseOutputFormat(rest),
     dryRun: !rest.includes('--no-dry-run'),
-    skipValidation: rest.includes('--skip-validation'),
+    skipValidation: resolvePublishSkipValidation(rest),
     workspaceName,
-    storageProvider,
+    storageProvider: parseStorageProvider(rest),
     bucket: flagValue(rest, '--bucket'),
     accountId: flagValue(rest, '--account-id'),
     keyPrefix: flagValue(rest, '--key-prefix'),
@@ -253,6 +442,24 @@ export function parseArchlensCommand(argv: string[]): ArchlensCommandPlan {
   }
   if (isPublishSubcommand(argv)) {
     return { kind: 'publish', plan: parsePublishArgv(argv) };
+  }
+  if (isCatalogSubcommand(argv)) {
+    const action = argv[1];
+    if (action === 'compose') {
+      return { kind: 'catalog-compose', plan: parseCatalogComposeArgv(argv) };
+    }
+    if (action === 'publish-fragment') {
+      return { kind: 'catalog-publish-fragment', plan: parseCatalogPublishFragmentArgv(argv) };
+    }
+    if (action === 'accept-overlay') {
+      return { kind: 'catalog-accept-overlay', plan: parseCatalogAcceptOverlayArgv(argv) };
+    }
+    if (action === 'reject-overlay') {
+      return { kind: 'catalog-reject-overlay', plan: parseCatalogRejectOverlayArgv(argv) };
+    }
+    throw new Error(
+      `Unknown catalog action "${action ?? ''}". Use: archlens catalog compose | publish-fragment | accept-overlay | reject-overlay`
+    );
   }
   return { kind: 'architecture', plan: parseArchlensArgv(argv) };
 }
@@ -358,7 +565,7 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
 
   const isHeadless = scanMode || enrichMode || isHeadlessArgv(commandArgv);
   const publishAfterScan = commandArgv.includes('--publish');
-  const publishSkipValidation = commandArgv.includes('--skip-validation');
+  const publishSkipValidation = resolvePublishSkipValidation(commandArgv);
 
   return {
     isHeadless,
@@ -367,6 +574,8 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
     runGitForensics: enrichMode ? commandArgv.includes('--git') : !noGit,
     publishAfterScan,
     publishSkipValidation,
+    publishKeyPrefix: flagValue(commandArgv, '--key-prefix'),
+    publishWorkspaceName: flagValue(commandArgv, '--workspace-name'),
     gitDecisionExplicit,
     watch: commandArgv.includes('--watch'),
     watchDebounceMs: parseWatchDebounce(commandArgv),

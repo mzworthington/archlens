@@ -1,7 +1,7 @@
 name: Publish demo catalog
 
 # Matrix dogfood: install latest CLI, clone each example codebase, scan + publish.
-# External demo repos may produce incomplete schemas — always pass --skip-validation.
+# Incomplete / intentionally invalid demos are still published (visibility over gating).
 # This-repo dogfood: publish-blueprint-catalog.yml. Hand-authored demos: publish-samples.yml.
 
 on:
@@ -62,6 +62,7 @@ jobs:
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          OBJECT_STORAGE_KEY_PREFIX: estates/demos/${{ matrix.sample.id }}
           R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
@@ -70,6 +71,8 @@ jobs:
           archlens scan --headless \
             --output="${GITHUB_WORKSPACE}/blueprints" \
             --context="${{ matrix.sample.context }}" \
+            --workspace-name="${{ matrix.sample.id }}" \
+            --key-prefix="estates/demos/${{ matrix.sample.id }}" \
             --git-since="${{ matrix.sample.gitSinceDays }}" \
             --publish \
             --skip-validation

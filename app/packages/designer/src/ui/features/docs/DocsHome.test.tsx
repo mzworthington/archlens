@@ -28,8 +28,9 @@ describe('DocsHome', () => {
     expect(screen.getByTestId('docs-home')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: PRODUCT_HERO.headline })).toBeInTheDocument();
     expect(screen.getByText('Free & open source')).toBeInTheDocument();
-    expect(screen.getByText('Local-first')).toBeInTheDocument();
+    expect(screen.getByText('Local + published')).toBeInTheDocument();
     expect(screen.getAllByText(/no uploads to archlens servers/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/author locally or publish the estate/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Why it matters' })).toBeInTheDocument();
     expect(screen.getByText('Simulate without touching production')).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
@@ -48,7 +49,7 @@ describe('DocsHome', () => {
   it('uses landing layout without docs sidebar', () => {
     render(<DocsHome />);
     expect(screen.queryByTestId('docs-sidebar')).not.toBeInTheDocument();
-    expect(screen.queryByTestId('docs-mobile-guide-nav')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('docs-mobile-start-nav')).not.toBeInTheDocument();
   });
 
   it('links each product card to its guide chapter', () => {

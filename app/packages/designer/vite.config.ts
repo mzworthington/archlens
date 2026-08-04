@@ -319,8 +319,8 @@ export default defineConfig({
         // Do not glob-ignore all bundled-blueprints — that would drop the preload globs above.
         globIgnores: ['**/docs-assets/**', '**/schemas/**'],
         navigateFallback: 'index.html',
-        // Keep /schemas/* and /bundled-blueprints/* as real assets, not the SPA shell.
-        navigateFallbackDenylist: [/^\/schemas\//, /^\/bundled-blueprints\//],
+        // Keep /schemas/*, /bundled-blueprints/*, and /assets/* as real assets, not the SPA shell.
+        navigateFallbackDenylist: [/^\/schemas\//, /^\/bundled-blueprints\//, /^\/assets\//],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => url.pathname.includes('/bundled-blueprints/'),

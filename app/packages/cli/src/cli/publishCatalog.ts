@@ -110,7 +110,7 @@ export async function runPublishCatalog(
       catalogEntryCount: snapshotPlan.catalog.length,
       upload: {
         revisionId: uploadResult.revisionId,
-        bucket: plan.bucket ?? storage.provider,
+        provider: storage.provider,
         uploadedObjects: uploadResult.uploadedObjects,
       },
       validation,

@@ -63,7 +63,7 @@ export function formatPublishUploadResult(
     pc.green('✔ Remote catalog published'),
     '',
     `  ${pc.dim('Revision:')} ${result.revisionId}`,
-    `  ${pc.dim('Bucket:')} ${result.upload.bucket}`,
+    `  ${pc.dim('Provider:')} ${result.upload.provider}`,
     `  ${pc.dim('Uploaded objects:')} ${result.upload.uploadedObjects}`,
     `  ${pc.dim('Catalog entries:')} ${result.catalogEntryCount}`,
   ];
