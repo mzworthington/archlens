@@ -87,6 +87,8 @@ export interface CatalogComposeCliPlan {
   format: OutputFormat;
   dryRun: boolean;
   skipValidation: boolean;
+  /** When true, exit 0 if no fragments are staged (cron safety nets). */
+  allowEmpty: boolean;
   workspaceName?: string;
   maxRetries: number;
   storageProvider?: 'r2' | 's3' | 'azure';
@@ -257,6 +259,7 @@ export function parseCatalogComposeArgv(argv: string[]): CatalogComposeCliPlan {
     format: parseOutputFormat(rest),
     dryRun: !rest.includes('--no-dry-run'),
     skipValidation: resolvePublishSkipValidation(rest),
+    allowEmpty: rest.includes('--allow-empty'),
     workspaceName: flagValue(rest, '--workspace-name'),
     maxRetries,
     storageProvider: parseStorageProvider(rest),

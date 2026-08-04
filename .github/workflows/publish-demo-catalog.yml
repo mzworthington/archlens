@@ -1,8 +1,7 @@
 name: Publish demo catalog
 
-# Matrix dogfood: install latest CLI, clone each example codebase, scan + publish.
-# Incomplete / intentionally invalid demos are still published (visibility over gating).
-# This-repo dogfood: publish-blueprint-catalog.yml. Hand-authored demos: publish-samples.yml.
+# Matrix dogfood: clone each example codebase → scan → fragment → compose.
+# Each demo keeps its own estate prefix (estates/demos/{id}/). Cron safety net: compose-catalog.yml.
 
 on:
   schedule:
@@ -43,12 +42,8 @@ jobs:
       - name: Checkout ArchLens
         uses: actions/checkout@v7
 
-      - name: Install ArchLens CLI
-        run: |
-          set -euo pipefail
-          ./scripts/install.sh --dir "$HOME/.local/bin"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-          archlens --version
+      - name: Setup ArchLens CLI
+        uses: ./.github/actions/setup-archlens-cli
 
       - name: Clone demo repo
         run: |
@@ -57,7 +52,7 @@ jobs:
             "${{ matrix.sample.repo }}" \
             "demos/${{ matrix.sample.id }}"
 
-      - name: Scan and publish
+      - name: Scan, publish fragment, and compose
         working-directory: demos/${{ matrix.sample.id }}
         env:
           OBJECT_STORAGE_PROVIDER: r2
@@ -68,11 +63,25 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
         run: |
           set -euo pipefail
+          DEMO_SHA="$(git rev-parse HEAD)"
+          OUT="${GITHUB_WORKSPACE}/blueprints/${{ matrix.sample.id }}"
+
           archlens scan --headless \
-            --output="${GITHUB_WORKSPACE}/blueprints" \
+            --output="${OUT}" \
             --context="${{ matrix.sample.context }}" \
+            --git-since="${{ matrix.sample.gitSinceDays }}"
+
+          archlens catalog publish-fragment "${OUT}" \
+            --estate="${{ matrix.sample.id }}" \
+            --product="${{ matrix.sample.id }}" \
+            --source-ref="${{ matrix.sample.repo }}@${DEMO_SHA}" \
+            --key-prefix="estates/demos/${{ matrix.sample.id }}" \
+            --no-dry-run \
+            --format=json
+
+          archlens catalog compose \
+            --estate="${{ matrix.sample.id }}" \
             --workspace-name="${{ matrix.sample.id }}" \
             --key-prefix="estates/demos/${{ matrix.sample.id }}" \
-            --git-since="${{ matrix.sample.gitSinceDays }}" \
-            --publish \
-            --skip-validation
+            --no-dry-run \
+            --format=json

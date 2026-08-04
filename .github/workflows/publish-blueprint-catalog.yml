@@ -1,11 +1,12 @@
 name: Publish blueprint catalog
 
-# Customer-facing example: install the latest CLI release, scan this repo, publish.
-# Publish prefers visibility (validation does not block by default). Use `archlens validate`
-# or `scan/publish --validate` only when you want a hard CI gate.
-# ADR-0014 Phase 0: publish under estates/archlens/ so samples/demos do not share this latest.
-# Copy into your pipeline as:
-#   archlens scan --headless --output=blueprints --context=my-app --publish
+# Dogfood: scan this repo → stage a fragment → compose the estate catalog (ADR-0014).
+# Primary stitch trigger is this workflow; compose-catalog.yml is the cron safety net.
+# Publish prefers visibility (validation does not block by default).
+# Customer multi-pipeline pattern:
+#   archlens scan --headless --output=blueprints --context=my-app
+#   archlens catalog publish-fragment blueprints/ --estate=my-estate --product=my-app --source-ref=repo@sha --no-dry-run
+#   archlens catalog compose --estate=my-estate --no-dry-run
 
 on:
   schedule:
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     environment:
       name: production
     steps:
@@ -31,14 +32,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install ArchLens CLI
-        run: |
-          set -euo pipefail
-          ./scripts/install.sh --dir "$HOME/.local/bin"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-          archlens --version
+      - name: Setup ArchLens CLI
+        uses: ./.github/actions/setup-archlens-cli
 
-      - name: Scan and publish
+      - name: Scan, publish fragment, and compose
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
@@ -50,8 +47,19 @@ jobs:
           set -euo pipefail
           archlens scan --headless \
             --output=blueprints \
-            --context=archlens \
+            --context=archlens
+
+          archlens catalog publish-fragment blueprints/ \
+            --estate=archlens \
+            --product=archlens \
+            --source-ref="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}@${GITHUB_SHA}" \
+            --key-prefix=estates/archlens \
+            --no-dry-run \
+            --format=json
+
+          archlens catalog compose \
+            --estate=archlens \
             --workspace-name=archlens \
             --key-prefix=estates/archlens \
-            --publish \
-            --skip-validation
+            --no-dry-run \
+            --format=json

@@ -1,0 +1,38 @@
+name: Setup ArchLens CLI
+description: Install toolchain and compile the ArchLens CLI from this checkout (catalog compose / fragment commands).
+
+runs:
+  using: composite
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v6
+      with:
+        version: 11.10.0
+        run_install: false
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24
+        cache: pnpm
+        cache-dependency-path: app/pnpm-lock.yaml
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+
+    - name: Install dependencies
+      shell: bash
+      working-directory: app
+      run: pnpm install --frozen-lockfile
+
+    - name: Build CLI
+      shell: bash
+      working-directory: app
+      run: |
+        set -euo pipefail
+        pnpm --filter @archlens/cli build
+        mkdir -p "$HOME/.local/bin"
+        cp dist/archlens "$HOME/.local/bin/archlens"
+        chmod +x "$HOME/.local/bin/archlens"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        archlens --version

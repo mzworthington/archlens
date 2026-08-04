@@ -66,9 +66,11 @@ pulumi up
 | `app/packages/designer/public/_redirects` | SPA routing |
 | `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
-| `.github/workflows/publish-blueprint-catalog.yml` | Scan this repo → `estates/archlens/` (`--skip-validation`) |
-| `.github/workflows/publish-demo-catalog.yml` | Matrix demo repos → `estates/demos/{id}/` (`--skip-validation`) |
-| `.github/workflows/publish-samples.yml` | `samples/` → `estates/samples/` (`--skip-validation`) |
+| `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/archlens/` |
+| `.github/workflows/publish-demo-catalog.yml` | Matrix demos → fragment → compose `estates/demos/{id}/` |
+| `.github/workflows/publish-samples.yml` | `samples/` → fragment → compose `estates/samples/` |
+| `.github/workflows/compose-catalog.yml` | Hourly safety-net compose for dogfood estates |
+| `.github/actions/setup-archlens-cli` | Build CLI from checkout for catalog workflows |
 
 Workflow index (all triggers): [docs/guide/ci-workflows.md](../../docs/guide/ci-workflows.md).
 

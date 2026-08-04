@@ -363,6 +363,7 @@ function printCatalogHelp(): void {
   flag('--key-prefix=<path>', 'Override object key prefix (default: estates/{estate}/)');
   flag('--max-retries=<n>', 'CAS retries on latest/manifest.json (default: 3)');
   flag('--no-dry-run', 'Upload composed snapshot and CAS-update latest');
+  flag('--allow-empty', 'Exit 0 when no fragments are staged (cron safety nets)');
   flag(
     '--skip-validation',
     'Allow compose without a validation gate (default; use --validate to gate)'

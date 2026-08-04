@@ -81,6 +81,8 @@ estates/{estateId}/
 
 Stage inputs with `archlens catalog publish-fragment … --estate=… --product=… --source-ref=… --no-dry-run`.
 
+**Compose triggers (dogfood):** primary stitch is `publish-fragment` then `compose` in the same GitHub Actions job. A hourly `compose-catalog` workflow is the safety net (`--allow-empty`). Storage-event / Worker triggers are deferred.
+
 ### Phase 3 — suggestion overlays (implemented)
 
 Suggestions do not edit snapshots. Accepting “add dependent” writes an overlay under `overlays/{overlayId}.yaml`; compose merges accepted overlays into the composed tree before publishing. Reject rewrites the same key with `status: rejected` (tombstone).

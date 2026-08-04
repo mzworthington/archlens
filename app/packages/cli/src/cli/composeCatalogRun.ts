@@ -31,6 +31,13 @@ export async function executeComposeCatalogRun(plan: CatalogComposeCliPlan): Pro
       process.exit(1);
       return;
     case 'no-fragments':
+      if (plan.allowEmpty) {
+        logger.info(
+          `No fragments for estate "${plan.estateId}" — skipping compose (--allow-empty).`
+        );
+        process.exit(0);
+        return;
+      }
       logger.error(
         `No fragments found for estate "${plan.estateId}" under fragments/. Publish fragments first with archlens catalog publish-fragment.`
       );

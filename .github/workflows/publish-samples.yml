@@ -1,11 +1,15 @@
 name: Publish samples catalog
 
+# Hand-authored samples/ → fragment → compose estates/samples (ADR-0014).
+# Cron safety net: compose-catalog.yml.
+
 on:
   push:
     branches: [main]
     paths:
       - 'samples/**'
       - '.github/workflows/publish-samples.yml'
+      - '.github/actions/setup-archlens-cli/**'
   workflow_dispatch:
 
 permissions:
@@ -18,23 +22,17 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     environment:
       name: production
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Install ArchLens CLI
-        run: |
-          set -euo pipefail
-          ./scripts/install.sh --dir "$HOME/.local/bin"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-          archlens --version
+      - name: Setup ArchLens CLI
+        uses: ./.github/actions/setup-archlens-cli
 
-      # Publish prefers visibility; --skip-validation is explicit and always allowed.
-      # Prefix keeps samples from clobbering the archlens estate catalog (ADR-0014 Phase 0).
-      - name: Publish samples catalog
+      - name: Publish fragment and compose
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
@@ -44,9 +42,17 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
         run: |
           set -euo pipefail
-          archlens publish samples/ \
+          archlens catalog publish-fragment samples/ \
+            --estate=samples \
+            --product=samples \
+            --source-ref="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}@${GITHUB_SHA}" \
+            --key-prefix=estates/samples \
+            --no-dry-run \
+            --format=json
+
+          archlens catalog compose \
+            --estate=samples \
             --workspace-name=samples \
             --key-prefix=estates/samples \
-            --skip-validation \
             --no-dry-run \
             --format=json
