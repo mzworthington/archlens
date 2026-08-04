@@ -12,15 +12,24 @@ gh auth login                   # once
 pulumi login                    # once (needed to mint PULUMI_ACCESS_TOKEN if missing)
 
 # Add CLOUDFLARE_API_TOKEN to bws (see token scopes below)
-bin/setup-cloudflare-hosting.sh
+DOMAIN=archlens.dev \
+WWW_DOMAIN=www.archlens.dev \
+PAGES_PROJECT_NAME=archlens \
+CATALOG_BUCKET_NAME=archlens-blueprint-catalog \
+CATALOG_DOMAIN=blueprints.archlens.dev \
+PULUMI_STACK=prod \
+./bin/setup-cloudflare-hosting.sh
 ```
 
 The script will:
 
-1. Validate **bws** secrets (resolve account/zone IDs from the Cloudflare API if missing)
+1. Validate **bws** secrets (resolve account/zone IDs from the Cloudflare API if missing; refuses to guess when multiple accounts exist)
 2. Mint a **Pulumi access token** via `pulumi api CreatePersonalToken` if missing or invalid
-3. Sync secrets to **GitHub Actions**
-4. Configure the **Pulumi** stack (`pulumi config set` — does not run `preview` or `up`)
+3. Reuse or mint **R2 catalog S3 credentials** (bucket-scoped), store in bws
+4. Sync hosting + `R2_BLUEPRINT_CATALOG_*` secrets to **GitHub Actions**
+5. Configure the **Pulumi** stack (`pulumi config set` — does not run `preview` or `up`)
+
+If automatic R2 token mint fails (API token lacks User/Account API Tokens permission), create an R2 Object Read & Write token for `CATALOG_BUCKET_NAME` in the dashboard, put the three `R2_BLUEPRINT_CATALOG_*` values in bws, and re-run.
 
 After bootstrap, apply infra locally (`cd infra/cloudflare && pulumi up`) or merge to `main` for CI.
 
@@ -68,13 +77,13 @@ Legacy `R2_BLUEPRINT_CATALOG_*` GitHub secrets map to the same publish workflow.
 
 ### R2 catalog publish token (CI only)
 
-Create an **R2 API token** with Object Read & Write on `archlens-blueprint-catalog` only. Store in bws / GitHub Actions:
+Managed by `bin/setup-cloudflare-hosting.sh` (reuse from bws, or mint / prompt). Nightly publish uses:
 
-| Key                                      | Used by                                                 |
-| ---------------------------------------- | ------------------------------------------------------- |
-| `R2_BLUEPRINT_CATALOG_BUCKET`            | Nightly publish workflow (`archlens-blueprint-catalog`) |
-| `R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID`     | S3-compatible upload                                    |
-| `R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY` | S3-compatible upload                                    |
+| Key                                      | Used by                                          |
+| ---------------------------------------- | ------------------------------------------------ |
+| `R2_BLUEPRINT_CATALOG_BUCKET`            | Nightly publish workflow (`CATALOG_BUCKET_NAME`) |
+| `R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID`     | S3-compatible upload                             |
+| `R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY` | S3-compatible upload                             |
 
 `CLOUDFLARE_ACCOUNT_ID` is reused as `R2_ACCOUNT_ID` in the publish workflow.
 
@@ -85,14 +94,8 @@ Push to `main` — CI builds and `wrangler pages deploy` publishes.
 ## Health check
 
 ```bash
-curl -sI https://archlens.dev/bundled-blueprints/catalog.json  # bundled fallback (HTTP 200)
-curl -sI https://blueprints.archlens.dev/latest/manifest.json  # remote catalog pointer
+curl -sI "https://${DOMAIN}/bundled-blueprints/catalog.json"   # bundled fallback (HTTP 200)
+curl -sI "https://${CATALOG_DOMAIN}/latest/manifest.json"     # remote catalog pointer
 ```
 
 If the apex still serves GitHub Pages (`x-github-request-id` header), update apex/`www` DNS in Cloudflare to CNAME → your `*.pages.dev` subdomain, then `cd infra/cloudflare && pulumi up`.
-
-## Optional env overrides
-
-```bash
-DOMAIN=example.com PULUMI_STACK=prod bin/setup-cloudflare-hosting.sh
-```
