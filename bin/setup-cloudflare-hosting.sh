@@ -124,9 +124,7 @@ echo "→ Custom domain routing"
 DOMAIN_HEADERS=$(curl -sSI "https://${DOMAIN}/" 2>/dev/null | tr -d '\r' || true)
 if echo "$DOMAIN_HEADERS" | grep -qi 'x-github-request-id'; then
   echo "  ⚠ ${DOMAIN} still serves from GitHub Pages"
-  echo "    Fix: GitHub repo → Settings → Pages → remove custom domain; disable GitHub Pages"
-  echo "    Delete leftover apex/www DNS that targets GitHub, then: cd infra/cloudflare && pulumi up"
-  echo "    (Pulumi owns proxied CNAMEs to the Pages subdomain + PagesDomain attachment)"
+  echo "    Fix DNS in Cloudflare (apex/www CNAME → Pages subdomain), then: cd infra/cloudflare && pulumi up"
 elif echo "$DOMAIN_HEADERS" | grep -qi '^HTTP/.* 404'; then
   echo "  ⚠ ${DOMAIN} returns 404 — run pulumi up and confirm Pages custom domain + DNS"
 elif echo "$DOMAIN_HEADERS" | grep -qi '^HTTP/.* 200'; then
