@@ -33,6 +33,6 @@ Stitching is **not** storage-event driven. Dogfood uses:
 1. **Primary** — each publish workflow runs `catalog publish-fragment` then `catalog compose` in the same job.
 2. **Safety net** — [`compose-catalog.yml`](../../.github/workflows/compose-catalog.yml) re-composes every dogfood estate hourly (`--allow-empty` so estates without fragments do not fail).
 
-CLI for these jobs is built from the checkout via [`.github/actions/setup-archlens-cli`](../../.github/actions/setup-archlens-cli/action.yml) (catalog commands may not be on the latest GitHub Release yet).
+CLI for these jobs is installed from GitHub Releases via [`.github/actions/setup-archlens-cli`](../../.github/actions/setup-archlens-cli/action.yml) (`scripts/install.sh`).
 
 Publish paths prefer visibility over gating: validation does not block catalog push by default. Use `archlens validate` or `--validate` only when a pipeline wants an optional hard gate; `--skip-validation` is always allowed.

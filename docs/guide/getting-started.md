@@ -56,7 +56,7 @@ tar -xzf archlens.tar.gz
 chmod +x archlens
 
 mkdir -p "$HOME/.local/bin"
-mv archlens tree-sitter-*.wasm "$HOME/.local/bin/"
+mv archlens tree-sitter*.wasm "$HOME/.local/bin/"
 # Ensure ~/.local/bin is on PATH (add to ~/.zshrc / ~/.bashrc if needed):
 # export PATH="$HOME/.local/bin:$PATH"
 ```
@@ -64,7 +64,7 @@ mv archlens tree-sitter-*.wasm "$HOME/.local/bin/"
 ### Windows
 
 1. Download `archlens-windows-x64.zip` from the latest release.
-2. Extract `archlens.exe` and the `tree-sitter-*.wasm` files together.
+2. Extract `archlens.exe` and the `tree-sitter*.wasm` files together.
 3. Move them to a folder on your `PATH` (for example `C:\Users\<you>\.local\bin`), or add that folder to **Environment Variables → Path**.
 
 ## 3. Scan a codebase

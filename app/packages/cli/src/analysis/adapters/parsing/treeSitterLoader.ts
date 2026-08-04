@@ -19,8 +19,15 @@ export class TreeSitterWasmLoader {
         locateFile(scriptName: string) {
           const resolved = resolveTreeSitterRuntimeWasmPath(scriptName);
           if (resolved) return resolved;
-          // Last resort: next to the compiled binary (install/release layout).
-          return path.join(path.dirname(path.resolve(process.execPath)), path.basename(scriptName));
+          const fallback = path.join(
+            path.dirname(path.resolve(process.execPath)),
+            path.basename(scriptName)
+          );
+          throw new Error(
+            `Missing ${path.basename(scriptName)} (looked next to archlens and in node_modules). ` +
+              `Expected at ${fallback}. Rebuild with \`pnpm --filter @archlens/cli build\` ` +
+              `or reinstall so tree-sitter.wasm is copied beside the binary.`
+          );
         },
       });
     }

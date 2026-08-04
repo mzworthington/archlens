@@ -18,25 +18,44 @@ Then verify with `archlens --version`. Full options, manual downloads, and the s
 
 ## Modes
 
-1. **Quick scan** - `archlens scan` (or `archlens --scan`) runs headless with defaults from `blueprint.config.json` / env (no prompts)
-2. **Enrich existing YAML** - `archlens enrich` re-runs the externals pass on blueprint files already on disk (no source re-scan)
-3. **Validate blueprints** - `archlens validate [path]` checks schema, cycles, and entityRef links (CI-friendly)
-4. **Diff blueprint trees** - `archlens diff <baseline> <current>` structural compare for PR gates
-5. **AdviceLens estate sweep** - `archlens resilience [path]` runs ChaosLens scenarios and ranks recommendations
-6. **Interactive** - bare `archlens` prompts for context, glob, output, and TraceLens (git signals)
-7. **Headless** - flags or non-TTY / CI; suitable for automation
+1. **Interactive** - bare `archlens` opens a menu: scan wizard, publish snapshot, publish fragment, compose estate, accept/reject overlays
+2. **Quick scan** - `archlens scan` (or `archlens --scan`) runs headless with defaults from `blueprint.config.json` / env (no prompts)
+3. **Enrich existing YAML** - `archlens enrich` re-runs the externals pass on blueprint files already on disk (no source re-scan)
+4. **Validate blueprints** - `archlens validate [path]` checks schema, cycles, and entityRef links (CI-friendly)
+5. **Diff blueprint trees** - `archlens diff <baseline> <current>` structural compare for PR gates
+6. **AdviceLens estate sweep** - `archlens resilience [path]` runs ChaosLens scenarios and ranks recommendations
+7. **Headless flags / CI** - flags or non-TTY; suitable for automation
 
 ```bash
+archlens
 archlens scan
 archlens enrich
 archlens enrich --output=custom-blueprints
 archlens validate blueprints/
 archlens diff base-blueprints/ pr-blueprints/
 archlens resilience blueprints/ --format=json --output=.archlens/advicelens-report.json --min-sla=95
+archlens catalog publish-fragment blueprints/ --estate=acme --product=payments --source-ref=repo@sha --no-dry-run
+archlens catalog compose --estate=acme --no-dry-run
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
-See [GitHub Actions workflows](./ci-workflows.md) for the full workflow map.
+See [GitHub Actions workflows](./ci-workflows.md) for dogfood publish → fragment → compose jobs.
+
+## Remote catalog (fragments + compose)
+
+BlueprintSpec YAML is unchanged. Multi-pipeline publishing stages **fragments** and optional **suggestion overlays**, then **composes** them into an ADR-0010 `latest` snapshot ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)).
+
+| Command                                             | Purpose                                                    |
+| --------------------------------------------------- | ---------------------------------------------------------- |
+| `archlens publish [path]`                           | Whole-tree snapshot upload (single complete tree)          |
+| `archlens catalog publish-fragment [path]`          | Stage a product/slice under `fragments/`                   |
+| `archlens catalog compose --estate=<id>`            | Stitch fragments + overlays → `snapshots/` + CAS `latest/` |
+| `archlens catalog accept-overlay --file=<yaml>`     | Stage an accepted suggestion overlay                       |
+| `archlens catalog reject-overlay --overlay-id=<id>` | Tombstone an overlay                                       |
+
+Publish/compose paths prefer **visibility over gating**: validation does not block upload by default. Use `archlens validate` or `--validate` for an optional hard gate; `--skip-validation` is always allowed.
+
+Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets](../cloudflare-secrets.md)). Dogfood key prefixes: `estates/archlens/`, `estates/samples/`, `estates/demos/{id}/`.
 
 ## Useful flags
 
@@ -67,6 +86,13 @@ See [GitHub Actions workflows](./ci-workflows.md) for the full workflow map.
 | `--git` / `--no-git`               | TraceLens on (default) or off                                    |
 | `--git-since=<days>`               | Lookback window (default 365)                                    |
 | `--no-relayout`                    | Preserve existing `x`/`y` on re-scan (default recomputes layout) |
+| `publish [path]`                   | Plan/upload whole-tree remote catalog snapshot                   |
+| `catalog …`                        | Fragment / compose / overlay commands (see above)                |
+| `--publish`                        | After scan, upload output tree (`--no-dry-run`)                  |
+| `--validate`                       | With publish/compose: fail when workspace validation fails       |
+| `--skip-validation`                | Allow publish/compose without a validation gate (default)        |
+| `--key-prefix=<path>`              | Object key prefix inside the bucket                              |
+| `--estate=<id>` / `--product=<id>` | Catalog compose / fragment identity                              |
 
 With the default `tree-sitter` parser, language strategies cover TypeScript, C#, and Python (WASM grammars ship with the release binary). Pass `--parser=ts-morph` for TypeScript-only trees if needed.
 
@@ -132,3 +158,4 @@ Prefer the versioned URL (`/schemas/v4/…`) when pinning a contract. `/schemas/
 - [TraceLens](./tracelens.md)
 - [BlueprintSpec](./schema.md)
 - [ArchLens Canvas](./canvas.md)
+- [GitHub Actions workflows](./ci-workflows.md)

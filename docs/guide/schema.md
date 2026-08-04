@@ -119,8 +119,22 @@ The block below fetches the **latest** BlueprintSpec served with this app and pr
 latest
 ```
 
+## Catalog staging vs BlueprintSpec
+
+**BlueprintSpec is unchanged** by estate fragments and compose ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)). Diagram YAML in local folders, fragments, and published snapshots is still the same BlueprintSpec / `SystemSchema` contract on this page.
+
+What is **not** BlueprintSpec:
+
+| Artifact                 | Role                                                                              |
+| ------------------------ | --------------------------------------------------------------------------------- |
+| Fragment `manifest.json` | Metadata for a staged product/slice (`estateId`, `productId`, `sourceRef`, …)     |
+| Suggestion overlay YAML  | Accepted/rejected intent (`delta.nodes` / `delta.dependencies`) under `overlays/` |
+
+Compose merges fragments (+ accepted overlays) into a normal ADR-0010 catalog of BlueprintSpec files. Local folder edits and Canvas working copies still use BlueprintSpec only ([ADR-0001](../ADRs/0001-yaml-blueprintspec-as-canonical-format.md), [ADR-0004](../ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)).
+
 ## Next
 
 - [ArchLens](./cli.md) - generating diagrams that follow BlueprintSpec
 - [ArchLens Canvas](./canvas.md) - editing and validating in the workspace
 - [Getting started](./getting-started.md)
+- [GitHub Actions workflows](./ci-workflows.md) - fragment → compose dogfood jobs
