@@ -97,8 +97,16 @@ describe('parseArchlensArgv plan shape', () => {
       runArchitecture: true,
       runEnrichOnly: false,
       runGitForensics: true,
+      publishAfterScan: false,
       gitDecisionExplicit: true,
     });
+  });
+
+  it('enables publish-after-scan with --publish', () => {
+    const plan = parseArchlensArgv(['scan', '--output=blueprints', '--publish']);
+    expect(plan.publishAfterScan).toBe(true);
+    expect(plan.isHeadless).toBe(true);
+    expect(plan.architecture.outputDir).toBe('blueprints');
   });
 
   it('parses --system-name for multi-repo products', () => {

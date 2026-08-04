@@ -54,7 +54,7 @@ describe('Feature: Hosted sandbox reads remote catalog', () => {
 
     const options = {
       baseUrl: 'https://blueprints.example.dev/',
-      workspaceName: 'blueprints',
+      workspaceName: 'golden-paths',
       fetchImpl,
     };
 
@@ -64,7 +64,7 @@ describe('Feature: Hosted sandbox reads remote catalog', () => {
     const adapter = createRemoteCatalogWorkspaceAdapter(options);
     const content = await adapter.readFile('golden-journey/context.yaml');
     expect(content).toContain('entityRef: golden-paths');
-    expect(adapter.getDirectoryName()).toBe('blueprints');
+    expect(adapter.getDirectoryName()).toBe('golden-paths');
   });
 
   it('rejects diagram paths that are not listed in the remote catalog', async () => {
@@ -88,7 +88,7 @@ describe('Feature: Hosted sandbox reads remote catalog', () => {
 
     const adapter = createRemoteCatalogWorkspaceAdapter({
       baseUrl: 'https://blueprints.example.dev/',
-      workspaceName: 'blueprints',
+      workspaceName: 'golden-paths',
       fetchImpl,
     });
 

@@ -11,12 +11,9 @@ import {
 } from './simulationSchema';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const STRESS_DIR = path.join(REPO_ROOT, 'blueprints/chaoslens-stress');
-/** Canonical un-enriched external-scope pair (immune to `archlens enrich` on blueprints/). */
-const EXTERNAL_SCOPE_STRESS_DIR = path.join(
-  REPO_ROOT,
-  'scripts/sandbox-blueprints/chaoslens-stress'
-);
+const STRESS_DIR = path.join(REPO_ROOT, 'golden-paths/chaoslens-stress');
+/** Un-enriched external-scope pair lives under committed golden-paths/. */
+const EXTERNAL_SCOPE_STRESS_DIR = STRESS_DIR;
 
 function loadStressFixture(fileName: string, dir = STRESS_DIR) {
   const yaml = fs.readFileSync(path.join(dir, fileName), 'utf8');
@@ -163,7 +160,7 @@ const SCENARIOS = [
 ] as const;
 
 describe('chaoslens-stress fixtures', () => {
-  it('loads every scenario YAML from blueprints/chaoslens-stress/', () => {
+  it('loads every scenario YAML from golden-paths/chaoslens-stress/', () => {
     const files = fs
       .readdirSync(STRESS_DIR)
       .filter(name => name.endsWith('.yaml') && !name.includes('-overlay.'))
@@ -258,7 +255,7 @@ describe('chaoslens-stress external simulation scope', () => {
     },
   ];
 
-  it('loads the external-scope sandbox pair from blueprints/chaoslens-stress/', () => {
+  it('loads the external-scope sandbox pair from golden-paths/chaoslens-stress/', () => {
     const active = loadExternalScopeFixture(EXTERNAL_SCOPE_ACTIVE);
     const sibling = loadExternalScopeFixture(EXTERNAL_AUTH_SIBLING);
 

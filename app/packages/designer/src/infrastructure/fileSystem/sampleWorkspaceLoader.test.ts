@@ -60,7 +60,7 @@ describe('loadSampleWorkspaceSession', () => {
     expect(session.catalog).toEqual(catalog);
     expect(createRemote).toHaveBeenCalledWith({
       baseUrl: 'https://blueprints.example.test/',
-      workspaceName: 'blueprints',
+      workspaceName: 'golden-paths',
     });
   });
 });

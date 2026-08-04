@@ -105,6 +105,7 @@ function printOverviewHelp(): void {
   flag('--output=<dir>', 'Blueprint output folder (default: blueprints)');
   flag('--context=<name>', 'Root entityRef slug (default: blueprint)');
   flag('--system-name=<name>', 'Software system for this repo (multi-repo products)');
+  flag('--publish', 'After scan, upload output tree to object storage (--no-dry-run)');
   flag('--no-git', 'Skip TraceLens git forensics enrichment');
   flag('--git --git-since=<days>', 'Enable forensics with lookback window');
   flag('--watch', 'Re-run when source files change');
@@ -114,6 +115,7 @@ function printOverviewHelp(): void {
   heading('EXAMPLES');
   example('archlens');
   example('archlens scan --output=blueprints');
+  example('archlens scan --headless --output=blueprints --publish');
   example('archlens scan --headless --no-git --glob="**/*.{ts,tsx}"');
   example('archlens enrich');
   example('archlens enrich --git --git-since=90');
@@ -150,12 +152,14 @@ function printScanHelp(): void {
   flag('--systems=<a,b>', 'Restrict discovery to these roots');
   flag('--no-git', 'Structure-only scan (no TraceLens blocks)');
   flag('--git --git-since=<days>', 'Attach git forensics (default on)');
+  flag('--publish', 'Upload output tree to object storage after a successful scan');
   flag('--watch [--watch-debounce=<ms>]', 'Re-run on file changes');
   flag('--headless', 'Same as scan — never prompts');
 
   heading('EXAMPLES');
   example('archlens scan');
   example('archlens scan --output=blueprints --no-git');
+  example('archlens scan --output=blueprints --publish');
   example('archlens scan --glob="packages/**/*.ts" --context=my-app');
   example('archlens scan --context=acme --system-name=frontend-api');
 }

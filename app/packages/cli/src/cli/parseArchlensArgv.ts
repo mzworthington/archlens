@@ -23,6 +23,8 @@ export interface ArchlensCliPlan {
   /** Re-run externals pass on existing YAML only (no AST scan). */
   runEnrichOnly: boolean;
   runGitForensics: boolean;
+  /** After a successful scan, upload the output tree via `archlens publish --no-dry-run`. */
+  publishAfterScan: boolean;
   /** True when CLI flags already decided git on/off (skip interactive git prompt). */
   gitDecisionExplicit: boolean;
   watch: boolean;
@@ -350,12 +352,14 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
   };
 
   const isHeadless = scanMode || enrichMode || isHeadlessArgv(commandArgv);
+  const publishAfterScan = commandArgv.includes('--publish');
 
   return {
     isHeadless,
     runArchitecture: !enrichMode,
     runEnrichOnly: enrichMode,
     runGitForensics: enrichMode ? commandArgv.includes('--git') : !noGit,
+    publishAfterScan,
     gitDecisionExplicit,
     watch: commandArgv.includes('--watch'),
     watchDebounceMs: parseWatchDebounce(commandArgv),

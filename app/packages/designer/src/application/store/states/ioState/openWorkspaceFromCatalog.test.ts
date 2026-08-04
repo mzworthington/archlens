@@ -78,7 +78,7 @@ describe('loadWorkspaceFromCatalog', () => {
       catalog,
       entryPath: GOLDEN_JOURNEY_CONTAINERS_PATH,
       readFile,
-      getDirectoryName: () => 'blueprints',
+      getDirectoryName: () => 'golden-paths',
       workingCopy: workingCopy as never,
       logger,
       initSchema,
@@ -93,7 +93,7 @@ describe('loadWorkspaceFromCatalog', () => {
       expect.objectContaining({
         isWorkspaceOpen: true,
         isSampleWorkspace: true,
-        workspaceName: 'blueprints',
+        workspaceName: 'golden-paths',
         workspaceCatalog: catalog,
         currentFilePath: GOLDEN_JOURNEY_CONTAINERS_PATH,
         loadedSystems: [
@@ -118,7 +118,7 @@ describe('loadWorkspaceFromCatalog', () => {
         catalog,
         entryPath: 'missing.yaml',
         readFile: async () => entryYaml,
-        getDirectoryName: () => 'blueprints',
+        getDirectoryName: () => 'golden-paths',
         workingCopy: workingCopy as never,
         logger,
         initSchema,

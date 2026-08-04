@@ -76,6 +76,14 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<void> {
     askPath: askPathWithTabComplete,
   });
   await executeArchitectureRun(state, { headlessUi: plan.isHeadless });
+
+  if (plan.publishAfterScan) {
+    await executePublishRun({
+      targetPath: state.outputDir,
+      format: 'json',
+      dryRun: false,
+    });
+  }
 }
 
 async function run() {
@@ -131,6 +139,9 @@ async function run() {
   }
 
   if (plan.watch) {
+    if (plan.publishAfterScan) {
+      console.warn('Ignoring --publish with --watch (publish only runs on one-shot scans).');
+    }
     await watchAndRerun(plan, resolveWatchOptions(plan), {
       resolveState: async (watchPlan, opts) =>
         resolveArchitectureState(watchPlan, {

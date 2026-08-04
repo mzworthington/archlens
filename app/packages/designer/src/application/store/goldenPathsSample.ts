@@ -1,10 +1,10 @@
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 
 /**
- * Bundled demo workspace — full repo `blueprints/` tree is mirrored for ad-hoc open;
- * golden-journey + stress YAML are preloaded (see `bundledSamplePreload.ts`).
+ * Bundled demo workspace — committed `golden-paths/` is mirrored for offline / PR fallback.
+ * Full scanned sample corpora live in the remote catalog (CI publish), not in git.
  */
-export const BUNDLED_WORKSPACE_NAME = 'blueprints';
+export const BUNDLED_WORKSPACE_NAME = 'golden-paths';
 /** Default landing diagram when opening the bundled demo. */
 export const GOLDEN_PATHS_CONTEXT_PATH = 'golden-journey/context.yaml';
 export const GOLDEN_PATHS_ENTITY_REF = 'golden-paths';
