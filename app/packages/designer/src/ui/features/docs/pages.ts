@@ -10,6 +10,7 @@ import guideTraceLensMd from '@docs/guide/tracelens.md?raw';
 import guideChaosLensMd from '@docs/guide/chaoslens.md?raw';
 import guideAdviceLensMd from '@docs/guide/advicelens.md?raw';
 import guideSchemaMd from '@docs/guide/schema.md?raw';
+import guideCiWorkflowsMd from '@docs/guide/ci-workflows.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 import advicelensEngineMd from '@docs/advicelens-engine.md?raw';
 import { ADVICELENS_ENTRY_URL } from '../forensics/adviceLensUrl';
@@ -49,6 +50,7 @@ export const DOCS_NAV: DocsNavItem[] = [
   { label: 'ChaosLens', path: '/guide/chaoslens' },
   { label: 'AdviceLens', path: '/guide/advicelens' },
   { label: 'BlueprintSpec', path: '/guide/schema' },
+  { label: 'Interface tour & journeys', path: '/journeys' },
 ];
 
 export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
@@ -63,19 +65,22 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
       { label: 'ChaosLens', path: '/guide/chaoslens' },
       { label: 'AdviceLens', path: '/guide/advicelens' },
       { label: 'BlueprintSpec', path: '/guide/schema' },
+      { label: 'Interface tour & journeys', path: '/journeys' },
     ],
   },
   {
-    title: 'Reference',
+    title: 'Design system',
+    items: [{ label: 'Design system', path: '/design-system' }],
+  },
+  {
+    title: 'Tech',
     items: [
-      { label: 'Design system', path: '/design-system' },
+      { label: 'GitHub Actions workflows', path: '/guide/ci-workflows' },
       { label: 'Setup & local development', path: '/setup' },
       { label: 'Technology stack', path: '/tech-stack' },
+      { label: 'Architecture & security', path: '/architecture' },
       { label: 'ChaosLens engine', path: '/chaoslens-engine' },
       { label: 'AdviceLens engine', path: '/advicelens-engine' },
-      { label: 'Architecture & security', path: '/architecture' },
-      { label: 'Interface tour & journeys', path: '/journeys' },
-      { label: 'Unit test features', path: '/features-unit' },
     ],
   },
 ];
@@ -146,6 +151,13 @@ export const DOCS_PAGES: DocsPageMeta[] = [
       href: '/schemas/latest/blueprint.schema.json',
       external: true,
     },
+  },
+  {
+    path: '/guide/ci-workflows',
+    title: 'GitHub Actions workflows',
+    markdown: guideCiWorkflowsMd,
+    dir: 'guide',
+    group: 'reference',
   },
   {
     path: '/setup',

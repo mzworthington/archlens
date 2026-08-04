@@ -33,18 +33,22 @@ Use this guide if you want to understand the product, not just the internals.
 - [TraceLens](./tracelens.md) - metrics, coupling overlay, lookback
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry
 - [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, YAML studio export, narration (planned)
-- [AdviceLens CI gate](./ci-advicelens.md) - PR SLA guardrails and JSON artifact
-- [Blueprint contract CI](./ci-blueprints.md) - validate/diff BlueprintSpec on pull requests
 - [BlueprintSpec](./schema.md) - public contract URLs, entity references, live latest schema
+- [Interface tour & journeys](../journeys.md) - day-one flow across products (links to per-product demos)
 
 ## Contributor reference
 
-For building ArchLens or extending the engine - still Markdown in this repo:
+For building ArchLens or extending the engine — still Markdown in this repo.
+
+### Design system
 
 - [Design system](../design-system.md) - visual assets & identity sandbox
+
+### Tech
+
 - [Setup & local development](../setup.md)
+- [GitHub Actions workflows](./ci-workflows.md) - every workflow, purpose, and trigger
 - [Technology stack](../tech-stack.md) — React, Pulumi, Cloudflare, CI, and toolchain
+- [Architecture & security](../architecture.md)
 - [ChaosLens engine](../chaoslens-engine.md) - Go/WASM core, local build, contributor API
 - [AdviceLens engine](../advicelens-engine.md) - recommendation pipeline, estate runner, narration contract
-- [Architecture & security](../architecture.md)
-- [Interface tour & journeys](../journeys.md) - day-one flow across products (links to per-product demos)

@@ -55,6 +55,7 @@ describe('parsePublishArgv', () => {
     const plan = parsePublishArgv(['publish']);
     expect(plan.targetPath).toBe('blueprints');
     expect(plan.dryRun).toBe(true);
+    expect(plan.skipValidation).toBe(false);
     expect(plan.format).toBe('text');
   });
 
@@ -70,5 +71,10 @@ describe('parsePublishArgv', () => {
     expect(plan.workspaceName).toBe('acme');
     expect(plan.dryRun).toBe(false);
     expect(plan.format).toBe('json');
+  });
+
+  it('accepts --skip-validation for intentional demo trees', () => {
+    const plan = parsePublishArgv(['publish', 'samples/', '--skip-validation']);
+    expect(plan.skipValidation).toBe(true);
   });
 });

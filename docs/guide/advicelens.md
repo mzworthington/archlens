@@ -88,7 +88,7 @@ Optional chaos specs in `chaos-specs/*.yaml` extend the default scenario set (re
 
 ## CI guardrails
 
-Use the composite action [`.github/actions/advicelens-gate`](../../.github/actions/advicelens-gate) to upload the AdviceLens artifact and fail PRs when SLA drops below your threshold. See [AdviceLens gate in CI](./ci-advicelens.md).
+Use the composite action [`.github/actions/advicelens-gate`](../../.github/actions/advicelens-gate) to upload the AdviceLens artifact and fail PRs when SLA drops below your threshold. See the [AdviceLens gate workflow example](../../.github/workflows/advicelens-gate.yml.example).
 
 ## Export from the studio
 

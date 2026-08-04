@@ -25,6 +25,8 @@ export interface ArchlensCliPlan {
   runGitForensics: boolean;
   /** After a successful scan, upload the output tree via `archlens publish --no-dry-run`. */
   publishAfterScan: boolean;
+  /** Forwarded to publish-after-scan when `--skip-validation` is set with `--publish`. */
+  publishSkipValidation: boolean;
   /** True when CLI flags already decided git on/off (skip interactive git prompt). */
   gitDecisionExplicit: boolean;
   watch: boolean;
@@ -64,6 +66,8 @@ export interface PublishCliPlan {
   targetPath: string;
   format: OutputFormat;
   dryRun: boolean;
+  /** Opt-in only: when true, do not run or enforce workspace validation before upload. */
+  skipValidation: boolean;
   workspaceName?: string;
   storageProvider?: 'r2' | 's3' | 'azure';
   bucket?: string;
@@ -228,6 +232,7 @@ export function parsePublishArgv(argv: string[]): PublishCliPlan {
     targetPath,
     format: parseOutputFormat(rest),
     dryRun: !rest.includes('--no-dry-run'),
+    skipValidation: rest.includes('--skip-validation'),
     workspaceName,
     storageProvider,
     bucket: flagValue(rest, '--bucket'),
@@ -353,6 +358,7 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
 
   const isHeadless = scanMode || enrichMode || isHeadlessArgv(commandArgv);
   const publishAfterScan = commandArgv.includes('--publish');
+  const publishSkipValidation = commandArgv.includes('--skip-validation');
 
   return {
     isHeadless,
@@ -360,6 +366,7 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
     runEnrichOnly: enrichMode,
     runGitForensics: enrichMode ? commandArgv.includes('--git') : !noGit,
     publishAfterScan,
+    publishSkipValidation,
     gitDecisionExplicit,
     watch: commandArgv.includes('--watch'),
     watchDebounceMs: parseWatchDebounce(commandArgv),

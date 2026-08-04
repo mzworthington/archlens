@@ -27,7 +27,7 @@ export const DesignSystemDocsPage: React.FC = () => {
     >
       <header className="mb-8 border-b border-[#00f0ff]/10 pb-6">
         <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
-          Reference
+          Design system
         </p>
         <h1 className="text-2xl font-bold text-white sm:text-3xl">Design system</h1>
         <p className="mt-2 max-w-2xl text-sm text-slate-400 leading-relaxed">

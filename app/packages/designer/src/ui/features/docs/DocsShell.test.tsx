@@ -27,7 +27,7 @@ vi.mock('../../components/AppHeader', () => ({
 }));
 
 describe('DocsShell', () => {
-  it('shows separate mobile scrollers for product guide and reference', () => {
+  it('shows separate mobile scrollers for product guide and secondary sections', () => {
     render(
       <DocsShell>
         <p>content</p>
@@ -37,10 +37,35 @@ describe('DocsShell', () => {
     const guideNav = screen.getByTestId('docs-mobile-guide-nav');
     expect(guideNav.parentElement).toHaveTextContent('Product guide');
     expect(within(guideNav).getByRole('link', { name: 'Overview' })).toBeInTheDocument();
+    expect(
+      within(guideNav).getByRole('link', { name: 'Interface tour & journeys' })
+    ).toBeInTheDocument();
 
-    const referenceNav = screen.getByTestId('docs-mobile-reference-nav');
-    expect(referenceNav.parentElement).toHaveTextContent('Reference');
-    expect(within(referenceNav).getByRole('link', { name: 'Design system' })).toBeInTheDocument();
+    const designSystemNav = screen.getByTestId('docs-mobile-design-system-nav');
+    expect(designSystemNav.parentElement).toHaveTextContent('Design system');
+    expect(
+      within(designSystemNav).getByRole('link', { name: 'Design system' })
+    ).toBeInTheDocument();
+
+    const technologyNav = screen.getByTestId('docs-mobile-tech-nav');
+    expect(
+      within(technologyNav).getByRole('link', { name: 'Technology stack' })
+    ).toBeInTheDocument();
+    expect(
+      within(technologyNav).getByRole('link', { name: 'GitHub Actions workflows' })
+    ).toBeInTheDocument();
+    expect(
+      within(technologyNav).getByRole('link', { name: 'Setup & local development' })
+    ).toBeInTheDocument();
+    expect(
+      within(technologyNav).getByRole('link', { name: 'Architecture & security' })
+    ).toBeInTheDocument();
+    expect(
+      within(technologyNav).getByRole('link', { name: 'ChaosLens engine' })
+    ).toBeInTheDocument();
+    expect(
+      within(technologyNav).getByRole('link', { name: 'AdviceLens engine' })
+    ).toBeInTheDocument();
   });
 
   it('shows local section nav on mobile and nested sidebar items when provided', () => {

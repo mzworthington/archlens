@@ -258,52 +258,6 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy app/packages/designer/dist --project-name=archlens --branch=main
 
-  samples-changed:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    outputs:
-      changed: ${{ steps.filter.outputs.samples }}
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-
-      - name: Detect samples changes
-        uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            samples:
-              - 'samples/**'
-
-  publish-samples:
-    needs: samples-changed
-    if: needs.samples-changed.outputs.changed == 'true'
-    runs-on: ubuntu-latest
-    environment:
-      name: production
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-
-      - name: Install ArchLens CLI
-        run: |
-          set -euo pipefail
-          ./scripts/install.sh --dir "$HOME/.local/bin"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-          archlens --version
-
-      - name: Validate samples
-        run: archlens validate samples/
-
-      - name: Publish samples catalog
-        env:
-          OBJECT_STORAGE_PROVIDER: r2
-          OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
-          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
-        run: archlens publish samples/ --workspace-name=samples --no-dry-run --format=json
-
   check-release:
     needs: [build, e2e]
     runs-on: ubuntu-latest

@@ -1,6 +1,6 @@
 # Design System & Sandbox
 
-ArchLens is built on a custom design language for architecture diagrams and product marketing. The interactive showcase lives in the docs **Reference** section at [`/design-system`](/design-system).
+ArchLens is built on a custom design language for architecture diagrams and product marketing. The interactive showcase lives under **Design system** in the docs sidebar at [`/design-system`](/design-system).
 
 ---
 

@@ -85,7 +85,7 @@ archlens diff --baseline=main-tree --current=pr-tree --format=json
 
 `validate` checks Zod schema parsing, dependency cycles, invalid local connections, and broken `entityRef` hierarchy links across the tree. `diff` reuses the same structural compare logic as ArchLens Canvas (added/removed/modified nodes and dependencies, per file).
 
-GitHub Action template: [`.github/actions/validate-blueprints`](../../../.github/actions/validate-blueprints/action.yml) and [CI guide](../../../docs/guide/ci-blueprints.md).
+GitHub Action template: [`.github/actions/validate-blueprints`](../../../.github/actions/validate-blueprints/action.yml) and [workflow example](../../../.github/workflows/blueprint-contract.yml.example). See [GitHub Actions workflows](../../../docs/guide/ci-workflows.md).
 
 ---
 
