@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+/** Match designer e2e: ArchLens is built for large displays; record that viewport. */
+const LARGE_DISPLAY = { width: 2880, height: 1864 } as const;
+
 /** Opt-in Playwright config for recording product-guide GIFs into docs/screenshots/. */
 export default defineConfig({
   testDir: './tests/docs-media',
@@ -11,12 +14,13 @@ export default defineConfig({
   reporter: [['list']],
   use: {
     baseURL: 'http://localhost:5188',
+    navigationTimeout: 60_000,
     trace: 'off',
     screenshot: 'off',
     actionTimeout: 30_000,
     video: {
       mode: 'on',
-      size: { width: 1280, height: 720 },
+      size: LARGE_DISPLAY,
     },
   },
   projects: [
@@ -24,7 +28,7 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        viewport: { width: 1280, height: 720 },
+        viewport: LARGE_DISPLAY,
       },
     },
   ],
@@ -33,5 +37,7 @@ export default defineConfig({
     url: 'http://localhost:5188',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    stdout: 'ignore',
+    stderr: 'pipe',
   },
 });
