@@ -2,13 +2,13 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: golden-paths/golden-journey/web
+  entityRef: samples/golden-journey/web
   name: Web Storefront Components
   description: >
     Browser storefront — catalog shell, checkout wizard, and session bridge into SSO
     before the buyer reaches Checkout API on the estate canvas.
 nodes:
-  - entityRef: golden-paths/golden-journey/web/catalog-shell
+  - entityRef: samples/golden-journey/web/catalog-shell
     type: component
     name: Catalog Shell
     properties:
@@ -26,7 +26,7 @@ nodes:
       hotspotScore: 0.2
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/web/checkout-wizard
+  - entityRef: samples/golden-journey/web/checkout-wizard
     type: component
     name: Checkout Wizard
     properties:
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0.36
       classifications: [hotspot]
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/web/session-bridge-client
+  - entityRef: samples/golden-journey/web/session-bridge-client
     type: component
     name: Session Bridge Client
     properties:
@@ -62,7 +62,7 @@ nodes:
       hotspotScore: 0.22
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/web/cart-state-store
+  - entityRef: samples/golden-journey/web/cart-state-store
     type: component
     name: Cart State Store
     properties:
@@ -80,7 +80,7 @@ nodes:
       hotspotScore: 0.16
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/web/analytics-tracker
+  - entityRef: samples/golden-journey/web/analytics-tracker
     type: component
     name: Analytics Tracker
     properties:
@@ -98,7 +98,7 @@ nodes:
       hotspotScore: 0.13
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/web/catalog-api-client
+  - entityRef: samples/golden-journey/web/catalog-api-client
     type: component
     name: Catalog API Client
     properties:
@@ -117,30 +117,30 @@ nodes:
       classifications: []
       sinceDays: 365
 dependencies:
-  - from: golden-paths/golden-journey/web/catalog-shell
-    to: golden-paths/golden-journey/web/catalog-api-client
+  - from: samples/golden-journey/web/catalog-shell
+    to: samples/golden-journey/web/catalog-api-client
     type: direct-call
     description: Product listings
-  - from: golden-paths/golden-journey/web/catalog-shell
-    to: golden-paths/golden-journey/web/cart-state-store
+  - from: samples/golden-journey/web/catalog-shell
+    to: samples/golden-journey/web/cart-state-store
     type: direct-call
     description: Add to cart
-  - from: golden-paths/golden-journey/web/catalog-shell
-    to: golden-paths/golden-journey/web/analytics-tracker
+  - from: samples/golden-journey/web/catalog-shell
+    to: samples/golden-journey/web/analytics-tracker
     type: direct-call
     description: Browse events
-  - from: golden-paths/golden-journey/web/checkout-wizard
-    to: golden-paths/golden-journey/web/cart-state-store
+  - from: samples/golden-journey/web/checkout-wizard
+    to: samples/golden-journey/web/cart-state-store
     type: direct-call
-  - from: golden-paths/golden-journey/web/checkout-wizard
-    to: golden-paths/golden-journey/web/session-bridge-client
+  - from: samples/golden-journey/web/checkout-wizard
+    to: samples/golden-journey/web/session-bridge-client
     type: direct-call
     description: SSO handoff
-  - from: golden-paths/golden-journey/web/checkout-wizard
-    to: golden-paths/golden-journey/web/analytics-tracker
+  - from: samples/golden-journey/web/checkout-wizard
+    to: samples/golden-journey/web/analytics-tracker
     type: direct-call
     description: Conversion funnel
-  - from: golden-paths/golden-journey/web/session-bridge-client
-    to: golden-paths/golden-journey/web/checkout-wizard
+  - from: samples/golden-journey/web/session-bridge-client
+    to: samples/golden-journey/web/checkout-wizard
     type: direct-call
     description: Resume checkout

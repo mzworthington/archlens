@@ -20,11 +20,11 @@ test.describe('Blueprint E2E Journeys', () => {
     await expect(page.getByTestId('startup-import-mermaid')).toHaveCount(0);
   });
 
-  test('Golden Paths sample loads a diagram on the canvas', async ({ page }) => {
+  test('Samples workspace loads a diagram on the canvas', async ({ page }) => {
     test.setTimeout(120_000);
     await loadSandbox(page);
-    await expect(page).toHaveURL(/\/workspace\/golden-paths(?:\/|$)/);
-    await expect(page.getByText('Golden Paths').first()).toBeVisible();
+    await expect(page).toHaveURL(/\/workspace\/samples(?:\/|$)/);
+    await expect(page.getByText('Samples').first()).toBeVisible();
   });
 
   test('Workspace panel toggles', async ({ page }) => {

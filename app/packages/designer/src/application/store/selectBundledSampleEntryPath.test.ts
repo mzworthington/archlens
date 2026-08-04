@@ -2,25 +2,25 @@ import { describe, expect, it } from 'vitest';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import {
   GOLDEN_JOURNEY_CONTAINERS_PATH,
-  GOLDEN_PATHS_CONTEXT_PATH,
+  SAMPLES_CONTEXT_PATH,
   selectBundledSampleEntryPath,
-} from './goldenPathsSample';
+} from './samplesWorkspace';
 
 describe('selectBundledSampleEntryPath', () => {
-  it('prefers golden-paths context when present', () => {
+  it('prefers samples context when present', () => {
     const catalog: WorkspaceCatalogEntry[] = [
       {
-        path: GOLDEN_PATHS_CONTEXT_PATH,
+        path: SAMPLES_CONTEXT_PATH,
         name: 'Context',
         level: 'context',
-        entityRef: 'golden-paths',
+        entityRef: 'samples',
         nodeEntityRefs: [],
       },
       {
         path: GOLDEN_JOURNEY_CONTAINERS_PATH,
         name: 'Estate',
         level: 'container',
-        entityRef: 'golden-paths/golden-journey',
+        entityRef: 'samples/golden-journey',
         nodeEntityRefs: [],
       },
       {
@@ -31,7 +31,7 @@ describe('selectBundledSampleEntryPath', () => {
         nodeEntityRefs: [],
       },
     ];
-    expect(selectBundledSampleEntryPath(catalog)).toBe(GOLDEN_PATHS_CONTEXT_PATH);
+    expect(selectBundledSampleEntryPath(catalog)).toBe(SAMPLES_CONTEXT_PATH);
   });
 
   it('falls back to context then first entry', () => {

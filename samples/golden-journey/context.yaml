@@ -2,43 +2,43 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
 metadata:
-  entityRef: golden-paths
-  name: Golden Paths
+  entityRef: samples
+  name: Samples
   description: >
     Product personas for the day-in-the-life golden journey — shoppers browse the catalog,
     members sign in, buyers checkout, and subscribers renew through a shared estate.
 nodes:
-  - entityRef: golden-paths/golden-journey/shopper
+  - entityRef: samples/golden-journey/shopper
     type: person
     name: Shopper
     properties:
       role: product-persona
       product: catalog
-  - entityRef: golden-paths/golden-journey/member
+  - entityRef: samples/golden-journey/member
     type: person
     name: Member
     properties:
       role: product-persona
       product: identity
-  - entityRef: golden-paths/golden-journey/buyer
+  - entityRef: samples/golden-journey/buyer
     type: person
     name: Buyer
     properties:
       role: product-persona
       product: checkout
-  - entityRef: golden-paths/golden-journey/subscriber
+  - entityRef: samples/golden-journey/subscriber
     type: person
     name: Subscriber
     properties:
       role: product-persona
       product: billing
-  - entityRef: golden-paths/golden-journey
+  - entityRef: samples/golden-journey
     type: software-system
     name: Golden Journey
     properties:
       rootPath: golden-journey
       productId: golden-journey
-  - entityRef: golden-paths/golden-journey/payment-gateway
+  - entityRef: samples/golden-journey/payment-gateway
     type: gateway-api
     name: Payment Gateway
     external: true
@@ -46,23 +46,23 @@ nodes:
       vendor: Stripe-compatible PSP
       classification: third-party
 dependencies:
-  - from: golden-paths/golden-journey/shopper
-    to: golden-paths/golden-journey
+  - from: samples/golden-journey/shopper
+    to: samples/golden-journey
     type: direct-call
     description: Browse catalog
-  - from: golden-paths/golden-journey/member
-    to: golden-paths/golden-journey
+  - from: samples/golden-journey/member
+    to: samples/golden-journey
     type: direct-call
     description: Sign in across products
-  - from: golden-paths/golden-journey/buyer
-    to: golden-paths/golden-journey
+  - from: samples/golden-journey/buyer
+    to: samples/golden-journey
     type: direct-call
     description: Complete purchase
-  - from: golden-paths/golden-journey/subscriber
-    to: golden-paths/golden-journey
+  - from: samples/golden-journey/subscriber
+    to: samples/golden-journey
     type: direct-call
     description: Manage subscription renewals
-  - from: golden-paths/golden-journey
-    to: golden-paths/golden-journey/payment-gateway
+  - from: samples/golden-journey
+    to: samples/golden-journey/payment-gateway
     type: direct-call
     description: Checkout and billing payments

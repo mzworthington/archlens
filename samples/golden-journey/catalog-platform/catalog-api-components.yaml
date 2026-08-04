@@ -2,13 +2,13 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: golden-paths/golden-journey/catalog-platform/catalog-api
+  entityRef: samples/golden-journey/catalog-platform/catalog-api
   name: Catalog API Components
   description: >
     Browse, search, and personalization paths — indexing pipeline and cache layer add
     depth for TraceLens drill-down without checkout-level hotspot churn.
 nodes:
-  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/search-controller
+  - entityRef: samples/golden-journey/catalog-platform/catalog-api/search-controller
     type: component
     name: Search Controller
     properties:
@@ -26,7 +26,7 @@ nodes:
       hotspotScore: 0.18
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/category-navigation-controller
+  - entityRef: samples/golden-journey/catalog-platform/catalog-api/category-navigation-controller
     type: component
     name: Category Navigation Controller
     properties:
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0.16
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+  - entityRef: samples/golden-journey/catalog-platform/catalog-api/product-repository
     type: component
     name: Product Repository
     properties:
@@ -62,7 +62,7 @@ nodes:
       hotspotScore: 0.14
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+  - entityRef: samples/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
     type: component
     name: Catalog Cache Manager
     properties:
@@ -80,7 +80,7 @@ nodes:
       hotspotScore: 0.2
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/indexing-pipeline
+  - entityRef: samples/golden-journey/catalog-platform/catalog-api/indexing-pipeline
     type: component
     name: Indexing Pipeline
     properties:
@@ -98,7 +98,7 @@ nodes:
       hotspotScore: 0.26
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/catalog-platform/catalog-api/personalization-ranker
+  - entityRef: samples/golden-journey/catalog-platform/catalog-api/personalization-ranker
     type: component
     name: Personalization Ranker
     properties:
@@ -117,32 +117,32 @@ nodes:
       classifications: []
       sinceDays: 365
 dependencies:
-  - from: golden-paths/golden-journey/catalog-platform/catalog-api/search-controller
-    to: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+  - from: samples/golden-journey/catalog-platform/catalog-api/search-controller
+    to: samples/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
     type: direct-call
     description: Hot path cache
-  - from: golden-paths/golden-journey/catalog-platform/catalog-api/search-controller
-    to: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+  - from: samples/golden-journey/catalog-platform/catalog-api/search-controller
+    to: samples/golden-journey/catalog-platform/catalog-api/product-repository
     type: direct-call
-  - from: golden-paths/golden-journey/catalog-platform/catalog-api/search-controller
-    to: golden-paths/golden-journey/catalog-platform/catalog-api/personalization-ranker
+  - from: samples/golden-journey/catalog-platform/catalog-api/search-controller
+    to: samples/golden-journey/catalog-platform/catalog-api/personalization-ranker
     type: direct-call
     description: Re-rank results
-  - from: golden-paths/golden-journey/catalog-platform/catalog-api/category-navigation-controller
-    to: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+  - from: samples/golden-journey/catalog-platform/catalog-api/category-navigation-controller
+    to: samples/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
     type: direct-call
-  - from: golden-paths/golden-journey/catalog-platform/catalog-api/category-navigation-controller
-    to: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+  - from: samples/golden-journey/catalog-platform/catalog-api/category-navigation-controller
+    to: samples/golden-journey/catalog-platform/catalog-api/product-repository
     type: direct-call
-  - from: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
-    to: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+  - from: samples/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+    to: samples/golden-journey/catalog-platform/catalog-api/product-repository
     type: direct-call
     description: Cache miss fallback
-  - from: golden-paths/golden-journey/catalog-platform/catalog-api/indexing-pipeline
-    to: golden-paths/golden-journey/catalog-platform/catalog-api/product-repository
+  - from: samples/golden-journey/catalog-platform/catalog-api/indexing-pipeline
+    to: samples/golden-journey/catalog-platform/catalog-api/product-repository
     type: direct-call
     description: Source documents
-  - from: golden-paths/golden-journey/catalog-platform/catalog-api/indexing-pipeline
-    to: golden-paths/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
+  - from: samples/golden-journey/catalog-platform/catalog-api/indexing-pipeline
+    to: samples/golden-journey/catalog-platform/catalog-api/catalog-cache-manager
     type: direct-call
     description: Invalidate stale entries

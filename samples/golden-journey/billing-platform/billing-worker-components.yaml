@@ -2,13 +2,13 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: golden-paths/golden-journey/billing-platform/billing-worker
+  entityRef: samples/golden-journey/billing-platform/billing-worker
   name: Billing Worker Components
   description: >
     Renewal scheduling, dunning, and ledger writes — second Payment Gateway fan-in
     alongside Checkout API with layered retry and invoice generation paths.
 nodes:
-  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker/renewal-scheduler
+  - entityRef: samples/golden-journey/billing-platform/billing-worker/renewal-scheduler
     type: component
     name: Renewal Scheduler
     properties:
@@ -26,7 +26,7 @@ nodes:
       hotspotScore: 0.22
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker/subscription-loader
+  - entityRef: samples/golden-journey/billing-platform/billing-worker/subscription-loader
     type: component
     name: Subscription Loader
     properties:
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0.14
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker/usage-meter-aggregator
+  - entityRef: samples/golden-journey/billing-platform/billing-worker/usage-meter-aggregator
     type: component
     name: Usage Meter Aggregator
     properties:
@@ -62,7 +62,7 @@ nodes:
       hotspotScore: 0.21
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker/invoice-generator
+  - entityRef: samples/golden-journey/billing-platform/billing-worker/invoice-generator
     type: component
     name: Invoice Generator
     properties:
@@ -80,7 +80,7 @@ nodes:
       hotspotScore: 0.25
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker/dunning-policy-engine
+  - entityRef: samples/golden-journey/billing-platform/billing-worker/dunning-policy-engine
     type: component
     name: Dunning Policy Engine
     properties:
@@ -98,7 +98,7 @@ nodes:
       hotspotScore: 0.38
       classifications: [hotspot]
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker/payment-retry-client
+  - entityRef: samples/golden-journey/billing-platform/billing-worker/payment-retry-client
     type: component
     name: Payment Retry Client
     properties:
@@ -123,7 +123,7 @@ nodes:
           score: 0.67
           sharedCommits: 12
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/billing-platform/billing-worker/ledger-writer
+  - entityRef: samples/golden-journey/billing-platform/billing-worker/ledger-writer
     type: component
     name: Ledger Writer
     properties:
@@ -142,30 +142,30 @@ nodes:
       classifications: []
       sinceDays: 365
 dependencies:
-  - from: golden-paths/golden-journey/billing-platform/billing-worker/renewal-scheduler
-    to: golden-paths/golden-journey/billing-platform/billing-worker/subscription-loader
+  - from: samples/golden-journey/billing-platform/billing-worker/renewal-scheduler
+    to: samples/golden-journey/billing-platform/billing-worker/subscription-loader
     type: direct-call
     description: Load due renewals
-  - from: golden-paths/golden-journey/billing-platform/billing-worker/renewal-scheduler
-    to: golden-paths/golden-journey/billing-platform/billing-worker/usage-meter-aggregator
+  - from: samples/golden-journey/billing-platform/billing-worker/renewal-scheduler
+    to: samples/golden-journey/billing-platform/billing-worker/usage-meter-aggregator
     type: direct-call
     description: Metered plans
-  - from: golden-paths/golden-journey/billing-platform/billing-worker/renewal-scheduler
-    to: golden-paths/golden-journey/billing-platform/billing-worker/invoice-generator
+  - from: samples/golden-journey/billing-platform/billing-worker/renewal-scheduler
+    to: samples/golden-journey/billing-platform/billing-worker/invoice-generator
     type: direct-call
-  - from: golden-paths/golden-journey/billing-platform/billing-worker/invoice-generator
-    to: golden-paths/golden-journey/billing-platform/billing-worker/ledger-writer
+  - from: samples/golden-journey/billing-platform/billing-worker/invoice-generator
+    to: samples/golden-journey/billing-platform/billing-worker/ledger-writer
     type: direct-call
     description: Post invoice lines
-  - from: golden-paths/golden-journey/billing-platform/billing-worker/invoice-generator
-    to: golden-paths/golden-journey/billing-platform/billing-worker/payment-retry-client
+  - from: samples/golden-journey/billing-platform/billing-worker/invoice-generator
+    to: samples/golden-journey/billing-platform/billing-worker/payment-retry-client
     type: direct-call
     description: Collect renewal
-  - from: golden-paths/golden-journey/billing-platform/billing-worker/dunning-policy-engine
-    to: golden-paths/golden-journey/billing-platform/billing-worker/payment-retry-client
+  - from: samples/golden-journey/billing-platform/billing-worker/dunning-policy-engine
+    to: samples/golden-journey/billing-platform/billing-worker/payment-retry-client
     type: direct-call
     description: Retry failed renewals via PSP
-  - from: golden-paths/golden-journey/billing-platform/billing-worker/dunning-policy-engine
-    to: golden-paths/golden-journey/billing-platform/billing-worker/subscription-loader
+  - from: samples/golden-journey/billing-platform/billing-worker/dunning-policy-engine
+    to: samples/golden-journey/billing-platform/billing-worker/subscription-loader
     type: direct-call
     description: Past-due accounts

@@ -16,10 +16,10 @@ const contextYaml = `
 version: ${v4}
 level: context
 metadata:
-  entityRef: golden-paths
-  name: Golden Paths
+  entityRef: samples
+  name: Samples
 nodes:
-  - entityRef: golden-paths/golden-journey
+  - entityRef: samples/golden-journey
     type: software-system
     name: Golden Journey
 dependencies: []
@@ -29,10 +29,10 @@ const containersYaml = `
 version: ${v4}
 level: container
 metadata:
-  entityRef: golden-paths/golden-journey
+  entityRef: samples/golden-journey
   name: Golden Journey Estate
 nodes:
-  - entityRef: golden-paths/golden-journey/web
+  - entityRef: samples/golden-journey/web
     type: web-app
     name: Web
 dependencies: []

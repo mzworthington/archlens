@@ -2,13 +2,13 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: golden-paths/golden-journey/checkout-platform/order-events
+  entityRef: samples/golden-journey/checkout-platform/order-events
   name: Order Events Components
   description: >
     Async fan-out from checkout — billing renewal consumers and analytics adapters
     on the order-placed topic inside Checkout Platform.
 nodes:
-  - entityRef: golden-paths/golden-journey/checkout-platform/order-events/order-placed-topic
+  - entityRef: samples/golden-journey/checkout-platform/order-events/order-placed-topic
     type: component
     name: Order Placed Topic
     properties:
@@ -26,7 +26,7 @@ nodes:
       hotspotScore: 0.1
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/order-events/billing-renewal-consumer
+  - entityRef: samples/golden-journey/checkout-platform/order-events/billing-renewal-consumer
     type: component
     name: Billing Renewal Consumer
     properties:
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0.22
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/order-events/analytics-fanout-adapter
+  - entityRef: samples/golden-journey/checkout-platform/order-events/analytics-fanout-adapter
     type: component
     name: Analytics Fanout Adapter
     properties:
@@ -62,7 +62,7 @@ nodes:
       hotspotScore: 0.16
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/order-events/inventory-release-consumer
+  - entityRef: samples/golden-journey/checkout-platform/order-events/inventory-release-consumer
     type: component
     name: Inventory Release Consumer
     properties:
@@ -80,7 +80,7 @@ nodes:
       hotspotScore: 0.19
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/order-events/dead-letter-handler
+  - entityRef: samples/golden-journey/checkout-platform/order-events/dead-letter-handler
     type: component
     name: Dead Letter Handler
     properties:
@@ -99,21 +99,21 @@ nodes:
       classifications: [knowledge-silo]
       sinceDays: 365
 dependencies:
-  - from: golden-paths/golden-journey/checkout-platform/order-events/order-placed-topic
-    to: golden-paths/golden-journey/checkout-platform/order-events/billing-renewal-consumer
+  - from: samples/golden-journey/checkout-platform/order-events/order-placed-topic
+    to: samples/golden-journey/checkout-platform/order-events/billing-renewal-consumer
     type: publish-subscribe
     description: Subscription upsell
-  - from: golden-paths/golden-journey/checkout-platform/order-events/order-placed-topic
-    to: golden-paths/golden-journey/checkout-platform/order-events/analytics-fanout-adapter
+  - from: samples/golden-journey/checkout-platform/order-events/order-placed-topic
+    to: samples/golden-journey/checkout-platform/order-events/analytics-fanout-adapter
     type: publish-subscribe
-  - from: golden-paths/golden-journey/checkout-platform/order-events/order-placed-topic
-    to: golden-paths/golden-journey/checkout-platform/order-events/inventory-release-consumer
+  - from: samples/golden-journey/checkout-platform/order-events/order-placed-topic
+    to: samples/golden-journey/checkout-platform/order-events/inventory-release-consumer
     type: publish-subscribe
     description: Compensating release
-  - from: golden-paths/golden-journey/checkout-platform/order-events/billing-renewal-consumer
-    to: golden-paths/golden-journey/checkout-platform/order-events/dead-letter-handler
+  - from: samples/golden-journey/checkout-platform/order-events/billing-renewal-consumer
+    to: samples/golden-journey/checkout-platform/order-events/dead-letter-handler
     type: direct-call
     description: Poison messages
-  - from: golden-paths/golden-journey/checkout-platform/order-events/analytics-fanout-adapter
-    to: golden-paths/golden-journey/checkout-platform/order-events/dead-letter-handler
+  - from: samples/golden-journey/checkout-platform/order-events/analytics-fanout-adapter
+    to: samples/golden-journey/checkout-platform/order-events/dead-letter-handler
     type: direct-call

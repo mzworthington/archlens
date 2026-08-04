@@ -10,8 +10,8 @@ import {
 } from './chaosSpecDocument';
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const CHAOS_SPECS_DIR = path.join(REPO_ROOT, 'chaos-specs');
-const STRESS_DIR = path.join(REPO_ROOT, 'golden-paths/chaoslens-stress');
-const GOLDEN_JOURNEY_DIR = path.join(REPO_ROOT, 'golden-paths/golden-journey');
+const STRESS_DIR = path.join(REPO_ROOT, 'samples/chaoslens-stress');
+const GOLDEN_JOURNEY_DIR = path.join(REPO_ROOT, 'samples/golden-journey');
 
 function loadStressDiagram(diagramRef: string) {
   const searchDirs = [STRESS_DIR, GOLDEN_JOURNEY_DIR];

@@ -11,11 +11,11 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-const CHECKOUT_API_REF = 'golden-paths/golden-journey/checkout-platform/checkout-api';
-const WORKSPACE_ESTATE = '/workspace/golden-paths/golden-journey';
+const CHECKOUT_API_REF = 'samples/golden-journey/checkout-platform/checkout-api';
+const WORKSPACE_ESTATE = '/workspace/samples/golden-journey';
 const WORKSPACE_RESILIENCE = `${WORKSPACE_ESTATE}?lens=chaoslens`;
-const ADVICE_URL = '/workspace/golden-paths/golden-journey?lens=advicelens';
-const REFACTOR_PLAN_URL = `/workspace/golden-paths/golden-journey?lens=advicelens&plan=${encodeURIComponent(
+const ADVICE_URL = '/workspace/samples/golden-journey?lens=advicelens';
+const REFACTOR_PLAN_URL = `/workspace/samples/golden-journey?lens=advicelens&plan=${encodeURIComponent(
   CHECKOUT_API_REF
 )}`;
 
@@ -71,7 +71,7 @@ const STEPS: JourneyStep[] = [
     step: 2,
     title: 'Open the estate context',
     product: 'ArchLens Canvas',
-    body: 'Load Golden Paths to open the Golden Journey estate — personas, storefronts, catalog, identity, checkout, and billing platforms around a shared Payment Gateway. Switch to the Golden Paths context breadcrumb anytime to see persona-only context view.',
+    body: 'Load Samples to open the Golden Journey estate — personas, storefronts, catalog, identity, checkout, and billing platforms around a shared Payment Gateway. Switch to the Samples context breadcrumb anytime to see persona-only context view.',
     icon: ScanSearch,
     tryHref: WORKSPACE_ESTATE,
     tryLabel: 'Open Golden Journey estate',
@@ -231,8 +231,8 @@ export const GoldenJourneyTour: React.FC = () => {
             chaos-specs/golden-journey-payment-gateway-outage.yaml
           </code>
           — targets the full estate diagram{' '}
-          <code className="text-slate-300">golden-paths/golden-journey</code>. Import from the
-          workspace menu in Resilience mode or pass{' '}
+          <code className="text-slate-300">samples/golden-journey</code>. Import from the workspace
+          menu in Resilience mode or pass{' '}
           <code className="text-slate-300">--chaos-specs=./chaos-specs</code> to the CLI estate
           sweep.
         </p>

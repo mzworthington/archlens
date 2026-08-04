@@ -2989,7 +2989,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### selectBundledSampleEntryPath
 
-- ✅ prefers golden-paths context when present
+- ✅ prefers samples context when present
 - ✅ falls back to context then first entry
 - ✅ throws when catalog is empty
 

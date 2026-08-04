@@ -43,7 +43,7 @@ export const LEGACY_CONTEXT_RELATIVE_PATH = 'context.yaml';
 export const PERSON_EDGE_DESCRIPTION = 'Uses';
 
 function contextRelativePathForEntityRef(diagramEntityRef: string): string {
-  if (diagramEntityRef === 'golden-paths') return 'golden-journey/context.yaml';
+  if (diagramEntityRef === 'samples') return 'golden-journey/context.yaml';
   return `${diagramEntityRef}/context.yaml`;
 }
 

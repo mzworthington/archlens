@@ -8,7 +8,7 @@ import { runEstateResilience } from './runEstateResilience';
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const ECOMMERCE_FIXTURE = path.join(
   REPO_ROOT,
-  'golden-paths/chaoslens-stress/ecommerce-containers.yaml'
+  'samples/chaoslens-stress/ecommerce-containers.yaml'
 );
 
 describe('runEstateResilience', () => {

@@ -2,7 +2,7 @@ import { expect, type Locator, type Page } from '@playwright/test';
 import { gotoApp } from './navigation';
 
 const DIAGRAM_LOADING = '[data-testid="diagram-loading-overlay"]';
-const GOLDEN_JOURNEY_ENTITY_REF = 'golden-paths/golden-journey';
+const GOLDEN_JOURNEY_ENTITY_REF = 'samples/golden-journey';
 const GOLDEN_JOURNEY_WORKSPACE_PATH = `/workspace/${GOLDEN_JOURNEY_ENTITY_REF}`;
 
 export async function waitForDiagramIdle(page: Page, timeout = 60_000) {
@@ -78,7 +78,7 @@ export async function expectGoldenJourneyEstateReady(page: Page) {
         await navigateToWorkspacePath(page, GOLDEN_JOURNEY_WORKSPACE_PATH);
       }
     }
-    await expect(page).toHaveURL(/\/workspace\/golden-paths\/golden-journey(?:\/|$|\?)/, {
+    await expect(page).toHaveURL(/\/workspace\/samples\/golden-journey(?:\/|$|\?)/, {
       timeout: 10_000,
     });
     await expect(containerBadge).toBeVisible({ timeout: 10_000 });
@@ -88,7 +88,7 @@ export async function expectGoldenJourneyEstateReady(page: Page) {
   await expectCanvasReady(page, 90_000);
 }
 
-/** Open the Golden Journey estate container diagram from the Golden Paths context view. */
+/** Open the Golden Journey estate container diagram from the Samples context view. */
 export async function openGoldenJourneyEstate(page: Page) {
   await expectCanvasReady(page);
   await expectGoldenJourneyEstateReady(page);

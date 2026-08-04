@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
-import { GOLDEN_PATHS_ENTITY_REF } from '../../../../application/store/goldenPathsSample';
+import { SAMPLES_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
 import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
 import { DiffMenu } from '../components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from '../components/ImportMermaidDialog/ImportMermaidDialog';
@@ -45,7 +45,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
 
     setIsStartupOpen(false);
     // Entry diagram is golden-journey/context.yaml — land on the parent context URL.
-    setLocation(buildWorkspaceEntityHref(GOLDEN_PATHS_ENTITY_REF), { replace: true });
+    setLocation(buildWorkspaceEntityHref(SAMPLES_ENTITY_REF), { replace: true });
   }, [openBundledSample, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {

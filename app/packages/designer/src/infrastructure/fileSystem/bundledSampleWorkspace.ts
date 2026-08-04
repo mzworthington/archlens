@@ -2,8 +2,8 @@ import { parseWorkspaceCatalogJson, type WorkspaceCatalogEntry } from '@archlens
 import type { WorkspacePort } from '../../core';
 import {
   BUNDLED_WORKSPACE_NAME,
-  GOLDEN_PATHS_CONTEXT_PATH,
-} from '../../application/store/goldenPathsSample';
+  SAMPLES_CONTEXT_PATH,
+} from '../../application/store/samplesWorkspace';
 import { listBundledPreloadPaths } from '../../application/store/bundledSamplePreload';
 import {
   CATALOG_BLUEPRINT_FETCH_CONCURRENCY,
@@ -101,7 +101,7 @@ export function scheduleBundledBlueprintPreload(catalog: readonly WorkspaceCatal
 }
 
 /**
- * Read-only workspace over repo `golden-paths/` mirrored to `public/bundled-blueprints/`
+ * Read-only workspace over repo `samples/` mirrored to `public/bundled-blueprints/`
  * at build/dev start. Navigation uses prebuilt `catalog.json`; YAML is fetched on demand.
  */
 export const BundledSampleWorkspaceAdapter: WorkspacePort = {
@@ -124,4 +124,4 @@ export const BundledSampleWorkspaceAdapter: WorkspacePort = {
   },
 };
 
-export { GOLDEN_PATHS_CONTEXT_PATH };
+export { SAMPLES_CONTEXT_PATH };

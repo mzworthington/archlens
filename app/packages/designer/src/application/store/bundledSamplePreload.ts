@@ -1,6 +1,6 @@
 /**
  * Demo diagrams to warm after sandbox open (and SW-precache at build).
- * Full scanned sample corpora are remote-only; bundled fallback is golden-paths.
+ * Full scanned sample corpora are remote-only; bundled fallback is samples.
  */
 export const BUNDLED_PRELOAD_PREFIXES = [
   'golden-journey/',

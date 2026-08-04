@@ -1,0 +1,73 @@
+name: Scan sample repos
+
+# Matrix dogfood: install latest CLI, clone each example codebase, scan + publish.
+# Customer single-repo pattern lives in publish-blueprint-catalog.yml.
+
+on:
+  schedule:
+    - cron: '0 6 * * 0' # 06:00 UTC Sundays
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scan-sample-repos
+  cancel-in-progress: false
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      samples: ${{ steps.set.outputs.samples }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Load sample matrix
+        id: set
+        run: echo "samples=$(jq -c '.' scripts/blueprint-sample-repos.json)" >> "$GITHUB_OUTPUT"
+
+  scan:
+    needs: matrix
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ matrix.sample.timeoutMinutes }}
+    environment:
+      name: production
+    strategy:
+      fail-fast: false
+      matrix:
+        sample: ${{ fromJson(needs.matrix.outputs.samples) }}
+    steps:
+      - name: Checkout ArchLens
+        uses: actions/checkout@v7
+
+      - name: Install ArchLens CLI
+        run: |
+          set -euo pipefail
+          ./scripts/install.sh --dir "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          archlens --version
+
+      - name: Clone sample repo
+        run: |
+          set -euo pipefail
+          git clone --single-branch --depth=500 \
+            "${{ matrix.sample.repo }}" \
+            "samples/${{ matrix.sample.id }}"
+
+      - name: Scan and publish
+        working-directory: samples/${{ matrix.sample.id }}
+        env:
+          OBJECT_STORAGE_PROVIDER: r2
+          OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
+        run: |
+          set -euo pipefail
+          archlens scan --headless \
+            --output="${GITHUB_WORKSPACE}/blueprints" \
+            --context="${{ matrix.sample.context }}" \
+            --git-since="${{ matrix.sample.gitSinceDays }}" \
+            --publish

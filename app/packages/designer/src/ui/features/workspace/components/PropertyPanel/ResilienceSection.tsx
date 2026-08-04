@@ -62,7 +62,7 @@ export const ResilienceSection: React.FC<Props> = props => {
           className="rounded-lg border border-cyan-900/40 bg-cyan-950/20 px-3 py-2.5 text-xs text-cyan-100/90 leading-relaxed"
           data-testid="chaoslens-sample-note"
         >
-          Golden Paths sample: ChaosLens runs on the bundled estate. Open a folder workspace for
+          Samples workspace: ChaosLens runs on the bundled estate. Open a folder workspace for
           full-repo blast radius from your own blueprints.
         </div>
       ) : null}

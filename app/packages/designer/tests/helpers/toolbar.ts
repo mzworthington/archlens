@@ -2,18 +2,18 @@ import { expect, type Page } from '@playwright/test';
 import { gotoApp } from './navigation';
 import { expectCanvasReady } from './canvas';
 
-const GOLDEN_PATHS_CONTEXT_URL = /\/workspace\/golden-paths\/?(?:\?.*)?$/;
+const SAMPLES_CONTEXT_URL = /\/workspace\/samples\/?(?:\?.*)?$/;
 
 function isGoldenPathsContextUrl(url: string): boolean {
   try {
     const path = new URL(url).pathname.replace(/\/$/, '');
-    return path === '/workspace/golden-paths';
+    return path === '/workspace/samples';
   } catch {
     return false;
   }
 }
 
-/** Dismiss the startup chooser by opening the bundled Golden Paths sample when shown. */
+/** Dismiss the startup chooser by opening the bundled Samples workspace when shown. */
 export async function continueWithSample(page: Page) {
   if (isGoldenPathsContextUrl(page.url())) {
     await expectCanvasReady(page);
@@ -26,7 +26,7 @@ export async function continueWithSample(page: Page) {
   }
 
   await page.getByTestId('workspace-open-sample').click();
-  await expect(page).toHaveURL(GOLDEN_PATHS_CONTEXT_URL, {
+  await expect(page).toHaveURL(SAMPLES_CONTEXT_URL, {
     timeout: 120_000,
   });
   await expect(dialog).toHaveCount(0, { timeout: 90_000 });

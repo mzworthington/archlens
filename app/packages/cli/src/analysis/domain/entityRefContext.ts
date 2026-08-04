@@ -7,7 +7,7 @@ export const CONTEXT_DISPLAY_NAMES: Record<string, string> = {
   backstage: 'Backstage',
   eshop: 'E-Shop',
   infrastructure: 'Infrastructure Examples',
-  'golden-paths': 'Golden Paths',
+  samples: 'Samples',
   'chaoslens-stress': 'ChaosLens Stress Tests',
   'advicelens-stress': 'AdviceLens Stress Tests',
 };

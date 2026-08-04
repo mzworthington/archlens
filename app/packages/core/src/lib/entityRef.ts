@@ -204,7 +204,7 @@ export type BreadcrumbSegmentData = {
 };
 
 /**
- * Shared namespace prefix for sibling context diagrams (e.g. application + golden-paths → blueprint).
+ * Shared namespace prefix for sibling context diagrams (e.g. application + samples → blueprint).
  * Returns the full entityRef when only one context diagram exists.
  */
 export function deriveSharedContextNamespace(contextEntityRefs: string[]): string | undefined {

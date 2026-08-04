@@ -4,8 +4,8 @@ import { buildWorkspaceEntityHref } from './sandboxWorkspace';
 describe('sandboxWorkspace', () => {
   it('builds entity-ref workspace paths', () => {
     expect(buildWorkspaceEntityHref('application')).toBe('/workspace/application');
-    expect(buildWorkspaceEntityHref('golden-paths/golden-journey')).toBe(
-      '/workspace/golden-paths/golden-journey'
+    expect(buildWorkspaceEntityHref('samples/golden-journey')).toBe(
+      '/workspace/samples/golden-journey'
     );
   });
 
@@ -20,11 +20,11 @@ describe('sandboxWorkspace', () => {
 
   it('preserves TraceLens when building breadcrumb links', () => {
     expect(
-      buildWorkspaceEntityHref('golden-paths/golden-journey', {
+      buildWorkspaceEntityHref('samples/golden-journey', {
         pathname: '/workspace',
         search: 'lens=tracelens',
       })
-    ).toBe('/workspace/golden-paths/golden-journey?lens=tracelens');
+    ).toBe('/workspace/samples/golden-journey?lens=tracelens');
 
     expect(
       buildWorkspaceEntityHref('application', {

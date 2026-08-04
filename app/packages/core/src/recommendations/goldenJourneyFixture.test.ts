@@ -8,9 +8,9 @@ import { runResilienceSimulation } from '../resilience/simulation';
 import { parseSchemaFromYaml } from '../rules/graph';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const FIXTURE_DIR = path.join(REPO_ROOT, 'golden-paths/golden-journey');
-const CHECKOUT_API = 'golden-paths/golden-journey/checkout-platform/checkout-api';
-const PAYMENT_GATEWAY = 'golden-paths/golden-journey/payment-gateway';
+const FIXTURE_DIR = path.join(REPO_ROOT, 'samples/golden-journey');
+const CHECKOUT_API = 'samples/golden-journey/checkout-platform/checkout-api';
+const PAYMENT_GATEWAY = 'samples/golden-journey/payment-gateway';
 
 function loadFixture(relativePath: string) {
   return parseSchemaFromYaml(fs.readFileSync(path.join(FIXTURE_DIR, relativePath), 'utf8'));
@@ -75,29 +75,29 @@ describe('golden-journey estate fixture', () => {
     expect(
       schema.dependencies.some(
         d =>
-          d.from === 'golden-paths/golden-journey/shopper' &&
-          d.to === 'golden-paths/golden-journey/catalog-platform'
+          d.from === 'samples/golden-journey/shopper' &&
+          d.to === 'samples/golden-journey/catalog-platform'
       )
     ).toBe(true);
     expect(
       schema.dependencies.some(
         d =>
-          d.from === 'golden-paths/golden-journey/member' &&
-          d.to === 'golden-paths/golden-journey/identity-platform'
+          d.from === 'samples/golden-journey/member' &&
+          d.to === 'samples/golden-journey/identity-platform'
       )
     ).toBe(true);
     expect(
       schema.dependencies.some(
         d =>
-          d.from === 'golden-paths/golden-journey/buyer' &&
-          d.to === 'golden-paths/golden-journey/checkout-platform'
+          d.from === 'samples/golden-journey/buyer' &&
+          d.to === 'samples/golden-journey/checkout-platform'
       )
     ).toBe(true);
     expect(
       schema.dependencies.some(
         d =>
-          d.from === 'golden-paths/golden-journey/subscriber' &&
-          d.to === 'golden-paths/golden-journey/billing-platform'
+          d.from === 'samples/golden-journey/subscriber' &&
+          d.to === 'samples/golden-journey/billing-platform'
       )
     ).toBe(true);
   });
@@ -109,16 +109,14 @@ describe('golden-journey estate fixture', () => {
       expect.arrayContaining(['Shopper', 'Member', 'Buyer', 'Subscriber'])
     );
     const personaDeps = schema.dependencies.filter(d => d.from.includes('/golden-journey/'));
-    expect(personaDeps.every(d => d.to === 'golden-paths/golden-journey')).toBe(true);
+    expect(personaDeps.every(d => d.to === 'samples/golden-journey')).toBe(true);
     expect(
       schema.nodes.some(
         node => node.entityRef === PAYMENT_GATEWAY && node.external && node.type === 'gateway-api'
       )
     ).toBe(true);
     expect(
-      schema.dependencies.some(
-        d => d.from === 'golden-paths/golden-journey' && d.to === PAYMENT_GATEWAY
-      )
+      schema.dependencies.some(d => d.from === 'samples/golden-journey' && d.to === PAYMENT_GATEWAY)
     ).toBe(true);
   });
 
@@ -136,7 +134,7 @@ describe('golden-journey estate fixture', () => {
     expect(
       schema.nodes.some(
         node =>
-          node.parentEntityRef === 'golden-paths/golden-journey/checkout-platform' &&
+          node.parentEntityRef === 'samples/golden-journey/checkout-platform' &&
           node.entityRef === CHECKOUT_API
       )
     ).toBe(true);
@@ -146,7 +144,7 @@ describe('golden-journey estate fixture', () => {
     const schema = loadFixture('containers.yaml');
     const simulation = runResilienceSimulation(schema, {
       faults: [{ nodeId: PAYMENT_GATEWAY, faultType: 'region-outage' }],
-      entryPoints: ['golden-paths/golden-journey/web', 'golden-paths/golden-journey/mobile'],
+      entryPoints: ['samples/golden-journey/web', 'samples/golden-journey/mobile'],
     });
 
     const recommendations = buildRecommendations({ schema, simulation });
@@ -165,14 +163,14 @@ describe('golden-journey estate fixture', () => {
   it('does not target personas with circuit-breaker advice on the context diagram', () => {
     const schema = loadFixture('context.yaml');
     const simulation = runResilienceSimulation(schema, {
-      faults: [{ nodeId: 'golden-paths/golden-journey', faultType: 'region-outage' }],
+      faults: [{ nodeId: 'samples/golden-journey', faultType: 'region-outage' }],
     });
     const recommendations = buildRecommendations({ schema, simulation });
     const personaRefs = [
-      'golden-paths/golden-journey/shopper',
-      'golden-paths/golden-journey/member',
-      'golden-paths/golden-journey/buyer',
-      'golden-paths/golden-journey/subscriber',
+      'samples/golden-journey/shopper',
+      'samples/golden-journey/member',
+      'samples/golden-journey/buyer',
+      'samples/golden-journey/subscriber',
     ];
 
     expect(recommendations.some(r => r.kind === 'add-circuit-breaker')).toBe(false);
@@ -185,11 +183,11 @@ describe('golden-journey estate fixture', () => {
     const schema = loadFixture('containers.yaml');
     const simulation = runResilienceSimulation(schema, {
       faults: [{ nodeId: PAYMENT_GATEWAY, faultType: 'region-outage' }],
-      entryPoints: ['golden-paths/golden-journey/web', 'golden-paths/golden-journey/mobile'],
+      entryPoints: ['samples/golden-journey/web', 'samples/golden-journey/mobile'],
     });
 
-    expect(simulation.heat.get('golden-paths/golden-journey/web')).toBeGreaterThan(0);
-    expect(simulation.heat.get('golden-paths/golden-journey/mobile')).toBeGreaterThan(0);
+    expect(simulation.heat.get('samples/golden-journey/web')).toBeGreaterThan(0);
+    expect(simulation.heat.get('samples/golden-journey/mobile')).toBeGreaterThan(0);
     expect(simulation.heat.get(CHECKOUT_API)).toBeGreaterThan(0);
   });
 

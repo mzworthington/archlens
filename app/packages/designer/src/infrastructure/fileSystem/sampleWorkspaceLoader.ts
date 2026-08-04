@@ -1,6 +1,6 @@
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import type { WorkspacePort } from '../../core';
-import { BUNDLED_WORKSPACE_NAME } from '../../application/store/goldenPathsSample';
+import { BUNDLED_WORKSPACE_NAME } from '../../application/store/samplesWorkspace';
 import {
   BundledSampleWorkspaceAdapter,
   loadBundledWorkspaceCatalog,

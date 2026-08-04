@@ -7,7 +7,7 @@ import { runEstateResilience } from '../recommendations/runEstateResilience';
 import { parseSchemaFromYaml } from '../rules/graph';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const STRESS_DIR = path.join(REPO_ROOT, 'golden-paths/advicelens-stress');
+const STRESS_DIR = path.join(REPO_ROOT, 'samples/advicelens-stress');
 
 function listFixtureFiles(dir: string): string[] {
   const files: string[] = [];
@@ -27,7 +27,7 @@ function loadFixture(filePath: string) {
 }
 
 describe('advicelens-stress fixtures', () => {
-  it('loads every scenario YAML from golden-paths/advicelens-stress/', () => {
+  it('loads every scenario YAML from samples/advicelens-stress/', () => {
     const files = listFixtureFiles(STRESS_DIR);
     expect(files.length).toBeGreaterThanOrEqual(6);
     for (const file of files) {

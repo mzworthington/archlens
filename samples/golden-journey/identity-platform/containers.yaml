@@ -2,12 +2,12 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: golden-paths/golden-journey/identity-platform
+  entityRef: samples/golden-journey/identity-platform
   name: Identity Platform
   description: >
     Member sign-in and SSO session handoff into checkout within the estate context window.
 nodes:
-  - entityRef: golden-paths/golden-journey/identity-platform/sso-api
+  - entityRef: samples/golden-journey/identity-platform/sso-api
     type: rest-api
     name: SSO API
     forensics:
@@ -23,11 +23,11 @@ nodes:
       hotspotScore: 0.16
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/identity-platform/session-store
+  - entityRef: samples/golden-journey/identity-platform/session-store
     type: database
     name: Session Store
 dependencies:
-  - from: golden-paths/golden-journey/identity-platform/sso-api
-    to: golden-paths/golden-journey/identity-platform/session-store
+  - from: samples/golden-journey/identity-platform/sso-api
+    to: samples/golden-journey/identity-platform/session-store
     type: read-write
     description: Token and session persistence

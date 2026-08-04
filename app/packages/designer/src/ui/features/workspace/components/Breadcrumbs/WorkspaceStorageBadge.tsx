@@ -6,7 +6,7 @@ type WorkspaceStorageBadgeProps = {
   className?: string;
 };
 
-/** Distinguishes folder workspaces from the bundled Golden Paths sample. */
+/** Distinguishes folder workspaces from the bundled Samples workspace. */
 export const WorkspaceStorageBadge: React.FC<WorkspaceStorageBadgeProps> = ({
   isWorkspaceOpen,
   isSampleWorkspace,

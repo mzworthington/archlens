@@ -37,7 +37,7 @@ export interface DiagramState {
   schemaVersionWarning: SchemaVersionAssessment | null;
   currentFilePath: string;
   isWorkspaceOpen: boolean;
-  /** Bundled Golden Paths sample (read-only; save downloads YAML). */
+  /** Bundled Samples workspace (read-only; save downloads YAML). */
   isSampleWorkspace: boolean;
   workspaceName: string;
   /** Lightweight workspace index (all diagrams). Full schemas live in loadedSystems. */

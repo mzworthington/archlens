@@ -22,11 +22,11 @@ const EXTERNAL_SCOPE_AUTH_OUTAGE_SPEC = path.join(
 );
 const ECOMMERCE_BLUEPRINT = path.join(
   REPO_ROOT,
-  'golden-paths/chaoslens-stress/ecommerce-containers.yaml'
+  'samples/chaoslens-stress/ecommerce-containers.yaml'
 );
 const EXTERNAL_SCOPE_BLUEPRINT = path.join(
   REPO_ROOT,
-  'golden-paths/chaoslens-stress/external-scope-containers.yaml'
+  'samples/chaoslens-stress/external-scope-containers.yaml'
 );
 
 describe('ChaosSpec document', () => {

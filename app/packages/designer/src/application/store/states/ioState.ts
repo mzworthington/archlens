@@ -17,7 +17,7 @@ import {
   noopResilienceEngine,
 } from '../../../core';
 import { loadWorkspaceFromCatalog, loadWorkspaceFromDirectory } from './ioState/openWorkspace';
-import { selectBundledSampleEntryPath } from '../goldenPathsSample';
+import { selectBundledSampleEntryPath } from '../samplesWorkspace';
 import { scheduleBundledBlueprintPreload } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { loadSampleWorkspaceSession } from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import { SANDBOX_LOADING_MESSAGE } from '../diagramLoadSession';

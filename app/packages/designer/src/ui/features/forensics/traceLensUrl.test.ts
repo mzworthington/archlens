@@ -27,8 +27,8 @@ describe('traceLensUrl', () => {
 
   it('parses workspace lens URLs', () => {
     expect(parseTraceLensUrl('/workspace', 'lens=tracelens')).toEqual({ showSource: false });
-    expect(parseTraceLensUrl('/workspace/golden-paths', 'lens=tracelens')).toEqual({
-      entityRef: 'golden-paths',
+    expect(parseTraceLensUrl('/workspace/samples', 'lens=tracelens')).toEqual({
+      entityRef: 'samples',
       showSource: false,
     });
     expect(
@@ -53,8 +53,8 @@ describe('traceLensUrl', () => {
 
   it('detects trace lens routes', () => {
     expect(isTraceLensUrl('/workspace', 'lens=tracelens')).toBe(true);
-    expect(isTraceLensUrl('/workspace/golden-paths', 'lens=tracelens')).toBe(true);
-    expect(isTraceLensUrl('/workspace/golden-paths', '')).toBe(false);
+    expect(isTraceLensUrl('/workspace/samples', 'lens=tracelens')).toBe(true);
+    expect(isTraceLensUrl('/workspace/samples', '')).toBe(false);
     expect(isTraceLensUrl('/workspace', 'lens=tracelens&view=recommendations')).toBe(false);
     expect(isTraceLensUrl('/tracelens')).toBe(true);
   });

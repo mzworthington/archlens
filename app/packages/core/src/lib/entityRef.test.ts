@@ -101,7 +101,7 @@ describe('entityRef Rules', () => {
 
     it('returns undefined when sibling contexts have no shared namespace prefix', () => {
       expect(
-        deriveSharedContextNamespace(['application', 'infrastructure', 'golden-paths'])
+        deriveSharedContextNamespace(['application', 'infrastructure', 'samples'])
       ).toBeUndefined();
     });
   });
