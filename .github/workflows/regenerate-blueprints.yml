@@ -1,0 +1,218 @@
+name: Regenerate sample blueprints
+
+# Weekly matrix: clone each sample repo, run archlens scan, open a PR with YAML.
+# Catalog: scripts/blueprint-sample-repos.json (shared with scripts/run-blueprint-batch.sh).
+
+on:
+  schedule:
+    - cron: '0 3 * * 1' # Monday 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: regenerate-blueprints
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Build matrix from catalog
+        id: set-matrix
+        run: |
+          matrix="$(jq -c '{ include: [ .[] | {
+            id,
+            repo,
+            context,
+            gitSinceDays: (.gitSinceDays // 365),
+            timeoutMinutes: (.timeoutMinutes // 120)
+          } ] }' scripts/blueprint-sample-repos.json)"
+          echo "matrix=${matrix}" >> "${GITHUB_OUTPUT}"
+
+  build-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.10.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: app
+
+      - name: Build ArchLens CLI
+        run: pnpm --filter @archlens/cli build
+        working-directory: app
+
+      - name: Upload CLI binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: archlens-cli
+          path: |
+            app/dist/archlens
+            app/dist/*.wasm
+          if-no-files-found: error
+          retention-days: 2
+
+  scan:
+    needs: [prepare, build-cli]
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ fromJSON(matrix.timeoutMinutes) }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    steps:
+      - name: Checkout ArchLens (for self scans + scripts)
+        uses: actions/checkout@v7
+        with:
+          path: archlens
+          fetch-depth: 0
+
+      - name: Download CLI
+        uses: actions/download-artifact@v4
+        with:
+          name: archlens-cli
+          path: cli
+
+      - name: Make CLI executable
+        run: |
+          chmod +x cli/archlens
+          echo "${GITHUB_WORKSPACE}/cli" >> "${GITHUB_PATH}"
+
+      - name: Prepare sample checkout
+        id: sample
+        run: |
+          set -euo pipefail
+          dest="${GITHUB_WORKSPACE}/samples/${{ matrix.id }}"
+          mkdir -p "$(dirname "${dest}")"
+          if [[ "${{ matrix.repo }}" == "self" ]]; then
+            # Scan this monorepo (already checked out under archlens/).
+            ln -s "${GITHUB_WORKSPACE}/archlens" "${dest}"
+          else
+            since="${{ matrix.gitSinceDays }} days ago"
+            echo "→ clone ${{ matrix.repo }} (shallow-since=${since})"
+            git clone \
+              --single-branch \
+              --shallow-since="${since}" \
+              "${{ matrix.repo }}" \
+              "${dest}"
+          fi
+          echo "path=${dest}" >> "${GITHUB_OUTPUT}"
+
+      - name: Scan with ArchLens
+        working-directory: ${{ steps.sample.outputs.path }}
+        run: |
+          set -euo pipefail
+          out="${GITHUB_WORKSPACE}/scan-out"
+          mkdir -p "${out}"
+          archlens --headless \
+            --output="${out}" \
+            --context="${{ matrix.context }}" \
+            --git-since="${{ matrix.gitSinceDays }}"
+
+      - name: Upload scan artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-${{ matrix.id }}
+          path: scan-out/
+          if-no-files-found: error
+          retention-days: 2
+
+  assemble:
+    needs: [scan, build-cli]
+    # Run with whatever matrix legs succeeded (fail-fast is false on scan).
+    if: ${{ always() && !cancelled() && needs.build-cli.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Download CLI
+        uses: actions/download-artifact@v4
+        with:
+          name: archlens-cli
+          path: app/dist
+
+      - name: Make CLI executable
+        run: chmod +x app/dist/archlens
+
+      - name: Download scan artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: scan-*
+          path: .scan-artifacts
+          merge-multiple: false
+
+      - name: Assemble blueprints tree
+        run: |
+          chmod +x scripts/assemble-blueprint-scan-artifacts.sh
+          ARCHLENS_BIN="${GITHUB_WORKSPACE}/app/dist/archlens" \
+            scripts/assemble-blueprint-scan-artifacts.sh .scan-artifacts
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.10.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - name: Format YAML
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm format:write
+        working-directory: app
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: chore/regenerate-sample-blueprints
+          delete-branch: true
+          commit-message: 'chore(blueprints): regenerate sample corpus from upstream repos'
+          title: 'chore(blueprints): weekly sample corpus refresh'
+          body: |
+            Automated weekly regeneration of `blueprints/` from the sample repos in
+            [`scripts/blueprint-sample-repos.json`](../blob/main/scripts/blueprint-sample-repos.json).
+
+            Each matrix job clones (or uses this repo for `self`) and runs:
+
+            ```bash
+            archlens --headless --output=… --context=<product> --git-since=<days>
+            ```
+
+            Sandbox products are re-merged via `scripts/merge-sandbox-context.mjs`.
+            Nightly [publish-blueprint-catalog](../actions/workflows/publish-blueprint-catalog.yml)
+            will pick up the tree after this PR merges.
+          add-paths: |
+            blueprints/

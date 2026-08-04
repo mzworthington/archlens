@@ -1,41 +1,40 @@
 #!/usr/bin/env bash
-# Regenerate blueprints/ by scanning sibling repos. Each repo passes an explicit
-# --context (and output dir when needed) matching blueprints/*/context.yaml today.
+# Regenerate blueprints/ by scanning sibling repos (or paths from BLUEPRINT_BATCH_PARENT).
+# Repo list / contexts: scripts/blueprint-sample-repos.json (shared with CI matrix).
 set -euo pipefail
-
-DIRECTORIES=(
-  backstage
-  blueprint
-  eshop
-  examples # github.com/pulumi/examples
-  gpio-build-monitor
-  terraform-examples
-)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BLUEPRINT_REPO="$(cd "${SCRIPT_DIR}/.." && pwd)"
+CATALOG="${SCRIPT_DIR}/blueprint-sample-repos.json"
 PARENT_DIR="${BLUEPRINT_BATCH_PARENT:-$(dirname "${BLUEPRINT_REPO}")}"
 BLUEPRINT_BIN="${BLUEPRINT_REPO}/app/dist/archlens"
 BLUEPRINTS_DIR="${BLUEPRINT_REPO}/blueprints"
 
+command -v jq >/dev/null || {
+  echo "Missing: jq (needed to read ${CATALOG})" >&2
+  exit 1
+}
+[[ -f "${CATALOG}" ]] || {
+  echo "Missing catalog: ${CATALOG}" >&2
+  exit 1
+}
+
+mapfile -t DIRECTORIES < <(jq -r '.[].id' "${CATALOG}")
+
 failures=()
 succeeded=()
 
-# EntityRef root for each scanned repo (must match blueprints/*/context.yaml).
 scan_context() {
-  case "$1" in
-    backstage) echo backstage ;;
-    blueprint) echo blueprint ;;
-    eshop) echo eshop ;;
-    examples) echo infrastructure ;;
-    gpio-build-monitor) echo application ;;
-    terraform-examples) echo infrastructure ;;
-    *) echo "$1" ;;
-  esac
+  jq -r --arg id "$1" '.[] | select(.id == $id) | .context' "${CATALOG}"
+}
+
+scan_git_since() {
+  jq -r --arg id "$1" '.[] | select(.id == $id) | .gitSinceDays // 365' "${CATALOG}"
 }
 
 echo "Parent directory: ${PARENT_DIR}"
 echo "Blueprints dir:   ${BLUEPRINTS_DIR}"
+echo "Catalog:          ${CATALOG}"
 echo
 
 ensure_app_deps() {
@@ -44,25 +43,6 @@ ensure_app_deps() {
     echo "App dependencies missing or incomplete - running pnpm install..."
     (cd "${BLUEPRINT_REPO}/app" && pnpm install)
   fi
-}
-
-pull_latest() {
-  local name="$1"
-  local target="$2"
-
-  if ! git -C "${target}" rev-parse --is-inside-work-tree &>/dev/null; then
-    echo "  skip pull: not a git repository"
-    return 0
-  fi
-
-  echo "▶ pull ${name}"
-  if git -C "${target}" pull --ff-only; then
-    echo "✓ pulled ${name}"
-    return 0
-  fi
-
-  echo "✗ pull failed for ${name}" >&2
-  return 1
 }
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -99,6 +79,10 @@ echo
 
 for name in "${DIRECTORIES[@]}"; do
   target="${PARENT_DIR}/${name}"
+  # "self" catalog entry maps to this repo checkout locally.
+  if [[ "$(jq -r --arg id "${name}" '.[] | select(.id == $id) | .repo' "${CATALOG}")" == "self" ]]; then
+    target="${BLUEPRINT_REPO}"
+  fi
 
   if [[ ! -d "${target}" ]]; then
     echo "✗ skip ${name}: not found at ${target}" >&2
@@ -107,20 +91,17 @@ for name in "${DIRECTORIES[@]}"; do
   fi
 
   context="$(scan_context "${name}")"
+  git_since="$(scan_git_since "${name}")"
 
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo "▶ ${name}"
   echo "  ${target}"
-  echo "  context=${context}"
+  echo "  context=${context} git-since=${git_since}"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-  # if ! pull_latest "${name}" "${target}"; then
-  #   failures+=("${name}: pull failed")
-  # fi
 
   if (
     cd "${target}"
-    "${BLUEPRINT_BIN}" --headless --output="${BLUEPRINTS_DIR}" --context="${context}" --git-since=365 "$@"
+    "${BLUEPRINT_BIN}" --headless --output="${BLUEPRINTS_DIR}" --context="${context}" --git-since="${git_since}" "$@"
   ); then
     succeeded+=("${name}")
     echo
