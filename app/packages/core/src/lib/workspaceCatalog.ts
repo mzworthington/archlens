@@ -137,9 +137,9 @@ function diagramsWithEntityRef(
 }
 
 /**
- * When context and a child diagram incorrectly share an entityRef, URL navigation
- * should open the context (peer context switching). Drill-down uses
- * {@link resolveChildDiagramEntry}, which prefers the non-context diagram.
+ * Prefer the context diagram when legacy corpora incorrectly share an entityRef
+ * between context and containers. New scans must not collide (system leaf nest);
+ * Zoom navigates to the node entityRef, which equals the child diagram only.
  */
 function pickOwnDiagram(matches: WorkspaceCatalogEntry[]): WorkspaceCatalogEntry | undefined {
   if (matches.length === 0) return undefined;
@@ -147,10 +147,9 @@ function pickOwnDiagram(matches: WorkspaceCatalogEntry[]): WorkspaceCatalogEntry
   return matches.find(entry => entry.level === 'context') ?? matches[0];
 }
 
+/** Child drill-down: non-context diagram with the same entityRef as the parent node. */
 function pickChildDiagram(matches: WorkspaceCatalogEntry[]): WorkspaceCatalogEntry | undefined {
-  if (matches.length === 0) return undefined;
-  if (matches.length === 1) return matches[0];
-  return matches.find(entry => entry.level !== 'context') ?? matches[0];
+  return matches.find(entry => entry.level !== 'context');
 }
 
 export function resolveEntityHome(

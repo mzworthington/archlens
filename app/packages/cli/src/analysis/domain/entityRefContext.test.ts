@@ -8,8 +8,8 @@ describe('entityRefContext', () => {
     expect(resolveContextDisplayName('infrastructure')).toBe('Infrastructure Examples');
   });
 
-  it('avoids duplicate segments when system id matches the context root', () => {
-    expect(resolveSystemEntityRef('eshop', 'eshop')).toBe('eshop');
+  it('nests under a stable system leaf when system id matches the context root', () => {
+    expect(resolveSystemEntityRef('eshop', 'eshop')).toBe('eshop/system');
     expect(resolveSystemEntityRef('backstage', 'plugins')).toBe('backstage/plugins');
     expect(resolveSystemEntityRef('application', 'gpio-build-monitor')).toBe(
       'application/gpio-build-monitor'

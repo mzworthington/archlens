@@ -37,4 +37,6 @@ Stitching is **not** storage-event driven. Dogfood uses:
 
 CLI for these jobs is installed from GitHub Releases via [`.github/actions/setup-archlens-cli`](../../.github/actions/setup-archlens-cli/action.yml) (`scripts/install.sh`).
 
+After a CLI release that nests matching context/system refs under `…/system` (ADR-0002 Zoom identity), re-run **Publish demo catalog** and **Publish blueprint catalog** so remote corpora pick up the new entityRefs; Zoom on production requires both the new CLI publish and a designer deploy.
+
 Publish paths prefer visibility over gating: validation does not block catalog push by default. Use `archlens validate` or `--validate` only when a pipeline wants an optional hard gate; `--skip-validation` is always allowed.

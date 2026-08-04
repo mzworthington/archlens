@@ -36,13 +36,17 @@ export function resolveContextDisplayName(contextName: string): string {
 
 /**
  * System-level entityRef for container/component diagrams.
- * Avoids `eshop/eshop` when the discovered system id matches the context root.
+ * When the discovered system id matches the context root, nest under a stable
+ * `system` leaf so the context diagram and containers never share one entityRef
+ * (ADR-0002: one ref → one diagram; Zoom = navigate to the node ref).
  */
+export const CONTEXT_MATCHING_SYSTEM_LEAF = 'system';
+
 export function resolveSystemEntityRef(contextName: string, systemId: string): string {
   const contextRef = EntityRef.parse(contextName);
   const normalizedSystemId = EntityRef.parse(systemId);
   if (normalizedSystemId === contextRef) {
-    return contextRef;
+    return EntityRef.child(contextRef, CONTEXT_MATCHING_SYSTEM_LEAF);
   }
   return EntityRef.child(contextRef, systemId);
 }

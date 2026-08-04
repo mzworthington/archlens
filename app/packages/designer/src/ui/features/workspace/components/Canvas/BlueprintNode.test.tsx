@@ -6,6 +6,7 @@ import { useBlueprintStore } from '../../../../../application/store/store';
 const mockSetLocation = vi.fn();
 vi.mock('wouter', () => ({
   useLocation: () => ['/workspace/application', mockSetLocation],
+  useSearch: () => '',
 }));
 
 vi.mock('@xyflow/react', () => {

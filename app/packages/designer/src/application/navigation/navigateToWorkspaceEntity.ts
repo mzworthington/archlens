@@ -1,4 +1,5 @@
 import { resolveEntityHome, type WorkspaceCatalogEntry } from '@archlens/core';
+import { buildWorkspacePath } from './workspaceUrl';
 
 export type NavigateToWorkspaceEntityActions = {
   workspaceCatalog: WorkspaceCatalogEntry[];
@@ -6,9 +7,8 @@ export type NavigateToWorkspaceEntityActions = {
 };
 
 /**
- * Navigate to `/workspace/<entityRef>`. Diagram load and node selection are handled
- * Navigation sets `/workspace/<entityRef>`; diagram load runs from the URL in `useUrlSync`.
- * Returns false when the ref is not present in the loaded workspace catalog.
+ * Navigate to `/workspace/<entityRef>`. Diagram load and node selection run from
+ * the URL in `useUrlSync`. Returns false when the ref is not in the catalog.
  */
 export function navigateToWorkspaceEntity(
   entityRef: string,
@@ -17,6 +17,6 @@ export function navigateToWorkspaceEntity(
   const home = resolveEntityHome(actions.workspaceCatalog, entityRef);
   if (!home) return false;
 
-  actions.setLocation(`/workspace/${entityRef}`);
+  actions.setLocation(buildWorkspacePath(entityRef));
   return true;
 }
