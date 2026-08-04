@@ -2,26 +2,28 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { GOLDEN_PATHS_CONTEXT_PATH } from '../../application/store/goldenPathsSample';
 
-const blueprintLoaders = import.meta.glob<string>(
-  '../../../public/bundled-blueprints/**/*.{yaml,yml}',
+const goldenPathLoaders = import.meta.glob<string>(
+  '../../../../../../golden-paths/**/*.{yaml,yml}',
   { query: '?raw', import: 'default' }
 );
 
 function relativePathFromGlobKey(key: string): string {
-  const marker = '/bundled-blueprints/';
+  const marker = '/golden-paths/';
   const idx = key.indexOf(marker);
   if (idx < 0) {
-    throw new Error(`Unexpected bundled blueprint glob key: ${key}`);
+    throw new Error(`Unexpected golden-paths glob key: ${key}`);
   }
   return key.slice(idx + marker.length);
 }
 
 const yamlByRelativePath = Object.fromEntries(
-  Object.entries(blueprintLoaders).map(([key, loader]) => [relativePathFromGlobKey(key), loader])
+  Object.entries(goldenPathLoaders)
+    .filter(([key]) => !key.includes('-overlay.'))
+    .map(([key, loader]) => [relativePathFromGlobKey(key), loader])
 );
 
-/** Path-only catalog stub — avoids parsing ~1300 YAML files in beforeAll (CI hook timeout). */
-function catalogFromBundledPaths(): WorkspaceCatalogEntry[] {
+/** Path-only catalog stub from committed golden-paths/. */
+function catalogFromGoldenPaths(): WorkspaceCatalogEntry[] {
   return Object.keys(yamlByRelativePath)
     .sort((a, b) => a.localeCompare(b))
     .map(path => ({
@@ -70,8 +72,8 @@ function installBundledBlueprintFetchStub(catalog: WorkspaceCatalogEntry[]) {
 describe('BundledSampleWorkspaceAdapter', () => {
   beforeAll(() => {
     window.location.href = 'http://localhost:5188/';
-    realCatalog = catalogFromBundledPaths();
-    expect(realCatalog.length).toBeGreaterThan(100);
+    realCatalog = catalogFromGoldenPaths();
+    expect(realCatalog.length).toBeGreaterThan(10);
     installBundledBlueprintFetchStub(realCatalog);
   });
 
@@ -79,19 +81,18 @@ describe('BundledSampleWorkspaceAdapter', () => {
     vi.resetModules();
   });
 
-  it('exposes the checked-in blueprints catalog for navigation', async () => {
+  it('exposes the golden-paths catalog for navigation', async () => {
     const { loadBundledWorkspaceCatalog } = await import('./bundledSampleWorkspace');
     const catalog = await loadBundledWorkspaceCatalog();
-    expect(catalog.length).toBeGreaterThan(100);
+    expect(catalog.length).toBeGreaterThan(10);
     expect(catalog.some(e => e.path === GOLDEN_PATHS_CONTEXT_PATH)).toBe(true);
-    expect(catalog.some(e => e.path === 'blueprint/context.yaml')).toBe(true);
-    expect(catalog.some(e => e.path === 'backstage/context.yaml')).toBe(true);
+    expect(catalog.some(e => e.path === 'chaoslens-stress/containers.yaml')).toBe(true);
   });
 
   it('reads a single blueprint file by relative path', async () => {
     const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
-    const content = await BundledSampleWorkspaceAdapter.readFile('backstage/context.yaml');
-    expect(content).toContain('entityRef: backstage');
+    const content = await BundledSampleWorkspaceAdapter.readFile(GOLDEN_PATHS_CONTEXT_PATH);
+    expect(content).toContain('entityRef:');
   });
 
   it('rejects non-blueprint source paths so callers can fall back to git raw', async () => {
@@ -107,13 +108,13 @@ describe('BundledSampleWorkspaceAdapter', () => {
     fetchMock.mockClear();
 
     const catalog = await loadBundledWorkspaceCatalog();
-    expect(catalog.length).toBeGreaterThan(100);
+    expect(catalog.length).toBeGreaterThan(10);
     expect(catalog.some(e => e.path === GOLDEN_PATHS_CONTEXT_PATH)).toBe(true);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(String(fetchMock.mock.calls[0]?.[0])).toContain('/bundled-blueprints/catalog.json');
   });
 
-  it('warms ArchLens context, golden-journey, and stress YAML bodies from the full catalog', async () => {
+  it('warms golden-journey and stress YAML bodies from the catalog', async () => {
     const { warmBundledBlueprintBodies, scheduleBundledBlueprintPreload } =
       await import('./bundledSampleWorkspace');
     const { listBundledPreloadPaths } =
@@ -123,18 +124,14 @@ describe('BundledSampleWorkspaceAdapter', () => {
 
     const preloadPaths = listBundledPreloadPaths(realCatalog);
     expect(preloadPaths.length).toBeGreaterThan(10);
-    expect(preloadPaths.some(p => p.startsWith('blueprint/'))).toBe(true);
     expect(
-      preloadPaths.every(p =>
-        /^(blueprint|golden-journey|chaoslens-stress|advicelens-stress)\//.test(p)
-      )
+      preloadPaths.every(p => /^(golden-journey|chaoslens-stress|advicelens-stress)\//.test(p))
     ).toBe(true);
 
     await warmBundledBlueprintBodies(preloadPaths);
     const warmed = fetchMock.mock.calls.map(call => String(call[0]));
     expect(warmed).toHaveLength(preloadPaths.length);
     expect(warmed.every(url => url.includes('/bundled-blueprints/'))).toBe(true);
-    expect(warmed.some(url => url.includes('/packages/'))).toBe(false);
 
     vi.stubGlobal('requestIdleCallback', (cb: IdleRequestCallback) => {
       cb({ didTimeout: false, timeRemaining: () => 50 } as IdleDeadline);

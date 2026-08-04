@@ -16,10 +16,10 @@ import { buildWorkspaceCatalogFromYamlFiles } from '../core/src/lib/buildWorkspa
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoDocs = path.resolve(__dirname, '../../../docs');
 const repoSchemas = path.resolve(__dirname, '../../../schemas');
-const repoBlueprints = path.resolve(__dirname, '../../../blueprints');
+const repoGoldenPaths = path.resolve(__dirname, '../../../golden-paths');
 const bundledBlueprintsDest = path.resolve(__dirname, 'public/bundled-blueprints');
 const base = process.env.VITE_BASE || '/';
-const bundledWorkspaceName = 'blueprints';
+const bundledWorkspaceName = 'golden-paths';
 
 /** Merge overlays (e.g. context-overlay.yaml) are not standalone SystemSchema docs. */
 function isBundledBlueprintYaml(fileName: string): boolean {
@@ -60,7 +60,7 @@ function copyBundledBlueprintsTree(srcDir: string, destDir: string): void {
 function bundledBlueprintsSyncKey(manifestPaths: string[]): string {
   return manifestPaths
     .map(relativePath => {
-      const stat = fs.statSync(path.join(repoBlueprints, relativePath));
+      const stat = fs.statSync(path.join(repoGoldenPaths, relativePath));
       return `${relativePath}:${stat.size}:${Math.trunc(stat.mtimeMs)}`;
     })
     .join('\n');
@@ -69,7 +69,7 @@ function bundledBlueprintsSyncKey(manifestPaths: string[]): string {
 function writeBundledWorkspaceCatalog(manifestPaths: string[]): void {
   const files = manifestPaths.map(relativePath => ({
     path: relativePath,
-    content: fs.readFileSync(path.join(repoBlueprints, relativePath), 'utf8'),
+    content: fs.readFileSync(path.join(repoGoldenPaths, relativePath), 'utf8'),
   }));
   const catalog = buildWorkspaceCatalogFromYamlFiles(files, bundledWorkspaceName, {
     onInvalid: (relativePath, error) => {
@@ -84,7 +84,7 @@ function writeBundledWorkspaceCatalog(manifestPaths: string[]): void {
 }
 
 /**
- * Mirror repo `blueprints/` into `public/bundled-blueprints/` for static demo serving.
+ * Mirror repo `golden-paths/` into `public/bundled-blueprints/` for static demo serving.
  * Must sync in `configResolved` so files exist before Vite builds its publicFiles allowlist
  * (files created later in configureServer are invisible to servePublicMiddleware).
  * Also emits `catalog.json` so the demo can open without fetching every YAML up front.
@@ -93,11 +93,11 @@ function syncBundledBlueprints(): Plugin {
   let lastSyncKey = '';
 
   const sync = () => {
-    if (!fs.existsSync(repoBlueprints)) {
-      throw new Error(`Missing repo blueprints directory: ${repoBlueprints}`);
+    if (!fs.existsSync(repoGoldenPaths)) {
+      throw new Error(`Missing repo golden-paths directory: ${repoGoldenPaths}`);
     }
 
-    const manifestPaths = collectBundledBlueprintPaths(repoBlueprints).sort();
+    const manifestPaths = collectBundledBlueprintPaths(repoGoldenPaths).sort();
     const syncKey = bundledBlueprintsSyncKey(manifestPaths);
     const manifestPath = path.join(bundledBlueprintsDest, 'manifest.json');
     const catalogPath = path.join(bundledBlueprintsDest, 'catalog.json');
@@ -106,7 +106,7 @@ function syncBundledBlueprints(): Plugin {
     }
 
     fs.rmSync(bundledBlueprintsDest, { recursive: true, force: true });
-    copyBundledBlueprintsTree(repoBlueprints, bundledBlueprintsDest);
+    copyBundledBlueprintsTree(repoGoldenPaths, bundledBlueprintsDest);
     fs.writeFileSync(manifestPath, `${JSON.stringify(manifestPaths, null, 2)}\n`);
     writeBundledWorkspaceCatalog(manifestPaths);
     lastSyncKey = syncKey;
@@ -311,7 +311,6 @@ export default defineConfig({
         globPatterns: [
           '**/*.{js,css,html,ico,svg,woff2,webmanifest,png,wasm}',
           'bundled-blueprints/catalog.json',
-          'bundled-blueprints/blueprint/**/*.{yaml,yml}',
           'bundled-blueprints/golden-journey/**/*.{yaml,yml}',
           'bundled-blueprints/chaoslens-stress/**/*.{yaml,yml}',
           'bundled-blueprints/advicelens-stress/**/*.{yaml,yml}',

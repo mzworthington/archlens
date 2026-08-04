@@ -1,0 +1,59 @@
+name: Publish golden paths
+
+# Push committed golden-paths/ demos to the remote catalog without re-scanning
+# sample repos. Prefer publish-blueprint-catalog for a full corpus (scans + demos).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'golden-paths/**'
+      - '.github/workflows/publish-golden-paths.yml'
+  workflow_dispatch:
+    inputs:
+      archlens-version:
+        description: CLI release tag (e.g. v0.1.6); leave empty for latest
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-golden-paths
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install ArchLens CLI
+        run: |
+          set -euo pipefail
+          install_args=(--dir "$HOME/.local/bin")
+          if [[ -n "${{ github.event.inputs.archlens-version }}" ]]; then
+            install_args+=(--version "${{ github.event.inputs.archlens-version }}")
+          fi
+          ./scripts/install.sh "${install_args[@]}"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          archlens --version
+
+      - name: Stage golden-paths into blueprints/
+        run: scripts/install-golden-paths.sh blueprints/
+
+      - name: Validate
+        run: archlens validate blueprints/
+
+      - name: Publish remote catalog snapshot
+        env:
+          OBJECT_STORAGE_PROVIDER: r2
+          OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
+        run: archlens publish blueprints/ --no-dry-run --format=json

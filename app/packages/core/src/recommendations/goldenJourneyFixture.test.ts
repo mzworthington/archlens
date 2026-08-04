@@ -8,7 +8,7 @@ import { runResilienceSimulation } from '../resilience/simulation';
 import { parseSchemaFromYaml } from '../rules/graph';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../..');
-const FIXTURE_DIR = path.join(REPO_ROOT, 'blueprints/golden-journey');
+const FIXTURE_DIR = path.join(REPO_ROOT, 'golden-paths/golden-journey');
 const CHECKOUT_API = 'golden-paths/golden-journey/checkout-platform/checkout-api';
 const PAYMENT_GATEWAY = 'golden-paths/golden-journey/payment-gateway';
 

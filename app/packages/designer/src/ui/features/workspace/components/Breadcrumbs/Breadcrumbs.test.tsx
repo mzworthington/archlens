@@ -400,7 +400,7 @@ describe('Breadcrumbs Component', () => {
       ],
       currentFilePath: 'golden-journey/catalog-platform/catalog-api-components.yaml',
       isWorkspaceOpen: true,
-      workspaceName: 'blueprints',
+      workspaceName: 'golden-paths',
       isSampleWorkspace: true,
     });
 
@@ -448,7 +448,7 @@ describe('Breadcrumbs Component', () => {
     useBlueprintStore.setState({
       isWorkspaceOpen: true,
       isSampleWorkspace: true,
-      workspaceName: 'blueprints',
+      workspaceName: 'golden-paths',
       currentFilePath: 'golden-journey/context.yaml',
       schema: goldenPathsSchema,
       loadedSystems: [

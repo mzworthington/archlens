@@ -1,5 +1,14 @@
 name: Publish blueprint catalog
 
+# Customer-facing example: clone sample repos, scan into ephemeral blueprints/, publish to R2.
+# Nothing is committed back to git (blueprints/ is gitignored).
+#
+# Typical single-repo usage (what most customers copy):
+#   archlens scan --headless --output=blueprints --context=my-app --publish
+#
+# This workflow loops several sample repos into one tree, merges golden-paths/, then publishes once.
+# For golden-paths-only updates, see publish-golden-paths.yml.
+
 on:
   schedule:
     - cron: '0 5 * * *' # 05:00 UTC daily
@@ -20,27 +29,50 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
     environment:
       name: production
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v7
 
       - name: Install ArchLens CLI
         run: |
           set -euo pipefail
           install_args=(--dir "$HOME/.local/bin")
-          if [[ -n "${{ inputs.archlens-version }}" ]]; then
-            install_args+=(--version "${{ inputs.archlens-version }}")
+          if [[ -n "${{ github.event.inputs.archlens-version }}" ]]; then
+            install_args+=(--version "${{ github.event.inputs.archlens-version }}")
           fi
           ./scripts/install.sh "${install_args[@]}"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
           archlens --version
 
-      - name: Validate blueprint corpus
-        run: archlens validate blueprints/
+      - name: Scan sample repos into blueprints/
+        run: |
+          set -euo pipefail
+          mkdir -p blueprints samples
+          while IFS= read -r row; do
+            id="$(jq -r '.id' <<<"$row")"
+            repo="$(jq -r '.repo' <<<"$row")"
+            context="$(jq -r '.context' <<<"$row")"
+            git_since="$(jq -r '.gitSinceDays // 365' <<<"$row")"
+            dest="samples/${id}"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "→ ${id} (${repo}) context=${context}"
+            git clone --single-branch --depth=500 "${repo}" "${dest}"
+            (
+              cd "${dest}"
+              archlens scan --headless \
+                --output="${GITHUB_WORKSPACE}/blueprints" \
+                --context="${context}" \
+                --git-since="${git_since}"
+            )
+          done < <(jq -c '.[]' scripts/blueprint-sample-repos.json)
 
-      - name: Publish remote catalog snapshot
+      - name: Merge golden-paths demos
+        run: scripts/install-golden-paths.sh blueprints/
+
+      - name: Publish to object storage
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { BUNDLED_PRELOAD_PREFIXES, listBundledPreloadPaths } from './bundledSamplePreload';
 
 describe('listBundledPreloadPaths', () => {
-  it('keeps ArchLens context, golden-journey, and stress estates only', () => {
+  it('keeps golden-journey and stress estates only', () => {
     const paths = listBundledPreloadPaths([
       { path: 'blueprint/context.yaml' },
       { path: 'golden-journey/context.yaml' },
@@ -15,7 +15,6 @@ describe('listBundledPreloadPaths', () => {
     ]);
 
     expect(paths).toEqual([
-      'blueprint/context.yaml',
       'golden-journey/context.yaml',
       'chaoslens-stress/large-graph-containers.yaml',
       'advicelens-stress/containers.yaml',
@@ -26,9 +25,8 @@ describe('listBundledPreloadPaths', () => {
     expect(listBundledPreloadPaths([{ path: 'backstage/context.yaml' }])).toEqual([]);
   });
 
-  it('documents ArchLens context plus golden/stress demo estates', () => {
+  it('documents golden/stress demo estates', () => {
     expect([...BUNDLED_PRELOAD_PREFIXES]).toEqual([
-      'blueprint/',
       'golden-journey/',
       'chaoslens-stress/',
       'advicelens-stress/',

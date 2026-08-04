@@ -101,7 +101,7 @@ export function scheduleBundledBlueprintPreload(catalog: readonly WorkspaceCatal
 }
 
 /**
- * Read-only workspace over repo `blueprints/` mirrored to `public/bundled-blueprints/`
+ * Read-only workspace over repo `golden-paths/` mirrored to `public/bundled-blueprints/`
  * at build/dev start. Navigation uses prebuilt `catalog.json`; YAML is fetched on demand.
  */
 export const BundledSampleWorkspaceAdapter: WorkspacePort = {
