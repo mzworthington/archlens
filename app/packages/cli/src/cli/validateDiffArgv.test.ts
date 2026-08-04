@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { parseDiffArgv, parseValidateArgv, parseArchlensCommand } from './parseArchlensArgv.ts';
+import {
+  parseDiffArgv,
+  parsePublishArgv,
+  parseValidateArgv,
+  parseArchlensCommand,
+} from './parseArchlensArgv.ts';
 
 describe('parseValidateArgv', () => {
   it('defaults to blueprints/', () => {
@@ -38,5 +43,32 @@ describe('parseArchlensCommand', () => {
     expect(parseArchlensCommand(['validate']).kind).toBe('validate');
     expect(parseArchlensCommand(['diff']).kind).toBe('diff');
     expect(parseArchlensCommand(['scan']).kind).toBe('architecture');
+  });
+
+  it('routes publish subcommand', () => {
+    expect(parseArchlensCommand(['publish']).kind).toBe('publish');
+  });
+});
+
+describe('parsePublishArgv', () => {
+  it('defaults to blueprints with dry run enabled', () => {
+    const plan = parsePublishArgv(['publish']);
+    expect(plan.targetPath).toBe('blueprints');
+    expect(plan.dryRun).toBe(true);
+    expect(plan.format).toBe('text');
+  });
+
+  it('accepts workspace name and disables dry run', () => {
+    const plan = parsePublishArgv([
+      'publish',
+      'out/',
+      '--workspace-name=acme',
+      '--no-dry-run',
+      '--format=json',
+    ]);
+    expect(plan.targetPath).toBe('out/');
+    expect(plan.workspaceName).toBe('acme');
+    expect(plan.dryRun).toBe(false);
+    expect(plan.format).toBe('json');
   });
 });

@@ -13,6 +13,7 @@ import { executeEnrichRun } from './enrichRun.ts';
 import { executeValidateRun } from './validateRun.ts';
 import { executeDiffRun } from './diffRun.ts';
 import { executeResilienceRun } from './resilienceRun.ts';
+import { executePublishRun } from './publishRun.ts';
 import { resolveWatchOptions, watchAndRerun } from './watchAndRerun.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
@@ -97,7 +98,12 @@ async function run() {
     await runUpdateCommand();
     return;
   }
-  if (args[0] === 'validate' || args[0] === 'diff' || args[0] === 'resilience') {
+  if (
+    args[0] === 'validate' ||
+    args[0] === 'diff' ||
+    args[0] === 'resilience' ||
+    args[0] === 'publish'
+  ) {
     const command = parseArchlensCommand(args);
     if (command.kind === 'validate') {
       await executeValidateRun(command.plan);
@@ -109,6 +115,10 @@ async function run() {
     }
     if (command.kind === 'resilience') {
       await executeResilienceRun(command.plan);
+      return;
+    }
+    if (command.kind === 'publish') {
+      await executePublishRun(command.plan);
       return;
     }
   }

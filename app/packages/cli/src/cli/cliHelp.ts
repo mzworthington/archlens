@@ -3,7 +3,7 @@ import { getArchlensVersion } from './version.ts';
 import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
 
 export type HelpTopic =
-  'overview' | 'scan' | 'enrich' | 'validate' | 'diff' | 'resilience' | 'update';
+  'overview' | 'scan' | 'enrich' | 'validate' | 'diff' | 'resilience' | 'publish' | 'update';
 
 const SUBCOMMANDS = [
   'scan',
@@ -11,6 +11,7 @@ const SUBCOMMANDS = [
   'validate',
   'diff',
   'resilience',
+  'publish',
   'update',
   'help',
   'forensics',
@@ -22,6 +23,7 @@ const TOPIC_ALIASES: Record<string, HelpTopic> = {
   validate: 'validate',
   diff: 'diff',
   resilience: 'resilience',
+  publish: 'publish',
   update: 'update',
   flags: 'overview',
 };
@@ -88,10 +90,14 @@ function printOverviewHelp(): void {
   command('scan', 'Headless architecture scan (uses blueprint.config.json + defaults)');
   command('enrich', 'Re-run externals pass on existing YAML (no source re-scan)');
   command('validate [path]', 'Validate blueprint tree (schema, cycles, entityRef links)');
+  command('publish [path]', 'Plan remote catalog snapshot upload (dry run by default)');
   command('resilience [path]', 'Headless ChaosLens sweep + ranked recommendations');
   command('diff [base] [head]', 'Structural diff between two blueprint trees');
   command('update', 'Install the latest release binary (compiled builds only)');
-  command('help [topic]', 'Show help (topics: scan, enrich, validate, diff, resilience, update)');
+  command(
+    'help [topic]',
+    'Show help (topics: scan, enrich, validate, diff, publish, resilience, update)'
+  );
 
   heading('COMMON FLAGS');
   flag('--headless', 'Skip interactive prompts');
@@ -112,6 +118,7 @@ function printOverviewHelp(): void {
   example('archlens enrich');
   example('archlens enrich --git --git-since=90');
   example('archlens validate blueprints/');
+  example('archlens publish blueprints/ --format=json');
   example('archlens resilience blueprints/chaoslens-stress/');
   example('archlens diff main-blueprints/ pr-blueprints/');
   example('archlens help scan');
@@ -239,6 +246,35 @@ function printResilienceHelp(): void {
   example('archlens resilience --format=json --fail-on-recommendations');
 }
 
+function printPublishHelp(): void {
+  heading('archlens publish');
+  line(
+    `  ${pc.dim('Validate a blueprint tree and plan or upload an immutable remote catalog snapshot (ADR-0010).')}`
+  );
+  line(`  ${pc.dim('Upload uses @archlens/storage (R2, S3, or Azure Blob adapters).')}`);
+  line('');
+
+  heading('USAGE');
+  example('archlens publish [path] [options]');
+
+  heading('OPTIONS');
+  flag('--path=<dir>', 'Blueprint tree (default: blueprints)');
+  flag('--workspace-name=<name>', 'Workspace name for entityRef resolution (default: blueprints)');
+  flag(
+    '--provider=r2|s3|azure',
+    'Object storage provider (default: OBJECT_STORAGE_PROVIDER or r2)'
+  );
+  flag('--format=text|json', 'Output format (default: text)');
+  flag('--bucket=<name>', 'Bucket/container (default: OBJECT_STORAGE_BUCKET / R2_BUCKET env)');
+  flag('--account-id=<id>', 'Cloudflare account id for R2 endpoint override');
+  flag('--key-prefix=<path>', 'Optional object key prefix inside the bucket');
+  flag('--no-dry-run', 'Upload snapshot to object storage');
+
+  heading('EXAMPLES');
+  example('archlens publish blueprints/');
+  example('archlens publish custom-blueprints/ --format=json');
+}
+
 function printUpdateHelp(): void {
   heading('archlens update');
   line(`  ${pc.dim('Download and install the latest release binary, then re-launch.')}`);
@@ -273,6 +309,9 @@ export function printCliHelp(topic: HelpTopic = 'overview'): void {
       break;
     case 'resilience':
       printResilienceHelp();
+      break;
+    case 'publish':
+      printPublishHelp();
       break;
     case 'update':
       printUpdateHelp();

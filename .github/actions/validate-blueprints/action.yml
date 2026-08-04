@@ -25,7 +25,14 @@ runs:
     - name: Install ArchLens CLI
       shell: bash
       run: |
-        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+        set -euo pipefail
+        install_args=(--dir "$HOME/.local/bin")
+        version="${{ inputs.archlens-version }}"
+        if [[ -n "$version" && "$version" != "latest" ]]; then
+          install_args+=(--version "$version")
+        fi
+        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh -s -- "${install_args[@]}"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         archlens --version
 
     - name: Validate blueprint workspace

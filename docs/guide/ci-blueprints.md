@@ -72,3 +72,38 @@ archlens diff --baseline=.archlens/base-blueprints --current=blueprints
 | `fail-on-diff`    | `true`       | Fail the job when the tree differs from base |
 
 Set `fail-on-diff: false` to report diffs without blocking merges (useful while bootstrapping adoption).
+
+## Remote catalog publish (dogfood)
+
+ArchLens dogfood publishes the `blueprints/` tree to object storage nightly so [archlens.dev](https://archlens.dev) can load diagrams from a remote corpus instead of a static bundle baked into the Pages deploy.
+
+The workflow [`.github/workflows/publish-blueprint-catalog.yml`](../../.github/workflows/publish-blueprint-catalog.yml) mirrors what customers should run:
+
+1. Check out the repository (blueprint YAML only — no monorepo build).
+2. Install **`archlens` from the latest [GitHub release](https://github.com/mzworthington/archlens/releases)** via [`scripts/install.sh`](../../scripts/install.sh).
+3. `archlens validate blueprints/`
+4. `archlens publish blueprints/ --no-dry-run` with R2 credentials in env (see [Cloudflare secrets](../cloudflare-secrets.md#r2-catalog-publish-token-ci-only)).
+
+Example for your own pipeline:
+
+```yaml
+- uses: actions/checkout@v4
+
+- name: Install ArchLens CLI
+  run: |
+    curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+    echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+- name: Validate and publish
+  env:
+    OBJECT_STORAGE_PROVIDER: r2
+    OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+    R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+    R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  run: |
+    archlens validate blueprints/
+    archlens publish blueprints/ --no-dry-run --format=json
+```
+
+Contract and layout: [ADR-0010](../ADRs/0010-remote-blueprint-catalog-contract.md).

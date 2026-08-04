@@ -236,7 +236,7 @@ describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
 
     const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
     await expect(BundledSampleWorkspaceAdapter.readDirectoryFiles()).rejects.toThrow(
-      /Failed to fetch sandbox blueprints/i
+      /Failed to fetch blueprint catalog/i
     );
 
     const files = await BundledSampleWorkspaceAdapter.readDirectoryFiles();
@@ -274,10 +274,10 @@ describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
       })
     );
 
-    const { BundledSampleWorkspaceAdapter, BUNDLED_BLUEPRINT_FETCH_CONCURRENCY } =
+    const { BundledSampleWorkspaceAdapter, CATALOG_BLUEPRINT_FETCH_CONCURRENCY } =
       await import('./bundledSampleWorkspace');
     await BundledSampleWorkspaceAdapter.readDirectoryFiles();
-    expect(maxInFlight).toBeLessThanOrEqual(BUNDLED_BLUEPRINT_FETCH_CONCURRENCY);
+    expect(maxInFlight).toBeLessThanOrEqual(CATALOG_BLUEPRINT_FETCH_CONCURRENCY);
     expect(maxInFlight).toBeGreaterThan(1);
   });
 });

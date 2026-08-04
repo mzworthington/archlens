@@ -1,0 +1,50 @@
+name: Publish blueprint catalog
+
+on:
+  schedule:
+    - cron: '0 5 * * *' # 05:00 UTC daily
+  workflow_dispatch:
+    inputs:
+      archlens-version:
+        description: CLI release tag (e.g. v0.1.6); leave empty for latest
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-blueprint-catalog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Install ArchLens CLI
+        run: |
+          set -euo pipefail
+          install_args=(--dir "$HOME/.local/bin")
+          if [[ -n "${{ inputs.archlens-version }}" ]]; then
+            install_args+=(--version "${{ inputs.archlens-version }}")
+          fi
+          ./scripts/install.sh "${install_args[@]}"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          archlens --version
+
+      - name: Validate blueprint corpus
+        run: archlens validate blueprints/
+
+      - name: Publish remote catalog snapshot
+        env:
+          OBJECT_STORAGE_PROVIDER: r2
+          OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
+        run: archlens publish blueprints/ --no-dry-run --format=json

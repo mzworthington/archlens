@@ -58,11 +58,23 @@ export interface ResilienceCliPlan {
   maxFanInProbes?: number;
 }
 
+export interface PublishCliPlan {
+  targetPath: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  workspaceName?: string;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
 export type ArchlensCommandPlan =
   | { kind: 'architecture'; plan: ArchlensCliPlan }
   | { kind: 'validate'; plan: ValidateCliPlan }
   | { kind: 'diff'; plan: DiffCliPlan }
-  | { kind: 'resilience'; plan: ResilienceCliPlan };
+  | { kind: 'resilience'; plan: ResilienceCliPlan }
+  | { kind: 'publish'; plan: PublishCliPlan };
 
 export const DEFAULT_WATCH_DEBOUNCE_MS = 500;
 
@@ -128,6 +140,10 @@ export function isDiffSubcommand(argv: string[]): boolean {
 
 export function isResilienceSubcommand(argv: string[]): boolean {
   return argv[0] === 'resilience';
+}
+
+export function isPublishSubcommand(argv: string[]): boolean {
+  return argv[0] === 'publish';
 }
 
 function parseOutputFormat(argv: string[]): OutputFormat {
@@ -196,6 +212,28 @@ export function parseResilienceArgv(argv: string[]): ResilienceCliPlan {
   };
 }
 
+export function parsePublishArgv(argv: string[]): PublishCliPlan {
+  const rest = argv[0] === 'publish' ? argv.slice(1) : argv;
+  const positional = positionalArgs(rest);
+  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
+  const workspaceName = flagValue(rest, '--workspace-name');
+  const providerRaw = flagValue(rest, '--provider');
+  const storageProvider =
+    providerRaw === 'r2' || providerRaw === 's3' || providerRaw === 'azure'
+      ? providerRaw
+      : undefined;
+  return {
+    targetPath,
+    format: parseOutputFormat(rest),
+    dryRun: !rest.includes('--no-dry-run'),
+    workspaceName,
+    storageProvider,
+    bucket: flagValue(rest, '--bucket'),
+    accountId: flagValue(rest, '--account-id'),
+    keyPrefix: flagValue(rest, '--key-prefix'),
+  };
+}
+
 export function parseArchlensCommand(argv: string[]): ArchlensCommandPlan {
   if (isValidateSubcommand(argv)) {
     return { kind: 'validate', plan: parseValidateArgv(argv) };
@@ -205,6 +243,9 @@ export function parseArchlensCommand(argv: string[]): ArchlensCommandPlan {
   }
   if (isResilienceSubcommand(argv)) {
     return { kind: 'resilience', plan: parseResilienceArgv(argv) };
+  }
+  if (isPublishSubcommand(argv)) {
+    return { kind: 'publish', plan: parsePublishArgv(argv) };
   }
   return { kind: 'architecture', plan: parseArchlensArgv(argv) };
 }

@@ -27,7 +27,7 @@ One-shot bootstrap (also used by Cursor Cloud via `.cursor/environment.json`):
 bin/setup-dev-env.sh
 ```
 
-That script also ensures [agent-lifecycle-kit](https://github.com/mzworthington/agent-lifecycle-kit) is available (prefers `~/.agents`, then a sibling/`/agent/repos` checkout, otherwise clones and runs `install.sh`). Skip with `SKIP_LIFECYCLE_KIT=1`.
+That script also bootstraps [agent-lifecycle-kit](https://github.com/mzworthington/agent-lifecycle-kit) when needed (sibling checkout or clone). Skip with `SKIP_LIFECYCLE_KIT=1`.
 
 The production toolchain is TypeScript under `app/` plus Go for **ChaosLens** (`resilience-engine/`).
 
