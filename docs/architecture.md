@@ -178,8 +178,10 @@ Hosted on the designer site after deploy:
 
 - https://archlens.dev/schemas/v4/blueprint.schema.json
 - https://archlens.dev/schemas/latest/blueprint.schema.json
+- https://archlens.dev/schemas/v1/chaos.schema.json
+- https://archlens.dev/schemas/latest/chaos.schema.json
 
-Wire format: [YAML format (v4)](./setup.md#yaml-format-v4). Live render in the product guide: [BlueprintSpec](./guide/schema.md).
+Wire format: [YAML format (v4)](./setup.md#yaml-format-v4). Live render in the product guide: [BlueprintSpec](./guide/schema.md), [ChaosSpec](./guide/chaos-spec.md).
 
 ### 2. Structural dependency check (DFS)
 

@@ -30,7 +30,7 @@ The designer is a **single-page app** served from `app/packages/designer/`:
 - **React 19** for UI; **Wouter** for client-side routing (`/`, `/guide/*`, `/workspace/*`, lens URLs).
 - **Vite** for dev server, production bundle, and syncing repo assets into `public/` at build time:
   - `blueprints/` → `/bundled-blueprints/*` (sandbox demo workspace)
-  - `schemas/` → `/schemas/*` (public JSON Schema for BlueprintSpec)
+  - `schemas/` → `/schemas/*` (public JSON Schema for BlueprintSpec and ChaosSpec)
   - `docs/screenshots/` → `/docs-assets/*`
 - **Tailwind CSS 4** (`@tailwindcss/vite`) for styling.
 - **Zustand** store split into `uiState`, `diagramState`, `ioState`, and `resilienceState`.

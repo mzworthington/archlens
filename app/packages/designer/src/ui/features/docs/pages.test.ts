@@ -84,7 +84,8 @@ describe('docs link resolution', () => {
       '/guide/getting-started',
       '/journeys',
     ]);
-    expect(surfaces?.items.at(-1)).toEqual({ label: 'BlueprintSpec', path: '/guide/schema' });
+    expect(surfaces?.items.at(-2)).toEqual({ label: 'BlueprintSpec', path: '/guide/schema' });
+    expect(surfaces?.items.at(-1)).toEqual({ label: 'ChaosSpec', path: '/guide/chaos-spec' });
     expect(tech?.items.map(i => i.label)).toContain('Design system');
     expect(DOCS_SIDEBAR.some(s => s.title === 'Contract')).toBe(false);
   });
@@ -99,6 +100,7 @@ describe('docs link resolution', () => {
     expect(isDocsNavActive('/guide/canvas', start)).toBe(false);
     expect(isDocsNavActive('/guide/canvas', surfaces)).toBe(true);
     expect(isDocsNavActive('/guide/schema', surfaces)).toBe(true);
+    expect(isDocsNavActive('/guide/chaos-spec', surfaces)).toBe(true);
     expect(isDocsNavActive('/guide/canvas', tech)).toBe(false);
     expect(isDocsNavActive('/guide/ci-workflows', start)).toBe(false);
     expect(isDocsNavActive('/guide/ci-workflows', surfaces)).toBe(false);
