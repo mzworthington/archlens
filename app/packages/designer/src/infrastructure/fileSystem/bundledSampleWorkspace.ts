@@ -5,12 +5,18 @@ import {
   GOLDEN_PATHS_CONTEXT_PATH,
 } from '../../application/store/goldenPathsSample';
 import { listBundledPreloadPaths } from '../../application/store/bundledSamplePreload';
+import {
+  CATALOG_BLUEPRINT_FETCH_CONCURRENCY,
+  CATALOG_PRELOAD_FETCH_CONCURRENCY,
+  catalogFetchError,
+  fetchResponseWithRetry,
+  mapPool,
+} from './catalogNetworkFetch';
 
-/** Cap parallel blueprint downloads so browsers do not saturate the CDN connection pool. */
-export const BUNDLED_BLUEPRINT_FETCH_CONCURRENCY = 24;
-/** Keep idle warm gentle so it does not contend with the first user navigation. */
-export const BUNDLED_PRELOAD_FETCH_CONCURRENCY = 4;
-const FETCH_ATTEMPTS = 3;
+export {
+  CATALOG_BLUEPRINT_FETCH_CONCURRENCY,
+  CATALOG_PRELOAD_FETCH_CONCURRENCY,
+} from './catalogNetworkFetch';
 
 function bundledAssetUrl(relativePath: string): string {
   const base = import.meta.env.BASE_URL || '/';
@@ -19,74 +25,6 @@ function bundledAssetUrl(relativePath: string): string {
 }
 
 let catalogPromise: Promise<WorkspaceCatalogEntry[]> | null = null;
-
-function isTransientNetworkError(error: unknown): boolean {
-  if (!(error instanceof Error)) return false;
-  return /failed to fetch|networkerror|load failed|network request failed/i.test(error.message);
-}
-
-function sandboxFetchError(error: unknown, context: string): Error {
-  if (error instanceof Error && isTransientNetworkError(error)) {
-    return new Error(
-      `Failed to fetch sandbox blueprints (${error.message}). ${context} Check your network connection and retry.`
-    );
-  }
-  return error instanceof Error ? error : new Error(String(error));
-}
-
-async function sleep(ms: number): Promise<void> {
-  await new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function fetchResponseWithRetry(url: string, attempts = FETCH_ATTEMPTS): Promise<Response> {
-  let lastError: unknown;
-  for (let attempt = 1; attempt <= attempts; attempt += 1) {
-    try {
-      const response = await fetch(url);
-      if (
-        response.ok ||
-        (response.status >= 400 && response.status < 500 && response.status !== 429)
-      ) {
-        return response;
-      }
-      lastError = new Error(`HTTP ${response.status}`);
-    } catch (error) {
-      lastError = error;
-    }
-
-    const retryable =
-      isTransientNetworkError(lastError) ||
-      /HTTP (429|5\d\d)/.test(String(lastError instanceof Error ? lastError.message : lastError));
-    if (!retryable || attempt === attempts) break;
-    await sleep(50 * attempt);
-  }
-  throw sandboxFetchError(
-    lastError,
-    'The demo loads catalog metadata and individual YAML files from /bundled-blueprints/.'
-  );
-}
-
-async function mapPool<T, R>(
-  items: readonly T[],
-  concurrency: number,
-  mapper: (item: T) => Promise<R>
-): Promise<R[]> {
-  if (items.length === 0) return [];
-  const results = new Array<R>(items.length);
-  let nextIndex = 0;
-
-  async function worker(): Promise<void> {
-    while (nextIndex < items.length) {
-      const index = nextIndex;
-      nextIndex += 1;
-      results[index] = await mapper(items[index]!);
-    }
-  }
-
-  const workerCount = Math.min(concurrency, items.length);
-  await Promise.all(Array.from({ length: workerCount }, () => worker()));
-  return results;
-}
 
 /** Fetch and cache the prebuilt navigation catalog for the bundled demo workspace. */
 export async function loadBundledWorkspaceCatalog(): Promise<WorkspaceCatalogEntry[]> {
@@ -100,7 +38,7 @@ export async function loadBundledWorkspaceCatalog(): Promise<WorkspaceCatalogEnt
         return parseWorkspaceCatalogJson(await response.json());
       } catch (error) {
         catalogPromise = null;
-        throw sandboxFetchError(
+        throw catalogFetchError(
           error,
           'The demo loads catalog metadata and individual YAML files from /bundled-blueprints/.'
         );
@@ -137,7 +75,7 @@ async function fetchBlueprintContent(relativePath: string): Promise<string> {
  */
 export async function warmBundledBlueprintBodies(paths: readonly string[]): Promise<void> {
   if (paths.length === 0) return;
-  await mapPool(paths, BUNDLED_PRELOAD_FETCH_CONCURRENCY, async relativePath => {
+  await mapPool(paths, CATALOG_PRELOAD_FETCH_CONCURRENCY, async relativePath => {
     try {
       await fetchResponseWithRetry(bundledAssetUrl(relativePath));
     } catch {
@@ -175,7 +113,7 @@ export const BundledSampleWorkspaceAdapter: WorkspacePort = {
   readDirectoryFiles: async (): Promise<Array<{ name: string; content: string }>> => {
     const catalog = await loadBundledWorkspaceCatalog();
     const paths = catalog.map(entry => entry.path);
-    const contents = await mapPool(paths, BUNDLED_BLUEPRINT_FETCH_CONCURRENCY, async name =>
+    const contents = await mapPool(paths, CATALOG_BLUEPRINT_FETCH_CONCURRENCY, async name =>
       fetchBlueprintContent(name)
     );
     const entries = paths.map((name, index) => ({

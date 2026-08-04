@@ -10,6 +10,10 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DOMAIN="${DOMAIN:-archlens.dev}"
+PAGES_PROJECT_NAME="${PAGES_PROJECT_NAME:-archlens}"
+WWW_DOMAIN="${WWW_DOMAIN:-www.${DOMAIN}}"
+CATALOG_BUCKET_NAME="${CATALOG_BUCKET_NAME:-archlens-blueprint-catalog}"
+CATALOG_DOMAIN="${CATALOG_DOMAIN:-blueprints.${DOMAIN}}"
 STACK="${PULUMI_STACK:-prod}"
 
 : "${BWS_ACCESS_TOKEN:?Set BWS_ACCESS_TOKEN}"
@@ -20,7 +24,7 @@ for c in bws gh pulumi jq curl pnpm; do
 done
 gh auth status >/dev/null 2>&1 || { echo "Run: gh auth login"; exit 1; }
 
-export ROOT DOMAIN STACK BWS_PROJECT_ID
+export ROOT DOMAIN STACK BWS_PROJECT_ID PAGES_PROJECT_NAME WWW_DOMAIN CATALOG_BUCKET_NAME CATALOG_DOMAIN
 bws run --project-id "$BWS_PROJECT_ID" -- \
   env BWS_ACCESS_TOKEN="${BWS_ACCESS_TOKEN}" \
   bash <<'EOF'
@@ -118,6 +122,11 @@ pnpm install --frozen-lockfile
 pulumi stack select "${STACK}" 2>/dev/null || pulumi stack init "${STACK}"
 pulumi config set accountId "$CLOUDFLARE_ACCOUNT_ID"
 pulumi config set zoneId "$CLOUDFLARE_ZONE_ID"
+pulumi config set pagesProjectName "$PAGES_PROJECT_NAME"
+pulumi config set apexDomain "$DOMAIN"
+pulumi config set wwwDomain "$WWW_DOMAIN"
+pulumi config set catalogBucketName "$CATALOG_BUCKET_NAME"
+pulumi config set catalogDomain "$CATALOG_DOMAIN"
 pulumi config set --secret cloudflare:apiToken "$CLOUDFLARE_API_TOKEN"
 
 echo "→ Custom domain routing"

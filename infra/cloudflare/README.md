@@ -9,6 +9,9 @@ Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev).
 | `PagesProject` | Direct-upload project (`archlens`) |
 | `DnsRecord` (`apex-pages`, `www-pages`) | Proxied CNAMEs → `pagesProject.subdomain` |
 | `PagesDomain` | Attaches apex + `www` to the Pages project (SSL / hostname binding) |
+| `R2Bucket` | Published blueprint catalog corpus (`archlens-blueprint-catalog`) |
+| `R2BucketCors` | Browser GET/HEAD from `archlens.dev` and local dev |
+| `R2CustomDomain` | Public read at `blueprints.archlens.dev` |
 
 ## Quick setup
 
@@ -57,5 +60,6 @@ pulumi up
 | `app/packages/designer/public/_redirects` | SPA routing |
 | `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
+| `.github/workflows/publish-blueprint-catalog.yml` | Nightly `archlens publish` to R2 (CLI from latest GitHub release) |
 | `Pulumi.prod.yaml.example` | Committed stack defaults (local `Pulumi.prod.yaml` is gitignored) |
 | `bin/setup-cloudflare-hosting.sh` | Bootstrap: bws → gh + pulumi config |

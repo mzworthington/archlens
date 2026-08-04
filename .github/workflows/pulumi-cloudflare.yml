@@ -59,10 +59,20 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PULUMI_PAGES_PROJECT_NAME: ${{ vars.PULUMI_PAGES_PROJECT_NAME }}
+          PULUMI_APEX_DOMAIN: ${{ vars.PULUMI_APEX_DOMAIN }}
+          PULUMI_WWW_DOMAIN: ${{ vars.PULUMI_WWW_DOMAIN }}
+          PULUMI_CATALOG_BUCKET_NAME: ${{ vars.PULUMI_CATALOG_BUCKET_NAME }}
+          PULUMI_CATALOG_DOMAIN: ${{ vars.PULUMI_CATALOG_DOMAIN }}
         run: |
           pulumi stack select prod 2>/dev/null || pulumi stack init prod
           pulumi config set accountId "$CLOUDFLARE_ACCOUNT_ID"
           pulumi config set zoneId "$CLOUDFLARE_ZONE_ID"
+          pulumi config set pagesProjectName "${PULUMI_PAGES_PROJECT_NAME:-archlens}"
+          pulumi config set apexDomain "${PULUMI_APEX_DOMAIN:-archlens.dev}"
+          pulumi config set wwwDomain "${PULUMI_WWW_DOMAIN:-www.archlens.dev}"
+          pulumi config set catalogBucketName "${PULUMI_CATALOG_BUCKET_NAME:-archlens-blueprint-catalog}"
+          pulumi config set catalogDomain "${PULUMI_CATALOG_DOMAIN:-blueprints.archlens.dev}"
           pulumi config set --secret cloudflare:apiToken "$CLOUDFLARE_API_TOKEN"
 
       - name: Pulumi preview

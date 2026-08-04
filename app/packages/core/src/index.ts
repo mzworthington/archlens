@@ -3,6 +3,7 @@ export * from './models/schemaVersion';
 export * from './lib/entityRef';
 export * from './lib/workspaceCatalog';
 export * from './lib/buildWorkspaceCatalogFromYaml';
+export * from './lib/remoteCatalogSnapshot';
 export * from './lib/treeSitterLanguages';
 export * from './lib/nodePosition';
 export * from './rules/graph';

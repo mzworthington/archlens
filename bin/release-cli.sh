@@ -8,6 +8,7 @@ cd "$ROOT"
 CLI_CHANGE_PATHS=(
   app/packages/cli
   app/packages/core
+  app/packages/storage
 )
 
 CLI_ASSETS=(

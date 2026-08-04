@@ -3,6 +3,8 @@ import {
   BrowserWorkspaceAdapter,
 } from '../infrastructure/fileSystem/fileSync';
 import { BundledSampleWorkspaceAdapter } from '../infrastructure/fileSystem/bundledSampleWorkspace';
+import { createRemoteCatalogWorkspaceAdapter } from '../infrastructure/fileSystem/remoteCatalogWorkspace';
+import { BUNDLED_WORKSPACE_NAME } from '../application/store/goldenPathsSample';
 import { createBrowserLayoutRegistry } from '../infrastructure/layout/createBrowserLayoutRegistry';
 import { reactFlowGraphChangeAdapter } from '../infrastructure/layout/reactFlowGraphChangeAdapter';
 import { ConsoleLoggerAdapter } from '../infrastructure/logging/logger';
@@ -34,10 +36,18 @@ export type BrowserPorts = {
 
 /** Browser composition root — only place that constructs concrete adapters. */
 export function createBrowserPorts(): BrowserPorts {
+  const remoteCatalogBaseUrl = import.meta.env.VITE_REMOTE_CATALOG_BASE_URL?.trim();
+  const sampleWorkspacePort = remoteCatalogBaseUrl
+    ? createRemoteCatalogWorkspaceAdapter({
+        baseUrl: remoteCatalogBaseUrl,
+        workspaceName: BUNDLED_WORKSPACE_NAME,
+      })
+    : BundledSampleWorkspaceAdapter;
+
   return {
     fileSystemPort: BrowserFileSystemAdapter,
     folderWorkspacePort: BrowserWorkspaceAdapter,
-    sampleWorkspacePort: BundledSampleWorkspaceAdapter,
+    sampleWorkspacePort,
     logger: ConsoleLoggerAdapter,
     layoutRegistry: createBrowserLayoutRegistry(),
     workingCopyPort: dexieWorkingCopyAdapter,
