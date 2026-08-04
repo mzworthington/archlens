@@ -79,10 +79,6 @@ echo
 
 for name in "${DIRECTORIES[@]}"; do
   target="${PARENT_DIR}/${name}"
-  # "self" catalog entry maps to this repo checkout locally.
-  if [[ "$(jq -r --arg id "${name}" '.[] | select(.id == $id) | .repo' "${CATALOG}")" == "self" ]]; then
-    target="${BLUEPRINT_REPO}"
-  fi
 
   if [[ ! -d "${target}" ]]; then
     echo "✗ skip ${name}: not found at ${target}" >&2
