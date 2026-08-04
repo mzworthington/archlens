@@ -6,22 +6,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ## CLI
 
-### aggregateHistory
-
-#### aggregateFileHistory
-
-- ✅ computes churn, authorCount, and topAuthorPercent
-- ✅ includes churnByWeek when sinceDays is provided
-- ✅ filters churn to a shorter window when windowDays is set
-
-#### computeChurnByWeek
-
-- ✅ buckets commits into weekly counts oldest-first
-
-#### filterCommitsInWindow
-
-- ✅ keeps only commits within the window
-
 ### analyzer
 
 #### CodebaseAnalyzer Domain Service
@@ -38,6 +22,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### aggregateNodeForensics
 
 - ✅ rolls up max/sum/counts from child forensics
+- ✅ omits loc/sloc on rollups when no child reports them
 - ✅ rolls up author commits from children
 - ✅ rolls up churnByWeek and churn-weighted ownership from children
 - ✅ rolls up dual churn windows from children
@@ -73,16 +58,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ aborts the signal when SIGINT is received
 - ✅ aborts the signal when SIGTERM is received
 
-### classify
-
-#### classifyFile
-
-- ✅ classifies hotspot when score meets threshold
-- ✅ classifies knowledge silo for complex single-author files
-- ✅ does not treat never-touched files as silos
-- ✅ can apply both classifications
-- ✅ returns empty when neither applies
-
 ### cliBanner
 
 #### cliBanner
@@ -111,13 +86,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### ComponentLevelWriter
 
-- ✅ should write component schemas for each container
-- ✅ should use correct entityRef format for component schemas
-- ✅ should slugify context and container names in entityRef
-- ✅ should filter components by containerId
-- ✅ should filter dependencies by containerId
-- ✅ writes component nodes without layout positions
-- ✅ should log successful write for each container
+- ✅ writes one component schema per container with expected path, entityRef, slugified ids, and filtered nodes
+- ✅ includes dependencies touching the container, including cross-container edges
+- ✅ emits rollup drill-down schemas from rollupDrillDown
+- ✅ strips representative filepaths from parent rollups that have drill-down diagrams
+
+### componentResolver
+
+#### componentResolver
+
+- ✅ dispatches to language-specific rollup resolvers
+- ✅ returns null for unsupported extensions
 
 ### consoleLogger
 
@@ -142,6 +121,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### ModelExtractor
 
 - ✅ assigns package containers, marks tests, and hydrates node types from markers
+- ✅ preserves slash segments in rolled-up component entity refs
 - ✅ marks containers as tests when every source file in them is a test
 - ✅ rolls up C# files by layer, skips boilerplate, types API containers, and links dependencies
 - ✅ creates container nodes and edges from csproj references without source files
@@ -166,12 +146,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should write context schema with correct entityRef
 - ✅ should use an explicit display name when provided
 - ✅ should slugify context name in entityRef
+- ✅ writes the context diagram under the --context slug
+- ✅ uses curated display names for peer contexts like E-Shop
 - ✅ should merge a second software-system into an existing context diagram
 - ✅ emits a group frame when systems nest under a shared folder parent
 - ✅ folds IaC folder groups into an existing product hub
 - ✅ nests subsystems under the product group and leaves other products disconnected
 - ✅ should upsert rather than duplicate when rewriting the same system
 - ✅ should log successful write
+- ✅ does not inherit a peer application context when creating infrastructure
+- ✅ migrates legacy root context.yaml into the peer context diagram
 
 #### personDependenciesForSystems
 
@@ -243,22 +227,38 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ skips GlobalUsings, Migrations, Designer, and ModelSnapshot files
 - ✅ keeps architectural sources
 
+### entityRefContext
+
+#### entityRefContext
+
+- ✅ maps known context slugs to display titles
+- ✅ avoids duplicate segments when system id matches the context root
+
 ### externalDependenciesPass
 
 #### applyExternalDependenciesPass
 
 - ✅ rewrites component schemas with unresolved external proxy nodes only
 - ✅ rolls component couplings up onto containers.yaml as inter-container edges
-- ✅ does not add component noise onto context.yaml
+- ✅ does not add component noise onto application/context.yaml
 - ✅ is a no-op when the blueprints tree is empty
 - ✅ adds service-level coupling edges and external component proxies on container diagrams
+
+### folderComponentRollup
+
+#### folderComponentRollup
+
+- ✅ rolls up monorepo paths to full folder depth
+- ✅ rolls up monorepo paths to folder depth
+- ✅ keeps simple-repo leaf files under one src folder
+- ✅ rolls up python packages by immediate parent folder
 
 ### forensicAnalyzer
 
 #### ForensicAnalyzer
 
 - ✅ correlates structure + history, classifies, and reports
-- ✅ skips AST for cold files when minChurnForComplexity is set
+- ✅ skips AST for cold files when minChurnForComplexity is set but still counts loc
 - ✅ filters to hotspots only when requested
 
 ### forensicsGlob
@@ -279,6 +279,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders json output
 - ✅ renders human text for success
+
+### formatEstateResilienceResult
+
+#### formatEstateResilienceResult
+
+- ✅ serializes JSON as a versioned AdviceLens artifact with plain heat maps
+- ✅ serializes YAML as a versioned AdviceLens artifact
+- ✅ keeps a human-readable text summary
 
 ### gitignoreFilter
 
@@ -318,17 +326,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ skips generic top-level dirs (cmd, internal, pkg) and takes next segment
 - ✅ returns null for files at root with only generic dirs
 
-### hotspotScoring
+### goGrouping
 
-#### computeHotspotScores
+#### goGrouping
 
-- ✅ returns empty map for empty input
-- ✅ scores the red-zone file highest
+##### resolveGoComponent
 
-#### minMaxNormalize
-
-- ✅ returns 0 when max equals min
-- ✅ maps endpoints to 0 and 1
+- ✅ rolls up by meaningful package directory
+- ✅ skips generic top-level dirs and uses the package folder
 
 ### iacAnalyzer
 
@@ -373,6 +378,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ classifies controller packages as rest-api
 - ✅ falls back to path when no namespace is present
 
+### javaGrouping
+
+#### javaGrouping
+
+##### resolveJavaComponent
+
+- ✅ returns null for boilerplate files
+- ✅ rolls up files by package folder under src/main/java
+- ✅ falls back to namespace declaration when path layout is missing
+
 ### loadAnalysisConfig
 
 #### loadAnalysisConfig
@@ -381,6 +396,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ loads blueprint.config.json ignore and rollupModules
 - ✅ loads blueprint.config.yml
 - ✅ merges CLI ignore overrides onto file config
+
+### modelExtractor.drillDown
+
+#### ModelExtractor rollup drill-down
+
+- ✅ tracks member filepaths and file-level nodes for folder rollups
 
 ### modelExtractor.reExports
 
@@ -489,6 +510,24 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resolves parent-relative imports
 - ✅ ignores stdlib imports
 
+### resilienceRun
+
+#### resolveAdviceLensArtifactFormat
+
+- ✅ uses explicit --format for structured artifacts
+- ✅ defaults text+output to JSON for CI, unless the path is .yaml
+
+### rollupDrillDown
+
+#### rollupDrillDown
+
+- ✅ builds file leaf entity refs under a rollup parent
+- ✅ derives nested drill-down yaml paths from entity refs
+- ✅ requires at least two member filepaths before emitting drill-down
+- ✅ builds child component schemas for multi-file rollups
+- ✅ builds nested drill-down schemas for multi-level folder rollups
+- ✅ keeps outgoing dependencies to other rollups for external resolution
+
 ### selfUpdate
 
 #### releaseAssets
@@ -560,6 +599,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ withProductHub does not link different products together
 - ✅ respects explicit systems config override and still adds a product hub
 - ✅ pins a single-repo scan to a named system under a shared product hub
+- ✅ reads app/package.json when the repo root has no package manifest
 - ✅ falls back to a single system when no workspaces or standalone packages exist
 - ✅ partitions repo-wide files onto a named multi-repo system instead of the product hub
 - ✅ partitions files by longest matching system root
@@ -569,18 +609,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ normalizeContextGrouping collapses orphan folder groups and promotes hubs
 - ✅ normalizeContextGrouping drops empty folder groups nested under a product hub
 - ✅ pruneEmptyProductHubs removes orphaned infrastructure frames
-
-### temporalCoupling
-
-#### computeTemporalCoupling
-
-- ✅ flags pairs above threshold with enough shared commits
-- ✅ excludes pairs below shared-commit floor
-
-#### couplingScore
-
-- ✅ uses Jaccard-style formula
-- ✅ returns 0 when denominator is non-positive
 
 ### terraformDiscovery
 
@@ -666,6 +694,37 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ supports ts, tsx, js, jsx
 - ✅ creates node with correct properties
 - ✅ computes container info correctly
+
+### typescriptGrouping
+
+#### typescriptGrouping
+
+##### isTypeScriptSourcePath
+
+- ✅ detects TS/JS paths case-insensitively
+
+##### resolveRelativeTypeScriptImportPath
+
+- ✅ resolves sibling and parent-relative imports
+
+##### resolveTypeScriptComponent
+
+- ✅ returns null for boilerplate files
+- ✅ rolls up monorepo package paths by folders under src
+- ✅ keeps package src-root files as leaf components
+- ✅ keeps simple-repo leaf files under a single src folder
+- ✅ rolls up files in the same folder to one component
+- ✅ uses the parent folder when the file name matches the folder (index-style)
+
+##### resolveTypeScriptImportComponentId
+
+- ✅ maps import specifiers to rolled-up component ids
+
+##### shouldSkipTypeScriptFile
+
+- ✅ skips config, declaration, and setup boilerplate
+- ✅ skips e2e and unit test trees under packages
+- ✅ keeps architectural sources
 
 ### updateCheck
 
@@ -759,6 +818,20 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ## Core
 
+### adviceLensArtifact
+
+#### evaluateAdviceLensGate
+
+- ✅ passes when worst SLA meets the threshold
+- ✅ fails when worst SLA is below the threshold
+- ✅ fails on recommendations only when fail-on-recommendations is set
+
+#### serializeEstateResilienceReport
+
+- ✅ emits a versioned AdviceLens artifact with JSON-safe heat maps
+- ✅ buildAdviceLensArtifact accepts recommendation-only UI exports
+- ✅ formats the artifact as YAML for studio / human-readable export
+
 ### advicelensStressFixtures
 
 #### advicelens-stress fixtures
@@ -790,6 +863,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ emits caller-targeted circuit-breaker recommendations for structural SPOFs
 - ✅ skips circuit-breaker recommendations on component-level diagrams
+
+### buildWorkspaceCatalogFromYaml
+
+#### buildWorkspaceCatalogFromYamlFiles
+
+- ✅ parses YAML, resolves refs, and emits navigation catalog entries
+- ✅ reports skipped invalid files via onInvalid
+- ✅ throws when no valid schemas remain
+
+#### parseWorkspaceCatalogJson
+
+- ✅ accepts a valid catalog payload
+- ✅ rejects empty or malformed payloads
 
 ### chaoslensStressFixtures
 
@@ -831,6 +917,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ runs simulation against the referenced ecommerce blueprint
 - ✅ rejects invalid fault types
 - ✅ validates diagramRef against the active diagram
+- ✅ accepts fault targets on dependency endpoints not yet materialized as nodes
 - ✅ round-trips the payment-outage example through serialize
 - ✅ builds and serializes a scenario document
 - ✅ rejects building a document with no faults
@@ -840,16 +927,17 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### chaos-specs fixtures
 
 - ✅ loads every ChaosSpec YAML in chaos-specs/
-- ✅ deep-chain-leaf-outage.yaml validates and simulates against its target diagram
-- ✅ diamond-cache-outage.yaml validates and simulates against its target diagram
-- ✅ ecommerce-api-latency.yaml validates and simulates against its target diagram
-- ✅ external-scope-auth-outage.yaml validates and simulates against its target diagram
-- ✅ group-boundary-db-outage.yaml validates and simulates against its target diagram
-- ✅ large-graph-orders-outage.yaml validates and simulates against its target diagram
-- ✅ multi-domain-payment-db-outage.yaml validates and simulates against its target diagram
-- ✅ payment-outage.yaml validates and simulates against its target diagram
-- ✅ safeguards-ledger-outage.yaml validates and simulates against its target diagram
-- ✅ shared-hub-inventory-outage.yaml validates and simulates against its target diagram
+- ✅ deep-chain-leaf-outage.yaml validates and converts against its target diagram
+- ✅ diamond-cache-outage.yaml validates and converts against its target diagram
+- ✅ ecommerce-api-latency.yaml validates and converts against its target diagram
+- ✅ external-scope-auth-outage.yaml validates and converts against its target diagram
+- ✅ golden-journey-payment-gateway-outage.yaml validates and converts against its target diagram
+- ✅ group-boundary-db-outage.yaml validates and converts against its target diagram
+- ✅ large-graph-orders-outage.yaml validates and converts against its target diagram
+- ✅ multi-domain-payment-db-outage.yaml validates and converts against its target diagram
+- ✅ payment-outage.yaml validates and converts against its target diagram
+- ✅ safeguards-ledger-outage.yaml validates and converts against its target diagram
+- ✅ shared-hub-inventory-outage.yaml validates and converts against its target diagram
 
 ### churnAcceleration
 
@@ -905,6 +993,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ scales base refactor score by chaos multiplier
 
+### containerDiagramScope
+
+#### containerDiagramScope
+
+- ✅ finds the app container diagram for a nested component diagram
+- ✅ collects sibling app containers from parent container dependencies
+
+#### forensics overview externals
+
+- ✅ suggests app-level containers for the forensics component diagram
+- ✅ classifies cli as a caller using workspace container dependencies
+- ✅ groups overview externals into caller and target bands
+
 ### csprojReferences
 
 #### csprojReferences
@@ -958,6 +1059,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ assigns C4 levels from entityRef depth
 - ✅ appends a zoom preview segment when provided
 
+##### deriveSharedContextNamespace
+
+- ✅ returns the sole context entityRef when only one context diagram exists
+- ✅ returns undefined when sibling contexts have no shared namespace prefix
+
 ##### entityRefParentPrefix
 
 - ✅ returns the parent prefix for nested entityRefs
@@ -990,6 +1096,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should correctly resolve FQN references using schema entityRef parent linkage
 - ✅ should prefix all levels with context slug when a context file is present
 - ✅ should not double-prefix stale dependency refs on context diagrams
+- ✅ keeps diagram-root group entityRef when only one context diagram is loaded
 
 ### estateScenarios
 
@@ -1027,6 +1134,18 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ lays out externals in one horizontal row even when the internal graph is narrow
 - ✅ updates only external nodes when positioning on a diagram
 
+### externalScope
+
+#### externalScope
+
+- ✅ resolves parent C4 display level for each diagram level
+- ✅ rolls component refs up to container level using the workspace index
+- ✅ suggests container-level neighbors only on component diagrams
+- ✅ groups overview externals into caller and target bands
+- ✅ computes aggregated hub edges to internal nodes only
+- ✅ filters overview externals to 1-hop selection neighbors
+- ✅ exposes stable hub ids per band
+
 ### functionComplexity
 
 #### countCognitiveComplexity
@@ -1054,6 +1173,21 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### filterCommitsInWindow
 
 - ✅ keeps only commits within the window
+
+### goldenJourneyFixture
+
+#### golden-journey estate fixture
+
+- ✅ loads estate, platform, and component YAML
+- ✅ component diagrams expose richer internal graphs
+- ✅ models temporal coupling on Payment Client for Coupling lens demos
+- ✅ models product personas linked to each platform on the estate
+- ✅ links product personas to the estate in context diagram
+- ✅ models related product groups in one estate diagram
+- ✅ ranks add-circuit-breaker on Checkout API after Payment Gateway outage
+- ✅ does not target personas with circuit-breaker advice on the context diagram
+- ✅ propagates blast through checkout group boundary to entry points
+- ✅ estate resilience sweep includes the golden journey estate
 
 ### graph
 
@@ -1218,24 +1352,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ requires finite x and y
 
-#### mergeLaidOutGapNodes
-
-- ✅ places gap cluster to the right of preserved bbox with gap
-- ✅ keeps gap layout as-is when nothing is preserved
-
-#### mergeLayoutPositions
-
-- ✅ preserves existing positions and only layouts gap nodes
-- ✅ forceRelayout ignores previous positions
-
 #### nodesNeedingLayout
 
 - ✅ returns nodes missing a finite position
-
-#### preservedBoundingBox
-
-- ✅ returns null when no preserved positions
-- ✅ computes min/max over finite positions
 
 #### seedPreservedPositions
 
@@ -1281,6 +1400,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ returns input unchanged without a narrator
 - ✅ attaches narration from a narrator without changing priority or evidence
+
+### nodeOwnership
+
+#### nodeOwnership
+
+- ✅ treats C4 persons and product personas as human actors
+- ✅ detects third-party classification
+- ✅ treats workspace proxies separately from vendors
 
 ### nodeResilience
 
@@ -1418,8 +1545,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### isResilienceAdviceTarget
 
-- ✅ allows runtime service and data nodes
+- ✅ allows calling application services and workers
+- ✅ excludes shared infrastructure and data stores
+- ✅ excludes IaC-imported resources
 - ✅ excludes structural component and code-module nodes
+- ✅ excludes human actors and third-party vendors
+
+#### isResilienceSimulationDiagramLevel
+
+- ✅ matches estate resilience diagram levels
 
 #### resolveAdviceApplicability
 
@@ -1541,6 +1675,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### buildSimulationSchema cross-boundary expansion
 
 - ✅ materializes home-diagram neighbors and propagates faults across proxy boundaries
+- ✅ rematerializes deep home-diagram callers so blast can cross a long proxy chain
 
 #### expandSimulationSchemaThroughProxies
 
@@ -1674,6 +1809,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### workspaceCatalog
 
+- ✅ treats sibling context diagrams as peers without a shared parent context
+- ✅ builds ancestor chains from catalog parent links
 - ✅ derives entityRef from schema name when missing
 
 ##### mergeWorkspaceCatalogEntries
@@ -1749,7 +1886,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### ActionControls Component
 
-- ✅ opens workspace display settings from the toolbar
 - ✅ shows pending changes button only when hasPendingChanges is true
 - ✅ renders correctly when workspace is closed
 - ✅ renders correctly when workspace is open
@@ -1763,13 +1899,27 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ disables undo button when past history is empty, enables and triggers action when filled
 - ✅ disables redo button when future history is empty, enables and triggers action when filled
 
+### adviceLensUrl
+
+#### adviceLensUrl
+
+- ✅ builds workspace AdviceLens URLs
+- ✅ parses workspace AdviceLens URLs
+- ✅ redirects legacy /advicelens paths
+- ✅ detects AdviceLens routes including legacy tracelens recommendations
+
 ### App
 
 #### App Layout and Collapsible Panels
 
 - ✅ should have panels hidden by default and support toggling them
-- ✅ should synchronize window URL pathname to /workspace/[slug] based on workspaceName or schema.name
-- ✅ should switch systems in store when popstate event fires with a different slug
+
+### AppContext
+
+#### AppProvider port wiring
+
+- ✅ wires browser ports synchronously before React effects
+- ✅ does not replace the bundled sample workspace port after sample open
 
 ### AppHeader
 
@@ -1778,6 +1928,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows a burger menu on mobile and reveals navigation links
 - ✅ closes the mobile menu when a link is selected
 - ✅ closes the mobile menu when Escape is pressed
+
+### applyDependencyHighlights
+
+#### applyDependencyHighlights
+
+- ✅ labels upstream and downstream roles when enabled
+- ✅ passes nodes through when disabled
 
 ### applyRefactorBoundaryAsDraft
 
@@ -1835,7 +1992,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ truncates long node names while exposing the full value in the title tooltip
 - ✅ triggers store selectNode when clicked
 - ✅ renders TEST badge when node represents a test component
-- ✅ renders (External) indicator and styling when external is true
+- ✅ renders workspace proxy indicator when external is true without third-party classification
+- ✅ renders third-party indicator when external has classification third-party
 - ✅ shows Go to entity button for external nodes present elsewhere in the workspace
 - ✅ hides Go to entity button when external node is not in the workspace catalog
 - ✅ navigates to canonical entity when Go to entity is clicked
@@ -1845,26 +2003,27 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows Externals button when child diagram has external nodes
 - ✅ toggles child externals overlay on the canvas when Externals button is clicked
 - ✅ shows a Code button when the node has a filepath and opens the source modal
+- ✅ hides the Code button when the node can zoom into a child diagram
+
+### BrandMark
+
+#### BrandMark
+
+- ✅ renders a single active lens badge
 
 ### Breadcrumbs
 
 #### Breadcrumbs Component
 
-- ✅ renders demo sandbox label when no workspace folder is open
-- ✅ renders specific workspace name when workspace directory is loaded
-- ✅ renders active diagram breadcrumbs and ancestor system breadcrumbs
-- ✅ renders correct href links for ancestor breadcrumbs
+- ✅ renders sample workspace label when bundled sample is open
+- ✅ renders folder badge when a directory workspace is open
+- ✅ omits workspace chrome when no workspace is open
 - ✅ renders next hierarchy level preview when a node with next level component schema is selected
 - ✅ renders dropdown button with child components and triggers selectSystem when child is clicked
 - ✅ always shows the context diagram when viewing a deep diagram without intermediate ancestors loaded
-- ✅ renders zoom preview segment for container level zoom from context level
-
-### BreadcrumbsCompact
-
-#### BreadcrumbsCompact
-
-- ✅ shows a compact summary and opens the full trail in a menu
-- ✅ shows ancestor trail inside the mobile menu
+- ✅ preserves TraceLens in breadcrumb links while the lens is active
+- ✅ shows a compact summary and opens the full trail in a mobile menu
+- ✅ lists peer context diagrams from the workspace catalog before they are lazy-loaded
 
 ### browserNetworkStatus
 
@@ -1934,7 +2093,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ collects components under a container by entityRef prefix and containerId
 
-### buildId
+### buildInfo
 
 #### formatAppVersionLabel
 
@@ -1959,22 +2118,29 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ includes structural entities and offenders with subtree counts
 - ✅ filters options by name, entity ref, or level
 
-### bundledBlueprintLoader
+### bundledSamplePreload
 
-#### buildBundledPathCatalog
+#### listBundledPreloadPaths
 
-- ✅ indexes chaoslens-stress scenarios before schemas are loaded
+- ✅ keeps ArchLens context, golden-journey, and stress estates only
+- ✅ returns empty when catalog has no preload estates
+- ✅ documents ArchLens context plus golden/stress demo estates
 
-#### guessBundledPathForEntityRef
+### bundledSampleWorkspace
 
-- ✅ resolves nested chaoslens-stress scenario paths
+#### BundledSampleWorkspaceAdapter
 
-#### inferEntityRefFromBundledPath
+- ✅ exposes the checked-in blueprints catalog for navigation
+- ✅ reads a single blueprint file by relative path
+- ✅ rejects non-blueprint source paths so callers can fall back to git raw
+- ✅ loads the prebuilt navigation catalog without fetching every YAML
+- ✅ warms ArchLens context, golden-journey, and stress YAML bodies from the full catalog
 
-- ✅ maps context and system container diagrams
-- ✅ maps nested scenario container diagrams
-- ✅ maps nested advicelens-stress scenario paths
-- ✅ maps component diagrams
+#### BundledSampleWorkspaceAdapter fetch resilience
+
+- ✅ retries transient Failed to fetch errors and then succeeds
+- ✅ clears a failed catalog cache so a later retry can succeed
+- ✅ limits concurrent blueprint downloads
 
 ### Canvas
 
@@ -1982,26 +2148,31 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders canvas layout with correct count of nodes and edges
 - ✅ hides MiniMap and Background when liteCanvas is on
-- ✅ caps edge animation to selection neighborhood when liteCanvas is on
 - ✅ focuses coupling neighbors and hides other nodes and schema links
-- ✅ hides downstream external nodes when downstream externals are off
-- ✅ keeps selected node and transitive upstream + downstream deps when focus toggle is on
 - ✅ shows all nodes in resilience mode even when dependency focus is on
-- ✅ applies hotspot heat to nodes when showHotspotHeatmap is on
 - ✅ keeps TraceLens hotspot heat visible while ChaosLens is active
-- ✅ dims nodes outside the ChaosLens simulation scope
 - ✅ force-shows scoped external nodes while resilience mode hides other externals
-- ✅ highlights nodes with safeguards when resilience mode is on
-- ✅ displays cycle warning validation status badge when cycle is present
-- ✅ renders system switcher dropdown when multiple loaded systems exist
-- ✅ triggers selectSystem when selecting another system in dropdown
+- ✅ renders more-actions menu without a system switcher
 - ✅ triggers openWorkspaceDirectory store action when Open Folder is clicked
 - ✅ renders error alert notification toast when lastError is set
 - ✅ triggers zoomIntoNode store action on double clicking a C4 node
-- ✅ navigates to parent system when Escape is pressed
-- ✅ navigates to parent system when Backspace is pressed
 - ✅ shows a Zoom out button that navigates to the parent system
-- ✅ zooms out using entityRef parent when the parent diagram is not loaded yet
+
+### canvasDisplayGraph
+
+#### buildCanvasVisibleNodes — C4 context level
+
+- ✅ always shows actors and external dependencies at context level
+- ✅ keeps actors and externals visible under dependency focus at context level
+
+### chaosLensUrl
+
+#### chaosLensUrl
+
+- ✅ builds workspace chaos lens URLs
+- ✅ parses workspace chaos lens URLs
+- ✅ treats legacy resilience=1 as chaos lens and redirects to sticky lens
+- ✅ detects chaos lens routes
 
 ### ChildLevelExternalsDialog
 
@@ -2015,7 +2186,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### CodeViewer UI Component
 
-- ✅ should render the Schema Explorer header and tabs
+- ✅ should render the explorer header and schema tabs
 - ✅ should render the initial schema in the YAML code block
 - ✅ should switch tabs and show JSON schema representation
 - ✅ should support YAML direct edit and apply workflow
@@ -2056,6 +2227,20 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ marks knowledge-silo as warning and combines with hotspot as danger
 - ✅ uses secondary thresholds when classifications are absent
 
+### ConnectionsSection
+
+#### ConnectionsSection
+
+- ✅ spotlights a connection when the crosshair is clicked
+
+### countDependencyFocusMetrics
+
+#### countDependencyFocusMetrics
+
+- ✅ returns zeros when mode is full or unselected
+- ✅ reports hidden externals in focus mode
+- ✅ includes externals in focus-externals mode
+
 ### countForensicsMetrics
 
 #### countSchemaForensicsMetrics
@@ -2095,19 +2280,31 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should detect position changes of components
 - ✅ should revert draft changes back to baseline
 
-### defaultIdbSeed
+### DependencyFocusChip
 
-#### defaultIdbSeed
+#### DependencyFocusChip
 
-- ✅ seeds when path has no stored data
-- ✅ skips paths that already have IndexedDB data
-- ✅ stops when seed is cancelled (workspace opened)
+- ✅ promotes to focus-externals when + Externals is clicked
 
-### DesignSystemPage
+### DependencyMiniGraph
 
-#### DesignSystemPage Component
+#### DependencyMiniGraph
 
-- ✅ should render the design system showcase
+- ✅ renders upstream and downstream peers
+- ✅ calls onPeerClick when a peer is selected
+- ✅ shows overflow counts when peers are capped
+
+### DependencyViewControl
+
+#### DependencyViewControl
+
+- ✅ calls onChange when a segment is selected
+
+### DesignSystemDocsPage
+
+#### DesignSystemDocsPage
+
+- ✅ renders the showcase inside the docs shell
 
 ### DesignSystemShowcase
 
@@ -2128,7 +2325,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### diagramState Actions & State Management
 
 - ✅ should initialize with correct default nodes, edges, and schemas
-- ✅ preserves metadata.source through initSchema and canvas rebuild
 - ✅ should successfully add a new node and serialize to YAML
 - ✅ should delete a node and clean up referencing edges
 - ✅ should update a node name and metadata properties
@@ -2148,8 +2344,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should place a new node at the specified position if provided
 - ✅ should reset focusedCyclePath to null when initSchema is called
 - ✅ does not seed session layout cache before autolayout on load
-- ✅ should merge mermaid import into active diagram without removing existing nodes
-- ✅ should preview mermaid import merge plan
 
 ### DiffMenu
 
@@ -2187,6 +2381,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### DocsShell
 
 - ✅ shows separate mobile scrollers for product guide and reference
+- ✅ shows local section nav on mobile and nested sidebar items when provided
 
 ### elkLayoutAdapter
 
@@ -2212,6 +2407,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ switches between SRE and executive views
 
+### exportAdviceLensArtifact
+
+#### exportAdviceLensArtifact
+
+- ✅ defaults studio export to YAML with the shared artifact shape
+
 ### externalNodeVisibility
 
 #### externalNodeVisibility
@@ -2220,6 +2421,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows externals based on directional toggles
 - ✅ filters schema externals by direction
 - ✅ counts externals per direction
+- ✅ always shows external dependencies on C4 context diagrams
+
+### externalSummaryDisplay
+
+#### externalSummaryDisplay — C4 context level
+
+- ✅ does not use external summary collapse on context diagrams
+- ✅ keeps on-diagram external dependencies visible at context (no whitelist)
+- ✅ keeps context externals visible even when caller/target toggles are off
+- ✅ does not build summary hubs on context diagrams
 
 ### fetchSourceFileContent
 
@@ -2227,6 +2438,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ prefers local workspace content when available
 - ✅ falls back to raw URL when local read fails
+- ✅ falls back to raw URL when local read returns SPA HTML
+- ✅ detects SPA HTML fallbacks for non-html paths
 - ✅ returns a helpful error when no source metadata exists
 
 ### fileSync
@@ -2277,25 +2490,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ keeps upstream callers when focusing a dependency target
 - ✅ includes all group children when the caller connects to the group shell
 - ✅ includes upstream callers of a grouped child via the group edge
-
-### ForensicsPage
-
-#### ForensicsPage
-
-- ✅ renders ranked offenders and filters to hotspots
-- ✅ shows workspace load actions when no blueprints are in scope
-- ✅ shows folder workspace name in the summary bar
-- ✅ filters refactor candidates by heuristic score
-- ✅ filters the ranking list from the page search
-- ✅ opens refactor plan slide-over when an offender row is clicked
-- ✅ filters offenders by entity scope in the URL path
-- ✅ changes entity scope from the picker
-- ✅ opens refactor plan from entity deep link
-- ✅ opens source dialog from deep link with source=1
-- ✅ shows chaos risk context when a ChaosLens simulation is active
-- ✅ starts a ChaosLens simulation from the offender row
-- ✅ shows estate recommendations when the recommendations tab is selected
-- ✅ opens the recommendations tab from ?view=recommendations
+- ✅ collectUpstreamNeighborhood returns only incoming transitive callers
+- ✅ collectDownstreamNeighborhood returns only outgoing transitive targets
+- ✅ buildDependencyGraphModel assigns hop distances and totals
+- ✅ resolveDependencyRoles labels upstream and downstream peers
+- ✅ collectDependencyNeighborhoodWithExternals adds externals on closure edges
+- ✅ filterSelectedDependencyFocusNodes includes externals when requested
 
 ### ForensicsSection
 
@@ -2320,11 +2520,25 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ renders churn, author, and complexity micro charts for rollups
 
+### GoldenJourneyTour
+
+#### GoldenJourneyTour
+
+- ✅ renders estate product map and six journey steps with deep links
+
 ### Header
 
 #### Header Component
 
 - ✅ renders branding and breadcrumbs
+
+### hiddenExternalConnectionGhosts
+
+#### buildHiddenExternalConnectionGhosts
+
+- ✅ returns empty output when disabled
+- ✅ creates ghost node and dashed edge for hidden external on closure edge
+- ✅ includes direct hidden external edge from the selection
 
 ### highlightQuerySources
 
@@ -2350,13 +2564,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ returns null for zero intensity
 - ✅ returns a red-scale hex for positive intensity
-
-### hydrateSandboxDrafts
-
-#### hydrateSandboxDrafts
-
-- ✅ restores draft positions when topology matches
-- ✅ keeps memory schema when no draft exists
 
 ### importIac
 
@@ -2384,6 +2591,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should return false if loadSchema is cancelled by user
 - ✅ should return false if loadSchema throws
 
+##### openBundledSample
+
+- ✅ opens from prebuilt catalog and only reads the entry YAML
+
 ##### openWorkspaceDirectory edge cases
 
 - ✅ should fail if no files are returned from workspace
@@ -2394,6 +2605,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 ##### saveActiveDiagram logic
 
 - ✅ should delegate to saveSchema when workspace is not open
+- ✅ should delegate to saveSchema for bundled sample workspaces
 - ✅ should write to file successfully when workspace is open
 - ✅ should return false if writeFile fails or throws when workspace is open
 
@@ -2466,13 +2678,26 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not call the loader until computeLayout runs
 - ✅ reuses the loaded adapter on subsequent calls
 
+### LeftWorkspacePanel
+
+#### LeftWorkspacePanel
+
+- ✅ switches between TraceLens and Schema tabs without closing the panel
+
 ### LensToolbarControls
 
 #### LensToolbarControls
 
-- ✅ toggles resilience mode from the lenses group
-- ✅ shows guidance when coupling data is missing
-- ✅ toggles coupling lens when coupling data exists
+- ✅ does not render a TraceLens toolbar toggle
+- ✅ does not render coupling lens in the toolbar
+- ✅ toggles resilience mode from the toolbar
+- ✅ shows guidance when resilience is unavailable on component diagrams
+
+### LiteCanvasButton
+
+#### LiteCanvasButton
+
+- ✅ toggles lite canvas from the bottom toolbar
 
 ### LiveSchemaPreview
 
@@ -2481,15 +2706,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ fetches latest schema and renders pretty JSON
 - ✅ shows an error when the channel is invalid
 - ✅ shows an error when fetch fails
-
-### loadBundledSandbox
-
-#### loadBundledSandbox
-
-- ✅ pickSandboxEntryDiagram prefers context level
-- ✅ activateBundledSandbox loads systems and initializes the entry diagram
-- ✅ activateBundledSandbox replaces a prior empty canvas
-- ✅ reloadBundledSandbox clears storage and resets workspace state even after a folder was open
 
 ### materializeCouplingGhost
 
@@ -2510,9 +2726,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### MobilePanelToggles
 
-- ✅ opens the schema panel from a labelled button
+- ✅ opens the explorer panel from a labelled button
 - ✅ opens the properties panel from a labelled button
-- ✅ hides when a panel sheet is already open
+- ✅ hides when explorer is open
+- ✅ hides when properties panel is open
 
 ### MonteCarloControls
 
@@ -2548,6 +2765,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ navigates to the diagram and starts a ChaosLens simulation at the offender
 
+### openWorkspaceFromCatalog
+
+#### loadWorkspaceFromCatalog
+
+- ✅ loads only the entry YAML and installs the prebuilt catalog
+- ✅ throws when the entry path is missing from the catalog
+
 ### pages
 
 #### docs link resolution
@@ -2557,6 +2781,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ registers product CTAs for each product guide chapter
 - ✅ resolves in-app AdviceLens entry link
 - ✅ resolves absolute docs paths
+- ✅ registers the technology stack reference page
 - ✅ registers the AdviceLens engine reference page
 - ✅ resolves feature report pages
 - ✅ resolves legacy guide chapter paths
@@ -2574,14 +2799,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ splits disconnected subgraphs
 
-### prefetchWorkspaceSystems
-
-#### prefetchAllWorkspaceSystems
-
-- ✅ lazy-loads unloaded workspace catalog entries
-- ✅ starts bundled prefetch when sandbox still has unloaded catalog entries
-- ✅ starts bundled prefetch when sandbox catalog is already complete
-
 ### PropertyPanel
 
 #### PropertyPanel UI Component
@@ -2598,8 +2815,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should rename node and metadata attributes when edited in node details
 - ✅ should allow adding custom metadata attributes to the component
 - ✅ should allow editing active connection descriptions
-- ✅ shows readonly git forensics when the selected node is enriched
-- ✅ shows coupling lens hint for a selected node with on-canvas peers
 - ✅ shows child level externals when selected node has a child diagram with externals
 
 ### PropertyPanel.resilience
@@ -2654,7 +2869,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ keeps the property panel collapsed when a simulation completes on mobile
 - ✅ does not expand the property panel when a simulation completes on desktop
 - ✅ materializes unresolved externals when entering resilience mode
+- ✅ rewires missing dependency edges when materializing resilience externals
 - ✅ materializes connected external neighbors before simulating
+- ✅ expands through an auth proxy into its home diagram when faulting session-db
 - ✅ includes upstream transitive callers in the simulation scope
 - ✅ runs simulation against the active workspace schema
 - ✅ resets telemetry view when leaving resilience mode
@@ -2705,23 +2922,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### resolveTraceLensScopeDiagrams
 
-#### resolveBundledPathsForEntityRef
-
-- ✅ includes the component diagram and parent containers diagram for eshop-apphost
-
 #### resolveDiagramPathsForEntityScope
 
-- ✅ falls back to bundled path resolution when catalog stubs lack node refs
-- ✅ resolves short entity refs against the workspace hub prefix in bundled mode
-
-### restoreWorkspaceSession
-
-#### restoreWorkspaceSession
-
-- ✅ resumes sandbox when session exists and store is empty
-- ✅ skips restore when diagrams are already loaded
-- ✅ does not auto-restore folder workspaces
-- ✅ deduplicates concurrent sandbox restore calls
+- ✅ collects home and child diagram paths from the workspace catalog
 
 ### runResilienceSimulationAsync
 
@@ -2737,6 +2940,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ marks nodes with persisted or session safeguards when resilience mode is on
 - ✅ clears safeguard styling when resilience mode is off
+
+### sandboxWorkspace
+
+#### sandboxWorkspace
+
+- ✅ builds entity-ref workspace paths
+- ✅ preserves AdviceLens when building breadcrumb links
+- ✅ preserves TraceLens when building breadcrumb links
+- ✅ preserves ChaosLens when building breadcrumb links
 
 ### schemaCompare
 
@@ -2773,6 +2985,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ prefers the current diagram copy when the same entityRef exists elsewhere
 - ✅ respects showTests and directional external filters
 
+### selectBundledSampleEntryPath
+
+#### selectBundledSampleEntryPath
+
+- ✅ prefers golden-paths context when present
+- ✅ falls back to context then first entry
+- ✅ throws when catalog is empty
+
 ### SelectedDependencySection
 
 #### SelectedDependencySection
@@ -2807,9 +3027,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### StartupWorkspaceDialog
 
-- ✅ renders the startup choices when open
-- ✅ does not expose the dialog when closed
-- ✅ invokes the matching handler for each choice
+- ✅ renders sample and open-directory choices when open
+- ✅ renders nothing when closed
+- ✅ invokes handlers from the embedded entry panel
+- ✅ surfaces sandbox loading feedback while open is in progress
 
 ### store
 
@@ -2817,22 +3038,36 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ should resolve relative path correctly
 
-#### Default Initial Schema & Hierarchical C4 Linking
+### summarizeWorkspaceForensics
 
-- ✅ should verify initial default workspace structure
+#### summarizeWorkspaceForensics
 
-### SystemSelector
-
-#### SystemSelector
-
-- ✅ renders nothing when no systems are loaded
-- ✅ renders system options and navigates on change
+- ✅ returns zeros for an empty workspace
+- ✅ aggregates topology and forensics across diagrams without double-counting entityRefs
+- ✅ counts topology even when no TraceLens blocks are present
 
 ### TelemetryPanel
 
 #### TelemetryPanel
 
 - ✅ explains when SLA is unchanged but integrity degraded
+
+### TraceLensPanel
+
+#### TraceLensPanel
+
+- ✅ renders ranked offenders and filters to hotspots
+- ✅ shows workspace complexity summary for the loaded estate
+- ✅ shows guidance when no blueprints are in scope
+- ✅ filters the ranking list from the page search
+- ✅ opens refactor plan slide-over when an offender row is clicked
+- ✅ filters offenders by entity scope in the URL path
+- ✅ changes entity scope from the picker
+- ✅ opens refactor plan from entity deep link
+- ✅ opens source dialog from deep link with source=1
+- ✅ shows chaos risk context when a ChaosLens simulation is active
+- ✅ shows estate recommendations when the recommendations tab is selected
+- ✅ switches to AdviceLens URL when the recommendations tab is selected
 
 ### TraceLensScopePicker
 
@@ -2841,14 +3076,24 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows all entities by default and opens searchable menu
 - ✅ selects an entity scope and can clear it
 
+### TraceLensSidePanel
+
+#### TraceLensSidePanelContent
+
+- ✅ renders worst offenders CTA and canvas lens controls
+- ✅ shows empty selection hint when no node is selected
+- ✅ navigates to full trace lens mode from worst offenders CTA
+- ✅ shows readonly git forensics when the selected node is enriched
+- ✅ shows coupling lens hint for a selected node with on-canvas peers
+
 ### traceLensUrl
 
 #### traceLensUrl
 
-- ✅ builds base path without entity or source
-- ✅ builds scoped path and optional plan/source/view query
-- ✅ parses rankings-only URL
-- ✅ parses scope entity, plan, source, and view from path + search
+- ✅ builds workspace lens URLs
+- ✅ parses workspace lens URLs
+- ✅ redirects legacy /tracelens paths
+- ✅ detects trace lens routes
 
 ### treeSitterHighlight
 
@@ -2867,6 +3112,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should toggle showTests property via toggleShowTests action
 - ✅ should toggle upstream and downstream external visibility
 - ✅ should toggle showSelectedDependenciesOnly via toggleShowSelectedDependenciesOnly
+- ✅ should set dependency view mode via setDependencyViewMode
 - ✅ should toggle showCoupling property via toggleShowCoupling action
 - ✅ should toggle showHotspotHeatmap via toggleShowHotspotHeatmap action
 - ✅ should toggle liteCanvas via toggleLiteCanvas action
@@ -2891,12 +3137,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### useActiveDiagramEntity
 
 - ✅ derives parent entityRef from the active diagram without loading the parent system
-
-### useAutoLoadWorkspace
-
-#### useAutoLoadWorkspace
-
-- ✅ loads sandbox on bare /workspace when no folder session exists
 
 ### useChaosSpecDialog
 
@@ -2946,9 +3186,20 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### useUrlSync
 
-- ✅ updates the URL when the user selects a different node on the canvas
-- ✅ keeps the diagram URL when selecting an external node on the canvas
-- ✅ keeps the diagram URL when selecting a node that has a child diagram (zoom is explicit)
+- ✅ does not update the URL when the user selects a node on the canvas
+- ✅ selects a node when the URL names a node on the loaded diagram
+- ✅ loads the owning diagram when the URL names a node on another file
+- ✅ selects the context diagram when the URL names a context but the canvas shows a child estate
+
+### useWorkspaceLensSync
+
+#### useWorkspaceLensSync
+
+- ✅ enables ChaosLens and applies faults from the URL
+- ✅ redirects legacy resilience=1 to sticky lens=chaoslens
+- ✅ writes ChaosLens query params when resilience mode is enabled
+- ✅ keeps faults when the user adds one before the URL has caught up
+- ✅ does not enable ChaosLens from the URL on component diagrams
 
 ### WorkspaceDisplayControls
 
@@ -2956,28 +3207,27 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ exposes workspace-wide display toggles including selected-deps focus
 - ✅ marks the summary when counts are scoped to the selected node
+- ✅ disables caller and target toggles when dependency focus is active
+- ✅ locks caller and target toggles on at C4 context level
 
-### WorkspaceDisplayDialog
+### WorkspaceEntryPanel
 
-#### WorkspaceDisplayDialog
+#### WorkspaceEntryPanel
 
-- ✅ renders display toggles when open
-- ✅ does not render when closed
-- ✅ toggles settings and closes on backdrop click
-- ✅ closes on Escape
+- ✅ renders sample and open-directory actions
+- ✅ shows the CLI panel when requested
+- ✅ invokes the matching handler for each choice
+- ✅ shows loading feedback and disables actions while sandbox opens
 
 ### WorkspacePage
 
 #### WorkspacePage Component
 
-- ✅ should render CodeViewer, Canvas, and PropertyPanel
+- ✅ should render Explorer, Canvas, and PropertyPanel
 - ✅ should support expanding and collapsing left and right side panels
 - ✅ should synchronize workspace system selection from URL params
-- ✅ should redirect route to slugified workspace name if on a workspace route and path mismatches
-- ✅ resets to an empty workspace when Mermaid is chosen from startup
-- ✅ does not show the startup chooser on deep-linked workspace routes
-- ✅ auto-loads sandbox on bare /workspace when no folder session is pending
-- ✅ shows the startup chooser when a folder session needs re-open
+- ✅ does not reopen the startup chooser when navigating within the workspace
+- ✅ shows the startup chooser on bare workspace with no loaded systems
 
 ### WorkspacePage.resilience
 
@@ -2986,13 +3236,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows resilience controls in the property panel when mode is enabled
 - ✅ runs simulation against the active diagram and shows SLA telemetry
 
-### workspaceSession
+### workspacePanelLayout
 
-#### workspaceSession
+#### workspacePanelLayout
 
-- ✅ persists and loads sandbox session metadata
-- ✅ persists folder workspace name
-- ✅ clears stored session
+- ✅ assigns traceLens to the left slot by default
+- ✅ lists mutually exclusive left-slot panels
+- ✅ resolves active panel within a slot
 
 ### WorkspaceStatusBadges
 

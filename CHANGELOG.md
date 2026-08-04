@@ -1,22 +1,140 @@
 # Changelog
 
+## 2026-08-04
+
+### 🚀 Features
+
+- _(infra)_ Manage archlens.dev DNS via Pulumi (#50)
+- _(infra)_ Enhance Cloudflare setup with DNS import and script updates
+
+### 🐛 Bug Fixes
+
+- _(docs-media)_ Record product GIFs at large-display viewport
+- _(docs-media)_ Stabilize large-display chaoslens and tracelens demos
+- _(docs-media)_ Open TraceLens refactor plan action and refresh GIFs
+- _(cli)_ Align VHS demo with software-system name prompt
+
+### 🧰 Maintenance & Dependencies
+
+- _(infra)_ Note DNS Edit token requirement for Pulumi (#51)
+- _(infra)_ Update compatibility date and enhance CI workflows
+
+## 2026-08-03
+
+### 🚀 Features
+
+- _(docs)_ Add Technology Stack page and update references
+
+### 🧰 Maintenance & Dependencies
+
+- Update deployment process to Cloudflare Pages and refine CI workflow
+- Enhance Cloudflare integration and update build version handling
+- Improve Cloudflare setup script and update documentation for custom domain cutover
+
+### 📚 Documentation
+
+- Retrofit sparse MADRs for foundational ArchLens decisions (#48)
+
+## 2026-08-02
+
+### 🚀 Features
+
+- Open sandbox from prebuilt catalog with loading feedback (#37)
+- _(advicelens)_ Phase 4 CI gate, JSON artifact, and studio export (#40)
+- Preload golden and stress sandbox YAML, keep full catalog (#42)
+- _(tracelens)_ Show per-workspace complexity summary (#43)
+
+### 🐛 Bug Fixes
+
+- Always show actors and externals on C4 context diagrams (#36)
+- Land sandbox open on golden-journey estate (#38)
+- Land sandbox open on golden-paths context (#41)
+- _(tracelens)_ Preload ArchLens context and fix LOC always 0 (#44)
+- _(tracelens)_ Fix undercounted ArchLens LOC (~4k → ~71k) (#45)
+
+### 🧪 Testing
+
+- _(chaoslens)_ Enforce WASM Monte Carlo KR3 budget on large-graph (#39)
+
 ## 2026-08-01
 
 ### 🚀 Features
 
-- Shareable ChaosLens URL state (`?lens=chaoslens` + fault params; legacy `?resilience=1` redirects)
-- External simulation scope Phase 3: expand→materialize proxy home-diagram closure to a bounded fixpoint
+- Rename PWA to ArchLens
+- Enhance resilience recommendations with dependency ownership tracking and update external node classifications
+- Enhance codebase analysis by adding file-level dependency tracking and improving entity reference resolution across modules
+- Shareable ChaosLens URL state for mode and faults (#28)
+- Close external simulation scope Phase 3 fixpoint (#29)
+- Enhance external summary hub functionality and improve UI interactions
+- Remove lenses box
+- Introduce AdviceLens functionality and update TraceLens references
+
+### 🐛 Bug Fixes
+
+- Restore unit and e2e coverage for bundled blueprints (#24)
+- Wire dependency edges when materializing resilience externals (#32)
+- Update build version format and enhance resilience advice eligibility tests
+- Update workspace entity references and improve URL handling in hooks
+- Update TraceLens references and improve documentation consistency
+- Stop rewriting golden-journey deep links to context (#34)
+
+### ⚙️ Refactoring & Performance
+
+- Streamline bundled workspace handling and remove deprecated code
+- Remove deprecated sandbox loading logic and streamline diagram state management
+- Update TraceLens integration to use workspace URLs and remove legacy paths
+- Update entity reference resolution and context handling across analysis modules, streamline Python and TypeScript dependency resolution, and remove unused blueprints
+- Carve mega modules and trim overlapping tests (#31)
 
 ### 🧰 Maintenance & Dependencies
 
-- Bootstrap `agent-lifecycle-kit` into `~/.agents` from `bin/setup-dev-env.sh` (Cursor Cloud)
-- Architecture prune: remove dead designer `samples/` mirrors and quarantined Rust `cli/`; narrow core barrels; drop forensics/layout shims; unify workspace URL helpers; move TraceLens UI under `ui/features/tracelens`
-- Architecture prune (continued): browser composition root + injected workspace/resilience ports; split DesignSystemShowcase / graph / layoutUtils; archive completed `docs/plans`; ChaosSpec suite no longer re-simulates stress fixtures
-- Carve TraceLensPanel / Canvas / diagramState; trim overlapping UI + CLI writer tests; move PWA buildInfo into application (drop infra re-export)
+- Reduce codebase complexity
+- Bootstrap Cursor agents with mise (including bun) (#25)
+- Bootstrap lifecycle kit in setup; close sim scope Phase 2 (#27)
+- Architecture prune — less drift, fewer lines (#30)
 
 ### 📚 Documentation
 
-- Mark external simulation scope Phase 2 complete in PLAN
+- Fall back to agent-lifecycle-kit when ~/.agents is missing (#26)
+
+## 2026-07-31
+
+### 🚀 Features
+
+- Enhance CLI with multi-repo support through system name
+- Introduce AdviceLens for ranked recommendations and resilience insights
+- Enhance resilience recommendations
+- Advice lens UX updates
+- Add AdviceLens stress test configurations and enhance chaos spec validation
+- Add new GCP and AWS infrastructure blueprints for various services including Cloud Run, Lambda, and reverse proxy configurations
+
+### ⚙️ Refactoring & Performance
+
+- Update context file paths and entity references to use 'application' instead of 'blueprint' across various modules
+
+## 2026-07-30
+
+### 🚀 Features
+
+- Chaosspec has launched
+- Chaosspec export and import
+- Expand tracelens to more languages
+- Add composite risk calculations and refactor suggestions to forensics module
+- Implement workspace filepath indexing and enhance coupling edge resolution for improved dependency management
+- Enhance TreeSitterParserAdapter with scan cache support and improve forensics metrics collection
+- Add max coupling commit files option to CLI and enhance forensics metrics collection
+- Integrate Lighthouse CI and accessibility testing into the workflow; enhance forensics metrics with new simulation features
+- Performance improvements
+- Add Lighthouse summary step to CI workflow, update dependencies, and enhance CLI with validation and diff commands
+
+### ⚙️ Refactoring & Performance
+
+- Replace CompositeComplexityAdapter with TreeSitterComplexityAdapter and remove unused complexity adapters; update forensics metrics collection
+- Consolidate forensics functions by exporting from core module, removing redundant implementations
+
+### 🧰 Maintenance & Dependencies
+
+- Remove Lighthouse CI steps from workflow and clean up schedule configuration
 
 ## 2026-07-29
 
@@ -30,10 +148,15 @@
 - Implement external simulation scope with materialization of unresolved dependencies
 - Enhance CLI with enrich and scan commands, improving dependency management and YAML processing
 - Domain identification within chaoslens
+- Improved install and usage instructions
 
 ### 🐛 Bug Fixes
 
 - Remove temporary directory cleanup trap and ensure cleanup after installation
+
+### 🧰 Maintenance & Dependencies
+
+- Ability to dispath pipeline from gh
 
 ### 📚 Documentation
 
