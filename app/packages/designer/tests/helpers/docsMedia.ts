@@ -59,28 +59,27 @@ export function readRecordingTrimMarker(outputDir: string): number | undefined {
   }
 }
 
+/** Max GIF width for product guides (source captures are large-display 2880×1864). */
+export const DOCS_GIF_WIDTH = 1920;
+
 /** Convert a Playwright WebM capture into a looping GIF for product guides. */
 export function convertWebmToGif(
   webmPath: string,
   gifPath: string,
-  options?: { trimBeforeSec?: number }
+  options?: { trimBeforeSec?: number; width?: number }
 ): void {
   const trimBeforeSec = options?.trimBeforeSec ?? 0;
+  const width = options?.width ?? DOCS_GIF_WIDTH;
   mkdirSync(path.dirname(gifPath), { recursive: true });
   rmSync(gifPath, { force: true });
   const inputArgs =
     trimBeforeSec > 0 ? ['-ss', String(trimBeforeSec), '-i', webmPath] : ['-i', webmPath];
-  execFileSync(
-    'ffmpeg',
-    [
-      '-y',
-      ...inputArgs,
-      '-filter_complex',
-      '[0:v]fps=12,scale=1100:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse',
-      '-loop',
-      '0',
-      gifPath,
-    ],
-    { stdio: 'inherit' }
-  );
+  // Higher fps + 1920px lanczos + full-palette dither keeps large-display UI readable in docs.
+  const filter =
+    `[0:v]fps=15,scale=${width}:-1:flags=lanczos,split[s0][s1];` +
+    `[s0]palettegen=stats_mode=full:max_colors=256[p];` +
+    `[s1][p]paletteuse=dither=sierra2_4a`;
+  execFileSync('ffmpeg', ['-y', ...inputArgs, '-filter_complex', filter, '-loop', '0', gifPath], {
+    stdio: 'inherit',
+  });
 }
