@@ -42,6 +42,14 @@ export function treeSitterWasmSearchDirs(opts: {
     // Package may be unavailable inside a bun --compile binary.
   }
 
+  try {
+    const require = createRequire(moduleUrl);
+    const pkgJson = require.resolve('web-tree-sitter/package.json');
+    dirs.push(path.dirname(pkgJson));
+  } catch {
+    // Same — compiled binary relies on files next to the executable.
+  }
+
   // Compiled binary: wasms are copied next to the executable at build time.
   dirs.push(path.dirname(path.resolve(execPath)));
 
@@ -68,6 +76,21 @@ export function resolveTreeSitterWasmPath(
   const name = wasmFileName(langKey);
   for (const dir of treeSitterWasmSearchDirs(opts ?? {})) {
     const candidate = path.join(dir, name);
+    if (fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+  return null;
+}
+
+/** Runtime `tree-sitter.wasm` used by `Parser.init` (not a language grammar). */
+export function resolveTreeSitterRuntimeWasmPath(
+  scriptName = 'tree-sitter.wasm',
+  opts?: Parameters<typeof treeSitterWasmSearchDirs>[0]
+): string | null {
+  const baseName = path.basename(scriptName);
+  for (const dir of treeSitterWasmSearchDirs(opts ?? {})) {
+    const candidate = path.join(dir, baseName);
     if (fs.existsSync(candidate)) {
       return candidate;
     }

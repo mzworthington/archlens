@@ -136,7 +136,7 @@ remove_install() {
     removed=1
   fi
   shopt -s nullglob
-  for wasm in "${dir}"/tree-sitter-*.wasm; do
+  for wasm in "${dir}"/tree-sitter*.wasm; do
     rm -f "$wasm"
     removed=1
   done
@@ -233,7 +233,8 @@ install_files() {
   cp -f "${tmp}/archlens" "${dir}/archlens"
   chmod +x "${dir}/archlens"
   shopt -s nullglob
-  for wasm in "${tmp}"/tree-sitter-*.wasm; do
+  # Includes runtime tree-sitter.wasm and language tree-sitter-*.wasm parsers.
+  for wasm in "${tmp}"/tree-sitter*.wasm; do
     cp -f "$wasm" "${dir}/$(basename "$wasm")"
   done
   shopt -u nullglob

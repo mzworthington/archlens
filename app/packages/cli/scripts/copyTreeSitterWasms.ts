@@ -17,6 +17,8 @@ import {
 const require = createRequire(import.meta.url);
 const pkgJson = require.resolve('tree-sitter-wasms/package.json');
 const wasmOut = path.join(path.dirname(pkgJson), 'out');
+const webTreeSitterPkg = require.resolve('web-tree-sitter/package.json');
+const runtimeWasm = path.join(path.dirname(webTreeSitterPkg), 'tree-sitter.wasm');
 
 const defaultDest = path.resolve(import.meta.dirname, '../../../dist');
 const destDirs =
@@ -26,6 +28,10 @@ const destDirs =
 
 for (const dest of destDirs) {
   fs.mkdirSync(dest, { recursive: true });
+  if (!fs.existsSync(runtimeWasm)) {
+    throw new Error(`Missing runtime WASM: ${runtimeWasm}`);
+  }
+  fs.copyFileSync(runtimeWasm, path.join(dest, 'tree-sitter.wasm'));
   for (const lang of TREE_SITTER_WASMS_PACKAGE_LANGUAGES) {
     const name = wasmFileName(lang);
     const src = path.join(wasmOut, name);
@@ -35,6 +41,6 @@ for (const dest of destDirs) {
     fs.copyFileSync(src, path.join(dest, name));
   }
   console.log(
-    `Copied ${TREE_SITTER_WASMS_PACKAGE_LANGUAGES.length} tree-sitter WASM files → ${dest}`
+    `Copied tree-sitter.wasm + ${TREE_SITTER_WASMS_PACKAGE_LANGUAGES.length} language WASM files → ${dest}`
   );
 }

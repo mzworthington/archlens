@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import * as fs from 'fs';
-import { resolveTreeSitterWasmPath, treeSitterWasmSearchDirs } from './treeSitterWasmPaths.ts';
+import {
+  resolveTreeSitterRuntimeWasmPath,
+  resolveTreeSitterWasmPath,
+  treeSitterWasmSearchDirs,
+} from './treeSitterWasmPaths.ts';
 
 describe('treeSitterWasmPaths', () => {
   it('resolves c_sharp WASM from the installed tree-sitter-wasms package', () => {
@@ -36,5 +40,12 @@ describe('treeSitterWasmPaths', () => {
       moduleUrl: 'file:///tmp/empty-bin-no-wasm/adapter.js',
     });
     expect(resolved).toBeNull();
+  });
+
+  it('resolves runtime tree-sitter.wasm from the web-tree-sitter package', () => {
+    const resolved = resolveTreeSitterRuntimeWasmPath('tree-sitter.wasm');
+    expect(resolved).toBeTruthy();
+    expect(resolved).toMatch(/tree-sitter\.wasm$/);
+    expect(fs.existsSync(resolved!)).toBe(true);
   });
 });
