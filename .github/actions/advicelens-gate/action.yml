@@ -37,7 +37,8 @@ runs:
     - name: Install ArchLens CLI
       shell: bash
       run: |
-        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+        # Prefer bash: install.sh uses pipefail (not supported by Ubuntu dash `sh`).
+        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash
         archlens --version
 
     - name: Run AdviceLens estate sweep

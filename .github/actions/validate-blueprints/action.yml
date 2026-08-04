@@ -31,7 +31,9 @@ runs:
         if [[ -n "$version" && "$version" != "latest" ]]; then
           install_args+=(--version "$version")
         fi
-        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh -s -- "${install_args[@]}"
+        # Prefer bash: install.sh uses pipefail (not supported by Ubuntu dash `sh`).
+        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh \
+          | bash -s -- "${install_args[@]}"
         echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         archlens --version
 

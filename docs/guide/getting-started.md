@@ -7,16 +7,16 @@ This page is for **using** ArchLens - install ArchLens, scan a codebase, then op
 ### macOS / Linux (recommended)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash
 ```
 
 This downloads the latest release for your platform, installs `archlens` to `~/.local/bin`, and copies tree-sitter WASM parsers alongside the binary.
 
-Options (pass to `sh -s --` when piping):
+Options (pass to `bash -s --` when piping):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh -s -- --version v0.1.5
-curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh -s -- --dir "$HOME/bin"
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash -s -- --version v0.1.5
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash -s -- --dir "$HOME/bin"
 ```
 
 ### Windows
