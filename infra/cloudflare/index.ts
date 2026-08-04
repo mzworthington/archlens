@@ -15,18 +15,54 @@ const pagesProject = new cloudflare.PagesProject('archlens', {
   productionBranch: 'main',
 });
 
-// PagesDomain attaches custom hostnames and auto-configures DNS when the zone is on Cloudflare.
-new cloudflare.PagesDomain('apex', {
-  accountId,
-  projectName: pagesProject.name,
-  name: apexDomain,
-});
+// Proxied CNAMEs to the Pages project (apex uses CNAME flattening).
+const apexDns = new cloudflare.DnsRecord(
+  'apex-pages',
+  {
+    zoneId,
+    name: apexDomain,
+    type: 'CNAME',
+    content: pagesProject.subdomain,
+    proxied: true,
+    ttl: 1,
+    comment: 'ArchLens Cloudflare Pages',
+  },
+  { deleteBeforeReplace: true },
+);
 
-new cloudflare.PagesDomain('www', {
-  accountId,
-  projectName: pagesProject.name,
-  name: wwwDomain,
-});
+const wwwDns = new cloudflare.DnsRecord(
+  'www-pages',
+  {
+    zoneId,
+    name: wwwDomain,
+    type: 'CNAME',
+    content: pagesProject.subdomain,
+    proxied: true,
+    ttl: 1,
+    comment: 'ArchLens Cloudflare Pages',
+  },
+  { deleteBeforeReplace: true },
+);
+
+new cloudflare.PagesDomain(
+  'apex',
+  {
+    accountId,
+    projectName: pagesProject.name,
+    name: apexDomain,
+  },
+  { dependsOn: [apexDns] },
+);
+
+new cloudflare.PagesDomain(
+  'www',
+  {
+    accountId,
+    projectName: pagesProject.name,
+    name: wwwDomain,
+  },
+  { dependsOn: [wwwDns] },
+);
 
 const zone = cloudflare.getZoneOutput({ zoneId });
 

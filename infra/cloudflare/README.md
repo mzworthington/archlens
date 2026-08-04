@@ -7,7 +7,8 @@ Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev).
 | Resource | Purpose |
 |----------|---------|
 | `PagesProject` | Direct-upload project (`archlens`) |
-| `PagesDomain` | Attaches apex + `www` to the Pages project (SSL, hostname binding, and DNS when the zone is on Cloudflare) |
+| `DnsRecord` (`apex-pages`, `www-pages`) | Proxied CNAMEs → `pagesProject.subdomain` |
+| `PagesDomain` | Attaches apex + `www` to the Pages project (SSL / hostname binding) |
 
 ## Quick setup
 
@@ -28,7 +29,7 @@ pulumi up
 
 Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` runs Pulumi on CI.
 
-**Manual run:** GitHub → Actions → **Pulumi Cloudflare** → Run workflow → choose `up` or `preview` (no path filter on dispatch).
+**Manual run:** GitHub → Actions → **Pulumi Cloudflare** → Run workflow → choose `up` or `preview`.
 
 ## Local Pulumi commands
 
@@ -42,7 +43,7 @@ pulumi up
 
 ## Token permissions
 
-`CLOUDFLARE_API_TOKEN` needs **Account → Cloudflare Pages: Edit** and **Zone → DNS: Edit** (PagesDomain may create or update apex/`www` records when the zone is on Cloudflare). Full scope list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+`CLOUDFLARE_API_TOKEN` needs **Account → Cloudflare Pages: Edit** and **Zone → DNS: Edit**. Full scope list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
 
 ## Stack config
 
