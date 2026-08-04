@@ -6,6 +6,12 @@
 
 - _(infra)_ Manage archlens.dev DNS via Pulumi (#50)
 - _(infra)_ Enhance Cloudflare setup with DNS import and script updates
+- Archlens yaml refresh
+- _(tests)_ Add _redirects test for Cloudflare Pages SPA routing and enhance diagramState tests with validation logging
+- Implement remote catalog publishing
+- _(ci)_ Add weekly workflow to regenerate sample blueprints from upstream repositories
+- Bootstrap script for cloudflare + gh
+- _(cli)_ Add runtime WASM support for web-tree-sitter and enhance tree-sitter WASM file handling
 
 ### 🐛 Bug Fixes
 
@@ -13,6 +19,15 @@
 - _(docs-media)_ Stabilize large-display chaoslens and tracelens demos
 - _(docs-media)_ Open TraceLens refactor plan action and refresh GIFs
 - _(cli)_ Align VHS demo with software-system name prompt
+
+### ⚙️ Refactoring & Performance
+
+- _(ioState)_ Replace bundled workspace catalog loading with sample workspace session loading in state management and tests
+- _(ci)_ Streamline blueprints regeneration workflow by removing CLI build step and adding version input for archlens installation
+- _(ci)_ Simplify blueprints regeneration workflow by removing unnecessary self-scan logic and updating clone command
+- Migrate blueprints to golden-paths structure, update workflows, and remove deprecated files
+- _(ci)_ Remove sample publishing workflow and add skip-validation option for publish commands
+- _(ci)_ Update workflows to remove deprecated files and enhance publish commands with skip-validation option
 
 ### 🧰 Maintenance & Dependencies
 

@@ -244,6 +244,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ is a no-op when the blueprints tree is empty
 - ✅ adds service-level coupling edges and external component proxies on container diagrams
 
+#### listBlueprintSchemaPaths
+
+- ✅ skips *-overlay.yaml merge helpers
+
 ### folderComponentRollup
 
 #### folderComponentRollup
@@ -449,6 +453,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### parseArchlensArgv plan shape
 
 - ✅ returns a typed plan object
+- ✅ enables publish-after-scan with --publish
+- ✅ forwards --skip-validation to publish-after-scan
 - ✅ parses --system-name for multi-repo products
 - ✅ strips update subcommand before parsing analysis flags
 - ✅ treats scan subcommand as headless with config defaults
@@ -465,6 +471,23 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### parseResilienceArgv
 
 - ✅ parses resilience defaults and flags
+
+### publishCatalog
+
+#### Feature: Publish blueprint catalog from CI
+
+- ✅ skips publish when blueprint validation fails
+- ✅ publishes parseable files when --skip-validation is set
+- ✅ returns a dry-run plan without touching object storage
+- ✅ uploads through the storage port when dry-run is disabled
+- ✅ reports when object storage is not configured
+
+### publishRemoteCatalog
+
+#### Feature: Resolve publish storage adapter
+
+- ✅ returns null when only a read-only HTTP catalog is configured
+- ✅ applies CLI bucket overrides on top of environment config
 
 ### pulumiDiscovery
 
@@ -509,6 +532,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resolves absolute imports
 - ✅ resolves parent-relative imports
 - ✅ ignores stdlib imports
+
+### remoteCatalogRevision
+
+#### computeRemoteCatalogRevisionId
+
+- ✅ is stable for the same content regardless of input order
+- ✅ changes when file content changes
+- ✅ returns a 16-character hex prefix
 
 ### resilienceRun
 
@@ -677,6 +708,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ includes the compiled binary directory in search paths
 - ✅ deduplicates search dirs
 - ✅ returns null when no WASM exists for the language
+- ✅ resolves runtime tree-sitter.wasm from the web-tree-sitter package
 
 ### tsMorphParser
 
@@ -748,12 +780,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### parseArchlensCommand
 
 - ✅ routes validate and diff subcommands
+- ✅ routes publish subcommand
 
 #### parseDiffArgv
 
 - ✅ defaults baseline and current to blueprints when omitted
 - ✅ accepts positional baseline and current paths
 - ✅ accepts flag overrides
+
+#### parsePublishArgv
+
+- ✅ defaults to blueprints with dry run enabled
+- ✅ accepts workspace name and disables dry run
+- ✅ accepts --skip-validation for intentional demo trees
 
 #### parseValidateArgv
 
@@ -836,7 +875,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### advicelens-stress fixtures
 
-- ✅ loads every scenario YAML from blueprints/advicelens-stress/
+- ✅ loads every scenario YAML from samples/advicelens-stress/
 - ✅ composite-risk emits both chaos and tracelens recommendations with forensics
 - ✅ knowledge-silo scenario includes refactor-oriented forensics without requiring chaos
 - ✅ component drill-down carries code-level hotspot forensics
@@ -881,7 +920,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### chaoslens-stress external simulation scope
 
-- ✅ loads the external-scope sandbox pair from blueprints/chaoslens-stress/
+- ✅ loads the external-scope sandbox pair from samples/chaoslens-stress/
 - ✅ materializes unresolved dependency endpoints from the workspace
 - ✅ materializes workspace auth and propagates blast when faulting the external dependency
 - ✅ materializes auth when simulating the API that depends on it
@@ -889,7 +928,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### chaoslens-stress fixtures
 
-- ✅ loads every scenario YAML from blueprints/chaoslens-stress/
+- ✅ loads every scenario YAML from samples/chaoslens-stress/
 - ✅ 'e-commerce dual entry + preset API ci…'
 - ✅ 'shared hub fan-out with preset hub sa…'
 - ✅ 'safeguards bulkhead contains leaf fau…'
@@ -1536,6 +1575,39 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ suggests coordinating ownership when ownership is distributed
 - ✅ orders suggestions by priority descending
 
+### remoteCatalogSnapshot
+
+#### Feature: Atomic snapshot materialization
+
+- ✅ places latest pointer last so upload can cut over safely
+
+#### Feature: Parse published catalog manifests
+
+- ✅ round-trips a valid snapshot manifest
+- ✅ rejects invalid payloads
+
+#### Feature: Remote catalog snapshot contract (ADR-0010)
+
+##### Scenario: Invalid corpus is rejected before publish
+
+- ✅ normalizes Windows-style paths and rejects duplicates
+
+##### Scenario: Successful publish builds an immutable snapshot
+
+- ✅ builds snapshot manifest, latest pointer, and upload object keys
+
+#### parseRemoteCatalogLatestPointer
+
+- ✅ round-trips a valid latest pointer
+
+#### remote catalog path helpers
+
+- ✅ builds stable manifest keys
+
+#### serializeWorkspaceCatalog
+
+- ✅ emits trailing newline JSON
+
 ### resilienceAdviceEligibility
 
 #### isEstateResilienceDiagramLevel
@@ -1882,6 +1954,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ## Designer
 
+### _redirects
+
+#### _redirects (Cloudflare Pages SPA routing)
+
+- ✅ serves bundled-blueprints and schemas before the index.html fallback
+
 ### ActionControls
 
 #### ActionControls Component
@@ -2122,19 +2200,19 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### listBundledPreloadPaths
 
-- ✅ keeps ArchLens context, golden-journey, and stress estates only
+- ✅ keeps golden-journey and stress estates only
 - ✅ returns empty when catalog has no preload estates
-- ✅ documents ArchLens context plus golden/stress demo estates
+- ✅ documents golden/stress demo estates
 
 ### bundledSampleWorkspace
 
 #### BundledSampleWorkspaceAdapter
 
-- ✅ exposes the checked-in blueprints catalog for navigation
+- ✅ exposes the samples catalog for navigation
 - ✅ reads a single blueprint file by relative path
 - ✅ rejects non-blueprint source paths so callers can fall back to git raw
 - ✅ loads the prebuilt navigation catalog without fetching every YAML
-- ✅ warms ArchLens context, golden-journey, and stress YAML bodies from the full catalog
+- ✅ warms golden-journey and stress YAML bodies from the catalog
 
 #### BundledSampleWorkspaceAdapter fetch resilience
 
@@ -2345,6 +2423,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should reset focusedCyclePath to null when initSchema is called
 - ✅ does not seed session layout cache before autolayout on load
 
+##### validation console logging
+
+- ✅ logs schema validation warnings only when the issue set changes
+- ✅ does not re-run schema validation on dimensions-only node changes
+
 ### DiffMenu
 
 #### DiffMenu Component
@@ -2380,7 +2463,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### DocsShell
 
-- ✅ shows separate mobile scrollers for product guide and reference
+- ✅ shows separate mobile scrollers for product guide and secondary sections
 - ✅ shows local section nav on mobile and nested sidebar items when provided
 
 ### elkLayoutAdapter
@@ -2781,7 +2864,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ registers product CTAs for each product guide chapter
 - ✅ resolves in-app AdviceLens entry link
 - ✅ resolves absolute docs paths
-- ✅ registers the technology stack reference page
+- ✅ registers CI workflows and Tech sidebar pages
 - ✅ registers the AdviceLens engine reference page
 - ✅ resolves feature report pages
 - ✅ resolves legacy guide chapter paths
@@ -2853,6 +2936,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders empty message when provided
 - ✅ renders action buttons and handles clicks
 - ✅ renders narration detail and AdviceLens label when present
+
+### remoteCatalogWorkspace
+
+#### Feature: Hosted sandbox reads remote catalog
+
+- ✅ follows latest pointer → catalog → lazy YAML consume protocol
+- ✅ rejects diagram paths that are not listed in the remote catalog
 
 ### resetToEmptyWorkspace
 
@@ -2940,6 +3030,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ marks nodes with persisted or session safeguards when resilience mode is on
 - ✅ clears safeguard styling when resilience mode is off
+
+### sampleWorkspaceLoader
+
+#### loadSampleWorkspaceSession
+
+- ✅ uses bundled catalog when remote env is unset
+- ✅ falls back to bundled catalog when remote manifest is unavailable
+- ✅ uses remote catalog when manifest resolves
 
 ### sandboxWorkspace
 
