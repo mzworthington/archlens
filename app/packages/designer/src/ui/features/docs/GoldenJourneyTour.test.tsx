@@ -17,15 +17,15 @@ describe('GoldenJourneyTour', () => {
 
     expect(screen.getByTestId('journey-step-2-cta')).toHaveAttribute(
       'href',
-      '/workspace/golden-paths/golden-journey'
+      '/workspace/samples/golden-journey'
     );
     expect(screen.getByTestId('journey-step-3-cta')).toHaveAttribute(
       'href',
-      '/workspace/golden-paths/golden-journey?lens=chaoslens'
+      '/workspace/samples/golden-journey?lens=chaoslens'
     );
     expect(screen.getByTestId('journey-step-5-cta')).toHaveAttribute(
       'href',
-      '/workspace/golden-paths/golden-journey?lens=advicelens&plan=golden-paths%2Fgolden-journey%2Fcheckout-platform%2Fcheckout-api'
+      '/workspace/samples/golden-journey?lens=advicelens&plan=samples%2Fgolden-journey%2Fcheckout-platform%2Fcheckout-api'
     );
   });
 });

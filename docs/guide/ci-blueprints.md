@@ -6,9 +6,9 @@ Pin BlueprintSpec in pull requests the same way Structurizr Cloud or Backstage s
 
 | Path                                  | Role                                                    |
 | ------------------------------------- | ------------------------------------------------------- |
-| `golden-paths/`                       | Committed hand-authored demos                           |
+| `samples/`                            | Committed hand-authored demos                           |
 | `blueprints/`                         | **Gitignored** scan output (local or CI workspace only) |
-| `scripts/blueprint-sample-repos.json` | Sample repos for the dogfood catalog job                |
+| `scripts/blueprint-sample-repos.json` | Example codebases for the sample-repo matrix job        |
 
 ## One-command customer pattern
 
@@ -20,12 +20,13 @@ archlens scan --headless --output=blueprints --context=my-app --publish
 
 ## Dogfood workflows
 
-| Workflow                                                                                 | What it does                                                                                  |
-| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [`publish-blueprint-catalog.yml`](../../.github/workflows/publish-blueprint-catalog.yml) | Loop sample repos → scan into ephemeral `blueprints/` → merge `golden-paths/` → publish to R2 |
-| [`publish-golden-paths.yml`](../../.github/workflows/publish-golden-paths.yml)           | On `golden-paths/**` push: stage demos → publish (no sample re-scan)                          |
+| Workflow                                                                                 | What it does                                                      |
+| ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [`publish-blueprint-catalog.yml`](../../.github/workflows/publish-blueprint-catalog.yml) | Customer example: install latest CLI → scan this repo → publish   |
+| [`scan-sample-repos.yml`](../../.github/workflows/scan-sample-repos.yml)                 | Matrix over `blueprint-sample-repos.json`: clone → scan → publish |
+| [`ci.yml`](../../.github/workflows/ci.yml) `publish-samples`                             | On `main` pushes that touch `samples/**`: publish demos           |
 
-Nothing is pushed back to git. Bundled Canvas fallback mirrors `golden-paths/` only; production prefers the remote catalog.
+Nothing is pushed back to git. Bundled Canvas fallback mirrors `samples/` only; production prefers the remote catalog.
 
 ## Blueprint contract (PRs)
 

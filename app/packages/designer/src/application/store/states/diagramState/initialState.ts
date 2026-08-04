@@ -1,6 +1,6 @@
 import { validateGraph, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
-import { GOLDEN_PATHS_CONTEXT_PATH } from '../../goldenPathsSample';
+import { SAMPLES_CONTEXT_PATH } from '../../samplesWorkspace';
 
 export interface DiagramInitialState {
   schema: SystemSchema;
@@ -29,7 +29,7 @@ export function createDiagramInitialState(): DiagramInitialState {
     edges: [],
     validationResult: validateGraph(emptySchema),
     yamlCode: serializeSchemaToYaml(emptySchema),
-    currentFilePath: GOLDEN_PATHS_CONTEXT_PATH,
+    currentFilePath: SAMPLES_CONTEXT_PATH,
     loadedSystems: [],
     nodeRefMap: {},
   };

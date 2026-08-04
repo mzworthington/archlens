@@ -1,17 +1,17 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
-import { GOLDEN_PATHS_CONTEXT_PATH } from '../../application/store/goldenPathsSample';
+import { SAMPLES_CONTEXT_PATH } from '../../application/store/samplesWorkspace';
 
-const goldenPathLoaders = import.meta.glob<string>(
-  '../../../../../../golden-paths/**/*.{yaml,yml}',
-  { query: '?raw', import: 'default' }
-);
+const goldenPathLoaders = import.meta.glob<string>('../../../../../../samples/**/*.{yaml,yml}', {
+  query: '?raw',
+  import: 'default',
+});
 
 function relativePathFromGlobKey(key: string): string {
-  const marker = '/golden-paths/';
+  const marker = '/samples/';
   const idx = key.indexOf(marker);
   if (idx < 0) {
-    throw new Error(`Unexpected golden-paths glob key: ${key}`);
+    throw new Error(`Unexpected samples glob key: ${key}`);
   }
   return key.slice(idx + marker.length);
 }
@@ -22,7 +22,7 @@ const yamlByRelativePath = Object.fromEntries(
     .map(([key, loader]) => [relativePathFromGlobKey(key), loader])
 );
 
-/** Path-only catalog stub from committed golden-paths/. */
+/** Path-only catalog stub from committed samples/. */
 function catalogFromGoldenPaths(): WorkspaceCatalogEntry[] {
   return Object.keys(yamlByRelativePath)
     .sort((a, b) => a.localeCompare(b))
@@ -81,17 +81,17 @@ describe('BundledSampleWorkspaceAdapter', () => {
     vi.resetModules();
   });
 
-  it('exposes the golden-paths catalog for navigation', async () => {
+  it('exposes the samples catalog for navigation', async () => {
     const { loadBundledWorkspaceCatalog } = await import('./bundledSampleWorkspace');
     const catalog = await loadBundledWorkspaceCatalog();
     expect(catalog.length).toBeGreaterThan(10);
-    expect(catalog.some(e => e.path === GOLDEN_PATHS_CONTEXT_PATH)).toBe(true);
+    expect(catalog.some(e => e.path === SAMPLES_CONTEXT_PATH)).toBe(true);
     expect(catalog.some(e => e.path === 'chaoslens-stress/containers.yaml')).toBe(true);
   });
 
   it('reads a single blueprint file by relative path', async () => {
     const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
-    const content = await BundledSampleWorkspaceAdapter.readFile(GOLDEN_PATHS_CONTEXT_PATH);
+    const content = await BundledSampleWorkspaceAdapter.readFile(SAMPLES_CONTEXT_PATH);
     expect(content).toContain('entityRef:');
   });
 
@@ -109,7 +109,7 @@ describe('BundledSampleWorkspaceAdapter', () => {
 
     const catalog = await loadBundledWorkspaceCatalog();
     expect(catalog.length).toBeGreaterThan(10);
-    expect(catalog.some(e => e.path === GOLDEN_PATHS_CONTEXT_PATH)).toBe(true);
+    expect(catalog.some(e => e.path === SAMPLES_CONTEXT_PATH)).toBe(true);
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(String(fetchMock.mock.calls[0]?.[0])).toContain('/bundled-blueprints/catalog.json');
   });

@@ -3,19 +3,19 @@ import { resolveDiagramPathsForEntityScope } from './resolveTraceLensScopeDiagra
 
 describe('resolveDiagramPathsForEntityScope', () => {
   it('collects home and child diagram paths from the workspace catalog', () => {
-    const paths = resolveDiagramPathsForEntityScope('golden-paths/golden-journey/checkout-day', [
+    const paths = resolveDiagramPathsForEntityScope('samples/golden-journey/checkout-day', [
       {
         path: 'containers.yaml',
         name: 'Golden Journey Estate',
         level: 'container',
-        entityRef: 'golden-paths/golden-journey',
-        nodeEntityRefs: ['golden-paths/golden-journey/checkout-day'],
+        entityRef: 'samples/golden-journey',
+        nodeEntityRefs: ['samples/golden-journey/checkout-day'],
       },
       {
         path: 'checkout-platform/checkout-day-containers.yaml',
         name: 'Checkout Day',
         level: 'container',
-        entityRef: 'golden-paths/golden-journey/checkout-day',
+        entityRef: 'samples/golden-journey/checkout-day',
         nodeEntityRefs: [],
       },
     ]);

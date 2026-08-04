@@ -125,7 +125,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           <span>
             <span className="block text-sm font-semibold text-slate-100">Open demo blueprints</span>
             <span className="block text-xs text-slate-500 mt-0.5">
-              All peer context diagrams (Blueprint, Backstage, Golden Paths, stress fixtures)
+              All peer context diagrams (Blueprint, Backstage, Samples, stress fixtures)
             </span>
           </span>
         </button>

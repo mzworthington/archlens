@@ -16,6 +16,12 @@ function isYamlFileName(name: string): boolean {
   return name.endsWith('.yaml') || name.endsWith('.yml');
 }
 
+/** Merge overlays (e.g. context-overlay.yaml) are not standalone BlueprintSpec diagrams. */
+function isBlueprintSchemaFileName(name: string): boolean {
+  if (!isYamlFileName(name)) return false;
+  return !name.includes('-overlay.');
+}
+
 /**
  * Recursively collect blueprint YAML paths under rootDir.
  * Directories are discovered when listDirectoryNames returns children.
@@ -30,7 +36,9 @@ export function listBlueprintSchemaPaths(
     for (const name of fileSystem.listDirectoryNames(dir)) {
       const full = fileSystem.getAbsolutePath(dir, name);
       if (isYamlFileName(name)) {
-        results.push(full);
+        if (isBlueprintSchemaFileName(name)) {
+          results.push(full);
+        }
         continue;
       }
       if (fileSystem.listDirectoryNames(full).length > 0) {

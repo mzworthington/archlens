@@ -3,9 +3,9 @@ import { expectCanvasReady } from './canvas';
 import { gotoApp, releaseE2ePage } from './navigation';
 import { loadSandbox, ensureRightPanelOpen } from './workspace';
 
-export const GOLDEN_JOURNEY_PATH = '/workspace/golden-paths/golden-journey';
-export const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/golden-paths/golden-journey';
-export const PAYMENT_GATEWAY_ENTITY_REF = 'golden-paths/golden-journey/payment-gateway';
+export const GOLDEN_JOURNEY_PATH = '/workspace/samples/golden-journey';
+export const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/samples/golden-journey';
+export const PAYMENT_GATEWAY_ENTITY_REF = 'samples/golden-journey/payment-gateway';
 export const PAYMENT_GATEWAY_LABEL = 'Payment Gateway';
 export const CHECKOUT_API_LABEL = 'Checkout API';
 

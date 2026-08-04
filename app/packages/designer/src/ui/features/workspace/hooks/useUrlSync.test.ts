@@ -153,17 +153,17 @@ describe('useUrlSync', () => {
   });
 
   it('selects the context diagram when the URL names a context but the canvas shows a child estate', async () => {
-    mockLocation = '/workspace/golden-paths';
-    mockRouteParams = { '*': 'golden-paths' };
+    mockLocation = '/workspace/samples';
+    mockRouteParams = { '*': 'samples' };
 
     const contextSchema = {
-      name: 'Golden Paths',
+      name: 'Samples',
       version: '1.0.0',
       level: 'context' as const,
-      entityRef: 'golden-paths',
+      entityRef: 'samples',
       nodes: [
         {
-          entityRef: 'golden-paths/golden-journey',
+          entityRef: 'samples/golden-journey',
           type: 'group' as const,
           name: 'Golden Journey Estate',
         },
@@ -174,10 +174,10 @@ describe('useUrlSync', () => {
       name: 'Golden Journey Estate',
       version: '1.0.0',
       level: 'container' as const,
-      entityRef: 'golden-paths/golden-journey',
+      entityRef: 'samples/golden-journey',
       nodes: [
         {
-          entityRef: 'golden-paths/golden-journey/web',
+          entityRef: 'samples/golden-journey/web',
           type: 'web-app' as const,
           name: 'Web Storefront',
         },
@@ -192,24 +192,24 @@ describe('useUrlSync', () => {
       workspaceCatalog: [
         {
           path: 'context.yaml',
-          name: 'Golden Paths',
+          name: 'Samples',
           level: 'context',
-          entityRef: 'golden-paths',
-          nodeEntityRefs: ['golden-paths/golden-journey'],
+          entityRef: 'samples',
+          nodeEntityRefs: ['samples/golden-journey'],
         },
         {
           path: 'containers.yaml',
           name: 'Golden Journey Estate',
           level: 'container',
-          entityRef: 'golden-paths/golden-journey',
-          nodeEntityRefs: ['golden-paths/golden-journey/web'],
-          parentEntityRef: 'golden-paths',
+          entityRef: 'samples/golden-journey',
+          nodeEntityRefs: ['samples/golden-journey/web'],
+          parentEntityRef: 'samples',
         },
       ],
       loadedSystems: [
         {
           path: 'context.yaml',
-          name: 'Golden Paths',
+          name: 'Samples',
           schema: contextSchema,
         },
         {

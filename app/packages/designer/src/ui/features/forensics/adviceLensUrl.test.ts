@@ -22,8 +22,8 @@ describe('adviceLensUrl', () => {
 
   it('parses workspace AdviceLens URLs', () => {
     expect(parseAdviceLensUrl('/workspace', 'lens=advicelens')).toEqual({ showSource: false });
-    expect(parseAdviceLensUrl('/workspace/golden-paths', 'lens=advicelens')).toEqual({
-      entityRef: 'golden-paths',
+    expect(parseAdviceLensUrl('/workspace/samples', 'lens=advicelens')).toEqual({
+      entityRef: 'samples',
       showSource: false,
     });
   });

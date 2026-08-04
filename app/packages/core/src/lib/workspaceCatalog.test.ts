@@ -19,11 +19,11 @@ describe('workspaceCatalog', () => {
       nodes: [{ entityRef: 'eshop', type: 'software-system', name: 'Eshop' }],
       dependencies: [],
     };
-    const goldenPaths: SystemSchema = {
-      name: 'Golden Paths',
+    const samplesSchema: SystemSchema = {
+      name: 'Samples',
       version: '1.0.0',
       level: 'context',
-      entityRef: 'golden-paths',
+      entityRef: 'samples',
       nodes: [],
       dependencies: [],
     };
@@ -46,12 +46,12 @@ describe('workspaceCatalog', () => {
 
     const catalog = buildWorkspaceCatalog([
       { path: 'application/context.yaml', schema: application },
-      { path: 'golden-journey/context.yaml', schema: goldenPaths },
+      { path: 'golden-journey/context.yaml', schema: samplesSchema },
       { path: 'infrastructure/context.yaml', schema: infrastructure },
       { path: 'eshop/containers.yaml', schema: eshopContainers },
     ]);
 
-    expect(catalog.find(e => e.entityRef === 'golden-paths')?.parentEntityRef).toBeUndefined();
+    expect(catalog.find(e => e.entityRef === 'samples')?.parentEntityRef).toBeUndefined();
     expect(catalog.find(e => e.entityRef === 'infrastructure')?.parentEntityRef).toBeUndefined();
     expect(catalog.find(e => e.entityRef === 'application')?.parentEntityRef).toBeUndefined();
     expect(catalog.find(e => e.entityRef === 'eshop')?.parentEntityRef).toBe('application');

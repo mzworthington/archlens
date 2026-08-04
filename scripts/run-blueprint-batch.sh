@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Regenerate blueprints/ by scanning sibling repos (or paths from BLUEPRINT_BATCH_PARENT).
-# Repo list / contexts: scripts/blueprint-sample-repos.json (shared with CI matrix).
+# Repo list / contexts: scripts/blueprint-sample-repos.json (shared with scan-sample-repos.yml).
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -112,9 +112,9 @@ for name in "${DIRECTORIES[@]}"; do
 done
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "▶ install golden-path products"
+echo "▶ install sample products"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-node "${SCRIPT_DIR}/merge-golden-paths.mjs" "${BLUEPRINTS_DIR}"
+node "${SCRIPT_DIR}/merge-samples.mjs" "${BLUEPRINTS_DIR}"
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

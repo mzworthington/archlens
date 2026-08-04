@@ -1,7 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { parseSchemaFromYaml, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
 import { MockFileSystem, MockLogger } from '../test/fakes.ts';
-import { applyExternalDependenciesPass } from './externalDependenciesPass.ts';
+import {
+  applyExternalDependenciesPass,
+  listBlueprintSchemaPaths,
+} from './externalDependenciesPass.ts';
 
 const containers: SystemSchema = {
   entityRef: 'application/cli',
@@ -266,5 +269,17 @@ describe('applyExternalDependenciesPass', () => {
         n => n.entityRef === 'chaoslens-stress/external-auth/auth' && n.external
       )
     ).toBeDefined();
+  });
+});
+
+describe('listBlueprintSchemaPaths', () => {
+  it('skips *-overlay.yaml merge helpers', () => {
+    const fileSystem = new MockFileSystem();
+    fileSystem.directories.set('/workspace/samples', ['demo']);
+    fileSystem.directories.set('/workspace/samples/demo', ['context.yaml', 'context-overlay.yaml']);
+
+    expect(listBlueprintSchemaPaths('/workspace/samples', fileSystem)).toEqual([
+      '/workspace/samples/demo/context.yaml',
+    ]);
   });
 });

@@ -12,7 +12,7 @@ import (
 )
 
 // FindRepoRoot walks upward from start (or the working directory) until it
-// finds the ArchLens repo root containing golden-paths/chaoslens-stress.
+// finds the ArchLens repo root containing samples/chaoslens-stress.
 func FindRepoRoot(start string) (string, error) {
 	dir := start
 	if dir == "" {
@@ -23,13 +23,13 @@ func FindRepoRoot(start string) (string, error) {
 		dir = wd
 	}
 	for {
-		candidate := filepath.Join(dir, "golden-paths", "chaoslens-stress")
+		candidate := filepath.Join(dir, "samples", "chaoslens-stress")
 		if info, err := os.Stat(candidate); err == nil && info.IsDir() {
 			return dir, nil
 		}
 		parent := filepath.Dir(dir)
 		if parent == dir {
-			return "", fmt.Errorf("repo root with golden-paths/chaoslens-stress not found from %q", start)
+			return "", fmt.Errorf("repo root with samples/chaoslens-stress not found from %q", start)
 		}
 		dir = parent
 	}

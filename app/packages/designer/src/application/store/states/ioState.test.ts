@@ -3,7 +3,7 @@ import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { useBlueprintStore } from '../store';
 import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
-import { GOLDEN_PATHS_CONTEXT_PATH } from '../goldenPathsSample';
+import { SAMPLES_CONTEXT_PATH } from '../samplesWorkspace';
 import * as sampleWorkspaceLoader from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 
@@ -345,33 +345,33 @@ nodes: []`,
     it('opens from prebuilt catalog and only reads the entry YAML', async () => {
       const catalog: WorkspaceCatalogEntry[] = [
         {
-          path: GOLDEN_PATHS_CONTEXT_PATH,
-          name: 'Golden Paths',
+          path: SAMPLES_CONTEXT_PATH,
+          name: 'Samples',
           level: 'context',
-          entityRef: 'golden-paths',
-          nodeEntityRefs: ['golden-paths/golden-journey'],
+          entityRef: 'samples',
+          nodeEntityRefs: ['samples/golden-journey'],
         },
         {
           path: 'golden-journey/containers.yaml',
           name: 'Golden Journey Estate',
           level: 'container',
-          entityRef: 'golden-paths/golden-journey',
-          nodeEntityRefs: ['golden-paths/golden-journey/web'],
-          parentEntityRef: 'golden-paths',
+          entityRef: 'samples/golden-journey',
+          nodeEntityRefs: ['samples/golden-journey/web'],
+          parentEntityRef: 'samples',
         },
       ];
       const readFile = vi.fn(async (path: string) => {
-        if (path !== GOLDEN_PATHS_CONTEXT_PATH) {
+        if (path !== SAMPLES_CONTEXT_PATH) {
           throw new Error(`unexpected read: ${path}`);
         }
         return `
 version: ${v3Version}
 level: context
 metadata:
-  entityRef: golden-paths
-  name: Golden Paths
+  entityRef: samples
+  name: Samples
 nodes:
-  - entityRef: golden-paths/golden-journey
+  - entityRef: samples/golden-journey
     type: software-system
     name: Golden Journey
 dependencies: []
@@ -409,8 +409,8 @@ dependencies: []
       expect(state.isSampleWorkspace).toBe(true);
       expect(state.workspaceCatalog).toEqual(catalog);
       expect(state.loadedSystems).toHaveLength(1);
-      expect(state.currentFilePath).toBe(GOLDEN_PATHS_CONTEXT_PATH);
-      expect(state.schema.name).toBe('Golden Paths');
+      expect(state.currentFilePath).toBe(SAMPLES_CONTEXT_PATH);
+      expect(state.schema.name).toBe('Samples');
       expect(state.isLoading).toBe(false);
       expect(readFile).toHaveBeenCalledTimes(1);
       expect(samplePort.readDirectoryFiles).not.toHaveBeenCalled();

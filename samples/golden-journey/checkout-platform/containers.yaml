@@ -2,13 +2,13 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
-  entityRef: golden-paths/golden-journey/checkout-platform
+  entityRef: samples/golden-journey/checkout-platform
   name: Checkout Platform
   description: >
     Purchase flow inside the estate — Checkout API calls the shared Payment Gateway.
     Zoom here from the group boundary on the estate canvas.
 nodes:
-  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api
+  - entityRef: samples/golden-journey/checkout-platform/checkout-api
     type: rest-api
     name: Checkout API
     forensics:
@@ -24,10 +24,10 @@ nodes:
       hotspotScore: 0.44
       classifications: [hotspot]
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/order-events
+  - entityRef: samples/golden-journey/checkout-platform/order-events
     type: event-broker
     name: Order Events
-  - entityRef: golden-paths/golden-journey/payment-gateway
+  - entityRef: samples/golden-journey/payment-gateway
     type: gateway-api
     name: Payment Gateway
     external: true
@@ -35,10 +35,10 @@ nodes:
       vendor: Stripe-compatible PSP
       classification: third-party
 dependencies:
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api
-    to: golden-paths/golden-journey/checkout-platform/order-events
+  - from: samples/golden-journey/checkout-platform/checkout-api
+    to: samples/golden-journey/checkout-platform/order-events
     type: publish-subscribe
     description: Order placed events
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api
-    to: golden-paths/golden-journey/payment-gateway
+  - from: samples/golden-journey/checkout-platform/checkout-api
+    to: samples/golden-journey/payment-gateway
     type: direct-call

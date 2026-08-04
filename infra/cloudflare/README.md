@@ -64,7 +64,8 @@ pulumi up
 | `app/packages/designer/public/_redirects` | SPA routing |
 | `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
-| `.github/workflows/publish-blueprint-catalog.yml` | Sample repo scan matrix → merge `golden-paths/` → publish to R2 |
-| `.github/workflows/publish-golden-paths.yml` | Push `golden-paths/**` → publish demos to R2 |
+| `.github/workflows/publish-blueprint-catalog.yml` | Install CLI → scan this repo → publish to R2 (customer example) |
+| `.github/workflows/scan-sample-repos.yml` | Matrix over example codebases → scan → publish to R2 |
+| `.github/workflows/ci.yml` (`publish-samples`) | When `samples/**` changes on `main` → publish `samples/` to R2 |
 | `Pulumi.prod.yaml.example` | Committed stack defaults (local `Pulumi.prod.yaml` is gitignored) |
 | `bin/setup-cloudflare-hosting.sh` | Bootstrap: bws → gh + pulumi config |

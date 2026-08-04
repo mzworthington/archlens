@@ -16,10 +16,10 @@ describe('buildWorkspaceCatalogFromYamlFiles', () => {
 version: ${v4}
 level: context
 metadata:
-  entityRef: golden-paths
-  name: Golden Paths
+  entityRef: samples
+  name: Samples
 nodes:
-  - entityRef: golden-paths/golden-journey
+  - entityRef: samples/golden-journey
     type: software-system
     name: Golden Journey
 dependencies: []
@@ -31,10 +31,10 @@ dependencies: []
 version: ${v4}
 level: container
 metadata:
-  entityRef: golden-paths/golden-journey
+  entityRef: samples/golden-journey
   name: Golden Journey Estate
 nodes:
-  - entityRef: golden-paths/golden-journey/web
+  - entityRef: samples/golden-journey/web
     type: web-app
     name: Web
 dependencies: []
@@ -53,9 +53,9 @@ dependencies: []
       'golden-journey/context.yaml',
     ]);
     const containers = catalog.find(e => e.path === 'golden-journey/containers.yaml');
-    expect(containers?.entityRef).toBe('golden-paths/golden-journey');
-    expect(containers?.parentEntityRef).toBe('golden-paths');
-    expect(containers?.nodeEntityRefs).toContain('golden-paths/golden-journey/web');
+    expect(containers?.entityRef).toBe('samples/golden-journey');
+    expect(containers?.parentEntityRef).toBe('samples');
+    expect(containers?.nodeEntityRefs).toContain('samples/golden-journey/web');
   });
 
   it('reports skipped invalid files via onInvalid', () => {

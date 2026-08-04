@@ -122,7 +122,7 @@ export const TraceLensPanel: React.FC = () => {
                           ? 'Blueprints are loaded but have no TraceLens blocks. Re-scan with git enabled (`archlens` default) or run `archlens enrich --git` on existing YAML.'
                           : hasScope
                             ? 'No rows match this filter. Try All or Heating, or zoom into more component diagrams from the canvas.'
-                            : 'Open the Golden Paths sample or a blueprint folder from the startup chooser, then return to TraceLens.'}
+                            : 'Open the Samples workspace or a blueprint folder from the startup chooser, then return to TraceLens.'}
                   </p>
                 </div>
               ) : (

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { loadWorkspaceFromCatalog } from './openWorkspace';
-import { GOLDEN_JOURNEY_CONTAINERS_PATH } from '../../goldenPathsSample';
+import { GOLDEN_JOURNEY_CONTAINERS_PATH } from '../../samplesWorkspace';
 
 const v4 = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
 
@@ -15,18 +15,18 @@ const catalog: WorkspaceCatalogEntry[] = [
   },
   {
     path: 'golden-journey/context.yaml',
-    name: 'Golden Paths',
+    name: 'Samples',
     level: 'context',
-    entityRef: 'golden-paths',
-    nodeEntityRefs: ['golden-paths/golden-journey'],
+    entityRef: 'samples',
+    nodeEntityRefs: ['samples/golden-journey'],
   },
   {
     path: GOLDEN_JOURNEY_CONTAINERS_PATH,
     name: 'Golden Journey Estate',
     level: 'container',
-    entityRef: 'golden-paths/golden-journey',
-    nodeEntityRefs: ['golden-paths/golden-journey/web'],
-    parentEntityRef: 'golden-paths',
+    entityRef: 'samples/golden-journey',
+    nodeEntityRefs: ['samples/golden-journey/web'],
+    parentEntityRef: 'samples',
   },
   {
     path: 'other/containers.yaml',
@@ -41,10 +41,10 @@ const entryYaml = `
 version: ${v4}
 level: container
 metadata:
-  entityRef: golden-paths/golden-journey
+  entityRef: samples/golden-journey
   name: Golden Journey Estate
 nodes:
-  - entityRef: golden-paths/golden-journey/web
+  - entityRef: samples/golden-journey/web
     type: web-app
     name: Web
 dependencies: []
@@ -78,7 +78,7 @@ describe('loadWorkspaceFromCatalog', () => {
       catalog,
       entryPath: GOLDEN_JOURNEY_CONTAINERS_PATH,
       readFile,
-      getDirectoryName: () => 'golden-paths',
+      getDirectoryName: () => 'samples',
       workingCopy: workingCopy as never,
       logger,
       initSchema,
@@ -93,7 +93,7 @@ describe('loadWorkspaceFromCatalog', () => {
       expect.objectContaining({
         isWorkspaceOpen: true,
         isSampleWorkspace: true,
-        workspaceName: 'golden-paths',
+        workspaceName: 'samples',
         workspaceCatalog: catalog,
         currentFilePath: GOLDEN_JOURNEY_CONTAINERS_PATH,
         loadedSystems: [
@@ -106,7 +106,7 @@ describe('loadWorkspaceFromCatalog', () => {
     );
     expect(initSchema).toHaveBeenCalledWith(
       expect.objectContaining({
-        entityRef: 'golden-paths/golden-journey',
+        entityRef: 'samples/golden-journey',
         level: 'container',
       })
     );
@@ -118,7 +118,7 @@ describe('loadWorkspaceFromCatalog', () => {
         catalog,
         entryPath: 'missing.yaml',
         readFile: async () => entryYaml,
-        getDirectoryName: () => 'golden-paths',
+        getDirectoryName: () => 'samples',
         workingCopy: workingCopy as never,
         logger,
         initSchema,

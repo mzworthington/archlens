@@ -10,10 +10,10 @@ const contextYaml = `
 version: ${v4}
 level: context
 metadata:
-  entityRef: golden-paths
-  name: Golden Paths
+  entityRef: samples
+  name: Samples
 nodes:
-  - entityRef: golden-paths/golden-journey
+  - entityRef: samples/golden-journey
     type: software-system
     name: Golden Journey
 dependencies: []
@@ -22,10 +22,10 @@ dependencies: []
 const catalog = [
   {
     path: 'golden-journey/context.yaml',
-    name: 'Golden Paths',
+    name: 'Samples',
     level: 'context' as const,
-    entityRef: 'golden-paths',
-    nodeEntityRefs: ['golden-paths/golden-journey'],
+    entityRef: 'samples',
+    nodeEntityRefs: ['samples/golden-journey'],
   },
 ];
 
@@ -54,7 +54,7 @@ describe('Feature: Hosted sandbox reads remote catalog', () => {
 
     const options = {
       baseUrl: 'https://blueprints.example.dev/',
-      workspaceName: 'golden-paths',
+      workspaceName: 'samples',
       fetchImpl,
     };
 
@@ -63,8 +63,8 @@ describe('Feature: Hosted sandbox reads remote catalog', () => {
 
     const adapter = createRemoteCatalogWorkspaceAdapter(options);
     const content = await adapter.readFile('golden-journey/context.yaml');
-    expect(content).toContain('entityRef: golden-paths');
-    expect(adapter.getDirectoryName()).toBe('golden-paths');
+    expect(content).toContain('entityRef: samples');
+    expect(adapter.getDirectoryName()).toBe('samples');
   });
 
   it('rejects diagram paths that are not listed in the remote catalog', async () => {
@@ -88,7 +88,7 @@ describe('Feature: Hosted sandbox reads remote catalog', () => {
 
     const adapter = createRemoteCatalogWorkspaceAdapter({
       baseUrl: 'https://blueprints.example.dev/',
-      workspaceName: 'golden-paths',
+      workspaceName: 'samples',
       fetchImpl,
     });
 

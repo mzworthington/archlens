@@ -25,7 +25,7 @@ func loadLargeGraphSchema(t *testing.T) model.SystemSchema {
 	if err != nil {
 		t.Fatal(err)
 	}
-	path := filepath.Join(root, "golden-paths", "chaoslens-stress", "large-graph-containers.yaml")
+	path := filepath.Join(root, "samples", "chaoslens-stress", "large-graph-containers.yaml")
 	schema, err := fixtures.LoadBlueprintSchema(path)
 	if err != nil {
 		t.Fatal(err)

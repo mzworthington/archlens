@@ -2,13 +2,13 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: golden-paths/golden-journey/checkout-platform/checkout-api
+  entityRef: samples/golden-journey/checkout-platform/checkout-api
   name: Checkout API Components
   description: >
     Purchase orchestration — cart aggregation, inventory holds, fraud checks, and the
     Payment Client hotspot that AdviceLens ranks after Payment Gateway outage simulations.
 nodes:
-  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api/order-controller
+  - entityRef: samples/golden-journey/checkout-platform/checkout-api/order-controller
     type: component
     name: Order Controller
     properties:
@@ -33,7 +33,7 @@ nodes:
           score: 0.64
           sharedCommits: 16
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api/cart-aggregator
+  - entityRef: samples/golden-journey/checkout-platform/checkout-api/cart-aggregator
     type: component
     name: Cart Aggregator
     properties:
@@ -51,7 +51,7 @@ nodes:
       hotspotScore: 0.34
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api/inventory-reservation-client
+  - entityRef: samples/golden-journey/checkout-platform/checkout-api/inventory-reservation-client
     type: component
     name: Inventory Reservation Client
     properties:
@@ -69,7 +69,7 @@ nodes:
       hotspotScore: 0.28
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api/fraud-scoring-adapter
+  - entityRef: samples/golden-journey/checkout-platform/checkout-api/fraud-scoring-adapter
     type: component
     name: Fraud Scoring Adapter
     properties:
@@ -91,7 +91,7 @@ nodes:
           score: 0.71
           sharedCommits: 18
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api/tax-calculator
+  - entityRef: samples/golden-journey/checkout-platform/checkout-api/tax-calculator
     type: component
     name: Tax Calculator
     properties:
@@ -109,7 +109,7 @@ nodes:
       hotspotScore: 0.15
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api/payment-client
+  - entityRef: samples/golden-journey/checkout-platform/checkout-api/payment-client
     type: component
     name: Payment Client
     properties:
@@ -137,7 +137,7 @@ nodes:
           score: 0.58
           sharedCommits: 14
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/checkout-platform/checkout-api/order-event-publisher
+  - entityRef: samples/golden-journey/checkout-platform/checkout-api/order-event-publisher
     type: component
     name: Order Event Publisher
     properties:
@@ -156,37 +156,37 @@ nodes:
       classifications: []
       sinceDays: 365
 dependencies:
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/order-controller
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/cart-aggregator
+  - from: samples/golden-journey/checkout-platform/checkout-api/order-controller
+    to: samples/golden-journey/checkout-platform/checkout-api/cart-aggregator
     type: direct-call
     description: Build checkout cart
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/order-controller
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/inventory-reservation-client
+  - from: samples/golden-journey/checkout-platform/checkout-api/order-controller
+    to: samples/golden-journey/checkout-platform/checkout-api/inventory-reservation-client
     type: direct-call
     description: Reserve stock
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/order-controller
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/fraud-scoring-adapter
+  - from: samples/golden-journey/checkout-platform/checkout-api/order-controller
+    to: samples/golden-journey/checkout-platform/checkout-api/fraud-scoring-adapter
     type: direct-call
     description: Pre-auth risk check
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/order-controller
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/tax-calculator
+  - from: samples/golden-journey/checkout-platform/checkout-api/order-controller
+    to: samples/golden-journey/checkout-platform/checkout-api/tax-calculator
     type: direct-call
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/order-controller
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/payment-client
+  - from: samples/golden-journey/checkout-platform/checkout-api/order-controller
+    to: samples/golden-journey/checkout-platform/checkout-api/payment-client
     type: direct-call
     description: Capture payment
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/order-controller
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/order-event-publisher
+  - from: samples/golden-journey/checkout-platform/checkout-api/order-controller
+    to: samples/golden-journey/checkout-platform/checkout-api/order-event-publisher
     type: direct-call
     description: Emit order placed
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/cart-aggregator
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/inventory-reservation-client
+  - from: samples/golden-journey/checkout-platform/checkout-api/cart-aggregator
+    to: samples/golden-journey/checkout-platform/checkout-api/inventory-reservation-client
     type: direct-call
     description: Validate line items
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/cart-aggregator
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/tax-calculator
+  - from: samples/golden-journey/checkout-platform/checkout-api/cart-aggregator
+    to: samples/golden-journey/checkout-platform/checkout-api/tax-calculator
     type: direct-call
-  - from: golden-paths/golden-journey/checkout-platform/checkout-api/payment-client
-    to: golden-paths/golden-journey/checkout-platform/checkout-api/fraud-scoring-adapter
+  - from: samples/golden-journey/checkout-platform/checkout-api/payment-client
+    to: samples/golden-journey/checkout-platform/checkout-api/fraud-scoring-adapter
     type: direct-call
     description: Post-auth verification

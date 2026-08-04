@@ -2,13 +2,13 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: golden-paths/golden-journey/identity-platform/sso-api
+  entityRef: samples/golden-journey/identity-platform/sso-api
   name: SSO API Components
   description: >
     Sign-in, MFA, and OAuth client registry — session handoff into checkout flows through
     token issuance and validation chains.
 nodes:
-  - entityRef: golden-paths/golden-journey/identity-platform/sso-api/auth-controller
+  - entityRef: samples/golden-journey/identity-platform/sso-api/auth-controller
     type: component
     name: Auth Controller
     properties:
@@ -26,7 +26,7 @@ nodes:
       hotspotScore: 0.19
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/identity-platform/sso-api/token-issuer
+  - entityRef: samples/golden-journey/identity-platform/sso-api/token-issuer
     type: component
     name: Token Issuer
     properties:
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0.24
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/identity-platform/sso-api/session-validator
+  - entityRef: samples/golden-journey/identity-platform/sso-api/session-validator
     type: component
     name: Session Validator
     properties:
@@ -62,7 +62,7 @@ nodes:
       hotspotScore: 0.17
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/identity-platform/sso-api/mfa-challenge-handler
+  - entityRef: samples/golden-journey/identity-platform/sso-api/mfa-challenge-handler
     type: component
     name: MFA Challenge Handler
     properties:
@@ -80,7 +80,7 @@ nodes:
       hotspotScore: 0.3
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/identity-platform/sso-api/oauth-client-registry
+  - entityRef: samples/golden-journey/identity-platform/sso-api/oauth-client-registry
     type: component
     name: OAuth Client Registry
     properties:
@@ -98,7 +98,7 @@ nodes:
       hotspotScore: 0.18
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/identity-platform/sso-api/ldap-connector
+  - entityRef: samples/golden-journey/identity-platform/sso-api/ldap-connector
     type: component
     name: LDAP Connector
     properties:
@@ -117,27 +117,27 @@ nodes:
       classifications: [knowledge-silo]
       sinceDays: 365
 dependencies:
-  - from: golden-paths/golden-journey/identity-platform/sso-api/auth-controller
-    to: golden-paths/golden-journey/identity-platform/sso-api/mfa-challenge-handler
+  - from: samples/golden-journey/identity-platform/sso-api/auth-controller
+    to: samples/golden-journey/identity-platform/sso-api/mfa-challenge-handler
     type: direct-call
     description: Step-up auth
-  - from: golden-paths/golden-journey/identity-platform/sso-api/auth-controller
-    to: golden-paths/golden-journey/identity-platform/sso-api/token-issuer
+  - from: samples/golden-journey/identity-platform/sso-api/auth-controller
+    to: samples/golden-journey/identity-platform/sso-api/token-issuer
     type: direct-call
     description: Issue session
-  - from: golden-paths/golden-journey/identity-platform/sso-api/auth-controller
-    to: golden-paths/golden-journey/identity-platform/sso-api/ldap-connector
+  - from: samples/golden-journey/identity-platform/sso-api/auth-controller
+    to: samples/golden-journey/identity-platform/sso-api/ldap-connector
     type: direct-call
     description: Enterprise directory
-  - from: golden-paths/golden-journey/identity-platform/sso-api/auth-controller
-    to: golden-paths/golden-journey/identity-platform/sso-api/oauth-client-registry
+  - from: samples/golden-journey/identity-platform/sso-api/auth-controller
+    to: samples/golden-journey/identity-platform/sso-api/oauth-client-registry
     type: direct-call
     description: Client credentials
-  - from: golden-paths/golden-journey/identity-platform/sso-api/token-issuer
-    to: golden-paths/golden-journey/identity-platform/sso-api/session-validator
+  - from: samples/golden-journey/identity-platform/sso-api/token-issuer
+    to: samples/golden-journey/identity-platform/sso-api/session-validator
     type: direct-call
     description: Shared session validation helpers
-  - from: golden-paths/golden-journey/identity-platform/sso-api/mfa-challenge-handler
-    to: golden-paths/golden-journey/identity-platform/sso-api/session-validator
+  - from: samples/golden-journey/identity-platform/sso-api/mfa-challenge-handler
+    to: samples/golden-journey/identity-platform/sso-api/session-validator
     type: direct-call
     description: Bind MFA to session

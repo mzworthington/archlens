@@ -2,13 +2,13 @@
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: component
 metadata:
-  entityRef: golden-paths/golden-journey/mobile
+  entityRef: samples/golden-journey/mobile
   name: Mobile App Components
   description: >
     Native shopper and buyer flows — offline cart sync and push-driven renewal nudges
     mirror the web estate entry points on the canvas.
 nodes:
-  - entityRef: golden-paths/golden-journey/mobile/native-catalog-view
+  - entityRef: samples/golden-journey/mobile/native-catalog-view
     type: component
     name: Native Catalog View
     properties:
@@ -26,7 +26,7 @@ nodes:
       hotspotScore: 0.24
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/mobile/native-checkout-module
+  - entityRef: samples/golden-journey/mobile/native-checkout-module
     type: component
     name: Native Checkout Module
     properties:
@@ -44,7 +44,7 @@ nodes:
       hotspotScore: 0.4
       classifications: [hotspot]
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/mobile/offline-cart-sync
+  - entityRef: samples/golden-journey/mobile/offline-cart-sync
     type: component
     name: Offline Cart Sync
     properties:
@@ -62,7 +62,7 @@ nodes:
       hotspotScore: 0.28
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/mobile/push-notification-handler
+  - entityRef: samples/golden-journey/mobile/push-notification-handler
     type: component
     name: Push Notification Handler
     properties:
@@ -80,7 +80,7 @@ nodes:
       hotspotScore: 0.16
       classifications: []
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/mobile/session-token-vault
+  - entityRef: samples/golden-journey/mobile/session-token-vault
     type: component
     name: Session Token Vault
     properties:
@@ -98,7 +98,7 @@ nodes:
       hotspotScore: 0.2
       classifications: [knowledge-silo]
       sinceDays: 365
-  - entityRef: golden-paths/golden-journey/mobile/catalog-api-client
+  - entityRef: samples/golden-journey/mobile/catalog-api-client
     type: component
     name: Catalog API Client
     properties:
@@ -117,25 +117,25 @@ nodes:
       classifications: []
       sinceDays: 365
 dependencies:
-  - from: golden-paths/golden-journey/mobile/native-catalog-view
-    to: golden-paths/golden-journey/mobile/catalog-api-client
+  - from: samples/golden-journey/mobile/native-catalog-view
+    to: samples/golden-journey/mobile/catalog-api-client
     type: direct-call
-  - from: golden-paths/golden-journey/mobile/native-catalog-view
-    to: golden-paths/golden-journey/mobile/offline-cart-sync
+  - from: samples/golden-journey/mobile/native-catalog-view
+    to: samples/golden-journey/mobile/offline-cart-sync
     type: direct-call
     description: Cache browse results
-  - from: golden-paths/golden-journey/mobile/native-checkout-module
-    to: golden-paths/golden-journey/mobile/offline-cart-sync
+  - from: samples/golden-journey/mobile/native-checkout-module
+    to: samples/golden-journey/mobile/offline-cart-sync
     type: direct-call
-  - from: golden-paths/golden-journey/mobile/native-checkout-module
-    to: golden-paths/golden-journey/mobile/session-token-vault
+  - from: samples/golden-journey/mobile/native-checkout-module
+    to: samples/golden-journey/mobile/session-token-vault
     type: direct-call
     description: Secure session
-  - from: golden-paths/golden-journey/mobile/push-notification-handler
-    to: golden-paths/golden-journey/mobile/native-checkout-module
+  - from: samples/golden-journey/mobile/push-notification-handler
+    to: samples/golden-journey/mobile/native-checkout-module
     type: direct-call
     description: Renewal deep link
-  - from: golden-paths/golden-journey/mobile/offline-cart-sync
-    to: golden-paths/golden-journey/mobile/catalog-api-client
+  - from: samples/golden-journey/mobile/offline-cart-sync
+    to: samples/golden-journey/mobile/catalog-api-client
     type: direct-call
     description: Reconcile on reconnect
