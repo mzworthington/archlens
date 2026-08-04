@@ -15,61 +15,21 @@ const pagesProject = new cloudflare.PagesProject('archlens', {
   productionBranch: 'main',
 });
 
-// Proxied CNAMEs to the Pages project (apex uses CNAME flattening).
-// If apex/www already exist (e.g. leftover GitHub Pages targets), delete them in the
-// Cloudflare DNS UI or import into this stack before the first apply — see README.
-const apexDns = new cloudflare.DnsRecord(
-  'apex-pages',
-  {
-    zoneId,
-    name: apexDomain,
-    type: 'CNAME',
-    content: pagesProject.subdomain,
-    proxied: true,
-    ttl: 1,
-    comment: 'ArchLens Cloudflare Pages',
-  },
-  { deleteBeforeReplace: true },
-);
+// PagesDomain attaches custom hostnames and auto-configures DNS when the zone is on Cloudflare.
+new cloudflare.PagesDomain('apex', {
+  accountId,
+  projectName: pagesProject.name,
+  name: apexDomain,
+});
 
-const wwwDns = new cloudflare.DnsRecord(
-  'www-pages',
-  {
-    zoneId,
-    name: wwwDomain,
-    type: 'CNAME',
-    content: pagesProject.subdomain,
-    proxied: true,
-    ttl: 1,
-    comment: 'ArchLens Cloudflare Pages',
-  },
-  { deleteBeforeReplace: true },
-);
-
-new cloudflare.PagesDomain(
-  'apex',
-  {
-    accountId,
-    projectName: pagesProject.name,
-    name: apexDomain,
-  },
-  { dependsOn: [apexDns] },
-);
-
-new cloudflare.PagesDomain(
-  'www',
-  {
-    accountId,
-    projectName: pagesProject.name,
-    name: wwwDomain,
-  },
-  { dependsOn: [wwwDns] },
-);
+new cloudflare.PagesDomain('www', {
+  accountId,
+  projectName: pagesProject.name,
+  name: wwwDomain,
+});
 
 const zone = cloudflare.getZoneOutput({ zoneId });
 
 export const pagesProjectNameOut = pagesProject.name;
 export const pagesSubdomain = pagesProject.subdomain;
 export const zoneName = zone.name;
-export const apexDnsContent = apexDns.content;
-export const wwwDnsContent = wwwDns.content;
