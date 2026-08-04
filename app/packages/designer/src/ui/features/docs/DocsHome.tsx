@@ -113,7 +113,7 @@ const PRODUCTS: Product[] = [
       'Declarative YAML scenarios that bind faults to a BlueprintSpec diagram — Canvas, CLI, and CI validate against the same schema.',
     href: '/guide/chaos-spec',
     category: 'Contract',
-    icon: ShieldAlert,
+    icon: FileCode2,
     foundational: true,
   },
 ];

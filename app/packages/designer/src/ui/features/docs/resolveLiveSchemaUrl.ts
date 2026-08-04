@@ -39,18 +39,10 @@ export function parseLiveSchemaFence(raw: string): ResolvedLiveSchema | null {
  * Build the public JSON Schema URL for a docs live-schema fence.
  * Channel must be `latest` or `v{n}` - rejects path traversal.
  */
-export function resolveLiveSchemaUrl(
-  fenceBody: string,
-  baseUrl = '/',
-  kind?: LiveSchemaKind
-): string | null {
+export function resolveLiveSchemaUrl(fenceBody: string, baseUrl = '/'): string | null {
   const parsed = parseLiveSchemaFence(fenceBody);
   if (!parsed) return null;
-  const resolvedKind = kind ?? parsed.kind;
-  const channel = parsed.channel;
-  if (!CHANNEL_PATTERN.test(channel)) return null;
-  if (!(SCHEMA_KINDS as readonly string[]).includes(resolvedKind)) return null;
 
   const base = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
-  return `${base}schemas/${channel}/${SCHEMA_FILES[resolvedKind]}`;
+  return `${base}schemas/${parsed.channel}/${SCHEMA_FILES[parsed.kind]}`;
 }
