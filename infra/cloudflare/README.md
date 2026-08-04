@@ -61,5 +61,6 @@ pulumi up
 | `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
 | `.github/workflows/publish-blueprint-catalog.yml` | Nightly `archlens publish` to R2 (CLI from latest GitHub release) |
+| `.github/workflows/regenerate-blueprints.yml` | Weekly matrix scan of sample repos → PR updating `blueprints/` |
 | `Pulumi.prod.yaml.example` | Committed stack defaults (local `Pulumi.prod.yaml` is gitignored) |
 | `bin/setup-cloudflare-hosting.sh` | Bootstrap: bws → gh + pulumi config |

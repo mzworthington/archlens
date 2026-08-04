@@ -73,6 +73,31 @@ archlens diff --baseline=.archlens/base-blueprints --current=blueprints
 
 Set `fail-on-diff: false` to report diffs without blocking merges (useful while bootstrapping adoption).
 
+## Weekly sample corpus refresh
+
+Dogfood sample YAML under `blueprints/` is regenerated from upstream demo repos listed in [`scripts/blueprint-sample-repos.json`](../../scripts/blueprint-sample-repos.json).
+
+| Path                                          | Role                                                              |
+| --------------------------------------------- | ----------------------------------------------------------------- |
+| `scripts/blueprint-sample-repos.json`         | Shared catalog (`id`, clone URL or `self`, `context`, lookback)   |
+| `scripts/run-blueprint-batch.sh`              | Local regen from sibling checkouts under `BLUEPRINT_BATCH_PARENT` |
+| `.github/workflows/regenerate-blueprints.yml` | Weekly matrix: clone → `archlens` scan → assemble → PR            |
+
+Workflow shape:
+
+1. **prepare** — emit the Actions matrix from the JSON catalog.
+2. **build-cli** — compile `app/dist/archlens` once and share it as an artifact.
+3. **scan** (matrix) — shallow-clone each repo (`--shallow-since` = `gitSinceDays`), run headless scan into a per-repo artifact. `repo: "self"` scans this monorepo.
+4. **assemble** — merge artifacts into `blueprints/`, reinstall sandbox products, validate, open a PR on `chore/regenerate-sample-blueprints`.
+
+Schedule: Monday 03:00 UTC (+ `workflow_dispatch`). Merge the PR to refresh the committed corpus; the nightly publish workflow then uploads to R2.
+
+Local equivalent (expects sibling clones named by catalog `id`):
+
+```bash
+scripts/run-blueprint-batch.sh
+```
+
 ## Remote catalog publish (dogfood)
 
 ArchLens dogfood publishes the `blueprints/` tree to object storage nightly so [archlens.dev](https://archlens.dev) can load diagrams from a remote corpus instead of a static bundle baked into the Pages deploy.
