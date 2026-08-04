@@ -1,5 +1,8 @@
-name: Scan sample repos
+name: Publish demo catalog
 
+# Matrix dogfood: install latest CLI, clone each example codebase, scan + publish.
+# External demo repos may produce incomplete schemas — always pass --skip-validation.
+# This-repo dogfood: publish-blueprint-catalog.yml. Hand-authored demos: publish-samples.yml.
 
 on:
   schedule:
@@ -10,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: scan-sample-repos
+  group: publish-demo-catalog
   cancel-in-progress: false
 
 jobs:
@@ -22,11 +25,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Load sample matrix
+      - name: Load demo catalog matrix
         id: set
         run: echo "samples=$(jq -c '.' scripts/blueprint-sample-repos.json)" >> "$GITHUB_OUTPUT"
 
-  scan:
+  publish:
     needs: matrix
     runs-on: ubuntu-latest
     timeout-minutes: ${{ matrix.sample.timeoutMinutes }}
@@ -47,15 +50,15 @@ jobs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
           archlens --version
 
-      - name: Clone sample repo
+      - name: Clone demo repo
         run: |
           set -euo pipefail
           git clone --single-branch --depth=500 \
             "${{ matrix.sample.repo }}" \
-            "samples/${{ matrix.sample.id }}"
+            "demos/${{ matrix.sample.id }}"
 
       - name: Scan and publish
-        working-directory: samples/${{ matrix.sample.id }}
+        working-directory: demos/${{ matrix.sample.id }}
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}

@@ -64,9 +64,9 @@ pulumi up
 | `app/packages/designer/public/_redirects` | SPA routing |
 | `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
-| `.github/workflows/publish-blueprint-catalog.yml` | Install CLI → scan this repo → publish to R2 (customer example) |
-| `.github/workflows/scan-sample-repos.yml` | Matrix over example codebases → scan → publish to R2 |
-| `.github/workflows/publish-samples.yml` | When `samples/**` changes on `main` → publish `samples/` to R2 (no validate) |
+| `.github/workflows/publish-blueprint-catalog.yml` | Install CLI → scan this repo → publish to R2 (`--skip-validation`) |
+| `.github/workflows/publish-demo-catalog.yml` | Matrix over example codebases → scan → publish to R2 (`--skip-validation`) |
+| `.github/workflows/publish-samples.yml` | When `samples/**` changes on `main` → publish `samples/` to R2 (`--skip-validation`) |
 
 Workflow index (all triggers): [docs/guide/ci-workflows.md](../../docs/guide/ci-workflows.md).
 

@@ -1,4 +1,7 @@
-name: Sync Derived Outputs
+name: Refresh docs & media
+
+# Regenerate committed docs artifacts (schema, features report, changelog, guide GIFs)
+# and push to main when anything changed. Local: bin/sync-derived.sh
 
 on:
   workflow_dispatch:
@@ -9,11 +12,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: sync-derived
+  group: refresh-docs-media
   cancel-in-progress: true
 
 jobs:
-  sync-derived:
+  refresh:
     runs-on: ubuntu-latest
     env:
       GIT_AUTHOR_NAME: github-actions[bot]
@@ -74,5 +77,5 @@ jobs:
         run: pnpm --filter @archlens/designer exec playwright install --with-deps chromium
         working-directory: app
 
-      - name: Sync derived outputs
+      - name: Refresh docs & media
         run: bin/sync-derived.sh
