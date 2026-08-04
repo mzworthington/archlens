@@ -18,6 +18,16 @@ import { ADVICELENS_ENTRY_URL } from '../forensics/adviceLensUrl';
 export type DocsNavItem = {
   label: string;
   path: string;
+  /**
+   * Extra path prefixes that mark this hub link active (in addition to `path`).
+   * Used when a section spans multiple roots (e.g. Tech → /setup, /tech-stack, …).
+   */
+  matchPrefixes?: string[];
+};
+
+export type DocsSidebarSection = {
+  title: string;
+  items: DocsNavItem[];
 };
 
 export type DocsProductAction = {
@@ -40,41 +50,61 @@ export type DocsPageMeta = {
   productAction?: DocsProductAction;
 };
 
-/** Primary header links - product guide chapters (reference lives in the sidebar). */
-export const DOCS_NAV: DocsNavItem[] = [
-  { label: 'Overview', path: '/guide' },
-  { label: 'Getting started', path: '/guide/getting-started' },
-  { label: 'ArchLens Canvas', path: '/guide/canvas' },
-  { label: 'ArchLens', path: '/guide/cli' },
-  { label: 'TraceLens', path: '/guide/tracelens' },
-  { label: 'ChaosLens', path: '/guide/chaoslens' },
-  { label: 'AdviceLens', path: '/guide/advicelens' },
-  { label: 'BlueprintSpec', path: '/guide/schema' },
-  { label: 'Interface tour & journeys', path: '/journeys' },
+const START_PATH_PREFIXES = ['/guide/getting-started', '/journeys'];
+
+const SURFACES_PATH_PREFIXES = [
+  '/guide/canvas',
+  '/guide/cli',
+  '/guide/tracelens',
+  '/guide/chaoslens',
+  '/guide/advicelens',
+  '/guide/schema',
 ];
 
-export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
+const TECH_PATH_PREFIXES = [
+  '/setup',
+  '/tech-stack',
+  '/architecture',
+  '/design-system',
+  '/chaoslens-engine',
+  '/advicelens-engine',
+  '/features-unit',
+  '/guide/ci-workflows',
+];
+
+/** Header hubs — chapter lists live in the sidebar / mobile section scrollers. */
+export const DOCS_NAV: DocsNavItem[] = [
+  // path `/guide` is overview-only; surface chapters use the Surfaces hub.
+  { label: 'Start', path: '/guide', matchPrefixes: START_PATH_PREFIXES },
+  { label: 'Surfaces', path: '/guide/canvas', matchPrefixes: SURFACES_PATH_PREFIXES },
+  { label: 'Tech', path: '/setup', matchPrefixes: TECH_PATH_PREFIXES },
+];
+
+/** Sidebar + mobile section nav (grouped product guide + tech). */
+export const DOCS_SIDEBAR: DocsSidebarSection[] = [
   {
-    title: 'Product guide',
+    title: 'Start',
     items: [
       { label: 'Overview', path: '/guide' },
       { label: 'Getting started', path: '/guide/getting-started' },
+      { label: 'Interface tour & journeys', path: '/journeys' },
+    ],
+  },
+  {
+    title: 'Surfaces',
+    items: [
       { label: 'ArchLens Canvas', path: '/guide/canvas' },
       { label: 'ArchLens', path: '/guide/cli' },
       { label: 'TraceLens', path: '/guide/tracelens' },
       { label: 'ChaosLens', path: '/guide/chaoslens' },
       { label: 'AdviceLens', path: '/guide/advicelens' },
       { label: 'BlueprintSpec', path: '/guide/schema' },
-      { label: 'Interface tour & journeys', path: '/journeys' },
     ],
-  },
-  {
-    title: 'Design system',
-    items: [{ label: 'Design system', path: '/design-system' }],
   },
   {
     title: 'Tech',
     items: [
+      { label: 'Design system', path: '/design-system' },
       { label: 'GitHub Actions workflows', path: '/guide/ci-workflows' },
       { label: 'Setup & local development', path: '/setup' },
       { label: 'Technology stack', path: '/tech-stack' },
@@ -84,6 +114,17 @@ export const DOCS_SIDEBAR: { title: string; items: DocsNavItem[] }[] = [
     ],
   },
 ];
+
+export function isDocsNavActive(location: string, item: DocsNavItem): boolean {
+  if (item.matchPrefixes?.length) {
+    // Exact hub path (e.g. Start → `/guide`) without treating sibling `/guide/*` chapters as active.
+    if (location === item.path) return true;
+    return item.matchPrefixes.some(
+      prefix => location === prefix || (prefix !== '/' && location.startsWith(`${prefix}/`))
+    );
+  }
+  return location === item.path || location.startsWith(`${item.path}/`);
+}
 
 export const DOCS_PAGES: DocsPageMeta[] = [
   { path: '/guide', title: 'Product guide', markdown: guideIndexMd, dir: 'guide', group: 'guide' },

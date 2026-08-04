@@ -105,7 +105,7 @@ describe('parseArchlensArgv plan shape', () => {
   it('enables publish-after-scan with --publish', () => {
     const plan = parseArchlensArgv(['scan', '--output=blueprints', '--publish']);
     expect(plan.publishAfterScan).toBe(true);
-    expect(plan.publishSkipValidation).toBe(false);
+    expect(plan.publishSkipValidation).toBe(true);
     expect(plan.isHeadless).toBe(true);
     expect(plan.architecture.outputDir).toBe('blueprints');
   });
@@ -119,6 +119,25 @@ describe('parseArchlensArgv plan shape', () => {
     ]);
     expect(plan.publishAfterScan).toBe(true);
     expect(plan.publishSkipValidation).toBe(true);
+  });
+
+  it('opts into a publish validation gate with --validate', () => {
+    const plan = parseArchlensArgv(['scan', '--output=blueprints', '--publish', '--validate']);
+    expect(plan.publishAfterScan).toBe(true);
+    expect(plan.publishSkipValidation).toBe(false);
+  });
+
+  it('forwards --key-prefix and --workspace-name to publish-after-scan', () => {
+    const plan = parseArchlensArgv([
+      'scan',
+      '--output=blueprints',
+      '--publish',
+      '--key-prefix=estates/archlens',
+      '--workspace-name=archlens',
+    ]);
+    expect(plan.publishAfterScan).toBe(true);
+    expect(plan.publishKeyPrefix).toBe('estates/archlens');
+    expect(plan.publishWorkspaceName).toBe('archlens');
   });
 
   it('parses --system-name for multi-repo products', () => {

@@ -27,27 +27,30 @@ vi.mock('../../components/AppHeader', () => ({
 }));
 
 describe('DocsShell', () => {
-  it('shows separate mobile scrollers for product guide and secondary sections', () => {
+  it('shows mobile section scrollers for Start, Surfaces, and Tech', () => {
     render(
       <DocsShell>
         <p>content</p>
       </DocsShell>
     );
 
-    const guideNav = screen.getByTestId('docs-mobile-guide-nav');
-    expect(guideNav.parentElement).toHaveTextContent('Product guide');
-    expect(within(guideNav).getByRole('link', { name: 'Overview' })).toBeInTheDocument();
+    const startNav = screen.getByTestId('docs-mobile-start-nav');
+    expect(startNav.parentElement).toHaveTextContent('Start');
+    expect(within(startNav).getByRole('link', { name: 'Overview' })).toBeInTheDocument();
+    expect(within(startNav).getByRole('link', { name: 'Getting started' })).toBeInTheDocument();
     expect(
-      within(guideNav).getByRole('link', { name: 'Interface tour & journeys' })
+      within(startNav).getByRole('link', { name: 'Interface tour & journeys' })
     ).toBeInTheDocument();
 
-    const designSystemNav = screen.getByTestId('docs-mobile-design-system-nav');
-    expect(designSystemNav.parentElement).toHaveTextContent('Design system');
-    expect(
-      within(designSystemNav).getByRole('link', { name: 'Design system' })
-    ).toBeInTheDocument();
+    const surfacesNav = screen.getByTestId('docs-mobile-surfaces-nav');
+    expect(surfacesNav.parentElement).toHaveTextContent('Surfaces');
+    expect(within(surfacesNav).getByRole('link', { name: 'ArchLens Canvas' })).toBeInTheDocument();
+    expect(within(surfacesNav).getByRole('link', { name: 'AdviceLens' })).toBeInTheDocument();
+    expect(within(surfacesNav).getByRole('link', { name: 'BlueprintSpec' })).toBeInTheDocument();
 
     const technologyNav = screen.getByTestId('docs-mobile-tech-nav');
+    expect(technologyNav.parentElement).toHaveTextContent('Tech');
+    expect(within(technologyNav).getByRole('link', { name: 'Design system' })).toBeInTheDocument();
     expect(
       within(technologyNav).getByRole('link', { name: 'Technology stack' })
     ).toBeInTheDocument();
@@ -66,6 +69,22 @@ describe('DocsShell', () => {
     expect(
       within(technologyNav).getByRole('link', { name: 'AdviceLens engine' })
     ).toBeInTheDocument();
+
+    expect(screen.queryByTestId('docs-mobile-contract-nav')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('docs-mobile-design-system-nav')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('docs-mobile-guide-nav')).not.toBeInTheDocument();
+  });
+
+  it('shows header hubs for Start, Surfaces, and Tech', () => {
+    render(
+      <DocsShell>
+        <p>content</p>
+      </DocsShell>
+    );
+
+    expect(screen.getByRole('link', { name: 'Start' })).toHaveAttribute('href', '/guide');
+    expect(screen.getByRole('link', { name: 'Surfaces' })).toHaveAttribute('href', '/guide/canvas');
+    expect(screen.getByRole('link', { name: 'Tech' })).toHaveAttribute('href', '/setup');
   });
 
   it('shows local section nav on mobile and nested sidebar items when provided', () => {

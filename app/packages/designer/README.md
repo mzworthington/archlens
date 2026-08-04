@@ -2,7 +2,7 @@
 
 This is the front-end web application client for **ArchLens Canvas**. It is built using **Vite**, **React**, **React Flow**, and **Zustand**.
 
-It functions as a local-first, interactive diagramming canvas where designers can compose, navigate, and structure C4 architecture diagrams.
+Interactive C4 canvas for composing and governing **BlueprintSpec** diagrams — local folder authoring, bi-directional YAML sync, and optional read-only catalogs published from CI.
 
 ---
 
@@ -10,7 +10,8 @@ It functions as a local-first, interactive diagramming canvas where designers ca
 
 - **Bi-directional Sync:** Edit diagrams graphically on the canvas, or edit the underlying declarative YAML in Explorer → **Schema** (side-by-side with the canvas when the left panel is open).
 - **C4 Architecture Navigation:** Double-click boundary nodes (e.g. system containers) to drill down into components, and press `Escape` to zoom back out to higher-level views.
-- **Local-first Sync:** Open a local `blueprints/` folder for read/write via the File System Access API, or open the **Samples** workspace shipped in the build (synced from `samples/` into `public/bundled-blueprints/` at Vite startup).
+- **Local authoring:** Open a local `blueprints/` folder for read/write via the File System Access API; drafts persist in IndexedDB until you commit via Pending Changes.
+- **Published catalogs:** Production sandbox can load a remote BlueprintSpec corpus from object storage (ADR-0010/0012); local/PR builds keep the **Samples** workspace under `/bundled-blueprints/`.
 - **Bundled demo:** **Open demo blueprints** loads the full checked-in `blueprints/` tree (all peer context diagrams) read-only. **Open folder** uses the File System Access API for a writable workspace. Deep links like `/workspace/backstage` auto-load the bundled demo.
 - **Offline / PWA:** Production builds register a service worker that precaches the app shell so returning visits work offline; local IndexedDB and File System Access continue without a network. Installable via the browser “Install app” / Add to Home Screen prompt.
 - **Design System Showcase:** Includes a built-in Design System Showcase page (`/design-system`) demonstrating all atomic component states, buttons, property panel attributes, and visual styles.

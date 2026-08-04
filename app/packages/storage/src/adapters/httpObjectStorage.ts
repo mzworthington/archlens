@@ -1,6 +1,10 @@
 import { joinPublicBaseUrl, normalizePublicBaseUrl } from '../lib/objectKey';
 import type { HttpObjectStorageConfig } from '../config/objectStorageConfig';
-import type { ObjectStoragePort, ObjectStoragePutRequest } from '../ports/objectStoragePort';
+import type {
+  ObjectStorageObjectMeta,
+  ObjectStoragePort,
+  ObjectStoragePutRequest,
+} from '../ports/objectStoragePort';
 
 const FETCH_ATTEMPTS = 3;
 
@@ -17,13 +21,14 @@ async function fetchBytes(
   url: string,
   fetchImpl: typeof fetch,
   attempts = FETCH_ATTEMPTS
-): Promise<Uint8Array> {
+): Promise<{ body: Uint8Array; etag?: string }> {
   let lastError: unknown;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
       const response = await fetchImpl(url);
       if (response.ok) {
-        return new Uint8Array(await response.arrayBuffer());
+        const etag = response.headers.get('etag')?.replaceAll('"', '') ?? undefined;
+        return { body: new Uint8Array(await response.arrayBuffer()), etag };
       }
       if (response.status >= 400 && response.status < 500 && response.status !== 429) {
         throw new Error(`HTTP ${response.status} for ${url}`);
@@ -55,11 +60,17 @@ export function createHttpObjectStorage(config: HttpObjectStorageConfig): Object
   return {
     provider: 'http',
     async getObject(key: string): Promise<Uint8Array> {
-      return fetchBytes(joinPublicBaseUrl(baseUrl, key), fetchImpl);
+      return (await this.getObjectWithMeta(key)).body;
     },
     async getObjectText(key: string): Promise<string> {
       const bytes = await this.getObject(key);
       return new TextDecoder().decode(bytes);
+    },
+    async getObjectWithMeta(key: string): Promise<ObjectStorageObjectMeta> {
+      return fetchBytes(joinPublicBaseUrl(baseUrl, key), fetchImpl);
+    },
+    async listObjectKeys(_prefix: string): Promise<string[]> {
+      throw new Error('HTTP object storage does not support listing');
     },
     async putObject(_request: ObjectStoragePutRequest): Promise<void> {
       throw new Error('HTTP object storage is read-only');

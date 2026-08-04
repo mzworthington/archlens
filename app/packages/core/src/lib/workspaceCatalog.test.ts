@@ -126,6 +126,43 @@ describe('workspaceCatalog', () => {
       expect(resolveEntityHome(catalog, 'billing/api')?.path).toBe('containers.yaml');
     });
 
+    it('prefers the context diagram when context and containers share an entityRef', () => {
+      const stressContext: SystemSchema = {
+        name: 'AdviceLens Stress Tests',
+        version: '1.0.0',
+        level: 'context',
+        entityRef: 'advicelens-stress',
+        nodes: [
+          {
+            entityRef: 'advicelens-stress',
+            type: 'group',
+            name: 'AdviceLens Stress Tests',
+          },
+        ],
+        dependencies: [],
+      };
+      const stressContainers: SystemSchema = {
+        name: 'AdviceLens Stress Tests',
+        version: '1.0.0',
+        level: 'container',
+        entityRef: 'advicelens-stress',
+        nodes: [],
+        dependencies: [],
+      };
+      // containers.yaml sorts before context.yaml — regression for peer context URLs
+      const ambiguous = buildWorkspaceCatalog([
+        { path: 'advicelens-stress/containers.yaml', schema: stressContainers },
+        { path: 'advicelens-stress/context.yaml', schema: stressContext },
+      ]);
+
+      expect(resolveEntityHome(ambiguous, 'advicelens-stress')?.path).toBe(
+        'advicelens-stress/context.yaml'
+      );
+      expect(resolveChildDiagramEntry(ambiguous, 'advicelens-stress')?.path).toBe(
+        'advicelens-stress/containers.yaml'
+      );
+    });
+
     it('returns undefined when entityRef is not in the workspace', () => {
       expect(resolveEntityHome(catalog, 'missing/service')).toBeUndefined();
       expect(resolveEntityHome(catalog, '')).toBeUndefined();

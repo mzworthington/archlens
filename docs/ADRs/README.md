@@ -16,5 +16,6 @@ Sparse [MADR](https://adr.github.io/madr/)-style records for choices that are **
 | [0010](./0010-remote-blueprint-catalog-contract.md)                | Remote blueprint catalog contract (manifest + catalog.json) | Accepted | 2026-08-04 |
 | [0011](./0011-object-storage-published-corpora.md)                 | Object storage for published corpora (R2 dogfood)           | Accepted | 2026-08-04 |
 | [0012](./0012-remote-read-only-workspace-port.md)                  | Remote read-only WorkspacePort adapter for hosted sandbox   | Accepted | 2026-08-04 |
+| [0014](./0014-estate-fragments-and-compose-before-publish.md)      | Estate fragments and compose-before-publish                 | Accepted | 2026-08-04 |
 
 New ADRs: copy an existing record in this directory (for example [0009](./0009-cloudflare-pages-static-hosting.md)) as a starting template for `docs/ADRs/NNNN-short-title.md`. Prefer not adding an ADR unless the choice is hard to reverse or deliberately off-norm.

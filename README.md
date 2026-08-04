@@ -1,9 +1,12 @@
-# ArchLens - Visual Systems Architecture Canvas
+# ArchLens — catch architecture risk before it becomes an outage
 
 [![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml) [![archlens.dev](https://img.shields.io/badge/archlens.dev-open%20app-00f0ff)](https://archlens.dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
 
-ArchLens is a local-first, bi-directionally synchronized visual diagramming platform designed to draft, validate, and persist systems architecture layouts. Diagrams are visual representations of a strict underlying **BlueprintSpec** YAML/JSON declarative schema, allowing designers to switch seamlessly between graphical composition and text configuration.
+ArchLens models systems as **BlueprintSpec** YAML — a living architecture contract you can author locally, publish from CI, and validate with TraceLens, ChaosLens, and AdviceLens while design is still cheap to change.
+
+**Local authoring:** open a folder in ArchLens Canvas, edit diagrams with bi-directional YAML sync, commit when ready — drafts stay on your machine.  
+**Published estate:** scan in CI, publish to object storage, and open a shared read-only catalog without redeploying the app.
 
 ---
 

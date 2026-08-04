@@ -32,12 +32,12 @@ const FLOW = [
   {
     step: '1',
     title: 'Generate from code',
-    body: 'ArchLens scans your repo and writes validated architecture YAML.',
+    body: 'ArchLens scans your repo and writes validated BlueprintSpec YAML.',
   },
   {
     step: '2',
-    title: 'Design in the canvas',
-    body: 'ArchLens Canvas runs in your browser - edit diagrams locally with bi-directional YAML sync and no uploads to ArchLens servers.',
+    title: 'Author locally or publish the estate',
+    body: 'Refine diagrams in Canvas with local folders (drafts stay on-device), or publish from CI to object storage for a shared read-only catalog.',
   },
   {
     step: '3',
@@ -51,7 +51,7 @@ const PRODUCTS: Product[] = [
     title: 'ArchLens Canvas',
     tagline: 'Visual architecture studio',
     details:
-      'Local-first C4 workspace with bi-directional YAML sync - the place teams refine and govern the live diagram.',
+      'C4 workspace with bi-directional YAML sync — author in a local folder, or open a pipeline-published catalog.',
     href: '/guide/canvas',
     category: 'Platform',
     icon: Layers,
@@ -214,7 +214,7 @@ export const DocsHome: React.FC = () => {
                   Free & open source
                 </span>
                 <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-sky-300">
-                  Local-first
+                  Local + published
                 </span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">

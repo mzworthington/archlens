@@ -32,7 +32,17 @@ Chosen option: "**Option B**" — dedicated R2 bucket `archlens-blueprint-catalo
 - **CI publish:** `archlens publish --no-dry-run` via S3 API (`@aws-sdk/client-s3`, endpoint `https://{accountId}.r2.cloudflarestorage.com`)
 - **Secrets:** `R2_BLUEPRINT_CATALOG_*` in GitHub Actions (scoped Object Read & Write on the bucket only)
 
-Dogfood base URL: `https://blueprints.archlens.dev/` (bucket root; ADR-0010 keys at `latest/` and `snapshots/{revisionId}/`).
+Dogfood base URL (historical bucket root): `https://blueprints.archlens.dev/`.
+
+**Phase 0 key prefixes (ADR-0014):** concurrent whole-tree publishers must not share one `latest`. Dogfood writes under dedicated prefixes; Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/archlens/`. Under each prefix the ADR-0010 layout (`latest/`, `snapshots/{revisionId}/`) is unchanged.
+
+| Prefix                | Publisher                             |
+| --------------------- | ------------------------------------- |
+| `estates/archlens/`   | `publish-blueprint-catalog.yml`       |
+| `estates/samples/`    | `publish-samples.yml`                 |
+| `estates/demos/{id}/` | `publish-demo-catalog.yml` matrix leg |
+
+Compose-before-publish (fragments → one estate `latest`) is [ADR-0014](./0014-estate-fragments-and-compose-before-publish.md).
 
 ### Consequences
 
@@ -41,7 +51,7 @@ Dogfood base URL: `https://blueprints.archlens.dev/` (bucket root; ADR-0010 keys
 - Good, because custom domain keeps CORS and caching under our zone
 - Bad, because R2 API tokens are a manual bootstrap step (dashboard → bws → GitHub)
 - Bad, because first publish must succeed before production sandbox can load remotely
-- Follow-up: ADR-0012 (Canvas adapter); retain bundled `/bundled-blueprints/` as dev/PR fallback until remote is stable
+- Follow-up: ADR-0012 (Canvas adapter); ADR-0014 (estate fragments); retain bundled `/bundled-blueprints/` as dev/PR fallback until remote is stable
 
 ## Architecture sketch
 
@@ -59,5 +69,6 @@ flowchart LR
 
 - [ADR-0010](./0010-remote-blueprint-catalog-contract.md)
 - [ADR-0012](./0012-remote-read-only-workspace-port.md)
+- [ADR-0014](./0014-estate-fragments-and-compose-before-publish.md)
 - Infra: [infra/cloudflare/README.md](../../infra/cloudflare/README.md)
 - Secrets: [docs/cloudflare-secrets.md](../cloudflare-secrets.md)

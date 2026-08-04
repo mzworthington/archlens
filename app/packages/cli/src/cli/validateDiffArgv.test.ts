@@ -51,11 +51,11 @@ describe('parseArchlensCommand', () => {
 });
 
 describe('parsePublishArgv', () => {
-  it('defaults to blueprints with dry run enabled', () => {
+  it('defaults to blueprints with dry run enabled and validation skipped', () => {
     const plan = parsePublishArgv(['publish']);
     expect(plan.targetPath).toBe('blueprints');
     expect(plan.dryRun).toBe(true);
-    expect(plan.skipValidation).toBe(false);
+    expect(plan.skipValidation).toBe(true);
     expect(plan.format).toBe('text');
   });
 
@@ -73,8 +73,13 @@ describe('parsePublishArgv', () => {
     expect(plan.format).toBe('json');
   });
 
-  it('accepts --skip-validation for intentional demo trees', () => {
-    const plan = parsePublishArgv(['publish', 'samples/', '--skip-validation']);
+  it('keeps --skip-validation as an explicit allow even with --validate', () => {
+    const plan = parsePublishArgv(['publish', 'samples/', '--skip-validation', '--validate']);
     expect(plan.skipValidation).toBe(true);
+  });
+
+  it('opts into a hard validation gate with --validate', () => {
+    const plan = parsePublishArgv(['publish', 'blueprints/', '--validate']);
+    expect(plan.skipValidation).toBe(false);
   });
 });

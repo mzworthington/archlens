@@ -1900,6 +1900,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ returns the diagram entry when entityRef is a diagram identity
 - ✅ returns the owning diagram when entityRef is a native node
+- ✅ prefers the context diagram when context and containers share an entityRef
 - ✅ returns undefined when entityRef is not in the workspace
 - ✅ ignores external proxy nodes when resolving the canonical home diagram
 

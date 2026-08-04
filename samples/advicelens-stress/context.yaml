@@ -11,7 +11,7 @@ nodes:
     name: User
     properties:
       role: context-actor
-  - entityRef: advicelens-stress
+  - entityRef: advicelens-stress/scenarios
     type: group
     name: AdviceLens Stress Tests
     properties:
@@ -20,28 +20,28 @@ nodes:
   - entityRef: advicelens-stress/composite-risk
     type: software-system
     name: Composite Risk (hotspot × blast)
-    parentEntityRef: advicelens-stress
+    parentEntityRef: advicelens-stress/scenarios
     properties:
       rootPath: advicelens-stress
       productId: advicelens-stress
   - entityRef: advicelens-stress/knowledge-silo
     type: software-system
     name: Knowledge Silo Cluster
-    parentEntityRef: advicelens-stress
+    parentEntityRef: advicelens-stress/scenarios
     properties:
       rootPath: advicelens-stress
       productId: advicelens-stress
   - entityRef: advicelens-stress/pubsub-staleness
     type: software-system
     name: Pub/Sub Staleness
-    parentEntityRef: advicelens-stress
+    parentEntityRef: advicelens-stress/scenarios
     properties:
       rootPath: advicelens-stress
       productId: advicelens-stress
   - entityRef: advicelens-stress/code-rollup
     type: software-system
     name: Code Roll-up (component drill-down)
-    parentEntityRef: advicelens-stress
+    parentEntityRef: advicelens-stress/scenarios
     properties:
       rootPath: advicelens-stress
       productId: advicelens-stress
@@ -53,11 +53,11 @@ nodes:
       vendor: Stripe-compatible PSP
       classification: third-party
 dependencies:
-  - from: advicelens-stress
+  - from: advicelens-stress/scenarios
     to: advicelens-stress/payment-processor
     type: direct-call
     description: Checkout and billing payments
   - from: advicelens-stress/user
-    to: advicelens-stress
+    to: advicelens-stress/scenarios
     type: direct-call
     description: Reviews architecture advice

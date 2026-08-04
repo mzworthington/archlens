@@ -492,4 +492,80 @@ describe('Breadcrumbs Component', () => {
       '/workspace/blueprint'
     );
   });
+
+  it('keeps peer context switching available on stress context diagrams', () => {
+    const adviceSchema = {
+      name: 'AdviceLens Stress Tests',
+      version: '1.0.0',
+      level: 'context' as const,
+      entityRef: 'advicelens-stress',
+      nodes: [
+        {
+          entityRef: 'advicelens-stress/scenarios',
+          type: 'group' as const,
+          name: 'AdviceLens Stress Tests',
+        },
+      ],
+      dependencies: [],
+    };
+
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      isSampleWorkspace: true,
+      workspaceName: 'samples',
+      currentFilePath: 'advicelens-stress/context.yaml',
+      schema: adviceSchema,
+      loadedSystems: [
+        {
+          path: 'advicelens-stress/context.yaml',
+          name: 'AdviceLens Stress Tests',
+          schema: adviceSchema,
+        },
+      ],
+      workspaceCatalog: [
+        {
+          path: 'golden-journey/context.yaml',
+          name: 'Samples',
+          level: 'context',
+          entityRef: 'samples',
+          nodeEntityRefs: [],
+        },
+        {
+          path: 'advicelens-stress/context.yaml',
+          name: 'AdviceLens Stress Tests',
+          level: 'context',
+          entityRef: 'advicelens-stress',
+          nodeEntityRefs: ['advicelens-stress/scenarios'],
+        },
+        {
+          path: 'advicelens-stress/containers.yaml',
+          name: 'AdviceLens Stress Tests',
+          level: 'container',
+          entityRef: 'advicelens-stress/scenarios',
+          nodeEntityRefs: [],
+          parentEntityRef: 'advicelens-stress',
+        },
+        {
+          path: 'chaoslens-stress/context.yaml',
+          name: 'ChaosLens Stress Tests',
+          level: 'context',
+          entityRef: 'chaoslens-stress',
+          nodeEntityRefs: [],
+        },
+      ],
+    });
+
+    render(<Breadcrumbs />);
+
+    fireEvent.click(screen.getByTitle('Other Context systems'));
+
+    expect(screen.getByRole('link', { name: 'Samples' })).toHaveAttribute(
+      'href',
+      '/workspace/samples'
+    );
+    expect(screen.getByRole('link', { name: 'ChaosLens Stress Tests' })).toHaveAttribute(
+      'href',
+      '/workspace/chaoslens-stress'
+    );
+  });
 });

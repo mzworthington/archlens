@@ -1,9 +1,11 @@
 export type {
+  ObjectStorageObjectMeta,
   ObjectStoragePort,
   ObjectStorageProvider,
   ObjectStoragePutRequest,
   PutObjectsOptions,
 } from './ports/objectStoragePort';
+export { ObjectStoragePreconditionFailedError } from './ports/objectStoragePort';
 
 export type {
   AzureBlobStorageConfig,
@@ -29,5 +31,17 @@ export { uploadObjects, type UploadObjectsResult } from './lib/uploadObjects';
 export {
   uploadRemoteCatalogSnapshot,
   type CatalogSnapshotUploadResult,
+  type UploadRemoteCatalogSnapshotOptions,
 } from './catalog/uploadRemoteCatalogSnapshot';
+export {
+  loadEstateFragmentsFromStorage,
+  uploadEstateFragment,
+  type UploadEstateFragmentResult,
+} from './catalog/estateFragmentStorage';
+export {
+  loadSuggestionOverlaysFromStorage,
+  rejectSuggestionOverlayInStorage,
+  uploadSuggestionOverlay,
+  type UploadSuggestionOverlayResult,
+} from './catalog/suggestionOverlayStorage';
 export { InMemoryObjectStorage } from './testing/inMemoryObjectStorage';

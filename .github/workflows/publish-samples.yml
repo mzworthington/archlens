@@ -32,11 +32,13 @@ jobs:
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
           archlens --version
 
-      # Explicit --skip-validation only — workspace name does not change the gate.
+      # Publish prefers visibility; --skip-validation is explicit and always allowed.
+      # Prefix keeps samples from clobbering the archlens estate catalog (ADR-0014 Phase 0).
       - name: Publish samples catalog
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          OBJECT_STORAGE_KEY_PREFIX: estates/samples
           R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
@@ -44,6 +46,7 @@ jobs:
           set -euo pipefail
           archlens publish samples/ \
             --workspace-name=samples \
+            --key-prefix=estates/samples \
             --skip-validation \
             --no-dry-run \
             --format=json

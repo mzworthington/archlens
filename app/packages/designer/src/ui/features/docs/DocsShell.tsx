@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'wouter';
 import { AppHeader } from '../../components/AppHeader';
-import { DOCS_NAV, DOCS_SIDEBAR } from './pages';
+import { DOCS_NAV, DOCS_SIDEBAR, isDocsNavActive } from './pages';
 
 export type DocsLocalNav = {
   /** Section label for mobile scroller (e.g. "On this page"). */
@@ -24,10 +24,6 @@ type Props = {
   localNav?: DocsLocalNav;
 };
 
-function isNavActive(location: string, path: string): boolean {
-  return location === path || (path !== '/guide' && location.startsWith(`${path}/`));
-}
-
 function MobileScroller({
   items,
   location,
@@ -47,7 +43,7 @@ function MobileScroller({
       aria-label={ariaLabel}
     >
       {items.map(item => {
-        const active = isNavActive(location, item.path);
+        const active = location === item.path;
         return (
           <Link
             key={item.path}
@@ -108,7 +104,6 @@ export const DocsShell: React.FC<Props> = ({
   localNav,
 }) => {
   const [location] = useLocation();
-  const secondarySections = DOCS_SIDEBAR.filter(section => section.title !== 'Product guide');
   const isLanding = layout === 'landing';
   const showLocalNav = localNav && location === localNav.expandUnderPath;
 
@@ -126,7 +121,7 @@ export const DocsShell: React.FC<Props> = ({
         {!isLanding ? (
           <nav className="hidden lg:flex items-center gap-1 min-w-0 overflow-x-auto border-l border-[#00f0ff]/15 pl-4">
             {DOCS_NAV.map(item => {
-              const active = isNavActive(location, item.path);
+              const active = isDocsNavActive(location, item);
               return (
                 <Link
                   key={item.path}
@@ -147,19 +142,11 @@ export const DocsShell: React.FC<Props> = ({
 
       {!isLanding ? (
         <div className="lg:hidden border-b border-[#00f0ff]/10 bg-[#061125]/60 backdrop-blur-sm sticky top-[73px] z-40">
-          <div>
-            <p className="px-3 pt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
-              Product guide
-            </p>
-            <MobileScroller
-              items={DOCS_NAV}
-              location={location}
-              aria-label="Product guide"
-              testId="docs-mobile-guide-nav"
-            />
-          </div>
-          {secondarySections.map(section => (
-            <div key={section.title} className="border-t border-[#00f0ff]/10">
+          {DOCS_SIDEBAR.map((section, index) => (
+            <div
+              key={section.title}
+              className={index === 0 ? undefined : 'border-t border-[#00f0ff]/10'}
+            >
               <p className="px-3 pt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
                 {section.title}
               </p>

@@ -6,20 +6,20 @@ Use this guide if you want to understand the product, not just the internals.
 
 ## What you get
 
-| Product             | Role                                                                                           |
-| ------------------- | ---------------------------------------------------------------------------------------------- |
-| **ArchLens Canvas** | Local-first (PWA) canvas for C4 diagrams, Mermaid import, property editing, and YAML/JSON sync |
-| **ArchLens**        | Static analysis that discovers systems/containers/components and writes `blueprints/*.yaml`    |
-| **TraceLens**       | Optional (on by default) git + complexity signals attached onto nodes as `forensics`           |
-| **ChaosLens**       | Fault injection, blast-radius heatmap, and SLA telemetry on the live diagram                   |
-| **AdviceLens**      | Ranked, evidence-backed recommendations merging TraceLens + ChaosLens (studio, CLI, CI)        |
-| **BlueprintSpec**   | Declarative architecture contract - public schema URLs, `entityRef` identity, validation rules |
+| Product             | Role                                                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **ArchLens Canvas** | C4 canvas (PWA): local folder authoring, Mermaid import, YAML/JSON sync, and read-only published catalogs          |
+| **ArchLens**        | Static analysis that writes `blueprints/*.yaml` and can publish corpora to object storage for a shared estate view |
+| **TraceLens**       | Optional (on by default) git + complexity signals attached onto nodes as `forensics`                               |
+| **ChaosLens**       | Fault injection, blast-radius heatmap, and SLA telemetry on the live diagram                                       |
+| **AdviceLens**      | Ranked, evidence-backed recommendations merging TraceLens + ChaosLens (studio, CLI, CI)                            |
+| **BlueprintSpec**   | Declarative architecture contract - public schema URLs, `entityRef` identity, validation rules                     |
 
 ## Typical flow
 
 1. **Install ArchLens** with the install script (`curl … | sh` on macOS/Linux) - see [Getting started](./getting-started.md).
-2. Run **ArchLens** against a codebase to generate blueprint YAML.
-3. Open **ArchLens Canvas** - on bare `/workspace`, pick **Load sandbox** (bundled demo), open a local `blueprints/` folder, or import Mermaid.
+2. Run **ArchLens** against a codebase to generate blueprint YAML (optionally **publish** from CI to object storage).
+3. Open **ArchLens Canvas** - on bare `/workspace`, pick **Load sandbox** (bundled or remote catalog), open a local `blueprints/` folder, or import Mermaid.
 4. Explore hierarchy (context → container → component), open Explorer → **TraceLens** for display filters and forensics, inspect signals on selected nodes.
 5. Toggle **ChaosLens** in the bottom toolbar to simulate failures on the active diagram.
 6. Review **AdviceLens** at [`/advicelens`](/advicelens), in TraceLens (AdviceLens tab), or the ChaosLens telemetry panel.
@@ -40,12 +40,9 @@ Use this guide if you want to understand the product, not just the internals.
 
 For building ArchLens or extending the engine — still Markdown in this repo.
 
-### Design system
-
-- [Design system](../design-system.md) - visual assets & identity sandbox
-
 ### Tech
 
+- [Design system](../design-system.md) - visual assets & identity sandbox
 - [Setup & local development](../setup.md)
 - [GitHub Actions workflows](./ci-workflows.md) - every workflow, purpose, and trigger
 - [Technology stack](../tech-stack.md) — React, Pulumi, Cloudflare, CI, and toolchain
