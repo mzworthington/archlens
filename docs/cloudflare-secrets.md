@@ -51,9 +51,9 @@ Create at [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/p
 
 Push to `main` — CI builds and `wrangler pages deploy` publishes.
 
-## Cutover checklist (fix sandbox 404s)
+## Cutover checklist (fix sandbox 404s / stale GitHub Pages)
 
-If the app loads but `/bundled-blueprints/*` returns 404, the custom domain is probably still on **GitHub Pages**:
+If `archlens-*.pages.dev` is current but `https://archlens.dev` is stale or 404, the apex is probably still on **GitHub Pages**:
 
 ```bash
 curl -sI https://archlens.dev/ | grep -i x-github-request-id   # should be empty
@@ -61,8 +61,8 @@ curl -sI https://archlens.dev/bundled-blueprints/catalog.json  # should be HTTP 
 ```
 
 1. **GitHub repo → Settings → Pages** — remove `archlens.dev` custom domain; disable GitHub Pages
-2. **`cd infra/cloudflare && pulumi up`** — attaches apex + `www` to the Cloudflare Pages project
-3. **Cloudflare DNS** — apex/`www` should point at Pages (Pulumi `PagesDomain` + active zone)
+2. **Cloudflare DNS** — delete leftover apex/`www` records that target GitHub Pages (`*.github.io` or `185.199.*`). Pulumi will recreate them as proxied CNAMEs to the Pages subdomain. If records already point at Pages and you want to keep their IDs, import instead (see [infra/cloudflare/README.md](../infra/cloudflare/README.md)).
+3. **`cd infra/cloudflare && pulumi up`** (or merge to `main`) — attaches apex + `www` (`PagesDomain`) and owns DNS (`DnsRecord` → `*.pages.dev`)
 4. Re-test `https://archlens.dev/bundled-blueprints/catalog.json` (200) before relying on sandbox
 
 Until cutover completes, the Cloudflare deploy URL (e.g. `archlens-ek7.pages.dev`) serves the full build including sandbox assets.
