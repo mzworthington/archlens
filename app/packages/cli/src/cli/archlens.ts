@@ -19,6 +19,15 @@ import { executePublishFragmentRun } from './publishFragmentRun.ts';
 import { executeAcceptOverlayRun, executeRejectOverlayRun } from './suggestionOverlayRun.ts';
 import { resolveWatchOptions, watchAndRerun } from './watchAndRerun.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
+import {
+  promptInteractiveAcceptOverlayPlan,
+  promptInteractiveComposePlan,
+  promptInteractiveMainAction,
+  promptInteractivePublishFragmentPlan,
+  promptInteractivePublishPlan,
+  promptInteractiveRejectOverlayPlan,
+  shouldShowInteractiveMainMenu,
+} from './interactiveMainMenu.ts';
 
 function askPathWithTabComplete(message: string, defaultValue: string): Promise<string> {
   return new Promise(resolve => {
@@ -173,6 +182,34 @@ async function run() {
         }),
     });
     return;
+  }
+
+  if (shouldShowInteractiveMainMenu(plan)) {
+    const action = await promptInteractiveMainAction();
+    switch (action) {
+      case 'scan':
+        await runArchitecture(plan);
+        return;
+      case 'publish':
+        await executePublishRun(await promptInteractivePublishPlan(askPathWithTabComplete));
+        return;
+      case 'publish-fragment':
+        await executePublishFragmentRun(
+          await promptInteractivePublishFragmentPlan(askPathWithTabComplete)
+        );
+        return;
+      case 'compose':
+        await executeComposeCatalogRun(await promptInteractiveComposePlan());
+        return;
+      case 'accept-overlay':
+        await executeAcceptOverlayRun(
+          await promptInteractiveAcceptOverlayPlan(askPathWithTabComplete)
+        );
+        return;
+      case 'reject-overlay':
+        await executeRejectOverlayRun(await promptInteractiveRejectOverlayPlan());
+        return;
+    }
   }
 
   await runArchitecture(plan);

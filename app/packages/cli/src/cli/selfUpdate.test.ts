@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { detectReleaseAsset } from './releaseAssets.ts';
-import { getInstallDir, relaunchArgsWithNoUpdateCheck } from './selfUpdate.ts';
+import {
+  getInstallDir,
+  isBundledTreeSitterWasm,
+  relaunchArgsWithNoUpdateCheck,
+} from './selfUpdate.ts';
 
 describe('releaseAssets', () => {
   it('maps darwin arm64 to macOS asset', () => {
@@ -29,5 +33,12 @@ describe('selfUpdate helpers', () => {
     expect(
       relaunchArgsWithNoUpdateCheck(['node', 'archlens', 'update', '--glob', '**/*.ts'])
     ).toEqual(['--glob', '**/*.ts', '--no-update-check']);
+  });
+
+  it('matches runtime and language tree-sitter WASM filenames', () => {
+    expect(isBundledTreeSitterWasm('tree-sitter.wasm')).toBe(true);
+    expect(isBundledTreeSitterWasm('tree-sitter-typescript.wasm')).toBe(true);
+    expect(isBundledTreeSitterWasm('archlens')).toBe(false);
+    expect(isBundledTreeSitterWasm('other.wasm')).toBe(false);
   });
 });

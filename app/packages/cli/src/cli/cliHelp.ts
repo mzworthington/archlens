@@ -96,7 +96,7 @@ function printOverviewHelp(): void {
   line(`  ${pc.dim('Use')} ${pc.white('scan')} ${pc.dim('or flags for CI / scripts.')}`);
 
   heading('COMMANDS');
-  command('(default)', 'Interactive wizard — context, glob, output, TraceLens');
+  command('(default)', 'Interactive menu — scan, publish, fragments, compose, overlays');
   command('scan', 'Headless architecture scan (uses blueprint.config.json + defaults)');
   command('enrich', 'Re-run externals pass on existing YAML (no source re-scan)');
   command('validate [path]', 'Validate blueprint tree (schema, cycles, entityRef links)');

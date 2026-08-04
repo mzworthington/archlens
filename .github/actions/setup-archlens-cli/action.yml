@@ -1,38 +1,30 @@
 name: Setup ArchLens CLI
-description: Install toolchain and compile the ArchLens CLI from this checkout (catalog compose / fragment commands).
+description: Install the ArchLens CLI from GitHub releases (binary + tree-sitter WASMs).
+
+inputs:
+  archlens-version:
+    description: ArchLens CLI version to install (release tag)
+    required: false
+    default: latest
 
 runs:
   using: composite
   steps:
-    - name: Install pnpm
-      uses: pnpm/action-setup@v6
-      with:
-        version: 11.10.0
-        run_install: false
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v7
-      with:
-        node-version: 24
-        cache: pnpm
-        cache-dependency-path: app/pnpm-lock.yaml
-
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v2
-
-    - name: Install dependencies
+    - name: Install ArchLens CLI
       shell: bash
-      working-directory: app
-      run: pnpm install --frozen-lockfile
-
-    - name: Build CLI
-      shell: bash
-      working-directory: app
       run: |
         set -euo pipefail
-        pnpm --filter @archlens/cli build
-        mkdir -p "$HOME/.local/bin"
-        cp dist/archlens "$HOME/.local/bin/archlens"
-        chmod +x "$HOME/.local/bin/archlens"
+        install_args=(--dir "$HOME/.local/bin")
+        version="${{ inputs.archlens-version }}"
+        if [[ -n "$version" && "$version" != "latest" ]]; then
+          install_args+=(--version "$version")
+        fi
+        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh -s -- "${install_args[@]}"
         echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        if [[ ! -f "$HOME/.local/bin/tree-sitter.wasm" ]]; then
+          echo "Installed archlens is missing tree-sitter.wasm beside the binary." >&2
+          echo "Re-publish a CLI release that includes runtime WASM, or pin an older workflow that builds from source." >&2
+          ls -la "$HOME/.local/bin" || true
+          exit 1
+        fi
         archlens --version

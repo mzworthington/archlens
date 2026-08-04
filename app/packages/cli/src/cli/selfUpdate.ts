@@ -90,6 +90,11 @@ async function extractArchive(
   await execFile('powershell', ['-NoProfile', '-Command', command]);
 }
 
+/** Runtime `tree-sitter.wasm` and language `tree-sitter-*.wasm` parsers. */
+export function isBundledTreeSitterWasm(entry: string): boolean {
+  return entry.startsWith('tree-sitter') && entry.endsWith('.wasm');
+}
+
 async function copyInstalledFiles(
   sourceDir: string,
   installDir: string,
@@ -105,7 +110,7 @@ async function copyInstalledFiles(
 
   const entries = await fsp.readdir(sourceDir);
   for (const entry of entries) {
-    if (entry.startsWith('tree-sitter-') && entry.endsWith('.wasm')) {
+    if (isBundledTreeSitterWasm(entry)) {
       await fsp.copyFile(path.join(sourceDir, entry), path.join(installDir, entry));
     }
   }
@@ -146,9 +151,7 @@ async function installWindows(
     await extractArchive(archivePath, extractDir, 'zip');
     await fsp.copyFile(path.join(extractDir, binaryName), stagedBinary);
 
-    const wasmEntries = (await fsp.readdir(extractDir)).filter(
-      entry => entry.startsWith('tree-sitter-') && entry.endsWith('.wasm')
-    );
+    const wasmEntries = (await fsp.readdir(extractDir)).filter(isBundledTreeSitterWasm);
     for (const wasm of wasmEntries) {
       await fsp.copyFile(path.join(extractDir, wasm), path.join(installDir, wasm));
     }
