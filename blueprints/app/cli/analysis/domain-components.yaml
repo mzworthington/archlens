@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/cli/analysis/domain/languages
@@ -19,6 +19,8 @@ nodes:
       classification: default
     forensics:
       complexity: 0
+      loc: 722
+      sloc: 623
       churn: 14
       lineChurn: 317
       churn30: 14
@@ -73,8 +75,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 4
-        - 4
+        - 8
+        - 0
         - 6
         - 0
       authorCount: 1
@@ -96,9 +98,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 163
-      sloc: 150
   - entityRef: blueprint/app/cli/analysis/domain/workspace-packages-test
     type: background-worker
     name: WorkspacePackages
@@ -108,9 +107,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 280
-      sloc: 259
   - entityRef: blueprint/app/cli/analysis/domain/terraform-discovery
     type: background-worker
     name: TerraformDiscovery
@@ -120,9 +116,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 46
-      sloc: 33
   - entityRef: blueprint/app/cli/analysis/domain/iac-code-fallback
     type: background-worker
     name: IacCodeFallback
@@ -132,9 +125,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 64
-      sloc: 49
   - entityRef: blueprint/app/cli/analysis/domain/entity-ref-context-test
     type: background-worker
     name: EntityRefContext
@@ -144,9 +134,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 19
-      sloc: 16
   - entityRef: blueprint/app/cli/analysis/domain/model-extractor
     type: relational-database
     name: ModelExtractor
@@ -156,9 +143,6 @@ nodes:
       containerId: cli
       technology: Prisma / SQL Database Client
       classification: database-marker
-    forensics:
-      loc: 397
-      sloc: 357
   - entityRef: blueprint/app/cli/analysis/domain/java-grouping-test
     type: background-worker
     name: JavaGrouping
@@ -168,9 +152,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 39
-      sloc: 34
   - entityRef: blueprint/app/cli/analysis/domain/csharp-grouping-test
     type: relational-database
     name: CsharpGrouping
@@ -180,9 +161,6 @@ nodes:
       containerId: cli
       technology: Prisma / SQL Database Client
       classification: database-marker
-    forensics:
-      loc: 120
-      sloc: 109
   - entityRef: blueprint/app/cli/analysis/domain/go-grouping
     type: background-worker
     name: GoGrouping
@@ -192,9 +170,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 43
-      sloc: 31
   - entityRef: blueprint/app/cli/analysis/domain/python-dependencies
     type: background-worker
     name: PythonDependencies
@@ -204,9 +179,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 291
-      sloc: 246
   - entityRef: blueprint/app/cli/analysis/domain/java-grouping
     type: background-worker
     name: JavaGrouping
@@ -216,9 +188,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 77
-      sloc: 57
   - entityRef: blueprint/app/cli/analysis/domain/csharp-grouping
     type: background-worker
     name: CsharpGrouping
@@ -228,9 +197,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 101
-      sloc: 79
   - entityRef: blueprint/app/cli/analysis/domain/test-path-test
     type: background-worker
     name: TestPath
@@ -240,9 +206,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 77
-      sloc: 65
   - entityRef: blueprint/app/cli/analysis/domain/typescript-grouping-test
     type: background-worker
     name: TypescriptGrouping
@@ -252,9 +215,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 157
-      sloc: 141
   - entityRef: blueprint/app/cli/analysis/domain/component-resolver
     type: relational-database
     name: ComponentResolver
@@ -264,9 +224,6 @@ nodes:
       containerId: cli
       technology: Prisma / SQL Database Client
       classification: database-marker
-    forensics:
-      loc: 67
-      sloc: 61
   - entityRef: blueprint/app/cli/analysis/domain/folder-component-rollup-test
     type: background-worker
     name: FolderComponentRollup
@@ -276,9 +233,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 62
-      sloc: 56
   - entityRef: blueprint/app/cli/analysis/domain/terraform-discovery-test
     type: background-worker
     name: TerraformDiscovery
@@ -288,9 +242,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 57
-      sloc: 49
   - entityRef: blueprint/app/cli/analysis/domain/folder-component-rollup
     type: background-worker
     name: FolderComponentRollup
@@ -300,9 +251,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 204
-      sloc: 165
   - entityRef: blueprint/app/cli/analysis/domain/iac-discovery
     type: background-worker
     name: IacDiscovery
@@ -312,9 +260,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 73
-      sloc: 61
   - entityRef: blueprint/app/cli/analysis/domain/model-extractor-drill-down-test
     type: background-worker
     name: ModelExtractor.drillDown
@@ -324,9 +269,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 59
-      sloc: 52
   - entityRef: blueprint/app/cli/analysis/domain/types
     type: background-worker
     name: Types
@@ -336,9 +278,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 21
-      sloc: 17
   - entityRef: blueprint/app/cli/analysis/domain/system-discovery
     type: background-worker
     name: SystemDiscovery
@@ -348,9 +287,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 526
-      sloc: 426
   - entityRef: blueprint/app/cli/analysis/domain/test-path
     type: background-worker
     name: TestPath
@@ -360,9 +296,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 142
-      sloc: 86
   - entityRef: blueprint/app/cli/analysis/domain/discover-csproj-files
     type: background-worker
     name: DiscoverCsprojFiles
@@ -372,9 +305,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 58
-      sloc: 50
   - entityRef: blueprint/app/cli/analysis/domain/analyzer-test
     type: background-worker
     name: Analyzer
@@ -384,9 +314,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 304
-      sloc: 136
   - entityRef: blueprint/app/cli/analysis/domain/ports
     type: background-worker
     name: Ports
@@ -396,9 +323,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 24
-      sloc: 18
   - entityRef: blueprint/app/cli/analysis/domain/iac-analyzer
     type: background-worker
     name: IacAnalyzer
@@ -408,9 +332,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 234
-      sloc: 199
   - entityRef: blueprint/app/cli/analysis/domain/pulumi-discovery
     type: background-worker
     name: PulumiDiscovery
@@ -420,9 +341,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 64
-      sloc: 51
   - entityRef: blueprint/app/cli/analysis/domain/analyzer
     type: background-worker
     name: Analyzer
@@ -432,9 +350,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 354
-      sloc: 311
   - entityRef: blueprint/app/cli/analysis/domain/model-extractor-re-exports-test
     type: background-worker
     name: ModelExtractor.reExports
@@ -444,9 +359,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 48
-      sloc: 42
   - entityRef: blueprint/app/cli/analysis/domain/node-type-hydrator-test
     type: background-worker
     name: NodeTypeHydrator
@@ -456,9 +368,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 192
-      sloc: 174
   - entityRef: blueprint/app/cli/analysis/domain/cancellation
     type: background-worker
     name: Cancellation
@@ -468,9 +377,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 72
-      sloc: 50
   - entityRef: blueprint/app/cli/analysis/domain/workspace-packages
     type: background-worker
     name: WorkspacePackages
@@ -480,9 +386,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 198
-      sloc: 159
   - entityRef: blueprint/app/cli/analysis/domain/container-grouping
     type: background-worker
     name: ContainerGrouping
@@ -492,9 +395,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 128
-      sloc: 83
   - entityRef: blueprint/app/cli/analysis/domain/entity-ref-context
     type: background-worker
     name: EntityRefContext
@@ -504,9 +404,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 57
-      sloc: 43
   - entityRef: blueprint/app/cli/analysis/domain/node-type-hydrator
     type: background-worker
     name: NodeTypeHydrator
@@ -516,9 +413,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 309
-      sloc: 264
   - entityRef: blueprint/app/cli/analysis/domain/iac-analyzer-test
     type: background-worker
     name: IacAnalyzer
@@ -528,9 +422,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 429
-      sloc: 378
   - entityRef: blueprint/app/cli/analysis/domain/typescript-grouping
     type: background-worker
     name: TypescriptGrouping
@@ -540,9 +431,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 81
-      sloc: 60
   - entityRef: blueprint/app/cli/analysis/domain/container-grouping-test
     type: background-worker
     name: ContainerGrouping
@@ -552,9 +440,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 336
-      sloc: 313
   - entityRef: blueprint/app/cli/analysis/domain/csharp-dependencies
     type: relational-database
     name: CsharpDependencies
@@ -564,9 +449,6 @@ nodes:
       containerId: cli
       technology: Prisma / SQL Database Client
       classification: database-marker
-    forensics:
-      loc: 227
-      sloc: 194
   - entityRef: blueprint/app/cli/analysis/domain/cancellation-test
     type: background-worker
     name: Cancellation
@@ -576,9 +458,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 50
-      sloc: 40
   - entityRef: blueprint/app/cli/analysis/domain/csharp-dependencies-test
     type: background-worker
     name: CsharpDependencies
@@ -588,9 +467,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 183
-      sloc: 169
   - entityRef: blueprint/app/cli/analysis/domain/system-discovery-test
     type: background-worker
     name: SystemDiscovery
@@ -600,9 +476,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 387
-      sloc: 364
   - entityRef: blueprint/app/cli/analysis/domain/go-grouping-test
     type: background-worker
     name: GoGrouping
@@ -612,9 +485,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 31
-      sloc: 26
   - entityRef: blueprint/app/cli/analysis/domain/component-resolver-test
     type: background-worker
     name: ComponentResolver
@@ -624,9 +494,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 58
-      sloc: 51
   - entityRef: blueprint/app/cli/analysis/domain/analysis-options
     type: background-worker
     name: AnalysisOptions
@@ -636,9 +503,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 98
-      sloc: 52
   - entityRef: blueprint/app/cli/analysis/domain/pulumi-discovery-test
     type: background-worker
     name: PulumiDiscovery
@@ -648,9 +512,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 120
-      sloc: 109
   - entityRef: blueprint/app/cli/forensics/domain/attach-forensics
     type: background-worker
     name: AttachForensics (External)
@@ -660,11 +521,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 235
-      sloc: 213
     position:
-      x: -2200
+      x: -2430
       y: 404
   - entityRef: blueprint/app/cli/writers/base-writer
     type: background-worker
@@ -675,11 +533,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 58
-      sloc: 45
     position:
-      x: -1280
+      x: -1510
       y: 404
   - entityRef: blueprint/app/core/cli
     type: background-worker
@@ -690,11 +545,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 2
-      sloc: 1
     position:
-      x: 1480
+      x: 1250
       y: 404
   - entityRef: blueprint/app/cli/writers/component-level-writer
     type: background-worker
@@ -705,11 +557,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 129
-      sloc: 115
     position:
-      x: -820
+      x: -1050
       y: 404
   - entityRef: blueprint/app/cli/writers/container-level-writer
     type: background-worker
@@ -720,11 +569,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 45
-      sloc: 40
     position:
-      x: -360
+      x: -590
       y: 404
   - entityRef: blueprint/app/cli/writers/context-level-writer
     type: background-worker
@@ -735,11 +581,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 367
-      sloc: 310
     position:
-      x: 100
+      x: -130
       y: 404
   - entityRef: blueprint/app/cli/writers/external-dependencies-pass
     type: background-worker
@@ -750,11 +593,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 127
-      sloc: 102
     position:
-      x: 560
+      x: 330
       y: 404
   - entityRef: blueprint/app/core/import-iac
     type: background-worker
@@ -765,11 +605,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 15
-      sloc: 13
     position:
-      x: 1940
+      x: 1710
       y: 404
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -780,11 +617,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
-      x: 2400
+      x: 2170
       y: 404
   - entityRef: blueprint/app/core/layout
     type: background-worker
@@ -795,11 +629,20 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 9
-      sloc: 8
     position:
-      x: 2860
+      x: 2630
+      y: 404
+  - entityRef: blueprint/app/core/logging
+    type: background-worker
+    name: Logging (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/logging/loggerPort.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3090
       y: 404
   - entityRef: blueprint/app/cli/writers/rollup-drill-down
     type: background-worker
@@ -810,11 +653,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 132
-      sloc: 107
     position:
-      x: 1020
+      x: 790
       y: 404
   - entityRef: blueprint/app/cli/analysis/adapters/pathfilter/source-path-filter
     type: background-worker
@@ -825,11 +665,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 47
-      sloc: 33
     position:
-      x: -2660
+      x: -2890
       y: 404
   - entityRef: blueprint/app/cli/forensics/domain/types
     type: background-worker
@@ -840,11 +677,8 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 66
-      sloc: 53
     position:
-      x: -1740
+      x: -1970
       y: 404
 dependencies:
   - from: blueprint/app/cli/analysis/domain/python-dependencies-test
@@ -1107,6 +941,10 @@ dependencies:
     to: blueprint/app/cli/analysis/domain/types
     type: read-write
     description: Queries datastore records
+  - from: blueprint/app/cli/analysis/domain/ports
+    to: blueprint/app/core/logging
+    type: direct-call
+    description: '@archlens/core'
   - from: blueprint/app/cli/analysis/domain/iac-analyzer
     to: blueprint/app/core/index
     type: direct-call

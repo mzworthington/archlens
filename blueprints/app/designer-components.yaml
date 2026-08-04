@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/designer/packages
@@ -19,6 +19,8 @@ nodes:
       classification: api-marker
     forensics:
       complexity: 0
+      loc: 53
+      sloc: 45
       churn: 0
       churn30: 0
       churn365: 0
@@ -82,22 +84,24 @@ nodes:
       fileCount: 2
       hotspotCount: 0
       knowledgeSiloCount: 0
-  - entityRef: blueprint/app/designer/ui/features/workspace
+  - entityRef: blueprint/app/designer/ui/features/tracelens
     type: gateway-api
-    name: Workspace
+    name: Tracelens
     isTest: false
     properties:
       containerId: designer
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 13
-      complexityPeak: 13
-      cognitiveComplexity: 68
-      churn: 42
-      lineChurn: 1008
-      churn30: 42
-      churn365: 42
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 52
+      loc: 1984
+      sloc: 1844
+      churn: 26
+      lineChurn: 2280
+      churn30: 26
+      churn365: 26
       churnByWeek:
         - 0
         - 0
@@ -148,22 +152,184 @@ nodes:
         - 0
         - 0
         - 0
-        - 7
-        - 12
-        - 16
-        - 7
+        - 0
+        - 0
+        - 26
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 42
-      hotspotScore: 0.02407042893296706
+          commits: 26
+      hotspotScore: 0.024797853709431012
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 4
+      fileCount: 12
       hotspotCount: 0
       knowledgeSiloCount: 1
+  - entityRef: blueprint/app/designer/ui/features/workspace
+    type: gateway-api
+    name: Workspace
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 5
+      complexityPeak: 5
+      cognitiveComplexity: 10
+      loc: 357
+      sloc: 308
+      churn: 46
+      lineChurn: 1123
+      churn30: 46
+      churn365: 46
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 11
+        - 14
+        - 21
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 46
+      hotspotScore: 0.008057905130975892
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/ui/features/workspace/layout
+    type: gateway-api
+    name: Layout
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 388
+      sloc: 339
+      churn: 8
+      lineChurn: 380
+      churn30: 8
+      churn365: 8
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 8
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 8
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/ui/features/workspace/components/searchbar
     type: gateway-api
     name: Searchbar
@@ -176,6 +342,8 @@ nodes:
       complexity: 6
       complexityPeak: 6
       cognitiveComplexity: 15
+      loc: 395
+      sloc: 331
       churn: 12
       lineChurn: 380
       churn30: 12
@@ -229,17 +397,17 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
+        - 1
         - 6
-        - 2
         - 4
+        - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 12
-      hotspotScore: 0.005243235058726829
+      hotspotScore: 0.003763460893542497
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
@@ -253,13 +421,15 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 49
-      complexityPeak: 49
-      cognitiveComplexity: 707
-      churn: 209
-      lineChurn: 10294
-      churn30: 209
-      churn365: 209
+      complexity: 47
+      complexityPeak: 47
+      cognitiveComplexity: 650
+      loc: 3933
+      sloc: 3636
+      churn: 224
+      lineChurn: 11316
+      churn30: 224
+      churn365: 224
       churnByWeek:
         - 0
         - 0
@@ -309,28 +479,28 @@ nodes:
         - 0
         - 0
         - 0
+        - 5
+        - 80
+        - 54
+        - 85
         - 0
-        - 58
-        - 62
-        - 76
-        - 13
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 209
-      hotspotScore: 0.2918950487767948
+          commits: 224
+      hotspotScore: 0.21205487448920024
       classifications:
         - knowledge-silo
       coupledFiles:
         - path: >-
             app/packages/designer/src/ui/features/workspace/components/StartupWorkspaceDialog/StartupWorkspaceDialog.test.tsx
-          score: 0.8
-          sharedCommits: 8
+          score: 0.8181818181818182
+          sharedCommits: 9
       sinceDays: 365
-      fileCount: 26
+      fileCount: 24
       hotspotCount: 0
-      knowledgeSiloCount: 8
+      knowledgeSiloCount: 6
   - entityRef: blueprint/app/designer/ui/features/workspace/components/importiacdialog
     type: gateway-api
     name: Importiacdialog
@@ -343,6 +513,8 @@ nodes:
       complexity: 6
       complexityPeak: 6
       cognitiveComplexity: 15
+      loc: 217
+      sloc: 191
       churn: 7
       lineChurn: 275
       churn30: 7
@@ -397,16 +569,16 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 3
+        - 2
         - 4
+        - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 7
-      hotspotScore: 0.005970020116372131
+      hotspotScore: 0.004285128740172149
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
@@ -420,13 +592,15 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 20
-      complexityPeak: 20
-      cognitiveComplexity: 132
-      churn: 115
-      lineChurn: 4365
-      churn30: 115
-      churn365: 115
+      complexity: 23
+      complexityPeak: 23
+      cognitiveComplexity: 154
+      loc: 3255
+      sloc: 2998
+      churn: 131
+      lineChurn: 5320
+      churn30: 131
+      churn365: 131
       churnByWeek:
         - 0
         - 0
@@ -477,25 +651,25 @@ nodes:
         - 0
         - 0
         - 0
-        - 35
-        - 32
-        - 45
-        - 3
+        - 56
+        - 17
+        - 58
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 115
-      hotspotScore: 0.08306114944517748
+          commits: 131
+      hotspotScore: 0.06956192321546124
       classifications:
         - knowledge-silo
       coupledFiles:
         - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/WorkspaceDisplayControls.test.tsx
-          score: 0.8888888888888888
-          sharedCommits: 8
+          score: 0.9090909090909091
+          sharedCommits: 10
         - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/WorkspaceDisplayControls.tsx
-          score: 0.8888888888888888
-          sharedCommits: 8
+          score: 0.9090909090909091
+          sharedCommits: 10
         - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/ForensicsSection.test.tsx
           score: 0.7647058823529411
           sharedCommits: 13
@@ -503,9 +677,9 @@ nodes:
           score: 0.7647058823529411
           sharedCommits: 13
       sinceDays: 365
-      fileCount: 23
+      fileCount: 28
       hotspotCount: 0
-      knowledgeSiloCount: 2
+      knowledgeSiloCount: 3
   - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar
     type: gateway-api
     name: Workspacetoolbar
@@ -515,13 +689,15 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 10
-      complexityPeak: 10
-      cognitiveComplexity: 37
-      churn: 12
-      lineChurn: 520
-      churn30: 12
-      churn365: 12
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 34
+      loc: 432
+      sloc: 372
+      churn: 20
+      lineChurn: 827
+      churn30: 20
+      churn365: 20
       churnByWeek:
         - 0
         - 0
@@ -573,19 +749,19 @@ nodes:
         - 0
         - 0
         - 1
-        - 4
         - 5
-        - 2
+        - 14
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 12
-      hotspotScore: 0.009690467435270706
+          commits: 20
+      hotspotScore: 0.014858218131683868
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 5
+      fileCount: 7
       hotspotCount: 0
       knowledgeSiloCount: 1
   - entityRef: blueprint/app/designer/ui/features/workspace/components/importmermaiddialog
@@ -600,6 +776,8 @@ nodes:
       complexity: 6
       complexityPeak: 6
       cognitiveComplexity: 15
+      loc: 199
+      sloc: 173
       churn: 8
       lineChurn: 241
       churn30: 8
@@ -654,16 +832,16 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
         - 4
-        - 3
+        - 2
+        - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 8
-      hotspotScore: 0.004905799139105794
+      hotspotScore: 0.003521257964750158
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
@@ -678,6 +856,8 @@ nodes:
       classification: ui-import
     forensics:
       complexity: 0
+      loc: 56
+      sloc: 46
       churn: 3
       lineChurn: 66
       churn30: 3
@@ -758,13 +938,13 @@ nodes:
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 19
+      functionCount: 17
       loc: 233
       sloc: 189
-      churn: 8
-      lineChurn: 273
-      churn30: 8
-      churn365: 8
+      churn: 10
+      lineChurn: 298
+      churn30: 10
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -815,16 +995,16 @@ nodes:
         - 0
         - 0
         - 0
-        - 3
-        - 3
+        - 4
         - 2
+        - 4
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 8
-      hotspotScore: 0.0011810257186736174
+          commits: 10
+      hotspotScore: 0.0009253393946168846
       sinceDays: 365
   - entityRef: blueprint/app/designer/ui/features/workspace/components/childlevelexternalsdialog
     type: gateway-api
@@ -838,8 +1018,8 @@ nodes:
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
+      loc: 94
+      sloc: 84
       churn: 1
       lineChurn: 93
       churn30: 1
@@ -914,330 +1094,13 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      churn: 10
-      lineChurn: 304
-      churn30: 10
-      churn365: 10
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 3
-        - 7
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 10
-      hotspotScore: 0.0003980013410914754
-      sinceDays: 365
-      fileCount: 5
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/app/designer/ui/features/workspace/components/codeviewer
-    type: gateway-api
-    name: Codeviewer
-    isTest: false
-    properties:
-      containerId: designer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 4
-      complexityPeak: 4
-      cognitiveComplexity: 6
-      churn: 14
-      lineChurn: 354
-      churn30: 14
-      churn365: 14
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 10
-        - 0
-        - 4
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 14
-      hotspotScore: 0.0017823538318444334
-      sinceDays: 365
-      fileCount: 2
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas
-    type: gateway-api
-    name: Canvas
-    isTest: false
-    properties:
-      containerId: designer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 83
-      complexityPeak: 83
-      cognitiveComplexity: 2360
-      churn: 105
-      lineChurn: 2848
-      churn30: 105
-      churn365: 105
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 30
-        - 33
-        - 37
-        - 5
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 105
-      hotspotScore: 0.39245960502693
-      classifications:
-        - knowledge-silo
-      sinceDays: 365
-      fileCount: 7
-      hotspotCount: 0
-      knowledgeSiloCount: 1
-  - entityRef: blueprint/app/designer/ui/features/workspace/components/tracelenspanel
-    type: gateway-api
-    name: Tracelenspanel
-    isTest: true
-    properties:
-      filepath: app/packages/designer/src/ui/features/workspace/components/TraceLensPanel/TraceLensPanel.test.tsx
-      containerId: designer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 0
-      sloc: 0
-      churn: 0
-      churn30: 0
-      churn365: 0
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: blueprint/app/designer/ui/features/workspace/components/startupworkspacedialog
-    type: gateway-api
-    name: Startupworkspacedialog
-    isTest: true
-    properties:
-      filepath: >-
-        app/packages/designer/src/ui/features/workspace/components/StartupWorkspaceDialog/StartupWorkspaceDialog.test.tsx
-      containerId: designer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 4
-      loc: 41
-      sloc: 32
+      complexity: 3
+      complexityPeak: 3
+      cognitiveComplexity: 3
+      loc: 304
+      sloc: 266
       churn: 11
-      lineChurn: 202
+      lineChurn: 307
       churn30: 11
       churn365: 11
       churnByWeek:
@@ -1291,36 +1154,284 @@ nodes:
         - 0
         - 0
         - 0
-        - 3
-        - 3
-        - 5
+        - 7
+        - 4
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 11
-      hotspotScore: 0.0008738725097878048
-      coupledFiles:
-        - path: app/packages/designer/src/ui/features/workspace/components/StartupWorkspaceDialog/StartupWorkspaceDialog.tsx
-          score: 0.8
-          sharedCommits: 8
+      hotspotScore: 0.0004098818794947274
       sinceDays: 365
-  - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacedisplaydialog
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/codeviewer
     type: gateway-api
-    name: Workspacedisplaydialog
+    name: Codeviewer
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 6
+      loc: 551
+      sloc: 469
+      churn: 16
+      lineChurn: 553
+      churn30: 16
+      churn365: 16
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 8
+        - 1
+        - 5
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 16
+      hotspotScore: 0.0012793282905441492
+      sinceDays: 365
+      fileCount: 3
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas
+    type: gateway-api
+    name: Canvas
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 94
+      complexityPeak: 94
+      cognitiveComplexity: 3127
+      loc: 2959
+      sloc: 2698
+      churn: 126
+      lineChurn: 4383
+      churn30: 126
+      churn365: 126
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 39
+        - 39
+        - 44
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 126
+      hotspotScore: 0.3467600700525394
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 19
+      hotspotCount: 0
+      knowledgeSiloCount: 2
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/startupworkspacedialog
+    type: gateway-api
+    name: Startupworkspacedialog
     isTest: true
     properties:
       filepath: >-
-        app/packages/designer/src/ui/features/workspace/components/WorkspaceDisplayDialog/WorkspaceDisplayDialog.test.tsx
+        app/packages/designer/src/ui/features/workspace/components/StartupWorkspaceDialog/StartupWorkspaceDialog.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      functionCount: 5
+      loc: 55
+      sloc: 44
+      churn: 12
+      lineChurn: 216
+      churn30: 12
+      churn365: 12
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 3
+        - 0
+        - 9
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 12
+      hotspotScore: 0.000670715802809554
+      coupledFiles:
+        - path: app/packages/designer/src/ui/features/workspace/components/StartupWorkspaceDialog/StartupWorkspaceDialog.tsx
+          score: 0.8181818181818182
+          sharedCommits: 9
+      sinceDays: 365
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog
+    type: gateway-api
+    name: Chaosspecdialog
+    isTest: false
+    properties:
       containerId: designer
       technology: React Component
       classification: ui-import
     forensics:
       complexity: 0
-      loc: 0
-      sloc: 0
+      loc: 271
+      sloc: 239
       churn: 2
-      lineChurn: 70
+      lineChurn: 205
       churn30: 2
       churn365: 2
       churnByWeek:
@@ -1374,89 +1485,14 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 1
+        - 0
+        - 2
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 2
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: blueprint/app/designer/ui/features/workspace/components/chaosspecdialog
-    type: gateway-api
-    name: Chaosspecdialog
-    isTest: false
-    properties:
-      containerId: designer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      churn: 1
-      lineChurn: 199
-      churn30: 1
-      churn365: 1
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 1
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 1
       hotspotScore: 0
       sinceDays: 365
       fileCount: 2
@@ -1474,10 +1510,12 @@ nodes:
       complexity: 6
       complexityPeak: 6
       cognitiveComplexity: 6
-      churn: 13
-      lineChurn: 761
-      churn30: 13
-      churn365: 13
+      loc: 560
+      sloc: 511
+      churn: 14
+      lineChurn: 762
+      churn30: 14
+      churn365: 14
       churnByWeek:
         - 0
         - 0
@@ -1527,17 +1565,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 1
+        - 12
         - 0
-        - 9
-        - 4
-        - 0
+        - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 13
-      hotspotScore: 0.0075793298868724445
+          commits: 14
+      hotspotScore: 0.005440250400566382
       sinceDays: 365
       fileCount: 4
       hotspotCount: 0
@@ -1554,10 +1592,12 @@ nodes:
       complexity: 14
       complexityPeak: 14
       cognitiveComplexity: 58
-      churn: 30
-      lineChurn: 2024
-      churn30: 30
-      churn365: 30
+      loc: 807
+      sloc: 729
+      churn: 33
+      lineChurn: 2366
+      churn30: 33
+      churn365: 33
       churnByWeek:
         - 0
         - 0
@@ -1607,17 +1647,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 8
+        - 4
+        - 19
         - 0
-        - 10
-        - 1
-        - 10
-        - 9
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 30
-      hotspotScore: 0.053600398001341094
+          commits: 33
+      hotspotScore: 0.03847300368893691
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -1637,10 +1677,10 @@ nodes:
       complexity: 0
       loc: 45
       sloc: 38
-      churn: 1
-      lineChurn: 35
-      churn30: 1
-      churn365: 1
+      churn: 2
+      lineChurn: 50
+      churn30: 2
+      churn365: 2
       churnByWeek:
         - 0
         - 0
@@ -1693,13 +1733,13 @@ nodes:
         - 0
         - 1
         - 0
-        - 0
+        - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 1
+          commits: 2
       hotspotScore: 0
       sinceDays: 365
   - entityRef: blueprint/app/designer/ui/features/workspace/components/header
@@ -1772,15 +1812,15 @@ nodes:
         - 0
         - 0
         - 3
-        - 1
         - 2
+        - 1
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 6
-      hotspotScore: 0.0004369362548939024
+      hotspotScore: 0.00031362174112854144
       sinceDays: 365
   - entityRef: blueprint/app/designer/ui/features/workspace/hooks
     type: gateway-api
@@ -1794,10 +1834,12 @@ nodes:
       complexity: 29
       complexityPeak: 29
       cognitiveComplexity: 177
-      churn: 44
-      lineChurn: 2131
-      churn30: 44
-      churn365: 44
+      loc: 1157
+      sloc: 965
+      churn: 58
+      lineChurn: 2474
+      churn30: 58
+      churn365: 58
       churnByWeek:
         - 0
         - 0
@@ -1847,17 +1889,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 13
+        - 11
+        - 32
         - 0
-        - 12
-        - 8
-        - 12
-        - 12
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 44
-      hotspotScore: 0.03566438104302308
+          commits: 58
+      hotspotScore: 0.02608339233148265
       classifications:
         - knowledge-silo
       coupledFiles:
@@ -1868,7 +1910,7 @@ nodes:
           score: 1
           sharedCommits: 5
       sinceDays: 365
-      fileCount: 10
+      fileCount: 11
       hotspotCount: 0
       knowledgeSiloCount: 2
   - entityRef: blueprint/app/designer/ui/features/docs
@@ -1883,10 +1925,12 @@ nodes:
       complexity: 22
       complexityPeak: 22
       cognitiveComplexity: 130
-      churn: 95
-      lineChurn: 3413
-      churn30: 95
-      churn365: 95
+      loc: 2495
+      sloc: 2253
+      churn: 105
+      lineChurn: 3445
+      churn30: 105
+      churn365: 105
       churnByWeek:
         - 0
         - 0
@@ -1937,25 +1981,25 @@ nodes:
         - 0
         - 0
         - 0
-        - 14
-        - 19
-        - 43
-        - 19
+        - 25
+        - 26
+        - 52
+        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 95
-      hotspotScore: 0.03502411801604984
+          commits: 105
+      hotspotScore: 0.026027499347915192
       classifications:
         - knowledge-silo
       coupledFiles:
         - path: app/packages/designer/src/ui/features/docs/pages.test.ts
-          score: 0.7857142857142857
-          sharedCommits: 11
+          score: 0.8235294117647058
+          sharedCommits: 14
         - path: app/packages/designer/src/ui/features/docs/pages.ts
-          score: 0.7857142857142857
-          sharedCommits: 11
+          score: 0.8235294117647058
+          sharedCommits: 14
       sinceDays: 365
       fileCount: 24
       hotspotCount: 0
@@ -1969,13 +2013,15 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 13
-      complexityPeak: 13
-      cognitiveComplexity: 77
-      churn: 35
-      lineChurn: 1757
-      churn30: 35
-      churn365: 35
+      complexity: 14
+      complexityPeak: 14
+      cognitiveComplexity: 82
+      loc: 1732
+      sloc: 1546
+      churn: 45
+      lineChurn: 2110
+      churn30: 45
+      churn365: 45
       churnByWeek:
         - 0
         - 0
@@ -2027,19 +2073,29 @@ nodes:
         - 0
         - 0
         - 3
-        - 1
-        - 24
-        - 7
+        - 6
+        - 36
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 35
-      hotspotScore: 0.021652138175682983
+          commits: 45
+      hotspotScore: 0.015541354597508415
       classifications:
         - knowledge-silo
+      coupledFiles:
+        - path: app/packages/designer/src/ui/features/forensics/traceLensUrl.test.ts
+          score: 1
+          sharedCommits: 5
+        - path: app/packages/designer/src/ui/features/forensics/traceLensUrl.ts
+          score: 1
+          sharedCommits: 5
+        - path: app/packages/designer/src/ui/features/forensics/useTraceLensUrlSync.ts
+          score: 0.8333333333333334
+          sharedCommits: 5
       sinceDays: 365
-      fileCount: 11
+      fileCount: 14
       hotspotCount: 0
       knowledgeSiloCount: 2
   - entityRef: blueprint/app/designer/ui/features/forensics/components
@@ -2131,6 +2187,8 @@ nodes:
     forensics:
       complexity: 1
       complexityPeak: 1
+      loc: 210
+      sloc: 194
       churn: 5
       lineChurn: 232
       churn30: 5
@@ -2194,7 +2252,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.0004196318487594904
+      hotspotScore: 0.0003012010781135497
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
@@ -2211,6 +2269,8 @@ nodes:
       complexity: 13
       complexityPeak: 13
       cognitiveComplexity: 68
+      loc: 757
+      sloc: 691
       churn: 26
       lineChurn: 789
       churn30: 26
@@ -2266,38 +2326,37 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 26
+        - 3
+        - 23
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 26
-      hotspotScore: 0.01192273582660985
+      hotspotScore: 0.00855783681732931
       classifications:
         - knowledge-silo
       sinceDays: 365
       fileCount: 10
       hotspotCount: 0
       knowledgeSiloCount: 1
-  - entityRef: blueprint/app/designer/ui/content
-    type: background-worker
-    name: Content
+  - entityRef: blueprint/app/designer/ui/features/resilience
+    type: gateway-api
+    name: Resilience
     isTest: false
     properties:
-      filepath: app/packages/designer/src/ui/content/productOutcomes.ts
+      filepath: app/packages/designer/src/ui/features/resilience/useBlastRippleAnimation.ts
       containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
+      technology: React Component
+      classification: ui-import
     forensics:
       complexity: 0
-      loc: 40
-      sloc: 34
-      churn: 2
-      lineChurn: 49
-      churn30: 2
-      churn365: 2
+      loc: 102
+      sloc: 90
+      churn: 0
+      churn30: 0
+      churn365: 0
       churnByWeek:
         - 0
         - 0
@@ -2351,13 +2410,88 @@ nodes:
         - 0
         - 0
         - 0
-        - 2
+        - 0
+      authorCount: 0
+      topAuthorPercent: 0
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: blueprint/app/designer/ui/content
+    type: background-worker
+    name: Content
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/content/productOutcomes.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 40
+      sloc: 34
+      churn: 5
+      lineChurn: 63
+      churn30: 5
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2
-      hotspotScore: 0
+          commits: 5
+      hotspotScore: 0.0001956254424861199
       sinceDays: 365
   - entityRef: blueprint/app/designer/ui/components/offlinebanner
     type: gateway-api
@@ -2446,13 +2580,15 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 33
-      complexityPeak: 33
-      cognitiveComplexity: 435
-      churn: 38
-      lineChurn: 1796
-      churn30: 38
-      churn365: 38
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 56
+      loc: 1139
+      sloc: 1009
+      churn: 46
+      lineChurn: 2808
+      churn30: 46
+      churn365: 46
       churnByWeek:
         - 0
         - 0
@@ -2503,16 +2639,16 @@ nodes:
         - 0
         - 0
         - 0
-        - 14
-        - 3
-        - 13
-        - 8
+        - 15
+        - 7
+        - 24
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 38
-      hotspotScore: 0.12620103393826654
+          commits: 46
+      hotspotScore: 0.06699705630286544
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -2529,6 +2665,8 @@ nodes:
       classification: ui-import
     forensics:
       complexity: 0
+      loc: 74
+      sloc: 55
       churn: 0
       churn30: 0
       churn365: 0
@@ -2592,21 +2730,22 @@ nodes:
       fileCount: 2
       hotspotCount: 0
       knowledgeSiloCount: 0
-  - entityRef: blueprint/app/designer/ui/components/workspaceentrypanel
+  - entityRef: blueprint/app/designer/ui/components/designsystem
     type: gateway-api
-    name: Workspaceentrypanel
+    name: Designsystem
     isTest: false
     properties:
       containerId: designer
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      churn: 4
-      lineChurn: 63
-      churn30: 4
-      churn365: 4
+      complexity: 0
+      loc: 924
+      sloc: 876
+      churn: 6
+      lineChurn: 918
+      churn30: 6
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -2659,14 +2798,95 @@ nodes:
         - 0
         - 0
         - 0
+        - 6
         - 0
-        - 4
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 4
-      hotspotScore: 0.0002682182950833856
+          commits: 6
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/ui/components/workspaceentrypanel
+    type: gateway-api
+    name: Workspaceentrypanel
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      loc: 63
+      sloc: 49
+      churn: 5
+      lineChurn: 85
+      churn30: 5
+      churn365: 5
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 5
+      hotspotScore: 0.00026083392331482653
       sinceDays: 365
       fileCount: 2
       hotspotCount: 0
@@ -2683,10 +2903,12 @@ nodes:
       complexity: 4
       complexityPeak: 4
       cognitiveComplexity: 6
-      churn: 8
-      lineChurn: 130
-      churn30: 8
-      churn365: 8
+      loc: 119
+      sloc: 91
+      churn: 18
+      lineChurn: 359
+      churn30: 18
+      churn365: 18
       churnByWeek:
         - 0
         - 0
@@ -2738,17 +2960,17 @@ nodes:
         - 0
         - 0
         - 4
+        - 2
+        - 12
         - 0
-        - 3
-        - 1
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 8
-      hotspotScore: 0.0010901775864679544
+          commits: 18
+      hotspotScore: 0.002757387189328166
       sinceDays: 365
-      fileCount: 3
+      fileCount: 4
       hotspotCount: 0
       knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/ui/components/updatebanner
@@ -2841,164 +3063,13 @@ nodes:
     forensics:
       complexity: 1
       complexityPeak: 1
-      functionCount: 14
-      loc: 80
-      sloc: 70
-      churn: 16
-      lineChurn: 178
-      churn30: 16
-      churn365: 16
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 4
-        - 2
-        - 7
-        - 3
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 16
-      hotspotScore: 0.0007700460729813328
-      sinceDays: 365
-  - entityRef: blueprint/app/designer/main
-    type: gateway-api
-    name: Main
-    isTest: false
-    properties:
-      filepath: app/packages/designer/src/main.tsx
-      containerId: designer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 0
-      loc: 19
-      sloc: 16
-      churn: 0
-      churn30: 0
-      churn365: 0
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      authorCount: 0
-      topAuthorPercent: 0
-      hotspotScore: 0
-      sinceDays: 365
-  - entityRef: blueprint/app/designer/core
-    type: background-worker
-    name: Core
-    isTest: false
-    properties:
-      containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 4
-      complexityPeak: 4
-      cognitiveComplexity: 3
-      churn: 10
-      lineChurn: 235
-      churn30: 10
-      churn365: 10
+      functionCount: 18
+      loc: 81
+      sloc: 71
+      churn: 18
+      lineChurn: 190
+      churn30: 18
+      churn365: 18
       churnByWeek:
         - 0
         - 0
@@ -3050,38 +3121,33 @@ nodes:
         - 0
         - 0
         - 5
+        - 6
+        - 6
         - 1
-        - 4
-        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 10
-      hotspotScore: 0.0038934913802426943
+          commits: 18
+      hotspotScore: 0.0005899814932121076
       sinceDays: 365
-      fileCount: 2
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/app/designer/app-test
+  - entityRef: blueprint/app/designer/main
     type: gateway-api
-    name: App test
-    isTest: true
+    name: Main
+    isTest: false
     properties:
-      filepath: app/packages/designer/src/App.test.tsx
+      filepath: app/packages/designer/src/main.tsx
       containerId: designer
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 1
-      complexityPeak: 1
-      functionCount: 15
-      loc: 117
-      sloc: 102
-      churn: 7
-      lineChurn: 234
-      churn30: 7
-      churn365: 7
+      complexity: 0
+      loc: 19
+      sloc: 16
+      churn: 1
+      lineChurn: 7
+      churn30: 1
+      churn365: 1
       churnByWeek:
         - 0
         - 0
@@ -3132,16 +3198,179 @@ nodes:
         - 0
         - 0
         - 0
-        - 4
+        - 0
+        - 0
         - 1
         - 0
-        - 2
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 7
-      hotspotScore: 0.0010123077588631004
+          commits: 1
+      hotspotScore: 0
+      sinceDays: 365
+  - entityRef: blueprint/app/designer/core
+    type: background-worker
+    name: Core
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 4
+      complexityPeak: 4
+      cognitiveComplexity: 3
+      loc: 220
+      sloc: 147
+      churn: 11
+      lineChurn: 254
+      churn30: 11
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 1
+        - 4
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 11
+      hotspotScore: 0.0030306417756579846
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/app-test
+    type: gateway-api
+    name: App test
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/App.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 2
+      complexityPeak: 2
+      cognitiveComplexity: 1
+      functionCount: 16
+      loc: 117
+      sloc: 102
+      churn: 9
+      lineChurn: 247
+      churn30: 9
+      churn365: 9
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 0
+        - 4
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 9
+      hotspotScore: 0.00153395188235148
       sinceDays: 365
   - entityRef: blueprint/app/designer/constants
     type: background-worker
@@ -3210,8 +3439,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 4
         - 0
       authorCount: 1
@@ -3219,7 +3448,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 5
-      hotspotScore: 0.00008652203067205989
+      hotspotScore: 0.0000621033150749587
       sinceDays: 365
   - entityRef: blueprint/app/designer/comparesystemschemas-test
     type: background-worker
@@ -3290,8 +3519,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 2
         - 0
       authorCount: 1
@@ -3299,7 +3528,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 3
-      hotspotScore: 0.0002076528736129437
+      hotspotScore: 0.00014904795617990088
       sinceDays: 365
   - entityRef: blueprint/app/designer/comparesystemschemas
     type: background-worker
@@ -3371,8 +3600,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
         - 1
+        - 0
         - 3
         - 0
       authorCount: 1
@@ -3380,8 +3609,88 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 4
-      hotspotScore: 0.004326101533602994
+      hotspotScore: 0.0031051657537479347
       sinceDays: 365
+  - entityRef: blueprint/app/designer/composition
+    type: gateway-api
+    name: Composition
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 0
+      loc: 70
+      sloc: 63
+      churn: 2
+      lineChurn: 68
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/setuppolyfills
     type: background-worker
     name: Setuppolyfills
@@ -3465,7 +3774,6 @@ nodes:
     name: Context
     isTest: false
     properties:
-      filepath: app/packages/designer/src/application/context/AppContext.tsx
       containerId: designer
       technology: React Component
       classification: ui-import
@@ -3473,165 +3781,10 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      functionCount: 3
-      loc: 105
-      sloc: 88
-      churn: 8
-      lineChurn: 152
-      churn30: 8
-      churn365: 8
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 2
-        - 3
-        - 2
-        - 1
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 8
-      hotspotScore: 0.0013151348662153101
-      sinceDays: 365
-  - entityRef: blueprint/app/designer/application/layout
-    type: background-worker
-    name: Layout
-    isTest: false
-    properties:
-      containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      churn: 9
-      lineChurn: 202
-      churn30: 9
-      churn365: 9
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 4
-        - 2
-        - 3
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 9
-      hotspotScore: 0.0000692176245376479
-      sinceDays: 365
-      fileCount: 4
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/app/designer/application
-    type: background-worker
-    name: Application
-    isTest: false
-    properties:
-      containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      complexityPeak: 1
+      loc: 181
+      sloc: 155
       churn: 12
-      lineChurn: 205
+      lineChurn: 354
       churn30: 12
       churn365: 12
       churnByWeek:
@@ -3685,19 +3838,258 @@ nodes:
         - 0
         - 0
         - 3
-        - 2
-        - 4
         - 3
+        - 6
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 12
-      hotspotScore: 0.00014708745214250178
+      hotspotScore: 0.0016581585125013973
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/application/layout
+    type: background-worker
+    name: Layout
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      loc: 198
+      sloc: 154
+      churn: 10
+      lineChurn: 207
+      churn30: 10
+      churn365: 10
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 4
+        - 2
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 10
+      hotspotScore: 0.00004968265205996696
+      sinceDays: 365
+      fileCount: 5
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/application/workspace
+    type: background-worker
+    name: Workspace
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 195
+      sloc: 168
+      churn: 0
+      churn30: 0
+      churn365: 0
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+      authorCount: 0
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/application
+    type: background-worker
+    name: Application
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 12
+      complexityPeak: 12
+      cognitiveComplexity: 66
+      loc: 229
+      sloc: 192
+      churn: 15
+      lineChurn: 242
+      churn30: 15
+      churn365: 15
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 1
+        - 2
+        - 3
+        - 9
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 15
+      hotspotScore: 0.004545962663486977
+      classifications:
+        - knowledge-silo
       sinceDays: 365
       fileCount: 3
       hotspotCount: 0
-      knowledgeSiloCount: 0
+      knowledgeSiloCount: 1
   - entityRef: blueprint/app/designer/application/navigation
     type: background-worker
     name: Navigation
@@ -3710,10 +4102,12 @@ nodes:
       complexity: 2
       complexityPeak: 2
       cognitiveComplexity: 1
-      churn: 7
-      lineChurn: 195
-      churn30: 7
-      churn365: 7
+      loc: 99
+      sloc: 74
+      churn: 8
+      lineChurn: 218
+      churn30: 8
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -3766,16 +4160,16 @@ nodes:
         - 0
         - 0
         - 4
-        - 2
-        - 1
+        - 4
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 7
-      hotspotScore: 0.0006272847223724341
+          commits: 8
+      hotspotScore: 0.0004502490342934505
       sinceDays: 365
-      fileCount: 2
+      fileCount: 3
       hotspotCount: 0
       knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/application/forensics
@@ -3787,13 +4181,15 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 17
-      complexityPeak: 17
-      cognitiveComplexity: 112
-      churn: 106
-      lineChurn: 4844
-      churn30: 106
-      churn365: 106
+      complexity: 19
+      complexityPeak: 19
+      cognitiveComplexity: 139
+      loc: 5677
+      sloc: 4906
+      churn: 125
+      lineChurn: 6273
+      churn30: 125
+      churn365: 125
       churnByWeek:
         - 0
         - 0
@@ -3844,22 +4240,22 @@ nodes:
         - 0
         - 0
         - 0
-        - 13
+        - 24
         - 20
-        - 68
-        - 5
+        - 81
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 106
-      hotspotScore: 0.027825485064134455
+          commits: 125
+      hotspotScore: 0.02418924122169641
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 38
+      fileCount: 48
       hotspotCount: 0
-      knowledgeSiloCount: 3
+      knowledgeSiloCount: 6
   - entityRef: blueprint/app/designer/application/canvas
     type: gateway-api
     name: Canvas
@@ -3948,10 +4344,12 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      churn: 7
-      lineChurn: 879
-      churn30: 7
-      churn365: 7
+      loc: 971
+      sloc: 855
+      churn: 10
+      lineChurn: 1021
+      churn30: 10
+      churn365: 10
       churnByWeek:
         - 0
         - 0
@@ -4004,16 +4402,16 @@ nodes:
         - 0
         - 0
         - 0
-        - 6
-        - 1
+        - 10
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 7
+          commits: 10
       hotspotScore: 0
       sinceDays: 365
-      fileCount: 6
+      fileCount: 8
       hotspotCount: 0
       knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/application/search
@@ -4028,8 +4426,421 @@ nodes:
       complexity: 16
       complexityPeak: 16
       cognitiveComplexity: 80
+      loc: 230
+      sloc: 200
       churn: 6
       lineChurn: 284
+      churn30: 6
+      churn365: 6
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 4
+        - 2
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 6
+      hotspotScore: 0.004968265205996696
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: blueprint/app/designer/application/resilience
+    type: background-worker
+    name: Resilience
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 10
+      complexityPeak: 10
+      cognitiveComplexity: 13
+      loc: 1046
+      sloc: 905
+      churn: 25
+      lineChurn: 1063
+      churn30: 25
+      churn365: 25
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 19
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 25
+      hotspotScore: 0.004409335370322068
+      classifications:
+        - knowledge-silo
+      sinceDays: 365
+      fileCount: 13
+      hotspotCount: 0
+      knowledgeSiloCount: 1
+  - entityRef: blueprint/app/designer/application/pwa
+    type: background-worker
+    name: Pwa
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 0
+      loc: 92
+      sloc: 74
+      churn: 2
+      lineChurn: 61
+      churn30: 2
+      churn365: 2
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 2
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 2
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/application/parsing
+    type: background-worker
+    name: Parsing
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 1
+      complexityPeak: 1
+      loc: 344
+      sloc: 283
+      churn: 11
+      lineChurn: 356
+      churn30: 11
+      churn365: 11
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 5
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 11
+      hotspotScore: 0.00013662729316490913
+      sinceDays: 365
+      fileCount: 6
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/application/store
+    type: cache-store
+    name: Store
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    forensics:
+      complexity: 6
+      complexityPeak: 6
+      cognitiveComplexity: 15
+      loc: 855
+      sloc: 741
+      churn: 71
+      lineChurn: 2174
+      churn30: 71
+      churn365: 71
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 2
+        - 15
+        - 21
+        - 33
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 71
+      hotspotScore: 0.003949770838767373
+      sinceDays: 365
+      fileCount: 15
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/application/store/layout
+    type: background-worker
+    name: Layout
+    isTest: false
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    forensics:
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 33
+      loc: 571
+      sloc: 492
+      churn: 6
+      lineChurn: 567
       churn30: 6
       churn365: 6
       churnByWeek:
@@ -4091,252 +4902,9 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 6
-      hotspotScore: 0.00692176245376479
-      classifications:
-        - knowledge-silo
+      hotspotScore: 0.009501807206468682
       sinceDays: 365
-      fileCount: 2
-      hotspotCount: 0
-      knowledgeSiloCount: 1
-  - entityRef: blueprint/app/designer/application/resilience
-    type: gateway-api
-    name: Resilience
-    isTest: false
-    properties:
-      containerId: designer
-      technology: React Component
-      classification: ui-import
-    forensics:
-      complexity: 10
-      complexityPeak: 10
-      cognitiveComplexity: 13
-      churn: 22
-      lineChurn: 824
-      churn30: 22
-      churn365: 22
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 21
-        - 1
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 22
-      hotspotScore: 0.006143064177716251
-      classifications:
-        - knowledge-silo
-      sinceDays: 365
-      fileCount: 12
-      hotspotCount: 0
-      knowledgeSiloCount: 1
-  - entityRef: blueprint/app/designer/application/parsing
-    type: background-worker
-    name: Parsing
-    isTest: false
-    properties:
-      containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 1
-      complexityPeak: 1
-      churn: 11
-      lineChurn: 356
-      churn30: 11
-      churn365: 11
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 11
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 11
-      hotspotScore: 0.00019034846747853176
-      sinceDays: 365
-      fileCount: 6
-      hotspotCount: 0
-      knowledgeSiloCount: 0
-  - entityRef: blueprint/app/designer/application/store
-    type: cache-store
-    name: Store
-    isTest: false
-    properties:
-      containerId: designer
-      technology: TypeScript Cache Client
-      classification: cache-marker
-    forensics:
-      complexity: 9
-      complexityPeak: 9
-      cognitiveComplexity: 33
-      churn: 58
-      lineChurn: 1362
-      churn30: 58
-      churn365: 58
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 9
-        - 23
-        - 20
-        - 6
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 58
-      hotspotScore: 0.027176569834094003
-      sinceDays: 365
-      fileCount: 12
+      fileCount: 4
       hotspotCount: 0
       knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/application/store/states
@@ -4348,13 +4916,15 @@ nodes:
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 15
-      complexityPeak: 15
-      cognitiveComplexity: 57
-      churn: 151
-      lineChurn: 6463
-      churn30: 151
-      churn365: 151
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 18
+      loc: 3094
+      sloc: 2767
+      churn: 174
+      lineChurn: 7890
+      churn30: 174
+      churn365: 174
       churnByWeek:
         - 0
         - 0
@@ -4404,30 +4974,21 @@ nodes:
         - 0
         - 0
         - 0
+        - 6
+        - 62
+        - 36
+        - 70
         - 0
-        - 48
-        - 42
-        - 51
-        - 10
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 151
-      hotspotScore: 0.16826371914948843
-      classifications:
-        - knowledge-silo
-      coupledFiles:
-        - path: app/packages/designer/src/application/store/states/resilienceState.test.ts
-          score: 0.7692307692307693
-          sharedCommits: 10
-        - path: app/packages/designer/src/application/store/states/resilienceState.ts
-          score: 0.7692307692307693
-          sharedCommits: 10
+          commits: 174
+      hotspotScore: 0.0425531914893617
       sinceDays: 365
       fileCount: 9
       hotspotCount: 0
-      knowledgeSiloCount: 1
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/application/store/states/iostate
     type: background-worker
     name: Iostate
@@ -4439,11 +5000,13 @@ nodes:
     forensics:
       complexity: 14
       complexityPeak: 14
-      cognitiveComplexity: 58
-      churn: 16
-      lineChurn: 595
-      churn30: 16
-      churn365: 16
+      cognitiveComplexity: 35
+      loc: 631
+      sloc: 549
+      churn: 23
+      lineChurn: 915
+      churn30: 23
+      churn365: 23
       churnByWeek:
         - 0
         - 0
@@ -4494,22 +5057,22 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
         - 3
-        - 4
-        - 5
-        - 4
+        - 16
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 16
-      hotspotScore: 0.028223486405225928
+          commits: 23
+      hotspotScore: 0.019966215796599223
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 2
+      fileCount: 3
       hotspotCount: 0
-      knowledgeSiloCount: 1
+      knowledgeSiloCount: 2
   - entityRef: blueprint/app/designer/application/store/states/diagramstate
     type: background-worker
     name: Diagramstate
@@ -4521,11 +5084,13 @@ nodes:
     forensics:
       complexity: 17
       complexityPeak: 17
-      cognitiveComplexity: 75
-      churn: 77
-      lineChurn: 3123
-      churn30: 77
-      churn365: 77
+      cognitiveComplexity: 79
+      loc: 2130
+      sloc: 1886
+      churn: 91
+      lineChurn: 3867
+      churn30: 91
+      churn365: 91
       churnByWeek:
         - 0
         - 0
@@ -4576,20 +5141,20 @@ nodes:
         - 0
         - 0
         - 0
-        - 21
-        - 24
-        - 26
-        - 6
+        - 36
+        - 13
+        - 42
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 77
-      hotspotScore: 0.03758084402240921
+          commits: 91
+      hotspotScore: 0.026974574902808315
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 14
+      fileCount: 21
       hotspotCount: 0
       knowledgeSiloCount: 4
   - entityRef: blueprint/app/designer/infrastructure/layout
@@ -4604,6 +5169,8 @@ nodes:
       complexity: 7
       complexityPeak: 7
       cognitiveComplexity: 21
+      loc: 724
+      sloc: 591
       churn: 22
       lineChurn: 822
       churn30: 22
@@ -4658,8 +5225,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 11
-        - 10
+        - 12
+        - 9
         - 1
         - 0
       authorCount: 1
@@ -4667,7 +5234,7 @@ nodes:
       authors:
         - email: matt@siliconpanda.com
           commits: 22
-      hotspotScore: 0.0016352663797019316
+      hotspotScore: 0.0011737526549167195
       sinceDays: 365
       fileCount: 16
       hotspotCount: 0
@@ -4682,6 +5249,8 @@ nodes:
       classification: default
     forensics:
       complexity: 0
+      loc: 68
+      sloc: 51
       churn: 3
       lineChurn: 68
       churn30: 3
@@ -4759,11 +5328,15 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 0
-      churn: 4
-      lineChurn: 203
-      churn30: 4
-      churn365: 4
+      complexity: 11
+      complexityPeak: 11
+      cognitiveComplexity: 34
+      loc: 992
+      sloc: 855
+      churn: 12
+      lineChurn: 634
+      churn30: 12
+      churn365: 12
       churnByWeek:
         - 0
         - 0
@@ -4816,18 +5389,20 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 4
+        - 11
+        - 1
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 4
-      hotspotScore: 0
+          commits: 12
+      hotspotScore: 0.010349517457241868
+      classifications:
+        - knowledge-silo
       sinceDays: 365
       fileCount: 4
       hotspotCount: 0
-      knowledgeSiloCount: 0
+      knowledgeSiloCount: 1
   - entityRef: blueprint/app/designer/infrastructure/resilience
     type: background-worker
     name: Resilience
@@ -4902,84 +5477,6 @@ nodes:
       topAuthorPercent: 0
       hotspotScore: 0
       sinceDays: 365
-  - entityRef: blueprint/app/designer/infrastructure/pwa
-    type: background-worker
-    name: Pwa
-    isTest: false
-    properties:
-      containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      complexity: 0
-      churn: 4
-      lineChurn: 98
-      churn30: 4
-      churn365: 4
-      churnByWeek:
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 4
-        - 0
-        - 0
-      authorCount: 1
-      topAuthorPercent: 1
-      authors:
-        - email: matt@siliconpanda.com
-          commits: 4
-      hotspotScore: 0
-      sinceDays: 365
-      fileCount: 2
-      hotspotCount: 0
-      knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/infrastructure/db
     type: relational-database
     name: Db
@@ -4989,13 +5486,14 @@ nodes:
       technology: Prisma / SQL Database Client
       classification: database-marker
     forensics:
-      complexity: 4
-      complexityPeak: 4
-      cognitiveComplexity: 3
-      churn: 17
-      lineChurn: 492
-      churn30: 17
-      churn365: 17
+      complexity: 1
+      complexityPeak: 1
+      loc: 278
+      sloc: 239
+      churn: 8
+      lineChurn: 134
+      churn30: 8
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -5045,19 +5543,19 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 7
-        - 3
-        - 6
         - 1
+        - 3
+        - 0
+        - 4
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 17
-      hotspotScore: 0.0024399212649520888
+          commits: 8
+      hotspotScore: 0.00024220292879233892
       sinceDays: 365
-      fileCount: 4
+      fileCount: 2
       hotspotCount: 0
       knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/infrastructure
@@ -5073,13 +5571,13 @@ nodes:
       complexity: 14
       complexityPeak: 14
       cognitiveComplexity: 60
-      functionCount: 23
+      functionCount: 21
       loc: 311
       sloc: 259
-      churn: 10
-      lineChurn: 302
-      churn30: 10
-      churn365: 10
+      churn: 11
+      lineChurn: 316
+      churn30: 11
+      churn365: 11
       churnByWeek:
         - 0
         - 0
@@ -5129,17 +5627,17 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 6
         - 2
-        - 2
+        - 5
+        - 1
+        - 3
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 10
-      hotspotScore: 0.018290757284073457
+          commits: 11
+      hotspotScore: 0.013737253294580865
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -5230,9 +5728,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
       x: -130
       y: 404
@@ -5245,14 +5740,47 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 12
-      sloc: 10
     position:
       x: 330
       y: 404
 dependencies:
+  - from: blueprint/app/designer/ui/features/tracelens
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/tracelens
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/tracelens
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/tracelens
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/tracelens
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/tracelens
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/layout
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/layout
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/layout
     to: blueprint/app/designer/application
     type: direct-call
     description: Calls module / service
@@ -5289,6 +5817,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/propertypanel
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar
     to: blueprint/app/designer/application
     type: direct-call
     description: Calls module / service
@@ -5384,6 +5920,10 @@ dependencies:
     to: blueprint/app/designer/application
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components
     to: blueprint/app/designer/application
     type: direct-call
@@ -5401,22 +5941,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components
-    to: blueprint/app/designer/application
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/ui/features/workspace/components
-    to: blueprint/app/designer/application
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/ui/features/workspace/components/tracelenspanel
-    to: blueprint/app/designer/application
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/ui/features/workspace/components
-    to: blueprint/app/designer/application
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/ui/features/workspace/components/workspacedisplaydialog
     to: blueprint/app/designer/application
     type: direct-call
     description: Calls module / service
@@ -5516,7 +6040,15 @@ dependencies:
     to: blueprint/app/designer/application
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/hooks
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/forensics
     to: blueprint/app/designer/application
     type: direct-call
     description: Calls module / service
@@ -5564,12 +6096,24 @@ dependencies:
     to: blueprint/app/designer/ui/features/forensics
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/designer/app
+    to: blueprint/app/designer/ui/features/forensics
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/main
     to: blueprint/app/designer/app
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/main
     to: blueprint/app/designer/application/context
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/main
+    to: blueprint/app/designer/composition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/main
+    to: blueprint/app/designer/composition
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/core
@@ -5604,6 +6148,62 @@ dependencies:
     to: blueprint/app/designer/core
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/infrastructure/filesystem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/infrastructure/filesystem
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/infrastructure/layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/infrastructure/layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/infrastructure/logging
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/infrastructure/network
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/infrastructure/db
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/infrastructure/resilience
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/composition
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/context
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/context
+    to: blueprint/app/designer/composition
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/context
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/context
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/application/context
     to: blueprint/app/designer/core
     type: direct-call
@@ -5629,14 +6229,26 @@ dependencies:
     type: direct-call
     description: '@archlens/core'
   - from: blueprint/app/designer/application/resilience
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/resilience
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/resilience
     to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/resilience
+    to: blueprint/app/designer/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store
     to: blueprint/app/designer/application
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/designer/application/store
+  - from: blueprint/app/designer/application/store/layout
     to: blueprint/app/designer/core
     type: direct-call
     description: Calls module / service
@@ -5669,18 +6281,34 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states
+    to: blueprint/app/designer/application
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states
     to: blueprint/app/designer/core
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/designer/application/store/states
+  - from: blueprint/app/designer/application/store/states/diagramstate
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate
     to: blueprint/app/designer/application
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/designer/application/store/states
-    to: blueprint/app/designer/application
+  - from: blueprint/app/designer/application/store/states/diagramstate
+    to: blueprint/app/designer/core
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/designer/application/store/states
+  - from: blueprint/app/designer/application/store/states/diagramstate
     to: blueprint/app/designer/core
     type: direct-call
     description: Calls module / service

@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/designer/ui/features/workspace/components/codeviewer/use-code-viewer
@@ -18,9 +18,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 151
-      sloc: 127
   - entityRef: blueprint/app/designer/ui/features/workspace/components/codeviewer/code-viewer-test
     type: gateway-api
     name: CodeViewer
@@ -30,9 +27,15 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 207
-      sloc: 162
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/codeviewer/code-viewer-content
+    type: gateway-api
+    name: CodeViewerContent
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/CodeViewer/CodeViewerContent.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components
     type: gateway-api
     name: Components (External)
@@ -53,9 +56,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
       x: -360
       y: 404
@@ -85,5 +85,9 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/codeviewer/code-viewer-test
     to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/codeviewer/code-viewer-content
+    to: blueprint/app/designer/ui/features/workspace/components/codeviewer/use-code-viewer
     type: direct-call
     description: Calls module / service

@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/node-mutations
@@ -18,9 +18,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 145
-      sloc: 128
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/reset-to-empty-workspace
     type: background-worker
     name: ResetToEmptyWorkspace
@@ -30,9 +27,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 42
-      sloc: 31
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/edge-mutations
     type: background-worker
     name: EdgeMutations
@@ -42,9 +36,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 70
-      sloc: 61
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
     type: background-worker
     name: ApplyStateUpdates
@@ -54,9 +45,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 162
-      sloc: 142
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/import-schema
     type: background-worker
     name: ImportSchema
@@ -66,9 +54,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 46
-      sloc: 38
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/import-iac
     type: background-worker
     name: ImportIac
@@ -78,9 +63,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 66
-      sloc: 61
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/diagram-import-shared
     type: background-worker
     name: DiagramImportShared
@@ -90,9 +72,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 194
-      sloc: 170
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/import-iac-test
     type: background-worker
     name: ImportIac
@@ -102,9 +81,15 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 76
-      sloc: 69
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate/history-actions
+    type: background-worker
+    name: HistoryActions
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/diagramState/historyActions.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/initial-state
     type: background-worker
     name: InitialState
@@ -114,9 +99,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 37
-      sloc: 32
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/import-mermaid-test
     type: background-worker
     name: ImportMermaid
@@ -126,9 +108,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 47
-      sloc: 42
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/import-mermaid
     type: background-worker
     name: ImportMermaid
@@ -138,9 +117,24 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 61
-      sloc: 55
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate/select-system
+    type: background-worker
+    name: SelectSystem
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/diagramState/selectSystem.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    type: background-worker
+    name: InitSchema
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/diagramState/initSchema.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/external-dependencies
     type: background-worker
     name: ExternalDependencies
@@ -150,9 +144,42 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 340
-      sloc: 299
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate/types
+    type: background-worker
+    name: Types
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/diagramState/types.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    type: background-worker
+    name: CanvasGraphActions
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/diagramState/canvasGraphActions.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate/apply-client-layout
+    type: background-worker
+    name: ApplyClientLayout
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/diagramState/applyClientLayout.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/states/diagramstate/pending-changes
+    type: background-worker
+    name: PendingChanges
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/states/diagramState/pendingChanges.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/reset-to-empty-workspace-test
     type: background-worker
     name: ResetToEmptyWorkspace
@@ -162,9 +189,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 63
-      sloc: 59
   - entityRef: blueprint/app/designer/application/store/states/diagramstate/apply-state-helpers
     type: background-worker
     name: ApplyStateHelpers
@@ -174,9 +198,18 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 159
-      sloc: 151
+  - entityRef: blueprint/app/designer/application/layout/compute-client-layout
+    type: background-worker
+    name: ComputeClientLayout (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/layout/computeClientLayout.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
   - entityRef: blueprint/app/designer/core
     type: background-worker
     name: Core (External)
@@ -186,7 +219,54 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1940
+      x: 4010
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/dependency-view-mode
+    type: background-worker
+    name: DependencyViewMode (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/dependencyViewMode.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/diagram-load-session
+    type: background-worker
+    name: DiagramLoadSession (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/diagramLoadSession.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
+    type: background-worker
+    name: EnsureSystemLoaded (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/states/ioState/ensureSystemLoaded.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2630
+      y: 404
+  - entityRef: blueprint/app/core/forensics
+    type: background-worker
+    name: Forensics (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3810
       y: 404
   - entityRef: blueprint/app/designer/application/store/golden-paths-sample
     type: background-worker
@@ -197,11 +277,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 30
-      sloc: 20
     position:
-      x: 100
+      x: 790
       y: 404
   - entityRef: blueprint/app/core/import-iac
     type: background-worker
@@ -212,11 +289,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 15
-      sloc: 13
     position:
-      x: -1740
+      x: -3350
       y: 404
   - entityRef: blueprint/app/core/import-mermaid
     type: background-worker
@@ -227,11 +301,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 2
-      sloc: 1
     position:
-      x: -1280
+      x: -2890
       y: 404
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -242,11 +313,32 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
-      x: -820
+      x: -2430
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/states/io-state
+    type: background-worker
+    name: IoState (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/states/ioState.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2170
+      y: 404
+  - entityRef: blueprint/app/core/layout
+    type: background-worker
+    name: Layout (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/layout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1970
       y: 404
   - entityRef: blueprint/app/designer/application/store/layout-utils
     type: background-worker
@@ -257,11 +349,19 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 33
-      sloc: 32
     position:
-      x: 560
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/core/recommendations
+    type: background-worker
+    name: Recommendations (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1510
       y: 404
   - entityRef: blueprint/app/designer/application/store/session-layout-cache
     type: cache-store
@@ -272,11 +372,8 @@ nodes:
       containerId: designer
       technology: TypeScript Cache Client
       classification: cache-marker
-    forensics:
-      loc: 58
-      sloc: 50
     position:
-      x: 1020
+      x: 1710
       y: 404
   - entityRef: blueprint/app/designer/application/store
     type: background-worker
@@ -287,7 +384,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -360
+      x: -130
       y: 404
   - entityRef: blueprint/app/designer/application/store/states/ui-state
     type: background-worker
@@ -298,11 +395,20 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 199
-      sloc: 192
     position:
-      x: 1480
+      x: 3090
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/yield-to-ui
+    type: background-worker
+    name: YieldToUi (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/yieldToUi.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3550
       y: 404
 dependencies:
   - from: blueprint/app/designer/application/store/states/diagramstate/node-mutations
@@ -389,6 +495,14 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/history-actions
+    to: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/history-actions
+    to: blueprint/app/designer/application/store/states/diagramstate/types
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/application/store/states/diagramstate/initial-state
     to: blueprint/app/core/index
     type: direct-call
@@ -421,6 +535,54 @@ dependencies:
     to: blueprint/app/designer/application/store/states/diagramstate/diagram-import-shared
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/select-system
+    to: blueprint/app/designer/application/store/diagram-load-session
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/diagramstate/select-system
+    to: blueprint/app/designer/application/store/yield-to-ui
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/diagramstate/select-system
+    to: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/select-system
+    to: blueprint/app/designer/application/store/states/diagramstate/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    to: blueprint/app/core/recommendations
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    to: blueprint/app/designer/application/store/session-layout-cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    to: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    to: blueprint/app/designer/application/store/states/diagramstate/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/application/store/states/diagramstate/external-dependencies
     to: blueprint/app/core/index
     type: direct-call
@@ -435,6 +597,102 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/diagramstate/external-dependencies
     to: blueprint/app/designer/application/store/states/ui-state
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/designer/application/store/states/ui-state
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/designer/application/store/states/io-state
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/core/import-iac
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/designer/application/store/states/diagramstate/import-mermaid
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/designer/application/store/states/diagramstate/import-iac
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/types
+    to: blueprint/app/core/forensics
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    to: blueprint/app/designer/application/forensics/dependency-view-mode
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    to: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    to: blueprint/app/designer/application/store/states/diagramstate/node-mutations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    to: blueprint/app/designer/application/store/states/diagramstate/edge-mutations
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    to: blueprint/app/designer/application/store/states/diagramstate/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/apply-client-layout
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/diagramstate/apply-client-layout
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/diagramstate/apply-client-layout
+    to: blueprint/app/designer/application/layout/compute-client-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/apply-client-layout
+    to: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/apply-client-layout
+    to: blueprint/app/designer/application/store/states/diagramstate/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/apply-client-layout
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagramstate/pending-changes
+    to: blueprint/app/designer/application/store/states/diagramstate/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/diagramstate/reset-to-empty-workspace-test

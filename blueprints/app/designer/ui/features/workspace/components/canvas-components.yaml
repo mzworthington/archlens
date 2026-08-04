@@ -6,9 +6,45 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/mermaid-enrich-banner
+    type: gateway-api
+    name: MermaidEnrichBanner
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/MermaidEnrichBanner.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/dependency-focus-chip-test
+    type: gateway-api
+    name: DependencyFocusChip
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/DependencyFocusChip.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-top-left-panel
+    type: gateway-api
+    name: CanvasTopLeftPanel
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/CanvasTopLeftPanel.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-lens-legends
+    type: gateway-api
+    name: CanvasLensLegends
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/CanvasLensLegends.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-group-node
     type: gateway-api
     name: BlueprintGroupNode
@@ -18,9 +54,24 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 36
-      sloc: 30
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph-test
+    type: background-worker
+    name: CanvasDisplayGraph
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/canvasDisplayGraph.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/use-canvas-load-layout
+    type: gateway-api
+    name: UseCanvasLoadLayout
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/useCanvasLoadLayout.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/workspace-status-badges-test
     type: gateway-api
     name: WorkspaceStatusBadges
@@ -30,9 +81,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 67
-      sloc: 58
   - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/diagram-loading-overlay
     type: gateway-api
     name: DiagramLoadingOverlay
@@ -42,9 +90,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 26
-      sloc: 23
   - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node-test
     type: gateway-api
     name: BlueprintNode
@@ -54,9 +99,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 552
-      sloc: 484
   - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-test
     type: gateway-api
     name: Canvas
@@ -66,9 +108,33 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 448
-      sloc: 400
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/dependency-focus-chip
+    type: gateway-api
+    name: DependencyFocusChip
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/DependencyFocusChip.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/use-spotlight-edge
+    type: gateway-api
+    name: UseSpotlightEdge
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/useSpotlightEdge.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-mini-map
+    type: gateway-api
+    name: CanvasMiniMap
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/CanvasMiniMap.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/workspace-status-badges
     type: gateway-api
     name: WorkspaceStatusBadges
@@ -78,9 +144,24 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 49
-      sloc: 44
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/use-canvas-drop-node
+    type: gateway-api
+    name: UseCanvasDropNode
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/useCanvasDropNode.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    type: gateway-api
+    name: CanvasDisplayGraph
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/canvasDisplayGraph.ts
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
     type: gateway-api
     name: BlueprintNode
@@ -90,9 +171,86 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 643
-      sloc: 615
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/canvas/schema-import-error-banner
+    type: gateway-api
+    name: SchemaImportErrorBanner
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/Canvas/SchemaImportErrorBanner.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/application/forensics/apply-dependency-highlights
+    type: background-worker
+    name: ApplyDependencyHighlights (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/applyDependencyHighlights.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4500
+      y: 404
+  - entityRef: blueprint/app/designer/application/resilience/blast-heatmap
+    type: background-worker
+    name: BlastHeatmap (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/resilience/blastHeatmap.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 560
+      y: 404
+  - entityRef: blueprint/app/designer/application/resilience/blast-ripple
+    type: background-worker
+    name: BlastRipple (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/resilience/blastRipple.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1020
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/build-coupling-overlay-edges
+    type: background-worker
+    name: BuildCouplingOverlayEdges (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/buildCouplingOverlayEdges.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -4040
+      y: 404
+  - entityRef: blueprint/app/designer/ui/features/resilience/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 5160
+      y: 404
+  - entityRef: blueprint/app/designer/ui/features/forensics/components
+    type: gateway-api
+    name: Components (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/forensics/components/CouplingLensLegend.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 4700
+      y: 404
   - entityRef: blueprint/app/designer/ui/features/workspace/components
     type: gateway-api
     name: Components (External)
@@ -102,7 +260,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 1250
+      x: 5620
       y: 404
   - entityRef: blueprint/app/designer/application/forensics/concern
     type: background-worker
@@ -113,11 +271,92 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 51
-      sloc: 36
     position:
-      x: -130
+      x: -3580
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/count-dependency-focus-metrics
+    type: background-worker
+    name: CountDependencyFocusMetrics (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/countDependencyFocusMetrics.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3120
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/dependency-view-mode
+    type: background-worker
+    name: DependencyViewMode (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/dependencyViewMode.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2660
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/diagram-load-session
+    type: background-worker
+    name: DiagramLoadSession (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/diagramLoadSession.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 2860
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/external-node-visibility
+    type: background-worker
+    name: ExternalNodeVisibility (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/externalNodeVisibility.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2200
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/external-summary-display
+    type: background-worker
+    name: ExternalSummaryDisplay (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/externalSummaryDisplay.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1740
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/filter-selected-dependency-focus
+    type: background-worker
+    name: FilterSelectedDependencyFocus (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/filterSelectedDependencyFocus.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1280
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/hotspot-heatmap
+    type: background-worker
+    name: HotspotHeatmap (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/hotspotHeatmap.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -820
       y: 404
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -128,11 +367,20 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
-      x: -1050
+      x: -5420
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/layout-utils
+    type: background-worker
+    name: LayoutUtils (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/layoutUtils.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 3320
       y: 404
   - entityRef: blueprint/app/designer/application/navigation/navigate-to-workspace-entity
     type: background-worker
@@ -143,11 +391,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 23
-      sloc: 14
     position:
-      x: 330
+      x: 100
       y: 404
   - entityRef: blueprint/app/core/resilience
     type: background-worker
@@ -158,7 +403,55 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -590
+      x: -4960
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: background-worker
+    name: ResolveCouplingEdges (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/resolveCouplingEdges.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -360
+      y: 404
+  - entityRef: blueprint/app/designer/application/resilience/safeguard-highlights
+    type: background-worker
+    name: SafeguardHighlights (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/resilience/safeguardHighlights.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1480
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/session-layout-cache
+    type: cache-store
+    name: SessionLayoutCache (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/sessionLayoutCache.ts
+      containerId: designer
+      technology: TypeScript Cache Client
+      classification: cache-marker
+    position:
+      x: 3780
+      y: 404
+  - entityRef: blueprint/app/designer/application/resilience/simulation-scope-highlights
+    type: background-worker
+    name: SimulationScopeHighlights (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/resilience/simulationScopeHighlights.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1940
       y: 404
   - entityRef: blueprint/app/designer/application/store
     type: background-worker
@@ -169,13 +462,69 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 790
+      x: 2400
+      y: 404
+  - entityRef: blueprint/app/designer/application/store/yield-to-ui
+    type: background-worker
+    name: YieldToUi (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/yieldToUi.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 4240
       y: 404
 dependencies:
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/dependency-focus-chip-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-lens-legends
+    to: blueprint/app/designer/ui/features/resilience/components
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-lens-legends
+    to: blueprint/app/designer/ui/features/forensics/components
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-group-node
     to: blueprint/app/designer/application/store
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph-test
+    to: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/use-canvas-load-layout
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/use-canvas-load-layout
+    to: blueprint/app/designer/application/store/session-layout-cache
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/use-canvas-load-layout
+    to: blueprint/app/designer/application/store/diagram-load-session
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/use-canvas-load-layout
+    to: blueprint/app/designer/application/store/yield-to-ui
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/use-canvas-load-layout
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/app/designer/ui/features/workspace/components/canvas/workspace-status-badges-test
     to: blueprint/app/designer/application/store
     type: direct-call
@@ -196,10 +545,90 @@ dependencies:
     to: blueprint/app/designer/application/store
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/dependency-focus-chip
+    to: blueprint/app/designer/application/forensics/dependency-view-mode
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/dependency-focus-chip
+    to: blueprint/app/designer/application/forensics/count-dependency-focus-metrics
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/dependency-focus-chip
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/use-spotlight-edge
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-mini-map
+    to: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/canvas/workspace-status-badges
     to: blueprint/app/designer/application/store
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/use-canvas-drop-node
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/forensics/build-coupling-overlay-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/forensics/filter-selected-dependency-focus
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/forensics/apply-dependency-highlights
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/forensics/external-node-visibility
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/forensics/external-summary-display
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/forensics/hotspot-heatmap
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/resilience/blast-heatmap
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/resilience/safeguard-highlights
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/resilience/simulation-scope-highlights
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/resilience/blast-ripple
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/canvas/canvas-display-graph
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/app/designer/ui/features/workspace/components/canvas/blueprint-node
     to: blueprint/app/core/index
     type: direct-call

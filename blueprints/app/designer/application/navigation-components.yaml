@@ -6,9 +6,18 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
+  - entityRef: blueprint/app/designer/application/navigation/workspace-url
+    type: background-worker
+    name: WorkspaceUrl
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/navigation/workspaceUrl.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/designer/application/navigation/navigate-to-workspace-entity-test
     type: background-worker
     name: NavigateToWorkspaceEntity
@@ -18,9 +27,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 52
-      sloc: 41
   - entityRef: blueprint/app/designer/application/navigation/navigate-to-workspace-entity
     type: background-worker
     name: NavigateToWorkspaceEntity
@@ -30,9 +36,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 23
-      sloc: 14
   - entityRef: blueprint/app/core/index
     type: background-worker
     name: Index (External)
@@ -42,9 +45,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
       x: 100
       y: 404

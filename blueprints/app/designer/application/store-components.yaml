@@ -6,25 +6,27 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
-  - entityRef: blueprint/app/designer/application/store/states
-    type: gateway-api
-    name: States
+  - entityRef: blueprint/app/designer/application/store/layout
+    type: background-worker
+    name: Layout
     isTest: false
     properties:
       containerId: designer
-      technology: React Component
-      classification: ui-import
+      technology: TypeScript Domain Service
+      classification: default
     forensics:
-      complexity: 15
-      complexityPeak: 15
-      cognitiveComplexity: 57
-      churn: 151
-      lineChurn: 6463
-      churn30: 151
-      churn365: 151
+      complexity: 9
+      complexityPeak: 9
+      cognitiveComplexity: 33
+      loc: 571
+      sloc: 492
+      churn: 6
+      lineChurn: 567
+      churn30: 6
+      churn365: 6
       churnByWeek:
         - 0
         - 0
@@ -75,29 +77,102 @@ nodes:
         - 0
         - 0
         - 0
-        - 48
-        - 42
-        - 51
-        - 10
+        - 0
+        - 0
+        - 6
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 151
-      hotspotScore: 0.16826371914948843
-      classifications:
-        - knowledge-silo
-      coupledFiles:
-        - path: app/packages/designer/src/application/store/states/resilienceState.test.ts
-          score: 0.7692307692307693
-          sharedCommits: 10
-        - path: app/packages/designer/src/application/store/states/resilienceState.ts
-          score: 0.7692307692307693
-          sharedCommits: 10
+          commits: 6
+      hotspotScore: 0.009501807206468682
+      sinceDays: 365
+      fileCount: 4
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/application/store/states
+    type: gateway-api
+    name: States
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 8
+      complexityPeak: 8
+      cognitiveComplexity: 18
+      loc: 3094
+      sloc: 2767
+      churn: 174
+      lineChurn: 7890
+      churn30: 174
+      churn365: 174
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 6
+        - 62
+        - 36
+        - 70
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 174
+      hotspotScore: 0.0425531914893617
       sinceDays: 365
       fileCount: 9
       hotspotCount: 0
-      knowledgeSiloCount: 1
+      knowledgeSiloCount: 0
   - entityRef: blueprint/app/designer/application/store/golden-paths-sample
     type: background-worker
     name: GoldenPathsSample
@@ -107,9 +182,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 30
-      sloc: 20
   - entityRef: blueprint/app/designer/application/store/layout-utils-test
     type: background-worker
     name: LayoutUtils
@@ -119,9 +191,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 285
-      sloc: 258
   - entityRef: blueprint/app/designer/application/store/store-test
     type: background-worker
     name: Store
@@ -131,9 +200,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 14
-      sloc: 12
   - entityRef: blueprint/app/designer/application/store/diagram-load-session
     type: background-worker
     name: DiagramLoadSession
@@ -143,9 +209,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 45
-      sloc: 39
   - entityRef: blueprint/app/designer/application/store/yield-to-ui
     type: background-worker
     name: YieldToUi
@@ -155,9 +218,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 9
-      sloc: 7
   - entityRef: blueprint/app/designer/application/store/session-layout-cache
     type: cache-store
     name: SessionLayoutCache
@@ -167,9 +227,6 @@ nodes:
       containerId: designer
       technology: TypeScript Cache Client
       classification: cache-marker
-    forensics:
-      loc: 58
-      sloc: 50
   - entityRef: blueprint/app/designer/application/store/sandbox-workspace-test
     type: background-worker
     name: SandboxWorkspace
@@ -179,9 +236,24 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 46
-      sloc: 40
+  - entityRef: blueprint/app/designer/application/store/bundled-sample-preload-test
+    type: background-worker
+    name: BundledSamplePreload
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/store/bundledSamplePreload.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/select-bundled-sample-entry-path-test
+    type: background-worker
+    name: SelectBundledSampleEntryPath
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/store/selectBundledSampleEntryPath.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/designer/application/store/diagram-load-session-test
     type: background-worker
     name: DiagramLoadSession
@@ -191,9 +263,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 28
-      sloc: 22
   - entityRef: blueprint/app/designer/application/store/layout-utils
     type: background-worker
     name: LayoutUtils
@@ -203,9 +272,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 33
-      sloc: 32
   - entityRef: blueprint/app/designer/application/store/sandbox-workspace
     type: background-worker
     name: SandboxWorkspace
@@ -215,9 +281,15 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 35
-      sloc: 26
+  - entityRef: blueprint/app/designer/application/store/bundled-sample-preload
+    type: background-worker
+    name: BundledSamplePreload
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/bundledSamplePreload.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/designer/application/store/session-layout-cache-test
     type: cache-store
     name: SessionLayoutCache
@@ -227,9 +299,6 @@ nodes:
       containerId: designer
       technology: TypeScript Cache Client
       classification: cache-marker
-    forensics:
-      loc: 52
-      sloc: 46
   - entityRef: blueprint/app/designer/application/store/layout-utils-direction-test
     type: background-worker
     name: LayoutUtils.direction
@@ -239,49 +308,29 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 82
-      sloc: 73
-  - entityRef: blueprint/app/designer/application/layout/compute-client-layout
+  - entityRef: blueprint/app/designer/ui/features/forensics/advice-lens-url
     type: background-worker
-    name: ComputeClientLayout (External)
+    name: AdviceLensUrl (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/layout/computeClientLayout.ts
+      filepath: app/packages/designer/src/ui/features/forensics/adviceLensUrl.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 60
-      sloc: 47
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/app/designer/application/layout/constants
+  - entityRef: blueprint/app/designer/application/resilience/chaos-lens-url
     type: background-worker
-    name: Constants (External)
+    name: ChaosLensUrl (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/layout/constants.ts
-      containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 9
-      sloc: 2
-    position:
-      x: 790
-      y: 404
-  - entityRef: blueprint/app/designer/core
-    type: background-worker
-    name: Core (External)
-    external: true
-    properties:
+      filepath: app/packages/designer/src/application/resilience/chaosLensUrl.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 1250
+      x: -130
       y: 404
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -292,39 +341,26 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
-    position:
-      x: -1050
-      y: 404
-  - entityRef: blueprint/app/core/layout
-    type: background-worker
-    name: Layout (External)
-    external: true
-    properties:
-      filepath: app/packages/core/src/layout.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 9
-      sloc: 8
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/app/core/resilience
+  - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-url
     type: background-worker
-    name: Resilience (External)
+    name: TraceLensUrl (External)
     external: true
     properties:
-      containerId: core
+      filepath: app/packages/designer/src/ui/features/forensics/traceLensUrl.ts
+      containerId: designer
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -130
+      x: 790
       y: 404
 dependencies:
+  - from: blueprint/app/designer/application/store/golden-paths-sample
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
   - from: blueprint/app/designer/application/store/layout-utils-test
     to: blueprint/app/designer/application/store/layout-utils
     type: read-write
@@ -361,32 +397,48 @@ dependencies:
     to: blueprint/app/designer/application/store/sandbox-workspace
     type: read-write
     description: Queries datastore records
+  - from: blueprint/app/designer/application/store/bundled-sample-preload-test
+    to: blueprint/app/designer/application/store/bundled-sample-preload
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/select-bundled-sample-entry-path-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/select-bundled-sample-entry-path-test
+    to: blueprint/app/designer/application/store/golden-paths-sample
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/app/designer/application/store/diagram-load-session-test
     to: blueprint/app/designer/application/store/diagram-load-session
     type: read-write
     description: Queries datastore records
   - from: blueprint/app/designer/application/store/layout-utils
-    to: blueprint/app/core/index
-    type: direct-call
-    description: '@archlens/core'
-  - from: blueprint/app/designer/application/store/layout-utils
-    to: blueprint/app/core/resilience
-    type: direct-call
-    description: '@archlens/core'
-  - from: blueprint/app/designer/application/store/layout-utils
-    to: blueprint/app/core/layout
-    type: direct-call
-    description: '@archlens/core'
-  - from: blueprint/app/designer/application/store/layout-utils
-    to: blueprint/app/designer/core
+    to: blueprint/app/designer/application/store/layout/viewport
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/layout-utils
-    to: blueprint/app/designer/application/layout/compute-client-layout
+    to: blueprint/app/designer/application/store/layout/edge-animation
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/layout-utils
-    to: blueprint/app/designer/application/layout/constants
+    to: blueprint/app/designer/application/store/layout/mapping
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout-utils
+    to: blueprint/app/designer/application/store/layout/grouped-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/sandbox-workspace
+    to: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/sandbox-workspace
+    to: blueprint/app/designer/ui/features/forensics/advice-lens-url
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/sandbox-workspace
+    to: blueprint/app/designer/application/resilience/chaos-lens-url
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/session-layout-cache-test

@@ -1,0 +1,54 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/application/workspace
+  name: Workspace Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/application/workspace/schema-compare-test
+    type: background-worker
+    name: SchemaCompare
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/workspace/schemaCompare.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/workspace/schema-compare
+    type: background-worker
+    name: SchemaCompare
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/workspace/schemaCompare.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/application/workspace/schema-compare-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/workspace/schema-compare-test
+    to: blueprint/app/designer/application/workspace/schema-compare
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/workspace/schema-compare
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'

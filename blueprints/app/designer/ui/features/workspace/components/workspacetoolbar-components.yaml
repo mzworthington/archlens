@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
@@ -18,9 +18,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 124
-      sloc: 111
   - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/diagram-export-menu-items
     type: gateway-api
     name: DiagramExportMenuItems
@@ -30,9 +27,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 79
-      sloc: 73
   - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/use-toolbar-menu
     type: gateway-api
     name: UseToolbarMenu
@@ -42,9 +36,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 33
-      sloc: 24
   - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls-test
     type: gateway-api
     name: LensToolbarControls
@@ -54,9 +45,15 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 53
-      sloc: 46
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lite-canvas-button-test
+    type: gateway-api
+    name: LiteCanvasButton
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/WorkspaceToolbar/LiteCanvasButton.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/toolbar-menu-portal
     type: gateway-api
     name: ToolbarMenuPortal
@@ -66,23 +63,37 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 91
-      sloc: 74
-  - entityRef: blueprint/app/designer/application/forensics/resolve-coupling-edges
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lite-canvas-button
+    type: gateway-api
+    name: LiteCanvasButton
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/WorkspaceToolbar/LiteCanvasButton.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+  - entityRef: blueprint/app/designer/application/resilience/chaos-lens-url
     type: background-worker
-    name: ResolveCouplingEdges (External)
+    name: ChaosLensUrl (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/forensics/resolveCouplingEdges.ts
+      filepath: app/packages/designer/src/application/resilience/chaosLensUrl.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 215
-      sloc: 174
     position:
-      x: -360
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/core/recommendations
+    type: background-worker
+    name: Recommendations (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
       y: 404
   - entityRef: blueprint/app/designer/application/store
     type: background-worker
@@ -93,22 +104,19 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: 790
       y: 404
-  - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-url
+  - entityRef: blueprint/app/designer/application/navigation/workspace-url
     type: background-worker
-    name: TraceLensUrl (External)
+    name: WorkspaceUrl (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/ui/features/forensics/traceLensUrl.ts
+      filepath: app/packages/designer/src/application/navigation/workspaceUrl.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 99
-      sloc: 81
     position:
-      x: 560
+      x: -130
       y: 404
 dependencies:
   - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
@@ -116,11 +124,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
-    to: blueprint/app/designer/ui/features/forensics/trace-lens-url
+    to: blueprint/app/designer/application/navigation/workspace-url
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
-    to: blueprint/app/designer/application/forensics/resolve-coupling-edges
+    to: blueprint/app/core/recommendations
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls
+    to: blueprint/app/designer/application/resilience/chaos-lens-url
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/diagram-export-menu-items
@@ -132,6 +144,14 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lens-toolbar-controls-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lite-canvas-button-test
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar/lite-canvas-button
     to: blueprint/app/designer/application/store
     type: direct-call
     description: Calls module / service

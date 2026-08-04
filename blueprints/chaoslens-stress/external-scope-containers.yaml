@@ -1,14 +1,8 @@
-# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: container
 metadata:
   entityRef: chaoslens-stress/external-scope
   name: ChaosLens - External Simulation Scope
-  description: >
-    Storefront API depends on an Auth Service defined in a sibling workspace diagram.
-    Auth is intentionally omitted from this canvas until you enter Resilience mode or
-    click Simulate — ChaosLens then materializes Auth as an external proxy. Select
-    Auth Service (External) and Simulate again to fault the cross-diagram dependency.
 nodes:
   - entityRef: chaoslens-stress/external-scope/web
     type: web-app
@@ -16,6 +10,13 @@ nodes:
   - entityRef: chaoslens-stress/external-scope/api
     type: rest-api
     name: API Gateway
+  - entityRef: chaoslens-stress/external-auth/auth
+    type: microservice
+    name: Auth Service (External)
+    external: true
+    position:
+      x: 100
+      y: 404
 dependencies:
   - from: chaoslens-stress/external-scope/web
     to: chaoslens-stress/external-scope/api

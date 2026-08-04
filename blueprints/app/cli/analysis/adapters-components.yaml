@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/cli/analysis/adapters/pathfilter
@@ -19,6 +19,8 @@ nodes:
       classification: default
     forensics:
       complexity: 0
+      loc: 173
+      sloc: 138
       churn: 2
       lineChurn: 4
       churn30: 2
@@ -73,8 +75,8 @@ nodes:
         - 0
         - 0
         - 0
-        - 1
-        - 1
+        - 2
+        - 0
         - 0
         - 0
       authorCount: 1
@@ -99,6 +101,8 @@ nodes:
       complexity: 64
       complexityPeak: 64
       cognitiveComplexity: 1467
+      loc: 1178
+      sloc: 985
       churn: 23
       lineChurn: 746
       churn30: 23
@@ -153,16 +157,16 @@ nodes:
         - 0
         - 0
         - 0
+        - 7
         - 5
-        - 2
-        - 15
-        - 1
+        - 11
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
           commits: 23
-      hotspotScore: 0.05814280461162424
+      hotspotScore: 0.041733427730372245
       classifications:
         - knowledge-silo
       sinceDays: 365
@@ -178,9 +182,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 87
-      sloc: 72
   - entityRef: blueprint/app/cli/analysis/adapters/console-logger
     type: background-worker
     name: ConsoleLogger
@@ -190,9 +191,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 31
-      sloc: 27
   - entityRef: blueprint/app/cli/analysis/adapters/git-provenance
     type: background-worker
     name: GitProvenance
@@ -202,9 +200,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 79
-      sloc: 61
   - entityRef: blueprint/app/cli/analysis/adapters/console-logger-test
     type: background-worker
     name: ConsoleLogger
@@ -214,9 +209,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 43
-      sloc: 34
   - entityRef: blueprint/app/cli/analysis/adapters/node-file-system
     type: background-worker
     name: NodeFileSystem
@@ -226,9 +218,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 68
-      sloc: 55
   - entityRef: blueprint/app/cli/analysis/adapters/git-provenance-test
     type: background-worker
     name: GitProvenance
@@ -238,9 +227,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 71
-      sloc: 61
   - entityRef: blueprint/app/cli/analysis/adapters/load-analysis-config-test
     type: background-worker
     name: LoadAnalysisConfig
@@ -250,9 +236,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 75
-      sloc: 59
   - entityRef: blueprint/app/cli/analysis/adapters/node-file-system-test
     type: background-worker
     name: NodeFileSystem
@@ -262,9 +245,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 54
-      sloc: 42
   - entityRef: blueprint/app/cli/analysis/domain/analysis-options
     type: background-worker
     name: AnalysisOptions (External)
@@ -274,9 +254,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 98
-      sloc: 52
     position:
       x: -360
       y: 404
@@ -289,9 +266,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
       x: 560
       y: 404
@@ -304,9 +278,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 24
-      sloc: 18
     position:
       x: 100
       y: 404
