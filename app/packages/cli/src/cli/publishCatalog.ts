@@ -48,13 +48,20 @@ export async function runPublishCatalog(
     return { kind: 'empty-workspace' };
   }
 
-  const validation = validateBlueprintWorkspace(
-    files.map(file => ({ path: file.relativePath, schema: file.schema })),
-    plan.workspaceName ?? DEFAULT_WORKSPACE_NAME
-  );
+  const skipValidation = plan.skipValidation === true;
+  const validation: BlueprintValidationResult = skipValidation
+    ? { isValid: true, issues: [], filesChecked: files.length }
+    : validateBlueprintWorkspace(
+        files.map(file => ({ path: file.relativePath, schema: file.schema })),
+        plan.workspaceName ?? DEFAULT_WORKSPACE_NAME
+      );
 
-  if (!validation.isValid || parseErrors.length > 0) {
+  if (!skipValidation && (!validation.isValid || parseErrors.length > 0)) {
     return { kind: 'validation-failed', validation, parseErrors };
+  }
+
+  if (files.length === 0) {
+    return { kind: 'empty-workspace' };
   }
 
   const yamlObjects: RemoteCatalogYamlObject[] = files.map(file => ({

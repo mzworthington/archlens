@@ -82,6 +82,7 @@ async function runArchitecture(plan: ArchlensCliPlan): Promise<void> {
       targetPath: state.outputDir,
       format: 'json',
       dryRun: false,
+      skipValidation: plan.publishSkipValidation,
     });
   }
 }

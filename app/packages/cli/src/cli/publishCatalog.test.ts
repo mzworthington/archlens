@@ -18,7 +18,7 @@ dependencies: []
 describe('Feature: Publish blueprint catalog from CI', () => {
   it('skips publish when blueprint validation fails', async () => {
     const outcome = await runPublishCatalog(
-      { targetPath: 'blueprints', format: 'json', dryRun: true },
+      { targetPath: 'blueprints', format: 'json', dryRun: true, skipValidation: false },
       {
         loadBlueprintTree: async () => ({
           files: [],
@@ -31,10 +31,39 @@ describe('Feature: Publish blueprint catalog from CI', () => {
     expect(outcome.kind).toBe('validation-failed');
   });
 
+  it('publishes parseable files when --skip-validation is set', async () => {
+    const storage = new InMemoryObjectStorage('r2');
+    const outcome = await runPublishCatalog(
+      {
+        targetPath: 'samples',
+        format: 'json',
+        dryRun: false,
+        skipValidation: true,
+        workspaceName: 'samples',
+      },
+      {
+        loadBlueprintTree: async () => ({
+          files: [
+            {
+              relativePath: 'demo/context.yaml',
+              content: demoYaml,
+              schema: parseSchemaFromYaml(demoYaml),
+            },
+          ],
+          parseErrors: [{ path: 'broken.yaml', message: 'intentional fixture' }],
+        }),
+        resolveStorage: () => storage,
+      }
+    );
+
+    expect(outcome.kind).toBe('uploaded');
+    expect(storage.putOrder.at(-1)).toBe('latest/manifest.json');
+  });
+
   it('returns a dry-run plan without touching object storage', async () => {
     const storage = new InMemoryObjectStorage();
     const outcome = await runPublishCatalog(
-      { targetPath: 'blueprints', format: 'json', dryRun: true },
+      { targetPath: 'blueprints', format: 'json', dryRun: true, skipValidation: false },
       {
         loadBlueprintTree: async () => ({
           files: [
@@ -61,7 +90,7 @@ describe('Feature: Publish blueprint catalog from CI', () => {
   it('uploads through the storage port when dry-run is disabled', async () => {
     const storage = new InMemoryObjectStorage('r2');
     const outcome = await runPublishCatalog(
-      { targetPath: 'blueprints', format: 'json', dryRun: false },
+      { targetPath: 'blueprints', format: 'json', dryRun: false, skipValidation: false },
       {
         loadBlueprintTree: async () => ({
           files: [
@@ -83,7 +112,7 @@ describe('Feature: Publish blueprint catalog from CI', () => {
 
   it('reports when object storage is not configured', async () => {
     const outcome = await runPublishCatalog(
-      { targetPath: 'blueprints', format: 'json', dryRun: false },
+      { targetPath: 'blueprints', format: 'json', dryRun: false, skipValidation: false },
       {
         loadBlueprintTree: async () => ({
           files: [

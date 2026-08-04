@@ -101,6 +101,8 @@ Stack config with account/zone IDs and API tokens is **not** committed — see [
 
 ## CI/CD (GitHub Actions)
 
+Canonical map of every workflow (purpose + triggers): [GitHub Actions workflows](./guide/ci-workflows.md).
+
 `.github/workflows/ci.yml` on push/PR to `main`:
 
 1. **quality** — format, lint, typecheck, schema check, knip, Go vet
@@ -109,7 +111,7 @@ Stack config with account/zone IDs and API tokens is **not** committed — see [
 4. **build** — production designer + CLI artifacts
 5. **deploy-cloudflare** — Wrangler upload to Pages (`main` only)
 
-CLI releases are a separate job chain (`release-cli.sh`) when conventional commits warrant a tag.
+CLI releases are a separate job chain (`release-cli.sh`) when conventional commits warrant a tag. Catalog dogfood and `samples/` publish live in sibling workflows (see the map above).
 
 ---
 

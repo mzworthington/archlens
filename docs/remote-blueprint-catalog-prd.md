@@ -72,4 +72,4 @@ Full Gherkin scenarios: behavioral contract tests in `app/packages/core/src/lib/
 
 - [ADR-0010 — Catalog contract](./ADRs/0010-remote-blueprint-catalog-contract.md)
 - [ADR-0004 — Local-first workspaces](./ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)
-- [CI blueprints guide](./guide/ci-blueprints.md)
+- [GitHub Actions workflows](./guide/ci-workflows.md)

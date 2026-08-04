@@ -108,7 +108,7 @@ export const DocsShell: React.FC<Props> = ({
   localNav,
 }) => {
   const [location] = useLocation();
-  const referenceSection = DOCS_SIDEBAR.find(s => s.title === 'Reference');
+  const secondarySections = DOCS_SIDEBAR.filter(section => section.title !== 'Product guide');
   const isLanding = layout === 'landing';
   const showLocalNav = localNav && location === localNav.expandUnderPath;
 
@@ -118,7 +118,9 @@ export const DocsShell: React.FC<Props> = ({
         sticky
         badge="DOCS"
         subtitle={
-          isLanding ? 'Architecture products for engineering teams' : 'Product guide and reference'
+          isLanding
+            ? 'Architecture products for engineering teams'
+            : 'Product guide, technology, and CI'
         }
       >
         {!isLanding ? (
@@ -156,19 +158,19 @@ export const DocsShell: React.FC<Props> = ({
               testId="docs-mobile-guide-nav"
             />
           </div>
-          {referenceSection ? (
-            <div className="border-t border-[#00f0ff]/10">
+          {secondarySections.map(section => (
+            <div key={section.title} className="border-t border-[#00f0ff]/10">
               <p className="px-3 pt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-[#00f0ff]">
-                {referenceSection.title}
+                {section.title}
               </p>
               <MobileScroller
-                items={referenceSection.items}
+                items={section.items}
                 location={location}
-                aria-label="Reference"
-                testId="docs-mobile-reference-nav"
+                aria-label={section.title}
+                testId={`docs-mobile-${section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-nav`}
               />
             </div>
-          ) : null}
+          ))}
           {showLocalNav ? <MobileLocalNav localNav={localNav!} /> : null}
         </div>
       ) : null}

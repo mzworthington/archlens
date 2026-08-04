@@ -36,7 +36,7 @@ archlens resilience blueprints/ --format=json --output=.archlens/advicelens-repo
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
-See [Blueprint contract in CI](./ci-blueprints.md) and [AdviceLens gate in CI](./ci-advicelens.md) for GitHub Actions workflows.
+See [GitHub Actions workflows](./ci-workflows.md) for the full workflow map.
 
 ## Useful flags
 

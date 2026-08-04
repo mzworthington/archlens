@@ -49,8 +49,11 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('/chaoslens-engine', '')).toBe('/chaoslens-engine');
   });
 
-  it('registers the technology stack reference page', () => {
-    expect(DOCS_PAGES.some(p => p.path === '/tech-stack')).toBe(true);
+  it('registers CI workflows and Tech sidebar pages', () => {
+    expect(DOCS_PAGES.some(p => p.path === '/guide/ci-workflows')).toBe(true);
+    expect(DOCS_PAGES.some(p => p.path === '/guide/ci-blueprints')).toBe(false);
+    expect(DOCS_PAGES.some(p => p.path === '/guide/ci-advicelens')).toBe(false);
+    expect(resolveDocsHref('./ci-workflows.md', 'guide')).toBe('/guide/ci-workflows');
   });
 
   it('registers the AdviceLens engine reference page', () => {

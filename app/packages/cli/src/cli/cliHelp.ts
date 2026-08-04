@@ -106,6 +106,10 @@ function printOverviewHelp(): void {
   flag('--context=<name>', 'Root entityRef slug (default: blueprint)');
   flag('--system-name=<name>', 'Software system for this repo (multi-repo products)');
   flag('--publish', 'After scan, upload output tree to object storage (--no-dry-run)');
+  flag(
+    '--skip-validation',
+    'With --publish: do not run workspace validation before upload (demo / external sample repos)'
+  );
   flag('--no-git', 'Skip TraceLens git forensics enrichment');
   flag('--git --git-since=<days>', 'Enable forensics with lookback window');
   flag('--watch', 'Re-run when source files change');
@@ -153,6 +157,7 @@ function printScanHelp(): void {
   flag('--no-git', 'Structure-only scan (no TraceLens blocks)');
   flag('--git --git-since=<days>', 'Attach git forensics (default on)');
   flag('--publish', 'Upload output tree to object storage after a successful scan');
+  flag('--skip-validation', 'With --publish: do not run workspace validation before upload');
   flag('--watch [--watch-debounce=<ms>]', 'Re-run on file changes');
   flag('--headless', 'Same as scan — never prompts');
 
@@ -160,6 +165,7 @@ function printScanHelp(): void {
   example('archlens scan');
   example('archlens scan --output=blueprints --no-git');
   example('archlens scan --output=blueprints --publish');
+  example('archlens scan --output=blueprints --publish --skip-validation');
   example('archlens scan --glob="packages/**/*.ts" --context=my-app');
   example('archlens scan --context=acme --system-name=frontend-api');
 }
@@ -273,10 +279,12 @@ function printPublishHelp(): void {
   flag('--account-id=<id>', 'Cloudflare account id for R2 endpoint override');
   flag('--key-prefix=<path>', 'Optional object key prefix inside the bucket');
   flag('--no-dry-run', 'Upload snapshot to object storage');
+  flag('--skip-validation', 'Do not run workspace validation before publish (demo / stress trees)');
 
   heading('EXAMPLES');
   example('archlens publish blueprints/');
   example('archlens publish custom-blueprints/ --format=json');
+  example('archlens publish samples/ --workspace-name=samples --skip-validation --no-dry-run');
 }
 
 function printUpdateHelp(): void {

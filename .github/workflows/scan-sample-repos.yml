@@ -1,7 +1,5 @@
 name: Scan sample repos
 
-# Matrix dogfood: install latest CLI, clone each example codebase, scan + publish.
-# Customer single-repo pattern lives in publish-blueprint-catalog.yml.
 
 on:
   schedule:
@@ -70,4 +68,5 @@ jobs:
             --output="${GITHUB_WORKSPACE}/blueprints" \
             --context="${{ matrix.sample.context }}" \
             --git-since="${{ matrix.sample.gitSinceDays }}" \
-            --publish
+            --publish \
+            --skip-validation

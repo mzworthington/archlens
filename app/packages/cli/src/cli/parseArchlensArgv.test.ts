@@ -105,8 +105,20 @@ describe('parseArchlensArgv plan shape', () => {
   it('enables publish-after-scan with --publish', () => {
     const plan = parseArchlensArgv(['scan', '--output=blueprints', '--publish']);
     expect(plan.publishAfterScan).toBe(true);
+    expect(plan.publishSkipValidation).toBe(false);
     expect(plan.isHeadless).toBe(true);
     expect(plan.architecture.outputDir).toBe('blueprints');
+  });
+
+  it('forwards --skip-validation to publish-after-scan', () => {
+    const plan = parseArchlensArgv([
+      'scan',
+      '--output=blueprints',
+      '--publish',
+      '--skip-validation',
+    ]);
+    expect(plan.publishAfterScan).toBe(true);
+    expect(plan.publishSkipValidation).toBe(true);
   });
 
   it('parses --system-name for multi-repo products', () => {

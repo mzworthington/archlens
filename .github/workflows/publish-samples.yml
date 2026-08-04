@@ -1,0 +1,49 @@
+name: Publish samples catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'samples/**'
+      - '.github/workflows/publish-samples.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-samples
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install ArchLens CLI
+        run: |
+          set -euo pipefail
+          ./scripts/install.sh --dir "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          archlens --version
+
+      # Explicit --skip-validation only — workspace name does not change the gate.
+      - name: Publish samples catalog
+        env:
+          OBJECT_STORAGE_PROVIDER: r2
+          OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
+        run: |
+          set -euo pipefail
+          archlens publish samples/ \
+            --workspace-name=samples \
+            --skip-validation \
+            --no-dry-run \
+            --format=json
