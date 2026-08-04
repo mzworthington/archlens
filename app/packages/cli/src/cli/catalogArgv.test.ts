@@ -13,6 +13,7 @@ describe('parse catalog commands', () => {
     expect(plan.keyPrefix).toBe('estates/archlens');
     expect(plan.dryRun).toBe(true);
     expect(plan.skipValidation).toBe(true);
+    expect(plan.allowEmpty).toBe(false);
     expect(plan.maxRetries).toBe(3);
     expect(defaultEstateKeyPrefix('acme')).toBe('estates/acme');
   });

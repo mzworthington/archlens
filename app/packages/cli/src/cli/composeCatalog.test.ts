@@ -66,6 +66,7 @@ describe('Feature: catalog compose with CAS on latest', () => {
         dryRun: false,
         skipValidation: true,
         maxRetries: 3,
+        allowEmpty: false,
         keyPrefix: 'estates/acme',
       },
       { resolveStorage: () => storage }
@@ -142,6 +143,7 @@ dependencies: []
         dryRun: true,
         skipValidation: true,
         maxRetries: 3,
+        allowEmpty: false,
         keyPrefix: 'estates/acme',
       },
       { resolveStorage: () => storage }
@@ -189,6 +191,7 @@ dependencies: []
         dryRun: false,
         skipValidation: true,
         maxRetries: 3,
+        allowEmpty: false,
         keyPrefix: 'estates/acme',
       },
       { resolveStorage: () => storage }
