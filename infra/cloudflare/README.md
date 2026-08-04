@@ -52,6 +52,10 @@ pulumi import 'cloudflare:index/dnsRecord:DnsRecord' www-pages "<zoneId>/<record
 pulumi up   # updates content to the Pages subdomain if needed
 ```
 
+## Token permissions
+
+`CLOUDFLARE_API_TOKEN` must include **Zone → DNS: Edit** for the `archlens.dev` zone. Pages-only tokens return `403 Authentication error` when creating `DnsRecord` resources. Full scope list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+
 ## Stack config
 
 `Pulumi.prod.yaml` is **gitignored** — it may contain account IDs and an encrypted Cloudflare API token after bootstrap. Committed template: `Pulumi.prod.yaml.example`. CI configures the stack from **GitHub Actions secrets** on each run (`CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_ZONE_ID`, `CLOUDFLARE_API_TOKEN`).
