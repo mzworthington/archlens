@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Regenerate blueprints/ by scanning sibling repos (or paths from BLUEPRINT_BATCH_PARENT).
-# Repo list / contexts: scripts/blueprint-sample-repos.json (shared with scan-sample-repos.yml).
+# Repo list / contexts: scripts/blueprint-sample-repos.json (shared with publish-demo-catalog.yml).
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

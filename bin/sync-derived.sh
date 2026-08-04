@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Regenerate derived repo outputs and commit when anything changed.
-# Invoked by .github/workflows/sync-derived.yml (weekly + manual).
+# Invoked by .github/workflows/refresh-docs-media.yml (weekly + manual).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
