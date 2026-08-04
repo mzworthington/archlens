@@ -78,7 +78,12 @@ new cloudflare.R2BucketCors('blueprint-catalog-cors', {
   rules: [
     {
       allowed: {
-        origins: [`https://${apexDomain}`, 'http://localhost:5173', 'http://localhost:5188'],
+        origins: [
+          `https://${apexDomain}`,
+          `https://${wwwDomain}`,
+          'http://localhost:5173',
+          'http://localhost:5188',
+        ],
         methods: ['GET', 'HEAD'],
         headers: ['*'],
       },
