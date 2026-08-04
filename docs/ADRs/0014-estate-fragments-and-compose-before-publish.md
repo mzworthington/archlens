@@ -33,17 +33,17 @@ Chosen option: "**Option B**", with **Option A** as the interim dogfood pattern 
 
 **Validation policy:** catalog push paths (`publish`, `publish-fragment`, `compose`, `scan --publish`) default to **not** blocking on workspace validation. ArchLens prioritises honest visibility of architecture — including incomplete or intentionally invalid trees. Use `archlens validate` or `--validate` on a publish command only when a pipeline wants an optional hard gate. `--skip-validation` is always allowed and wins over `--validate`.
 
-### Phase 0 (now) — isolate whole-tree publishers
+### Phase 0 (historical) → shared dogfood estate
 
-Until compose exists, every dogfood publisher writes under a **dedicated key prefix** so jobs do not share one `latest`:
+Phase 0 briefly isolated whole-tree publishers under separate prefixes. Once fragment compose shipped, dogfood producers all stage into the **shared `samples` estate** so Canvas can list every context:
 
-| Publisher                                    | Prefix                | Consumer base URL                                   |
-| -------------------------------------------- | --------------------- | --------------------------------------------------- |
-| This-repo scan (`publish-blueprint-catalog`) | `estates/archlens/`   | `https://blueprints.archlens.dev/estates/archlens/` |
-| Hand-authored `samples/`                     | `estates/samples/`    | (optional secondary catalog)                        |
-| External demo matrix leg `{id}`              | `estates/demos/{id}/` | per-demo catalog                                    |
+| Publisher                                    | Fragment `productId` | Prefix (shared)    |
+| -------------------------------------------- | -------------------- | ------------------ |
+| Hand-authored `samples/`                     | `samples`            | `estates/samples/` |
+| This-repo scan (`publish-blueprint-catalog`) | `archlens`           | `estates/samples/` |
+| External demo matrix leg `{id}`              | `{id}`               | `estates/samples/` |
 
-Canvas dogfood keeps pointing at `estates/archlens/`. Layout under each prefix remains ADR-0010 (`latest/`, `snapshots/{rev}/`).
+Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/samples/`. Layout under the prefix remains ADR-0010 (`latest/`, `snapshots/{rev}/`). Demo scans use `--context={id}` so BlueprintSpec paths do not collide across repos.
 
 ### Phase 1+ — fragment contract
 
@@ -99,10 +99,10 @@ Overlay document fields: `overlayId`, `estateId`, `status` (`accepted`|`rejected
 
 - Good, because immutable snapshots and Canvas read path stay ADR-0010
 - Good, because product (not repo) is the composition key — matches scan domain
-- Good, because Phase 0 stops dogfood races without waiting for compose
+- Good, because Phase 0 isolation stopped races; dogfood now uses one shared estate with per-product fragments
 - Bad, because compose + CAS is new CLI surface and needs conflict retry
-- Bad, because multi-catalog browsing (samples/demos) needs explicit base URLs until an estate index exists
-- Follow-up: Canvas remote accept UI wiring; optional hard-delete once `deleteObject` exists on the storage port; ADR-0013 remains reserved for connection-profile auth
+- Good, because dogfood Canvas loads one estate (`samples`) that unions hand-authored samples, ArchLens, and batch demos via fragments
+- Follow-up: Canvas remote accept UI wiring; optional hard-delete once `deleteObject` exists on the storage port; ADR-0013 remains reserved for connection-profile auth; optional estate index if customers need multi-catalog browsing
 
 ## Architecture sketch
 

@@ -193,7 +193,7 @@ function printScanHelp(): void {
   example('archlens scan --output=blueprints --publish');
   example('archlens scan --output=blueprints --publish --validate');
   example(
-    'archlens scan --output=blueprints --key-prefix=estates/archlens --workspace-name=archlens --publish'
+    'archlens scan --output=blueprints --key-prefix=estates/samples --workspace-name=samples --publish'
   );
   example('archlens scan --glob="packages/**/*.ts" --context=my-app');
   example('archlens scan --context=acme --system-name=frontend-api');

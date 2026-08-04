@@ -25,7 +25,8 @@ failures=()
 succeeded=()
 
 scan_context() {
-  jq -r --arg id "$1" '.[] | select(.id == $id) | .context' "${CATALOG}"
+  # Prefer explicit .context; otherwise use id so batch paths match demo catalog fragments.
+  jq -r --arg id "$1" '.[] | select(.id == $id) | (.context // .id)' "${CATALOG}"
 }
 
 scan_git_since() {

@@ -14,6 +14,7 @@ Use this guide if you want to understand the product, not just the internals.
 | **ChaosLens**       | Fault injection, blast-radius heatmap, and SLA telemetry on the live diagram                                       |
 | **AdviceLens**      | Ranked, evidence-backed recommendations merging TraceLens + ChaosLens (studio, CLI, CI)                            |
 | **BlueprintSpec**   | Declarative architecture contract - public schema URLs, `entityRef` identity, validation rules                     |
+| **ChaosSpec**       | Declarative failure scenarios - public schema URLs, `diagramRef` binding, faults without duplicating topology      |
 
 ## Typical flow
 
@@ -34,6 +35,7 @@ Use this guide if you want to understand the product, not just the internals.
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry
 - [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, YAML studio export, narration (planned)
 - [BlueprintSpec](./schema.md) - public contract URLs, entity references, live latest schema
+- [ChaosSpec](./chaos-spec.md) - public contract URLs, diagram-bound failure scenarios, live latest schema
 - [Interface tour & journeys](../journeys.md) - day-one flow across products (links to per-product demos)
 
 ## Contributor reference

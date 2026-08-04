@@ -48,5 +48,5 @@ flowchart LR
 ## Links
 
 - Related ADRs: [ADR-0001](./0001-yaml-blueprintspec-as-canonical-format.md)
-- Spec / docs: [BlueprintSpec guide](../guide/schema.md), [`@archlens/core` README](../../app/packages/core/README.md), [architecture.md](../architecture.md)
+- Spec / docs: [BlueprintSpec guide](../guide/schema.md), [ChaosSpec guide](../guide/chaos-spec.md), [`@archlens/core` README](../../app/packages/core/README.md), [architecture.md](../architecture.md)
 - Arch norms: hexagonal, DDD, vertical slices (kit `CODING_PHILOSOPHY.md`)

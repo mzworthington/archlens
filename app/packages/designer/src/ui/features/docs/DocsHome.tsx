@@ -106,6 +106,16 @@ const PRODUCTS: Product[] = [
     icon: FileCode2,
     foundational: true,
   },
+  {
+    title: 'ChaosSpec',
+    tagline: 'Shared failure-scenario contract',
+    details:
+      'Declarative YAML scenarios that bind faults to a BlueprintSpec diagram — Canvas, CLI, and CI validate against the same schema.',
+    href: '/guide/chaos-spec',
+    category: 'Contract',
+    icon: ShieldAlert,
+    foundational: true,
+  },
 ];
 
 const CATEGORY_STYLES: Record<Product['category'], string> = {

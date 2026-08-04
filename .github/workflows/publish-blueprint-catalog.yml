@@ -1,12 +1,8 @@
 name: Publish blueprint catalog
 
-# Dogfood: scan this repo → stage a fragment → compose the estate catalog (ADR-0014).
-# Primary stitch trigger is this workflow; compose-catalog.yml is the cron safety net.
-# Publish prefers visibility (validation does not block by default).
-# Customer multi-pipeline pattern:
-#   archlens scan --headless --output=blueprints --context=my-app
-#   archlens catalog publish-fragment blueprints/ --estate=my-estate --product=my-app --source-ref=repo@sha --no-dry-run
-#   archlens catalog compose --estate=my-estate --no-dry-run
+# Dogfood: scan this repo → fragment into the shared samples estate → compose (ADR-0014).
+# Canvas loads estates/samples/ so ArchLens appears alongside hand-authored samples and demos.
+# Cron safety net: compose-catalog.yml.
 
 on:
   schedule:
@@ -39,7 +35,7 @@ jobs:
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
-          OBJECT_STORAGE_KEY_PREFIX: estates/archlens
+          OBJECT_STORAGE_KEY_PREFIX: estates/samples
           R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
@@ -50,16 +46,16 @@ jobs:
             --context=archlens
 
           archlens catalog publish-fragment blueprints/ \
-            --estate=archlens \
+            --estate=samples \
             --product=archlens \
             --source-ref="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}@${GITHUB_SHA}" \
-            --key-prefix=estates/archlens \
+            --key-prefix=estates/samples \
             --no-dry-run \
             --format=json
 
           archlens catalog compose \
-            --estate=archlens \
-            --workspace-name=archlens \
-            --key-prefix=estates/archlens \
+            --estate=samples \
+            --workspace-name=samples \
+            --key-prefix=estates/samples \
             --no-dry-run \
             --format=json

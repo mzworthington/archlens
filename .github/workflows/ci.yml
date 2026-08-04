@@ -217,7 +217,7 @@ jobs:
 
       - name: Compile Production Build
         env:
-          VITE_REMOTE_CATALOG_BASE_URL: ${{ github.ref == 'refs/heads/main' && 'https://blueprints.archlens.dev/estates/archlens/' || '' }}
+          VITE_REMOTE_CATALOG_BASE_URL: ${{ github.ref == 'refs/heads/main' && 'https://blueprints.archlens.dev/estates/samples/' || '' }}
         run: pnpm build
         working-directory: app
 

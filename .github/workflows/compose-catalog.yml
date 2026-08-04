@@ -1,6 +1,6 @@
 name: Compose catalog
 
-# Safety-net stitch: re-compose each dogfood estate from staged fragments + overlays.
+# Safety-net stitch: re-compose the shared samples estate from staged fragments + overlays.
 # Primary compose still runs in publish-blueprint-catalog / publish-samples / publish-demo-catalog
 # immediately after publish-fragment (ADR-0014).
 
@@ -17,46 +17,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      estates: ${{ steps.set.outputs.estates }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Build estate matrix
-        id: set
-        run: |
-          set -euo pipefail
-          {
-            echo -n 'estates='
-            jq -c '
-              [
-                { "estateId": "archlens", "keyPrefix": "estates/archlens", "workspaceName": "archlens" },
-                { "estateId": "samples", "keyPrefix": "estates/samples", "workspaceName": "samples" }
-              ]
-              +
-              [
-                .[] | {
-                  estateId: .id,
-                  keyPrefix: ("estates/demos/" + .id),
-                  workspaceName: .id
-                }
-              ]
-            ' scripts/blueprint-sample-repos.json
-          } >> "$GITHUB_OUTPUT"
-
   compose:
-    needs: matrix
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment:
       name: production
-    strategy:
-      fail-fast: false
-      matrix:
-        estate: ${{ fromJson(needs.matrix.outputs.estates) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -64,20 +29,20 @@ jobs:
       - name: Setup ArchLens CLI
         uses: ./.github/actions/setup-archlens-cli
 
-      - name: Compose estate
+      - name: Compose samples estate
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
-          OBJECT_STORAGE_KEY_PREFIX: ${{ matrix.estate.keyPrefix }}
+          OBJECT_STORAGE_KEY_PREFIX: estates/samples
           R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
         run: |
           set -euo pipefail
           archlens catalog compose \
-            --estate="${{ matrix.estate.estateId }}" \
-            --workspace-name="${{ matrix.estate.workspaceName }}" \
-            --key-prefix="${{ matrix.estate.keyPrefix }}" \
+            --estate=samples \
+            --workspace-name=samples \
+            --key-prefix=estates/samples \
             --allow-empty \
             --no-dry-run \
             --format=json

@@ -93,23 +93,9 @@ The simulation reads `node.resilience` when no UI override exists for that node.
 
 ## ChaosSpec scenarios
 
-Version-controlled failure scenarios live in `chaos-specs/` as YAML that references a blueprint diagram by `metadata.diagramRef` (no duplicated topology). Example: `chaos-specs/payment-outage.yaml` targets the `chaoslens-stress/ecommerce` fixture.
+Version-controlled failure scenarios live in `chaos-specs/` as YAML that references a blueprint diagram by `metadata.diagramRef` (no duplicated topology). Load and export from **Open → Load/Export ChaosSpec** or the ChaosLens panel.
 
-```yaml
-# yaml-language-server: $schema=https://archlens.dev/schemas/latest/chaos.schema.json
-version: https://archlens.dev/schemas/v1/chaos.schema.json
-metadata:
-  name: Payment and database compound outage
-  diagramRef: blueprint/chaoslens-stress/ecommerce
-faults:
-  - nodeId: blueprint/chaoslens-stress/ecommerce/payment
-    faultType: region-outage
-  - nodeId: blueprint/chaoslens-stress/ecommerce/db
-    faultType: error-rate
-    severity: 0.6
-```
-
-Parse in code with `parseChaosSpecFromYaml` from `@archlens/core/resilience`, then pass `chaosSpecDocumentToRuntime(doc).spec` to `runResilienceSimulation` alongside the loaded blueprint.
+Contract, public schema URLs, and field reference: **[ChaosSpec](./chaos-spec.md)**.
 
 ## Limitations (today)
 
@@ -126,5 +112,6 @@ Parse in code with `parseChaosSpecFromYaml` from `@archlens/core/resilience`, th
 - [AdviceLens](./advicelens.md) - ranked recommendations from simulation + forensics
 - [ArchLens Canvas](./canvas.md) - panels, display toggles, navigation
 - [TraceLens](./tracelens.md) - hotspot heatmap (disabled during ChaosLens)
+- [ChaosSpec](./chaos-spec.md) - scenario YAML contract and public schema URLs
 - [BlueprintSpec](./schema.md) - `dependencies` and `entityRef` rules
 - [ChaosLens engine](../chaoslens-engine.md) - Go/WASM engine, local WASM build, core API (contributors)

@@ -10,6 +10,7 @@ Product docs are Markdown in this folder. The designer app renders them at:
 | `/guide/chaoslens`                        | ChaosLens                                                  |
 | `/guide/advicelens`                       | AdviceLens                                                 |
 | `/guide/schema`                           | BlueprintSpec                                              |
+| `/guide/chaos-spec`                       | ChaosSpec                                                  |
 | `/guide/ci-workflows`                     | GitHub Actions workflows                                   |
 | `/tracelens`                              | TraceLens rankings (live app)                              |
 | `/advicelens`                             | AdviceLens recommendations (live app; opens TraceLens tab) |

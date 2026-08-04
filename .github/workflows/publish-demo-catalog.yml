@@ -1,7 +1,8 @@
 name: Publish demo catalog
 
-# Matrix dogfood: clone each example codebase → scan → fragment → compose.
-# Each demo keeps its own estate prefix (estates/demos/{id}/). Cron safety net: compose-catalog.yml.
+# Matrix dogfood: clone each example codebase → scan → fragment into shared samples estate.
+# Each demo uses --context={id} so BlueprintSpec paths do not collide across repos.
+# Cron safety net: compose-catalog.yml.
 
 on:
   schedule:
@@ -57,7 +58,7 @@ jobs:
         env:
           OBJECT_STORAGE_PROVIDER: r2
           OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
-          OBJECT_STORAGE_KEY_PREFIX: estates/demos/${{ matrix.sample.id }}
+          OBJECT_STORAGE_KEY_PREFIX: estates/samples
           R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
@@ -66,22 +67,23 @@ jobs:
           DEMO_SHA="$(git rev-parse HEAD)"
           OUT="${GITHUB_WORKSPACE}/blueprints/${{ matrix.sample.id }}"
 
+          # Context folder must match product id so demos do not share path prefixes.
           archlens scan --headless \
             --output="${OUT}" \
-            --context="${{ matrix.sample.context }}" \
+            --context="${{ matrix.sample.id }}" \
             --git-since="${{ matrix.sample.gitSinceDays }}"
 
           archlens catalog publish-fragment "${OUT}" \
-            --estate="${{ matrix.sample.id }}" \
+            --estate=samples \
             --product="${{ matrix.sample.id }}" \
             --source-ref="${{ matrix.sample.repo }}@${DEMO_SHA}" \
-            --key-prefix="estates/demos/${{ matrix.sample.id }}" \
+            --key-prefix=estates/samples \
             --no-dry-run \
             --format=json
 
           archlens catalog compose \
-            --estate="${{ matrix.sample.id }}" \
-            --workspace-name="${{ matrix.sample.id }}" \
-            --key-prefix="estates/demos/${{ matrix.sample.id }}" \
+            --estate=samples \
+            --workspace-name=samples \
+            --key-prefix=estates/samples \
             --no-dry-run \
             --format=json
