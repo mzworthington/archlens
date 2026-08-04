@@ -4,6 +4,7 @@ import {
   type SystemSchema,
   type C4Level,
   type SourceProvenance,
+  type ValidationResult,
   resolveWorkspaceEntityRefs,
   slugify,
 } from '@archlens/core';
@@ -25,6 +26,10 @@ export type ApplyStateUpdateOptions = {
   /** When false, do not update the in-memory session layout cache. */
   updateSessionLayout?: boolean;
 };
+
+function validationIssueSignature(result: ValidationResult): string {
+  return result.issues.map(i => `${i.type}\0${i.message}\0${(i.path ?? []).join('\0')}`).join('\n');
+}
 
 /**
  * Rebuild schema from canvas nodes/edges, resolve entityRefs across the
@@ -89,7 +94,12 @@ export function applyStateUpdates(
   const validationResult = validateGraph(nextSchemaMapped);
   const yamlCode = serializeSchemaToYaml(nextSchemaMapped);
 
-  if (!validationResult.isValid && get().logger) {
+  const prevValidation = get().validationResult as ValidationResult | undefined;
+  const validationChanged =
+    validationIssueSignature(validationResult) !==
+    validationIssueSignature(prevValidation ?? { isValid: true, issues: [] });
+
+  if (!validationResult.isValid && validationChanged && get().logger) {
     get().logger.warn('Schema validation warnings triggered', {
       issues: validationResult.issues.map(
         (i: { type: string; message: string; path?: string[] }) => ({

@@ -26,6 +26,18 @@ function shouldExpandPropertyPanel(hasSelection: boolean, options?: SelectionOpt
 export function createCanvasGraphActions(set: SetFn, get: GetFn) {
   return {
     onNodesChange: (changes: CanvasNodeChange[]) => {
+      const isLayoutMeasureOnly = changes.every(
+        c => c.type === 'dimensions' || c.type === 'select'
+      );
+      if (isLayoutMeasureOnly) {
+        let nextNodes = get().graphChangePort.applyNodeChanges(changes, get().nodes);
+        if (changes.some(c => c.type === 'dimensions')) {
+          nextNodes = refreshGroupBoundsFromChildren(nextNodes);
+        }
+        set({ nodes: nextNodes });
+        return;
+      }
+
       const hasRemoval = changes.some(c => c.type === 'remove');
       if (hasRemoval) {
         get().recordHistory();

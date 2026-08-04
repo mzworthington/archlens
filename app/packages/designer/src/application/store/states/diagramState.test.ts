@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { useBlueprintStore } from '../store';
 import type { NodeType } from '@archlens/core';
 import { createBrowserLayoutRegistry } from '../../../infrastructure/layout/createBrowserLayoutRegistry';
@@ -602,5 +602,70 @@ describe('diagramState Actions & State Management', () => {
     const fingerprint = schemaLayoutFingerprint(useBlueprintStore.getState().schema);
 
     expect(hasSessionLayout('context.yaml', fingerprint)).toBe(false);
+  });
+
+  describe('validation console logging', () => {
+    it('logs schema validation warnings only when the issue set changes', () => {
+      const warn = vi.fn();
+      useBlueprintStore.setState({
+        logger: { ...useBlueprintStore.getState().logger, warn },
+      });
+      const store = useBlueprintStore.getState();
+
+      store.onConnect({
+        source: 'nodeB',
+        target: 'nodeA',
+        sourceHandle: 'right-source',
+        targetHandle: 'left-target',
+      });
+      expect(warn).toHaveBeenCalledTimes(1);
+      expect(warn.mock.calls[0]?.[0]).toBe('Schema validation warnings triggered');
+
+      store.onNodesChange([
+        {
+          type: 'position',
+          id: 'nodeA',
+          position: { x: 5, y: 5 },
+          dragging: false,
+        },
+      ]);
+      expect(warn).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not re-run schema validation on dimensions-only node changes', () => {
+      const warn = vi.fn();
+      useBlueprintStore.setState({
+        logger: { ...useBlueprintStore.getState().logger, warn },
+      });
+      const store = useBlueprintStore.getState();
+
+      store.onConnect({
+        source: 'nodeB',
+        target: 'nodeA',
+        sourceHandle: 'right-source',
+        targetHandle: 'left-target',
+      });
+      warn.mockClear();
+
+      const yamlBefore = useBlueprintStore.getState().yamlCode;
+      store.onNodesChange([
+        {
+          type: 'dimensions',
+          id: 'nodeA',
+          dimensions: { width: 120, height: 48 },
+        },
+      ]);
+      store.onNodesChange([
+        {
+          type: 'dimensions',
+          id: 'nodeB',
+          dimensions: { width: 140, height: 52 },
+        },
+      ]);
+
+      expect(warn).not.toHaveBeenCalled();
+      expect(useBlueprintStore.getState().yamlCode).toBe(yamlBefore);
+      expect(useBlueprintStore.getState().validationResult.isValid).toBe(false);
+    });
   });
 });
