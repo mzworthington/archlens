@@ -29,7 +29,7 @@ A command-line static analysis (AST) codebase scanner. It parses source files, e
 **Install (macOS / Linux):**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash
 ```
 
 👉 **Learn more:** [app/packages/cli/README.md](./app/packages/cli/README.md) · [Getting started](./docs/guide/getting-started.md)

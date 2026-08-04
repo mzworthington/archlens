@@ -1,9 +1,9 @@
 name: Setup ArchLens CLI
-description: Install the ArchLens CLI from GitHub releases (binary + tree-sitter WASMs).
+description: Install the ArchLens CLI from a GitHub release (install.sh).
 
 inputs:
   archlens-version:
-    description: ArchLens CLI version to install (release tag)
+    description: Release tag to install (default latest)
     required: false
     default: latest
 
@@ -19,11 +19,13 @@ runs:
         if [[ -n "$version" && "$version" != "latest" ]]; then
           install_args+=(--version "$version")
         fi
-        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh -s -- "${install_args[@]}"
+        # Must use bash: install.sh uses `set -o pipefail` (not supported by Ubuntu's dash `sh`).
+        curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh \
+          | bash -s -- "${install_args[@]}"
         echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         if [[ ! -f "$HOME/.local/bin/tree-sitter.wasm" ]]; then
           echo "Installed archlens is missing tree-sitter.wasm beside the binary." >&2
-          echo "Re-publish a CLI release that includes runtime WASM, or pin an older workflow that builds from source." >&2
+          echo "Re-publish a CLI release that includes runtime WASM." >&2
           ls -la "$HOME/.local/bin" || true
           exit 1
         fi

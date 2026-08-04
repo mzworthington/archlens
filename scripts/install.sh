@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # Install ArchLens CLI from GitHub releases.
-# Usage: curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | sh
+# Usage: curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash
+# Prefer `| bash` (not `| sh`): this script needs bash features such as `pipefail`.
+if [ -z "${BASH_VERSION:-}" ]; then
+  echo "error: run this installer with bash, e.g.:" >&2
+  echo "  curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash" >&2
+  exit 1
+fi
 set -euo pipefail
 
 GITHUB_REPO="${ARCHLENS_GITHUB_REPO:-mzworthington/archlens}"
