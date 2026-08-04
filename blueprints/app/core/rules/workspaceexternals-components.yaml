@@ -6,9 +6,18 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
+  - entityRef: blueprint/app/core/rules/workspaceexternals/external-scope
+    type: background-worker
+    name: ExternalScope
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/externalScope.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/workspaceexternals/container-rollup
     type: background-worker
     name: ContainerRollup
@@ -18,9 +27,15 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 278
-      sloc: 229
+  - entityRef: blueprint/app/core/rules/workspaceexternals/container-diagram-scope-test
+    type: background-worker
+    name: ContainerDiagramScope
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/containerDiagramScope.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/workspaceexternals/filepath
     type: background-worker
     name: Filepath
@@ -30,9 +45,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 29
-      sloc: 20
   - entityRef: blueprint/app/core/rules/workspaceexternals/external-nodes
     type: background-worker
     name: ExternalNodes
@@ -42,9 +54,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 29
-      sloc: 22
   - entityRef: blueprint/app/core/rules/workspaceexternals/diagram-scope
     type: background-worker
     name: DiagramScope
@@ -54,9 +63,15 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 38
-      sloc: 30
+  - entityRef: blueprint/app/core/rules/workspaceexternals/container-diagram-scope
+    type: background-worker
+    name: ContainerDiagramScope
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/containerDiagramScope.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/workspaceexternals/external-enrichment
     type: background-worker
     name: ExternalEnrichment
@@ -66,9 +81,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 65
-      sloc: 47
   - entityRef: blueprint/app/core/rules/workspaceexternals/types
     type: background-worker
     name: Types
@@ -78,9 +90,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 65
-      sloc: 46
   - entityRef: blueprint/app/core/rules/workspaceexternals/external-candidates
     type: background-worker
     name: ExternalCandidates
@@ -90,9 +99,15 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 171
-      sloc: 136
+  - entityRef: blueprint/app/core/rules/workspaceexternals/external-scope-test
+    type: background-worker
+    name: ExternalScope
+    isTest: true
+    properties:
+      filepath: app/packages/core/src/rules/workspaceExternals/externalScope.test.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/workspaceexternals/index
     type: background-worker
     name: Index
@@ -102,9 +117,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 47
-      sloc: 45
   - entityRef: blueprint/app/core/rules/workspaceexternals/entity-index
     type: background-worker
     name: EntityIndex
@@ -114,9 +126,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 31
-      sloc: 24
   - entityRef: blueprint/app/core/rules/external-node-layout
     type: background-worker
     name: ExternalNodeLayout (External)
@@ -126,13 +135,30 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 220
-      sloc: 181
     position:
       x: 100
       y: 404
 dependencies:
+  - from: blueprint/app/core/rules/workspaceexternals/external-scope
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-scope
+    to: blueprint/app/core/rules/workspaceexternals/types
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-scope
+    to: blueprint/app/core/rules/workspaceexternals/diagram-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-scope
+    to: blueprint/app/core/rules/workspaceexternals/container-diagram-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-scope
+    to: blueprint/app/core/rules/external-node-layout
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/rules/workspaceexternals/container-rollup
     to: blueprint/app/core/schema/schema
     type: direct-call
@@ -153,6 +179,22 @@ dependencies:
     to: blueprint/app/core/rules/workspaceexternals/external-nodes
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-diagram-scope-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-diagram-scope-test
+    to: blueprint/app/core/rules/workspaceexternals/entity-index
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-diagram-scope-test
+    to: blueprint/app/core/rules/workspaceexternals/container-diagram-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-diagram-scope-test
+    to: blueprint/app/core/rules/workspaceexternals/external-scope
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/rules/workspaceexternals/filepath
     to: blueprint/app/core/rules/workspaceexternals/types
     type: direct-call
@@ -171,6 +213,14 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/rules/workspaceexternals/diagram-scope
     to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-diagram-scope
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/container-diagram-scope
+    to: blueprint/app/core/rules/workspaceexternals/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/rules/workspaceexternals/external-enrichment
@@ -221,6 +271,22 @@ dependencies:
     to: blueprint/app/core/rules/workspaceexternals/diagram-scope
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-candidates
+    to: blueprint/app/core/rules/workspaceexternals/container-diagram-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-scope-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-scope-test
+    to: blueprint/app/core/rules/workspaceexternals/external-scope
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/external-scope-test
+    to: blueprint/app/core/rules/workspaceexternals/entity-index
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/rules/workspaceexternals/index
     to: blueprint/app/core/rules/workspaceexternals/types
     type: direct-call
@@ -243,6 +309,10 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/rules/workspaceexternals/index
     to: blueprint/app/core/rules/workspaceexternals/external-candidates
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/workspaceexternals/index
+    to: blueprint/app/core/rules/workspaceexternals/external-scope
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/rules/workspaceexternals/index

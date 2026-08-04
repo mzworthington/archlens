@@ -4,7 +4,7 @@ metadata:
   entityRef: blueprint/app/core/rules
   name: Rules Components
   source:
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
@@ -19,18 +19,20 @@ nodes:
       classification: default
     forensics:
       complexity: 0
-      churn: 9
-      lineChurn: 743
-      churn30: 9
-      churn365: 9
+      loc: 1389
+      sloc: 1149
+      churn: 15
+      lineChurn: 1408
+      churn30: 15
+      churn365: 15
       hotspotScore: 0
       authorCount: 1
-      fileCount: 9
+      fileCount: 13
       hotspotCount: 0
       knowledgeSiloCount: 0
       authors:
         - email: matt@siliconpanda.com
-          commits: 9
+          commits: 15
       churnByWeek:
         - 0
         - 0
@@ -83,7 +85,7 @@ nodes:
         - 0
         - 0
         - 0
-        - 9
+        - 15
         - 0
       topAuthorPercent: 1
       sinceDays: 365
@@ -97,9 +99,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 56
-      sloc: 51
   - entityRef: blueprint/app/core/rules/path
     type: background-worker
     name: Path
@@ -109,9 +108,15 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 23
-      sloc: 21
+  - entityRef: blueprint/app/core/rules/graph-validate
+    type: background-worker
+    name: GraphValidate
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/graphValidate.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/parent-child-layout
     type: background-worker
     name: ParentChildLayout
@@ -121,9 +126,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 256
-      sloc: 217
   - entityRef: blueprint/app/core/rules/compare-system-schemas-test
     type: background-worker
     name: CompareSystemSchemas
@@ -133,9 +135,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 44
-      sloc: 39
   - entityRef: blueprint/app/core/rules/path-test
     type: background-worker
     name: Path
@@ -145,9 +144,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 41
-      sloc: 35
   - entityRef: blueprint/app/core/rules/compare-system-schemas
     type: background-worker
     name: CompareSystemSchemas
@@ -157,9 +153,15 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 109
-      sloc: 93
+  - entityRef: blueprint/app/core/rules/graph-parse
+    type: background-worker
+    name: GraphParse
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/graphParse.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/layout-merge-test
     type: background-worker
     name: LayoutMerge
@@ -169,9 +171,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 54
-      sloc: 47
   - entityRef: blueprint/app/core/rules/mermaid-import-test
     type: background-worker
     name: MermaidImport
@@ -181,9 +180,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 249
-      sloc: 204
   - entityRef: blueprint/app/core/rules/mermaid-import
     type: background-worker
     name: MermaidImport
@@ -193,9 +189,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 521
-      sloc: 449
   - entityRef: blueprint/app/core/rules/external-node-layout-test
     type: background-worker
     name: ExternalNodeLayout
@@ -205,9 +198,15 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 118
-      sloc: 105
+  - entityRef: blueprint/app/core/rules/graph-serialize
+    type: background-worker
+    name: GraphSerialize
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/graphSerialize.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/csproj-references-test
     type: background-worker
     name: CsprojReferences
@@ -217,9 +216,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 58
-      sloc: 52
   - entityRef: blueprint/app/core/rules/schema-merge-test
     type: background-worker
     name: SchemaMerge
@@ -229,9 +225,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 222
-      sloc: 191
   - entityRef: blueprint/app/core/rules/infra-schema-map
     type: background-worker
     name: InfraSchemaMap
@@ -241,9 +234,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 120
-      sloc: 103
   - entityRef: blueprint/app/core/rules/terraform-import
     type: background-worker
     name: TerraformImport
@@ -253,9 +243,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 327
-      sloc: 281
   - entityRef: blueprint/app/core/rules/schema-merge
     type: background-worker
     name: SchemaMerge
@@ -265,9 +252,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 200
-      sloc: 168
   - entityRef: blueprint/app/core/rules/schema-diff
     type: background-worker
     name: SchemaDiff
@@ -277,9 +261,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 62
-      sloc: 52
   - entityRef: blueprint/app/core/rules/iac-import-test
     type: background-worker
     name: IacImport
@@ -289,9 +270,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 222
-      sloc: 197
   - entityRef: blueprint/app/core/rules/pulumi-import
     type: background-worker
     name: PulumiImport
@@ -301,9 +279,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 618
-      sloc: 534
   - entityRef: blueprint/app/core/rules/pulumi-stack
     type: background-worker
     name: PulumiStack
@@ -313,9 +288,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 115
-      sloc: 90
   - entityRef: blueprint/app/core/rules/infra-ir
     type: background-worker
     name: InfraIr
@@ -325,9 +297,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 41
-      sloc: 25
   - entityRef: blueprint/app/core/rules/pulumi-import-test
     type: background-worker
     name: PulumiImport
@@ -337,9 +306,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 388
-      sloc: 353
   - entityRef: blueprint/app/core/rules/iac-import
     type: background-worker
     name: IacImport
@@ -349,9 +315,15 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 226
-      sloc: 189
+  - entityRef: blueprint/app/core/rules/graph-mermaid
+    type: background-worker
+    name: GraphMermaid
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/graphMermaid.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/compare-blueprint-trees
     type: background-worker
     name: CompareBlueprintTrees
@@ -361,9 +333,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 62
-      sloc: 48
   - entityRef: blueprint/app/core/rules/validate-blueprint-workspace
     type: background-worker
     name: ValidateBlueprintWorkspace
@@ -373,9 +342,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 120
-      sloc: 101
   - entityRef: blueprint/app/core/rules/iac-resource-map
     type: background-worker
     name: IacResourceMap
@@ -385,9 +351,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 106
-      sloc: 99
   - entityRef: blueprint/app/core/rules/source-provenance
     type: background-worker
     name: SourceProvenance
@@ -397,9 +360,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 112
-      sloc: 86
   - entityRef: blueprint/app/core/rules/pulumi-stack-test
     type: background-worker
     name: PulumiStack
@@ -409,9 +369,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 53
-      sloc: 47
   - entityRef: blueprint/app/core/rules/graph-test
     type: background-worker
     name: Graph
@@ -421,9 +378,15 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 598
-      sloc: 555
+  - entityRef: blueprint/app/core/rules/graph-schema
+    type: background-worker
+    name: GraphSchema
+    isTest: false
+    properties:
+      filepath: app/packages/core/src/rules/graphSchema.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
   - entityRef: blueprint/app/core/rules/graph
     type: background-worker
     name: Graph
@@ -433,9 +396,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 6
-      sloc: 5
   - entityRef: blueprint/app/core/rules/parent-child-layout-test
     type: background-worker
     name: ParentChildLayout
@@ -445,9 +405,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 146
-      sloc: 133
   - entityRef: blueprint/app/core/rules/validate-blueprint-workspace-test
     type: background-worker
     name: ValidateBlueprintWorkspace
@@ -457,9 +414,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 115
-      sloc: 105
   - entityRef: blueprint/app/core/rules/csproj-references
     type: background-worker
     name: CsprojReferences
@@ -469,9 +423,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 32
-      sloc: 24
   - entityRef: blueprint/app/core/rules/terraform-import-test
     type: background-worker
     name: TerraformImport
@@ -481,9 +432,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 320
-      sloc: 289
   - entityRef: blueprint/app/core/rules/workspace-externals-test
     type: background-worker
     name: WorkspaceExternals
@@ -493,9 +441,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 543
-      sloc: 501
   - entityRef: blueprint/app/core/rules/external-node-layout
     type: background-worker
     name: ExternalNodeLayout
@@ -505,9 +450,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 220
-      sloc: 181
   - entityRef: blueprint/app/core/rules/source-provenance-test
     type: background-worker
     name: SourceProvenance
@@ -517,9 +459,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 96
-      sloc: 83
   - entityRef: blueprint/app/core/rules/iac-resource-map-test
     type: background-worker
     name: IacResourceMap
@@ -529,9 +468,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 35
-      sloc: 32
   - entityRef: blueprint/app/core/rules/layout-merge
     type: background-worker
     name: LayoutMerge
@@ -541,9 +477,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 35
-      sloc: 25
   - entityRef: blueprint/app/core/rules/pulumi-type-map
     type: background-worker
     name: PulumiTypeMap
@@ -553,9 +486,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 39
-      sloc: 33
   - entityRef: blueprint/app/core/rules/infra-schema-map-test
     type: background-worker
     name: InfraSchemaMap
@@ -565,9 +495,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 48
-      sloc: 41
 dependencies:
   - from: blueprint/app/core/rules/compare-blueprint-trees-test
     to: blueprint/app/core/rules/compare-blueprint-trees
@@ -578,6 +505,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/rules/compare-blueprint-trees-test
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph-validate
     to: blueprint/app/core/schema/schema
     type: direct-call
     description: Calls module / service
@@ -617,6 +548,14 @@ dependencies:
     to: blueprint/app/core/rules/schema-diff
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/rules/graph-parse
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph-parse
+    to: blueprint/app/core/rules/graph-schema
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/rules/layout-merge-test
     to: blueprint/app/core/schema/schema
     type: direct-call
@@ -651,6 +590,18 @@ dependencies:
     description: Calls module / service
   - from: blueprint/app/core/rules/external-node-layout-test
     to: blueprint/app/core/rules/external-node-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph-serialize
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph-serialize
+    to: blueprint/app/core/schemaversion/schema-version
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph-serialize
+    to: blueprint/app/core/nodeposition/node-position
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/rules/csproj-references-test
@@ -749,6 +700,10 @@ dependencies:
     to: blueprint/app/core/rules/terraform-import
     type: direct-call
     description: Calls module / service
+  - from: blueprint/app/core/rules/graph-mermaid
+    to: blueprint/app/core/schema/schema
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/core/rules/compare-blueprint-trees
     to: blueprint/app/core/schema/schema
     type: direct-call
@@ -797,20 +752,40 @@ dependencies:
     to: blueprint/app/core/schema/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/core/rules/graph
+  - from: blueprint/app/core/rules/graph-schema
     to: blueprint/app/core/schema/schema
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/core/rules/graph
+  - from: blueprint/app/core/rules/graph-schema
     to: blueprint/app/core/schemaversion/schema-version
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/core/rules/graph
+  - from: blueprint/app/core/rules/graph-schema
     to: blueprint/app/core/entityref/entity-ref
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/core/rules/graph
+  - from: blueprint/app/core/rules/graph-schema
     to: blueprint/app/core/nodeposition/node-position
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/rules/graph-validate
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/rules/graph-schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/rules/graph-parse
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/rules/graph-serialize
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/core/rules/graph
+    to: blueprint/app/core/rules/graph-mermaid
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/core/rules/parent-child-layout-test

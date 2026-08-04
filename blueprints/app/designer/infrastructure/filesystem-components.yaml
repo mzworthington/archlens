@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace-test
@@ -18,9 +18,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 284
-      sloc: 254
   - entityRef: blueprint/app/designer/infrastructure/filesystem/file-sync-test
     type: background-worker
     name: FileSync
@@ -30,9 +27,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 304
-      sloc: 262
   - entityRef: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
     type: background-worker
     name: BundledSampleWorkspace
@@ -42,9 +36,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 190
-      sloc: 155
   - entityRef: blueprint/app/designer/infrastructure/filesystem/file-sync
     type: background-worker
     name: FileSync
@@ -54,9 +45,18 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 214
-      sloc: 184
+  - entityRef: blueprint/app/designer/application/store/bundled-sample-preload
+    type: background-worker
+    name: BundledSamplePreload (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/store/bundledSamplePreload.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
   - entityRef: blueprint/app/designer/core
     type: background-worker
     name: Core (External)
@@ -66,7 +66,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 330
+      x: 790
       y: 404
   - entityRef: blueprint/app/designer/application/store/golden-paths-sample
     type: background-worker
@@ -77,13 +77,26 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 30
-      sloc: 20
     position:
-      x: -130
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
       y: 404
 dependencies:
+  - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
   - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace-test
     to: blueprint/app/designer/application/store/golden-paths-sample
     type: read-write
@@ -93,11 +106,19 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
     to: blueprint/app/designer/core
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
     to: blueprint/app/designer/application/store/golden-paths-sample
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
+    to: blueprint/app/designer/application/store/bundled-sample-preload
     type: read-write
     description: Queries datastore records
   - from: blueprint/app/designer/infrastructure/filesystem/file-sync

@@ -6,25 +6,25 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
-  - entityRef: blueprint/app/designer/ui/features/workspace/components
+  - entityRef: blueprint/app/designer/ui/features/workspace/layout
     type: gateway-api
-    name: Components
+    name: Layout
     isTest: false
     properties:
       containerId: designer
       technology: React Component
       classification: ui-import
     forensics:
-      complexity: 49
-      complexityPeak: 49
-      cognitiveComplexity: 707
-      churn: 209
-      lineChurn: 10294
-      churn30: 209
-      churn365: 209
+      complexity: 0
+      loc: 388
+      sloc: 339
+      churn: 8
+      lineChurn: 380
+      churn30: 8
+      churn365: 8
       churnByWeek:
         - 0
         - 0
@@ -75,27 +75,109 @@ nodes:
         - 0
         - 0
         - 0
-        - 58
-        - 62
-        - 76
-        - 13
+        - 0
+        - 0
+        - 8
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 209
-      hotspotScore: 0.2918950487767948
+          commits: 8
+      hotspotScore: 0
+      sinceDays: 365
+      fileCount: 8
+      hotspotCount: 0
+      knowledgeSiloCount: 0
+  - entityRef: blueprint/app/designer/ui/features/workspace/components
+    type: gateway-api
+    name: Components
+    isTest: false
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    forensics:
+      complexity: 47
+      complexityPeak: 47
+      cognitiveComplexity: 650
+      loc: 3933
+      sloc: 3636
+      churn: 224
+      lineChurn: 11316
+      churn30: 224
+      churn365: 224
+      churnByWeek:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 5
+        - 80
+        - 54
+        - 85
+        - 0
+      authorCount: 1
+      topAuthorPercent: 1
+      authors:
+        - email: matt@siliconpanda.com
+          commits: 224
+      hotspotScore: 0.21205487448920024
       classifications:
         - knowledge-silo
       coupledFiles:
         - path: >-
             app/packages/designer/src/ui/features/workspace/components/StartupWorkspaceDialog/StartupWorkspaceDialog.test.tsx
-          score: 0.8
-          sharedCommits: 8
+          score: 0.8181818181818182
+          sharedCommits: 9
       sinceDays: 365
-      fileCount: 26
+      fileCount: 24
       hotspotCount: 0
-      knowledgeSiloCount: 8
+      knowledgeSiloCount: 6
   - entityRef: blueprint/app/designer/ui/features/workspace/hooks
     type: gateway-api
     name: Hooks
@@ -108,10 +190,12 @@ nodes:
       complexity: 29
       complexityPeak: 29
       cognitiveComplexity: 177
-      churn: 44
-      lineChurn: 2131
-      churn30: 44
-      churn365: 44
+      loc: 1157
+      sloc: 965
+      churn: 58
+      lineChurn: 2474
+      churn30: 58
+      churn365: 58
       churnByWeek:
         - 0
         - 0
@@ -161,17 +245,17 @@ nodes:
         - 0
         - 0
         - 0
+        - 2
+        - 13
+        - 11
+        - 32
         - 0
-        - 12
-        - 8
-        - 12
-        - 12
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 44
-      hotspotScore: 0.03566438104302308
+          commits: 58
+      hotspotScore: 0.02608339233148265
       classifications:
         - knowledge-silo
       coupledFiles:
@@ -182,7 +266,7 @@ nodes:
           score: 1
           sharedCommits: 5
       sinceDays: 365
-      fileCount: 10
+      fileCount: 11
       hotspotCount: 0
       knowledgeSiloCount: 2
   - entityRef: blueprint/app/designer/ui/features/workspace/workspace-page
@@ -194,9 +278,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 69
-      sloc: 63
   - entityRef: blueprint/app/designer/ui/features/workspace/workspace-page-test
     type: gateway-api
     name: WorkspacePage
@@ -206,9 +287,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 188
-      sloc: 158
   - entityRef: blueprint/app/designer/ui/features/workspace/workspace-page-resilience-test
     type: gateway-api
     name: WorkspacePage.resilience
@@ -218,9 +296,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 95
-      sloc: 86
   - entityRef: blueprint/app/designer/ui/features/workspace/index
     type: background-worker
     name: Index
@@ -230,9 +305,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 5
-      sloc: 1
   - entityRef: blueprint/app/designer/application/store
     type: background-worker
     name: Store (External)
@@ -242,23 +314,42 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: -130
+      y: 404
+  - entityRef: blueprint/app/designer/ui/features/tracelens
+    type: gateway-api
+    name: Tracelens (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: React Component
+      classification: ui-import
+    position:
+      x: 330
       y: 404
 dependencies:
+  - from: blueprint/app/designer/ui/features/workspace/workspace-page
+    to: blueprint/app/designer/ui/features/workspace/layout
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/workspace-page
     to: blueprint/app/designer/ui/features/workspace/components
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/workspace-page
-    to: blueprint/app/designer/application/store
+    to: blueprint/app/designer/ui/features/tracelens
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/workspace-page
-    to: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync
+    to: blueprint/app/designer/ui/features/workspace/hooks
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/workspace-page
     to: blueprint/app/designer/ui/features/workspace/hooks/use-bundled-workspace-bootstrap
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/workspace-page
+    to: blueprint/app/designer/ui/features/workspace/hooks/use-url-sync
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/workspace-page
@@ -270,11 +361,15 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/workspace-page
-    to: blueprint/app/designer/ui/features/workspace/hooks
+    to: blueprint/app/designer/application/store
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/workspace-page
-    to: blueprint/app/designer/ui/features/workspace/components/workspacetoolbar
+    to: blueprint/app/designer/ui/features/workspace/layout/use-workspace-panel-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/workspace-page
+    to: blueprint/app/designer/ui/features/workspace/layout/workspace-panel-layout
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/workspace-page-test

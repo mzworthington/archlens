@@ -1,0 +1,48 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  entityRef: blueprint/cloudflare
+  name: Cloudflare Infrastructure
+  source:
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
+    scanRoot: .
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+nodes:
+  - entityRef: blueprint/cloudflare/cloudflare-pagesproject-archlens
+    type: container
+    name: cloudflare.PagesProject.archlens
+    external: false
+    properties:
+      iac.address: cloudflare.PagesProject.archlens
+      iac.provider_type: cloudflare_pagesproject
+      iac.kind: resource
+      filepath: infra/cloudflare/index.ts
+  - entityRef: blueprint/cloudflare/cloudflare-dnsrecord-apex-pages
+    type: container
+    name: cloudflare.DnsRecord.apex-pages
+    external: false
+    properties:
+      iac.address: cloudflare.DnsRecord.apex-pages
+      iac.provider_type: cloudflare_dnsrecord
+      iac.kind: resource
+      filepath: infra/cloudflare/index.ts
+  - entityRef: blueprint/cloudflare/cloudflare-dnsrecord-www-pages
+    type: container
+    name: cloudflare.DnsRecord.www-pages
+    external: false
+    properties:
+      iac.address: cloudflare.DnsRecord.www-pages
+      iac.provider_type: cloudflare_dnsrecord
+      iac.kind: resource
+      filepath: infra/cloudflare/index.ts
+dependencies:
+  - from: blueprint/cloudflare/cloudflare-dnsrecord-apex-pages
+    to: blueprint/cloudflare/cloudflare-pagesproject-archlens
+    type: direct-call
+  - from: blueprint/cloudflare/cloudflare-dnsrecord-www-pages
+    to: blueprint/cloudflare/cloudflare-pagesproject-archlens
+    type: direct-call
+  - from: blueprint/cloudflare/cloudflare-dnsrecord-www-pages
+    to: blueprint/cloudflare/cloudflare-dnsrecord-apex-pages
+    type: direct-call

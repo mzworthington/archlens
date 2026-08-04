@@ -1,0 +1,166 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/application/store/layout
+  name: Layout Components
+  source:
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
+    scanRoot: .
+nodes:
+  - entityRef: blueprint/app/designer/application/store/layout/mapping
+    type: background-worker
+    name: Mapping
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/layout/mapping.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/layout/viewport
+    type: background-worker
+    name: Viewport
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/layout/viewport.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/layout/grouped-layout
+    type: background-worker
+    name: GroupedLayout
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/layout/groupedLayout.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/store/layout/edge-animation
+    type: background-worker
+    name: EdgeAnimation
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/store/layout/edgeAnimation.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/layout/compute-client-layout
+    type: background-worker
+    name: ComputeClientLayout (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/layout/computeClientLayout.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 330
+      y: 404
+  - entityRef: blueprint/app/designer/application/layout/constants
+    type: background-worker
+    name: Constants (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/layout/constants.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 790
+      y: 404
+  - entityRef: blueprint/app/designer/core
+    type: background-worker
+    name: Core (External)
+    external: true
+    properties:
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 1250
+      y: 404
+  - entityRef: blueprint/app/core/index
+    type: background-worker
+    name: Index (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/index.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -1050
+      y: 404
+  - entityRef: blueprint/app/core/layout
+    type: background-worker
+    name: Layout (External)
+    external: true
+    properties:
+      filepath: app/packages/core/src/layout.ts
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -590
+      y: 404
+  - entityRef: blueprint/app/core/resilience
+    type: background-worker
+    name: Resilience (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -130
+      y: 404
+dependencies:
+  - from: blueprint/app/designer/application/store/layout/mapping
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/layout/mapping
+    to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/layout/mapping
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/layout/mapping
+    to: blueprint/app/designer/application/layout/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout/mapping
+    to: blueprint/app/designer/application/store/layout/edge-animation
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout/mapping
+    to: blueprint/app/designer/application/store/layout/grouped-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout/grouped-layout
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/layout/grouped-layout
+    to: blueprint/app/core/layout
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/layout/grouped-layout
+    to: blueprint/app/designer/core
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout/grouped-layout
+    to: blueprint/app/designer/application/layout/compute-client-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout/grouped-layout
+    to: blueprint/app/designer/application/layout/constants
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/layout/grouped-layout
+    to: blueprint/app/designer/application/store/layout/mapping
+    type: direct-call
+    description: Calls module / service

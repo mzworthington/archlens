@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/cli/forensics/adapters
@@ -18,13 +18,15 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 10
-      complexityPeak: 10
-      cognitiveComplexity: 43
-      churn: 17
-      lineChurn: 850
-      churn30: 17
-      churn365: 17
+      complexity: 13
+      complexityPeak: 13
+      cognitiveComplexity: 70
+      loc: 837
+      sloc: 697
+      churn: 18
+      lineChurn: 856
+      churn30: 18
+      churn365: 18
       churnByWeek:
         - 0
         - 0
@@ -77,20 +79,20 @@ nodes:
         - 0
         - 5
         - 0
-        - 12
+        - 13
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 17
-      hotspotScore: 0.004845233717635353
+          commits: 18
+      hotspotScore: 0.008961508365316541
       classifications:
         - knowledge-silo
       sinceDays: 365
       fileCount: 10
       hotspotCount: 0
-      knowledgeSiloCount: 1
+      knowledgeSiloCount: 2
   - entityRef: blueprint/app/cli/forensics/domain
     type: background-worker
     name: Domain
@@ -100,13 +102,15 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     forensics:
-      complexity: 32
-      complexityPeak: 32
-      cognitiveComplexity: 445
-      churn: 60
-      lineChurn: 2082
-      churn30: 60
-      churn365: 60
+      complexity: 36
+      complexityPeak: 36
+      cognitiveComplexity: 573
+      loc: 1263
+      sloc: 1101
+      churn: 48
+      lineChurn: 1394
+      churn30: 48
+      churn365: 48
       churnByWeek:
         - 0
         - 0
@@ -157,20 +161,20 @@ nodes:
         - 0
         - 0
         - 0
-        - 18
         - 13
-        - 29
+        - 7
+        - 28
         - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 60
-      hotspotScore: 0.032393848283619214
+          commits: 48
+      hotspotScore: 0.027722919849461566
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 17
+      fileCount: 9
       hotspotCount: 0
       knowledgeSiloCount: 1
   - entityRef: blueprint/app/cli/forensics/collect-file-metrics-test
@@ -182,9 +186,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 9
-      sloc: 7
   - entityRef: blueprint/app/cli/forensics/collect-file-metrics
     type: background-worker
     name: CollectFileMetrics
@@ -194,9 +195,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 66
-      sloc: 57
   - entityRef: blueprint/app/cli/analysis/adapters/console-logger
     type: background-worker
     name: ConsoleLogger (External)
@@ -206,9 +204,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 31
-      sloc: 27
     position:
       x: -360
       y: 404
@@ -221,9 +216,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 325
-      sloc: 271
     position:
       x: 560
       y: 404
@@ -236,9 +228,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 194
-      sloc: 165
     position:
       x: 100
       y: 404

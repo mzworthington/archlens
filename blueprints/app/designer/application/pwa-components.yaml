@@ -1,0 +1,34 @@
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: component
+metadata:
+  entityRef: blueprint/app/designer/application/pwa
+  name: Pwa Components
+  source:
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
+    scanRoot: .
+    remoteUrl: https://github.com/mzworthington/blueprint
+    defaultBranch: main
+nodes:
+  - entityRef: blueprint/app/designer/application/pwa/build-info-test
+    type: background-worker
+    name: BuildInfo
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/application/pwa/buildInfo.test.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+  - entityRef: blueprint/app/designer/application/pwa/build-info
+    type: background-worker
+    name: BuildInfo
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/application/pwa/buildInfo.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+dependencies:
+  - from: blueprint/app/designer/application/pwa/build-info-test
+    to: blueprint/app/designer/application/pwa/build-info
+    type: direct-call
+    description: Calls module / service

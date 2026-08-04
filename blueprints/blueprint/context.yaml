@@ -4,7 +4,7 @@ metadata:
   entityRef: blueprint
   name: ArchLens
   source:
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
@@ -23,15 +23,15 @@ nodes:
       rootPath: app
       productId: archlens
     forensics:
-      complexity: 83
-      complexityPeak: 83
-      cognitiveComplexity: 2360
-      loc: 71333
-      sloc: 61622
-      churn: 2392
-      lineChurn: 103409
-      churn30: 2392
-      churn365: 2392
+      complexity: 94
+      complexityPeak: 94
+      cognitiveComplexity: 3127
+      loc: 83398
+      sloc: 72416
+      churn: 2714
+      lineChurn: 122998
+      churn30: 2714
+      churn365: 2714
       churnByWeek:
         - 0
         - 0
@@ -81,45 +81,51 @@ nodes:
         - 0
         - 0
         - 0
-        - 0
-        - 543
-        - 509
-        - 1120
-        - 220
+        - 44
+        - 727
+        - 544
+        - 1392
+        - 7
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 2392
-      hotspotScore: 0.39245960502693
-      fileCount: 107
-      hotspotCount: 0
-      knowledgeSiloCount: 30
+          commits: 2714
+      hotspotScore: 0.3467600700525394
       classifications:
         - knowledge-silo
       coupledFiles:
-        - path: app/packages/cli/src/writers/componentLevelWriter.ts
+        - path: app/packages/cli/src/analysis/domain/systemDiscovery.test.ts
           score: 1
-          sharedCommits: 7
-        - path: app/packages/cli/src/writers/containerLevelWriter.ts
+          sharedCommits: 5
+        - path: app/packages/cli/src/analysis/domain/systemDiscovery.ts
           score: 1
-          sharedCommits: 7
+          sharedCommits: 5
+        - path: app/packages/designer/src/ui/features/forensics/traceLensUrl.test.ts
+          score: 1
+          sharedCommits: 5
+        - path: app/packages/designer/src/ui/features/forensics/traceLensUrl.ts
+          score: 1
+          sharedCommits: 5
         - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.test.ts
           score: 1
           sharedCommits: 5
-        - path: app/packages/designer/src/ui/features/workspace/hooks/useKeyboardNavigation.ts
-          score: 1
-          sharedCommits: 5
-        - path: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/WorkspaceDisplayControls.test.tsx
-          score: 0.8888888888888888
-          sharedCommits: 8
       sinceDays: 365
-      shortChurnDays: 30
+      fileCount: 114
+      hotspotCount: 0
+      knowledgeSiloCount: 31
   - entityRef: blueprint/user
     type: person
     name: User
     properties:
       role: context-actor
+  - entityRef: blueprint/cloudflare
+    type: software-system
+    name: Cloudflare System
+    parentEntityRef: blueprint/archlens
+    properties:
+      rootPath: infra/cloudflare
+      productId: archlens
 dependencies:
   - from: blueprint/user
     to: blueprint/archlens

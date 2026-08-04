@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/designer/application/store/states/iostate
@@ -20,11 +20,13 @@ nodes:
     forensics:
       complexity: 14
       complexityPeak: 14
-      cognitiveComplexity: 58
-      churn: 16
-      lineChurn: 595
-      churn30: 16
-      churn365: 16
+      cognitiveComplexity: 35
+      loc: 631
+      sloc: 549
+      churn: 23
+      lineChurn: 915
+      churn30: 23
+      churn365: 23
       churnByWeek:
         - 0
         - 0
@@ -75,22 +77,22 @@ nodes:
         - 0
         - 0
         - 0
+        - 4
         - 3
-        - 4
-        - 5
-        - 4
+        - 16
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 16
-      hotspotScore: 0.028223486405225928
+          commits: 23
+      hotspotScore: 0.019966215796599223
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 2
+      fileCount: 3
       hotspotCount: 0
-      knowledgeSiloCount: 1
+      knowledgeSiloCount: 2
   - entityRef: blueprint/app/designer/application/store/states/diagramstate
     type: background-worker
     name: Diagramstate
@@ -102,11 +104,13 @@ nodes:
     forensics:
       complexity: 17
       complexityPeak: 17
-      cognitiveComplexity: 75
-      churn: 77
-      lineChurn: 3123
-      churn30: 77
-      churn365: 77
+      cognitiveComplexity: 79
+      loc: 2130
+      sloc: 1886
+      churn: 91
+      lineChurn: 3867
+      churn30: 91
+      churn365: 91
       churnByWeek:
         - 0
         - 0
@@ -157,20 +161,20 @@ nodes:
         - 0
         - 0
         - 0
-        - 21
-        - 24
-        - 26
-        - 6
+        - 36
+        - 13
+        - 42
+        - 0
       authorCount: 1
       topAuthorPercent: 1
       authors:
         - email: matt@siliconpanda.com
-          commits: 77
-      hotspotScore: 0.03758084402240921
+          commits: 91
+      hotspotScore: 0.026974574902808315
       classifications:
         - knowledge-silo
       sinceDays: 365
-      fileCount: 14
+      fileCount: 21
       hotspotCount: 0
       knowledgeSiloCount: 4
   - entityRef: blueprint/app/designer/application/store/states/diagram-state-test
@@ -182,9 +186,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 607
-      sloc: 531
   - entityRef: blueprint/app/designer/application/store/states/io-state-test
     type: background-worker
     name: IoState
@@ -194,9 +195,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 425
-      sloc: 373
   - entityRef: blueprint/app/designer/application/store/states/trace-lens-state
     type: background-worker
     name: TraceLensState
@@ -206,9 +204,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 64
-      sloc: 60
   - entityRef: blueprint/app/designer/application/store/states/diagram-state
     type: background-worker
     name: DiagramState
@@ -218,9 +213,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 190
-      sloc: 167
   - entityRef: blueprint/app/designer/application/store/states/io-state
     type: background-worker
     name: IoState
@@ -230,9 +222,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 290
-      sloc: 273
   - entityRef: blueprint/app/designer/application/store/states/resilience-state
     type: background-worker
     name: ResilienceState
@@ -242,9 +231,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 399
-      sloc: 375
   - entityRef: blueprint/app/designer/application/store/states/ui-state-test
     type: background-worker
     name: UiState
@@ -254,9 +240,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 215
-      sloc: 164
   - entityRef: blueprint/app/designer/application/store/states/ui-state
     type: background-worker
     name: UiState
@@ -266,9 +249,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 199
-      sloc: 192
   - entityRef: blueprint/app/designer/application/store/states/resilience-state-test
     type: background-worker
     name: ResilienceState
@@ -278,9 +258,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 705
-      sloc: 632
   - entityRef: blueprint/app/designer/application/forensics/apply-refactor-boundary-as-draft
     type: background-worker
     name: ApplyRefactorBoundaryAsDraft (External)
@@ -290,11 +267,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 76
-      sloc: 63
     position:
-      x: -2430
+      x: -2890
       y: 404
   - entityRef: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
     type: background-worker
@@ -305,26 +279,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 190
-      sloc: 155
     position:
       x: 3550
-      y: 404
-  - entityRef: blueprint/app/designer/application/layout/compute-client-layout
-    type: background-worker
-    name: ComputeClientLayout (External)
-    external: true
-    properties:
-      filepath: app/packages/designer/src/application/layout/computeClientLayout.ts
-      containerId: designer
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 60
-      sloc: 47
-    position:
-      x: -1510
       y: 404
   - entityRef: blueprint/app/designer/core
     type: background-worker
@@ -346,11 +302,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 29
-      sloc: 25
     position:
-      x: 4470
+      x: 4010
       y: 404
   - entityRef: blueprint/app/designer/infrastructure/db
     type: relational-database
@@ -363,6 +316,18 @@ nodes:
     position:
       x: 2630
       y: 404
+  - entityRef: blueprint/app/designer/application/forensics/dependency-view-mode
+    type: background-worker
+    name: DependencyViewMode (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/dependencyViewMode.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -2430
+      y: 404
   - entityRef: blueprint/app/designer/infrastructure/db/dexie-working-copy-adapter
     type: relational-database
     name: DexieWorkingCopyAdapter (External)
@@ -372,9 +337,6 @@ nodes:
       containerId: designer
       technology: Prisma / SQL Database Client
       classification: database-marker
-    forensics:
-      loc: 55
-      sloc: 50
     position:
       x: 3090
       y: 404
@@ -387,52 +349,20 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 45
-      sloc: 39
     position:
       x: 330
       y: 404
-  - entityRef: blueprint/app/designer/infrastructure/filesystem/file-sync
+  - entityRef: blueprint/app/designer/application/store/golden-paths-sample
     type: background-worker
-    name: FileSync (External)
+    name: GoldenPathsSample (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/infrastructure/fileSystem/fileSync.ts
+      filepath: app/packages/designer/src/application/store/goldenPathsSample.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 214
-      sloc: 184
     position:
-      x: 4010
-      y: 404
-  - entityRef: blueprint/app/core/forensics
-    type: background-worker
-    name: Forensics (External)
-    external: true
-    properties:
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    position:
-      x: -4730
-      y: 404
-  - entityRef: blueprint/app/core/import-iac
-    type: background-worker
-    name: Import iac (External)
-    external: true
-    properties:
-      filepath: app/packages/core/src/import-iac.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 15
-      sloc: 13
-    position:
-      x: -4270
+      x: 790
       y: 404
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -443,26 +373,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
-      x: -3810
-      y: 404
-  - entityRef: blueprint/app/core/layout
-    type: background-worker
-    name: Layout (External)
-    external: true
-    properties:
-      filepath: app/packages/core/src/layout.ts
-      containerId: core
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 9
-      sloc: 8
-    position:
-      x: -3350
+      x: -4270
       y: 404
   - entityRef: blueprint/app/designer/application/store/layout-utils
     type: background-worker
@@ -473,11 +385,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 33
-      sloc: 32
     position:
-      x: 790
+      x: 1250
       y: 404
   - entityRef: blueprint/app/designer/application/forensics/materialize-coupling-ghost
     type: background-worker
@@ -488,9 +397,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 61
-      sloc: 50
     position:
       x: -1970
       y: 404
@@ -503,11 +409,19 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 17
-      sloc: 11
     position:
-      x: 4930
+      x: 4470
+      y: 404
+  - entityRef: blueprint/app/core/recommendations
+    type: background-worker
+    name: Recommendations (External)
+    external: true
+    properties:
+      containerId: core
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: -3810
       y: 404
   - entityRef: blueprint/app/core/resilience
     type: background-worker
@@ -518,7 +432,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2890
+      x: -3350
       y: 404
   - entityRef: blueprint/app/designer/application/resilience/run-resilience-simulation-async
     type: background-worker
@@ -529,9 +443,6 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 65
-      sloc: 56
     position:
       x: -1050
       y: 404
@@ -544,11 +455,8 @@ nodes:
       containerId: designer
       technology: TypeScript Cache Client
       classification: cache-marker
-    forensics:
-      loc: 58
-      sloc: 50
     position:
-      x: 1250
+      x: 1710
       y: 404
   - entityRef: blueprint/app/designer/application/store
     type: background-worker
@@ -570,26 +478,20 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 58
-      sloc: 47
     position:
       x: -590
       y: 404
-  - entityRef: blueprint/app/designer/application/store/yield-to-ui
+  - entityRef: blueprint/app/designer/application/layout/workspace-panels
     type: background-worker
-    name: YieldToUi (External)
+    name: WorkspacePanels (External)
     external: true
     properties:
-      filepath: app/packages/designer/src/application/store/yieldToUi.ts
+      filepath: app/packages/designer/src/application/layout/workspacePanels.ts
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 9
-      sloc: 7
     position:
-      x: 1710
+      x: -1510
       y: 404
 dependencies:
   - from: blueprint/app/designer/application/store/states/diagram-state-test
@@ -617,6 +519,10 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/app/designer/application/store/states/io-state-test
+    to: blueprint/app/core/index
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/io-state-test
     to: blueprint/app/designer/application/store
     type: direct-call
     description: Calls module / service
@@ -628,6 +534,14 @@ dependencies:
     to: blueprint/app/designer/infrastructure/db/dexie-working-copy-adapter
     type: read-write
     description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/io-state-test
+    to: blueprint/app/designer/application/store/golden-paths-sample
+    type: read-write
+    description: Queries datastore records
+  - from: blueprint/app/designer/application/store/states/io-state-test
+    to: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/application/store/states/trace-lens-state
     to: blueprint/app/designer/application/store
     type: direct-call
@@ -637,49 +551,9 @@ dependencies:
     type: read-write
     description: Queries datastore records
   - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/states/ui-state
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/states/io-state
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/core/import-iac
-    type: direct-call
-    description: '@archlens/core'
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/core/layout
-    type: direct-call
-    description: '@archlens/core'
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/states/iostate/ensure-system-loaded
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/session-layout-cache
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/diagram-load-session
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/yield-to-ui
-    type: read-write
-    description: Queries datastore records
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/core
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/layout-utils
-    type: read-write
-    description: Queries datastore records
   - from: blueprint/app/designer/application/store/states/diagram-state
     to: blueprint/app/designer/application/store/states/diagramstate/apply-state-updates
     type: direct-call
@@ -693,14 +567,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/states/diagramstate/import-mermaid
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/states/diagramstate/import-iac
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
     to: blueprint/app/designer/application/store/states/diagramstate/initial-state
     type: direct-call
     description: Calls module / service
@@ -709,27 +575,39 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/core/forensics
-    type: direct-call
-    description: '@archlens/core'
-  - from: blueprint/app/designer/application/store/states/diagram-state
     to: blueprint/app/designer/application/store/states/diagramstate/reset-to-empty-workspace
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/states/diagramstate/node-mutations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/store/states/diagramstate/edge-mutations
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
-    to: blueprint/app/designer/application/layout/compute-client-layout
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/designer/application/store/states/diagram-state
     to: blueprint/app/designer/application/forensics/materialize-coupling-ghost
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagram-state
+    to: blueprint/app/designer/application/store/states/diagramstate/history-actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagram-state
+    to: blueprint/app/designer/application/store/states/diagramstate/pending-changes
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagram-state
+    to: blueprint/app/designer/application/store/states/diagramstate/select-system
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagram-state
+    to: blueprint/app/designer/application/store/states/diagramstate/init-schema
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagram-state
+    to: blueprint/app/designer/application/store/states/diagramstate/apply-client-layout
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagram-state
+    to: blueprint/app/designer/application/store/states/diagramstate/canvas-graph-actions
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/diagram-state
+    to: blueprint/app/designer/application/store/states/diagramstate/types
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/io-state
@@ -745,27 +623,31 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/io-state
-    to: blueprint/app/designer/infrastructure/layout/create-browser-layout-registry
+    to: blueprint/app/designer/application/store/states/iostate/open-workspace
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/io-state
-    to: blueprint/app/designer/infrastructure/filesystem/file-sync
-    type: direct-call
-    description: Calls module / service
+    to: blueprint/app/designer/application/store/golden-paths-sample
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/app/designer/application/store/states/io-state
     to: blueprint/app/designer/infrastructure/filesystem/bundled-sample-workspace
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/io-state
-    to: blueprint/app/designer/application/store/states/iostate/open-workspace
-    type: direct-call
-    description: Calls module / service
+    to: blueprint/app/designer/application/store/diagram-load-session
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/app/designer/application/store/states/resilience-state
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
   - from: blueprint/app/designer/application/store/states/resilience-state
     to: blueprint/app/core/resilience
+    type: direct-call
+    description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/resilience-state
+    to: blueprint/app/core/recommendations
     type: direct-call
     description: '@archlens/core'
   - from: blueprint/app/designer/application/store/states/resilience-state
@@ -789,6 +671,10 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/application/store/states/ui-state
+    to: blueprint/app/designer/application/store
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/ui-state
     to: blueprint/app/designer/core
     type: direct-call
     description: Calls module / service
@@ -796,6 +682,14 @@ dependencies:
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
+  - from: blueprint/app/designer/application/store/states/ui-state
+    to: blueprint/app/designer/application/forensics/dependency-view-mode
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/application/store/states/ui-state
+    to: blueprint/app/designer/application/layout/workspace-panels
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/application/store/states/resilience-state-test
     to: blueprint/app/designer/application/store
     type: direct-call

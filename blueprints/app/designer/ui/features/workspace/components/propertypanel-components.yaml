@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/property-panel-test
@@ -18,9 +18,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 261
-      sloc: 215
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/copyable-field
     type: gateway-api
     name: CopyableField
@@ -30,9 +27,15 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 28
-      sloc: 26
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/dependency-view-control-test
+    type: gateway-api
+    name: DependencyViewControl
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/DependencyViewControl.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/component-catalog
     type: gateway-api
     name: ComponentCatalog
@@ -42,9 +45,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 43
-      sloc: 39
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/forensics-section
     type: gateway-api
     name: ForensicsSection
@@ -54,9 +54,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 337
-      sloc: 314
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/connections-section
     type: gateway-api
     name: ConnectionsSection
@@ -66,9 +63,15 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 196
-      sloc: 189
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/connections-section-test
+    type: gateway-api
+    name: ConnectionsSection
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/ConnectionsSection.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/forensics-section-test
     type: gateway-api
     name: ForensicsSection
@@ -78,9 +81,15 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 256
-      sloc: 232
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/dependency-mini-graph-test
+    type: gateway-api
+    name: DependencyMiniGraph
+    isTest: true
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/DependencyMiniGraph.test.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/coupling-mini-graph
     type: gateway-api
     name: CouplingMiniGraph
@@ -90,9 +99,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 139
-      sloc: 126
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/workspace-display-controls-test
     type: gateway-api
     name: WorkspaceDisplayControls
@@ -102,9 +108,15 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 168
-      sloc: 158
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/dependency-view-control
+    type: gateway-api
+    name: DependencyViewControl
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/DependencyViewControl.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/coupling-mini-graph-test
     type: gateway-api
     name: CouplingMiniGraph
@@ -114,9 +126,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 27
-      sloc: 23
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/forensics-trend-panel-test
     type: gateway-api
     name: ForensicsTrendPanel
@@ -126,9 +135,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 29
-      sloc: 26
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/selected-dependency-section-test
     type: gateway-api
     name: SelectedDependencySection
@@ -138,9 +144,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 59
-      sloc: 52
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/resilience-panel-tabs
     type: gateway-api
     name: ResiliencePanelTabs
@@ -150,9 +153,15 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 47
-      sloc: 43
+  - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/dependency-mini-graph
+    type: gateway-api
+    name: DependencyMiniGraph
+    isTest: false
+    properties:
+      filepath: app/packages/designer/src/ui/features/workspace/components/PropertyPanel/DependencyMiniGraph.tsx
+      containerId: designer
+      technology: React Component
+      classification: ui-import
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/selected-dependency-section
     type: gateway-api
     name: SelectedDependencySection
@@ -162,9 +171,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 183
-      sloc: 172
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/validation-section
     type: gateway-api
     name: ValidationSection
@@ -174,9 +180,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 76
-      sloc: 71
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/property-panel-resilience-test
     type: gateway-api
     name: PropertyPanel.resilience
@@ -186,9 +189,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 47
-      sloc: 40
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/resilience-section
     type: gateway-api
     name: ResilienceSection
@@ -198,9 +198,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 202
-      sloc: 196
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/forensics-trend-panel
     type: gateway-api
     name: ForensicsTrendPanel
@@ -210,9 +207,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 103
-      sloc: 95
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/workspace-display-controls
     type: gateway-api
     name: WorkspaceDisplayControls
@@ -222,9 +216,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 279
-      sloc: 270
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/identity-section
     type: gateway-api
     name: IdentitySection
@@ -234,9 +225,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 105
-      sloc: 99
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/properties-section
     type: gateway-api
     name: PropertiesSection
@@ -246,9 +234,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 80
-      sloc: 75
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/external-dependencies-section
     type: gateway-api
     name: ExternalDependenciesSection
@@ -258,9 +243,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 162
-      sloc: 153
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/node-types
     type: gateway-api
     name: NodeTypes
@@ -270,9 +252,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 37
-      sloc: 35
   - entityRef: blueprint/app/designer/ui/features/workspace/components/propertypanel/use-external-dependencies-panel
     type: gateway-api
     name: UseExternalDependenciesPanel
@@ -282,9 +261,6 @@ nodes:
       containerId: designer
       technology: React Component
       classification: ui-import
-    forensics:
-      loc: 69
-      sloc: 59
   - entityRef: blueprint/app/designer/application/forensics/build-forensics-panel-model
     type: background-worker
     name: BuildForensicsPanelModel (External)
@@ -294,11 +270,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 291
-      sloc: 274
     position:
-      x: -1280
+      x: -1740
       y: 404
   - entityRef: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard
     type: background-worker
@@ -309,11 +282,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 115
-      sloc: 94
     position:
-      x: -820
+      x: -1280
       y: 404
   - entityRef: blueprint/app/designer/ui/features/workspace/components
     type: gateway-api
@@ -324,7 +294,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 2860
+      x: 3320
       y: 404
   - entityRef: blueprint/app/designer/ui/features/resilience/components
     type: gateway-api
@@ -335,7 +305,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 2400
+      x: 2860
       y: 404
   - entityRef: blueprint/app/designer/ui/components
     type: gateway-api
@@ -346,7 +316,7 @@ nodes:
       technology: React Component
       classification: ui-import
     position:
-      x: 1480
+      x: 1940
       y: 404
   - entityRef: blueprint/app/designer/application/forensics/count-forensics-metrics
     type: background-worker
@@ -357,11 +327,32 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 103
-      sloc: 86
+    position:
+      x: -820
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/dependency-view-mode
+    type: background-worker
+    name: DependencyViewMode (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/dependencyViewMode.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
     position:
       x: -360
+      y: 404
+  - entityRef: blueprint/app/designer/application/forensics/filter-selected-dependency-focus
+    type: background-worker
+    name: FilterSelectedDependencyFocus (External)
+    external: true
+    properties:
+      filepath: app/packages/designer/src/application/forensics/filterSelectedDependencyFocus.ts
+      containerId: designer
+      technology: TypeScript Domain Service
+      classification: default
+    position:
+      x: 100
       y: 404
   - entityRef: blueprint/app/core/index
     type: background-worker
@@ -372,11 +363,8 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
-      x: -2660
+      x: -3120
       y: 404
   - entityRef: blueprint/app/designer/application/store/layout-utils
     type: background-worker
@@ -387,11 +375,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 33
-      sloc: 32
     position:
-      x: 560
+      x: 1020
       y: 404
   - entityRef: blueprint/app/core/recommendations
     type: background-worker
@@ -402,7 +387,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -2200
+      x: -2660
       y: 404
   - entityRef: blueprint/app/core/resilience
     type: background-worker
@@ -413,7 +398,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: -1740
+      x: -2200
       y: 404
   - entityRef: blueprint/app/designer/application/store/states/resilience-state
     type: background-worker
@@ -424,11 +409,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 399
-      sloc: 375
     position:
-      x: 1020
+      x: 1480
       y: 404
   - entityRef: blueprint/app/designer/application/store
     type: background-worker
@@ -439,7 +421,7 @@ nodes:
       technology: TypeScript Domain Service
       classification: default
     position:
-      x: 100
+      x: 560
       y: 404
   - entityRef: blueprint/app/designer/ui/features/forensics/trace-lens-url
     type: background-worker
@@ -450,11 +432,8 @@ nodes:
       containerId: designer
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 99
-      sloc: 81
     position:
-      x: 1940
+      x: 2400
       y: 404
 dependencies:
   - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/property-panel-test
@@ -497,16 +476,28 @@ dependencies:
     to: blueprint/app/designer/application/store/layout-utils
     type: read-write
     description: Queries datastore records
+  - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/connections-section-test
+    to: blueprint/app/designer/application/store/layout-utils
+    type: read-write
+    description: Queries datastore records
   - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/coupling-mini-graph
     to: blueprint/app/core/index
     type: direct-call
     description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/dependency-view-control
+    to: blueprint/app/designer/application/forensics/dependency-view-mode
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/selected-dependency-section-test
     to: blueprint/app/designer/application/store/layout-utils
     type: read-write
     description: Queries datastore records
   - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/resilience-panel-tabs
     to: blueprint/app/designer/application/store/states/resilience-state
+    type: direct-call
+    description: Calls module / service
+  - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/dependency-mini-graph
+    to: blueprint/app/designer/application/forensics/filter-selected-dependency-focus
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/selected-dependency-section
@@ -549,6 +540,10 @@ dependencies:
     to: blueprint/app/core/recommendations
     type: direct-call
     description: '@archlens/core'
+  - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/resilience-section
+    to: blueprint/app/designer/ui/features/workspace/components
+    type: direct-call
+    description: Calls module / service
   - from: blueprint/app/designer/ui/features/workspace/components/propertypanel/forensics-trend-panel
     to: blueprint/app/designer/application/forensics/build-forensics-trend-dashboard
     type: direct-call

@@ -6,7 +6,7 @@ metadata:
   source:
     remoteUrl: https://github.com/mzworthington/blueprint
     defaultBranch: main
-    scannedAtCommit: f455e3263a43850450b77a686dc802aa176cc8c9
+    scannedAtCommit: ffbf467109f8056fcf1b6dd3a78fb6dbc0074362
     scanRoot: .
 nodes:
   - entityRef: blueprint/app/cli/forensics/domain/forensic-analyzer
@@ -15,27 +15,6 @@ nodes:
     isTest: false
     properties:
       filepath: app/packages/cli/src/forensics/domain/forensicAnalyzer.ts
-      containerId: cli
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 197
-      sloc: 170
-  - entityRef: blueprint/app/cli/forensics/domain/aggregate-history
-    type: background-worker
-    name: AggregateHistory
-    isTest: false
-    properties:
-      filepath: app/packages/cli/src/forensics/domain/aggregateHistory.ts
-      containerId: cli
-      technology: TypeScript Domain Service
-      classification: default
-  - entityRef: blueprint/app/cli/forensics/domain/temporal-coupling-test
-    type: background-worker
-    name: TemporalCoupling
-    isTest: true
-    properties:
-      filepath: app/packages/cli/src/forensics/domain/temporalCoupling.test.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
@@ -48,9 +27,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 391
-      sloc: 364
   - entityRef: blueprint/app/cli/forensics/domain/forensics-glob-test
     type: background-worker
     name: ForensicsGlob
@@ -60,27 +36,12 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 29
-      sloc: 25
   - entityRef: blueprint/app/cli/forensics/domain/types
     type: background-worker
     name: Types
     isTest: false
     properties:
       filepath: app/packages/cli/src/forensics/domain/types.ts
-      containerId: cli
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 66
-      sloc: 53
-  - entityRef: blueprint/app/cli/forensics/domain/hotspot-scoring
-    type: background-worker
-    name: HotspotScoring
-    isTest: false
-    properties:
-      filepath: app/packages/cli/src/forensics/domain/hotspotScoring.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
@@ -93,45 +54,12 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 59
-      sloc: 37
   - entityRef: blueprint/app/cli/forensics/domain/attach-forensics
     type: background-worker
     name: AttachForensics
     isTest: false
     properties:
       filepath: app/packages/cli/src/forensics/domain/attachForensics.ts
-      containerId: cli
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 235
-      sloc: 213
-  - entityRef: blueprint/app/cli/forensics/domain/classify
-    type: background-worker
-    name: Classify
-    isTest: false
-    properties:
-      filepath: app/packages/cli/src/forensics/domain/classify.ts
-      containerId: cli
-      technology: TypeScript Domain Service
-      classification: default
-  - entityRef: blueprint/app/cli/forensics/domain/classify-test
-    type: background-worker
-    name: Classify
-    isTest: true
-    properties:
-      filepath: app/packages/cli/src/forensics/domain/classify.test.ts
-      containerId: cli
-      technology: TypeScript Domain Service
-      classification: default
-  - entityRef: blueprint/app/cli/forensics/domain/temporal-coupling
-    type: background-worker
-    name: TemporalCoupling
-    isTest: false
-    properties:
-      filepath: app/packages/cli/src/forensics/domain/temporalCoupling.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
@@ -144,36 +72,12 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 194
-      sloc: 176
-  - entityRef: blueprint/app/cli/forensics/domain/hotspot-scoring-test
-    type: background-worker
-    name: HotspotScoring
-    isTest: true
-    properties:
-      filepath: app/packages/cli/src/forensics/domain/hotspotScoring.test.ts
-      containerId: cli
-      technology: TypeScript Domain Service
-      classification: default
   - entityRef: blueprint/app/cli/forensics/domain/forensics-glob
     type: background-worker
     name: ForensicsGlob
     isTest: false
     properties:
       filepath: app/packages/cli/src/forensics/domain/forensicsGlob.ts
-      containerId: cli
-      technology: TypeScript Domain Service
-      classification: default
-    forensics:
-      loc: 17
-      sloc: 12
-  - entityRef: blueprint/app/cli/forensics/domain/aggregate-history-test
-    type: background-worker
-    name: AggregateHistory
-    isTest: true
-    properties:
-      filepath: app/packages/cli/src/forensics/domain/aggregateHistory.test.ts
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
@@ -186,9 +90,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 75
-      sloc: 51
   - entityRef: blueprint/app/cli/analysis/domain/analysis-options
     type: background-worker
     name: AnalysisOptions (External)
@@ -198,9 +99,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 98
-      sloc: 52
     position:
       x: -590
       y: 404
@@ -213,9 +111,6 @@ nodes:
       containerId: cli
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 72
-      sloc: 50
     position:
       x: -130
       y: 404
@@ -239,9 +134,6 @@ nodes:
       containerId: core
       technology: TypeScript Domain Service
       classification: default
-    forensics:
-      loc: 20
-      sloc: 19
     position:
       x: 790
       y: 404
@@ -250,18 +142,6 @@ dependencies:
     to: blueprint/app/cli/analysis/domain/cancellation
     type: read-write
     description: Queries datastore records
-  - from: blueprint/app/cli/forensics/domain/forensic-analyzer
-    to: blueprint/app/cli/forensics/domain/aggregate-history
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/forensic-analyzer
-    to: blueprint/app/cli/forensics/domain/classify
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/forensic-analyzer
-    to: blueprint/app/cli/forensics/domain/hotspot-scoring
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/app/cli/forensics/domain/forensic-analyzer
     to: blueprint/app/core/forensics
     type: direct-call
@@ -279,22 +159,6 @@ dependencies:
     type: direct-call
     description: Calls module / service
   - from: blueprint/app/cli/forensics/domain/forensic-analyzer
-    to: blueprint/app/cli/forensics/domain/temporal-coupling
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/forensic-analyzer
-    to: blueprint/app/cli/forensics/domain/types
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/aggregate-history
-    to: blueprint/app/core/forensics
-    type: direct-call
-    description: '@archlens/core'
-  - from: blueprint/app/cli/forensics/domain/temporal-coupling-test
-    to: blueprint/app/cli/forensics/domain/temporal-coupling
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/temporal-coupling-test
     to: blueprint/app/cli/forensics/domain/types
     type: direct-call
     description: Calls module / service
@@ -322,10 +186,6 @@ dependencies:
     to: blueprint/app/core/forensics
     type: direct-call
     description: '@archlens/core'
-  - from: blueprint/app/cli/forensics/domain/hotspot-scoring
-    to: blueprint/app/core/forensics
-    type: direct-call
-    description: '@archlens/core'
   - from: blueprint/app/cli/forensics/domain/ports
     to: blueprint/app/cli/forensics/domain/options
     type: direct-call
@@ -346,18 +206,6 @@ dependencies:
     to: blueprint/app/cli/forensics/domain/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/classify
-    to: blueprint/app/core/forensics
-    type: direct-call
-    description: '@archlens/core'
-  - from: blueprint/app/cli/forensics/domain/classify-test
-    to: blueprint/app/cli/forensics/domain/classify
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/temporal-coupling
-    to: blueprint/app/core/forensics
-    type: direct-call
-    description: '@archlens/core'
   - from: blueprint/app/cli/forensics/domain/forensic-analyzer-test
     to: blueprint/app/cli/forensics/domain/forensic-analyzer
     type: direct-call
@@ -370,22 +218,10 @@ dependencies:
     to: blueprint/app/cli/forensics/domain/types
     type: direct-call
     description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/hotspot-scoring-test
-    to: blueprint/app/cli/forensics/domain/hotspot-scoring
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/app/cli/forensics/domain/forensics-glob
     to: blueprint/app/cli/analysis/domain/analysis-options
     type: read-write
     description: Queries datastore records
-  - from: blueprint/app/cli/forensics/domain/aggregate-history-test
-    to: blueprint/app/cli/forensics/domain/aggregate-history
-    type: direct-call
-    description: Calls module / service
-  - from: blueprint/app/cli/forensics/domain/aggregate-history-test
-    to: blueprint/app/cli/forensics/domain/types
-    type: direct-call
-    description: Calls module / service
   - from: blueprint/app/cli/forensics/domain/options
     to: blueprint/app/cli/forensics/domain/forensics-glob
     type: direct-call
