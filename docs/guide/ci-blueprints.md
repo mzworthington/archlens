@@ -79,14 +79,14 @@ Dogfood sample YAML under `blueprints/` is regenerated from upstream demo repos 
 
 | Path                                          | Role                                                              |
 | --------------------------------------------- | ----------------------------------------------------------------- |
-| `scripts/blueprint-sample-repos.json`         | Shared catalog (`id`, clone URL or `self`, `context`, lookback)   |
+| `scripts/blueprint-sample-repos.json`         | Shared catalog (`id`, clone URL, `context`, lookback)             |
 | `scripts/run-blueprint-batch.sh`              | Local regen from sibling checkouts under `BLUEPRINT_BATCH_PARENT` |
 | `.github/workflows/regenerate-blueprints.yml` | Weekly matrix: clone → `archlens` scan → assemble → PR            |
 
 Workflow shape:
 
 1. **prepare** — emit the Actions matrix from the JSON catalog.
-2. **scan** (matrix) — install released `archlens` via [`scripts/install.sh`](../../scripts/install.sh) (same as publish), shallow-clone each repo, run headless scan into a per-repo artifact. `repo: "self"` scans this monorepo.
+2. **scan** (matrix) — install released `archlens` via [`scripts/install.sh`](../../scripts/install.sh) (same as publish), clone each sample repo, run headless scan into a per-repo artifact.
 3. **assemble** — merge artifacts into `blueprints/`, reinstall sandbox products, validate, open a PR on `chore/regenerate-sample-blueprints`.
 
 Optional `workflow_dispatch` input `archlens-version` pins the CLI release tag (leave empty for latest).
