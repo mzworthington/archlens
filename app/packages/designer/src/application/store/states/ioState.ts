@@ -18,10 +18,8 @@ import {
 } from '../../../core';
 import { loadWorkspaceFromCatalog, loadWorkspaceFromDirectory } from './ioState/openWorkspace';
 import { selectBundledSampleEntryPath } from '../goldenPathsSample';
-import {
-  loadBundledWorkspaceCatalog,
-  scheduleBundledBlueprintPreload,
-} from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
+import { scheduleBundledBlueprintPreload } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
+import { loadSampleWorkspaceSession } from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import { SANDBOX_LOADING_MESSAGE } from '../diagramLoadSession';
 
 export interface IoState {
@@ -183,24 +181,22 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
   },
 
   openBundledSample: async () => {
-    const {
-      sampleWorkspacePort,
-      workingCopyPort,
-      logger,
-      setNotification,
-      initSchema,
-      setIsLoading,
-    } = get();
+    const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
     setIsLoading(SANDBOX_LOADING_MESSAGE);
     try {
-      set({ workspacePort: sampleWorkspacePort, isSampleWorkspace: true });
-      const catalog = await loadBundledWorkspaceCatalog();
+      const session = await loadSampleWorkspaceSession();
+      set({
+        workspacePort: session.workspacePort,
+        sampleWorkspacePort: session.workspacePort,
+        isSampleWorkspace: true,
+      });
+      const catalog = session.catalog;
       const entryPath = selectBundledSampleEntryPath(catalog);
       const opened = await loadWorkspaceFromCatalog({
         catalog,
         entryPath,
-        readFile: relativePath => sampleWorkspacePort.readFile(relativePath),
-        getDirectoryName: () => sampleWorkspacePort.getDirectoryName(),
+        readFile: relativePath => session.workspacePort.readFile(relativePath),
+        getDirectoryName: () => session.workspacePort.getDirectoryName(),
         workingCopy: workingCopyPort,
         logger,
         setNotification,

@@ -4,6 +4,7 @@ import { useBlueprintStore } from '../store';
 import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
 import { GOLDEN_PATHS_CONTEXT_PATH } from '../goldenPathsSample';
+import * as sampleWorkspaceLoader from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 
 describe('ioState Actions & State Management', () => {
@@ -385,11 +386,11 @@ dependencies: []
         }),
       };
 
-      const loadCatalog = vi
-        .spyOn(bundledSampleWorkspace, 'loadBundledWorkspaceCatalog')
+      const loadSession = vi
+        .spyOn(sampleWorkspaceLoader, 'loadSampleWorkspaceSession')
         .mockImplementation(async () => {
           expect(useBlueprintStore.getState().isLoading).toBe('Loading sandbox...');
-          return catalog;
+          return { catalog, workspacePort: samplePort, usesRemoteCatalog: false };
         });
       const schedulePreload = vi
         .spyOn(bundledSampleWorkspace, 'scheduleBundledBlueprintPreload')
@@ -413,11 +414,11 @@ dependencies: []
       expect(state.isLoading).toBe(false);
       expect(readFile).toHaveBeenCalledTimes(1);
       expect(samplePort.readDirectoryFiles).not.toHaveBeenCalled();
-      expect(loadCatalog).toHaveBeenCalledTimes(1);
+      expect(loadSession).toHaveBeenCalledTimes(1);
       expect(schedulePreload).toHaveBeenCalledTimes(1);
       expect(schedulePreload).toHaveBeenCalledWith(catalog);
 
-      loadCatalog.mockRestore();
+      loadSession.mockRestore();
       schedulePreload.mockRestore();
     });
   });
