@@ -8,7 +8,7 @@ import {
 
 test.describe('TraceLens lens', () => {
   test('renders the ranking shell', async ({ page }) => {
-    await gotoApp(page, '/tracelens');
+    await gotoApp(page, '/workspace?lens=tracelens');
 
     await expect(page).toHaveURL(/\/workspace\?lens=tracelens/);
     await expect(page.getByRole('heading', { name: 'Forensics' })).toBeVisible();

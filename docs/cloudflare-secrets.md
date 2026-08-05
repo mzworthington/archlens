@@ -31,7 +31,7 @@ The script will:
 
 If automatic R2 token mint fails (API token lacks User/Account API Tokens permission), create an R2 Object Read & Write token for `CATALOG_BUCKET_NAME` in the dashboard, put the three `R2_BLUEPRINT_CATALOG_*` values in bws, and re-run.
 
-After bootstrap, apply infra locally (`cd infra/cloudflare && pulumi up`) or merge to `main` for CI.
+After bootstrap, apply infra locally (`cd infra/cloudflare && pulumi up`) or merge to `main` for CI (preview, then **pulumi-prod** environment approval, then `up`).
 
 ### Registrar nameservers (manual)
 

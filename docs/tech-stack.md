@@ -86,14 +86,14 @@ flowchart LR
   Pulumi --> Domains[archlens.dev + www]
 ```
 
-| Piece             | Location / tool                                                           |
-| ----------------- | ------------------------------------------------------------------------- |
-| Pages project     | Pulumi `cloudflare.PagesProject` (`infra/cloudflare/`)                    |
-| Custom domains    | Pulumi `cloudflare.PagesDomain` (apex + `www`)                            |
-| Static upload     | `wrangler pages deploy` from `.github/workflows/ci.yml`                   |
-| SPA routing       | `public/_redirects` (`/schemas/*` passthrough, `/*` → `index.html`)       |
-| IaC workflow      | `.github/workflows/pulumi-cloudflare.yml` (preview on PR, `up` on `main`) |
-| Bootstrap secrets | `bin/setup-cloudflare-hosting.sh` (bws → GitHub + Pulumi config)          |
+| Piece             | Location / tool                                                                     |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| Pages project     | Pulumi `cloudflare.PagesProject` (`infra/cloudflare/`)                              |
+| Custom domains    | Pulumi `cloudflare.PagesDomain` (apex + `www`)                                      |
+| Static upload     | `wrangler pages deploy` from `.github/workflows/ci.yml`                             |
+| SPA routing       | `public/_redirects` (`/schemas/*` passthrough, `/*` → `index.html`)                 |
+| IaC workflow      | `.github/workflows/pulumi-cloudflare.yml` (preview → `pulumi-prod` approval → `up`) |
+| Bootstrap secrets | `bin/setup-cloudflare-hosting.sh` (bws → GitHub + Pulumi config)                    |
 
 Stack config with account/zone IDs and API tokens is **not** committed — see [cloudflare-secrets.md](./cloudflare-secrets.md) and `infra/cloudflare/Pulumi.prod.yaml.example`.
 

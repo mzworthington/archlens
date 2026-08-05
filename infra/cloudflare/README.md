@@ -36,9 +36,11 @@ cd infra/cloudflare
 pulumi up
 ```
 
-Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` runs Pulumi on CI.
+Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` runs **preview**, then waits for a **pulumi-prod** environment approval before `pulumi up`.
 
-**Manual run:** GitHub → Actions → **Pulumi Cloudflare** → Run workflow → choose `up` or `preview`.
+**Manual gate:** GitHub → Settings → Environments → create **`pulumi-prod`** with **Required reviewers**. Without reviewers the apply job still runs after preview (no pause).
+
+**Manual run:** GitHub → Actions → **Pulumi Cloudflare** → Run workflow → leave **apply** checked to preview then wait for approval and `up` (uncheck for preview-only).
 
 ## Local Pulumi commands
 
@@ -64,7 +66,8 @@ pulumi up
 |------|---------|
 | `wrangler.toml` | Pages project name + output directory |
 | `app/packages/canvas/public/_redirects` | SPA routing |
-| `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
+| `.github/workflows/pulumi-cloudflare.yml` | Preview on PR/main; gated `up` via `pulumi-prod` |
+| `.github/actions/setup-pulumi-cloudflare` | Shared Node/pnpm + stack config for that workflow |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
 | `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/samples/` (product `archlens`) |
 | `.github/workflows/publish-demo-catalog.yml` | Matrix demos → fragment → compose `estates/samples/` |

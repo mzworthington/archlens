@@ -41,8 +41,7 @@ const NAV_ITEMS: { href: string; label: string; isActive: (location: string) => 
   {
     href: '/',
     label: 'Docs',
-    isActive: loc =>
-      !isWorkspacePath(loc) && !loc.startsWith('/tracelens') && !loc.startsWith('/advicelens'),
+    isActive: loc => !isWorkspacePath(loc),
   },
 ];
 
