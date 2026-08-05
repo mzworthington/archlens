@@ -68,13 +68,44 @@ export function collectImmediateDrillDownChildren(
   return [...byRef.values()];
 }
 
+/**
+ * Map a file-leaf (or deeper) ref onto the nearest ancestor that exists as an emitted node.
+ * Single-file rollups do not emit drill-down leaves — deps must target the rollup instead.
+ */
+export function resolveToEmittedEntityRef(ref: string, emittedRefs: ReadonlySet<string>): string {
+  let current: string | null = ref;
+  while (current) {
+    if (emittedRefs.has(current)) return current;
+    current = EntityRef.getParent(current);
+  }
+  return ref;
+}
+
 export function collectRollupDrillDownDependencies(
   _rollupEntityRef: string,
   childNodes: readonly SystemNode[],
-  fileLevelDependencies: readonly SystemDependency[]
+  fileLevelDependencies: readonly SystemDependency[],
+  emittedRefs?: ReadonlySet<string>
 ): SystemDependency[] {
   const childRefs = new Set(childNodes.map(node => node.entityRef));
-  return fileLevelDependencies.filter(dep => childRefs.has(dep.from));
+  const out: SystemDependency[] = [];
+  const seen = new Set<string>();
+
+  for (const dep of fileLevelDependencies) {
+    if (!childRefs.has(dep.from)) continue;
+
+    const from = emittedRefs ? resolveToEmittedEntityRef(dep.from, emittedRefs) : dep.from;
+    const to = emittedRefs ? resolveToEmittedEntityRef(dep.to, emittedRefs) : dep.to;
+    if (!childRefs.has(from)) continue;
+    if (from === to) continue;
+
+    const key = `${from}\0${to}\0${dep.type}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(from === dep.from && to === dep.to ? dep : { ...dep, from, to });
+  }
+
+  return out;
 }
 
 export type RollupDrillDownSchema = {
@@ -82,37 +113,87 @@ export type RollupDrillDownSchema = {
   schema: SystemSchema;
 };
 
+function buildEmittedEntityRefs(
+  rollupNodes: readonly SystemNode[],
+  fileLevelNodes: readonly SystemNode[],
+  emittingRollupRefs: ReadonlySet<string>
+): Set<string> {
+  const emitted = new Set<string>();
+  for (const node of rollupNodes) {
+    if (node.entityRef) emitted.add(node.entityRef);
+  }
+  for (const rollupRef of emittingRollupRefs) {
+    for (const child of collectImmediateDrillDownChildren(rollupRef, rollupNodes, fileLevelNodes)) {
+      if (child.entityRef) emitted.add(child.entityRef);
+    }
+  }
+  return emitted;
+}
+
+/**
+ * @param workspaceRollupNodes - All component/rollup nodes in the system (not only this
+ *   container). Needed so cross-container file-leaf deps rewrite onto emitted rollups.
+ */
 export function buildRollupDrillDownSchemas(
   containerEntityRef: string,
   rollupNodes: readonly SystemNode[],
   fileLevelNodes: readonly SystemNode[],
   fileLevelDependencies: readonly SystemDependency[],
-  source?: SourceProvenance
+  source?: SourceProvenance,
+  workspaceRollupNodes: readonly SystemNode[] = rollupNodes
 ): RollupDrillDownSchema[] {
-  const schemas: RollupDrillDownSchema[] = [];
-  const emitted = new Set<string>();
+  const pending: Array<{
+    rollupNode: SystemNode;
+    childNodes: SystemNode[];
+    relativePath: string;
+  }> = [];
+  const emittingRollupRefs = new Set<string>();
+
+  // Discover every drill-down that will be emitted across the workspace so leaf targets
+  // under multi-file rollups stay leaf-precise, while single-file rollups collapse.
+  for (const rollupNode of workspaceRollupNodes) {
+    if (!rollupNode.entityRef || !shouldEmitRollupDrillDown(rollupNode)) continue;
+    const childNodes = collectImmediateDrillDownChildren(
+      rollupNode.entityRef,
+      workspaceRollupNodes,
+      fileLevelNodes
+    );
+    if (childNodes.length < ROLLUP_DRILL_DOWN_MIN_FILES) continue;
+    emittingRollupRefs.add(rollupNode.entityRef);
+  }
 
   for (const rollupNode of rollupNodes) {
-    if (!rollupNode.entityRef || !shouldEmitRollupDrillDown(rollupNode)) continue;
-    if (emitted.has(rollupNode.entityRef)) continue;
+    if (!rollupNode.entityRef || !emittingRollupRefs.has(rollupNode.entityRef)) continue;
 
     const childNodes = collectImmediateDrillDownChildren(
       rollupNode.entityRef,
       rollupNodes,
       fileLevelNodes
     );
+    // Re-check against this container's node lists (should match workspace discovery).
     if (childNodes.length < ROLLUP_DRILL_DOWN_MIN_FILES) continue;
 
     const relativePath = rollupDrillDownRelativePath(containerEntityRef, rollupNode.entityRef);
     if (!relativePath) continue;
 
+    pending.push({ rollupNode, childNodes, relativePath });
+  }
+
+  const emittedRefs = buildEmittedEntityRefs(
+    workspaceRollupNodes,
+    fileLevelNodes,
+    emittingRollupRefs
+  );
+  const schemas: RollupDrillDownSchema[] = [];
+
+  for (const { rollupNode, childNodes, relativePath } of pending) {
     const childDependencies = collectRollupDrillDownDependencies(
-      rollupNode.entityRef,
+      rollupNode.entityRef!,
       childNodes,
-      fileLevelDependencies
+      fileLevelDependencies,
+      emittedRefs
     );
 
-    emitted.add(rollupNode.entityRef);
     schemas.push({
       relativePath,
       schema: {

@@ -7,14 +7,34 @@ import {
 } from './parseArchlensArgv.ts';
 
 describe('parseValidateArgv', () => {
-  it('defaults to blueprints/', () => {
-    expect(parseValidateArgv(['validate']).targetPath).toBe('blueprints');
+  it('defaults to blueprints/ with health-only mode', () => {
+    const plan = parseValidateArgv(['validate']);
+    expect(plan.targetPath).toBe('blueprints');
+    expect(plan.includeContract).toBe(false);
+    expect(plan.sinceCommit).toBeUndefined();
   });
 
   it('accepts positional path and json format', () => {
     const plan = parseValidateArgv(['validate', 'custom/', '--format=json']);
     expect(plan.targetPath).toBe('custom/');
     expect(plan.format).toBe('json');
+  });
+
+  it('enables contract mode and commit baseline flags', () => {
+    const plan = parseValidateArgv([
+      'validate',
+      'blueprints/',
+      '--contract',
+      '--since-commit=abc123',
+      '--baseline=old/',
+    ]);
+    expect(plan.includeContract).toBe(true);
+    expect(plan.sinceCommit).toBe('abc123');
+    expect(plan.baselinePath).toBe('old/');
+  });
+
+  it('defaults bare --since-commit to HEAD~1', () => {
+    expect(parseValidateArgv(['validate', '--since-commit']).sinceCommit).toBe('HEAD~1');
   });
 });
 

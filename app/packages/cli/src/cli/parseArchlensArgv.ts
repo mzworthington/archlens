@@ -45,6 +45,15 @@ export type ResilienceOutputFormat = OutputFormat | 'yaml';
 export interface ValidateCliPlan {
   targetPath: string;
   format: OutputFormat;
+  /**
+   * Also run BlueprintSpec contract checks (schema parse, entityRef wiring).
+   * Default validate is architecture health only (cycles + forensics actions).
+   */
+  includeContract: boolean;
+  /** Explicit baseline blueprint tree for deterioration compare. */
+  baselinePath?: string;
+  /** Git commit/ref to materialize as the health baseline (default HEAD~1 when flag bare). */
+  sinceCommit?: string;
 }
 
 export interface DiffCliPlan {
@@ -369,9 +378,15 @@ export function parseValidateArgv(argv: string[]): ValidateCliPlan {
   const rest = argv[0] === 'validate' ? argv.slice(1) : argv;
   const positional = positionalArgs(rest);
   const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
+  const sinceCommitFlag =
+    rest.includes('--since-commit') || rest.some(arg => arg.startsWith('--since-commit='));
+  const sinceCommitRaw = flagValue(rest, '--since-commit');
   return {
     targetPath,
     format: parseOutputFormat(rest),
+    includeContract: rest.includes('--contract'),
+    baselinePath: flagValue(rest, '--baseline') || undefined,
+    sinceCommit: sinceCommitRaw ?? (sinceCommitFlag ? 'HEAD~1' : undefined),
   };
 }
 
