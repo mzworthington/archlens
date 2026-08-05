@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  entityRef: archlens
+  name: ArchLens
+  description: >-
+    Architecture modeling for product estates — architects declare context, contributors scan codebases, and operators
+    publish corpora to object storage.
+nodes:
+  - entityRef: archlens
+    type: software-system
+    name: ArchLens
+    properties:
+      contextOwnership: author
+      displayNameSource: explicit
+  - entityRef: archlens/architect
+    type: person
+    name: Architect
+    properties:
+      role: product-persona
+      product: canvas
+      contextOwnership: author
+      displayNameSource: derived
+  - entityRef: archlens/contributor
+    type: person
+    name: Contributor
+    properties:
+      role: product-persona
+      product: cli
+      contextOwnership: author
+      displayNameSource: derived
+  - entityRef: archlens/operator
+    type: person
+    name: Operator
+    properties:
+      role: product-persona
+      product: catalog
+      contextOwnership: author
+      displayNameSource: derived
+  - entityRef: archlens/blueprint-catalog-r2
+    type: rest-api
+    name: Cloudflare R2 Catalog
+    external: true
+    properties:
+      classification: third-party
+      vendor: Cloudflare R2
+      contextOwnership: author
+      displayNameSource: explicit
+dependencies:
+  - from: archlens/architect
+    to: archlens
+    type: direct-call
+    description: Declare system context and review the landscape
+  - from: archlens/contributor
+    to: archlens
+    type: direct-call
+    description: Scan repositories and maintain BlueprintSpec
+  - from: archlens/operator
+    to: archlens
+    type: direct-call
+    description: Publish catalog fragments to object storage
+  - from: archlens
+    to: archlens/blueprint-catalog-r2
+    type: direct-call
+    description: Publish and compose blueprint corpora
