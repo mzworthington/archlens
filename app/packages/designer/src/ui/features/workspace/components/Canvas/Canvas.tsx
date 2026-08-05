@@ -10,30 +10,18 @@ import { resolveChildDiagramEntry } from '@archlens/core';
 import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
 import { useTraceLensOnboarding } from '../../hooks/useTraceLensOnboarding';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
-import { useCouplingLens } from '../../../../../application/forensics/useCouplingLens';
-import {
-  includeExternalsInFocusFromMode,
-  isDependencyFocusMode,
-} from '../../../../../application/forensics/dependencyViewMode';
-import { prefersReducedMotion } from '../../../../../application/store/layoutUtils';
-import { useBlastRippleAnimation } from '../../../resilience/useBlastRippleAnimation';
 import { DiagramLoadingOverlay } from './DiagramLoadingOverlay';
 import { MermaidEnrichBanner } from './MermaidEnrichBanner';
 import { SchemaImportErrorBanner } from './SchemaImportErrorBanner';
 import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
-import {
-  buildCanvasVisibleNodes,
-  buildCanvasVisibleEdges,
-  buildCanvasDisplayNodes,
-  buildCanvasDisplayEdges,
-} from './canvasDisplayGraph';
 import { useCanvasLoadLayout } from './useCanvasLoadLayout';
 import { useCanvasDropNode } from './useCanvasDropNode';
+import { useCanvasExternalSummary } from './useCanvasExternalSummary';
+import { useCanvasDisplayGraph } from './useCanvasDisplayGraph';
 import { CanvasLensLegends } from './CanvasLensLegends';
 import { CanvasTopLeftPanel } from './CanvasTopLeftPanel';
 import { CanvasMiniMap } from './CanvasMiniMap';
 import { DependencyFocusChip } from './DependencyFocusChip';
-import { buildHiddenExternalConnectionGhosts } from '../../../../../application/forensics/hiddenExternalConnectionGhosts';
 import { useSpotlightEdge } from './useSpotlightEdge';
 
 export const Canvas: React.FC = () => {
@@ -129,28 +117,16 @@ export const Canvas: React.FC = () => {
     }))
   );
 
-  const externalSummaryContext = useMemo(
-    () => ({
-      schema,
-      loadedSystems,
-      allNodes: nodes,
-      allEdges: edges,
-      showUpstreamExternals,
-      showDownstreamExternals,
-      expandedExternalHub,
-      dependencyViewMode,
-    }),
-    [
-      schema,
-      loadedSystems,
-      nodes,
-      edges,
-      showUpstreamExternals,
-      showDownstreamExternals,
-      expandedExternalHub,
-      dependencyViewMode,
-    ]
-  );
+  const externalSummaryContext = useCanvasExternalSummary({
+    schema,
+    loadedSystems,
+    nodes,
+    edges,
+    showUpstreamExternals,
+    showDownstreamExternals,
+    expandedExternalHub,
+    dependencyViewMode,
+  });
 
   const nodeTypes = useMemo(
     () => ({
@@ -177,205 +153,31 @@ export const Canvas: React.FC = () => {
 
   useCanvasLoadLayout(currentFilePath, layoutSessionId, applyClientLayout);
 
-  const simulationScopeSet = useMemo(() => {
-    if (!isResilienceMode || !resilienceSimulationScope?.length) return null;
-    return new Set(resilienceSimulationScope);
-  }, [isResilienceMode, resilienceSimulationScope]);
-
-  const filteredNodes = useMemo(
-    () =>
-      buildCanvasVisibleNodes({
-        nodes,
-        edges,
-        schema,
-        loadedSystems,
-        showTests,
-        showUpstreamExternals,
-        showDownstreamExternals,
-        selectedNodeId,
-        dependencyViewMode,
-        isResilienceMode,
-        simulationScopeSet,
-        showCoupling,
-        expandedExternalHub,
-      }),
-    [
-      nodes,
-      edges,
-      schema,
-      loadedSystems,
-      showTests,
-      showUpstreamExternals,
-      showDownstreamExternals,
-      selectedNodeId,
-      dependencyViewMode,
-      isResilienceMode,
-      simulationScopeSet,
-      showCoupling,
-      expandedExternalHub,
-    ]
-  );
-
-  const filteredEdges = useMemo(
-    () => buildCanvasVisibleEdges(edges, filteredNodes),
-    [edges, filteredNodes]
-  );
-
-  const hiddenExternalGhosts = useMemo(
-    () =>
-      buildHiddenExternalConnectionGhosts({
-        selectedNodeId,
-        allNodes: nodes,
-        allEdges: edges,
-        visibleNodeIds: new Set(filteredNodes.map(node => node.id)),
-        enabled:
-          isDependencyFocusMode(dependencyViewMode) &&
-          !includeExternalsInFocusFromMode(dependencyViewMode) &&
-          !showCoupling &&
-          !isResilienceMode &&
-          !!selectedNodeId,
-      }),
-    [
-      selectedNodeId,
-      nodes,
-      edges,
-      filteredNodes,
-      dependencyViewMode,
-      showCoupling,
-      isResilienceMode,
-    ]
-  );
-
-  const reduceMotion = prefersReducedMotion();
-
-  const entityRefToNodeId = useMemo(() => {
-    const map = new Map<string, string>();
-    for (const n of nodes) {
-      const ref = (n.data.entityRef ?? n.id) as string;
-      map.set(ref, n.id);
-    }
-    return map;
-  }, [nodes]);
-
-  const nodeIdForEntityRef = useCallback(
-    (entityRef: string) => entityRefToNodeId.get(entityRef),
-    [entityRefToNodeId]
-  );
-
-  const blastRipple = useBlastRippleAnimation(
-    isResilienceMode ? resilienceSimulationResult : null,
-    {
-      enabled: isResilienceMode && !!resilienceSimulationResult,
-      preferReducedMotion: reduceMotion,
-      liteCanvas,
-      edges: filteredEdges,
-      nodeIdForEntityRef,
-    }
-  );
-
-  const { workspaceFilepathIndex, couplingFocusMode, couplingRefs, couplingGhostNodes } =
-    useCouplingLens({
-      showCoupling,
-      selectedNodeId,
-      nodes: filteredNodes,
-      loadedSystems,
-    });
-
-  const displayNodes = useMemo(
-    () =>
-      buildCanvasDisplayNodes({
-        filteredNodes,
-        filteredEdges,
-        focusedCyclePath,
-        couplingFocusMode,
-        selectedNodeId,
-        dependencyViewMode,
-        couplingGhostNodes,
-        workspaceFilepathIndex,
-        showCoupling,
-        couplingRefs,
-        guidedRefactorEntityRefs,
-        showHotspotHeatmap,
-        isResilienceMode,
-        resilienceSafeguards,
-        resilienceFaults,
-        resilienceSimulationResult,
-        resilienceSimulationScope,
-        blastRipple,
-        externalSummary: externalSummaryContext,
-        hiddenExternalGhostNodes: hiddenExternalGhosts.ghostNodes,
-      }),
-    [
-      filteredNodes,
-      filteredEdges,
-      focusedCyclePath,
-      couplingFocusMode,
-      selectedNodeId,
-      dependencyViewMode,
-      couplingGhostNodes,
-      workspaceFilepathIndex,
-      showCoupling,
-      couplingRefs,
-      guidedRefactorEntityRefs,
-      showHotspotHeatmap,
-      isResilienceMode,
-      resilienceSafeguards,
-      resilienceFaults,
-      resilienceSimulationResult,
-      resilienceSimulationScope,
-      blastRipple,
-      externalSummaryContext,
-      hiddenExternalGhosts.ghostNodes,
-    ]
-  );
-
-  const displayEdges = useMemo(
-    () =>
-      buildCanvasDisplayEdges({
-        filteredEdges,
-        filteredNodes,
-        displayNodes,
-        focusedCyclePath,
-        couplingRefs,
-        showCoupling,
-        couplingGhostNodes,
-        selectedNodeId,
-        schemaDependencies: schema.dependencies ?? [],
-        couplingFocusMode,
-        showCouplingSchemaDeps,
-        selectedEdgeId,
-        edges,
-        dependencyViewMode,
-        liteCanvas,
-        reduceMotion,
-        isResilienceMode,
-        propagationEdgeKeys: blastRipple.propagationEdgeKeys,
-        externalSummary: externalSummaryContext,
-        hiddenExternalGhostEdges: hiddenExternalGhosts.ghostEdges,
-      }),
-    [
-      filteredEdges,
-      filteredNodes,
-      displayNodes,
-      focusedCyclePath,
-      couplingRefs,
-      showCoupling,
-      couplingGhostNodes,
-      selectedNodeId,
-      schema.dependencies,
-      couplingFocusMode,
-      showCouplingSchemaDeps,
-      selectedEdgeId,
-      edges,
-      dependencyViewMode,
-      liteCanvas,
-      reduceMotion,
-      isResilienceMode,
-      blastRipple.propagationEdgeKeys,
-      externalSummaryContext,
-      hiddenExternalGhosts.ghostEdges,
-    ]
-  );
+  const { displayNodes, displayEdges, couplingFocusMode } = useCanvasDisplayGraph({
+    nodes,
+    edges,
+    schema,
+    loadedSystems,
+    showTests,
+    showUpstreamExternals,
+    showDownstreamExternals,
+    selectedNodeId,
+    selectedEdgeId,
+    dependencyViewMode,
+    isResilienceMode,
+    resilienceSimulationScope,
+    resilienceSafeguards,
+    resilienceFaults,
+    resilienceSimulationResult,
+    showCoupling,
+    showCouplingSchemaDeps,
+    expandedExternalHub,
+    focusedCyclePath,
+    guidedRefactorEntityRefs,
+    showHotspotHeatmap,
+    liteCanvas,
+    externalSummary: externalSummaryContext,
+  });
 
   useSpotlightEdge(selectedEdgeId, displayEdges, displayNodes);
 
