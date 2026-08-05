@@ -36,7 +36,7 @@ cd infra/cloudflare
 pulumi up
 ```
 
-Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` runs **preview**, then waits for a **pulumi-prod** environment approval before `pulumi up`.
+Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` runs **preview** (rich `--diff` in the Actions log + job summary), prints the **Pulumi Cloud** dashboard URL, then waits for a **pulumi-prod** environment approval before `pulumi up`.
 
 **Manual gate:** GitHub → Settings → Environments → create **`pulumi-prod`** with **Required reviewers**. Without reviewers the apply job still runs after preview (no pause).
 
