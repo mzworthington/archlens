@@ -15,7 +15,7 @@ body:
       label: Area
       description: Which part of Blueprint is affected?
       options:
-        - Designer (visual canvas / docs UI)
+        - Canvas (visual canvas / docs UI)
         - CLI (codebase scanner)
         - Core (schema, validation, import/merge)
         - Import wizards (Mermaid, Terraform, Pulumi, etc.)
@@ -40,7 +40,7 @@ body:
       label: Steps to reproduce
       description: Minimal steps to trigger the issue. Include sample input (YAML, Mermaid, file paths, CLI flags) where relevant.
       placeholder: |
-        1. Open Designer at `/workspace`
+        1. Open Canvas at `/workspace`
         2. Import the following Mermaid diagram: ...
         3. Apply merge
         4. Observe missing edges between A and B
@@ -67,11 +67,11 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Blueprint version or commit, OS, browser (for Designer), Node/Bun version (for CLI), etc.
+      description: Blueprint version or commit, OS, browser (for Canvas), Node/Bun version (for CLI), etc.
       placeholder: |
         - Blueprint: main @ abc1234 / release v0.1.5
         - OS: macOS 15.5
-        - Browser: Chrome 138 (Designer) or Node 24 / Bun 1.2 (CLI)
+        - Browser: Chrome 138 (Canvas) or Node 24 / Bun 1.2 (CLI)
     validations:
       required: false
 

@@ -66,4 +66,4 @@ flowchart LR
 - [ADR-0004](./0004-local-first-fs-access-and-indexeddb-working-copy.md)
 - [ADR-0010](./0010-remote-blueprint-catalog-contract.md)
 - [ADR-0011](./0011-object-storage-published-corpora.md)
-- Adapter: `app/packages/designer/src/infrastructure/fileSystem/remoteCatalogWorkspace.ts`
+- Adapter: `app/packages/canvas/src/infrastructure/fileSystem/remoteCatalogWorkspace.ts`

@@ -1,6 +1,6 @@
 import type { PropertyMap } from '../models/schema';
 
-/** Snapshot of a node used for structural schema diffs (CLI + designer). */
+/** Snapshot of a node used for structural schema diffs (CLI + Canvas). */
 export type SchemaDiffNode = {
   entityRef: string;
   name: string;

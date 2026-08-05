@@ -11,7 +11,7 @@ export type BuildWorkspaceCatalogFromYamlOptions = {
 
 /**
  * Parse blueprint YAML files into a navigation catalog (no schema bodies retained).
- * Used at designer build/dev sync time to emit `catalog.json` for the bundled demo.
+ * Used at canvas build/dev sync time to emit `catalog.json` for the bundled demo.
  */
 export function buildWorkspaceCatalogFromYamlFiles(
   files: Array<{ path: string; content: string }>,

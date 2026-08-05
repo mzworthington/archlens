@@ -16,7 +16,7 @@ ArchLens models systems as **BlueprintSpec** YAML — a living architecture cont
 
 A front-end visual canvas web application client. Double-click boundary nodes to drill down into C4 container/component levels and edit schemas side-by-side with code-viewer synchronization.
 
-👉 **Learn more:** [app/packages/designer/README.md](./app/packages/designer/README.md)
+👉 **Learn more:** [app/packages/canvas/README.md](./app/packages/canvas/README.md)
 
 ---
 
@@ -38,11 +38,11 @@ curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts
 
 ## Workspace Component Catalog
 
-| Component                                                                             | Path                                               | Language/Framework                       | Description                                                      |
-| :------------------------------------------------------------------------------------ | :------------------------------------------------- | :--------------------------------------- | :--------------------------------------------------------------- |
-| **`@archlens/designer`**                                                              | [app/packages/designer/](./app/packages/designer/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                              |
-| **`@archlens/cli`**                                                                   | [app/packages/cli/](./app/packages/cli/)           | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable) |
-| **`@archlens/core`**                                                                  | [app/packages/core/](./app/packages/core/)         | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec) |
+| Component                                                                             | Path                                           | Language/Framework                       | Description                                                      |
+| :------------------------------------------------------------------------------------ | :--------------------------------------------- | :--------------------------------------- | :--------------------------------------------------------------- |
+| **`@archlens/canvas`**                                                                | [app/packages/canvas/](./app/packages/canvas/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                              |
+| **`@archlens/cli`**                                                                   | [app/packages/cli/](./app/packages/cli/)       | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable) |
+| **`@archlens/core`**                                                                  | [app/packages/core/](./app/packages/core/)     | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec) |
 | Schema source of truth is TypeScript + Zod in `@archlens/core` (no Protocol Buffers). |
 
 ---
@@ -60,7 +60,7 @@ pnpm build
 pnpm lint
 pnpm format:check
 pnpm test                # all workspace packages
-pnpm test:designer
+pnpm test:canvas
 pnpm test:cli
 pnpm test:e2e
 ```

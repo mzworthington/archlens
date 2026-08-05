@@ -26,6 +26,6 @@ R2_SECRET_ACCESS_KEY=... \
 archlens publish blueprints/ --no-dry-run
 ```
 
-## Designer
+## Canvas
 
 Remote sandbox reads via the HTTP adapter (`@archlens/storage/http`) so the browser bundle does not include AWS/Azure SDKs.

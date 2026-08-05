@@ -7,7 +7,7 @@ export function isEstateResilienceDiagramLevel(level: C4Level): boolean {
   return level === 'context' || level === 'container';
 }
 
-/** Whether the designer may run ChaosLens fault simulation on this diagram level. */
+/** Whether ArchLens Canvas may run ChaosLens fault simulation on this diagram level. */
 export function isResilienceSimulationDiagramLevel(level: C4Level): boolean {
   return isEstateResilienceDiagramLevel(level);
 }

@@ -43,16 +43,16 @@ jobs:
         working-directory: app
 
       - name: Build production bundle for Lighthouse
-        run: pnpm build:resilience-engine && pnpm --filter @archlens/designer build
+        run: pnpm build:resilience-engine && pnpm --filter @archlens/canvas build
         working-directory: app
 
       - name: Run Lighthouse CI
-        run: pnpm --filter @archlens/designer test:lighthouse
+        run: pnpm --filter @archlens/canvas test:lighthouse
         working-directory: app
 
       - name: Write job summary
         if: always()
-        run: pnpm --filter @archlens/designer lighthouse:summary
+        run: pnpm --filter @archlens/canvas lighthouse:summary
         working-directory: app
 
       - name: Upload Lighthouse report
@@ -60,5 +60,5 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: lighthouse-report
-          path: app/packages/designer/lighthouse-report/
+          path: app/packages/canvas/lighthouse-report/
           retention-days: 30

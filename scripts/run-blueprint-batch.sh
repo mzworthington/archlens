@@ -59,7 +59,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "▶ build ChaosLens WASM"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 make -C "${BLUEPRINT_REPO}/resilience-engine" copy-wasm
-echo "✓ chaoslens.wasm copied to designer public assets"
+echo "✓ chaoslens.wasm copied to canvas public assets"
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

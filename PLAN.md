@@ -164,7 +164,7 @@ _Last updated: August 2026 (AdviceLens Phase 4 CI + UI export)_
 | CI (engine tests + WASM build)                                      | ✅     | Go tests in `.github/workflows/ci.yml`; WASM built during `pnpm build` (not checked into git).                                                |
 | Stress fixtures                                                     | ✅     | `blueprints/chaoslens-stress/` container scenarios for manual and automated validation.                                                       |
 | Stress-test harness                                                 | ✅     | Vitest regression in `/core/resilience` loads fixtures, asserts SLA/SPOF/latency (KR3: &lt;5s).                                               |
-| External simulation scope (Phase 1)                                 | ✅     | `buildSimulationSchema` enriches graph with direct external neighbors; designer materializes on Simulate.                                     |
+| External simulation scope (Phase 1)                                 | ✅     | `buildSimulationSchema` enriches graph with direct external neighbors; Canvas materializes on Simulate.                                       |
 | External simulation scope (Phase 2)                                 | ✅     | Upstream transitive closure (`collectSimulationUpstreamRefs`); force-show scope + dim out-of-scope on canvas via `resilienceSimulationScope`. |
 | External simulation scope (Phase 3)                                 | ✅     | Expand through external proxies into home diagrams; expand→materialize to a bounded fixpoint so deep home chains stay on the sim graph.       |
 
@@ -180,12 +180,12 @@ _Last updated: August 2026 (AdviceLens Phase 4 CI + UI export)_
 
 ### Iteration 3 (Version 3.0)
 
-| Item                                | Status | Notes                                                                                                       |
-| ----------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------- |
-| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                                    |
-| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                                     |
-| URL hash / shareable scenario state | ✅     | Sticky `?lens=chaoslens` with `fault`/`type`/`severity` (or `faults=`); legacy `?resilience=1` redirects.   |
-| AdviceLens (recommendation engine)  | 🚧     | Core ranking + estate CLI + designer wiring + CI gate/artifact + UI JSON export shipped; narration pending. |
+| Item                                | Status | Notes                                                                                                     |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------- |
+| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                                  |
+| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                                   |
+| URL hash / shareable scenario state | ✅     | Sticky `?lens=chaoslens` with `fault`/`type`/`severity` (or `faults=`); legacy `?resilience=1` redirects. |
+| AdviceLens (recommendation engine)  | 🚧     | Core ranking + estate CLI + canvas wiring + CI gate/artifact + UI JSON export shipped; narration pending. |
 
 ### OKR validation (ongoing)
 
@@ -223,7 +223,7 @@ Teams have forensics signals (hotspots, silos) and resilience signals (blast rad
 ### Objectives
 
 - **KR-R1:** Rank recommendations by composite risk (hotspot × blast exposure) across all diagrams in scope.
-- **KR-R2:** Run headless failure simulations estate-wide without opening the designer.
+- **KR-R2:** Run headless failure simulations estate-wide without opening ArchLens Canvas.
 - **KR-R3:** Emit structured, evidence-backed recommendations consumable by TraceLens UI, ChaosLens panel, and CI gates.
 - **KR-R4:** Optional narration enriches recommendations with concrete fixes grounded on `Recommendation.evidence` without re-ranking.
 
@@ -267,14 +267,14 @@ Recommendations are **ephemeral** (display-only) by default — not written to B
 
 ### Phasing
 
-| Phase  | Scope                                                                                                                                                  | Status |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| **1**  | Unified `Recommendation` type; `buildRecommendations()` in core; migrate `buildAdvice()` to structured resilience recommendations; unit tests.         | ✅     |
-| **2**  | Headless estate simulation — batch-run default chaos scenarios per diagram; `archlens resilience` CLI command.                                         | ✅     |
-| **3**  | Designer integration — TraceLens ranked list shows unified recommendations; slide-over evidence panel; wire `rankOffenders` to `buildRecommendations`. | ✅     |
-| **3b** | Product naming, docs (`docs/guide/advicelens.md`), narration types + `narrateRecommendations()` contract stub.                                         | ✅     |
-| **4**  | CI guardrails — PR check when worst estate SLA exceeds threshold; AdviceLens artifact in CI (JSON) + designer Copy/Download YAML export.               | ✅     |
-| **5**  | Narration implementation — LLM proposes concrete infra/code fixes grounded on structured `Recommendation.evidence` (not as ranker).                    | ⏳     |
+| Phase  | Scope                                                                                                                                                | Status |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| **1**  | Unified `Recommendation` type; `buildRecommendations()` in core; migrate `buildAdvice()` to structured resilience recommendations; unit tests.       | ✅     |
+| **2**  | Headless estate simulation — batch-run default chaos scenarios per diagram; `archlens resilience` CLI command.                                       | ✅     |
+| **3**  | Canvas integration — TraceLens ranked list shows unified recommendations; slide-over evidence panel; wire `rankOffenders` to `buildRecommendations`. | ✅     |
+| **3b** | Product naming, docs (`docs/guide/advicelens.md`), narration types + `narrateRecommendations()` contract stub.                                       | ✅     |
+| **4**  | CI guardrails — PR check when worst estate SLA exceeds threshold; AdviceLens artifact in CI (JSON) + Canvas Copy/Download YAML export.               | ✅     |
+| **5**  | Narration implementation — LLM proposes concrete infra/code fixes grounded on structured `Recommendation.evidence` (not as ranker).                  | ⏳     |
 
 ### Core API
 
@@ -329,9 +329,9 @@ Scenarios stored in `chaos-specs/*.yaml` (existing `chaosSpecDocument.ts` bridge
 
 | Consumer                   | Path                                                     | Phase |
 | -------------------------- | -------------------------------------------------------- | ----- |
-| TraceLens offender ranking | `designer/.../rankOffenders.ts`                          | 3     |
-| Refactor slide-over        | `designer/.../RefactorPlanSlideOver.tsx`                 | 3     |
-| ChaosLens advice panel     | `designer/.../ResilienceSection.tsx`                     | 3     |
+| TraceLens offender ranking | `canvas/.../rankOffenders.ts`                            | 3     |
+| Refactor slide-over        | `canvas/.../RefactorPlanSlideOver.tsx`                   | 3     |
+| ChaosLens advice panel     | `canvas/.../ResilienceSection.tsx`                       | 3     |
 | Composite risk scoring     | `core/forensics/compositeRisk.ts`, `chaosRiskContext.ts` | 1 ✅  |
 | CLI estate scan            | `archlens resilience`                                    | 2 ✅  |
 | Chaos spec library         | `core/resilience/chaosSpecDocument.ts`                   | 2 ✅  |
@@ -347,7 +347,7 @@ Scenarios stored in `chaos-specs/*.yaml` (existing `chaosSpecDocument.ts` bridge
 | `buildRefactorRecommendations()`      | ✅     | Adapter over `buildRefactorSuggestions()`        |
 | `SimulationResult.faultNodeIds`       | ✅     | Tracks resolved fault targets                    |
 | Unit tests                            | ✅     | `buildRecommendations.test.ts`                   |
-| Designer wiring                       | ✅     | TraceLens slide-over + ChaosLens telemetry panel |
+| Canvas wiring                         | ✅     | TraceLens slide-over + ChaosLens telemetry panel |
 | CLI headless runner                   | ✅     | `archlens resilience` command                    |
 | `buildDefaultEstateScenarios()`       | ✅     | Region outage, fan-in probe, publisher faults    |
 | `runEstateResilience()`               | ✅     | Worst-case merge + ranked recommendations        |
@@ -403,7 +403,7 @@ buildSimulationSchema(
 
 Reuses `buildWorkspaceEntityIndex`, `materializeExternalNodes`, `positionExternalNodes` from `rules/workspaceExternals.ts`. Container diagrams may call `enrichContainerSchemaFromComponentDeps` first when workspace is loaded.
 
-### Designer integration (Phase 1)
+### Canvas integration (Phase 1)
 
 `resilienceState.runResilienceSimulation`:
 

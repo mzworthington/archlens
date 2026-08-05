@@ -1,6 +1,6 @@
 # Contributing to ArchLens
 
-Thanks for your interest in contributing. ArchLens helps teams catch architecture risk early: ArchLens Canvas (designer), ArchLens scanner/publisher, shared `@archlens/core` (BlueprintSpec), and optional TraceLens / ChaosLens / AdviceLens. Authoring stays local; CI can publish living catalogs to object storage.
+Thanks for your interest in contributing. ArchLens helps teams catch architecture risk early: ArchLens Canvas, ArchLens scanner/publisher, shared `@archlens/core` (BlueprintSpec), and optional TraceLens / ChaosLens / AdviceLens. Authoring stays local; CI can publish living catalogs to object storage.
 
 ## Before you start
 
@@ -29,7 +29,7 @@ Cursor Cloud agents use `.cursor/environment.json` → `bin/setup-dev-env.sh`, w
 
 1. Fork the repository and create a branch from `main`.
 2. Make focused changes - one logical change per pull request when possible.
-3. Keep domain logic in `@archlens/core`, UI and adapters in `@archlens/designer`, CLI code in `@archlens/cli`.
+3. Keep domain logic in `@archlens/core`, UI and adapters in `@archlens/canvas`, CLI code in `@archlens/cli`.
 4. For parsers, merge plans, and other pure domain logic in core, prefer **tests first** (red → green → refactor).
 5. If you change Zod schemas in `app/packages/core/`, regenerate JSON Schema artifacts:
 
@@ -51,7 +51,7 @@ pnpm test
 
 Pre-commit hooks (Husky + lint-staged) run formatting, lint, typecheck, and related checks when you commit changes under `app/` or `docs/`. Go changes under `resilience-engine/` run `gofmt`, `go vet`, and tests (see [setup](docs/setup.md#git-commit-hooks)).
 
-CI also runs E2E tests, coverage, and a production build. Run `pnpm test:e2e` locally if your change affects the Designer UI.
+CI also runs E2E tests, coverage, and a production build. Run `pnpm test:e2e` locally if your change affects the Canvas UI.
 
 ## Pull requests
 

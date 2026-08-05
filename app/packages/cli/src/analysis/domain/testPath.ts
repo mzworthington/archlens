@@ -1,6 +1,6 @@
 /**
  * Source-path heuristics that mark test code for `isTest` on extracted nodes.
- * Test sources stay in the scan; they are tagged so the designer can hide them.
+ * Test sources stay in the scan; they are tagged so ArchLens Canvas can hide them.
  *
  * Framework detection uses import signals parsed from source files, giving more
  * precision than path heuristics for files outside conventional directories.

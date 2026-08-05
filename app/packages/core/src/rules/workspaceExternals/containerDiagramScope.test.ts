@@ -19,12 +19,12 @@ const appContainers: SystemSchema = {
   nodes: [
     { entityRef: 'blueprint/app/core', type: 'container', name: 'Core Service' },
     { entityRef: 'blueprint/app/cli', type: 'container', name: 'Cli Service' },
-    { entityRef: 'blueprint/app/designer', type: 'container', name: 'Designer Service' },
+    { entityRef: 'blueprint/app/canvas', type: 'container', name: 'Canvas Service' },
     { entityRef: 'blueprint/app/core/forensics', type: 'container', name: 'Forensics' },
   ],
   dependencies: [
     { from: 'blueprint/app/cli', to: 'blueprint/app/core/forensics', type: 'direct-call' },
-    { from: 'blueprint/app/designer', to: 'blueprint/app/core/forensics', type: 'direct-call' },
+    { from: 'blueprint/app/canvas', to: 'blueprint/app/core/forensics', type: 'direct-call' },
     { from: 'blueprint/app/core', to: 'blueprint/app/core/schema', type: 'direct-call' },
   ],
 };
@@ -65,7 +65,7 @@ describe('containerDiagramScope', () => {
   it('collects sibling app containers from parent container dependencies', () => {
     const neighbors = collectComponentDiagramNeighborRefs(forensicsComponents, loadedSystems);
     expect(neighbors).toContain('blueprint/app/cli');
-    expect(neighbors).toContain('blueprint/app/designer');
+    expect(neighbors).toContain('blueprint/app/canvas');
     expect(neighbors).not.toContain('blueprint/app/core/schema');
   });
 });
@@ -76,7 +76,7 @@ describe('forensics overview externals', () => {
     const overview = suggestOverviewExternalDependencies(forensicsComponents, loadedSystems, index);
     const refs = overview.map(entity => entity.entityRef);
     expect(refs).toContain('blueprint/app/cli');
-    expect(refs).toContain('blueprint/app/designer');
+    expect(refs).toContain('blueprint/app/canvas');
   });
 
   it('classifies cli as a caller using workspace container dependencies', () => {
@@ -97,6 +97,6 @@ describe('forensics overview externals', () => {
       appContainers.dependencies
     );
     expect(bands.callers.map(entity => entity.entityRef)).toContain('blueprint/app/cli');
-    expect(bands.callers.map(entity => entity.entityRef)).toContain('blueprint/app/designer');
+    expect(bands.callers.map(entity => entity.entityRef)).toContain('blueprint/app/canvas');
   });
 });

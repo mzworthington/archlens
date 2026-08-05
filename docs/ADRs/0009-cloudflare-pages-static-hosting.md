@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-ArchLens production (docs + designer SPA, JSON Schema hosting, PWA) was deployed to GitHub Pages at `archlens.dev`. We need a code-first hosting stack with better CDN control, simpler SPA routing, and infrastructure defined in the repository rather than dashboard clicks.
+ArchLens production (docs + Canvas SPA, JSON Schema hosting, PWA) was deployed to GitHub Pages at `archlens.dev`. We need a code-first hosting stack with better CDN control, simpler SPA routing, and infrastructure defined in the repository rather than dashboard clicks.
 
 ## Decision Drivers
 
@@ -26,7 +26,7 @@ ArchLens production (docs + designer SPA, JSON Schema hosting, PWA) was deployed
 
 ## Decision Outcome
 
-Chosen option: "**Option C**", with Pulumi over Terraform because the maintainer prefers Pulumi for IaC. Pulumi manages the Pages project and custom domains (`PagesDomain` for apex + `www`, including DNS when the zone is on Cloudflare); CI builds `app/packages/designer/dist` and runs `wrangler pages deploy`. SPA fallback uses `public/_redirects` instead of GitHub Pages redirect scripts.
+Chosen option: "**Option C**", with Pulumi over Terraform because the maintainer prefers Pulumi for IaC. Pulumi manages the Pages project and custom domains (`PagesDomain` for apex + `www`, including DNS when the zone is on Cloudflare); CI builds `app/packages/canvas/dist` and runs `wrangler pages deploy`. SPA fallback uses `public/_redirects` instead of GitHub Pages redirect scripts.
 
 ### Consequences
 
@@ -40,7 +40,7 @@ Chosen option: "**Option C**", with Pulumi over Terraform because the maintainer
 ```mermaid
 flowchart LR
   GHA[GitHub Actions] --> Build[pnpm build]
-  Build --> Dist[designer/dist]
+  Build --> Dist[canvas/dist]
   Dist --> Wrangler[wrangler pages deploy]
   Wrangler --> CFP[Cloudflare Pages]
   Pulumi[Pulumi stack prod] --> CFP

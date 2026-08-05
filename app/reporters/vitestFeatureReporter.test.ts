@@ -33,7 +33,7 @@ function mockModule(
   return {
     type: 'module',
     children: children as TestModule['children'],
-    project: { name: opts.project ?? 'app' },
+    project: { name: opts.project ?? 'canvas' },
     relativeModuleId: opts.relativeModuleId ?? 'src/Canvas.test.tsx',
     moduleId: opts.moduleId ?? '/repo/src/Canvas.test.tsx',
   } as unknown as TestModule;
@@ -53,7 +53,7 @@ describe('VitestFeatureReporter', () => {
   });
 
   it('maps project names to package labels', () => {
-    expect(packageLabel('app')).toBe('Designer');
+    expect(packageLabel('canvas')).toBe('Canvas');
     expect(packageLabel('core')).toBe('Core');
     expect(packageLabel('cli')).toBe('CLI');
     expect(fileLabel('/x/src/entityRef.test.ts', 'src/entityRef.test.ts')).toBe('entityRef');
@@ -70,7 +70,7 @@ describe('VitestFeatureReporter', () => {
             mockTest('[unit] computes layout coordinates', 'passed'),
           ]),
         ],
-        { project: 'app', relativeModuleId: 'src/ui/Canvas.test.tsx' }
+        { project: 'canvas', relativeModuleId: 'src/ui/Canvas.test.tsx' }
       ),
       mockModule([mockSuite('entityRef Rules', [mockTest('parses refs', 'passed')])], {
         project: 'core',
@@ -82,17 +82,17 @@ describe('VitestFeatureReporter', () => {
     expect(md).toContain('## Core');
     expect(md).toContain('### entityRef');
     expect(md).toContain('#### entityRef Rules');
-    expect(md).toContain('## Designer');
+    expect(md).toContain('## Canvas');
     expect(md).toContain('### Canvas');
     expect(md).toContain('#### Canvas');
     expect(md).toContain('✅ collapses the side panels');
     expect(md).toContain('✅ parses refs');
     expect(md).not.toContain('computes layout coordinates');
-    // Packages sorted alphabetically: Core before Designer
-    expect(md.indexOf('## Core')).toBeLessThan(md.indexOf('## Designer'));
+    // Packages sorted alphabetically: Canvas before Core
+    expect(md.indexOf('## Canvas')).toBeLessThan(md.indexOf('## Core'));
     // Prettier-compatible list markers and heading spacing
     expect(md).toMatch(/\n- ✅ collapses the side panels\n/);
-    expect(md).toMatch(/## Designer\n\n### Canvas\n\n#### Canvas\n\n- ✅/);
+    expect(md).toMatch(/## Canvas\n\n### Canvas\n\n#### Canvas\n\n- ✅/);
   });
 
   it('embeds into an existing file between placeholders', async () => {
@@ -110,14 +110,14 @@ describe('VitestFeatureReporter', () => {
     expect(md).toContain('# Features');
     expect(md).toContain('Intro.');
     expect(md).toContain('Footer.');
-    expect(md).toContain('## Designer');
+    expect(md).toContain('## Canvas');
     expect(md).toContain('### Canvas');
     expect(md).toContain('#### Workspace');
     expect(md).toContain('✅ loads the sandbox');
     expect(md).not.toContain('\nold\n');
     expect(md).toMatch(
       new RegExp(
-        `<!-- ${embeddingPlaceholder}--start -->\\n\\n## Designer\\n\\n### Canvas\\n\\n#### Workspace\\n\\n- ✅ loads the sandbox\\n\\n<!-- ${embeddingPlaceholder}--end -->`
+        `<!-- ${embeddingPlaceholder}--start -->\\n\\n## Canvas\\n\\n### Canvas\\n\\n#### Workspace\\n\\n- ✅ loads the sandbox\\n\\n<!-- ${embeddingPlaceholder}--end -->`
       )
     );
   });

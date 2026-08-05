@@ -38,12 +38,12 @@ References are built from **short, URL-safe segments** joined by `/`:
 - Human labels are **slugified**: lower case, spaces → hyphens, punctuation removed (e.g. `App Service` → `app-service`).
 - Each extra `/` means **one level deeper** in the C4 zoom model.
 
-| Segments | Typical scope       | Example                         | What it represents                                        |
-| -------- | ------------------- | ------------------------------- | --------------------------------------------------------- |
-| 1        | Context (landscape) | `blueprint`                     | Whole product portfolio or programme map                  |
-| 2        | Container           | `blueprint/app`                 | A major system or bounded capability inside the landscape |
-| 3        | Component           | `blueprint/app/designer`        | A deployable or logical part inside that system           |
-| 4        | Code (optional)     | `blueprint/app/designer/canvas` | Finer module or package when you model at code level      |
+| Segments | Typical scope       | Example                       | What it represents                                        |
+| -------- | ------------------- | ----------------------------- | --------------------------------------------------------- |
+| 1        | Context (landscape) | `blueprint`                   | Whole product portfolio or programme map                  |
+| 2        | Container           | `blueprint/app`               | A major system or bounded capability inside the landscape |
+| 3        | Component           | `blueprint/app/canvas`        | A deployable or logical part inside that system           |
+| 4        | Code (optional)     | `blueprint/app/canvas/canvas` | Finer module or package when you model at code level      |
 
 **Diagram files** carry their scope in `metadata.entityRef` (and a friendly `metadata.name`). **Nodes** on the canvas each have their own `entityRef`. **Dependencies** list `from` and `to` entity references.
 

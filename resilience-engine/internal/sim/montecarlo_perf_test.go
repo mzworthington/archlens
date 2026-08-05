@@ -12,7 +12,7 @@ import (
 )
 
 // KR3: deterministic SLA/SLO report (including WASM Monte Carlo path) in <5s.
-// Default designer Monte Carlo config is 1000 iterations @ severityJitter 0.12.
+// Default Canvas Monte Carlo config is 1000 iterations @ severityJitter 0.12.
 const (
 	kr3MonteCarloBudget   = 5 * time.Second
 	defaultWasmIterations = 1000

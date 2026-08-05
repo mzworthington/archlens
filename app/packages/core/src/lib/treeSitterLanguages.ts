@@ -1,4 +1,4 @@
-/** Language keys shipped via tree-sitter-wasms (CLI scan + designer highlighting). */
+/** Language keys shipped via tree-sitter-wasms (CLI scan + Canvas highlighting). */
 export const TREE_SITTER_WASMS_PACKAGE_LANGUAGES = [
   'typescript',
   'tsx',
@@ -9,7 +9,7 @@ export const TREE_SITTER_WASMS_PACKAGE_LANGUAGES = [
   'c_sharp',
 ] as const;
 
-/** Additional grammars vendored outside tree-sitter-wasms (designer highlighting only). */
+/** Additional grammars vendored outside tree-sitter-wasms (canvas highlighting only). */
 export const TREE_SITTER_HCL_PACKAGE_LANGUAGES = ['terraform', 'hcl'] as const;
 
 export const TREE_SITTER_WASM_LANGUAGES = [

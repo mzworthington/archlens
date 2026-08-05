@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-ChaosLens must run heavy Monte Carlo blast-radius simulation in the browser and as a headless CLI, while the kit norm is TypeScript-first domain logic. Pure TypeScript hits event-loop and GC limits on large graphs; a second language needs a lasting boundary. Which engine is primary, and how do designer and core stay decoupled from the implementation language?
+ChaosLens must run heavy Monte Carlo blast-radius simulation in the browser and as a headless CLI, while the kit norm is TypeScript-first domain logic. Pure TypeScript hits event-loop and GC limits on large graphs; a second language needs a lasting boundary. Which engine is primary, and how do Canvas and core stay decoupled from the implementation language?
 
 ## Decision Drivers
 
@@ -30,7 +30,7 @@ Chosen option: "**Option A**", because the Go engine already ships as WASM (`cha
 
 ### Consequences
 
-- Good, because one Go sim core serves browser and CLI; designer talks only to `ResilienceEnginePort`.
+- Good, because one Go sim core serves browser and CLI; Canvas talks only to `ResilienceEnginePort`.
 - Bad, because this is a deliberate polyglot exception to kit TypeScript-first norms (extra toolchain, WASM artifacts, dual engine paths).
 - Mitigations: port boundary (`ResilienceEnginePort`); shared JSON/types in `@archlens/core/resilience` (`wasmTypes`, simulation result shape); TypeScript fallback via `runResilienceSimulation` when WASM fails or is absent.
 
@@ -38,7 +38,7 @@ Chosen option: "**Option A**", because the Go engine already ships as WASM (`cha
 
 ```mermaid
 flowchart LR
-  UI[Designer UI] --> Port[ResilienceEnginePort]
+  UI[Canvas UI] --> Port[ResilienceEnginePort]
   Port --> Go[Go WASM engine]
   Port --> TS[TypeScript fallback]
 ```

@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       deploy_to_cloudflare:
-        description: Deploy designer build to Cloudflare Pages after CI (main only)
+        description: Deploy Canvas build to Cloudflare Pages after CI (main only)
         type: boolean
         default: true
 
@@ -159,7 +159,7 @@ jobs:
 
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm --filter @archlens/designer exec playwright install --with-deps chromium
+        run: pnpm --filter @archlens/canvas exec playwright install --with-deps chromium
         working-directory: app
 
       - name: Run E2E and accessibility tests
@@ -172,8 +172,8 @@ jobs:
         with:
           name: playwright-report
           path: |
-            app/packages/designer/playwright-report/
-            app/packages/designer/test-results/
+            app/packages/canvas/playwright-report/
+            app/packages/canvas/test-results/
             docs/screenshots/
           retention-days: 30
 
@@ -221,12 +221,12 @@ jobs:
         run: pnpm build
         working-directory: app
 
-      - name: Upload designer dist
+      - name: Upload canvas dist
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         uses: actions/upload-artifact@v7
         with:
-          name: designer-dist
-          path: app/packages/designer/dist
+          name: canvas-dist
+          path: app/packages/canvas/dist
           retention-days: 1
 
   deploy-cloudflare:
@@ -245,18 +245,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v7
 
-      - name: Download designer dist
+      - name: Download canvas dist
         uses: actions/download-artifact@v8
         with:
-          name: designer-dist
-          path: app/packages/designer/dist
+          name: canvas-dist
+          path: app/packages/canvas/dist
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy app/packages/designer/dist --project-name=archlens --branch=main
+          command: pages deploy app/packages/canvas/dist --project-name=archlens --branch=main
 
   check-release:
     needs: [build, e2e]

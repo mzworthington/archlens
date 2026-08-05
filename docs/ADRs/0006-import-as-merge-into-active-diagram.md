@@ -12,8 +12,8 @@ External Mermaid and IaC must enter ArchLens without corrupting the canonical YA
 
 ## Decision Drivers
 
-- Hard to reverse: import UX and merge semantics couple core parsers, designer wizards, and draft/commit flow
-- Cross-cutting: `@archlens/core` merge plan + designer import adapters + canvas commit path
+- Hard to reverse: import UX and merge semantics couple core parsers, canvas wizards, and draft/commit flow
+- Cross-cutting: `@archlens/core` merge plan + canvas import adapters + canvas commit path
 - Preserve populated workspaces: do not clobber hand-edited topology or enrichment
 - Canonical format stays YAML `SystemSchema`; Mermaid remains a derived export ([AGENTS.md](../../AGENTS.md))
 
@@ -26,7 +26,7 @@ External Mermaid and IaC must enter ArchLens without corrupting the canonical YA
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because parsers and merge logic stay in core (`mermaidImport`, `schemaMerge`), the designer only previews conflicts and applies user resolutions into the working copy, and disk writes still go through DiffMenu commit. Wholesale replace (B) loses populated-workspace work; bidirectional Mermaid (C) fights the YAML canonical model and lossy Mermaid export; unlinked diagrams (D) break `entityRef`-linked navigation.
+Chosen option: "**Option A**", because parsers and merge logic stay in core (`mermaidImport`, `schemaMerge`), the Canvas package only previews conflicts and applies user resolutions into the working copy, and disk writes still go through DiffMenu commit. Wholesale replace (B) loses populated-workspace work; bidirectional Mermaid (C) fights the YAML canonical model and lossy Mermaid export; unlinked diagrams (D) break `entityRef`-linked navigation.
 
 ### Consequences
 

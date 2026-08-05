@@ -44,8 +44,8 @@ Chosen shape: context node → container diagram → component diagram via match
 flowchart TD
   CtxNode["Context node<br/>entityRef: blueprint/app"]
   ContDiag["Container diagram<br/>metadata.entityRef: blueprint/app"]
-  ContNode["Container node<br/>entityRef: blueprint/app/designer"]
-  CompDiag["Component diagram<br/>metadata.entityRef: blueprint/app/designer"]
+  ContNode["Container node<br/>entityRef: blueprint/app/canvas"]
+  CompDiag["Component diagram<br/>metadata.entityRef: blueprint/app/canvas"]
 
   CtxNode -->|equality link| ContDiag
   ContDiag --> ContNode

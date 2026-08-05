@@ -6,7 +6,7 @@ node = "26.4.0"
 pnpm = "11.10.0"
 bun = "1.3.14"
 go = "1.26.5"
-# Docs media: designer GIFs (record:docs-media) + CLI tape (test:vhs).
+# Docs media: canvas GIFs (record:docs-media) + CLI tape (test:vhs).
 # Optional for agents — `bin/setup-dev-env.sh` installs node/pnpm/bun/go only.
 ffmpeg = "8.1.2"
 vhs = "0.11.0"
@@ -21,11 +21,11 @@ description = "Install app/ Node dependencies"
 run = "cd app && pnpm install"
 
 [tasks.dev]
-description = "Designer dev server (docs + canvas)"
+description = "Canvas dev server (docs + canvas)"
 run = "cd app && pnpm dev"
 
 [tasks.build-wasm]
-description = "Build ChaosLens Go WASM into designer public assets"
+description = "Build ChaosLens Go WASM into canvas public assets"
 run = "make -C resilience-engine copy-wasm"
 
 [tasks.test-go]
@@ -41,7 +41,7 @@ description = "Run all app/ unit tests"
 run = "cd app && pnpm test"
 
 [tasks.build]
-description = "Production build (WASM + designer + CLI)"
+description = "Production build (WASM + canvas + CLI)"
 depends = ["build-wasm"]
 run = "cd app && pnpm build"
 

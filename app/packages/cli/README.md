@@ -2,7 +2,7 @@
 
 ![ArchLens Interactive Prompts](../../docs/screenshots/cli.gif)
 
-Scans a local codebase, extracts modules and dependencies via static analysis, and writes C4-style YAML under `blueprints/`. Diagram layout is handled by the designer (autolayout on open; optional `x`/`y` when you customize positions in the UI).
+Scans a local codebase, extracts modules and dependencies via static analysis, and writes C4-style YAML under `blueprints/`. Diagram layout is handled by ArchLens Canvas (autolayout on open; optional `x`/`y` when you customize positions in the UI).
 
 Supports **multi-system** / monorepo discovery, **product hubs** on the context diagram, **type hydration**, **gitignore + structural filters**, **optional Git forensics**, and **cancelable** runs (Ctrl+C).
 
@@ -128,7 +128,7 @@ Files are included only if they pass **all** of:
 4. Optional config / CLI `--ignore`
 5. Optional config `include` allow-list
 
-Test paths stay in the model and are tagged `isTest` (designer can hide them). Detection covers
+Test paths stay in the model and are tagged `isTest` (ArchLens Canvas can hide them). Detection covers
 JS/TS (`*.test.ts`, `__tests__`), .NET (`*.UnitTests`, `FooTests.cs`), Go, Java, and Python
 conventions. Pure test projects are also tagged at the **container** level so they hide with
 “Show test components” off.
@@ -140,11 +140,11 @@ After extraction, nodes/edges are classified from imports, constructors, and pat
 ### Dependency resolution (TypeScript / JavaScript)
 
 - **Relative imports** (`./foo`, `../bar`) - matched to components by filename within the repo scan.
-- **Workspace package imports** (`@scope/pkg`, including subpaths like `@scope/pkg/rules/graph`) - resolved via each package’s `package.json` `name` to its container (`packages/designer` → `designer`, `@archlens/core` → `core`). These emit both **inter-container** edges and **component-level** edges (default target: the package entry `index` component).
+- **Workspace package imports** (`@scope/pkg`, including subpaths like `@scope/pkg/rules/graph`) - resolved via each package’s `package.json` `name` to its container (`packages/canvas` → `canvas`, `@archlens/core` → `core`). These emit both **inter-container** edges and **component-level** edges (default target: the package entry `index` component).
 - **Node.js built-ins** (`path`, `fs`, `node:path`, …) - ignored; they no longer fuzzy-match local files with the same basename.
 - **npm dependencies** (`react`, `lodash`, …) - not linked to in-repo containers unless they appear as workspace packages.
 
-After writers finish, an **externals pass** enriches component and container YAML with proxy nodes for unresolved cross-diagram dependency endpoints, and synthesizes missing **dependency edges** from component-level evidence when a container diagram shows service nodes (for example API → external Auth). That is how, for example, designer → core package usage surfaces as external nodes on the designer component diagram, and cross-container calls appear on container-level storefront diagrams for ChaosLens.
+After writers finish, an **externals pass** enriches component and container YAML with proxy nodes for unresolved cross-diagram dependency endpoints, and synthesizes missing **dependency edges** from component-level evidence when a container diagram shows service nodes (for example API → external Auth). That is how, for example, canvas → core package usage surfaces as external nodes on the canvas component diagram, and cross-container calls appear on container-level storefront diagrams for ChaosLens.
 
 For **C# / .NET**, the analyzer also resolves `.csproj` `<ProjectReference>` edges and cross-namespace `using` dependencies. See the [project roadmap](../../README.md#c-and-net-analysis) for planned Aspire, integration-event, and HTTP/gRPC client detection.
 

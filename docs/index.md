@@ -1,6 +1,6 @@
 # ArchLens documentation
 
-Product docs are Markdown in this folder. The designer app renders them at:
+Product docs are Markdown in this folder. ArchLens Canvas app renders them at:
 
 | Path                                      | Content                                     |
 | ----------------------------------------- | ------------------------------------------- |

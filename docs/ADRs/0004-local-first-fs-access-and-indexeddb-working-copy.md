@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-The designer must open and edit BlueprintSpec YAML without a backend workspace service. Edits need a durable draft layer, a clear path to disk, and boundaries that stay hexagonal. How should persistence work: browser FS Access + local drafts, a sync server, in-place disk edits, or ZIP round-trips?
+ArchLens Canvas must open and edit BlueprintSpec YAML without a backend workspace service. Edits need a durable draft layer, a clear path to disk, and boundaries that stay hexagonal. How should persistence work: browser FS Access + local drafts, a sync server, in-place disk edits, or ZIP round-trips?
 
 ## Decision Drivers
 
@@ -26,7 +26,7 @@ The designer must open and edit BlueprintSpec YAML without a backend workspace s
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because it matches the status-quo local-first designer: open a folder or sandbox, persist drafts/baselines via `WorkingCopyPort` (IndexedDB), and write disk YAML only through DiffMenu commit (revert restores baseline). No server workspace.
+Chosen option: "**Option A**", because it matches the status-quo local-first Canvas: open a folder or sandbox, persist drafts/baselines via `WorkingCopyPort` (IndexedDB), and write disk YAML only through DiffMenu commit (revert restores baseline). No server workspace.
 
 ### Consequences
 
@@ -48,5 +48,5 @@ flowchart LR
 ## Links
 
 - Related ADRs: [ADR-0001](./0001-yaml-blueprintspec-as-canonical-format.md), [ADR-0006](./0006-import-as-merge-into-active-diagram.md)
-- Spec / docs: [architecture.md](../architecture.md), [canvas guide](../guide/canvas.md); ports in `app/packages/designer/src/core/models/ports.ts`
+- Spec / docs: [architecture.md](../architecture.md), [canvas guide](../guide/canvas.md); ports in `app/packages/canvas/src/core/models/ports.ts`
 - Arch norms: hexagonal, DDD, vertical slices (kit `CODING_PHILOSOPHY.md`)

@@ -4,7 +4,7 @@
 
 ## Test plan
 
-- [ ] <!-- How did you verify this? e.g. pnpm test, manual steps in Designer -->
+- [ ] <!-- How did you verify this? e.g. pnpm test, manual steps in Canvas -->
 
 ## Related issues
 
