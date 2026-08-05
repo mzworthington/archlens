@@ -236,30 +236,48 @@ function findSystemNode(
   return undefined;
 }
 
+/**
+ * True when an entity (optionally on a given diagram) belongs to the subtree
+ * rooted at scopeEntityRef — shared by offender ranking and complexity summary.
+ */
+export function entityRefMatchesEntityScope(
+  entityRef: string,
+  scopeEntityRef: string,
+  systems: readonly LoadedSystemRef[],
+  diagramEntityRef?: string
+): boolean {
+  if (entityRef === scopeEntityRef) return true;
+  if (entityRef.startsWith(`${scopeEntityRef}/`)) return true;
+
+  const scope = findSystemNode(systems, scopeEntityRef);
+  if (scope && (scope.schemaLevel === 'container' || scope.schemaLevel === 'context')) {
+    const containerId = EntityRef.leaf(scopeEntityRef);
+    const node = findSystemNode(systems, entityRef)?.node;
+    if (node?.properties?.containerId === containerId) return true;
+  }
+
+  if (
+    diagramEntityRef &&
+    (diagramEntityRef === scopeEntityRef || diagramEntityRef.startsWith(`${scopeEntityRef}/`))
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 /** True when an offender row belongs to the entity subtree rooted at scopeEntityRef. */
 export function offenderMatchesEntityScope(
   offender: RankedOffender,
   scopeEntityRef: string,
   systems: readonly LoadedSystemRef[]
 ): boolean {
-  if (offender.entityRef === scopeEntityRef) return true;
-  if (offender.entityRef.startsWith(`${scopeEntityRef}/`)) return true;
-
-  const scope = findSystemNode(systems, scopeEntityRef);
-  if (scope && (scope.schemaLevel === 'container' || scope.schemaLevel === 'context')) {
-    const containerId = EntityRef.leaf(scopeEntityRef);
-    const offenderNode = findSystemNode(systems, offender.entityRef)?.node;
-    if (offenderNode?.properties?.containerId === containerId) return true;
-  }
-
-  if (
-    offender.diagramEntityRef === scopeEntityRef ||
-    offender.diagramEntityRef.startsWith(`${scopeEntityRef}/`)
-  ) {
-    return true;
-  }
-
-  return false;
+  return entityRefMatchesEntityScope(
+    offender.entityRef,
+    scopeEntityRef,
+    systems,
+    offender.diagramEntityRef
+  );
 }
 
 /** Resolve a ranked offender row by entity ref (ignores scope/filter). */

@@ -36,18 +36,23 @@ describe('chaosLensUrl', () => {
     ).toBe(
       '/workspace/shop?lens=chaoslens&faults=shop%2Fapi%7Eregion-outage%7Cshop%2Fweb%7Elatency'
     );
+    expect(buildChaosLensUrl('samples', { browseChaosSpecs: true })).toBe(
+      '/workspace/samples?lens=chaoslens&browse=chaosspecs'
+    );
   });
 
   it('parses workspace chaos lens URLs', () => {
     expect(parseChaosLensUrl('/workspace', 'lens=chaoslens')).toEqual({
       entityRef: undefined,
       faults: [],
+      browseChaosSpecs: false,
     });
     expect(
       parseChaosLensUrl('/workspace/shop', 'lens=chaoslens&fault=shop/api&type=latency')
     ).toEqual({
       entityRef: 'shop',
       faults: [{ nodeId: 'shop/api', faultType: 'latency', severity: 0.4 }],
+      browseChaosSpecs: false,
     });
     expect(
       parseChaosLensUrl(
@@ -57,6 +62,7 @@ describe('chaosLensUrl', () => {
     ).toEqual({
       entityRef: 'shop',
       faults: [{ nodeId: 'shop/api', faultType: 'region-outage', severity: 1 }],
+      browseChaosSpecs: false,
     });
     expect(
       parseChaosLensUrl(
@@ -69,6 +75,12 @@ describe('chaosLensUrl', () => {
         { nodeId: 'shop/api', faultType: 'region-outage', severity: 1 },
         { nodeId: 'shop/web', faultType: 'latency', severity: 0.55 },
       ],
+      browseChaosSpecs: false,
+    });
+    expect(parseChaosLensUrl('/workspace/samples', 'lens=chaoslens&browse=chaosspecs')).toEqual({
+      entityRef: 'samples',
+      faults: [],
+      browseChaosSpecs: true,
     });
   });
 

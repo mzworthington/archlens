@@ -12,11 +12,17 @@ import {
 export type ChaosLensUrlState = {
   entityRef?: string;
   faults: NodeFaultConfig[];
+  /** When true, open the Browse ChaosSpecs picker (`browse=chaosspecs`). */
+  browseChaosSpecs: boolean;
 };
 
 export type ChaosLensUrlOptions = {
   faults?: NodeFaultConfig[];
+  browseChaosSpecs?: boolean;
 };
+
+export const CHAOS_SPEC_BROWSE_PARAM = 'browse';
+export const CHAOS_SPEC_BROWSE_VALUE = 'chaosspecs';
 
 const FAULT_TYPES = new Set<FaultType>(['latency', 'error-rate', 'packet-loss', 'region-outage']);
 
@@ -111,6 +117,10 @@ export function buildChaosLensUrl(
     params.set('faults', faults.map(serializeFault).join('|'));
   }
 
+  if (options.browseChaosSpecs) {
+    params.set(CHAOS_SPEC_BROWSE_PARAM, CHAOS_SPEC_BROWSE_VALUE);
+  }
+
   const qs = params.toString();
   return qs ? `${path}?${qs}` : path;
 }
@@ -133,11 +143,12 @@ export function parseChaosLensUrl(pathname: string, search = ''): ChaosLensUrlSt
   const query = search.startsWith('?') ? search.slice(1) : search;
   const params = new URLSearchParams(query);
   const entityRef = workspaceEntityRefFromPath(pathname);
+  const browseChaosSpecs = params.get(CHAOS_SPEC_BROWSE_PARAM) === CHAOS_SPEC_BROWSE_VALUE;
   const faults = parseFaultsParam(params);
   if (faults.length > 0) {
-    return { entityRef, faults };
+    return { entityRef, faults, browseChaosSpecs };
   }
-  return { entityRef, faults: parseSingleFaultParams(params) };
+  return { entityRef, faults: parseSingleFaultParams(params), browseChaosSpecs };
 }
 
 export function clearChaosLensSearchParams(search = ''): string {
@@ -149,6 +160,7 @@ export function clearChaosLensSearchParams(search = ''): string {
   params.delete('type');
   params.delete('severity');
   params.delete('faults');
+  params.delete(CHAOS_SPEC_BROWSE_PARAM);
   return params.toString();
 }
 

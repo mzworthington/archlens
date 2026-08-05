@@ -133,4 +133,86 @@ describe('summarizeWorkspaceForensics', () => {
     expect(summary.totalLoc).toBe(0);
     expect(summary.avgComplexity).toBeNull();
   });
+
+  it('scopes complexity metrics to an entity subtree when scopeEntityRef is set', () => {
+    const systems = [
+      system('shop/api-components.yaml', {
+        level: 'component',
+        entityRef: 'shop/api',
+        name: 'API',
+        nodes: [
+          {
+            entityRef: 'shop/api/handler',
+            type: 'component',
+            name: 'Handler',
+            forensics: {
+              complexity: 12,
+              loc: 200,
+              sloc: 160,
+              hotspotScore: 0.4,
+              classifications: ['hotspot'],
+              hotspotCount: 1,
+            },
+          },
+          {
+            entityRef: 'shop/api/db',
+            type: 'component',
+            name: 'DB',
+            forensics: {
+              complexity: 40,
+              loc: 900,
+              sloc: 700,
+              hotspotScore: 0.8,
+              classifications: ['hotspot'],
+              hotspotCount: 1,
+            },
+          },
+        ],
+        dependencies: [
+          { from: 'shop/api/handler', to: 'shop/api/db', type: 'direct-call' },
+          { from: 'shop/api/handler', to: 'shop/web/ui', type: 'direct-call' },
+        ],
+      }),
+      system('shop/web-components.yaml', {
+        level: 'component',
+        entityRef: 'shop/web',
+        name: 'Web',
+        nodes: [
+          {
+            entityRef: 'shop/web/ui',
+            type: 'component',
+            name: 'UI',
+            forensics: {
+              complexity: 5,
+              loc: 50,
+              sloc: 40,
+              hotspotScore: 0.1,
+              classifications: [],
+            },
+          },
+        ],
+        dependencies: [],
+      }),
+    ];
+
+    const scoped = summarizeWorkspaceForensics(systems, { scopeEntityRef: 'shop/api' });
+
+    expect(scoped.diagramCount).toBe(1);
+    expect(scoped.nodeCount).toBe(2);
+    expect(scoped.dependencyCount).toBe(1); // only handler→db; cross-scope edge dropped
+    expect(scoped.totalLoc).toBe(1100);
+    expect(scoped.totalSloc).toBe(860);
+    expect(scoped.maxComplexity).toBe(40);
+    expect(scoped.avgComplexity).toBe(26);
+    expect(scoped.hotspotNodes).toBe(2);
+    expect(scoped.nodesWithForensics).toBe(2);
+
+    const leaf = summarizeWorkspaceForensics(systems, { scopeEntityRef: 'shop/api/db' });
+    expect(leaf.diagramCount).toBe(1);
+    expect(leaf.nodeCount).toBe(1);
+    expect(leaf.dependencyCount).toBe(0);
+    expect(leaf.totalLoc).toBe(900);
+    expect(leaf.maxComplexity).toBe(40);
+    expect(leaf.avgComplexity).toBe(40);
+  });
 });

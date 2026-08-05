@@ -17,6 +17,7 @@ describe('useWorkspaceLensSync', () => {
       isTraceLensMode: false,
       resilienceFaults: [],
       selectedNodeId: null,
+      isChaosSpecPickerOpen: false,
     });
   });
 
@@ -96,27 +97,45 @@ describe('useWorkspaceLensSync', () => {
     ]);
   });
 
-  it('does not enable ChaosLens from the URL on component diagrams', async () => {
-    const { hook } = memoryLocation({
-      path: '/workspace/shop/api?lens=chaoslens&fault=shop/api&type=latency&severity=0.55',
+  it('opens ChaosSpec picker from browse=chaosspecs and keeps it in the URL', async () => {
+    const mem = memoryLocation({
+      path: '/workspace/samples?lens=chaoslens&browse=chaosspecs',
+      record: true,
+    });
+
+    renderHook(() => useWorkspaceLensSync(), { wrapper: wrap(mem.hook) });
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
+      expect(useBlueprintStore.getState().isChaosSpecPickerOpen).toBe(true);
     });
 
     act(() => {
-      useBlueprintStore.getState().initSchema({
-        name: 'API Components',
-        version: '1.0.0',
-        level: 'component',
-        entityRef: 'shop/api',
-        nodes: [{ entityRef: 'shop/api/handlers', type: 'component', name: 'Handlers' }],
-        dependencies: [],
-      });
+      useBlueprintStore.getState().closeChaosSpecPicker();
     });
-
-    renderHook(() => useWorkspaceLensSync(), { wrapper: wrap(hook) });
 
     await waitFor(() => {
-      expect(useBlueprintStore.getState().isResilienceMode).toBe(false);
+      expect(mem.history?.[mem.history.length - 1]).toBe('/workspace/samples?lens=chaoslens');
     });
-    expect(useBlueprintStore.getState().resilienceFaults).toEqual([]);
+  });
+
+  it('writes browse=chaosspecs when the ChaosSpec picker opens', async () => {
+    const mem = memoryLocation({ path: '/workspace/samples?lens=chaoslens', record: true });
+
+    renderHook(() => useWorkspaceLensSync(), { wrapper: wrap(mem.hook) });
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
+    });
+
+    act(() => {
+      useBlueprintStore.getState().openChaosSpecPicker();
+    });
+
+    await waitFor(() => {
+      expect(mem.history?.[mem.history.length - 1]).toBe(
+        '/workspace/samples?lens=chaoslens&browse=chaosspecs'
+      );
+    });
   });
 });

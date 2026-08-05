@@ -31,6 +31,9 @@ export function useWorkspaceLensSync(): void {
   const setTraceLensMode = useBlueprintStore(s => s.setTraceLensMode);
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
+  const isChaosSpecPickerOpen = useBlueprintStore(s => s.isChaosSpecPickerOpen);
+  const openChaosSpecPicker = useBlueprintStore(s => s.openChaosSpecPicker);
+  const closeChaosSpecPicker = useBlueprintStore(s => s.closeChaosSpecPicker);
   const applyResilienceUrlState = useBlueprintStore(s => s.applyResilienceUrlState);
   const applyingUrlRef = useRef(false);
 
@@ -85,6 +88,24 @@ export function useWorkspaceLensSync(): void {
     });
   }, [location, search, applyResilienceUrlState]);
 
+  // URL → Browse ChaosSpecs picker (`browse=chaosspecs`).
+  // Depend on URL only — reading store via getState avoids closing a UI-opened picker
+  // before store→URL has written `browse=chaosspecs`.
+  useEffect(() => {
+    if (!isChaosLensUrl(location, search)) {
+      if (useBlueprintStore.getState().isChaosSpecPickerOpen) {
+        closeChaosSpecPicker();
+      }
+      return;
+    }
+    if (isTraceLensUrl(location, search) || isAdviceLensUrl(location, search)) return;
+
+    const wantOpen = parseChaosLensUrl(location, search).browseChaosSpecs;
+    const isOpen = useBlueprintStore.getState().isChaosSpecPickerOpen;
+    if (wantOpen && !isOpen) openChaosSpecPicker();
+    else if (!wantOpen && isOpen) closeChaosSpecPicker();
+  }, [location, search, openChaosSpecPicker, closeChaosSpecPicker]);
+
   // Store → ChaosLens URL while resilience mode is active
   useEffect(() => {
     if (!isResilienceMode) return;
@@ -93,10 +114,13 @@ export function useWorkspaceLensSync(): void {
     if (isAdviceLensUrl(location, search)) return;
 
     const entityRef = workspaceEntityRefFromPath(location);
-    const desired = buildChaosLensUrl(entityRef, { faults: resilienceFaults });
+    const desired = buildChaosLensUrl(entityRef, {
+      faults: resilienceFaults,
+      browseChaosSpecs: isChaosSpecPickerOpen,
+    });
     if (currentUrl(location, search) === desired) return;
     setLocation(desired, { replace: true });
-  }, [isResilienceMode, resilienceFaults, location, search, setLocation]);
+  }, [isResilienceMode, resilienceFaults, isChaosSpecPickerOpen, location, search, setLocation]);
 }
 
 export function useTraceLensNavigation() {
