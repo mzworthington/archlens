@@ -39,6 +39,11 @@ export {
   type UploadEstateFragmentResult,
 } from './catalog/estateFragmentStorage';
 export {
+  planAndOptionallyPruneRemoteCatalog,
+  type PruneRemoteCatalogOptions,
+  type PruneRemoteCatalogResult,
+} from './catalog/pruneRemoteCatalog';
+export {
   loadSuggestionOverlaysFromStorage,
   rejectSuggestionOverlayInStorage,
   uploadSuggestionOverlay,

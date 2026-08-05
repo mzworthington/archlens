@@ -1,4 +1,5 @@
 import {
+  DeleteObjectCommand,
   GetObjectCommand,
   ListObjectsV2Command,
   PutObjectCommand,
@@ -150,6 +151,14 @@ export function createS3ObjectStorage(
         }
         throw error;
       }
+    },
+    async deleteObject(key: string): Promise<void> {
+      await send(
+        new DeleteObjectCommand({
+          Bucket: config.bucket,
+          Key: resolveKey(key),
+        })
+      );
     },
   };
 }

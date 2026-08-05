@@ -145,6 +145,19 @@ export interface CatalogRejectOverlayCliPlan {
   keyPrefix?: string;
 }
 
+export interface CatalogPruneCliPlan {
+  estateId: string;
+  format: OutputFormat;
+  dryRun: boolean;
+  keepSnapshotCount: number;
+  keepSnapshotDays: number;
+  keepFragmentRuns: number;
+  storageProvider?: 'r2' | 's3' | 'azure';
+  bucket?: string;
+  accountId?: string;
+  keyPrefix?: string;
+}
+
 export type ArchlensCommandPlan =
   | { kind: 'architecture'; plan: ArchlensCliPlan }
   | { kind: 'validate'; plan: ValidateCliPlan }
@@ -154,7 +167,8 @@ export type ArchlensCommandPlan =
   | { kind: 'catalog-compose'; plan: CatalogComposeCliPlan }
   | { kind: 'catalog-publish-fragment'; plan: CatalogPublishFragmentCliPlan }
   | { kind: 'catalog-accept-overlay'; plan: CatalogAcceptOverlayCliPlan }
-  | { kind: 'catalog-reject-overlay'; plan: CatalogRejectOverlayCliPlan };
+  | { kind: 'catalog-reject-overlay'; plan: CatalogRejectOverlayCliPlan }
+  | { kind: 'catalog-prune'; plan: CatalogPruneCliPlan };
 
 export const DEFAULT_WATCH_DEBOUNCE_MS = 500;
 
@@ -358,6 +372,33 @@ export function parseCatalogRejectOverlayArgv(argv: string[]): CatalogRejectOver
   };
 }
 
+function parsePositiveIntFlag(argv: string[], name: string, fallback: number): number {
+  const raw = flagValue(argv, name);
+  if (raw === undefined) return fallback;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed >= 1 ? Math.trunc(parsed) : fallback;
+}
+
+export function parseCatalogPruneArgv(argv: string[]): CatalogPruneCliPlan {
+  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
+  const estateId = flagValue(rest, '--estate');
+  if (!estateId?.trim()) {
+    throw new Error('archlens catalog prune requires --estate=<id>');
+  }
+  return {
+    estateId: estateId.trim(),
+    format: parseOutputFormat(rest),
+    dryRun: !rest.includes('--no-dry-run'),
+    keepSnapshotCount: parsePositiveIntFlag(rest, '--keep-snapshots', 7),
+    keepSnapshotDays: parsePositiveIntFlag(rest, '--keep-snapshot-days', 14),
+    keepFragmentRuns: parsePositiveIntFlag(rest, '--keep-fragment-runs', 2),
+    storageProvider: parseStorageProvider(rest),
+    bucket: flagValue(rest, '--bucket'),
+    accountId: flagValue(rest, '--account-id'),
+    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
+  };
+}
+
 function parseOutputFormat(argv: string[]): OutputFormat {
   const raw = flagValue(argv, '--format');
   return raw === 'json' ? 'json' : 'text';
@@ -475,8 +516,11 @@ export function parseArchlensCommand(argv: string[]): ArchlensCommandPlan {
     if (action === 'reject-overlay') {
       return { kind: 'catalog-reject-overlay', plan: parseCatalogRejectOverlayArgv(argv) };
     }
+    if (action === 'prune') {
+      return { kind: 'catalog-prune', plan: parseCatalogPruneArgv(argv) };
+    }
     throw new Error(
-      `Unknown catalog action "${action ?? ''}". Use: archlens catalog compose | publish-fragment | accept-overlay | reject-overlay`
+      `Unknown catalog action "${action ?? ''}". Use: archlens catalog compose | publish-fragment | accept-overlay | reject-overlay | prune`
     );
   }
   return { kind: 'architecture', plan: parseArchlensArgv(argv) };

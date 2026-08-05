@@ -3,6 +3,7 @@ import {
   defaultEstateKeyPrefix,
   parseArchlensCommand,
   parseCatalogComposeArgv,
+  parseCatalogPruneArgv,
   parseCatalogPublishFragmentArgv,
 } from './parseArchlensArgv.ts';
 
@@ -37,6 +38,16 @@ describe('parse catalog commands', () => {
     expect(plan.keyPrefix).toBe('estates/acme');
   });
 
+  it('defaults prune retention policy and key prefix', () => {
+    const plan = parseCatalogPruneArgv(['catalog', 'prune', '--estate=samples']);
+    expect(plan.estateId).toBe('samples');
+    expect(plan.keyPrefix).toBe('estates/samples');
+    expect(plan.dryRun).toBe(true);
+    expect(plan.keepSnapshotCount).toBe(7);
+    expect(plan.keepSnapshotDays).toBe(14);
+    expect(plan.keepFragmentRuns).toBe(2);
+  });
+
   it('routes catalog actions through parseArchlensCommand', () => {
     const compose = parseArchlensCommand(['catalog', 'compose', '--estate=x']);
     expect(compose.kind).toBe('catalog-compose');
@@ -62,6 +73,18 @@ describe('parse catalog commands', () => {
       '--overlay-id=add-billing',
     ]);
     expect(reject.kind).toBe('catalog-reject-overlay');
+    const prune = parseArchlensCommand([
+      'catalog',
+      'prune',
+      '--estate=samples',
+      '--keep-snapshots=5',
+      '--no-dry-run',
+    ]);
+    expect(prune.kind).toBe('catalog-prune');
+    if (prune.kind === 'catalog-prune') {
+      expect(prune.plan.keepSnapshotCount).toBe(5);
+      expect(prune.plan.dryRun).toBe(false);
+    }
   });
 
   it('rejects missing required flags', () => {
@@ -69,5 +92,6 @@ describe('parse catalog commands', () => {
     expect(() =>
       parseCatalogPublishFragmentArgv(['catalog', 'publish-fragment', '--estate=x'])
     ).toThrow(/--product/);
+    expect(() => parseCatalogPruneArgv(['catalog', 'prune'])).toThrow(/--estate/);
   });
 });

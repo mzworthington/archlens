@@ -1,5 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
-import { GetObjectCommand, ListObjectsV2Command, PutObjectCommand } from '@aws-sdk/client-s3';
+import {
+  DeleteObjectCommand,
+  GetObjectCommand,
+  ListObjectsV2Command,
+  PutObjectCommand,
+} from '@aws-sdk/client-s3';
 import { createS3ObjectStorage } from './s3ObjectStorage';
 import { ObjectStoragePreconditionFailedError } from '../ports/objectStoragePort';
 import { InMemoryObjectStorage } from '../testing/inMemoryObjectStorage';
@@ -94,6 +99,29 @@ describe('Feature: S3-compatible object storage (R2 and AWS)', () => {
     ]);
   });
 
+  it('deletes objects through the S3 API', async () => {
+    const send = vi.fn(async command => {
+      if (command instanceof DeleteObjectCommand) {
+        expect(command.input.Key).toBe('tenant-a/snapshots/old/catalog.json');
+        return {};
+      }
+      throw new Error('unexpected command');
+    });
+
+    const storage = createS3ObjectStorage(
+      {
+        provider: 's3',
+        bucket: 'catalog',
+        accessKeyId: 'key',
+        secretAccessKey: 'secret',
+        keyPrefix: 'tenant-a',
+      },
+      { send }
+    );
+
+    await storage.deleteObject('snapshots/old/catalog.json');
+  });
+
   it('maps S3 412 responses to ObjectStoragePreconditionFailedError', async () => {
     const send = vi.fn(async () => {
       const error = new Error('Precondition Failed') as Error & {
@@ -140,5 +168,7 @@ describe('Feature: in-memory object storage CAS', () => {
       ifMatch: meta.etag,
     });
     await expect(storage.listObjectKeys('latest/')).resolves.toEqual(['latest/manifest.json']);
+    await storage.deleteObject('latest/manifest.json');
+    await expect(storage.listObjectKeys('latest/')).resolves.toEqual([]);
   });
 });

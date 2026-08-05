@@ -100,6 +100,7 @@ Steps 3–4 must finish before step 5 so `latest` never references a partial sna
 - Follow-up: ADR-0011 (object storage / R2 hosted catalog), ADR-0012 (remote read-only `WorkspacePort` adapter), ADR-0013 (practitioner connection profiles / auth), ADR-0014 (estate fragments + compose so multi-pipeline publishes do not clobber `latest`)
 - Implementation: `@archlens/storage` (`ObjectStoragePort` + R2/S3/Azure/HTTP adapters)
 - Open (slice 1): retain bundled `/bundled-blueprints/` as offline fallback until remote path is stable for 7 consecutive nightly publishes
+- Retention (ops): snapshots remain immutable while present; `archlens catalog prune` (and `prune-catalog.yml`) may delete unreferenced revisions and old fragment runs. Never deletes `latest/` or the revision `latest` points at.
 
 ## Architecture sketch
 

@@ -74,4 +74,8 @@ export class InMemoryObjectStorage implements ObjectStoragePort {
       etag: `etag-${this.etagCounter}`,
     });
   }
+
+  async deleteObject(key: string): Promise<void> {
+    this.objects.delete(key);
+  }
 }

@@ -90,5 +90,9 @@ export function createAzureBlobObjectStorage(config: AzureBlobStorageConfig): Ob
         throw error;
       }
     },
+    async deleteObject(key: string): Promise<void> {
+      const blob = container.getBlockBlobClient(joinObjectKey(prefix, key));
+      await blob.deleteIfExists();
+    },
   };
 }
