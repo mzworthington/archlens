@@ -1,5 +1,5 @@
 import type { C4Level, SystemNode } from '@archlens/core';
-import type { LoadedSystemRef } from './rankOffenders';
+import { entityRefMatchesEntityScope, type LoadedSystemRef } from './rankOffenders';
 
 export type { LoadedSystemRef };
 
@@ -29,6 +29,11 @@ export type WorkspaceComplexitySummary = {
    * leaf forensics node that reports LOC/SLOC.
    */
   fileCount: number;
+};
+
+export type SummarizeWorkspaceForensicsOptions = {
+  /** When set, metrics cover only the entity subtree (same rules as TraceLens scope). */
+  scopeEntityRef?: string | null;
 };
 
 const LEVEL_RANK: Record<C4Level, number> = {
@@ -63,21 +68,34 @@ function preferNode(existing: PreferredNode | undefined, next: PreferredNode): P
   return existing;
 }
 
+function diagramEntityRefOf(system: LoadedSystemRef): string {
+  return system.schema.entityRef || system.schema.name || system.path;
+}
+
 /**
  * Estate-level complexity snapshot for the loaded workspace (per-repo view).
  * Dedupes nodes by entityRef, preferring component > container > context so
  * rolled-up parents do not double-count child LOC when both are loaded.
+ * Optional entity scope mirrors TraceLens offender filtering.
  */
 export function summarizeWorkspaceForensics(
-  systems: readonly LoadedSystemRef[]
+  systems: readonly LoadedSystemRef[],
+  options?: SummarizeWorkspaceForensicsOptions
 ): WorkspaceComplexitySummary {
+  const scopeEntityRef = options?.scopeEntityRef?.trim() || null;
   const preferred = new Map<string, PreferredNode>();
-  let dependencyCount = 0;
+  const diagramsWithScopedNodes = new Set<string>();
 
   for (const system of systems) {
-    dependencyCount += system.schema.dependencies?.length ?? 0;
+    const diagramEntityRef = diagramEntityRefOf(system);
     for (const node of system.schema.nodes) {
       if (!node.entityRef) continue;
+      if (
+        scopeEntityRef &&
+        !entityRefMatchesEntityScope(node.entityRef, scopeEntityRef, systems, diagramEntityRef)
+      ) {
+        continue;
+      }
       preferred.set(
         node.entityRef,
         preferNode(preferred.get(node.entityRef), {
@@ -85,6 +103,20 @@ export function summarizeWorkspaceForensics(
           level: system.schema.level,
         })
       );
+      diagramsWithScopedNodes.add(system.path);
+    }
+  }
+
+  let dependencyCount = 0;
+  for (const system of systems) {
+    for (const dep of system.schema.dependencies ?? []) {
+      if (!scopeEntityRef) {
+        dependencyCount += 1;
+        continue;
+      }
+      if (preferred.has(dep.from) && preferred.has(dep.to)) {
+        dependencyCount += 1;
+      }
     }
   }
 
@@ -127,7 +159,7 @@ export function summarizeWorkspaceForensics(
   }
 
   return {
-    diagramCount: systems.length,
+    diagramCount: scopeEntityRef ? diagramsWithScopedNodes.size : systems.length,
     nodeCount: preferred.size,
     dependencyCount,
     nodesWithForensics,

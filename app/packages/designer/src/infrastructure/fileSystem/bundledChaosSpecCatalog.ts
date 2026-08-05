@@ -57,6 +57,10 @@ export async function loadBundledChaosSpecYaml(
 /**
  * Scan the open workspace for `chaos-specs/**` YAML files.
  * Returns catalog entries plus a map of id → yaml for opening without a second read.
+ *
+ * Catalog-only adapters (bundled samples / remote catalog) report no FS permission and
+ * only expose blueprint paths via `readDirectoryFiles` — skip them so the picker is not
+ * blocked downloading every BlueprintSpec YAML.
  */
 export async function loadWorkspaceChaosSpecs(
   workspacePort: WorkspacePort | null | undefined
@@ -66,6 +70,14 @@ export async function loadWorkspaceChaosSpecs(
 }> {
   const yamlById = new Map<string, string>();
   if (!workspacePort) return { entries: [], yamlById };
+
+  try {
+    if (!(await workspacePort.hasPermission())) {
+      return { entries: [], yamlById };
+    }
+  } catch {
+    return { entries: [], yamlById };
+  }
 
   let files: Array<{ name: string; content: string }> = [];
   try {

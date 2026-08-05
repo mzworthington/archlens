@@ -126,6 +126,78 @@ describe('TraceLensPanel', () => {
     expect(summary).toHaveTextContent('40');
   });
 
+  it('scopes workspace complexity metrics to the entity scope', () => {
+    useBlueprintStore.setState({
+      loadedSystems: [
+        {
+          path: 'designer-components.yaml',
+          name: 'designer',
+          schema: {
+            name: 'Designer Components',
+            version: '1.0.0',
+            level: 'component',
+            entityRef: 'app/designer',
+            dependencies: [
+              { from: 'app/designer/db', to: 'app/designer/ok', type: 'direct-call' },
+              { from: 'app/designer/db', to: 'app/cli/run', type: 'direct-call' },
+            ],
+            nodes: [
+              {
+                entityRef: 'app/designer/db',
+                name: 'DB Layer',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.85,
+                  complexity: 40,
+                  loc: 1200,
+                  sloc: 900,
+                  classifications: ['hotspot'],
+                },
+              },
+              {
+                entityRef: 'app/designer/ok',
+                name: 'OK',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.05,
+                  complexity: 2,
+                  loc: 80,
+                  sloc: 60,
+                  classifications: [],
+                },
+              },
+              {
+                entityRef: 'app/cli/run',
+                name: 'CLI Run',
+                type: 'component',
+                forensics: {
+                  hotspotScore: 0.2,
+                  complexity: 8,
+                  loc: 400,
+                  sloc: 300,
+                  classifications: [],
+                },
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    const { hook } = memoryLocation({ path: '/workspace/app/designer/db?lens=tracelens' });
+    render(
+      <Router hook={hook}>
+        <TraceLensPanel />
+      </Router>
+    );
+
+    const summary = screen.getByTestId('workspace-complexity-summary');
+    expect(summary).toHaveTextContent('1,200');
+    expect(summary).toHaveTextContent('900');
+    expect(summary).not.toHaveTextContent('1,680');
+    expect(summary).toHaveTextContent('40');
+  });
+
   it('shows guidance when no blueprints are in scope', () => {
     useBlueprintStore.setState({
       loadedSystems: [],

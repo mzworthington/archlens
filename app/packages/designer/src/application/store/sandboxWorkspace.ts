@@ -27,7 +27,10 @@ export function buildWorkspaceEntityHref(
 
   if (isChaosLensUrl(pathname, search)) {
     const parsed = parseChaosLensUrl(pathname, search);
-    return buildChaosLensUrl(entityRef, { faults: parsed.faults });
+    return buildChaosLensUrl(entityRef, {
+      faults: parsed.faults,
+      browseChaosSpecs: parsed.browseChaosSpecs,
+    });
   }
 
   return `/workspace/${entityRef}`;

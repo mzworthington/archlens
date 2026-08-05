@@ -41,5 +41,12 @@ describe('sandboxWorkspace', () => {
         search: 'lens=chaoslens&faults=app%2Fapi~region-outage',
       })
     ).toBe('/workspace/application?lens=chaoslens&fault=app%2Fapi&type=region-outage');
+
+    expect(
+      buildWorkspaceEntityHref('samples', {
+        pathname: '/workspace/samples',
+        search: 'lens=chaoslens&browse=chaosspecs',
+      })
+    ).toBe('/workspace/samples?lens=chaoslens&browse=chaosspecs');
   });
 });

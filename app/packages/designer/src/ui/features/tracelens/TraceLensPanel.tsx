@@ -52,8 +52,8 @@ export const TraceLensPanel: React.FC = () => {
   } = actions;
 
   const complexitySummary = useMemo(
-    () => summarizeWorkspaceForensics(loadedSystems),
-    [loadedSystems]
+    () => summarizeWorkspaceForensics(loadedSystems, { scopeEntityRef }),
+    [loadedSystems, scopeEntityRef]
   );
 
   return (

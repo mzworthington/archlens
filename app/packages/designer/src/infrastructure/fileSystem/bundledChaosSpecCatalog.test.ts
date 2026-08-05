@@ -73,6 +73,23 @@ faults:
     expect(yamlById.get('local-outage.yaml')).toContain('Local outage');
   });
 
+  it('skips workspace scan when the adapter has no FS permission (samples/remote)', async () => {
+    const readDirectoryFiles = vi.fn(async () => {
+      throw new Error('readDirectoryFiles should not run for catalog-only adapters');
+    });
+    const result = await loadWorkspaceChaosSpecs({
+      selectDirectory: async () => true,
+      readFile: async () => '',
+      writeFile: async () => false,
+      getDirectoryName: () => 'samples',
+      hasPermission: async () => false,
+      readDirectoryFiles,
+    });
+    expect(result.entries).toEqual([]);
+    expect(result.yamlById.size).toBe(0);
+    expect(readDirectoryFiles).not.toHaveBeenCalled();
+  });
+
   it('lets workspace entries override bundled ids', () => {
     const merged = mergeChaosSpecCatalogSources(
       [

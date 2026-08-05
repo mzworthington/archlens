@@ -42,20 +42,30 @@ export const ChaosSpecPickerDialog: React.FC<Props> = ({ isOpen, onClose }) => {
     setLoadError(null);
 
     void (async () => {
+      // Show bundled catalog immediately — do not wait on workspace scanning.
+      let bundled: ChaosSpecCatalogEntry[] = [];
       try {
-        const [bundled, workspace] = await Promise.all([
-          loadBundledChaosSpecCatalog(),
-          loadWorkspaceChaosSpecs(workspacePort),
-        ]);
+        bundled = await loadBundledChaosSpecCatalog();
+        if (cancelled) return;
+        setEntries(bundled);
+        setLoading(false);
+      } catch (err) {
+        if (cancelled) return;
+        setLoadError(err instanceof Error ? err.message : 'Failed to load ChaosSpec catalog');
+        setEntries([]);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const workspace = await loadWorkspaceChaosSpecs(workspacePort);
         if (cancelled) return;
         setEntries(mergeChaosSpecCatalogSources(bundled, workspace.entries));
         setWorkspaceYamlById(workspace.yamlById);
       } catch (err) {
         if (cancelled) return;
-        setLoadError(err instanceof Error ? err.message : 'Failed to load ChaosSpec catalog');
-        setEntries([]);
-      } finally {
-        if (!cancelled) setLoading(false);
+        // Bundled list is already visible; surface workspace scan failures softly.
+        setLoadError(err instanceof Error ? err.message : 'Failed to scan workspace ChaosSpecs');
       }
     })();
 
