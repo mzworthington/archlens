@@ -10,7 +10,7 @@ For **using** ArchLens (install CLI, scan a repo, open canvas), see the [Product
 
 ## Environment & Tooling Setup
 
-We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, Go, and docs-media tooling (`ffmpeg`, `vhs`) defined in `mise.toml`. **Bun is required** for `@archlens/cli` builds and the husky pre-push gate. **ttyd** (for `pnpm test:vhs`) is installed via apt in CI; on macOS use `brew install ttyd`.
+We use **[Mise](https://mise.jdx.dev/)** to manage Node.js, pnpm, Bun, Go, and docs-media tooling (`ffmpeg`, `vhs`) defined in `mise.toml`. **Bun is required** for `@archlens/cli` builds. **ttyd** (for `pnpm test:vhs`) is installed via apt in CI; on macOS use `brew install ttyd`.
 
 1. **Install Mise:** Refer to the [Mise Installation Guide](https://mise.jdx.dev/getting-started.html) (e.g., `brew install mise`).
 2. **Activate Mise:** e.g. add `eval "$(mise activate zsh)"` to your `~/.zshrc`.
@@ -133,10 +133,6 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `res
 - When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract - commit fails if stale; run `pnpm generate:schema` to refresh
 - When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, and `go test`
 - ChaosLens WASM (`chaoslens.wasm`) is **not** checked into git - CI and `pnpm build` compile it via `make copy-wasm`; local `pnpm dev` runs `make ensure-wasm` on first start when artifacts are missing
-
-### Pre-push (commits being pushed)
-
-When commits in `@{upstream}..HEAD` touch `app/`, runs `pnpm typecheck` and `pnpm build` (`scripts/hooks/pre-push-app-build.sh`). This is a safety net if pre-commit was skipped (`git commit --no-verify`) or if you amended/rebased after commit.
 
 Install the recommended **YAML** extension (`redhat.vscode-yaml`). Workspace settings map `blueprints/**/*.yaml` to the local schema for autocomplete and validation.
 
