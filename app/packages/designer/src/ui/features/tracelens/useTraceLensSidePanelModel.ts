@@ -11,6 +11,7 @@ import {
 } from '../../../application/forensics/buildForensicsTrendDashboard';
 import { buildDependencyGraphModel } from '../../../application/forensics/filterSelectedDependencyFocus';
 import { countSchemaForensicsMetrics } from '../../../application/forensics/countForensicsMetrics';
+import { isDependencyFocusMode } from '../../../application/forensics/dependencyViewMode';
 import { useActiveDiagramEntity } from '../workspace/hooks/useActiveDiagramEntity';
 
 export function useTraceLensSidePanelModel() {
@@ -34,7 +35,6 @@ export function useTraceLensSidePanelModel() {
     toggleShowUpstreamExternals,
     showDownstreamExternals,
     toggleShowDownstreamExternals,
-    showSelectedDependenciesOnly,
     toggleShowSelectedDependenciesOnly,
     showHotspotHeatmap,
     toggleShowHotspotHeatmap,
@@ -125,7 +125,7 @@ export function useTraceLensSidePanelModel() {
     toggleShowUpstreamExternals,
     showDownstreamExternals,
     toggleShowDownstreamExternals,
-    showSelectedDependenciesOnly,
+    showSelectedDependenciesOnly: isDependencyFocusMode(dependencyViewMode),
     toggleShowSelectedDependenciesOnly,
     showHotspotHeatmap,
     toggleShowHotspotHeatmap,

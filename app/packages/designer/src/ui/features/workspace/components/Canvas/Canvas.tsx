@@ -11,6 +11,10 @@ import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
 import { useTraceLensOnboarding } from '../../hooks/useTraceLensOnboarding';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import { useCouplingLens } from '../../../../../application/forensics/useCouplingLens';
+import {
+  includeExternalsInFocusFromMode,
+  isDependencyFocusMode,
+} from '../../../../../application/forensics/dependencyViewMode';
 import { prefersReducedMotion } from '../../../../../application/store/layoutUtils';
 import { useBlastRippleAnimation } from '../../../resilience/useBlastRippleAnimation';
 import { DiagramLoadingOverlay } from './DiagramLoadingOverlay';
@@ -50,8 +54,6 @@ export const Canvas: React.FC = () => {
     showTests,
     showUpstreamExternals,
     showDownstreamExternals,
-    showSelectedDependenciesOnly,
-    includeExternalsInFocus,
     dependencyViewMode,
     setDependencyViewMode,
     showCoupling,
@@ -96,8 +98,6 @@ export const Canvas: React.FC = () => {
       showTests: state.showTests,
       showUpstreamExternals: state.showUpstreamExternals,
       showDownstreamExternals: state.showDownstreamExternals,
-      showSelectedDependenciesOnly: state.showSelectedDependenciesOnly,
-      includeExternalsInFocus: state.includeExternalsInFocus,
       dependencyViewMode: state.dependencyViewMode,
       setDependencyViewMode: state.setDependencyViewMode,
       showCoupling: state.showCoupling,
@@ -138,7 +138,7 @@ export const Canvas: React.FC = () => {
       showUpstreamExternals,
       showDownstreamExternals,
       expandedExternalHub,
-      includeExternalsInFocus,
+      dependencyViewMode,
     }),
     [
       schema,
@@ -148,7 +148,7 @@ export const Canvas: React.FC = () => {
       showUpstreamExternals,
       showDownstreamExternals,
       expandedExternalHub,
-      includeExternalsInFocus,
+      dependencyViewMode,
     ]
   );
 
@@ -193,8 +193,7 @@ export const Canvas: React.FC = () => {
         showUpstreamExternals,
         showDownstreamExternals,
         selectedNodeId,
-        showSelectedDependenciesOnly,
-        includeExternalsInFocus,
+        dependencyViewMode,
         isResilienceMode,
         simulationScopeSet,
         showCoupling,
@@ -209,8 +208,7 @@ export const Canvas: React.FC = () => {
       showUpstreamExternals,
       showDownstreamExternals,
       selectedNodeId,
-      showSelectedDependenciesOnly,
-      includeExternalsInFocus,
+      dependencyViewMode,
       isResilienceMode,
       simulationScopeSet,
       showCoupling,
@@ -231,8 +229,8 @@ export const Canvas: React.FC = () => {
         allEdges: edges,
         visibleNodeIds: new Set(filteredNodes.map(node => node.id)),
         enabled:
-          showSelectedDependenciesOnly &&
-          !includeExternalsInFocus &&
+          isDependencyFocusMode(dependencyViewMode) &&
+          !includeExternalsInFocusFromMode(dependencyViewMode) &&
           !showCoupling &&
           !isResilienceMode &&
           !!selectedNodeId,
@@ -242,8 +240,7 @@ export const Canvas: React.FC = () => {
       nodes,
       edges,
       filteredNodes,
-      showSelectedDependenciesOnly,
-      includeExternalsInFocus,
+      dependencyViewMode,
       showCoupling,
       isResilienceMode,
     ]
@@ -292,7 +289,7 @@ export const Canvas: React.FC = () => {
         focusedCyclePath,
         couplingFocusMode,
         selectedNodeId,
-        showSelectedDependenciesOnly,
+        dependencyViewMode,
         couplingGhostNodes,
         workspaceFilepathIndex,
         showCoupling,
@@ -314,7 +311,7 @@ export const Canvas: React.FC = () => {
       focusedCyclePath,
       couplingFocusMode,
       selectedNodeId,
-      showSelectedDependenciesOnly,
+      dependencyViewMode,
       couplingGhostNodes,
       workspaceFilepathIndex,
       showCoupling,
@@ -348,7 +345,7 @@ export const Canvas: React.FC = () => {
         showCouplingSchemaDeps,
         selectedEdgeId,
         edges,
-        showSelectedDependenciesOnly,
+        dependencyViewMode,
         liteCanvas,
         reduceMotion,
         isResilienceMode,
@@ -370,7 +367,7 @@ export const Canvas: React.FC = () => {
       showCouplingSchemaDeps,
       selectedEdgeId,
       edges,
-      showSelectedDependenciesOnly,
+      dependencyViewMode,
       liteCanvas,
       reduceMotion,
       isResilienceMode,

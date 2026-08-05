@@ -1,6 +1,5 @@
 import {
   applySuggestionOverlays,
-  buildRemoteCatalogSnapshotPlan,
   composeEstateFragments,
   parseSchemaFromYaml,
   remoteCatalogLatestManifestKey,
@@ -17,9 +16,12 @@ import {
   type ObjectStoragePort,
 } from '@archlens/storage';
 import type { CatalogComposeCliPlan } from './parseArchlensArgv.ts';
-import { computeRemoteCatalogRevisionId } from './remoteCatalogRevision.ts';
-import { getArchlensVersion } from './version.ts';
 import type { PublishDryRunResult, PublishUploadResult } from './formatPublishDryRunResult.ts';
+import {
+  prepareRemoteCatalogSnapshot,
+  toPublishDryRunResult,
+  toPublishUploadResult,
+} from './prepareRemoteCatalogSnapshot.ts';
 
 const DEFAULT_WORKSPACE_NAME = 'blueprints';
 
@@ -46,7 +48,7 @@ export type ComposeCatalogOutcome =
     }
   | {
       kind: 'uploaded';
-      result: PublishUploadResult;
+      result: PublishUploadResult & { objects: PublishDryRunResult['objects'] };
       contributors: ReturnType<typeof composeEstateFragments>['contributors'];
       appliedOverlays: SuggestionOverlay[];
       attempts: number;
@@ -110,12 +112,9 @@ export async function runComposeCatalog(
     return { kind: 'validation-failed', validation, parseErrors };
   }
 
-  const revisionId = computeRemoteCatalogRevisionId(yamlObjects);
-  const snapshotPlan = buildRemoteCatalogSnapshotPlan({
-    revisionId,
+  const { snapshotPlan } = prepareRemoteCatalogSnapshot({
     yamlObjects,
     workspaceName: plan.workspaceName ?? plan.estateId ?? DEFAULT_WORKSPACE_NAME,
-    toolVersion: `archlens ${getArchlensVersion()}`,
     publishedAt: (deps.now ?? (() => new Date()))().toISOString(),
   });
 
@@ -124,16 +123,7 @@ export async function runComposeCatalog(
       kind: 'dry-run',
       contributors: composed.contributors,
       appliedOverlays: withOverlays.applied,
-      result: {
-        dryRun: true,
-        revisionId: snapshotPlan.revisionId,
-        snapshotPrefix: snapshotPlan.snapshotPrefix,
-        snapshotManifest: snapshotPlan.snapshotManifest,
-        latestPointer: snapshotPlan.latestPointer,
-        catalogEntryCount: snapshotPlan.catalog.length,
-        objects: snapshotPlan.objects,
-        validation,
-      },
+      result: toPublishDryRunResult(snapshotPlan, validation),
     };
   }
 
@@ -150,19 +140,8 @@ export async function runComposeCatalog(
         contributors: composed.contributors,
         appliedOverlays: withOverlays.applied,
         result: {
-          dryRun: false,
-          revisionId: upload.revisionId,
-          snapshotPrefix: snapshotPlan.snapshotPrefix,
-          snapshotManifest: snapshotPlan.snapshotManifest,
-          latestPointer: snapshotPlan.latestPointer,
-          catalogEntryCount: snapshotPlan.catalog.length,
+          ...toPublishUploadResult(snapshotPlan, validation, storage, upload),
           objects: snapshotPlan.objects,
-          validation,
-          upload: {
-            revisionId: upload.revisionId,
-            provider: storage.provider,
-            uploadedObjects: upload.uploadedObjects,
-          },
         },
       };
     } catch (error) {

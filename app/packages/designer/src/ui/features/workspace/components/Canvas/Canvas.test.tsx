@@ -172,7 +172,7 @@ describe('Canvas Component', () => {
     useBlueprintStore.setState({
       selectedNodeId: 'c',
       showTests: true,
-      showSelectedDependenciesOnly: true,
+      dependencyViewMode: 'focus',
       isResilienceMode: true,
     });
 

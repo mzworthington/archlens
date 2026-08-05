@@ -23,9 +23,7 @@ describe('uiState Actions & State Management', () => {
     expect(state.showTests).toBe(false);
     expect(state.showUpstreamExternals).toBe(true);
     expect(state.showDownstreamExternals).toBe(true);
-    expect(state.showSelectedDependenciesOnly).toBe(true);
     expect(state.dependencyViewMode).toBe('focus');
-    expect(state.includeExternalsInFocus).toBe(false);
     expect(state.showCoupling).toBe(false);
     expect(state.showHotspotHeatmap).toBe(true);
     expect(state.liteCanvas).toBe(false);
@@ -74,16 +72,14 @@ describe('uiState Actions & State Management', () => {
     expect(useBlueprintStore.getState().showDownstreamExternals).toBe(true);
   });
 
-  it('should toggle showSelectedDependenciesOnly via toggleShowSelectedDependenciesOnly', () => {
+  it('should toggle dependency focus via toggleShowSelectedDependenciesOnly', () => {
     const store = useBlueprintStore.getState();
-    expect(store.showSelectedDependenciesOnly).toBe(true);
+    expect(store.dependencyViewMode).toBe('focus');
 
     store.toggleShowSelectedDependenciesOnly();
-    expect(useBlueprintStore.getState().showSelectedDependenciesOnly).toBe(false);
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('full');
 
     store.toggleShowSelectedDependenciesOnly();
-    expect(useBlueprintStore.getState().showSelectedDependenciesOnly).toBe(true);
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus');
   });
 
@@ -91,8 +87,6 @@ describe('uiState Actions & State Management', () => {
     const store = useBlueprintStore.getState();
     store.setDependencyViewMode('focus-externals');
     expect(useBlueprintStore.getState().dependencyViewMode).toBe('focus-externals');
-    expect(useBlueprintStore.getState().includeExternalsInFocus).toBe(true);
-    expect(useBlueprintStore.getState().showSelectedDependenciesOnly).toBe(true);
   });
 
   it('should toggle showCoupling property via toggleShowCoupling action', () => {
