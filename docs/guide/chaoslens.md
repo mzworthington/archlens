@@ -93,14 +93,14 @@ The simulation reads `node.resilience` when no UI override exists for that node.
 
 ## ChaosSpec scenarios
 
-Version-controlled failure scenarios live in `chaos-specs/` as YAML that references a blueprint diagram by `metadata.diagramRef` (no duplicated topology). Load and export from **Open → Load/Export ChaosSpec** or the ChaosLens panel.
+Version-controlled failure scenarios live in `chaos-specs/` as YAML that references a blueprint diagram by `metadata.diagramRef` (no duplicated topology). Browse the catalog from **Open → Browse ChaosSpecs** (or ChaosLens **Browse**) to jump to the target diagram and load the scenario. Paste/upload and export remain under **Load ChaosSpec** / **Export ChaosSpec**.
 
 Contract, public schema URLs, and field reference: **[ChaosSpec](./chaos-spec.md)**.
 
 ## Limitations (today)
 
-- Multi-fault scenarios via the scenario list or ChaosSpec import/export (**Open → Load/Export ChaosSpec** from the workspace menu, or the resilience panel)
-- Load and export ChaosSpec from the shared **ChaosSpec** dialog (Import / Export tabs)
+- Multi-fault scenarios via the scenario list, **Browse ChaosSpecs** catalog, or paste/upload import
+- Load and export ChaosSpec from the shared **ChaosSpec** dialog (Import / Export tabs); catalog picker navigates by `diagramRef`
 - WASM Monte Carlo when the resilience engine is deployed; TypeScript fallback uses the same propagation rules without trial bands
 - No headless CLI / CI gate in the product yet
 - No OpenTelemetry import

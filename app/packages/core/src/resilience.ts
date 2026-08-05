@@ -1,5 +1,6 @@
 export * from './resilience/faultSpec';
 export * from './resilience/chaosSpecDocument';
+export * from './resilience/chaosSpecCatalog';
 export * from './resilience/nodeResilience';
 export * from './resilience/graph';
 export * from './resilience/blastRadius';

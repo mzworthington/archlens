@@ -135,12 +135,12 @@ chaos latest
 
 ## Using ChaosSpec in products
 
-| Surface             | How                                                                                                                  |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **ArchLens Canvas** | **Open → Load/Export ChaosSpec**, or the ChaosLens resilience panel ChaosSpec dialog (Import / Export)               |
-| **ChaosLens**       | Load a scenario onto the active diagram; export the current multi-fault setup as YAML                                |
-| **AdviceLens CLI**  | `archlens resilience ./blueprints --chaos-specs=./chaos-specs`                                                       |
-| **Library**         | `parseChaosSpecFromYaml` → `chaosSpecDocumentToRuntime` → `runResilienceSimulation` from `@archlens/core/resilience` |
+| Surface             | How                                                                                                                                                     |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ArchLens Canvas** | **Open → Browse ChaosSpecs** (catalog → navigate + load), **Load ChaosSpec** (paste/upload), Export, or the ChaosLens panel **Browse** / **Paste YAML** |
+| **ChaosLens**       | Load a scenario onto the active diagram; export the current multi-fault setup as YAML                                                                   |
+| **AdviceLens CLI**  | `archlens resilience ./blueprints --chaos-specs=./chaos-specs`                                                                                          |
+| **Library**         | `parseChaosSpecFromYaml` → `chaosSpecDocumentToRuntime` → `runResilienceSimulation` from `@archlens/core/resilience`                                    |
 
 Validation against the active diagram: `validateChaosSpecForDiagram(doc, schema, diagramRef)`.
 
