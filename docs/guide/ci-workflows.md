@@ -9,6 +9,7 @@ Every workflow under [`.github/workflows/`](../../.github/workflows/).
 | Publish blueprint catalog | [`publish-blueprint-catalog.yml`](../../.github/workflows/publish-blueprint-catalog.yml) | Scan this repo → fragment → compose `estates/samples/` (product `archlens`)              | Cron daily **05:00 UTC**; `workflow_dispatch`                  |
 | Publish demo catalog      | [`publish-demo-catalog.yml`](../../.github/workflows/publish-demo-catalog.yml)           | Matrix: scan demo repos → fragment → compose `estates/samples/` (product = demo id)      | Cron Sundays **06:00 UTC**; `workflow_dispatch`                |
 | Compose catalog           | [`compose-catalog.yml`](../../.github/workflows/compose-catalog.yml)                     | Safety-net compose for the shared samples estate (fragments + overlays)                  | Cron hourly **:15 UTC**; `workflow_dispatch`                   |
+| Prune catalog             | [`prune-catalog.yml`](../../.github/workflows/prune-catalog.yml)                         | Retention GC: keep `latest` ∪ 7 snapshots / 14 days; 2 fragment runs per key             | Cron daily **07:00 UTC**; `workflow_dispatch`                  |
 | Pulumi Cloudflare         | [`pulumi-cloudflare.yml`](../../.github/workflows/pulumi-cloudflare.yml)                 | Pulumi preview / apply for Pages, DNS, and catalog R2                                    | `infra/cloudflare/**` on PR / `main`; `workflow_dispatch`      |
 | CodeQL Analysis           | [`codeql.yml`](../../.github/workflows/codeql.yml)                                       | CodeQL (JS/TS) → GitHub Security                                                         | `push` / `pull_request` → `main`; cron daily **12:00 UTC**     |
 | Lighthouse                | [`lighthouse.yml`](../../.github/workflows/lighthouse.yml)                               | Designer Lighthouse CI + report artifact                                                 | Cron Sundays **00:00 UTC**; `workflow_dispatch`                |
@@ -34,6 +35,7 @@ Stitching is **not** storage-event driven. The samples estate uses:
 
 1. **Primary** — each publish workflow runs `catalog publish-fragment` then `catalog compose` in the same job.
 2. **Safety net** — [`compose-catalog.yml`](../../.github/workflows/compose-catalog.yml) re-composes `estates/samples/` hourly (`--allow-empty` so an empty fragment set does not fail).
+3. **Retention** — [`prune-catalog.yml`](../../.github/workflows/prune-catalog.yml) runs daily at **07:00 UTC**. Default is **dry-run**; enable deletes via workflow input `execute=true` or repo variable `PRUNE_CATALOG_EXECUTE=true`. Policy: keep the `latest` revision, plus at least the 7 newest snapshots and anything within 14 days; keep 2 newest runs per fragment key. Never deletes `latest/` or `overlays/`. Requires a CLI release that includes `archlens catalog prune`.
 
 CLI for these jobs is installed from GitHub Releases via [`.github/actions/setup-archlens-cli`](../../.github/actions/setup-archlens-cli/action.yml) (`scripts/install.sh`).
 

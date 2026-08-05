@@ -60,4 +60,6 @@ export interface ObjectStoragePort {
    */
   listObjectKeys(prefix: string): Promise<string[]>;
   putObject(request: ObjectStoragePutRequest): Promise<void>;
+  /** Delete a single object by key (relative to storage root / keyPrefix). */
+  deleteObject(key: string): Promise<void>;
 }

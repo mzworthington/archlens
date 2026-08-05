@@ -16,6 +16,7 @@ import { executeResilienceRun } from './resilienceRun.ts';
 import { executePublishRun } from './publishRun.ts';
 import { executeComposeCatalogRun } from './composeCatalogRun.ts';
 import { executePublishFragmentRun } from './publishFragmentRun.ts';
+import { executePruneCatalogRun } from './pruneCatalogRun.ts';
 import { executeAcceptOverlayRun, executeRejectOverlayRun } from './suggestionOverlayRun.ts';
 import { resolveWatchOptions, watchAndRerun } from './watchAndRerun.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
@@ -159,6 +160,10 @@ async function run() {
     }
     if (command.kind === 'catalog-reject-overlay') {
       await executeRejectOverlayRun(command.plan);
+      return;
+    }
+    if (command.kind === 'catalog-prune') {
+      await executePruneCatalogRun(command.plan);
       return;
     }
   }

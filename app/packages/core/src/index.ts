@@ -5,6 +5,7 @@ export * from './lib/workspaceCatalog';
 export * from './lib/buildWorkspaceCatalogFromYaml';
 export * from './lib/remoteCatalogSnapshot';
 export * from './lib/estateFragment';
+export * from './lib/catalogPrune';
 export * from './lib/suggestionOverlay';
 export * from './lib/treeSitterLanguages';
 export * from './lib/nodePosition';

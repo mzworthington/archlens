@@ -354,6 +354,7 @@ function printCatalogHelp(): void {
   example('archlens catalog compose --estate=<id>');
   example('archlens catalog accept-overlay --estate=<id> --file=<overlay.yaml>');
   example('archlens catalog reject-overlay --estate=<id> --overlay-id=<id>');
+  example('archlens catalog prune --estate=<id>');
 
   heading('publish-fragment OPTIONS');
   flag('--estate=<id>', 'Estate id (default key prefix estates/{id}/)');
@@ -385,6 +386,15 @@ function printCatalogHelp(): void {
   flag('--validate', 'Fail compose when the composed tree fails validation');
   flag('--format=text|json', 'Output format (default: text)');
 
+  heading('prune OPTIONS');
+  flag('--estate=<id>', 'Estate id (default key prefix estates/{id}/)');
+  flag('--key-prefix=<path>', 'Override object key prefix (default: estates/{estate}/)');
+  flag('--keep-snapshots=<n>', 'Keep at least N newest snapshots (default: 7)');
+  flag('--keep-snapshot-days=<n>', 'Also keep snapshots newer than N days (default: 14)');
+  flag('--keep-fragment-runs=<n>', 'Keep N newest runs per fragment key (default: 2)');
+  flag('--no-dry-run', 'Delete planned keys (default is dry-run)');
+  flag('--format=text|json', 'Output format (default: text)');
+
   heading('accept-overlay / reject-overlay OPTIONS');
   flag('--estate=<id>', 'Estate id (default key prefix estates/{id}/)');
   flag('--file=<overlay.yaml>', 'accept-overlay: suggestion overlay document to stage');
@@ -402,6 +412,10 @@ function printCatalogHelp(): void {
   example('archlens catalog reject-overlay --estate=acme --overlay-id=add-billing --no-dry-run');
   example('archlens catalog compose --estate=acme');
   example('archlens catalog compose --estate=acme --no-dry-run --format=json');
+  example('archlens catalog prune --estate=samples --key-prefix=estates/samples --format=json');
+  example(
+    'archlens catalog prune --estate=samples --key-prefix=estates/samples --no-dry-run --format=json'
+  );
 }
 
 function printUpdateHelp(): void {

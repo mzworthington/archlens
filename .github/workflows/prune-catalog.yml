@@ -1,0 +1,62 @@
+name: Prune catalog
+
+# Retention GC for estates/samples (ADR-0010 snapshots + ADR-0014 fragments).
+# Policy: keep latest ∪ max(7 newest snapshots, 14-day window); 2 runs per fragment key.
+# Defaults to dry-run; set PRUNE_CATALOG_EXECUTE=true (repo variable) or use workflow_dispatch input.
+
+on:
+  schedule:
+    - cron: '0 7 * * *' # 07:00 UTC daily (after 05:00 ArchLens publish)
+  workflow_dispatch:
+    inputs:
+      execute:
+        description: 'Delete planned keys (false = dry-run only)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prune-catalog
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup ArchLens CLI
+        uses: ./.github/actions/setup-archlens-cli
+
+      - name: Prune samples estate
+        env:
+          OBJECT_STORAGE_PROVIDER: r2
+          OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          OBJECT_STORAGE_KEY_PREFIX: estates/samples
+          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
+          PRUNE_EXECUTE: ${{ github.event_name == 'workflow_dispatch' && inputs.execute || vars.PRUNE_CATALOG_EXECUTE }}
+        run: |
+          set -euo pipefail
+          EXTRA=()
+          if [ "${PRUNE_EXECUTE:-}" = "true" ]; then
+            EXTRA+=(--no-dry-run)
+            echo "Executing prune (deletes enabled)."
+          else
+            echo "Dry-run only. Set workflow input execute=true or repo variable PRUNE_CATALOG_EXECUTE=true to delete."
+          fi
+          archlens catalog prune \
+            --estate=samples \
+            --key-prefix=estates/samples \
+            --keep-snapshots=7 \
+            --keep-snapshot-days=14 \
+            --keep-fragment-runs=2 \
+            --format=json \
+            "${EXTRA[@]}"

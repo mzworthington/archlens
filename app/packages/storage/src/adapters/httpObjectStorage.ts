@@ -75,5 +75,8 @@ export function createHttpObjectStorage(config: HttpObjectStorageConfig): Object
     async putObject(_request: ObjectStoragePutRequest): Promise<void> {
       throw new Error('HTTP object storage is read-only');
     },
+    async deleteObject(_key: string): Promise<void> {
+      throw new Error('HTTP object storage is read-only');
+    },
   };
 }
