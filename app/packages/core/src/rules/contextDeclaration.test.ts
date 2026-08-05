@@ -6,9 +6,9 @@ import { CONTEXT_OWNERSHIP_AUTHOR, CONTEXT_OWNERSHIP_PROPERTY } from './contextH
 import {
   assembleContextDeclaration,
   serializeContextDeclarationToYaml,
-  type ContextDeclaration,
 } from './contextDeclaration';
 import { hydrateContextSchema } from './contextHydration';
+import { parseSchemaFromYaml } from './graphParse';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../../');
 
@@ -113,10 +113,9 @@ describe('assembleContextDeclaration', () => {
     );
   });
 
-  it('assembles the committed ArchLens declaration and survives hydration', () => {
-    const declarationPath = path.join(repoRoot, 'scripts/declared-contexts/archlens.json');
-    const declaration = JSON.parse(readFileSync(declarationPath, 'utf8')) as ContextDeclaration;
-    const seed = assembleContextDeclaration(declaration);
+  it('hydrates the committed ArchLens blueprints context seed', () => {
+    const seedPath = path.join(repoRoot, 'blueprints/archlens/context.yaml');
+    const seed = parseSchemaFromYaml(readFileSync(seedPath, 'utf8'));
     expect(seed.nodes.some(n => n.entityRef === 'archlens/architect')).toBe(true);
     expect(seed.nodes.some(n => n.entityRef === 'archlens/blueprint-catalog-r2')).toBe(true);
 

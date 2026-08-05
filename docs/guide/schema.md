@@ -169,7 +169,7 @@ dependencies:
 | **Third-party**     | `external: true` + `properties.classification: third-party`                                                                                               |
 | **Display `name`**  | Optional everywhere; omit to derive from the `entityRef` leaf. Merges prefer an explicit name over a derived one; two explicit names keep the earlier one |
 
-Seed files live under the scan output directory: `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` (context folder optional). How scan merges into the seed: [ArchLens — Declare then scan](./cli.md#declare-then-scan). Catalog pipelines can assemble seeds from JSON — [CI workflows](./ci-workflows.md).
+Seed files live under the scan output directory: `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` (context folder optional). Commit them in-repo the same way this project does at [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml). How scan merges into the seed: [ArchLens — Declare then scan](./cli.md#declare-then-scan).
 
 ## Catalog staging vs BlueprintSpec
 
