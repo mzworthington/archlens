@@ -8,12 +8,12 @@ Hexagonal object storage port shared by the CLI (publish) and Canvas (read).
 
 ## Adapters
 
-| Provider | Adapter                        | Typical use                           |
-| -------- | ------------------------------ | ------------------------------------- |
-| `r2`     | `createS3ObjectStorage`        | Dogfood publish (Cloudflare R2)       |
-| `s3`     | `createS3ObjectStorage`        | Customer AWS buckets                  |
-| `azure`  | `createAzureBlobObjectStorage` | Customer Azure Blob containers        |
-| `http`   | `createHttpObjectStorage`      | Read-only public CDN (Canvas sandbox) |
+| Provider | Adapter                        | Typical use                            |
+| -------- | ------------------------------ | -------------------------------------- |
+| `r2`     | `createS3ObjectStorage`        | Hosted catalog publish (Cloudflare R2) |
+| `s3`     | `createS3ObjectStorage`        | Customer AWS buckets                   |
+| `azure`  | `createAzureBlobObjectStorage` | Customer Azure Blob containers         |
+| `http`   | `createHttpObjectStorage`      | Read-only public CDN (Canvas sandbox)  |
 
 ## CLI
 

@@ -138,4 +138,4 @@ Compose merges fragments (+ accepted overlays) into a normal ADR-0010 catalog of
 - [ArchLens](./cli.md) - generating diagrams that follow BlueprintSpec
 - [ArchLens Canvas](./canvas.md) - editing and validating in the workspace
 - [Getting started](./getting-started.md)
-- [GitHub Actions workflows](./ci-workflows.md) - fragment → compose dogfood jobs
+- [GitHub Actions workflows](./ci-workflows.md) - fragment → compose catalog jobs

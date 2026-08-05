@@ -4,11 +4,11 @@ date: 2026-08-04
 deciders: ['ArchLens maintainers']
 ---
 
-# 0011. Object storage for published blueprint corpora (R2 dogfood)
+# 0011. Object storage for published blueprint corpora (R2 hosted catalog)
 
 ## Context and Problem Statement
 
-ADR-0010 defines the remote catalog contract. ArchLens dogfood needs a **hosted object store** for nightly publishes from CI and **browser read access** for the sandbox on `archlens.dev`. Customer integrations (slice 2) should reuse the same S3-compatible port without locking to one vendor.
+ADR-0010 defines the remote catalog contract. ArchLens needs a **hosted object store** for nightly publishes from CI and **browser read access** for the sandbox on `archlens.dev`. Customer integrations (slice 2) should reuse the same S3-compatible port without locking to one vendor.
 
 ## Decision Drivers
 
@@ -20,7 +20,7 @@ ADR-0010 defines the remote catalog contract. ArchLens dogfood needs a **hosted 
 ## Considered Options
 
 - Option A — Keep full corpus bundled in Pages deploy (status quo)
-- Option B — Cloudflare R2 + custom domain `blueprints.archlens.dev` (dogfood)
+- Option B — Cloudflare R2 + custom domain `blueprints.archlens.dev` (hosted catalog)
 - Option C — Pages-only path (`/bundled-blueprints/`) with separate nightly Pages redeploy
 - Option D — GitHub Releases tarball consumed by Canvas
 
@@ -32,9 +32,9 @@ Chosen option: "**Option B**" — dedicated R2 bucket `archlens-blueprint-catalo
 - **CI publish:** `archlens publish --no-dry-run` via S3 API (`@aws-sdk/client-s3`, endpoint `https://{accountId}.r2.cloudflarestorage.com`)
 - **Secrets:** `R2_BLUEPRINT_CATALOG_*` in GitHub Actions (scoped Object Read & Write on the bucket only)
 
-Dogfood base URL (historical bucket root): `https://blueprints.archlens.dev/`.
+Hosted catalog base URL (historical bucket root): `https://blueprints.archlens.dev/`.
 
-**Dogfood estate (ADR-0014):** concurrent publishers stage **fragments** under one prefix and compose. Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/samples/`. Under that prefix the ADR-0010 layout (`latest/`, `snapshots/{revisionId}/`) is unchanged.
+**Samples estate (ADR-0014):** concurrent publishers stage **fragments** under one prefix and compose. Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/samples/`. Under that prefix the ADR-0010 layout (`latest/`, `snapshots/{revisionId}/`) is unchanged.
 
 | Fragment product | Workflow                              |
 | ---------------- | ------------------------------------- |

@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-The dogfood sandbox today uses `BundledSampleWorkspaceAdapter`, which fetches `/bundled-blueprints/catalog.json` and YAML from the Pages origin. ADR-0011 moves the corpus to R2. Canvas still loads diagrams through `WorkspacePort` (ADR-0004); we need a **read-only remote adapter** that follows ADR-0010 consume protocol without breaking folder workspaces or local drafts.
+The hosted sandbox today uses `BundledSampleWorkspaceAdapter`, which fetches `/bundled-blueprints/catalog.json` and YAML from the Pages origin. ADR-0011 moves the corpus to R2. Canvas still loads diagrams through `WorkspacePort` (ADR-0004); we need a **read-only remote adapter** that follows ADR-0010 consume protocol without breaking folder workspaces or local drafts.
 
 ## Decision Drivers
 
@@ -21,7 +21,7 @@ The dogfood sandbox today uses `BundledSampleWorkspaceAdapter`, which fetches `/
 
 - Option A — Keep bundled adapter only; redeploy Pages when blueprints change
 - Option B — New `createRemoteCatalogWorkspaceAdapter` + `VITE_REMOTE_CATALOG_BASE_URL` at build time
-- Option C — Runtime connection UI for dogfood (slice 2 pattern)
+- Option C — Runtime connection UI for the hosted sandbox (slice 2 pattern)
 - Option D — Service worker intercepts `/bundled-blueprints/` and proxies to R2
 
 ## Decision Outcome
