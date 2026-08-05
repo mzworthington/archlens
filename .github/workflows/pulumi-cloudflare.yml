@@ -53,16 +53,58 @@ jobs:
           PULUMI_CATALOG_BUCKET_NAME: ${{ vars.PULUMI_CATALOG_BUCKET_NAME }}
           PULUMI_CATALOG_DOMAIN: ${{ vars.PULUMI_CATALOG_DOMAIN }}
 
+      - name: Pulumi Cloud dashboard link
+        id: dashboard
+        working-directory: infra/cloudflare
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+        run: |
+          set -euo pipefail
+          FQ="$(pulumi stack --show-name -Q)"
+          URL="https://app.pulumi.com/${FQ}"
+          UPDATES_URL="${URL}/updates"
+          echo "stack=${FQ}" >> "$GITHUB_OUTPUT"
+          echo "url=${URL}" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Pulumi Cloud"
+            echo ""
+            echo "- **Stack:** \`${FQ}\`"
+            echo "- **Dashboard:** [${FQ}](${URL})"
+            echo "- **Updates:** [history](${UPDATES_URL})"
+            echo ""
+            echo "Open the dashboard link after preview to inspect the live update (diff, resources, diagnostics)."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::notice title=Pulumi Cloud::${URL}"
+          echo "Pulumi Cloud dashboard: ${URL}"
+          echo "Pulumi Cloud updates:   ${UPDATES_URL}"
+
       - name: Pulumi preview
         uses: pulumi/actions@v6
         with:
           command: preview
           stack-name: prod
           work-dir: infra/cloudflare
+          # Richer logs: per-resource diff + ANSI colors in the Actions console.
+          diff: true
+          color: always
+          suppress-progress: true
           comment-on-pr: ${{ github.event_name == 'pull_request' }}
+          comment-on-summary: true
+          always-include-summary: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+      - name: Append preview dashboard reminder
+        if: always()
+        env:
+          PULUMI_DASHBOARD_URL: ${{ steps.dashboard.outputs.url }}
+        run: |
+          {
+            echo ""
+            echo "### After this preview"
+            echo "Review the rich diff above, then open **[Pulumi Cloud → ${{ steps.dashboard.outputs.stack }}](${PULUMI_DASHBOARD_URL})** for the interactive update view."
+          } >> "$GITHUB_STEP_SUMMARY"
 
   apply:
     name: Apply (pulumi up)
@@ -95,11 +137,37 @@ jobs:
           PULUMI_CATALOG_BUCKET_NAME: ${{ vars.PULUMI_CATALOG_BUCKET_NAME }}
           PULUMI_CATALOG_DOMAIN: ${{ vars.PULUMI_CATALOG_DOMAIN }}
 
+      - name: Pulumi Cloud dashboard link
+        id: dashboard
+        working-directory: infra/cloudflare
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+        run: |
+          set -euo pipefail
+          FQ="$(pulumi stack --show-name -Q)"
+          URL="https://app.pulumi.com/${FQ}"
+          echo "stack=${FQ}" >> "$GITHUB_OUTPUT"
+          echo "url=${URL}" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Pulumi Cloud"
+            echo ""
+            echo "- **Stack:** \`${FQ}\`"
+            echo "- **Dashboard:** [${FQ}](${URL})"
+            echo "- **Updates:** [history](${URL}/updates)"
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::notice title=Pulumi Cloud::${URL}"
+          echo "Pulumi Cloud dashboard: ${URL}"
+
       - name: Pulumi up
         uses: pulumi/actions@v6
         with:
           command: up
           stack-name: prod
           work-dir: infra/cloudflare
+          diff: true
+          color: always
+          suppress-progress: true
+          comment-on-summary: true
+          always-include-summary: true
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
