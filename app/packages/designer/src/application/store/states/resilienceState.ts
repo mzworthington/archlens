@@ -52,6 +52,7 @@ export interface ResilienceState {
   resilienceSimulationScope: string[] | null;
   chaosSpecMetadata: ChaosSpecMetadata | null;
   chaosSpecDialogMode: 'import' | 'export' | null;
+  isChaosSpecPickerOpen: boolean;
   setResilienceMode: (enabled: boolean) => void;
   toggleResilienceMode: () => void;
   /** Apply shareable ChaosLens URL scenario (mode + faults). */
@@ -70,6 +71,8 @@ export interface ResilienceState {
   setResilienceMonteCarlo: (patch: Partial<MonteCarloConfig>) => void;
   openChaosSpecDialog: (mode: 'import' | 'export') => void;
   closeChaosSpecDialog: () => void;
+  openChaosSpecPicker: () => void;
+  closeChaosSpecPicker: () => void;
   applyChaosSpecYaml: (yaml: string) => string | null;
   clearResilienceScenario: () => void;
   runResilienceSimulation: () => void;
@@ -110,6 +113,7 @@ export const createResilienceState = (
   resilienceSimulationScope: null,
   chaosSpecMetadata: null,
   chaosSpecDialogMode: null,
+  isChaosSpecPickerOpen: false,
   setResilienceMode: enabled => {
     if (enabled && !isResilienceSimulationDiagramLevel(get().schema.level)) {
       return;
@@ -281,8 +285,10 @@ export const createResilienceState = (
         ...(patch.seed != null ? { seed: Math.max(1, Math.floor(patch.seed)) } : {}),
       },
     })),
-  openChaosSpecDialog: mode => set({ chaosSpecDialogMode: mode }),
+  openChaosSpecDialog: mode => set({ chaosSpecDialogMode: mode, isChaosSpecPickerOpen: false }),
   closeChaosSpecDialog: () => set({ chaosSpecDialogMode: null }),
+  openChaosSpecPicker: () => set({ isChaosSpecPickerOpen: true, chaosSpecDialogMode: null }),
+  closeChaosSpecPicker: () => set({ isChaosSpecPickerOpen: false }),
   applyChaosSpecYaml: yaml => {
     const state = get();
     let document;

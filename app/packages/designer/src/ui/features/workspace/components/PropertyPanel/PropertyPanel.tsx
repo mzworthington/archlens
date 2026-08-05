@@ -66,6 +66,7 @@ export const PropertyPanel: React.FC = () => {
     addResilienceFaultFromDraft,
     removeResilienceFault,
     openChaosSpecDialog,
+    openChaosSpecPicker,
     clearResilienceScenario,
     isSampleWorkspace,
   } = useBlueprintStore();
@@ -286,6 +287,7 @@ export const PropertyPanel: React.FC = () => {
               }}
               onAddFaultToScenario={addResilienceFaultFromDraft}
               onMonteCarloChange={setResilienceMonteCarlo}
+              onBrowseChaosSpecs={() => openChaosSpecPicker()}
               onLoadChaosSpec={() => openChaosSpecDialog('import')}
               onExportChaosSpec={() => openChaosSpecDialog('export')}
               onClearScenario={clearResilienceScenario}

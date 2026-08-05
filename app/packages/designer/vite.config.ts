@@ -12,12 +12,19 @@ import {
   wasmFileName,
 } from '../core/src/lib/treeSitterLanguages.ts';
 import { buildWorkspaceCatalogFromYamlFiles } from '../core/src/lib/buildWorkspaceCatalogFromYaml.ts';
+import {
+  toChaosSpecCatalogEntry,
+  sortChaosSpecCatalogEntries,
+} from '../core/src/resilience/chaosSpecCatalog.ts';
+import { parseChaosSpecFromYaml } from '../core/src/resilience/chaosSpecDocument.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoDocs = path.resolve(__dirname, '../../../docs');
 const repoSchemas = path.resolve(__dirname, '../../../schemas');
 const repoSamples = path.resolve(__dirname, '../../../samples');
+const repoChaosSpecs = path.resolve(__dirname, '../../../chaos-specs');
 const bundledBlueprintsDest = path.resolve(__dirname, 'public/bundled-blueprints');
+const bundledChaosSpecsDest = path.resolve(__dirname, 'public/bundled-chaos-specs');
 const base = process.env.VITE_BASE || '/';
 const bundledWorkspaceName = 'samples';
 
@@ -119,6 +126,76 @@ function syncBundledBlueprints(): Plugin {
     configureServer(server) {
       sync();
       server.watcher.unwatch(bundledBlueprintsDest);
+    },
+  };
+}
+
+function collectChaosSpecPaths(srcDir: string): string[] {
+  if (!fs.existsSync(srcDir)) return [];
+  return fs
+    .readdirSync(srcDir, { withFileTypes: true })
+    .filter(
+      entry => entry.isFile() && (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml'))
+    )
+    .map(entry => entry.name)
+    .sort();
+}
+
+/**
+ * Mirror repo `chaos-specs/` into `public/bundled-chaos-specs/` for the Canvas catalog picker.
+ * Emits `catalog.json` with metadata so the picker can list scenarios without fetching every YAML.
+ */
+function syncBundledChaosSpecs(): Plugin {
+  let lastSyncKey = '';
+
+  const sync = () => {
+    if (!fs.existsSync(repoChaosSpecs)) {
+      console.warn(`[sync-bundled-chaos-specs] Missing ${repoChaosSpecs}; skipping`);
+      return;
+    }
+
+    const paths = collectChaosSpecPaths(repoChaosSpecs);
+    const syncKey = paths
+      .map(relativePath => {
+        const stat = fs.statSync(path.join(repoChaosSpecs, relativePath));
+        return `${relativePath}:${stat.size}:${Math.trunc(stat.mtimeMs)}`;
+      })
+      .join('\n');
+    const catalogPath = path.join(bundledChaosSpecsDest, 'catalog.json');
+    if (syncKey === lastSyncKey && fs.existsSync(catalogPath)) {
+      return;
+    }
+
+    fs.rmSync(bundledChaosSpecsDest, { recursive: true, force: true });
+    fs.mkdirSync(bundledChaosSpecsDest, { recursive: true });
+
+    const entries = [];
+    for (const relativePath of paths) {
+      const content = fs.readFileSync(path.join(repoChaosSpecs, relativePath), 'utf8');
+      fs.writeFileSync(path.join(bundledChaosSpecsDest, relativePath), content);
+      try {
+        const document = parseChaosSpecFromYaml(content);
+        entries.push(toChaosSpecCatalogEntry(relativePath, document));
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.warn(`[sync-bundled-chaos-specs] Skipping ${relativePath}: ${message}`);
+      }
+    }
+
+    fs.writeFileSync(
+      catalogPath,
+      `${JSON.stringify({ entries: sortChaosSpecCatalogEntries(entries) }, null, 2)}\n`
+    );
+    lastSyncKey = syncKey;
+  };
+
+  return {
+    name: 'sync-bundled-chaos-specs',
+    configResolved: sync,
+    buildStart: sync,
+    configureServer(server) {
+      sync();
+      server.watcher.unwatch(bundledChaosSpecsDest);
     },
   };
 }
@@ -268,6 +345,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     syncBundledBlueprints(),
+    syncBundledChaosSpecs(),
     syncDocsAssets(),
     syncJsonSchemas(),
     syncTreeSitterWasms(),
@@ -314,13 +392,20 @@ export default defineConfig({
           'bundled-blueprints/golden-journey/**/*.{yaml,yml}',
           'bundled-blueprints/chaoslens-stress/**/*.{yaml,yml}',
           'bundled-blueprints/advicelens-stress/**/*.{yaml,yml}',
+          'bundled-chaos-specs/catalog.json',
+          'bundled-chaos-specs/**/*.{yaml,yml}',
         ],
         // Docs screenshots + schema pack are large and non-critical offline.
         // Do not glob-ignore all bundled-blueprints — that would drop the preload globs above.
         globIgnores: ['**/docs-assets/**', '**/schemas/**'],
         navigateFallback: 'index.html',
-        // Keep /schemas/*, /bundled-blueprints/*, and /assets/* as real assets, not the SPA shell.
-        navigateFallbackDenylist: [/^\/schemas\//, /^\/bundled-blueprints\//, /^\/assets\//],
+        // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/*, and /assets/* as real assets.
+        navigateFallbackDenylist: [
+          /^\/schemas\//,
+          /^\/bundled-blueprints\//,
+          /^\/bundled-chaos-specs\//,
+          /^\/assets\//,
+        ],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => url.pathname.includes('/bundled-blueprints/'),
@@ -329,6 +414,20 @@ export default defineConfig({
               cacheName: 'bundled-blueprints',
               expiration: {
                 maxEntries: 2000,
+                maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: ({ url }) => url.pathname.includes('/bundled-chaos-specs/'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'bundled-chaos-specs',
+              expiration: {
+                maxEntries: 200,
                 maxAgeSeconds: 60 * 60 * 24 * 7,
               },
               cacheableResponse: {

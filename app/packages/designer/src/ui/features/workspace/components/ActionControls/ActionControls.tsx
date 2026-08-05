@@ -168,6 +168,7 @@ export const ToolbarOpenMenu: React.FC = () => {
   const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
   const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
   const openChaosSpecDialog = useBlueprintStore(s => s.openChaosSpecDialog);
+  const openChaosSpecPicker = useBlueprintStore(s => s.openChaosSpecPicker);
   const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
@@ -261,6 +262,22 @@ export const ToolbarOpenMenu: React.FC = () => {
           role="menuitem"
           onClick={() => {
             close();
+            openChaosSpecPicker();
+          }}
+          disabled={controlsDisabled || !isWorkspaceOpen}
+          className={menuItemClass}
+          title="Browse bundled and workspace ChaosSpecs; opens the target diagram in ChaosLens"
+          id="browse-chaos-spec-action"
+          data-testid="browse-chaos-spec-action"
+        >
+          <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+          Browse ChaosSpecs
+        </button>
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            close();
             if (!isResilienceMode) {
               useBlueprintStore.getState().setResilienceMode(true);
             }
@@ -338,6 +355,7 @@ export const ToolbarOverflowMenu: React.FC = () => {
   const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
   const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
   const openChaosSpecDialog = useBlueprintStore(s => s.openChaosSpecDialog);
+  const openChaosSpecPicker = useBlueprintStore(s => s.openChaosSpecPicker);
   const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const loadedSystems = useBlueprintStore(s => s.loadedSystems);
@@ -442,6 +460,22 @@ export const ToolbarOverflowMenu: React.FC = () => {
         >
           <Cloud className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
           Import Infrastructure
+        </button>
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            close();
+            openChaosSpecPicker();
+          }}
+          disabled={openDisabled || !isWorkspaceOpenState}
+          className={menuItemClass}
+          title="Browse bundled and workspace ChaosSpecs; opens the target diagram in ChaosLens"
+          id="browse-chaos-spec-action-overflow"
+          data-testid="browse-chaos-spec-action-overflow"
+        >
+          <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+          Browse ChaosSpecs
         </button>
         <button
           type="button"
