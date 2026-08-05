@@ -21,7 +21,7 @@ Then verify with `archlens --version`. Full options, manual downloads, and the s
 1. **Interactive** - bare `archlens` opens a menu: scan wizard, publish snapshot, publish fragment, compose estate, accept/reject overlays
 2. **Quick scan** - `archlens scan` (or `archlens --scan`) runs headless with defaults from `blueprint.config.json` / env (no prompts)
 3. **Enrich existing YAML** - `archlens enrich` re-runs the externals pass on blueprint files already on disk (no source re-scan)
-4. **Validate blueprints** - `archlens validate [path]` checks schema, cycles, and entityRef links (CI-friendly)
+4. **Validate architecture health** - `archlens validate [path]` reports cycles + forensics fix actions; optional `--since-commit` regression and `--contract` wiring checks
 5. **Diff blueprint trees** - `archlens diff <baseline> <current>` structural compare for PR gates
 6. **AdviceLens estate sweep** - `archlens resilience [path]` runs ChaosLens scenarios and ranks recommendations
 7. **Headless flags / CI** - flags or non-TTY; suitable for automation
@@ -59,40 +59,40 @@ Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets
 
 ## Useful flags
 
-| Flag                               | Purpose                                                          |
-| ---------------------------------- | ---------------------------------------------------------------- |
-| `scan`                             | Non-interactive scan with defaults (same as `--scan`)            |
-| `--scan`                           | Non-interactive scan with defaults                               |
-| `enrich`                           | Re-run externals pass on existing YAML (no source re-scan)       |
-| `--enrich-only`                    | Same as `enrich` subcommand                                      |
-| `validate [path]`                  | Validate blueprint tree (schema, cycles, entityRef links)        |
-| `diff [baseline] [current]`        | Structural diff between two blueprint trees                      |
-| `resilience [path]`                | AdviceLens estate sweep + SLA gate (`--min-sla`, `--output`)     |
-| `--format=text \| json`            | Output format for `validate` / `diff` / `resilience`             |
-| `--version`, `-V`                  | Print installed CLI version and exit                             |
-| `update`                           | Download and install the latest release, then re-launch          |
-| `--no-update-check`                | Skip interactive startup update prompt                           |
-| `--watch`                          | Re-run analysis when source files change                         |
-| `--watch-debounce=<ms>`            | Debounce file changes before re-run (default `500`)              |
-| `--headless`                       | No prompts                                                       |
-| `--parser=tree-sitter \| ts-morph` | AST engine (default `tree-sitter`; `ts-morph` via flag only)     |
-| `--glob`                           | Inclusion pattern                                                |
-| `--output`                         | Output folder                                                    |
-| `--context`                        | Context / root name                                              |
-| `--system-name`                    | Software system for this repo (multi-repo products)              |
-| `--ignore`                         | Extra ignore globs (csv)                                         |
-| `--systems`                        | Limit discovery to roots                                         |
-| `--rollup-modules`                 | Collapse `*-module-*` packages                                   |
-| `--git` / `--no-git`               | TraceLens on (default) or off                                    |
-| `--git-since=<days>`               | Lookback window (default 365)                                    |
-| `--no-relayout`                    | Preserve existing `x`/`y` on re-scan (default recomputes layout) |
-| `publish [path]`                   | Plan/upload whole-tree remote catalog snapshot                   |
-| `catalog …`                        | Fragment / compose / overlay commands (see above)                |
-| `--publish`                        | After scan, upload output tree (`--no-dry-run`)                  |
-| `--validate`                       | With publish/compose: fail when workspace validation fails       |
-| `--skip-validation`                | Allow publish/compose without a validation gate (default)        |
-| `--key-prefix=<path>`              | Object key prefix inside the bucket                              |
-| `--estate=<id>` / `--product=<id>` | Catalog compose / fragment identity                              |
+| Flag                               | Purpose                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------- |
+| `scan`                             | Non-interactive scan with defaults (same as `--scan`)                     |
+| `--scan`                           | Non-interactive scan with defaults                                        |
+| `enrich`                           | Re-run externals pass on existing YAML (no source re-scan)                |
+| `--enrich-only`                    | Same as `enrich` subcommand                                               |
+| `validate [path]`                  | Architecture health (cycles + forensics); `--since-commit` / `--contract` |
+| `diff [baseline] [current]`        | Structural diff between two blueprint trees                               |
+| `resilience [path]`                | AdviceLens estate sweep + SLA gate (`--min-sla`, `--output`)              |
+| `--format=text \| json`            | Output format for `validate` / `diff` / `resilience`                      |
+| `--version`, `-V`                  | Print installed CLI version and exit                                      |
+| `update`                           | Download and install the latest release, then re-launch                   |
+| `--no-update-check`                | Skip interactive startup update prompt                                    |
+| `--watch`                          | Re-run analysis when source files change                                  |
+| `--watch-debounce=<ms>`            | Debounce file changes before re-run (default `500`)                       |
+| `--headless`                       | No prompts                                                                |
+| `--parser=tree-sitter \| ts-morph` | AST engine (default `tree-sitter`; `ts-morph` via flag only)              |
+| `--glob`                           | Inclusion pattern                                                         |
+| `--output`                         | Output folder                                                             |
+| `--context`                        | Context / root name                                                       |
+| `--system-name`                    | Software system for this repo (multi-repo products)                       |
+| `--ignore`                         | Extra ignore globs (csv)                                                  |
+| `--systems`                        | Limit discovery to roots                                                  |
+| `--rollup-modules`                 | Collapse `*-module-*` packages                                            |
+| `--git` / `--no-git`               | TraceLens on (default) or off                                             |
+| `--git-since=<days>`               | Lookback window (default 365)                                             |
+| `--no-relayout`                    | Preserve existing `x`/`y` on re-scan (default recomputes layout)          |
+| `publish [path]`                   | Plan/upload whole-tree remote catalog snapshot                            |
+| `catalog …`                        | Fragment / compose / overlay commands (see above)                         |
+| `--publish`                        | After scan, upload output tree (`--no-dry-run`)                           |
+| `--validate`                       | With publish/compose: fail when workspace validation fails                |
+| `--skip-validation`                | Allow publish/compose without a validation gate (default)                 |
+| `--key-prefix=<path>`              | Object key prefix inside the bucket                                       |
+| `--estate=<id>` / `--product=<id>` | Catalog compose / fragment identity                                       |
 
 With the default `tree-sitter` parser, language strategies cover TypeScript, C#, and Python (WASM grammars ship with the release binary). Pass `--parser=ts-morph` for TypeScript-only trees if needed.
 
