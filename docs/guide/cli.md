@@ -100,6 +100,53 @@ Terraform (`.tf` / `.tf.json`) and Pulumi (`Pulumi.yaml` projects) are auto-dete
 
 Contributor reference: full flag table and analyzer config in the [CLI README](https://github.com/mzworthington/archlens/blob/main/app/packages/cli/README.md).
 
+## Declare then scan
+
+By default a scan **creates** a system context when none exists (discovered systems plus a fallback `User` actor). You can instead **declare** a sparse context BlueprintSpec so scan extends that landscape ([ADR-0015](../ADRs/0015-declared-context-hydration.md), shape in [BlueprintSpec — Declared system context](./schema.md#declared-system-context)).
+
+### Workflow
+
+1. Author (or assemble) a `level: context` seed under the output dir:
+   - `blueprints/<ctx>/context.yaml`, or
+   - `blueprints/context.yaml` when the context folder is omitted  
+     Prefer an existing seed path on re-run.
+2. Run scan with the same `--context` (and `--output`) so the writer loads that file as the merge base.
+3. Open the result in Canvas — personas and third-parties stay; systems are hydrated from the repo.
+
+```bash
+# Example: seed already at blueprints/acme/context.yaml
+archlens scan --headless --output=blueprints --context=acme
+```
+
+### What scan does to a declared seed
+
+| Situation                                       | Result                                                                                              |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Seed missing                                    | Create context + systems + fallback `User` (today’s path)                                           |
+| Seed present                                    | Upsert discovered systems onto matching `entityRef`s; keep personas, third-parties, and their edges |
+| ≥1 product persona                              | Do **not** inject the fallback `User`                                                               |
+| System disappeared from this scan’s `rootPath`s | Prune that **scan-owned** orphan only (other repos’ systems stay)                                   |
+| Unreadable seed                                 | Warn, then create a fresh context                                                                   |
+
+**Display names:** omit `name` on declared nodes to derive a label from the `entityRef` leaf. Author-owned labels win over scan defaults; estate compose prefers curated names over derived ones.
+
+### Multi-repo products
+
+Scan each repo with the **same** `--context` and a distinct `--system-name` (or `systemName` in config). Share stable system `entityRef`s in the declared seed so every repo hydrates the same anchors. Personas and third-parties union by `entityRef` when fragments compose ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)).
+
+You do **not** need a “home vs secondary” seed flag — omit redundant `name`s and keep one shared identity per entity.
+
+### Assembling seeds from JSON (CI / batch)
+
+This repository’s catalog jobs assemble seeds before scan:
+
+| Source                                                                                                                                                                 | Assembler                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [`scripts/declared-contexts/archlens.json`](https://github.com/mzworthington/archlens/blob/main/scripts/declared-contexts/archlens.json)                               | `node scripts/assemble-context-seed.mjs --declaration=… --output=blueprints/archlens/context.yaml` |
+| `contextDeclaration` on each entry in [`scripts/blueprint-sample-repos.json`](https://github.com/mzworthington/archlens/blob/main/scripts/blueprint-sample-repos.json) | `… --catalog=… --sample-id=<id> --output=…`                                                        |
+
+See [GitHub Actions workflows](./ci-workflows.md) for where that runs in publish jobs.
+
 ## Deliverable
 
 YAML under the output directory - **not** a separate TraceLens report. Architecture graphs are the product; git signals attach onto `node.forensics` when enabled.
@@ -156,6 +203,6 @@ Prefer the versioned URL (`/schemas/v4/…`) when pinning a contract. `/schemas/
 ## Next
 
 - [TraceLens](./tracelens.md)
-- [BlueprintSpec](./schema.md)
+- [BlueprintSpec](./schema.md) — including [declared system context](./schema.md#declared-system-context)
 - [ArchLens Canvas](./canvas.md)
 - [GitHub Actions workflows](./ci-workflows.md)

@@ -119,6 +119,58 @@ The block below fetches the **latest** BlueprintSpec served with this app and pr
 latest
 ```
 
+## Declared system context
+
+A **system context** diagram (`level: context`) can be **authored** as well as generated. Declare personas, software-system anchors, and third-party dependencies up front; ArchLens scan **hydrates** discoveries into that seed instead of replacing human intent ([ADR-0015](../ADRs/0015-declared-context-hydration.md)).
+
+There is no separate BlueprintSpec `kind` — use `level: context`.
+
+### Sparse shape
+
+Minimum useful declaration for a multi-repo product:
+
+```yaml
+# yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  entityRef: acme
+  name: Acme # optional — omit to derive from entityRef
+nodes:
+  - entityRef: acme/checkout # stable identity across repos
+    type: software-system
+    # name omitted → derived "Checkout"
+  - entityRef: acme/buyer
+    type: person
+    name: Buyer # optional
+    properties:
+      role: product-persona
+  - entityRef: acme/payment-gateway
+    type: gateway-api
+    name: Payment Gateway # optional curated label
+    external: true
+    properties:
+      classification: third-party
+      vendor: Stripe
+dependencies:
+  - from: acme/buyer
+    to: acme/checkout
+    type: direct-call
+    description: Complete purchase
+  - from: acme/checkout
+    to: acme/payment-gateway
+    type: direct-call
+```
+
+| Concept             | Convention                                                                                                                                                |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Product persona** | `type: person` + `properties.role: product-persona`                                                                                                       |
+| **System anchor**   | `software-system` / `group` with a stable `entityRef` (and optional `name`)                                                                               |
+| **Third-party**     | `external: true` + `properties.classification: third-party`                                                                                               |
+| **Display `name`**  | Optional everywhere; omit to derive from the `entityRef` leaf. Merges prefer an explicit name over a derived one; two explicit names keep the earlier one |
+
+Seed files live under the scan output directory: `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` (context folder optional). How scan merges into the seed: [ArchLens — Declare then scan](./cli.md#declare-then-scan). Catalog pipelines can assemble seeds from JSON — [CI workflows](./ci-workflows.md).
+
 ## Catalog staging vs BlueprintSpec
 
 **BlueprintSpec is unchanged** by estate fragments and compose ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)). Diagram YAML in local folders, fragments, and published snapshots is still the same BlueprintSpec / `SystemSchema` contract on this page.
@@ -135,7 +187,7 @@ Compose merges fragments (+ accepted overlays) into a normal ADR-0010 catalog of
 ## Next
 
 - [ChaosSpec](./chaos-spec.md) - failure scenarios that reference BlueprintSpec diagrams
-- [ArchLens](./cli.md) - generating diagrams that follow BlueprintSpec
+- [ArchLens](./cli.md) - generating diagrams that follow BlueprintSpec (including [declare then scan](./cli.md#declare-then-scan))
 - [ArchLens Canvas](./canvas.md) - editing and validating in the workspace
 - [Getting started](./getting-started.md)
-- [GitHub Actions workflows](./ci-workflows.md) - fragment → compose catalog jobs
+- [GitHub Actions workflows](./ci-workflows.md) - declared seeds, fragment → compose catalog jobs
