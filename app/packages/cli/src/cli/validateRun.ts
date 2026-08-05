@@ -1,5 +1,4 @@
 import path from 'node:path';
-import { spawn } from 'node:child_process';
 import {
   assessArchitectureHealth,
   compareArchitectureHealth,
@@ -10,6 +9,7 @@ import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import type { ValidateCliPlan } from './parseArchlensArgv.ts';
 import { loadBlueprintTree } from './blueprintLoader.ts';
 import { formatArchitectureHealthResult } from './formatArchitectureHealth.ts';
+import { findGitRoot } from './gitProcess.ts';
 import { materializeGitBaselineBlueprints } from './materializeGitBaseline.ts';
 
 export async function executeValidateRun(plan: ValidateCliPlan): Promise<void> {
@@ -96,28 +96,4 @@ export async function executeValidateRun(plan: ValidateCliPlan): Promise<void> {
       await baselineCleanup();
     }
   }
-}
-
-function findGitRoot(startDir: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const child = spawn('git', ['rev-parse', '--show-toplevel'], {
-      cwd: startDir,
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-    let stdout = '';
-    let stderr = '';
-    child.stdout.on('data', chunk => {
-      stdout += String(chunk);
-    });
-    child.stderr.on('data', chunk => {
-      stderr += String(chunk);
-    });
-    child.on('close', code => {
-      if (code === 0 && stdout.trim()) {
-        resolve(stdout.trim());
-        return;
-      }
-      reject(new Error(stderr.trim() || 'Not inside a git repository.'));
-    });
-  });
 }

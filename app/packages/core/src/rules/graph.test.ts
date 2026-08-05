@@ -114,7 +114,7 @@ describe('Graph Validation & Cycle Detection', () => {
     expect(path![0]).toBe(path![path!.length - 1]);
   });
 
-  it('should detect cycles in disconnected subgraphs', () => {
+  it('should ignore informational cycles by default (non-direct-call)', () => {
     const schema: SystemSchema = {
       name: 'Disconnected Cycles',
       version: '1.0.0',
@@ -133,11 +133,54 @@ describe('Graph Validation & Cycle Detection', () => {
     };
 
     const result = validateGraph(schema);
+    expect(result.isValid).toBe(true);
+    expect(result.issues).toHaveLength(0);
+  });
+
+  it('should fail on actionable direct-call cycles in a disconnected subgraph', () => {
+    const schema: SystemSchema = {
+      name: 'Actionable Disconnected Cycle',
+      version: '1.0.0',
+      level: 'component',
+      nodes: [
+        { entityRef: 'A', type: 'component', name: 'A' },
+        { entityRef: 'B', type: 'component', name: 'B' },
+        { entityRef: 'C', type: 'component', name: 'C' },
+        { entityRef: 'D', type: 'component', name: 'D' },
+      ],
+      dependencies: [
+        { from: 'A', to: 'B', type: 'direct-call' },
+        { from: 'C', to: 'D', type: 'direct-call' },
+        { from: 'D', to: 'C', type: 'direct-call' },
+      ],
+    };
+
+    const result = validateGraph(schema);
     expect(result.isValid).toBe(false);
     expect(result.issues).toHaveLength(1);
     expect(result.issues[0].type).toBe('cycle');
     expect(result.issues[0].path).toContain('C');
     expect(result.issues[0].path).toContain('D');
+  });
+
+  it('should report all cycles when cycles option is all', () => {
+    const schema: SystemSchema = {
+      name: 'Informational Cycle Visible',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        { entityRef: 'C', type: 'event-broker', name: 'C' },
+        { entityRef: 'D', type: 'event-broker', name: 'D' },
+      ],
+      dependencies: [
+        { from: 'C', to: 'D', type: 'publish-subscribe' },
+        { from: 'D', to: 'C', type: 'publish-subscribe' },
+      ],
+    };
+
+    const result = validateGraph(schema, { cycles: 'all' });
+    expect(result.isValid).toBe(false);
+    expect(result.issues.some(i => i.type === 'cycle')).toBe(true);
   });
 });
 

@@ -2,29 +2,10 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
+import { runGit } from './gitProcess.ts';
 
 export type GitBaselineMaterialization =
   { ok: true; directory: string; cleanup: () => Promise<void> } | { ok: false; reason: string };
-
-function runGit(
-  args: string[],
-  cwd: string
-): Promise<{ code: number; stdout: string; stderr: string }> {
-  return new Promise(resolve => {
-    const child = spawn('git', args, { cwd, stdio: ['ignore', 'pipe', 'pipe'] });
-    let stdout = '';
-    let stderr = '';
-    child.stdout.on('data', chunk => {
-      stdout += String(chunk);
-    });
-    child.stderr.on('data', chunk => {
-      stderr += String(chunk);
-    });
-    child.on('close', code => {
-      resolve({ code: code ?? 1, stdout, stderr });
-    });
-  });
-}
 
 /**
  * Extract `blueprintsPath` (relative to repo root) from `commitRef` into a temp directory.

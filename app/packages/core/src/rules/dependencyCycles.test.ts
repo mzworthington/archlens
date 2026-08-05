@@ -42,6 +42,16 @@ describe('findSimpleCycles', () => {
     expect(cycles).toHaveLength(1);
     expect(canonicalCycleKey(cycles[0]!)).toBe('a>b');
   });
+
+  it('finds a self-loop without mutating the recorded path', () => {
+    const cycles = findSimpleCycles(
+      schema(
+        [{ entityRef: 'worker', name: 'Worker', type: 'component' }],
+        [{ from: 'worker', to: 'worker', type: 'direct-call' }]
+      )
+    );
+    expect(cycles).toEqual([['worker', 'worker']]);
+  });
 });
 
 describe('collectDependencyCycles', () => {

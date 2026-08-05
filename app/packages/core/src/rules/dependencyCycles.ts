@@ -1,10 +1,15 @@
 import type { DependencyType, SystemNode, SystemSchema } from '../models/schema';
-import type { LoadedBlueprintSchema } from './validateBlueprintWorkspace';
 
 export type DependencyCycleSeverity = 'actionable' | 'informational';
 
 export type DependencyCycleReason =
   'module-direct-call' | 'includes-external-proxy' | 'non-direct-call-edges';
+
+/** Minimal file handle for estate cycle collection (avoids importing validateBlueprintWorkspace). */
+export type BlueprintSchemaFile = {
+  path: string;
+  schema: SystemSchema;
+};
 
 export type DetectedDependencyCycle = {
   path: string[];
@@ -38,8 +43,10 @@ export function canonicalCycleKey(path: string[]): string {
 }
 
 function closePath(path: string[]): string[] {
-  if (path.length === 0) return path;
-  if (path[0] === path[path.length - 1]) return path;
+  if (path.length === 0) return [];
+  // Self-loop: DFS stack is a single node when the back-edge targets start.
+  if (path.length === 1) return [path[0]!, path[0]!];
+  if (path[0] === path[path.length - 1]) return [...path];
   return [...path, path[0]!];
 }
 
@@ -70,6 +77,7 @@ export function findSimpleCycles(
   const seenKeys = new Set<string>();
 
   function record(path: string[]): void {
+    // Always copy — `path` is the live DFS stack and will be mutated by pop().
     const closed = closePath(path);
     const key = canonicalCycleKey(closed);
     if (seenKeys.has(key)) return;
@@ -101,7 +109,7 @@ export function findSimpleCycles(
   return cycles;
 }
 
-function classifyCycle(
+export function classifyCycle(
   schema: SystemSchema,
   path: string[]
 ): { severity: DependencyCycleSeverity; reason: DependencyCycleReason } {
@@ -138,7 +146,7 @@ function classifyCycle(
  * (external proxies / non-direct-call edges). Dedupes identical cycles across diagrams.
  */
 export function collectDependencyCycles(
-  files: LoadedBlueprintSchema[]
+  files: BlueprintSchemaFile[]
 ): CollectDependencyCyclesResult {
   const byKey = new Map<string, DetectedDependencyCycle>();
 
