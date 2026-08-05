@@ -25,13 +25,6 @@ describe('sandboxWorkspace', () => {
         search: 'lens=tracelens',
       })
     ).toBe('/workspace/samples/golden-journey?lens=tracelens');
-
-    expect(
-      buildWorkspaceEntityHref('application', {
-        pathname: '/workspace',
-        search: 'lens=tracelens&view=recommendations',
-      })
-    ).toBe('/workspace/application?lens=advicelens');
   });
 
   it('preserves ChaosLens when building breadcrumb links', () => {

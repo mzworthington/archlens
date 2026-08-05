@@ -36,7 +36,7 @@ describe('useWorkspaceLensSync', () => {
     ]);
   });
 
-  it('redirects legacy resilience=1 to sticky lens=chaoslens', async () => {
+  it('does not treat resilience=1 as ChaosLens', async () => {
     const mem = memoryLocation({
       path: '/workspace/application?resilience=1',
       record: true,
@@ -45,11 +45,9 @@ describe('useWorkspaceLensSync', () => {
     renderHook(() => useWorkspaceLensSync(), { wrapper: wrap(mem.hook) });
 
     await waitFor(() => {
-      expect(mem.history?.[mem.history.length - 1]).toBe('/workspace/application?lens=chaoslens');
+      expect(useBlueprintStore.getState().isResilienceMode).toBe(false);
     });
-    await waitFor(() => {
-      expect(useBlueprintStore.getState().isResilienceMode).toBe(true);
-    });
+    expect(mem.history?.[mem.history.length - 1]).toBe('/workspace/application?resilience=1');
   });
 
   it('writes ChaosLens query params when resilience mode is enabled', async () => {

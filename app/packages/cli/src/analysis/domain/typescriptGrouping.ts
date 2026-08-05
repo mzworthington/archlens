@@ -1,5 +1,4 @@
 import {
-  DEFAULT_MAX_COMPONENT_DEPTH,
   isMonorepoPackageSrc,
   meaningfulDirSegments,
   resolveFolderRolledComponent,
@@ -50,7 +49,6 @@ export function resolveTypeScriptComponent(
   return resolveFolderRolledComponent(relativePath, baseName, {
     layoutRoots: LAYOUT_ROOTS,
     stripExtension: STRIP_EXTENSION,
-    maxDepth: DEFAULT_MAX_COMPONENT_DEPTH,
     leafWhenSingleSegmentInSimpleRepo: true,
   });
 }

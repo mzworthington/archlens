@@ -1,195 +1,34 @@
 import React, { memo, useEffect } from 'react';
-import { Handle, Position, useUpdateNodeInternals } from '@xyflow/react';
+import { useUpdateNodeInternals } from '@xyflow/react';
 import { useLocation } from 'wouter';
 import type { NodeProps, Node } from '@xyflow/react';
-import {
-  Database,
-  Globe,
-  Zap,
-  Cpu,
-  Layers,
-  Share2,
-  User,
-  Network,
-  Monitor,
-  Smartphone,
-  Code,
-  ZoomIn,
-} from 'lucide-react';
 import {
   listChildDiagramExternals,
   resolveChildDiagramEntry,
   resolveExternalNodeKind,
-  externalNodeBadgeLabel,
   type NodeType,
 } from '@archlens/core';
-import { SAFEGUARD_KEY_ORDER, SAFEGUARD_SHORT_LABELS } from '@archlens/core/resilience';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import type { ComponentNodeData } from '../../../../../application/store/store';
 import { evaluateForensicsConcern } from '../../../../../application/forensics/concern';
 import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
-import { GoToEntityButton } from '../GoToEntityButton';
-import { ViewChildExternalsButton } from '../ViewChildExternalsButton';
+import { nodeTypeConfigs } from './blueprintNodeTypeConfigs';
+import { BlueprintNodeBadges } from './BlueprintNodeBadges';
+import {
+  BlueprintNodeExternalSummaryHub,
+  BlueprintNodeHandles,
+  BlueprintNodeHeaderChrome,
+  BlueprintNodeTitle,
+  BlueprintNodeZoomButton,
+} from './BlueprintNodeChrome';
+import { BlueprintNodeBlastRipple } from './BlueprintNodeHeatOverlays';
+import { blueprintNodeHeatStyle } from './blueprintNodeHeatStyle';
 
 type CustomNode = Node<ComponentNodeData, 'blueprintNode'>;
-
-const nodeTypeConfigs: Record<
-  NodeType,
-  {
-    label: string;
-    icon: React.ComponentType<any>;
-    color: string;
-    bg: string;
-    border: string;
-  }
-> = {
-  person: {
-    label: 'Person (Actor)',
-    icon: User,
-    color: '#ec4899',
-    bg: 'rgba(236, 72, 153, 0.08)',
-    border: 'rgba(236, 72, 153, 0.3)',
-  },
-  'software-system': {
-    label: 'Software System',
-    icon: Network,
-    color: '#3b82f6',
-    bg: 'rgba(59, 130, 246, 0.08)',
-    border: 'rgba(59, 130, 246, 0.3)',
-  },
-  group: {
-    label: 'Group',
-    icon: Layers,
-    color: '#64748b',
-    bg: 'rgba(100, 116, 139, 0.08)',
-    border: 'rgba(100, 116, 139, 0.3)',
-  },
-  'web-app': {
-    label: 'Web App',
-    icon: Monitor,
-    color: '#06b6d4',
-    bg: 'rgba(6, 182, 212, 0.08)',
-    border: 'rgba(6, 182, 212, 0.3)',
-  },
-  'mobile-app': {
-    label: 'Mobile App',
-    icon: Smartphone,
-    color: '#10b981',
-    bg: 'rgba(16, 185, 129, 0.08)',
-    border: 'rgba(16, 185, 129, 0.3)',
-  },
-  'single-page-app': {
-    label: 'Single Page App',
-    icon: Monitor,
-    color: '#14b8a6',
-    bg: 'rgba(20, 184, 166, 0.08)',
-    border: 'rgba(20, 184, 166, 0.3)',
-  },
-  microservice: {
-    label: 'Microservice',
-    icon: Cpu,
-    color: '#8b5cf6',
-    bg: 'rgba(139, 92, 246, 0.08)',
-    border: 'rgba(139, 92, 246, 0.3)',
-  },
-  database: {
-    label: 'Database',
-    icon: Database,
-    color: '#f43f5e',
-    bg: 'rgba(244, 63, 94, 0.08)',
-    border: 'rgba(244, 63, 94, 0.3)',
-  },
-  'cache-store': {
-    label: 'Cache Store',
-    icon: Layers,
-    color: '#f97316',
-    bg: 'rgba(249, 115, 22, 0.08)',
-    border: 'rgba(249, 115, 22, 0.3)',
-  },
-  'event-broker': {
-    label: 'Event Broker',
-    icon: Share2,
-    color: '#a855f7',
-    bg: 'rgba(168, 85, 247, 0.08)',
-    border: 'rgba(168, 85, 247, 0.3)',
-  },
-  'serverless-app': {
-    label: 'Serverless App',
-    icon: Zap,
-    color: '#eab308',
-    bg: 'rgba(234, 179, 8, 0.08)',
-    border: 'rgba(234, 179, 8, 0.3)',
-  },
-  component: {
-    label: 'Component',
-    icon: Layers,
-    color: '#6366f1',
-    bg: 'rgba(99, 102, 241, 0.08)',
-    border: 'rgba(99, 102, 241, 0.3)',
-  },
-  'code-module': {
-    label: 'Code Module',
-    icon: Code,
-    color: '#cbd5e1',
-    bg: 'rgba(203, 213, 225, 0.08)',
-    border: 'rgba(203, 213, 225, 0.3)',
-  },
-
-  'relational-database': {
-    label: 'Relational DB',
-    icon: Database,
-    color: '#06b6d4',
-    bg: 'rgba(6, 182, 212, 0.08)',
-    border: 'rgba(6, 182, 212, 0.3)',
-  },
-  'grpc-service': {
-    label: 'gRPC Service',
-    icon: Cpu,
-    color: '#3b82f6',
-    bg: 'rgba(59, 130, 246, 0.08)',
-    border: 'rgba(59, 130, 246, 0.3)',
-  },
-  'serverless-function': {
-    label: 'Serverless Fn',
-    icon: Zap,
-    color: '#eab308',
-    bg: 'rgba(234, 179, 8, 0.08)',
-    border: 'rgba(234, 179, 8, 0.3)',
-  },
-  'rest-api': {
-    label: 'REST API',
-    icon: Globe,
-    color: '#10b981',
-    bg: 'rgba(16, 185, 129, 0.08)',
-    border: 'rgba(16, 185, 129, 0.3)',
-  },
-  'gateway-api': {
-    label: 'Gateway API',
-    icon: Globe,
-    color: '#14b8a6',
-    bg: 'rgba(20, 184, 166, 0.08)',
-    border: 'rgba(20, 184, 166, 0.3)',
-  },
-  'background-worker': {
-    label: 'Background Worker',
-    icon: Cpu,
-    color: '#6366f1',
-    bg: 'rgba(99, 102, 241, 0.08)',
-    border: 'rgba(99, 102, 241, 0.3)',
-  },
-  container: {
-    label: 'Container',
-    icon: Layers,
-    color: '#8b5cf6',
-    bg: 'rgba(139, 92, 246, 0.08)',
-    border: 'rgba(139, 92, 246, 0.3)',
-  },
-};
 
 export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>) => {
   const { type, name } = data;
   const config = nodeTypeConfigs[type as NodeType] || nodeTypeConfigs['rest-api'];
-  const Icon = config.icon;
 
   const [, setLocation] = useLocation();
   const selectNode = useBlueprintStore(state => state.selectNode);
@@ -215,45 +54,6 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
     if (!entityRef) return;
     navigateToWorkspaceEntity(entityRef, { workspaceCatalog, setLocation });
   };
-
-  const zoomButtonClass = liteCanvas
-    ? 'flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 p-1 rounded transition cursor-pointer z-10'
-    : 'flex items-center gap-1 bg-brand-500/10 border border-brand-500/30 hover:bg-brand-500/20 active:bg-brand-500/30 text-brand-400 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0';
-
-  const zoomButton = canZoom ? (
-    <button
-      type="button"
-      onClick={zoomToChild}
-      className={zoomButtonClass}
-      title="Click to zoom inside"
-      aria-label={`Zoom into ${name}`}
-      data-testid="zoom-in-button"
-    >
-      <ZoomIn className="w-2.5 h-2.5" />
-      {!liteCanvas ? <span>Zoom</span> : null}
-    </button>
-  ) : null;
-
-  const addGhostButton =
-    data.couplingGhost && sourceFilepath ? (
-      <button
-        type="button"
-        onClick={event => {
-          event.stopPropagation();
-          materializeCouplingGhost({
-            entityRef: data.entityRef,
-            filepath: sourceFilepath,
-            position: data.couplingGhostPosition ?? { x: 0, y: 0 },
-          });
-        }}
-        className="flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
-        title="Add this coupled file to the diagram"
-        aria-label={`Add ${name} to diagram`}
-        data-testid="add-coupling-ghost-button"
-      >
-        Add
-      </button>
-    ) : null;
 
   // Keep edge endpoints attached after lite-canvas chrome height changes.
   useEffect(() => {
@@ -332,34 +132,12 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
 
   if (data.externalSummaryHub) {
     const band = data.externalSummaryBand === 'callers' ? 'callers' : 'targets';
-    const count = data.externalSummaryCount ?? 0;
-    const bandLabel = band === 'callers' ? 'External callers' : 'External targets';
     return (
-      <div
+      <BlueprintNodeExternalSummaryHub
+        band={band}
+        count={data.externalSummaryCount ?? 0}
         onClick={handleClick}
-        data-testid={`external-summary-hub-${band}`}
-        className={`relative w-72 rounded-xl border border-dashed p-4 cursor-pointer transition-colors ${
-          band === 'callers'
-            ? 'border-sky-500/60 bg-sky-950/40 hover:border-sky-400'
-            : 'border-cyan-500/60 bg-cyan-950/40 hover:border-cyan-400'
-        }`}
-      >
-        <Handle
-          type="target"
-          position={Position.Top}
-          id="top-target"
-          className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-        />
-        <Handle
-          type="source"
-          position={Position.Bottom}
-          id="bottom-source"
-          className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-        />
-        <p className="text-[10px] font-mono uppercase tracking-wider text-slate-400">{bandLabel}</p>
-        <h4 className="mt-1 text-2xl font-bold text-slate-100 tabular-nums">{count}</h4>
-        <p className="mt-2 text-xs text-slate-400">Click to expand cross-diagram dependencies</p>
-      </div>
+      />
     );
   }
 
@@ -385,255 +163,71 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       } ${borderClass} ${showBlastRipple ? 'blast-ripple-node' : ''} ${
         isOutOfSimulationScope ? 'opacity-35 saturate-50' : ''
       }`}
-      style={{
-        boxShadow:
-          selected ||
-          data.external ||
-          data.couplingHighlight ||
-          liteCanvas ||
-          isOutOfSimulationScope
-            ? undefined
-            : showAvailabilityRisk
-              ? `0 0 ${8 + blastHeat * 16}px rgba(239, 68, 68, ${0.15 + blastHeat * 0.35})`
-              : '0 4px 12px rgba(0, 0, 0, 0.25)',
-        outline:
-          showIntegrityRisk && !liteCanvas
-            ? `2px dashed rgba(245, 158, 11, ${0.35 + integrityHeat * 0.45})`
-            : undefined,
-        outlineOffset: showIntegrityRisk ? '3px' : undefined,
-        ...(showHotspotHeat
-          ? {
-              backgroundImage: `linear-gradient(135deg, rgba(239, 68, 68, ${0.08 + hotspotHeat * 0.35}) 0%, rgba(15, 23, 42, 0.96) 100%)`,
-            }
-          : {}),
-        ...(showAvailabilityRisk
-          ? {
-              borderColor: `rgba(239, 68, 68, ${0.35 + blastHeat * 0.55})`,
-            }
-          : {}),
-      }}
+      style={blueprintNodeHeatStyle({
+        selected,
+        external: data.external,
+        couplingHighlight: data.couplingHighlight,
+        liteCanvas,
+        isOutOfSimulationScope,
+        showAvailabilityRisk,
+        showIntegrityRisk,
+        showHotspotHeat,
+        hotspotHeat,
+        blastHeat,
+        integrityHeat,
+      })}
     >
-      {showBlastRipple ? (
-        <span
-          className="pointer-events-none absolute inset-0 rounded-xl blast-ripple-ring"
-          aria-hidden
-        />
-      ) : null}
-      {/* Always mount every handle - edges keep layout handle ids; unmounting orphans paths. */}
-      <Handle
-        type="target"
-        position={Position.Left}
-        id="left-target"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="right-source"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
-      <Handle
-        type="target"
-        position={Position.Top}
-        id="top-target"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
-      <Handle
-        type="source"
-        position={Position.Top}
-        id="top-source"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
-      <Handle
-        type="target"
-        position={Position.Bottom}
-        id="bottom-target"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        id="bottom-source"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
-      <Handle
-        type="source"
-        position={Position.Left}
-        id="left-source"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
-      <Handle
-        type="target"
-        position={Position.Right}
-        id="right-target"
-        className="!w-2.5 !h-2.5 !bg-brand-500 !border-slate-950"
-      />
+      <BlueprintNodeBlastRipple show={showBlastRipple} />
+      <BlueprintNodeHandles />
 
-      {liteCanvas && zoomButton ? <div className="absolute top-2 right-2">{zoomButton}</div> : null}
+      {liteCanvas && canZoom ? (
+        <div className="absolute top-2 right-2">
+          <BlueprintNodeZoomButton name={name} liteCanvas onZoom={zoomToChild} />
+        </div>
+      ) : null}
 
       {!liteCanvas && (
-        <div className="flex items-start justify-between gap-2">
-          <div
-            className="flex items-center justify-center p-2 rounded-lg border shrink-0"
-            style={{
-              color: config.color,
-              backgroundColor: config.bg,
-              borderColor: config.border,
-            }}
-          >
-            <Icon className="w-5 h-5" />
-          </div>
-
-          <div className="flex flex-wrap items-center justify-end gap-1 min-w-0">
-            {showSourceCodeButton && sourceFilepath ? (
-              <button
-                type="button"
-                onClick={e => {
-                  e.stopPropagation();
-                  openSourceCodeDialog(sourceFilepath, diagramSource);
-                }}
-                className="flex items-center gap-1 bg-[#00f0ff]/10 border border-[#00f0ff]/30 hover:bg-[#00f0ff]/20 active:bg-[#00f0ff]/30 text-[#00f0ff] px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
-                title="View source code"
-                aria-label="View source code"
-                data-testid="view-source-button"
-              >
-                <Code className="w-2.5 h-2.5" />
-                <span>Code</span>
-              </button>
-            ) : null}
-
-            {data.external && entityRef ? <GoToEntityButton entityRef={entityRef} /> : null}
-
-            {canZoom && entityRef && childExternalsCount > 0 ? (
-              <ViewChildExternalsButton
-                parentEntityRef={entityRef}
-                externalsCount={childExternalsCount}
-                className="flex items-center gap-1 bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 active:bg-cyan-500/30 text-cyan-300 px-1.5 py-0.5 rounded text-[8px] font-bold tracking-wider uppercase transition cursor-pointer z-10 shrink-0"
-              />
-            ) : null}
-
-            {zoomButton}
-            {addGhostButton}
-          </div>
-        </div>
+        <BlueprintNodeHeaderChrome
+          config={config}
+          name={name}
+          entityRef={entityRef}
+          canZoom={canZoom}
+          childExternalsCount={childExternalsCount}
+          showSourceCodeButton={showSourceCodeButton}
+          sourceFilepath={sourceFilepath}
+          diagramSource={diagramSource}
+          isExternal={data.external}
+          isCouplingGhost={data.couplingGhost}
+          couplingGhostPosition={data.couplingGhostPosition}
+          onViewSource={openSourceCodeDialog}
+          onMaterializeGhost={materializeCouplingGhost}
+          onZoom={zoomToChild}
+        />
       )}
 
-      <div className={`${liteCanvas ? '' : 'mt-3'} min-w-0 overflow-hidden`}>
-        <h4 className="font-semibold text-slate-100 truncate text-base leading-tight" title={name}>
-          {name}
-          {data.hiddenExternalGhost ? (
-            <span className="text-[10px] text-cyan-300/90 font-normal ml-1.5">(Hidden)</span>
-          ) : data.couplingGhost ? (
-            <span className="text-[10px] text-amber-300/90 font-normal ml-1.5">(Coupled)</span>
-          ) : externalKind ? (
-            <span
-              className={
-                externalKind === 'third-party'
-                  ? 'text-[10px] text-amber-400/90 font-normal ml-1.5'
-                  : 'text-[10px] text-cyan-400/90 font-normal ml-1.5'
-              }
-            >
-              {externalNodeBadgeLabel(externalKind)}
-            </span>
-          ) : null}
-        </h4>
-        <p
-          className="text-xs text-slate-400 font-mono mt-1 truncate select-all"
-          title={data.entityRef || id}
-        >
-          <span dir="rtl" className="block truncate">
-            <bdi>{data.entityRef || id}</bdi>
-          </span>
-        </p>
-      </div>
+      <BlueprintNodeTitle
+        name={name}
+        id={id}
+        entityRef={data.entityRef}
+        liteCanvas={liteCanvas}
+        hiddenExternalGhost={data.hiddenExternalGhost}
+        couplingGhost={data.couplingGhost}
+        externalKind={externalKind}
+      />
 
       {!liteCanvas && (
-        <div className="mt-4 flex items-center justify-between border-t border-slate-900 pt-2 text-[10px] text-slate-400 uppercase tracking-wider font-semibold gap-2">
-          <span className="truncate">{config.label}</span>
-          <div className="flex items-center gap-1 shrink-0">
-            {showHotBadge && (
-              <span
-                data-testid="forensics-badge-hot"
-                className="bg-red-950/50 text-red-300 px-1.5 py-0.5 rounded text-[9px] font-bold border border-red-900/40 tracking-normal"
-              >
-                HOT
-              </span>
-            )}
-            {showSiloBadge && (
-              <span
-                data-testid="forensics-badge-silo"
-                className="bg-amber-950/50 text-amber-300 px-1.5 py-0.5 rounded text-[9px] font-bold border border-amber-900/40 tracking-normal"
-              >
-                SILO
-              </span>
-            )}
-            {data.couplingHighlight && (
-              <span
-                data-testid="forensics-badge-coupled"
-                className="bg-amber-950/50 text-amber-200 px-1.5 py-0.5 rounded text-[9px] font-bold border border-amber-800/50 tracking-normal"
-              >
-                COUPLED
-              </span>
-            )}
-            {data.refactorBoundaryHighlight && (
-              <span
-                data-testid="forensics-badge-boundary"
-                className="bg-violet-950/50 text-violet-200 px-1.5 py-0.5 rounded text-[9px] font-bold border border-violet-800/50 tracking-normal"
-              >
-                BOUNDARY
-              </span>
-            )}
-            {data.dependencyRole === 'upstream' && (
-              <span
-                data-testid="dependency-badge-caller"
-                className="bg-violet-950/50 text-violet-200 px-1.5 py-0.5 rounded text-[9px] font-bold border border-violet-800/50 tracking-normal"
-              >
-                CALLER
-              </span>
-            )}
-            {data.dependencyRole === 'downstream' && (
-              <span
-                data-testid="dependency-badge-depends"
-                className="bg-emerald-950/50 text-emerald-200 px-1.5 py-0.5 rounded text-[9px] font-bold border border-emerald-800/50 tracking-normal"
-              >
-                DEPENDS
-              </span>
-            )}
-            {activeSafeguards
-              ? SAFEGUARD_KEY_ORDER.filter(key => activeSafeguards[key]).map(key => (
-                  <span
-                    key={key}
-                    data-testid={`resilience-badge-${key}`}
-                    title={key}
-                    className="bg-emerald-950/50 text-emerald-300 px-1.5 py-0.5 rounded text-[9px] font-bold border border-emerald-800/50 tracking-normal"
-                  >
-                    {SAFEGUARD_SHORT_LABELS[key]}
-                  </span>
-                ))
-              : null}
-            {showAvailabilityRisk ? (
-              <span
-                data-testid="resilience-badge-sla"
-                className="bg-red-950/50 text-red-300 px-1.5 py-0.5 rounded text-[9px] font-bold border border-red-800/50 tracking-normal"
-              >
-                SLA
-              </span>
-            ) : null}
-            {showIntegrityRisk ? (
-              <span
-                data-testid="resilience-badge-data"
-                className="bg-amber-950/50 text-amber-300 px-1.5 py-0.5 rounded text-[9px] font-bold border border-dashed border-amber-700/60 tracking-normal"
-              >
-                DATA
-              </span>
-            ) : null}
-            {data.isTest && (
-              <span className="bg-red-500/10 text-red-400 px-1.5 py-0.5 rounded text-[9px] font-bold border border-red-500/20 tracking-normal normal-case">
-                TEST
-              </span>
-            )}
-          </div>
-        </div>
+        <BlueprintNodeBadges
+          typeLabel={config.label}
+          showHotBadge={showHotBadge}
+          showSiloBadge={showSiloBadge}
+          couplingHighlight={data.couplingHighlight}
+          refactorBoundaryHighlight={data.refactorBoundaryHighlight}
+          dependencyRole={data.dependencyRole}
+          activeSafeguards={activeSafeguards}
+          showAvailabilityRisk={showAvailabilityRisk}
+          showIntegrityRisk={showIntegrityRisk}
+          isTest={data.isTest}
+        />
       )}
     </div>
   );

@@ -45,14 +45,6 @@ describe('parseArchlensArgv (git options)', () => {
     expect(plan.git.maxCouplingCommitFiles).toBe(100);
   });
 
-  it('maps legacy forensics subcommand to arch + git enrich', () => {
-    const plan = parseArchlensArgv(['forensics', '--since', '60']);
-    expect(plan.runArchitecture).toBe(true);
-    expect(plan.runGitForensics).toBe(true);
-    expect(plan.git.sinceDays).toBe(60);
-    expect(plan.isHeadless).toBe(true);
-  });
-
   it('keeps architecture interactive when only --git is set', () => {
     const plan = parseArchlensArgv(['--git']);
     expect(plan.runArchitecture).toBe(true);

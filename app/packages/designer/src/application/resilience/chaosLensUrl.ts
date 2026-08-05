@@ -88,7 +88,7 @@ export function isChaosLensUrl(pathname: string, search = ''): boolean {
   if (!isWorkspacePath(pathname)) return false;
   const query = search.startsWith('?') ? search.slice(1) : search;
   const params = new URLSearchParams(query);
-  return params.get('lens') === 'chaoslens' || params.get('resilience') === '1';
+  return params.get('lens') === 'chaoslens';
 }
 
 export function buildChaosLensPath(scopeEntityRef?: string | null): string {
@@ -123,20 +123,6 @@ export function buildChaosLensUrl(
 
   const qs = params.toString();
   return qs ? `${path}?${qs}` : path;
-}
-
-/** Map legacy `?resilience=1` to sticky `?lens=chaoslens`. */
-export function redirectLegacyResilienceUrl(pathname: string, search = ''): string {
-  const query = search.startsWith('?') ? search.slice(1) : search;
-  const existing = new URLSearchParams(query);
-  existing.delete('resilience');
-  const params = new URLSearchParams();
-  params.set('lens', 'chaoslens');
-  for (const [key, value] of existing) {
-    if (key !== 'lens') params.append(key, value);
-  }
-  const qs = params.toString();
-  return qs ? `${pathname}?${qs}` : pathname;
 }
 
 export function parseChaosLensUrl(pathname: string, search = ''): ChaosLensUrlState {

@@ -1,3 +1,59 @@
+import {
+  DEFAULT_WATCH_DEBOUNCE_MS,
+  defaultEstateKeyPrefix,
+  flagValue,
+  parseCsv,
+  parseNonNegativeInt,
+  parseSinceDays,
+  parseWatchDebounce,
+  resolvePublishSkipValidation,
+  type OutputFormat,
+  type ResilienceOutputFormat,
+} from './argvFlags.ts';
+import {
+  parseCatalogAcceptOverlayArgv,
+  parseCatalogComposeArgv,
+  parseCatalogPruneArgv,
+  parseCatalogPublishFragmentArgv,
+  parseCatalogRejectOverlayArgv,
+  type CatalogAcceptOverlayCliPlan,
+  type CatalogComposeCliPlan,
+  type CatalogPruneCliPlan,
+  type CatalogPublishFragmentCliPlan,
+  type CatalogRejectOverlayCliPlan,
+} from './catalogArgv.ts';
+import {
+  parseDiffArgv,
+  parsePublishArgv,
+  parseResilienceArgv,
+  parseValidateArgv,
+  type DiffCliPlan,
+  type PublishCliPlan,
+  type ResilienceCliPlan,
+  type ValidateCliPlan,
+} from './subcommandArgv.ts';
+
+export type { OutputFormat, ResilienceOutputFormat };
+export { DEFAULT_WATCH_DEBOUNCE_MS, defaultEstateKeyPrefix, resolvePublishSkipValidation };
+
+export type {
+  CatalogAcceptOverlayCliPlan,
+  CatalogComposeCliPlan,
+  CatalogPruneCliPlan,
+  CatalogPublishFragmentCliPlan,
+  CatalogRejectOverlayCliPlan,
+};
+export {
+  parseCatalogAcceptOverlayArgv,
+  parseCatalogComposeArgv,
+  parseCatalogPruneArgv,
+  parseCatalogPublishFragmentArgv,
+  parseCatalogRejectOverlayArgv,
+};
+
+export type { DiffCliPlan, PublishCliPlan, ResilienceCliPlan, ValidateCliPlan };
+export { parseDiffArgv, parsePublishArgv, parseResilienceArgv, parseValidateArgv };
+
 export interface ArchitectureCliFlags {
   parserType: string | undefined;
   glob: string | undefined;
@@ -38,126 +94,6 @@ export interface ArchlensCliPlan {
   git: GitForensicsCliFlags;
 }
 
-export type OutputFormat = 'text' | 'json';
-/** Resilience supports YAML for human-readable artifacts; CI keeps JSON. */
-export type ResilienceOutputFormat = OutputFormat | 'yaml';
-
-export interface ValidateCliPlan {
-  targetPath: string;
-  format: OutputFormat;
-  /**
-   * Also run BlueprintSpec contract checks (schema parse, entityRef wiring).
-   * Default validate is architecture health only (cycles + forensics actions).
-   */
-  includeContract: boolean;
-  /** Explicit baseline blueprint tree for deterioration compare. */
-  baselinePath?: string;
-  /** Git commit/ref to materialize as the health baseline (default HEAD~1 when flag bare). */
-  sinceCommit?: string;
-}
-
-export interface DiffCliPlan {
-  baselinePath: string;
-  currentPath: string;
-  format: OutputFormat;
-}
-
-export interface ResilienceCliPlan {
-  targetPath: string;
-  format: ResilienceOutputFormat;
-  chaosSpecsDir?: string;
-  /** Write AdviceLens artifact to this path (format from --format, or .yaml/.json extension). */
-  outputPath?: string;
-  minSla: number;
-  failOnRecommendations: boolean;
-  maxRegionOutageTargets?: number;
-  maxFanInProbes?: number;
-}
-
-export interface PublishCliPlan {
-  targetPath: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  /**
-   * When true, do not fail publish/compose on workspace validation.
-   * Default true: catalogs show reality; use `--validate` for an optional hard gate.
-   * `--skip-validation` always allows push even if `--validate` is also set.
-   */
-  skipValidation: boolean;
-  workspaceName?: string;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogComposeCliPlan {
-  estateId: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  skipValidation: boolean;
-  /** When true, exit 0 if no fragments are staged (cron safety nets). */
-  allowEmpty: boolean;
-  workspaceName?: string;
-  maxRetries: number;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogPublishFragmentCliPlan {
-  targetPath: string;
-  estateId: string;
-  productId: string;
-  systemId?: string;
-  fragmentKey?: string;
-  sourceRef: string;
-  runId?: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  skipValidation: boolean;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogAcceptOverlayCliPlan {
-  estateId: string;
-  overlayFile: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogRejectOverlayCliPlan {
-  estateId: string;
-  overlayId: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
-export interface CatalogPruneCliPlan {
-  estateId: string;
-  format: OutputFormat;
-  dryRun: boolean;
-  keepSnapshotCount: number;
-  keepSnapshotDays: number;
-  keepFragmentRuns: number;
-  storageProvider?: 'r2' | 's3' | 'azure';
-  bucket?: string;
-  accountId?: string;
-  keyPrefix?: string;
-}
-
 export type ArchlensCommandPlan =
   | { kind: 'architecture'; plan: ArchlensCliPlan }
   | { kind: 'validate'; plan: ValidateCliPlan }
@@ -170,52 +106,12 @@ export type ArchlensCommandPlan =
   | { kind: 'catalog-reject-overlay'; plan: CatalogRejectOverlayCliPlan }
   | { kind: 'catalog-prune'; plan: CatalogPruneCliPlan };
 
-export const DEFAULT_WATCH_DEBOUNCE_MS = 500;
-
-function parseWatchDebounce(argv: string[]): number {
-  const raw = flagValue(argv, '--watch-debounce');
-  if (!raw) return DEFAULT_WATCH_DEBOUNCE_MS;
-  const parsed = Number(raw);
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : DEFAULT_WATCH_DEBOUNCE_MS;
-}
-
-function flagValue(argv: string[], name: string): string | undefined {
-  const eq = argv.find(a => a.startsWith(`${name}=`));
-  if (eq) return eq.slice(name.length + 1);
-  const idx = argv.indexOf(name);
-  if (idx !== -1 && argv[idx + 1] && !argv[idx + 1]!.startsWith('-')) {
-    return argv[idx + 1];
-  }
-  return undefined;
-}
-
-function parseCsv(raw: string | undefined): string[] {
-  if (!raw) return [];
-  return raw
-    .split(',')
-    .map(s => s.trim())
-    .filter(Boolean);
-}
-
-function parseSinceDays(raw: string | undefined): number | undefined {
-  if (raw === undefined) return undefined;
-  const days = Number(raw.replace(/d$/i, ''));
-  return Number.isFinite(days) && days > 0 ? days : undefined;
-}
-
-function parseNonNegativeInt(raw: string | undefined): number | undefined {
-  if (raw === undefined) return undefined;
-  const value = Number(raw);
-  return Number.isFinite(value) && value >= 0 ? Math.trunc(value) : undefined;
-}
-
 function hasExplicitGitDecision(argv: string[]): boolean {
   return (
     argv.includes('--git') ||
     argv.includes('--no-git') ||
     argv.includes('--git-only') ||
     argv.some(a => a.startsWith('--git-since')) ||
-    argv[0] === 'forensics' ||
     (isEnrichArgv(argv) && argv.includes('--git'))
   );
 }
@@ -242,251 +138,6 @@ export function isPublishSubcommand(argv: string[]): boolean {
 
 export function isCatalogSubcommand(argv: string[]): boolean {
   return argv[0] === 'catalog';
-}
-
-function parseStorageProvider(argv: string[]): 'r2' | 's3' | 'azure' | undefined {
-  const providerRaw = flagValue(argv, '--provider');
-  return providerRaw === 'r2' || providerRaw === 's3' || providerRaw === 'azure'
-    ? providerRaw
-    : undefined;
-}
-
-export function defaultEstateKeyPrefix(estateId: string): string {
-  return `estates/${estateId.replace(/^\/+|\/+$/g, '')}`;
-}
-
-/**
- * Publish / compose / fragment push paths favour visibility over gating.
- * Default: skip validation. `--validate` opts into a hard gate.
- * `--skip-validation` is always allowed and wins over `--validate`.
- */
-export function resolvePublishSkipValidation(argv: string[]): boolean {
-  if (argv.includes('--skip-validation')) return true;
-  if (argv.includes('--validate')) return false;
-  return true;
-}
-
-export function parseCatalogComposeArgv(argv: string[]): CatalogComposeCliPlan {
-  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
-  const estateId = flagValue(rest, '--estate');
-  if (!estateId?.trim()) {
-    throw new Error('archlens catalog compose requires --estate=<id>');
-  }
-  const maxRetriesRaw = flagValue(rest, '--max-retries');
-  const maxRetriesParsed = maxRetriesRaw === undefined ? 3 : Number(maxRetriesRaw);
-  const maxRetries =
-    Number.isFinite(maxRetriesParsed) && maxRetriesParsed >= 1 ? Math.trunc(maxRetriesParsed) : 3;
-
-  return {
-    estateId: estateId.trim(),
-    format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
-    skipValidation: resolvePublishSkipValidation(rest),
-    allowEmpty: rest.includes('--allow-empty'),
-    workspaceName: flagValue(rest, '--workspace-name'),
-    maxRetries,
-    storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
-  };
-}
-
-export function parseCatalogPublishFragmentArgv(argv: string[]): CatalogPublishFragmentCliPlan {
-  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
-  const positional = positionalArgs(rest);
-  const estateId = flagValue(rest, '--estate');
-  const productId = flagValue(rest, '--product') ?? flagValue(rest, '--product-id');
-  const sourceRef = flagValue(rest, '--source-ref');
-  if (!estateId?.trim()) {
-    throw new Error('archlens catalog publish-fragment requires --estate=<id>');
-  }
-  if (!productId?.trim()) {
-    throw new Error('archlens catalog publish-fragment requires --product=<id>');
-  }
-  if (!sourceRef?.trim()) {
-    throw new Error('archlens catalog publish-fragment requires --source-ref=<ref>');
-  }
-
-  const systemId = flagValue(rest, '--system') ?? flagValue(rest, '--system-id');
-  return {
-    targetPath: flagValue(rest, '--path') ?? positional[0] ?? 'blueprints',
-    estateId: estateId.trim(),
-    productId: productId.trim(),
-    ...(systemId?.trim() ? { systemId: systemId.trim() } : {}),
-    fragmentKey: flagValue(rest, '--fragment-key'),
-    sourceRef: sourceRef.trim(),
-    runId: flagValue(rest, '--run-id'),
-    format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
-    skipValidation: resolvePublishSkipValidation(rest),
-    storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
-  };
-}
-
-export function parseCatalogAcceptOverlayArgv(argv: string[]): CatalogAcceptOverlayCliPlan {
-  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
-  const positional = positionalArgs(rest);
-  const estateId = flagValue(rest, '--estate');
-  const overlayFile = flagValue(rest, '--file') ?? positional[0];
-  if (!estateId?.trim()) {
-    throw new Error('archlens catalog accept-overlay requires --estate=<id>');
-  }
-  if (!overlayFile?.trim()) {
-    throw new Error('archlens catalog accept-overlay requires --file=<overlay.yaml>');
-  }
-  return {
-    estateId: estateId.trim(),
-    overlayFile: overlayFile.trim(),
-    format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
-    storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
-  };
-}
-
-export function parseCatalogRejectOverlayArgv(argv: string[]): CatalogRejectOverlayCliPlan {
-  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
-  const estateId = flagValue(rest, '--estate');
-  const overlayId = flagValue(rest, '--overlay-id') ?? flagValue(rest, '--id');
-  if (!estateId?.trim()) {
-    throw new Error('archlens catalog reject-overlay requires --estate=<id>');
-  }
-  if (!overlayId?.trim()) {
-    throw new Error('archlens catalog reject-overlay requires --overlay-id=<id>');
-  }
-  return {
-    estateId: estateId.trim(),
-    overlayId: overlayId.trim(),
-    format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
-    storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
-  };
-}
-
-function parsePositiveIntFlag(argv: string[], name: string, fallback: number): number {
-  const raw = flagValue(argv, name);
-  if (raw === undefined) return fallback;
-  const parsed = Number(raw);
-  return Number.isFinite(parsed) && parsed >= 1 ? Math.trunc(parsed) : fallback;
-}
-
-export function parseCatalogPruneArgv(argv: string[]): CatalogPruneCliPlan {
-  const rest = argv[0] === 'catalog' ? argv.slice(2) : argv;
-  const estateId = flagValue(rest, '--estate');
-  if (!estateId?.trim()) {
-    throw new Error('archlens catalog prune requires --estate=<id>');
-  }
-  return {
-    estateId: estateId.trim(),
-    format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
-    keepSnapshotCount: parsePositiveIntFlag(rest, '--keep-snapshots', 7),
-    keepSnapshotDays: parsePositiveIntFlag(rest, '--keep-snapshot-days', 14),
-    keepFragmentRuns: parsePositiveIntFlag(rest, '--keep-fragment-runs', 2),
-    storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix') ?? defaultEstateKeyPrefix(estateId.trim()),
-  };
-}
-
-function parseOutputFormat(argv: string[]): OutputFormat {
-  const raw = flagValue(argv, '--format');
-  return raw === 'json' ? 'json' : 'text';
-}
-
-function parseResilienceOutputFormat(argv: string[]): ResilienceOutputFormat {
-  const raw = flagValue(argv, '--format');
-  if (raw === 'json') return 'json';
-  if (raw === 'yaml' || raw === 'yml') return 'yaml';
-  return 'text';
-}
-
-function positionalArgs(argv: string[]): string[] {
-  return argv.filter(arg => !arg.startsWith('-'));
-}
-
-export function parseValidateArgv(argv: string[]): ValidateCliPlan {
-  const rest = argv[0] === 'validate' ? argv.slice(1) : argv;
-  const positional = positionalArgs(rest);
-  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
-  const sinceCommitFlag =
-    rest.includes('--since-commit') || rest.some(arg => arg.startsWith('--since-commit='));
-  const sinceCommitRaw = flagValue(rest, '--since-commit');
-  return {
-    targetPath,
-    format: parseOutputFormat(rest),
-    includeContract: rest.includes('--contract'),
-    baselinePath: flagValue(rest, '--baseline') || undefined,
-    sinceCommit: sinceCommitRaw ?? (sinceCommitFlag ? 'HEAD~1' : undefined),
-  };
-}
-
-export function parseDiffArgv(argv: string[]): DiffCliPlan {
-  const rest = argv[0] === 'diff' ? argv.slice(1) : argv;
-  const positional = positionalArgs(rest);
-  const baselinePath = flagValue(rest, '--baseline') ?? positional[0] ?? 'blueprints';
-  const currentPath = flagValue(rest, '--current') ?? positional[1] ?? baselinePath;
-  return {
-    baselinePath,
-    currentPath,
-    format: parseOutputFormat(rest),
-  };
-}
-
-function parsePositiveInt(raw: string | undefined): number | undefined {
-  if (raw === undefined) return undefined;
-  const value = Number(raw);
-  return Number.isFinite(value) && value > 0 ? Math.trunc(value) : undefined;
-}
-
-function parseSlaThreshold(raw: string | undefined): number {
-  if (raw === undefined) return 100;
-  const value = Number(raw);
-  return Number.isFinite(value) && value >= 0 && value <= 100 ? value : 100;
-}
-
-export function parseResilienceArgv(argv: string[]): ResilienceCliPlan {
-  const rest = argv[0] === 'resilience' ? argv.slice(1) : argv;
-  const positional = positionalArgs(rest);
-  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
-  return {
-    targetPath,
-    format: parseResilienceOutputFormat(rest),
-    chaosSpecsDir: flagValue(rest, '--chaos-specs'),
-    outputPath: flagValue(rest, '--output'),
-    minSla: parseSlaThreshold(flagValue(rest, '--min-sla')),
-    failOnRecommendations: rest.includes('--fail-on-recommendations'),
-    maxRegionOutageTargets: parsePositiveInt(flagValue(rest, '--max-region-outages')),
-    maxFanInProbes: parsePositiveInt(flagValue(rest, '--max-fan-in-probes')),
-  };
-}
-
-export function parsePublishArgv(argv: string[]): PublishCliPlan {
-  const rest = argv[0] === 'publish' ? argv.slice(1) : argv;
-  const positional = positionalArgs(rest);
-  const targetPath = flagValue(rest, '--path') ?? positional[0] ?? 'blueprints';
-  const workspaceName = flagValue(rest, '--workspace-name');
-  return {
-    targetPath,
-    format: parseOutputFormat(rest),
-    dryRun: !rest.includes('--no-dry-run'),
-    skipValidation: resolvePublishSkipValidation(rest),
-    workspaceName,
-    storageProvider: parseStorageProvider(rest),
-    bucket: flagValue(rest, '--bucket'),
-    accountId: flagValue(rest, '--account-id'),
-    keyPrefix: flagValue(rest, '--key-prefix'),
-  };
 }
 
 export function parseArchlensCommand(argv: string[]): ArchlensCommandPlan {
@@ -555,8 +206,6 @@ function normalizeCommandArgv(argv: string[]): string[] {
 }
 
 export function isHeadlessArgv(argv: string[]): boolean {
-  const legacy = argv[0] === 'forensics';
-  const gitOnly = argv.includes('--git-only') || legacy;
   const forceInteractive =
     process.env.ARCHLENS_INTERACTIVE === '1' || process.env.ARCHLENS_INTERACTIVE === 'true';
 
@@ -564,7 +213,7 @@ export function isHeadlessArgv(argv: string[]): boolean {
     isScanArgv(argv) ||
     isEnrichArgv(argv) ||
     argv.includes('--headless') ||
-    gitOnly ||
+    argv.includes('--git-only') ||
     !!flagValue(argv, '--parser') ||
     !!flagValue(argv, '--glob') ||
     !!flagValue(argv, '--output') ||
@@ -580,7 +229,6 @@ export function isHeadlessArgv(argv: string[]): boolean {
 
 /**
  * Parse unified ArchLens argv (architecture + git forensics enrich by default).
- * Legacy `forensics …` maps to headless architecture + forensics attach.
  * Pass `--no-git` to skip forensics enrichment.
  */
 export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
@@ -588,15 +236,11 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
   const scanMode = isScanArgv(rawArgv);
   const enrichMode = isEnrichArgv(rawArgv);
   const commandArgv = normalizeCommandArgv(rawArgv);
-  const legacy = commandArgv[0] === 'forensics';
-  const legacyRest = legacy ? commandArgv.slice(1) : commandArgv;
 
   const noGit = commandArgv.includes('--no-git');
   const gitDecisionExplicit = scanMode || enrichMode || hasExplicitGitDecision(commandArgv);
 
-  const sinceFromGit =
-    flagValue(commandArgv, '--git-since') ??
-    (legacy ? flagValue(legacyRest, '--since') : undefined);
+  const sinceFromGit = flagValue(commandArgv, '--git-since');
 
   const architecture: ArchitectureCliFlags = {
     parserType: flagValue(commandArgv, '--parser'),
@@ -617,11 +261,8 @@ export function parseArchlensArgv(argv: string[]): ArchlensCliPlan {
     maxCouplingCommitFiles: parseNonNegativeInt(
       flagValue(commandArgv, '--max-coupling-commit-files')
     ),
-    glob:
-      flagValue(commandArgv, '--glob') ?? (legacy ? flagValue(legacyRest, '--glob') : undefined),
-    ignore: parseCsv(
-      flagValue(commandArgv, '--ignore') ?? (legacy ? flagValue(legacyRest, '--ignore') : undefined)
-    ),
+    glob: flagValue(commandArgv, '--glob'),
+    ignore: parseCsv(flagValue(commandArgv, '--ignore')),
     targetPath: '.',
   };
 

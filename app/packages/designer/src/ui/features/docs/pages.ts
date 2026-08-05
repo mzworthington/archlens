@@ -260,17 +260,9 @@ export const DOCS_PAGES: DocsPageMeta[] = [
   },
 ];
 
-/** Permanent aliases for renamed product guide chapters and markdown filenames. */
-const LEGACY_GUIDE_PATH_ALIASES: Record<string, string> = {
-  '/guide/forensics': '/guide/tracelens',
-  '/guide/resilience': '/guide/chaoslens',
-  '/guide/design-system': '/design-system',
-};
-
 export function findDocsPage(pathname: string): DocsPageMeta | undefined {
   const normalized = pathname.replace(/\/$/, '') || '/';
-  const aliased = LEGACY_GUIDE_PATH_ALIASES[normalized] ?? normalized;
-  return DOCS_PAGES.find(p => p.path === aliased);
+  return DOCS_PAGES.find(p => p.path === normalized);
 }
 
 /**
@@ -309,13 +301,9 @@ export function resolveDocsHref(href: string, fromDir: string): string | null {
     joined = joined.replace(/\/$/, '') || '/';
   }
 
-  joined = LEGACY_GUIDE_PATH_ALIASES[joined] ?? joined;
-
   if (
     joined === '/' ||
     joined.startsWith('/workspace') ||
-    joined === '/tracelens' ||
-    joined === '/advicelens' ||
     joined === '/design-system' ||
     DOCS_PAGES.some(p => p.path === joined)
   ) {

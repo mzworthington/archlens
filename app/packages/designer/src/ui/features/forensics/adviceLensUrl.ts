@@ -20,18 +20,11 @@ export type AdviceLensUrlOptions = {
 /** Canonical in-app entry for AdviceLens estate recommendations. */
 export const ADVICELENS_ENTRY_URL = '/workspace?lens=advicelens';
 
-const LEGACY_ADVICELENS_PATH = '/advicelens';
-const LEGACY_ADVICELENS_PREFIX = `${LEGACY_ADVICELENS_PATH}/`;
-
 export function isAdviceLensUrl(pathname: string, search = ''): boolean {
-  if (pathname === LEGACY_ADVICELENS_PATH || pathname.startsWith(LEGACY_ADVICELENS_PREFIX)) {
-    return true;
-  }
   if (!isWorkspacePath(pathname)) return false;
   const query = search.startsWith('?') ? search.slice(1) : search;
   const params = new URLSearchParams(query);
-  if (params.get('lens') === 'advicelens') return true;
-  return params.get('lens') === 'tracelens' && params.get('view') === 'recommendations';
+  return params.get('lens') === 'advicelens';
 }
 
 export function buildAdviceLensPath(scopeEntityRef?: string | null): string {
@@ -51,39 +44,12 @@ export function buildAdviceLensUrl(
   return qs ? `${path}?${qs}` : path;
 }
 
-/** Map legacy `/advicelens` and `?lens=tracelens&view=recommendations` to workspace lens URLs. */
-export function redirectLegacyAdviceLensUrl(pathname: string, search = ''): string {
-  const query = search.startsWith('?') ? search.slice(1) : search;
-  const existing = new URLSearchParams(query);
-
-  let entityRef: string | undefined;
-  if (pathname.startsWith(LEGACY_ADVICELENS_PREFIX)) {
-    const rest = pathname.slice(LEGACY_ADVICELENS_PREFIX.length).replace(/\/$/, '');
-    if (rest) entityRef = decodeURIComponent(rest);
-  } else {
-    entityRef = workspaceEntityRefFromPath(pathname);
-  }
-
-  const planEntityRef = existing.get('plan') ?? undefined;
-  const showSource = existing.get('source') === '1';
-
-  return buildAdviceLensUrl(entityRef, {
-    planEntityRef,
-    showSource,
-  });
-}
-
 export function parseAdviceLensUrl(pathname: string, search = ''): AdviceLensUrlState {
   const query = search.startsWith('?') ? search.slice(1) : search;
   const params = new URLSearchParams(query);
   const showSource = params.get('source') === '1';
   const planEntityRef = params.get('plan') ?? undefined;
-
-  let entityRef = workspaceEntityRefFromPath(pathname);
-  if (!entityRef && pathname.startsWith(LEGACY_ADVICELENS_PREFIX)) {
-    const rest = pathname.slice(LEGACY_ADVICELENS_PREFIX.length).replace(/\/$/, '');
-    if (rest) entityRef = decodeURIComponent(rest);
-  }
+  const entityRef = workspaceEntityRefFromPath(pathname);
 
   return { entityRef, planEntityRef, showSource };
 }
@@ -94,9 +60,6 @@ export function isEstateLensUrl(pathname: string, search = ''): boolean {
 
 /** TraceLens offenders lens only (not AdviceLens). */
 export function isWorkspaceTraceLensUrl(pathname: string, search = ''): boolean {
-  if (pathname === '/tracelens' || pathname.startsWith('/tracelens/')) {
-    return true;
-  }
   if (!isWorkspacePath(pathname)) return false;
   const query = search.startsWith('?') ? search.slice(1) : search;
   const params = new URLSearchParams(query);

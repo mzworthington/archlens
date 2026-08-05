@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  buildTraceLensUrl,
-  parseTraceLensUrl,
-  redirectLegacyTraceLensUrl,
-  isTraceLensUrl,
-} from './traceLensUrl';
+import { buildTraceLensUrl, parseTraceLensUrl, isTraceLensUrl } from './traceLensUrl';
 
 describe('traceLensUrl', () => {
   it('builds workspace lens URLs', () => {
@@ -44,18 +39,11 @@ describe('traceLensUrl', () => {
     });
   });
 
-  it('redirects legacy /tracelens paths', () => {
-    expect(redirectLegacyTraceLensUrl('/tracelens')).toBe('/workspace?lens=tracelens');
-    expect(redirectLegacyTraceLensUrl('/tracelens/app/designer', 'view=recommendations')).toBe(
-      '/workspace/app/designer?lens=advicelens'
-    );
-  });
-
-  it('detects trace lens routes', () => {
+  it('detects workspace TraceLens routes', () => {
     expect(isTraceLensUrl('/workspace', 'lens=tracelens')).toBe(true);
     expect(isTraceLensUrl('/workspace/samples', 'lens=tracelens')).toBe(true);
     expect(isTraceLensUrl('/workspace/samples', '')).toBe(false);
     expect(isTraceLensUrl('/workspace', 'lens=tracelens&view=recommendations')).toBe(false);
-    expect(isTraceLensUrl('/tracelens')).toBe(true);
+    expect(isTraceLensUrl('/tracelens')).toBe(false);
   });
 });

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { CodeViewer } from './CodeViewer';
+import { LeftWorkspacePanel } from '../../layout/LeftWorkspacePanel';
 import { useBlueprintStore } from '../../../../../application/store/store';
 
 vi.mock('mermaid', () => ({
@@ -10,7 +10,7 @@ vi.mock('mermaid', () => ({
   },
 }));
 
-describe('CodeViewer UI Component', () => {
+describe('LeftWorkspacePanel (code viewer)', () => {
   beforeEach(() => {
     useBlueprintStore.setState({
       selectedNodeId: null,
@@ -32,7 +32,7 @@ describe('CodeViewer UI Component', () => {
   });
 
   it('should render the explorer header and schema tabs', () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     expect(screen.getByText(/^Explorer$/i)).toBeInTheDocument();
     expect(screen.getByTestId('left-tab-schema')).toHaveAttribute('aria-selected', 'true');
@@ -43,7 +43,7 @@ describe('CodeViewer UI Component', () => {
   });
 
   it('should render the initial schema in the YAML code block', () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     const textarea = screen.getByRole('textbox') as HTMLTextAreaElement;
     expect(textarea).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('CodeViewer UI Component', () => {
   });
 
   it('should switch tabs and show JSON schema representation', () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     fireEvent.click(screen.getByRole('button', { name: /^json$/i }));
 
@@ -63,7 +63,7 @@ describe('CodeViewer UI Component', () => {
   });
 
   it('should support YAML direct edit and apply workflow', () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     const textarea = screen.getByRole('textbox') as HTMLTextAreaElement;
     expect(textarea.value).toContain('name: Test Project');
@@ -89,7 +89,7 @@ nodes:
   });
 
   it('should support JSON direct edit and apply workflow', () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     fireEvent.click(screen.getByRole('button', { name: /json/i }));
 
@@ -122,7 +122,7 @@ nodes:
   });
 
   it('should show error when applying invalid YAML configuration', () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     const textarea = screen.getByRole('textbox') as HTMLTextAreaElement;
     fireEvent.change(textarea, { target: { value: 'invalid: : yaml : syntax' } });
@@ -132,7 +132,7 @@ nodes:
   });
 
   it('should show error when applying invalid JSON configuration', () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     fireEvent.click(screen.getByRole('button', { name: /^json$/i }));
     const textarea = screen.getByRole('textbox') as HTMLTextAreaElement;
@@ -144,7 +144,7 @@ nodes:
   });
 
   it('should support Mermaid preview toggle and render mock visual preview', async () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     fireEvent.click(screen.getByRole('button', { name: /mermaid\.js/i }));
 
@@ -161,7 +161,7 @@ nodes:
   });
 
   it('should open mermaid import dialog from the mermaid tab', () => {
-    render(<CodeViewer />);
+    render(<LeftWorkspacePanel />);
 
     fireEvent.click(screen.getByRole('button', { name: /mermaid\.js/i }));
     fireEvent.click(screen.getByRole('button', { name: /^import$/i }));
@@ -184,7 +184,7 @@ nodes:
 
     useBlueprintStore.setState({ showTests: false });
 
-    const { rerender } = render(<CodeViewer />);
+    const { rerender } = render(<LeftWorkspacePanel />);
 
     let textarea = screen.getByRole('textbox') as HTMLTextAreaElement;
     expect(textarea.value).toContain('entityRef: filtered-project/app');
@@ -196,7 +196,7 @@ nodes:
     expect(textarea.value).not.toContain('"entityRef": "filtered-project/app-test"');
 
     useBlueprintStore.setState({ showTests: true });
-    rerender(<CodeViewer />);
+    rerender(<LeftWorkspacePanel />);
 
     fireEvent.click(screen.getByRole('button', { name: /^json$/i }));
     textarea = screen.getByRole('textbox') as HTMLTextAreaElement;

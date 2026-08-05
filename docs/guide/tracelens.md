@@ -54,7 +54,7 @@ The **Schema** tab in the same panel shows YAML / JSON / Mermaid for the active 
 
 ### TraceLens estate (full page)
 
-Open **`/tracelens`** (header badge **TRACELENS**) or use **View worst offenders** in the TraceLens tab.
+Open **`/workspace?lens=tracelens`** (header badge **TRACELENS**) or use **View worst offenders** in the TraceLens tab.
 
 The page title is **TraceLens**, with tabs **TraceLens | AdviceLens**.
 
@@ -103,7 +103,7 @@ Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds
 
 ## Next
 
-- [AdviceLens](./advicelens.md) - ranked recommendations from forensics + simulation (`/advicelens`)
+- [AdviceLens](./advicelens.md) - ranked recommendations from forensics + simulation (`/workspace?lens=advicelens`)
 - [ArchLens Canvas](./canvas.md)
 - [ChaosLens](./chaoslens.md)
 - [ArchLens](./cli.md)

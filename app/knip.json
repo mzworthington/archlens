@@ -1,7 +1,13 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "exclude": ["exports", "types"],
-  "ignoreDependencies": ["lint-staged", "@types/*", "git-cliff"],
+  "ignoreDependencies": [
+    "lint-staged",
+    "@types/*",
+    "git-cliff",
+    "tree-sitter-wasms",
+    "@tree-sitter-grammars/tree-sitter-hcl"
+  ],
   "ignoreBinaries": ["make", "ffmpeg", "vhs"],
   "workspaces": {
     "packages/designer": {
