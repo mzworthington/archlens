@@ -53,6 +53,16 @@ jobs:
             "${{ matrix.sample.repo }}" \
             "demos/${{ matrix.sample.id }}"
 
+      - name: Assemble declared context seed
+        run: |
+          set -euo pipefail
+          OUT="${GITHUB_WORKSPACE}/blueprints/${{ matrix.sample.id }}"
+          # Seed lives under output/--context so ContextLevelWriter hydrates it (ADR-0015).
+          node scripts/assemble-context-seed.mjs \
+            --catalog=scripts/blueprint-sample-repos.json \
+            --sample-id="${{ matrix.sample.id }}" \
+            --output="${OUT}/${{ matrix.sample.id }}/context.yaml"
+
       - name: Scan, publish fragment, and compose
         working-directory: demos/${{ matrix.sample.id }}
         env:

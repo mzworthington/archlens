@@ -31,6 +31,13 @@ jobs:
       - name: Setup ArchLens CLI
         uses: ./.github/actions/setup-archlens-cli
 
+      - name: Assemble declared ArchLens context seed
+        run: |
+          set -euo pipefail
+          node scripts/assemble-context-seed.mjs \
+            --declaration=scripts/declared-contexts/archlens.json \
+            --output=blueprints/archlens/context.yaml
+
       - name: Scan, publish fragment, and compose
         env:
           OBJECT_STORAGE_PROVIDER: r2

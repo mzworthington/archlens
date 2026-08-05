@@ -95,12 +95,12 @@ GitHub Action template: [`.github/actions/validate-blueprints`](../../../.github
 
 ## What gets generated
 
-| Artifact                                | Content                                                                        |
-| --------------------------------------- | ------------------------------------------------------------------------------ |
-| `blueprints/application/context.yaml`   | Software systems + hub→spoke “Part of product system” edges (merged on re-run) |
-| `blueprints/<system>/containers.yaml`   | Containers for that system                                                     |
-| `blueprints/<tf-root>/containers.yaml`  | Terraform/Pulumi resources as containers (grouped by owning product path)      |
-| `blueprints/<system>/*-components.yaml` | Component graphs per container                                                 |
+| Artifact                                | Content                                                                                                                   |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `blueprints/[<ctx>/]context.yaml`       | System context (personas, systems, third-parties). Ctx folder optional; scan hydrates into a declared seed or creates one |
+| `blueprints/<system>/containers.yaml`   | Containers for that system                                                                                                |
+| `blueprints/<tf-root>/containers.yaml`  | Terraform/Pulumi resources as containers (grouped by owning product path)                                                 |
+| `blueprints/<system>/*-components.yaml` | Component graphs per container                                                                                            |
 
 After all writers complete, an **externals pass** walks every schema in the output tree, rolls component-level cross-container dependencies up onto container diagrams where needed, adds **service-level coupling edges** on container diagrams when component evidence exists (for example `api → auth-service` rather than only container-to-container rollup), and materializes unresolved dependency endpoints as `external: true` proxy nodes on component and container diagrams.
 
@@ -116,7 +116,11 @@ By default the analyzer finds systems from:
 
 A **product hub** node is added when multiple subsystems share a product, so Blueprint vs Backstage (different `productId`s) stay disconnected.
 
-For **multi-repo products** (several git repos, one landscape), scan each repo with the same `--context` and a distinct `--system-name` (or `systemName` in config). Re-runs merge into the same `application/context.yaml`.
+For **multi-repo products** (several git repos, one landscape), scan each repo with the same `--context` and a distinct `--system-name` (or `systemName` in config). Re-runs hydrate into the same context seed (`blueprints/<ctx>/context.yaml` or root `blueprints/context.yaml` when the folder is omitted).
+
+**Declared context:** commit a sparse `level: context` BlueprintSpec with stable software-system anchors (`entityRef`, optional `name`), optional `product-persona` persons, and optional `external: true` third-parties. Omit `name` to derive a label from the `entityRef` leaf; merges prefer an explicit name over a derived one. Scan upserts discoveries onto those anchors, preserves author-owned personas/externals/edges, skips the fallback `User` actor when personas exist, and prunes only scan-owned systems whose `rootPath` is in the current scan’s scope.
+
+Catalog pipelines assemble seeds from JSON via `scripts/assemble-context-seed.mjs` (ArchLens: `scripts/declared-contexts/archlens.json`; demos: `contextDeclaration` on each entry in `scripts/blueprint-sample-repos.json`) before scan.
 
 ### Filtering
 
