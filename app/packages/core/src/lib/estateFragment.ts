@@ -1,6 +1,7 @@
 import { parseSchemaFromYaml } from '../rules/graphParse';
 import { serializeSchemaToYaml } from '../rules/graphSerialize';
 import type { SystemSchema } from '../models/schema';
+import { preferDisplayName, preferNodeDisplayName } from './displayName';
 import {
   normalizeRemoteCatalogObjectPath,
   type RemoteCatalogYamlObject,
@@ -151,9 +152,9 @@ function edgeKey(dep: { from: string; to: string; type: string; description?: st
 }
 
 /**
- * Union-merge context schemas for estate compose: later fragment overwrites nodes by
- * `entityRef` and adds any new dependencies. Unlike import-wizard merge, conflicted
- * nodes do not drop edges.
+ * Union-merge context schemas for estate compose: later fragment merges nodes by
+ * `entityRef` and adds any new dependencies. Display names prefer explicit labels
+ * over entityRef-derived ones; two explicit names keep the earlier fragment's.
  */
 export function mergeContextSchemasByEntityRef(
   base: SystemSchema,
@@ -168,6 +169,7 @@ export function mergeContextSchemasByEntityRef(
     }
     nodesByRef.set(node.entityRef, {
       ...node,
+      name: preferNodeDisplayName(existing, node),
       position: existing.position ?? node.position,
       properties: {
         ...(existing.properties || {}),
@@ -176,6 +178,8 @@ export function mergeContextSchemasByEntityRef(
       forensics: node.forensics ?? existing.forensics,
       isTest: node.isTest ?? existing.isTest,
       external: node.external ?? existing.external,
+      parentEntityRef: node.parentEntityRef ?? existing.parentEntityRef,
+      type: node.type || existing.type,
     });
   }
 
@@ -184,9 +188,10 @@ export function mergeContextSchemasByEntityRef(
     depsByKey.set(edgeKey(dep), dep);
   }
 
+  const landscapeRef = incoming.entityRef ?? base.entityRef ?? '';
   return {
     ...base,
-    name: incoming.name || base.name,
+    name: preferDisplayName(base.name, incoming.name, landscapeRef || base.name),
     entityRef: incoming.entityRef ?? base.entityRef,
     nodes: [...nodesByRef.values()],
     dependencies: [...depsByKey.values()],

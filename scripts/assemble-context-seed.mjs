@@ -31,6 +31,35 @@ function parseEntityRef(value, parent) {
   return leaf;
 }
 
+function entityRefLeaf(entityRef) {
+  const parts = String(entityRef || '')
+    .split('/')
+    .filter(Boolean);
+  return parts[parts.length - 1] || String(entityRef || '');
+}
+
+function displayNameFromEntityRef(entityRef) {
+  const leaf = entityRefLeaf(entityRef);
+  return leaf
+    .split('-')
+    .filter(Boolean)
+    .map(part => {
+      if (/\d/.test(part) && part.length <= 4) return part.toUpperCase();
+      return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+    })
+    .join(' ');
+}
+
+function resolveDisplayName(name, entityRef) {
+  const trimmed = typeof name === 'string' ? name.trim() : '';
+  if (trimmed) return trimmed;
+  return displayNameFromEntityRef(entityRef);
+}
+
+function displayNameSourceForDeclaration(name) {
+  return typeof name === 'string' && name.trim() ? 'explicit' : 'derived';
+}
+
 function resolveRef(value, landscapeEntityRef) {
   const trimmed = String(value || '').trim();
   if (!trimmed) throw new Error('entityRef is required');
@@ -54,7 +83,7 @@ function yamlQuote(value) {
 
 function emitYaml(declaration) {
   const landscapeEntityRef = parseEntityRef(declaration.entityRef);
-  if (!declaration.name?.trim()) throw new Error('Context declaration requires a name');
+  const landscapeName = resolveDisplayName(declaration.name, landscapeEntityRef);
 
   const nodes = [];
   const personaRefs = [];
@@ -67,8 +96,11 @@ function emitYaml(declaration) {
     nodes.push({
       entityRef,
       type: system.type ?? 'software-system',
-      name: system.name,
-      properties: { contextOwnership: 'author' },
+      name: resolveDisplayName(system.name, entityRef),
+      properties: {
+        contextOwnership: 'author',
+        displayNameSource: displayNameSourceForDeclaration(system.name),
+      },
     });
   }
 
@@ -78,11 +110,12 @@ function emitYaml(declaration) {
     nodes.push({
       entityRef,
       type: 'person',
-      name: persona.name,
+      name: resolveDisplayName(persona.name, entityRef),
       properties: {
         role: 'product-persona',
         ...(persona.product ? { product: persona.product } : {}),
         contextOwnership: 'author',
+        displayNameSource: displayNameSourceForDeclaration(persona.name),
       },
     });
   }
@@ -93,12 +126,13 @@ function emitYaml(declaration) {
     nodes.push({
       entityRef,
       type: external.type ?? 'software-system',
-      name: external.name,
+      name: resolveDisplayName(external.name, entityRef),
       external: true,
       properties: {
         classification: 'third-party',
         ...(external.vendor ? { vendor: external.vendor } : {}),
         contextOwnership: 'author',
+        displayNameSource: displayNameSourceForDeclaration(external.name),
       },
     });
   }
@@ -145,7 +179,7 @@ function emitYaml(declaration) {
     'level: context',
     'metadata:',
     `  entityRef: ${yamlQuote(landscapeEntityRef)}`,
-    `  name: ${yamlQuote(declaration.name.trim())}`,
+    `  name: ${yamlQuote(landscapeName)}`,
   ];
 
   if (declaration.description?.trim()) {
@@ -224,9 +258,6 @@ function loadDeclaration(args, repoRoot) {
     const declaration = { ...sample.contextDeclaration };
     if (!declaration.entityRef) {
       declaration.entityRef = sample.context || sample.id;
-    }
-    if (!declaration.name) {
-      declaration.name = sample.id;
     }
     return declaration;
   }

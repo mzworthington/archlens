@@ -118,7 +118,7 @@ A **product hub** node is added when multiple subsystems share a product, so Blu
 
 For **multi-repo products** (several git repos, one landscape), scan each repo with the same `--context` and a distinct `--system-name` (or `systemName` in config). Re-runs hydrate into the same context seed (`blueprints/<ctx>/context.yaml` or root `blueprints/context.yaml` when the folder is omitted).
 
-**Declared context:** commit a sparse `level: context` BlueprintSpec with stable software-system anchors (`entityRef` + `name`), optional `product-persona` persons, and optional `external: true` third-parties. Scan upserts discoveries onto those anchors, preserves author-owned personas/externals/edges, skips the fallback `User` actor when personas exist, and prunes only scan-owned systems whose `rootPath` is in the current scan’s scope.
+**Declared context:** commit a sparse `level: context` BlueprintSpec with stable software-system anchors (`entityRef`, optional `name`), optional `product-persona` persons, and optional `external: true` third-parties. Omit `name` to derive a label from the `entityRef` leaf; merges prefer an explicit name over a derived one. Scan upserts discoveries onto those anchors, preserves author-owned personas/externals/edges, skips the fallback `User` actor when personas exist, and prunes only scan-owned systems whose `rootPath` is in the current scan’s scope.
 
 Catalog pipelines assemble seeds from JSON via `scripts/assemble-context-seed.mjs` (ArchLens: `scripts/declared-contexts/archlens.json`; demos: `contextDeclaration` on each entry in `scripts/blueprint-sample-repos.json`) before scan.
 

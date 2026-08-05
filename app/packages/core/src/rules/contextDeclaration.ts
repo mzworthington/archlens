@@ -6,6 +6,11 @@ import type {
   SystemSchema,
 } from '../models/schema';
 import { EntityRef } from '../models/schema';
+import {
+  DISPLAY_NAME_SOURCE_PROPERTY,
+  displayNameSourceForDeclaration,
+  resolveDisplayName,
+} from '../lib/displayName';
 import { systemSchemaPublicUrl } from '../models/schemaVersion';
 import { THIRD_PARTY_CLASSIFICATION } from '../taxonomy/nodeOwnership';
 import { CONTEXT_OWNERSHIP_AUTHOR, CONTEXT_OWNERSHIP_PROPERTY } from './contextHydration';
@@ -14,7 +19,8 @@ import { serializeSchemaToYaml } from './graphSerialize';
 export type DeclaredPersona = {
   /** Leaf id under the landscape (e.g. `architect`). */
   id: string;
-  name: string;
+  /** Optional; derived from `id` when omitted. */
+  name?: string;
   description?: string;
   /** Optional product tag on the persona. */
   product?: string;
@@ -23,13 +29,15 @@ export type DeclaredPersona = {
 export type DeclaredSystemAnchor = {
   /** Fully qualified or landscape-relative entityRef. */
   entityRef: string;
-  name: string;
+  /** Optional; derived from entityRef when omitted. */
+  name?: string;
   type?: 'software-system' | 'group';
 };
 
 export type DeclaredExternal = {
   id: string;
-  name: string;
+  /** Optional; derived from `id` when omitted. */
+  name?: string;
   type?: NodeType;
   vendor?: string;
   description?: string;
@@ -45,7 +53,8 @@ export type DeclaredDependency = {
 /** JSON-friendly declared system context (assembled into BlueprintSpec YAML). */
 export type ContextDeclaration = {
   entityRef: string;
-  name: string;
+  /** Optional landscape label; derived from entityRef when omitted. */
+  name?: string;
   description?: string;
   personas?: DeclaredPersona[];
   systems?: DeclaredSystemAnchor[];
@@ -57,19 +66,27 @@ export type ContextDeclaration = {
 function resolveRef(value: string, landscapeEntityRef: string): string {
   const trimmed = value.trim();
   if (!trimmed) throw new Error('entityRef is required');
-  if (trimmed.includes('/')) return EntityRef.parse(trimmed);
+  if (trimmed.includes('/')) {
+    // Do not slugify `/` away — parse each segment.
+    return trimmed
+      .split('/')
+      .map(part => EntityRef.parse(part))
+      .filter(Boolean)
+      .join('/');
+  }
   const leaf = EntityRef.parse(trimmed);
   // Bare landscape slug stays at context level (system/group on the landscape).
   if (leaf === landscapeEntityRef) return landscapeEntityRef;
   return EntityRef.parse(trimmed, landscapeEntityRef);
 }
 
-function authorNode(node: SystemNode): SystemNode {
+function authorNode(node: SystemNode, nameSource: string): SystemNode {
   return {
     ...node,
     properties: {
       ...node.properties,
       [CONTEXT_OWNERSHIP_PROPERTY]: CONTEXT_OWNERSHIP_AUTHOR,
+      [DISPLAY_NAME_SOURCE_PROPERTY]: nameSource,
     },
   };
 }
@@ -80,9 +97,7 @@ function authorNode(node: SystemNode): SystemNode {
  */
 export function assembleContextDeclaration(declaration: ContextDeclaration): SystemSchema {
   const landscapeEntityRef = EntityRef.parse(declaration.entityRef);
-  if (!declaration.name?.trim()) {
-    throw new Error('Context declaration requires a name');
-  }
+  const landscapeName = resolveDisplayName(declaration.name, landscapeEntityRef);
 
   const nodes: SystemNode[] = [];
   const personaRefs: string[] = [];
@@ -93,11 +108,14 @@ export function assembleContextDeclaration(declaration: ContextDeclaration): Sys
     const entityRef = resolveRef(system.entityRef, landscapeEntityRef);
     systemRefs.push(entityRef);
     nodes.push(
-      authorNode({
-        entityRef,
-        type: system.type ?? 'software-system',
-        name: system.name,
-      })
+      authorNode(
+        {
+          entityRef,
+          type: system.type ?? 'software-system',
+          name: resolveDisplayName(system.name, entityRef),
+        },
+        displayNameSourceForDeclaration(system.name)
+      )
     );
   }
 
@@ -105,15 +123,18 @@ export function assembleContextDeclaration(declaration: ContextDeclaration): Sys
     const entityRef = EntityRef.parse(persona.id, landscapeEntityRef);
     personaRefs.push(entityRef);
     nodes.push(
-      authorNode({
-        entityRef,
-        type: 'person',
-        name: persona.name,
-        properties: {
-          role: 'product-persona',
-          ...(persona.product ? { product: persona.product } : {}),
+      authorNode(
+        {
+          entityRef,
+          type: 'person',
+          name: resolveDisplayName(persona.name, entityRef),
+          properties: {
+            role: 'product-persona',
+            ...(persona.product ? { product: persona.product } : {}),
+          },
         },
-      })
+        displayNameSourceForDeclaration(persona.name)
+      )
     );
   }
 
@@ -121,16 +142,19 @@ export function assembleContextDeclaration(declaration: ContextDeclaration): Sys
     const entityRef = EntityRef.parse(external.id, landscapeEntityRef);
     externalRefs.push(entityRef);
     nodes.push(
-      authorNode({
-        entityRef,
-        type: external.type ?? 'software-system',
-        name: external.name,
-        external: true,
-        properties: {
-          classification: THIRD_PARTY_CLASSIFICATION,
-          ...(external.vendor ? { vendor: external.vendor } : {}),
+      authorNode(
+        {
+          entityRef,
+          type: external.type ?? 'software-system',
+          name: resolveDisplayName(external.name, entityRef),
+          external: true,
+          properties: {
+            classification: THIRD_PARTY_CLASSIFICATION,
+            ...(external.vendor ? { vendor: external.vendor } : {}),
+          },
         },
-      })
+        displayNameSourceForDeclaration(external.name)
+      )
     );
   }
 
@@ -172,7 +196,7 @@ export function assembleContextDeclaration(declaration: ContextDeclaration): Sys
 
   return {
     entityRef: landscapeEntityRef,
-    name: declaration.name.trim(),
+    name: landscapeName,
     version: systemSchemaPublicUrl(),
     level: 'context',
     nodes,

@@ -155,7 +155,7 @@ describe('Feature: compose estate fragments into one YAML tree', () => {
     expect(composed.contributors.map(c => c.fragmentKey)).toEqual(['payments', 'checkout']);
   });
 
-  it('Scenario: merges context.yaml by entityRef with overwrite on conflicts', () => {
+  it('Scenario: merges context.yaml by entityRef preferring explicit display names', () => {
     const composed = composeEstateFragments([
       fragment({
         estateId: 'acme',
@@ -184,10 +184,62 @@ describe('Feature: compose estate fragments into one YAML tree', () => {
       'estate/checkout',
       'estate/payments',
     ]);
+    // Derived "Payments" yields to explicit "Payments Platform".
     expect(schema.nodes.find(n => n.entityRef === 'estate/payments')?.name).toBe(
       'Payments Platform'
     );
     expect(schema.dependencies).toHaveLength(1);
+  });
+
+  it('Scenario: keeps the first explicit name when two fragments disagree', () => {
+    const first = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  entityRef: estate
+  name: Estate
+nodes:
+  - entityRef: estate/checkout
+    type: software-system
+    name: Checkout Service
+dependencies: []
+`;
+    const second = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  entityRef: estate
+  name: Estate
+nodes:
+  - entityRef: estate/checkout
+    type: software-system
+    name: Checkout API
+dependencies: []
+`;
+    const composed = composeEstateFragments([
+      fragment({
+        estateId: 'acme',
+        productId: 'a',
+        fragmentKey: 'a',
+        sourceRef: 'a',
+        runId: 'r1',
+        publishedAt: '2026-01-01T00:00:00.000Z',
+        objects: [{ path: 'context.yaml', content: first }],
+      }),
+      fragment({
+        estateId: 'acme',
+        productId: 'b',
+        fragmentKey: 'b',
+        sourceRef: 'b',
+        runId: 'r1',
+        publishedAt: '2026-02-01T00:00:00.000Z',
+        objects: [{ path: 'context.yaml', content: second }],
+      }),
+    ]);
+    const schema = parseSchemaFromYaml(
+      composed.yamlObjects.find(o => o.path === 'context.yaml')!.content
+    );
+    expect(schema.nodes.find(n => n.entityRef === 'estate/checkout')?.name).toBe(
+      'Checkout Service'
+    );
   });
 
   it('rejects empty input and mixed estates', () => {

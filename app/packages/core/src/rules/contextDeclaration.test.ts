@@ -97,6 +97,22 @@ describe('assembleContextDeclaration', () => {
     expect(yaml).toContain('from: backstage/developer');
   });
 
+  it('derives names from entityRef when omitted', () => {
+    const schema = assembleContextDeclaration({
+      entityRef: 'acme',
+      personas: [{ id: 'buyer', description: 'Complete purchase' }],
+      systems: [{ entityRef: 'acme/checkout' }],
+      externals: [{ id: 'payment-gateway', type: 'gateway-api', vendor: 'Stripe' }],
+    });
+
+    expect(schema.name).toBe('Acme');
+    expect(schema.nodes.find(n => n.entityRef === 'acme/checkout')?.name).toBe('Checkout');
+    expect(schema.nodes.find(n => n.entityRef === 'acme/buyer')?.name).toBe('Buyer');
+    expect(schema.nodes.find(n => n.entityRef === 'acme/payment-gateway')?.name).toBe(
+      'Payment Gateway'
+    );
+  });
+
   it('assembles the committed ArchLens declaration and survives hydration', () => {
     const declarationPath = path.join(repoRoot, 'scripts/declared-contexts/archlens.json');
     const declaration = JSON.parse(readFileSync(declarationPath, 'utf8')) as ContextDeclaration;

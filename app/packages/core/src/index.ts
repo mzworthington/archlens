@@ -1,6 +1,7 @@
 export * from './models/schema';
 export * from './models/schemaVersion';
 export * from './lib/entityRef';
+export * from './lib/displayName';
 export * from './lib/workspaceCatalog';
 export * from './lib/buildWorkspaceCatalogFromYaml';
 export * from './lib/remoteCatalogSnapshot';

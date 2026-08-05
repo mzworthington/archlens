@@ -1,5 +1,6 @@
 import type { SystemDependency, SystemNode, SystemSchema } from '../models/schema';
 import { EntityRef } from '../models/schema';
+import { preferDisplayName } from '../lib/displayName';
 import { isHumanActorNode, isThirdPartyNode } from '../taxonomy/nodeOwnership';
 
 /** Durable ownership stamp on context nodes (`properties.contextOwnership`). */
@@ -145,8 +146,11 @@ function mergeSystemNode(existing: SystemNode, scan: SystemNode): SystemNode {
     {
       ...existing,
       type: scan.type,
-      // Keep declared display name for author anchors.
-      name: ownership === CONTEXT_OWNERSHIP_AUTHOR ? existing.name : scan.name,
+      // Author-owned labels win over scan; otherwise prefer explicit over derived.
+      name:
+        ownership === CONTEXT_OWNERSHIP_AUTHOR
+          ? existing.name
+          : preferDisplayName(existing.name, scan.name, existing.entityRef),
       parentEntityRef: scan.parentEntityRef ?? existing.parentEntityRef,
       external: existing.external,
       position: existing.position ?? scan.position,
@@ -222,7 +226,7 @@ export function hydrateContextSchema(input: ContextHydrationInput): ContextHydra
       nodesByRef.set(proposed.entityRef, {
         ...existing,
         ...proposed,
-        name: existing.name || proposed.name,
+        name: preferDisplayName(existing.name, proposed.name, existing.entityRef),
         properties: {
           ...existing.properties,
           ...proposed.properties,

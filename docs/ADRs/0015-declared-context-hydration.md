@@ -30,9 +30,10 @@ Chosen option: "**Option A**", because it reuses `level: context` BlueprintSpec,
 
 ### Consequences
 
-- Good, because declared personas, third-parties, and sparse system anchors (`entityRef` + `name`) survive re-scan
+- Good, because declared personas, third-parties, and sparse system anchors (`entityRef`, optional `name`) survive re-scan
 - Good, because fallback `context-actor` User is omitted when product personas exist
 - Good, because optional seed paths `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` prefer an existing file
+- Good, because display `name` is optional estate-wide: omit to derive from `entityRef`; compose/hydrate prefer explicit labels over derived ones (first explicit wins on conflict) so multi-repo seeds need no home/secondary marker
 - Bad, because ownership stamps add a persisted convention callers must honor
 - Follow-up: scanner may pass `proposedThirdParties` into the same hydration plan later (not via workspace-proxy enrich on context)
 

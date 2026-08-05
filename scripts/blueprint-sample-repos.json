@@ -5,23 +5,20 @@
     "gitSinceDays": 365,
     "timeoutMinutes": 360,
     "contextDeclaration": {
-      "name": "Backstage",
       "description": "Developer portal landscape — engineers discover services and platform teams operate the portal.",
       "personas": [
         {
           "id": "developer",
-          "name": "Developer",
           "description": "Discover services and docs in the portal",
           "product": "portal"
         },
         {
           "id": "platform-engineer",
-          "name": "Platform Engineer",
           "description": "Operate portal plugins and integrations",
           "product": "platform"
         }
       ],
-      "systems": [{ "entityRef": "backstage", "name": "Backstage" }],
+      "systems": [{ "entityRef": "backstage" }],
       "externals": [
         {
           "id": "github",
@@ -44,22 +41,19 @@
       "personas": [
         {
           "id": "shopper",
-          "name": "Shopper",
           "description": "Browse catalog and place orders",
           "product": "storefront"
         },
         {
           "id": "store-operator",
-          "name": "Store Operator",
           "description": "Manage catalog and fulfill orders",
           "product": "admin"
         }
       ],
-      "systems": [{ "entityRef": "eshop", "name": "E-Shop" }],
+      "systems": [{ "entityRef": "eshop" }],
       "externals": [
         {
           "id": "payment-gateway",
-          "name": "Payment Gateway",
           "type": "gateway-api",
           "vendor": "Payment provider",
           "description": "Authorize and capture payments"
@@ -78,12 +72,11 @@
       "personas": [
         {
           "id": "cloud-engineer",
-          "name": "Cloud Engineer",
           "description": "Provision and evolve example stacks",
           "product": "iac"
         }
       ],
-      "systems": [{ "entityRef": "examples", "name": "Pulumi Examples" }],
+      "systems": [{ "entityRef": "examples" }],
       "externals": [
         {
           "id": "cloud-provider",
@@ -101,17 +94,15 @@
     "gitSinceDays": 365,
     "timeoutMinutes": 60,
     "contextDeclaration": {
-      "name": "GPIO Build Monitor",
       "description": "Hardware-adjacent build monitor landscape.",
       "personas": [
         {
           "id": "maker",
-          "name": "Maker",
           "description": "Watch build status on the device",
           "product": "device"
         }
       ],
-      "systems": [{ "entityRef": "gpio-build-monitor", "name": "GPIO Build Monitor" }],
+      "systems": [{ "entityRef": "gpio-build-monitor" }],
       "externals": [
         {
           "id": "ci-provider",
@@ -134,12 +125,11 @@
       "personas": [
         {
           "id": "infra-engineer",
-          "name": "Infrastructure Engineer",
           "description": "Apply and review example modules",
           "product": "iac"
         }
       ],
-      "systems": [{ "entityRef": "terraform-examples", "name": "Terraform Examples" }],
+      "systems": [{ "entityRef": "terraform-examples" }],
       "externals": [
         {
           "id": "cloud-provider",
