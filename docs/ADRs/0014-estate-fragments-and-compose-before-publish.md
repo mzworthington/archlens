@@ -29,13 +29,13 @@ We need a composition model that keeps immutable snapshots while allowing indepe
 
 ## Decision Outcome
 
-Chosen option: "**Option B**", with **Option A** as the interim dogfood pattern until compose ships.
+Chosen option: "**Option B**", with **Option A** as the interim whole-tree publish pattern until compose ships.
 
 **Validation policy:** catalog push paths (`publish`, `publish-fragment`, `compose`, `scan --publish`) default to **not** blocking on workspace validation. ArchLens prioritises honest visibility of architecture — including incomplete or intentionally invalid trees. Use `archlens validate` or `--validate` on a publish command only when a pipeline wants an optional hard gate. `--skip-validation` is always allowed and wins over `--validate`.
 
-### Phase 0 (historical) → shared dogfood estate
+### Phase 0 (historical) → shared samples estate
 
-Phase 0 briefly isolated whole-tree publishers under separate prefixes. Once fragment compose shipped, dogfood producers all stage into the **shared `samples` estate** so Canvas can list every context:
+Phase 0 briefly isolated whole-tree publishers under separate prefixes. Once fragment compose shipped, catalog producers all stage into the **shared `samples` estate** so Canvas can list every context:
 
 | Publisher                                    | Fragment `productId` | Prefix (shared)    |
 | -------------------------------------------- | -------------------- | ------------------ |
@@ -81,7 +81,7 @@ estates/{estateId}/
 
 Stage inputs with `archlens catalog publish-fragment … --estate=… --product=… --source-ref=… --no-dry-run`.
 
-**Compose triggers (dogfood):** primary stitch is `publish-fragment` then `compose` in the same GitHub Actions job. A hourly `compose-catalog` workflow is the safety net (`--allow-empty`). Storage-event / Worker triggers are deferred.
+**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` in the same GitHub Actions job. A hourly `compose-catalog` workflow is the safety net (`--allow-empty`). Storage-event / Worker triggers are deferred.
 
 ### Phase 3 — suggestion overlays (implemented)
 
@@ -99,9 +99,9 @@ Overlay document fields: `overlayId`, `estateId`, `status` (`accepted`|`rejected
 
 - Good, because immutable snapshots and Canvas read path stay ADR-0010
 - Good, because product (not repo) is the composition key — matches scan domain
-- Good, because Phase 0 isolation stopped races; dogfood now uses one shared estate with per-product fragments
+- Good, because Phase 0 isolation stopped races; the hosted catalog now uses one shared estate with per-product fragments
 - Bad, because compose + CAS is new CLI surface and needs conflict retry
-- Good, because dogfood Canvas loads one estate (`samples`) that unions hand-authored samples, ArchLens, and batch demos via fragments
+- Good, because production Canvas loads one estate (`samples`) that unions hand-authored samples, ArchLens, and batch demos via fragments
 - Follow-up: Canvas remote accept UI wiring; optional hard-delete once `deleteObject` exists on the storage port; ADR-0013 remains reserved for connection-profile auth; optional estate index if customers need multi-catalog browsing
 
 ## Architecture sketch
@@ -134,7 +134,7 @@ flowchart TB
 
 ## Links
 
-- Supersedes assumptions in dogfood only; extends [ADR-0010](./0010-remote-blueprint-catalog-contract.md)
+- Supersedes assumptions in the hosted samples estate only; extends [ADR-0010](./0010-remote-blueprint-catalog-contract.md)
 - Storage host: [ADR-0011](./0011-object-storage-published-corpora.md)
 - Local apply path for suggestions: [ADR-0004](./0004-local-first-fs-access-and-indexeddb-working-copy.md)
 - Scan multi-repo: CLI `--context` + `--system-name` / `productId` partitioning

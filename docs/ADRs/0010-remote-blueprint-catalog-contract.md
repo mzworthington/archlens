@@ -10,7 +10,7 @@ deciders: ['ArchLens maintainers']
 
 Organisations want **living architecture** diagrams: CI runs ArchLens on a schedule, publishes YAML to object storage, and Canvas opens diagrams from that remote corpus without redeploying the SPA. CLI and Canvas are separate processes with no shared database. We need a **stable, versioned integration contract** that publish pipelines and read adapters can implement independently.
 
-Today the dogfood sandbox uses build-time bundled YAML under `/bundled-blueprints/` plus a generated `catalog.json`. Remote publish must preserve the same navigation semantics (`WorkspaceCatalogEntry[]`, lazy YAML fetch by path) while supporting immutable snapshots and safe partial-failure handling during upload.
+Today the hosted sandbox uses build-time bundled YAML under `/bundled-blueprints/` plus a generated `catalog.json`. Remote publish must preserve the same navigation semantics (`WorkspaceCatalogEntry[]`, lazy YAML fetch by path) while supporting immutable snapshots and safe partial-failure handling during upload.
 
 ## Decision Drivers
 
@@ -53,7 +53,7 @@ blueprints/
 | `revision`      | string | Unique id for this snapshot (content hash prefix or ULID). Same as `{revisionId}` in the prefix. |
 | `publishedAt`   | string | ISO-8601 UTC timestamp                                                                           |
 | `toolVersion`   | string | ArchLens CLI version that produced the corpus                                                    |
-| `workspaceName` | string | Workspace name used for entityRef resolution (dogfood: `archlens`)                               |
+| `workspaceName` | string | Workspace name used for entityRef resolution (samples estate: `archlens`)                        |
 | `catalogPath`   | string | Relative path to catalog within the snapshot (always `catalog.json`)                             |
 | `objectCount`   | number | Count of YAML objects uploaded (sanity check)                                                    |
 
@@ -97,7 +97,7 @@ Steps 3–4 must finish before step 5 so `latest` never references a partial sna
 - Good, because `catalog.json` and `WorkspaceCatalogEntry` reuse avoids a second navigation model
 - Bad, because storage hosts must serve static JSON/YAML with correct `Content-Type` and CORS (adapter concern, ADR-0011)
 - Bad, because `latest/` overwrite is eventually consistent on some stores — consumers should retry on 404 immediately after publish
-- Follow-up: ADR-0011 (object storage / R2 dogfood), ADR-0012 (remote read-only `WorkspacePort` adapter), ADR-0013 (practitioner connection profiles / auth), ADR-0014 (estate fragments + compose so multi-pipeline publishes do not clobber `latest`)
+- Follow-up: ADR-0011 (object storage / R2 hosted catalog), ADR-0012 (remote read-only `WorkspacePort` adapter), ADR-0013 (practitioner connection profiles / auth), ADR-0014 (estate fragments + compose so multi-pipeline publishes do not clobber `latest`)
 - Implementation: `@archlens/storage` (`ObjectStoragePort` + R2/S3/Azure/HTTP adapters)
 - Open (slice 1): retain bundled `/bundled-blueprints/` as offline fallback until remote path is stable for 7 consecutive nightly publishes
 

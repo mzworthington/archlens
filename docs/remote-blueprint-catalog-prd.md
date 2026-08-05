@@ -4,7 +4,7 @@
 
 ## Problem
 
-Organisations want architecture diagrams that **track their codebase** without checking generated YAML into git or redeploying a documentation site on every merge. ArchLens already produces validated BlueprintSpec YAML in CI; we need a **reference pattern** — **pipeline → object storage → Canvas** — that we dogfood on `archlens.dev` and document for customers.
+Organisations want architecture diagrams that **track their codebase** without checking generated YAML into git or redeploying a documentation site on every merge. ArchLens already produces validated BlueprintSpec YAML in CI; we need a **reference pattern** — **pipeline → object storage → Canvas** — that we run on `archlens.dev` and document for customers.
 
 ## Personas
 
@@ -35,37 +35,37 @@ Organisations want architecture diagrams that **track their codebase** without c
 | 2   | Platform engineer         | Failed validation to skip publish                      | Bad snapshots never reach consumers             |
 | 3   | Architect                 | Sandbox to load catalog + diagrams from remote storage | I see current architecture, not a stale build   |
 | 4   | Architect                 | Notice when a newer snapshot exists                    | I can refresh without waiting for a SPA release |
-| 5   | Platform engineer (later) | Canvas to connect to our bucket with a profile         | We use the same pattern as the dogfood sandbox  |
+| 5   | Platform engineer (later) | Canvas to connect to our bucket with a profile         | We use the same pattern as the hosted sandbox   |
 
 Full Gherkin scenarios: behavioral contract tests in `app/packages/core/src/lib/remoteCatalogSnapshot.test.ts`.
 
 ## Delivery slices
 
-| Slice                | Outcome                                                                 | Success signal                                            |
-| -------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------- |
-| **S0 — Contract**    | `manifest.json` + `catalog.json` + YAML layout; CLI `publish --dry-run` | Contract tests in `@archlens/core`                        |
-| **S1 — Dogfood**     | Nightly GHA → validate → R2; sandbox reads remote                       | 7 consecutive successful publishes; sandbox paths resolve |
-| **S1b — Refresh**    | User-triggered catalog refresh when `latest` revision changes           | Refresh without full page redeploy                        |
-| **S2 — Org connect** | Practitioner connection profile UI + one S3-compatible adapter          | Internal dry-run against non-dogfood bucket               |
-| **S3 — Hardening**   | Signed URLs, edge proxy, audit logging                                  | Per security review                                       |
+| Slice                   | Outcome                                                                 | Success signal                                            |
+| ----------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------- |
+| **S0 — Contract**       | `manifest.json` + `catalog.json` + YAML layout; CLI `publish --dry-run` | Contract tests in `@archlens/core`                        |
+| **S1 — Hosted sandbox** | Nightly GHA → validate → R2; sandbox reads remote                       | 7 consecutive successful publishes; sandbox paths resolve |
+| **S1b — Refresh**       | User-triggered catalog refresh when `latest` revision changes           | Refresh without full page redeploy                        |
+| **S2 — Org connect**    | Practitioner connection profile UI + one S3-compatible adapter          | Internal dry-run against a customer-style bucket          |
+| **S3 — Hardening**      | Signed URLs, edge proxy, audit logging                                  | Per security review                                       |
 
 ## Success metrics
 
-- Dogfood sandbox loads **100%** of catalog paths from remote for **7 consecutive** nightly publishes.
+- Hosted sandbox loads **100%** of catalog paths from remote for **7 consecutive** nightly publishes.
 - Median **time-to-first-diagram** ≤ today's bundled baseline **±20%**.
-- One **integration guide** validated by an internal dry-run (not dogfood bucket).
+- One **integration guide** validated by an internal dry-run (not the public samples estate).
 
 ## Constraints and dependencies
 
 - **Read-only in Canvas** — write stays in CLI/CI unless explicitly redesigned.
-- **No secrets in the SPA bundle** — dogfood uses public-read or edge proxy (ADR-0011); customer credentials via CI or connection profiles (ADR-0013).
+- **No secrets in the SPA bundle** — the hosted sandbox uses public-read or edge proxy (ADR-0011); customer credentials via CI or connection profiles (ADR-0013).
 - **Privacy** — published YAML may include repo metadata in `source` blocks; organisations must understand they publish architecture metadata, not source code.
 - **Atomic publish** — `latest/manifest.json` updates only after the full snapshot is uploaded (ADR-0010).
 
 ## Open decisions
 
 1. **Offline fallback** — keep static `/bundled-blueprints/` until remote is stable, or remove in S1?
-2. **Public dogfood bucket** — acceptable to expose forensics metadata in published YAML?
+2. **Public samples estate** — acceptable to expose forensics metadata in published YAML?
 3. **Slice 2 browser auth** — presigned URLs vs public bucket vs Worker broker (ADR-0013).
 
 ## References

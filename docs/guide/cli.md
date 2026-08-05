@@ -39,7 +39,7 @@ archlens catalog compose --estate=acme --no-dry-run
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
-See [GitHub Actions workflows](./ci-workflows.md) for dogfood publish → fragment → compose jobs.
+See [GitHub Actions workflows](./ci-workflows.md) for publish → fragment → compose jobs.
 
 ## Remote catalog (fragments + compose)
 
@@ -55,7 +55,7 @@ BlueprintSpec YAML is unchanged. Multi-pipeline publishing stages **fragments** 
 
 Publish/compose paths prefer **visibility over gating**: validation does not block upload by default. Use `archlens validate` or `--validate` for an optional hard gate; `--skip-validation` is always allowed.
 
-Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets](../cloudflare-secrets.md)). Dogfood key prefix: `estates/samples/` (shared estate; products `samples`, `archlens`, demo ids).
+Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets](../cloudflare-secrets.md)). Samples estate key prefix: `estates/samples/` (shared estate; products `samples`, `archlens`, demo ids).
 
 ## Useful flags
 
