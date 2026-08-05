@@ -30,11 +30,11 @@ Use this guide if you want to understand the product, not just the internals.
 
 - [Getting started](./getting-started.md) - install ArchLens, scan a repo, open the app
 - [ArchLens Canvas](./canvas.md) - startup, panels, Mermaid import, externals, display toggles
-- [ArchLens](./cli.md) - scanners, flags, outputs
+- [ArchLens](./cli.md) - scanners, flags, outputs, [declare then scan](./cli.md#declare-then-scan)
 - [TraceLens](./tracelens.md) - metrics, coupling overlay, lookback
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry
 - [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, YAML studio export, narration (planned)
-- [BlueprintSpec](./schema.md) - public contract URLs, entity references, live latest schema
+- [BlueprintSpec](./schema.md) - public contract URLs, entity references, [declared system context](./schema.md#declared-system-context)
 - [ChaosSpec](./chaos-spec.md) - public contract URLs, diagram-bound failure scenarios, live latest schema
 - [Interface tour & journeys](../journeys.md) - day-one flow across products (links to per-product demos)
 

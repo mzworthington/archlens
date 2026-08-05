@@ -89,12 +89,21 @@ for name in "${DIRECTORIES[@]}"; do
 
   context="$(scan_context "${name}")"
   git_since="$(scan_git_since "${name}")"
+  seed_path="${BLUEPRINTS_DIR}/${context}/context.yaml"
 
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo "▶ ${name}"
   echo "  ${target}"
   echo "  context=${context} git-since=${git_since}"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+  if jq -e --arg id "${name}" '.[] | select(.id == $id) | .contextDeclaration' "${CATALOG}" >/dev/null; then
+    echo "  assemble context seed → ${seed_path}"
+    node "${SCRIPT_DIR}/assemble-context-seed.mjs" \
+      --catalog="${CATALOG}" \
+      --sample-id="${name}" \
+      --output="${seed_path}"
+  fi
 
   if (
     cd "${target}"

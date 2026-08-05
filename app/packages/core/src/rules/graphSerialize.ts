@@ -9,14 +9,16 @@ import { getNodePosition } from '../lib/nodePosition';
  */
 export function serializeSchemaToYaml(
   schema: SystemSchema,
-  _options?: { schemaUrl?: string }
+  options?: { schemaUrl?: string; description?: string }
 ): string {
+  const description = options?.description?.trim();
   const cleanSchema: Record<string, unknown> = {
-    version: systemSchemaPublicUrl(),
+    version: options?.schemaUrl ?? systemSchemaPublicUrl(),
     level: schema.level,
     metadata: {
       ...(schema.entityRef ? { entityRef: schema.entityRef } : {}),
       name: schema.name,
+      ...(description ? { description } : {}),
       ...(schema.source && Object.keys(schema.source).length > 0 ? { source: schema.source } : {}),
     },
   };

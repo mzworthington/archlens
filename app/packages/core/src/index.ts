@@ -1,6 +1,7 @@
 export * from './models/schema';
 export * from './models/schemaVersion';
 export * from './lib/entityRef';
+export * from './lib/displayName';
 export * from './lib/workspaceCatalog';
 export * from './lib/buildWorkspaceCatalogFromYaml';
 export * from './lib/remoteCatalogSnapshot';
@@ -17,7 +18,10 @@ export * from './rules/validateBlueprintWorkspace';
 export * from './rules/architectureHealth';
 export * from './rules/dependencyCycles';
 export * from './rules/schemaMerge';
+export * from './rules/contextHydration';
+export * from './rules/contextDeclaration';
 export * from './rules/workspaceExternals';
+
 export * from './rules/externalNodeLayout';
 export * from './rules/path';
 export * from './rules/sourceProvenance';

@@ -4,10 +4,17 @@ import {
   contextDisplayName,
   personDependenciesForSystems,
   PERSON_EDGE_DESCRIPTION,
+  resolveContextSeedRelativePath,
   topLevelSystemNodes,
 } from './contextLevelWriter.ts';
 import { MockFileSystem, MockLogger } from '../test/fakes.ts';
-import { parseSchemaFromYaml, serializeSchemaToYaml } from '@archlens/core';
+import {
+  CONTEXT_OWNERSHIP_AUTHOR,
+  CONTEXT_OWNERSHIP_PROPERTY,
+  parseSchemaFromYaml,
+  serializeSchemaToYaml,
+  systemSchemaPublicUrl,
+} from '@archlens/core';
 
 describe('topLevelSystemNodes', () => {
   it('returns nodes without a visual parent, excluding the person', () => {
@@ -409,16 +416,15 @@ describe('ContextLevelWriter', () => {
     expect(schema.nodes.some(n => n.entityRef === 'infrastructure/terraform-examples')).toBe(true);
   });
 
-  it('migrates legacy root context.yaml into the peer context diagram', async () => {
-    const legacyPath = '/workspace/blueprints/context.yaml';
-    const targetPath = '/workspace/blueprints/ctx/context.yaml';
-    fileSystem.existingFiles.add(legacyPath);
+  it('prefers an existing root context.yaml seed when the context folder is omitted', async () => {
+    const rootPath = '/workspace/blueprints/context.yaml';
+    fileSystem.existingFiles.add(rootPath);
     fileSystem.writtenFiles.set(
-      legacyPath,
+      rootPath,
       serializeSchemaToYaml({
         entityRef: 'ctx',
         name: 'Legacy',
-        version: '1.0.0',
+        version: systemSchemaPublicUrl(),
         level: 'context',
         nodes: [{ entityRef: 'ctx/app', type: 'software-system', name: 'App' }],
         dependencies: [],
@@ -434,10 +440,113 @@ describe('ContextLevelWriter', () => {
       },
     ]);
 
-    expect(fileSystem.deletedFiles.has(legacyPath)).toBe(true);
-    expect(fileSystem.writtenFiles.has(targetPath)).toBe(true);
-    const schema = parseSchemaFromYaml(fileSystem.writtenFiles.get(targetPath)!);
+    expect(fileSystem.deletedFiles.has(rootPath)).toBe(false);
+    expect(fileSystem.writtenFiles.has('/workspace/blueprints/ctx/context.yaml')).toBe(false);
+    const schema = parseSchemaFromYaml(fileSystem.writtenFiles.get(rootPath)!);
     expect(schema.nodes.some(n => n.entityRef === 'ctx/app')).toBe(true);
     expect(schema.nodes.some(n => n.entityRef === 'ctx/new-system')).toBe(true);
+  });
+
+  it('hydrates a declared context with personas and does not inject a fallback user', async () => {
+    const declaredPath = '/workspace/blueprints/acme/context.yaml';
+    fileSystem.existingFiles.add(declaredPath);
+    fileSystem.writtenFiles.set(
+      declaredPath,
+      serializeSchemaToYaml({
+        entityRef: 'acme',
+        name: 'Acme',
+        version: systemSchemaPublicUrl(),
+        level: 'context',
+        nodes: [
+          {
+            entityRef: 'acme/checkout',
+            type: 'software-system',
+            name: 'Checkout',
+          },
+          {
+            entityRef: 'acme/buyer',
+            type: 'person',
+            name: 'Buyer',
+            properties: { role: 'product-persona' },
+          },
+          {
+            entityRef: 'acme/payment-gateway',
+            type: 'gateway-api',
+            name: 'Payment Gateway',
+            external: true,
+            properties: { classification: 'third-party' },
+          },
+        ],
+        dependencies: [
+          {
+            from: 'acme/buyer',
+            to: 'acme/checkout',
+            type: 'direct-call',
+            description: 'Complete purchase',
+          },
+        ],
+      })
+    );
+
+    await writer.writeSystems('/workspace/blueprints', 'acme', [
+      {
+        entityRef: 'checkout',
+        displayName: 'Checkout',
+        rootPath: 'apps/checkout',
+        productId: 'checkout',
+      },
+    ]);
+
+    const schema = parseSchemaFromYaml(fileSystem.writtenFiles.get(declaredPath)!);
+    const checkout = schema.nodes.find(n => n.entityRef === 'acme/checkout');
+    expect(checkout?.name).toBe('Checkout');
+    expect(checkout?.properties?.rootPath).toBe('apps/checkout');
+    expect(checkout?.properties?.[CONTEXT_OWNERSHIP_PROPERTY]).toBe(CONTEXT_OWNERSHIP_AUTHOR);
+    expect(schema.nodes.some(n => n.entityRef === 'acme/buyer')).toBe(true);
+    expect(schema.nodes.some(n => n.entityRef === 'acme/payment-gateway')).toBe(true);
+    expect(schema.nodes.some(n => n.entityRef === 'acme/user')).toBe(false);
+    expect(schema.dependencies).toContainEqual({
+      from: 'acme/buyer',
+      to: 'acme/checkout',
+      type: 'direct-call',
+      description: 'Complete purchase',
+    });
+  });
+
+  it('falls back to a fresh context when the declared seed is unreadable', async () => {
+    const declaredPath = '/workspace/blueprints/broken/context.yaml';
+    fileSystem.existingFiles.add(declaredPath);
+    fileSystem.writtenFiles.set(declaredPath, 'not: valid: yaml: [');
+
+    await writer.writeSystems('/workspace/blueprints', 'broken', [
+      {
+        entityRef: 'api',
+        displayName: 'api',
+        rootPath: 'apps/api',
+        productId: 'api',
+      },
+    ]);
+
+    expect(logger.logs.some(log => log.includes('Failed to parse existing context'))).toBe(true);
+    const schema = parseSchemaFromYaml(fileSystem.writtenFiles.get(declaredPath)!);
+    expect(schema.nodes.some(n => n.entityRef === 'broken/api')).toBe(true);
+    expect(schema.nodes.some(n => n.entityRef === 'broken/user')).toBe(true);
+  });
+});
+
+describe('resolveContextSeedRelativePath', () => {
+  it('prefers root context.yaml when nested path is absent', () => {
+    expect(resolveContextSeedRelativePath('acme', { nestedExists: false, rootExists: true })).toBe(
+      'context.yaml'
+    );
+  });
+
+  it('uses nested context path when present or when creating fresh', () => {
+    expect(resolveContextSeedRelativePath('acme', { nestedExists: true, rootExists: true })).toBe(
+      'acme/context.yaml'
+    );
+    expect(resolveContextSeedRelativePath('acme', { nestedExists: false, rootExists: false })).toBe(
+      'acme/context.yaml'
+    );
   });
 });
