@@ -46,7 +46,7 @@ activate_mise_shell() {
 }
 
 install_core_tools() {
-  # Explicit list so agents get bun (required for CLI build / pre-push) without
+  # Explicit list so agents get bun (required for CLI build) without
   # pulling optional docs-media binaries (ffmpeg/vhs).
   echo "▶ mise install node pnpm bun go"
   mise install node pnpm bun go
@@ -134,4 +134,4 @@ install_core_tools
 install_app_deps
 ensure_wasm
 ensure_lifecycle_kit
-echo "✓ Dev environment ready (bun on PATH for CLI build / pre-push)"
+echo "✓ Dev environment ready (bun on PATH for CLI build)"
