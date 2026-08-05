@@ -69,7 +69,8 @@ export class ComponentLevelWriter extends BaseWriter {
         internalComponents,
         [...fileLevelNodesMap.values()],
         fileLevelDependencies,
-        source
+        source,
+        [...componentNodesMap.values()]
       );
       const drillDownEntityRefs = new Set(
         drillDownSchemas

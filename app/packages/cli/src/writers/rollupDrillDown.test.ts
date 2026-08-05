@@ -195,4 +195,81 @@ describe('rollupDrillDown', () => {
     expect(deps).toHaveLength(1);
     expect(childRefs.has(deps[0]!.from)).toBe(true);
   });
+
+  it('rewrites cross-container deps to single-file rollup leaves onto the emitted rollup', () => {
+    const analysisRollups: SystemNode[] = [
+      {
+        entityRef: 'blueprint/app/cli/analysis/domain',
+        type: 'background-worker',
+        name: 'Domain',
+        properties: {
+          containerId: 'analysis',
+          memberFilepaths: [
+            'app/packages/cli/src/analysis/domain/analyzer.ts',
+            'app/packages/cli/src/analysis/domain/modelExtractor.ts',
+          ],
+        },
+      },
+    ];
+    const writerRollups: SystemNode[] = [
+      {
+        entityRef: 'blueprint/app/cli/writers/contextlevelwriter',
+        type: 'background-worker',
+        name: 'Contextlevelwriter',
+        properties: {
+          containerId: 'writers',
+          memberFilepaths: ['app/packages/cli/src/writers/contextLevelWriter.ts'],
+        },
+      },
+    ];
+    const fileLevelNodes: SystemNode[] = [
+      {
+        entityRef: 'blueprint/app/cli/analysis/domain/analyzer',
+        type: 'background-worker',
+        name: 'Analyzer',
+        properties: { filepath: 'app/packages/cli/src/analysis/domain/analyzer.ts' },
+      },
+      {
+        entityRef: 'blueprint/app/cli/analysis/domain/model-extractor',
+        type: 'background-worker',
+        name: 'Model Extractor',
+        properties: { filepath: 'app/packages/cli/src/analysis/domain/modelExtractor.ts' },
+      },
+      {
+        entityRef: 'blueprint/app/cli/writers/contextlevelwriter/context-level-writer',
+        type: 'background-worker',
+        name: 'Context Level Writer',
+        properties: { filepath: 'app/packages/cli/src/writers/contextLevelWriter.ts' },
+      },
+    ];
+    const fileLevelDependencies: SystemDependency[] = [
+      {
+        from: 'blueprint/app/cli/analysis/domain/analyzer',
+        to: 'blueprint/app/cli/writers/contextlevelwriter/context-level-writer',
+        type: 'direct-call',
+      },
+    ];
+
+    const schemas = buildRollupDrillDownSchemas(
+      'blueprint/app/cli/analysis',
+      analysisRollups,
+      fileLevelNodes,
+      fileLevelDependencies,
+      undefined,
+      [...analysisRollups, ...writerRollups]
+    );
+
+    const domain = schemas.find(
+      entry => entry.schema.entityRef === 'blueprint/app/cli/analysis/domain'
+    );
+    expect(domain).toBeDefined();
+    expect(schemas).toHaveLength(1);
+    expect(domain?.schema.dependencies).toEqual([
+      {
+        from: 'blueprint/app/cli/analysis/domain/analyzer',
+        to: 'blueprint/app/cli/writers/contextlevelwriter',
+        type: 'direct-call',
+      },
+    ]);
+  });
 });
