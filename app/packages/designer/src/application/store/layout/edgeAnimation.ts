@@ -27,7 +27,7 @@ export type EdgeAnimationOptions = {
 export function shouldAnimateDependencyEdge(
   edge: { source: string; target: string; animated?: boolean },
   selectedNodeId: string | null | undefined,
-  showSelectedDependenciesOnly: boolean,
+  dependencyFocusActive: boolean,
   options?: EdgeAnimationOptions
 ): boolean {
   if (options?.preferReducedMotion) return false;
@@ -40,7 +40,7 @@ export function shouldAnimateDependencyEdge(
   }
 
   if (edge.animated) return true;
-  if (showSelectedDependenciesOnly && selectedNodeId) return true;
+  if (dependencyFocusActive && selectedNodeId) return true;
   if (incidentToSelection) return true;
   return false;
 }

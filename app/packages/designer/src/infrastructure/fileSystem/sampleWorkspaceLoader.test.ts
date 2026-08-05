@@ -17,6 +17,27 @@ describe('loadSampleWorkspaceSession', () => {
     vi.resetModules();
   });
 
+  it('createSampleWorkspacePort uses bundled adapter when remote env is unset', async () => {
+    vi.stubEnv('VITE_REMOTE_CATALOG_BASE_URL', '');
+    const bundled = await import('./bundledSampleWorkspace');
+    const { createSampleWorkspacePort } = await import('./sampleWorkspaceLoader');
+    expect(createSampleWorkspacePort()).toBe(bundled.BundledSampleWorkspaceAdapter);
+  });
+
+  it('createSampleWorkspacePort prefers remote adapter when env is set', async () => {
+    vi.stubEnv('VITE_REMOTE_CATALOG_BASE_URL', 'https://blueprints.example.test/');
+    const remote = await import('./remoteCatalogWorkspace');
+    const createRemote = vi
+      .spyOn(remote, 'createRemoteCatalogWorkspaceAdapter')
+      .mockReturnValue({ readFile: vi.fn() } as never);
+    const { createSampleWorkspacePort } = await import('./sampleWorkspaceLoader');
+    createSampleWorkspacePort();
+    expect(createRemote).toHaveBeenCalledWith({
+      baseUrl: 'https://blueprints.example.test/',
+      workspaceName: 'samples',
+    });
+  });
+
   it('uses bundled catalog when remote env is unset', async () => {
     vi.stubEnv('VITE_REMOTE_CATALOG_BASE_URL', '');
     const bundled = await import('./bundledSampleWorkspace');

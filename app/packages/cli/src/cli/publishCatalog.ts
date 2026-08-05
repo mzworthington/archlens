@@ -1,5 +1,4 @@
 import {
-  buildRemoteCatalogSnapshotPlan,
   validateBlueprintWorkspace,
   type BlueprintValidationResult,
   type RemoteCatalogYamlObject,
@@ -7,10 +6,13 @@ import {
 } from '@archlens/core';
 import type { ObjectStoragePort } from '@archlens/storage';
 import type { PublishCliPlan } from './parseArchlensArgv.ts';
-import { computeRemoteCatalogRevisionId } from './remoteCatalogRevision.ts';
-import { getArchlensVersion } from './version.ts';
 import { uploadRemoteCatalogSnapshot } from './publishRemoteCatalog.ts';
 import type { PublishDryRunResult, PublishUploadResult } from './formatPublishDryRunResult.ts';
+import {
+  prepareRemoteCatalogSnapshot,
+  toPublishDryRunResult,
+  toPublishUploadResult,
+} from './prepareRemoteCatalogSnapshot.ts';
 
 const DEFAULT_WORKSPACE_NAME = 'blueprints';
 
@@ -69,28 +71,13 @@ export async function runPublishCatalog(
     content: file.content,
   }));
 
-  const revisionId = computeRemoteCatalogRevisionId(yamlObjects);
-  const snapshotPlan = buildRemoteCatalogSnapshotPlan({
-    revisionId,
+  const { snapshotPlan } = prepareRemoteCatalogSnapshot({
     yamlObjects,
     workspaceName: plan.workspaceName ?? DEFAULT_WORKSPACE_NAME,
-    toolVersion: `archlens ${getArchlensVersion()}`,
   });
 
   if (plan.dryRun) {
-    return {
-      kind: 'dry-run',
-      result: {
-        dryRun: true,
-        revisionId: snapshotPlan.revisionId,
-        snapshotPrefix: snapshotPlan.snapshotPrefix,
-        snapshotManifest: snapshotPlan.snapshotManifest,
-        latestPointer: snapshotPlan.latestPointer,
-        catalogEntryCount: snapshotPlan.catalog.length,
-        objects: snapshotPlan.objects,
-        validation,
-      },
-    };
+    return { kind: 'dry-run', result: toPublishDryRunResult(snapshotPlan, validation) };
   }
 
   const storage = deps.resolveStorage(plan);
@@ -101,19 +88,6 @@ export async function runPublishCatalog(
   const uploadResult = await uploadRemoteCatalogSnapshot(snapshotPlan, storage);
   return {
     kind: 'uploaded',
-    result: {
-      dryRun: false,
-      revisionId: snapshotPlan.revisionId,
-      snapshotPrefix: snapshotPlan.snapshotPrefix,
-      snapshotManifest: snapshotPlan.snapshotManifest,
-      latestPointer: snapshotPlan.latestPointer,
-      catalogEntryCount: snapshotPlan.catalog.length,
-      upload: {
-        revisionId: uploadResult.revisionId,
-        provider: storage.provider,
-        uploadedObjects: uploadResult.uploadedObjects,
-      },
-      validation,
-    },
+    result: toPublishUploadResult(snapshotPlan, validation, storage, uploadResult),
   };
 }

@@ -16,9 +16,25 @@ export type SampleWorkspaceSession = {
   usesRemoteCatalog: boolean;
 };
 
+export function resolveRemoteCatalogBaseUrl(): string | undefined {
+  const value = import.meta.env.VITE_REMOTE_CATALOG_BASE_URL?.trim();
+  return value || undefined;
+}
+
+/** Sync port for composition root — prefers remote when env is set (no network probe). */
+export function createSampleWorkspacePort(
+  remoteBaseUrl: string | undefined = resolveRemoteCatalogBaseUrl()
+): WorkspacePort {
+  if (!remoteBaseUrl) return BundledSampleWorkspaceAdapter;
+  return createRemoteCatalogWorkspaceAdapter({
+    baseUrl: remoteBaseUrl,
+    workspaceName: BUNDLED_WORKSPACE_NAME,
+  });
+}
+
 /** Load sandbox catalog + adapter; fall back to bundled assets when remote is unavailable. */
 export async function loadSampleWorkspaceSession(): Promise<SampleWorkspaceSession> {
-  const remoteBaseUrl = import.meta.env.VITE_REMOTE_CATALOG_BASE_URL?.trim();
+  const remoteBaseUrl = resolveRemoteCatalogBaseUrl();
   if (!remoteBaseUrl) {
     return {
       catalog: await loadBundledWorkspaceCatalog(),

@@ -51,6 +51,11 @@ import type {
   BlueprintRFNode,
 } from '../../../../../application/store/layoutUtils';
 import type { Node as RFNode } from '@xyflow/react';
+import type { DependencyViewMode } from '../../../../../application/forensics/dependencyViewMode';
+import {
+  includeExternalsInFocusFromMode,
+  isDependencyFocusMode,
+} from '../../../../../application/forensics/dependencyViewMode';
 
 export type CanvasVisibleNodesInput = {
   nodes: BlueprintRFNode[];
@@ -61,8 +66,7 @@ export type CanvasVisibleNodesInput = {
   showUpstreamExternals: boolean;
   showDownstreamExternals: boolean;
   selectedNodeId: string | null;
-  showSelectedDependenciesOnly: boolean;
-  includeExternalsInFocus: boolean;
+  dependencyViewMode: DependencyViewMode;
   isResilienceMode: boolean;
   simulationScopeSet: Set<string> | null;
   showCoupling: boolean;
@@ -94,14 +98,15 @@ export function buildCanvasVisibleNodes({
   showUpstreamExternals,
   showDownstreamExternals,
   selectedNodeId,
-  showSelectedDependenciesOnly,
-  includeExternalsInFocus,
+  dependencyViewMode,
   isResilienceMode,
   simulationScopeSet,
   showCoupling,
   expandedExternalHub,
 }: CanvasVisibleNodesInput): BlueprintRFNode[] {
-  const focusActive = showSelectedDependenciesOnly && !isResilienceMode && !!selectedNodeId;
+  const focusActive =
+    isDependencyFocusMode(dependencyViewMode) && !isResilienceMode && !!selectedNodeId;
+  const includeExternalsInFocus = includeExternalsInFocusFromMode(dependencyViewMode);
   const contextLevel = isContextLevelDiagram(schema.level);
 
   if (focusActive && includeExternalsInFocus) {
@@ -191,7 +196,7 @@ export type CanvasExternalSummaryContext = {
   showUpstreamExternals: boolean;
   showDownstreamExternals: boolean;
   expandedExternalHub: ExternalSummaryBand | null;
-  includeExternalsInFocus: boolean;
+  dependencyViewMode: DependencyViewMode;
 };
 
 export type CanvasDisplayNodesInput = {
@@ -200,7 +205,7 @@ export type CanvasDisplayNodesInput = {
   focusedCyclePath: string[] | null;
   couplingFocusMode: boolean;
   selectedNodeId: string | null;
-  showSelectedDependenciesOnly: boolean;
+  dependencyViewMode: DependencyViewMode;
   couplingGhostNodes: BlueprintRFNode[];
   workspaceFilepathIndex: WorkspaceFilepathIndex;
   showCoupling: boolean;
@@ -223,7 +228,7 @@ export function buildCanvasDisplayNodes({
   focusedCyclePath,
   couplingFocusMode,
   selectedNodeId,
-  showSelectedDependenciesOnly,
+  dependencyViewMode,
   couplingGhostNodes,
   workspaceFilepathIndex,
   showCoupling,
@@ -283,7 +288,7 @@ export function buildCanvasDisplayNodes({
     highlighted,
     selectedNodeId,
     filteredEdges,
-    showSelectedDependenciesOnly && !isResilienceMode && !focusedCyclePath
+    isDependencyFocusMode(dependencyViewMode) && !isResilienceMode && !focusedCyclePath
   );
 
   const withHiddenExternalGhosts =
@@ -304,7 +309,7 @@ export function buildCanvasDisplayNodes({
     expandedBand: externalSummary.expandedExternalHub,
     showCoupling,
     isResilienceMode,
-    includeExternalsInFocus: externalSummary.includeExternalsInFocus,
+    includeExternalsInFocus: includeExternalsInFocusFromMode(externalSummary.dependencyViewMode),
   };
   const bands = resolveOverviewExternalBands(externalSummary.schema, externalSummary.loadedSystems);
   const hubNodes = buildExternalSummaryHubNodes(summaryInput, bands);
@@ -327,7 +332,7 @@ export type CanvasDisplayEdgesInput = {
   showCouplingSchemaDeps: boolean;
   selectedEdgeId: string | null;
   edges: BlueprintRFEdge[];
-  showSelectedDependenciesOnly: boolean;
+  dependencyViewMode: DependencyViewMode;
   liteCanvas: boolean;
   reduceMotion: boolean;
   isResilienceMode: boolean;
@@ -350,7 +355,7 @@ export function buildCanvasDisplayEdges({
   showCouplingSchemaDeps,
   selectedEdgeId,
   edges,
-  showSelectedDependenciesOnly,
+  dependencyViewMode,
   liteCanvas,
   reduceMotion,
   isResilienceMode,
@@ -407,7 +412,7 @@ export function buildCanvasDisplayEdges({
       expandedBand: externalSummary.expandedExternalHub,
       showCoupling,
       isResilienceMode,
-      includeExternalsInFocus: externalSummary.includeExternalsInFocus,
+      includeExternalsInFocus: includeExternalsInFocusFromMode(externalSummary.dependencyViewMode),
     };
     const visibleExternalRefs = resolveVisibleExternalEntityRefs(summaryInput);
     const hiddenRefs = hiddenOverviewExternalRefs(externalSummary.allNodes, visibleExternalRefs);
@@ -421,7 +426,10 @@ export function buildCanvasDisplayEdges({
 
   const animationOpts = { liteCanvas, preferReducedMotion: reduceMotion };
   const dependencyFocusActive =
-    showSelectedDependenciesOnly && !!selectedNodeId && !isResilienceMode && !focusedCyclePath;
+    isDependencyFocusMode(dependencyViewMode) &&
+    !!selectedNodeId &&
+    !isResilienceMode &&
+    !focusedCyclePath;
 
   const styled = next.map(e => {
     const isSelected = e.id === selectedEdgeId;
@@ -454,12 +462,7 @@ export function buildCanvasDisplayEdges({
       animated:
         !couplingDimmed &&
         (isPropagationRipple ||
-          shouldAnimateDependencyEdge(
-            e,
-            selectedNodeId,
-            showSelectedDependenciesOnly,
-            animationOpts
-          )),
+          shouldAnimateDependencyEdge(e, selectedNodeId, dependencyFocusActive, animationOpts)),
       className: isPropagationRipple
         ? 'blast-propagation-edge'
         : typeof e.className === 'string'
@@ -495,7 +498,7 @@ export function buildCanvasDisplayEdges({
       expandedBand: externalSummary.expandedExternalHub,
       showCoupling,
       isResilienceMode,
-      includeExternalsInFocus: externalSummary.includeExternalsInFocus,
+      includeExternalsInFocus: includeExternalsInFocusFromMode(externalSummary.dependencyViewMode),
     };
     const bands = resolveOverviewExternalBands(
       externalSummary.schema,

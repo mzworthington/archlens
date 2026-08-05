@@ -3,11 +3,7 @@ import type { LayoutEngineId } from '../../../core';
 import type { ExternalSummaryBand, SourceProvenance } from '@archlens/core';
 import type { DependencyViewMode } from '../../forensics/dependencyViewMode';
 import type { LeftSlotPanelId } from '../../layout/workspacePanels';
-import {
-  includeExternalsInFocusFromMode,
-  showSelectedDependenciesOnlyFromMode,
-  toggleDependencyViewMode,
-} from '../../forensics/dependencyViewMode';
+import { toggleDependencyViewMode } from '../../forensics/dependencyViewMode';
 
 export type { DependencyViewMode };
 
@@ -28,9 +24,6 @@ export interface UiState {
   showUpstreamExternals: boolean;
   showDownstreamExternals: boolean;
   dependencyViewMode: DependencyViewMode;
-  /** @deprecated Use dependencyViewMode — derived for backward compatibility. */
-  showSelectedDependenciesOnly: boolean;
-  includeExternalsInFocus: boolean;
   showCoupling: boolean;
   showCouplingSchemaDeps: boolean;
   guidedRefactorEntityRefs: string[] | null;
@@ -102,8 +95,6 @@ export const createUiState = (
   showUpstreamExternals: true,
   showDownstreamExternals: true,
   dependencyViewMode: 'focus',
-  showSelectedDependenciesOnly: true,
-  includeExternalsInFocus: false,
   showCoupling: false,
   showCouplingSchemaDeps: false,
   guidedRefactorEntityRefs: null,
@@ -137,21 +128,11 @@ export const createUiState = (
     set(state => ({ showDownstreamExternals: !state.showDownstreamExternals })),
   setShowUpstreamExternals: show => set({ showUpstreamExternals: show }),
   setShowDownstreamExternals: show => set({ showDownstreamExternals: show }),
-  setDependencyViewMode: mode =>
-    set({
-      dependencyViewMode: mode,
-      showSelectedDependenciesOnly: showSelectedDependenciesOnlyFromMode(mode),
-      includeExternalsInFocus: includeExternalsInFocusFromMode(mode),
-    }),
+  setDependencyViewMode: mode => set({ dependencyViewMode: mode }),
   toggleShowSelectedDependenciesOnly: () =>
-    set(state => {
-      const next = toggleDependencyViewMode(state.dependencyViewMode);
-      return {
-        dependencyViewMode: next,
-        showSelectedDependenciesOnly: showSelectedDependenciesOnlyFromMode(next),
-        includeExternalsInFocus: includeExternalsInFocusFromMode(next),
-      };
-    }),
+    set(state => ({
+      dependencyViewMode: toggleDependencyViewMode(state.dependencyViewMode),
+    })),
   toggleShowCoupling: () => set(state => ({ showCoupling: !state.showCoupling })),
   setShowCoupling: show => set({ showCoupling: show }),
   toggleShowCouplingSchemaDeps: () =>
