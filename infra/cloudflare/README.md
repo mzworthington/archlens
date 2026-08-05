@@ -13,7 +13,7 @@ Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev).
 | `R2BucketCors` | Browser GET/HEAD from `archlens.dev` and local dev |
 | `R2CustomDomain` | Public read at `blueprints.archlens.dev` |
 
-Catalog objects follow ADR-0010 under `estates/samples/` for dogfood (ADR-0014): hand-authored samples, ArchLens scan, and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
+Catalog objects follow ADR-0010 under `estates/samples/` for the hosted samples estate (ADR-0014): hand-authored samples, ArchLens scan, and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
 
 ## Quick setup
 

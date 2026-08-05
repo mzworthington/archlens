@@ -14,7 +14,7 @@ Sparse [MADR](https://adr.github.io/madr/)-style records for choices that are **
 | [0008](./0008-workspace-external-proxy-nodes.md)                   | Workspace external proxy nodes for cross-diagram endpoints  | Accepted | 2026-08-03 |
 | [0009](./0009-cloudflare-pages-static-hosting.md)                  | Cloudflare Pages static hosting with Pulumi and Wrangler    | Accepted | 2026-08-03 |
 | [0010](./0010-remote-blueprint-catalog-contract.md)                | Remote blueprint catalog contract (manifest + catalog.json) | Accepted | 2026-08-04 |
-| [0011](./0011-object-storage-published-corpora.md)                 | Object storage for published corpora (R2 dogfood)           | Accepted | 2026-08-04 |
+| [0011](./0011-object-storage-published-corpora.md)                 | Object storage for published corpora (R2 hosted catalog)    | Accepted | 2026-08-04 |
 | [0012](./0012-remote-read-only-workspace-port.md)                  | Remote read-only WorkspacePort adapter for hosted sandbox   | Accepted | 2026-08-04 |
 | [0014](./0014-estate-fragments-and-compose-before-publish.md)      | Estate fragments and compose-before-publish                 | Accepted | 2026-08-04 |
 

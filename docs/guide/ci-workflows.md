@@ -18,7 +18,7 @@ Customer template files (not enabled here): [`blueprint-contract.yml.example`](.
 
 ## Shared samples estate (ADR-0014)
 
-All dogfood publishers stage fragments into one catalog prefix so Canvas can peer-switch across contexts:
+All catalog publishers stage fragments into one prefix so Canvas can peer-switch across contexts:
 
 | Fragment product        | Workflow                              | Notes                                             |
 | ----------------------- | ------------------------------------- | ------------------------------------------------- |
@@ -30,7 +30,7 @@ Consumer: `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/
 
 ## Compose triggers (ADR-0014)
 
-Stitching is **not** storage-event driven. Dogfood uses:
+Stitching is **not** storage-event driven. The samples estate uses:
 
 1. **Primary** — each publish workflow runs `catalog publish-fragment` then `catalog compose` in the same job.
 2. **Safety net** — [`compose-catalog.yml`](../../.github/workflows/compose-catalog.yml) re-composes `estates/samples/` hourly (`--allow-empty` so an empty fragment set does not fail).

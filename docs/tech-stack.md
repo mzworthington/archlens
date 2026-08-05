@@ -111,7 +111,7 @@ Canonical map of every workflow (purpose + triggers): [GitHub Actions workflows]
 4. **build** — production designer + CLI artifacts
 5. **deploy-cloudflare** — Wrangler upload to Pages (`main` only)
 
-CLI releases are a separate job chain (`release-cli.sh`) when conventional commits warrant a tag. Catalog dogfood and `samples/` publish live in sibling workflows (see the map above).
+CLI releases are a separate job chain (`release-cli.sh`) when conventional commits warrant a tag. Catalog publish and `samples/` publish live in sibling workflows (see the map above).
 
 ---
 

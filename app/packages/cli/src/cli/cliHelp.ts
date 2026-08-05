@@ -122,7 +122,7 @@ function printOverviewHelp(): void {
   flag('--publish', 'After scan, upload output tree to object storage (--no-dry-run)');
   flag(
     '--key-prefix=<path>',
-    'With --publish: object key prefix (or OBJECT_STORAGE_KEY_PREFIX; dogfood: estates/{id}/)'
+    'With --publish: object key prefix (or OBJECT_STORAGE_KEY_PREFIX; samples estate: estates/{id}/)'
   );
   flag('--workspace-name=<name>', 'With --publish: workspace name for entityRef resolution');
   flag(
@@ -322,7 +322,7 @@ function printPublishHelp(): void {
   flag('--account-id=<id>', 'Cloudflare account id for R2 endpoint override');
   flag(
     '--key-prefix=<path>',
-    'Object key prefix inside the bucket (or OBJECT_STORAGE_KEY_PREFIX; dogfood: estates/{id}/)'
+    'Object key prefix inside the bucket (or OBJECT_STORAGE_KEY_PREFIX; samples estate: estates/{id}/)'
   );
   flag('--no-dry-run', 'Upload snapshot to object storage');
   flag(
