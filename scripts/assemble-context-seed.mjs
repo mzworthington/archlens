@@ -5,8 +5,8 @@
  * personas / third-parties / system anchors (ADR-0015).
  *
  * Usage:
- *   node scripts/assemble-context-seed.mjs --declaration=path.json --output=path.yaml
  *   node scripts/assemble-context-seed.mjs --catalog=scripts/blueprint-sample-repos.json --sample-id=backstage --output=path.yaml
+ *   node scripts/assemble-context-seed.mjs --declaration=path.json --output=path.yaml
  *
  * Keep assembly rules aligned with `@archlens/core` `assembleContextDeclaration`.
  */
@@ -270,8 +270,8 @@ function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
     console.log(`Usage:
-  node scripts/assemble-context-seed.mjs --declaration=scripts/declared-contexts/archlens.json --output=blueprints/archlens/context.yaml
-  node scripts/assemble-context-seed.mjs --catalog=scripts/blueprint-sample-repos.json --sample-id=backstage --output=blueprints/backstage/backstage/context.yaml`);
+  node scripts/assemble-context-seed.mjs --catalog=scripts/blueprint-sample-repos.json --sample-id=backstage --output=blueprints/backstage/backstage/context.yaml
+  node scripts/assemble-context-seed.mjs --declaration=path.json --output=path.yaml`);
     process.exit(0);
   }
   if (!args.output) throw new Error('--output=... is required');

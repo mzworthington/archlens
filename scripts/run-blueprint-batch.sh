@@ -63,19 +63,22 @@ echo "✓ chaoslens.wasm copied to canvas public assets"
 echo
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "▶ clean blueprints"
+echo "▶ clean blueprints (preserve committed product seeds)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-if [[ -d "${BLUEPRINTS_DIR}" ]]; then
-  shopt -s dotglob nullglob
-  for entry in "${BLUEPRINTS_DIR}"/*; do
-    [[ -e "${entry}" ]] || continue
-    rm -rf "${entry}"
-  done
-  shopt -u dotglob nullglob
-else
-  mkdir -p "${BLUEPRINTS_DIR}"
-fi
-echo "✓ cleaned ${BLUEPRINTS_DIR}"
+mkdir -p "${BLUEPRINTS_DIR}"
+# Keep in-repo declared products (e.g. archlens/); wipe prior sample/demo scan output.
+shopt -s nullglob
+for entry in "${BLUEPRINTS_DIR}"/*; do
+  base="$(basename "${entry}")"
+  if [[ "${base}" == "archlens" ]]; then
+    echo "  keep ${base}/"
+    continue
+  fi
+  rm -rf "${entry}"
+  echo "  removed ${base}/"
+done
+shopt -u nullglob
+echo "✓ cleaned sample outputs under ${BLUEPRINTS_DIR}"
 echo
 
 for name in "${DIRECTORIES[@]}"; do
