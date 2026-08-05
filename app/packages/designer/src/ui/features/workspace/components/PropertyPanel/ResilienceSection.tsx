@@ -42,6 +42,7 @@ type Props = {
   onSafeguardChange: (key: keyof NodeSafeguards, enabled: boolean) => void;
   onAddFaultToScenario: () => void;
   onMonteCarloChange: (patch: Partial<MonteCarloConfig>) => void;
+  onBrowseChaosSpecs: () => void;
   onLoadChaosSpec: () => void;
   onExportChaosSpec: () => void;
   onClearScenario: () => void;
@@ -101,7 +102,7 @@ export const ResilienceSection: React.FC<Props> = props => {
         ) : (
           <div className="flex items-center justify-between gap-2">
             <p className="text-xs text-slate-500 leading-relaxed">
-              Load a ChaosSpec YAML scenario, or build a multi-fault run below.
+              Browse the ChaosSpec catalog, paste YAML, or build a multi-fault run below.
             </p>
             <div className="flex items-center gap-3 shrink-0">
               {props.faults.length > 0 ? (
@@ -116,11 +117,19 @@ export const ResilienceSection: React.FC<Props> = props => {
               ) : null}
               <button
                 type="button"
-                onClick={props.onLoadChaosSpec}
+                onClick={props.onBrowseChaosSpecs}
                 className="text-[11px] font-semibold text-[#00f0ff] hover:text-cyan-300 transition cursor-pointer"
+                data-testid="browse-chaos-specs-button"
+              >
+                Browse
+              </button>
+              <button
+                type="button"
+                onClick={props.onLoadChaosSpec}
+                className="text-[11px] font-semibold text-slate-300 hover:text-slate-100 transition cursor-pointer"
                 data-testid="load-chaos-spec-button"
               >
-                Load ChaosSpec
+                Paste YAML
               </button>
             </div>
           </div>

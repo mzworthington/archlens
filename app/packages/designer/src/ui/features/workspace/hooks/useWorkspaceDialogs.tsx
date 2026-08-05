@@ -7,6 +7,7 @@ import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxW
 import { DiffMenu } from '../components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from '../components/ImportMermaidDialog/ImportMermaidDialog';
 import { ChaosSpecDialog } from '../components/ChaosSpecDialog/ChaosSpecDialog';
+import { ChaosSpecPickerDialog } from '../components/ChaosSpecPickerDialog/ChaosSpecPickerDialog';
 import { ImportIacDialog } from '../components/ImportIacDialog/ImportIacDialog';
 import { StartupWorkspaceDialog } from '../components/StartupWorkspaceDialog/StartupWorkspaceDialog';
 import { CompareDialog } from '../components/CompareDialog/CompareDialog';
@@ -26,6 +27,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
     chaosSpecDialogMode,
     openChaosSpecDialog,
     closeChaosSpecDialog,
+    isChaosSpecPickerOpen,
+    closeChaosSpecPicker,
     isStartupOpen,
     setIsStartupOpen,
     isCompareOpen,
@@ -78,6 +81,9 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onModeChange={openChaosSpecDialog}
           onClose={closeChaosSpecDialog}
         />
+      </LazyMountOnOpen>
+      <LazyMountOnOpen isOpen={isChaosSpecPickerOpen}>
+        <ChaosSpecPickerDialog isOpen={isChaosSpecPickerOpen} onClose={closeChaosSpecPicker} />
       </LazyMountOnOpen>
       {isStartupOpen ? (
         <StartupWorkspaceDialog
