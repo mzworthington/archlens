@@ -1,4 +1,3 @@
-import { createRequire } from 'module';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -8,6 +7,7 @@ import {
   wasmFileName,
   type TreeSitterWasmLanguage,
 } from '@archlens/core';
+import { resolveTreeSitterWasmSourceDirs } from '@archlens/core/tree-sitter-wasm';
 
 export {
   TREE_SITTER_WASMS_PACKAGE_LANGUAGES,
@@ -35,19 +35,11 @@ export function treeSitterWasmSearchDirs(opts: {
   const dirs: string[] = [];
 
   try {
-    const require = createRequire(moduleUrl);
-    const pkgJson = require.resolve('tree-sitter-wasms/package.json');
-    dirs.push(path.join(path.dirname(pkgJson), 'out'));
+    const { wasmsOutDir, runtimeDir } = resolveTreeSitterWasmSourceDirs(moduleUrl);
+    dirs.push(wasmsOutDir);
+    dirs.push(runtimeDir);
   } catch {
     // Package may be unavailable inside a bun --compile binary.
-  }
-
-  try {
-    const require = createRequire(moduleUrl);
-    const pkgJson = require.resolve('web-tree-sitter/package.json');
-    dirs.push(path.dirname(pkgJson));
-  } catch {
-    // Same — compiled binary relies on files next to the executable.
   }
 
   // Compiled binary: wasms are copied next to the executable at build time.

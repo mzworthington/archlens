@@ -7,14 +7,12 @@ import {
   buildAdviceLensUrl,
   isAdviceLensUrl,
   isEstateLensUrl,
-  redirectLegacyAdviceLensUrl,
 } from '../../forensics/adviceLensUrl';
 import {
   buildChaosLensUrl,
   clearChaosLensSearchParams,
   isChaosLensUrl,
   parseChaosLensUrl,
-  redirectLegacyResilienceUrl,
   resilienceFaultsEqual,
 } from '../../../../application/resilience/chaosLensUrl';
 
@@ -36,28 +34,6 @@ export function useWorkspaceLensSync(): void {
   const closeChaosSpecPicker = useBlueprintStore(s => s.closeChaosSpecPicker);
   const applyResilienceUrlState = useBlueprintStore(s => s.applyResilienceUrlState);
   const applyingUrlRef = useRef(false);
-
-  // Legacy `?resilience=1` → sticky `?lens=chaoslens`
-  useEffect(() => {
-    const query = search.startsWith('?') ? search.slice(1) : search;
-    const params = new URLSearchParams(query);
-    if (params.get('resilience') !== '1') return;
-    setLocation(redirectLegacyResilienceUrl(location, search), { replace: true });
-  }, [location, search, setLocation]);
-
-  // Legacy `?lens=tracelens&view=recommendations` → `?lens=advicelens`
-  useEffect(() => {
-    const query = search.startsWith('?') ? search.slice(1) : search;
-    const params = new URLSearchParams(query);
-    if (params.get('lens') !== 'tracelens' || params.get('view') !== 'recommendations') return;
-    setLocation(redirectLegacyAdviceLensUrl(location, search), { replace: true });
-  }, [location, search, setLocation]);
-
-  // Legacy `/advicelens` paths → workspace AdviceLens lens
-  useEffect(() => {
-    if (location !== '/advicelens' && !location.startsWith('/advicelens/')) return;
-    setLocation(redirectLegacyAdviceLensUrl(location, search), { replace: true });
-  }, [location, search, setLocation]);
 
   useEffect(() => {
     const active = isEstateLensUrl(location, search);

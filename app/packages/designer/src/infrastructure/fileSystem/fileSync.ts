@@ -1,5 +1,23 @@
 import type { FileSystemPort, WorkspacePort } from '../../core';
 
+function hasSaveFilePicker(
+  win: Window
+): win is Window & { showSaveFilePicker: NonNullable<Window['showSaveFilePicker']> } {
+  return typeof win.showSaveFilePicker === 'function';
+}
+
+function hasOpenFilePicker(
+  win: Window
+): win is Window & { showOpenFilePicker: NonNullable<Window['showOpenFilePicker']> } {
+  return typeof win.showOpenFilePicker === 'function';
+}
+
+function hasDirectoryPicker(
+  win: Window
+): win is Window & { showDirectoryPicker: NonNullable<Window['showDirectoryPicker']> } {
+  return typeof win.showDirectoryPicker === 'function';
+}
+
 /**
  * Local File Sync utilities implementing the File System Access API
  * and providing a standard download fallback.
@@ -11,8 +29,8 @@ export const BrowserFileSystemAdapter: FileSystemPort = {
    */
   saveSchema: async (yamlContent: string, fileName: string): Promise<boolean> => {
     try {
-      if (typeof (window as any).showSaveFilePicker === 'function') {
-        const handle = await (window as any).showSaveFilePicker({
+      if (hasSaveFilePicker(window)) {
+        const handle = await window.showSaveFilePicker({
           suggestedName: fileName,
           types: [
             {
@@ -51,8 +69,8 @@ export const BrowserFileSystemAdapter: FileSystemPort = {
    */
   loadSchema: async (): Promise<string | null> => {
     try {
-      if (typeof (window as any).showOpenFilePicker === 'function') {
-        const [handle] = await (window as any).showOpenFilePicker({
+      if (hasOpenFilePicker(window)) {
+        const [handle] = await window.showOpenFilePicker({
           types: [
             {
               description: 'YAML Schema Files',
@@ -91,7 +109,7 @@ export const BrowserFileSystemAdapter: FileSystemPort = {
   },
 };
 
-let activeDirectoryHandle: any | null = null;
+let activeDirectoryHandle: FileSystemDirectoryHandle | null = null;
 
 /**
  * Concrete implementation of WorkspacePort using native File System Access API
@@ -99,8 +117,8 @@ let activeDirectoryHandle: any | null = null;
 export const BrowserWorkspaceAdapter: WorkspacePort = {
   selectDirectory: async (): Promise<boolean> => {
     try {
-      if (typeof (window as any).showDirectoryPicker === 'function') {
-        activeDirectoryHandle = await (window as any).showDirectoryPicker({
+      if (hasDirectoryPicker(window)) {
+        activeDirectoryHandle = await window.showDirectoryPicker({
           mode: 'readwrite',
         });
         return true;
@@ -119,7 +137,7 @@ export const BrowserWorkspaceAdapter: WorkspacePort = {
       throw new Error('No workspace directory active');
     }
     const parts = relativePath.split('/').filter(p => p && p !== '.');
-    let currentHandle = activeDirectoryHandle;
+    let currentHandle: FileSystemDirectoryHandle = activeDirectoryHandle;
 
     for (let i = 0; i < parts.length - 1; i++) {
       const part = parts[i];
@@ -130,7 +148,7 @@ export const BrowserWorkspaceAdapter: WorkspacePort = {
     }
 
     const fileName = parts[parts.length - 1];
-    const fileHandle = await currentHandle.getFileHandle(fileName, { create: false });
+    const fileHandle = await currentHandle.getFileHandle(fileName!, { create: false });
     const file = await fileHandle.getFile();
     return await file.text();
   },
@@ -141,16 +159,16 @@ export const BrowserWorkspaceAdapter: WorkspacePort = {
     }
     try {
       const parts = relativePath.split('/').filter(p => p && p !== '.');
-      let currentHandle = activeDirectoryHandle;
+      let currentHandle: FileSystemDirectoryHandle = activeDirectoryHandle;
 
       for (let i = 0; i < parts.length - 1; i++) {
         const part = parts[i];
         if (part === '..') continue;
-        currentHandle = await currentHandle.getDirectoryHandle(part, { create: true });
+        currentHandle = await currentHandle.getDirectoryHandle(part!, { create: true });
       }
 
       const fileName = parts[parts.length - 1];
-      const fileHandle = await currentHandle.getFileHandle(fileName, { create: true });
+      const fileHandle = await currentHandle.getFileHandle(fileName!, { create: true });
       const writable = await fileHandle.createWritable();
       await writable.write(content);
       await writable.close();
@@ -167,7 +185,7 @@ export const BrowserWorkspaceAdapter: WorkspacePort = {
 
   hasPermission: async (): Promise<boolean> => {
     if (!activeDirectoryHandle) return false;
-    const opts = { mode: 'readwrite' };
+    const opts = { mode: 'readwrite' as const };
     try {
       if ((await activeDirectoryHandle.queryPermission(opts)) === 'granted') {
         return true;
@@ -198,13 +216,13 @@ async function scanDirectory(
     const relativePath = relativePrefix ? `${relativePrefix}/${entry.name}` : entry.name;
     if (entry.kind === 'file') {
       if (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml')) {
-        const file = await (entry as any).getFile();
+        const file = await entry.getFile();
         const content = await file.text();
         files.push({ name: relativePath, content });
       }
     } else if (entry.kind === 'directory') {
       if (entry.name !== 'node_modules' && !entry.name.startsWith('.')) {
-        const subFiles = await scanDirectory(entry as any, relativePath);
+        const subFiles = await scanDirectory(entry, relativePath);
         files.push(...subFiles);
       }
     }

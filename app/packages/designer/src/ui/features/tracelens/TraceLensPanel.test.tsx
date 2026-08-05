@@ -472,7 +472,7 @@ describe('TraceLensPanel', () => {
 
     const { hook } = memoryLocation({
       path: '/workspace/app/designer/db',
-      searchPath: 'lens=tracelens',
+      searchPath: 'lens=tracelens&plan=app%2Fdesigner%2Fdb',
     });
     render(
       <Router hook={hook}>
@@ -516,7 +516,7 @@ describe('TraceLensPanel', () => {
 
     const mem = memoryLocation({
       path: '/workspace/app/designer/db',
-      searchPath: 'lens=tracelens&source=1',
+      searchPath: 'lens=tracelens&plan=app%2Fdesigner%2Fdb&source=1',
     });
     render(
       <Router hook={mem.hook}>

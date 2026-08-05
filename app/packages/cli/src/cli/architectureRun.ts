@@ -230,6 +230,8 @@ export async function executeArchitectureRun(
     rollupModules: state.rollupModules,
   });
 
+  // tree-sitter is the default/CI path (multi-language WASM). ts-morph stays behind
+  // --parser=ts-morph for TypeScript-only scans that prefer the tsconfig-aware Project API.
   const parser =
     state.parserType === 'ts-morph'
       ? new TsMorphParserAdapter(analysisOptions)

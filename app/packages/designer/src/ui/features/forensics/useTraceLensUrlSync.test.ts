@@ -70,7 +70,29 @@ describe('useTraceLensUrlSync', () => {
     setLocation.mockReset();
   });
 
-  it('keeps the refactor plan closed after the user dismisses a legacy scoped deep link', () => {
+  it('opens a refactor plan only when ?plan= is present', () => {
+    const setActivePlan = vi.fn();
+    const clearActivePlan = vi.fn();
+
+    mockSearch = '?lens=tracelens';
+    renderHook(() =>
+      useTraceLensUrlSync({
+        loadedSystems,
+        scopeEntityRef: offenderEntityRef,
+        activePlanEntityRef: null,
+        setActivePlan,
+        clearActivePlan,
+        isSourceCodeOpen: false,
+        sourceCodeFilepath: null,
+        openSourceCodeDialog: vi.fn(),
+        closeSourceCodeDialog: vi.fn(),
+      })
+    );
+
+    expect(setActivePlan).not.toHaveBeenCalled();
+  });
+
+  it('keeps the refactor plan closed after the user dismisses a ?plan= deep link', () => {
     const setActivePlan = vi.fn();
     const clearActivePlan = vi.fn();
 
@@ -79,7 +101,6 @@ describe('useTraceLensUrlSync', () => {
         useTraceLensUrlSync({
           loadedSystems,
           scopeEntityRef: offenderEntityRef,
-          legacyPlanEntityRef: offenderEntityRef,
           activePlanEntityRef: activePlan,
           setActivePlan,
           clearActivePlan,
@@ -103,7 +124,7 @@ describe('useTraceLensUrlSync', () => {
     );
 
     const callsBeforeQueryStrip = setActivePlan.mock.calls.length;
-    mockSearch = '';
+    mockSearch = '?lens=tracelens';
     rerender({ activePlan: null });
 
     expect(setActivePlan.mock.calls.length).toBe(callsBeforeQueryStrip);

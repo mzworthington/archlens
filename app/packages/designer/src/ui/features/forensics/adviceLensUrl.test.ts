@@ -5,7 +5,6 @@ import {
   isAdviceLensUrl,
   isWorkspaceTraceLensUrl,
   parseAdviceLensUrl,
-  redirectLegacyAdviceLensUrl,
 } from './adviceLensUrl';
 
 describe('adviceLensUrl', () => {
@@ -28,20 +27,14 @@ describe('adviceLensUrl', () => {
     });
   });
 
-  it('redirects legacy /advicelens paths', () => {
-    expect(redirectLegacyAdviceLensUrl('/advicelens')).toBe('/workspace?lens=advicelens');
-    expect(redirectLegacyAdviceLensUrl('/advicelens/app/designer', 'plan=app/designer/db')).toBe(
-      '/workspace/app/designer?lens=advicelens&plan=app%2Fdesigner%2Fdb'
-    );
-  });
-
-  it('detects AdviceLens routes including legacy tracelens recommendations', () => {
+  it('detects AdviceLens only via lens=advicelens', () => {
     expect(isAdviceLensUrl('/workspace', 'lens=advicelens')).toBe(true);
-    expect(isAdviceLensUrl('/advicelens')).toBe(true);
-    expect(isAdviceLensUrl('/workspace', 'lens=tracelens&view=recommendations')).toBe(true);
+    expect(isAdviceLensUrl('/advicelens')).toBe(false);
+    expect(isAdviceLensUrl('/workspace', 'lens=tracelens&view=recommendations')).toBe(false);
     expect(isWorkspaceTraceLensUrl('/workspace', 'lens=tracelens')).toBe(true);
     expect(isWorkspaceTraceLensUrl('/workspace', 'lens=tracelens&view=recommendations')).toBe(
       false
     );
+    expect(isWorkspaceTraceLensUrl('/tracelens')).toBe(false);
   });
 });

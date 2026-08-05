@@ -36,25 +36,12 @@ export async function runResilienceSimulationAsync(
     logger
   );
 
+  // Go WASM already computes integrityHeat (resilience-engine/internal/sim/integrity.go).
+  // Per ADR-0005, trust WASM when available — TypeScript only when WASM is unavailable.
   if (wasmResult) {
     const result = wasmResultToSimulationResult(wasmResult);
     const faultNodeIds = resolveFaultNodeIds(schema, spec);
-    const withHops = { ...result, heatHops: computeResilienceHeatHops(schema, spec), faultNodeIds };
-
-    if (spec.faults.length > 0 && result.integrityHeat.size === 0) {
-      const tsIntegrity = runResilienceSimulation(schema, spec);
-      return {
-        ...withHops,
-        integrityHeat: tsIntegrity.integrityHeat,
-        integrityImpactedNodes: tsIntegrity.integrityImpactedNodes,
-        overallIntegrity: tsIntegrity.overallIntegrity,
-        integrityImpactedDomains: tsIntegrity.integrityImpactedDomains,
-        advice: [...new Set([...withHops.advice, ...tsIntegrity.advice])],
-        faultNodeIds: tsIntegrity.faultNodeIds,
-      };
-    }
-
-    return withHops;
+    return { ...result, heatHops: computeResilienceHeatHops(schema, spec), faultNodeIds };
   }
 
   logger.warn('ChaosLens WASM engine unavailable; running TypeScript fallback simulation.');

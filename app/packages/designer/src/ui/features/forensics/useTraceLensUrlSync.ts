@@ -33,7 +33,6 @@ function resolveOffenderFilepath(
 export function useTraceLensUrlSync({
   loadedSystems,
   scopeEntityRef,
-  legacyPlanEntityRef,
   activePlanEntityRef,
   setActivePlan,
   clearActivePlan,
@@ -45,8 +44,6 @@ export function useTraceLensUrlSync({
 }: {
   loadedSystems: LoadedSystemRef[];
   scopeEntityRef: string | null;
-  /** Path-only deep link to a single offender (no ?plan=). */
-  legacyPlanEntityRef: string | null;
   activePlanEntityRef: string | null;
   setActivePlan: (plan: ActivePlan) => void;
   clearActivePlan: () => void;
@@ -59,10 +56,8 @@ export function useTraceLensUrlSync({
   const [location, setLocation] = useLocation();
   const search = useSearch();
   const prevLocationRef = useRef<string | null>(null);
-  const prevPathnameRef = useRef<string | null>(null);
   const prevPlanEntityRef = useRef<string | null | undefined>(undefined);
   const prevSourceOpenRef = useRef<boolean | undefined>(undefined);
-  const dismissedLegacyPlanRef = useRef(false);
 
   const adviceLensActive = isAdviceLensUrl(location, search);
 
@@ -71,27 +66,16 @@ export function useTraceLensUrlSync({
     if (!isEstateLensUrl(location, search)) return;
 
     const browserUrl = currentTraceLensUrl(location, search);
-    const pathnameChanged = prevPathnameRef.current !== location;
-    prevPathnameRef.current = location;
     const locationChanged = prevLocationRef.current !== browserUrl;
     const isInitialSync = prevLocationRef.current === null;
     prevLocationRef.current = browserUrl;
-
-    // Only reset dismissal when navigating to a different scope path — not when
-    // query params change (e.g. removing ?plan= after the user closes the slide-over).
-    if (pathnameChanged) {
-      dismissedLegacyPlanRef.current = false;
-    }
 
     if (!locationChanged && !isInitialSync) return;
 
     const parsed = adviceLensActive
       ? parseAdviceLensUrl(location, search)
       : parseTraceLensUrl(location, search);
-    const planEntityRef =
-      parsed.planEntityRef ??
-      (!dismissedLegacyPlanRef.current ? legacyPlanEntityRef : null) ??
-      null;
+    const planEntityRef = parsed.planEntityRef ?? null;
 
     if (!planEntityRef) {
       if (activePlanEntityRef) clearActivePlan();
@@ -116,7 +100,6 @@ export function useTraceLensUrlSync({
     setActivePlan,
     clearActivePlan,
     closeSourceCodeDialog,
-    legacyPlanEntityRef,
     refactorPlanOptions,
   ]);
 
@@ -155,10 +138,6 @@ export function useTraceLensUrlSync({
     const planChanged = prevPlanEntityRef.current !== activePlanEntityRef;
     const sourceChanged = prevSourceOpenRef.current !== isSourceCodeOpen;
     const isInitialSync = prevPlanEntityRef.current === undefined;
-
-    if (planChanged && activePlanEntityRef === null && prevPlanEntityRef.current) {
-      dismissedLegacyPlanRef.current = true;
-    }
 
     prevPlanEntityRef.current = activePlanEntityRef;
     prevSourceOpenRef.current = isSourceCodeOpen;

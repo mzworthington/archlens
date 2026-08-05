@@ -16,15 +16,15 @@ TraceLens and ChaosLens **observe**. AdviceLens **prescribes**—synthesizing th
 
 ## Where to see AdviceLens
 
-AdviceLens is **cross-surface** — it prescribes fixes wherever TraceLens and ChaosLens observe signals. The canonical studio entry is **`/advicelens`**, which opens TraceLens on the estate recommendations tab (`/tracelens?view=recommendations`).
+AdviceLens is **cross-surface** — it prescribes fixes wherever TraceLens and ChaosLens observe signals. The canonical studio entry is **`/workspace?lens=advicelens`**, which opens the **AdviceLens** tab on the TraceLens estate page.
 
-| Surface           | Location                                                                                           |
-| ----------------- | -------------------------------------------------------------------------------------------------- |
-| **AdviceLens**    | `/advicelens` or `/tracelens?view=recommendations` — **TraceLens** estate page, **AdviceLens** tab |
-| **TraceLens**     | `/tracelens` — **TraceLens** estate page, **TraceLens** tab (ranked worst offenders)               |
-| **Refactor plan** | Slide-over on an offender → AdviceLens list for that boundary                                      |
-| **ChaosLens**     | Workspace **Resilience** mode → telemetry panel advice list                                        |
-| **CLI**           | `archlens resilience <path>` — headless estate sweep                                               |
+| Surface           | Location                                                                                     |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| **AdviceLens**    | `/workspace?lens=advicelens` — **TraceLens** estate page, **AdviceLens** tab                 |
+| **TraceLens**     | `/workspace?lens=tracelens` — **TraceLens** estate page, **TraceLens** tab (worst offenders) |
+| **Refactor plan** | Slide-over on an offender → AdviceLens list for that boundary                                |
+| **ChaosLens**     | Workspace **Resilience** mode → telemetry panel advice list                                  |
+| **CLI**           | `archlens resilience <path>` — headless estate sweep                                         |
 
 Product docs: [AdviceLens engine](../advicelens-engine.md) (contributors).
 
@@ -45,7 +45,7 @@ Recommendations are **display-only** by default—they are not written into Blue
 
 ## In TraceLens
 
-1. Open **`/advicelens`**, **`/tracelens?view=recommendations`**, or **`/tracelens`** and switch to the **AdviceLens** tab on the **TraceLens** estate page.
+1. Open **`/workspace?lens=advicelens`**, or **`/workspace?lens=tracelens`** and switch to the **AdviceLens** tab on the **TraceLens** estate page.
 2. Load blueprints (sandbox or folder workspace).
 3. Filter by source (ChaosLens / TraceLens / all) or search by target name.
 4. Click a row to open the refactor slide-over with evidence.

@@ -13,7 +13,6 @@ import {
   rankForensicsOffenders,
   resolveLookbackDays,
   loadedSystemsHaveForensics,
-  offenderMatchesEntityScope,
   type OffenderScope,
   type OffenderSignalFilter,
   type OffenderTestFilter,
@@ -155,19 +154,7 @@ export function useTraceLensPanelModel() {
     loadedSystems,
   });
 
-  const scopedOffenders = useMemo(() => {
-    if (!scopeEntityRef) return ranked;
-    return ranked.filter(o => offenderMatchesEntityScope(o, scopeEntityRef, loadedSystems));
-  }, [ranked, scopeEntityRef, loadedSystems]);
-
   const offenders = estateItems;
-
-  const legacyPlanEntityRef = useMemo(() => {
-    if (urlState.planEntityRef || !scopeEntityRef) return null;
-    if (scopedOffenders.length !== 1 || scopedOffenders[0].entityRef !== scopeEntityRef)
-      return null;
-    return scopeEntityRef;
-  }, [urlState.planEntityRef, scopeEntityRef, scopedOffenders]);
 
   const refactorPlanOptions = useMemo(
     () => ({
@@ -180,7 +167,6 @@ export function useTraceLensPanelModel() {
   useTraceLensUrlSync({
     loadedSystems,
     scopeEntityRef,
-    legacyPlanEntityRef,
     activePlanEntityRef: activePlan?.offender.entityRef ?? null,
     setActivePlan: setActivePlanFromUrl,
     clearActivePlan,

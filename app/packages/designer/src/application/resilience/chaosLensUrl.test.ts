@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  buildChaosLensUrl,
-  isChaosLensUrl,
-  parseChaosLensUrl,
-  redirectLegacyResilienceUrl,
-} from './chaosLensUrl';
+import { buildChaosLensUrl, isChaosLensUrl, parseChaosLensUrl } from './chaosLensUrl';
 
 describe('chaosLensUrl', () => {
   it('builds workspace chaos lens URLs', () => {
@@ -84,21 +79,12 @@ describe('chaosLensUrl', () => {
     });
   });
 
-  it('treats legacy resilience=1 as chaos lens and redirects to sticky lens', () => {
-    expect(isChaosLensUrl('/workspace/application', 'resilience=1')).toBe(true);
-    expect(redirectLegacyResilienceUrl('/workspace/application', 'resilience=1')).toBe(
-      '/workspace/application?lens=chaoslens'
-    );
-    expect(redirectLegacyResilienceUrl('/workspace/shop', 'resilience=1&foo=bar')).toBe(
-      '/workspace/shop?lens=chaoslens&foo=bar'
-    );
-  });
-
   it('detects chaos lens routes', () => {
     expect(isChaosLensUrl('/workspace', 'lens=chaoslens')).toBe(true);
     expect(isChaosLensUrl('/workspace/shop', 'lens=chaoslens&fault=shop/api')).toBe(true);
     expect(isChaosLensUrl('/workspace/shop', 'lens=tracelens')).toBe(false);
     expect(isChaosLensUrl('/workspace/shop', '')).toBe(false);
+    expect(isChaosLensUrl('/workspace/application', 'resilience=1')).toBe(false);
     expect(isChaosLensUrl('/guide', 'lens=chaoslens')).toBe(false);
   });
 });

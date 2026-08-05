@@ -1,23 +1,19 @@
 import React, { useCallback } from 'react';
 import {
-  Cloud,
-  Folder,
-  Upload,
   Download,
   RefreshCcw,
   GitCompare,
   Undo,
   Redo,
-  GitMerge,
   MoreHorizontal,
   FolderOpen,
   HelpCircle,
-  ShieldAlert,
 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { useToolbarMenu } from '../WorkspaceToolbar/useToolbarMenu';
 import { ToolbarMenuPortal } from '../WorkspaceToolbar/ToolbarMenuPortal';
 import { DiagramExportMenuItems } from '../WorkspaceToolbar/DiagramExportMenuItems';
+import { ToolbarOpenMenuItems } from './toolbarMenuItems';
 
 const iconBtnClass =
   'min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 p-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800 disabled:opacity-30 disabled:hover:bg-slate-900 disabled:hover:text-slate-400 transition cursor-pointer disabled:cursor-not-allowed flex items-center justify-center';
@@ -50,30 +46,6 @@ function useSaveAction() {
   }, [isWorkspaceOpen, saveActiveDiagram, saveSchema]);
 
   return { controlsDisabled, handleSave, isWorkspaceOpen };
-}
-
-function useOpenActions() {
-  const openWorkspaceDirectory = useBlueprintStore(s => s.openWorkspaceDirectory);
-  const loadSchema = useBlueprintStore(s => s.loadSchema);
-  const controlsDisabled = useControlsDisabled();
-
-  const handleOpenFolder = useCallback(async () => {
-    try {
-      await openWorkspaceDirectory();
-    } catch (err) {
-      console.error('Failed to open workspace directory:', err);
-    }
-  }, [openWorkspaceDirectory]);
-
-  const handleLoad = useCallback(async () => {
-    try {
-      await loadSchema();
-    } catch (err) {
-      console.error('Failed to load schema:', err);
-    }
-  }, [loadSchema]);
-
-  return { controlsDisabled, handleOpenFolder, handleLoad };
 }
 
 function useClearAction() {
@@ -162,20 +134,9 @@ export const ToolbarSaveButton: React.FC = () => {
 };
 
 export const ToolbarOpenMenu: React.FC = () => {
-  const { controlsDisabled, handleOpenFolder, handleLoad } = useOpenActions();
+  const controlsDisabled = useControlsDisabled();
   const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
-  const schema = useBlueprintStore(s => s.schema);
-  const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
-  const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
-  const openChaosSpecDialog = useBlueprintStore(s => s.openChaosSpecDialog);
-  const openChaosSpecPicker = useBlueprintStore(s => s.openChaosSpecPicker);
-  const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
-  const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
-
-  const folderTitle = isWorkspaceOpen
-    ? 'Open another folder workspace'
-    : 'Open a local directory workspace';
 
   return (
     <div ref={anchorRef} className="relative shrink-0">
@@ -199,116 +160,11 @@ export const ToolbarOpenMenu: React.FC = () => {
         menuRef={menuRef}
         menuClassName={menuPanelClass}
       >
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            void handleOpenFolder();
-          }}
+        <ToolbarOpenMenuItems
+          menuItemClass={menuItemClass}
+          onClose={close}
           disabled={controlsDisabled}
-          className={menuItemClass}
-          title={folderTitle}
-        >
-          <Folder className="w-3.5 h-3.5 text-brand-500 shrink-0" />
-          Open Folder
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            void handleLoad();
-          }}
-          disabled={controlsDisabled}
-          className={menuItemClass}
-          title="Open single YAML from disk"
-        >
-          <Upload className="w-3.5 h-3.5 shrink-0" />
-          Open File
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            setIsImportMermaidOpen(true);
-          }}
-          disabled={controlsDisabled || !schema}
-          className={menuItemClass}
-          title="Import Mermaid diagram into the active schema"
-          id="import-mermaid-action"
-        >
-          <GitMerge className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Import Mermaid
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            setIsImportIacOpen(true);
-          }}
-          disabled={controlsDisabled || !schema}
-          className={menuItemClass}
-          title="Import Terraform or Pulumi into the active schema"
-          id="import-iac-action"
-        >
-          <Cloud className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Import Infrastructure
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            openChaosSpecPicker();
-          }}
-          disabled={controlsDisabled || !isWorkspaceOpen}
-          className={menuItemClass}
-          title="Browse bundled and workspace ChaosSpecs; opens the target diagram in ChaosLens"
-          id="browse-chaos-spec-action"
-          data-testid="browse-chaos-spec-action"
-        >
-          <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Browse ChaosSpecs
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            if (!isResilienceMode) {
-              useBlueprintStore.getState().setResilienceMode(true);
-            }
-            openChaosSpecDialog('import');
-          }}
-          disabled={controlsDisabled || !schema}
-          className={menuItemClass}
-          title="Load a ChaosSpec YAML scenario for ChaosLens"
-          id="import-chaos-spec-action"
-        >
-          <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Load ChaosSpec
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            if (!isResilienceMode) {
-              useBlueprintStore.getState().setResilienceMode(true);
-            }
-            openChaosSpecDialog('export');
-          }}
-          disabled={controlsDisabled || !schema || resilienceFaults.length === 0}
-          className={menuItemClass}
-          title="Export the active ChaosLens scenario as ChaosSpec YAML"
-          id="export-chaos-spec-action"
-        >
-          <Download className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Export ChaosSpec
-        </button>
+        />
       </ToolbarMenuPortal>
     </div>
   );
@@ -348,22 +204,9 @@ export const ToolbarEditActions: React.FC = () => {
 export const ToolbarOverflowMenu: React.FC = () => {
   const { controlsDisabled, handleClear } = useClearAction();
   const { controlsDisabled: saveDisabled, handleSave, isWorkspaceOpen } = useSaveAction();
-  const { controlsDisabled: openDisabled, handleOpenFolder, handleLoad } = useOpenActions();
   const setIsCompareOpen = useBlueprintStore(s => s.setIsCompareOpen);
-  const isWorkspaceOpenState = useBlueprintStore(s => s.isWorkspaceOpen);
-  const schema = useBlueprintStore(s => s.schema);
-  const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
-  const setIsImportIacOpen = useBlueprintStore(s => s.setIsImportIacOpen);
-  const openChaosSpecDialog = useBlueprintStore(s => s.openChaosSpecDialog);
-  const openChaosSpecPicker = useBlueprintStore(s => s.openChaosSpecPicker);
-  const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
-  const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const loadedSystems = useBlueprintStore(s => s.loadedSystems);
   const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
-
-  const folderTitle = isWorkspaceOpenState
-    ? 'Open another folder workspace'
-    : 'Open a local directory workspace';
 
   return (
     <div ref={anchorRef} className="relative shrink-0">
@@ -403,116 +246,13 @@ export const ToolbarOverflowMenu: React.FC = () => {
 
         <DiagramExportMenuItems menuItemClass={menuItemClass} onClose={close} />
 
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            void handleOpenFolder();
-          }}
-          disabled={openDisabled}
-          className={menuItemClass}
-          title={folderTitle}
-        >
-          <Folder className="w-3.5 h-3.5 text-brand-500 shrink-0" />
-          Open Folder
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            void handleLoad();
-          }}
-          disabled={openDisabled}
-          className={menuItemClass}
-          title="Open single YAML from disk"
-        >
-          <Upload className="w-3.5 h-3.5 shrink-0" />
-          Open File
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            setIsImportMermaidOpen(true);
-          }}
-          disabled={openDisabled || !schema}
-          className={menuItemClass}
-          title="Import Mermaid diagram into the active schema"
-          id="import-mermaid-action"
-        >
-          <GitMerge className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Import Mermaid
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            setIsImportIacOpen(true);
-          }}
-          disabled={openDisabled || !schema}
-          className={menuItemClass}
-          title="Import Terraform or Pulumi into the active schema"
-          id="import-iac-action"
-        >
-          <Cloud className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Import Infrastructure
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            openChaosSpecPicker();
-          }}
-          disabled={openDisabled || !isWorkspaceOpenState}
-          className={menuItemClass}
-          title="Browse bundled and workspace ChaosSpecs; opens the target diagram in ChaosLens"
-          id="browse-chaos-spec-action-overflow"
-          data-testid="browse-chaos-spec-action-overflow"
-        >
-          <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Browse ChaosSpecs
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            if (!isResilienceMode) {
-              useBlueprintStore.getState().setResilienceMode(true);
-            }
-            openChaosSpecDialog('import');
-          }}
-          disabled={openDisabled || !schema}
-          className={menuItemClass}
-          title="Load a ChaosSpec YAML scenario for ChaosLens"
-          id="import-chaos-spec-action-overflow"
-        >
-          <ShieldAlert className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Load ChaosSpec
-        </button>
-        <button
-          type="button"
-          role="menuitem"
-          onClick={() => {
-            close();
-            if (!isResilienceMode) {
-              useBlueprintStore.getState().setResilienceMode(true);
-            }
-            openChaosSpecDialog('export');
-          }}
-          disabled={openDisabled || !schema || resilienceFaults.length === 0}
-          className={menuItemClass}
-          title="Export the active ChaosLens scenario as ChaosSpec YAML"
-          id="export-chaos-spec-action-overflow"
-        >
-          <Download className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
-          Export ChaosSpec
-        </button>
+        <ToolbarOpenMenuItems
+          menuItemClass={menuItemClass}
+          onClose={close}
+          disabled={controlsDisabled}
+          idSuffix="-overflow"
+          browseTestId="browse-chaos-spec-action-overflow"
+        />
 
         <button
           type="button"

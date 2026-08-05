@@ -57,7 +57,7 @@ describe('docs link resolution', () => {
   });
 
   it('resolves in-app AdviceLens entry link', () => {
-    expect(resolveDocsHref('/advicelens', '')).toBe('/advicelens');
+    expect(resolveDocsHref('/workspace?lens=advicelens', '')).toBe('/workspace?lens=advicelens');
   });
 
   it('resolves absolute docs paths', () => {
@@ -119,16 +119,16 @@ describe('docs link resolution', () => {
     expect(DOCS_PAGES.some(p => p.path === '/features-e2e')).toBe(false);
   });
 
-  it('resolves legacy guide chapter paths', () => {
-    expect(resolveDocsHref('./forensics.md', 'guide')).toBe('/guide/tracelens');
-    expect(resolveDocsHref('./resilience.md', 'guide')).toBe('/guide/chaoslens');
+  it('resolves current guide chapter paths', () => {
     expect(resolveDocsHref('./tracelens.md', 'guide')).toBe('/guide/tracelens');
     expect(resolveDocsHref('./chaoslens.md', 'guide')).toBe('/guide/chaoslens');
-    expect(resolveDocsHref('./design-system.md', 'guide')).toBe('/design-system');
+    expect(resolveDocsHref('./forensics.md', 'guide')).toBeNull();
+    expect(resolveDocsHref('./resilience.md', 'guide')).toBeNull();
   });
 
   it('resolves in-app TraceLens links', () => {
-    expect(resolveDocsHref('/tracelens', '')).toBe('/tracelens');
+    expect(resolveDocsHref('/workspace?lens=tracelens', '')).toBe('/workspace?lens=tracelens');
+    expect(resolveDocsHref('/tracelens', '')).toBeNull();
   });
 
   it('resolves in-app workspace links', () => {

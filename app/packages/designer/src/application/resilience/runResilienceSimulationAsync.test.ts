@@ -19,6 +19,73 @@ const unavailableEngine: ResilienceEnginePort = {
 };
 
 describe('runResilienceSimulationAsync', () => {
+  it('uses WASM integrityHeat without merging TypeScript integrity', async () => {
+    const engine: ResilienceEnginePort = {
+      runSimulation: async () => ({
+        heat: { 'shop/payment': 1, 'shop/web': 0.5 },
+        integrityHeat: { 'shop/payment': 0.8 },
+        impactedNodes: ['shop/payment', 'shop/web'],
+        integrityImpactedNodes: ['shop/payment'],
+        entryPointSlas: { 'shop/web': 50 },
+        overallSla: 50,
+        overallIntegrity: 20,
+        spofs: [],
+        impactedDomains: [],
+        integrityImpactedDomains: [],
+        advice: ['wasm-advice'],
+        propagationStoppedAt: [],
+        engine: 'go',
+      }),
+    };
+
+    const result = await runResilienceSimulationAsync(
+      schema,
+      {
+        faults: [{ nodeId: 'shop/payment', faultType: 'region-outage' }],
+        entryPoints: ['shop/web'],
+      },
+      { engine }
+    );
+
+    expect(result.engine).toBe('go');
+    expect(result.integrityHeat.get('shop/payment')).toBe(0.8);
+    expect(result.overallIntegrity).toBe(20);
+    expect(result.advice).toEqual(['wasm-advice']);
+  });
+
+  it('does not hybrid-merge TypeScript when WASM returns empty integrityHeat', async () => {
+    const engine: ResilienceEnginePort = {
+      runSimulation: async () => ({
+        heat: { 'shop/payment': 1 },
+        integrityHeat: {},
+        impactedNodes: ['shop/payment'],
+        integrityImpactedNodes: [],
+        entryPointSlas: { 'shop/web': 0 },
+        overallSla: 0,
+        overallIntegrity: 100,
+        spofs: [],
+        impactedDomains: [],
+        integrityImpactedDomains: [],
+        advice: [],
+        propagationStoppedAt: [],
+        engine: 'go',
+      }),
+    };
+
+    const result = await runResilienceSimulationAsync(
+      schema,
+      {
+        faults: [{ nodeId: 'shop/payment', faultType: 'region-outage' }],
+        entryPoints: ['shop/web'],
+      },
+      { engine }
+    );
+
+    expect(result.engine).toBe('go');
+    expect(result.integrityHeat.size).toBe(0);
+    expect(result.overallIntegrity).toBe(100);
+  });
+
   it('falls back to the TypeScript engine when WASM is unavailable', async () => {
     const result = await runResilienceSimulationAsync(
       schema,
