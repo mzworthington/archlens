@@ -136,16 +136,11 @@ Scan each repo with the **same** `--context` and a distinct `--system-name` (or 
 
 You do **not** need a “home vs secondary” seed flag — omit redundant `name`s and keep one shared identity per entity.
 
-### Assembling seeds from JSON (CI / batch)
+### This repository
 
-This repository’s catalog jobs assemble seeds before scan:
+ArchLens commits its own seed at [`blueprints/archlens/context.yaml`](https://github.com/mzworthington/archlens/blob/main/blueprints/archlens/context.yaml) — the same path consumers use. Publish scans hydrate into that file; no separate JSON assemble step.
 
-| Source                                                                                                                                                                 | Assembler                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [`scripts/declared-contexts/archlens.json`](https://github.com/mzworthington/archlens/blob/main/scripts/declared-contexts/archlens.json)                               | `node scripts/assemble-context-seed.mjs --declaration=… --output=blueprints/archlens/context.yaml` |
-| `contextDeclaration` on each entry in [`scripts/blueprint-sample-repos.json`](https://github.com/mzworthington/archlens/blob/main/scripts/blueprint-sample-repos.json) | `… --catalog=… --sample-id=<id> --output=…`                                                        |
-
-See [GitHub Actions workflows](./ci-workflows.md) for where that runs in publish jobs.
+External **demo** repos have no in-tree seed, so [publish-demo-catalog](./ci-workflows.md) assembles a synthetic context from `contextDeclaration` on each entry in [`scripts/blueprint-sample-repos.json`](https://github.com/mzworthington/archlens/blob/main/scripts/blueprint-sample-repos.json) via `scripts/assemble-context-seed.mjs` before scan.
 
 ## Deliverable
 
