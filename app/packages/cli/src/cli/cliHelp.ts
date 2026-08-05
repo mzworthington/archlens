@@ -99,7 +99,10 @@ function printOverviewHelp(): void {
   command('(default)', 'Interactive menu — scan, publish, fragments, compose, overlays');
   command('scan', 'Headless architecture scan (uses blueprint.config.json + defaults)');
   command('enrich', 'Re-run externals pass on existing YAML (no source re-scan)');
-  command('validate [path]', 'Validate blueprint tree (schema, cycles, entityRef links)');
+  command(
+    'validate [path]',
+    'Architecture health: cycles + forensics actions (optional --contract / --since-commit)'
+  );
   command('publish [path]', 'Plan remote catalog snapshot upload (dry run by default)');
   command('catalog …', 'Estate fragments: publish-fragment + compose (ADR-0014)');
   command('resilience [path]', 'Headless ChaosLens sweep + ranked recommendations');
@@ -140,7 +143,7 @@ function printOverviewHelp(): void {
   example('archlens scan --headless --no-git --glob="**/*.{ts,tsx}"');
   example('archlens enrich');
   example('archlens enrich --git --git-since=90');
-  example('archlens validate blueprints/');
+  example('archlens validate blueprints/ --since-commit=HEAD~1');
   example('archlens publish blueprints/ --format=json');
   example('archlens resilience blueprints/chaoslens-stress/');
   example('archlens diff main-blueprints/ pr-blueprints/');
@@ -222,7 +225,13 @@ function printEnrichHelp(): void {
 function printValidateHelp(): void {
   heading('archlens validate');
   line(
-    `  ${pc.dim('Check blueprint YAML for schema errors, cycles, and broken entityRef links.')}`
+    `  ${pc.dim('Report what to fix in the codebase: actionable module direct-call cycles and')}`
+  );
+  line(
+    `  ${pc.dim('TraceLens forensics (hotspots, silos, heating). Other coupling cycles are informational.')}`
+  );
+  line(
+    `  ${pc.dim('Wiring/schema contract checks are opt-in via --contract (also used by publish --validate).')}`
   );
   line('');
 
@@ -232,10 +241,15 @@ function printValidateHelp(): void {
   heading('OPTIONS');
   flag('--path=<dir>', 'Blueprint tree (default: blueprints)');
   flag('--format=text|json', 'Output format (default: text)');
+  flag('--contract', 'Also fail on BlueprintSpec wiring/schema issues');
+  flag('--since-commit[=<ref>]', 'Compare health to blueprints at git ref (default HEAD~1)');
+  flag('--baseline=<dir>', 'Compare health to another on-disk blueprint tree');
 
   heading('EXAMPLES');
   example('archlens validate');
-  example('archlens validate custom-blueprints/ --format=json');
+  example('archlens validate blueprints/ --since-commit=HEAD~1');
+  example('archlens validate blueprints/ --baseline=.archlens/base-blueprints');
+  example('archlens validate custom-blueprints/ --contract --format=json');
 }
 
 function printDiffHelp(): void {

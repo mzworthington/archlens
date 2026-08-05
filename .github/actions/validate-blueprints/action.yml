@@ -1,5 +1,5 @@
 name: Validate Blueprints
-description: Validate BlueprintSpec YAML and diff architecture changes on pull requests.
+description: Check architecture health (cycles + forensics) and diff blueprint trees on pull requests.
 
 inputs:
   blueprints-path:
@@ -37,10 +37,6 @@ runs:
         echo "$HOME/.local/bin" >> "$GITHUB_PATH"
         archlens --version
 
-    - name: Validate blueprint workspace
-      shell: bash
-      run: archlens validate "${{ inputs.blueprints-path }}"
-
     - name: Prepare base-branch blueprint tree
       if: github.event_name == 'pull_request'
       shell: bash
@@ -51,6 +47,19 @@ runs:
         mkdir -p .archlens/base-blueprints
         if git ls-tree -r --name-only "origin/${BASE_REF}" -- "${{ inputs.blueprints-path }}" | grep -q .; then
           git archive "origin/${BASE_REF}" -- "${{ inputs.blueprints-path }}" | tar -x -C .archlens/base-blueprints --strip-components=1
+          echo "has_baseline=true" >> "$GITHUB_ENV"
+        else
+          echo "has_baseline=false" >> "$GITHUB_ENV"
+        fi
+
+    - name: Validate architecture health
+      shell: bash
+      run: |
+        set -euo pipefail
+        if [[ "${{ github.event_name }}" == "pull_request" && "${has_baseline:-false}" == "true" ]]; then
+          archlens validate "${{ inputs.blueprints-path }}" --baseline=.archlens/base-blueprints
+        else
+          archlens validate "${{ inputs.blueprints-path }}"
         fi
 
     - name: Diff blueprints against base branch

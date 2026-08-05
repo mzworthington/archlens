@@ -71,19 +71,23 @@ pnpm --filter @archlens/cli exec tsx src/cli/archlens.ts --git-only --git-since=
 
 Forensics attach a typed `forensics` object onto component nodes (per-file metrics via `filepath`) and rolled-up summaries onto containers and context system nodes. Optional `forensics` section in `blueprint.config.json` for thresholds (`hotspotThreshold`, `complexityThreshold`, `minSharedCommits`, `couplingThreshold`, `minChurnForComplexity`, `sinceDays`).
 
-### Blueprint contract (`validate` / `diff`)
+### Architecture health (`validate`) and structural `diff`
 
-Pin architecture in CI without re-scanning source:
+Pin architecture risk in CI without re-scanning source. Default `validate` reports **what to fix in the codebase** — actionable module `direct-call` cycles (not external-proxy / inter-container loops) and TraceLens forensics (hotspots, knowledge silos, heating churn) — with remediation text. Other coupling cycles are listed as informational and do not fail the gate. Scan with git forensics enabled first so hotspot/silo/heating signals are attached.
 
 ```bash
 archlens validate blueprints/
-archlens validate --format=json
+archlens validate blueprints/ --since-commit=HEAD~1
+archlens validate blueprints/ --baseline=.archlens/base-blueprints --format=json
+archlens validate blueprints/ --contract   # optional BlueprintSpec wiring/schema gate
 
 archlens diff base-blueprints/ head-blueprints/
 archlens diff --baseline=main-tree --current=pr-tree --format=json
 ```
 
-`validate` checks Zod schema parsing, dependency cycles, invalid local connections, and broken `entityRef` hierarchy links across the tree. `diff` reuses the same structural compare logic as ArchLens Canvas (added/removed/modified nodes and dependencies, per file).
+`--since-commit` materializes the blueprint path from git (`git archive`) and fails when health **deteriorates** versus that revision. Use `--baseline` when you already scanned the other revision into a folder (typical for estates that do not commit YAML). `--contract` is the older wiring check (invalid connections / broken entityRefs); publish `--validate` still uses that contract gate.
+
+`diff` remains a structural tree compare (added/removed/modified nodes and dependencies).
 
 GitHub Action template: [`.github/actions/validate-blueprints`](../../../.github/actions/validate-blueprints/action.yml) and [workflow example](../../../.github/workflows/blueprint-contract.yml.example). See [GitHub Actions workflows](../../../docs/guide/ci-workflows.md).
 
