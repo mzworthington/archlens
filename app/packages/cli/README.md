@@ -120,6 +120,8 @@ For **multi-repo products** (several git repos, one landscape), scan each repo w
 
 **Declared context:** commit a sparse `level: context` BlueprintSpec with stable software-system anchors (`entityRef` + `name`), optional `product-persona` persons, and optional `external: true` third-parties. Scan upserts discoveries onto those anchors, preserves author-owned personas/externals/edges, skips the fallback `User` actor when personas exist, and prunes only scan-owned systems whose `rootPath` is in the current scan’s scope.
 
+Catalog pipelines assemble seeds from JSON via `scripts/assemble-context-seed.mjs` (ArchLens: `scripts/declared-contexts/archlens.json`; demos: `contextDeclaration` on each entry in `scripts/blueprint-sample-repos.json`) before scan.
+
 ### Filtering
 
 Files are included only if they pass **all** of:
