@@ -8,12 +8,12 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-ArchLens products (CLI, designer, CI) must share one editable architecture contract. Diagram syntaxes such as Mermaid are useful for display and import, but they omit BlueprintSpec fields (`entityRef`, forensics, resilience, Zod-validated node types). We must decide which format is the sole editable source of truth so adapters do not invent competing stores or round-trip editors.
+ArchLens products (CLI, Canvas, CI) must share one editable architecture contract. Diagram syntaxes such as Mermaid are useful for display and import, but they omit BlueprintSpec fields (`entityRef`, forensics, resilience, Zod-validated node types). We must decide which format is the sole editable source of truth so adapters do not invent competing stores or round-trip editors.
 
 ## Decision Drivers
 
 - Hard to reverse: persistence shape and public BlueprintSpec / JSON Schema contract
-- Cross-cutting: CLI writers, designer IO, CI schema checks, and external integrators
+- Cross-cutting: CLI writers, canvas IO, CI schema checks, and external integrators
 - Boundary clarity: pure domain in `@archlens/core`; Mermaid as derive/import only
 - Diffability and hand-editability in git
 
@@ -30,7 +30,7 @@ Chosen option: "**Option A**", because BlueprintSpec YAML already is the shared 
 
 ### Consequences
 
-- Good, because CLI, designer, and CI share one YAML/`SystemSchema` contract and public JSON Schema URLs
+- Good, because CLI, Canvas, and CI share one YAML/`SystemSchema` contract and public JSON Schema URLs
 - Good, because export-only views (e.g. Code Viewer Mermaid) stay non-editable; imports merge via conflict preview
 - Bad, because Mermaid-first users must go through an import wizard rather than editing Mermaid in place
 - Follow-up: see ADR-0002 (entityRef), ADR-0006 (import merge), ADR-0007 (shared core)
@@ -40,7 +40,7 @@ Chosen option: "**Option A**", because BlueprintSpec YAML already is the shared 
 ```mermaid
 flowchart LR
   CLI[CLI writers] --> BP[BlueprintSpec YAML / SystemSchema]
-  Designer[Designer canvas and IO] --> BP
+  Canvas[Canvas UI and IO] --> BP
   CI[CI / JSON Schema checks] --> BP
   BP -->|serializeSchemaToMermaid| Mermaid[Mermaid export view]
   Import[Mermaid / IaC import wizards] -->|parse then merge| BP

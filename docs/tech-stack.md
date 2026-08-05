@@ -23,9 +23,9 @@ For module boundaries and hexagonal layout, see [Architecture & security](./arch
 
 ---
 
-## ArchLens Canvas (designer)
+## ArchLens Canvas
 
-The designer is a **single-page app** served from `app/packages/designer/`:
+ArchLens Canvas is a **single-page app** served from `app/packages/canvas/`:
 
 - **React 19** for UI; **Wouter** for client-side routing (`/`, `/guide/*`, `/workspace/*`, lens URLs).
 - **Vite** for dev server, production bundle, and syncing repo assets into `public/` at build time:
@@ -45,11 +45,11 @@ Docs and the live product share one build — Markdown under `docs/` is imported
 
 ## Monorepo (`app/`)
 
-| Package              | Role                                                                                           |
-| -------------------- | ---------------------------------------------------------------------------------------------- |
-| `@archlens/core`     | Pure domain: Zod contracts, YAML/Mermaid/Terraform parsers, workspace catalog, ChaosLens rules |
-| `@archlens/designer` | Canvas PWA, docs site, workspace adapters                                                      |
-| `@archlens/cli`      | Static analysis CLI, blueprint writers, AdviceLens estate runner                               |
+| Package            | Role                                                                                           |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| `@archlens/core`   | Pure domain: Zod contracts, YAML/Mermaid/Terraform parsers, workspace catalog, ChaosLens rules |
+| `@archlens/canvas` | Canvas PWA, docs site, workspace adapters                                                      |
+| `@archlens/cli`    | Static analysis CLI, blueprint writers, AdviceLens estate runner                               |
 
 **pnpm** workspaces (`app/pnpm-workspace.yaml`). **Vitest** for unit tests; **oxlint** + **Prettier** for lint/format. **Knip** for unused-code checks in CI.
 
@@ -60,14 +60,14 @@ Docs and the live product share one build — Markdown under `docs/` is imported
 - Entry: `app/packages/cli/src/cli/archlens.ts`
 - **Bun** compiles a standalone binary (`bun build --compile`) for macOS, Linux, and Windows in release CI.
 - Parses TypeScript/JavaScript (ts-morph), HCL, and other languages via tree-sitter adapters.
-- Writes `blueprints/*.yaml` using the same `@archlens/core` types the designer loads.
+- Writes `blueprints/*.yaml` using the same `@archlens/core` types ArchLens Canvas loads.
 
 ---
 
 ## ChaosLens engine
 
 - **Go** simulation core in `resilience-engine/`, compiled to **WASM** for the browser.
-- `make copy-wasm` copies `chaoslens.wasm` into the designer `public/` tree before `pnpm build`.
+- `make copy-wasm` copies `chaoslens.wasm` into ArchLens Canvas `public/` tree before `pnpm build`.
 - TypeScript fallback paths exist in `@archlens/core` for tests; production canvas prefers WASM.
 
 See [ChaosLens engine](./chaoslens-engine.md).
@@ -79,7 +79,7 @@ See [ChaosLens engine](./chaoslens-engine.md).
 ```mermaid
 flowchart LR
   GHA[GitHub Actions] --> Build[pnpm build]
-  Build --> Dist[designer/dist]
+  Build --> Dist[canvas/dist]
   Dist --> Wrangler[wrangler pages deploy]
   Wrangler --> CFP[Cloudflare Pages CDN]
   Pulumi[Pulumi stack prod] --> CFP
@@ -108,7 +108,7 @@ Canonical map of every workflow (purpose + triggers): [GitHub Actions workflows]
 1. **quality** — format, lint, typecheck, schema check, knip, Go vet
 2. **unit-tests** — Vitest coverage, Go tests
 3. **e2e** — Playwright
-4. **build** — production designer + CLI artifacts
+4. **build** — production canvas + CLI artifacts
 5. **deploy-cloudflare** — Wrangler upload to Pages (`main` only)
 
 CLI releases are a separate job chain (`release-cli.sh`) when conventional commits warrant a tag. Catalog publish and `samples/` publish live in sibling workflows (see the map above).

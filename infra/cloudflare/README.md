@@ -63,7 +63,7 @@ pulumi up
 | Path | Purpose |
 |------|---------|
 | `wrangler.toml` | Pages project name + output directory |
-| `app/packages/designer/public/_redirects` | SPA routing |
+| `app/packages/canvas/public/_redirects` | SPA routing |
 | `.github/workflows/pulumi-cloudflare.yml` | Pulumi on PR / main; manual `workflow_dispatch` |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
 | `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/samples/` (product `archlens`) |

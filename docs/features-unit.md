@@ -1953,7 +1953,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ suggests cross-container components referenced from other diagrams
 - ✅ suggests unresolved dependency endpoints in the active schema
 
-## Designer
+## Canvas
 
 ### _redirects
 

@@ -12,9 +12,9 @@ describe('containerGrouping', () => {
       containerId: 'cli',
       displayName: 'cli',
     });
-    expect(resolveContainerFromPath('app/packages/designer/src/App.tsx')).toEqual({
-      containerId: 'designer',
-      displayName: 'designer',
+    expect(resolveContainerFromPath('app/packages/canvas/src/App.tsx')).toEqual({
+      containerId: 'canvas',
+      displayName: 'canvas',
     });
   });
 
@@ -120,8 +120,8 @@ describe('ModelExtractor', () => {
         callExpressions: [],
       },
       {
-        filePath: 'app/packages/designer/src/App.tsx',
-        relativePath: 'app/packages/designer/src/App.tsx',
+        filePath: 'app/packages/canvas/src/App.tsx',
+        relativePath: 'app/packages/canvas/src/App.tsx',
         baseName: 'App',
         isTestFile: false,
         imports: [{ moduleSpecifier: 'react' }],
@@ -129,8 +129,8 @@ describe('ModelExtractor', () => {
         callExpressions: [],
       },
       {
-        filePath: 'app/packages/designer/src/db/db.ts',
-        relativePath: 'app/packages/designer/src/db/db.ts',
+        filePath: 'app/packages/canvas/src/db/db.ts',
+        relativePath: 'app/packages/canvas/src/db/db.ts',
         baseName: 'db',
         isTestFile: false,
         imports: [{ moduleSpecifier: 'dexie' }, { moduleSpecifier: '../App' }],
@@ -140,22 +140,20 @@ describe('ModelExtractor', () => {
     ]);
 
     expect(containerNodesMap.has('cli')).toBe(true);
-    expect(containerNodesMap.has('designer')).toBe(true);
+    expect(containerNodesMap.has('canvas')).toBe(true);
     expect(containerNodesMap.has('app')).toBe(false);
 
     expect(componentNodesMap.get(componentMapKey('cli', 'cli'))?.isTest).toBe(false);
     expect(componentNodesMap.get(componentMapKey('cli', 'cli'))?.type).toBe('background-worker');
     expect(componentNodesMap.get(componentMapKey('cli', 'analysis/domain'))?.isTest).toBe(true);
     expect(containerNodesMap.get('cli')?.isTest).toBe(false);
-    expect(componentNodesMap.get(componentMapKey('designer', 'app'))?.type).toBe('gateway-api');
-    expect(componentNodesMap.get(componentMapKey('designer', 'app'))?.properties?.containerId).toBe(
-      'designer'
+    expect(componentNodesMap.get(componentMapKey('canvas', 'app'))?.type).toBe('gateway-api');
+    expect(componentNodesMap.get(componentMapKey('canvas', 'app'))?.properties?.containerId).toBe(
+      'canvas'
     );
 
     expect(
-      componentDependencies.some(
-        d => d.to.includes('/designer/app') && d.from.includes('/designer/db')
-      )
+      componentDependencies.some(d => d.to.includes('/canvas/app') && d.from.includes('/canvas/db'))
     ).toBe(true);
   });
 
@@ -163,8 +161,8 @@ describe('ModelExtractor', () => {
     const extractor = new ModelExtractor('blueprint/app');
     const { componentNodesMap } = extractor.extractGraph([
       {
-        filePath: 'app/packages/designer/src/application/forensics/openRefactorOnCanvas.ts',
-        relativePath: 'app/packages/designer/src/application/forensics/openRefactorOnCanvas.ts',
+        filePath: 'app/packages/canvas/src/application/forensics/openRefactorOnCanvas.ts',
+        relativePath: 'app/packages/canvas/src/application/forensics/openRefactorOnCanvas.ts',
         baseName: 'openRefactorOnCanvas',
         isTestFile: false,
         imports: [],
@@ -173,8 +171,8 @@ describe('ModelExtractor', () => {
       },
     ]);
 
-    const node = componentNodesMap.get(componentMapKey('designer', 'application/forensics'));
-    expect(node?.entityRef).toBe('blueprint/app/designer/application/forensics');
+    const node = componentNodesMap.get(componentMapKey('canvas', 'application/forensics'));
+    expect(node?.entityRef).toBe('blueprint/app/canvas/application/forensics');
   });
 
   it('marks containers as tests when every source file in them is a test', () => {

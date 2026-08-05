@@ -89,7 +89,7 @@ No `terraform init` or `pulumi preview` is required - parsing is static, like th
 
 Pull entities that already exist elsewhere in the loaded workspace onto the current diagram as **external proxies** (dashed borders). Search by name/`entityRef`, filter by C4 level or type, then **Add selected** or **Sync suggested**.
 
-Wire dependencies to those proxies as usual; at container level the CLI/designer can roll component-level externals up into inter-container edges.
+Wire dependencies to those proxies as usual; at container level the CLI/Canvas can roll component-level externals up into inter-container edges.
 
 After a CLI scan, ArchLens materializes cross-container dependency endpoints onto component diagrams - for example, shared library imports become component-level edges that appear as external proxy nodes on the child diagram. Container nodes show an **Externals (N)** badge when their child diagram includes external dependencies.
 
@@ -162,7 +162,7 @@ Simulation is display-only - YAML is not modified. TraceLens **Risk heatmap** is
 
 ## Offline / PWA
 
-The designer installs as a Progressive Web App. After the first visit, the app shell can load offline so you can keep editing a local workspace; an offline banner appears when the network drops. When a newer build is deployed, an update banner at the top offers **Refresh** (recommended) so you load the latest hashed assets and service worker. Docs screenshots and public schema URLs are not required for offline canvas use.
+ArchLens Canvas installs as a Progressive Web App. After the first visit, the app shell can load offline so you can keep editing a local workspace; an offline banner appears when the network drops. When a newer build is deployed, an update banner at the top offers **Refresh** (recommended) so you load the latest hashed assets and service worker. Docs screenshots and public schema URLs are not required for offline canvas use.
 
 ## Next
 

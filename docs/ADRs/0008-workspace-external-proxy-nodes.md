@@ -12,8 +12,8 @@ BlueprintSpec keeps one YAML schema per C4 view (context / container / component
 
 ## Decision Drivers
 
-- Hard to reverse: `SystemNode.external` and persisted proxy nodes shape YAML, CLI enrich, and designer canvas
-- Cross-cutting: `workspaceExternals`, CLI externals pass, designer merge/display, container rollup
+- Hard to reverse: `SystemNode.external` and persisted proxy nodes shape YAML, CLI enrich, and canvas
+- Cross-cutting: `workspaceExternals`, CLI externals pass, canvas merge/display, container rollup
 - Preserve per-diagram ownership via `entityRef` (ADR-0001 / ADR-0002) without inlining foreign graphs
 - Operability: idempotent enrich, dashed-border proxies, Show Externals, container rollup
 
@@ -26,7 +26,7 @@ BlueprintSpec keeps one YAML schema per C4 view (context / container / component
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because each schema stays the source of truth for its level while cross-diagram endpoints materialize as lightweight `external: true` proxies sharing canonical `entityRef`s. CLI `enrich` / designers’ workspaceExternals pass and container rollup keep couplings visible without copying foreign graphs (B), dropping canvas endpoints (C), or abandoning multi-file C4 files (D).
+Chosen option: "**Option A**", because each schema stays the source of truth for its level while cross-diagram endpoints materialize as lightweight `external: true` proxies sharing canonical `entityRef`s. CLI `enrich` / Canvass’ workspaceExternals pass and container rollup keep couplings visible without copying foreign graphs (B), dropping canvas endpoints (C), or abandoning multi-file C4 files (D).
 
 ### Consequences
 

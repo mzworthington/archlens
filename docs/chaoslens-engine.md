@@ -14,7 +14,7 @@ For using ChaosLens in ArchLens Canvas, see the [product guide](./guide/chaoslen
 | **WASM bridge** | `resilience-engine/wasm/`           | `chaosLensSimulate` export for the browser                                              |
 | **TypeScript**  | `app/packages/core/src/resilience/` | `runResilienceSimulation`, WASM client, deterministic fallback when WASM is unavailable |
 
-When WASM is built and served from the designer (`/resilience-engine/chaoslens.wasm`), simulations run 1,000 jittered trials and report P5/P95 SLA bands. Without WASM, deterministic TypeScript propagation still runs.
+When WASM is built and served from ArchLens Canvas (`/resilience-engine/chaoslens.wasm`), simulations run 1,000 jittered trials and report P5/P95 SLA bands. Without WASM, deterministic TypeScript propagation still runs.
 
 ---
 
@@ -39,7 +39,7 @@ Or from `resilience-engine/`:
 make copy-wasm
 ```
 
-This compiles `chaoslens.wasm` and copies `wasm_exec.js` into `app/packages/designer/public/resilience-engine/`. These artifacts are gitignored and built by CI (`pnpm build`) or on first `pnpm dev`. Restart or refresh the designer dev server after rebuilding.
+This compiles `chaoslens.wasm` and copies `wasm_exec.js` into `app/packages/canvas/public/resilience-engine/`. These artifacts are gitignored and built by CI (`pnpm build`) or on first `pnpm dev`. Restart or refresh ArchLens Canvas dev server after rebuilding.
 
 ---
 
@@ -51,7 +51,7 @@ cd resilience-engine
 make test          # unit tests (includes KR3 Monte Carlo budget on large-graph)
 make build-wasm    # dist/chaoslens.wasm
 make build-cli     # dist/chaoslens (stdin/stdout CLI - planned)
-make copy-wasm     # WASM + wasm_exec.js → designer public/
+make copy-wasm     # WASM + wasm_exec.js → canvas public/
 make build         # CLI + copy-wasm
 make all           # test + build
 ```
@@ -92,7 +92,7 @@ Stdin/stdout JSON matches `WasmSimulationRequest` / WASM bridge shape.
 internal/graph   - group boundary expansion, publish-subscribe peer lookup
 internal/sim     - blast radius, integrity radius, SPOF detection, Monte Carlo
 api              - JSON request/response entry
-wasm             - syscall/js export for designer
+wasm             - syscall/js export for Canvas
 cmd/chaoslens    - stdin/stdout CLI
 ```
 
@@ -115,7 +115,7 @@ Exports: `computeBlastRadius`, `computeIntegrityRadius`, `detectSpofs`, `faultSp
 
 `SimulationResult` includes availability (`heat`, `overallSla`) and data integrity (`integrityHeat`, `overallIntegrity`) as separate tracks. Monte Carlo jitter applies to availability only.
 
-Designer state: `app/packages/designer/src/application/store/states/resilienceState.ts`.
+Canvas state: `app/packages/canvas/src/application/store/states/resilienceState.ts`.
 
 ---
 

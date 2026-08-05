@@ -3,7 +3,7 @@ import { getNodePosition, withNodePosition, withoutNodePosition } from '../lib/n
 
 export const DEFAULT_NODE_SIZE = { width: 280, height: 184 } as const;
 export const GROUP_PADDING = 56;
-/** Space reserved for the group title bar in the designer. */
+/** Space reserved for the group title bar in ArchLens Canvas. */
 export const GROUP_HEADER_HEIGHT = 40;
 export const GROUP_CHILD_GAP = 48;
 export const GROUP_MAX_COLS = 4;

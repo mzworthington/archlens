@@ -1,0 +1,552 @@
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { BlueprintNode } from './BlueprintNode';
+import { useBlueprintStore } from '../../../../../application/store/store';
+
+const mockSetLocation = vi.fn();
+vi.mock('wouter', () => ({
+  useLocation: () => ['/workspace/application', mockSetLocation],
+  useSearch: () => '',
+}));
+
+vi.mock('@xyflow/react', () => {
+  return {
+    Handle: ({ type, position, id }: any) => (
+      <div data-testid={`handle-${type}-${position}`} id={id} />
+    ),
+    Position: {
+      Left: 'left',
+      Right: 'right',
+      Top: 'top',
+      Bottom: 'bottom',
+    },
+    useUpdateNodeInternals: () => vi.fn(),
+  };
+});
+
+describe('BlueprintNode Component', () => {
+  beforeEach(() => {
+    mockSetLocation.mockClear();
+    const { initSchema } = useBlueprintStore.getState();
+    initSchema({
+      name: 'Test Schema',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        {
+          entityRef: 'test-node-1',
+          type: 'microservice',
+          name: 'My Service',
+          position: { x: 0, y: 0 },
+        },
+      ],
+      dependencies: [],
+    });
+    useBlueprintStore.setState({ selectedNodeId: null, liteCanvas: false });
+  });
+
+  const defaultProps = {
+    id: 'test-node-1',
+    type: 'blueprintNode',
+    data: {
+      id: 'test-node-1',
+      type: 'microservice',
+      name: 'My Service',
+      isTest: false,
+      properties: {},
+    },
+    selected: false,
+    zIndex: 0,
+    isConnectable: true,
+    xPos: 0,
+    yPos: 0,
+    dragging: false,
+    positionAbsoluteX: 0,
+    positionAbsoluteY: 0,
+  } as any;
+
+  it('renders correctly with basic node details', () => {
+    render(<BlueprintNode {...defaultProps} />);
+
+    expect(screen.getByText('My Service')).toBeInTheDocument();
+    expect(screen.getByText('test-node-1')).toBeInTheDocument();
+    expect(screen.getByText('Microservice')).toBeInTheDocument();
+    expect(screen.getByTestId('handle-target-left')).toBeInTheDocument();
+    expect(screen.getByTestId('handle-source-right')).toBeInTheDocument();
+    expect(screen.getByTestId('handle-target-top')).toBeInTheDocument();
+    expect(screen.getByTestId('blueprint-node')).not.toHaveStyle({ backdropFilter: 'blur(8px)' });
+  });
+
+  it('simplifies chrome when liteCanvas is on but keeps all edge handles mounted', () => {
+    useBlueprintStore.setState({ liteCanvas: true });
+    render(<BlueprintNode {...defaultProps} />);
+
+    expect(screen.getByTestId('blueprint-node-simplified')).toBeInTheDocument();
+    expect(screen.getByTestId('handle-target-left')).toBeInTheDocument();
+    expect(screen.getByTestId('handle-source-right')).toBeInTheDocument();
+    expect(screen.getByTestId('handle-target-top')).toBeInTheDocument();
+    expect(screen.getByTestId('handle-source-bottom')).toBeInTheDocument();
+    expect(screen.queryByText('Microservice')).not.toBeInTheDocument();
+  });
+
+  it('keeps full chrome when zoomed out unless liteCanvas is on', () => {
+    render(<BlueprintNode {...defaultProps} />);
+
+    expect(screen.getByTestId('blueprint-node')).toBeInTheDocument();
+    expect(screen.queryByTestId('blueprint-node-simplified')).not.toBeInTheDocument();
+    expect(screen.getByText('Microservice')).toBeInTheDocument();
+  });
+
+  it('shows HOT and SILO badges for concerning forensics', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        forensics: {
+          complexity: 20,
+          authorCount: 1,
+          hotspotScore: 0.9,
+          classifications: ['hotspot', 'knowledge-silo'],
+        },
+      },
+    };
+    render(<BlueprintNode {...props} />);
+    expect(screen.getByTestId('forensics-badge-hot')).toHaveTextContent('HOT');
+    expect(screen.getByTestId('forensics-badge-silo')).toHaveTextContent('SILO');
+  });
+
+  it('shows COUPLED badge when couplingHighlight is set', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        couplingHighlight: true,
+      },
+    };
+    render(<BlueprintNode {...props} />);
+    expect(screen.getByTestId('forensics-badge-coupled')).toHaveTextContent('COUPLED');
+  });
+
+  it('shows safeguard badges when resilience safeguards are active', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        resilienceSafeguards: {
+          circuitBreaker: true,
+          localCache: true,
+        },
+      },
+    };
+    render(<BlueprintNode {...props} />);
+    expect(screen.getByTestId('resilience-safeguard-node')).toBeInTheDocument();
+    expect(screen.getByTestId('resilience-badge-circuitBreaker')).toHaveTextContent('CB');
+    expect(screen.getByTestId('resilience-badge-localCache')).toHaveTextContent('LC');
+  });
+
+  it('exposes hotspot heat intensity for styling when heatmap is active', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        hotspotHeat: 0.85,
+        forensics: { hotspotScore: 0.85 },
+      },
+    };
+    render(<BlueprintNode {...props} />);
+    const heat = screen.getByTestId('hotspot-heat');
+    expect(heat).toHaveAttribute('data-hotspot-heat', '0.85');
+  });
+
+  it('does not mark heat when intensity is zero', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        hotspotHeat: 0,
+        forensics: { hotspotScore: 0 },
+      },
+    };
+    render(<BlueprintNode {...props} />);
+    expect(screen.queryByTestId('hotspot-heat')).not.toBeInTheDocument();
+  });
+
+  it('shows SLA and DATA badges when availability and integrity heat are present', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        blastHeat: 0.6,
+        integrityHeat: 0.4,
+      },
+    };
+    render(<BlueprintNode {...props} />);
+    expect(screen.getByTestId('resilience-badge-sla')).toBeInTheDocument();
+    expect(screen.getByTestId('resilience-badge-data')).toBeInTheDocument();
+    const node = screen.getByTestId('hotspot-heat');
+    expect(node).toHaveAttribute('data-availability-heat', '0.60');
+    expect(node).toHaveAttribute('data-integrity-heat', '0.40');
+  });
+
+  it('truncates long entityRefs while exposing the full value in the title tooltip', () => {
+    const longRef = 'blueprint/application/canvas/importschema';
+    const props = {
+      ...defaultProps,
+      id: longRef,
+      data: { ...defaultProps.data, id: longRef, entityRef: longRef },
+    };
+    render(<BlueprintNode {...props} />);
+
+    const refEl = screen.getByTitle(longRef);
+    expect(refEl).toBeInTheDocument();
+    expect(refEl).toHaveTextContent(longRef);
+    expect(refEl.className).toMatch(/truncate/);
+  });
+
+  it('truncates long node names while exposing the full value in the title tooltip', () => {
+    const longName = 'aws-api-gateway-integration-response.proxy-other';
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, name: longName },
+    };
+    render(<BlueprintNode {...props} />);
+
+    const nameEl = screen.getByRole('heading', { level: 4 });
+    expect(nameEl).toHaveAttribute('title', longName);
+    expect(nameEl).toHaveTextContent(longName);
+    expect(nameEl.className).toMatch(/truncate/);
+  });
+
+  it('triggers store selectNode when clicked', () => {
+    render(<BlueprintNode {...defaultProps} />);
+
+    fireEvent.click(screen.getByText('My Service'));
+
+    expect(useBlueprintStore.getState().selectedNodeId).toBe('test-node-1');
+  });
+
+  it('renders TEST badge when node represents a test component', () => {
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, isTest: true },
+    };
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.getByText('TEST')).toBeInTheDocument();
+  });
+
+  it('renders workspace proxy indicator when external is true without third-party classification', () => {
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, external: true },
+    };
+    const { container } = render(<BlueprintNode {...props} />);
+
+    expect(screen.getByText('(Workspace)')).toBeInTheDocument();
+    const card = container.querySelector('.bg-cyan-950');
+    expect(card).toBeTruthy();
+  });
+
+  it('renders third-party indicator when external has classification third-party', () => {
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        external: true,
+        properties: { classification: 'third-party' },
+      },
+    };
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.getByText('(Third-party)')).toBeInTheDocument();
+  });
+
+  it('shows Go to entity button for external nodes present elsewhere in the workspace', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'containers.yaml',
+          name: 'Billing Containers',
+          level: 'container',
+          entityRef: 'billing',
+          nodeEntityRefs: ['billing/api'],
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        entityRef: 'billing/api',
+        external: true,
+      },
+    };
+
+    render(<BlueprintNode {...props} />);
+    expect(screen.getByRole('button', { name: /go to entity in workspace/i })).toBeInTheDocument();
+  });
+
+  it('hides Go to entity button when external node is not in the workspace catalog', () => {
+    useBlueprintStore.setState({ workspaceCatalog: [] });
+
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        entityRef: 'unknown/api',
+        external: true,
+      },
+    };
+
+    render(<BlueprintNode {...props} />);
+    expect(
+      screen.queryByRole('button', { name: /go to entity in workspace/i })
+    ).not.toBeInTheDocument();
+  });
+
+  it('navigates to canonical entity when Go to entity is clicked', async () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'containers.yaml',
+          name: 'Billing Containers',
+          level: 'container',
+          entityRef: 'billing',
+          nodeEntityRefs: ['billing/api'],
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        entityRef: 'billing/api',
+        external: true,
+      },
+    };
+
+    render(<BlueprintNode {...props} />);
+    fireEvent.click(screen.getByRole('button', { name: /go to entity in workspace/i }));
+
+    await waitFor(() => {
+      expect(mockSetLocation).toHaveBeenCalledWith('/workspace/billing/api');
+    });
+  });
+
+  it('shows Zoom indicator when node has a sub-diagram link in loadedSystems', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'child.yaml',
+          name: 'Child Level',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: [],
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
+    };
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.getByText('Zoom')).toBeInTheDocument();
+  });
+
+  it('keeps the zoom button visible in lite canvas mode', () => {
+    useBlueprintStore.setState({
+      liteCanvas: true,
+      workspaceCatalog: [
+        {
+          path: 'child.yaml',
+          name: 'Child Level',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: [],
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
+    };
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.getByTestId('zoom-in-button')).toBeInTheDocument();
+    expect(screen.queryByText('Zoom')).not.toBeInTheDocument();
+  });
+
+  it('triggers navigation to node entityRef when Zoom button is clicked', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'child.yaml',
+          name: 'Child Level',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: [],
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
+    };
+
+    render(<BlueprintNode {...props} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /zoom/i }));
+
+    expect(mockSetLocation).toHaveBeenCalledWith('/workspace/default/test-node-1');
+  });
+
+  it('shows Externals button when child diagram has external nodes', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'containers.yaml',
+          name: 'Child Containers',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: ['default/test-node-1/ext'],
+        },
+      ],
+      loadedSystems: [
+        {
+          path: 'containers.yaml',
+          name: 'Child Containers',
+          schema: {
+            name: 'Child Containers',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'default/test-node-1',
+            nodes: [
+              {
+                entityRef: 'default/test-node-1/ext',
+                type: 'microservice',
+                name: 'External API',
+                external: true,
+              },
+            ],
+            dependencies: [],
+          },
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
+    };
+
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.getByTestId('view-child-externals-button')).toHaveTextContent('Externals (1)');
+    expect(screen.getByTestId('zoom-in-button')).toBeInTheDocument();
+    const externals = screen.getByTestId('view-child-externals-button');
+    const zoom = screen.getByTestId('zoom-in-button');
+    expect(externals.compareDocumentPosition(zoom) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it('toggles child externals overlay on the canvas when Externals button is clicked', async () => {
+    useBlueprintStore.setState({
+      currentFilePath: 'context.yaml',
+      workspaceCatalog: [
+        {
+          path: 'containers.yaml',
+          name: 'Child Containers',
+          level: 'container',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: ['default/test-node-1/ext'],
+        },
+      ],
+      loadedSystems: [
+        {
+          path: 'containers.yaml',
+          name: 'Child Containers',
+          schema: {
+            name: 'Child Containers',
+            version: '1.0.0',
+            level: 'container',
+            entityRef: 'default/test-node-1',
+            nodes: [
+              {
+                entityRef: 'default/test-node-1/ext',
+                type: 'microservice',
+                name: 'External API',
+                external: true,
+              },
+            ],
+            dependencies: [],
+          },
+        },
+      ],
+      childExternalsParentRef: null,
+    });
+
+    const props = {
+      ...defaultProps,
+      data: { ...defaultProps.data, entityRef: 'default/test-node-1' },
+    };
+
+    render(<BlueprintNode {...props} />);
+
+    fireEvent.click(screen.getByTestId('view-child-externals-button'));
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().childExternalsParentRef).toBe('default/test-node-1');
+    });
+  });
+
+  it('shows a Code button when the node has a filepath and opens the source modal', () => {
+    const openSourceCodeDialog = vi.fn();
+    useBlueprintStore.setState({ openSourceCodeDialog });
+
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        properties: { filepath: 'src/service.ts' },
+      },
+    };
+
+    render(<BlueprintNode {...props} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /view source code/i }));
+    expect(openSourceCodeDialog).toHaveBeenCalledWith('src/service.ts', undefined);
+  });
+
+  it('hides the Code button when the node can zoom into a child diagram', () => {
+    useBlueprintStore.setState({
+      workspaceCatalog: [
+        {
+          path: 'cli/forensics-components.yaml',
+          name: 'Forensics Components',
+          level: 'component',
+          entityRef: 'default/test-node-1',
+          nodeEntityRefs: ['default/test-node-1/file-a'],
+        },
+      ],
+    });
+
+    const props = {
+      ...defaultProps,
+      data: {
+        ...defaultProps.data,
+        entityRef: 'default/test-node-1',
+        properties: { filepath: 'src/forensics/collectFileMetrics.test.ts' },
+      },
+    };
+
+    render(<BlueprintNode {...props} />);
+
+    expect(screen.queryByRole('button', { name: /view source code/i })).not.toBeInTheDocument();
+    expect(screen.getByTestId('zoom-in-button')).toBeInTheDocument();
+  });
+});

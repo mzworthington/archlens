@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-BlueprintSpec and ChaosSpec YAML are shared contracts for designer, CLI, IDEs, and external CI. Consumers need a stable, fetchable validation surface without running ArchLens. We must decide how schema identity is published and what the in-file `version` field carries so pins and upgrades stay predictable.
+BlueprintSpec and ChaosSpec YAML are shared contracts for Canvas, CLI, IDEs, and external CI. Consumers need a stable, fetchable validation surface without running ArchLens. We must decide how schema identity is published and what the in-file `version` field carries so pins and upgrades stay predictable.
 
 ## Decision Drivers
 

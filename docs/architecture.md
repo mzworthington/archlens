@@ -12,7 +12,7 @@ For using ArchLens products, start with the [Product guide](./guide/index.md).
 
 ## Web Application Architecture
 
-The designer adheres to Hexagonal Architecture: UI adapters talk to a Zustand store, which uses pure domain rules from `@archlens/core` and talks to the browser via ports/adapters.
+ArchLens Canvas adheres to Hexagonal Architecture: UI adapters talk to a Zustand store, which uses pure domain rules from `@archlens/core` and talks to the browser via ports/adapters.
 
 ```mermaid
 graph TD
@@ -115,8 +115,8 @@ Folder map: `src/cli/` (entry), `src/analysis/{domain,adapters}` (with `language
 ### Web-to-CLI filesystem bridge
 
 1. The **TypeScript CLI** writes YAML under `blueprints/`.
-2. The **designer** loads those files from an opened folder (File System Access API) or from **bundled demo YAML** baked into the production build at compile time (`defaultData.ts` imports `blueprints/context.yaml` and lazy-loads other files under `blueprints/`).
-3. **Load sandbox** in the designer clears IndexedDB working copies and session caches, then reloads the bundled demo - it does not auto-hydrate stale drafts on startup.
+2. **ArchLens Canvas** loads those files from an opened folder (File System Access API) or from **bundled demo YAML** baked into the production build at compile time (`defaultData.ts` imports `blueprints/context.yaml` and lazy-loads other files under `blueprints/`).
+3. **Load sandbox** in ArchLens Canvas clears IndexedDB working copies and session caches, then reloads the bundled demo - it does not auto-hydrate stale drafts on startup.
 
 > Experimental Rust sources under `/cli` are unmaintained and not part of the production pipeline.
 
@@ -126,18 +126,18 @@ Folder map: `src/cli/` (entry), `src/analysis/{domain,adapters}` (with `language
 
 ### 1. Pure Domain Layer (`app/packages/core/src/`)
 
-Shared by designer and CLI. TypeScript + Zod - no Protocol Buffers.
+Shared by Canvas and CLI. TypeScript + Zod - no Protocol Buffers.
 
 - **[schema.ts](../app/packages/core/src/models/schema.ts):** Domain types, `EntityRef` helpers, validation result types.
 - **[graph.ts](../app/packages/core/src/rules/graph.ts):** Zod contracts, cycle detection, YAML/JSON parse & serialize, Mermaid export.
-- **[mermaidImport.ts](../app/packages/core/src/rules/mermaidImport.ts) / [schemaMerge.ts](../app/packages/core/src/rules/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (designer import wizard).
+- **[mermaidImport.ts](../app/packages/core/src/rules/mermaidImport.ts) / [schemaMerge.ts](../app/packages/core/src/rules/schemaMerge.ts):** Parse Mermaid → `SystemSchema` and merge plans (canvas import wizard).
 - **[terraformImport.ts](../app/packages/core/src/rules/terraformImport.ts):** Static Terraform HCL/JSON → `SystemSchema` (CLI IaC pass via `/cli`).
 - **[workspaceExternals/](../app/packages/core/src/rules/workspaceExternals/):** Suggest / add external proxy nodes across loaded workspace schemas.
-- **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`/core/resilience` - designer resilience mode).
+- **[resilience/](../app/packages/core/src/resilience/):** Fault specs, blast-radius propagation, SLA simulation (`/core/resilience` - Canvas resilience mode).
 - **[path.ts](../app/packages/core/src/rules/path.ts):** Filesystem-agnostic relative path helpers for multi-file IO.
 - **[entityRef.ts](../app/packages/core/src/lib/entityRef.ts):** Workspace FQN resolution. Hierarchy: child `schema.entityRef` equals parent node `entityRef`.
 
-### 2. Designer ports (`app/packages/designer/src/core/models/ports.ts`)
+### 2. Canvas ports (`app/packages/canvas/src/core/models/ports.ts`)
 
 - `FileSystemPort` / `WorkspacePort`: load and save schemas and directories.
 - `LoggerPort`: structured logging.
@@ -145,7 +145,7 @@ Shared by designer and CLI. TypeScript + Zod - no Protocol Buffers.
 - `WorkingCopyPort`: IndexedDB working-copy / baseline persistence and schema diffs.
 - `GraphChangePort`: apply canvas node/edge change lists (React Flow adapter).
 
-### 3. Designer adapters & store (`app/packages/designer/src/`)
+### 3. Canvas adapters & store (`app/packages/canvas/src/`)
 
 - `infrastructure/fileSystem/` - browser FS Access adapters.
 - `infrastructure/layout/` - graph layout adapters + `createBrowserLayoutRegistry` (engines lazy-loaded on first use).
@@ -153,7 +153,7 @@ Shared by designer and CLI. TypeScript + Zod - no Protocol Buffers.
 - `infrastructure/network/` - online/offline status for the offline banner.
 - `application/layout/` - pure layout use-case (`computeClientLayout`) and grid policy.
 - `application/store/` - Zustand composition (`uiState`, `diagramState`, `ioState`, `resilienceState`).
-- PWA (service worker via `vite-plugin-pwa`) caches the app shell for offline designer use.
+- PWA (service worker via `vite-plugin-pwa`) caches the app shell for offline Canvas use.
 
 ### 4. TypeScript CLI (`app/packages/cli/src/`)
 
@@ -174,7 +174,7 @@ YAML/JSON is validated against shared Zod contracts in `/core`:
 
 The same Zod contract is exported as JSON Schema (`schemas/blueprint.schema.json`) for IDE hints. Regenerate with `pnpm generate:schema`. Pre-commit and CI run `generate:schema -- --check` when `app/packages/core/` changes and fail if the files are stale.
 
-Hosted on the designer site after deploy:
+Hosted on the Canvas site after deploy:
 
 - https://archlens.dev/schemas/v4/blueprint.schema.json
 - https://archlens.dev/schemas/latest/blueprint.schema.json

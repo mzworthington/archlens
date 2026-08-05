@@ -30,14 +30,14 @@ describe('workspacePackages', () => {
     const index = buildWorkspacePackageIndex(
       [
         'app/packages/core/src/index.ts',
-        'app/packages/designer/src/App.tsx',
+        'app/packages/canvas/src/App.tsx',
         'app/packages/cli/src/cli/archlens.ts',
       ],
       {},
       packageDir => {
         const names: Record<string, string> = {
           'app/packages/core': '@archlens/core',
-          'app/packages/designer': '@archlens/designer',
+          'app/packages/canvas': '@archlens/canvas',
           'app/packages/cli': '@archlens/cli',
         };
         return names[packageDir] ?? null;
@@ -45,7 +45,7 @@ describe('workspacePackages', () => {
     );
 
     expect(index.get('@archlens/core')).toBe('core');
-    expect(index.get('@archlens/designer')).toBe('designer');
+    expect(index.get('@archlens/canvas')).toBe('canvas');
     expect(index.get('@archlens/cli')).toBe('cli');
     expect(resolveWorkspacePackageContainer('@archlens/core', index)).toBe('core');
     expect(resolveWorkspacePackageContainer('@archlens/core/rules/graph', index)).toBe('core');
@@ -63,8 +63,8 @@ describe('ModelExtractor workspace package imports', () => {
     const extractor = new ModelExtractor('blueprint/app', { workspacePackageIndex: packageIndex });
     const { containerDependencies, componentDependencies } = extractor.extractGraph([
       {
-        filePath: 'app/packages/designer/src/App.tsx',
-        relativePath: 'app/packages/designer/src/App.tsx',
+        filePath: 'app/packages/canvas/src/App.tsx',
+        relativePath: 'app/packages/canvas/src/App.tsx',
         baseName: 'App',
         isTestFile: false,
         imports: [{ moduleSpecifier: '@archlens/core' }],
@@ -94,7 +94,7 @@ describe('ModelExtractor workspace package imports', () => {
     expect(
       containerDependencies.some(
         d =>
-          d.from === 'blueprint/app/designer' &&
+          d.from === 'blueprint/app/canvas' &&
           d.to === 'blueprint/app/core' &&
           d.type === 'inter-container'
       )
@@ -103,7 +103,7 @@ describe('ModelExtractor workspace package imports', () => {
     expect(
       componentDependencies.some(
         d =>
-          d.from === 'blueprint/app/designer/app' &&
+          d.from === 'blueprint/app/canvas/app' &&
           d.to === 'blueprint/app/core/index' &&
           d.type === 'direct-call'
       )
@@ -114,8 +114,8 @@ describe('ModelExtractor workspace package imports', () => {
     const extractor = new ModelExtractor('blueprint/app', { workspacePackageIndex: packageIndex });
     const { componentDependencies } = extractor.extractGraph([
       {
-        filePath: 'app/packages/designer/src/App.tsx',
-        relativePath: 'app/packages/designer/src/App.tsx',
+        filePath: 'app/packages/canvas/src/App.tsx',
+        relativePath: 'app/packages/canvas/src/App.tsx',
         baseName: 'App',
         isTestFile: false,
         imports: [{ moduleSpecifier: '@archlens/core/rules/graph' }],
@@ -135,7 +135,7 @@ describe('ModelExtractor workspace package imports', () => {
 
     expect(
       componentDependencies.some(
-        d => d.from === 'blueprint/app/designer/app' && d.to === 'blueprint/app/core/graph'
+        d => d.from === 'blueprint/app/canvas/app' && d.to === 'blueprint/app/core/graph'
       )
     ).toBe(true);
   });
@@ -174,8 +174,8 @@ describe('ModelExtractor workspace package imports', () => {
     const extractor = new ModelExtractor('blueprint/app');
     const { componentDependencies } = extractor.extractGraph([
       {
-        filePath: 'app/packages/designer/src/db/db.ts',
-        relativePath: 'app/packages/designer/src/db/db.ts',
+        filePath: 'app/packages/canvas/src/db/db.ts',
+        relativePath: 'app/packages/canvas/src/db/db.ts',
         baseName: 'db',
         isTestFile: false,
         imports: [{ moduleSpecifier: '../App' }],
@@ -183,8 +183,8 @@ describe('ModelExtractor workspace package imports', () => {
         callExpressions: [],
       },
       {
-        filePath: 'app/packages/designer/src/App.tsx',
-        relativePath: 'app/packages/designer/src/App.tsx',
+        filePath: 'app/packages/canvas/src/App.tsx',
+        relativePath: 'app/packages/canvas/src/App.tsx',
         baseName: 'App',
         isTestFile: false,
         imports: [],
@@ -194,31 +194,29 @@ describe('ModelExtractor workspace package imports', () => {
     ]);
 
     expect(
-      componentDependencies.some(
-        d => d.from.includes('/designer/db') && d.to.includes('/designer/app')
-      )
+      componentDependencies.some(d => d.from.includes('/canvas/db') && d.to.includes('/canvas/app'))
     ).toBe(true);
-    expect(componentMapKey('designer', 'app')).toBe('designer/app');
+    expect(componentMapKey('canvas', 'app')).toBe('canvas/app');
   });
 });
 
 describe('workspace package imports and externals pass', () => {
   it('materializes cross-container package targets as externals on component diagrams', () => {
-    const designerComponents: SystemSchema = {
-      entityRef: 'blueprint/app/designer',
-      name: 'Designer Components',
+    const canvasComponents: SystemSchema = {
+      entityRef: 'blueprint/app/canvas',
+      name: 'Canvas Components',
       version: '1.0.0',
       level: 'component',
       nodes: [
         {
-          entityRef: 'blueprint/app/designer/app',
+          entityRef: 'blueprint/app/canvas/app',
           type: 'gateway-api',
           name: 'App Service',
         },
       ],
       dependencies: [
         {
-          from: 'blueprint/app/designer/app',
+          from: 'blueprint/app/canvas/app',
           to: 'blueprint/app/core/index',
           type: 'direct-call',
         },
@@ -246,12 +244,12 @@ describe('workspace package imports and externals pass', () => {
       version: '1.0.0',
       level: 'container',
       nodes: [
-        { entityRef: 'blueprint/app/designer', type: 'container', name: 'Designer Service' },
+        { entityRef: 'blueprint/app/canvas', type: 'container', name: 'Canvas Service' },
         { entityRef: 'blueprint/app/core', type: 'container', name: 'Core Service' },
       ],
       dependencies: [
         {
-          from: 'blueprint/app/designer',
+          from: 'blueprint/app/canvas',
           to: 'blueprint/app/core',
           type: 'inter-container',
         },
@@ -260,7 +258,7 @@ describe('workspace package imports and externals pass', () => {
 
     const loaded = [
       { path: 'containers.yaml', name: 'Containers', schema: containers },
-      { path: 'designer-components.yaml', name: 'Designer', schema: designerComponents },
+      { path: 'canvas-components.yaml', name: 'Canvas', schema: canvasComponents },
       { path: 'core-components.yaml', name: 'Core', schema: coreComponents },
     ];
 
@@ -269,9 +267,9 @@ describe('workspace package imports and externals pass', () => {
       enrichLevels: ['component'],
     });
 
-    const designer = enriched.find(s => s.path === 'designer-components.yaml')!.schema;
+    const canvasPkg = enriched.find(s => s.path === 'canvas-components.yaml')!.schema;
     expect(
-      designer.nodes.find(n => n.entityRef === 'blueprint/app/core/index' && n.external)
+      canvasPkg.nodes.find(n => n.entityRef === 'blueprint/app/core/index' && n.external)
     ).toMatchObject({
       name: expect.stringContaining('External'),
     });

@@ -35,7 +35,7 @@ type SuiteBucket = {
 };
 
 const PACKAGE_LABELS: Record<string, string> = {
-  app: 'Designer',
+  canvas: 'Canvas',
   cli: 'CLI',
   core: 'Core',
   reporters: 'Reporters',

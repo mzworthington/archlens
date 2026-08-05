@@ -17,7 +17,7 @@ export default defineConfig({
     pool: 'threads',
     maxConcurrency: 10,
     projects: [
-      'packages/designer/vite.config.ts',
+      'packages/canvas/vite.config.ts',
       'packages/cli/vitest.config.ts',
       {
         test: {

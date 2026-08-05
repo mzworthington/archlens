@@ -4,7 +4,7 @@ import { systemSchemaPublicUrl } from '../models/schemaVersion';
 import { getNodePosition } from '../lib/nodePosition';
 
 /**
- * Serializes a SystemSchema model to a YAML string (CLI + designer share this format).
+ * Serializes a SystemSchema model to a YAML string (CLI + Canvas share this format).
  * Root is a mapping: version (schema URL), level, metadata, nodes, dependencies.
  */
 export function serializeSchemaToYaml(

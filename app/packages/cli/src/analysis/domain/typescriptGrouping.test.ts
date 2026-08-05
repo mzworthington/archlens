@@ -23,12 +23,12 @@ describe('typescriptGrouping', () => {
     });
 
     it('skips e2e and unit test trees under packages', () => {
-      expect(
-        shouldSkipTypeScriptFile('app/packages/designer/tests/a11y.spec.ts', 'a11y.spec')
-      ).toBe(true);
+      expect(shouldSkipTypeScriptFile('app/packages/canvas/tests/a11y.spec.ts', 'a11y.spec')).toBe(
+        true
+      );
       expect(
         shouldSkipTypeScriptFile(
-          'app/packages/designer/tests/e2e-forensics.spec.ts',
+          'app/packages/canvas/tests/e2e-forensics.spec.ts',
           'e2e-forensics.spec'
         )
       ).toBe(true);
@@ -37,7 +37,7 @@ describe('typescriptGrouping', () => {
     it('keeps architectural sources', () => {
       expect(
         shouldSkipTypeScriptFile(
-          'app/packages/designer/src/application/forensics/openRefactorOnCanvas.ts',
+          'app/packages/canvas/src/application/forensics/openRefactorOnCanvas.ts',
           'openRefactorOnCanvas'
         )
       ).toBe(false);
@@ -53,7 +53,7 @@ describe('typescriptGrouping', () => {
     it('rolls up monorepo package paths by folders under src', () => {
       expect(
         resolveTypeScriptComponent(
-          'app/packages/designer/src/application/forensics/openRefactorOnCanvas.ts',
+          'app/packages/canvas/src/application/forensics/openRefactorOnCanvas.ts',
           'openRefactorOnCanvas'
         )
       ).toEqual({
@@ -73,7 +73,7 @@ describe('typescriptGrouping', () => {
     });
 
     it('keeps package src-root files as leaf components', () => {
-      expect(resolveTypeScriptComponent('app/packages/designer/src/App.tsx', 'App')).toEqual({
+      expect(resolveTypeScriptComponent('app/packages/canvas/src/App.tsx', 'App')).toEqual({
         componentId: 'app',
         componentName: 'App',
       });
@@ -106,7 +106,7 @@ describe('typescriptGrouping', () => {
     it('uses the parent folder when the file name matches the folder (index-style)', () => {
       expect(
         resolveTypeScriptComponent(
-          'app/packages/designer/src/ui/features/workspace/components/TraceLensPanel/TraceLensPanel.tsx',
+          'app/packages/canvas/src/ui/features/workspace/components/TraceLensPanel/TraceLensPanel.tsx',
           'TraceLensPanel'
         )
       ).toEqual({
@@ -133,9 +133,9 @@ describe('typescriptGrouping', () => {
 
   describe('resolveTypeScriptImportComponentId', () => {
     it('maps import specifiers to rolled-up component ids', () => {
-      expect(
-        resolveTypeScriptImportComponentId('app/packages/designer/src/db/db.ts', '../App')
-      ).toBe('app');
+      expect(resolveTypeScriptImportComponentId('app/packages/canvas/src/db/db.ts', '../App')).toBe(
+        'app'
+      );
 
       expect(
         resolveTypeScriptImportComponentId(

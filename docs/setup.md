@@ -36,7 +36,7 @@ Common Mise tasks (from the repo root):
 ```bash
 mise run install-tools # node, pnpm, bun, go (skip docs-media)
 mise run install       # pnpm install in app/
-mise run dev           # designer dev server
+mise run dev           # canvas dev server
 mise run build-wasm    # compile ChaosLens WASM for the canvas (see ChaosLens engine doc)
 mise run test-go       # Go unit tests
 mise run build         # full production build
@@ -67,7 +67,7 @@ One command serves docs (`/`) and the canvas (`/workspace`):
 pnpm dev
 ```
 
-Opens the Vite designer. Docs and workspace share the same React app.
+Opens the Vite canvas app. Docs and workspace share the same React app.
 
 ### 3. Build Production Artifacts
 
@@ -75,18 +75,18 @@ Opens the Vite designer. Docs and workspace share the same React app.
 pnpm build
 ```
 
-Cloudflare Pages deploys the designer `dist/` (docs + app in one SPA) via GitHub Actions and Wrangler. See [cloudflare-secrets.md](./cloudflare-secrets.md) and [infra/cloudflare/README.md](../infra/cloudflare/README.md). The production build registers a service worker (PWA) so the designer shell can load offline after the first visit.
+Cloudflare Pages deploys ArchLens Canvas `dist/` (docs + app in one SPA) via GitHub Actions and Wrangler. See [cloudflare-secrets.md](./cloudflare-secrets.md) and [infra/cloudflare/README.md](../infra/cloudflare/README.md). The production build registers a service worker (PWA) so the Canvas shell can load offline after the first visit.
 
 Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app - **Refresh** activates the new service worker; **Later** dismisses until the next check (tab focus also re-checks `index.html` with `cache: no-store`).
 
 ### Bundled demo blueprints
 
-The designer build **embeds** a subset of `blueprints/` at compile time (`context.yaml` eagerly, other YAML via Vite glob imports). You do not need to run the CLI before `pnpm build`, but committed files under `blueprints/` must exist (at minimum `blueprints/context.yaml`) or the build fails.
+ArchLens Canvas build **embeds** a subset of `blueprints/` at compile time (`context.yaml` eagerly, other YAML via Vite glob imports). You do not need to run the CLI before `pnpm build`, but committed files under `blueprints/` must exist (at minimum `blueprints/context.yaml`) or the build fails.
 
 After changing blueprint YAML locally:
 
 1. Re-run the CLI scan if you want fresh architecture output.
-2. Rebuild the designer (`pnpm build`) so the bundled demo matches.
+2. Rebuild ArchLens Canvas (`pnpm build`) so the bundled demo matches.
 3. In the running app, use **Load sandbox** on `/workspace` to clear IndexedDB/session caches and reload the embedded demo.
 
 For day-to-day development of this repo, scan from the repository root:
@@ -114,7 +114,7 @@ pnpm lint
 pnpm knip
 ```
 
-Designer E2E (`app/packages/designer`: `pnpm test:e2e`) includes ChaosLens smoke coverage. Refresh product-guide GIFs with `pnpm record:docs-media` (`ffmpeg` from `mise install`; writes `docs/screenshots/chaoslens.gif`, `tracelens.gif`, `canvas-tour.gif`). CLI demo GIF: `pnpm test:vhs` (`vhs` + `ffmpeg` from mise; `ttyd` via `brew install ttyd` on macOS). `pnpm generate:features-unit` regenerates [Unit test features](./features-unit.md) locally. CI runs the same steps via [Refresh docs & media](../.github/workflows/refresh-docs-media.yml).
+Canvas E2E (`app/packages/canvas`: `pnpm test:e2e`) includes ChaosLens smoke coverage. Refresh product-guide GIFs with `pnpm record:docs-media` (`ffmpeg` from `mise install`; writes `docs/screenshots/chaoslens.gif`, `tracelens.gif`, `canvas-tour.gif`). CLI demo GIF: `pnpm test:vhs` (`vhs` + `ffmpeg` from mise; `ttyd` via `brew install ttyd` on macOS). `pnpm generate:features-unit` regenerates [Unit test features](./features-unit.md) locally. CI runs the same steps via [Refresh docs & media](../.github/workflows/refresh-docs-media.yml).
 
 On every push to `main`, production builds regenerate schema and features-unit inline so deploys stay fresh. You can also redeploy without a new commit via **Actions → CI & Deployment Pipeline → Run workflow** (branch: `main`). Committed copies of `CHANGELOG.md`, `docs/features-unit.md`, `schemas/`, and product-guide screenshots are refreshed by the **Refresh docs & media** workflow (weekly on Sunday 06:00 UTC, or manually via **Actions → Refresh docs & media → Run workflow**).
 
@@ -128,7 +128,7 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `res
 
 - Prettier auto-formats staged files (`--write` via lint-staged); the hook then runs full-repo `format:check` (matching CI)
 - Oxlint on TypeScript (`--deny-warnings`)
-- TypeScript typecheck (`tsc -b`, matching the build step) — includes `src/**/*.test.ts` in designer
+- TypeScript typecheck (`tsc -b`, matching the build step) — includes `src/**/*.test.ts` in Canvas
 - Knip and `vitest run --changed` on staged `app/` paths
 - When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract - commit fails if stale; run `pnpm generate:schema` to refresh
 - When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, and `go test`
@@ -172,7 +172,7 @@ Product walkthrough (with a live render of latest): [ChaosSpec](./guide/chaos-sp
 
 ### Public schema URLs (external repos)
 
-After deploy, the same schemas are served from the designer site:
+After deploy, the same schemas are served from the Canvas site:
 
 | Contract          | Versioned (preferred)                                 | Latest                                                    |
 | ----------------- | ----------------------------------------------------- | --------------------------------------------------------- |

@@ -36,7 +36,7 @@ describe('treeSitterWasmCopy', () => {
   it('optionally copies HCL grammars when the package is installed', () => {
     const dirs = resolveTreeSitterWasmSourceDirs(import.meta.url);
     if (!dirs.hclPkgDir) {
-      // Designer depends on HCL; core/CLI may not. Skip rather than fail the suite.
+      // Canvas depends on HCL; core/CLI may not. Skip rather than fail the suite.
       return;
     }
     const dest = fs.mkdtempSync(path.join(os.tmpdir(), 'archlens-wasm-hcl-'));

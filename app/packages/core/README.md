@@ -28,7 +28,7 @@ Shared, pure domain models and rules for ArchLens (BlueprintSpec). No I/O adapte
 
 ### `src/lib/`
 
-- **[slug.ts](./src/lib/slug.ts):** Canonical `slugify` used by designer and CLI.
+- **[slug.ts](./src/lib/slug.ts):** Canonical `slugify` used by Canvas and CLI.
 
 ### `src/rules/`
 

@@ -11,7 +11,7 @@ describe('folderComponentRollup', () => {
   it('rolls up monorepo paths to full folder depth', () => {
     expect(
       resolveFolderRolledComponent(
-        'app/packages/designer/src/application/store/states/diagramState.ts',
+        'app/packages/canvas/src/application/store/states/diagramState.ts',
         'diagramState',
         { layoutRoots, stripExtension: tsStrip, leafWhenSingleSegmentInSimpleRepo: true }
       )
@@ -23,11 +23,11 @@ describe('folderComponentRollup', () => {
 
   it('rolls up monorepo paths to folder depth', () => {
     expect(
-      resolveFolderRolledComponent(
-        'app/packages/designer/src/application/forensics/foo.ts',
-        'foo',
-        { layoutRoots, stripExtension: tsStrip, leafWhenSingleSegmentInSimpleRepo: true }
-      )
+      resolveFolderRolledComponent('app/packages/canvas/src/application/forensics/foo.ts', 'foo', {
+        layoutRoots,
+        stripExtension: tsStrip,
+        leafWhenSingleSegmentInSimpleRepo: true,
+      })
     ).toEqual({
       componentId: 'application/forensics',
       componentName: 'Forensics',

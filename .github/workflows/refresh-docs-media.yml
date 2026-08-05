@@ -74,7 +74,7 @@ jobs:
 
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm --filter @archlens/designer exec playwright install --with-deps chromium
+        run: pnpm --filter @archlens/canvas exec playwright install --with-deps chromium
         working-directory: app
 
       - name: Refresh docs & media

@@ -15,7 +15,7 @@ Today the hosted sandbox uses build-time bundled YAML under `/bundled-blueprints
 ## Decision Drivers
 
 - Hard to reverse: public object layout and manifest fields become the customer integration surface
-- Cross-cutting: CLI publish, core catalog builder, and designer `WorkspacePort` adapters all depend on the same shape
+- Cross-cutting: CLI publish, core catalog builder, and Canvas `WorkspacePort` adapters all depend on the same shape
 - Reliability: a failed or partial upload must not leave consumers pointing at missing objects
 - Compatibility: reuse `buildWorkspaceCatalogFromYamlFiles` / `parseWorkspaceCatalogJson` from `@archlens/core`
 - Security (read path): contract assumes **read-only** consumption in Canvas; credentials stay in CI (slice 1) or connection profiles (slice 2, ADR-0013)

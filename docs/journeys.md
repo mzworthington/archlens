@@ -1,6 +1,6 @@
 # Interface tour & journeys
 
-The interactive golden journey lives at **`/journeys`** in the designer app.
+The interactive golden journey lives at **`/journeys`** in ArchLens Canvas.
 
 ## Golden journey estate
 
@@ -27,7 +27,7 @@ Output: `docs/screenshots/golden-journey.gif`
 ## E2E smoke
 
 ```bash
-cd app/packages/designer && pnpm exec playwright test e2e-golden-journey.spec.ts
+cd app/packages/canvas && pnpm exec playwright test e2e-golden-journey.spec.ts
 ```
 
 ## Other product demos

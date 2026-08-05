@@ -25,7 +25,7 @@ export type AdviceLensDiagramArtifact = Omit<DiagramResilienceReport, 'simulatio
 
 /**
  * Stable AdviceLens estate report for CLI (`--format=json|yaml`), CI artifacts
- * (JSON), and designer Download/Copy export (YAML by default).
+ * (JSON), and Canvas Download/Copy export (YAML by default).
  */
 export type AdviceLensArtifact = {
   kind: typeof ADVICELENS_ARTIFACT_KIND;

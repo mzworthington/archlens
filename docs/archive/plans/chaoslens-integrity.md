@@ -2,7 +2,7 @@
 
 Plan for dual-track resilience simulation: **availability** (existing) and **data integrity** (new), with dependency-type-aware rules for `publish-subscribe`.
 
-**Status:** Shipped (TypeScript core, Go/WASM engine, designer UI).
+**Status:** Shipped (TypeScript core, Go/WASM engine, canvas UI).
 
 Related: [ChaosLens product guide](../guide/chaoslens.md), [ChaosLens engine](../chaoslens-engine.md).
 
@@ -118,7 +118,7 @@ Go/WASM JSON mirrors these fields. Missing fields → empty maps, `overallIntegr
 
 ---
 
-## UI (designer)
+## UI (Canvas)
 
 | Surface        | Change                                            |
 | -------------- | ------------------------------------------------- |
@@ -135,7 +135,7 @@ Go/WASM JSON mirrors these fields. Missing fields → empty maps, `overallIntegr
 | 0     | Fixtures + TDD scenarios                | Done   |
 | 1     | `taxonomy/` module                      | Done   |
 | 2     | `integrityRadius.ts` + `simulation.ts`  | Done   |
-| 3     | Designer UI                             | Done   |
+| 3     | Canvas UI                               | Done   |
 | 4     | Go/WASM parity                          | Done   |
 | 5     | Docs (`guide/chaoslens.md`, engine doc) | Done   |
 

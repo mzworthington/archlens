@@ -2,7 +2,7 @@
 
 Monte Carlo blast-radius simulation for ArchLens (ChaosLens). The same Go code compiles to:
 
-- **WebAssembly** for the designer (`chaoslens.wasm`)
+- **WebAssembly** for ArchLens Canvas (`chaoslens.wasm`)
 - **CLI** for headless CI checks (`chaoslens`)
 
 Contributor docs: [docs/chaoslens-engine.md](../docs/chaoslens-engine.md). Product guide: [docs/guide/chaoslens.md](../docs/guide/chaoslens.md).
@@ -20,7 +20,7 @@ make test
 # CI / pre-commit checks (gofmt, go vet)
 make check
 
-# Build WASM + copy into designer public assets (local dev + CI build)
+# Build WASM + copy into canvas public assets (local dev + CI build)
 make copy-wasm
 make ensure-wasm   # copy only when artifacts are missing
 
@@ -55,7 +55,7 @@ Returns a JSON `SimulationResult` string (or `{"error":"..."}` on failure).
 internal/graph   - group boundary expansion for dependencies
 internal/sim     - blast radius, SPOF detection, Monte Carlo
 api              - JSON request/response entry
-wasm             - syscall/js export for designer
+wasm             - syscall/js export for Canvas
 cmd/chaoslens    - stdin/stdout CLI
 ```
 
