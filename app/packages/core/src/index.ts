@@ -14,6 +14,7 @@ export * from './rules/compareSystemSchemas';
 export * from './rules/compareBlueprintTrees';
 export * from './rules/validateBlueprintWorkspace';
 export * from './rules/architectureHealth';
+export * from './rules/dependencyCycles';
 export * from './rules/schemaMerge';
 export * from './rules/workspaceExternals';
 export * from './rules/externalNodeLayout';

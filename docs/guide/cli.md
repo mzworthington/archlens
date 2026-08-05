@@ -21,7 +21,7 @@ Then verify with `archlens --version`. Full options, manual downloads, and the s
 1. **Interactive** - bare `archlens` opens a menu: scan wizard, publish snapshot, publish fragment, compose estate, accept/reject overlays
 2. **Quick scan** - `archlens scan` (or `archlens --scan`) runs headless with defaults from `blueprint.config.json` / env (no prompts)
 3. **Enrich existing YAML** - `archlens enrich` re-runs the externals pass on blueprint files already on disk (no source re-scan)
-4. **Validate architecture health** - `archlens validate [path]` reports cycles + forensics fix actions; optional `--since-commit` regression and `--contract` wiring checks
+4. **Validate architecture health** - `archlens validate [path]` reports actionable module cycles + forensics fix actions (informational coupling separate); optional `--since-commit` regression and `--contract` wiring checks
 5. **Diff blueprint trees** - `archlens diff <baseline> <current>` structural compare for PR gates
 6. **AdviceLens estate sweep** - `archlens resilience [path]` runs ChaosLens scenarios and ranks recommendations
 7. **Headless flags / CI** - flags or non-TTY; suitable for automation

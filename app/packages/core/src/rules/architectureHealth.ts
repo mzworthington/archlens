@@ -1,15 +1,18 @@
 import type { ForensicClassification } from '../models/schema';
 import { churnAccelerationRatio, churnAccelerationTone } from '../forensics/churnAcceleration';
-import { validateGraph } from './graph';
+import { collectDependencyCycles, type DependencyCycleReason } from './dependencyCycles';
 import type { LoadedBlueprintSchema } from './validateBlueprintWorkspace';
 
 export type ArchitectureHealthFindingKind = 'cycle' | 'hotspot' | 'knowledge-silo' | 'heating';
 
+export type ArchitectureHealthFindingSeverity = 'actionable' | 'informational';
+
 export type ArchitectureHealthFinding = {
   kind: ArchitectureHealthFindingKind;
   title: string;
-  /** What the practitioner should do in the codebase. */
+  /** What the practitioner should do in the codebase (actionable) or how to read the signal. */
   action: string;
+  severity?: ArchitectureHealthFindingSeverity;
   file?: string;
   entityRef?: string;
   path?: string[];
@@ -19,19 +22,25 @@ export type ArchitectureHealthFinding = {
     accelerationRatio?: number;
     churn30?: number;
     churn365?: number;
+    cycleReason?: DependencyCycleReason;
+    cycleKey?: string;
   };
 };
 
 export type ArchitectureHealthSummary = {
+  /** Actionable module direct-call cycles only. */
   cycles: number;
+  informationalCycles: number;
   hotspots: number;
   knowledgeSilos: number;
   heating: number;
 };
 
 export type ArchitectureHealthReport = {
+  /** True when there are no actionable findings (informational cycles do not fail health). */
   isHealthy: boolean;
   findings: ArchitectureHealthFinding[];
+  informationalFindings: ArchitectureHealthFinding[];
   summary: ArchitectureHealthSummary;
   filesChecked: number;
 };
@@ -51,16 +60,22 @@ export type AssessArchitectureHealthOptions = {
 function findingKey(finding: ArchitectureHealthFinding): string {
   return [
     finding.kind,
+    finding.severity ?? 'actionable',
     finding.entityRef ?? '',
+    finding.evidence?.cycleKey ?? '',
     finding.file ?? '',
     (finding.path ?? []).join('>'),
     finding.title,
   ].join('|');
 }
 
-function summarize(findings: ArchitectureHealthFinding[]): ArchitectureHealthSummary {
+function summarize(
+  findings: ArchitectureHealthFinding[],
+  informationalFindings: ArchitectureHealthFinding[]
+): ArchitectureHealthSummary {
   return {
     cycles: findings.filter(f => f.kind === 'cycle').length,
+    informationalCycles: informationalFindings.filter(f => f.kind === 'cycle').length,
     hotspots: findings.filter(f => f.kind === 'hotspot').length,
     knowledgeSilos: findings.filter(f => f.kind === 'knowledge-silo').length,
     heating: findings.filter(f => f.kind === 'heating').length,
@@ -74,8 +89,21 @@ function hasClassification(
   return Boolean(classifications?.includes(wanted));
 }
 
+function cycleAction(
+  reason: DependencyCycleReason,
+  severity: ArchitectureHealthFindingSeverity
+): string {
+  if (severity === 'informational') {
+    if (reason === 'includes-external-proxy') {
+      return 'Informational — cycle closes via an external proxy on this diagram; confirm the real module import cycle before refactoring.';
+    }
+    return 'Informational — cycle uses non-direct-call edges (e.g. inter-container or read-write); treat as coupling context, not a mandatory break.';
+  }
+  return 'Break the cycle — extract a shared module or invert one dependency direction.';
+}
+
 /**
- * Architecture health for practitioners: cycles + forensics risk with fix actions.
+ * Architecture health for practitioners: actionable cycles + forensics risk with fix actions.
  * Does not emit BlueprintSpec wiring noise (invalid-connection / broken-entity-ref).
  */
 export function assessArchitectureHealth(
@@ -84,20 +112,33 @@ export function assessArchitectureHealth(
 ): ArchitectureHealthReport {
   const heatingThreshold = options.heatingRatioThreshold ?? 2;
   const findings: ArchitectureHealthFinding[] = [];
+  const informationalFindings: ArchitectureHealthFinding[] = [];
+
+  const cycles = collectDependencyCycles(files);
+  for (const cycle of cycles.actionable) {
+    findings.push({
+      kind: 'cycle',
+      severity: 'actionable',
+      file: cycle.file,
+      title: 'Circular module dependency',
+      action: cycleAction(cycle.reason, 'actionable'),
+      path: cycle.path,
+      evidence: { cycleReason: cycle.reason, cycleKey: cycle.key },
+    });
+  }
+  for (const cycle of cycles.informational) {
+    informationalFindings.push({
+      kind: 'cycle',
+      severity: 'informational',
+      file: cycle.file,
+      title: 'Circular dependency (informational)',
+      action: cycleAction(cycle.reason, 'informational'),
+      path: cycle.path,
+      evidence: { cycleReason: cycle.reason, cycleKey: cycle.key },
+    });
+  }
 
   for (const file of files) {
-    const graph = validateGraph(file.schema);
-    for (const issue of graph.issues) {
-      if (issue.type !== 'cycle') continue;
-      findings.push({
-        kind: 'cycle',
-        file: file.path,
-        title: 'Circular dependency',
-        action: 'Break the cycle — extract a shared module or invert one dependency direction.',
-        path: issue.path,
-      });
-    }
-
     for (const node of file.schema.nodes) {
       const forensics = node.forensics;
       if (!forensics) continue;
@@ -105,6 +146,7 @@ export function assessArchitectureHealth(
       if (hasClassification(forensics.classifications, 'hotspot')) {
         findings.push({
           kind: 'hotspot',
+          severity: 'actionable',
           file: file.path,
           entityRef: node.entityRef,
           title: `Hotspot: ${node.name}`,
@@ -119,6 +161,7 @@ export function assessArchitectureHealth(
       if (hasClassification(forensics.classifications, 'knowledge-silo')) {
         findings.push({
           kind: 'knowledge-silo',
+          severity: 'actionable',
           file: file.path,
           entityRef: node.entityRef,
           title: `Knowledge silo: ${node.name}`,
@@ -134,6 +177,7 @@ export function assessArchitectureHealth(
       if (ratio != null && ratio >= heatingThreshold && churnAccelerationTone(ratio) !== 'none') {
         findings.push({
           kind: 'heating',
+          severity: 'actionable',
           file: file.path,
           entityRef: node.entityRef,
           title: `Heating: ${node.name}`,
@@ -149,10 +193,11 @@ export function assessArchitectureHealth(
     }
   }
 
-  const summary = summarize(findings);
+  const summary = summarize(findings, informationalFindings);
   return {
     isHealthy: findings.length === 0,
     findings,
+    informationalFindings,
     summary,
     filesChecked: files.length,
   };
@@ -171,11 +216,13 @@ export function compareArchitectureHealth(
 
   const deltas: ArchitectureHealthSummary = {
     cycles: current.summary.cycles - baseline.summary.cycles,
+    informationalCycles: current.summary.informationalCycles - baseline.summary.informationalCycles,
     hotspots: current.summary.hotspots - baseline.summary.hotspots,
     knowledgeSilos: current.summary.knowledgeSilos - baseline.summary.knowledgeSilos,
     heating: current.summary.heating - baseline.summary.heating,
   };
 
+  // Deterioration is driven by actionable debt only (not informational cycles).
   const deteriorated =
     deltas.cycles > 0 ||
     deltas.hotspots > 0 ||

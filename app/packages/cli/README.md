@@ -73,7 +73,7 @@ Forensics attach a typed `forensics` object onto component nodes (per-file metri
 
 ### Architecture health (`validate`) and structural `diff`
 
-Pin architecture risk in CI without re-scanning source. Default `validate` reports **what to fix in the codebase** — dependency cycles and TraceLens forensics (hotspots, knowledge silos, heating churn) — with remediation text. Scan with git forensics enabled first so hotspot/silo/heating signals are attached.
+Pin architecture risk in CI without re-scanning source. Default `validate` reports **what to fix in the codebase** — actionable module `direct-call` cycles (not external-proxy / inter-container loops) and TraceLens forensics (hotspots, knowledge silos, heating churn) — with remediation text. Other coupling cycles are listed as informational and do not fail the gate. Scan with git forensics enabled first so hotspot/silo/heating signals are attached.
 
 ```bash
 archlens validate blueprints/

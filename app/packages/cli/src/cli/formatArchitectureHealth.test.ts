@@ -8,16 +8,18 @@ describe('formatArchitectureHealthResult', () => {
       report: {
         isHealthy: false,
         filesChecked: 1,
-        summary: { cycles: 1, hotspots: 0, knowledgeSilos: 0, heating: 0 },
+        summary: { cycles: 1, informationalCycles: 0, hotspots: 0, knowledgeSilos: 0, heating: 0 },
         findings: [
           {
             kind: 'cycle',
+            severity: 'actionable',
             file: 'a.yaml',
-            title: 'Circular dependency',
+            title: 'Circular module dependency',
             action: 'Break the cycle',
             path: ['x', 'y', 'x'],
           },
         ],
+        informationalFindings: [],
       },
     });
 
@@ -33,12 +35,19 @@ describe('formatArchitectureHealthResult', () => {
       report: {
         isHealthy: false,
         filesChecked: 1,
-        summary: { cycles: 1, hotspots: 1, knowledgeSilos: 0, heating: 0 },
+        summary: { cycles: 1, informationalCycles: 0, hotspots: 1, knowledgeSilos: 0, heating: 0 },
         findings: [],
+        informationalFindings: [],
       },
       regression: {
         deteriorated: true,
-        deltas: { cycles: 1, hotspots: 1, knowledgeSilos: 0, heating: 0 },
+        deltas: {
+          cycles: 1,
+          informationalCycles: 0,
+          hotspots: 1,
+          knowledgeSilos: 0,
+          heating: 0,
+        },
         newFindings: [
           {
             kind: 'hotspot',

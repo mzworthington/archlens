@@ -15,6 +15,7 @@ export type ArchitectureValidatePayload = {
   filesChecked: number;
   summary: ArchitectureHealthReport['summary'];
   findings: ArchitectureHealthReport['findings'];
+  informationalFindings: ArchitectureHealthReport['informationalFindings'];
   regression?: ArchitectureHealthRegression;
   contract?: {
     isValid: boolean;
@@ -50,6 +51,7 @@ export function formatArchitectureHealthResult(input: {
     filesChecked: input.report.filesChecked,
     summary: input.report.summary,
     findings: input.report.findings,
+    informationalFindings: input.report.informationalFindings,
     regression: input.regression,
     contract: input.contract
       ? {
@@ -65,17 +67,22 @@ export function formatArchitectureHealthResult(input: {
 
   const lines: string[] = [];
   if (payload.isHealthy && !payload.deteriorated) {
+    const infoNote =
+      input.report.informationalFindings.length > 0
+        ? `; ${input.report.informationalFindings.length} informational cycle(s)`
+        : '';
     lines.push(
       pc.green(
         `✔ Architecture health OK (${payload.filesChecked} blueprint file(s)` +
           (payload.baseline ? `; no deterioration vs ${payload.baseline}` : '') +
+          infoNote +
           `).`
       )
     );
   } else {
     const parts: string[] = [];
     if (!input.report.isHealthy) {
-      parts.push(`${input.report.findings.length} finding(s)`);
+      parts.push(`${input.report.findings.length} actionable finding(s)`);
     }
     if (payload.deteriorated) {
       parts.push(`deteriorated vs ${payload.baseline ?? 'baseline'}`);
@@ -113,6 +120,30 @@ export function formatArchitectureHealthResult(input: {
     lines.push(pc.bold('Fix in the codebase'));
     for (const finding of input.report.findings) {
       lines.push(formatFindingLine(finding));
+    }
+  }
+
+  if (input.report.informationalFindings.length > 0) {
+    lines.push('');
+    lines.push(pc.bold(`Informational coupling (${input.report.informationalFindings.length})`));
+    const byReason = new Map<string, number>();
+    for (const finding of input.report.informationalFindings) {
+      const reason = finding.evidence?.cycleReason ?? 'unknown';
+      byReason.set(reason, (byReason.get(reason) ?? 0) + 1);
+    }
+    for (const [reason, count] of [...byReason.entries()].sort()) {
+      lines.push(`  ${pc.dim(reason)}: ${count}`);
+    }
+    const preview = input.report.informationalFindings.slice(0, 5);
+    for (const finding of preview) {
+      lines.push(formatFindingLine(finding));
+    }
+    if (input.report.informationalFindings.length > preview.length) {
+      lines.push(
+        pc.dim(
+          `  … and ${input.report.informationalFindings.length - preview.length} more (use --format=json for the full list)`
+        )
+      );
     }
   }
 

@@ -225,10 +225,10 @@ function printEnrichHelp(): void {
 function printValidateHelp(): void {
   heading('archlens validate');
   line(
-    `  ${pc.dim('Report what to fix in the codebase: dependency cycles and TraceLens forensics')}`
+    `  ${pc.dim('Report what to fix in the codebase: actionable module direct-call cycles and')}`
   );
   line(
-    `  ${pc.dim('(hotspots, knowledge silos, heating churn). Optional regression vs a git commit.')}`
+    `  ${pc.dim('TraceLens forensics (hotspots, silos, heating). Other coupling cycles are informational.')}`
   );
   line(
     `  ${pc.dim('Wiring/schema contract checks are opt-in via --contract (also used by publish --validate).')}`
