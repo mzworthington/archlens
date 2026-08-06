@@ -136,6 +136,33 @@ Scan each repo with the **same** `--context` and a distinct `--system-name` (or 
 
 You do **not** need a “home vs secondary” seed flag — omit redundant `name`s and keep one shared identity per entity.
 
+### Infrastructure packages and repos
+
+When Terraform or Pulumi lives in a **separate package or repo**, declare an **infra spoke** in the shared context seed and list the product systems it supports:
+
+```yaml
+# blueprints/acme/context.yaml (shared landscape seed)
+nodes:
+  - entityRef: acme/checkout
+    type: software-system
+  - entityRef: acme/cloudflare
+    type: software-system
+    name: Cloudflare Hosting
+    properties:
+      role: infrastructure
+      serves: acme/checkout # comma-separated for several products
+```
+
+Then scan the infra root with the **same** `--context` (and a seed already present under `--output`):
+
+```bash
+# Explicit infra package / repo — cwd is the Pulumi/Terraform project
+cd infra/cloudflare
+archlens scan --headless --output=/path/to/blueprints --context=acme
+```
+
+Scan attaches container products under that spoke and proposes vendor third-parties with edges from each `serves` target. See [Meaningful external dependencies](#meaningful-external-dependencies).
+
 ### This repository
 
 ArchLens commits its own seed at [`blueprints/archlens/context.yaml`](https://github.com/mzworthington/archlens/blob/main/blueprints/archlens/context.yaml) — the same path consumers use. Publish scans hydrate into that file; no separate JSON assemble step.
@@ -185,17 +212,46 @@ No flag required - if `Pulumi.yaml` exists under the scan root, projects are map
 
 ### Meaningful external dependencies
 
-IaC stacks are often noisy, and one Pulumi/Terraform project may mix **many providers**. The CLI classifies each resource by provider pack so diagrams stay useful:
+IaC stacks are often noisy, and one Pulumi or Terraform project may mix **many providers**. ArchLens treats **Pulumi/Terraform as packaging** (one infra spoke per project) and **providers as the external vocabulary**. Each resource is classified by a provider pack so diagrams stay useful.
 
-- **Container** — keep **primary** products per vendor (e.g. Cloudflare Pages/R2, AWS Lambda/S3); drop supporting/noise (DNS, IAM, CORS, zone lookups) by default
-- **Context** — propose one third-party per **vendor** that contributed a primary (Cloudflare and AWS from the same stack both appear), hydrated via ADR-0015 (`proposedThirdParties`)
-- **Infra membership** — declare `properties.role: infrastructure` and `properties.serves: <system-ref>[,…]` on an infra spoke in the seed so an infra package/repo attaches to the products it supports (see [Declared system context](./schema.md#declared-system-context))
+#### What you get at each C4 level
 
-Provider packs today: Cloudflare, AWS, Azure, Google Cloud. Unknown providers pass through unchanged until a pack exists.
+| Level         | Grain                                                                                       | Example from one stack                                       |
+| ------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Context**   | One third-party per **vendor** that had at least one primary product                        | `vendor-cloudflare`, `vendor-aws`                            |
+| **Container** | One node per **vendor × product** under the infra spoke; supporting/noise resources omitted | Cloudflare Pages, Cloudflare R2, AWS Lambda — not DNS or IAM |
 
-ArchLens dogfoods this with `infra/cloudflare` and [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml).
+Author-declared third-parties in the seed (for example a curated “Cloudflare R2 Catalog”) **survive** hydration. Scan proposes vendors via ADR-0015; it does not replace your labels.
 
-You can also import Terraform or Pulumi into an **existing** diagram from ArchLens Canvas - see [Import infrastructure](./canvas.md#import-infrastructure).
+#### Provider packs
+
+| Pack         | Example primaries                                   | Typically filtered as supporting / noise            |
+| ------------ | --------------------------------------------------- | --------------------------------------------------- |
+| Cloudflare   | Pages, R2                                           | DNS records, Pages domains, CORS, zone data         |
+| AWS          | Lambda, S3, RDS, DynamoDB, messaging, edge, compute | IAM roles/policies, security groups, bucket helpers |
+| Azure        | Functions, SQL, Redis, compute, storage, edge       | Role assignments, NSGs, private endpoints           |
+| Google Cloud | Cloud Functions, Cloud SQL, GCS, Pub/Sub, compute   | IAM bindings, firewalls, data sources               |
+
+Unknown providers (for example Datadog) pass through unchanged until a pack exists.
+
+#### Multi-provider stack (same Pulumi project)
+
+A project that provisions Cloudflare Pages **and** AWS Lambda + S3 yields:
+
+- **Containers** under the infra spoke: Pages, Lambda, S3
+- **Context** third-parties: Cloudflare and AWS, each with a dependency from systems listed in `serves`
+
+IAM roles, DNS records, and bucket policies do not become separate diagram nodes.
+
+#### Infra membership
+
+Declare `properties.role: infrastructure` and `properties.serves: <system-ref>[,…]` on the infra spoke in the seed ([Declared system context](./schema.md#declared-system-context)). When the Pulumi project **is** the scan root (dedicated infra package/repo), the system id is the **directory name** (for example `cloudflare`), so seed `entityRef`s like `acme/cloudflare` match.
+
+#### Dogfood in this repository
+
+ArchLens uses [`infra/cloudflare`](../../infra/cloudflare) with the committed seed [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml) (`archlens/cloudflare` serves `archlens`).
+
+Canvas **Import infrastructure** still merges parsed resources into the active diagram without this significance filter — use CLI scan when you want vendor/product projection. See [Import infrastructure](./canvas.md#import-infrastructure).
 
 ### IDE validation
 
