@@ -1,25 +1,17 @@
-import {
-  parseSchemaFromYaml,
-  systemSchemaPublicUrl,
-  type SourceProvenance,
-  type SystemSchema,
-} from '@archlens/core';
-import { parseIacBatchToSchema } from '@archlens/core/import-iac';
-import { seedPreservedPositions } from '@archlens/core/layout';
+import type { SourceProvenance } from '@archlens/core';
 import { BaseWriter } from '../../writers/baseWriter.ts';
 import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
 import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from './ports.ts';
 import { throwIfAborted } from './cancellation.ts';
-import { schemaFromCodeScanFallback } from './iacCodeFallback.ts';
 import { discoverPulumiRoots } from './pulumiDiscovery.ts';
 import { discoverTerraformRoots } from './terraformDiscovery.ts';
-import { resolveBlueprintOutputSegment, resolveSystemEntityRef } from './entityRefContext.ts';
 import {
   planIacContextSystems,
   productHubInputsForIac,
   resolveProductIdForPath,
   type DiscoveredSystem,
 } from './systemDiscovery.ts';
+import { analyzeAndWriteIacRoot, type IacRoot, type IacSubsystemRef } from './iacRootAnalysis.ts';
 
 export type IacAnalyzerDependencies = {
   fileSystem: AnalysisFileSystemPort;
@@ -37,16 +29,6 @@ export type RunIacAnalysisOptions = {
   discoveredSystems: DiscoveredSystem[];
 };
 
-type IacVendor = 'terraform' | 'pulumi';
-
-type IacRoot = {
-  rootPath: string;
-  systemId: string;
-  filePaths: string[];
-  vendor: IacVendor;
-  runtime?: string;
-};
-
 export type IacAnalysisResult = {
   rootsAnalyzed: number;
   terraformRoots: number;
@@ -54,9 +36,30 @@ export type IacAnalysisResult = {
   warnings: string[];
 };
 
-function schemaLabel(systemId: string): string {
-  const titled = systemId.charAt(0).toUpperCase() + systemId.slice(1);
-  return `${titled} Infrastructure`;
+function collectIacRoots(
+  scanRoot: string,
+  fileSystem: AnalysisFileSystemPort
+): {
+  roots: IacRoot[];
+  terraformCount: number;
+  pulumiCount: number;
+} {
+  const terraformRoots = discoverTerraformRoots(scanRoot, fileSystem);
+  const pulumiRoots = discoverPulumiRoots(scanRoot, fileSystem);
+  return {
+    terraformCount: terraformRoots.length,
+    pulumiCount: pulumiRoots.length,
+    roots: [
+      ...terraformRoots.map(root => ({ ...root, vendor: 'terraform' as const })),
+      ...pulumiRoots.map(root => ({
+        rootPath: root.rootPath,
+        systemId: root.systemId,
+        filePaths: root.filePaths,
+        vendor: 'pulumi' as const,
+        runtime: root.runtime,
+      })),
+    ],
+  };
 }
 
 /**
@@ -75,18 +78,7 @@ export class IacAnalyzer {
     const scanRoot = options.scanRoot ?? fileSystem.getCurrentWorkingDirectory();
     throwIfAborted(options.signal);
 
-    const terraformRoots = discoverTerraformRoots(scanRoot, fileSystem);
-    const pulumiRoots = discoverPulumiRoots(scanRoot, fileSystem);
-    const roots: IacRoot[] = [
-      ...terraformRoots.map(root => ({ ...root, vendor: 'terraform' as const })),
-      ...pulumiRoots.map(root => ({
-        rootPath: root.rootPath,
-        systemId: root.systemId,
-        filePaths: root.filePaths,
-        vendor: 'pulumi' as const,
-        runtime: root.runtime,
-      })),
-    ];
+    const { roots, terraformCount, pulumiCount } = collectIacRoots(scanRoot, fileSystem);
 
     if (roots.length === 0) {
       logger.info('No IaC roots found - skipping IaC pass.');
@@ -94,7 +86,7 @@ export class IacAnalyzer {
     }
 
     logger.info(
-      `🏗️  Found ${terraformRoots.length} Terraform root(s) and ${pulumiRoots.length} Pulumi project(s)`
+      `🏗️  Found ${terraformCount} Terraform root(s) and ${pulumiCount} Pulumi project(s)`
     );
 
     const rootDir = fileSystem.getAbsolutePath(outputDir || 'blueprints');
@@ -103,116 +95,33 @@ export class IacAnalyzer {
     const writer = new BaseWriter(fileSystem, logger);
     const contextWriter = new ContextLevelWriter(fileSystem, logger);
     const allWarnings: string[] = [];
-    const iacSubsystems: Array<{
-      entityRef: string;
-      displayName: string;
-      rootPath: string;
-      productId: string;
-      isProductHub?: boolean;
-    }> = [];
+    const iacSubsystems: IacSubsystemRef[] = [];
 
     for (const root of roots) {
-      throwIfAborted(options.signal);
-
-      const files = [];
-      for (const filePath of root.filePaths) {
-        const content = fileSystem.readText(filePath);
-        if (content === null) {
-          logger.warn(`Skipping unreadable IaC file: ${filePath}`);
-          continue;
-        }
-        const relPath = fileSystem.getRelativePath(scanRoot, filePath) || filePath;
-        files.push({ path: relPath.replace(/\\/g, '/'), content });
-      }
-
-      if (files.length === 0) continue;
-
-      const systemRef = resolveSystemEntityRef(contextName, root.systemId);
-      let result;
-      try {
-        result = parseIacBatchToSchema(files, {
-          targetLevel: 'container',
-          parentEntityRef: systemRef,
-          ...(root.vendor === 'pulumi' && root.runtime ? { pulumiRuntime: root.runtime } : {}),
-        });
-      } catch (error) {
-        logger.error(`Failed to parse ${root.vendor} root ${root.rootPath}`, error);
-        continue;
-      }
-
-      allWarnings.push(...result.warnings);
-      for (const w of result.warnings) {
-        logger.warn(w, { root: root.rootPath, vendor: root.vendor });
-      }
-
-      let schema: SystemSchema = {
-        ...result.schema,
-        entityRef: systemRef,
-        name: schemaLabel(root.systemId),
-        version: systemSchemaPublicUrl(),
-        level: 'container',
-        ...(options.source ? { source: options.source } : {}),
-      };
-
-      if (schema.nodes.length === 0 && this.deps.parser && root.vendor === 'pulumi') {
-        const fallback = await schemaFromCodeScanFallback({
-          parser: this.deps.parser,
-          scanRoot,
-          rootPath: root.rootPath,
-          systemId: root.systemId,
-          contextName,
-          runtime: root.runtime ?? 'yaml',
-          signal: options.signal,
-        });
-        if (fallback) {
-          logger.info(`Using code-scan fallback for IaC root ${root.rootPath}`);
-          schema = {
-            ...fallback,
-            name: schemaLabel(root.systemId),
-            ...(options.source ? { source: options.source } : {}),
-          };
-        }
-      }
-
-      const blueprintsDir = fileSystem.getAbsolutePath(
-        rootDir,
-        resolveBlueprintOutputSegment(contextName, root.systemId)
-      );
-      if (!fileSystem.exists(blueprintsDir)) fileSystem.mkdir(blueprintsDir);
-      const targetPath = fileSystem.getAbsolutePath(blueprintsDir, 'containers.yaml');
-
-      let previousNodes: SystemSchema['nodes'] = [];
-      if (fileSystem.exists(targetPath)) {
-        try {
-          previousNodes = parseSchemaFromYaml(await fileSystem.readSchema(targetPath)).nodes ?? [];
-        } catch {
-          previousNodes = [];
-        }
-      }
-
-      if (schema.nodes.length > 0) {
-        schema = {
-          ...schema,
-          nodes: seedPreservedPositions(previousNodes, schema.nodes),
-        };
-      }
-
-      await writer.writeYaml(targetPath, schema);
-      logger.info(`📄 Saved ${result.vendor} schema for [${systemRef}]: ${targetPath}`);
-
       const relRoot = fileSystem.getRelativePath(scanRoot, root.rootPath) || root.systemId;
-      iacSubsystems.push({
-        entityRef: root.systemId,
-        displayName: root.systemId,
-        rootPath: relRoot.replace(/\\/g, '/'),
+      const analyzed = await analyzeAndWriteIacRoot({
+        root,
+        contextName,
+        rootDir,
+        scanRoot,
+        signal: options.signal,
+        source: options.source,
         productId: resolveProductIdForPath(relRoot, options.discoveredSystems),
-        isProductHub: false,
+        fileSystem,
+        logger,
+        writer,
+        parser: this.deps.parser,
       });
+      if (!analyzed) continue;
+      allWarnings.push(...analyzed.warnings);
+      iacSubsystems.push(analyzed.subsystem);
     }
 
     if (iacSubsystems.length > 0) {
       const hasProductHub = (productId: string) =>
-        options.discoveredSystems.some(s => s.kind === 'product' && s.productId === productId);
+        options.discoveredSystems.some(
+          system => system.kind === 'product' && system.productId === productId
+        );
       const planned = planIacContextSystems(iacSubsystems, hasProductHub);
       const productHubs = productHubInputsForIac(options.discoveredSystems, planned);
       await contextWriter.writeSystems(
@@ -225,8 +134,8 @@ export class IacAnalyzer {
 
     return {
       rootsAnalyzed: iacSubsystems.length,
-      terraformRoots: terraformRoots.length,
-      pulumiRoots: pulumiRoots.length,
+      terraformRoots: terraformCount,
+      pulumiRoots: pulumiCount,
       warnings: allWarnings,
     };
   }

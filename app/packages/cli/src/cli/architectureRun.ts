@@ -20,23 +20,15 @@ import {
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
 import { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics.ts';
 import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
-import {
-  applyInteractiveGitChoice,
-  shouldPromptForGit,
-  type InteractiveGitChoice,
-} from './interactiveGitChoice.ts';
-import { DEFAULT_FORENSICS_OPTIONS } from '../forensics/domain/options.ts';
+import type { InteractiveGitChoice } from './interactiveGitChoice.ts';
 import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
 import type { FileMetrics } from '../forensics/domain/types.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
+import { formatAnalysisSpinnerMessage, formatSuccessOutro } from './cliBanner.ts';
 import {
-  formatAnalysisSpinnerMessage,
-  formatSuccessOutro,
-  renderCliBanner,
-  renderCliIntroNote,
-  renderCliQuickTips,
-} from './cliBanner.ts';
-import { getArchlensVersion } from './version.ts';
+  defaultPromptInteractiveGit,
+  promptArchitectureInteractive,
+} from './promptArchitectureInteractive.ts';
 
 const DEFAULT_CONTEXT_NAME = 'blueprint';
 
@@ -62,39 +54,6 @@ export interface ExecuteArchitectureOptions {
   askPath?: (message: string, defaultValue: string) => Promise<string>;
 }
 
-async function defaultPromptInteractiveGit(): Promise<InteractiveGitChoice> {
-  const enableForensics = await p.confirm({
-    message: 'Attach TraceLens git signals (churn, complexity, ownership)?',
-    initialValue: true,
-  });
-
-  if (p.isCancel(enableForensics)) {
-    p.cancel('Analysis cancelled.');
-    process.exit(0);
-  }
-
-  if (!enableForensics) {
-    return { mode: 'none' };
-  }
-
-  const sinceInput = await p.text({
-    message: 'Git lookback window (days):',
-    placeholder: String(DEFAULT_FORENSICS_OPTIONS.sinceDays),
-    defaultValue: String(DEFAULT_FORENSICS_OPTIONS.sinceDays),
-  });
-
-  if (p.isCancel(sinceInput)) {
-    p.cancel('Analysis cancelled.');
-    process.exit(0);
-  }
-
-  const parsed = Number(String(sinceInput).replace(/d$/i, '').trim());
-  const sinceDays =
-    Number.isFinite(parsed) && parsed > 0 ? parsed : DEFAULT_FORENSICS_OPTIONS.sinceDays;
-
-  return { mode: 'full', sinceDays };
-}
-
 export async function resolveArchitectureState(
   plan: ArchlensCliPlan,
   options: {
@@ -104,7 +63,6 @@ export async function resolveArchitectureState(
   }
 ): Promise<ResolvedArchitectureState> {
   const fileConfig = loadAnalysisConfig(process.cwd());
-  let resolvedPlan = plan;
 
   let parserType = plan.architecture.parserType || 'tree-sitter';
   let globPattern = plan.architecture.glob || fileConfig.glob || DEFAULT_SCAN_GLOB;
@@ -112,62 +70,26 @@ export async function resolveArchitectureState(
   let contextName = plan.architecture.context || fileConfig.context || DEFAULT_CONTEXT_NAME;
   let systemName = plan.architecture.systemName || fileConfig.systemName;
   let rollupModules = plan.architecture.rollupModules || fileConfig.rollupModules;
-  const cliIgnores = plan.architecture.ignore;
-  const cliSystems = plan.architecture.systems;
+  let resolvedPlan = plan;
 
   if (options.interactive) {
-    renderCliBanner(getArchlensVersion());
-    renderCliIntroNote(fileConfig.configPath);
-    renderCliQuickTips();
-
-    const contextNameInput = await p.text({
-      message: 'Blueprint root name (entityRef):',
-      placeholder: contextName,
-      defaultValue: contextName,
+    const interactive = await promptArchitectureInteractive({
+      plan,
+      fileConfig,
+      contextName,
+      systemName,
+      rollupModules,
+      globPattern,
+      outputDir,
+      askPath: options.askPath,
+      promptInteractiveGit: options.promptInteractiveGit,
     });
-
-    if (p.isCancel(contextNameInput)) {
-      p.cancel('Analysis cancelled.');
-      process.exit(0);
-    }
-    contextName = (contextNameInput as string) || contextName;
-
-    const systemNameInput = await p.text({
-      message: 'Software system name (optional — one product across multiple repos):',
-      placeholder: 'e.g. frontend-api',
-      defaultValue: systemName ?? '',
-    });
-
-    if (p.isCancel(systemNameInput)) {
-      p.cancel('Analysis cancelled.');
-      process.exit(0);
-    }
-    const trimmedSystemName = String(systemNameInput).trim();
-    systemName = trimmedSystemName || undefined;
-
-    const confirmRollup = await p.confirm({
-      message: 'Roll up *-module-* packages into their parent systems?',
-      initialValue: rollupModules,
-    });
-
-    if (p.isCancel(confirmRollup)) {
-      p.cancel('Analysis cancelled.');
-      process.exit(0);
-    }
-    rollupModules = confirmRollup;
-
-    const askPath = options.askPath;
-    if (!askPath) {
-      throw new Error('askPath is required for interactive resolution');
-    }
-
-    globPattern = await askPath('Source glob to scan:', globPattern);
-    outputDir = await askPath('Output directory for blueprints:', outputDir);
-
-    if (shouldPromptForGit(resolvedPlan)) {
-      const promptGit = options.promptInteractiveGit ?? defaultPromptInteractiveGit;
-      resolvedPlan = applyInteractiveGitChoice(resolvedPlan, await promptGit(resolvedPlan));
-    }
+    resolvedPlan = interactive.plan;
+    contextName = interactive.contextName;
+    systemName = interactive.systemName;
+    rollupModules = interactive.rollupModules;
+    globPattern = interactive.globPattern;
+    outputDir = interactive.outputDir;
   }
 
   return {
@@ -178,10 +100,99 @@ export async function resolveArchitectureState(
     contextName,
     systemName,
     rollupModules,
-    cliIgnores,
-    cliSystems,
+    cliIgnores: plan.architecture.ignore,
+    cliSystems: plan.architecture.systems,
     fileConfig,
   };
+}
+
+async function collectOptionalForensics(
+  state: ResolvedArchitectureState,
+  headlessUi: boolean,
+  suppressExitOnCancel: boolean,
+  scanCache: TreeSitterScanCache | undefined
+): Promise<Map<string, FileMetrics> | undefined> {
+  if (!state.plan.runGitForensics) return undefined;
+
+  const logger = new ConsoleLogger();
+  try {
+    if (!headlessUi) {
+      p.log.step('Collecting TraceLens metrics…');
+    }
+    return await collectFileMetrics(state.plan.git, process.cwd(), undefined, { scanCache });
+  } catch (error) {
+    logger.error('Failed to collect Git forensics', error);
+    if (!suppressExitOnCancel) process.exit(1);
+    throw error;
+  }
+}
+
+function reportIacResult(
+  iacResult: Awaited<ReturnType<IacAnalyzer['run']>>,
+  headlessUi: boolean
+): void {
+  if (iacResult.rootsAnalyzed <= 0 || headlessUi) return;
+  const parts = [];
+  if (iacResult.terraformRoots > 0) parts.push(`${iacResult.terraformRoots} Terraform`);
+  if (iacResult.pulumiRoots > 0) parts.push(`${iacResult.pulumiRoots} Pulumi`);
+  p.log.info(
+    `IaC: wrote ${iacResult.rootsAnalyzed} infrastructure diagram(s) (${parts.join(', ')})`
+  );
+}
+
+function finishArchitectureSuccess(
+  successMessage: string,
+  {
+    headlessUi,
+    watchMode,
+    spinner,
+  }: {
+    headlessUi: boolean;
+    watchMode: boolean;
+    spinner: ReturnType<typeof p.spinner> | null;
+  }
+): void {
+  if (watchMode) {
+    console.log(pc.green(successMessage));
+    return;
+  }
+  if (spinner) {
+    spinner.stop(successMessage);
+    return;
+  }
+  if (!headlessUi) {
+    p.outro(successMessage);
+    return;
+  }
+  console.log(pc.green(successMessage));
+}
+
+function handleArchitectureError(
+  error: unknown,
+  {
+    headlessUi,
+    suppressExitOnCancel,
+    spinner,
+    logger,
+  }: {
+    headlessUi: boolean;
+    suppressExitOnCancel: boolean;
+    spinner: ReturnType<typeof p.spinner> | null;
+    logger: ConsoleLogger;
+  }
+): never {
+  if (isCancellationError(error)) {
+    if (suppressExitOnCancel) throw error;
+    if (spinner) spinner.stop(pc.yellow('Analysis cancelled'));
+    else console.log(pc.yellow('\nAnalysis cancelled.'));
+    if (!headlessUi) p.cancel('Analysis cancelled.');
+    process.exit(130);
+  }
+
+  if (spinner) spinner.stop(pc.red('Failed to complete analysis'));
+  logger.error('Failed to run AST analysis', error);
+  if (!suppressExitOnCancel) process.exit(1);
+  throw error;
 }
 
 export async function executeArchitectureRun(
@@ -196,23 +207,12 @@ export async function executeArchitectureRun(
   } = options;
 
   const scanCache = state.plan.runGitForensics ? new TreeSitterScanCache() : undefined;
-
-  let forensicsByPath: Map<string, FileMetrics> | undefined;
-  if (state.plan.runGitForensics) {
-    const logger = new ConsoleLogger();
-    try {
-      if (!headlessUi) {
-        p.log.step('Collecting TraceLens metrics…');
-      }
-      forensicsByPath = await collectFileMetrics(state.plan.git, process.cwd(), undefined, {
-        scanCache,
-      });
-    } catch (error) {
-      logger.error('Failed to collect Git forensics', error);
-      if (!suppressExitOnCancel) process.exit(1);
-      throw error;
-    }
-  }
+  const forensicsByPath = await collectOptionalForensics(
+    state,
+    headlessUi,
+    suppressExitOnCancel,
+    scanCache
+  );
 
   const sourceProvenance = await collectGitProvenance(process.cwd());
   const scanSource =
@@ -275,42 +275,23 @@ export async function executeArchitectureRun(
       source: scanSource,
       discoveredSystems,
     });
+    reportIacResult(iacResult, headlessUi);
 
-    if (iacResult.rootsAnalyzed > 0 && !headlessUi) {
-      const parts = [];
-      if (iacResult.terraformRoots > 0) parts.push(`${iacResult.terraformRoots} Terraform`);
-      if (iacResult.pulumiRoots > 0) parts.push(`${iacResult.pulumiRoots} Pulumi`);
-      p.log.info(
-        `IaC: wrote ${iacResult.rootsAnalyzed} infrastructure diagram(s) (${parts.join(', ')})`
-      );
-    }
-
-    const successMessage = formatSuccessOutro(absoluteOutputDir);
-    if (watchMode) {
-      console.log(pc.green(successMessage));
-    } else if (spinner) {
-      spinner.stop(successMessage);
-    } else if (!headlessUi) {
-      p.outro(successMessage);
-    } else {
-      console.log(pc.green(successMessage));
-    }
+    finishArchitectureSuccess(formatSuccessOutro(absoluteOutputDir), {
+      headlessUi,
+      watchMode,
+      spinner,
+    });
   } catch (error) {
-    if (isCancellationError(error)) {
-      if (suppressExitOnCancel) {
-        throw error;
-      }
-      if (spinner) spinner.stop(pc.yellow('Analysis cancelled'));
-      else console.log(pc.yellow('\nAnalysis cancelled.'));
-      if (!headlessUi) p.cancel('Analysis cancelled.');
-      process.exit(130);
-    }
-
-    if (spinner) spinner.stop(pc.red('Failed to complete analysis'));
-    logger.error('Failed to run AST analysis', error);
-    if (!suppressExitOnCancel) process.exit(1);
-    throw error;
+    handleArchitectureError(error, {
+      headlessUi,
+      suppressExitOnCancel,
+      spinner,
+      logger,
+    });
   } finally {
     disposeCancellation();
   }
 }
+
+export { defaultPromptInteractiveGit };
