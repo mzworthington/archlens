@@ -21,11 +21,11 @@ Customer template files (not enabled here): [`blueprint-contract.yml.example`](.
 
 All catalog publishers stage fragments into one prefix so Canvas can peer-switch across contexts:
 
-| Fragment product        | Workflow                              | Notes                                                                                                                                                                  |
-| ----------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `samples`               | Publish samples catalog               | Hand-authored trees under `samples/`                                                                                                                                   |
-| `archlens`              | Publish blueprint catalog             | Committed [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml); scan hydrates in place                                                         |
-| `{id}` (e.g. backstage) | Publish demo catalog (per matrix leg) | `contextDeclaration` in [`scripts/blueprint-sample-repos.json`](../../scripts/blueprint-sample-repos.json) assembled before scan (external demos have no in-repo seed) |
+| Fragment product        | Workflow                              | Notes                                                                                                                                                                                                  |
+| ----------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `samples`               | Publish samples catalog               | Hand-authored trees under `samples/`                                                                                                                                                                   |
+| `archlens`              | Publish blueprint catalog             | Committed [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml); scan hydrates in place                                                                                         |
+| `{id}` (e.g. backstage) | Publish demo catalog (per matrix leg) | `contextDeclaration` in [`scripts/blueprint-sample-repos.json`](../../scripts/blueprint-sample-repos.json) assembled before scan; optional `cloneDepth` (default 100) caps git history for large repos |
 
 **Declared context (ADR-0015):** this repo commits its ArchLens context under `blueprints/` like any consumer would. Demo catalog jobs still assemble synthetic seeds from JSON for external sample repos via [`scripts/assemble-context-seed.mjs`](../../scripts/assemble-context-seed.mjs).
 

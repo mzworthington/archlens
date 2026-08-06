@@ -50,7 +50,11 @@ jobs:
       - name: Clone demo repo
         run: |
           set -euo pipefail
-          git clone --single-branch --depth=500 \
+          # Shallow tip + recent history for TraceLens. Default depth 100; large
+          # monorepos (e.g. backstage) set cloneDepth lower in the sample JSON.
+          DEPTH="${{ matrix.sample.cloneDepth }}"
+          DEPTH="${DEPTH:-100}"
+          git clone --single-branch --no-tags --depth="${DEPTH}" \
             "${{ matrix.sample.repo }}" \
             "demos/${{ matrix.sample.id }}"
 
