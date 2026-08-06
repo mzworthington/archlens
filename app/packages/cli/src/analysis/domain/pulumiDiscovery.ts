@@ -4,7 +4,7 @@ import {
   readPulumiProjectRuntime,
 } from '@archlens/core/import-iac';
 import type { AnalysisFileSystemPort } from './ports.ts';
-import { slugFromPath, walkForProjectRoots } from './iacDiscovery.ts';
+import { directorySlug, slugFromPath, walkForProjectRoots } from './iacDiscovery.ts';
 
 export type DiscoveredPulumiRoot = {
   /** Absolute directory path of the Pulumi project. */
@@ -55,7 +55,9 @@ export function discoverPulumiRoots(
 
     return {
       rootPath,
-      systemId: slugFromPath(rootPath, absScan, 'pulumi'),
+      // Prefer the directory name when the Pulumi project *is* the scan root
+      // (explicit infra repo / package), not a generic "pulumi" slug.
+      systemId: slugFromPath(rootPath, absScan, directorySlug(absScan, 'pulumi')),
       runtime,
       filePaths,
     };

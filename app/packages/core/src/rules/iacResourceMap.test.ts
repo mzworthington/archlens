@@ -20,6 +20,12 @@ describe('mapProviderTypeToNodeType', () => {
     ['aws_lb', 'gateway-api'],
     ['aws_api_gateway_rest_api', 'gateway-api'],
     ['aws_cloudfront_distribution', 'gateway-api'],
+    ['cloudflare_pagesproject', 'gateway-api'],
+    ['cloudflare_index_pagesproject', 'gateway-api'],
+    ['cloudflare_r2bucket', 'rest-api'],
+    ['cloudflare_index_r2bucket', 'rest-api'],
+    ['cloudflare_dnsrecord', 'container'],
+    ['cloudflare_r2customdomain', 'container'],
   ] as const)('maps %s → %s', (providerType, expected) => {
     const result = mapProviderTypeToNodeType(providerType);
     expect(result.nodeType).toBe(expected);
