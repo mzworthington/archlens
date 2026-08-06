@@ -1,19 +1,9 @@
-import type { SystemNode, SystemDependency } from '@archlens/core';
+import type { SystemDependency, SystemNode } from '@archlens/core';
 import { EntityRef } from '@archlens/core';
 import { parseCsprojProjectReferences, resolveCsprojReferencePath } from '@archlens/core/cli';
-import {
-  resolveComponentIdentity,
-  resolveImportComponentId,
-  usesDedicatedImportPass,
-} from './componentResolver.ts';
-import {
-  resolveContainerFromPath,
-  componentMapKey,
-  type ResolveContainerOptions,
-} from './containerGrouping.ts';
+import { resolveContainerFromPath, type ResolveContainerOptions } from './containerGrouping.ts';
 import type { ParsedSourceFile } from './types.ts';
-import { classifyParsedSource, dependencyTypeForTarget } from './nodeTypeHydrator.ts';
-import { classifyCSharpContainer, isCSharpSourcePath, nodeTypePriority } from './csharpGrouping.ts';
+import { classifyCSharpContainer } from './csharpGrouping.ts';
 import {
   extractCSharpDependencies,
   extractCsprojContainerDependencies,
@@ -21,67 +11,8 @@ import {
   type CsprojFile,
 } from './csharpDependencies.ts';
 import { extractPythonDependencies } from './pythonDependencies.ts';
-import {
-  isNodeBuiltinModule,
-  isRelativeImport,
-  mergeContainerDependency,
-  packageNameFromSpecifier,
-  resolveWorkspacePackageContainer,
-  resolveWorkspacePackageEntryComponentId,
-  subpathComponentIdFromSpecifier,
-} from './workspacePackages.ts';
-import { slugify } from '@archlens/core';
-import { fileLeafEntityRef } from '../../writers/rollupDrillDown.ts';
-import { resolveRelativeTypeScriptImportPath } from './typescriptGrouping.ts';
-
-function componentEntityRef(parentRef: string, containerId: string, componentId: string): string {
-  let ref = EntityRef.child(parentRef, containerId);
-  for (const segment of componentId.split('/').filter(Boolean)) {
-    ref = EntityRef.child(ref, segment);
-  }
-  return ref;
-}
-
-function fileDisplayName(baseName: string): string {
-  const label = baseName.replace(/\.(test|spec)$/i, '').replace(/[-_]/g, ' ');
-  return label.charAt(0).toUpperCase() + label.slice(1);
-}
-
-function appendMemberFilepath(node: SystemNode, filepath: string): void {
-  const existing = node.properties?.memberFilepaths;
-  const memberFilepaths = Array.isArray(existing) ? [...existing] : [];
-  if (!memberFilepaths.includes(filepath)) {
-    memberFilepaths.push(filepath);
-  }
-  node.properties = {
-    ...node.properties,
-    memberFilepaths,
-    filepath: typeof node.properties?.filepath === 'string' ? node.properties.filepath : filepath,
-  };
-}
-
-function resolveRelativeImportTargetPath(
-  fromRelativePath: string,
-  moduleSpecifier: string
-): string | null {
-  return resolveRelativeTypeScriptImportPath(fromRelativePath, moduleSpecifier);
-}
-
-function pushFileLevelDependency(
-  fileLevelDependencies: SystemDependency[],
-  dependency: SystemDependency
-): void {
-  const exists = fileLevelDependencies.some(
-    dep =>
-      dep.from === dependency.from &&
-      dep.to === dependency.to &&
-      dep.type === dependency.type &&
-      dep.description === dependency.description
-  );
-  if (!exists) {
-    fileLevelDependencies.push(dependency);
-  }
-}
+import { collectSourceGraphNodes } from './collectSourceGraphNodes.ts';
+import { collectImportDependencies } from './collectImportDependencies.ts';
 
 export class ModelExtractor {
   public parentRef: string;
@@ -93,241 +24,22 @@ export class ModelExtractor {
   }
 
   public extractGraph(sourceFiles: ParsedSourceFile[], csprojFiles: CsprojFile[] = []) {
-    const componentNodesMap = new Map<string, SystemNode>();
-    const componentDependencies: SystemDependency[] = [];
-    const containerNodesMap = new Map<string, SystemNode>();
-    const containerDependencies: SystemDependency[] = [];
-    const fileLevelNodesMap = new Map<string, SystemNode>();
-    const fileLevelDependencies: SystemDependency[] = [];
-    const filepathToFileEntityRef = new Map<string, string>();
-
-    for (const file of sourceFiles) {
-      const { containerId, displayName } = resolveContainerFromPath(
-        file.relativePath,
-        this.resolveOptions
-      );
-
-      const componentIdentity = resolveComponentIdentity(file);
-      if (!componentIdentity) continue;
-
-      const { componentId, componentName } = componentIdentity;
-      const mapKey = componentMapKey(containerId, componentId);
-
-      const containerRef = EntityRef.child(this.parentRef, containerId);
-      const componentRef = componentEntityRef(this.parentRef, containerId, componentId);
-      const hydration = classifyParsedSource(file);
-      const fileEntityRef = fileLeafEntityRef(componentRef, file.baseName);
-      filepathToFileEntityRef.set(file.relativePath, fileEntityRef);
-
-      const existing = componentNodesMap.get(mapKey);
-      if (existing) {
-        if (nodeTypePriority(hydration.type) > nodeTypePriority(existing.type)) {
-          existing.type = hydration.type;
-          existing.properties = {
-            ...existing.properties,
-            technology: hydration.technology,
-            classification: hydration.reason,
-          };
-        }
-        if (!file.isTestFile) {
-          existing.isTest = false;
-        }
-        appendMemberFilepath(existing, file.relativePath);
-      } else {
-        componentNodesMap.set(mapKey, {
-          entityRef: componentRef,
-          type: hydration.type,
-          name: componentName,
-          isTest: !!file.isTestFile,
-          properties: {
-            filepath: file.relativePath,
-            memberFilepaths: [file.relativePath],
-            containerId,
-            technology: hydration.technology,
-            classification: hydration.reason,
-          },
-        });
-      }
-
-      const existingFileNode = fileLevelNodesMap.get(fileEntityRef);
-      if (existingFileNode) {
-        if (nodeTypePriority(hydration.type) > nodeTypePriority(existingFileNode.type)) {
-          existingFileNode.type = hydration.type;
-          existingFileNode.properties = {
-            ...existingFileNode.properties,
-            technology: hydration.technology,
-            classification: hydration.reason,
-          };
-        }
-        if (!file.isTestFile) {
-          existingFileNode.isTest = false;
-        }
-      } else {
-        fileLevelNodesMap.set(fileEntityRef, {
-          entityRef: fileEntityRef,
-          type: hydration.type,
-          name: fileDisplayName(file.baseName),
-          isTest: !!file.isTestFile,
-          properties: {
-            filepath: file.relativePath,
-            containerId,
-            technology: hydration.technology,
-            classification: hydration.reason,
-          },
-        });
-      }
-
-      if (!containerNodesMap.has(containerId)) {
-        const containerType = isCSharpSourcePath(file.relativePath)
-          ? classifyCSharpContainer(displayName, containerId)
-          : 'container';
-
-        containerNodesMap.set(containerId, {
-          entityRef: containerRef,
-          type: containerType,
-          name: `${displayName.charAt(0).toUpperCase()}${displayName.slice(1)} Service`,
-          isTest: !!file.isTestFile,
-        });
-      } else if (!file.isTestFile) {
-        containerNodesMap.get(containerId)!.isTest = false;
-      }
-    }
+    const { componentNodesMap, containerNodesMap, fileLevelNodesMap, filepathToFileEntityRef } =
+      collectSourceGraphNodes(this.parentRef, sourceFiles, this.resolveOptions);
 
     this.ensureCsprojContainers(csprojFiles, containerNodesMap);
 
-    const findComponent = (containerHint: string | undefined, componentId: string) => {
-      if (containerHint) {
-        const keyed = componentNodesMap.get(componentMapKey(containerHint, componentId));
-        if (keyed) return keyed;
-      }
-      for (const [key, node] of componentNodesMap) {
-        if (key.endsWith(`/${componentId}`) || key === componentId) {
-          return node;
-        }
-      }
-      return undefined;
-    };
+    const componentDependencies: SystemDependency[] = [];
+    const containerDependencies: SystemDependency[] = [];
+    const fileLevelDependencies: SystemDependency[] = [];
 
-    for (const file of sourceFiles) {
-      if (usesDedicatedImportPass(file.relativePath)) {
-        continue;
-      }
-
-      const componentIdentity = resolveComponentIdentity(file);
-      if (!componentIdentity) continue;
-
-      const fromComponentId = componentIdentity.componentId;
-      const { containerId: fromContainerId } = resolveContainerFromPath(
-        file.relativePath,
-        this.resolveOptions
-      );
-      const fromComponent = findComponent(fromContainerId, fromComponentId);
-      if (!fromComponent) continue;
-      const fromFileRef = filepathToFileEntityRef.get(file.relativePath);
-
-      for (const imp of [...file.imports, ...(file.reExports ?? [])]) {
-        const packageIndex = this.resolveOptions.workspacePackageIndex;
-        const workspaceTargetContainerId = packageIndex
-          ? resolveWorkspacePackageContainer(imp.moduleSpecifier, packageIndex)
-          : null;
-
-        if (workspaceTargetContainerId) {
-          const toContainerRef = EntityRef.child(this.parentRef, workspaceTargetContainerId);
-          const entryComponentId = resolveWorkspacePackageEntryComponentId(
-            workspaceTargetContainerId,
-            this.resolveOptions.workspacePackageEntryIndex
-          );
-          const subpathComponentId = subpathComponentIdFromSpecifier(imp.moduleSpecifier);
-          const toComponentId = subpathComponentId ?? entryComponentId;
-          const toComponentRef = componentEntityRef(
-            this.parentRef,
-            workspaceTargetContainerId,
-            toComponentId
-          );
-
-          if (fromComponent.entityRef !== toComponentRef) {
-            const edgeExists = componentDependencies.some(
-              d => d.from === fromComponent.entityRef && d.to === toComponentRef
-            );
-            if (!edgeExists) {
-              componentDependencies.push({
-                from: fromComponent.entityRef,
-                to: toComponentRef,
-                type: 'direct-call',
-                description: packageNameFromSpecifier(imp.moduleSpecifier) ?? undefined,
-              });
-            }
-            if (fromFileRef && fromFileRef !== toComponentRef) {
-              pushFileLevelDependency(fileLevelDependencies, {
-                from: fromFileRef,
-                to: toComponentRef,
-                type: 'direct-call',
-                description: packageNameFromSpecifier(imp.moduleSpecifier) ?? undefined,
-              });
-            }
-          }
-
-          if (workspaceTargetContainerId !== fromContainerId) {
-            mergeContainerDependency(
-              containerDependencies,
-              EntityRef.child(this.parentRef, fromContainerId),
-              toContainerRef
-            );
-          }
-          continue;
-        }
-
-        if (!isRelativeImport(imp.moduleSpecifier) || isNodeBuiltinModule(imp.moduleSpecifier)) {
-          continue;
-        }
-
-        const toComponentId =
-          resolveImportComponentId(file, imp.moduleSpecifier) ??
-          slugify(
-            imp.moduleSpecifier
-              .split(/[\\/]/)
-              .pop()
-              ?.replace(/\.(ts|tsx|js|jsx|go|java|kt|kts|cs|py)$/, '') || ''
-          );
-        const toComponent = findComponent(fromContainerId, toComponentId);
-        if (!toComponent) continue;
-        const toContainerId = String(toComponent.properties?.containerId || '');
-
-        const targetPath = resolveRelativeImportTargetPath(file.relativePath, imp.moduleSpecifier);
-        const toFileRef = targetPath ? filepathToFileEntityRef.get(targetPath) : undefined;
-        const edge = dependencyTypeForTarget(toComponent);
-
-        if (fromFileRef) {
-          const fileToRef =
-            toFileRef ??
-            (fromComponent.entityRef !== toComponent.entityRef ? toComponent.entityRef : undefined);
-          if (fileToRef && fromFileRef !== fileToRef) {
-            pushFileLevelDependency(fileLevelDependencies, {
-              from: fromFileRef,
-              to: fileToRef,
-              type: edge.type,
-              description: edge.description,
-            });
-          }
-        }
-
-        if (fromComponent.entityRef !== toComponent.entityRef) {
-          const fromContainerRef = EntityRef.child(this.parentRef, fromContainerId);
-          const toContainerRef = EntityRef.child(this.parentRef, toContainerId);
-
-          componentDependencies.push({
-            from: fromComponent.entityRef,
-            to: toComponent.entityRef,
-            type: edge.type,
-            description: edge.description,
-          });
-
-          if (fromContainerId && toContainerId && fromContainerId !== toContainerId) {
-            mergeContainerDependency(containerDependencies, fromContainerRef, toContainerRef);
-          }
-        }
-      }
-    }
+    collectImportDependencies(this.parentRef, sourceFiles, this.resolveOptions, {
+      componentNodesMap,
+      componentDependencies,
+      containerDependencies,
+      fileLevelDependencies,
+      filepathToFileEntityRef,
+    });
 
     const csharpDeps = extractCSharpDependencies(
       this.parentRef,
