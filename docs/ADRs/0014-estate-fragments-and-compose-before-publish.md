@@ -77,11 +77,11 @@ estates/{estateId}/
 1. Load fragments under `fragments/` for the estate key prefix (`estates/{estateId}/` by default).
 2. Keep the freshest run per `fragmentKey` (`publishedAt`, then `runId`).
 3. Merge non-`context.yaml` paths with last-writer-wins; merge `context.yaml` by `entityRef`.
-4. Build ADR-0010 `catalog.json` + snapshot, upload snapshot objects, **CAS** update `latest/manifest.json` (`If-Match` / `If-None-Match: *`) with retries (`--max-retries`, default 3).
+4. Build ADR-0010 `catalog.json` + snapshot, upload snapshot objects, **CAS** update `latest/manifest.json` (`If-Match` / `If-None-Match: *`) with retries (`--max-retries`, default 8). On conflict, reload fragments/overlays, exponential backoff (capped at 2s), then retry.
 
 Stage inputs with `archlens catalog publish-fragment … --estate=… --product=… --source-ref=… --no-dry-run`.
 
-**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` in the same GitHub Actions job. A hourly `compose-catalog` workflow is the safety net (`--allow-empty`). Storage-event / Worker triggers are deferred.
+**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` for single-product publishers. The demo matrix publishes fragments in parallel and runs **one** final compose after all legs. An hourly `compose-catalog` workflow is the safety net (`--allow-empty`). Jobs that compose share concurrency group `samples-estate-compose`. Storage-event / Worker triggers are deferred.
 
 ### Phase 3 — suggestion overlays (implemented)
 

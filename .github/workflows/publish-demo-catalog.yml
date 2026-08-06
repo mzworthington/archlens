@@ -2,6 +2,7 @@ name: Publish demo catalog
 
 # Demo matrix: clone each example codebase → scan → fragment into shared samples estate.
 # Each demo uses --context={id} so BlueprintSpec paths do not collide across repos.
+# Compose runs once after all matrix legs (avoids concurrent CAS on latest/manifest.json).
 # Cron safety net: compose-catalog.yml.
 
 on:
@@ -63,7 +64,7 @@ jobs:
             --sample-id="${{ matrix.sample.id }}" \
             --output="${OUT}/${{ matrix.sample.id }}/context.yaml"
 
-      - name: Scan, publish fragment, and compose
+      - name: Scan and publish fragment
         working-directory: demos/${{ matrix.sample.id }}
         env:
           OBJECT_STORAGE_PROVIDER: r2
@@ -91,9 +92,38 @@ jobs:
             --no-dry-run \
             --format=json
 
+  # Single stitch after all fragments land — avoids matrix CAS races on latest/manifest.json.
+  compose:
+    needs: publish
+    if: ${{ always() && !cancelled() && needs.publish.result != 'cancelled' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: production
+    concurrency:
+      group: samples-estate-compose
+      cancel-in-progress: false
+    steps:
+      - name: Checkout ArchLens
+        uses: actions/checkout@v7
+
+      - name: Setup ArchLens CLI
+        uses: ./.github/actions/setup-archlens-cli
+
+      - name: Compose samples estate
+        env:
+          OBJECT_STORAGE_PROVIDER: r2
+          OBJECT_STORAGE_BUCKET: ${{ secrets.R2_BLUEPRINT_CATALOG_BUCKET }}
+          OBJECT_STORAGE_KEY_PREFIX: estates/samples
+          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_BLUEPRINT_CATALOG_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
+        run: |
+          set -euo pipefail
           archlens catalog compose \
             --estate=samples \
             --workspace-name=samples \
             --key-prefix=estates/samples \
+            --allow-empty \
             --no-dry-run \
             --format=json

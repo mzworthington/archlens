@@ -25,6 +25,9 @@ jobs:
     timeout-minutes: 30
     environment:
       name: production
+    concurrency:
+      group: samples-estate-compose
+      cancel-in-progress: false
     steps:
       - name: Checkout
         uses: actions/checkout@v7

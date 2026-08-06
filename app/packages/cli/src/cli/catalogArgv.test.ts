@@ -15,7 +15,7 @@ describe('parse catalog commands', () => {
     expect(plan.dryRun).toBe(true);
     expect(plan.skipValidation).toBe(true);
     expect(plan.allowEmpty).toBe(false);
-    expect(plan.maxRetries).toBe(3);
+    expect(plan.maxRetries).toBe(8);
     expect(defaultEstateKeyPrefix('acme')).toBe('estates/acme');
   });
 

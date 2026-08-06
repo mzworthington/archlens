@@ -83,9 +83,10 @@ export function parseCatalogComposeArgv(argv: string[]): CatalogComposeCliPlan {
     throw new Error('archlens catalog compose requires --estate=<id>');
   }
   const maxRetriesRaw = flagValue(rest, '--max-retries');
-  const maxRetriesParsed = maxRetriesRaw === undefined ? 3 : Number(maxRetriesRaw);
+  // Default 8: concurrent estate composers (publish workflows + safety-net) need headroom.
+  const maxRetriesParsed = maxRetriesRaw === undefined ? 8 : Number(maxRetriesRaw);
   const maxRetries =
-    Number.isFinite(maxRetriesParsed) && maxRetriesParsed >= 1 ? Math.trunc(maxRetriesParsed) : 3;
+    Number.isFinite(maxRetriesParsed) && maxRetriesParsed >= 1 ? Math.trunc(maxRetriesParsed) : 8;
 
   return {
     estateId: estateId.trim(),
