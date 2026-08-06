@@ -69,6 +69,8 @@ pnpm dev
 
 Opens the Vite canvas app. Docs and workspace share the same React app.
 
+**Sandbox / samples:** local `pnpm dev` loads **Load sandbox** from the Cloudflare catalog (`https://blueprints.archlens.dev/estates/samples/`) via `app/packages/canvas/.env.development`. If R2 is unreachable, the app falls back to mirrored `samples/` under `/bundled-blueprints/`. To force offline bundled samples, create `app/packages/canvas/.env.development.local` with an empty `VITE_REMOTE_CATALOG_BASE_URL=`.
+
 ### 3. Build Production Artifacts
 
 ```bash

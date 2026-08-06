@@ -40,16 +40,36 @@ export type ExternalSummaryDisplayInput = {
   includeExternalsInFocus?: boolean;
 };
 
+function diagramHasInternalNodes(
+  schema?: SystemSchema,
+  nodes?: readonly BlueprintRFNode[]
+): boolean {
+  if (schema) {
+    return schema.nodes.some(n => !n.external);
+  }
+  if (nodes) {
+    return nodes.some(n => !n.data.external && !n.data.externalSummaryHub);
+  }
+  return true;
+}
+
+/**
+ * Collapse peripheral externals into summary hubs on container/component overview.
+ * Skip when the diagram is external-only (e.g. IaC vendor surfaces) — those nodes are the content.
+ */
 export function shouldUseExternalSummaryMode(input: {
   selectedNodeId: string | null;
   expandedBand: ExternalSummaryBand | null;
   showCoupling: boolean;
   isResilienceMode: boolean;
   level?: C4Level;
+  schema?: SystemSchema;
+  nodes?: readonly BlueprintRFNode[];
 }): boolean {
   if (isContextLevelDiagram(input.level)) return false;
   if (input.showCoupling || input.isResilienceMode) return false;
   if (input.selectedNodeId) return false;
+  if (!diagramHasInternalNodes(input.schema, input.nodes)) return false;
   return true;
 }
 
@@ -125,6 +145,8 @@ export function resolveVisibleExternalEntityRefs(
       showCoupling,
       isResilienceMode,
       level: schema.level,
+      schema,
+      nodes,
     })
   ) {
     if (!expandedBand) return new Set();
@@ -211,6 +233,8 @@ export function buildExternalSummaryHubNodes(
       showCoupling: input.showCoupling,
       isResilienceMode: input.isResilienceMode,
       level: input.schema.level,
+      schema: input.schema,
+      nodes: input.nodes,
     })
   ) {
     return [];

@@ -126,3 +126,77 @@ describe('externalSummaryDisplay — C4 context level', () => {
     expect(buildExternalSummaryHubNodes(input, bands)).toEqual([]);
   });
 });
+
+describe('externalSummaryDisplay — external-only container diagrams', () => {
+  function cloudflareOnlySchema(): SystemSchema {
+    return {
+      name: 'Cloudflare Infrastructure',
+      version: '1.0.0',
+      level: 'container',
+      entityRef: 'archlens/cloudflare',
+      nodes: [
+        {
+          entityRef: 'archlens/cloudflare/cloudflare-pages',
+          type: 'gateway-api',
+          name: 'Cloudflare Pages',
+          external: true,
+          parentEntityRef: 'archlens/cloudflare',
+        },
+        {
+          entityRef: 'archlens/cloudflare/cloudflare-r2',
+          type: 'rest-api',
+          name: 'Cloudflare R2',
+          external: true,
+          parentEntityRef: 'archlens/cloudflare',
+        },
+      ],
+      dependencies: [],
+    };
+  }
+
+  it('does not collapse externals when the diagram has no internal nodes', () => {
+    const schema = cloudflareOnlySchema();
+    const nodes = [
+      node('archlens/cloudflare/cloudflare-pages', { external: true, type: 'gateway-api' }),
+      node('archlens/cloudflare/cloudflare-r2', { external: true, type: 'rest-api' }),
+    ];
+
+    expect(
+      shouldUseExternalSummaryMode({
+        selectedNodeId: null,
+        expandedBand: null,
+        showCoupling: false,
+        isResilienceMode: false,
+        level: 'container',
+        schema,
+        nodes,
+      })
+    ).toBe(false);
+
+    expect(
+      resolveVisibleExternalEntityRefs(
+        summaryInput({
+          schema,
+          nodes,
+          edges: [],
+          loadedSystems: [{ path: 'cloudflare/containers.yaml', name: schema.name, schema }],
+        })
+      )
+    ).toBeNull();
+  });
+
+  it('does not build empty summary hubs for external-only diagrams', () => {
+    const schema = cloudflareOnlySchema();
+    const input = summaryInput({
+      schema,
+      nodes: [
+        node('archlens/cloudflare/cloudflare-pages', { external: true, type: 'gateway-api' }),
+        node('archlens/cloudflare/cloudflare-r2', { external: true, type: 'rest-api' }),
+      ],
+      edges: [],
+      loadedSystems: [{ path: 'cloudflare/containers.yaml', name: schema.name, schema }],
+    });
+    const bands = resolveOverviewExternalBands(input.schema, input.loadedSystems);
+    expect(buildExternalSummaryHubNodes(input, bands)).toEqual([]);
+  });
+});
