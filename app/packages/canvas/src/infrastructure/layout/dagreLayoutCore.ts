@@ -1,6 +1,6 @@
 import dagre from 'dagre';
 import type { LayoutEdgeInput, LayoutNodeInput, LayoutPosition } from '../../core';
-import { DAGRE_SPACING, LAYOUT_ORIGIN } from './constants';
+import { DAGRE_SPACING, LAYOUT_ORIGIN, estimateEdgeLabelSize } from './constants';
 
 /** Pure dagre layout - safe to run on the main thread or inside a Web Worker. */
 export function computeDagrePositions(
@@ -9,10 +9,11 @@ export function computeDagrePositions(
 ): Map<string, LayoutPosition> {
   if (nodes.length === 0) return new Map();
 
-  const g = new dagre.graphlib.Graph();
+  const g = new dagre.graphlib.Graph({ multigraph: false });
   g.setGraph({
     rankdir: 'TB',
-    ranker: 'tight-tree',
+    // network-simplex minimizes edge length/crossings better than tight-tree for C4 fans.
+    ranker: 'network-simplex',
     ...DAGRE_SPACING,
   });
   g.setDefaultEdgeLabel(() => ({}));
@@ -29,7 +30,14 @@ export function computeDagrePositions(
     const key = `${edge.source}->${edge.target}`;
     if (seen.has(key)) continue;
     seen.add(key);
-    g.setEdge(edge.source, edge.target);
+    const labelSize = estimateEdgeLabelSize(edge.label);
+    g.setEdge(edge.source, edge.target, {
+      ...labelSize,
+      labelpos: 'c',
+      labeloffset: 12,
+      minlen: 1,
+      weight: 1,
+    });
   }
 
   dagre.layout(g);

@@ -32,8 +32,8 @@ type BoundingBox = {
 const DEFAULT_LAYOUT: Required<ExternalNodeLayoutOptions> = {
   nodeWidth: DEFAULT_NODE_SIZE.width,
   nodeHeight: DEFAULT_NODE_SIZE.height,
-  horizontalGap: 180,
-  verticalGap: 120,
+  horizontalGap: 220,
+  verticalGap: 160,
   maxRowWidth: 0,
   origin: { x: 100, y: 100 },
 };
@@ -121,12 +121,18 @@ function layoutBandRows(
   refs: string[],
   band: ExternalPlacementBand,
   bbox: BoundingBox,
-  options: Required<ExternalNodeLayoutOptions>
+  options: Required<ExternalNodeLayoutOptions>,
+  sortKeys: Map<string, number>
 ): Map<EntityRef, { x: number; y: number }> {
   const positions = new Map<EntityRef, { x: number; y: number }>();
   if (refs.length === 0) return positions;
 
-  const sorted = [...refs].sort((a, b) => a.localeCompare(b));
+  const sorted = [...refs].sort((a, b) => {
+    const ka = sortKeys.get(a) ?? Number.POSITIVE_INFINITY;
+    const kb = sortKeys.get(b) ?? Number.POSITIVE_INFINITY;
+    if (ka !== kb) return ka - kb;
+    return a.localeCompare(b);
+  });
   const stepX = options.nodeWidth + options.horizontalGap;
   const rowHeight = options.nodeHeight + options.verticalGap;
   const maxNodesPerRow =
@@ -160,6 +166,43 @@ function layoutBandRows(
 }
 
 /**
+ * Prefer left-to-right order matching connected internals (barycenter) so edges
+ * to/from externals cross less often than a pure entityRef sort.
+ */
+export function externalBandSortKeys(
+  nodes: SystemNode[],
+  dependencies: SystemDependency[],
+  refs: string[],
+  band: ExternalPlacementBand,
+  options: Required<ExternalNodeLayoutOptions>
+): Map<string, number> {
+  const keys = new Map<string, number>();
+  const internals = new Map(
+    nodes
+      .filter(n => !n.external && n.entityRef && hasFinitePosition(n))
+      .map(n => [n.entityRef!, n])
+  );
+
+  for (const ref of refs) {
+    const xs: number[] = [];
+    for (const dep of dependencies) {
+      if (band === 'downstream' && dep.to === ref) {
+        const source = internals.get(dep.from);
+        if (source) xs.push(getNodePosition(source)!.x + options.nodeWidth / 2);
+      }
+      if (band === 'upstream' && dep.from === ref) {
+        const target = internals.get(dep.to);
+        if (target) xs.push(getNodePosition(target)!.x + options.nodeWidth / 2);
+      }
+    }
+    if (xs.length > 0) {
+      keys.set(ref, xs.reduce((a, b) => a + b, 0) / xs.length);
+    }
+  }
+  return keys;
+}
+
+/**
  * Compute x/y for external nodes: upstream band above internals, downstream below.
  */
 export function computeDirectionalExternalPositions(
@@ -181,10 +224,30 @@ export function computeDirectionalExternalPositions(
   }
 
   const positions = new Map<EntityRef, { x: number; y: number }>();
-  for (const [ref, pos] of layoutBandRows(upstreamRefs, 'upstream', bbox, resolved)) {
+  const upstreamKeys = externalBandSortKeys(
+    nodes,
+    dependencies,
+    upstreamRefs,
+    'upstream',
+    resolved
+  );
+  const downstreamKeys = externalBandSortKeys(
+    nodes,
+    dependencies,
+    downstreamRefs,
+    'downstream',
+    resolved
+  );
+  for (const [ref, pos] of layoutBandRows(upstreamRefs, 'upstream', bbox, resolved, upstreamKeys)) {
     positions.set(ref, pos);
   }
-  for (const [ref, pos] of layoutBandRows(downstreamRefs, 'downstream', bbox, resolved)) {
+  for (const [ref, pos] of layoutBandRows(
+    downstreamRefs,
+    'downstream',
+    bbox,
+    resolved,
+    downstreamKeys
+  )) {
     positions.set(ref, pos);
   }
   return positions;

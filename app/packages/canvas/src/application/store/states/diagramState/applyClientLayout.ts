@@ -74,9 +74,14 @@ export function createApplyClientLayout(set: SetFn, get: GetFn) {
       };
     });
 
-    const topLevelEdges = edges.filter(
-      e => layoutNodeIds.has(e.source) && layoutNodeIds.has(e.target)
-    );
+    const topLevelEdges = edges
+      .filter(e => layoutNodeIds.has(e.source) && layoutNodeIds.has(e.target))
+      .map(e => ({
+        id: e.id,
+        source: e.source,
+        target: e.target,
+        ...(typeof e.label === 'string' && e.label ? { label: e.label } : {}),
+      }));
 
     const positions = await computeClientLayout(engine, layoutInput, topLevelEdges, layoutRegistry);
     if (signal?.aborted) return;

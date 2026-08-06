@@ -61,6 +61,7 @@ export async function layoutGroupedDomainNodes(
       id: `layout-${d.from}-${d.to}-${i}`,
       source: d.from,
       target: d.to,
+      ...(d.description ? { label: d.description } : {}),
     }));
 
   const layoutInput = layoutTopLevel.map(n => {

@@ -63,6 +63,8 @@ export type LayoutEdgeInput = {
   id: string;
   source: string;
   target: string;
+  /** Optional edge caption; dagre uses estimated size to separate parallel edges. */
+  label?: string;
 };
 
 /**
