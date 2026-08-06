@@ -92,6 +92,42 @@ describe('mapDomainNodesToRFNodes', () => {
     expect(child?.extent).toBe('parent');
   });
 
+  it('does not set React Flow parentId for diagram-membership parentEntityRef', () => {
+    const rfNodes = mapDomainNodesToRFNodes([
+      {
+        entityRef: 'archlens/cloudflare/cloudflare-pages',
+        type: 'gateway-api',
+        name: 'Cloudflare Pages',
+        parentEntityRef: 'archlens/cloudflare',
+        position: { x: 10, y: 20 },
+      },
+      {
+        entityRef: 'archlens/cloudflare/cloudflare-r2',
+        type: 'rest-api',
+        name: 'Cloudflare R2',
+        parentEntityRef: 'archlens/cloudflare',
+        position: { x: 30, y: 40 },
+      },
+    ]);
+
+    expect(rfNodes).toHaveLength(2);
+    for (const node of rfNodes) {
+      expect(node.parentId).toBeUndefined();
+      expect(node.extent).toBeUndefined();
+      expect(node.data.parentEntityRef).toBe('archlens/cloudflare');
+    }
+
+    const schema = rebuildSchemaFromCanvas(
+      'Cloudflare Infrastructure',
+      '1.0.0',
+      'container',
+      rfNodes,
+      [],
+      'archlens/cloudflare'
+    );
+    expect(schema.nodes.every(n => n.parentEntityRef === 'archlens/cloudflare')).toBe(true);
+  });
+
   it('round-trips parentEntityRef through rebuildSchemaFromCanvas', () => {
     const rfNodes = mapDomainNodesToRFNodes([
       { entityRef: 'ctx/hub', type: 'group', name: 'Hub', position: { x: 0, y: 0 } },

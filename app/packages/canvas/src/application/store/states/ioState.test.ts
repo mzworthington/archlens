@@ -6,6 +6,7 @@ import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorking
 import { SAMPLES_CONTEXT_PATH } from '../samplesWorkspace';
 import * as sampleWorkspaceLoader from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
+import { resetWorkspaceOpenSessionForTests } from '../workspaceOpenSession';
 
 describe('ioState Actions & State Management', () => {
   const v3Version = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
@@ -57,6 +58,7 @@ dependencies: []
   };
 
   beforeEach(async () => {
+    resetWorkspaceOpenSessionForTests();
     delete mockFiles['another-system.yaml'];
     await db.originalNodes.clear();
     await db.workingNodes.clear();
@@ -64,6 +66,7 @@ dependencies: []
     await db.workingDependencies.clear();
     useBlueprintStore.setState({
       workspacePort: mockWorkspacePort,
+      folderWorkspacePort: mockWorkspacePort,
       workingCopyPort: dexieWorkingCopyAdapter,
       currentFilePath: 'blueprint.yaml',
       isWorkspaceOpen: false,
@@ -420,6 +423,144 @@ dependencies: []
 
       loadSession.mockRestore();
       schedulePreload.mockRestore();
+    });
+
+    it('does not overwrite a folder workspace when sample load finishes after folder open', async () => {
+      let releaseSampleSession: (value: unknown) => void = () => undefined;
+      const sampleSessionGate = new Promise(resolve => {
+        releaseSampleSession = resolve;
+      });
+
+      const catalog: WorkspaceCatalogEntry[] = [
+        {
+          path: SAMPLES_CONTEXT_PATH,
+          name: 'Samples',
+          level: 'context',
+          entityRef: 'samples',
+          nodeEntityRefs: [],
+        },
+      ];
+      const samplePort = {
+        ...mockWorkspacePort,
+        getDirectoryName: () => 'samples',
+        readFile: vi.fn(
+          async () => `
+version: ${v3Version}
+level: context
+metadata:
+  entityRef: samples
+  name: Samples
+nodes: []
+dependencies: []
+`
+        ),
+      };
+
+      const loadSession = vi
+        .spyOn(sampleWorkspaceLoader, 'loadSampleWorkspaceSession')
+        .mockImplementation(async () => {
+          await sampleSessionGate;
+          return { catalog, workspacePort: samplePort, usesRemoteCatalog: false };
+        });
+      const schedulePreload = vi
+        .spyOn(bundledSampleWorkspace, 'scheduleBundledBlueprintPreload')
+        .mockImplementation(() => undefined);
+
+      useBlueprintStore.setState({
+        sampleWorkspacePort: samplePort,
+        folderWorkspacePort: mockWorkspacePort,
+        workspacePort: mockWorkspacePort,
+      });
+
+      const samplePromise = useBlueprintStore.getState().openBundledSample();
+      const folderOpened = await useBlueprintStore.getState().openWorkspaceDirectory();
+      expect(folderOpened).toBe(true);
+      expect(useBlueprintStore.getState().isSampleWorkspace).toBe(false);
+      expect(useBlueprintStore.getState().workspaceName).toBe('MockWorkspace');
+
+      releaseSampleSession(undefined);
+      const sampleOpened = await samplePromise;
+      expect(sampleOpened).toBe(false);
+      expect(useBlueprintStore.getState().isSampleWorkspace).toBe(false);
+      expect(useBlueprintStore.getState().workspaceName).toBe('MockWorkspace');
+      expect(schedulePreload).not.toHaveBeenCalled();
+
+      loadSession.mockRestore();
+      schedulePreload.mockRestore();
+    });
+
+    it('keeps sample mode when the folder picker is cancelled', async () => {
+      useBlueprintStore.setState({
+        isWorkspaceOpen: true,
+        isSampleWorkspace: true,
+        workspaceName: 'samples',
+        folderWorkspacePort: {
+          ...mockWorkspacePort,
+          selectDirectory: async () => false,
+        },
+      });
+
+      const opened = await useBlueprintStore.getState().openWorkspaceDirectory();
+      expect(opened).toBe(false);
+      expect(useBlueprintStore.getState().isSampleWorkspace).toBe(true);
+      expect(useBlueprintStore.getState().workspaceName).toBe('samples');
+    });
+
+    it('does not apply sample ports when finalize loses to a newer folder open', async () => {
+      let releaseSampleSession: (value: unknown) => void = () => undefined;
+      const sampleSessionGate = new Promise(resolve => {
+        releaseSampleSession = resolve;
+      });
+
+      const catalog: WorkspaceCatalogEntry[] = [
+        {
+          path: SAMPLES_CONTEXT_PATH,
+          name: 'Samples',
+          level: 'context',
+          entityRef: 'samples',
+          nodeEntityRefs: [],
+        },
+      ];
+      const samplePort = {
+        ...mockWorkspacePort,
+        getDirectoryName: () => 'samples-should-not-win',
+        readFile: vi.fn(
+          async () => `
+version: ${v3Version}
+level: context
+metadata:
+  entityRef: samples
+  name: Samples
+nodes: []
+dependencies: []
+`
+        ),
+      };
+
+      const loadSession = vi
+        .spyOn(sampleWorkspaceLoader, 'loadSampleWorkspaceSession')
+        .mockImplementation(async () => {
+          await sampleSessionGate;
+          return { catalog, workspacePort: samplePort, usesRemoteCatalog: false };
+        });
+
+      useBlueprintStore.setState({
+        sampleWorkspacePort: mockWorkspacePort,
+        folderWorkspacePort: mockWorkspacePort,
+        workspacePort: mockWorkspacePort,
+      });
+
+      const samplePromise = useBlueprintStore.getState().openBundledSample();
+      await useBlueprintStore.getState().openWorkspaceDirectory();
+      releaseSampleSession(undefined);
+      await samplePromise;
+
+      const state = useBlueprintStore.getState();
+      expect(state.isSampleWorkspace).toBe(false);
+      expect(state.workspaceName).toBe('MockWorkspace');
+      expect(state.workspacePort.getDirectoryName()).toBe('MockWorkspace');
+
+      loadSession.mockRestore();
     });
   });
 });

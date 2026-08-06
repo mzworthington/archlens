@@ -259,6 +259,11 @@ export function positionExternalNodes(
   dependencies: SystemDependency[],
   options?: ExternalNodeLayoutOptions
 ): SystemNode[] {
+  const hasInternal = nodes.some(n => !n.external);
+  // External-only diagrams (e.g. provisioned IaC products): free placement — do not
+  // force band layout relative to a missing internal graph.
+  if (!hasInternal) return nodes;
+
   const externalRefs = nodes
     .filter((n): n is SystemNode & { entityRef: string } => !!n.external && !!n.entityRef)
     .map(n => n.entityRef);

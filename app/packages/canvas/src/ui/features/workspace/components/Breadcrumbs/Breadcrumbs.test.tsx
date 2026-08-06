@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { Router } from 'wouter';
 import { memoryLocation } from 'wouter/memory-location';
 import { Breadcrumbs } from './Breadcrumbs';
@@ -60,10 +60,12 @@ describe('Breadcrumbs Component', () => {
     render(<Breadcrumbs />);
 
     expect(screen.getAllByText('Samples').length).toBeGreaterThan(0);
-    expect(screen.getByTestId('workspace-storage-badge')).toHaveTextContent('Sample');
+    expect(screen.getByTestId('workspace-mode-toggle')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-mode-demo')).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByTestId('workspace-mode-folder')).toHaveAttribute('aria-pressed', 'false');
   });
 
-  it('renders folder badge when a directory workspace is open', () => {
+  it('renders folder mode toggle when a directory workspace is open', () => {
     useBlueprintStore.setState({
       isWorkspaceOpen: true,
       isSampleWorkspace: false,
@@ -73,13 +75,40 @@ describe('Breadcrumbs Component', () => {
     render(<Breadcrumbs />);
 
     expect(screen.getByText('DevPortalRepo')).toBeInTheDocument();
-    expect(screen.getByTestId('workspace-storage-badge')).toHaveTextContent('Folder');
+    expect(screen.getByTestId('workspace-mode-folder')).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByTestId('workspace-mode-demo')).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  it('opens a folder workspace when Folder mode is selected from demo', async () => {
+    const openWorkspaceDirectory = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({
+      isWorkspaceOpen: true,
+      isSampleWorkspace: true,
+      workspaceName: 'samples',
+      openWorkspaceDirectory,
+      setIsStartupOpen: vi.fn(),
+      schema: {
+        name: 'Root Context',
+        version: '1.0.0',
+        level: 'context',
+        entityRef: 'root',
+        nodes: [],
+        dependencies: [],
+      },
+    });
+
+    render(<Breadcrumbs />);
+    fireEvent.click(screen.getByTestId('workspace-mode-folder'));
+
+    await vi.waitFor(() => {
+      expect(openWorkspaceDirectory).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('omits workspace chrome when no workspace is open', () => {
     render(<Breadcrumbs />);
 
-    expect(screen.queryByTestId('workspace-storage-badge')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('workspace-mode-toggle')).not.toBeInTheDocument();
     expect(screen.getAllByText('Main App System').length).toBeGreaterThan(0);
   });
 

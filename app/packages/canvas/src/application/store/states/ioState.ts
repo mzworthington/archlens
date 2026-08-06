@@ -21,6 +21,7 @@ import { selectBundledSampleEntryPath } from '../samplesWorkspace';
 import { scheduleBundledBlueprintPreload } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { loadSampleWorkspaceSession } from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import { SANDBOX_LOADING_MESSAGE } from '../diagramLoadSession';
+import { beginWorkspaceOpen, isWorkspaceOpenCurrent } from '../workspaceOpenSession';
 
 export interface IoState {
   fileSystemPort: FileSystemPort;
@@ -159,11 +160,11 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
     setIsLoading(true);
     try {
       const port = isSampleWorkspace ? folderWorkspacePort : workspacePort;
-      set({ workspacePort: port, isSampleWorkspace: false });
       return await loadWorkspaceFromDirectory({
         selectDirectory: () => port.selectDirectory(),
         readDirectoryFiles: () => port.readDirectoryFiles(),
         getDirectoryName: () => port.getDirectoryName(),
+        committedPorts: { workspacePort: port },
         workingCopy: workingCopyPort,
         logger,
         setNotification,
@@ -182,14 +183,12 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
 
   openBundledSample: async () => {
     const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
+    const openGeneration = beginWorkspaceOpen();
     setIsLoading(SANDBOX_LOADING_MESSAGE);
     try {
       const session = await loadSampleWorkspaceSession();
-      set({
-        workspacePort: session.workspacePort,
-        sampleWorkspacePort: session.workspacePort,
-        isSampleWorkspace: true,
-      });
+      if (!isWorkspaceOpenCurrent(openGeneration)) return false;
+
       const catalog = session.catalog;
       const entryPath = selectBundledSampleEntryPath(catalog);
       const opened = await loadWorkspaceFromCatalog({
@@ -203,6 +202,11 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
         initSchema,
         set,
         isSampleWorkspace: true,
+        openGeneration,
+        committedPorts: {
+          workspacePort: session.workspacePort,
+          sampleWorkspacePort: session.workspacePort,
+        },
       });
       if (opened) {
         // Full peer list stays in catalog; warm ArchLens context + golden/stress YAML.

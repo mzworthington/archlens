@@ -201,10 +201,22 @@ describe('projectMeaningfulIacExternals', () => {
       servedSystemRefs,
     });
 
-    expect(result.containerSchema.nodes.map(n => n.properties?.['iac.product']).sort()).toEqual([
-      'pages',
-      'r2',
-    ]);
+    const resources = result.containerSchema.nodes.filter(
+      n => n.properties?.['iac.view'] === 'resource'
+    );
+    const declarations = result.containerSchema.nodes.filter(
+      n => n.properties?.['iac.view'] === 'declaration'
+    );
+    expect(resources.map(n => n.properties?.['iac.product']).sort()).toEqual(['pages', 'r2']);
+    expect(declarations).toHaveLength(4);
+    expect(declarations.map(n => n.properties?.['iac.significance']).sort()).toEqual(
+      ['primary', 'primary', 'supporting', 'supporting'].sort()
+    );
+    expect(declarations.every(n => n.external !== true)).toBe(true);
+    expect(resources.every(n => n.external === true)).toBe(true);
+    expect(result.containerSchema.dependencies.filter(d => d.type === 'provisions')).toHaveLength(
+      2
+    );
     expect(result.proposedThirdParties).toHaveLength(1);
     expect(result.proposedThirdParties[0]).toMatchObject({
       entityRef: 'archlens/vendor-cloudflare',
@@ -232,6 +244,7 @@ describe('projectMeaningfulIacExternals', () => {
     });
 
     const products = result.containerSchema.nodes
+      .filter(n => n.properties?.['iac.view'] === 'resource')
       .map(n => `${n.properties?.vendorSlug}/${n.properties?.['iac.product']}`)
       .sort();
     expect(products).toEqual(['aws/lambda', 'aws/s3', 'cloudflare/pages']);
@@ -246,7 +259,15 @@ describe('projectMeaningfulIacExternals', () => {
         expect.objectContaining({ from: 'archlens', to: 'archlens/vendor-cloudflare' }),
       ])
     );
-    expect(result.containerSchema.nodes.some(n => /iam|dns|policy/i.test(n.name))).toBe(false);
+    expect(result.containerSchema.nodes.some(n => /iam|dns|policy/i.test(n.name))).toBe(true);
+    expect(
+      result.containerSchema.nodes.some(
+        n => /iam|dns|policy/i.test(n.name) && n.properties?.['iac.view'] === 'resource'
+      )
+    ).toBe(false);
+    expect(result.containerSchema.dependencies.filter(d => d.type === 'provisions')).toHaveLength(
+      3
+    );
   });
 
   it('passes through resources outside known vendor packs', () => {
@@ -264,9 +285,21 @@ describe('projectMeaningfulIacExternals', () => {
       servedSystemRefs,
     });
 
+    const providerTypes = new Set(
+      result.containerSchema.nodes
+        .map(n => n.properties?.['iac.provider_type'])
+        .filter((value): value is string => typeof value === 'string')
+    );
+    expect([...providerTypes].sort()).toEqual(
+      ['cloudflare_index_pagesproject', 'datadog_monitor'].sort()
+    );
     expect(
-      result.containerSchema.nodes.map(n => n.properties?.['iac.provider_type']).sort()
-    ).toEqual(['cloudflare_index_pagesproject', 'datadog_monitor'].sort());
+      result.containerSchema.nodes.some(
+        n =>
+          n.properties?.['iac.provider_type'] === 'datadog_monitor' &&
+          n.properties?.['iac.view'] == null
+      )
+    ).toBe(true);
   });
 
   it('dogfoods ArchLens Cloudflare Pulumi source into meaningful externals', () => {
@@ -285,19 +318,36 @@ describe('projectMeaningfulIacExternals', () => {
       servedSystemRefs,
     });
 
-    expect(result.containerSchema.nodes.map(n => n.properties?.['iac.product']).sort()).toEqual([
-      'pages',
-      'r2',
-    ]);
+    expect(
+      result.containerSchema.nodes
+        .filter(n => n.properties?.['iac.view'] === 'resource')
+        .map(n => n.properties?.['iac.product'])
+        .sort()
+    ).toEqual(['pages', 'r2']);
+    expect(
+      result.containerSchema.nodes.filter(n => n.properties?.['iac.view'] === 'declaration').length
+    ).toBeGreaterThanOrEqual(4);
     expect(result.proposedThirdParties).toMatchObject([
       {
         entityRef: 'archlens/vendor-cloudflare',
         properties: { vendorSlug: 'cloudflare', classification: 'third-party' },
       },
     ]);
-    expect(result.containerSchema.nodes.some(n => /dns|cors|domain|zone/i.test(n.name))).toBe(
-      false
-    );
+    expect(
+      result.containerSchema.nodes.some(
+        n => /dns|cors|domain|zone/i.test(n.name) && n.properties?.['iac.view'] === 'declaration'
+      )
+    ).toBe(true);
+    expect(
+      result.containerSchema.nodes.some(
+        n => /dns|cors|domain|zone/i.test(n.name) && n.properties?.['iac.view'] === 'resource'
+      )
+    ).toBe(false);
+    expect(
+      result.containerSchema.dependencies.some(
+        d => d.type === 'provisions' && d.to === 'archlens/platform/cloudflare-pages'
+      )
+    ).toBe(true);
   });
 
   it('projects multi-provider Pulumi TypeScript in one stack', () => {
@@ -330,14 +380,18 @@ const bucket = new aws.s3.Bucket("assets", {});
       servedSystemRefs,
     });
 
-    expect(result.containerSchema.nodes.map(n => n.properties?.['iac.product']).sort()).toEqual([
-      'lambda',
-      'pages',
-      's3',
-    ]);
+    expect(
+      result.containerSchema.nodes
+        .filter(n => n.properties?.['iac.view'] === 'resource')
+        .map(n => n.properties?.['iac.product'])
+        .sort()
+    ).toEqual(['lambda', 'pages', 's3']);
     expect(result.proposedThirdParties.map(n => n.properties?.vendorSlug).sort()).toEqual([
       'aws',
       'cloudflare',
     ]);
+    expect(result.containerSchema.dependencies.filter(d => d.type === 'provisions')).toHaveLength(
+      3
+    );
   });
 });

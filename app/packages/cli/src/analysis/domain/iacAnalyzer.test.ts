@@ -71,15 +71,33 @@ resource "aws_iam_role" "lambda" {
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
     expect(schema.level).toBe('container');
     expect(schema.entityRef).toBe('acme/infra');
-    expect(schema.nodes.map(n => n.properties?.['iac.product'])).toEqual(['lambda']);
-    const lambda = schema.nodes.find(n => n.properties?.['iac.product'] === 'lambda');
+    expect(
+      schema.nodes
+        .filter(n => n.properties?.['iac.view'] === 'resource')
+        .map(n => n.properties?.['iac.product'])
+    ).toEqual(['lambda']);
+    const lambda = schema.nodes.find(
+      n => n.properties?.['iac.view'] === 'resource' && n.properties?.['iac.product'] === 'lambda'
+    );
     expect(lambda).toMatchObject({
       name: 'AWS Lambda',
+      external: true,
       properties: expect.objectContaining({
         filepath: 'infra/main.tf',
         vendorSlug: 'aws',
       }),
     });
+    expect(
+      schema.nodes.some(
+        n =>
+          n.properties?.['iac.view'] === 'declaration' && n.properties?.['iac.product'] === 'lambda'
+      )
+    ).toBe(true);
+    expect(schema.dependencies).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ type: 'provisions', to: lambda!.entityRef }),
+      ])
+    );
 
     const contextPath = path.resolve('/repo/blueprints/acme/context.yaml');
     expect(fs.writtenFiles.has(contextPath)).toBe(true);
@@ -140,7 +158,12 @@ resources:
     const containersPath = path.resolve('/repo/blueprints/infra/containers.yaml');
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
     expect(schema.entityRef).toBe('acme/infra');
-    expect(schema.nodes.map(n => n.properties?.['iac.product'])).toEqual(['lambda']);
+    expect(
+      schema.nodes
+        .filter(n => n.properties?.['iac.view'] === 'resource')
+        .map(n => n.properties?.['iac.product'])
+    ).toEqual(['lambda']);
+    expect(schema.dependencies.some(d => d.type === 'provisions')).toBe(true);
 
     const context = parseSchemaFromYaml(
       fs.writtenFiles.get(path.resolve('/repo/blueprints/acme/context.yaml'))!
@@ -194,11 +217,17 @@ k8s_cluster = Cluster(
     expect(result.pulumiRoots).toBe(1);
     const containersPath = path.resolve('/repo/blueprints/gcp-py-gke/containers.yaml');
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
-    expect(schema.nodes.map(n => n.properties?.['iac.product'])).toEqual(['compute']);
-    expect(schema.nodes[0]).toMatchObject({
+    expect(
+      schema.nodes
+        .filter(n => n.properties?.['iac.view'] === 'resource')
+        .map(n => n.properties?.['iac.product'])
+    ).toEqual(['compute']);
+    expect(schema.nodes.find(n => n.properties?.['iac.view'] === 'resource')).toMatchObject({
       name: 'Google Cloud Compute',
+      external: true,
       properties: expect.objectContaining({ vendorSlug: 'gcp' }),
     });
+    expect(schema.dependencies.some(d => d.type === 'provisions')).toBe(true);
   });
 
   it('writes terraform and pulumi roots to context in one pass', async () => {
@@ -548,11 +577,28 @@ new cloudflare.R2BucketCors('blueprint-catalog-cors', {
     const containers = parseSchemaFromYaml(
       fs.writtenFiles.get(path.resolve('/repo/blueprints/cloudflare/containers.yaml'))!
     );
-    expect(containers.nodes.map(n => n.properties?.['iac.product']).sort()).toEqual([
-      'pages',
-      'r2',
-    ]);
-    expect(containers.nodes.every(n => n.parentEntityRef === 'archlens/cloudflare')).toBe(true);
+    expect(
+      containers.nodes
+        .filter(n => n.properties?.['iac.view'] === 'resource')
+        .map(n => n.properties?.['iac.product'])
+        .sort()
+    ).toEqual(['pages', 'r2']);
+    expect(
+      containers.nodes.filter(n => n.properties?.['iac.view'] === 'declaration').length
+    ).toBeGreaterThanOrEqual(2);
+    expect(containers.nodes.every(n => !n.parentEntityRef)).toBe(true);
+    expect(containers.dependencies).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          type: 'provisions',
+          to: 'archlens/cloudflare/cloudflare-pages',
+        }),
+        expect.objectContaining({
+          type: 'provisions',
+          to: 'archlens/cloudflare/cloudflare-r2',
+        }),
+      ])
+    );
 
     const context = parseSchemaFromYaml(fs.writtenFiles.get(seedPath)!);
     expect(context.nodes.find(n => n.entityRef === 'archlens/vendor-cloudflare')).toMatchObject({

@@ -199,7 +199,13 @@ export interface SystemNode {
   resilience?: NodeResilience;
 }
 
-export type DependencyType = 'direct-call' | 'publish-subscribe' | 'read-write' | 'inter-container';
+export type DependencyType =
+  | 'direct-call'
+  | 'publish-subscribe'
+  | 'read-write'
+  | 'inter-container'
+  /** IaC declaration → provisioned cloud resource (not a runtime call). */
+  | 'provisions';
 
 export interface SystemDependency {
   from: EntityRef;

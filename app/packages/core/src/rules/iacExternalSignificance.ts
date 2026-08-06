@@ -366,19 +366,26 @@ function productEntityRef(
 }
 
 /**
- * Project a parsed IaC container schema into meaningful container products and
- * context-level vendor third-parties for hydration.
+ * Project a parsed IaC container schema into:
+ * - internal IaC declaration nodes for **all** classified addresses (primaries,
+ *   supporting, and noise) so the code graph stays complete
+ * - external provisioned product nodes only for **primary** vendor×products
+ * - `provisions` edges linking primary declarations → products
+ * plus context-level vendor third-parties for hydration.
  *
  * Multi-provider Pulumi/Terraform stacks emit one product node per vendor×product
- * and one context third-party per vendor that contributed a primary.
+ * (shared by all primary declarations of that product) and one context third-party
+ * per vendor that contributed a primary.
  */
 export function projectMeaningfulIacExternals(
   schema: SystemSchema,
   options: ProjectMeaningfulIacExternalsOptions
 ): MeaningfulIacExternalsProjection {
   const passThrough: SystemNode[] = [];
-  const primaries = new Map<string, SystemNode>();
+  const declarations: SystemNode[] = [];
+  const resources = new Map<string, SystemNode>();
   const vendors = new Map<string, IacExternalClassification>();
+  const provisions: SystemDependency[] = [];
 
   for (const node of schema.nodes ?? []) {
     const ref = resourceRefFromNode(node);
@@ -393,38 +400,69 @@ export function projectMeaningfulIacExternals(
       continue;
     }
 
-    if (classification.significance === 'noise' || classification.significance === 'supporting') {
+    const isPrimary =
+      classification.significance === 'primary' &&
+      !!classification.productSlug &&
+      !!classification.productName;
+
+    declarations.push({
+      ...node,
+      external: false,
+      // Container diagram nodes are top-level on this schema; do not parent them to the
+      // diagram entityRef (that breaks layout — every node looks like a group child).
+      ...(node.parentEntityRef && node.parentEntityRef !== options.infraSystemEntityRef
+        ? { parentEntityRef: node.parentEntityRef }
+        : {}),
+      properties: {
+        ...node.properties,
+        'iac.view': 'declaration',
+        'iac.significance': classification.significance,
+        vendor: classification.vendorName,
+        vendorSlug: classification.vendorSlug,
+        ...(classification.productSlug ? { 'iac.product': classification.productSlug } : {}),
+      },
+    });
+
+    if (!isPrimary) {
+      // Supporting / noise stay on the IaC graph only — no provisioned companion.
       continue;
     }
 
-    if (!classification.productSlug || !classification.productName) continue;
-
     vendors.set(classification.vendorSlug, classification);
-    const key = `${classification.vendorSlug}/${classification.productSlug}`;
-    if (primaries.has(key)) continue;
+    const productKey = `${classification.vendorSlug}/${classification.productSlug}`;
+    const resourceRef = productEntityRef(
+      options.infraSystemEntityRef,
+      classification.vendorSlug,
+      classification.productSlug!
+    );
 
-    primaries.set(key, {
-      entityRef: productEntityRef(
-        options.infraSystemEntityRef,
-        classification.vendorSlug,
-        classification.productSlug
-      ),
-      type: classification.nodeType,
-      name: classification.productName,
-      parentEntityRef: options.infraSystemEntityRef,
-      external: true,
-      properties: {
-        classification: 'third-party',
-        vendor: classification.vendorName,
-        vendorSlug: classification.vendorSlug,
-        'iac.product': classification.productSlug,
-        'iac.provider_type': ref.providerType,
-        'iac.address': ref.address,
-        'iac.kind': ref.kind,
-        ...(typeof node.properties?.filepath === 'string'
-          ? { filepath: node.properties.filepath }
-          : {}),
-      },
+    if (!resources.has(productKey)) {
+      resources.set(productKey, {
+        entityRef: resourceRef,
+        type: classification.nodeType,
+        name: classification.productName!,
+        external: true,
+        properties: {
+          classification: 'third-party',
+          vendor: classification.vendorName,
+          vendorSlug: classification.vendorSlug,
+          'iac.view': 'resource',
+          'iac.product': classification.productSlug!,
+          'iac.provider_type': ref.providerType,
+          'iac.address': ref.address,
+          'iac.kind': ref.kind,
+          ...(typeof node.properties?.filepath === 'string'
+            ? { filepath: node.properties.filepath }
+            : {}),
+        },
+      });
+    }
+
+    provisions.push({
+      from: node.entityRef,
+      to: resourceRef,
+      type: 'provisions',
+      description: `Provisions ${classification.productName}`,
     });
   }
 
@@ -454,20 +492,20 @@ export function projectMeaningfulIacExternals(
     }
   }
 
-  // Drop edges that referenced filtered-away noisy nodes; keep edges among survivors.
   const liveRefs = new Set<string>([
     ...passThrough.map(n => n.entityRef),
-    ...[...primaries.values()].map(n => n.entityRef),
+    ...declarations.map(n => n.entityRef),
+    ...[...resources.values()].map(n => n.entityRef),
   ]);
-  const dependencies = (schema.dependencies ?? []).filter(
+  const retainedDependencies = (schema.dependencies ?? []).filter(
     dep => liveRefs.has(dep.from) && liveRefs.has(dep.to)
   );
 
   return {
     containerSchema: {
       ...schema,
-      nodes: [...passThrough, ...primaries.values()],
-      dependencies,
+      nodes: [...passThrough, ...declarations, ...resources.values()],
+      dependencies: [...retainedDependencies, ...provisions],
     },
     proposedThirdParties,
     proposedDependencies,

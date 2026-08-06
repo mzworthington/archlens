@@ -1,5 +1,10 @@
 import type { C4Level, EntityRef, SystemNode, SystemSchema } from '../models/schema';
-import { isHumanActorNode, isThirdPartyNode } from '../taxonomy/nodeOwnership';
+import {
+  isHumanActorNode,
+  isIacDeclarationNode,
+  isProvisionedInfrastructureNode,
+  isThirdPartyNode,
+} from '../taxonomy/nodeOwnership';
 import { nodeRole, type NodeRole } from '../taxonomy/nodeRoles';
 
 /** Diagram levels that receive full ChaosLens estate resilience simulation. */
@@ -20,9 +25,13 @@ const SAFEGUARD_TARGET_ROLES: ReadonlySet<NodeRole> = new Set([
   'serverless',
 ]);
 
-function isIacImportedNode(node: SystemNode): boolean {
+/** Legacy / provisioned IaC resource nodes — not safeguard targets (declarations may be). */
+function isIacProvisionedOrLegacyImport(node: SystemNode): boolean {
+  if (isProvisionedInfrastructureNode(node)) return true;
+  if (isIacDeclarationNode(node)) return false;
   const props = node.properties;
   if (!props) return false;
+  // Pre-ADR-0016 imports: address/kind without iac.view were collapsed third-party products.
   return props['iac.address'] != null || props['iac.kind'] != null;
 }
 
@@ -34,14 +43,14 @@ function findNode(schema: SystemSchema, entityRef: EntityRef): SystemNode | unde
  * Whether a node is an appropriate target for outbound resilience safeguards
  * (circuit breakers, timeouts, staleness handling). Targets calling application
  * services and workers — not human actors, third-party vendors, shared data
- * stores, brokers, structural C4 nodes, or IaC-imported resources.
+ * stores, brokers, structural C4 nodes, or provisioned IaC resources.
  */
 export function isResilienceAdviceTarget(schema: SystemSchema, entityRef: EntityRef): boolean {
   const node = findNode(schema, entityRef);
   if (!node) return false;
   if (isHumanActorNode(node)) return false;
   if (isThirdPartyNode(node)) return false;
-  if (isIacImportedNode(node)) return false;
+  if (isIacProvisionedOrLegacyImport(node)) return false;
   return SAFEGUARD_TARGET_ROLES.has(nodeRole(node.type));
 }
 

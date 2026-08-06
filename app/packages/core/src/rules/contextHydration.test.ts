@@ -372,4 +372,64 @@ describe('hydrateContextSchema', () => {
       schema.dependencies.some(d => d.to === 'acme/old-api' || d.from === 'acme/old-api')
     ).toBe(false);
   });
+
+  it('does not draw fallback User Uses edges to third-party vendors', () => {
+    const { schema } = hydrateContextSchema({
+      base: null,
+      landscapeEntityRef: 'blueprint',
+      landscapeName: 'ArchLens',
+      version: VERSION,
+      scanSystems: [
+        {
+          entityRef: 'blueprint/archlens',
+          type: 'group',
+          name: 'ArchLens System',
+          properties: { rootPath: '', productId: 'archlens' },
+        },
+        {
+          entityRef: 'blueprint/app',
+          type: 'software-system',
+          name: 'App System',
+          parentEntityRef: 'blueprint/archlens',
+          properties: { rootPath: 'app', productId: 'archlens' },
+        },
+      ],
+      ownershipRootPaths: ['', 'app'],
+      proposedThirdParties: [
+        {
+          entityRef: 'blueprint/vendor-cloudflare',
+          type: 'software-system',
+          name: 'Cloudflare',
+          external: true,
+          properties: { classification: 'third-party', vendorSlug: 'cloudflare' },
+        },
+      ],
+      proposedDependencies: [
+        {
+          from: 'blueprint',
+          to: 'blueprint/vendor-cloudflare',
+          type: 'direct-call',
+          description: 'Depends on Cloudflare',
+        },
+      ],
+    });
+
+    expect(schema.dependencies).toContainEqual({
+      from: `blueprint/${CONTEXT_PERSON_LEAF}`,
+      to: 'blueprint/archlens',
+      type: 'direct-call',
+      description: PERSON_EDGE_DESCRIPTION,
+    });
+    expect(
+      schema.dependencies.some(
+        d => d.from === `blueprint/${CONTEXT_PERSON_LEAF}` && d.to === 'blueprint/vendor-cloudflare'
+      )
+    ).toBe(false);
+    expect(schema.dependencies).toContainEqual({
+      from: 'blueprint/archlens',
+      to: 'blueprint/vendor-cloudflare',
+      type: 'direct-call',
+      description: 'Depends on Cloudflare',
+    });
+  });
 });

@@ -7,6 +7,12 @@ import {
 } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
 import { resolveSchemaOnWorkspaceOpen } from '../../../workspace/schemaCompare';
+import {
+  beginWorkspaceOpen,
+  isWorkspaceOpenCurrent,
+  markDemoWorkspacePreferred,
+  markFolderWorkspacePreferred,
+} from '../../workspaceOpenSession';
 
 import type { ToastNotification } from '../uiState';
 
@@ -28,6 +34,8 @@ type OpenWorkspaceDeps = {
   initSchema: (schema: SystemSchema) => void;
   set: (partial: Record<string, unknown>) => void;
   isSampleWorkspace?: boolean;
+  /** Extra store fields applied atomically with finalize (e.g. workspace ports). */
+  committedPorts?: Record<string, unknown>;
 };
 
 export type LoadWorkspaceFromCatalogDeps = {
@@ -41,6 +49,10 @@ export type LoadWorkspaceFromCatalogDeps = {
   initSchema: (schema: SystemSchema) => void;
   set: (partial: Record<string, unknown>) => void;
   isSampleWorkspace?: boolean;
+  /** When set, finalize is skipped if a newer open started. */
+  openGeneration?: number;
+  /** Extra store fields applied atomically with finalize (e.g. workspace ports). */
+  committedPorts?: Record<string, unknown>;
 };
 
 /** Resolve one diagram against already-loaded schemas + optional catalog context stub. */
@@ -94,7 +106,14 @@ function resolveEntryAgainstCatalog(
  * Other systems are loaded on demand via ensureSystemLoaded.
  */
 export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promise<boolean> {
-  const { logger, setNotification, initSchema, set, isSampleWorkspace = false } = deps;
+  const {
+    logger,
+    setNotification,
+    initSchema,
+    set,
+    isSampleWorkspace = false,
+    committedPorts,
+  } = deps;
   logger.info(
     isSampleWorkspace ? 'Opening bundled sample workspace' : 'Opening workspace folder picker'
   );
@@ -102,7 +121,12 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
   const ok = await deps.selectDirectory();
   if (!ok) return false;
 
+  // Claim generation only after the picker succeeds so cancel does not abort demo load.
+  const openGeneration = beginWorkspaceOpen();
+  markFolderWorkspacePreferred();
+
   const files = await deps.readDirectoryFiles();
+  if (!isWorkspaceOpenCurrent(openGeneration)) return false;
   if (files.length === 0) {
     throw new Error('No blueprint .yaml or .yml files found in selected directory');
   }
@@ -160,6 +184,8 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
     workspaceCatalog,
     workspaceName,
     isSampleWorkspace,
+    openGeneration,
+    committedPorts,
     workingCopy: deps.workingCopy,
     logger,
     setNotification,
@@ -183,6 +209,8 @@ export async function loadWorkspaceFromCatalog(
     initSchema,
     set,
     isSampleWorkspace = false,
+    openGeneration,
+    committedPorts,
   } = deps;
 
   logger.info('Opening workspace from prebuilt catalog', {
@@ -200,8 +228,12 @@ export async function loadWorkspaceFromCatalog(
     throw new Error(`Entry diagram missing from bundled catalog: ${entryPath}`);
   }
 
+  if (openGeneration != null && !isWorkspaceOpenCurrent(openGeneration)) return false;
+
   const workspaceName = deps.getDirectoryName();
   const content = await deps.readFile(entryPath);
+  if (openGeneration != null && !isWorkspaceOpenCurrent(openGeneration)) return false;
+
   const schema = parseSchemaFromYaml(content);
   const name = schema.name || catalogEntry.name;
   const resolved = resolveEntryAgainstCatalog(entryPath, schema, catalog, workspaceName);
@@ -214,6 +246,8 @@ export async function loadWorkspaceFromCatalog(
     workspaceCatalog: catalog,
     workspaceName,
     isSampleWorkspace,
+    openGeneration,
+    committedPorts,
     workingCopy: deps.workingCopy,
     logger,
     setNotification,
@@ -228,6 +262,8 @@ async function finalizeWorkspaceOpen(args: {
   workspaceCatalog: WorkspaceCatalogEntry[];
   workspaceName: string;
   isSampleWorkspace: boolean;
+  openGeneration?: number;
+  committedPorts?: Record<string, unknown>;
   workingCopy: WorkingCopyPort;
   logger: WorkspaceOpenLogger;
   setNotification?: (n: ToastNotification | null) => void;
@@ -240,12 +276,16 @@ async function finalizeWorkspaceOpen(args: {
     workspaceCatalog,
     workspaceName,
     isSampleWorkspace,
+    openGeneration,
+    committedPorts,
     workingCopy,
     logger,
     setNotification,
     initSchema,
     set,
   } = args;
+
+  if (openGeneration != null && !isWorkspaceOpenCurrent(openGeneration)) return false;
 
   const { systems, discardedDraftCount } = await applyDiskFirstDraftResolution(
     [entryCandidate],
@@ -254,9 +294,18 @@ async function finalizeWorkspaceOpen(args: {
     logger
   );
 
+  if (openGeneration != null && !isWorkspaceOpenCurrent(openGeneration)) return false;
+
+  if (isSampleWorkspace) {
+    markDemoWorkspacePreferred();
+  } else {
+    markFolderWorkspacePreferred();
+  }
+
   const entry = systems[0] ?? entryCandidate;
 
   set({
+    ...committedPorts,
     isWorkspaceOpen: true,
     isSampleWorkspace,
     workspaceName,

@@ -38,6 +38,38 @@ describe('resilience graph', () => {
     expect(dependents.get('demo/db')).toContain('demo/user');
   });
 
+  it('does not treat provisions edges as availability callers', () => {
+    const schema: SystemSchema = {
+      name: 'IaC',
+      version: '1.0.0',
+      level: 'container',
+      nodes: [
+        {
+          entityRef: 'sys/iac-pages',
+          name: 'PagesProject',
+          type: 'component',
+          properties: { 'iac.view': 'declaration' },
+        },
+        {
+          entityRef: 'sys/cloudflare-pages',
+          name: 'Cloudflare Pages',
+          type: 'gateway-api',
+          external: true,
+          properties: { classification: 'third-party', 'iac.view': 'resource' },
+        },
+      ],
+      dependencies: [
+        {
+          from: 'sys/iac-pages',
+          to: 'sys/cloudflare-pages',
+          type: 'provisions',
+        },
+      ],
+    };
+    const dependents = buildDependents(schema);
+    expect(dependents.get('sys/cloudflare-pages')).toBeUndefined();
+  });
+
   it('resolves group fault targets to child nodes', () => {
     expect(resolveFaultTargets('demo/hub', groupSchema)).toEqual(['demo/api', 'demo/db']);
     expect(resolveFaultTargets('demo/api', groupSchema)).toEqual(['demo/api']);

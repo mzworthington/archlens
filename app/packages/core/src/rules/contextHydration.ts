@@ -83,20 +83,41 @@ function isManagedPersonEdge(dep: SystemDependency): boolean {
   return dep.description === PERSON_EDGE_DESCRIPTION;
 }
 
-function topLevelSystemNodes(nodes: readonly SystemNode[]): SystemNode[] {
-  return nodes.filter(n => n.type !== 'person' && !n.parentEntityRef);
+function topLevelOwnedSystemNodes(nodes: readonly SystemNode[]): SystemNode[] {
+  return nodes.filter(
+    n => n.type !== 'person' && !n.parentEntityRef && !isThirdPartyNode(n) && !n.external
+  );
 }
 
 function personDependenciesForSystems(
   personRef: string,
   nodes: readonly SystemNode[]
 ): SystemDependency[] {
-  return topLevelSystemNodes(nodes).map(system => ({
+  return topLevelOwnedSystemNodes(nodes).map(system => ({
     from: personRef,
     to: system.entityRef,
     type: 'direct-call' as const,
     description: PERSON_EDGE_DESCRIPTION,
   }));
+}
+
+/**
+ * When IaC proposes edges from the landscape id but the diagram only has nested
+ * systems (e.g. `blueprint/archlens`), retarget to a live owned top-level system.
+ */
+function resolveProposedDependencyFrom(
+  from: string,
+  landscapeEntityRef: string,
+  nodes: readonly SystemNode[]
+): string {
+  if (nodes.some(n => n.entityRef === from)) return from;
+  if (from !== landscapeEntityRef) return from;
+
+  const top = topLevelOwnedSystemNodes(nodes);
+  if (top.length === 1) return top[0]!.entityRef;
+  const group = top.find(n => n.type === 'group');
+  if (group) return group.entityRef;
+  return from;
 }
 
 function ensureContextActor(landscapeEntityRef: string, nodes: SystemNode[]): SystemNode {
@@ -295,13 +316,18 @@ export function hydrateContextSchema(input: ContextHydrationInput): ContextHydra
   });
 
   const depKeys = new Set(preservedDeps.map(edgeKey));
-  const proposedDeps = (input.proposedDependencies ?? []).filter(dep => {
-    if (!liveRefs.has(dep.from) || !liveRefs.has(dep.to)) return false;
-    const key = edgeKey(dep);
-    if (depKeys.has(key)) return false;
-    depKeys.add(key);
-    return true;
-  });
+  const proposedDeps = (input.proposedDependencies ?? [])
+    .map(dep => ({
+      ...dep,
+      from: resolveProposedDependencyFrom(dep.from, landscapeEntityRef, nodes),
+    }))
+    .filter(dep => {
+      if (!liveRefs.has(dep.from) || !liveRefs.has(dep.to)) return false;
+      const key = edgeKey(dep);
+      if (depKeys.has(key)) return false;
+      depKeys.add(key);
+      return true;
+    });
 
   let dependencies = [...preservedDeps, ...proposedDeps];
   if (!usePersonas) {
