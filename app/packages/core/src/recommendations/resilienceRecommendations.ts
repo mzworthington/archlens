@@ -18,6 +18,15 @@ export interface BuildResilienceRecommendationsInput {
   faultNodeIds: EntityRef[];
 }
 
+interface ResilienceRecommendationContext {
+  schema: SystemSchema;
+  heat: Map<EntityRef, number>;
+  propagationStoppedAt: EntityRef[];
+  integrityHeat: Map<EntityRef, number>;
+  faultNodeIds: EntityRef[];
+  nodeById: Map<EntityRef, SystemNode>;
+}
+
 function nodeName(schema: SystemSchema, entityRef: EntityRef): string {
   return schema.nodes.find(node => node.entityRef === entityRef)?.name ?? entityRef;
 }
@@ -26,30 +35,25 @@ function recommendationId(kind: string, targetEntityRef: EntityRef, suffix = '')
   return suffix ? `${kind}:${targetEntityRef}:${suffix}` : `${kind}:${targetEntityRef}`;
 }
 
-function pushUnique(
-  list: Recommendation[],
-  seen: Set<string>,
-  recommendation: Recommendation
-): void {
-  if (seen.has(recommendation.id)) return;
-  seen.add(recommendation.id);
-  list.push(recommendation);
-}
-
 function filterEligible(schema: SystemSchema, entityRefs: readonly EntityRef[]): EntityRef[] {
   return entityRefs.filter(entityRef => isResilienceAdviceTarget(schema, entityRef));
 }
 
-/**
- * Structured resilience recommendations from a ChaosLens simulation run.
- */
-export function buildResilienceRecommendations(
-  input: BuildResilienceRecommendationsInput
-): Recommendation[] {
-  const { schema, heat, propagationStoppedAt, integrityHeat, faultNodeIds } = input;
+function mergeUniqueRecommendations(lists: readonly Recommendation[][]): Recommendation[] {
+  const byId = new Map<string, Recommendation>();
+  for (const list of lists) {
+    for (const recommendation of list) {
+      if (!byId.has(recommendation.id)) {
+        byId.set(recommendation.id, recommendation);
+      }
+    }
+  }
+  return [...byId.values()].sort((a, b) => b.priority - a.priority);
+}
+
+function recommendCircuitBreakers(ctx: ResilienceRecommendationContext): Recommendation[] {
+  const { schema, heat, nodeById } = ctx;
   const recommendations: Recommendation[] = [];
-  const seen = new Set<string>();
-  const nodeById = new Map<EntityRef, SystemNode>(schema.nodes.map(node => [node.entityRef, node]));
 
   for (const { dependencyEntityRef, callerEntityRefs } of detectSpofCallSites(schema)) {
     const dependencyName = nodeName(schema, dependencyEntityRef);
@@ -66,7 +70,7 @@ export function buildResilienceRecommendations(
       if (resolveNodeResilience(callerNode).circuitBreaker) continue;
 
       const callerName = callerNode?.name ?? caller;
-      pushUnique(recommendations, seen, {
+      recommendations.push({
         id: recommendationId('add-circuit-breaker', caller, dependencyEntityRef),
         kind: 'add-circuit-breaker',
         source: 'chaoslens',
@@ -99,10 +103,17 @@ export function buildResilienceRecommendations(
     }
   }
 
+  return recommendations;
+}
+
+function recommendKeepSafeguards(ctx: ResilienceRecommendationContext): Recommendation[] {
+  const { schema, heat, propagationStoppedAt, nodeById } = ctx;
+  const recommendations: Recommendation[] = [];
+
   for (const stopped of filterEligible(schema, propagationStoppedAt)) {
     const node = nodeById.get(stopped);
     const targetName = node?.name ?? stopped;
-    pushUnique(recommendations, seen, {
+    recommendations.push({
       id: recommendationId('keep-safeguard', stopped),
       kind: 'keep-safeguard',
       source: 'chaoslens',
@@ -127,17 +138,28 @@ export function buildResilienceRecommendations(
     });
   }
 
-  const hotNodes = filterEligible(
-    schema,
-    [...heat.entries()]
+  return recommendations;
+}
+
+function hotBlastEntityRefs(ctx: ResilienceRecommendationContext): EntityRef[] {
+  return filterEligible(
+    ctx.schema,
+    [...ctx.heat.entries()]
       .filter(([, intensity]) => intensity >= HIGH_BLAST_THRESHOLD)
       .map(([entityRef]) => entityRef)
   );
+}
 
-  if (hotNodes.length > 0) {
-    const primary = hotNodes[0];
-    const names = hotNodes.map(id => nodeName(schema, id));
-    pushUnique(recommendations, seen, {
+function recommendTimeoutsFallbacks(ctx: ResilienceRecommendationContext): Recommendation[] {
+  const hotNodes = hotBlastEntityRefs(ctx);
+  if (hotNodes.length === 0) return [];
+
+  const { schema, heat } = ctx;
+  const primary = hotNodes[0];
+  const names = hotNodes.map(id => nodeName(schema, id));
+
+  return [
+    {
       id: recommendationId('review-timeouts-fallbacks', primary),
       kind: 'review-timeouts-fallbacks',
       source: 'chaoslens',
@@ -157,33 +179,45 @@ export function buildResilienceRecommendations(
         label: `Review timeouts on ${nodeName(schema, entityRef)}`,
         targetEntityRef: entityRef,
       })),
-    });
+    },
+  ];
+}
+
+function collectStalePeers(
+  ctx: ResilienceRecommendationContext,
+  faultId: EntityRef
+): Set<EntityRef> {
+  const { schema, integrityHeat } = ctx;
+  const stalePeers = new Set<EntityRef>();
+
+  for (const brokerId of pubSubBrokersForPublisher(schema, faultId)) {
+    for (const peerId of pubSubPeersOnBroker(schema, brokerId)) {
+      if (peerId === faultId) continue;
+      if (!isResilienceAdviceTarget(schema, peerId)) continue;
+      const peerHeat = integrityHeat.get(peerId) ?? 0;
+      if (peerHeat >= INTEGRITY_PEER_FACTOR * 0.5) stalePeers.add(peerId);
+    }
   }
+
+  return stalePeers;
+}
+
+function recommendEventStaleness(ctx: ResilienceRecommendationContext): Recommendation[] {
+  const { schema, heat, integrityHeat, faultNodeIds, nodeById } = ctx;
+  const recommendations: Recommendation[] = [];
 
   for (const faultId of faultNodeIds) {
     if (!isResilienceAdviceTarget(schema, faultId)) continue;
+    if (pubSubBrokersForPublisher(schema, faultId).length === 0) continue;
 
-    const brokers = pubSubBrokersForPublisher(schema, faultId);
-    if (brokers.length === 0) continue;
-
-    const publisher = nodeById.get(faultId);
-    const publisherName = publisher?.name ?? faultId;
-    const stalePeers = new Set<EntityRef>();
-
-    for (const brokerId of brokers) {
-      for (const peerId of pubSubPeersOnBroker(schema, brokerId)) {
-        if (peerId === faultId) continue;
-        if (!isResilienceAdviceTarget(schema, peerId)) continue;
-        const peerHeat = integrityHeat.get(peerId) ?? 0;
-        if (peerHeat >= INTEGRITY_PEER_FACTOR * 0.5) stalePeers.add(peerId);
-      }
-    }
-
+    const stalePeers = collectStalePeers(ctx, faultId);
     if (stalePeers.size === 0) continue;
 
+    const publisherName = nodeById.get(faultId)?.name ?? faultId;
     const peerNames = [...stalePeers].map(id => nodeName(schema, id));
     const primaryPeer = [...stalePeers][0];
-    pushUnique(recommendations, seen, {
+
+    recommendations.push({
       id: recommendationId('handle-event-staleness', primaryPeer),
       kind: 'handle-event-staleness',
       source: 'chaoslens',
@@ -206,21 +240,32 @@ export function buildResilienceRecommendations(
     });
   }
 
-  const integrityOnly = filterEligible(
-    schema,
-    [...integrityHeat.entries()]
+  return recommendations;
+}
+
+function integrityOnlyEntityRefs(ctx: ResilienceRecommendationContext): EntityRef[] {
+  return filterEligible(
+    ctx.schema,
+    [...ctx.integrityHeat.entries()]
       .filter(
         ([entityRef, intensity]) =>
           intensity >= HIGH_BLAST_THRESHOLD &&
-          (heat.get(entityRef) ?? 0) < INTEGRITY_ONLY_AVAILABILITY_THRESHOLD
+          (ctx.heat.get(entityRef) ?? 0) < INTEGRITY_ONLY_AVAILABILITY_THRESHOLD
       )
       .map(([entityRef]) => entityRef)
   );
+}
 
-  if (integrityOnly.length > 0) {
-    const primary = integrityOnly[0];
-    const names = integrityOnly.map(id => nodeName(schema, id));
-    pushUnique(recommendations, seen, {
+function recommendIntegrityHandling(ctx: ResilienceRecommendationContext): Recommendation[] {
+  const integrityOnly = integrityOnlyEntityRefs(ctx);
+  if (integrityOnly.length === 0) return [];
+
+  const { schema, heat, integrityHeat } = ctx;
+  const primary = integrityOnly[0];
+  const names = integrityOnly.map(id => nodeName(schema, id));
+
+  return [
+    {
       id: recommendationId('verify-integrity-handling', primary),
       kind: 'verify-integrity-handling',
       source: 'chaoslens',
@@ -240,10 +285,32 @@ export function buildResilienceRecommendations(
         label: `Verify compensating actions on ${nodeName(schema, entityRef)}`,
         targetEntityRef: entityRef,
       })),
-    });
-  }
+    },
+  ];
+}
 
-  return recommendations.sort((a, b) => b.priority - a.priority);
+/**
+ * Structured resilience recommendations from a ChaosLens simulation run.
+ */
+export function buildResilienceRecommendations(
+  input: BuildResilienceRecommendationsInput
+): Recommendation[] {
+  const ctx: ResilienceRecommendationContext = {
+    schema: input.schema,
+    heat: input.heat,
+    propagationStoppedAt: input.propagationStoppedAt,
+    integrityHeat: input.integrityHeat,
+    faultNodeIds: input.faultNodeIds,
+    nodeById: new Map(input.schema.nodes.map(node => [node.entityRef, node])),
+  };
+
+  return mergeUniqueRecommendations([
+    recommendCircuitBreakers(ctx),
+    recommendKeepSafeguards(ctx),
+    recommendTimeoutsFallbacks(ctx),
+    recommendEventStaleness(ctx),
+    recommendIntegrityHandling(ctx),
+  ]);
 }
 
 /**
