@@ -92,6 +92,7 @@ export const SelectedDependencySection: React.FC<SelectedDependencySectionProps>
           <option value="publish-subscribe">Pub/Sub (Async)</option>
           <option value="read-write">Read/Write</option>
           <option value="inter-container">Inter-container</option>
+          <option value="provisions">Provisions (IaC → infra)</option>
         </select>
         <input
           type="text"

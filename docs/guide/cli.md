@@ -214,12 +214,22 @@ No flag required - if `Pulumi.yaml` exists under the scan root, projects are map
 
 IaC stacks are often noisy, and one Pulumi or Terraform project may mix **many providers**. ArchLens treats **Pulumi/Terraform as packaging** (one infra spoke per project) and **providers as the external vocabulary**. Each resource is classified by a provider pack so diagrams stay useful.
 
+**IaC vs infrastructure (ADR-0016):** primary resources become two linked nodes; supporting/noise stay as IaC only —
+
+| Node                     | Ownership                             | Flags                                            | Role                                                     |
+| ------------------------ | ------------------------------------- | ------------------------------------------------ | -------------------------------------------------------- |
+| **IaC declaration**      | Owned code (every classified address) | internal, `iac.view: declaration`                | Full code graph (incl. DNS, IAM, CORS, …)                |
+| **Provisioned resource** | Cloud product (primaries only)        | `external` + `third-party`, `iac.view: resource` | Runtime / external summary                               |
+| **Edge**                 | Primary declaration → resource        | type `provisions`                                | Not a runtime call (ChaosLens skips it for blast radius) |
+
+Supporting and noise declarations keep `iac.significance` but do **not** get a provisioned companion.
+
 #### What you get at each C4 level
 
-| Level         | Grain                                                                                       | Example from one stack                                       |
-| ------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **Context**   | One third-party per **vendor** that had at least one primary product                        | `vendor-cloudflare`, `vendor-aws`                            |
-| **Container** | One node per **vendor × product** under the infra spoke; supporting/noise resources omitted | Cloudflare Pages, Cloudflare R2, AWS Lambda — not DNS or IAM |
+| Level         | Grain                                                                                                                                                               | Example from one stack                               |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| **Context**   | One third-party per **vendor** that had at least one primary product                                                                                                | `vendor-cloudflare`, `vendor-aws`                    |
+| **Container** | Full IaC declaration graph under the infra spoke; only **primary** products get a provisioned companion + `provisions` edge; supporting/noise stay declaration-only | PagesProject (+ Pages), DNSRecord (declaration only) |
 
 Author-declared third-parties in the seed (for example a curated “Cloudflare R2 Catalog”) **survive** hydration. Scan proposes vendors via ADR-0015; it does not replace your labels.
 
@@ -238,10 +248,10 @@ Unknown providers (for example Datadog) pass through unchanged until a pack exis
 
 A project that provisions Cloudflare Pages **and** AWS Lambda + S3 yields:
 
-- **Containers** under the infra spoke: Pages, Lambda, S3
+- **Containers** under the infra spoke: IaC declarations for every classified resource, provisioned product nodes for primaries only (Pages, Lambda, S3), and `provisions` edges from those primaries
 - **Context** third-parties: Cloudflare and AWS, each with a dependency from systems listed in `serves`
 
-IAM roles, DNS records, and bucket policies do not become separate diagram nodes.
+IAM roles, DNS records, and bucket policies remain as IaC declaration nodes; they are not projected as third-party products.
 
 #### Infra membership
 

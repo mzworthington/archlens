@@ -4,6 +4,7 @@ import { useBlueprintStore } from '../../../../application/store/store';
 import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
 import { SAMPLES_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
 import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
+import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
 import { DiffMenu } from '../components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from '../components/ImportMermaidDialog/ImportMermaidDialog';
 import { ChaosSpecDialog } from '../components/ChaosSpecDialog/ChaosSpecDialog';
@@ -54,11 +55,13 @@ export function useWorkspaceDialogs(): React.ReactNode {
   const handleOpenDirectory = useCallback(async () => {
     try {
       const opened = await openWorkspaceDirectory();
-      if (opened) setIsStartupOpen(false);
+      if (!opened) return;
+      setIsStartupOpen(false);
+      navigateToActiveWorkspaceEntity(setLocation);
     } catch (err) {
       console.error('Failed to open workspace directory:', err);
     }
-  }, [openWorkspaceDirectory, setIsStartupOpen]);
+  }, [openWorkspaceDirectory, setIsStartupOpen, setLocation]);
 
   return (
     <>

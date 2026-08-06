@@ -180,12 +180,12 @@ dependencies:
 
 When ArchLens scans Terraform or Pulumi, it classifies resources by **provider pack** (Cloudflare, AWS, Azure, Google Cloud):
 
-| Diagram       | Projection                                                                                               |
-| ------------- | -------------------------------------------------------------------------------------------------------- |
-| **Context**   | One scan-proposed third-party per **vendor** that had a primary product; edges from each `serves` system |
-| **Container** | Primary **products** under the infra spoke (Pages, R2, Lambda, …); DNS/IAM/CORS/zone helpers omitted     |
+| Diagram       | Projection                                                                                                                                                                         |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Context**   | One scan-proposed third-party per **vendor** that had a primary product; edges from each `serves` system                                                                           |
+| **Container** | Internal **IaC declarations** for the full classified parse; only primary products get external provisioned nodes linked with `provisions`; supporting/noise stay declaration-only |
 
-Author-declared third-parties keep their names and ownership. Scan proposals hydrate through the same plan as code discoveries ([ADR-0015](../ADRs/0015-declared-context-hydration.md)). Full workflow: [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
+See [ADR-0016](../ADRs/0016-iac-declaration-vs-provisioned-infrastructure.md). Author-declared third-parties keep their names and ownership. Scan proposals hydrate through the same plan as code discoveries ([ADR-0015](../ADRs/0015-declared-context-hydration.md)). Full workflow: [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
 
 Seed files live under the scan output directory: `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` (context folder optional). Commit them in-repo the same way this project does at [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml). How scan merges into the seed: [ArchLens — Declare then scan](./cli.md#declare-then-scan).
 

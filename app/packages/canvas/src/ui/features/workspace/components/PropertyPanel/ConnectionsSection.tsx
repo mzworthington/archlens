@@ -94,6 +94,7 @@ function ConnectionCard({
           <option value="direct-call">Direct Call</option>
           <option value="publish-subscribe">Pub/Sub (Async)</option>
           <option value="read-write">Read/Write</option>
+          <option value="provisions">Provisions (IaC → infra)</option>
         </select>
         <input
           type="text"

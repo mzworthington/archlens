@@ -1,6 +1,8 @@
 import React from 'react';
 import { Cloud, Download, Folder, GitMerge, ShieldAlert, Upload } from 'lucide-react';
+import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import { navigateToActiveWorkspaceEntity } from '../../hooks/navigateToActiveWorkspaceEntity';
 
 export type ToolbarOpenMenuItemsProps = {
   menuItemClass: string;
@@ -23,6 +25,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
   idSuffix = '',
   browseTestId = 'browse-chaos-spec-action',
 }) => {
+  const [, setLocation] = useLocation();
   const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
   const schema = useBlueprintStore(s => s.schema);
   const setIsImportMermaidOpen = useBlueprintStore(s => s.setIsImportMermaidOpen);
@@ -33,6 +36,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const openWorkspaceDirectory = useBlueprintStore(s => s.openWorkspaceDirectory);
   const loadSchema = useBlueprintStore(s => s.loadSchema);
+  const setIsStartupOpen = useBlueprintStore(s => s.setIsStartupOpen);
 
   const folderTitle = isWorkspaceOpen
     ? 'Open another folder workspace'
@@ -40,7 +44,10 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
 
   const handleOpenFolder = async () => {
     try {
-      await openWorkspaceDirectory();
+      const opened = await openWorkspaceDirectory();
+      if (!opened) return;
+      setIsStartupOpen(false);
+      navigateToActiveWorkspaceEntity(setLocation);
     } catch (err) {
       console.error('Failed to open workspace directory:', err);
     }

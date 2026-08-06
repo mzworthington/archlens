@@ -147,4 +147,29 @@ describe('externalNodeLayout', () => {
     expect(getNodePosition(upstream!)?.y).toBeLessThan(300);
     expect(getNodePosition(downstream!)?.y).toBeGreaterThan(300);
   });
+
+  it('leaves external-only diagrams alone so nodes stay freely movable', () => {
+    const externalOnly = schema({
+      nodes: [
+        {
+          entityRef: 'cf/pages',
+          type: 'gateway-api',
+          name: 'Cloudflare Pages',
+          external: true,
+          position: { x: 40, y: 80 },
+        },
+        {
+          entityRef: 'cf/r2',
+          type: 'rest-api',
+          name: 'Cloudflare R2',
+          external: true,
+          position: { x: 400, y: 80 },
+        },
+      ],
+    });
+
+    const positioned = positionExternalNodes(externalOnly.nodes, externalOnly.dependencies);
+    expect(getNodePosition(positioned[0]!)).toEqual({ x: 40, y: 80 });
+    expect(getNodePosition(positioned[1]!)).toEqual({ x: 400, y: 80 });
+  });
 });

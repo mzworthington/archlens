@@ -35,6 +35,7 @@ const dependencyTypeSchema = z.enum([
   'publish-subscribe',
   'read-write',
   'inter-container',
+  'provisions',
 ]);
 
 /** Shared FQN shape for schema identity and node refs (no file paths). */

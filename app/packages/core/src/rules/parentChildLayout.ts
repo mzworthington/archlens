@@ -242,7 +242,14 @@ export function layoutEdgesFromNodesAndDependencies(
 }
 
 export function hasGroupedLayout(nodes: SystemNode[]): boolean {
-  return nodes.some(n => n.type === 'group' || n.parentEntityRef);
+  const refs = new Set(nodes.map(n => n.entityRef).filter(Boolean));
+  return nodes.some(
+    n =>
+      n.type === 'group' ||
+      (typeof n.parentEntityRef === 'string' &&
+        n.parentEntityRef.length > 0 &&
+        refs.has(n.parentEntityRef))
+  );
 }
 
 export function stripLayoutCoordinates(nodes: SystemNode[]): SystemNode[] {

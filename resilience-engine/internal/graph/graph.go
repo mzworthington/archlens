@@ -33,6 +33,7 @@ func expandEndpoints(ref string, schema model.SystemSchema) []string {
 }
 
 // BuildDependents maps dependency target -> callers (upstream), expanding group boundaries.
+// Skips provisions (and other non-runtime) edges so IaC declarations are not blast-radius callers.
 func BuildDependents(schema model.SystemSchema) map[string][]string {
 	nodeIDs := make(map[string]struct{}, len(schema.Nodes))
 	for _, node := range schema.Nodes {
@@ -41,6 +42,9 @@ func BuildDependents(schema model.SystemSchema) map[string][]string {
 
 	dependents := make(map[string][]string)
 	for _, dep := range schema.Dependencies {
+		if !isAvailabilityPropagatingDependency(dep.Type) {
+			continue
+		}
 		sources := expandEndpoints(dep.From, schema)
 		targets := expandEndpoints(dep.To, schema)
 		for _, target := range targets {

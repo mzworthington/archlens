@@ -3,8 +3,11 @@ import { Folder, ChevronRight, Layers, Compass, Code, Network, ChevronDown } fro
 import { Link, useLocation, useSearch } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 import { useBreadcrumbs } from './useBreadcrumbs';
-import { WorkspaceStorageBadge } from './WorkspaceStorageBadge';
+import { WorkspaceModeToggle } from './WorkspaceModeToggle';
 import { buildWorkspaceEntityHref } from '../../../../../application/store/sandboxWorkspace';
+import { useBlueprintStore } from '../../../../../application/store/store';
+import { navigateToActiveWorkspaceEntity } from '../../hooks/navigateToActiveWorkspaceEntity';
+import { SAMPLES_ENTITY_REF } from '../../../../../application/store/samplesWorkspace';
 
 const LEVEL_CONFIGS: Record<
   C4Level,
@@ -69,11 +72,50 @@ export const Breadcrumbs: React.FC = () => {
     isSampleWorkspace,
     workspaceName,
   } = useBreadcrumbs();
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const search = useSearch();
+  const isLoading = useBlueprintStore(s => s.isLoading);
+  const openBundledSample = useBlueprintStore(s => s.openBundledSample);
+  const openWorkspaceDirectory = useBlueprintStore(s => s.openWorkspaceDirectory);
+  const setIsStartupOpen = useBlueprintStore(s => s.setIsStartupOpen);
   const workspaceLink = (entityRef: string) =>
     buildWorkspaceEntityHref(entityRef, { pathname: location, search });
   const segmentList = segments as BreadcrumbSegmentView[];
+  const modeSwitchDisabled = Boolean(isLoading);
+
+  const handleEnableDemo = () => {
+    if (isSampleWorkspace || modeSwitchDisabled) return;
+    void (async () => {
+      const opened = await openBundledSample();
+      if (!opened) return;
+      setIsStartupOpen(false);
+      setLocation(buildWorkspaceEntityHref(SAMPLES_ENTITY_REF), { replace: true });
+    })();
+  };
+
+  const handleEnableFolder = () => {
+    if (modeSwitchDisabled) return;
+    void (async () => {
+      try {
+        const opened = await openWorkspaceDirectory();
+        if (!opened) return;
+        setIsStartupOpen(false);
+        navigateToActiveWorkspaceEntity(setLocation);
+      } catch (err) {
+        console.error('Failed to open workspace directory:', err);
+      }
+    })();
+  };
+
+  const modeToggle = (
+    <WorkspaceModeToggle
+      isWorkspaceOpen={isWorkspaceOpen}
+      isSampleWorkspace={isSampleWorkspace}
+      onEnableDemo={handleEnableDemo}
+      onEnableFolder={handleEnableFolder}
+      disabled={modeSwitchDisabled}
+    />
+  );
 
   const menuOpen = openDropdownIdx === -1;
   const lastSegment = segmentList[segmentList.length - 1];
@@ -242,10 +284,7 @@ export const Breadcrumbs: React.FC = () => {
         <Folder className="w-3.5 h-3.5 text-brand-500 shrink-0" />
 
         <div className="flex items-center gap-1.5 min-w-0">
-          <WorkspaceStorageBadge
-            isWorkspaceOpen={isWorkspaceOpen}
-            isSampleWorkspace={isSampleWorkspace}
-          />
+          {modeToggle}
           {isWorkspaceOpen ? (
             <span
               className="max-w-[100px] sm:max-w-[150px] truncate text-slate-400 font-medium"
@@ -331,10 +370,7 @@ export const Breadcrumbs: React.FC = () => {
             className="absolute top-full left-0 right-0 mt-2 z-50 rounded-xl border border-slate-900 bg-slate-950/95 py-2 shadow-2xl backdrop-blur-lg max-h-[min(70vh,320px)] overflow-y-auto"
           >
             <div className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-500 border-b border-slate-900/60 mb-1 flex items-center gap-2">
-              <WorkspaceStorageBadge
-                isWorkspaceOpen={isWorkspaceOpen}
-                isSampleWorkspace={isSampleWorkspace}
-              />
+              {modeToggle}
               {isWorkspaceOpen ? <span className="truncate">{workspaceName}</span> : null}
             </div>
 

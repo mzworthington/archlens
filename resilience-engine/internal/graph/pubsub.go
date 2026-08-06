@@ -3,9 +3,14 @@ package graph
 import "blueprint/resilience-engine/internal/model"
 
 const publishSubscribe = "publish-subscribe"
+const provisions = "provisions"
 
 func isAsyncStreamDependency(depType string) bool {
 	return depType == publishSubscribe
+}
+
+func isAvailabilityPropagatingDependency(depType string) bool {
+	return depType != provisions
 }
 
 // PubSubPeersOnBroker returns all from endpoints on publish-subscribe edges targeting brokerID.

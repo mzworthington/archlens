@@ -133,6 +133,17 @@ describe('parentChildLayout', () => {
       true
     );
     expect(hasGroupedLayout([{ entityRef: 'a', type: 'software-system' }])).toBe(false);
+    // Diagram membership stamped as parentEntityRef (no on-diagram group) is not grouped layout.
+    expect(
+      hasGroupedLayout([
+        {
+          entityRef: 'archlens/cloudflare/pages',
+          type: 'gateway-api',
+          name: 'Pages',
+          parentEntityRef: 'archlens/cloudflare',
+        },
+      ])
+    ).toBe(false);
   });
 
   it('stripLayoutCoordinates removes position', () => {

@@ -1,5 +1,8 @@
 import type { DependencyType, EntityRef, SystemSchema } from '../models/schema';
-import { isAsyncStreamDependency } from '../taxonomy/dependencySemantics';
+import {
+  isAsyncStreamDependency,
+  isAvailabilityPropagatingDependency,
+} from '../taxonomy/dependencySemantics';
 
 function isGroup(schema: SystemSchema, ref: EntityRef): boolean {
   const node = schema.nodes.find(n => n.entityRef === ref);
@@ -19,12 +22,14 @@ export function expandEndpoints(ref: EntityRef, schema: SystemSchema): EntityRef
 
 /**
  * Map dependency target → callers (upstream), expanding group boundaries on edges.
+ * Skips non-runtime edges (e.g. `provisions`) so IaC declarations are not blast-radius callers.
  */
 export function buildDependents(schema: SystemSchema): Map<EntityRef, EntityRef[]> {
   const nodeIds = new Set(schema.nodes.map(n => n.entityRef));
   const dependents = new Map<EntityRef, EntityRef[]>();
 
   for (const dep of schema.dependencies) {
+    if (!isAvailabilityPropagatingDependency(dep.type)) continue;
     const sources = expandEndpoints(dep.from, schema);
     const targets = expandEndpoints(dep.to, schema);
 

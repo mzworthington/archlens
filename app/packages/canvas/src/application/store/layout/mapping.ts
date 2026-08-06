@@ -28,6 +28,8 @@ export type ComponentNodeData = {
   isTest?: boolean;
   properties: PropertyMap;
   entityRef?: string;
+  /** Domain parent — may be diagram membership, not an on-canvas React Flow parent. */
+  parentEntityRef?: string;
   forensics?: NodeForensics;
   resilience?: NodeResilience;
   /** Transient ChaosLens safeguard toggles for canvas badges (display-only). */
@@ -120,6 +122,8 @@ function buildComponentNodeData(n: SystemNode, ref: string): ComponentNodeData {
     entityRef: ref,
     forensics: n.forensics,
     resilience: n.resilience,
+    // Keep domain parent for YAML round-trip even when it is not an on-canvas group.
+    ...(n.parentEntityRef ? { parentEntityRef: n.parentEntityRef } : {}),
   };
 }
 
@@ -147,9 +151,13 @@ export function sortNodesForReactFlow(nodes: BlueprintRFNode[]): BlueprintRFNode
 }
 
 export const mapDomainNodesToRFNodes = (nodes: SystemNode[]): BlueprintRFNode[] => {
+  const onDiagramRefs = new Set(nodes.map(n => n.entityRef).filter(Boolean));
   const childrenByParent = new Map<string, SystemNode[]>();
   for (const node of nodes) {
-    if (!node.parentEntityRef) continue;
+    // Only treat parentEntityRef as a React Flow group when the parent is on this diagram.
+    // IaC writers also stamp diagram membership (e.g. parentEntityRef: archlens/cloudflare)
+    // which must not become parentId — that triggers xyflow "Parent node not found" warnings.
+    if (!node.parentEntityRef || !onDiagramRefs.has(node.parentEntityRef)) continue;
     const list = childrenByParent.get(node.parentEntityRef) ?? [];
     list.push(node);
     childrenByParent.set(node.parentEntityRef, list);
@@ -186,7 +194,11 @@ export const mapDomainNodesToRFNodes = (nodes: SystemNode[]): BlueprintRFNode[] 
       continue;
     }
 
-    const parentLayout = node.parentEntityRef ? groupLayouts.get(node.parentEntityRef) : undefined;
+    const parentOnDiagram =
+      node.parentEntityRef && onDiagramRefs.has(node.parentEntityRef)
+        ? node.parentEntityRef
+        : undefined;
+    const parentLayout = parentOnDiagram ? groupLayouts.get(parentOnDiagram) : undefined;
     const childPos = parentLayout?.positionsByRef.get(ref);
 
     const nodePos = getNodePosition(node);
@@ -194,7 +206,7 @@ export const mapDomainNodesToRFNodes = (nodes: SystemNode[]): BlueprintRFNode[] 
       id: ref,
       type: 'blueprintNode',
       position: childPos ?? { x: nodePos?.x ?? 0, y: nodePos?.y ?? 0 },
-      ...(node.parentEntityRef ? { parentId: node.parentEntityRef, extent: 'parent' } : {}),
+      ...(parentOnDiagram ? { parentId: parentOnDiagram, extent: 'parent' as const } : {}),
       data: buildComponentNodeData(node, ref),
     });
   }
@@ -304,6 +316,9 @@ export const rebuildSchemaFromCanvas = (
   const nodes: SystemNode[] = rfNodes.map(rn => {
     const isGroup = rn.type === 'blueprintGroup';
     const parentId = typeof rn.parentId === 'string' ? rn.parentId : undefined;
+    const dataParent =
+      typeof rn.data.parentEntityRef === 'string' ? rn.data.parentEntityRef : undefined;
+    const parentEntityRef = parentId || dataParent;
     const node: SystemNode = {
       type: isGroup ? 'group' : rn.data.type,
       name: rn.data.name,
@@ -313,7 +328,7 @@ export const rebuildSchemaFromCanvas = (
       forensics: rn.data.forensics,
       resilience: rn.data.resilience,
       entityRef: rn.data.entityRef || rn.id || '',
-      ...(parentId ? { parentEntityRef: parentId } : {}),
+      ...(parentEntityRef ? { parentEntityRef } : {}),
     };
     if (persistLayoutCoordinates) {
       return withNodePosition(node, rn.position);
