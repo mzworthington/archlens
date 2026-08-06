@@ -4,6 +4,7 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import { emitSiteSeo } from './vite/emitSiteSeo.ts';
 import { injectBuildIdMeta, resolveBuildId } from './vite/injectBuildIdMeta.ts';
 import { canvasPackageRoot, repoDocs } from './vite/paths.ts';
 import { syncBundledBlueprints } from './vite/syncBundledBlueprints.ts';
@@ -34,6 +35,7 @@ export default defineConfig({
     syncJsonSchemas(),
     syncTreeSitterWasms(),
     injectBuildIdMeta(appBuildId),
+    emitSiteSeo(),
     VitePWA({
       registerType: 'prompt',
       includeAssets: ['favicon.svg', 'favicon.png', 'icons/apple-touch-icon-dark.png'],
@@ -89,6 +91,8 @@ export default defineConfig({
           /^\/bundled-blueprints\//,
           /^\/bundled-chaos-specs\//,
           /^\/assets\//,
+          /^\/sitemap\.xml$/,
+          /^\/robots\.txt$/,
         ],
         runtimeCaching: [
           {
