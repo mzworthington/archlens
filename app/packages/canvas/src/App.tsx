@@ -1,10 +1,11 @@
 import { lazy, Suspense } from 'react';
-import { Route, Router, Switch } from 'wouter';
+import { Route, Router, Switch, useLocation } from 'wouter';
 import { WorkspacePage } from './ui/features/workspace';
 import { OfflineBanner } from './ui/components/OfflineBanner/OfflineBanner';
 import { UpdateBanner } from './ui/components/UpdateBanner/UpdateBanner';
 import { AppNotificationToast } from './ui/components/AppNotificationToast/AppNotificationToast';
 import { useApp } from './application/context/AppContext';
+import { usePageSeo } from './ui/features/docs/seo';
 
 const DocsHome = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsHome })));
 const DocsPage = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsPage })));
@@ -26,11 +27,18 @@ function RouteFallback() {
   );
 }
 
+function DocumentSeo() {
+  const [location] = useLocation();
+  usePageSeo(location);
+  return null;
+}
+
 function App() {
   const { networkStatus } = useApp();
 
   return (
     <Router base={routerBase}>
+      <DocumentSeo />
       <UpdateBanner />
       <AppNotificationToast />
       <OfflineBanner networkStatus={networkStatus} />
