@@ -52,19 +52,22 @@ function hasForensics(node: SystemNode): boolean {
   return node.forensics != null;
 }
 
+function preferredNodeRank(entry: PreferredNode): number[] {
+  return [
+    LEVEL_RANK[entry.level] ?? 0,
+    entry.node.forensics?.loc ?? 0,
+    entry.node.forensics?.complexity ?? 0,
+  ];
+}
+
 function preferNode(existing: PreferredNode | undefined, next: PreferredNode): PreferredNode {
   if (!existing) return next;
-  const existingRank = LEVEL_RANK[existing.level] ?? 0;
-  const nextRank = LEVEL_RANK[next.level] ?? 0;
-  if (nextRank > existingRank) return next;
-  if (nextRank < existingRank) return existing;
-  // Same level: keep the richer forensics payload (higher loc / complexity).
-  const existingLoc = existing.node.forensics?.loc ?? 0;
-  const nextLoc = next.node.forensics?.loc ?? 0;
-  if (nextLoc > existingLoc) return next;
-  const existingComplexity = existing.node.forensics?.complexity ?? 0;
-  const nextComplexity = next.node.forensics?.complexity ?? 0;
-  if (nextComplexity > existingComplexity) return next;
+  const existingKeys = preferredNodeRank(existing);
+  const nextKeys = preferredNodeRank(next);
+  for (let i = 0; i < existingKeys.length; i++) {
+    if (nextKeys[i]! > existingKeys[i]!) return next;
+    if (nextKeys[i]! < existingKeys[i]!) return existing;
+  }
   return existing;
 }
 
@@ -72,17 +75,13 @@ function diagramEntityRefOf(system: LoadedSystemRef): string {
   return system.schema.entityRef || system.schema.name || system.path;
 }
 
-/**
- * Estate-level complexity snapshot for the loaded workspace (per-repo view).
- * Dedupes nodes by entityRef, preferring component > container > context so
- * rolled-up parents do not double-count child LOC when both are loaded.
- * Optional entity scope mirrors TraceLens offender filtering.
- */
-export function summarizeWorkspaceForensics(
+function collectPreferredNodes(
   systems: readonly LoadedSystemRef[],
-  options?: SummarizeWorkspaceForensicsOptions
-): WorkspaceComplexitySummary {
-  const scopeEntityRef = options?.scopeEntityRef?.trim() || null;
+  scopeEntityRef: string | null
+): {
+  preferred: Map<string, PreferredNode>;
+  diagramsWithScopedNodes: Set<string>;
+} {
   const preferred = new Map<string, PreferredNode>();
   const diagramsWithScopedNodes = new Set<string>();
 
@@ -107,19 +106,42 @@ export function summarizeWorkspaceForensics(
     }
   }
 
+  return { preferred, diagramsWithScopedNodes };
+}
+
+function countScopedDependencies(
+  systems: readonly LoadedSystemRef[],
+  preferred: Map<string, PreferredNode>,
+  scopeEntityRef: string | null
+): number {
   let dependencyCount = 0;
   for (const system of systems) {
     for (const dep of system.schema.dependencies ?? []) {
-      if (!scopeEntityRef) {
-        dependencyCount += 1;
-        continue;
-      }
-      if (preferred.has(dep.from) && preferred.has(dep.to)) {
+      if (!scopeEntityRef || (preferred.has(dep.from) && preferred.has(dep.to))) {
         dependencyCount += 1;
       }
     }
   }
+  return dependencyCount;
+}
 
+function isClassified(
+  forensics: NonNullable<SystemNode['forensics']>,
+  classification: 'hotspot' | 'knowledge-silo',
+  count: number | undefined
+): boolean {
+  return (count ?? 0) > 0 || (forensics.classifications?.includes(classification) ?? false);
+}
+
+function fileCountContribution(forensics: NonNullable<SystemNode['forensics']>): number {
+  if (forensics.fileCount != null && forensics.fileCount > 0) return forensics.fileCount;
+  if (forensics.loc != null || forensics.sloc != null) return 1;
+  return 0;
+}
+
+function aggregateForensicsMetrics(
+  preferred: Map<string, PreferredNode>
+): Omit<WorkspaceComplexitySummary, 'diagramCount' | 'nodeCount' | 'dependencyCount'> {
   let nodesWithForensics = 0;
   let totalLoc = 0;
   let totalSloc = 0;
@@ -133,35 +155,25 @@ export function summarizeWorkspaceForensics(
   for (const { node } of preferred.values()) {
     if (!hasForensics(node)) continue;
     nodesWithForensics += 1;
-    const f = node.forensics!;
+    const forensics = node.forensics!;
 
-    if (f.loc != null) totalLoc += f.loc;
-    if (f.sloc != null) totalSloc += f.sloc;
+    totalLoc += forensics.loc ?? 0;
+    totalSloc += forensics.sloc ?? 0;
 
-    if (f.complexity != null) {
-      complexitySum += f.complexity;
+    if (forensics.complexity != null) {
+      complexitySum += forensics.complexity;
       complexitySamples += 1;
-      if (f.complexity > maxComplexity) maxComplexity = f.complexity;
+      maxComplexity = Math.max(maxComplexity, forensics.complexity);
     }
 
-    const isHotspot =
-      (f.hotspotCount ?? 0) > 0 || (f.classifications?.includes('hotspot') ?? false);
-    const isSilo =
-      (f.knowledgeSiloCount ?? 0) > 0 || (f.classifications?.includes('knowledge-silo') ?? false);
-    if (isHotspot) hotspotNodes += 1;
-    if (isSilo) knowledgeSiloNodes += 1;
-
-    if (f.fileCount != null && f.fileCount > 0) {
-      fileCount += f.fileCount;
-    } else if (f.loc != null || f.sloc != null) {
-      fileCount += 1;
+    if (isClassified(forensics, 'hotspot', forensics.hotspotCount)) hotspotNodes += 1;
+    if (isClassified(forensics, 'knowledge-silo', forensics.knowledgeSiloCount)) {
+      knowledgeSiloNodes += 1;
     }
+    fileCount += fileCountContribution(forensics);
   }
 
   return {
-    diagramCount: scopeEntityRef ? diagramsWithScopedNodes.size : systems.length,
-    nodeCount: preferred.size,
-    dependencyCount,
     nodesWithForensics,
     totalLoc,
     totalSloc,
@@ -170,5 +182,26 @@ export function summarizeWorkspaceForensics(
     hotspotNodes,
     knowledgeSiloNodes,
     fileCount,
+  };
+}
+
+/**
+ * Estate-level complexity snapshot for the loaded workspace (per-repo view).
+ * Dedupes nodes by entityRef, preferring component > container > context so
+ * rolled-up parents do not double-count child LOC when both are loaded.
+ * Optional entity scope mirrors TraceLens offender filtering.
+ */
+export function summarizeWorkspaceForensics(
+  systems: readonly LoadedSystemRef[],
+  options?: SummarizeWorkspaceForensicsOptions
+): WorkspaceComplexitySummary {
+  const scopeEntityRef = options?.scopeEntityRef?.trim() || null;
+  const { preferred, diagramsWithScopedNodes } = collectPreferredNodes(systems, scopeEntityRef);
+
+  return {
+    diagramCount: scopeEntityRef ? diagramsWithScopedNodes.size : systems.length,
+    nodeCount: preferred.size,
+    dependencyCount: countScopedDependencies(systems, preferred, scopeEntityRef),
+    ...aggregateForensicsMetrics(preferred),
   };
 }
