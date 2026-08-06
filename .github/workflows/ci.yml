@@ -107,6 +107,13 @@ jobs:
         run: make test
         working-directory: resilience-engine
 
+      - name: Build and smoke-test ChaosLens CLI
+        run: |
+          make build-cli
+          ./dist/chaoslens -min-sla=0 < cmd/chaoslens/testdata/diamond-cache-outage.json > /tmp/chaoslens-smoke.json
+          jq -e '.overallSla != null and .heat != null' /tmp/chaoslens-smoke.json
+        working-directory: resilience-engine
+
       - name: Run unit tests with coverage and features doc
         run: pnpm test:ci
         working-directory: app

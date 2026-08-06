@@ -1,0 +1,61 @@
+{
+  "schema": {
+    "nodes": [
+      {
+        "entityRef": "chaoslens-stress/diamond/entry",
+        "type": "container",
+        "name": "entry"
+      },
+      {
+        "entityRef": "chaoslens-stress/diamond/service-a",
+        "type": "container",
+        "name": "service-a"
+      },
+      {
+        "entityRef": "chaoslens-stress/diamond/service-b",
+        "type": "container",
+        "name": "service-b"
+      },
+      {
+        "entityRef": "chaoslens-stress/diamond/aggregator",
+        "type": "container",
+        "name": "aggregator"
+      },
+      {
+        "entityRef": "chaoslens-stress/diamond/cache",
+        "type": "container",
+        "name": "cache"
+      }
+    ],
+    "dependencies": [
+      {
+        "from": "chaoslens-stress/diamond/entry",
+        "to": "chaoslens-stress/diamond/service-a"
+      },
+      {
+        "from": "chaoslens-stress/diamond/entry",
+        "to": "chaoslens-stress/diamond/service-b"
+      },
+      {
+        "from": "chaoslens-stress/diamond/service-a",
+        "to": "chaoslens-stress/diamond/aggregator"
+      },
+      {
+        "from": "chaoslens-stress/diamond/service-b",
+        "to": "chaoslens-stress/diamond/aggregator"
+      },
+      {
+        "from": "chaoslens-stress/diamond/aggregator",
+        "to": "chaoslens-stress/diamond/cache"
+      }
+    ]
+  },
+  "spec": {
+    "faults": [
+      {
+        "nodeId": "chaoslens-stress/diamond/cache",
+        "faultType": "region-outage"
+      }
+    ]
+  }
+}

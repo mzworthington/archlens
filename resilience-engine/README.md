@@ -35,9 +35,19 @@ Pipe a simulation request JSON on stdin:
 ```bash
 cat request.json | ./dist/chaoslens
 ./dist/chaoslens -monte-carlo 2000 -seed 42 < request.json
+./dist/chaoslens -min-sla 95 < request.json
 ```
 
+| Flag | Purpose |
+| ---- | ------- |
+| `-monte-carlo N` | Enable/override Monte Carlo iterations |
+| `-seed N` | Override Monte Carlo seed |
+| `-severity-jitter F` | Override severity jitter (0–1) |
+| `-min-sla N` | Exit `1` when reported SLA is below N% |
+
 Request shape matches `@archlens/core/resilience` `WasmSimulationRequest` (schema + spec + optional `monteCarlo`).
+
+CI: [`.github/actions/chaoslens-gate`](../.github/actions/chaoslens-gate) builds the binary, runs a request, uploads `chaoslens-report`, and fails the job below `-min-sla`.
 
 ## WASM bridge
 

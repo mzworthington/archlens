@@ -50,7 +50,7 @@ cd resilience-engine
 
 make test          # unit tests (includes KR3 Monte Carlo budget on large-graph)
 make build-wasm    # dist/chaoslens.wasm
-make build-cli     # dist/chaoslens (stdin/stdout CLI - planned)
+make build-cli     # dist/chaoslens (stdin/stdout CLI)
 make copy-wasm     # WASM + wasm_exec.js → canvas public/
 make build         # CLI + copy-wasm
 make all           # test + build
@@ -82,9 +82,21 @@ Pipe a simulation request JSON on stdin:
 make build-cli
 cat request.json | ./dist/chaoslens
 ./dist/chaoslens -monte-carlo 2000 -seed 42 < request.json
+./dist/chaoslens -min-sla 95 < request.json
 ```
 
+| Flag                 | Purpose                                                                                 |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `-monte-carlo N`     | Enable/override Monte Carlo iterations                                                  |
+| `-seed N`            | Override Monte Carlo seed                                                               |
+| `-severity-jitter F` | Override severity jitter (0–1)                                                          |
+| `-min-sla N`         | Exit `1` when reported SLA is below N% (Monte Carlo P5 when present, else `overallSla`) |
+
+Exit codes: `0` ok, `1` SLA gate failed (result still written to stdout), `2` usage/input error.
+
 Stdin/stdout JSON matches `WasmSimulationRequest` / WASM bridge shape.
+
+For CI, use the composite action [`.github/actions/chaoslens-gate`](../.github/actions/chaoslens-gate) and the [example workflow](../.github/workflows/chaoslens-gate.yml.example).
 
 ## Go package layout
 

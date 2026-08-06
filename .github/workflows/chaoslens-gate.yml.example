@@ -1,0 +1,25 @@
+name: ChaosLens gate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'blueprints/**'
+      - 'chaos-specs/**'
+      - 'resilience-engine/**'
+      - '**/*request*.json'
+
+jobs:
+  chaoslens:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/chaoslens-gate
+        with:
+          # Provide a WasmSimulationRequest JSON (schema + chaos spec).
+          request-path: resilience-engine/cmd/chaoslens/testdata/diamond-cache-outage.json
+          min-sla: '95'
+          # Optional Monte Carlo overrides:
+          # monte-carlo: '1000'
+          # seed: '42'

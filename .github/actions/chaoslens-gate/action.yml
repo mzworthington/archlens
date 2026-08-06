@@ -1,0 +1,144 @@
+name: ChaosLens Gate
+description: Build the headless ChaosLens CLI, run a simulation request, upload the result artifact, and fail when SLA drops below threshold.
+
+inputs:
+  request-path:
+    description: Path to a WasmSimulationRequest JSON file (relative to repository root)
+    required: false
+    default: resilience-engine/cmd/chaoslens/testdata/diamond-cache-outage.json
+  min-sla:
+    description: Fail when reported SLA (overallSla, or Monte Carlo P5 when enabled) falls below this percent
+    required: false
+    default: '95'
+  monte-carlo:
+    description: Optional Monte Carlo iteration override (empty keeps request config)
+    required: false
+    default: ''
+  seed:
+    description: Optional Monte Carlo seed override
+    required: false
+    default: ''
+  severity-jitter:
+    description: Optional Monte Carlo severity jitter override (0-1)
+    required: false
+    default: ''
+  working-directory:
+    description: Resilience engine directory containing the Makefile
+    required: false
+    default: resilience-engine
+  artifact-path:
+    description: Path for the simulation result JSON artifact
+    required: false
+    default: .archlens/chaoslens-report.json
+  post-comment:
+    description: Post a PR comment summarizing the ChaosLens result
+    required: false
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Go
+      uses: actions/setup-go@v6
+      with:
+        go-version-file: ${{ inputs.working-directory }}/go.mod
+        cache-dependency-path: ${{ inputs.working-directory }}/go.mod
+
+    - name: Build ChaosLens CLI
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: make build-cli
+
+    - name: Run ChaosLens simulation gate
+      id: chaoslens
+      shell: bash
+      run: |
+        set -euo pipefail
+        ARTIFACT_PATH="${{ inputs.artifact-path }}"
+        REQUEST_PATH="${{ inputs.request-path }}"
+        BIN="${{ inputs.working-directory }}/dist/chaoslens"
+        mkdir -p "$(dirname "${ARTIFACT_PATH}")"
+
+        if [ ! -f "${REQUEST_PATH}" ]; then
+          echo "request file not found: ${REQUEST_PATH}" >&2
+          exit 2
+        fi
+        if [ ! -x "${BIN}" ]; then
+          echo "chaoslens binary missing at ${BIN}" >&2
+          exit 2
+        fi
+
+        ARGS=("-min-sla=${{ inputs.min-sla }}")
+        if [ -n "${{ inputs.monte-carlo }}" ]; then
+          ARGS+=("-monte-carlo=${{ inputs.monte-carlo }}")
+        fi
+        if [ -n "${{ inputs.seed }}" ]; then
+          ARGS+=("-seed=${{ inputs.seed }}")
+        fi
+        if [ -n "${{ inputs.severity-jitter }}" ]; then
+          ARGS+=("-severity-jitter=${{ inputs.severity-jitter }}")
+        fi
+
+        set +e
+        "${BIN}" "${ARGS[@]}" < "${REQUEST_PATH}" > "${ARTIFACT_PATH}"
+        STATUS=$?
+        set -e
+
+        if [ -s "${ARTIFACT_PATH}" ]; then
+          OVERALL_SLA="$(jq -r '.overallSla // empty' "${ARTIFACT_PATH}")"
+          MC_P5="$(jq -r '.monteCarlo.overallSlaP5 // empty' "${ARTIFACT_PATH}")"
+          SPOF_COUNT="$(jq -r '.spofs | length' "${ARTIFACT_PATH}")"
+          ENGINE="$(jq -r '.engine // "go"' "${ARTIFACT_PATH}")"
+          echo "has_report=true" >> "$GITHUB_OUTPUT"
+          echo "overall_sla=${OVERALL_SLA}" >> "$GITHUB_OUTPUT"
+          echo "monte_carlo_p5=${MC_P5}" >> "$GITHUB_OUTPUT"
+          echo "spof_count=${SPOF_COUNT}" >> "$GITHUB_OUTPUT"
+          echo "engine=${ENGINE}" >> "$GITHUB_OUTPUT"
+        else
+          echo "has_report=false" >> "$GITHUB_OUTPUT"
+        fi
+        echo "exit_code=${STATUS}" >> "$GITHUB_OUTPUT"
+        exit "${STATUS}"
+
+    - name: Upload ChaosLens artifact
+      if: always() && steps.chaoslens.outputs.has_report == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: chaoslens-report
+        path: ${{ inputs.artifact-path }}
+
+    - name: Comment PR with ChaosLens summary
+      if: >-
+        always() &&
+        github.event_name == 'pull_request' &&
+        inputs.post-comment == 'true' &&
+        steps.chaoslens.outputs.has_report == 'true'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('node:fs');
+          const report = JSON.parse(fs.readFileSync('${{ inputs.artifact-path }}', 'utf8'));
+          const failed = Number('${{ steps.chaoslens.outputs.exit_code }}') !== 0;
+          const p5 = report.monteCarlo?.overallSlaP5;
+          const reported = p5 ?? report.overallSla;
+          const body = [
+            '## ChaosLens simulation gate',
+            '',
+            failed ? '❌ Gate failed.' : '✅ Gate passed.',
+            '',
+            `- Request: \`${{ inputs.request-path }}\``,
+            `- Engine: **${report.engine ?? 'go'}**`,
+            `- Reported SLA: **${reported ?? 'n/a'}%** (threshold ${{ inputs.min-sla }}%)`,
+            `- Overall SLA: **${report.overallSla ?? 'n/a'}%**`,
+            ...(p5 !== undefined ? [`- Monte Carlo P5: **${p5}%**`] : []),
+            `- SPOFs: **${(report.spofs ?? []).length}**`,
+            `- Impacted nodes: **${(report.impactedNodes ?? []).length}**`,
+            '',
+            'Download the `chaoslens-report` artifact for the full JSON result.',
+          ].join('\n');
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body,
+          });

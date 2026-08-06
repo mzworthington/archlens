@@ -144,7 +144,7 @@ The best approach isn't choosing only Go or TypeScript, but leveraging both wher
 
 ## 7. Implementation Status & Remaining Work
 
-_Last updated: August 2026 (AdviceLens Phase 4 CI + UI export)_
+_Last updated: August 2026 (ChaosLens CLI + PR gate)_
 
 **Legend:** ✅ Done · 🚧 Partial · ⏳ Pending
 
@@ -182,8 +182,8 @@ _Last updated: August 2026 (AdviceLens Phase 4 CI + UI export)_
 
 | Item                                | Status | Notes                                                                                                     |
 | ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------- |
-| Headless `chaoslens` CLI            | 🚧     | `make build-cli` target exists; `cmd/chaoslens` package not in repo yet.                                  |
-| GitHub Action PR gate               | ⏳     | Depends on CLI; no workflow step today.                                                                   |
+| Headless `chaoslens` CLI            | ✅     | `cmd/chaoslens` stdin/stdout JSON; `-monte-carlo` / `-seed` / `-min-sla`; CI smoke in `ci.yml`.           |
+| GitHub Action PR gate               | ✅     | Composite `.github/actions/chaoslens-gate` + `chaoslens-gate.yml.example` (customer template).            |
 | URL hash / shareable scenario state | ✅     | Sticky `?lens=chaoslens` with `fault`/`type`/`severity` (or `faults=`); legacy `?resilience=1` redirects. |
 | AdviceLens (recommendation engine)  | 🚧     | Core ranking + estate CLI + canvas wiring + CI gate/artifact + UI JSON export shipped; narration pending. |
 
@@ -198,7 +198,7 @@ _Last updated: August 2026 (AdviceLens Phase 4 CI + UI export)_
 ### Suggested next slice
 
 1. ✅ **AdviceLens Phase 4** — CI guardrails, AdviceLens JSON artifact, and studio Copy/Download export.
-2. ⏳ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
+2. ✅ Implement `cmd/chaoslens` CLI and wire a GitHub Action PR gate.
 3. ⏳ OTel ingestion, then resilience comparison and executive mode.
 4. ✅ WASM Monte Carlo perf budget on `large-graph` stress fixture (KR3; KR1 FPS still open).
 

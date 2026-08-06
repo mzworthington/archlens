@@ -15,7 +15,7 @@ Every workflow under [`.github/workflows/`](../../.github/workflows/).
 | Lighthouse                | [`lighthouse.yml`](../../.github/workflows/lighthouse.yml)                               | Canvas Lighthouse CI + report artifact                                                      | Cron Sundays **00:00 UTC**; `workflow_dispatch`                |
 | Refresh docs & media      | [`refresh-docs-media.yml`](../../.github/workflows/refresh-docs-media.yml)               | Regenerate schema, feature report, changelog, and guide GIFs; commit to `main` if needed    | Cron Sundays **06:00 UTC**; `workflow_dispatch`                |
 
-Customer template files (not enabled here): [`blueprint-contract.yml.example`](../../.github/workflows/blueprint-contract.yml.example), [`advicelens-gate.yml.example`](../../.github/workflows/advicelens-gate.yml.example).
+Customer template files (not enabled here): [`blueprint-contract.yml.example`](../../.github/workflows/blueprint-contract.yml.example), [`advicelens-gate.yml.example`](../../.github/workflows/advicelens-gate.yml.example), [`chaoslens-gate.yml.example`](../../.github/workflows/chaoslens-gate.yml.example).
 
 ## Shared samples estate (ADR-0014)
 
