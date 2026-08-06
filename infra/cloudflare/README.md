@@ -70,7 +70,7 @@ pulumi up
 | `.github/actions/setup-pulumi-cloudflare` | Shared Node/pnpm + stack config for that workflow |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
 | `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/samples/` (product `archlens`) |
-| `.github/workflows/publish-demo-catalog.yml` | Matrix demos → fragment → compose `estates/samples/` |
+| `.github/workflows/publish-demo-catalog.yml` | Matrix demos → fragment; one final compose `estates/samples/` |
 | `.github/workflows/publish-samples.yml` | `samples/` → fragment → compose `estates/samples/` |
 | `.github/workflows/compose-catalog.yml` | Hourly safety-net compose for `estates/samples/` |
 | `.github/actions/setup-archlens-cli` | Install CLI from GitHub Releases for catalog workflows |

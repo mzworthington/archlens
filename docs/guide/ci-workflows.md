@@ -7,7 +7,7 @@ Every workflow under [`.github/workflows/`](../../.github/workflows/).
 | CI & Deployment Pipeline  | [`ci.yml`](../../.github/workflows/ci.yml)                                               | Quality gate, canvas build; on `main` deploys Pages and may release the CLI                 | `push` / `pull_request` → `main`; `workflow_dispatch`          |
 | Publish samples catalog   | [`publish-samples.yml`](../../.github/workflows/publish-samples.yml)                     | `samples/` → fragment → compose `estates/samples/`                                          | `push` → `main` when `samples/**` changes; `workflow_dispatch` |
 | Publish blueprint catalog | [`publish-blueprint-catalog.yml`](../../.github/workflows/publish-blueprint-catalog.yml) | Scan this repo (hydrates committed `blueprints/archlens/context.yaml`) → fragment → compose | Cron daily **05:00 UTC**; `workflow_dispatch`                  |
-| Publish demo catalog      | [`publish-demo-catalog.yml`](../../.github/workflows/publish-demo-catalog.yml)           | Matrix: assemble `contextDeclaration` from JSON → scan demo → fragment → compose            | Cron Sundays **06:00 UTC**; `workflow_dispatch`                |
+| Publish demo catalog      | [`publish-demo-catalog.yml`](../../.github/workflows/publish-demo-catalog.yml)           | Matrix: assemble `contextDeclaration` from JSON → scan demo → fragment; one final compose   | Cron Sundays **06:00 UTC**; `workflow_dispatch`                |
 | Compose catalog           | [`compose-catalog.yml`](../../.github/workflows/compose-catalog.yml)                     | Safety-net compose for the shared samples estate (fragments + overlays)                     | Cron hourly **:15 UTC**; `workflow_dispatch`                   |
 | Prune catalog             | [`prune-catalog.yml`](../../.github/workflows/prune-catalog.yml)                         | Retention GC: keep `latest` ∪ 7 snapshots / 14 days; 2 fragment runs per key                | Cron daily **07:00 UTC**; `workflow_dispatch`                  |
 | Pulumi Cloudflare         | [`pulumi-cloudflare.yml`](../../.github/workflows/pulumi-cloudflare.yml)                 | Preview always; `pulumi up` only after **pulumi-prod** environment approval                 | `infra/cloudflare/**` on PR / `main`; `workflow_dispatch`      |
@@ -35,9 +35,11 @@ Consumer: `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/
 
 Stitching is **not** storage-event driven. The samples estate uses:
 
-1. **Primary** — each publish workflow runs `catalog publish-fragment` then `catalog compose` in the same job.
+1. **Primary** — `publish-samples` and `publish-blueprint-catalog` run `catalog publish-fragment` then `catalog compose` in the same job. `publish-demo-catalog` publishes fragments in parallel matrix legs, then runs **one** compose job after the matrix (avoids concurrent CAS on `latest/manifest.json`).
 2. **Safety net** — [`compose-catalog.yml`](../../.github/workflows/compose-catalog.yml) re-composes `estates/samples/` hourly (`--allow-empty` so an empty fragment set does not fail).
 3. **Retention** — [`prune-catalog.yml`](../../.github/workflows/prune-catalog.yml) runs daily at **07:00 UTC**. Default is **dry-run**; enable deletes via workflow input `execute=true` or repo variable `PRUNE_CATALOG_EXECUTE=true`. Policy: keep the `latest` revision, plus at least the 7 newest snapshots and anything within 14 days; keep 2 newest runs per fragment key. Never deletes `latest/` or `overlays/`. Requires a CLI release that includes `archlens catalog prune`.
+
+Compose jobs share the GitHub Actions concurrency group `samples-estate-compose` so only one samples-estate stitch runs at a time. Compose also reloads fragments and backs off on CAS conflicts (`--max-retries`, default 8).
 
 CLI for these jobs is installed from GitHub Releases via [`.github/actions/setup-archlens-cli`](../../.github/actions/setup-archlens-cli/action.yml) (`scripts/install.sh`).
 

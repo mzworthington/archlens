@@ -30,6 +30,8 @@ export type ComposeCatalogDeps = {
   loadFragments?: (storage: ObjectStoragePort) => Promise<EstateFragment[]>;
   loadOverlays?: (storage: ObjectStoragePort) => Promise<SuggestionOverlay[]>;
   now?: () => Date;
+  /** Injectable delay between CAS retries (tests). Defaults to real sleep. */
+  sleep?: (ms: number) => Promise<void>;
 };
 
 export type ComposeCatalogOutcome =
@@ -67,13 +69,37 @@ async function readLatestEtag(
   }
 }
 
-export async function runComposeCatalog(
-  plan: CatalogComposeCliPlan,
-  deps: ComposeCatalogDeps
-): Promise<ComposeCatalogOutcome> {
-  const storage = deps.resolveStorage(plan);
-  if (!storage) return { kind: 'storage-not-configured' };
+/** Exponential backoff before CAS retry attempt N (1-based after first failure). Caps at 2s. */
+export function composeCasBackoffMs(failedAttempts: number): number {
+  return Math.min(2000, 100 * 2 ** Math.max(0, failedAttempts - 1));
+}
 
+function defaultSleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+type PreparedCompose = {
+  contributors: ReturnType<typeof composeEstateFragments>['contributors'];
+  appliedOverlays: SuggestionOverlay[];
+  yamlObjects: Array<{ path: string; content: string }>;
+  validation: BlueprintValidationResult;
+  parseErrors: Array<{ path: string; message: string }>;
+  snapshotPlan: ReturnType<typeof prepareRemoteCatalogSnapshot>['snapshotPlan'];
+};
+
+async function prepareCompose(
+  plan: CatalogComposeCliPlan,
+  storage: ObjectStoragePort,
+  deps: ComposeCatalogDeps
+): Promise<
+  | { kind: 'no-fragments' }
+  | {
+      kind: 'validation-failed';
+      validation: BlueprintValidationResult;
+      parseErrors: PreparedCompose['parseErrors'];
+    }
+  | { kind: 'ready'; prepared: PreparedCompose }
+> {
   const loadFragments = deps.loadFragments ?? loadEstateFragmentsFromStorage;
   const loadOverlays = deps.loadOverlays ?? loadSuggestionOverlaysFromStorage;
   const allFragments = await loadFragments(storage);
@@ -118,30 +144,77 @@ export async function runComposeCatalog(
     publishedAt: (deps.now ?? (() => new Date()))().toISOString(),
   });
 
+  return {
+    kind: 'ready',
+    prepared: {
+      contributors: composed.contributors,
+      appliedOverlays: withOverlays.applied,
+      yamlObjects,
+      validation,
+      parseErrors,
+      snapshotPlan,
+    },
+  };
+}
+
+export async function runComposeCatalog(
+  plan: CatalogComposeCliPlan,
+  deps: ComposeCatalogDeps
+): Promise<ComposeCatalogOutcome> {
+  const storage = deps.resolveStorage(plan);
+  if (!storage) return { kind: 'storage-not-configured' };
+
+  const sleep = deps.sleep ?? defaultSleep;
+  let preparedResult = await prepareCompose(plan, storage, deps);
+  if (preparedResult.kind === 'no-fragments') return { kind: 'no-fragments' };
+  if (preparedResult.kind === 'validation-failed') {
+    return {
+      kind: 'validation-failed',
+      validation: preparedResult.validation,
+      parseErrors: preparedResult.parseErrors,
+    };
+  }
+
+  let prepared = preparedResult.prepared;
+
   if (plan.dryRun) {
     return {
       kind: 'dry-run',
-      contributors: composed.contributors,
-      appliedOverlays: withOverlays.applied,
-      result: toPublishDryRunResult(snapshotPlan, validation),
+      contributors: prepared.contributors,
+      appliedOverlays: prepared.appliedOverlays,
+      result: toPublishDryRunResult(prepared.snapshotPlan, prepared.validation),
     };
   }
 
   for (let attempt = 1; attempt <= plan.maxRetries; attempt += 1) {
+    if (attempt > 1) {
+      await sleep(composeCasBackoffMs(attempt - 1));
+      preparedResult = await prepareCompose(plan, storage, deps);
+      if (preparedResult.kind === 'no-fragments') return { kind: 'no-fragments' };
+      if (preparedResult.kind === 'validation-failed') {
+        return {
+          kind: 'validation-failed',
+          validation: preparedResult.validation,
+          parseErrors: preparedResult.parseErrors,
+        };
+      }
+      prepared = preparedResult.prepared;
+    }
+
     const cas = await readLatestEtag(storage);
     try {
-      const upload = await uploadRemoteCatalogSnapshot(snapshotPlan, storage, {
+      const upload = await uploadRemoteCatalogSnapshot(prepared.snapshotPlan, storage, {
         latestIfMatch: cas.ifMatch,
         latestIfNoneMatch: cas.ifNoneMatch,
       });
       return {
         kind: 'uploaded',
         attempts: attempt,
-        contributors: composed.contributors,
-        appliedOverlays: withOverlays.applied,
+        contributors: prepared.contributors,
+        appliedOverlays: prepared.appliedOverlays,
         result: {
-          ...toPublishUploadResult(snapshotPlan, validation, storage, upload),
-          objects: snapshotPlan.objects,
+          ...toPublishUploadResult(prepared.snapshotPlan, prepared.validation, storage, upload),
+          objects: prepared.snapshotPlan.objects,
         },
       };
     } catch (error) {

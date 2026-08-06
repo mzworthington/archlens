@@ -1,8 +1,8 @@
 name: Compose catalog
 
 # Safety-net stitch: re-compose the shared samples estate from staged fragments + overlays.
-# Primary compose still runs in publish-blueprint-catalog / publish-samples / publish-demo-catalog
-# immediately after publish-fragment (ADR-0014).
+# Primary compose: publish-blueprint-catalog / publish-samples (after fragment);
+# publish-demo-catalog runs one final compose after the matrix (ADR-0014).
 
 on:
   schedule:
@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: compose-catalog
+  group: samples-estate-compose
   cancel-in-progress: false
 
 jobs:

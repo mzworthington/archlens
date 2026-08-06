@@ -6,8 +6,10 @@ import {
   uploadEstateFragment,
   uploadSuggestionOverlay,
 } from '@archlens/storage';
-import { runComposeCatalog } from './composeCatalog.ts';
+import { composeCasBackoffMs, runComposeCatalog } from './composeCatalog.ts';
 import { runPublishFragment } from './publishFragment.ts';
+
+const noSleep = async (): Promise<void> => undefined;
 
 function minimalYaml(entityRef: string): string {
   return `version: https://archlens.dev/schemas/v4/blueprint.schema.json
@@ -69,7 +71,7 @@ describe('Feature: catalog compose with CAS on latest', () => {
         allowEmpty: false,
         keyPrefix: 'estates/acme',
       },
-      { resolveStorage: () => storage }
+      { resolveStorage: () => storage, sleep: noSleep }
     );
 
     expect(outcome.kind).toBe('uploaded');
@@ -78,6 +80,13 @@ describe('Feature: catalog compose with CAS on latest', () => {
     expect(outcome.appliedOverlays).toEqual([]);
     expect(storage.objects.has('latest/manifest.json')).toBe(true);
     expect(storage.putOrder.at(-1)).toBe('latest/manifest.json');
+  });
+
+  it('exposes capped exponential CAS backoff', () => {
+    expect(composeCasBackoffMs(1)).toBe(100);
+    expect(composeCasBackoffMs(2)).toBe(200);
+    expect(composeCasBackoffMs(5)).toBe(1600);
+    expect(composeCasBackoffMs(10)).toBe(2000);
   });
 
   it('applies accepted suggestion overlays during compose', async () => {
@@ -146,7 +155,7 @@ dependencies: []
         allowEmpty: false,
         keyPrefix: 'estates/acme',
       },
-      { resolveStorage: () => storage }
+      { resolveStorage: () => storage, sleep: noSleep }
     );
 
     expect(outcome.kind).toBe('dry-run');
@@ -169,10 +178,12 @@ dependencies: []
       storage
     );
 
+    await seedLatest(storage);
+
     let latestPuts = 0;
     const originalPut = storage.putObject.bind(storage);
     storage.putObject = async request => {
-      if (request.key === 'latest/manifest.json' && request.ifNoneMatch === '*') {
+      if (request.key === 'latest/manifest.json') {
         latestPuts += 1;
         if (latestPuts === 1) {
           throw new ObjectStoragePreconditionFailedError(request.key);
@@ -181,8 +192,71 @@ dependencies: []
       return originalPut(request);
     };
 
-    // Seed a competing latest so first create-only CAS fails, then ifMatch path works.
-    await originalPut({ key: 'latest/manifest.json', body: '{"revision":"seed"}' });
+    const sleeps: number[] = [];
+    const outcome = await runComposeCatalog(
+      {
+        estateId: 'acme',
+        format: 'json',
+        dryRun: false,
+        skipValidation: true,
+        maxRetries: 3,
+        allowEmpty: false,
+        keyPrefix: 'estates/acme',
+      },
+      {
+        resolveStorage: () => storage,
+        sleep: async ms => {
+          sleeps.push(ms);
+        },
+      }
+    );
+
+    expect(outcome.kind).toBe('uploaded');
+    if (outcome.kind === 'uploaded') {
+      expect(outcome.attempts).toBe(2);
+    }
+    expect(sleeps).toEqual([100]);
+  });
+
+  it('reloads fragments after a CAS conflict so a newer fragment is included', async () => {
+    const storage = new InMemoryObjectStorage();
+    await uploadEstateFragment(
+      fragment({
+        estateId: 'acme',
+        productId: 'payments',
+        fragmentKey: 'payments',
+        sourceRef: 'a',
+        runId: 'r1',
+        publishedAt: '2026-01-01T00:00:00.000Z',
+        objects: [{ path: 'systems/payments.yaml', content: minimalYaml('payments') }],
+      }),
+      storage
+    );
+    await seedLatest(storage);
+
+    let latestPuts = 0;
+    const originalPut = storage.putObject.bind(storage);
+    storage.putObject = async request => {
+      if (request.key === 'latest/manifest.json') {
+        latestPuts += 1;
+        if (latestPuts === 1) {
+          await uploadEstateFragment(
+            fragment({
+              estateId: 'acme',
+              productId: 'checkout',
+              fragmentKey: 'checkout',
+              sourceRef: 'b',
+              runId: 'r1',
+              publishedAt: '2026-02-01T00:00:00.000Z',
+              objects: [{ path: 'systems/checkout.yaml', content: minimalYaml('checkout') }],
+            }),
+            storage
+          );
+          throw new ObjectStoragePreconditionFailedError(request.key);
+        }
+      }
+      return originalPut(request);
+    };
 
     const outcome = await runComposeCatalog(
       {
@@ -194,15 +268,19 @@ dependencies: []
         allowEmpty: false,
         keyPrefix: 'estates/acme',
       },
-      { resolveStorage: () => storage }
+      { resolveStorage: () => storage, sleep: noSleep }
     );
 
     expect(outcome.kind).toBe('uploaded');
-    if (outcome.kind === 'uploaded') {
-      expect(outcome.attempts).toBeGreaterThanOrEqual(1);
-    }
+    if (outcome.kind !== 'uploaded') return;
+    expect(outcome.attempts).toBe(2);
+    expect(outcome.contributors.map(c => c.fragmentKey).sort()).toEqual(['checkout', 'payments']);
   });
 });
+
+async function seedLatest(storage: InMemoryObjectStorage): Promise<void> {
+  await storage.putObject({ key: 'latest/manifest.json', body: '{"revision":"seed"}' });
+}
 
 describe('Feature: catalog publish-fragment', () => {
   it('stages a local tree as a fragment', async () => {

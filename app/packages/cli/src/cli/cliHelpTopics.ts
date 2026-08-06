@@ -312,7 +312,7 @@ export function printCatalogHelp(): void {
   flag('--estate=<id>', 'Estate id to compose (loads fragments/ under the key prefix)');
   flag('--workspace-name=<name>', 'Workspace name for validation / catalog');
   flag('--key-prefix=<path>', 'Override object key prefix (default: estates/{estate}/)');
-  flag('--max-retries=<n>', 'CAS retries on latest/manifest.json (default: 3)');
+  flag('--max-retries=<n>', 'CAS retries on latest/manifest.json (default: 8)');
   flag('--no-dry-run', 'Upload composed snapshot and CAS-update latest');
   flag('--allow-empty', 'Exit 0 when no fragments are staged (cron safety nets)');
   flag(
