@@ -1,4 +1,5 @@
 import {
+  isPulumiProjectContent,
   isPulumiProjectFileName,
   isPulumiSourceFileForRuntime,
   readPulumiProjectRuntime,
@@ -17,8 +18,21 @@ export type DiscoveredPulumiRoot = {
   filePaths: string[];
 };
 
+function resolvePulumiProjectFile(
+  rootPath: string,
+  fileSystem: AnalysisFileSystemPort
+): { fileName: string; absolutePath: string; content: string } | undefined {
+  const fileName = fileSystem.listDirectoryNames(rootPath).find(isPulumiProjectFileName);
+  if (!fileName) return undefined;
+  const absolutePath = fileSystem.getAbsolutePath(rootPath, fileName);
+  const content = fileSystem.readText(absolutePath) ?? '';
+  if (!isPulumiProjectContent(content)) return undefined;
+  return { fileName, absolutePath, content };
+}
+
 /**
- * Walk `scanRoot` and find Pulumi projects: directories that contain `Pulumi.yaml`.
+ * Walk `scanRoot` and find Pulumi projects: directories that contain a real
+ * `Pulumi.yaml` / `pulumi.yaml` with `name` + `runtime` metadata.
  * Nested dirs under an already-discovered root are skipped as separate systems.
  */
 export function discoverPulumiRoots(
@@ -33,16 +47,12 @@ export function discoverPulumiRoots(
     isPulumiProjectFileName
   );
 
-  return roots.map(rootPath => {
-    const pulumiYaml = fileSystem.getAbsolutePath(rootPath, 'Pulumi.yaml');
-    const pulumiYml = fileSystem.getAbsolutePath(rootPath, 'Pulumi.yml');
-    const projectFile = fileSystem.exists(pulumiYaml)
-      ? pulumiYaml
-      : fileSystem.exists(pulumiYml)
-        ? pulumiYml
-        : pulumiYaml;
-    const projectContent = fileSystem.readText(projectFile) ?? '';
-    const runtime = readPulumiProjectRuntime(projectContent);
+  const discovered: DiscoveredPulumiRoot[] = [];
+  for (const rootPath of roots) {
+    const project = resolvePulumiProjectFile(rootPath, fileSystem);
+    if (!project) continue;
+
+    const runtime = readPulumiProjectRuntime(project.content);
     const filePaths = fileSystem
       .listDirectoryNames(rootPath)
       .filter(name => {
@@ -53,13 +63,14 @@ export function discoverPulumiRoots(
       })
       .map(name => fileSystem.getAbsolutePath(rootPath, name));
 
-    return {
+    discovered.push({
       rootPath,
       // Prefer the directory name when the Pulumi project *is* the scan root
       // (explicit infra repo / package), not a generic "pulumi" slug.
       systemId: slugFromPath(rootPath, absScan, directorySlug(absScan, 'pulumi')),
       runtime,
       filePaths,
-    };
-  });
+    });
+  }
+  return discovered;
 }

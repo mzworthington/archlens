@@ -52,6 +52,18 @@ export function isPulumiProjectFileName(name: string): boolean {
   return PULUMI_PROJECT_FILE.test(name);
 }
 
+/**
+ * True when YAML content looks like a Pulumi project file (`name` + `runtime`),
+ * not an unrelated document that happens to be named `pulumi.yaml` (e.g. Backstage
+ * microsite plugin catalog entries).
+ */
+export function isPulumiProjectContent(content: string): boolean {
+  if (!content.trim()) return false;
+  const hasName = /(?:^|\n)name\s*:/m.test(content);
+  const hasRuntime = /(?:^|\n)runtime\s*:/m.test(content);
+  return hasName && hasRuntime;
+}
+
 export function isPulumiStackConfigFileName(name: string): boolean {
   return PULUMI_STACK_CONFIG.test(name);
 }

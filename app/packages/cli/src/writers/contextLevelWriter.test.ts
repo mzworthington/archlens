@@ -165,6 +165,66 @@ describe('ContextLevelWriter', () => {
     expect(schema.nodes.some(n => n.entityRef === 'eshop' && n.type !== 'person')).toBe(false);
   });
 
+  it('sticks a declared landscape system anchor onto eshop/system without duplicates', async () => {
+    const seedPath = '/workspace/blueprints/eshop/context.yaml';
+    fileSystem.existingFiles.add('/workspace/blueprints');
+    fileSystem.existingFiles.add('/workspace/blueprints/eshop');
+    fileSystem.existingFiles.add(seedPath);
+    fileSystem.textFiles.set(
+      seedPath,
+      serializeSchemaToYaml({
+        entityRef: 'eshop',
+        name: 'E-Shop',
+        version: systemSchemaPublicUrl(),
+        level: 'context',
+        nodes: [
+          {
+            entityRef: 'eshop',
+            type: 'software-system',
+            name: 'Eshop',
+            properties: { [CONTEXT_OWNERSHIP_PROPERTY]: CONTEXT_OWNERSHIP_AUTHOR },
+          },
+          {
+            entityRef: 'eshop/shopper',
+            type: 'person',
+            name: 'Shopper',
+            properties: { role: 'product-persona' },
+          },
+        ],
+        dependencies: [
+          {
+            from: 'eshop/shopper',
+            to: 'eshop',
+            type: 'direct-call',
+            description: 'Browse catalog',
+          },
+        ],
+      })
+    );
+
+    await writer.writeSystems('/workspace/blueprints', 'eshop', [
+      {
+        entityRef: 'eshop',
+        displayName: 'EShop',
+        rootPath: '',
+        productId: 'eshop',
+        isProductHub: true,
+      },
+    ]);
+
+    const schema = parseSchemaFromYaml(fileSystem.writtenFiles.get(seedPath)!);
+    expect(schema.nodes.filter(n => n.type === 'software-system').map(n => n.entityRef)).toEqual([
+      'eshop/system',
+    ]);
+    expect(schema.nodes.find(n => n.entityRef === 'eshop/system')?.name).toBe('Eshop');
+    expect(schema.dependencies).toContainEqual({
+      from: 'eshop/shopper',
+      to: 'eshop/system',
+      type: 'direct-call',
+      description: 'Browse catalog',
+    });
+  });
+
   it('keeps multi-system product hubs on the context entityRef', async () => {
     await writer.writeSystems('/workspace/blueprints', 'backstage', [
       {

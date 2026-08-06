@@ -4,6 +4,33 @@ import { discoverPulumiRoots } from './pulumiDiscovery.ts';
 import { MockFileSystem } from '../../test/fakes.ts';
 
 describe('discoverPulumiRoots', () => {
+  it('ignores marketplace catalog YAML named pulumi.yaml that is not a Pulumi project', () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const catalog = path.resolve('/repo/microsite/data/plugins');
+    fs.existingFiles.add(scan);
+    fs.directories.set(scan, ['microsite', 'plugins']);
+    fs.directories.set(path.resolve('/repo/microsite'), ['data']);
+    fs.directories.set(path.resolve('/repo/microsite/data'), ['plugins']);
+    fs.directories.set(catalog, ['pulumi.yaml', 'github.yaml']);
+    fs.directories.set(path.resolve('/repo/plugins'), []);
+    fs.textFiles.set(
+      path.resolve('/repo/microsite/data/plugins/pulumi.yaml'),
+      [
+        '---',
+        'title: Pulumi',
+        'author: Pulumi',
+        'category: Infrastructure',
+        'description: Use Pulumi scaffolder actions',
+        '---',
+        '',
+      ].join('\n')
+    );
+    fs.existingFiles.add(path.resolve('/repo/microsite/data/plugins/pulumi.yaml'));
+
+    expect(discoverPulumiRoots(scan, fs)).toEqual([]);
+  });
+
   it('finds a project with Pulumi.yaml and yaml resources', () => {
     const fs = new MockFileSystem();
     const scan = path.resolve('/repo');

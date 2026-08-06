@@ -1,7 +1,36 @@
 import { describe, expect, it } from 'vitest';
-import { filterPulumiStackFiles, parsePulumiStackToSchema } from './pulumiStack';
+import {
+  filterPulumiStackFiles,
+  isPulumiProjectContent,
+  parsePulumiStackToSchema,
+} from './pulumiStack';
 
 describe('pulumiStack', () => {
+  it('accepts real Pulumi project metadata and rejects marketplace docs named pulumi.yaml', () => {
+    expect(
+      isPulumiProjectContent(
+        'name: infra\nruntime: yaml\nresources:\n  bucket:\n    type: aws:s3:Bucket\n'
+      )
+    ).toBe(true);
+    expect(isPulumiProjectContent('name: iac\nruntime:\n  name: nodejs\n')).toBe(true);
+    // Backstage microsite plugin catalog entry (not a Pulumi project).
+    expect(
+      isPulumiProjectContent(
+        [
+          '---',
+          'title: Pulumi',
+          'author: Pulumi',
+          'category: Infrastructure',
+          'description: Use Pulumi scaffolder actions',
+          'npmPackageName: "@pulumi/backstage-plugin-pulumi"',
+          '---',
+          '',
+        ].join('\n')
+      )
+    ).toBe(false);
+    expect(isPulumiProjectContent('')).toBe(false);
+  });
+
   it('keeps only Python program files for python runtime', () => {
     const filtered = filterPulumiStackFiles(
       [
