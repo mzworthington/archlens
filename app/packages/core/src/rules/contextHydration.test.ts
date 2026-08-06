@@ -122,6 +122,81 @@ describe('hydrateContextSchema', () => {
     });
   });
 
+  it('sticks a landscape-level author anchor onto the scan system leaf', () => {
+    const declared = baseContext(
+      [
+        {
+          entityRef: 'eshop',
+          type: 'software-system',
+          name: 'Eshop',
+          properties: { [CONTEXT_OWNERSHIP_PROPERTY]: CONTEXT_OWNERSHIP_AUTHOR },
+        },
+        {
+          entityRef: 'eshop/shopper',
+          type: 'person',
+          name: 'Shopper',
+          properties: { role: 'product-persona' },
+        },
+        {
+          entityRef: 'eshop/payment-gateway',
+          type: 'gateway-api',
+          name: 'Payment Gateway',
+          external: true,
+          properties: { classification: 'third-party' },
+        },
+      ],
+      [
+        {
+          from: 'eshop/shopper',
+          to: 'eshop',
+          type: 'direct-call',
+          description: 'Browse catalog and place orders',
+        },
+        {
+          from: 'eshop',
+          to: 'eshop/payment-gateway',
+          type: 'direct-call',
+          description: 'Authorize and capture payments',
+        },
+      ]
+    );
+
+    const { schema } = hydrateContextSchema({
+      base: declared,
+      landscapeEntityRef: 'eshop',
+      landscapeName: 'E-Shop',
+      version: VERSION,
+      scanSystems: [
+        {
+          entityRef: 'eshop/system',
+          type: 'software-system',
+          name: 'Eshop System',
+          properties: { rootPath: '', productId: 'eshop' },
+        },
+      ],
+      ownershipRootPaths: [''],
+    });
+
+    expect(schema.nodes.some(n => n.entityRef === 'eshop' && n.type === 'software-system')).toBe(
+      false
+    );
+    const system = schema.nodes.find(n => n.entityRef === 'eshop/system');
+    expect(system?.name).toBe('Eshop');
+    expect(system?.properties?.[CONTEXT_OWNERSHIP_PROPERTY]).toBe(CONTEXT_OWNERSHIP_AUTHOR);
+    expect(schema.dependencies).toContainEqual({
+      from: 'eshop/shopper',
+      to: 'eshop/system',
+      type: 'direct-call',
+      description: 'Browse catalog and place orders',
+    });
+    expect(schema.dependencies).toContainEqual({
+      from: 'eshop/system',
+      to: 'eshop/payment-gateway',
+      type: 'direct-call',
+      description: 'Authorize and capture payments',
+    });
+  });
+
   it('hydrates a sparse system anchor and preserves personas and third-parties', () => {
     const declared = baseContext(
       [

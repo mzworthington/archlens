@@ -416,6 +416,66 @@ k8s_cluster = Cluster(
     ).toBe(false);
   });
 
+  it('does not overwrite a populated code-scan containers.yaml with an empty IaC result', async () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const plugins = path.resolve('/repo/plugins');
+    const out = path.resolve('/repo/blueprints');
+    const containersPath = path.resolve('/repo/blueprints/plugins/containers.yaml');
+
+    fs.existingFiles.add(scan);
+    fs.existingFiles.add(path.resolve('/repo/blueprints/plugins'));
+    fs.existingFiles.add(containersPath);
+    fs.directories.set(scan, ['plugins']);
+    fs.directories.set(plugins, ['main.tf']);
+    fs.directories.set(out, ['plugins']);
+    fs.directories.set(path.resolve('/repo/blueprints/plugins'), ['containers.yaml']);
+    fs.textFiles.set(path.resolve('/repo/plugins/main.tf'), '# empty terraform root');
+    fs.textFiles.set(
+      containersPath,
+      [
+        'version: https://archlens.dev/schemas/v4/blueprint.schema.json',
+        'level: container',
+        'metadata:',
+        '  entityRef: backstage/plugins',
+        '  name: Plugins Containers',
+        'nodes:',
+        '  - entityRef: backstage/plugins/catalog',
+        '    type: container',
+        '    name: Catalog',
+        'dependencies: []',
+        '',
+      ].join('\n')
+    );
+    fs.existingFiles.add(path.resolve('/repo/plugins/main.tf'));
+
+    const analyzer = new IacAnalyzer({ fileSystem: fs, logger: new SilentLogger() });
+    const result = await analyzer.run('backstage', out, {
+      scanRoot: scan,
+      discoveredSystems: [
+        {
+          id: 'backstage',
+          displayName: 'Backstage',
+          rootPath: '',
+          kind: 'product',
+          productId: 'backstage',
+        },
+        {
+          id: 'plugins',
+          displayName: 'Plugins',
+          rootPath: 'plugins',
+          kind: 'workspace',
+          productId: 'backstage',
+        },
+      ],
+    });
+
+    expect(result.rootsAnalyzed).toBe(0);
+    const preserved = parseSchemaFromYaml(await fs.readSchema(containersPath));
+    expect(preserved.name).toBe('Plugins Containers');
+    expect(preserved.nodes.map(n => n.entityRef)).toEqual(['backstage/plugins/catalog']);
+  });
+
   it('does not run code-scan fallback for empty terraform roots', async () => {
     const fs = new MockFileSystem();
     const scan = path.resolve('/repo');

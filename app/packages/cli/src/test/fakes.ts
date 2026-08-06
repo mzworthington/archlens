@@ -34,7 +34,7 @@ export class MockFileSystem implements AnalysisFileSystemPort {
   }
 
   async readSchema(filePath: string): Promise<string> {
-    const content = this.writtenFiles.get(filePath);
+    const content = this.writtenFiles.get(filePath) ?? this.textFiles.get(filePath);
     if (content === undefined) {
       throw new Error(`File not found: ${filePath}`);
     }
