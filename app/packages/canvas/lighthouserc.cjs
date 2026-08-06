@@ -4,6 +4,8 @@ module.exports = {
     collect: {
       url: [
         'http://127.0.0.1:4173/',
+        'http://127.0.0.1:4173/guide/chaoslens',
+        'http://127.0.0.1:4173/guide/tracelens',
         'http://127.0.0.1:4173/workspace?lens=tracelens',
         'http://127.0.0.1:4173/workspace',
         'http://127.0.0.1:4173/design-system',
