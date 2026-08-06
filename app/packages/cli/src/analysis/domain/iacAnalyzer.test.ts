@@ -425,4 +425,149 @@ k8s_cluster = Cluster(
     expect(result.rootsAnalyzed).toBe(0);
     expect(fs.writtenFiles.size).toBe(0);
   });
+
+  it('projects meaningful Cloudflare externals and hydrates context from seed serves', async () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo');
+    const cloudflare = path.resolve('/repo/infra/cloudflare');
+    const out = path.resolve('/repo/blueprints');
+    const seedPath = path.resolve('/repo/blueprints/archlens/context.yaml');
+
+    fs.existingFiles.add(scan);
+    fs.existingFiles.add(out);
+    fs.existingFiles.add(path.resolve('/repo/blueprints/archlens'));
+    fs.existingFiles.add(seedPath);
+    fs.directories.set(scan, ['infra']);
+    fs.directories.set(path.resolve('/repo/infra'), ['cloudflare']);
+    fs.directories.set(cloudflare, ['Pulumi.yaml', 'index.ts']);
+    fs.directories.set(out, ['archlens']);
+    fs.directories.set(path.resolve('/repo/blueprints/archlens'), ['context.yaml']);
+
+    const seedYaml = `version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: context
+metadata:
+  entityRef: archlens
+  name: ArchLens
+nodes:
+  - entityRef: archlens
+    type: software-system
+    name: ArchLens
+    properties:
+      contextOwnership: author
+  - entityRef: archlens/cloudflare
+    type: software-system
+    name: Cloudflare Hosting
+    properties:
+      role: infrastructure
+      serves: archlens
+      contextOwnership: author
+  - entityRef: archlens/blueprint-catalog-r2
+    type: rest-api
+    name: Cloudflare R2 Catalog
+    external: true
+    properties:
+      classification: third-party
+      vendor: Cloudflare R2
+      contextOwnership: author
+dependencies:
+  - from: archlens
+    to: archlens/blueprint-catalog-r2
+    type: direct-call
+    description: Publish and compose blueprint corpora
+`;
+    fs.writtenFiles.set(seedPath, seedYaml);
+    fs.textFiles.set(seedPath, seedYaml);
+
+    fs.textFiles.set(
+      path.resolve('/repo/infra/cloudflare/Pulumi.yaml'),
+      `name: archlens-cloudflare
+runtime:
+  name: nodejs
+`
+    );
+    fs.textFiles.set(
+      path.resolve('/repo/infra/cloudflare/index.ts'),
+      `import * as cloudflare from '@pulumi/cloudflare';
+
+const pagesProject = new cloudflare.PagesProject('archlens', {
+  accountId: 'acct',
+  name: 'archlens',
+  productionBranch: 'main',
+});
+
+new cloudflare.DnsRecord('apex-pages', {
+  zoneId: 'zone',
+  name: 'example.com',
+  type: 'CNAME',
+  content: pagesProject.subdomain,
+});
+
+const catalogBucket = new cloudflare.R2Bucket('blueprint-catalog', {
+  accountId: 'acct',
+  name: 'catalog',
+});
+
+new cloudflare.R2BucketCors('blueprint-catalog-cors', {
+  accountId: 'acct',
+  bucketName: catalogBucket.name,
+  rules: [],
+});
+`
+    );
+    fs.existingFiles.add(path.resolve('/repo/infra/cloudflare/Pulumi.yaml'));
+    fs.existingFiles.add(path.resolve('/repo/infra/cloudflare/index.ts'));
+
+    const analyzer = new IacAnalyzer({
+      fileSystem: fs,
+      logger: new SilentLogger(),
+    });
+
+    const result = await analyzer.run('archlens', out, {
+      scanRoot: scan,
+      discoveredSystems: [
+        {
+          id: 'archlens',
+          displayName: 'ArchLens',
+          rootPath: '',
+          kind: 'product',
+          productId: 'archlens',
+        },
+      ],
+    });
+
+    expect(result.rootsAnalyzed).toBe(1);
+    expect(result.pulumiRoots).toBe(1);
+
+    const containers = parseSchemaFromYaml(
+      fs.writtenFiles.get(path.resolve('/repo/blueprints/cloudflare/containers.yaml'))!
+    );
+    expect(containers.nodes.map(n => n.properties?.['iac.product']).sort()).toEqual([
+      'pages',
+      'r2',
+    ]);
+    expect(containers.nodes.every(n => n.parentEntityRef === 'archlens/cloudflare')).toBe(true);
+
+    const context = parseSchemaFromYaml(fs.writtenFiles.get(seedPath)!);
+    expect(context.nodes.find(n => n.entityRef === 'archlens/vendor-cloudflare')).toMatchObject({
+      name: 'Cloudflare',
+      external: true,
+      properties: expect.objectContaining({
+        classification: 'third-party',
+        vendorSlug: 'cloudflare',
+      }),
+    });
+    expect(context.nodes.find(n => n.entityRef === 'archlens/blueprint-catalog-r2')?.name).toBe(
+      'Cloudflare R2 Catalog'
+    );
+    expect(context.nodes.find(n => n.entityRef === 'archlens/cloudflare')?.name).toBe(
+      'Cloudflare Hosting'
+    );
+    expect(context.dependencies).toContainEqual(
+      expect.objectContaining({
+        from: 'archlens',
+        to: 'archlens/vendor-cloudflare',
+        type: 'direct-call',
+      })
+    );
+  });
 });

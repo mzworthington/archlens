@@ -166,8 +166,11 @@ dependencies:
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Product persona** | `type: person` + `properties.role: product-persona`                                                                                                       |
 | **System anchor**   | `software-system` / `group` with a stable `entityRef` (and optional `name`)                                                                               |
+| **Infra spoke**     | `software-system` with `properties.role: infrastructure` and `properties.serves` (comma-separated system `entityRef`s this stack supports)                |
 | **Third-party**     | `external: true` + `properties.classification: third-party`                                                                                               |
 | **Display `name`**  | Optional everywhere; omit to derive from the `entityRef` leaf. Merges prefer an explicit name over a derived one; two explicit names keep the earlier one |
+
+IaC scan classifies cloud resources by significance: **context** hydrates one third-party per vendor (via `proposedThirdParties`); **container** diagrams keep primary products (e.g. Cloudflare Pages, R2) under the infra spoke and omit DNS/CORS/zone noise. Author-declared third-parties in the seed survive hydration.
 
 Seed files live under the scan output directory: `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` (context folder optional). Commit them in-repo the same way this project does at [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml). How scan merges into the seed: [ArchLens — Declare then scan](./cli.md#declare-then-scan).
 

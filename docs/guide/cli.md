@@ -183,6 +183,16 @@ When the scan root contains Pulumi projects (`Pulumi.yaml`), the CLI also emits 
 
 No flag required - if `Pulumi.yaml` exists under the scan root, projects are mapped.
 
+### Meaningful external dependencies
+
+IaC stacks are often noisy. The CLI classifies resources so diagrams stay useful:
+
+- **Container** — keep **primary** vendor products (e.g. Cloudflare Pages, R2); drop supporting/noise resources (DNS, CORS, zone lookups) by default
+- **Context** — propose one third-party per **vendor**, hydrated into the committed blueprint seed via ADR-0015 (`proposedThirdParties`)
+- **Infra membership** — declare `properties.role: infrastructure` and `properties.serves: <system-ref>[,…]` on an infra spoke in the seed so an infra package/repo attaches to the products it supports (see [Declared system context](./schema.md#declared-system-context))
+
+ArchLens dogfoods this with `infra/cloudflare` and [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml).
+
 You can also import Terraform or Pulumi into an **existing** diagram from ArchLens Canvas - see [Import infrastructure](./canvas.md#import-infrastructure).
 
 ### IDE validation
