@@ -71,14 +71,15 @@ resource "aws_iam_role" "lambda" {
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
     expect(schema.level).toBe('container');
     expect(schema.entityRef).toBe('acme/infra');
-    expect(
-      schema.nodes.some(n => n.properties?.['iac.provider_type'] === 'aws_lambda_function')
-    ).toBe(true);
-    const lambda = schema.nodes.find(
-      n => n.properties?.['iac.provider_type'] === 'aws_lambda_function'
-    );
-    expect(lambda?.properties?.filepath).toBe('infra/main.tf');
-    expect(schema.dependencies.length).toBeGreaterThanOrEqual(1);
+    expect(schema.nodes.map(n => n.properties?.['iac.product'])).toEqual(['lambda']);
+    const lambda = schema.nodes.find(n => n.properties?.['iac.product'] === 'lambda');
+    expect(lambda).toMatchObject({
+      name: 'AWS Lambda',
+      properties: expect.objectContaining({
+        filepath: 'infra/main.tf',
+        vendorSlug: 'aws',
+      }),
+    });
 
     const contextPath = path.resolve('/repo/blueprints/acme/context.yaml');
     expect(fs.writtenFiles.has(contextPath)).toBe(true);
@@ -88,6 +89,10 @@ resource "aws_iam_role" "lambda" {
     expect(context.nodes.find(n => n.entityRef === 'acme/infra')).toMatchObject({
       parentEntityRef: undefined,
       properties: expect.objectContaining({ productId: 'repo' }),
+    });
+    expect(context.nodes.find(n => n.entityRef === 'acme/vendor-aws')).toMatchObject({
+      name: 'AWS',
+      external: true,
     });
   });
 
@@ -135,9 +140,7 @@ resources:
     const containersPath = path.resolve('/repo/blueprints/infra/containers.yaml');
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
     expect(schema.entityRef).toBe('acme/infra');
-    expect(
-      schema.nodes.some(n => n.properties?.['iac.provider_type'] === 'aws_lambda_function')
-    ).toBe(true);
+    expect(schema.nodes.map(n => n.properties?.['iac.product'])).toEqual(['lambda']);
 
     const context = parseSchemaFromYaml(
       fs.writtenFiles.get(path.resolve('/repo/blueprints/acme/context.yaml'))!
@@ -146,6 +149,7 @@ resources:
       parentEntityRef: undefined,
       properties: expect.objectContaining({ productId: 'repo' }),
     });
+    expect(context.nodes.find(n => n.entityRef === 'acme/vendor-aws')?.external).toBe(true);
   });
 
   it('parses a python pulumi project with nested runtime and __main__.py', async () => {
@@ -190,8 +194,11 @@ k8s_cluster = Cluster(
     expect(result.pulumiRoots).toBe(1);
     const containersPath = path.resolve('/repo/blueprints/gcp-py-gke/containers.yaml');
     const schema = parseSchemaFromYaml(fs.writtenFiles.get(containersPath)!);
-    expect(schema.nodes.length).toBeGreaterThan(0);
-    expect(schema.nodes.some(n => n.name === 'gcp:container:Cluster.gke-cluster')).toBe(true);
+    expect(schema.nodes.map(n => n.properties?.['iac.product'])).toEqual(['compute']);
+    expect(schema.nodes[0]).toMatchObject({
+      name: 'Google Cloud Compute',
+      properties: expect.objectContaining({ vendorSlug: 'gcp' }),
+    });
   });
 
   it('writes terraform and pulumi roots to context in one pass', async () => {

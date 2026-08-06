@@ -185,11 +185,13 @@ No flag required - if `Pulumi.yaml` exists under the scan root, projects are map
 
 ### Meaningful external dependencies
 
-IaC stacks are often noisy. The CLI classifies resources so diagrams stay useful:
+IaC stacks are often noisy, and one Pulumi/Terraform project may mix **many providers**. The CLI classifies each resource by provider pack so diagrams stay useful:
 
-- **Container** — keep **primary** vendor products (e.g. Cloudflare Pages, R2); drop supporting/noise resources (DNS, CORS, zone lookups) by default
-- **Context** — propose one third-party per **vendor**, hydrated into the committed blueprint seed via ADR-0015 (`proposedThirdParties`)
+- **Container** — keep **primary** products per vendor (e.g. Cloudflare Pages/R2, AWS Lambda/S3); drop supporting/noise (DNS, IAM, CORS, zone lookups) by default
+- **Context** — propose one third-party per **vendor** that contributed a primary (Cloudflare and AWS from the same stack both appear), hydrated via ADR-0015 (`proposedThirdParties`)
 - **Infra membership** — declare `properties.role: infrastructure` and `properties.serves: <system-ref>[,…]` on an infra spoke in the seed so an infra package/repo attaches to the products it supports (see [Declared system context](./schema.md#declared-system-context))
+
+Provider packs today: Cloudflare, AWS, Azure, Google Cloud. Unknown providers pass through unchanged until a pack exists.
 
 ArchLens dogfoods this with `infra/cloudflare` and [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml).
 
