@@ -88,8 +88,30 @@ const HEURISTICS: Array<{ test: (t: string) => boolean; nodeType: NodeType }> = 
       t.includes('api_gateway') ||
       t.includes('apigateway') ||
       t.includes('cloudfront') ||
-      t.includes('application_gateway'),
+      t.includes('application_gateway') ||
+      /pages_?project/.test(t) ||
+      t.endsWith('pagesproject'),
     nodeType: 'gateway-api',
+  },
+  {
+    test: t =>
+      t.startsWith('cloudflare') &&
+      (/r2_?bucket/.test(t) || t.endsWith('r2bucket')) &&
+      !/cors|custom_?domain|customdomain/.test(t),
+    nodeType: 'rest-api',
+  },
+  {
+    test: t =>
+      t.startsWith('cloudflare') &&
+      (/dns_?record/.test(t) ||
+        t.endsWith('dnsrecord') ||
+        /pages_?domain/.test(t) ||
+        t.endsWith('pagesdomain') ||
+        /r2.*cors/.test(t) ||
+        /r2.*custom_?domain/.test(t) ||
+        t.includes('r2customdomain') ||
+        t.includes('r2bucketcors')),
+    nodeType: 'container',
   },
 ];
 

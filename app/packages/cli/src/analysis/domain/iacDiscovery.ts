@@ -12,18 +12,24 @@ export const IAC_SKIP_DIR_NAMES = new Set([
   '.turbo',
 ]);
 
+/** Slug from the last path segment (used for IaC roots and infra-repo scan roots). */
+export function directorySlug(dirPath: string, fallback: string): string {
+  const base = dirPath.replace(/\\/g, '/').replace(/\/$/, '').split('/').filter(Boolean).pop();
+  if (!base) return fallback;
+  return (
+    base
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || fallback
+  );
+}
+
 export function slugFromPath(rootPath: string, scanRoot: string, scanRootSlug: string): string {
   const normalizedRoot = rootPath.replace(/\\/g, '/').replace(/\/$/, '');
   const scanBase = scanRoot.replace(/\\/g, '/').replace(/\/$/, '');
   if (normalizedRoot === scanBase) return scanRootSlug;
 
-  const base = normalizedRoot.split('/').filter(Boolean).pop() || scanRootSlug;
-  return (
-    base
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '') || scanRootSlug
-  );
+  return directorySlug(normalizedRoot, scanRootSlug);
 }
 
 export function isUnder(parent: string, child: string): boolean {

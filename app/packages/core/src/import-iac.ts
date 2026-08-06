@@ -7,6 +7,17 @@ export {
   type IacSourceKind,
 } from './rules/iacImport';
 export {
+  classifyIacResource,
+  infrastructureServesOf,
+  projectMeaningfulIacExternals,
+  type IacExternalClassification,
+  type IacResourceKind,
+  type IacResourceRef,
+  type IacSignificance,
+  type MeaningfulIacExternalsProjection,
+  type ProjectMeaningfulIacExternalsOptions,
+} from './rules/iacExternalSignificance';
+export {
   isPulumiProjectFileName,
   isPulumiSourceFileForRuntime,
   readPulumiProjectRuntime,

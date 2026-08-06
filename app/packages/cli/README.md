@@ -99,12 +99,12 @@ GitHub Action template: [`.github/actions/validate-blueprints`](../../../.github
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | `blueprints/[<ctx>/]context.yaml`       | System context (personas, systems, third-parties). Ctx folder optional; scan hydrates into a declared seed or creates one |
 | `blueprints/<system>/containers.yaml`   | Containers for that system                                                                                                |
-| `blueprints/<tf-root>/containers.yaml`  | Terraform/Pulumi resources as containers (grouped by owning product path)                                                 |
+| `blueprints/<tf-root>/containers.yaml`  | Meaningful IaC **products** per provider pack (e.g. Pages, Lambda) under the infra spoke; noise filtered                  |
 | `blueprints/<system>/*-components.yaml` | Component graphs per container                                                                                            |
 
 After all writers complete, an **externals pass** walks every schema in the output tree, rolls component-level cross-container dependencies up onto container diagrams where needed, adds **service-level coupling edges** on container diagrams when component evidence exists (for example `api → auth-service` rather than only container-to-container rollup), and materializes unresolved dependency endpoints as `external: true` proxy nodes on component and container diagrams.
 
-Terraform and Pulumi roots are placed on the context diagram under the **same product group as code** (longest matching repo path).
+Terraform and Pulumi roots are placed on the context diagram under the **same product group as code** (longest matching repo path), or under a declared **infra spoke** (`role: infrastructure`, `serves: …`) for dedicated infra packages/repos. IaC scan classifies resources by provider pack (Cloudflare, AWS, Azure, GCP): **container** diagrams keep primary products; **context** receives one proposed third-party per vendor (`proposedThirdParties`). Product guide: [Meaningful external dependencies](../../../docs/guide/cli.md#meaningful-external-dependencies).
 
 ### Multi-system discovery
 
