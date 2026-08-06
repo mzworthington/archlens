@@ -104,6 +104,39 @@ describe('externalNodeLayout', () => {
     expect(up3.x).toBeGreaterThan(up2.x);
   });
 
+  it('orders downstream externals by connected internal x (barycenter) to limit crossings', () => {
+    const crossed = schema({
+      nodes: [
+        {
+          entityRef: 'a/left',
+          type: 'component',
+          name: 'Left',
+          position: { x: 100, y: 300 },
+        },
+        {
+          entityRef: 'a/right',
+          type: 'component',
+          name: 'Right',
+          position: { x: 700, y: 300 },
+        },
+        // Alphabetical order would put "zeta" before "alpha-target" incorrectly for edges.
+        { entityRef: 'a/zeta-ext', type: 'component', name: 'Zeta', external: true },
+        { entityRef: 'a/alpha-ext', type: 'component', name: 'Alpha', external: true },
+      ],
+      dependencies: [
+        { from: 'a/left', to: 'a/zeta-ext', type: 'direct-call' },
+        { from: 'a/right', to: 'a/alpha-ext', type: 'direct-call' },
+      ],
+    });
+
+    const positions = computeDirectionalExternalPositions(crossed.nodes, crossed.dependencies, [
+      'a/zeta-ext',
+      'a/alpha-ext',
+    ]);
+
+    expect(positions.get('a/zeta-ext')!.x).toBeLessThan(positions.get('a/alpha-ext')!.x);
+  });
+
   it('updates only external nodes when positioning on a diagram', () => {
     const positioned = positionExternalNodes(diagram.nodes, diagram.dependencies);
     const core = positioned.find(n => n.entityRef === 'a/core');

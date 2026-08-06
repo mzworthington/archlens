@@ -19,6 +19,7 @@ export type ClientLayoutEdge = {
   id: string;
   source: string;
   target: string;
+  label?: string;
 };
 
 /**
@@ -41,6 +42,7 @@ export async function computeClientLayout(
     id: e.id,
     source: e.source,
     target: e.target,
+    ...(e.label ? { label: e.label } : {}),
   }));
 
   const nodeIds = new Set(layoutNodes.map(n => n.id));

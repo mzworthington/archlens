@@ -20,6 +20,24 @@ describe('DagreLayoutAdapter', () => {
     expect(positions.get('a')!.y).toBeLessThan(positions.get('c')!.y);
   });
 
+  it('spreads siblings so fan-in labels have horizontal room', async () => {
+    const adapter = new DagreLayoutAdapter();
+    const actors = ['architect', 'contributor', 'operator'];
+    const positions = await adapter.computeLayout(
+      sized([...actors, 'system']),
+      actors.map((source, i) => ({
+        id: `e${i}`,
+        source,
+        target: 'system',
+        label: `Describe work for ${source} with a longer caption`,
+      }))
+    );
+
+    const xs = actors.map(id => positions.get(id)!.x).sort((a, b) => a - b);
+    expect(xs[1]! - xs[0]!).toBeGreaterThan(150);
+    expect(xs[2]! - xs[1]!).toBeGreaterThan(150);
+  });
+
   it('centers a hub node above its children', async () => {
     const adapter = new DagreLayoutAdapter();
     const children = ['a', 'b', 'c', 'd', 'e'];
