@@ -10,16 +10,16 @@ On bare `/workspace`, a startup chooser asks how to begin:
 
 ![Startup chooser](../screenshots/6-startup-chooser.png)
 
-| Option                            | What it does                                                                                     |
-| --------------------------------- | ------------------------------------------------------------------------------------------------ |
-| **Load sandbox**                  | Clear IndexedDB drafts, session layout cache, and undo history; load bundled demo diagrams fresh |
-| **Open workspace from directory** | File System Access - pick a local `blueprints/` folder                                           |
-| **Import Mermaid diagram**        | Reset to an empty canvas, then open the Mermaid import wizard                                    |
-| **Import infrastructure**         | Reset to an empty canvas, then open the Terraform / Pulumi import wizard                         |
+| Option                            | What it does                                                                                                                                          |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Load sandbox**                  | Clear IndexedDB drafts, session layout cache, and undo history; reload the samples catalog (remote R2 estate when configured, else bundled demo YAML) |
+| **Open workspace from directory** | File System Access - pick a local `blueprints/` folder                                                                                                |
+| **Import Mermaid diagram**        | Reset to an empty canvas, then open the Mermaid import wizard                                                                                         |
+| **Import infrastructure**         | Reset to an empty canvas, then open the Terraform / Pulumi import wizard                                                                              |
 
 The app does **not** auto-load the sandbox on first paint. On bare `/workspace` you see the chooser over an empty canvas until you pick an option (or follow a deep link).
 
-**Load sandbox** is the reset control for the bundled demo: it wipes local working-copy storage and in-memory session caches, then reloads the YAML shipped with the app build. Use it after regenerating diagrams from your codebase, or whenever you want a clean demo workspace without leftover drafts.
+**Load sandbox** resets the samples workspace: it wipes local working-copy storage and in-memory session caches, then reloads from the configured catalog (hosted estate on Cloudflare R2 in local/production builds when `VITE_REMOTE_CATALOG_BASE_URL` is set; otherwise the YAML mirrored into the app build). Use it whenever you want a clean demo without leftover drafts.
 
 Deep links (`/workspace/…`) skip the chooser. You can open a folder, a single YAML file, or Mermaid again anytime from the toolbar **Open** menu.
 
@@ -120,7 +120,7 @@ When no node is selected, or when expanding the properties panel, you can instan
 
 As you edit systems and drag nodes, ArchLens Canvas keeps draft state local:
 
-- **Bundled sandbox** - edits are tracked in browser IndexedDB until you reload via **Load sandbox** (which clears storage) or discard manually.
+- Bundled sandbox - edits are tracked in browser IndexedDB until you reload via **Load sandbox** (which clears storage) or discard manually. When `VITE_REMOTE_CATALOG_BASE_URL` is set, the sandbox YAML comes from the hosted catalog rather than build-time embeds.
 - **Opened folder** - drafts are tracked in IndexedDB against the on-disk baseline; **Commit** writes YAML back to the folder via the File System Access API.
 - Click the **Pending Draft Changes** (compare) icon in the top header to see a comprehensive Git-style diff of added, modified, or deleted nodes and dependencies.
 - You can **Revert** draft changes back to the baseline, or **Commit** them to persist (folder workspaces only).

@@ -37,5 +37,9 @@ export default defineConfig({
     url: 'http://localhost:5188',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    env: {
+      ...process.env,
+      VITE_REMOTE_CATALOG_BASE_URL: '',
+    },
   },
 });

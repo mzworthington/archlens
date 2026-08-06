@@ -33,5 +33,10 @@ export default defineConfig({
     timeout: 120_000,
     stdout: 'ignore',
     stderr: 'pipe',
+    // Keep e2e on mirrored samples/ even when .env.development points at R2.
+    env: {
+      ...process.env,
+      VITE_REMOTE_CATALOG_BASE_URL: '',
+    },
   },
 });
