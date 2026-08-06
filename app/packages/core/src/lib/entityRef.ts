@@ -48,6 +48,155 @@ export function resolveShortEntityRef(ref: string, systemId: string, contextSlug
   return `${contextSlug}/${systemId}/${ref}`;
 }
 
+function resolveContextSlug(
+  files: Array<{ path: string; schema: SystemSchema }>
+): string | undefined {
+  const contextFiles = files.filter(file => file.schema.level === 'context');
+  if (contextFiles.length === 1) {
+    const ref = contextFiles[0].schema.entityRef;
+    return ref && isEntityRef(ref) ? ref : undefined;
+  }
+  if (contextFiles.length > 1) {
+    const refs = contextFiles
+      .map(file => file.schema.entityRef)
+      .filter((ref): ref is string => !!ref && isEntityRef(ref));
+    return deriveSharedContextNamespace(refs);
+  }
+  return undefined;
+}
+
+function systemIdForSchema(schema: SystemSchema, workspaceName?: string | null): string {
+  return schema.entityRef || slugify(workspaceName || schema.name).replace(/_/g, '-');
+}
+
+function buildContainerRefMap(
+  schema: SystemSchema,
+  systemId: string,
+  contextSlug: string | undefined
+): Map<string, string> {
+  const refMap = new Map<string, string>();
+  for (const node of schema.nodes) {
+    const ref = node.entityRef || '';
+    if (ref.includes('/')) {
+      refMap.set(ref, ref);
+      continue;
+    }
+    const containerFQN =
+      contextSlug && !systemId.startsWith(`${contextSlug}/`)
+        ? `${contextSlug}/${systemId}/${ref}`
+        : `${systemId}/${ref}`;
+    refMap.set(ref, containerFQN);
+  }
+  return refMap;
+}
+
+function buildComponentRefMap(
+  schema: SystemSchema,
+  systemId: string,
+  contextSlug: string | undefined
+): Map<string, string> {
+  const refMap = new Map<string, string>();
+  const parentContainerFQN =
+    schema.entityRef && isEntityRef(schema.entityRef) ? schema.entityRef : undefined;
+
+  for (const node of schema.nodes) {
+    const ref = node.entityRef || '';
+    if (ref.includes('/')) {
+      refMap.set(ref, ref);
+      continue;
+    }
+    if (parentContainerFQN) {
+      refMap.set(ref, `${parentContainerFQN}/${ref}`);
+      continue;
+    }
+    const baseFQN =
+      contextSlug && !systemId.startsWith(`${contextSlug}/`)
+        ? `${contextSlug}/${systemId}`
+        : `${systemId}`;
+    refMap.set(ref, `${baseFQN}/${ref}`);
+  }
+  return refMap;
+}
+
+function buildContextRefMap(
+  schema: SystemSchema,
+  systemId: string,
+  contextSlug: string | undefined
+): Map<string, string> {
+  const refMap = new Map<string, string>();
+  for (const node of schema.nodes) {
+    const ref = node.entityRef || '';
+    if (ref.includes('/')) {
+      refMap.set(ref, ref);
+      continue;
+    }
+    if (ref === contextSlug || ref === systemId) {
+      // Diagram-root group nodes share the context entityRef.
+      refMap.set(ref, ref);
+      continue;
+    }
+    refMap.set(
+      ref,
+      contextSlug && !ref.startsWith(`${contextSlug}/`) ? `${contextSlug}/${ref}` : ref
+    );
+  }
+  return refMap;
+}
+
+function buildFileNodeRefMap(
+  schema: SystemSchema,
+  systemId: string,
+  contextSlug: string | undefined
+): Map<string, string> {
+  if (schema.level === 'container') return buildContainerRefMap(schema, systemId, contextSlug);
+  if (schema.level === 'component') return buildComponentRefMap(schema, systemId, contextSlug);
+  if (schema.level === 'context') return buildContextRefMap(schema, systemId, contextSlug);
+  return new Map();
+}
+
+function resolveMappedRef(
+  ref: string,
+  fileRefMap: Map<string, string>,
+  systemId: string,
+  contextSlug: string | undefined
+): string {
+  if (!ref) return '';
+  if (ref.includes('/')) return ref;
+  return fileRefMap.get(ref) ?? resolveShortEntityRef(ref, systemId, contextSlug);
+}
+
+function resolveSchemaWithRefs(
+  file: { path: string; schema: SystemSchema },
+  fileRefMap: Map<string, string>,
+  systemId: string,
+  contextSlug: string | undefined,
+  workspaceName?: string | null
+): SystemSchema {
+  const resolvedNodes = file.schema.nodes.map(node => {
+    const entityRef = resolveMappedRef(node.entityRef || '', fileRefMap, systemId, contextSlug);
+    const parentEntityRef = node.parentEntityRef
+      ? resolveMappedRef(node.parentEntityRef, fileRefMap, systemId, contextSlug)
+      : undefined;
+    return parentEntityRef ? { ...node, entityRef, parentEntityRef } : { ...node, entityRef };
+  });
+
+  const resolvedDeps = (file.schema.dependencies ?? []).map(dep => {
+    const getDepRef = (ref: string) => {
+      if (!ref) return '';
+      if (fileRefMap.has(ref)) return fileRefMap.get(ref)!;
+      return resolveShortEntityRef(ref, systemId, contextSlug);
+    };
+    return { ...dep, from: getDepRef(dep.from), to: getDepRef(dep.to) };
+  });
+
+  return {
+    ...file.schema,
+    entityRef: file.schema.entityRef || getSchemaEntityRef(file.schema, workspaceName),
+    nodes: resolvedNodes,
+    dependencies: resolvedDeps,
+  };
+}
+
 /**
  * Processes all schemas in the workspace, calculates their C4 hierarchical FQNs,
  * and sets the resolved `entityRef` on every node. It also updates dependency targets.
@@ -59,128 +208,24 @@ export function resolveWorkspaceEntityRefs(
   files: Array<{ path: string; schema: SystemSchema }>,
   workspaceName?: string | null
 ): ResolvedWorkspaceState {
+  const contextSlug = resolveContextSlug(files);
   const nodeRefMapByPath = new Map<string, Map<string, string>>();
 
-  const contextFiles = files.filter(f => f.schema.level === 'context');
-  let contextSlug: string | undefined;
-  if (contextFiles.length === 1) {
-    const ref = contextFiles[0].schema.entityRef;
-    contextSlug = ref && isEntityRef(ref) ? ref : undefined;
-  } else if (contextFiles.length > 1) {
-    const refs = contextFiles
-      .map(f => f.schema.entityRef)
-      .filter((ref): ref is string => !!ref && isEntityRef(ref));
-    contextSlug = deriveSharedContextNamespace(refs);
-  }
-
-  const getSystemId = (schema: SystemSchema) => {
-    return schema.entityRef || slugify(workspaceName || schema.name).replace(/_/g, '-');
-  };
-
-  // First pass: populate nodeRefMapByPath for all files
   for (const file of files) {
-    const systemId = getSystemId(file.schema);
-    const refMap = new Map<string, string>();
-    nodeRefMapByPath.set(file.path, refMap);
-
-    if (file.schema.level === 'container') {
-      for (const node of file.schema.nodes) {
-        const ref = node.entityRef || '';
-        if (ref.includes('/')) {
-          refMap.set(ref, ref);
-        } else {
-          const containerFQN =
-            contextSlug && !systemId.startsWith(`${contextSlug}/`)
-              ? `${contextSlug}/${systemId}/${ref}`
-              : `${systemId}/${ref}`;
-          refMap.set(ref, containerFQN);
-        }
-      }
-    } else if (file.schema.level === 'component') {
-      const parentContainerFQN =
-        file.schema.entityRef && isEntityRef(file.schema.entityRef)
-          ? file.schema.entityRef
-          : undefined;
-
-      for (const node of file.schema.nodes) {
-        const ref = node.entityRef || '';
-        if (ref.includes('/')) {
-          refMap.set(ref, ref);
-        } else if (parentContainerFQN) {
-          refMap.set(ref, `${parentContainerFQN}/${ref}`);
-        } else {
-          const baseFQN =
-            contextSlug && !systemId.startsWith(`${contextSlug}/`)
-              ? `${contextSlug}/${systemId}`
-              : `${systemId}`;
-          refMap.set(ref, `${baseFQN}/${ref}`);
-        }
-      }
-    } else if (file.schema.level === 'context') {
-      for (const node of file.schema.nodes) {
-        const ref = node.entityRef || '';
-        if (ref.includes('/')) {
-          refMap.set(ref, ref);
-        } else if (ref === contextSlug || ref === systemId) {
-          // Diagram-root group nodes share the context entityRef (e.g. backstage group on backstage context).
-          refMap.set(ref, ref);
-        } else {
-          refMap.set(
-            ref,
-            contextSlug && !ref.startsWith(`${contextSlug}/`) ? `${contextSlug}/${ref}` : ref
-          );
-        }
-      }
-    }
+    const systemId = systemIdForSchema(file.schema, workspaceName);
+    nodeRefMapByPath.set(file.path, buildFileNodeRefMap(file.schema, systemId, contextSlug));
   }
 
-  // Second pass: resolve schemas and build output maps
   const resolvedSchemas = new Map<string, SystemSchema>();
   const nodeRefMap: Record<string, Record<string, string>> = Object.create(null);
 
   for (const file of files) {
-    const systemId = getSystemId(file.schema);
+    const systemId = systemIdForSchema(file.schema, workspaceName);
     const fileRefMap = nodeRefMapByPath.get(file.path) ?? new Map<string, string>();
-
-    const resolvedNodes = file.schema.nodes.map(node => {
-      const ref = node.entityRef || '';
-      const entityRef = ref.includes('/')
-        ? ref
-        : (fileRefMap.get(ref) ?? resolveShortEntityRef(ref, systemId, contextSlug));
-
-      const parentRef = node.parentEntityRef;
-      const parentEntityRef = parentRef
-        ? parentRef.includes('/')
-          ? parentRef
-          : (fileRefMap.get(parentRef) ?? resolveShortEntityRef(parentRef, systemId, contextSlug))
-        : undefined;
-
-      return parentEntityRef ? { ...node, entityRef, parentEntityRef } : { ...node, entityRef };
-    });
-
-    const resolvedDeps = (file.schema.dependencies ?? []).map(dep => {
-      const getDepRef = (ref: string) => {
-        if (!ref) return '';
-        if (fileRefMap.has(ref)) return fileRefMap.get(ref)!;
-        return resolveShortEntityRef(ref, systemId, contextSlug);
-      };
-      const sourceRef = getDepRef(dep.from);
-      const targetRef = getDepRef(dep.to);
-      return {
-        ...dep,
-        from: sourceRef,
-        to: targetRef,
-      };
-    });
-
-    const schemaEntityRef = file.schema.entityRef || getSchemaEntityRef(file.schema, workspaceName);
-
-    resolvedSchemas.set(file.path, {
-      ...file.schema,
-      entityRef: schemaEntityRef,
-      nodes: resolvedNodes,
-      dependencies: resolvedDeps,
-    });
+    resolvedSchemas.set(
+      file.path,
+      resolveSchemaWithRefs(file, fileRefMap, systemId, contextSlug, workspaceName)
+    );
 
     const pathRefObj: Record<string, string> = Object.create(null);
     for (const [nodeId, ref] of fileRefMap) {
