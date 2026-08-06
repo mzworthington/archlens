@@ -18,6 +18,7 @@ export {
   type ProjectMeaningfulIacExternalsOptions,
 } from './rules/iacExternalSignificance';
 export {
+  isPulumiProjectContent,
   isPulumiProjectFileName,
   isPulumiSourceFileForRuntime,
   readPulumiProjectRuntime,

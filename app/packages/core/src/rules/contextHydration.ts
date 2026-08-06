@@ -12,6 +12,12 @@ export const CONTEXT_OWNERSHIP_SCAN = 'scan';
 export const CONTEXT_PERSON_LEAF = 'user';
 export const CONTEXT_ACTOR_ROLE = 'context-actor';
 
+/**
+ * Stable system leaf when a lone product matches the landscape entityRef
+ * (ADR-0002: context diagram and containers must not share one entityRef).
+ */
+export const CONTEXT_MATCHING_SYSTEM_LEAF = 'system';
+
 /** Auto-managed edges from the fallback context actor to top-level systems. */
 export const PERSON_EDGE_DESCRIPTION = 'Uses';
 
@@ -187,6 +193,40 @@ function mergeSystemNode(existing: SystemNode, scan: SystemNode): SystemNode {
   );
 }
 
+function landscapeSystemLeafRef(landscapeEntityRef: string): string {
+  return EntityRef.child(landscapeEntityRef, CONTEXT_MATCHING_SYSTEM_LEAF);
+}
+
+/**
+ * When a declared landscape-level software-system anchor coexists with a scan
+ * `/{system}` leaf (Zoom identity), stick author intent onto the leaf and drop
+ * the duplicate landscape node so personas/edges keep working.
+ */
+function stickLandscapeAuthorAnchor(
+  landscapeEntityRef: string,
+  nodesByRef: Map<string, SystemNode>,
+  dependencies: SystemDependency[]
+): SystemDependency[] {
+  const authorAnchor = nodesByRef.get(landscapeEntityRef);
+  const systemLeafRef = landscapeSystemLeafRef(landscapeEntityRef);
+  const scanLeaf = nodesByRef.get(systemLeafRef);
+  if (!authorAnchor || !scanLeaf) return dependencies;
+  if (authorAnchor.type !== 'software-system') return dependencies;
+  if (!isAuthorOwnedContextNode(authorAnchor)) return dependencies;
+  if (scanLeaf.type !== 'software-system' && scanLeaf.type !== 'group') return dependencies;
+
+  // Prefer the scan leaf's Zoom identity; keep author label/ownership/edges.
+  const stuck = mergeSystemNode(authorAnchor, { ...scanLeaf, entityRef: systemLeafRef });
+  nodesByRef.set(systemLeafRef, { ...stuck, entityRef: systemLeafRef });
+  nodesByRef.delete(landscapeEntityRef);
+
+  return dependencies.map(dep => ({
+    ...dep,
+    from: dep.from === landscapeEntityRef ? systemLeafRef : dep.from,
+    to: dep.to === landscapeEntityRef ? systemLeafRef : dep.to,
+  }));
+}
+
 function edgeKey(dep: SystemDependency): string {
   return `${dep.from}|${dep.to}|${dep.type}|${dep.description || ''}`;
 }
@@ -239,6 +279,12 @@ export function hydrateContextSchema(input: ContextHydrationInput): ContextHydra
       nodesByRef.set(scan.entityRef, withOwnership(scan, CONTEXT_OWNERSHIP_SCAN));
     }
   }
+
+  let workingDependencies = stickLandscapeAuthorAnchor(
+    landscapeEntityRef,
+    nodesByRef,
+    base.dependencies || []
+  );
 
   for (const proposed of input.proposedThirdParties ?? []) {
     if (!isThirdPartyNode(proposed) && !proposed.external) continue;
@@ -308,7 +354,7 @@ export function hydrateContextSchema(input: ContextHydrationInput): ContextHydra
   }
 
   const liveRefs = new Set(nodes.map(n => n.entityRef));
-  const preservedDeps = (base.dependencies || []).filter(dep => {
+  const preservedDeps = workingDependencies.filter(dep => {
     if (isManagedPersonEdge(dep)) return false;
     if (pruned.has(dep.from) || pruned.has(dep.to)) return false;
     if (!liveRefs.has(dep.from) || !liveRefs.has(dep.to)) return false;

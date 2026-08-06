@@ -210,6 +210,16 @@ export async function analyzeAndWriteIacRoot(input: {
   const targetPath = fileSystem.getAbsolutePath(blueprintsDir, 'containers.yaml');
   const previousNodes = await loadPreviousNodes(fileSystem, targetPath);
 
+  // Never clobber a populated code-scan containers diagram with an empty IaC parse
+  // (e.g. false-positive Pulumi discovery under a path that slugs to `plugins`).
+  if (schema.nodes.length === 0 && previousNodes.length > 0) {
+    logger.warn(
+      `Skipping empty ${root.vendor} write for [${systemRef}] - preserving existing containers.yaml`,
+      { root: root.rootPath, path: targetPath }
+    );
+    return undefined;
+  }
+
   if (schema.nodes.length > 0) {
     schema = {
       ...schema,

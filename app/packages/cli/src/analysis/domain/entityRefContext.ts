@@ -1,4 +1,6 @@
-import { EntityRef } from '@archlens/core';
+import { CONTEXT_MATCHING_SYSTEM_LEAF, EntityRef } from '@archlens/core';
+
+export { CONTEXT_MATCHING_SYSTEM_LEAF };
 
 /** Human-readable context diagram titles keyed by --context / entityRef slug. */
 export const CONTEXT_DISPLAY_NAMES: Record<string, string> = {
@@ -40,8 +42,6 @@ export function resolveContextDisplayName(contextName: string): string {
  * `system` leaf so the context diagram and containers never share one entityRef
  * (ADR-0002: one ref → one diagram; Zoom = navigate to the node ref).
  */
-export const CONTEXT_MATCHING_SYSTEM_LEAF = 'system';
-
 export function resolveSystemEntityRef(contextName: string, systemId: string): string {
   const contextRef = EntityRef.parse(contextName);
   const normalizedSystemId = EntityRef.parse(systemId);
