@@ -116,4 +116,29 @@ runtime:
 
     expect(discoverPulumiRoots(scan, fs)).toEqual([]);
   });
+
+  it('uses the directory slug when the Pulumi project is the scan root', () => {
+    const fs = new MockFileSystem();
+    const scan = path.resolve('/repo/infra/cloudflare');
+    fs.existingFiles.add(scan);
+    fs.directories.set(scan, ['Pulumi.yaml', 'index.ts']);
+    fs.textFiles.set(
+      path.resolve('/repo/infra/cloudflare/Pulumi.yaml'),
+      `
+name: archlens-cloudflare
+runtime:
+  name: nodejs
+`
+    );
+    fs.existingFiles.add(path.resolve('/repo/infra/cloudflare/Pulumi.yaml'));
+    fs.existingFiles.add(path.resolve('/repo/infra/cloudflare/index.ts'));
+
+    const roots = discoverPulumiRoots(scan, fs);
+    expect(roots).toHaveLength(1);
+    expect(roots[0]).toMatchObject({
+      rootPath: scan,
+      systemId: 'cloudflare',
+      runtime: 'nodejs',
+    });
+  });
 });

@@ -192,6 +192,8 @@ export class ContextLevelWriter extends BaseWriter {
     options?: {
       forensicsComponentNodes?: SystemNode[];
       source?: SourceProvenance;
+      proposedThirdParties?: SystemNode[];
+      proposedDependencies?: SystemDependency[];
     }
   ): Promise<void> {
     if (systems.length === 0) return;
@@ -303,6 +305,8 @@ export class ContextLevelWriter extends BaseWriter {
       version: systemSchemaPublicUrl(),
       scanSystems,
       ownershipRootPaths: systems.map(s => s.rootPath).filter(Boolean),
+      proposedThirdParties: options?.proposedThirdParties,
+      proposedDependencies: options?.proposedDependencies,
     });
 
     if (options?.forensicsComponentNodes?.length) {

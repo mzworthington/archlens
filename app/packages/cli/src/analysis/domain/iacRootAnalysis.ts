@@ -2,9 +2,11 @@ import {
   parseSchemaFromYaml,
   systemSchemaPublicUrl,
   type SourceProvenance,
+  type SystemDependency,
+  type SystemNode,
   type SystemSchema,
 } from '@archlens/core';
-import { parseIacBatchToSchema } from '@archlens/core/import-iac';
+import { parseIacBatchToSchema, projectMeaningfulIacExternals } from '@archlens/core/import-iac';
 import { seedPreservedPositions } from '@archlens/core/layout';
 import type { BaseWriter } from '../../writers/baseWriter.ts';
 import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from './ports.ts';
@@ -28,6 +30,11 @@ export type IacSubsystemRef = {
   rootPath: string;
   productId: string;
   isProductHub?: boolean;
+};
+
+export type IacExternalProposals = {
+  proposedThirdParties: SystemNode[];
+  proposedDependencies: SystemDependency[];
 };
 
 function schemaLabel(systemId: string): string {
@@ -114,11 +121,17 @@ export async function analyzeAndWriteIacRoot(input: {
   signal?: AbortSignal;
   source?: SourceProvenance;
   productId: string;
+  /** Product systems this infra stack serves (from blueprint seed `serves`). */
+  servedSystemRefs?: string[];
+  /** Landscape entityRef for context vendor proposals. */
+  landscapeEntityRef?: string;
   fileSystem: AnalysisFileSystemPort;
   logger: LoggerPort;
   writer: BaseWriter;
   parser?: CodebaseParserPort;
-}): Promise<{ subsystem: IacSubsystemRef; warnings: string[] } | undefined> {
+}): Promise<
+  { subsystem: IacSubsystemRef; warnings: string[]; externals: IacExternalProposals } | undefined
+> {
   const { root, fileSystem, logger, writer } = input;
   throwIfAborted(input.signal);
 
@@ -166,6 +179,29 @@ export async function analyzeAndWriteIacRoot(input: {
     if (fallback) schema = fallback;
   }
 
+  const landscapeEntityRef = input.landscapeEntityRef
+    ? input.landscapeEntityRef
+    : systemRef.includes('/')
+      ? systemRef.slice(0, systemRef.indexOf('/'))
+      : input.contextName;
+  const servedSystemRefs =
+    input.servedSystemRefs && input.servedSystemRefs.length > 0
+      ? input.servedSystemRefs
+      : [landscapeEntityRef];
+  const projection = projectMeaningfulIacExternals(schema, {
+    landscapeEntityRef,
+    infraSystemEntityRef: systemRef,
+    servedSystemRefs,
+  });
+  schema = {
+    ...projection.containerSchema,
+    entityRef: systemRef,
+    name: schemaLabel(root.systemId),
+    version: systemSchemaPublicUrl(),
+    level: 'container',
+    ...(input.source ? { source: input.source } : {}),
+  };
+
   const blueprintsDir = fileSystem.getAbsolutePath(
     input.rootDir,
     resolveBlueprintOutputSegment(input.contextName, root.systemId)
@@ -187,6 +223,10 @@ export async function analyzeAndWriteIacRoot(input: {
   const relRoot = fileSystem.getRelativePath(input.scanRoot, root.rootPath) || root.systemId;
   return {
     warnings: parseResult.warnings,
+    externals: {
+      proposedThirdParties: projection.proposedThirdParties,
+      proposedDependencies: projection.proposedDependencies,
+    },
     subsystem: {
       entityRef: root.systemId,
       displayName: root.systemId,

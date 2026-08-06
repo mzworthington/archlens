@@ -1,6 +1,18 @@
-import type { SourceProvenance } from '@archlens/core';
+import {
+  EntityRef,
+  infrastructureServesOf,
+  parseSchemaFromYaml,
+  type SourceProvenance,
+  type SystemDependency,
+  type SystemNode,
+  type SystemSchema,
+} from '@archlens/core';
 import { BaseWriter } from '../../writers/baseWriter.ts';
-import { ContextLevelWriter } from '../../writers/contextLevelWriter.ts';
+import {
+  ContextLevelWriter,
+  LEGACY_CONTEXT_RELATIVE_PATH,
+  resolveContextSeedRelativePath,
+} from '../../writers/contextLevelWriter.ts';
 import type { AnalysisFileSystemPort, CodebaseParserPort, LoggerPort } from './ports.ts';
 import { throwIfAborted } from './cancellation.ts';
 import { discoverPulumiRoots } from './pulumiDiscovery.ts';
@@ -11,7 +23,13 @@ import {
   resolveProductIdForPath,
   type DiscoveredSystem,
 } from './systemDiscovery.ts';
-import { analyzeAndWriteIacRoot, type IacRoot, type IacSubsystemRef } from './iacRootAnalysis.ts';
+import {
+  analyzeAndWriteIacRoot,
+  type IacExternalProposals,
+  type IacRoot,
+  type IacSubsystemRef,
+} from './iacRootAnalysis.ts';
+import { resolveSystemEntityRef } from './entityRefContext.ts';
 
 export type IacAnalyzerDependencies = {
   fileSystem: AnalysisFileSystemPort;
@@ -62,6 +80,70 @@ function collectIacRoots(
   };
 }
 
+function nestedContextRelativePath(diagramEntityRef: string): string {
+  if (diagramEntityRef === 'samples') return 'golden-journey/context.yaml';
+  return `${diagramEntityRef}/context.yaml`;
+}
+
+async function loadContextSeed(
+  fileSystem: AnalysisFileSystemPort,
+  rootDir: string,
+  contextName: string
+): Promise<SystemSchema | null> {
+  const diagramEntityRef = EntityRef.parse(contextName);
+  const nestedRelativePath = nestedContextRelativePath(diagramEntityRef);
+  const nestedPath = fileSystem.getAbsolutePath(rootDir, nestedRelativePath);
+  const rootSeedPath = fileSystem.getAbsolutePath(rootDir, LEGACY_CONTEXT_RELATIVE_PATH);
+  const seedRelativePath = resolveContextSeedRelativePath(diagramEntityRef, {
+    nestedExists: fileSystem.exists(nestedPath),
+    rootExists: fileSystem.exists(rootSeedPath),
+  });
+  const seedPath = fileSystem.getAbsolutePath(rootDir, seedRelativePath);
+  if (!fileSystem.exists(seedPath)) return null;
+  try {
+    return parseSchemaFromYaml(await fileSystem.readSchema(seedPath));
+  } catch {
+    return null;
+  }
+}
+
+/** Resolve `serves` from an infra spoke in the blueprint seed; default to the landscape system. */
+export function resolveServedSystemRefs(
+  seed: SystemSchema | null,
+  infraSystemEntityRef: string,
+  landscapeEntityRef: string
+): string[] {
+  const spoke = seed?.nodes?.find(node => node.entityRef === infraSystemEntityRef);
+  if (spoke) {
+    const serves = infrastructureServesOf(spoke);
+    if (serves.length > 0) return serves;
+  }
+  return [landscapeEntityRef];
+}
+
+function mergeExternalProposals(proposals: IacExternalProposals[]): IacExternalProposals {
+  const thirdParties = new Map<string, SystemNode>();
+  const dependencies: SystemDependency[] = [];
+  const depKeys = new Set<string>();
+
+  for (const proposal of proposals) {
+    for (const node of proposal.proposedThirdParties) {
+      thirdParties.set(node.entityRef, node);
+    }
+    for (const dep of proposal.proposedDependencies) {
+      const key = `${dep.from}|${dep.to}|${dep.type}|${dep.description || ''}`;
+      if (depKeys.has(key)) continue;
+      depKeys.add(key);
+      dependencies.push(dep);
+    }
+  }
+
+  return {
+    proposedThirdParties: [...thirdParties.values()],
+    proposedDependencies: dependencies,
+  };
+}
+
 /**
  * Discover Terraform and Pulumi roots, parse each into container-level schemas,
  * write `containers.yaml`, and update the context diagram in one pass.
@@ -96,9 +178,13 @@ export class IacAnalyzer {
     const contextWriter = new ContextLevelWriter(fileSystem, logger);
     const allWarnings: string[] = [];
     const iacSubsystems: IacSubsystemRef[] = [];
+    const externalBatches: IacExternalProposals[] = [];
+    const landscapeEntityRef = EntityRef.parse(contextName);
+    const contextSeed = await loadContextSeed(fileSystem, rootDir, contextName);
 
     for (const root of roots) {
       const relRoot = fileSystem.getRelativePath(scanRoot, root.rootPath) || root.systemId;
+      const systemRef = resolveSystemEntityRef(contextName, root.systemId);
       const analyzed = await analyzeAndWriteIacRoot({
         root,
         contextName,
@@ -107,6 +193,8 @@ export class IacAnalyzer {
         signal: options.signal,
         source: options.source,
         productId: resolveProductIdForPath(relRoot, options.discoveredSystems),
+        servedSystemRefs: resolveServedSystemRefs(contextSeed, systemRef, landscapeEntityRef),
+        landscapeEntityRef,
         fileSystem,
         logger,
         writer,
@@ -115,6 +203,7 @@ export class IacAnalyzer {
       if (!analyzed) continue;
       allWarnings.push(...analyzed.warnings);
       iacSubsystems.push(analyzed.subsystem);
+      externalBatches.push(analyzed.externals);
     }
 
     if (iacSubsystems.length > 0) {
@@ -124,12 +213,12 @@ export class IacAnalyzer {
         );
       const planned = planIacContextSystems(iacSubsystems, hasProductHub);
       const productHubs = productHubInputsForIac(options.discoveredSystems, planned);
-      await contextWriter.writeSystems(
-        rootDir,
-        contextName,
-        [...productHubs, ...planned],
-        options.source ? { source: options.source } : undefined
-      );
+      const externals = mergeExternalProposals(externalBatches);
+      await contextWriter.writeSystems(rootDir, contextName, [...productHubs, ...planned], {
+        ...(options.source ? { source: options.source } : {}),
+        proposedThirdParties: externals.proposedThirdParties,
+        proposedDependencies: externals.proposedDependencies,
+      });
     }
 
     return {
