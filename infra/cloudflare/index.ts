@@ -66,6 +66,17 @@ new cloudflare.PagesDomain(
 
 const zone = cloudflare.getZoneOutput({ zoneId });
 
+const webAnalytics = new cloudflare.WebAnalyticsSite('web-analytics', {
+  accountId,
+  zoneTag: zoneId,
+  autoInstall: true,
+});
+
+new cloudflare.ObservatoryScheduledTest('observatory-apex', {
+  zoneId,
+  url: apexDomain,
+});
+
 const catalogBucket = new cloudflare.R2Bucket('blueprint-catalog', {
   accountId,
   name: catalogBucketName,
@@ -104,5 +115,6 @@ const catalogCustomDomain = new cloudflare.R2CustomDomain('blueprint-catalog-dom
 export const pagesProjectNameOut = pagesProject.name;
 export const pagesSubdomain = pagesProject.subdomain;
 export const zoneName = zone.name;
+export const webAnalyticsSiteTag = webAnalytics.siteTag;
 export const blueprintCatalogBucketName = catalogBucket.name;
 export const blueprintCatalogDomain = catalogCustomDomain.domain;

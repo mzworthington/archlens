@@ -9,9 +9,18 @@ Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev).
 | `PagesProject` | Direct-upload project (`archlens`) |
 | `DnsRecord` (`apex-pages`, `www-pages`) | Proxied CNAMEs → `pagesProject.subdomain` |
 | `PagesDomain` | Attaches apex + `www` to the Pages project (SSL / hostname binding) |
+| `WebAnalyticsSite` | Zone RUM / Web Analytics (`autoInstall`) |
+| `ObservatoryScheduledTest` | Synthetic Speed test for the apex hostname |
 | `R2Bucket` | Published blueprint catalog corpus (`archlens-blueprint-catalog`) |
 | `R2BucketCors` | Browser GET/HEAD from `archlens.dev` and local dev |
 | `R2CustomDomain` | Public read at `blueprints.archlens.dev` |
+
+If Web Analytics or Observatory was enabled in the dashboard first, import before `pulumi up`:
+
+```bash
+pulumi import 'cloudflare:index/webAnalyticsSite:WebAnalyticsSite' web-analytics '<account_id>/<site_id>'
+pulumi import 'cloudflare:index/observatoryScheduledTest:ObservatoryScheduledTest' observatory-apex '<zone_id>/<url>'
+```
 
 Catalog objects follow ADR-0010 under `estates/samples/` for the hosted samples estate (ADR-0014): hand-authored samples, ArchLens scan, and batch demos each publish a fragment with a distinct `productId`, then compose. Production Canvas uses `https://blueprints.archlens.dev/estates/samples/`.
 
@@ -54,7 +63,7 @@ pulumi up
 
 ## Token permissions
 
-`CLOUDFLARE_API_TOKEN` needs **Account → Cloudflare Pages: Edit** and **Zone → DNS: Edit**. Full scope list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+`CLOUDFLARE_API_TOKEN` needs Pages, R2, DNS, Account Settings, and Zone Settings scopes. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
 
 ## Stack config
 
