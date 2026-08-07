@@ -1,0 +1,31 @@
+# Toolchain for react-cloudflare-template.
+# Cursor Cloud agents bootstrap via `.cursor/environment.json` → `bin/setup-dev-env.sh`.
+[tools]
+node = "26.7.0"
+pnpm = "11.20.0"
+# Optional: docs media GIFs (record:docs-media)
+ffmpeg = "8.1.2"
+
+[tasks.install-tools]
+description = "Install core toolchain (node, pnpm)"
+run = "mise install node pnpm"
+
+[tasks.install]
+description = "Install Node dependencies"
+run = "pnpm install"
+
+[tasks.dev]
+description = "Vite dev server"
+run = "pnpm dev"
+
+[tasks.test]
+description = "Unit tests"
+run = "pnpm test"
+
+[tasks.build]
+description = "Production build"
+run = "pnpm build"
+
+[tasks.sync-derived]
+description = "Regenerate changelog and docs media"
+run = "bin/sync-derived.sh"

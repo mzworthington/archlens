@@ -1,0 +1,62 @@
+{
+  "name": "react-cloudflare-template",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@11.20.0",
+  "scripts": {
+    "prepare": "husky",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit --pretty false",
+    "lint": "oxlint src",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:lighthouse": "lhci autorun",
+    "lighthouse:summary": "node scripts/writeLighthouseSummary.mjs",
+    "record:docs-media": "RECORD_DOCS_MEDIA=1 playwright test --config playwright.docs-media.config.ts",
+    "sync-derived": "bin/sync-derived.sh",
+    "knip": "knip"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1",
+    "wouter": "3.10.0"
+  },
+  "devDependencies": {
+    "@lhci/cli": "0.15.1",
+    "@playwright/test": "1.62.1",
+    "@tailwindcss/vite": "4.3.3",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/jest-dom": "7.0.0",
+    "@testing-library/react": "16.3.2",
+    "@types/node": "26.1.2",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "6.0.5",
+    "git-cliff": "2.13.1",
+    "husky": "9.1.7",
+    "jsdom": "30.0.1",
+    "knip": "6.32.0",
+    "lint-staged": "17.3.0",
+    "oxlint": "1.77.0",
+    "playwright": "1.62.1",
+    "prettier": "3.9.6",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.2.1",
+    "vitest": "4.1.10",
+    "wrangler": "4.119.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,mjs,cjs,json,md,yml,yaml,css,html}": [
+      "prettier --write"
+    ]
+  }
+}

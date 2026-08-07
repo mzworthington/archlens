@@ -1,0 +1,63 @@
+name: Refresh derived
+
+# Regenerate committed artifacts (changelog, docs screenshots) and push when changed.
+# Local: bin/sync-derived.sh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * 0' # Sunday 06:00 UTC
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-derived
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      GIT_AUTHOR_NAME: github-actions[bot]
+      GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+      GIT_COMMITTER_NAME: github-actions[bot]
+      GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Setup pnpm + Node
+        uses: pnpm/setup@v2
+        with:
+          version: 11.20.0
+          runtime: node@26.7.0
+          cache: true
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install media tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Install Playwright system deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
+
+      - name: Refresh derived outputs
+        run: bin/sync-derived.sh

@@ -1,0 +1,33 @@
+# git-cliff configuration (commit parsing; rendering via bin/changelog-render.mjs)
+# https://git-cliff.org/docs/configuration
+
+[git]
+conventional_commits = true
+filter_unconventional = true
+require_conventional = false
+split_commits = false
+ignore_tags = ".*"
+commit_preprocessors = [
+    { pattern = '^Merge ', skip = true },
+    { pattern = '^Merge pull request', skip = true },
+]
+commit_parsers = [
+    { message = "^feat", group = "<!-- 0 -->🚀 Features" },
+    { message = "^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
+    { message = "^refactor|^perf|^improvement", group = "<!-- 2 -->⚙️ Refactoring & Performance" },
+    { message = "^chore\\(release\\)", skip = true },
+    { message = "^chore\\(changelog\\)", skip = true },
+    { message = "^chore\\(derived\\)", skip = true },
+    { message = "^chore\\(artifacts\\)", skip = true },
+    { message = "^chore\\(docs-media\\)", skip = true },
+    { message = "^chore|^ci|^build", group = "<!-- 3 -->🧰 Maintenance & Dependencies" },
+    { message = "^docs?", group = "<!-- 4 -->📚 Documentation" },
+    { message = "^test", group = "<!-- 5 -->🧪 Testing" },
+    { message = "^style", group = "<!-- 6 -->🎨 Styling" },
+    { message = "^revert", group = "<!-- 7 -->◀️ Revert" },
+    { message = ".*", group = "<!-- 8 -->💼 Other" },
+]
+filter_commits = false
+fail_on_unmatched_commit = false
+topo_order_commits = true
+sort_commits = "oldest"

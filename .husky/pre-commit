@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+STAGED=$(git diff --cached --name-only)
+
+NEEDS_CHECKS=false
+if echo "$STAGED" | grep -qE '^(src/|docs/|index\.html|vite\.config\.|vitest\.config\.|package\.json|tsconfig)'; then
+  NEEDS_CHECKS=true
+fi
+if echo "$STAGED" | grep -qE '\.(md|ts|tsx|css|json)$'; then
+  NEEDS_CHECKS=true
+fi
+
+if [ "$NEEDS_CHECKS" = true ]; then
+  echo "Running pre-commit checks..."
+  pnpm exec lint-staged
+  pnpm run format:check
+  pnpm run lint
+  pnpm run typecheck
+fi
