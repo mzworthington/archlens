@@ -46,10 +46,6 @@ jobs:
 
       - name: Setup ArchLens CLI
         uses: ./.github/actions/setup-archlens-cli
-        with:
-          # Build from this commit so catalog scans pick up CLI fixes before a release
-          # (e.g. Backstage marketplace pulumi.yaml must not wipe plugins/containers.yaml).
-          install-from: source
 
       - name: Clone demo repo
         run: |
@@ -117,8 +113,6 @@ jobs:
 
       - name: Setup ArchLens CLI
         uses: ./.github/actions/setup-archlens-cli
-        with:
-          install-from: source
 
       - name: Compose samples estate
         env:
