@@ -1,4 +1,15 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignoreDependencies": ["tailwindcss", "wrangler", "git-cliff"]
+  "entry": [
+    "src/main.tsx",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "playwright.docs-media.config.ts",
+    "bin/changelog-render.mjs",
+    "lighthouserc.cjs",
+    "scripts/writeLighthouseSummary.mjs"
+  ],
+  "project": ["src/**/*.{ts,tsx}", "scripts/**/*.mjs", "bin/**/*.mjs"],
+  "ignore": ["infra/**"],
+  "ignoreDependencies": ["tailwindcss", "wrangler", "git-cliff", "@lhci/cli"]
 }
