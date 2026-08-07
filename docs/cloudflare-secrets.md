@@ -2,6 +2,8 @@
 
 Fresh setup for [archlens.dev](https://archlens.dev) on Cloudflare Pages (Pulumi + Wrangler + GitHub Actions).
 
+The **zone** itself is owned by [`edge-dns`](https://github.com/mzworthington/edge-dns) — see [dns.md](./dns.md). This checklist covers product Pages/DNS only.
+
 ## Bootstrap
 
 ```bash
