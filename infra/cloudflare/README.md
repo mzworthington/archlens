@@ -63,7 +63,7 @@ pulumi up
 
 ## Token permissions
 
-`CLOUDFLARE_API_TOKEN` needs Pages, R2, DNS, Account Settings, and Zone Settings scopes. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+`CLOUDFLARE_API_TOKEN` needs Pages, R2, DNS, Account Settings (Read + Edit), and Zone Settings Edit. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
 
 ## Stack config
 
