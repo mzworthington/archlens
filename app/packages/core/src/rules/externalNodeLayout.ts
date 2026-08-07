@@ -1,6 +1,6 @@
 import type { EntityRef, SystemDependency, SystemNode } from '../models/schema';
 import { getNodePosition, hasFinitePosition, withNodePosition } from '../lib/nodePosition';
-import { DEFAULT_NODE_SIZE } from './parentChildLayout';
+import { DEFAULT_NODE_SIZE, groupLayoutDimensions } from './parentChildLayout';
 
 export type ExternalNodeDirection = {
   /** External node calls into the diagram (incoming dependency). */
@@ -77,12 +77,47 @@ export function resolveExternalPlacementBand(
   return 'upstream';
 }
 
+/**
+ * Size a top-level internal node for external band placement.
+ * Groups (and any node with children) use packed child bounds — default leaf
+ * size would place downstream externals inside the boundary.
+ */
+function internalNodeLayoutSize(
+  node: SystemNode,
+  nodes: SystemNode[],
+  options: Required<ExternalNodeLayoutOptions>,
+  cache: Map<string, { width: number; height: number }>
+): { width: number; height: number } {
+  const ref = node.entityRef;
+  if (!ref) {
+    return { width: options.nodeWidth, height: options.nodeHeight };
+  }
+  const cached = cache.get(ref);
+  if (cached) return cached;
+
+  const children = nodes.filter(n => n.parentEntityRef === ref && !n.external);
+  if (children.length > 0 || node.type === 'group') {
+    const childLayouts = children.map(child => {
+      const size = internalNodeLayoutSize(child, nodes, options, cache);
+      return { entityRef: child.entityRef!, width: size.width, height: size.height };
+    });
+    const bounds = groupLayoutDimensions(childLayouts);
+    cache.set(ref, bounds);
+    return bounds;
+  }
+
+  const size = { width: options.nodeWidth, height: options.nodeHeight };
+  cache.set(ref, size);
+  return size;
+}
+
 function internalBoundingBox(
   nodes: SystemNode[],
   options: Required<ExternalNodeLayoutOptions>
 ): BoundingBox {
-  const internal = nodes.filter(n => !n.external);
-  const positioned = internal.filter(hasFinitePosition);
+  // Nested children use parent-relative coords; only top-level internals define the band.
+  const topLevelInternal = nodes.filter(n => !n.external && !n.parentEntityRef);
+  const positioned = topLevelInternal.filter(hasFinitePosition);
 
   if (positioned.length === 0) {
     const { origin, nodeWidth, nodeHeight } = options;
@@ -99,13 +134,15 @@ function internalBoundingBox(
   let minY = Infinity;
   let maxX = -Infinity;
   let maxY = -Infinity;
+  const sizeCache = new Map<string, { width: number; height: number }>();
 
   for (const node of positioned) {
     const pos = getNodePosition(node)!;
+    const size = internalNodeLayoutSize(node, nodes, options, sizeCache);
     minX = Math.min(minX, pos.x);
     minY = Math.min(minY, pos.y);
-    maxX = Math.max(maxX, pos.x + options.nodeWidth);
-    maxY = Math.max(maxY, pos.y + options.nodeHeight);
+    maxX = Math.max(maxX, pos.x + size.width);
+    maxY = Math.max(maxY, pos.y + size.height);
   }
 
   return {
