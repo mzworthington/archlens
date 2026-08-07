@@ -48,7 +48,13 @@ describe('EmptyDiagramOverlay', () => {
 
   it('hides for the intentional empty workspace starter', () => {
     useBlueprintStore.setState({
-      schema: { name: 'Empty Workspace', version: '1.0.0', level: 'container', nodes: [] },
+      schema: {
+        name: 'Empty Workspace',
+        version: '1.0.0',
+        level: 'container',
+        nodes: [],
+        dependencies: [],
+      },
       currentFilePath: 'blueprint.yaml',
     });
     render(<EmptyDiagramOverlay />);
