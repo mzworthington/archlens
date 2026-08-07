@@ -56,7 +56,7 @@ Create at [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/p
 
 - Account → **Cloudflare Pages: Edit**
 - Account → **R2: Edit** (Pulumi bucket + custom domain)
-- Account → **Account Settings: Edit** (Web Analytics)
+- Account → **Account Settings: Read** + **Edit** (Web Analytics; Write alone is not enough for RUM list/create)
 - Zone → **Zone: Read**
 - Zone → **DNS: Edit**
 - Zone → **Zone Settings: Edit** (Observatory scheduled tests)
