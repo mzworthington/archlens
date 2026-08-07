@@ -1,16 +1,21 @@
 name: Setup ArchLens CLI
-description: Install the ArchLens CLI from a GitHub release (install.sh).
+description: Install the ArchLens CLI from a GitHub release or build it from the checked-out source.
 
 inputs:
   archlens-version:
-    description: Release tag to install (default latest)
+    description: Release tag to install when install-from=release (default latest)
     required: false
     default: latest
+  install-from:
+    description: "Where to get the CLI - release (install.sh) or source (compile checked-out tree)"
+    required: false
+    default: release
 
 runs:
   using: composite
   steps:
-    - name: Install ArchLens CLI
+    - name: Install ArchLens CLI from release
+      if: inputs.install-from != 'source'
       shell: bash
       run: |
         set -euo pipefail
@@ -27,6 +32,47 @@ runs:
           echo "Installed archlens is missing tree-sitter.wasm beside the binary." >&2
           echo "Re-publish a CLI release that includes runtime WASM." >&2
           ls -la "$HOME/.local/bin" || true
+          exit 1
+        fi
+        archlens --version
+
+    - name: Setup Bun
+      if: inputs.install-from == 'source'
+      uses: oven-sh/setup-bun@v2
+
+    - name: Install pnpm
+      if: inputs.install-from == 'source'
+      uses: pnpm/action-setup@v6
+      with:
+        version: 11.10.0
+        run_install: false
+
+    - name: Setup Node
+      if: inputs.install-from == 'source'
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24
+        cache: 'pnpm'
+        cache-dependency-path: app/pnpm-lock.yaml
+
+    - name: Build ArchLens CLI from checked-out source
+      if: inputs.install-from == 'source'
+      shell: bash
+      run: |
+        set -euo pipefail
+        cd app
+        pnpm install --frozen-lockfile
+        pnpm --filter @archlens/cli run build
+        install_dir="$HOME/.local/bin"
+        mkdir -p "$install_dir"
+        # packages/cli build writes to app/dist/archlens (+ tree-sitter WASMs).
+        cp -f dist/archlens "$install_dir/archlens"
+        chmod +x "$install_dir/archlens"
+        cp -f dist/tree-sitter*.wasm "$install_dir/"
+        echo "$install_dir" >> "$GITHUB_PATH"
+        if [[ ! -f "$install_dir/tree-sitter.wasm" ]]; then
+          echo "Built archlens is missing tree-sitter.wasm beside the binary." >&2
+          ls -la dist "$install_dir" || true
           exit 1
         fi
         archlens --version

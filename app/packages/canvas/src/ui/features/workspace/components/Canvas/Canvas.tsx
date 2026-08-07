@@ -11,6 +11,7 @@ import { useKeyboardNavigation } from '../../hooks/useKeyboardNavigation';
 import { useTraceLensOnboarding } from '../../hooks/useTraceLensOnboarding';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import { DiagramLoadingOverlay } from './DiagramLoadingOverlay';
+import { EmptyDiagramOverlay } from './EmptyDiagramOverlay';
 import { MermaidEnrichBanner } from './MermaidEnrichBanner';
 import { SchemaImportErrorBanner } from './SchemaImportErrorBanner';
 import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
@@ -278,6 +279,7 @@ export const Canvas: React.FC = () => {
           open={mermaidEnrichBannerOpen}
           onDismiss={() => setMermaidEnrichBannerOpen(false)}
         />
+        <EmptyDiagramOverlay />
         <DiagramLoadingOverlay />
       </ReactFlow>
     </div>
