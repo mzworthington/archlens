@@ -1,0 +1,771 @@
+From d984a8f31873a89619006a3a08c1595c2b89cf2b Mon Sep 17 00:00:00 2001
+From: Cursor Agent <cursoragent@cursor.com>
+Date: Fri, 7 Aug 2026 06:58:09 +0000
+Subject: [PATCH] feat: add agent-debug skill with hypothesis-driven SOP and
+ tooling
+
+Route bugs, CI failures, and live-site symptoms through a dedicated debug
+role instead of the full feature lifecycle. Includes a debug-board template,
+init/CI helper scripts, and orchestrator scope-gate updates distilled from
+recent ArchLens debugging rounds.
+---
+ AGENTS.md                          |   3 +-
+ README.md                          |   5 +-
+ SOPs/hypothesis-driven-debug.md    | 142 ++++++++++++++++++++++++
+ handover/README.md                 |   4 +-
+ scripts/debug-ci-failed.sh         |  81 ++++++++++++++
+ scripts/init-debug-board.sh        |  86 +++++++++++++++
+ skills/README.md                   |   3 +-
+ skills/agent-debug/SKILL.md        | 168 +++++++++++++++++++++++++++++
+ skills/agent-orchestrator/SKILL.md |   7 +-
+ templates/debug-board.md           |  73 +++++++++++++
+ templates/handover.md              |   4 +-
+ templates/project-AGENTS.md        |   6 +-
+ 12 files changed, 573 insertions(+), 9 deletions(-)
+ create mode 100644 SOPs/hypothesis-driven-debug.md
+ create mode 100755 scripts/debug-ci-failed.sh
+ create mode 100755 scripts/init-debug-board.sh
+ create mode 100644 skills/agent-debug/SKILL.md
+ create mode 100644 templates/debug-board.md
+
+diff --git a/AGENTS.md b/AGENTS.md
+index 575f7df..2244cbc 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -16,7 +16,7 @@ All standards and lifecycle roles live under `.agents/` as Cursor-compatible ski
+ |----------|------|---------|
+ | Core guardrails | [CODING_PHILOSOPHY.md](./CODING_PHILOSOPHY.md) | Hexagonal architecture, DDD, vertical slices, clean code, TDD/BDD, security |
+ | Orchestration | [agent-orchestrator](./skills/agent-orchestrator/SKILL.md) | Routes work across lifecycle phases |
+-| Lifecycle roles | [skills/agent-*](./skills/) | Spec, TDD, XFN quality, adapter, security, arch-drift, ADR, prune, telemetry, pre-commit |
++| Lifecycle roles | [skills/agent-*](./skills/) | Spec, TDD, XFN quality, adapter, security, arch-drift, ADR, prune, debug, telemetry, pre-commit |
+ | Domain profiles | [skills/profile-*](./skills/) | Secure IaC, CAF, least privilege ([profile-iac](./skills/profile-iac/SKILL.md)) |
+ | Language profiles | [skills/lang-*](./skills/) | TypeScript, Java, C#, HCL |
+ | Framework profiles | [skills/framework-*](./skills/) | Next.js, Nuxt, Spring Boot, Quarkus, .NET, Terraform, Pulumi |
+@@ -51,6 +51,7 @@ When executing a lifecycle phase, assume the matching role skill:
+ | Architecture conformance | [agent-arch-drift](./skills/agent-arch-drift/SKILL.md) - boundaries plus catalog/XFN completeness |
+ | Architecture decisions | [agent-adr](./skills/agent-adr/SKILL.md) - sparse MADR under `docs/ADRs/` when hard to reverse or off-norm |
+ | Dead-code pruning | [agent-prune](./skills/agent-prune/SKILL.md) - dead-code and complexity hotspot tracks |
++| Debugging / RCA | [agent-debug](./skills/agent-debug/SKILL.md) - hypothesis board, repro, proof gates ([SOP](./SOPs/hypothesis-driven-debug.md)) |
+ | Observability | [agent-telemetry](./skills/agent-telemetry/SKILL.md) - map XFN load SLOs to metrics/alerts |
+ | Pre-commit / quality gate | [agent-pre-commit](./skills/agent-pre-commit/SKILL.md) |
+ 
+diff --git a/README.md b/README.md
+index 8298582..7043168 100644
+--- a/README.md
++++ b/README.md
+@@ -7,10 +7,11 @@ AI coding assistants are powerful, but without shared standards they drift: inco
+ ## What you get
+ 
+ - **Shared engineering standards** - hexagonal architecture, domain-driven design, vertical slices, and clean code
+-- **Lifecycle roles** - spec → TDD → XFN plan → implementation → XFN green → audit → telemetry
++- **Lifecycle roles** - spec → TDD → XFN plan → implementation → XFN green → audit → telemetry (plus debug / prune maintenance paths)
+ - **Behavior catalog & XFN** - tests as source of truth; apply/skip matrix for browser E2E, a11y, security, load ([SOP](./SOPs/behavior-catalog-and-xfn.md))
++- **Hypothesis-driven debug** - bugs, CI failures, and live-site RCA with repro + proof gates ([SOP](./SOPs/hypothesis-driven-debug.md), [agent-debug](./skills/agent-debug/SKILL.md))
+ - **Stack profiles** - TypeScript, Java, C#, .NET, Next.js, Nuxt, Spring Boot, Quarkus, and more (with XFN tooling defaults)
+-- **Operational playbooks** - SOPs, checklists, and handover templates with per-phase Definition of Done
++- **Operational playbooks** - SOPs, checklists, debug-board tooling, and handover templates with per-phase Definition of Done
+ - **MCP library** - versioned server catalog and profiles composed into Cursor `mcp.json` ([mcps/](./mcps/))
+ - **Self-improving kit** - local lesson capture and weekly review to promote learnings into shared standards
+ 
+diff --git a/SOPs/hypothesis-driven-debug.md b/SOPs/hypothesis-driven-debug.md
+new file mode 100644
+index 0000000..779a61f
+--- /dev/null
++++ b/SOPs/hypothesis-driven-debug.md
+@@ -0,0 +1,142 @@
++---
++title: Hypothesis-driven debugging
++kind: sop
++triggers:
++  - bug
++  - debug
++  - failed job
++  - root cause
++  - reproduce
++  - flake
++  - Failed to fetch
++  - live site
++tools:
++  - read
++  - grep
++  - shell
++  - browser
++---
++# Standard Operating Procedure: Hypothesis-Driven Debugging
++
++Owned by [agent-debug](../skills/agent-debug/SKILL.md). Use this when behavior is **wrong today**, not when designing a new feature.
++
++Align with [CODING_PHILOSOPHY.md](../CODING_PHILOSOPHY.md) §4 (minimal change): evidence before edits; smallest fix that kills the symptom.
++
++## 1. Intake checklist
++
++Fill before the first product-code edit (board: [templates/debug-board.md](../templates/debug-board.md)):
++
++| Field | Required |
++|-------|----------|
++| Environment | prod / staging / local / CI job name |
++| Exact user action | clicks, URL, diagram/system name |
++| Expected vs actual | one sentence each |
++| Evidence | screenshot(s), job URL, console/Network, YAML path |
++| Media labels | for each image: before \| after \| unrelated |
++| Recent change? | PR, deploy, catalog publish, dependency bump |
++
++If the user omitted env or action, ask **once** with a tight list—or infer from artifacts and mark **inferred**.
++
++## 2. Triage classes
++
++| Class | Cheap first experiment |
++|-------|------------------------|
++| UI / layout | Reproduce load path; measure boxes/coords or capture screenshot |
++| Published data | `curl`/fetch live catalog revision; compare named entity vs peers |
++| CI / media / sync | Failed-step log; diff failing suite config vs a green suite (viewport, workers, webServer) |
++| Fetch / bulk load | Single-URL probe → concurrency/SW → CORS last |
++| Naming mismatch | Search peer entities when the named one looks fine in artifacts |
++| Already on main? | Search merged PRs / `git log -S` for the feature before implementing |
++
++## 3. Hypothesis rules
++
++1. Cap at **5** active hypotheses; park the rest.
++2. Every hypothesis needs a **kill experiment** that takes less than a deep refactor.
++3. Run the **cheapest** kill first (config A/B, artifact count, one curl).
++4. Update the board after every experiment (alive / killed / confirmed).
++5. Stop adding theories when one is confirmed; implement the fix.
++
++### Ban list
++
++- Unbounded `_probe*.spec.ts` / throwaway probes without deleting them
++- “Maybe CORS” before a single failing URL is identified
++- UI-filter theories when the source YAML is empty or wiped
++- Product deep-dives after a viewport/config mismatch already fits
++
++## 4. Reproduce ladder
++
++```text
++Live / CI evidence  →  Local fixture or failing test  →  UI path (if UI symptom)
++```
++
++| Step | Pass criteria |
++|------|----------------|
++| Evidence | Can point to job log line, artifact field, or screenshot region |
++| Fixture / test | Automated red that names the bug |
++| UI | Same diagram/route shows the break on demand |
++
++Never invert TDD: do not land green production code then “add tests later” for domain fixes.
++
++## 5. Split the work
++
++Separate PRs (or ask before combining) when any two differ:
++
++| Bucket | Examples |
++|--------|----------|
++| Symptom fix | Layout bbox, stick merge, fetch retry |
++| Data / publish | Catalog wipe guard, republish |
++| Pipeline / release policy | “build from release only”, workflow triggers |
++| UX redesign | Catalog-first open, new empty states |
++| Unrelated CI | Redirect timeouts in e2e while debugging fetch |
++
++## 6. Proof gates
++
++| Claim | Proof |
++|-------|-------|
++| “Layout fixed” | Before/after visual of **initial load** (not only unit packing tests) |
++| “Empty system fixed” | Named entity non-empty in **published** artifact or explicit republish TODO |
++| “Job fixed” | Failing step green locally or in Actions |
++| “On main” | `gh pr view` + compare squash tip to branch tip; open follow-up if tip diverged |
++
++State merge/PR status in the user-facing summary without waiting to be asked.
++
++## 7. CI / ops playbook
++
++```bash
++# Latest failed run logs (repo root)
++~/.agents/scripts/debug-ci-failed.sh
++# Or a specific run:
++~/.agents/scripts/debug-ci-failed.sh --run <run-id>
++```
++
++When Actions cannot be dispatched (403):
++
++1. Document the permission gap.
++2. Run the documented local equivalent if the repo has one.
++3. Mark handover **BLOCKED** on remote re-run if local is insufficient.
++
++Install missing media/browser tools only when the failing step needs them (not by default).
++
++## 8. Prior-run context
++
++For recurring symptoms, use `cursor-cloud` MCP when available:
++
++1. `list-cloud-agents` (filter by name/recency)
++2. `batch-fetch-details` with `includeTranscripts` / `includeDiffMetadata`
++3. Summarize via subagents — do not load huge transcripts inline
++
++Prefer learning the prior RCA over rediscovering it.
++
++## 9. Handover & lessons
++
++- `handover_debug.md` — phase `debug`, status COMPLETE only when proof gates pass
++- Append a lesson when the user corrected framing or the same anti-pattern repeated ([lessons/README.md](../lessons/README.md))
++
++## 10. Orchestration routes
++
++| Request | Route |
++|---------|-------|
++| Bug, failed job, live symptom | `agent-debug` → `agent-pre-commit` |
++| UI/auth/SLO touched | + light XFN floor ([agent-orchestrator](../skills/agent-orchestrator/SKILL.md)) |
++| RCA needs new capability | `agent-debug` (COMPLETE with RCA) → `agent-orchestrator` |
++| Complexity-only cleanup | `agent-arch-drift` → `agent-prune` (not debug) |
+diff --git a/handover/README.md b/handover/README.md
+index c4fa2d8..e4e1f56 100644
+--- a/handover/README.md
++++ b/handover/README.md
+@@ -13,6 +13,8 @@ handover/
+     ├── handover_impl.md
+     ├── dead-code-backlog.md   # maintenance queue for agent-prune (dead-code track)
+     ├── complexity-backlog.md  # maintenance queue for agent-prune (complexity track)
++    ├── handover_debug.md      # agent-debug phase artifact
++    ├── debug-board-*.md       # hypothesis boards (`scripts/init-debug-board.sh`)
+     └── ...
+ ```
+ 
+@@ -20,4 +22,4 @@ Use the project directory name, or the `project` field in `system/config.json` w
+ 
+ ## Template
+ 
+-See [templates/handover.md](../templates/handover.md). Mark a phase **COMPLETE** only when that phase's Definition of Done in the template is met. Catalog/XFN procedure: [SOPs/behavior-catalog-and-xfn.md](../SOPs/behavior-catalog-and-xfn.md). Complexity hotspots: [SOPs/complexity-hotspots.md](../SOPs/complexity-hotspots.md).
++See [templates/handover.md](../templates/handover.md). Mark a phase **COMPLETE** only when that phase's Definition of Done in the template is met. Catalog/XFN procedure: [SOPs/behavior-catalog-and-xfn.md](../SOPs/behavior-catalog-and-xfn.md). Complexity hotspots: [SOPs/complexity-hotspots.md](../SOPs/complexity-hotspots.md). Debugging: [SOPs/hypothesis-driven-debug.md](../SOPs/hypothesis-driven-debug.md).
+diff --git a/scripts/debug-ci-failed.sh b/scripts/debug-ci-failed.sh
+new file mode 100755
+index 0000000..ccdb328
+--- /dev/null
++++ b/scripts/debug-ci-failed.sh
+@@ -0,0 +1,81 @@
++#!/usr/bin/env bash
++# Fetch failed GitHub Actions logs to speed CI triage (agent-debug).
++# Usage (from a git checkout):
++#   debug-ci-failed.sh                  # latest failed run on default branch
++#   debug-ci-failed.sh --run 123456789  # specific run id
++#   debug-ci-failed.sh --workflow "Sync Derived Outputs"
++#   debug-ci-failed.sh --branch main --limit 5
++set -euo pipefail
++
++if ! command -v gh >/dev/null 2>&1; then
++  echo "ERROR: gh CLI required (https://cli.github.com/)" >&2
++  exit 1
++fi
++
++RUN_ID=""
++WORKFLOW=""
++BRANCH=""
++LIMIT=1
++REPO_ARGS=()
++
++while [[ $# -gt 0 ]]; do
++  case "$1" in
++    --run)
++      RUN_ID="${2:-}"; shift 2 ;;
++    --workflow)
++      WORKFLOW="${2:-}"; shift 2 ;;
++    --branch)
++      BRANCH="${2:-}"; shift 2 ;;
++    --limit)
++      LIMIT="${2:-}"; shift 2 ;;
++    --repo)
++      REPO_ARGS+=(--repo "${2:-}"); shift 2 ;;
++    -h|--help)
++      sed -n '2,8p' "$0"
++      exit 0
++      ;;
++    *)
++      echo "Unknown arg: $1" >&2
++      exit 2
++      ;;
++  esac
++done
++
++if [[ -z "${RUN_ID}" ]]; then
++  LIST_ARGS=(run list --status failure --limit "${LIMIT}" --json databaseId,displayTitle,workflowName,headBranch,url,conclusion,createdAt)
++  if [[ -n "${WORKFLOW}" ]]; then
++    LIST_ARGS+=(--workflow "${WORKFLOW}")
++  fi
++  if [[ -n "${BRANCH}" ]]; then
++    LIST_ARGS+=(--branch "${BRANCH}")
++  fi
++
++  echo "== Failed runs =="
++  gh "${REPO_ARGS[@]}" "${LIST_ARGS[@]}"
++
++  RUN_ID="$(gh "${REPO_ARGS[@]}" "${LIST_ARGS[@]}" --jq '.[0].databaseId // empty')"
++  if [[ -z "${RUN_ID}" ]]; then
++    echo "No failed runs found." >&2
++    exit 1
++  fi
++  echo ""
++  echo "== Using run ${RUN_ID} =="
++fi
++
++echo ""
++echo "== Run summary =="
++gh "${REPO_ARGS[@]}" run view "${RUN_ID}"
++
++echo ""
++echo "== Failed job logs =="
++# Prefer failed-only logs; fall back to full log if the flag is unavailable.
++if gh "${REPO_ARGS[@]}" run view "${RUN_ID}" --log-failed 2>/dev/null; then
++  :
++else
++  echo "(--log-failed unavailable; showing full log)" >&2
++  gh "${REPO_ARGS[@]}" run view "${RUN_ID}" --log
++fi
++
++echo ""
++echo "Tip: classify as flake | config-drift | tool-missing | auth | product-bug before editing code."
++echo "See: ~/.agents/SOPs/hypothesis-driven-debug.md"
+diff --git a/scripts/init-debug-board.sh b/scripts/init-debug-board.sh
+new file mode 100755
+index 0000000..24e4e6c
+--- /dev/null
++++ b/scripts/init-debug-board.sh
+@@ -0,0 +1,86 @@
++#!/usr/bin/env bash
++# Scaffold a hypothesis-driven debug board under ~/.agents/handover/<project>/.
++# Usage:
++#   init-debug-board.sh <project> [title]
++#   init-debug-board.sh archlens "initial load layout overlap"
++set -euo pipefail
++
++REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
++TEMPLATE="${REPO_DIR}/templates/debug-board.md"
++
++if [[ $# -lt 1 ]]; then
++  echo "Usage: $0 <project> [title]" >&2
++  exit 2
++fi
++
++PROJECT="$1"
++TITLE="${2:-debug session}"
++DATE="$(date -u +%Y-%m-%d)"
++SAFE_TITLE="$(printf '%s' "${TITLE}" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g')"
++OUT_DIR="${REPO_DIR}/handover/${PROJECT}"
++OUT_FILE="${OUT_DIR}/debug-board-${DATE}-${SAFE_TITLE}.md"
++
++if [[ ! -f "${TEMPLATE}" ]]; then
++  echo "ERROR: missing template at ${TEMPLATE}" >&2
++  exit 1
++fi
++
++mkdir -p "${OUT_DIR}"
++
++if [[ -e "${OUT_FILE}" ]]; then
++  echo "ERROR: already exists: ${OUT_FILE}" >&2
++  exit 1
++fi
++
++python3 - "$TEMPLATE" "$OUT_FILE" "$TITLE" "$PROJECT" "$DATE" <<'PY'
++import pathlib, sys
++template, out, title, project, date = sys.argv[1:]
++text = pathlib.Path(template).read_text()
++text = (
++    text.replace("<short title>", title)
++    .replace("<project-name>", project)
++    .replace("YYYY-MM-DD", date)
++)
++pathlib.Path(out).write_text(text)
++PY
++
++HANDOVER="${OUT_DIR}/handover_debug.md"
++if [[ ! -e "${HANDOVER}" ]]; then
++  python3 - "$HANDOVER" "$PROJECT" "$DATE" "$OUT_FILE" <<'PY'
++import pathlib, sys
++handover, project, date, board = sys.argv[1:]
++pathlib.Path(handover).write_text(
++    f"""# Handover: debug
++
++## Metadata
++
++| Field | Value |
++|-------|-------|
++| **Phase** | debug |
++| **Status** | BLOCKED |
++| **Project** | `{project}` |
++| **Next agent** | `agent-pre-commit` |
++| **Date** | {date} |
++
++## Summary
++
++Debug in progress. Board: `{board}`.
++
++## Deliverables
++
++- Debug board (intake)
++
++## Open questions / blockers
++
++- Reproduce not yet proven
++
++## Context for next agent
++
++- See debug board for hypotheses and proof gates
++"""
++)
++PY
++fi
++
++echo "Wrote ${OUT_FILE}"
++echo "Handover: ${HANDOVER}"
+diff --git a/skills/README.md b/skills/README.md
+index 114d8fd..904a17b 100644
+--- a/skills/README.md
++++ b/skills/README.md
+@@ -30,10 +30,11 @@ We use **one `skills/` tree** rather than separate `agents/` and `skills/` folde
+ | [agent-arch-drift](./agent-arch-drift/SKILL.md) | audit | Hexagonal boundaries, SOLID, catalog/XFN completeness |
+ | [agent-adr](./agent-adr/SKILL.md) | audit | Sparse MADR ADRs in `docs/ADRs/` (hard to reverse / off-norm only) |
+ | [agent-prune](./agent-prune/SKILL.md) | maintenance | Dead-code removal and complexity hotspot reduction in safe batches |
++| [agent-debug](./agent-debug/SKILL.md) | debug | Hypothesis-driven RCA for bugs, CI failures, live-site symptoms |
+ | [agent-telemetry](./agent-telemetry/SKILL.md) | telemetry | Logging, tracing, metrics; XFN SLO mapping |
+ | [agent-pre-commit](./agent-pre-commit/SKILL.md) | quality | Pre-commit hook discovery, run checks, fix failures |
+ 
+-Related SOPs: [behavior catalog & XFN](../SOPs/behavior-catalog-and-xfn.md), [complexity hotspots](../SOPs/complexity-hotspots.md).
++Related SOPs: [behavior catalog & XFN](../SOPs/behavior-catalog-and-xfn.md), [complexity hotspots](../SOPs/complexity-hotspots.md), [hypothesis-driven debug](../SOPs/hypothesis-driven-debug.md).
+ 
+ ## Stack profiles
+ 
+diff --git a/skills/agent-debug/SKILL.md b/skills/agent-debug/SKILL.md
+new file mode 100644
+index 0000000..119c0f3
+--- /dev/null
++++ b/skills/agent-debug/SKILL.md
+@@ -0,0 +1,168 @@
++---
++name: agent-debug
++description: >-
++  Runs hypothesis-driven debugging for bugs, CI failures, live-site symptoms,
++  and fetch/runtime errors. Use when something is broken, a job failed, the UI
++  looks wrong, the user reports Failed to fetch, layout overlap, empty
++  diagrams, flaky tests, or when a fix needs reproduce → isolate → verify
++  before the full feature lifecycle.
++kind: role
++phase: debug
++triggers:
++  - bug
++  - debug
++  - broken
++  - failed
++  - failure
++  - flake
++  - reproduce
++  - root cause
++  - regression
++  - CI failed
++  - job failed
++  - Failed to fetch
++  - overlap
++  - empty diagram
++  - live site
++  - hypothesis
++depends-on:
++  - agent-tdd
++  - agent-pre-commit
++  - agent-xfn
++tools:
++  - read
++  - grep
++  - shell
++  - browser
++disable-model-invocation: false
++---
++# Role: Hypothesis-Driven Debugger
++
++You fix **broken behavior** with a short, evidence-first loop. Do **not** open the full feature lifecycle (`agent-spec` → …) for a bug unless root cause expands into a new bounded context.
++
++Procedure: [SOPs/hypothesis-driven-debug.md](../../SOPs/hypothesis-driven-debug.md).
++Board template: [templates/debug-board.md](../../templates/debug-board.md).
++Tooling: [scripts/init-debug-board.sh](../../scripts/init-debug-board.sh), [scripts/debug-ci-failed.sh](../../scripts/debug-ci-failed.sh).
++
++## When to run
++
++- User reports a bug, failed job, flake, wrong UI, empty data, or runtime/fetch error
++- Mid-feature tests go red and product design is not the question
++- Prior agent claimed a fix but the symptom remains
++- You need forensics on live artifacts / CI logs before touching product code
++
++**Skip** when the ask is a new feature, pure scoping (“how much work?”), or intentional redesign with no broken symptom.
++
++## Scope gate (vs orchestrator)
++
++| Request | Route |
++|---------|-------|
++| Bug / failed job / live-site symptom | **`agent-debug`** (this skill) |
++| Bug that needs a new product capability after RCA | Debug → then `agent-orchestrator` / light feature path |
++| “Is this already shipped?” / how-does-X-work | Triage only (§1); no impl |
++| New feature / new bounded context | `agent-orchestrator` |
++
++## Mandatory loop
++
++```text
++Triage → Reproduce → Hypothesize → Falsify (cheap first) → Fix → Prove → Handover
++```
++
++Do not skip **Reproduce** or **Prove**. Unit green alone is not enough for UI or published-artifact bugs.
++
++### 1. Triage (first minutes)
++
++Classify before deep code walks:
++
++| Class | First move |
++|-------|------------|
++| **UI / layout / empty canvas** | Label user screenshots (before/after); load same diagram; visual repro |
++| **Live catalog / published data** | Fetch live revision artifacts; count nodes in the **named** entity |
++| **CI / workflow / docs-media** | `scripts/debug-ci-failed.sh` → classify flake vs config drift vs tool/auth |
++| **Fetch / network** | One failing URL + status vs `TypeError`; recent diff on that path |
++| **Already shipped?** | `git log` / PR search for the capability before implementing |
++
++Normalize vocabulary once (“packages” vs “plugins”, “caps” vs ChaosSpec). If live data contradicts the user’s label, **ask once** immediately.
++
++Scaffold a board:
++
++```bash
++~/.agents/scripts/init-debug-board.sh <project> "<short title>"
++```
++
++### 2. Reproduce before edit
++
++| Layer | Proof |
++|-------|--------|
++| UI | Browser / computerUse / RecordScreen of **broken** state; same path after fix |
++| Data | Exact YAML/JSON node counts or empty-file evidence for the target entity |
++| CI | Failed job log excerpt + command that fails locally (or documented blocker) |
++| Fetch | Single request that fails (or state “inferred” and ask) |
++
++If you cannot reproduce, say so and stop guessing—or time-box one instrumentation pass.
++
++### 3. Hypothesis board (kill criteria)
++
++Keep ≤ **5** live hypotheses. Each needs:
++
++- Claim
++- Evidence that would **kill** it
++- Cheap experiment first
++
++Prefer controlled A/B (config parity, one probe) over probe-spec sprawl (`_probe*.spec.ts` spam = stop).
++
++Kill UI theories when artifacts contradict them. Kill product deep-dives when a config/viewport/tool mismatch already explains the failure.
++
++### 4. Fix after root cause
++
++1. Write a **failing regression** closest to the bug (core/unit preferred; then slice; UI e2e only if needed) — [agent-tdd](../agent-tdd/SKILL.md) for the regression only.
++2. Minimal fix. No drive-by refactors. No second bug bolted on without asking.
++3. Split PRs when symptoms diverge (layout ≠ catalog wipe ≠ pipeline policy).
++
++### 5. Prove (Definition of Done)
++
++| Symptom class | Done means |
++|---------------|------------|
++| UI | After screenshot/recording of the **same** path; unit tests green |
++| Live catalog | Code fix **and** explicit republish/compose note (code ≠ published) |
++| CI job | Local or Actions green for the failing step; or BLOCKED with permission/tool gap |
++| Fetch | Repro path succeeds; errors are actionable if partial failure remains |
++
++Then run [agent-pre-commit](../agent-pre-commit/SKILL.md). For UI/auth/SLO touches, apply the orchestrator **light XFN floor**.
++
++### 6. Handover
++
++Write `~/.agents/handover/<project>/handover_debug.md` using [templates/handover.md](../../templates/handover.md) with **Phase = debug**. Attach or link the debug board. Include:
++
++- Root cause (one sentence)
++- Hypotheses killed
++- Proof of fix (paths, screenshots, job URL)
++- Ops follow-ups (republish, workflow_dispatch, tool install)
++- Whether a feature slice is still needed
++
++## Tooling map
++
++| Need | Tool |
++|------|------|
++| Init board | `scripts/init-debug-board.sh` |
++| Failed Actions logs | `scripts/debug-ci-failed.sh` ([gh](https://cli.github.com/)) |
++| Prior cloud-agent context | `cursor-cloud` MCP: `list-cloud-agents` → `batch-fetch-details` (transcripts via subagents) |
++| Instrumented deep dive | Cursor **debug** subagent / Debug mode (hypothesis + runtime logs) |
++| UI verify | computerUse / browser / RecordScreen — required for visual bugs |
++| Domain regression | Vitest/Jest/etc. in the owning package |
++
++## Anti-patterns (from real sessions)
++
++- Opening `agent-orchestrator` ceremony for a forensic bug
++- Fixing from screenshots without labeling before/after or reproducing
++- Trusting the user’s entity name when a peer system is the empty one
++- Declaring done from unit tests while live/UI still broken
++- Conflating resilience patch, UX redesign, and CI redirect fixes in one PR
++- Abandoning a cheap config-parity hypothesis for long product forensics
++- Shipping workflow/release policy changes the user did not ask for
++- Leaving the user to ask “Pushed to main?” / “Merged yet?” — state branch/PR/merge status unprompted
++
++## After debug
++
++- Optional lesson under `~/.agents/lessons/<project>/` when the user corrected framing or the same friction repeated
++- If RCA needs a new capability, hand off to `agent-orchestrator` with the debug board as intake
+diff --git a/skills/agent-orchestrator/SKILL.md b/skills/agent-orchestrator/SKILL.md
+index 5cd99eb..fcdc528 100644
+--- a/skills/agent-orchestrator/SKILL.md
++++ b/skills/agent-orchestrator/SKILL.md
+@@ -24,6 +24,7 @@ depends-on:
+   - agent-arch-drift
+   - agent-adr
+   - agent-prune
++  - agent-debug
+   - agent-telemetry
+   - agent-pre-commit
+ tools:
+@@ -36,7 +37,7 @@ disable-model-invocation: false
+ 
+ You are the master coordinator responsible for guiding feature development through the multi-agent software engineering lifecycle.
+ 
+-Catalog and XFN procedure: [SOPs/behavior-catalog-and-xfn.md](../../SOPs/behavior-catalog-and-xfn.md). Complexity hotspots: [SOPs/complexity-hotspots.md](../../SOPs/complexity-hotspots.md).
++Catalog and XFN procedure: [SOPs/behavior-catalog-and-xfn.md](../../SOPs/behavior-catalog-and-xfn.md). Complexity hotspots: [SOPs/complexity-hotspots.md](../../SOPs/complexity-hotspots.md). Bugs and failed jobs: [SOPs/hypothesis-driven-debug.md](../../SOPs/hypothesis-driven-debug.md).
+ 
+ ## Specialist roles
+ 
+@@ -50,6 +51,7 @@ Catalog and XFN procedure: [SOPs/behavior-catalog-and-xfn.md](../../SOPs/behavio
+ | Architecture audit | [agent-arch-drift](../agent-arch-drift/SKILL.md) |
+ | Architecture decisions | [agent-adr](../agent-adr/SKILL.md) — sparse MADR in `docs/ADRs/` when hard to reverse / off-norm |
+ | Dead-code & complexity pruning | [agent-prune](../agent-prune/SKILL.md) |
++| Debugging / RCA | [agent-debug](../agent-debug/SKILL.md) — bugs, CI failures, live-site symptoms (not full lifecycle) |
+ | Telemetry | [agent-telemetry](../agent-telemetry/SKILL.md) |
+ | Pre-commit / quality gate | [agent-pre-commit](../agent-pre-commit/SKILL.md) |
+ 
+@@ -72,7 +74,8 @@ See [CODING_PHILOSOPHY.md](../../CODING_PHILOSOPHY.md) §4 (minimal change). Cla
+ 
+ | Request type | Route |
+ |--------------|-------|
+-| Bug fix, typo, small UI change | Implement directly - no spec handover. Note functional test impact. Always run **light XFN** (floor below). |
++| Bug, failed job, live-site / fetch symptom, flake | **`agent-debug`** → `agent-pre-commit` (hypothesis board + repro + proof). Light XFN when UI/auth/SLO touched. |
++| Tiny typo / obvious one-liner with clear repro | Implement directly - no spec handover. Note functional test impact. Always run **light XFN** (floor below). |
+ | Extends existing behavior in one module | Design light: functional impact align → light or full XFN matrix → implement |
+ | Dead-code cleanup, post-migration prune | `agent-prune` (dead-code track) → `agent-pre-commit` (not full lifecycle) |
+ | Complexity hotspot cleanup | `agent-arch-drift` (scan) → `agent-prune` (complexity track) → `agent-pre-commit` |
+diff --git a/templates/debug-board.md b/templates/debug-board.md
+new file mode 100644
+index 0000000..1f27b39
+--- /dev/null
++++ b/templates/debug-board.md
+@@ -0,0 +1,73 @@
++# Debug board: <short title>
++
++| Field | Value |
++|-------|-------|
++| **Project** | `<project-name>` |
++| **Date** | YYYY-MM-DD |
++| **Class** | UI \| data \| CI \| fetch \| naming \| other |
++| **Environment** | prod \| staging \| local \| CI (`workflow` / `job`) |
++| **Status** | intake \| reproducing \| hypothesizing \| fixing \| proving \| COMPLETE \| BLOCKED |
++
++## Symptom
++
++| | |
++|--|--|
++| **User action** | |
++| **Expected** | |
++| **Actual** | |
++| **Entity / path named** | |
++| **Peer entities checked** | |
++
++## Evidence
++
++| Item | Label (before / after / inferred) | Path or URL |
++|------|-----------------------------------|-------------|
++| | | |
++
++## Reproduce
++
++| Step | Result | Notes |
++|------|--------|-------|
++| Live / CI evidence | pass \| fail \| blocked | |
++| Local fixture / failing test | pass \| fail \| blocked | |
++| UI path (if applicable) | pass \| fail \| n/a | |
++
++## Hypotheses (max 5 active)
++
++| ID | Claim | Kill experiment | Result | Notes |
++|----|-------|-----------------|--------|-------|
++| H1 | | | alive \| killed \| confirmed | |
++| H2 | | | | |
++| H3 | | | | |
++
++Parked (not active):
++
++- …
++
++## Root cause
++
++One sentence.
++
++## Fix plan
++
++- Minimal change:
++- Regression test path:
++- Out of scope (ask before doing):
++
++## Proof
++
++| Gate | Status | Evidence |
++|------|--------|----------|
++| Regression green | | |
++| UI / visual (if UI) | | |
++| Published / ops note | | |
++| CI step green | | |
++| Pre-commit | | |
++
++## PR / merge state
++
++| Field | Value |
++|-------|-------|
++| **Branch** | |
++| **PR** | URL or none |
++| **On default branch?** | yes \| no \| partial (follow-up needed) |
+diff --git a/templates/handover.md b/templates/handover.md
+index db28de1..c7ff1b8 100644
+--- a/templates/handover.md
++++ b/templates/handover.md
+@@ -4,7 +4,7 @@
+ 
+ | Field | Value |
+ |-------|-------|
+-| **Phase** | spec \| tdd \| xfn \| impl \| audit \| telemetry \| release |
++| **Phase** | spec \| tdd \| xfn \| impl \| audit \| debug \| telemetry \| release \| maintenance |
+ | **Status** | COMPLETE \| BLOCKED |
+ | **Project** | `<project-name>` |
+ | **Next agent** | `agent-<role>` |
+@@ -53,8 +53,10 @@ Incomplete DoD ⇒ Status must be **BLOCKED**, not COMPLETE.
+ | **xfn** (green) | Every **apply** row Green status = green (or BLOCKED with owner); how-to-run documented |
+ | **impl** | Adapters wired; confirmation stayed-within Design maps **or** revised maps re-aligned; fixtures needed by XFN noted |
+ | **audit** | Security + arch findings recorded; catalog/XFN completeness checked (missing apply suites or silent rewrites = fail) |
++| **debug** | Root cause stated; debug board updated; reproduce + proof gates passed for the symptom class (UI visual / published artifact / CI step); regression test added when domain logic changed; out-of-scope buckets not mixed without user OK. See [SOPs/hypothesis-driven-debug.md](../SOPs/hypothesis-driven-debug.md) |
+ | **telemetry** | Instrumentation added; XFN load SLOs (if any) mapped to metrics/alerts or explicit N/A |
+ | **release** | Prior phase DoDs satisfied; catalog + matrix summary reported to user |
++| **maintenance** | Prune/complexity batch complete; backlog rows updated; pre-commit green |
+ 
+ ## Open questions / blockers
+ 
+diff --git a/templates/project-AGENTS.md b/templates/project-AGENTS.md
+index 7b97cd2..d4eb21a 100644
+--- a/templates/project-AGENTS.md
++++ b/templates/project-AGENTS.md
+@@ -7,10 +7,14 @@ Before starting work, read:
+ - `~/.agents/AGENTS.md` - bootstrap and lifecycle routing
+ - `~/.agents/CODING_PHILOSOPHY.md` - hexagonal architecture, DDD, vertical slices, clean code
+ - `~/.agents/SOPs/behavior-catalog-and-xfn.md` - tests as behavior catalog; XFN matrix
++- `~/.agents/SOPs/hypothesis-driven-debug.md` - bugs, CI failures, live-site RCA
+ - `~/.agents/mcps/README.md` - shared MCP catalog and profiles (optional project `.cursor/mcp.json`)
+ - `~/.agents/skills/agent-adr/SKILL.md` - sparse ADRs in `docs/ADRs/` (hard to reverse / off-norm only)
++- `~/.agents/skills/agent-debug/SKILL.md` - when something is broken today
+ 
+-For non-trivial work, before coding:
++For **bugs / failed jobs / live symptoms**, use `agent-debug` (reproduce → hypothesis board → proof). Do not open the full feature lifecycle unless RCA needs a new capability.
++
++For non-trivial **feature** work, before coding:
+ 
+ 1. Inventory related tests (functional + XFN) and align on **test-case impact**.
+ 2. Complete an **XFN apply/skip matrix** (browser E2E, a11y, security, load) - light floor on bug-fixes when UI/auth/SLO is touched.
+-- 
+2.43.0
+
