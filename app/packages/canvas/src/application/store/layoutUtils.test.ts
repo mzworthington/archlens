@@ -7,10 +7,14 @@ import {
   rebuildSchemaFromCanvas,
   getAbsoluteNodePosition,
   shouldAutoLayoutOnLoad,
+  layoutGroupedDomainNodes,
   getClosestHandles,
   isDesktopViewport,
 } from './layoutUtils.ts';
 import type { SystemNode } from '@archlens/core';
+import { getNodePosition } from '@archlens/core';
+import { groupLayoutDimensions } from '@archlens/core/layout';
+import { createBrowserLayoutRegistry } from '../../infrastructure/layout/createBrowserLayoutRegistry';
 
 describe('layoutUtils forensics plumbing', () => {
   it('maps node forensics onto RF node data', () => {
@@ -236,6 +240,61 @@ describe('shouldAutoLayoutOnLoad', () => {
         dependencies: [],
       })
     ).toBe(true);
+  });
+});
+
+describe('layoutGroupedDomainNodes', () => {
+  it('keeps downstream externals below a multi-child system boundary on initial layout', async () => {
+    const children = [
+      'backstage/docs-ui',
+      'backstage/microsite',
+      'backstage/packages',
+      'backstage/plugins',
+      'backstage/techdocs-s3-storage',
+    ];
+    const nodes: SystemNode[] = [
+      { entityRef: 'backstage/developer', type: 'person', name: 'Developer' },
+      { entityRef: 'backstage/system', type: 'group', name: 'Backstage' },
+      ...children.map(entityRef => ({
+        entityRef,
+        type: 'software-system' as const,
+        name: entityRef,
+        parentEntityRef: 'backstage/system',
+      })),
+      {
+        entityRef: 'backstage/github',
+        type: 'software-system',
+        name: 'GitHub',
+        external: true,
+      },
+      {
+        entityRef: 'backstage/vendor-aws',
+        type: 'software-system',
+        name: 'AWS',
+        external: true,
+      },
+    ];
+    const dependencies = [
+      { from: 'backstage/developer', to: 'backstage/system', type: 'direct-call' as const },
+      { from: 'backstage/system', to: 'backstage/github', type: 'direct-call' as const },
+      { from: 'backstage/system', to: 'backstage/vendor-aws', type: 'direct-call' as const },
+    ];
+
+    const laidOut = await layoutGroupedDomainNodes(
+      nodes,
+      dependencies,
+      'dagre',
+      createBrowserLayoutRegistry()
+    );
+
+    const group = laidOut.find(n => n.entityRef === 'backstage/system')!;
+    const groupPos = getNodePosition(group)!;
+    const groupHeight = groupLayoutDimensions(children.map(entityRef => ({ entityRef }))).height;
+    const github = getNodePosition(laidOut.find(n => n.entityRef === 'backstage/github')!)!;
+    const aws = getNodePosition(laidOut.find(n => n.entityRef === 'backstage/vendor-aws')!)!;
+
+    expect(github.y).toBeGreaterThanOrEqual(groupPos.y + groupHeight);
+    expect(aws.y).toBeGreaterThanOrEqual(groupPos.y + groupHeight);
   });
 });
 

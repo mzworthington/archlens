@@ -6,6 +6,7 @@ import {
   computeDirectionalExternalPositions,
   positionExternalNodes,
 } from './externalNodeLayout';
+import { groupLayoutDimensions, packGroupChildren } from './parentChildLayout';
 
 const schema = (partial: Partial<SystemSchema> & Pick<SystemSchema, 'nodes'>): SystemSchema => ({
   name: 'Demo',
@@ -171,5 +172,71 @@ describe('externalNodeLayout', () => {
     const positioned = positionExternalNodes(externalOnly.nodes, externalOnly.dependencies);
     expect(getNodePosition(positioned[0]!)).toEqual({ x: 40, y: 80 });
     expect(getNodePosition(positioned[1]!)).toEqual({ x: 400, y: 80 });
+  });
+
+  it('places downstream externals below a packed group, not inside its children', () => {
+    // Mirrors Backstage context: a large system boundary with nested software systems
+    // plus third-party externals. Child coords are relative to the group (React Flow).
+    const children = [
+      { entityRef: 'backstage/docs-ui' },
+      { entityRef: 'backstage/microsite' },
+      { entityRef: 'backstage/packages' },
+      { entityRef: 'backstage/plugins' },
+      { entityRef: 'backstage/techdocs-s3-storage' },
+    ];
+    const { bounds, positionsByRef } = packGroupChildren(children);
+    const groupPos = { x: 120, y: 360 };
+
+    const grouped = schema({
+      level: 'context',
+      nodes: [
+        {
+          entityRef: 'backstage/developer',
+          type: 'person',
+          name: 'Developer',
+          position: { x: 80, y: 40 },
+        },
+        {
+          entityRef: 'backstage/system',
+          type: 'group',
+          name: 'Backstage',
+          position: groupPos,
+        },
+        ...children.map(child => ({
+          entityRef: child.entityRef,
+          type: 'software-system' as const,
+          name: child.entityRef,
+          parentEntityRef: 'backstage/system',
+          position: positionsByRef.get(child.entityRef)!,
+        })),
+        {
+          entityRef: 'backstage/github',
+          type: 'software-system',
+          name: 'GitHub',
+          external: true,
+        },
+        {
+          entityRef: 'backstage/vendor-aws',
+          type: 'software-system',
+          name: 'AWS',
+          external: true,
+        },
+      ],
+      dependencies: [
+        { from: 'backstage/developer', to: 'backstage/system', type: 'direct-call' },
+        { from: 'backstage/system', to: 'backstage/github', type: 'direct-call' },
+        { from: 'backstage/system', to: 'backstage/vendor-aws', type: 'direct-call' },
+      ],
+    });
+
+    const positioned = positionExternalNodes(grouped.nodes, grouped.dependencies);
+    const github = getNodePosition(positioned.find(n => n.entityRef === 'backstage/github')!)!;
+    const aws = getNodePosition(positioned.find(n => n.entityRef === 'backstage/vendor-aws')!)!;
+    const groupBottom = groupPos.y + bounds.height;
+
+    expect(bounds.height).toBe(groupLayoutDimensions(children).height);
+    expect(bounds.height).toBeGreaterThan(400);
+    expect(github.y).toBeGreaterThanOrEqual(groupBottom);
+    expect(aws.y).toBeGreaterThanOrEqual(groupBottom);
   });
 });
