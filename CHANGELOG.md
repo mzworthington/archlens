@@ -1,5 +1,89 @@
 # Changelog
 
+## 2026-08-08
+
+### 🐛 Bug Fixes
+
+- _(cli)_ Accept interactive main menu in VHS demo tape (#72)
+
+### ⚙️ Refactoring & Performance
+
+- _(cloudflare)_ Remove custom Pulumi setup action and integrate edge-dns reusable workflow
+
+### 🧰 Maintenance & Dependencies
+
+- Update .gitignore to include environment files and secrets
+
+## 2026-08-07
+
+### 🚀 Features
+
+- _(cloudflare)_ Add Web Analytics and Observatory scheduled tests to infrastructure
+
+### 🐛 Bug Fixes
+
+- _(layout)_ Stop initial-load overlap for grouped systems + externals (#70)
+- _(docs)_ Update Cloudflare API token permissions for Account Settings in documentation
+
+## 2026-08-06
+
+### 🚀 Features
+
+- _(iac)_ Meaningful externals for context vs container (#67)
+- _(layout)_ Add optional edge labels and improve layout spacing
+- _(iac)_ Introduce provisions dependency type and enhance schema handling
+- _(canvas)_ Improve product SEO for ArchLens surfaces (#69)
+
+### 🐛 Bug Fixes
+
+- Restore fragment sticking for context anchors and IaC collisions (#68)
+
+### ⚙️ Refactoring & Performance
+
+- Split recommendation builders to cut cyclomatic complexity (#61)
+- Split PropertyPanel to cut cyclomatic complexity (#62)
+- Split forensics panel and offender ranking complexity (#64)
+- Split extractGraph to cut cyclomatic complexity (#63)
+- Split CLI entrypoints to cut cyclomatic complexity (#65)
+- Split next-tier complexity hotspots (#66)
+
+### 🧰 Maintenance & Dependencies
+
+- Update GitHub Actions workflows and CLI for improved concurrency and error handling
+- Enhance demo catalog workflow with configurable clone depth and update documentation
+
+### 💼 Other
+
+- Fix render of external iac withou resilience mode enabled
+
+## 2026-08-05
+
+### 🚀 Features
+
+- _(cli)_ Validate architecture health and commit regression (#55)
+- _(designer)_ Browse ChaosSpecs and open target canvas (#57)
+- _(forensics)_ Enhance entity scope handling in forensics metrics
+- _(cli)_ Add catalog prune command and related functionality
+- _(cli)_ Refactor catalog snapshot handling and improve publish logic
+- _(cli)_ Integrate tree-sitter WASM support and enhance dependency management
+- _(canvas)_ Initialize ArchLens Canvas application with core files and configurations
+- _(workflow)_ Enhance Pulumi Cloud integration with dashboard links and rich diff summaries
+- Hydrate declared system context from reposcan (#58)
+
+### ⚙️ Refactoring & Performance
+
+- _(designer)_ Streamline resilience state management and enhance canvas integration
+- Rename designer to canvas to align language
+- Commit ArchLens context under blueprints/ (#59)
+
+### 🧰 Maintenance & Dependencies
+
+- Remove husky pre-push build gate (#56)
+
+### 📚 Documentation
+
+- Drop dogfood wording for hosted samples estate tone (#54)
+
 ## 2026-08-04
 
 ### 🚀 Features
@@ -28,6 +112,12 @@
 - Migrate blueprints to golden-paths structure, update workflows, and remove deprecated files
 - _(ci)_ Remove sample publishing workflow and add skip-validation option for publish commands
 - _(ci)_ Update workflows to remove deprecated files and enhance publish commands with skip-validation option
+- Enhance documentation and CLI commands for catalog management, including new options for key prefix and workspace name
+- _(ci)_ Update workflows to implement fragment publishing and composing, enhance CLI options with allow-empty flag
+- _(cli)_ Update ArchLens CLI installation method to use GitHub releases, enhance error handling for missing WASM files, and improve interactive command options
+- _(docs)_ Update installation instructions to use bash instead of sh for ArchLens CLI, ensuring compatibility with script features
+- _(ci)_ Update workflows to use a shared samples estate for publishing and composing, adjusting key prefixes and documentation accordingly
+- _(navigation)_ Enhance workspace navigation by introducing child diagram support, updating URL handling, and improving search parameter management
 
 ### 🧰 Maintenance & Dependencies
 
