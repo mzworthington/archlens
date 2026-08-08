@@ -17,6 +17,19 @@ site
 # pnpm local store
 .pnpm-store/
 
+# Environment & secrets (`.env.development` is a committed non-secret default)
+.env
+.env.*
+!.env.example
+!**/.env.example
+!.env.development
+!**/.env.development
+*.pem
+*.key
+secrets.json
+credentials.json
+
+
 
 # Mirrored from repo samples/ at designer build/dev time (bundled demo workspace)
 app/packages/canvas/public/bundled-blueprints/
@@ -51,8 +64,12 @@ app/packages/canvas/public/tree-sitter/
 infra/cloudflare/node_modules/
 infra/cloudflare/bin/
 infra/cloudflare/.pulumi/
+.pulumi/
 # Stack config may contain account IDs and encrypted API tokens after bootstrap
-infra/cloudflare/Pulumi.prod.yaml
+infra/cloudflare/Pulumi.*.yaml
+!infra/cloudflare/Pulumi.prod.yaml.example
+!infra/cloudflare/Pulumi.yaml
+
 
 playwright-report/
 test-results/
