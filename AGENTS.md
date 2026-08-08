@@ -14,7 +14,9 @@ Treat that directory as the kit root (same layout as `~/.agents`: `AGENTS.md`, `
 
 Phase handover artifacts: `<kit>/handover/archlens/` (when using `~/.agents`, that is `~/.agents/handover/archlens/`).
 
-Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-tdd`, `agent-adapter`, `agent-security`, `agent-arch-drift`, `agent-prune`, `agent-telemetry`, and `agent-pre-commit`.
+Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-tdd`, `agent-adapter`, `agent-security`, `agent-arch-drift`, `agent-prune`, `agent-debug`, `agent-telemetry`, and `agent-pre-commit`.
+
+**Bugs / failed jobs / live-site symptoms:** use `agent-debug` — triage → reproduce → hypothesis board → minimal fix → proof. Project copy: [`.cursor/skills/agent-debug/`](.cursor/skills/agent-debug/) (SKILL + SOP + scripts). Prefer `<kit>/skills/agent-debug/` when the lifecycle kit has the same skill. Scaffold a board with `.cursor/skills/agent-debug/scripts/init-debug-board.sh archlens "<title>"`. Prefer this over the full feature lifecycle unless RCA needs a new capability.
 
 Dead-code backlog: `<kit>/handover/blueprint/dead-code-backlog.md` (maintain via `agent-prune`).
 
