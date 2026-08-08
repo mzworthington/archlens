@@ -35,6 +35,11 @@ Type "./app/dist/archlens"
 Enter
 Sleep 1.5s
 
+# Main menu - accept default (Scan architecture). Enter confirms the
+# highlighted first option; arrow keys are unreliable under VHS/ttyd.
+Enter
+Sleep 900ms
+
 # Context name - accept default
 Enter
 Sleep 900ms
