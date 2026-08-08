@@ -77,6 +77,8 @@ describe('CLI VHS demo', () => {
 
     expect(existsSync(gifPath)).toBe(true);
     expect(statSync(gifPath).size).toBeGreaterThan(10_000);
-    expect(existsSync(path.join(demoOutput, 'blueprint', 'context.yaml'))).toBe(true);
+    // Default blueprint root name from the interactive wizard.
+    const contextYaml = path.join(demoOutput, 'blueprint', 'context.yaml');
+    expect(existsSync(contextYaml), `expected ${contextYaml} after VHS demo scan`).toBe(true);
   }, 300_000);
 });
