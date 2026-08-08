@@ -1,21 +1,24 @@
 name: Pulumi Cloudflare
 
-# Flow: preview (always) → GitHub Environment approval on apply → pulumi up.
-# Create Environment "pulumi-prod" with required reviewers for the manual gate:
-#   Settings → Environments → pulumi-prod → Required reviewers
+# Thin caller — preview/apply live in edge-dns.
+# See: https://github.com/mzworthington/edge-dns/blob/main/docs/reusable-cloudflare-ci.md
+#
+# Create GitHub Environment "pulumi-prod" with required reviewers for the apply gate.
+# Secrets: CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_ZONE_ID, CLOUDFLARE_API_TOKEN, PULUMI_ACCESS_TOKEN
+# Vars:    PULUMI_PAGES_PROJECT_NAME, PULUMI_APEX_DOMAIN, PULUMI_WWW_DOMAIN,
+#          PULUMI_CATALOG_BUCKET_NAME, PULUMI_CATALOG_DOMAIN
+# Optional: PULUMI_PAGES_HOSTNAMES (JSON array)
 
 on:
   pull_request:
     paths:
       - 'infra/cloudflare/**'
       - '.github/workflows/pulumi-cloudflare.yml'
-      - '.github/actions/setup-pulumi-cloudflare/**'
   push:
     branches: [main]
     paths:
       - 'infra/cloudflare/**'
       - '.github/workflows/pulumi-cloudflare.yml'
-      - '.github/actions/setup-pulumi-cloudflare/**'
   workflow_dispatch:
     inputs:
       apply:
@@ -28,146 +31,13 @@ permissions:
   pull-requests: write
   deployments: write
 
-concurrency:
-  group: pulumi-cloudflare-${{ github.ref }}
-  cancel-in-progress: false
-
 jobs:
-  preview:
-    name: Preview
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-
-      - name: Setup Pulumi Cloudflare
-        uses: ./.github/actions/setup-pulumi-cloudflare
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PULUMI_PAGES_PROJECT_NAME: ${{ vars.PULUMI_PAGES_PROJECT_NAME }}
-          PULUMI_APEX_DOMAIN: ${{ vars.PULUMI_APEX_DOMAIN }}
-          PULUMI_WWW_DOMAIN: ${{ vars.PULUMI_WWW_DOMAIN }}
-          PULUMI_CATALOG_BUCKET_NAME: ${{ vars.PULUMI_CATALOG_BUCKET_NAME }}
-          PULUMI_CATALOG_DOMAIN: ${{ vars.PULUMI_CATALOG_DOMAIN }}
-
-      - name: Pulumi Cloud dashboard link
-        id: dashboard
-        working-directory: infra/cloudflare
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-        run: |
-          set -euo pipefail
-          FQ="$(pulumi stack --show-name -Q)"
-          URL="https://app.pulumi.com/${FQ}"
-          UPDATES_URL="${URL}/updates"
-          echo "stack=${FQ}" >> "$GITHUB_OUTPUT"
-          echo "url=${URL}" >> "$GITHUB_OUTPUT"
-          {
-            echo "## Pulumi Cloud"
-            echo ""
-            echo "- **Stack:** \`${FQ}\`"
-            echo "- **Dashboard:** [${FQ}](${URL})"
-            echo "- **Updates:** [history](${UPDATES_URL})"
-            echo ""
-            echo "Open the dashboard link after preview to inspect the live update (diff, resources, diagnostics)."
-          } >> "$GITHUB_STEP_SUMMARY"
-          echo "::notice title=Pulumi Cloud::${URL}"
-          echo "Pulumi Cloud dashboard: ${URL}"
-          echo "Pulumi Cloud updates:   ${UPDATES_URL}"
-
-      - name: Pulumi preview
-        uses: pulumi/actions@v6
-        with:
-          command: preview
-          stack-name: prod
-          work-dir: infra/cloudflare
-          # Richer logs: per-resource diff + ANSI colors in the Actions console.
-          diff: true
-          color: always
-          suppress-progress: true
-          comment-on-pr: ${{ github.event_name == 'pull_request' }}
-          comment-on-summary: true
-          always-include-summary: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-
-      - name: Append preview dashboard reminder
-        if: always()
-        env:
-          PULUMI_DASHBOARD_URL: ${{ steps.dashboard.outputs.url }}
-        run: |
-          {
-            echo ""
-            echo "### After this preview"
-            echo "Review the rich diff above, then open **[Pulumi Cloud → ${{ steps.dashboard.outputs.stack }}](${PULUMI_DASHBOARD_URL})** for the interactive update view."
-          } >> "$GITHUB_STEP_SUMMARY"
-
-  apply:
-    name: Apply (pulumi up)
-    needs: preview
-    if: >-
-      (github.ref == 'refs/heads/main' && github.event_name == 'push')
-      || (github.event_name == 'workflow_dispatch' && inputs.apply)
-    runs-on: ubuntu-latest
-    environment:
-      name: pulumi-prod
-      url: https://archlens.dev
-    # Serialize applies against the shared Pulumi Cloud stack (avoids 409 conflicts).
-    concurrency:
-      group: pulumi-cloudflare-prod-apply
-      cancel-in-progress: false
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-
-      - name: Setup Pulumi Cloudflare
-        uses: ./.github/actions/setup-pulumi-cloudflare
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PULUMI_PAGES_PROJECT_NAME: ${{ vars.PULUMI_PAGES_PROJECT_NAME }}
-          PULUMI_APEX_DOMAIN: ${{ vars.PULUMI_APEX_DOMAIN }}
-          PULUMI_WWW_DOMAIN: ${{ vars.PULUMI_WWW_DOMAIN }}
-          PULUMI_CATALOG_BUCKET_NAME: ${{ vars.PULUMI_CATALOG_BUCKET_NAME }}
-          PULUMI_CATALOG_DOMAIN: ${{ vars.PULUMI_CATALOG_DOMAIN }}
-
-      - name: Pulumi Cloud dashboard link
-        id: dashboard
-        working-directory: infra/cloudflare
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-        run: |
-          set -euo pipefail
-          FQ="$(pulumi stack --show-name -Q)"
-          URL="https://app.pulumi.com/${FQ}"
-          echo "stack=${FQ}" >> "$GITHUB_OUTPUT"
-          echo "url=${URL}" >> "$GITHUB_OUTPUT"
-          {
-            echo "## Pulumi Cloud"
-            echo ""
-            echo "- **Stack:** \`${FQ}\`"
-            echo "- **Dashboard:** [${FQ}](${URL})"
-            echo "- **Updates:** [history](${URL}/updates)"
-          } >> "$GITHUB_STEP_SUMMARY"
-          echo "::notice title=Pulumi Cloud::${URL}"
-          echo "Pulumi Cloud dashboard: ${URL}"
-
-      - name: Pulumi up
-        uses: pulumi/actions@v6
-        with:
-          command: up
-          stack-name: prod
-          work-dir: infra/cloudflare
-          diff: true
-          color: always
-          suppress-progress: true
-          comment-on-summary: true
-          always-include-summary: true
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  pulumi:
+    uses: mzworthington/edge-dns/.github/workflows/product-pulumi-cloudflare.yml@main
+    with:
+      work-dir: infra/cloudflare
+      stack-name: prod
+      tooling-ref: main
+      environment-url: https://archlens.dev
+      apply: ${{ github.event_name != 'workflow_dispatch' || inputs.apply }}
+    secrets: inherit

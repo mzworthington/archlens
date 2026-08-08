@@ -29,14 +29,9 @@ Catalog objects follow ADR-0010 under `estates/samples/` for the hosted samples 
 See [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md), then from the repo root:
 
 ```bash
-export BWS_ACCESS_TOKEN=...
-export BWS_PROJECT_ID=...
-DOMAIN=… WWW_DOMAIN=… PAGES_PROJECT_NAME=… \
-CATALOG_BUCKET_NAME=… CATALOG_DOMAIN=… PULUMI_STACK=prod \
+export BWS_ACCESS_TOKEN=... BWS_PROJECT_ID=...
 bin/setup-cloudflare-hosting.sh
 ```
-
-(No hard-coded product defaults — see [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).)
 
 Then apply infrastructure:
 
@@ -45,11 +40,11 @@ cd infra/cloudflare
 pulumi up
 ```
 
-Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` runs **preview** (rich `--diff` in the Actions log + job summary), prints the **Pulumi Cloud** dashboard URL, then waits for a **pulumi-prod** environment approval before `pulumi up`.
+Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` calls the reusable edge-dns workflow (preview → **pulumi-prod** approval → `up`).
 
-**Manual gate:** GitHub → Settings → Environments → create **`pulumi-prod`** with **Required reviewers**. Without reviewers the apply job still runs after preview (no pause).
+**Manual gate:** GitHub → Settings → Environments → create **`pulumi-prod`** with **Required reviewers**.
 
-**Manual run:** GitHub → Actions → **Pulumi Cloudflare** → Run workflow → leave **apply** checked to preview then wait for approval and `up` (uncheck for preview-only).
+**Manual run:** GitHub → Actions → **Pulumi Cloudflare** → Run workflow.
 
 ## Local Pulumi commands
 
@@ -75,8 +70,7 @@ pulumi up
 |------|---------|
 | `wrangler.toml` | Pages project name + output directory |
 | `app/packages/canvas/public/_redirects` | SPA routing |
-| `.github/workflows/pulumi-cloudflare.yml` | Preview on PR/main; gated `up` via `pulumi-prod` |
-| `.github/actions/setup-pulumi-cloudflare` | Shared Node/pnpm + stack config for that workflow |
+| `.github/workflows/pulumi-cloudflare.yml` | Thin caller → edge-dns reusable workflow |
 | `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
 | `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/samples/` (product `archlens`) |
 | `.github/workflows/publish-demo-catalog.yml` | Matrix demos → fragment; one final compose `estates/samples/` |
@@ -87,4 +81,4 @@ pulumi up
 Workflow index (all triggers): [docs/guide/ci-workflows.md](../../docs/guide/ci-workflows.md).
 
 | `Pulumi.prod.yaml.example` | Committed stack defaults (local `Pulumi.prod.yaml` is gitignored) |
-| `bin/setup-cloudflare-hosting.sh` | Bootstrap: bws → gh + pulumi config |
+| `bin/setup-cloudflare-hosting.sh` | Thin shim → edge-dns bootstrap (bws → gh + pulumi config) |

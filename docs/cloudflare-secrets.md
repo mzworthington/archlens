@@ -2,42 +2,38 @@
 
 Fresh setup for [archlens.dev](https://archlens.dev) on Cloudflare Pages (Pulumi + Wrangler + GitHub Actions).
 
-The **zone** itself is owned by [`edge-dns`](https://github.com/mzworthington/edge-dns) — see [dns.md](./dns.md). This checklist covers product Pages/DNS only.
+The **zone** is owned by [`edge-dns`](https://github.com/mzworthington/edge-dns) — see [dns.md](./dns.md). Shared CI/bootstrap tooling also lives there ([reusable Cloudflare CI](https://github.com/mzworthington/edge-dns/blob/main/docs/reusable-cloudflare-ci.md)). This repo keeps thin shims only.
 
 ## Bootstrap
 
 ```bash
-export BWS_ACCESS_TOKEN="..."   # bws service account
-export BWS_PROJECT_ID="..."     # bws project list
+export BWS_ACCESS_TOKEN="..."
+export BWS_PROJECT_ID="..."
 
-gh auth login                   # once
-pulumi login                    # once (needed to mint PULUMI_ACCESS_TOKEN if missing)
+gh auth login
+pulumi login
 
-# Add CLOUDFLARE_API_TOKEN to bws (see token scopes below)
-DOMAIN=archlens.dev \
-WWW_DOMAIN=www.archlens.dev \
-PAGES_PROJECT_NAME=archlens \
-CATALOG_BUCKET_NAME=archlens-blueprint-catalog \
-CATALOG_DOMAIN=blueprints.archlens.dev \
-PULUMI_STACK=prod \
-./bin/setup-cloudflare-hosting.sh
+# Site identity is defaulted in the shim; BWS needs CLOUDFLARE_API_TOKEN (+ optional account/Pulumi/R2).
+bin/setup-cloudflare-hosting.sh
 ```
+
+The shim downloads [`scripts/setup-cloudflare-hosting.sh`](https://github.com/mzworthington/edge-dns/blob/main/scripts/setup-cloudflare-hosting.sh) from edge-dns (`EDGE_DNS_REF`, default `main`). Defaults: `DOMAIN=archlens.dev`, apex+www, Pages `archlens`, catalog bucket/domain.
 
 The script will:
 
-1. Validate **bws** secrets (resolve account/zone IDs from the Cloudflare API if missing; refuses to guess when multiple accounts exist)
-2. Mint a **Pulumi access token** via `pulumi api CreatePersonalToken` if missing or invalid
-3. Reuse or mint **R2 catalog S3 credentials** (bucket-scoped), store in bws
+1. Validate **bws** secrets (resolve account/zone IDs from the Cloudflare API if missing)
+2. Mint a **Pulumi access token** if missing or invalid
+3. Reuse or mint **R2 catalog S3 credentials**, store in bws
 4. Sync hosting + `R2_BLUEPRINT_CATALOG_*` secrets to **GitHub Actions**
-5. Configure the **Pulumi** stack (`pulumi config set` — does not run `preview` or `up`)
+5. Configure the **Pulumi** stack (does not run `preview` / `up`)
 
-If automatic R2 token mint fails (API token lacks User/Account API Tokens permission), create an R2 Object Read & Write token for `CATALOG_BUCKET_NAME` in the dashboard, put the three `R2_BLUEPRINT_CATALOG_*` values in bws, and re-run.
+If automatic R2 token mint fails, create an R2 Object Read & Write token for the catalog bucket, put the three `R2_BLUEPRINT_CATALOG_*` values in bws, and re-run.
 
-After bootstrap, apply infra locally (`cd infra/cloudflare && pulumi up`) or merge to `main` for CI (preview, then **pulumi-prod** environment approval, then `up`).
+After bootstrap: `cd infra/cloudflare && pulumi up`, or merge to `main` (preview → **pulumi-prod** approval → `up`).
 
 ### Registrar nameservers (manual)
 
-**Point your domain registrar's nameservers at Cloudflare.** The script prints the NS records when the zone is pending. Update NS at your registrar, then re-run the script.
+**Point your domain registrar's nameservers at Cloudflare.** The script prints the NS records when the zone is pending.
 
 ## Secrets
 
@@ -56,7 +52,7 @@ Create at [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/p
 
 - Account → **Cloudflare Pages: Edit**
 - Account → **R2: Edit** (Pulumi bucket + custom domain)
-- Account → **Account Settings: Read** + **Edit** (Web Analytics; Write alone is not enough for RUM list/create)
+- Account → **Account Settings: Read** + **Edit** (Web Analytics)
 - Zone → **Zone: Read**
 - Zone → **DNS: Edit**
 - Zone → **Zone Settings: Edit** (Observatory scheduled tests)
@@ -77,11 +73,11 @@ Publish uses the shared storage port. Configure via env (all providers) or CLI f
 | `AZURE_STORAGE_CONNECTION_STRING`                       | Azure Blob connection string                                                            |
 | `AZURE_STORAGE_CONTAINER`                               | Azure container name                                                                    |
 
-Legacy `R2_BLUEPRINT_CATALOG_*` GitHub secrets map to the same publish workflow. The workflow installs `archlens` from the latest GitHub release (not from monorepo source); cut a CLI release that includes `archlens publish` before the first successful nightly run.
+Legacy `R2_BLUEPRINT_CATALOG_*` GitHub secrets map to the same publish workflow.
 
 ### R2 catalog publish token (CI only)
 
-Managed by `bin/setup-cloudflare-hosting.sh` (reuse from bws, or mint / prompt). Nightly publish uses:
+Managed by the edge-dns bootstrap (via the local shim). Nightly publish uses:
 
 | Key                                      | Used by                                          |
 | ---------------------------------------- | ------------------------------------------------ |
@@ -98,8 +94,6 @@ Push to `main` — CI builds and `wrangler pages deploy` publishes.
 ## Health check
 
 ```bash
-curl -sI "https://${DOMAIN}/bundled-blueprints/catalog.json"   # bundled fallback (HTTP 200)
-curl -sI "https://${CATALOG_DOMAIN}/latest/manifest.json"     # remote catalog pointer
+curl -sI "https://archlens.dev/bundled-blueprints/catalog.json"
+curl -sI "https://blueprints.archlens.dev/latest/manifest.json"
 ```
-
-If the apex still serves GitHub Pages (`x-github-request-id` header), update apex/`www` DNS in Cloudflare to CNAME → your `*.pages.dev` subdomain, then `cd infra/cloudflare && pulumi up`.
