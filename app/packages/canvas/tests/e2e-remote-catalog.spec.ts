@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { loadSandbox } from './helpers/workspace';
 import { expectCanvasReady } from './helpers/canvas';
 import { continueWithSample } from './helpers/toolbar';
 import { gotoApp } from './helpers/navigation';
