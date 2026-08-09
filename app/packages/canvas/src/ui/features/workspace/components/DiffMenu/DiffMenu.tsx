@@ -30,6 +30,7 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
               className={`flex h-full flex-col bg-slate-950/80 glass-panel backdrop-blur-md border-l border-slate-900 shadow-2xl transition-all duration-300 ease-in-out transform ${
                 isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
               }`}
+              data-testid="diff-menu"
             >
               <div className="p-4 border-b border-slate-900 flex items-center justify-between bg-slate-950/40 sticky top-0 z-10 shrink-0">
                 <div className="flex items-center gap-2">
@@ -76,6 +77,7 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
                       <button
                         onClick={handleRevert}
                         disabled={loading}
+                        data-testid="diff-revert"
                         className="flex items-center gap-1.5 bg-rose-950/15 hover:bg-rose-950/30 text-rose-400 hover:text-rose-250 border border-rose-900/30 hover:border-rose-900/60 px-4.5 py-2 rounded-lg text-xs font-semibold transition cursor-pointer"
                       >
                         Revert Changes
@@ -83,6 +85,7 @@ export const DiffMenu: React.FC<DiffMenuProps> = ({ isOpen, onClose }) => {
                       <button
                         onClick={handleCommit}
                         disabled={loading}
+                        data-testid="diff-commit"
                         className="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 hover:text-white border border-emerald-500/30 text-slate-100 px-4.5 py-2 rounded-lg text-xs font-semibold transition cursor-pointer"
                       >
                         Commit Changes

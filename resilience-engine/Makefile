@@ -31,6 +31,7 @@ copy-wasm: build-wasm
 ensure-wasm:
 	@test -f $(CANVAS_PUBLIC)/chaoslens.wasm && test -f $(CANVAS_PUBLIC)/wasm_exec.js || $(MAKE) copy-wasm
 
-build: build-cli copy-wasm
+# Product builds need WASM only; native Go CLI (cmd/chaoslens) is not checked in yet.
+build: copy-wasm
 
 all: test build

@@ -68,7 +68,7 @@ Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets
 | `validate [path]`                  | Architecture health (cycles + forensics); `--since-commit` / `--contract` |
 | `diff [baseline] [current]`        | Structural diff between two blueprint trees                               |
 | `resilience [path]`                | AdviceLens estate sweep + SLA gate (`--min-sla`, `--output`)              |
-| `--format=text \| json`            | Output format for `validate` / `diff` / `resilience`                      |
+| `--format=text \| json \| yaml`    | Output format for `validate` / `diff` / `resilience`                      |
 | `--version`, `-V`                  | Print installed CLI version and exit                                      |
 | `update`                           | Download and install the latest release, then re-launch                   |
 | `--no-update-check`                | Skip interactive startup update prompt                                    |
@@ -94,7 +94,7 @@ Object storage uses `OBJECT_STORAGE_*` / R2 credentials (see [cloudflare-secrets
 | `--key-prefix=<path>`              | Object key prefix inside the bucket                                       |
 | `--estate=<id>` / `--product=<id>` | Catalog compose / fragment identity                                       |
 
-With the default `tree-sitter` parser, language strategies cover TypeScript, C#, and Python (WASM grammars ship with the release binary). Pass `--parser=ts-morph` for TypeScript-only trees if needed.
+With the default `tree-sitter` parser, language coverage includes TypeScript/JavaScript, C#, Python, Go, and Java (WASM grammars ship with the release binary; default glob is `**/*.{ts,tsx,cs,java,go,py,tf}`). Pass `--parser=ts-morph` for TypeScript-only trees if needed.
 
 Terraform (`.tf` / `.tf.json`) and Pulumi (`Pulumi.yaml` projects) are auto-detected under the scan root and mapped by separate IaC passes when root modules or projects are found - no extra flag. The default glob includes `*.tf` so those paths stay in scope; AST parsers skip them.
 
@@ -179,7 +179,7 @@ The analyzer links containers and components from:
 
 - **Relative imports** within the scanned tree
 - **Workspace `package.json` names** in monorepos (`/core` → `packages/core`, etc.), including subpath imports
-- **`.csproj` project references** and C# `using` resolution (see [README - C# and .NET analysis](https://github.com/mzworthington/archlens#c-and-net-analysis))
+- **`.csproj` project references** and C# `using` resolution (see [C# and .NET analysis](../../README.md#c-and-net-analysis))
 
 Node.js built-in modules are excluded from in-repo matching. Run `archlens enrich` to re-apply the externals pass on existing YAML without a full source scan (adds missing cross-diagram edges and external proxy nodes after CLI or core upgrades).
 

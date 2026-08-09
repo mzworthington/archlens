@@ -16,6 +16,7 @@ Sparse [MADR](https://adr.github.io/madr/)-style records for choices that are **
 | [0010](./0010-remote-blueprint-catalog-contract.md)                | Remote blueprint catalog contract (manifest + catalog.json) | Accepted | 2026-08-04 |
 | [0011](./0011-object-storage-published-corpora.md)                 | Object storage for published corpora (R2 hosted catalog)    | Accepted | 2026-08-04 |
 | [0012](./0012-remote-read-only-workspace-port.md)                  | Remote read-only WorkspacePort adapter for hosted sandbox   | Accepted | 2026-08-04 |
+| [0013](./0013-practitioner-connection-profiles.md)                 | Practitioner connection profiles for org-owned buckets      | Deferred | 2026-08-09 |
 | [0014](./0014-estate-fragments-and-compose-before-publish.md)      | Estate fragments and compose-before-publish                 | Accepted | 2026-08-04 |
 | [0015](./0015-declared-context-hydration.md)                       | Declared system context authorship and scan hydration       | Accepted | 2026-08-05 |
 | [0016](./0016-iac-declaration-vs-provisioned-infrastructure.md)    | Separate IaC declarations from provisioned infrastructure   | Accepted | 2026-08-06 |
