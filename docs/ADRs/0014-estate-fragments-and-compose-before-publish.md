@@ -81,7 +81,7 @@ estates/{estateId}/
 
 Stage inputs with `archlens catalog publish-fragment … --estate=… --product=… --source-ref=… --no-dry-run`.
 
-**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` for single-product publishers. The demo matrix publishes fragments in parallel and runs **one** final compose after all legs. An hourly `compose-catalog` workflow is the safety net (`--allow-empty`) and retries the whole compose command a few times for residual R2 blips. Jobs that compose share concurrency group `samples-estate-compose`. Storage-event / Worker triggers are deferred.
+**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` for single-product publishers. The demo matrix publishes fragments in parallel and runs **one** final compose after all legs. An hourly `compose-catalog` workflow is the safety net (`--allow-empty`) and stays a thin caller — resilience (no-op when unchanged, R2 retries, CAS backoff) lives in the CLI. Jobs that compose share concurrency group `samples-estate-compose`. Storage-event / Worker triggers are deferred.
 
 ### Phase 3 — suggestion overlays (implemented)
 
