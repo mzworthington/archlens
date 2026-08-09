@@ -35,11 +35,11 @@ pnpm exec playwright test e2e-golden-journey.spec.ts
 
 Deepened journeys (no File System Access):
 
-| Spec | Covers |
-| ---- | ------ |
+| Spec                            | Covers                                                                             |
+| ------------------------------- | ---------------------------------------------------------------------------------- |
 | `e2e-import-merge-diff.spec.ts` | Mermaid merge apply, conflicts, Pending Changes / revert / sandbox commit download |
-| `e2e-sandbox-catalog.spec.ts` | Bundled catalog navigation between estates |
-| `e2e-remote-catalog.spec.ts` | Publish→consume via fixture `latest/manifest.json` + snapshot |
+| `e2e-sandbox-catalog.spec.ts`   | Bundled catalog navigation between estates                                         |
+| `e2e-remote-catalog.spec.ts`    | Publish→consume via fixture `latest/manifest.json` + snapshot                      |
 
 ## Other product demos
 

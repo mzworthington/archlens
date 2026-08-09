@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { fillMermaidImport, mergeMermaidIntoDiagram, setImportConflictResolution } from './helpers/importMerge';
+import {
+  fillMermaidImport,
+  mergeMermaidIntoDiagram,
+  setImportConflictResolution,
+} from './helpers/importMerge';
 import { openPendingChanges, revertPendingChanges } from './helpers/diffMenu';
 import { loadSandbox } from './helpers/workspace';
 
@@ -34,7 +38,7 @@ test.describe('Import Mermaid merge apply', () => {
     await expect(dialog.getByText(/Conflicts \(\d+\)/i)).toBeVisible({ timeout: 15_000 });
     await setImportConflictResolution(page, 'samples/golden-journey', 'Keep existing');
     await dialog.getByRole('button', { name: 'Merge into diagram' }).click();
-    await expect(dialog).toHaveCount(0, { timeout: 30_000 });
+    await expect(dialog).toBeHidden({ timeout: 30_000 });
     await expect(page.getByText('Import Probe', { exact: true }).first()).toBeVisible({
       timeout: 30_000,
     });
@@ -48,9 +52,7 @@ test.describe('Import Mermaid merge apply', () => {
     await page.getByRole('button', { name: 'Close View' }).click();
 
     const dialog = await fillMermaidImport(page, UNIQUE_MERMAID);
-    await expect(
-      dialog.getByText(/No new nodes or conflicts/i)
-    ).toBeVisible({ timeout: 15_000 });
+    await expect(dialog.getByText(/No new nodes or conflicts/i)).toBeVisible({ timeout: 15_000 });
   });
 });
 
@@ -62,18 +64,26 @@ test.describe('Pending changes / DiffMenu', () => {
 
     await expect(page.getByText('Component Operations')).toBeVisible();
     await expect(page.getByText('Added').first()).toBeVisible();
-    await expect(page.getByText('API Gateway').first()).toBeVisible();
+    await expect(page.getByTestId('diff-menu').getByText('API Gateway').first()).toBeVisible();
 
     await revertPendingChanges(page);
-    await expect(page.getByText('API Gateway', { exact: true })).toHaveCount(0, {
-      timeout: 30_000,
-    });
+    await expect(page.locator('.react-flow__node').filter({ hasText: 'API Gateway' })).toHaveCount(
+      0,
+      { timeout: 30_000 }
+    );
   });
 
-  test('sandbox Commit Changes downloads YAML (no FS Access)', async ({ page }) => {
+  test('sandbox Commit Changes downloads YAML when save-file picker is unavailable', async ({
+    page,
+  }) => {
     test.setTimeout(180_000);
     await mergeMermaidIntoDiagram(page, UNIQUE_MERMAID);
     await openPendingChanges(page);
+
+    // Chromium exposes showSaveFilePicker; force the <a download> fallback for Playwright.
+    await page.evaluate(() => {
+      Reflect.deleteProperty(window, 'showSaveFilePicker');
+    });
 
     const downloadPromise = page.waitForEvent('download', { timeout: 30_000 });
     await page.getByTestId('diff-commit').click();
