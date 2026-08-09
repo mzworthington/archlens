@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as yaml from 'js-yaml';
-import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from '../domain/analysisOptions.ts';
+import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from '@archlens/analysis/options';
 
 export type LoadedAnalysisConfig = AnalysisOptions & {
   /** Optional glob override from config file. */

@@ -3,7 +3,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { loadAnalysisConfig, mergeAnalysisOptions } from './loadAnalysisConfig.ts';
-import { DEFAULT_ANALYSIS_OPTIONS } from '../domain/analysisOptions.ts';
+import { DEFAULT_ANALYSIS_OPTIONS } from '@archlens/analysis/options';
 
 describe('loadAnalysisConfig', () => {
   it('returns defaults when no config file exists', () => {

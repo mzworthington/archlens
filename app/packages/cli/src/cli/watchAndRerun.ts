@@ -3,7 +3,7 @@ import pc from 'picocolors';
 import { buildWatchIgnorePatterns, createDebouncer, type WatchModeOptions } from './watchMode.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { executeArchitectureRun, resolveArchitectureState } from './architectureRun.ts';
-import { isCancellationError } from '../analysis/domain/cancellation.ts';
+import { isCancellationError } from '@archlens/analysis/cancellation';
 
 export interface WatchAndRerunDeps {
   watch?: (scanRoot: string, ignored: string[]) => FSWatcher;

@@ -1,5 +1,5 @@
 import pc from 'picocolors';
-import type { LoggerPort } from '../domain/ports.ts';
+import type { LoggerPort } from '@archlens/analysis/ports';
 
 export class ConsoleLogger implements LoggerPort {
   info(message: string, context?: Record<string, unknown>): void {

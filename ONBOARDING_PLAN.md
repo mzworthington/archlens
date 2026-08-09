@@ -1,11 +1,12 @@
 # Onboarding action plan (remaining work)
 
-This tracks **beat 3+** after shipping:
+This tracks work after shipping:
 
-1. **Demo-first insight** on bare `/workspace` (ChaosLens golden journey)
-2. **Browser lite scan** (“Scan my repo in the browser” — structural TS/JS only)
+1. **Demo-first insight** on bare `/workspace` (ChaosLens golden journey) — done
+2. **Browser scan** via shared `@archlens/analysis` — done (structure only; parser adapter is lightweight)
+3. Remaining: CLI graduation UX, tree-sitter browser parser parity, polish
 
-Do not treat the browser scan as CLI parity. Graduate users intentionally.
+Do not treat the browser scan as CLI parity (no git TraceLens / publish). Graduate users intentionally.
 
 ---
 
@@ -13,8 +14,9 @@ Do not treat the browser scan as CLI parity. Graduate users intentionally.
 
 | Beat | Outcome                                                                                      |
 | ---- | -------------------------------------------------------------------------------------------- |
-| 3    | Clear **CLI graduation** after lite scan / demo (git hotspots, CI publish, watch)            |
-| 4    | **Shared analysis package** — reuse `CodebaseAnalyzer` in browser via ports (not regex lite) |
+| 3    | Clear **CLI graduation** after browser scan / demo (git hotspots, CI publish, watch)         |
+| 4    | ~~Shared analysis package~~ **Done** — `@archlens/analysis`; browser uses `CodebaseAnalyzer` |
+| 4b   | Browser **tree-sitter** `CodebaseParserPort` (replace lightweight specifier extract)         |
 | 5    | Browser scan **UX polish** (progress, cancel, Safari/Firefox ZIP fallback)                   |
 | 6    | Doc / marketing honesty (language coverage, limitations)                                     |
 
@@ -22,7 +24,7 @@ Do not treat the browser scan as CLI parity. Graduate users intentionally.
 
 ## Beat 3 — CLI graduation (product)
 
-**Why:** Lite scan has no TraceLens, no multi-language AST depth, no publish. Users who care need an obvious next step without re-learning the product.
+**Why:** Browser scan has no TraceLens, limited language AST depth vs CLI tree-sitter, no publish. Users who care need an obvious next step.
 
 **Actions:**
 
@@ -31,23 +33,26 @@ Do not treat the browser scan as CLI parity. Graduate users intentionally.
 - [ ] Getting started guide: reorder to **Demo → Browser scan → CLI** (match Canvas entry)
 - [ ] Fix stale ChaosLens docs that still say “No headless CLI / CI gate” if AdviceLens/`archlens resilience` already covers it
 
-**Done when:** A user who finished lite scan can find CLI install without leaving Canvas, and docs match the three-beat funnel.
+**Done when:** A user who finished browser scan can find CLI install without leaving Canvas, and docs match the three-beat funnel.
 
 ---
 
-## Beat 4 — Shared analysis (engineering)
+## Beat 4 — Shared analysis (engineering) — DONE
 
-**Why:** Regex lite scan is good for onboarding instant feedback; long-term quality should share CLI domain (`CodebaseAnalyzer` + writers) behind browser adapters.
+- [x] Extract domain + writers into `@archlens/analysis`
+- [x] Remove Node leaks (`baseWriter`, `discoverCsprojFiles`, `createCliCancellation`)
+- [x] CLI depends on `@archlens/analysis`; adapters stay in CLI
+- [x] Canvas `openBrowserLiteScan` runs `CodebaseAnalyzer` via memory FS + source parser adapters
+- [ ] Golden fixture: same TS repo → CLI headless YAML vs browser analyzer YAML (comparable, not byte-identical)
+- [ ] ADR: browser structural scan vs Bun CLI (no git in browser)
 
-**Actions:**
+---
 
-- [ ] Remove Node leaks from analysis import graph (`baseWriter` `node:fs`, `discoverCsprojFiles` → pathFilter/gitignore, etc.)
-- [ ] Add `@archlens/cli` (or `@archlens/analysis`) exports for browser-safe domain + writers
-- [ ] Browser `AnalysisFileSystemPort` + tree-sitter parser adapter (reuse Canvas `treeSitterClient`)
-- [ ] Replace `buildLiteScanSchemas` path with shared analyzer; keep caps + progress UI
-- [ ] ADR: browser structural scan vs Bun CLI (scope, non-goals: no git in browser)
+## Beat 4b — Browser tree-sitter parser
 
-**Done when:** Browser scan and `archlens --headless` produce comparable BlueprintSpec for a TS fixture repo (golden test).
+- [ ] Extract shared AST→`ParsedSourceFile` walk from CLI `TreeSitterParserAdapter`
+- [ ] `BrowserTreeSitterParser` using Canvas `treeSitterClient` WASM URLs
+- [ ] Delete canvas `extractTsImports` once tree-sitter path is green
 
 ---
 
@@ -79,6 +84,6 @@ Do not treat the browser scan as CLI parity. Graduate users intentionally.
 ## Suggested sequence
 
 1. Beat 3 (copy + CTAs) — small, high leverage
-2. Beat 5 progress/cancel — makes lite scan feel production-safe
-3. Beat 4 shared analyzer — when lite scan quality becomes the complaint
+2. Beat 4b tree-sitter browser parser — closes remaining adapter gap
+3. Beat 5 progress/cancel — makes browser scan feel production-safe
 4. Beat 6 continuously with doc PRs

@@ -3,7 +3,7 @@ import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import { ForensicAnalyzer } from './domain/forensicAnalyzer.ts';
 import type { ForensicsOptions } from './domain/options.ts';
 import type { FileMetrics } from './domain/types.ts';
-import { normalizeFilePath } from './domain/attachForensics.ts';
+import { normalizeFilePath } from '@archlens/analysis/forensics';
 import { GitLogHistoryAdapter } from './adapters/gitLogHistory.ts';
 import { TreeSitterImportGraphAdapter } from './adapters/treeSitterImportGraph.ts';
 import type { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics.ts';

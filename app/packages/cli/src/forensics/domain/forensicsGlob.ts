@@ -1,4 +1,4 @@
-import { DEFAULT_SCAN_GLOB } from '../../analysis/domain/analysisOptions.ts';
+import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
 
 /** Forensics scan glob aligned with architecture defaults (source code, not IaC). */
 export const DEFAULT_FORENSICS_GLOB = DEFAULT_SCAN_GLOB.replace(',tf', ',js,jsx');

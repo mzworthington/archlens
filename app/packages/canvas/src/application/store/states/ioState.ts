@@ -30,12 +30,16 @@ import {
   isWorkspaceOpenCurrent,
   markFolderWorkspacePreferred,
 } from '../workspaceOpenSession';
-import { buildLiteScanSchemas } from '../../analysis/buildLiteScanSchemas';
 import {
   pickSourceDirectory,
   walkBrowserSourceDirectory,
 } from '../../../infrastructure/analysis/browserSourceWalker';
 import { createMemoryScanWorkspacePort } from '../../../infrastructure/analysis/memoryScanWorkspace';
+import { BrowserMemoryFileSystem } from '../../../infrastructure/analysis/browserMemoryFileSystem';
+import { BrowserSourceParser } from '../../../infrastructure/analysis/browserSourceParser';
+import { createAnalysisLogger } from '../../../infrastructure/analysis/analysisLogger';
+import { CodebaseAnalyzer } from '@archlens/analysis';
+import { slugifyWorkspaceName } from '../../analysis/slugifyWorkspaceName';
 
 export const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
@@ -257,19 +261,43 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
         );
       }
 
-      const built = buildLiteScanSchemas(walked.files, {
-        workspaceName: walked.directoryName,
-        truncated: walked.truncated,
-      });
-      const scanPort = createMemoryScanWorkspacePort({
-        directoryName: walked.directoryName,
-        files: built.files,
+      const contextName = slugifyWorkspaceName(walked.directoryName);
+      const cwd = '/scan';
+      const outputRoot = `${cwd}/blueprints`;
+      const fileSystem = new BrowserMemoryFileSystem(walked.files, { cwd });
+      const parser = new BrowserSourceParser(walked.files, cwd);
+      const analyzer = new CodebaseAnalyzer({
+        parser,
+        fileSystem,
+        logger: createAnalysisLogger(logger),
+        analysisOptions: {
+          ignore: [],
+          include: [],
+          rollupModules: false,
+          systems: [],
+        },
       });
 
+      await analyzer.runAnalysis(contextName, outputRoot, '**/*.{ts,tsx,js,jsx}');
+      if (!isWorkspaceOpenCurrent(openGeneration)) return false;
+
+      const yamlFiles = fileSystem.collectWrittenYamlFiles(outputRoot);
+      if (yamlFiles.length === 0) {
+        throw new Error('Scan produced no BlueprintSpec YAML — check the selected folder.');
+      }
+
+      const scanPort = createMemoryScanWorkspacePort({
+        directoryName: walked.directoryName,
+        files: yamlFiles,
+      });
+
+      const preferredEntryPath =
+        yamlFiles.find(f => f.name.endsWith('context.yaml'))?.name ?? yamlFiles[0]!.name;
+
       const opened = await loadWorkspaceFromYamlFiles({
-        files: built.files,
+        files: yamlFiles,
         workspaceName: walked.directoryName,
-        preferredEntryPath: `${built.contextEntityRef}/context.yaml`,
+        preferredEntryPath,
         workingCopy: workingCopyPort,
         logger,
         setNotification,
@@ -281,13 +309,13 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       });
 
       if (opened) {
-        const truncatedNote = built.truncated
-          ? ` Capped at ${built.fileCount} files for browser responsiveness.`
+        const truncatedNote = walked.truncated
+          ? ` Capped at ${walked.files.length} files for browser responsiveness.`
           : '';
         setNotification?.({
           type: 'success',
           title: 'Browser scan ready',
-          message: `Loaded ${built.fileCount} source file(s) as BlueprintSpec (structure only — no git hotspots).${truncatedNote} Install the ArchLens CLI for TraceLens and CI publish.`,
+          message: `Loaded ${walked.files.length} source file(s) via shared analysis (structure only — no git hotspots).${truncatedNote} Install the ArchLens CLI for TraceLens and CI publish.`,
         });
       }
       return opened;

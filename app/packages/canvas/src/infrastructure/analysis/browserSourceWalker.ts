@@ -4,7 +4,7 @@ import {
   LITE_SCAN_MAX_FILES,
   LITE_SCAN_SKIP_DIR_NAMES,
 } from '../../application/analysis/liteScanLimits';
-import type { LiteScanSourceFile } from '../../application/analysis/buildLiteScanSchemas';
+import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
 
 export type BrowserSourceWalkResult = {
   files: LiteScanSourceFile[];

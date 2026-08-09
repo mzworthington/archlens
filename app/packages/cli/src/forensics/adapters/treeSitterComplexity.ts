@@ -7,8 +7,8 @@ import {
   type CyclomaticLanguage,
 } from '@archlens/core/forensics';
 import { extensionToTreeSitterLanguage } from '@archlens/core';
-import type { LoggerPort } from '../../analysis/domain/ports.ts';
-import { throwIfAborted } from '../../analysis/domain/cancellation.ts';
+import type { LoggerPort } from '@archlens/analysis/ports';
+import { throwIfAborted } from '@archlens/analysis/cancellation';
 import type { ForensicsOptions } from '../domain/options.ts';
 import type { ComplexityAnalyzerPort } from '../domain/ports.ts';
 import type { StructuralMetrics } from '../domain/types.ts';

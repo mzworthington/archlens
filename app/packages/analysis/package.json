@@ -1,0 +1,28 @@
+{
+  "name": "@archlens/analysis",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./ports": "./src/domain/ports.ts",
+    "./types": "./src/domain/types.ts",
+    "./cancellation": "./src/domain/cancellation.ts",
+    "./options": "./src/domain/analysisOptions.ts",
+    "./path-filter": "./src/pathFilter/structuralPathFilter.ts",
+    "./forensics": "./src/forensics/index.ts",
+    "./writers": "./src/writers/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@archlens/core": "workspace:*",
+    "ignore": "^7.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1"
+  }
+}

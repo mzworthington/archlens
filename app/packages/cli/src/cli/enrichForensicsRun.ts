@@ -8,8 +8,8 @@ import {
 import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
-import { attachForensicsToSchema, normalizeFilePath } from '../forensics/domain/attachForensics.ts';
-import { listBlueprintSchemaPaths } from '../writers/externalDependenciesPass.ts';
+import { attachForensicsToSchema, normalizeFilePath } from '@archlens/analysis/forensics';
+import { listBlueprintSchemaPaths } from '@archlens/analysis';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
 function isComponentSchemaPath(schemaPath: string): boolean {

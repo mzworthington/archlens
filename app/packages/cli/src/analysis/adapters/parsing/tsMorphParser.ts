@@ -1,12 +1,12 @@
 import { Project, SyntaxKind, ImportDeclaration, NewExpression, CallExpression } from 'ts-morph';
 import * as path from 'path';
 import * as fs from 'fs';
-import type { CodebaseParserPort } from '../../domain/ports.ts';
-import type { ParsedSourceFile } from '../../domain/types.ts';
-import type { AnalysisOptions } from '../../domain/analysisOptions.ts';
-import { isTestSourcePath } from '../../domain/testPath.ts';
+import type { CodebaseParserPort } from '@archlens/analysis/ports';
+import type { ParsedSourceFile } from '@archlens/analysis';
+import type { AnalysisOptions } from '@archlens/analysis';
+import { isTestSourcePath } from '@archlens/analysis';
 import { createSourcePathFilter } from '../pathFilter/sourcePathFilter.ts';
-import { throwIfAborted } from '../../domain/cancellation.ts';
+import { throwIfAborted } from '@archlens/analysis/cancellation';
 
 export class TsMorphParserAdapter implements CodebaseParserPort {
   constructor(

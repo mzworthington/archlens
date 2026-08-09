@@ -1,4 +1,4 @@
-import { throwIfAborted } from '../../analysis/domain/cancellation.ts';
+import { throwIfAborted } from '@archlens/analysis/cancellation';
 import type { ForensicsOptions } from '../domain/options.ts';
 import type { ImportGraphPort } from '../domain/ports.ts';
 import {

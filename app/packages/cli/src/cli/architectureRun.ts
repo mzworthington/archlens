@@ -5,8 +5,12 @@ import { TsMorphParserAdapter } from '../analysis/adapters/parsing/tsMorphParser
 import { TreeSitterParserAdapter } from '../analysis/adapters/parsing/treeSitterParser.ts';
 import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import { CodebaseAnalyzer } from '../analysis/domain/analyzer.ts';
-import { IacAnalyzer } from '../analysis/domain/iacAnalyzer.ts';
+import {
+  CodebaseAnalyzer,
+  IacAnalyzer,
+  isCancellationError,
+  DEFAULT_SCAN_GLOB,
+} from '@archlens/analysis';
 import {
   loadAnalysisConfig,
   mergeAnalysisOptions,
@@ -14,14 +18,12 @@ import {
 } from '../analysis/adapters/loadAnalysisConfig.ts';
 import {
   createCliCancellation,
-  isCancellationError,
   type CliCancellation,
-} from '../analysis/domain/cancellation.ts';
+} from '../analysis/adapters/cliCancellation.ts';
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
 import { TreeSitterScanCache } from '../analysis/adapters/parsing/treeSitterForensics.ts';
 import { collectGitProvenance } from '../analysis/adapters/gitProvenance.ts';
 import type { InteractiveGitChoice } from './interactiveGitChoice.ts';
-import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
 import type { FileMetrics } from '../forensics/domain/types.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { formatAnalysisSpinnerMessage, formatSuccessOutro } from './cliBanner.ts';
