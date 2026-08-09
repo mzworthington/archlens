@@ -12,7 +12,7 @@ function clamp01(value: number): number {
 
 /**
  * Composite risk: how painful a hotspot would be if it failed during an outage.
- * hotspotScore × blastRadius, both clamped to 0–1.
+ * hotspotScore × blastRadius, both clamped to 0-1.
  */
 export function computeCompositeRiskScore(hotspotScore: number, blastRadius: number): number {
   return clamp01(hotspotScore) * clamp01(blastRadius);

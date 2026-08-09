@@ -19,7 +19,7 @@ Click **Resilience** again to exit ChaosLens. Simulation state and safeguard tog
 1. **Select a node** on the canvas (single click - use the **Zoom** button or double-click to drill into child diagrams).
 2. In the right panel, choose:
    - **Fault type** - high latency, 5xx error rate, packet loss, or region outage
-   - **Severity** - 0–100% slider
+   - **Severity** - 0-100% slider
    - **Safeguards** - circuit breaker, bulkhead, retry, local cache (session toggles on the selected node)
 3. Click **Simulate** in the bottom toolbar.
 
@@ -102,7 +102,7 @@ Contract, public schema URLs, and field reference: **[ChaosSpec](./chaos-spec.md
 - Multi-fault scenarios via the scenario list, **Browse ChaosSpecs** catalog, or paste/upload import
 - Load and export ChaosSpec from the shared **ChaosSpec** dialog (Import / Export tabs); catalog picker navigates by `diagramRef`
 - WASM Monte Carlo when the resilience engine is deployed; TypeScript fallback uses the same propagation rules without trial bands
-- Headless estate sweep and CI SLA gates ship via **[AdviceLens](./advicelens.md)** (`archlens resilience`, `.github/actions/advicelens-gate`) — not a separate ChaosLens-only binary
+- Headless estate sweep and CI SLA gates ship via **[AdviceLens](./advicelens.md)** (`archlens resilience`, `.github/actions/advicelens-gate`) - not a separate ChaosLens-only binary
 - No OpenTelemetry import
 - SLA numbers are heuristic, not queue/timeout/pool modeling
 - Executive view omits revenue and user-journey mapping (planned for a later iteration)

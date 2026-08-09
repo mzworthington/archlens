@@ -70,7 +70,7 @@ export function collectImmediateDrillDownChildren(
 
 /**
  * Map a file-leaf (or deeper) ref onto the nearest ancestor that exists as an emitted node.
- * Single-file rollups do not emit drill-down leaves — deps must target the rollup instead.
+ * Single-file rollups do not emit drill-down leaves - deps must target the rollup instead.
  */
 export function resolveToEmittedEntityRef(ref: string, emittedRefs: ReadonlySet<string>): string {
   let current: string | null = ref;

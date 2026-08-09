@@ -9,6 +9,7 @@ describe('cliBanner', () => {
     const output = log.mock.calls.map(call => String(call[0])).join('\n');
     expect(output).toContain('ARCH');
     expect(output).toContain('LENS');
+    expect(output).toContain('CLI');
     expect(output).toContain('0.1.45');
     log.mockRestore();
   });

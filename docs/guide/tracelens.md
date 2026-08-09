@@ -4,7 +4,7 @@
 
 ![TraceLens ranked offenders](../screenshots/tracelens.gif)
 
-Git analysis is **on by default** in ArchLens. Pass `--no-git` to skip; set window with `--git-since=365` (days).
+Git analysis is **on by default** in ArchLens CLI. Pass `--no-git` to skip; set window with `--git-since=365` (days).
 
 ## What is stored
 
@@ -46,9 +46,9 @@ forensics:
 
 Open the **Explorer** panel on the left (chevron rail on desktop, **Explorer** chip on mobile). Select the **TraceLens** tab for architecture signal tools:
 
-- **Workspace display** — test components, externals, dependency focus, risk heatmap, coupling lens
-- **Node details** — select a canvas node for git metrics, schema dependencies, coupled/import peers, and mini-graph
-- **View worst offenders** — opens the full **TraceLens** estate page
+- **Workspace display** - test components, externals, dependency focus, risk heatmap, coupling lens
+- **Node details** - select a canvas node for git metrics, schema dependencies, coupled/import peers, and mini-graph
+- **View worst offenders** - opens the full **TraceLens** estate page
 
 The **Schema** tab in the same panel shows YAML / JSON / Mermaid for the active diagram (Mermaid is export-only).
 
@@ -62,12 +62,12 @@ The page title is **TraceLens**, with tabs **TraceLens | AdviceLens**.
 
 | Tab            | Content                                                                                                                                                                                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **TraceLens**  | Ranked **Worst offenders** list — components or containers, filterable by hotspots / silos / refactor. Click a row for a **refactor plan** slide-over (boundary, ownership, rationale). **Open on canvas** enables guided navigation (coupling focus + boundary highlights). |
-| **AdviceLens** | Estate-wide recommendations — see [AdviceLens](./advicelens.md).                                                                                                                                                                                                             |
+| **TraceLens**  | Ranked **Worst offenders** list - components or containers, filterable by hotspots / silos / refactor. Click a row for a **refactor plan** slide-over (boundary, ownership, rationale). **Open on canvas** enables guided navigation (coupling focus + boundary highlights). |
+| **AdviceLens** | Estate-wide recommendations - see [AdviceLens](./advicelens.md).                                                                                                                                                                                                             |
 
 ### On the canvas
 
-Select an enriched node, then open Explorer → **TraceLens** for readonly metrics with helper text and a **lookback** value (e.g. `90d`). When ArchLens runs with `--git`, per-author commit counts are stored on `forensics.authors` and roll up to containers.
+Select an enriched node, then open Explorer → **TraceLens** for readonly metrics with helper text and a **lookback** value (e.g. `90d`). When ArchLens CLI runs with `--git`, per-author commit counts are stored on `forensics.authors` and roll up to containers.
 
 Concern badges on nodes:
 
@@ -106,4 +106,4 @@ Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds
 - [AdviceLens](./advicelens.md) - ranked recommendations from forensics + simulation (`/workspace?lens=advicelens`)
 - [ArchLens Canvas](./canvas.md)
 - [ChaosLens](./chaoslens.md)
-- [ArchLens](./cli.md)
+- [ArchLens CLI](./cli.md)

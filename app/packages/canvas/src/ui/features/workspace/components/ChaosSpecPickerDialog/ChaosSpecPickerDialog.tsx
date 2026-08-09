@@ -42,7 +42,7 @@ export const ChaosSpecPickerDialog: React.FC<Props> = ({ isOpen, onClose }) => {
     setLoadError(null);
 
     void (async () => {
-      // Show bundled catalog immediately — do not wait on workspace scanning.
+      // Show bundled catalog immediately - do not wait on workspace scanning.
       let bundled: ChaosSpecCatalogEntry[] = [];
       try {
         bundled = await loadBundledChaosSpecCatalog();

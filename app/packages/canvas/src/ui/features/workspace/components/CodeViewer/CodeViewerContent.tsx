@@ -6,7 +6,7 @@ const MermaidPreview = lazy(() =>
   import('../../../../components/MermaidPreview').then(m => ({ default: m.MermaidPreview }))
 );
 
-/** Schema explorer body — rendered inside the tabbed left workspace panel. */
+/** Schema explorer body - rendered inside the tabbed left workspace panel. */
 export const CodeViewerContent: React.FC = () => {
   const {
     activeTab,

@@ -19,10 +19,10 @@ The hosted sandbox today uses `BundledSampleWorkspaceAdapter`, which fetches `/b
 
 ## Considered Options
 
-- Option A — Keep bundled adapter only; redeploy Pages when blueprints change
-- Option B — New `createRemoteCatalogWorkspaceAdapter` + `VITE_REMOTE_CATALOG_BASE_URL` at build time
-- Option C — Runtime connection UI for the hosted sandbox (slice 2 pattern)
-- Option D — Service worker intercepts `/bundled-blueprints/` and proxies to R2
+- Option A - Keep bundled adapter only; redeploy Pages when blueprints change
+- Option B - New `createRemoteCatalogWorkspaceAdapter` + `VITE_REMOTE_CATALOG_BASE_URL` at build time
+- Option C - Runtime connection UI for the hosted sandbox (slice 2 pattern)
+- Option D - Service worker intercepts `/bundled-blueprints/` and proxies to R2
 
 ## Decision Outcome
 
@@ -46,7 +46,7 @@ Shared fetch utilities live in `catalogNetworkFetch.ts` (retry, concurrency pool
 - Good, because `ioState` and `ensureSystemLoaded` require no changes
 - Good, because PR builds without the env var still use bundled blueprints
 - Bad, because production sandbox requires R2 publish + DNS before cutover works
-- Bad, because catalog revision refresh (slice 1b) is not implemented yet — module cache resets only on full reload
+- Bad, because catalog revision refresh (slice 1b) is not implemented yet - module cache resets only on full reload
 - Mitigation: keep bundled tree in deploy until 7 consecutive nightly publishes succeed
 
 ## Architecture sketch

@@ -117,8 +117,8 @@ const systemNodeSchema = z.object({
 });
 
 const systemDependencySchema = z.object({
-  from: z.string().min(1),
-  to: z.string().min(1),
+  from: entityRefStringSchema,
+  to: entityRefStringSchema,
   type: dependencyTypeSchema,
   description: z.string().optional(),
 });

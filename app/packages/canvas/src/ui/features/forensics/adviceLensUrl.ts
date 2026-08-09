@@ -5,7 +5,7 @@ import {
 } from '../../../application/navigation/workspaceUrl';
 
 export type AdviceLensUrlState = {
-  /** Entity ref in the workspace path — scopes ranked results to this subtree. */
+  /** Entity ref in the workspace path - scopes ranked results to this subtree. */
   entityRef?: string;
   /** When set, opens the refactor plan slide-over for this offender. */
   planEntityRef?: string;

@@ -48,7 +48,7 @@ describe('WorkspaceEntryPanel', () => {
     render(<WorkspaceEntryPanel onOpenSample={vi.fn()} onOpenDirectory={vi.fn()} showCliPanel />);
 
     expect(screen.getByTestId('workspace-cli-panel')).toHaveTextContent(
-      /Full analysis — ArchLens CLI/i
+      /Full analysis - ArchLens CLI/i
     );
     expect(screen.getByTestId('workspace-cli-panel-body')).toBeInTheDocument();
 

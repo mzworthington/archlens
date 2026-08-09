@@ -7,7 +7,7 @@ import {
 } from '@archlens/core';
 import { highlightQueryForLanguage } from './highlightQuerySources';
 
-// Loads WASM from disk — requires Node (not jsdom).
+// Loads WASM from disk - requires Node (not jsdom).
 // @vitest-environment node
 
 const wasmDir = new URL('../../../public/tree-sitter/', import.meta.url);

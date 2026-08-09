@@ -1,6 +1,6 @@
 /**
  * Pure catalog retention planning (ADR-0010 snapshots + ADR-0014 fragments).
- * No I/O — callers list keys, read manifests, then delete planned keys.
+ * No I/O - callers list keys, read manifests, then delete planned keys.
  */
 
 export type CatalogPrunePolicy = {

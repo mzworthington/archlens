@@ -18,7 +18,7 @@ function easeOutQuad(t: number): number {
   return 1 - (1 - t) * (1 - t);
 }
 
-/** Progress (0–1) for a node at the given hop when elapsed ms have passed. */
+/** Progress (0-1) for a node at the given hop when elapsed ms have passed. */
 export function blastWaveProgress(elapsedMs: number, hop: number, waveMs = BLAST_WAVE_MS): number {
   const waveStart = hop * waveMs;
   const t = (elapsedMs - waveStart) / waveMs;

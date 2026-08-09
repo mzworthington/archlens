@@ -6,8 +6,12 @@ import {
   LITE_SCAN_MAX_METADATA_FILES,
   LITE_SCAN_MAX_TOTAL_BYTES,
   LITE_SCAN_SKIP_DIR_NAMES,
+  isLiteScanIacPath,
   isLiteScanMetadataPath,
+  isLiteScanPulumiProjectPath,
+  isLiteScanPulumiYamlProgramPath,
   isLiteScanSourcePath,
+  liteScanIacPriority,
   liteScanMetadataPriority,
   liteScanSourcePriority,
   type LiteScanTruncationReason,
@@ -16,8 +20,10 @@ import type { LiteScanSourceFile } from '../../application/analysis/liteScanType
 
 export type BrowserSourceWalkResult = {
   files: LiteScanSourceFile[];
-  /** Parseable source files only — metadata manifests are excluded. */
+  /** Application source files only - metadata and IaC inputs are excluded. */
   sourceFileCount: number;
+  /** Terraform / Pulumi inputs collected for the IaC analyzer pass. */
+  iacFileCount: number;
   truncated: boolean;
   truncationReasons: LiteScanTruncationReason[];
   directoryName: string;
@@ -34,7 +40,7 @@ type FileHandle = FileSystemFileHandle;
 type Candidate = {
   relativePath: string;
   handle: FileHandle;
-  kind: 'source' | 'metadata';
+  kind: 'source' | 'metadata' | 'iac';
 };
 
 function isDirectoryHandle(handle: FileSystemHandle): handle is DirHandle {
@@ -61,10 +67,22 @@ function shouldSkipDirectory(
   return pathFilter.shouldSkip(relativeDir) || pathFilter.shouldSkip(`${relativeDir}/__probe__`);
 }
 
+function candidateKind(
+  relativePath: string,
+  hasPulumiProjectInDir: boolean
+): Candidate['kind'] | null {
+  if (isLiteScanSourcePath(relativePath)) return 'source';
+  if (isLiteScanMetadataPath(relativePath)) return 'metadata';
+  if (isLiteScanIacPath(relativePath)) return 'iac';
+  if (hasPulumiProjectInDir && isLiteScanPulumiYamlProgramPath(relativePath)) return 'iac';
+  return null;
+}
+
 /**
- * Recursively walk a directory handle for TS/JS sources (browser File System Access).
- * Sources, manifests, and total bytes are budgeted separately; source roots are preferred
- * when the file cap is hit so peripheral scripts do not starve `src/`.
+ * Recursively walk a directory handle for supported sources and IaC inputs
+ * (browser File System Access). Sources, manifests, and total bytes are budgeted
+ * separately; source roots are preferred when the file cap is hit so peripheral
+ * scripts do not starve `src/`.
  */
 export async function walkBrowserSourceDirectory(
   root: DirHandle,
@@ -80,12 +98,16 @@ export async function walkBrowserSourceDirectory(
   const maxMetadataFiles = options.maxMetadataFiles ?? LITE_SCAN_MAX_METADATA_FILES;
   const maxFileBytes = options.maxFileBytes ?? LITE_SCAN_MAX_FILE_BYTES;
   const maxTotalBytes = options.maxTotalBytes ?? LITE_SCAN_MAX_TOTAL_BYTES;
-  const pathFilter = createStructuralPathFilter();
+  // allowIac: collect .tf / Pulumi.yaml while still skipping docs/tooling noise.
+  const pathFilter = createStructuralPathFilter({ ignore: [], include: [], allowIac: true });
 
   const candidates: Candidate[] = [];
 
   const visit = async (dir: DirHandle, prefix: string): Promise<void> => {
     throwIfCancelled(options.signal);
+
+    const fileEntries: Array<[string, FileHandle]> = [];
+    const dirEntries: Array<[string, DirHandle]> = [];
 
     for await (const [name, handle] of dir as unknown as AsyncIterable<
       [string, FileSystemHandle]
@@ -94,21 +116,32 @@ export async function walkBrowserSourceDirectory(
       if (name.startsWith('.')) continue;
 
       if (isDirectoryHandle(handle)) {
-        const nextPrefix = prefix ? `${prefix}/${name}` : name;
-        if (shouldSkipDirectory(nextPrefix, pathFilter)) continue;
-        await visit(handle, nextPrefix);
+        dirEntries.push([name, handle]);
         continue;
       }
 
-      if (!isFileHandle(handle)) continue;
+      if (isFileHandle(handle)) {
+        fileEntries.push([name, handle]);
+      }
+    }
+
+    const hasPulumiProject = fileEntries.some(([name]) => isLiteScanPulumiProjectPath(name));
+
+    for (const [name, handle] of fileEntries) {
+      throwIfCancelled(options.signal);
       const relativePath = prefix ? `${prefix}/${name}` : name;
       if (pathFilter.shouldSkip(relativePath)) continue;
 
-      if (isLiteScanSourcePath(relativePath)) {
-        candidates.push({ relativePath, handle, kind: 'source' });
-      } else if (isLiteScanMetadataPath(relativePath)) {
-        candidates.push({ relativePath, handle, kind: 'metadata' });
-      }
+      const kind = candidateKind(relativePath, hasPulumiProject);
+      if (!kind) continue;
+      candidates.push({ relativePath, handle, kind });
+    }
+
+    for (const [name, handle] of dirEntries) {
+      throwIfCancelled(options.signal);
+      const nextPrefix = prefix ? `${prefix}/${name}` : name;
+      if (shouldSkipDirectory(nextPrefix, pathFilter)) continue;
+      await visit(handle, nextPrefix);
     }
   };
 
@@ -121,6 +154,13 @@ export async function walkBrowserSourceDirectory(
         liteScanSourcePriority(a.relativePath) - liteScanSourcePriority(b.relativePath) ||
         a.relativePath.localeCompare(b.relativePath)
     );
+  const iac = candidates
+    .filter(c => c.kind === 'iac')
+    .sort(
+      (a, b) =>
+        liteScanIacPriority(a.relativePath) - liteScanIacPriority(b.relativePath) ||
+        a.relativePath.localeCompare(b.relativePath)
+    );
   const metadata = candidates
     .filter(c => c.kind === 'metadata')
     .sort(
@@ -129,18 +169,20 @@ export async function walkBrowserSourceDirectory(
         a.relativePath.localeCompare(b.relativePath)
     );
 
+  // Application sources and IaC share the file cap so large monorepos stay responsive.
+  const sharedBudgetPaths = [...sources, ...iac];
   const truncationReasons = new Set<LiteScanTruncationReason>();
-  if (sources.length > maxFiles) truncationReasons.add('files');
+  if (sharedBudgetPaths.length > maxFiles) truncationReasons.add('files');
   if (metadata.length > maxMetadataFiles) truncationReasons.add('metadata');
 
   const files: LiteScanSourceFile[] = [];
   let totalBytes = 0;
   let sourceCount = 0;
-  let metadataCount = 0;
+  let iacCount = 0;
 
   const readCandidate = async (
     candidate: Candidate,
-    budget: 'source' | 'metadata'
+    budget: 'shared' | 'metadata'
   ): Promise<boolean> => {
     throwIfCancelled(options.signal);
     const file = await candidate.handle.getFile();
@@ -152,13 +194,14 @@ export async function walkBrowserSourceDirectory(
     const content = await file.text();
     totalBytes += file.size;
     files.push({ relativePath: candidate.relativePath, content });
-    if (budget === 'source') sourceCount += 1;
-    else metadataCount += 1;
+    if (budget === 'metadata') return true;
+    if (candidate.kind === 'iac') iacCount += 1;
+    else sourceCount += 1;
     return true;
   };
 
-  for (const candidate of sources.slice(0, maxFiles)) {
-    const ok = await readCandidate(candidate, 'source');
+  for (const candidate of sharedBudgetPaths.slice(0, maxFiles)) {
+    const ok = await readCandidate(candidate, 'shared');
     if (!ok) break;
   }
 
@@ -170,6 +213,7 @@ export async function walkBrowserSourceDirectory(
   return {
     files,
     sourceFileCount: sourceCount,
+    iacFileCount: iacCount,
     truncated: truncationReasons.size > 0,
     truncationReasons: [...truncationReasons],
     directoryName: root.name || 'scanned',
@@ -183,7 +227,7 @@ export function isBrowserDirectoryPickerSupported(): boolean {
   return typeof window !== 'undefined' && typeof window.showDirectoryPicker === 'function';
 }
 
-/** Default picker — read-only is enough for lite scan (we write YAML into memory). */
+/** Default picker - read-only is enough for lite scan (we write YAML into memory). */
 export const pickSourceDirectory: DirectoryPicker = async () => {
   if (!isBrowserDirectoryPickerSupported()) {
     return { status: 'unsupported' };

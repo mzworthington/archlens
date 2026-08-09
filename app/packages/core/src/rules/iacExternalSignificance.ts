@@ -274,7 +274,7 @@ const GCP_PACK: VendorPack = {
   isNoise: (_t, kind) => kind === 'data',
 };
 
-/** Provider packs — Pulumi/Terraform stacks may mix several in one project. */
+/** Provider packs - Pulumi/Terraform stacks may mix several in one project. */
 const VENDOR_PACKS: VendorPack[] = [CLOUDFLARE_PACK, AWS_PACK, AZURE_PACK, GCP_PACK];
 
 function packForProviderType(providerType: string): VendorPack | null {
@@ -320,7 +320,7 @@ export function classifyIacResource(resource: IacResourceRef): IacExternalClassi
     };
   }
 
-  // Known vendor, unknown resource — supporting so it cannot invent context vendors alone.
+  // Known vendor, unknown resource - supporting so it cannot invent context vendors alone.
   return {
     vendorSlug: pack.slug,
     vendorName: pack.name,
@@ -409,7 +409,7 @@ export function projectMeaningfulIacExternals(
       ...node,
       external: false,
       // Container diagram nodes are top-level on this schema; do not parent them to the
-      // diagram entityRef (that breaks layout — every node looks like a group child).
+      // diagram entityRef (that breaks layout - every node looks like a group child).
       ...(node.parentEntityRef && node.parentEntityRef !== options.infraSystemEntityRef
         ? { parentEntityRef: node.parentEntityRef }
         : {}),
@@ -424,7 +424,7 @@ export function projectMeaningfulIacExternals(
     });
 
     if (!isPrimary) {
-      // Supporting / noise stay on the IaC graph only — no provisioned companion.
+      // Supporting / noise stay on the IaC graph only - no provisioned companion.
       continue;
     }
 

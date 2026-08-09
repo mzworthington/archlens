@@ -13,7 +13,7 @@ export type StoredObjectRecord = {
 };
 
 /**
- * Test double for `ObjectStoragePort` — records put order and object bodies.
+ * Test double for `ObjectStoragePort` - records put order and object bodies.
  * Supports list + conditional put for ADR-0014 compose CAS tests.
  */
 export class InMemoryObjectStorage implements ObjectStoragePort {

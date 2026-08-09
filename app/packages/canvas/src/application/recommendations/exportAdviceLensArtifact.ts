@@ -5,7 +5,7 @@ import {
   formatEstateAdviceLensArtifact,
 } from './buildEstateRecommendations';
 
-/** Studio default — matches BlueprintSpec / ChaosSpec human-readable exports. */
+/** Studio default - matches BlueprintSpec / ChaosSpec human-readable exports. */
 export const ADVICELENS_EXPORT_FILENAME = 'advicelens-report.yaml';
 export const ADVICELENS_EXPORT_JSON_FILENAME = 'advicelens-report.json';
 export const ADVICELENS_DEFAULT_EXPORT_FORMAT: AdviceLensArtifactFormat = 'yaml';

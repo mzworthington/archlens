@@ -19,10 +19,10 @@ ChaosLens must run heavy Monte Carlo blast-radius simulation in the browser and 
 
 ## Considered Options
 
-- Option A — Go WASM primary + TypeScript deterministic fallback behind `ResilienceEnginePort` (status quo)
-- Option B — TypeScript-only simulation
-- Option C — Rust WASM instead of Go
-- Option D — Remote simulation service
+- Option A - Go WASM primary + TypeScript deterministic fallback behind `ResilienceEnginePort` (status quo)
+- Option B - TypeScript-only simulation
+- Option C - Rust WASM instead of Go
+- Option D - Remote simulation service
 
 ## Decision Outcome
 

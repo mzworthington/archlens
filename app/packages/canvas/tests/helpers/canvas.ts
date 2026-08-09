@@ -100,7 +100,7 @@ export async function openPropertiesPanel(page: Page) {
 }
 
 export async function clickCanvasNode(page: Page, label: string) {
-  // onlyRenderVisibleElements remounts culled nodes during pan/scroll — re-query on each try.
+  // onlyRenderVisibleElements remounts culled nodes during pan/scroll - re-query on each try.
   await expect(async () => {
     const node = page.locator('.react-flow__node').filter({ hasText: label }).first();
     await expect(node).toBeVisible({ timeout: 5_000 });

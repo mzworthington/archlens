@@ -6,37 +6,36 @@ import {
   isFolderWorkspacePreferred,
   releaseDemoBootstrapClaim,
 } from '../../../../application/store/workspaceOpenSession';
-import { isWorkspacePath } from '../../../../application/navigation/workspaceUrl';
-
-function entityRefFromWorkspaceUrl(pathAfterWorkspace: string | undefined): string | undefined {
-  const trimmed = pathAfterWorkspace?.replace(/^\/+/, '').replace(/\/$/, '');
-  return trimmed || undefined;
-}
+import {
+  isWorkspacePath,
+  workspaceEntityRefFromPath,
+  workspaceEntityRefFromRouteParam,
+} from '../../../../application/navigation/workspaceUrl';
 
 /**
  * Workspace bootstrap:
- * - Bare `/workspace` → show the startup chooser (do not auto-open demo).
+ * - Bare `/workspace` (or `/workspace/`) → show the startup chooser (do not auto-open demo).
  * - Deep link `/workspace/<entityRef>` → open sandbox so the entity resolves.
  * Never re-forces demo after the user opened a folder / browser scan this session.
  */
 export function useBundledWorkspaceBootstrap(): void {
   const [location, setLocation] = useLocation();
   const [, params] = useRoute('/workspace/*');
+  // Depend on the splat string — wouter returns a new params object every render.
+  const routeSplat = params?.['*'];
 
   useEffect(() => {
     const pathOnly = location.split('?')[0] ?? location;
     if (!isWorkspacePath(pathOnly)) return;
 
     const entityRef =
-      entityRefFromWorkspaceUrl(params?.['*']) ??
+      workspaceEntityRefFromRouteParam(routeSplat) ??
       // Bare `/workspace` is a separate route; useRoute('/workspace/*') may not match.
-      (pathOnly === '/workspace' || pathOnly === '/workspace/'
-        ? undefined
-        : pathOnly.replace(/^\/workspace\/?/, '') || undefined);
+      workspaceEntityRefFromPath(pathOnly);
 
     if (!entityRef) {
-      const { isWorkspaceOpen, setIsStartupOpen } = useBlueprintStore.getState();
-      if (!isWorkspaceOpen) {
+      const { isWorkspaceOpen, isStartupOpen, setIsStartupOpen } = useBlueprintStore.getState();
+      if (!isWorkspaceOpen && !isStartupOpen) {
         setIsStartupOpen(true);
       }
       return;
@@ -66,5 +65,5 @@ export function useBundledWorkspaceBootstrap(): void {
         releaseDemoBootstrapClaim();
       }
     })();
-  }, [location, params, setLocation]);
+  }, [location, routeSplat, setLocation]);
 }

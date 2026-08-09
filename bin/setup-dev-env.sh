@@ -2,7 +2,7 @@
 # Idempotent toolchain bootstrap for local and Cursor Cloud agents.
 # Installs mise (if needed), core tools from mise.toml (node/pnpm/bun/go),
 # app dependencies, and ChaosLens WASM. Skips heavy docs-media tools
-# (ffmpeg/vhs) — install those with a full `mise install` when needed.
+# (ffmpeg/vhs) - install those with a full `mise install` when needed.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

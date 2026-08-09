@@ -62,7 +62,7 @@ const CopyableCommand: React.FC<CopyableCommandProps> = ({ command, testId, copi
 export type WorkspaceEntryPanelProps = {
   onOpenSample: () => void;
   onOpenDirectory: () => void;
-  /** Structural browser scan — pick a source folder, no CLI install. */
+  /** Structural browser scan - pick a source folder, no CLI install. */
   onBrowserLiteScan?: () => void;
   disabled?: boolean;
   /** Shown while sandbox/workspace open is in progress (disables actions). */
@@ -80,7 +80,7 @@ export type WorkspaceEntryPanelProps = {
 const BROWSER_LITE_UNSUPPORTED_MESSAGE =
   'Folder picking is not available in this browser (Firefox and Safari). Use Chrome or Edge, or install the ArchLens CLI below for a full scan.';
 
-/** Shared workspace entry — demo insight first, then browser scan / folder / CLI. */
+/** Shared workspace entry - demo insight first, then browser scan / folder / CLI. */
 export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
@@ -97,7 +97,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   titleId,
 }) => {
   const [copiedKey, setCopiedKey] = React.useState<'install' | 'scan' | null>(null);
-  // CLI path is the graduate path — keep it expanded so lite vs full is obvious.
+  // CLI path is the graduate path - keep it expanded so lite vs full is obvious.
   const [cliExpanded, setCliExpanded] = React.useState(showCliPanel);
   const [liteScanFeedback, setLiteScanFeedback] = React.useState<string | null>(null);
   const directoryPickerSupported = isBrowserDirectoryPickerSupported();
@@ -159,7 +159,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           <Map className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
           <span>
             <span className="block text-sm font-semibold text-slate-100">
-              Try the demo — simulate a failure
+              Try the demo - simulate a failure
             </span>
             <span className="block text-xs text-slate-400 mt-0.5">
               Opens the golden journey with ChaosLens so you see blast radius and ranked advice
@@ -202,7 +202,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
               </span>
               <span className="block text-xs text-slate-400 mt-0.5">
                 {directoryPickerSupported
-                  ? 'Instant structural map of a folder — no git TraceLens, no CI publish. For in-depth forensics, use the CLI below.'
+                  ? 'Instant structural map of a folder - no git TraceLens, no CI publish. For in-depth forensics, use the CLI below.'
                   : 'Needs Chrome or Edge (folder picker API). On Firefox/Safari, install the ArchLens CLI below instead.'}
               </span>
             </span>
@@ -267,14 +267,14 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             <span className="min-w-0 flex-1">
               <span className="flex flex-wrap items-center gap-2">
                 <span className="text-sm font-semibold text-slate-100">
-                  Full analysis — ArchLens CLI
+                  Full analysis - ArchLens CLI
                 </span>
                 <span className="inline-flex items-center rounded border border-emerald-500/40 bg-emerald-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-emerald-300">
                   Recommended
                 </span>
               </span>
               <span className="block text-xs text-slate-400 mt-1 leading-relaxed">
-                Run locally for TraceLens git hotspots, watch mode, and CI catalog publish — depth
+                Run locally for TraceLens git hotspots, watch mode, and CI catalog publish - depth
                 the browser lite scan cannot provide.
               </span>
             </span>

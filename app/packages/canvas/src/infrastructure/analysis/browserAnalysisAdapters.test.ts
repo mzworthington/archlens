@@ -35,6 +35,21 @@ describe('browser analysis adapters', () => {
     expect(files[0]?.imports).toEqual([{ moduleSpecifier: './b' }]);
   });
 
+  it('keeps non-JS/TS files without applying the JS/TS import regex', async () => {
+    const parser = new BrowserSourceParser([
+      {
+        relativePath: 'src/service.py',
+        content: 'import os\nfrom orders import service\n',
+      },
+    ]);
+
+    const files = await parser.parseSourceFiles('**/*.{py}');
+    expect(files).toHaveLength(1);
+    expect(files[0]?.relativePath).toBe('src/service.py');
+    expect(files[0]?.imports).toEqual([]);
+    expect(files[0]?.reExports).toEqual([]);
+  });
+
   it('skips metadata manifests when parsing sources', async () => {
     const parser = new BrowserSourceParser([
       { relativePath: 'package.json', content: '{"name":"demo"}' },
@@ -122,5 +137,41 @@ describe('browser analysis adapters', () => {
       );
       expect(dependencyKeys(runner), leaf).toEqual(dependencyKeys(direct));
     }
+  });
+
+  it('runs IacAnalyzer for Terraform roots during browser scan', async () => {
+    const sources = [
+      {
+        relativePath: 'infra/main.tf',
+        content: `
+resource "aws_lambda_function" "api" {
+  function_name = "api"
+  role          = aws_iam_role.lambda.arn
+}
+resource "aws_iam_role" "lambda" {
+  name = "lambda"
+}
+`,
+      },
+    ];
+
+    const result = await runBrowserAnalysis({
+      directoryName: 'tf-demo',
+      deps: createBrowserAnalysisDeps({ sources }),
+    });
+
+    expect(result.yamlFiles.map(f => f.name).sort()).toEqual(
+      expect.arrayContaining([expect.stringMatching(/containers\.yaml$/)])
+    );
+    const containers = result.yamlFiles.find(
+      f => f.name.endsWith('containers.yaml') && f.content.includes('iac.view')
+    );
+    expect(containers).toBeDefined();
+    const schema = parseSchemaFromYaml(containers!.content);
+    expect(
+      schema.nodes.some(
+        n => n.properties?.['iac.view'] === 'resource' && n.properties?.['iac.product'] === 'lambda'
+      )
+    ).toBe(true);
   });
 });

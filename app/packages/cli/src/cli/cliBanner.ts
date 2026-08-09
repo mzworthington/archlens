@@ -29,7 +29,11 @@ function bottomBorder(): string {
 
 function titleLine(): string {
   const title =
-    pc.bold(pc.cyan('◆')) + pc.bold('  ') + pc.bold(pc.cyan('ARCH')) + pc.bold(pc.white('LENS'));
+    pc.bold(pc.cyan('◆')) +
+    pc.bold('  ') +
+    pc.bold(pc.cyan('ARCH')) +
+    pc.bold(pc.white('LENS')) +
+    pc.bold(pc.dim('  CLI'));
   return borderLine(title);
 }
 

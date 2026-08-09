@@ -13,7 +13,7 @@ function formatRecommendationLine(
   const priority = pc.dim(`[${recommendation.priority}]`);
   const target = pc.white(recommendation.targetName);
   const source = pc.dim(`(${recommendation.source})`);
-  return `  ${pc.yellow(String(index + 1).padStart(2, ' '))}. ${priority} ${pc.bold(recommendation.title)} ${pc.dim('—')} ${target} ${source}\n     ${pc.dim(recommendation.detail)}`;
+  return `  ${pc.yellow(String(index + 1).padStart(2, ' '))}. ${priority} ${pc.bold(recommendation.title)} ${pc.dim('-')} ${target} ${source}\n     ${pc.dim(recommendation.detail)}`;
 }
 
 export function formatEstateResilienceResult(
@@ -58,7 +58,7 @@ export function formatEstateResilienceResult(
   lines.push(pc.bold('Diagrams'));
   for (const diagram of report.diagrams) {
     lines.push(
-      `  ${pc.white(diagram.diagramRef)} ${pc.dim('—')} SLA ${diagram.worstOverallSla}% · ${diagram.scenarioCount} scenarios · ${diagram.recommendations.length} recs ${pc.dim(`(${diagram.diagramPath})`)}`
+      `  ${pc.white(diagram.diagramRef)} ${pc.dim('-')} SLA ${diagram.worstOverallSla}% · ${diagram.scenarioCount} scenarios · ${diagram.recommendations.length} recs ${pc.dim(`(${diagram.diagramPath})`)}`
     );
   }
 

@@ -79,7 +79,7 @@ export function resolveExternalPlacementBand(
 
 /**
  * Size a top-level internal node for external band placement.
- * Groups (and any node with children) use packed child bounds — default leaf
+ * Groups (and any node with children) use packed child bounds - default leaf
  * size would place downstream externals inside the boundary.
  */
 function internalNodeLayoutSize(
@@ -297,7 +297,7 @@ export function positionExternalNodes(
   options?: ExternalNodeLayoutOptions
 ): SystemNode[] {
   const hasInternal = nodes.some(n => !n.external);
-  // External-only diagrams (e.g. provisioned IaC products): free placement — do not
+  // External-only diagrams (e.g. provisioned IaC products): free placement - do not
   // force band layout relative to a missing internal graph.
   if (!hasInternal) return nodes;
 

@@ -35,7 +35,7 @@ interface ForensicsSectionProps {
   onSelectCoupledPeer?: (path: string) => void;
   /** Select an import-graph peer on the canvas by filepath. */
   onSelectImportPeer?: (path: string) => void;
-  /** ChaosLens blast exposure for the selected node (0–1). */
+  /** ChaosLens blast exposure for the selected node (0-1). */
   blastRadius?: number;
   /** Hide the link to full TraceLens page (shown in side panel header CTA instead). */
   hideOpenLink?: boolean;
@@ -229,8 +229,8 @@ export const ForensicsSection: React.FC<ForensicsSectionProps> = ({
           <p className="text-[10px] text-slate-500" data-testid="forensics-coupling-lens-hint">
             {showCoupling
               ? hasSelectedNode
-                ? `Coupling lens is on — focusing ${focusableCouplingCount} peer${focusableCouplingCount === 1 ? '' : 's'} for this node.`
-                : 'Coupling lens is on — diagram-wide coupling is visible. Select this node to focus its peers.'
+                ? `Coupling lens is on - focusing ${focusableCouplingCount} peer${focusableCouplingCount === 1 ? '' : 's'} for this node.`
+                : 'Coupling lens is on - diagram-wide coupling is visible. Select this node to focus its peers.'
               : 'Turn on Coupling Lens in Explorer → TraceLens → Workspace display.'}
           </p>
           {onToggleShowCouplingSchemaDeps && showCoupling && !hideSchemaDepsToggle ? (

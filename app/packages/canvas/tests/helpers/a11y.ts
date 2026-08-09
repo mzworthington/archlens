@@ -17,7 +17,7 @@ function formatViolation(violation: AxeViolation): string {
     .map(node => node.target.join(' '))
     .join('; ');
   const suffix = violation.nodes.length > 3 ? ` (+${violation.nodes.length - 3} more)` : '';
-  return `${violation.id} (${violation.impact}): ${violation.help} — ${nodes}${suffix}`;
+  return `${violation.id} (${violation.impact}): ${violation.help} - ${nodes}${suffix}`;
 }
 
 /**

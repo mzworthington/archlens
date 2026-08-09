@@ -244,7 +244,7 @@ export async function performSelfUpdate(
     if (!isSafeWindowsUpdateScript(launchPath, installDir)) {
       throw new Error(`Refusing to execute unexpected update script: ${launchPath}`);
     }
-    // Fixed script basename + cwd — avoids shell argv built from env-derived absolute paths
+    // Fixed script basename + cwd - avoids shell argv built from env-derived absolute paths
     // (CodeQL js/shell-command-injection-from-environment).
     const child = spawn('cmd.exe', ['/d', '/s', '/c', 'archlens-update.cmd'], {
       cwd: installDir,

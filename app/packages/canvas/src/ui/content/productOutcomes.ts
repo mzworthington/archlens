@@ -1,20 +1,20 @@
-/** Shared outcome copy — lead with why teams care, not feature lists. */
+/** Shared outcome copy - lead with why teams care, not feature lists. */
 
 export const PRODUCT_HERO = {
   headline: 'Catch architecture risk before it becomes an outage',
-  lede: 'Model failures on your diagram, surface code hotspots, and get a ranked fix list — while design is still cheap to change.',
+  lede: 'Model failures on your diagram, surface code hotspots, and get a ranked fix list - while design is still cheap to change.',
   trustLine:
-    'Free and open source. Author locally in your browser or folders you open — no account, no uploads to ArchLens servers. Publish BlueprintSpec from CI when the team needs a shared, living estate view.',
+    'Free and open source. Author locally in your browser or folders you open - no account, no uploads to ArchLens servers. Publish BlueprintSpec from CI when the team needs a shared, living estate view.',
 } as const;
 
 export const WHY_IT_MATTERS = [
   {
     title: 'Simulate without touching production',
-    body: 'ChaosLens faults your BlueprintSpec in the browser — see blast radius and SLA impact in seconds, with no game-day breakage.',
+    body: 'ChaosLens faults your BlueprintSpec in the browser - see blast radius and SLA impact in seconds, with no game-day breakage.',
   },
   {
     title: 'See fragile code on the diagram',
-    body: 'TraceLens attaches git churn, complexity, and schema dependencies to the nodes you already maintain — hotspots and connection risk visible where architects actually work.',
+    body: 'TraceLens attaches git churn, complexity, and schema dependencies to the nodes you already maintain - hotspots and connection risk visible where architects actually work.',
   },
   {
     title: 'Know what to fix first',
@@ -24,7 +24,7 @@ export const WHY_IT_MATTERS = [
 
 export const WORKSPACE_STARTUP = {
   title: 'See what breaks before your customers do',
-  lede: 'Start with the demo to simulate a failure and get ranked advice. Browser scan is a lite structural preview — run the ArchLens CLI for TraceLens git forensics and CI publish.',
+  lede: 'Start with the demo to simulate a failure and get ranked advice. Browser scan is a lite structural preview - run the ArchLens CLI for TraceLens git forensics and CI publish.',
 } as const;
 
 export const TRACE_LENS_HERO = {

@@ -5,7 +5,8 @@ export default defineConfig({
   testIgnore: ['**/e2e-remote-catalog.spec.ts', '**/docs-media/**'],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
+  // Single worker: Vite + ChaosLens WASM + demo bootstrap are unstable under parallel page loads.
   workers: 1,
   timeout: 180_000,
   reporter: [['list'], ['html']],

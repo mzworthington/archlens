@@ -50,7 +50,7 @@ cd resilience-engine
 
 make test          # unit tests (includes KR3 Monte Carlo budget on large-graph)
 make build-wasm    # dist/chaoslens.wasm
-make build-cli     # reserved — cmd/chaoslens not in tree yet (product CLI is archlens resilience)
+make build-cli     # reserved - cmd/chaoslens not in tree yet (product CLI is archlens resilience)
 make copy-wasm     # WASM + wasm_exec.js → canvas public/
 make build         # copy-wasm (WASM path used by Canvas)
 make all           # test + build
@@ -76,9 +76,9 @@ Request shape matches `@archlens/core/resilience` `WasmSimulationRequest` (schem
 
 ## CLI
 
-**Product headless path:** use ArchLens CLI AdviceLens — `archlens resilience` and `.github/actions/advicelens-gate` (see [AdviceLens](./guide/advicelens.md)). That runs ChaosLens simulation rules via `@archlens/core` (WASM when available, TypeScript fallback otherwise).
+**Product headless path:** use ArchLens CLI AdviceLens - `archlens resilience` and `.github/actions/advicelens-gate` (see [AdviceLens](./guide/advicelens.md)). That runs ChaosLens simulation rules via `@archlens/core` (WASM when available, TypeScript fallback otherwise).
 
-**Go stdin `chaoslens` binary:** planned (`make build-cli` / `cmd/chaoslens`) — not present in this repo yet. Do not treat it as shipping.
+**Go stdin `chaoslens` binary:** planned (`make build-cli` / `cmd/chaoslens`) - not present in this repo yet. Do not treat it as shipping.
 
 ## Go package layout
 

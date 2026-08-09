@@ -32,7 +32,7 @@ export type BrowserPorts = {
   resilienceEnginePort: ResilienceEnginePort;
 };
 
-/** Browser composition root — only place that constructs concrete adapters. */
+/** Browser composition root - only place that constructs concrete adapters. */
 export function createBrowserPorts(): BrowserPorts {
   return {
     fileSystemPort: BrowserFileSystemAdapter,

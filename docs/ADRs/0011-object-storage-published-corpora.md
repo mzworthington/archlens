@@ -19,14 +19,14 @@ ADR-0010 defines the remote catalog contract. ArchLens needs a **hosted object s
 
 ## Considered Options
 
-- Option A — Keep full corpus bundled in Pages deploy (status quo)
-- Option B — Cloudflare R2 + custom domain `blueprints.archlens.dev` (hosted catalog)
-- Option C — Pages-only path (`/bundled-blueprints/`) with separate nightly Pages redeploy
-- Option D — GitHub Releases tarball consumed by Canvas
+- Option A - Keep full corpus bundled in Pages deploy (status quo)
+- Option B - Cloudflare R2 + custom domain `blueprints.archlens.dev` (hosted catalog)
+- Option C - Pages-only path (`/bundled-blueprints/`) with separate nightly Pages redeploy
+- Option D - GitHub Releases tarball consumed by Canvas
 
 ## Decision Outcome
 
-Chosen option: "**Option B**" — dedicated R2 bucket `archlens-blueprint-catalog` with:
+Chosen option: "**Option B**" - dedicated R2 bucket `archlens-blueprint-catalog` with:
 
 - **Pulumi:** `R2Bucket`, `R2BucketCors` (GET/HEAD from `archlens.dev` + local dev), `R2CustomDomain` on `blueprints.archlens.dev`
 - **CI publish:** `archlens publish --no-dry-run` via S3 API (`@aws-sdk/client-s3`, endpoint `https://{accountId}.r2.cloudflarestorage.com`)

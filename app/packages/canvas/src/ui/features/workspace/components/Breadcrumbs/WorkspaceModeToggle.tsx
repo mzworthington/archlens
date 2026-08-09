@@ -36,7 +36,7 @@ export const WorkspaceModeToggle: React.FC<WorkspaceModeToggleProps> = ({
         aria-pressed={isSampleWorkspace}
         disabled={disabled || isSampleWorkspace}
         onClick={onEnableDemo}
-        title="Bundled demo blueprints — save downloads YAML; drafts live in browser storage"
+        title="Bundled demo blueprints - save downloads YAML; drafts live in browser storage"
         className={`px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider transition focus:outline-none focus-visible:ring-1 focus-visible:ring-amber-400/50 disabled:cursor-default ${
           isSampleWorkspace
             ? 'bg-amber-950/50 text-amber-200'

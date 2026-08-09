@@ -19,7 +19,7 @@ type Props = {
 
 /** Estate / per-repo complexity markers for the loaded workspace. */
 export function WorkspaceComplexitySummary({ summary }: Props) {
-  const avg = summary.avgComplexity == null ? '—' : formatCount(summary.avgComplexity);
+  const avg = summary.avgComplexity == null ? '-' : formatCount(summary.avgComplexity);
 
   return (
     <section

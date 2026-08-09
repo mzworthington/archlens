@@ -29,7 +29,7 @@ export const WorkspaceToolbar: React.FC = () => {
     >
       <MobilePanelToggles />
 
-      {/* Row 1: search + primary actions — never competes with layout/lens controls */}
+      {/* Row 1: search + primary actions - never competes with layout/lens controls */}
       <div className="flex items-center gap-2 w-full min-w-0">
         <div className="flex-1 min-w-0 max-w-md">
           <Searchbar collapsibleOnMobile fillWidth />
@@ -37,7 +37,7 @@ export const WorkspaceToolbar: React.FC = () => {
         <div className="flex items-center gap-1 shrink-0">{toolbarActions}</div>
       </div>
 
-      {/* Row 2: layout + lenses — horizontal scroll on narrow viewports */}
+      {/* Row 2: layout + lenses - horizontal scroll on narrow viewports */}
       <div className="flex items-center gap-2 w-full min-w-0 overflow-x-auto flex-nowrap [scrollbar-width:thin]">
         <LayoutEngineControls />
         <LiteCanvasButton />

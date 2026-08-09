@@ -29,7 +29,7 @@ export function printOverviewHelp(): void {
   line(`  ${pc.dim('Use')} ${pc.white('scan')} ${pc.dim('or flags for CI / scripts.')}`);
 
   heading('COMMANDS');
-  command('(default)', 'Interactive menu — scan, publish, fragments, compose, overlays');
+  command('(default)', 'Interactive menu - scan, publish, fragments, compose, overlays');
   command('scan', 'Headless architecture scan (uses blueprint.config.json + defaults)');
   command('enrich', 'Re-run externals pass on existing YAML (no source re-scan)');
   command(
@@ -124,7 +124,7 @@ export function printScanHelp(): void {
   );
   flag('--validate', 'Fail publish when workspace validation fails (optional hard gate)');
   flag('--watch [--watch-debounce=<ms>]', 'Re-run on file changes');
-  flag('--headless', 'Same as scan — never prompts');
+  flag('--headless', 'Same as scan - never prompts');
 
   heading('EXAMPLES');
   example('archlens scan');
@@ -141,7 +141,7 @@ export function printScanHelp(): void {
 export function printEnrichHelp(): void {
   heading('archlens enrich');
   line(`  ${pc.dim('Refresh cross-diagram dependency edges on existing YAML.')}`);
-  line(`  ${pc.dim('Does not re-parse source — use after upgrades or hand-edited blueprints.')}`);
+  line(`  ${pc.dim('Does not re-parse source - use after upgrades or hand-edited blueprints.')}`);
   line('');
 
   heading('USAGE');
@@ -357,7 +357,7 @@ export function printCatalogHelp(): void {
 export function printUpdateHelp(): void {
   heading('archlens update');
   line(`  ${pc.dim('Download and install the latest release binary, then re-launch.')}`);
-  line(`  ${pc.dim('Available only for compiled release builds — skipped in dev/source runs.')}`);
+  line(`  ${pc.dim('Available only for compiled release builds - skipped in dev/source runs.')}`);
   line('');
 
   heading('USAGE');

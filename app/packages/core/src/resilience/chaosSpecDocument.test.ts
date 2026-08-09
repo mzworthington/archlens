@@ -47,7 +47,7 @@ describe('ChaosSpec document', () => {
     expect(doc.metadata).toEqual({
       name: 'Payment and database compound outage',
       description:
-        'Game-day scenario with two simultaneous faults — payment region outage plus database error rate — to exercise merged blast radius through the API gateway safeguards.',
+        'Game-day scenario with two simultaneous faults - payment region outage plus database error rate - to exercise merged blast radius through the API gateway safeguards.',
       diagramRef: 'chaoslens-stress/ecommerce',
     });
     expect(doc.faults).toEqual([

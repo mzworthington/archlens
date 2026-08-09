@@ -45,6 +45,7 @@ describe('DocsShell', () => {
     const surfacesNav = screen.getByTestId('docs-mobile-surfaces-nav');
     expect(surfacesNav.parentElement).toHaveTextContent('Surfaces');
     expect(within(surfacesNav).getByRole('link', { name: 'ArchLens Canvas' })).toBeInTheDocument();
+    expect(within(surfacesNav).getByRole('link', { name: 'ArchLens CLI' })).toBeInTheDocument();
     expect(within(surfacesNav).getByRole('link', { name: 'AdviceLens' })).toBeInTheDocument();
     expect(within(surfacesNav).getByRole('link', { name: 'BlueprintSpec' })).toBeInTheDocument();
 

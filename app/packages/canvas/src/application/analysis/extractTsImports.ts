@@ -5,7 +5,7 @@ export type ExtractedTsImports = {
 
 /**
  * Lightweight TS/JS module specifier extraction for browser lite scan.
- * Not a full parser — enough to wire relative edges between scanned files.
+ * Not a full parser - enough to wire relative edges between scanned files.
  * Patterns are line-oriented so `import './x'` cannot swallow a following `export … from`.
  */
 export function extractTsImports(source: string): ExtractedTsImports {

@@ -3,7 +3,7 @@
 Monte Carlo blast-radius simulation for ArchLens (ChaosLens). The Go code compiles to:
 
 - **WebAssembly** for ArchLens Canvas (`chaoslens.wasm`)
-- **(Planned)** native stdin/stdout CLI (`cmd/chaoslens`) — not checked in yet
+- **(Planned)** native stdin/stdout CLI (`cmd/chaoslens`) - not checked in yet
 
 **Product headless / CI path today:** `archlens resilience` and `.github/actions/advicelens-gate` (AdviceLens), which call the same simulation rules via `@archlens/core` (WASM when available, TypeScript fallback otherwise). See [AdviceLens](../docs/guide/advicelens.md).
 
@@ -26,7 +26,7 @@ make check
 make copy-wasm
 make ensure-wasm   # copy only when artifacts are missing
 
-# Reserved — fails until cmd/chaoslens lands
+# Reserved - fails until cmd/chaoslens lands
 # make build-cli
 ```
 

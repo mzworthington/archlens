@@ -6,7 +6,7 @@ import type {
 
 export type { WorkspacePanelId, WorkspacePanelSlot, LeftSlotPanelId };
 
-/** Single source of truth for panel placement — change slot here to relocate panels. */
+/** Single source of truth for panel placement - change slot here to relocate panels. */
 export const WORKSPACE_PANEL_SLOTS: Record<WorkspacePanelId, WorkspacePanelSlot> = {
   codeViewer: 'left',
   traceLens: 'left',

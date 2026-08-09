@@ -1,6 +1,6 @@
-# ArchLens
+# ArchLens CLI
 
-**ArchLens** scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
+**ArchLens CLI** scans source, discovers systems, extracts components and dependencies, lays them out with Dagre, and writes multi-level blueprint YAML.
 
 ![CLI prompts](../screenshots/cli.gif)
 
@@ -102,7 +102,7 @@ Contributor reference: full flag table and analyzer config in the [CLI README](h
 
 ## Declare then scan
 
-By default a scan **creates** a system context when none exists (discovered systems plus a fallback `User` actor). You can instead **declare** a sparse context BlueprintSpec so scan extends that landscape ([ADR-0015](../ADRs/0015-declared-context-hydration.md), shape in [BlueprintSpec — Declared system context](./schema.md#declared-system-context)).
+By default a scan **creates** a system context when none exists (discovered systems plus a fallback `User` actor). You can instead **declare** a sparse context BlueprintSpec so scan extends that landscape ([ADR-0015](../ADRs/0015-declared-context-hydration.md), shape in [BlueprintSpec - Declared system context](./schema.md#declared-system-context)).
 
 ### Workflow
 
@@ -111,7 +111,7 @@ By default a scan **creates** a system context when none exists (discovered syst
    - `blueprints/context.yaml` when the context folder is omitted  
      Prefer an existing seed path on re-run.
 2. Run scan with the same `--context` (and `--output`) so the writer loads that file as the merge base.
-3. Open the result in Canvas — personas and third-parties stay; systems are hydrated from the repo.
+3. Open the result in Canvas - personas and third-parties stay; systems are hydrated from the repo.
 
 ```bash
 # Example: seed already at blueprints/acme/context.yaml
@@ -134,7 +134,7 @@ archlens scan --headless --output=blueprints --context=acme
 
 Scan each repo with the **same** `--context` and a distinct `--system-name` (or `systemName` in config). Share stable system `entityRef`s in the declared seed so every repo hydrates the same anchors. Personas and third-parties union by `entityRef` when fragments compose ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)).
 
-You do **not** need a “home vs secondary” seed flag — omit redundant `name`s and keep one shared identity per entity.
+You do **not** need a “home vs secondary” seed flag - omit redundant `name`s and keep one shared identity per entity.
 
 ### Infrastructure packages and repos
 
@@ -156,7 +156,7 @@ nodes:
 Then scan the infra root with the **same** `--context` (and a seed already present under `--output`):
 
 ```bash
-# Explicit infra package / repo — cwd is the Pulumi/Terraform project
+# Explicit infra package / repo - cwd is the Pulumi/Terraform project
 cd infra/cloudflare
 archlens scan --headless --output=/path/to/blueprints --context=acme
 ```
@@ -165,7 +165,7 @@ Scan attaches container products under that spoke and proposes vendor third-part
 
 ### This repository
 
-ArchLens commits its own seed at [`blueprints/archlens/context.yaml`](https://github.com/mzworthington/archlens/blob/main/blueprints/archlens/context.yaml) — the same path consumers use. Publish scans hydrate into that file; no separate JSON assemble step.
+ArchLens commits its own seed at [`blueprints/archlens/context.yaml`](https://github.com/mzworthington/archlens/blob/main/blueprints/archlens/context.yaml) - the same path consumers use. Publish scans hydrate into that file; no separate JSON assemble step.
 
 External **demo** repos have no in-tree seed, so [publish-demo-catalog](./ci-workflows.md) assembles a synthetic context from `contextDeclaration` on each entry in [`scripts/blueprint-sample-repos.json`](https://github.com/mzworthington/archlens/blob/main/scripts/blueprint-sample-repos.json) via `scripts/assemble-context-seed.mjs` before scan.
 
@@ -212,9 +212,9 @@ No flag required - if `Pulumi.yaml` exists under the scan root, projects are map
 
 ### Meaningful external dependencies
 
-IaC stacks are often noisy, and one Pulumi or Terraform project may mix **many providers**. ArchLens treats **Pulumi/Terraform as packaging** (one infra spoke per project) and **providers as the external vocabulary**. Each resource is classified by a provider pack so diagrams stay useful.
+IaC stacks are often noisy, and one Pulumi or Terraform project may mix **many providers**. ArchLens CLI treats **Pulumi/Terraform as packaging** (one infra spoke per project) and **providers as the external vocabulary**. Each resource is classified by a provider pack so diagrams stay useful.
 
-**IaC vs infrastructure (ADR-0016):** primary resources become two linked nodes; supporting/noise stay as IaC only —
+**IaC vs infrastructure (ADR-0016):** primary resources become two linked nodes; supporting/noise stay as IaC only -
 
 | Node                     | Ownership                             | Flags                                            | Role                                                     |
 | ------------------------ | ------------------------------------- | ------------------------------------------------ | -------------------------------------------------------- |
@@ -261,7 +261,7 @@ Declare `properties.role: infrastructure` and `properties.serves: <system-ref>[,
 
 ArchLens uses [`infra/cloudflare`](../../infra/cloudflare) with the committed seed [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml) (`archlens/cloudflare` serves `archlens`).
 
-Canvas **Import infrastructure** still merges parsed resources into the active diagram without this significance filter — use CLI scan when you want vendor/product projection. See [Import infrastructure](./canvas.md#import-infrastructure).
+Canvas **Import infrastructure** still merges parsed resources into the active diagram without this significance filter - use CLI scan when you want vendor/product projection. See [Import infrastructure](./canvas.md#import-infrastructure).
 
 ### IDE validation
 
@@ -276,6 +276,6 @@ Prefer the versioned URL (`/schemas/v4/…`) when pinning a contract. `/schemas/
 ## Next
 
 - [TraceLens](./tracelens.md)
-- [BlueprintSpec](./schema.md) — including [declared system context](./schema.md#declared-system-context)
+- [BlueprintSpec](./schema.md) - including [declared system context](./schema.md#declared-system-context)
 - [ArchLens Canvas](./canvas.md)
 - [GitHub Actions workflows](./ci-workflows.md)

@@ -7,6 +7,7 @@ import {
 } from './remoteCatalogSnapshot';
 import { serializeSchemaToYaml } from '../rules/graphSerialize';
 import { parseSchemaFromYaml } from '../rules/graphParse';
+import { isEntityRef } from './entityRef';
 
 export const SUGGESTION_OVERLAY_VERSION = 1 as const;
 export const SUGGESTION_OVERLAY_DIR = 'overlays';
@@ -65,13 +66,22 @@ function parseOverlayNode(raw: unknown, index: number): SystemNode {
   };
 }
 
+function assertEntityRef(value: unknown, field: string): asserts value is string {
+  assertNonEmptyString(value, field);
+  if (!isEntityRef(value)) {
+    throw new Error(
+      `Invalid suggestion overlay: ${field} must be an entityRef (alphanumeric, dashes, or underscores segments separated by slashes)`
+    );
+  }
+}
+
 function parseOverlayDependency(raw: unknown, index: number): SystemDependency {
   if (!raw || typeof raw !== 'object') {
     throw new Error(`Invalid suggestion overlay: delta.dependencies[${index}] must be an object`);
   }
   const record = raw as Record<string, unknown>;
-  assertNonEmptyString(record.from, `delta.dependencies[${index}].from`);
-  assertNonEmptyString(record.to, `delta.dependencies[${index}].to`);
+  assertEntityRef(record.from, `delta.dependencies[${index}].from`);
+  assertEntityRef(record.to, `delta.dependencies[${index}].to`);
   assertNonEmptyString(record.type, `delta.dependencies[${index}].type`);
   return {
     from: record.from.trim(),

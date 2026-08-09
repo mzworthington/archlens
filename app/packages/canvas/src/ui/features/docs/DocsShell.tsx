@@ -20,7 +20,7 @@ type Props = {
   layout?: 'docs' | 'landing';
   /** Flush main content without the inner card (full-width interactive pages). */
   contentLayout?: 'card' | 'flush';
-  /** In-page section nav — nested under a sidebar link on desktop, scroller on mobile. */
+  /** In-page section nav - nested under a sidebar link on desktop, scroller on mobile. */
   localNav?: DocsLocalNav;
 };
 

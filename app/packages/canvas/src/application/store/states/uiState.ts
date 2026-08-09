@@ -48,7 +48,7 @@ export interface UiState {
   sourceCodeProvenance: SourceProvenance | null;
   notification: ToastNotification | null;
   mermaidEnrichBannerOpen: boolean;
-  /** Sticky reminder after a browser lite scan — graduate to CLI for forensics. */
+  /** Sticky reminder after a browser lite scan - graduate to CLI for forensics. */
   browserLiteBannerOpen: boolean;
   focusedCyclePath: string[] | null;
   isLoading: boolean | string;
@@ -161,7 +161,8 @@ export const createUiState = (
   setIsDiffOpen: open => set({ isDiffOpen: open }),
   setIsImportMermaidOpen: open => set({ isImportMermaidOpen: open }),
   setIsImportIacOpen: open => set({ isImportIacOpen: open }),
-  setIsStartupOpen: open => set({ isStartupOpen: open }),
+  setIsStartupOpen: open =>
+    set(state => (state.isStartupOpen === open ? state : { isStartupOpen: open })),
   setIsCompareOpen: open => set({ isCompareOpen: open }),
   setIsShortcutsOpen: open => set({ isShortcutsOpen: open }),
   openChildLevelExternals: parentEntityRef => set({ childExternalsParentRef: parentEntityRef }),

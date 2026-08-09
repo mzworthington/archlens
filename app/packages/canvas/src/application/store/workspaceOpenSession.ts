@@ -2,7 +2,7 @@
  * Monotonic generation for workspace open attempts.
  * Folder and demo opens bump this so an in-flight open cannot overwrite a newer choice.
  *
- * Also tracks whether the user chose a folder workspace this session — deep-link
+ * Also tracks whether the user chose a folder workspace this session - deep-link
  * bootstrap must not force demo mode after that choice.
  */
 let workspaceOpenGeneration = 0;
@@ -20,7 +20,7 @@ export function isWorkspaceOpenCurrent(generation: number): boolean {
   return generation === workspaceOpenGeneration;
 }
 
-/** User opened (or is opening) a local folder — never auto-bootstrap demo afterward. */
+/** User opened (or is opening) a local folder - never auto-bootstrap demo afterward. */
 export function markFolderWorkspacePreferred(): void {
   folderWorkspacePreferred = true;
   demoBootstrapClaimed = true;
@@ -59,7 +59,7 @@ export function releaseDemoBootstrapClaim(): void {
   }
 }
 
-/** Test helper — reset between cases. */
+/** Test helper - reset between cases. */
 export function resetWorkspaceOpenSessionForTests(): void {
   workspaceOpenGeneration = 0;
   folderWorkspacePreferred = false;

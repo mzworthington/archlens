@@ -1,6 +1,6 @@
 # BlueprintSpec
 
-**BlueprintSpec** is the declarative architecture format - the shared contract every product reads and writes. This page is for teams integrating with BlueprintSpec YAML: whether you author diagrams by hand, generate them from **ArchLens**, or consume them in another tool. It explains the **JSON Schema** validation surface and how we name and link parts of an architecture using **`entityRef`**.
+**BlueprintSpec** is the declarative architecture format - the shared contract every product reads and writes. This page is for teams integrating with BlueprintSpec YAML: whether you author diagrams by hand, generate them from **ArchLens CLI**, or consume them in another tool. It explains the **JSON Schema** validation surface and how we name and link parts of an architecture using **`entityRef`**.
 
 ---
 
@@ -123,7 +123,7 @@ latest
 
 A **system context** diagram (`level: context`) can be **authored** as well as generated. Declare personas, software-system anchors, and third-party dependencies up front; ArchLens scan **hydrates** discoveries into that seed instead of replacing human intent ([ADR-0015](../ADRs/0015-declared-context-hydration.md)).
 
-There is no separate BlueprintSpec `kind` — use `level: context`.
+There is no separate BlueprintSpec `kind` - use `level: context`.
 
 ### Sparse shape
 
@@ -135,7 +135,7 @@ version: https://archlens.dev/schemas/v4/blueprint.schema.json
 level: context
 metadata:
   entityRef: acme
-  name: Acme # optional — omit to derive from entityRef
+  name: Acme # optional - omit to derive from entityRef
 nodes:
   - entityRef: acme/checkout # stable identity across repos
     type: software-system
@@ -150,7 +150,7 @@ nodes:
     name: Cloudflare Hosting
     properties:
       role: infrastructure
-      serves: acme/checkout # BlueprintSpec properties are scalars — comma-separate several refs
+      serves: acme/checkout # BlueprintSpec properties are scalars - comma-separate several refs
   - entityRef: acme/payment-gateway
     type: gateway-api
     name: Payment Gateway # optional curated label
@@ -187,7 +187,7 @@ When ArchLens scans Terraform or Pulumi, it classifies resources by **provider p
 
 See [ADR-0016](../ADRs/0016-iac-declaration-vs-provisioned-infrastructure.md). Author-declared third-parties keep their names and ownership. Scan proposals hydrate through the same plan as code discoveries ([ADR-0015](../ADRs/0015-declared-context-hydration.md)). Full workflow: [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
 
-Seed files live under the scan output directory: `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` (context folder optional). Commit them in-repo the same way this project does at [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml). How scan merges into the seed: [ArchLens — Declare then scan](./cli.md#declare-then-scan).
+Seed files live under the scan output directory: `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` (context folder optional). Commit them in-repo the same way this project does at [`blueprints/archlens/context.yaml`](../../blueprints/archlens/context.yaml). How scan merges into the seed: [ArchLens - Declare then scan](./cli.md#declare-then-scan).
 
 ## Catalog staging vs BlueprintSpec
 
@@ -205,7 +205,7 @@ Compose merges fragments (+ accepted overlays) into a normal ADR-0010 catalog of
 ## Next
 
 - [ChaosSpec](./chaos-spec.md) - failure scenarios that reference BlueprintSpec diagrams
-- [ArchLens](./cli.md) - generating diagrams that follow BlueprintSpec (including [declare then scan](./cli.md#declare-then-scan))
+- [ArchLens CLI](./cli.md) - generating diagrams that follow BlueprintSpec (including [declare then scan](./cli.md#declare-then-scan))
 - [ArchLens Canvas](./canvas.md) - editing and validating in the workspace
 - [Getting started](./getting-started.md)
 - [GitHub Actions workflows](./ci-workflows.md) - declared seeds, fragment → compose catalog jobs

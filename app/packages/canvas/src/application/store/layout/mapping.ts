@@ -28,7 +28,7 @@ export type ComponentNodeData = {
   isTest?: boolean;
   properties: PropertyMap;
   entityRef?: string;
-  /** Domain parent — may be diagram membership, not an on-canvas React Flow parent. */
+  /** Domain parent - may be diagram membership, not an on-canvas React Flow parent. */
   parentEntityRef?: string;
   forensics?: NodeForensics;
   resilience?: NodeResilience;
@@ -156,7 +156,7 @@ export const mapDomainNodesToRFNodes = (nodes: SystemNode[]): BlueprintRFNode[] 
   for (const node of nodes) {
     // Only treat parentEntityRef as a React Flow group when the parent is on this diagram.
     // IaC writers also stamp diagram membership (e.g. parentEntityRef: archlens/cloudflare)
-    // which must not become parentId — that triggers xyflow "Parent node not found" warnings.
+    // which must not become parentId - that triggers xyflow "Parent node not found" warnings.
     if (!node.parentEntityRef || !onDiagramRefs.has(node.parentEntityRef)) continue;
     const list = childrenByParent.get(node.parentEntityRef) ?? [];
     list.push(node);

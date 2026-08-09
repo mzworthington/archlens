@@ -51,14 +51,14 @@ const PRODUCTS: Product[] = [
     title: 'ArchLens Canvas',
     tagline: 'Visual architecture studio',
     details:
-      'C4 workspace with bi-directional YAML sync — author in a local folder, or open a pipeline-published catalog.',
+      'C4 workspace with bi-directional YAML sync - author in a local folder, or open a pipeline-published catalog.',
     href: '/guide/canvas',
     category: 'Platform',
     icon: Layers,
     featured: true,
   },
   {
-    title: 'ArchLens',
+    title: 'ArchLens CLI',
     tagline: 'Code to architecture',
     details:
       'Static analysis that discovers systems, containers, and dependencies - keeping blueprints aligned with production.',
@@ -90,7 +90,7 @@ const PRODUCTS: Product[] = [
     title: 'AdviceLens',
     tagline: 'Ranked architectural advice',
     details:
-      'Merge TraceLens and ChaosLens signals into evidence-backed recommendations—studio, CLI, and CI.',
+      'Merge TraceLens and ChaosLens signals into evidence-backed recommendations - studio, CLI, and CI.',
     href: '/guide/advicelens',
     category: 'Intelligence',
     role: 'Prescribes',
@@ -110,7 +110,7 @@ const PRODUCTS: Product[] = [
     title: 'ChaosSpec',
     tagline: 'Shared failure-scenario contract',
     details:
-      'Declarative YAML scenarios that bind faults to a BlueprintSpec diagram — Canvas, CLI, and CI validate against the same schema.',
+      'Declarative YAML scenarios that bind faults to a BlueprintSpec diagram - Canvas, CLI, and CI validate against the same schema.',
     href: '/guide/chaos-spec',
     category: 'Contract',
     icon: FileCode2,
@@ -374,7 +374,7 @@ export const DocsHome: React.FC = () => {
             <div>
               <h2 className="text-lg font-semibold text-white">Try it in five minutes</h2>
               <p className="mt-1 text-sm text-slate-400 max-w-md">
-                Load the sandbox, fault a service, and read ranked AdviceLens output — no sign-up,
+                Load the sandbox, fault a service, and read ranked AdviceLens output - no sign-up,
                 no production risk.
               </p>
             </div>

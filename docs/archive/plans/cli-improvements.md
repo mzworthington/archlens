@@ -8,7 +8,7 @@ Related: [CLI guide](../guide/cli.md), [Getting started](../guide/getting-starte
 
 ---
 
-## Phase A — Foundation
+## Phase A - Foundation
 
 | Task                                                                            | Status |
 | ------------------------------------------------------------------------------- | ------ |
@@ -22,7 +22,7 @@ Related: [CLI guide](../guide/cli.md), [Getting started](../guide/getting-starte
 
 ---
 
-## Phase B — Self-update
+## Phase B - Self-update
 
 | Task                                           | Status |
 | ---------------------------------------------- | ------ |
@@ -36,7 +36,7 @@ Related: [CLI guide](../guide/cli.md), [Getting started](../guide/getting-starte
 
 ---
 
-## Phase C — Watch mode
+## Phase C - Watch mode
 
 | Task                                 | Status |
 | ------------------------------------ | ------ |

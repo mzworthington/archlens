@@ -39,6 +39,7 @@ describe('DocsHome', () => {
     expect(screen.getByRole('heading', { name: 'How teams use ArchLens' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Product suite' })).toBeInTheDocument();
     expect(screen.getByText('ArchLens Canvas')).toBeInTheDocument();
+    expect(screen.getByText('ArchLens CLI')).toBeInTheDocument();
     expect(screen.getByText('ChaosLens')).toBeInTheDocument();
     expect(screen.getByText('BlueprintSpec')).toBeInTheDocument();
     expect(screen.getByText('Observes')).toBeInTheDocument();
@@ -58,6 +59,9 @@ describe('DocsHome', () => {
     expect(
       screen.getByRole('link', { name: 'ArchLens Canvas: Visual architecture studio' })
     ).toHaveAttribute('href', '/guide/canvas');
+    expect(
+      screen.getByRole('link', { name: 'ArchLens CLI: Code to architecture' })
+    ).toHaveAttribute('href', '/guide/cli');
     expect(screen.getByRole('link', { name: 'ChaosLens: Resilience simulation' })).toHaveAttribute(
       'href',
       '/guide/chaoslens'

@@ -135,6 +135,7 @@ export function assessSchemaVersion(
     expectedVersionUrl,
     title: `Schema v${contract}`,
     message: `This diagram targets schema v${contract}, which is newer than this ArchLens build (v${expectedMajor}).`,
-    migrationHint: 'Upgrade ArchLens to a release that supports this schema version.',
+    migrationHint:
+      'Upgrade ArchLens Canvas or ArchLens CLI to a release that supports this schema version.',
   };
 }

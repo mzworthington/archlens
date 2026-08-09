@@ -4,11 +4,16 @@ import { isTestSourcePath } from '@archlens/analysis/test-path';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
 import { extractTsImports } from '../../application/analysis/extractTsImports';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
-import { isLiteScanSourcePath } from '../../application/analysis/liteScanLimits';
+import {
+  isLiteScanJsTsPath,
+  isLiteScanSourcePath,
+} from '../../application/analysis/liteScanLimits';
 
 /**
  * Browser CodebaseParserPort: maps a pre-walked source tree to ParsedSourceFile[].
- * Uses lightweight specifier extraction (adapter) — graph building stays in @archlens/analysis.
+ * Uses lightweight JS/TS specifier extraction when tree-sitter is unavailable -
+ * graph building stays in @archlens/analysis. Non-JS/TS files get empty imports
+ * (tree-sitter path owns their edges).
  */
 export class BrowserSourceParser implements CodebaseParserPort {
   constructor(
@@ -26,15 +31,17 @@ export class BrowserSourceParser implements CodebaseParserPort {
         .split('/')
         .pop()
         ?.replace(/\.[^.]+$/, '') ?? relativePath;
-    const { imports, reExports } = extractTsImports(source.content);
+    const extracted = isLiteScanJsTsPath(relativePath)
+      ? extractTsImports(source.content)
+      : { imports: [] as string[], reExports: [] as string[] };
 
     return {
       filePath: `${this.cwd}/${relativePath}`.replace(/\/{2,}/g, '/'),
       relativePath,
       baseName,
       isTestFile: isTestSourcePath(relativePath),
-      imports: imports.map(moduleSpecifier => ({ moduleSpecifier })),
-      reExports: reExports.map(moduleSpecifier => ({ moduleSpecifier })),
+      imports: extracted.imports.map(moduleSpecifier => ({ moduleSpecifier })),
+      reExports: extracted.reExports.map(moduleSpecifier => ({ moduleSpecifier })),
       newExpressions: [],
       callExpressions: [],
     };

@@ -2,20 +2,26 @@ import { expect, type Page } from '@playwright/test';
 import { gotoApp } from './navigation';
 import { expectCanvasReady } from './canvas';
 
-const SAMPLES_CONTEXT_URL = /\/workspace\/samples\/?(?:\?.*)?$/;
+/** Demo-first CTA opens ChaosLens on the golden-journey estate. */
+const DEMO_LANDING_URL = /\/workspace\/samples\/golden-journey(?:\/|$|\?)/;
 
-function isGoldenPathsContextUrl(url: string): boolean {
+function isSamplesWorkspaceUrl(url: string): boolean {
   try {
-    const path = new URL(url).pathname.replace(/\/$/, '');
-    return path === '/workspace/samples';
+    return new URL(url).pathname.replace(/\/$/, '').startsWith('/workspace/samples');
   } catch {
     return false;
   }
 }
 
-/** Dismiss the startup chooser by opening the bundled Samples workspace when shown. */
+/** Dismiss the startup chooser by opening the bundled demo when shown. */
 export async function continueWithSample(page: Page) {
-  if (isGoldenPathsContextUrl(page.url())) {
+  if (
+    isSamplesWorkspaceUrl(page.url()) &&
+    !(await page
+      .getByTestId('startup-workspace-dialog')
+      .isVisible()
+      .catch(() => false))
+  ) {
     await expectCanvasReady(page);
     return;
   }
@@ -26,16 +32,29 @@ export async function continueWithSample(page: Page) {
   }
 
   await page.getByTestId('workspace-open-sample').click();
-  await expect(page).toHaveURL(SAMPLES_CONTEXT_URL, {
+  await expect(page).toHaveURL(DEMO_LANDING_URL, {
     timeout: 120_000,
   });
   await expect(dialog).toHaveCount(0, { timeout: 90_000 });
   await expectCanvasReady(page);
 }
 
+/** Demo-first enables ChaosLens; exit so imports/toolbars are not racing resilience UI. */
+export async function exitResilienceModeIfActive(page: Page) {
+  const exitResilience = page.getByRole('button', { name: /exit resilience mode/i });
+  if (await exitResilience.isVisible().catch(() => false)) {
+    await exitResilience.click();
+    await expect(page.getByRole('button', { name: /enter resilience mode/i })).toBeVisible({
+      timeout: 30_000,
+    });
+  }
+}
+
 async function openOverflowMenu(page: Page) {
   const menuButton = page.getByRole('button', { name: 'More actions' });
+  await expect(menuButton).toBeEnabled({ timeout: 30_000 });
   await menuButton.click();
+  await expect(page.getByRole('menu')).toBeVisible({ timeout: 10_000 });
 }
 
 /** Opens a workspace folder via the startup chooser when present, else the toolbar overflow. */
@@ -58,18 +77,30 @@ export async function openWorkspaceFolder(page: Page) {
   await folderItem.click();
 }
 
-/** Opens Import Mermaid from the toolbar overflow menu. */
+/**
+ * Open the Import Mermaid dialog from the overflow menu.
+ * Retries because demo ChaosLens + LazyMount can race the first open.
+ */
 export async function openImportMermaid(page: Page) {
   await gotoApp(page, '/workspace');
   await continueWithSample(page);
+  await exitResilienceModeIfActive(page);
 
-  const importItem = page.getByRole('menuitem', { name: 'Import Mermaid' });
+  const dialog = page.getByTestId('import-mermaid-dialog');
+  await expect(async () => {
+    if (await dialog.isVisible().catch(() => false)) return;
 
-  if (!(await importItem.isVisible())) {
-    await openOverflowMenu(page);
-  }
-
-  await expect(importItem).toBeVisible();
-  await importItem.click();
-  await expect(page.getByRole('dialog', { name: /Import Mermaid/i })).toBeVisible();
+    if (
+      !(await page
+        .getByRole('menu')
+        .isVisible()
+        .catch(() => false))
+    ) {
+      await openOverflowMenu(page);
+    }
+    const importItem = page.getByRole('menu').getByRole('menuitem', { name: 'Import Mermaid' });
+    await expect(importItem).toBeEnabled({ timeout: 10_000 });
+    await importItem.click();
+    await expect(dialog).toBeVisible({ timeout: 15_000 });
+  }).toPass({ timeout: 60_000 });
 }

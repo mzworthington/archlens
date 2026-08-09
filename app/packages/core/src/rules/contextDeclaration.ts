@@ -67,7 +67,7 @@ function resolveRef(value: string, landscapeEntityRef: string): string {
   const trimmed = value.trim();
   if (!trimmed) throw new Error('entityRef is required');
   if (trimmed.includes('/')) {
-    // Do not slugify `/` away — parse each segment.
+    // Do not slugify `/` away - parse each segment.
     return trimmed
       .split('/')
       .map(part => EntityRef.parse(part))

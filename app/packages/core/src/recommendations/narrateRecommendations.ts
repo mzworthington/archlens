@@ -7,7 +7,7 @@ export interface NarrateRecommendationInput {
   estateLabel?: string;
 }
 
-/** Port for Phase 5 LLM adapters — must not change priority or evidence. */
+/** Port for Phase 5 LLM adapters - must not change priority or evidence. */
 export interface AdviceLensNarrator {
   narrate(input: NarrateRecommendationInput): Promise<RecommendationNarration>;
 }
@@ -29,7 +29,7 @@ function withNarration(
 }
 
 /**
- * AdviceLens Narration layer — enriches recommendations with optional AI detail.
+ * AdviceLens Narration layer - enriches recommendations with optional AI detail.
  * Without a narrator, returns the input unchanged (identity pass).
  * Never re-ranks or mutates priority or evidence.
  */

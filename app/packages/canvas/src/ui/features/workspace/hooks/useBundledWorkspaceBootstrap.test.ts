@@ -41,6 +41,25 @@ describe('useBundledWorkspaceBootstrap', () => {
     expect(mockSetLocation).not.toHaveBeenCalled();
   });
 
+  it('opens the startup chooser on /workspace/ trailing slash without looping', async () => {
+    mockLocation = '/workspace/';
+    mockParams = { '*': '' };
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({ openBundledSample });
+
+    const { rerender } = renderHook(() => useBundledWorkspaceBootstrap());
+    // Simulate wouter returning a new params object identity each render.
+    mockParams = { '*': '' };
+    rerender();
+    mockParams = { '*': '' };
+    rerender();
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isStartupOpen).toBe(true);
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
+  });
+
   it('auto-opens sandbox for deep-linked /workspace/<entityRef>', async () => {
     mockLocation = '/workspace/golden-journey';
     mockParams = { '*': 'golden-journey' };

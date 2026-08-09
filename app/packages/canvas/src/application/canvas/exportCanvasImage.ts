@@ -25,7 +25,7 @@ export async function exportCanvasImage(
 ): Promise<void> {
   const bounds = getNodesBounds(nodes);
   if (!bounds.width || !bounds.height) {
-    throw new Error('Nothing to export — add nodes to the diagram first.');
+    throw new Error('Nothing to export - add nodes to the diagram first.');
   }
 
   const viewport = getViewportForBounds(bounds, IMAGE_WIDTH, IMAGE_HEIGHT, 0.1, 2, 0.15);

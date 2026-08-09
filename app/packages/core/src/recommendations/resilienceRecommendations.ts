@@ -60,7 +60,7 @@ function recommendCircuitBreakers(ctx: ResilienceRecommendationContext): Recomme
     const dependencyBlast = heat.get(dependencyEntityRef) ?? 0;
     const thirdPartyDependency = isThirdPartyDependency(schema, dependencyEntityRef);
     const dependencyNote = thirdPartyDependency
-      ? 'shared third-party dependency with fan-in — isolation must be in your application code, not on the vendor'
+      ? 'shared third-party dependency with fan-in - isolation must be in your application code, not on the vendor'
       : 'shared dependency with fan-in and no caller-side isolation in application code';
 
     for (const caller of callerEntityRefs) {
@@ -77,7 +77,7 @@ function recommendCircuitBreakers(ctx: ResilienceRecommendationContext): Recomme
         targetEntityRef: caller,
         targetName: callerName,
         title: 'Add caller-side circuit breaker',
-        detail: `In ${callerName}, add a circuit breaker on the outbound client to ${dependencyName} — ${dependencyNote}.`,
+        detail: `In ${callerName}, add a circuit breaker on the outbound client to ${dependencyName} - ${dependencyNote}.`,
         priority: 95,
         evidence: {
           simulation: {
@@ -120,7 +120,7 @@ function recommendKeepSafeguards(ctx: ResilienceRecommendationContext): Recommen
       targetEntityRef: stopped,
       targetName,
       title: 'Keep safeguard enabled',
-      detail: `Circuit breaker in ${targetName} contained the blast radius — keep this outbound isolation in application code.`,
+      detail: `Circuit breaker in ${targetName} contained the blast radius - keep this outbound isolation in application code.`,
       priority: 60,
       evidence: {
         simulation: {
@@ -224,7 +224,7 @@ function recommendEventStaleness(ctx: ResilienceRecommendationContext): Recommen
       targetEntityRef: primaryPeer,
       targetName: nodeName(schema, primaryPeer),
       title: 'Handle event staleness',
-      detail: `${publisherName} stopped publishing — in ${peerNames.join(', ')}, handle stale or missing events in consumer logic.`,
+      detail: `${publisherName} stopped publishing - in ${peerNames.join(', ')}, handle stale or missing events in consumer logic.`,
       priority: 80,
       evidence: {
         simulation: {

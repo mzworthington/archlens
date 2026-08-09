@@ -149,7 +149,7 @@ describe('workspaceCatalog', () => {
         nodes: [],
         dependencies: [],
       };
-      // containers.yaml sorts before context.yaml — regression for peer context URLs
+      // containers.yaml sorts before context.yaml - regression for peer context URLs
       const ambiguous = buildWorkspaceCatalog([
         { path: 'advicelens-stress/containers.yaml', schema: stressContainers },
         { path: 'advicelens-stress/context.yaml', schema: stressContext },

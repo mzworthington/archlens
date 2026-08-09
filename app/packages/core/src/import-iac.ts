@@ -1,4 +1,4 @@
-/** Public IaC import facade — parsers/IR stay internal to this package. */
+/** Public IaC import facade - parsers/IR stay internal to this package. */
 export {
   defaultIacPathForKind,
   parseIacBatchToSchema,

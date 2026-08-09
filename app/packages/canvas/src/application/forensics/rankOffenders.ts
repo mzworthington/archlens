@@ -102,7 +102,7 @@ function findSystemNode(
 
 /**
  * True when an entity (optionally on a given diagram) belongs to the subtree
- * rooted at scopeEntityRef — shared by offender ranking and complexity summary.
+ * rooted at scopeEntityRef - shared by offender ranking and complexity summary.
  */
 export function entityRefMatchesEntityScope(
   entityRef: string,

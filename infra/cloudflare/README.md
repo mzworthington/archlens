@@ -40,7 +40,7 @@ cd infra/cloudflare
 pulumi up
 ```
 
-Or merge to `main` — `.github/workflows/pulumi-cloudflare.yml` calls the reusable edge-dns workflow (preview → **pulumi-prod** approval → `up`).
+Or merge to `main` - `.github/workflows/pulumi-cloudflare.yml` calls the reusable edge-dns workflow (preview → **pulumi-prod** approval → `up`).
 
 **Manual gate:** GitHub → Settings → Environments → create **`pulumi-prod`** with **Required reviewers**.
 
@@ -62,7 +62,7 @@ pulumi up
 
 ## Stack config
 
-`Pulumi.prod.yaml` is **gitignored** — it may contain account IDs and an encrypted Cloudflare API token after bootstrap. Committed template: `Pulumi.prod.yaml.example`. CI configures the stack from **GitHub Actions secrets** on each run (`CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_ZONE_ID`, `CLOUDFLARE_API_TOKEN`).
+`Pulumi.prod.yaml` is **gitignored** - it may contain account IDs and an encrypted Cloudflare API token after bootstrap. Committed template: `Pulumi.prod.yaml.example`. CI configures the stack from **GitHub Actions secrets** on each run (`CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_ZONE_ID`, `CLOUDFLARE_API_TOKEN`).
 
 ## Related files
 

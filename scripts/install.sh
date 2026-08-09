@@ -17,7 +17,7 @@ UNINSTALL=0
 
 usage() {
   cat <<'EOF'
-ArchLens install script
+ArchLens CLI install script
 
 Usage:
   install.sh [options]
@@ -126,7 +126,7 @@ print_path_hint() {
   fi
   cat <<EOF
 
-Add ArchLens to your PATH:
+Add ArchLens CLI to your PATH:
 
   export PATH="${dir}:\$PATH"
 
@@ -148,10 +148,10 @@ remove_install() {
   done
   shopt -u nullglob
   if [[ "$removed" -eq 0 ]]; then
-    echo "No ArchLens install found in ${dir}" >&2
+    echo "No ArchLens CLI install found in ${dir}" >&2
     exit 1
   fi
-  echo "Removed ArchLens from ${dir}"
+  echo "Removed ArchLens CLI from ${dir}"
 }
 
 download_release() {

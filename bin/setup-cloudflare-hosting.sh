@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Thin product-repo shim — runs the canonical bootstrap from edge-dns.
+# Thin product-repo shim - runs the canonical bootstrap from edge-dns.
 # Logic: https://github.com/mzworthington/edge-dns/blob/main/scripts/setup-cloudflare-hosting.sh
 #
 # Prefer BWS (no .env):

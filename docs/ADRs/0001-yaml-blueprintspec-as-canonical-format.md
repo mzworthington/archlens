@@ -19,14 +19,14 @@ ArchLens products (CLI, Canvas, CI) must share one editable architecture contrac
 
 ## Considered Options
 
-- Option A — YAML BlueprintSpec (`SystemSchema`) as sole editable canonical store; Mermaid and other views are derived exports (status quo)
-- Option B — Mermaid as primary store; reconstruct richer fields on load
-- Option C — Dual-write YAML and Mermaid as peer sources of truth
-- Option D — Protobuf / binary wire format as the on-disk contract
+- Option A - YAML BlueprintSpec (`SystemSchema`) as sole editable canonical store; Mermaid and other views are derived exports (status quo)
+- Option B - Mermaid as primary store; reconstruct richer fields on load
+- Option C - Dual-write YAML and Mermaid as peer sources of truth
+- Option D - Protobuf / binary wire format as the on-disk contract
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because BlueprintSpec YAML already is the shared Zod contract in `@archlens/core`, is human-diffable, and carries identity and product fields Mermaid cannot round-trip. Mermaid export (`serializeSchemaToMermaid`) and import wizards that parse into `SystemSchema` remain adapters—not peer editors of the persisted model.
+Chosen option: "**Option A**", because BlueprintSpec YAML already is the shared Zod contract in `@archlens/core`, is human-diffable, and carries identity and product fields Mermaid cannot round-trip. Mermaid export (`serializeSchemaToMermaid`) and import wizards that parse into `SystemSchema` remain adapters - not peer editors of the persisted model.
 
 ### Consequences
 

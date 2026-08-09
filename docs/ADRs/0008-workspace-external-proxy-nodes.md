@@ -19,10 +19,10 @@ BlueprintSpec keeps one YAML schema per C4 view (context / container / component
 
 ## Considered Options
 
-- Option A — External proxy nodes (`external: true`) + workspace enrichment / container rollup (status quo)
-- Option B — Fully dereference/inline foreign nodes into each YAML file
-- Option C — Edges only (no proxy nodes on canvas)
-- Option D — Single mega-graph file for the estate
+- Option A - External proxy nodes (`external: true`) + workspace enrichment / container rollup (status quo)
+- Option B - Fully dereference/inline foreign nodes into each YAML file
+- Option C - Edges only (no proxy nodes on canvas)
+- Option D - Single mega-graph file for the estate
 
 ## Decision Outcome
 

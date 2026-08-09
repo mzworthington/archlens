@@ -14,6 +14,8 @@ import {
 export function useUrlSync(): void {
   const [location] = useLocation();
   const [, params] = useRoute('/workspace/*');
+  // Depend on the splat string — wouter returns a new params object every render.
+  const routeSplat = params?.['*'];
 
   const isStartupOpen = useBlueprintStore(s => s.isStartupOpen);
   const diagramLoadCount = useBlueprintStore(s => s.diagramLoadCount);
@@ -27,7 +29,7 @@ export function useUrlSync(): void {
     if (diagramLoadCount > 0) return;
     if (isStartupOpen) return;
 
-    const entityRef = workspaceEntityRefFromRouteParam(params?.['*']);
+    const entityRef = workspaceEntityRefFromRouteParam(routeSplat);
     if (!entityRef) {
       lastAppliedRef.current = location;
       return;
@@ -64,5 +66,5 @@ export function useUrlSync(): void {
     if (isNodeTarget) {
       selectNode(entityRef, { expandPanel: true });
     }
-  }, [location, params, isStartupOpen, diagramLoadCount, workspaceCatalog]);
+  }, [location, routeSplat, isStartupOpen, diagramLoadCount, workspaceCatalog]);
 }

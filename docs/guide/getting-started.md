@@ -8,13 +8,13 @@ Open the hosted app:
 
 **[https://archlens.dev/workspace](https://archlens.dev/workspace)**
 
-Bare `/workspace` opens the bundled golden journey first, landing in **ChaosLens** so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
+Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an option). Select **Try the demo** to open the golden journey with **ChaosLens**, so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
 
 ## 2. Scan in the browser
 
-From the startup chooser, select **Browser lite scan** and pick a source folder.
+From the same startup chooser, select **Browser lite scan** and pick a source folder.
 
-This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate structural BlueprintSpec YAML in memory. It is intentionally a **lite / structure-only** preview: TypeScript/JavaScript source files plus package metadata — **no** TraceLens git hotspots, **no** CI publish, and no persisted writes unless you later save/export through Canvas.
+This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate structural BlueprintSpec YAML in memory. It is intentionally a **lite / structure-only** preview: application languages (`ts`/`tsx`/`js`/`cs`/`java`/`go`/`py`) plus Terraform/Pulumi via the same `IacAnalyzer` pass as the CLI - **no** TraceLens git hotspots, **no** CI publish, and no persisted writes unless you later save/export through Canvas.
 
 Use this path for fast first feedback without installing anything. For in-depth knowledge (git forensics, watch mode, catalog publish), install and run the ArchLens CLI in the next step.
 
@@ -100,7 +100,7 @@ Headless / CI example:
 archlens --headless --glob="**/*.{ts,tsx}" --output="blueprints"
 ```
 
-Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [ArchLens](./cli.md).
+Useful flags: `--no-git` to skip TraceLens, `--git-since=90` for lookback, `--output` for the YAML folder. More detail: [ArchLens CLI](./cli.md).
 
 The CLI writes diagrams under `blueprints/` (or your `--output` path): context, containers, and components.
 
@@ -120,22 +120,22 @@ Open the hosted app:
 
 On first open you get a **startup chooser** on bare `/workspace`:
 
-1. **Try the demo** - explore the bundled golden journey and simulate a failure.
-2. **Scan my repo in the browser** - pick a source folder for structure-only BlueprintSpec feedback.
+1. **Try the demo** - explore the bundled golden journey and simulate a failure (lands in ChaosLens).
+2. **Browser lite scan** - pick a source folder for structure-only BlueprintSpec feedback.
 3. **Open existing blueprints folder** - pick the folder that contains generated `blueprints/` YAML.
 4. Use the system switcher and C4 zoom to explore context → container → component.
-5. Inspect **TraceLens** signals — open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page (CLI scans only).
+5. Inspect **TraceLens** signals - open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page (CLI scans only).
 6. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
-7. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema - see [ArchLens Canvas](./canvas.md#import-mermaid).
+7. Optionally **Import Mermaid** from the toolbar **Open** menu to merge an external diagram into the active schema - see [ArchLens Canvas](./canvas.md#import-mermaid).
 
-Deep links (`/workspace/blueprint`, etc.) skip the chooser and open the matching diagram directly.
+Deep links (`/workspace/blueprint`, etc.) skip the chooser and bootstrap the demo so the matching diagram resolves.
 
 You can also run a local build of ArchLens Canvas when contributing to this repository - see [Setup & local development](../setup.md). The app is installable as a PWA for offline editing of a local workspace.
 
 ## Next
 
 - [ArchLens Canvas](./canvas.md)
-- [ArchLens](./cli.md)
+- [ArchLens CLI](./cli.md)
 - [TraceLens](./tracelens.md)
 - [ChaosLens](./chaoslens.md)
 - [Interface tour & journeys](../journeys.md)

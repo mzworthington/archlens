@@ -1,6 +1,6 @@
 # AdviceLens engine
 
-This page is for **contributors** building or extending AdviceLens—the deterministic recommendation pipeline and optional narration layer in `@archlens/core/recommendations`.
+This page is for **contributors** building or extending AdviceLens - the deterministic recommendation pipeline and optional narration layer in `@archlens/core/recommendations`.
 
 For using AdviceLens in ArchLens Canvas and the CLI, see the [product guide](./guide/advicelens.md).
 
@@ -41,7 +41,7 @@ const recommendations = buildRecommendations({
   ownershipByEntityRef,
 });
 
-// Optional narration — returns input unchanged when no narrator is provided
+// Optional narration - returns input unchanged when no narrator is provided
 const narrated = await narrateRecommendations(recommendations, {
   estateLabel: 'checkout-platform', // optional prompt context only
 });
@@ -57,18 +57,18 @@ const narrated = await narrateRecommendations(recommendations, {
 
 ### Types
 
-- `Recommendation` — `id`, `kind`, `source`, `priority`, `evidence`, `actions`, optional `narration`
-- `Recommendation.source` — `'chaoslens' | 'tracelens'` (signal provenance, not narration)
-- `RecommendationNarration` — `provider: 'adviceLens'`, `detail`, `citations`, optional `model`
+- `Recommendation` - `id`, `kind`, `source`, `priority`, `evidence`, `actions`, optional `narration`
+- `Recommendation.source` - `'chaoslens' | 'tracelens'` (signal provenance, not narration)
+- `RecommendationNarration` - `provider: 'adviceLens'`, `detail`, `citations`, optional `model`
 
-- `RecommendationEvidence.applicabilityScope` — container scope and optional code-level contributor for roll-up
-- `RecommendationEvidence.simulation.dependencyEntityRef` — shared dependency for caller-targeted circuit breakers
+- `RecommendationEvidence.applicabilityScope` - container scope and optional code-level contributor for roll-up
+- `RecommendationEvidence.simulation.dependencyEntityRef` - shared dependency for caller-targeted circuit breakers
 
 ---
 
 ## Resilience advice eligibility
 
-Advice targets are **owned application software** — not human actors, third-party vendors, shared data stores, brokers, or IaC-imported resources.
+Advice targets are **owned application software** - not human actors, third-party vendors, shared data stores, brokers, or IaC-imported resources.
 
 | Function                                        | Purpose                                                                                                |
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -79,7 +79,7 @@ Advice targets are **owned application software** — not human actors, third-pa
 | `resolveAdviceApplicability(schema, entityRef)` | Roll code/component contributors up to `schema.entityRef` for composite-risk targets                   |
 | `detectSpofCallSites(schema)`                   | Shared dependency → caller list for outbound circuit-breaker advice                                    |
 
-**Ownership vs diagram proxy:** `external: true` marks a **workspace proxy** (homded on another diagram). Add `properties.classification: third-party` for vendors you cannot modify — AdviceLens still targets **your callers**, but copy and evidence cite `dependencyOwnership: third-party`. Canvas labels: `(Workspace)` vs `(Third-party)`.
+**Ownership vs diagram proxy:** `external: true` marks a **workspace proxy** (homded on another diagram). Add `properties.classification: third-party` for vendors you cannot modify - AdviceLens still targets **your callers**, but copy and evidence cite `dependencyOwnership: third-party`. Canvas labels: `(Workspace)` vs `(Third-party)`.
 
 **Human actors:** C4 `person` nodes and `properties.role: product-persona` are never safeguard or refactor targets.
 
@@ -133,8 +133,8 @@ Key files:
 
 ## Product naming
 
-- **AdviceLens** — user-facing product name for the recommendation layer
-- **AdviceLens Core** — deterministic ranking (CI-safe)
-- **AdviceLens Narration** — optional LLM enrichment (Phase 5)
+- **AdviceLens** - user-facing product name for the recommendation layer
+- **AdviceLens Core** - deterministic ranking (CI-safe)
+- **AdviceLens Narration** - optional LLM enrichment (Phase 5)
 
-Do not confuse with CLI `productName` in system discovery—that hub slug is for monorepo context diagrams only.
+Do not confuse with CLI `productName` in system discovery - that hub slug is for monorepo context diagrams only.

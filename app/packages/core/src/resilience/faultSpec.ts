@@ -12,7 +12,7 @@ export interface NodeSafeguards {
 export interface NodeFaultConfig {
   nodeId: EntityRef;
   faultType: FaultType;
-  /** 0–1 severity for partial faults; region-outage implies 1.0 */
+  /** 0-1 severity for partial faults; region-outage implies 1.0 */
   severity?: number;
   safeguards?: NodeSafeguards;
 }

@@ -75,7 +75,7 @@ export async function promptArchitectureInteractive(input: {
   const contextName = (contextNameInput as string) || input.contextName;
 
   const systemNameInput = await p.text({
-    message: 'Software system name (optional — one product across multiple repos):',
+    message: 'Software system name (optional - one product across multiple repos):',
     placeholder: 'e.g. frontend-api',
     defaultValue: input.systemName ?? '',
   });
