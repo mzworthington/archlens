@@ -1,10 +1,21 @@
 import { describe, it, expect } from 'vitest';
-import { parseSchemaFromYaml } from '@archlens/core';
+import { parseSchemaFromYaml, type SystemSchema } from '@archlens/core';
 import { BrowserMemoryFileSystem } from './browserMemoryFileSystem';
 import { BrowserSourceParser } from './browserSourceParser';
+import { createBrowserAnalysisDeps } from './createBrowserAnalysisDeps';
 import { CodebaseAnalyzer } from '@archlens/analysis/analyzer';
 import { createAnalysisLogger } from './analysisLogger';
 import { runBrowserAnalysis } from '../../application/analysis/runBrowserAnalysis';
+
+const silentLogger = createAnalysisLogger({
+  info: () => undefined,
+  warn: () => undefined,
+  error: () => undefined,
+});
+
+function dependencyKeys(schema: SystemSchema): string[] {
+  return schema.dependencies.map(dep => `${dep.from}->${dep.to}:${dep.type}`).sort();
+}
 
 describe('browser analysis adapters', () => {
   it('parses walked sources into ParsedSourceFile records', async () => {
@@ -22,6 +33,17 @@ describe('browser analysis adapters', () => {
     const files = await parser.parseSourceFiles('**/*.{ts,tsx}');
     expect(files).toHaveLength(2);
     expect(files[0]?.imports).toEqual([{ moduleSpecifier: './b' }]);
+  });
+
+  it('skips metadata manifests when parsing sources', async () => {
+    const parser = new BrowserSourceParser([
+      { relativePath: 'package.json', content: '{"name":"demo"}' },
+      { relativePath: 'pnpm-workspace.yaml', content: 'packages:\n  - packages/*\n' },
+      { relativePath: 'src/a.ts', content: `export const a = 1;\n` },
+    ]);
+
+    const files = await parser.parseSourceFiles('**/*.{ts,tsx}');
+    expect(files.map(f => f.relativePath)).toEqual(['src/a.ts']);
   });
 
   it('runs CodebaseAnalyzer against memory FS and emits YAML', async () => {
@@ -45,15 +67,7 @@ describe('browser analysis adapters', () => {
       sources.filter(s => s.relativePath.endsWith('.ts')),
       '/scan'
     );
-    const analyzer = new CodebaseAnalyzer({
-      parser,
-      fileSystem,
-      logger: createAnalysisLogger({
-        info: () => undefined,
-        warn: () => undefined,
-        error: () => undefined,
-      }),
-    });
+    const analyzer = new CodebaseAnalyzer({ parser, fileSystem, logger: silentLogger });
 
     await analyzer.runAnalysis('demo-app', '/scan/blueprints', '**/*.{ts,tsx}');
     const yamlFiles = fileSystem.collectWrittenYamlFiles('/scan/blueprints');
@@ -79,39 +93,34 @@ describe('browser analysis adapters', () => {
     ];
     const fileSystem = new BrowserMemoryFileSystem(sources, { cwd: '/scan' });
     const parser = new BrowserSourceParser(sources, '/scan');
-    const analyzer = new CodebaseAnalyzer({
-      parser,
-      fileSystem,
-      logger: createAnalysisLogger({
-        info: () => undefined,
-        warn: () => undefined,
-        error: () => undefined,
-      }),
-    });
+    const analyzer = new CodebaseAnalyzer({ parser, fileSystem, logger: silentLogger });
     await analyzer.runAnalysis('acme-browser-parity', '/scan/blueprints', '**/*.{ts,tsx,js,jsx}');
 
     const directFiles = fileSystem.collectWrittenYamlFiles('/scan/blueprints');
     const runnerFiles = (
       await runBrowserAnalysis({
-        sources,
         directoryName: '@acme/browser-parity',
+        deps: createBrowserAnalysisDeps({ sources }),
       })
     ).yamlFiles;
-
-    const directContext = parseSchemaFromYaml(
-      directFiles.find(f => f.name.endsWith('context.yaml'))?.content ?? ''
-    );
-    const runnerContext = parseSchemaFromYaml(
-      runnerFiles.find(f => f.name.endsWith('context.yaml'))?.content ?? ''
-    );
 
     expect(runnerFiles.some(f => f.name.startsWith('acme-browser-parity/'))).toBe(true);
     expect(runnerFiles.map(f => f.name.split('/').pop()).sort()).toEqual(
       directFiles.map(f => f.name.split('/').pop()).sort()
     );
-    expect(runnerContext.level).toEqual(directContext.level);
-    expect(runnerContext.nodes.map(node => node.entityRef).sort()).toEqual(
-      directContext.nodes.map(node => node.entityRef).sort()
-    );
+
+    for (const directFile of directFiles) {
+      const leaf = directFile.name.split('/').pop();
+      const runnerFile = runnerFiles.find(f => f.name.split('/').pop() === leaf);
+      expect(runnerFile, `missing ${leaf} in runner output`).toBeDefined();
+
+      const direct = parseSchemaFromYaml(directFile.content);
+      const runner = parseSchemaFromYaml(runnerFile!.content);
+      expect(runner.level, leaf).toEqual(direct.level);
+      expect(runner.nodes.map(n => n.entityRef).sort(), leaf).toEqual(
+        direct.nodes.map(n => n.entityRef).sort()
+      );
+      expect(dependencyKeys(runner), leaf).toEqual(dependencyKeys(direct));
+    }
   });
 });

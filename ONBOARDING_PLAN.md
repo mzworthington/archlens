@@ -51,15 +51,18 @@ Do not treat the browser scan as CLI parity (no git TraceLens / publish). Gradua
 ## Beat 4b — Browser tree-sitter parser
 
 - [x] Extract shared AST→`ParsedSourceFile` walk from CLI `TreeSitterParserAdapter`
-- [x] `BrowserTreeSitterParser` using Canvas tree-sitter WASM URLs
-- [ ] Delete canvas `extractTsImports` once fallback coverage is no longer needed
+- [x] `BrowserTreeSitterParser` sharing the Canvas `treeSitterClient` bootstrap (worker-safe)
+- [x] Cover the shared extractor with real WASM grammars (TS, Python, Go, Java, C#)
+- Decision: keep canvas `extractTsImports` as the no-WASM fallback rather than deleting it
 
 ---
 
 ## Beat 5 — Browser scan UX
 
 - [x] Move analysis execution off the main UI thread (worker wrapper; local fallback in tests)
-- [ ] Progress (`files scanned / cap`) and cancel (`AbortSignal`) in startup + toolbar flows
+- [x] Cancel: `AbortSignal` through walk → worker, superseded scans terminate the worker
+- [x] Budget metadata manifests and cumulative bytes separately from the source-file cap
+- [ ] Progress (`files scanned / cap`) surfaced in startup + toolbar flows
 - [ ] ZIP upload fallback where `showDirectoryPicker` is missing (scan input only — not persistence; ADR-0004)
 - [ ] Optional: write generated YAML into a user-picked `blueprints/` folder (commit path) instead of memory-only port
 - [x] E2E-style smoke: startup/store action → browser scan (mocked picker) → context workspace loaded
@@ -70,7 +73,7 @@ Do not treat the browser scan as CLI parity (no git TraceLens / publish). Gradua
 
 - [x] Surface “structure only / TS·JS / no git” in UI and getting-started
 - [ ] Align CLI language docs with analyzers that actually ship (Go/Java vs guide text)
-- [ ] Add/restore missing ADR-0013 if connection profiles remain on the roadmap
+- [x] ADR-0013 (practitioner connection profiles) restored on `main`
 
 ---
 

@@ -26,10 +26,19 @@
   },
   "dependencies": {
     "@archlens/core": "workspace:*",
-    "ignore": "^7.0.6",
-    "web-tree-sitter": "0.20.8"
+    "ignore": "^7.0.6"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1"
+    "@types/node": "^26.1.1",
+    "tree-sitter-wasms": "0.1.13",
+    "web-tree-sitter": "0.20.8"
+  },
+  "peerDependencies": {
+    "web-tree-sitter": "0.20.8"
+  },
+  "peerDependenciesMeta": {
+    "web-tree-sitter": {
+      "optional": true
+    }
   }
 }

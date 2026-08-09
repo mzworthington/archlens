@@ -1,42 +1,42 @@
 import { CodebaseAnalyzer } from '@archlens/analysis/analyzer';
-import type { LiteScanSourceFile } from './liteScanTypes';
-import { BrowserMemoryFileSystem } from '../../infrastructure/analysis/browserMemoryFileSystem';
-import { BrowserTreeSitterParser } from '../../infrastructure/analysis/browserTreeSitterParser';
-import { createAnalysisLogger } from '../../infrastructure/analysis/analysisLogger';
+import type { AnalysisFileSystemPort, CodebaseParserPort } from '@archlens/analysis/ports';
+import type { LoggerPort } from '@archlens/analysis/ports';
 import { slugifyWorkspaceName } from './slugifyWorkspaceName';
+
+export const BROWSER_SCAN_CWD = '/scan';
+export const BROWSER_SCAN_OUTPUT_ROOT = `${BROWSER_SCAN_CWD}/blueprints`;
+export const BROWSER_SCAN_GLOB = '**/*.{ts,tsx,js,jsx}';
+
+/** Analysis filesystem that can hand back the YAML the writers produced. */
+export type ScanFileSystemPort = AnalysisFileSystemPort & {
+  collectWrittenYamlFiles: (outputRoot: string) => Array<{ name: string; content: string }>;
+};
 
 export type BrowserAnalysisResult = {
   yamlFiles: Array<{ name: string; content: string }>;
   contextName: string;
 };
 
-export type BrowserAnalysisLogger = {
-  info: (m: string, meta?: Record<string, unknown>) => void;
-  warn: (m: string, meta?: Record<string, unknown>) => void;
-  error: (m: string, err?: unknown) => void;
+export type BrowserAnalysisDeps = {
+  parser: CodebaseParserPort;
+  fileSystem: ScanFileSystemPort;
+  logger: LoggerPort;
 };
 
-const noopLogger: BrowserAnalysisLogger = {
-  info: () => undefined,
-  warn: () => undefined,
-  error: () => undefined,
-};
-
+/**
+ * Runs the shared analyzer over pre-walked sources. Adapters are injected by the
+ * caller (worker entry or store) so this stays free of browser infrastructure.
+ */
 export async function runBrowserAnalysis(args: {
-  sources: readonly LiteScanSourceFile[];
   directoryName: string;
-  logger?: BrowserAnalysisLogger;
+  deps: BrowserAnalysisDeps;
   signal?: AbortSignal;
 }): Promise<BrowserAnalysisResult> {
   const contextName = slugifyWorkspaceName(args.directoryName);
-  const cwd = '/scan';
-  const outputRoot = `${cwd}/blueprints`;
-  const fileSystem = new BrowserMemoryFileSystem(args.sources, { cwd });
-  const parser = new BrowserTreeSitterParser(args.sources, cwd);
   const analyzer = new CodebaseAnalyzer({
-    parser,
-    fileSystem,
-    logger: createAnalysisLogger(args.logger ?? noopLogger),
+    parser: args.deps.parser,
+    fileSystem: args.deps.fileSystem,
+    logger: args.deps.logger,
     analysisOptions: {
       ignore: [],
       include: [],
@@ -45,9 +45,10 @@ export async function runBrowserAnalysis(args: {
     },
   });
 
-  await analyzer.runAnalysis(contextName, outputRoot, '**/*.{ts,tsx,js,jsx}', args.signal);
+  await analyzer.runAnalysis(contextName, BROWSER_SCAN_OUTPUT_ROOT, BROWSER_SCAN_GLOB, args.signal);
+
   return {
     contextName,
-    yamlFiles: fileSystem.collectWrittenYamlFiles(outputRoot),
+    yamlFiles: args.deps.fileSystem.collectWrittenYamlFiles(BROWSER_SCAN_OUTPUT_ROOT),
   };
 }

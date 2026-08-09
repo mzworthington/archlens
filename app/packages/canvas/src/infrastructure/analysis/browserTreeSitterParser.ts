@@ -1,93 +1,61 @@
 import Parser from 'web-tree-sitter';
-import {
-  extensionToTreeSitterLanguage,
-  wasmFileName,
-  type TreeSitterWasmLanguage,
-} from '@archlens/core';
 import type { CodebaseParserPort } from '@archlens/analysis/ports';
 import type { ParsedSourceFile } from '@archlens/analysis/types';
 import { extractParsedSourceFileFromTree } from '@archlens/analysis/tree-sitter-extract';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
+import {
+  initTreeSitter,
+  loadTreeSitterLanguageForFile,
+} from '../../application/parsing/treeSitterClient';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
+import { isLiteScanSourcePath } from '../../application/analysis/liteScanLimits';
 import { BrowserSourceParser } from './browserSourceParser';
 
-const wasmBase = `${import.meta.env.BASE_URL}tree-sitter/`.replace(/(?<!:)\/{2,}/g, '/');
-
-let initPromise: Promise<boolean> | null = null;
-let initFailed = false;
-const languageCache = new Map<TreeSitterWasmLanguage, Parser.Language>();
-
-function treeSitterWasmUrl(fileName: string): string {
-  return `${wasmBase}${fileName}`;
-}
-
-async function initTreeSitter(): Promise<boolean> {
-  if (initFailed) return false;
-  if (import.meta.env.MODE === 'test') return false;
-  if (typeof WebAssembly === 'undefined') return false;
-  if (!initPromise) {
-    initPromise = Parser.init({
-      locateFile(scriptName: string) {
-        return treeSitterWasmUrl(scriptName);
-      },
-    })
-      .then(() => true)
-      .catch(() => {
-        initFailed = true;
-        return false;
-      });
-  }
-  return initPromise;
-}
-
-async function loadTreeSitterLanguageForFile(filepath: string): Promise<Parser.Language | null> {
-  const lang = extensionToTreeSitterLanguage(filepath);
-  if (!lang) return null;
-  const cached = languageCache.get(lang);
-  if (cached) return cached;
-  const ready = await initTreeSitter();
-  if (!ready) return null;
-  try {
-    const language = await Parser.Language.load(treeSitterWasmUrl(wasmFileName(lang)));
-    languageCache.set(lang, language);
-    return language;
-  } catch {
-    return null;
-  }
-}
+export type BrowserParserLogger = {
+  warn: (message: string, context?: Record<string, unknown>) => void;
+};
 
 /**
  * Browser CodebaseParserPort backed by tree-sitter WASM.
- * Falls back to the lightweight parser if WASM/language loading is unavailable.
+ * Falls back to lightweight specifier extraction when WASM is unavailable.
  */
 export class BrowserTreeSitterParser implements CodebaseParserPort {
   private readonly fallback: BrowserSourceParser;
 
   constructor(
     private readonly sources: readonly LiteScanSourceFile[],
-    private readonly cwd: string = '/scan'
+    private readonly cwd: string = '/scan',
+    private readonly logger?: BrowserParserLogger
   ) {
     this.fallback = new BrowserSourceParser(sources, cwd);
   }
 
   async parseSourceFiles(globPattern: string, signal?: AbortSignal): Promise<ParsedSourceFile[]> {
     throwIfAborted(signal);
-    const ready = await initTreeSitter();
-    if (!ready) {
+    if (!(await initTreeSitter())) {
+      this.logger?.warn('Tree-sitter unavailable; using lightweight browser parser');
       return this.fallback.parseSourceFiles(globPattern, signal);
     }
 
     const parser = new Parser();
     const parsed: ParsedSourceFile[] = [];
-    let parsedAny = false;
+    let attempted = 0;
+    let failed = 0;
 
     for (const source of this.sources) {
       throwIfAborted(signal);
       const relativePath = source.relativePath.replace(/\\/g, '/');
-      const language = await loadTreeSitterLanguageForFile(relativePath);
-      if (!language) continue;
+      if (!isLiteScanSourcePath(relativePath)) continue;
+
+      attempted += 1;
+      const loaded = await loadTreeSitterLanguageForFile(relativePath);
+      if (!loaded) {
+        failed += 1;
+        continue;
+      }
+
       try {
-        parser.setLanguage(language);
+        parser.setLanguage(loaded.language);
         const tree = parser.parse(source.content);
         parsed.push(
           extractParsedSourceFileFromTree({
@@ -96,22 +64,27 @@ export class BrowserTreeSitterParser implements CodebaseParserPort {
             tree,
           })
         );
-        parsedAny = true;
       } catch {
-        // Continue: a single malformed file should not block onboarding feedback.
+        // A single malformed file should not block onboarding feedback.
+        failed += 1;
       }
     }
 
-    if (!parsedAny) {
+    if (attempted > 0 && parsed.length === 0) {
+      this.logger?.warn('Tree-sitter parsed no files; using lightweight browser parser', {
+        attempted,
+        failed,
+      });
       return this.fallback.parseSourceFiles(globPattern, signal);
     }
+
+    if (failed > 0) {
+      this.logger?.warn('Some files could not be parsed during browser scan', {
+        attempted,
+        failed,
+      });
+    }
+
     return parsed;
   }
-}
-
-/** @internal Test helper */
-export function resetBrowserTreeSitterParserForTests(): void {
-  initPromise = null;
-  initFailed = false;
-  languageCache.clear();
 }

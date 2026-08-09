@@ -4,12 +4,7 @@ import { isTestSourcePath } from '@archlens/analysis/test-path';
 import { throwIfAborted } from '@archlens/analysis/cancellation';
 import { extractTsImports } from '../../application/analysis/extractTsImports';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
-import { LITE_SCAN_EXTENSIONS } from '../../application/analysis/liteScanLimits';
-
-function extensionOf(path: string): string {
-  const idx = path.lastIndexOf('.');
-  return idx >= 0 ? path.slice(idx).toLowerCase() : '';
-}
+import { isLiteScanSourcePath } from '../../application/analysis/liteScanLimits';
 
 /**
  * Browser CodebaseParserPort: maps a pre-walked source tree to ParsedSourceFile[].
@@ -28,7 +23,7 @@ export class BrowserSourceParser implements CodebaseParserPort {
     for (const source of this.sources) {
       throwIfAborted(signal);
       const relativePath = source.relativePath.replace(/\\/g, '/');
-      if (!LITE_SCAN_EXTENSIONS.has(extensionOf(relativePath))) continue;
+      if (!isLiteScanSourcePath(relativePath)) continue;
 
       const baseName =
         relativePath

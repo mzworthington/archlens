@@ -24,9 +24,6 @@ export class BrowserMemoryFileSystem implements AnalysisFileSystemPort {
       const abs = this.getAbsolutePath(this.cwd, relative);
       this.textFiles.set(abs, source.content);
       this.indexPath(abs);
-      if (relative.endsWith('package.json')) {
-        // listed via textFiles for readPackageJsonName
-      }
     }
   }
 

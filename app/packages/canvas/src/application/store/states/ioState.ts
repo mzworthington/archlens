@@ -35,7 +35,9 @@ import {
   walkBrowserSourceDirectory,
 } from '../../../infrastructure/analysis/browserSourceWalker';
 import { createMemoryScanWorkspacePort } from '../../../infrastructure/analysis/memoryScanWorkspace';
-import { runBrowserAnalysisWorker } from '../../analysis/runBrowserAnalysisWorker';
+import { createAnalysisLogger } from '../../../infrastructure/analysis/analysisLogger';
+import { runBrowserAnalysisWorker } from '../../../infrastructure/analysis/runBrowserAnalysisWorker';
+import { isCancellationError } from '@archlens/analysis/cancellation';
 
 export const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
@@ -248,10 +250,17 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
     markFolderWorkspacePreferred();
     const openGeneration = beginWorkspaceOpen();
     setIsLoading(BROWSER_LITE_SCAN_LOADING_MESSAGE);
+    // Abandoning the scan (e.g. opening another workspace) must stop the worker too.
+    const cancellation = new AbortController();
+    const abortIfSuperseded = () => {
+      if (isWorkspaceOpenCurrent(openGeneration)) return false;
+      cancellation.abort();
+      return true;
+    };
     try {
-      const walked = await walkBrowserSourceDirectory(handle);
-      if (!isWorkspaceOpenCurrent(openGeneration)) return false;
-      if (walked.files.length === 0) {
+      const walked = await walkBrowserSourceDirectory(handle, { signal: cancellation.signal });
+      if (abortIfSuperseded()) return false;
+      if (walked.sourceFileCount === 0) {
         throw new Error(
           'No TypeScript or JavaScript source files found (try a package with .ts/.tsx/.js/.jsx).'
         );
@@ -260,8 +269,10 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       const { yamlFiles } = await runBrowserAnalysisWorker({
         sources: walked.files,
         directoryName: walked.directoryName,
+        logger: createAnalysisLogger(logger),
+        signal: cancellation.signal,
       });
-      if (!isWorkspaceOpenCurrent(openGeneration)) return false;
+      if (abortIfSuperseded()) return false;
 
       if (yamlFiles.length === 0) {
         throw new Error('Scan produced no BlueprintSpec YAML — check the selected folder.');
@@ -291,16 +302,20 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
 
       if (opened) {
         const truncatedNote = walked.truncated
-          ? ` Capped at ${walked.files.length} files for browser responsiveness.`
+          ? ` Capped at ${walked.sourceFileCount} files for browser responsiveness.`
           : '';
         setNotification?.({
           type: 'success',
           title: 'Browser scan ready',
-          message: `Loaded ${walked.files.length} source file(s) via shared analysis (structure only — no git hotspots).${truncatedNote} Install the ArchLens CLI for TraceLens and CI publish.`,
+          message: `Loaded ${walked.sourceFileCount} source file(s) via shared analysis (structure only — no git hotspots).${truncatedNote} Install the ArchLens CLI for TraceLens and CI publish.`,
         });
       }
       return opened;
     } catch (err) {
+      if (isCancellationError(err)) {
+        logger.info('Browser lite scan cancelled');
+        return false;
+      }
       logger.error('Failed to run browser lite scan', err);
       set({ lastError: (err as Error).message || 'Failed to scan repository in browser' });
       setNotification?.({
@@ -310,6 +325,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       });
       return false;
     } finally {
+      cancellation.abort();
       setIsLoading(false);
     }
   },

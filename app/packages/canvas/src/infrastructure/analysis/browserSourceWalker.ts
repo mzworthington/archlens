@@ -1,14 +1,18 @@
 import {
-  LITE_SCAN_EXTENSIONS,
   LITE_SCAN_MAX_FILE_BYTES,
   LITE_SCAN_MAX_FILES,
-  LITE_SCAN_METADATA_FILES,
+  LITE_SCAN_MAX_METADATA_FILES,
+  LITE_SCAN_MAX_TOTAL_BYTES,
   LITE_SCAN_SKIP_DIR_NAMES,
+  isLiteScanMetadataPath,
+  isLiteScanSourcePath,
 } from '../../application/analysis/liteScanLimits';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
 
 export type BrowserSourceWalkResult = {
   files: LiteScanSourceFile[];
+  /** Parseable source files only — metadata manifests are excluded. */
+  sourceFileCount: number;
   truncated: boolean;
   directoryName: string;
 };
@@ -24,43 +28,47 @@ function isFileHandle(handle: FileSystemHandle): handle is FileHandle {
   return handle.kind === 'file';
 }
 
-function extensionOf(name: string): string {
-  const idx = name.lastIndexOf('.');
-  return idx >= 0 ? name.slice(idx).toLowerCase() : '';
-}
-
-function shouldReadFile(name: string): boolean {
-  return LITE_SCAN_EXTENSIONS.has(extensionOf(name)) || LITE_SCAN_METADATA_FILES.has(name);
+function throwIfCancelled(signal?: AbortSignal): void {
+  if (!signal?.aborted) return;
+  const err = new Error('Scan cancelled.');
+  err.name = 'CancellationError';
+  throw err;
 }
 
 /**
  * Recursively walk a directory handle for TS/JS sources (browser File System Access).
- * Applies file-count and per-file size caps for onboarding responsiveness.
+ * Sources, manifests, and total bytes are budgeted separately for onboarding responsiveness.
  */
 export async function walkBrowserSourceDirectory(
   root: DirHandle,
   options: {
     maxFiles?: number;
+    maxMetadataFiles?: number;
     maxFileBytes?: number;
+    maxTotalBytes?: number;
     signal?: AbortSignal;
   } = {}
 ): Promise<BrowserSourceWalkResult> {
   const maxFiles = options.maxFiles ?? LITE_SCAN_MAX_FILES;
+  const maxMetadataFiles = options.maxMetadataFiles ?? LITE_SCAN_MAX_METADATA_FILES;
   const maxFileBytes = options.maxFileBytes ?? LITE_SCAN_MAX_FILE_BYTES;
+  const maxTotalBytes = options.maxTotalBytes ?? LITE_SCAN_MAX_TOTAL_BYTES;
+
   const files: LiteScanSourceFile[] = [];
+  let sourceCount = 0;
+  let metadataCount = 0;
+  let totalBytes = 0;
   let truncated = false;
 
   const visit = async (dir: DirHandle, prefix: string): Promise<void> => {
-    if (options.signal?.aborted) {
-      const err = new Error('Scan cancelled.');
-      err.name = 'CancellationError';
-      throw err;
-    }
+    throwIfCancelled(options.signal);
+
     // FileSystemDirectoryHandle is async-iterable in supporting browsers.
     for await (const [name, handle] of dir as unknown as AsyncIterable<
       [string, FileSystemHandle]
     >) {
-      if (files.length >= maxFiles) {
+      throwIfCancelled(options.signal);
+      if (sourceCount >= maxFiles) {
         truncated = true;
         return;
       }
@@ -75,22 +83,43 @@ export async function walkBrowserSourceDirectory(
       }
 
       if (!isFileHandle(handle)) continue;
-      if (!shouldReadFile(name)) continue;
+
+      const isSource = isLiteScanSourcePath(name);
+      const isMetadata = !isSource && isLiteScanMetadataPath(name);
+      if (!isSource && !isMetadata) continue;
+      if (isMetadata && metadataCount >= maxMetadataFiles) continue;
 
       const file = await handle.getFile();
       if (file.size > maxFileBytes) continue;
-      const content = await file.text();
-      const relativePath = prefix ? `${prefix}/${name}` : name;
-      files.push({ relativePath, content });
-      if (files.length >= maxFiles) {
+      if (totalBytes + file.size > maxTotalBytes) {
         truncated = true;
-        return;
+        if (isSource) return;
+        continue;
+      }
+
+      const content = await file.text();
+      totalBytes += file.size;
+      files.push({ relativePath: prefix ? `${prefix}/${name}` : name, content });
+
+      if (isSource) {
+        sourceCount += 1;
+        if (sourceCount >= maxFiles) {
+          truncated = true;
+          return;
+        }
+      } else {
+        metadataCount += 1;
       }
     }
   };
 
   await visit(root, '');
-  return { files, truncated, directoryName: root.name || 'scanned' };
+  return {
+    files,
+    sourceFileCount: sourceCount,
+    truncated,
+    directoryName: root.name || 'scanned',
+  };
 }
 
 export type DirectoryPicker = () => Promise<DirHandle | null>;
