@@ -186,6 +186,35 @@ describe('Feature: S3-compatible object storage (R2 and AWS)', () => {
     expect(send).toHaveBeenCalledTimes(3);
   });
 
+  it('does not apply R2 InternalError retries for AWS S3', async () => {
+    const send = vi.fn(async () => {
+      const error = new Error('We encountered an internal error. Please try again.') as Error & {
+        name: string;
+        Code: string;
+        $metadata: { httpStatusCode: number; attempts: number };
+      };
+      error.name = 'InternalError';
+      error.Code = 'InternalError';
+      error.$metadata = { httpStatusCode: 500, attempts: 3 };
+      throw error;
+    });
+
+    const storage = createS3ObjectStorage(
+      {
+        provider: 's3',
+        bucket: 'catalog',
+        accessKeyId: 'key',
+        secretAccessKey: 'secret',
+      },
+      { send }
+    );
+
+    await expect(storage.listObjectKeys('fragments/')).rejects.toMatchObject({
+      name: 'InternalError',
+    });
+    expect(send).toHaveBeenCalledTimes(1);
+  });
+
   it('does not retry precondition failures', async () => {
     const send = vi.fn(async () => {
       const error = new Error('Precondition Failed') as Error & {

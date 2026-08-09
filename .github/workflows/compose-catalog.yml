@@ -39,22 +39,10 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
         run: |
           set -euo pipefail
-          # Outer job retry for brief R2 InternalError / 5xx blips (adapter also retries).
-          attempts=3
-          for attempt in $(seq 1 "${attempts}"); do
-            if archlens catalog compose \
-              --estate=samples \
-              --workspace-name=samples \
-              --key-prefix=estates/samples \
-              --allow-empty \
-              --no-dry-run \
-              --format=json; then
-              exit 0
-            fi
-            if [ "${attempt}" -eq "${attempts}" ]; then
-              exit 1
-            fi
-            sleep_seconds=$((attempt * 10))
-            echo "Compose failed (attempt ${attempt}/${attempts}); retrying in ${sleep_seconds}s…"
-            sleep "${sleep_seconds}"
-          done
+          archlens catalog compose \
+            --estate=samples \
+            --workspace-name=samples \
+            --key-prefix=estates/samples \
+            --allow-empty \
+            --no-dry-run \
+            --format=json
