@@ -48,10 +48,13 @@ async function streamToBytes(body: unknown): Promise<Uint8Array> {
   return merged;
 }
 
-/** Outer attempts after the AWS SDK has already exhausted its own retries. */
-const TRANSIENT_SEND_ATTEMPTS = 5;
+/**
+ * R2-only outer attempts after the AWS SDK has already exhausted its own retries.
+ * Other S3-compatible backends do not get this wrapper.
+ */
+const R2_TRANSIENT_SEND_ATTEMPTS = 5;
 
-const TRANSIENT_ERROR_NAMES =
+const R2_TRANSIENT_ERROR_NAMES =
   /^(InternalError|SlowDown|ServiceUnavailable|RequestTimeout|TimeoutError|NetworkingError|TooManyRequestsException)$/i;
 
 function isPreconditionFailed(error: unknown): boolean {
@@ -64,7 +67,7 @@ function isPreconditionFailed(error: unknown): boolean {
   );
 }
 
-function isTransientS3Error(error: unknown): boolean {
+function isTransientR2Error(error: unknown): boolean {
   if (!error || typeof error !== 'object' || isPreconditionFailed(error)) return false;
   const record = error as {
     name?: string;
@@ -74,16 +77,16 @@ function isTransientS3Error(error: unknown): boolean {
   const status = record.$metadata?.httpStatusCode;
   if (status === 429 || (typeof status === 'number' && status >= 500)) return true;
   const code = record.name ?? record.Code ?? '';
-  return TRANSIENT_ERROR_NAMES.test(code);
+  return R2_TRANSIENT_ERROR_NAMES.test(code);
 }
 
 async function sleep(ms: number): Promise<void> {
   await new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function withTransientRetry<T>(
+async function withR2TransientRetry<T>(
   operation: () => Promise<T>,
-  attempts = TRANSIENT_SEND_ATTEMPTS
+  attempts = R2_TRANSIENT_SEND_ATTEMPTS
 ): Promise<T> {
   let lastError: unknown;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -91,7 +94,7 @@ async function withTransientRetry<T>(
       return await operation();
     } catch (error) {
       lastError = error;
-      if (!isTransientS3Error(error) || attempt === attempts) {
+      if (!isTransientR2Error(error) || attempt === attempts) {
         throw error;
       }
       // Longer than the SDK's short default delay so brief R2 500s can clear.
@@ -109,20 +112,27 @@ export function createS3ObjectStorage(
   config: S3CompatibleStorageConfig,
   deps: S3ObjectStorageDeps = {}
 ): ObjectStoragePort {
+  const isR2 = config.provider === 'r2';
   const clientConfig: S3ClientConfig = {
-    region: config.region ?? (config.provider === 'r2' ? 'auto' : 'us-east-1'),
+    region: config.region ?? (isR2 ? 'auto' : 'us-east-1'),
     credentials: {
       accessKeyId: config.accessKeyId,
       secretAccessKey: config.secretAccessKey,
     },
-    maxAttempts: 5,
+    // R2 occasionally returns InternalError; give the SDK a few more attempts there only.
+    ...(isR2 ? { maxAttempts: 5 } : {}),
   };
   if (config.endpoint) {
     clientConfig.endpoint = config.endpoint;
   }
 
   const client = new S3Client(clientConfig);
-  const send = deps.send ?? client.send.bind(client);
+  const rawSend = deps.send ?? client.send.bind(client);
+  // Outer backoff is R2-specific; AWS S3 / other backends use the SDK defaults only.
+  const send: S3Client['send'] = isR2
+    ? (((command, options) =>
+        withR2TransientRetry(() => rawSend(command, options))) as S3Client['send'])
+    : rawSend;
   const prefix = normalizeObjectKeyPrefix(config.keyPrefix);
 
   const resolveKey = (key: string): string => joinObjectKey(prefix, key);
@@ -132,9 +142,6 @@ export function createS3ObjectStorage(
     const withSlash = `${prefix}/`;
     return fullKey.startsWith(withSlash) ? fullKey.slice(withSlash.length) : fullKey;
   };
-
-  const sendWithRetry: S3Client['send'] = ((command, options) =>
-    withTransientRetry(() => send(command, options))) as S3Client['send'];
 
   return {
     provider: config.provider,
@@ -146,7 +153,7 @@ export function createS3ObjectStorage(
       return new TextDecoder().decode(bytes);
     },
     async getObjectWithMeta(key: string): Promise<ObjectStorageObjectMeta> {
-      const response = await sendWithRetry(
+      const response = await send(
         new GetObjectCommand({
           Bucket: config.bucket,
           Key: resolveKey(key),
@@ -162,7 +169,7 @@ export function createS3ObjectStorage(
       const keys: string[] = [];
       let continuationToken: string | undefined;
       do {
-        const response = await sendWithRetry(
+        const response = await send(
           new ListObjectsV2Command({
             Bucket: config.bucket,
             Prefix: fullPrefix,
@@ -178,7 +185,7 @@ export function createS3ObjectStorage(
     },
     async putObject(request: ObjectStoragePutRequest): Promise<void> {
       try {
-        await sendWithRetry(
+        await send(
           new PutObjectCommand({
             Bucket: config.bucket,
             Key: resolveKey(request.key),
@@ -196,7 +203,7 @@ export function createS3ObjectStorage(
       }
     },
     async deleteObject(key: string): Promise<void> {
-      await sendWithRetry(
+      await send(
         new DeleteObjectCommand({
           Bucket: config.bucket,
           Key: resolveKey(key),
