@@ -247,6 +247,19 @@ export const DocsShell: React.FC<Props> = ({
           )}
         </main>
       </div>
+
+      <footer className="mx-auto max-w-6xl px-4 pb-10 pt-2 sm:px-6">
+        <p className="text-center font-mono text-[11px] tracking-wide text-slate-500">
+          Made by{' '}
+          <a
+            href="https://mzworthington.co.uk"
+            className="text-slate-400 transition-colors hover:text-[#00f0ff]"
+            rel="noopener noreferrer"
+          >
+            Matthew Z Worthington
+          </a>
+        </p>
+      </footer>
     </div>
   );
 };
