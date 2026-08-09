@@ -7,6 +7,8 @@ import type { ObjectStoragePort } from './ports/objectStoragePort';
 export function createObjectStorage(config: ObjectStorageConfig): ObjectStoragePort {
   switch (config.provider) {
     case 'r2':
+      // R2 shares the S3 API but enables R2-only transient InternalError retries.
+      return createS3ObjectStorage(config);
     case 's3':
       return createS3ObjectStorage(config);
     case 'azure':
