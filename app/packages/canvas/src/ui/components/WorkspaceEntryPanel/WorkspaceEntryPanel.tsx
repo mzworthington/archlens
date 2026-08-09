@@ -9,6 +9,7 @@ import {
   Loader2,
   ScanSearch,
   AlertTriangle,
+  FilePlus,
 } from 'lucide-react';
 import { Link } from 'wouter';
 import {
@@ -64,6 +65,8 @@ export type WorkspaceEntryPanelProps = {
   onOpenDirectory: () => void;
   /** Structural browser scan - pick a source folder, no CLI install. */
   onBrowserLiteScan?: () => void;
+  /** Start an empty diagram with no demo or folder loaded. */
+  onStartBlankCanvas?: () => void;
   disabled?: boolean;
   /** Shown while sandbox/workspace open is in progress (disables actions). */
   loadingMessage?: string | false | null;
@@ -80,11 +83,12 @@ export type WorkspaceEntryPanelProps = {
 const BROWSER_LITE_UNSUPPORTED_MESSAGE =
   'Folder picking is not available in this browser (Firefox and Safari). Use Chrome or Edge, or install the ArchLens CLI below for a full scan.';
 
-/** Shared workspace entry - demo insight first, then browser scan / folder / CLI. */
+/** Shared workspace entry - demo insight first, then browser scan / folder / blank / CLI. */
 export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
+  onStartBlankCanvas,
   disabled = false,
   loadingMessage = null,
   showCliPanel = false,
@@ -249,6 +253,26 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             </span>
           </span>
         </button>
+
+        {onStartBlankCanvas ? (
+          <button
+            type="button"
+            data-testid="workspace-start-blank"
+            onClick={onStartBlankCanvas}
+            disabled={actionsDisabled}
+            className={optionClass}
+          >
+            <FilePlus className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+            <span>
+              <span className="block text-sm font-semibold text-slate-100">
+                Start a blank canvas
+              </span>
+              <span className="block text-xs text-slate-500 mt-0.5">
+                Empty diagram - draw or import Mermaid / IaC when you are ready
+              </span>
+            </span>
+          </button>
+        ) : null}
       </div>
 
       {showCliPanel ? (

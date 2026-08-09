@@ -12,6 +12,9 @@ import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samples
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
 import { useBlueprintStore } from '../../../../application/store/store';
+import { markFolderWorkspacePreferred } from '../../../../application/store/workspaceOpenSession';
+import { EMPTY_WORKSPACE_ENTITY_REF } from '../../../../application/store/states/diagramState/resetToEmptyWorkspace';
+import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
 import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
 import React, { useCallback } from 'react';
 import { useLocation } from 'wouter';
@@ -42,6 +45,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
     openWorkspaceDirectory,
     openBundledSample,
     openBrowserLiteScan,
+    resetToEmptyWorkspace,
   } = useBlueprintStore();
 
   const handleOpenSample = useCallback(async () => {
@@ -75,6 +79,14 @@ export function useWorkspaceDialogs(): React.ReactNode {
     }
   }, [openBrowserLiteScan, setIsStartupOpen, setLocation]);
 
+  const handleStartBlankCanvas = useCallback(() => {
+    // Treat as an explicit non-demo choice so deep-link bootstrap does not force the sample.
+    markFolderWorkspacePreferred();
+    resetToEmptyWorkspace();
+    setIsStartupOpen(false);
+    setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
+  }, [resetToEmptyWorkspace, setIsStartupOpen, setLocation]);
+
   return (
     <>
       <LazyMountOnOpen isOpen={isDiffOpen}>
@@ -106,6 +118,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onOpenSample={() => void handleOpenSample()}
           onOpenDirectory={() => void handleOpenDirectory()}
           onBrowserLiteScan={() => void handleBrowserLiteScan()}
+          onStartBlankCanvas={handleStartBlankCanvas}
           loadingMessage={
             typeof isLoading === 'string' ? isLoading : isLoading ? 'Loading...' : null
           }

@@ -41,7 +41,20 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-open-directory')).toHaveTextContent(
       /Open existing blueprints folder/i
     );
+    expect(screen.queryByTestId('workspace-start-blank')).not.toBeInTheDocument();
     expect(screen.queryByTestId('workspace-cli-panel')).not.toBeInTheDocument();
+  });
+
+  it('renders blank-canvas action when provided', () => {
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onStartBlankCanvas={vi.fn()}
+      />
+    );
+
+    expect(screen.getByTestId('workspace-start-blank')).toHaveTextContent(/Start a blank canvas/i);
   });
 
   it('shows an expanded CLI panel when requested', () => {
@@ -89,34 +102,40 @@ describe('WorkspaceEntryPanel', () => {
     const onOpenSample = vi.fn();
     const onOpenDirectory = vi.fn();
     const onBrowserLiteScan = vi.fn();
+    const onStartBlankCanvas = vi.fn();
 
     render(
       <WorkspaceEntryPanel
         onOpenSample={onOpenSample}
         onOpenDirectory={onOpenDirectory}
         onBrowserLiteScan={onBrowserLiteScan}
+        onStartBlankCanvas={onStartBlankCanvas}
       />
     );
 
     fireEvent.click(screen.getByTestId('workspace-open-sample'));
     fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
     fireEvent.click(screen.getByTestId('workspace-open-directory'));
+    fireEvent.click(screen.getByTestId('workspace-start-blank'));
 
     expect(onOpenSample).toHaveBeenCalledTimes(1);
     expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
+    expect(onStartBlankCanvas).toHaveBeenCalledTimes(1);
   });
 
   it('shows loading feedback and disables actions while sandbox opens', () => {
     const onOpenSample = vi.fn();
     const onOpenDirectory = vi.fn();
     const onBrowserLiteScan = vi.fn();
+    const onStartBlankCanvas = vi.fn();
 
     render(
       <WorkspaceEntryPanel
         onOpenSample={onOpenSample}
         onOpenDirectory={onOpenDirectory}
         onBrowserLiteScan={onBrowserLiteScan}
+        onStartBlankCanvas={onStartBlankCanvas}
         loadingMessage="Loading sandbox..."
       />
     );
@@ -125,12 +144,15 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-open-sample')).toBeDisabled();
     expect(screen.getByTestId('workspace-browser-lite-scan')).toBeDisabled();
     expect(screen.getByTestId('workspace-open-directory')).toBeDisabled();
+    expect(screen.getByTestId('workspace-start-blank')).toBeDisabled();
 
     fireEvent.click(screen.getByTestId('workspace-open-sample'));
     fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
     fireEvent.click(screen.getByTestId('workspace-open-directory'));
+    fireEvent.click(screen.getByTestId('workspace-start-blank'));
     expect(onOpenSample).not.toHaveBeenCalled();
     expect(onBrowserLiteScan).not.toHaveBeenCalled();
     expect(onOpenDirectory).not.toHaveBeenCalled();
+    expect(onStartBlankCanvas).not.toHaveBeenCalled();
   });
 });

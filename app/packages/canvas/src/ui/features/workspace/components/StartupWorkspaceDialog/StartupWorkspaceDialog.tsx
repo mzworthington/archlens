@@ -6,15 +6,17 @@ interface StartupWorkspaceDialogProps {
   onOpenSample: () => void;
   onOpenDirectory: () => void;
   onBrowserLiteScan?: () => void;
+  onStartBlankCanvas?: () => void;
   loadingMessage?: string | false | null;
 }
 
-/** First-run gate for bare `/workspace` - demo insight, browser scan, or a local folder. */
+/** First-run gate for bare `/workspace` - demo, scan, folder, or blank canvas. */
 export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   isOpen,
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
+  onStartBlankCanvas,
   loadingMessage = null,
 }) => {
   if (!isOpen) return null;
@@ -35,6 +37,7 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
             onOpenSample={onOpenSample}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}
+            onStartBlankCanvas={onStartBlankCanvas}
             loadingMessage={loadingMessage}
             showCliPanel
             titleId="startup-workspace-title"

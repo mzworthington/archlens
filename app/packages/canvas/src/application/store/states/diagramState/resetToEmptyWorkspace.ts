@@ -10,6 +10,9 @@ export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = {
 
 export const EMPTY_WORKSPACE_PATH = 'blueprint.yaml';
 
+/** URL entity for the intentional blank starter (`/workspace/empty-workspace`). */
+export const EMPTY_WORKSPACE_ENTITY_REF = 'empty-workspace';
+
 /**
  * Replace the active diagram with a blank canvas (no workspace systems).
  * Used when starting from Mermaid import so merge is not against bundled demos.
