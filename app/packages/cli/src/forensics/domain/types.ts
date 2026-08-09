@@ -4,7 +4,11 @@ import type {
   GitCommit,
   ImportedFileRef,
 } from '@archlens/core/forensics';
-import type { CoupledFileRef, FileMetrics, ForensicClassification } from '@archlens/analysis';
+import type {
+  CoupledFileRef,
+  FileMetrics,
+  ForensicClassification,
+} from '@archlens/analysis/forensics';
 
 export type { CoupledFileRef, FileMetrics, ForensicClassification };
 export type ImportCouplingKind = ImportedFileRef['kind'];

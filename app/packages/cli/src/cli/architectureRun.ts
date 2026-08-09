@@ -5,12 +5,10 @@ import { TsMorphParserAdapter } from '../analysis/adapters/parsing/tsMorphParser
 import { TreeSitterParserAdapter } from '../analysis/adapters/parsing/treeSitterParser.ts';
 import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import {
-  CodebaseAnalyzer,
-  IacAnalyzer,
-  isCancellationError,
-  DEFAULT_SCAN_GLOB,
-} from '@archlens/analysis';
+import { CodebaseAnalyzer } from '@archlens/analysis/analyzer';
+import { IacAnalyzer } from '@archlens/analysis/iac';
+import { isCancellationError } from '@archlens/analysis/cancellation';
+import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
 import {
   loadAnalysisConfig,
   mergeAnalysisOptions,

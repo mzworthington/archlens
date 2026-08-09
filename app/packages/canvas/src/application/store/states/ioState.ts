@@ -35,11 +35,7 @@ import {
   walkBrowserSourceDirectory,
 } from '../../../infrastructure/analysis/browserSourceWalker';
 import { createMemoryScanWorkspacePort } from '../../../infrastructure/analysis/memoryScanWorkspace';
-import { BrowserMemoryFileSystem } from '../../../infrastructure/analysis/browserMemoryFileSystem';
-import { BrowserSourceParser } from '../../../infrastructure/analysis/browserSourceParser';
-import { createAnalysisLogger } from '../../../infrastructure/analysis/analysisLogger';
-import { CodebaseAnalyzer } from '@archlens/analysis';
-import { slugifyWorkspaceName } from '../../analysis/slugifyWorkspaceName';
+import { runBrowserAnalysisWorker } from '../../analysis/runBrowserAnalysisWorker';
 
 export const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
@@ -261,27 +257,12 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
         );
       }
 
-      const contextName = slugifyWorkspaceName(walked.directoryName);
-      const cwd = '/scan';
-      const outputRoot = `${cwd}/blueprints`;
-      const fileSystem = new BrowserMemoryFileSystem(walked.files, { cwd });
-      const parser = new BrowserSourceParser(walked.files, cwd);
-      const analyzer = new CodebaseAnalyzer({
-        parser,
-        fileSystem,
-        logger: createAnalysisLogger(logger),
-        analysisOptions: {
-          ignore: [],
-          include: [],
-          rollupModules: false,
-          systems: [],
-        },
+      const { yamlFiles } = await runBrowserAnalysisWorker({
+        sources: walked.files,
+        directoryName: walked.directoryName,
       });
-
-      await analyzer.runAnalysis(contextName, outputRoot, '**/*.{ts,tsx,js,jsx}');
       if (!isWorkspaceOpenCurrent(openGeneration)) return false;
 
-      const yamlFiles = fileSystem.collectWrittenYamlFiles(outputRoot);
       if (yamlFiles.length === 0) {
         throw new Error('Scan produced no BlueprintSpec YAML — check the selected folder.');
       }

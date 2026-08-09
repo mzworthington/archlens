@@ -9,7 +9,7 @@ import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
 import { collectFileMetrics } from '../forensics/collectFileMetrics.ts';
 import { attachForensicsToSchema, normalizeFilePath } from '@archlens/analysis/forensics';
-import { listBlueprintSchemaPaths } from '@archlens/analysis';
+import { listBlueprintSchemaPaths } from '@archlens/analysis/writers';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 
 function isComponentSchemaPath(schemaPath: string): boolean {

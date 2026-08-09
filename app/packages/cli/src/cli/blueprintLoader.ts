@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { parseSchemaFromYaml, type SystemSchema } from '@archlens/core';
 import type { AnalysisFileSystemPort } from '@archlens/analysis/ports';
-import { listBlueprintSchemaPaths } from '@archlens/analysis';
+import { listBlueprintSchemaPaths } from '@archlens/analysis/writers';
 
 export type LoadedBlueprintFile = {
   path: string;

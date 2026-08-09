@@ -1,6 +1,7 @@
 import type { CodebaseParserPort } from '@archlens/analysis/ports';
 import type { ParsedSourceFile } from '@archlens/analysis/types';
-import { isTestSourcePath, throwIfAborted } from '@archlens/analysis';
+import { isTestSourcePath } from '@archlens/analysis/test-path';
+import { throwIfAborted } from '@archlens/analysis/cancellation';
 import { extractTsImports } from '../../application/analysis/extractTsImports';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
 import { LITE_SCAN_EXTENSIONS } from '../../application/analysis/liteScanLimits';

@@ -3,8 +3,8 @@
 This tracks work after shipping:
 
 1. **Demo-first insight** on bare `/workspace` (ChaosLens golden journey) — done
-2. **Browser scan** via shared `@archlens/analysis` — done (structure only; parser adapter is lightweight)
-3. Remaining: CLI graduation UX, tree-sitter browser parser parity, polish
+2. **Browser scan** via shared `@archlens/analysis` — done (structure only; tree-sitter WASM with lightweight fallback)
+3. Remaining: CLI graduation copy affordances, ZIP fallback, optional generated-YAML commit path
 
 Do not treat the browser scan as CLI parity (no git TraceLens / publish). Graduate users intentionally.
 
@@ -16,8 +16,8 @@ Do not treat the browser scan as CLI parity (no git TraceLens / publish). Gradua
 | ---- | -------------------------------------------------------------------------------------------- |
 | 3    | Clear **CLI graduation** after browser scan / demo (git hotspots, CI publish, watch)         |
 | 4    | ~~Shared analysis package~~ **Done** — `@archlens/analysis`; browser uses `CodebaseAnalyzer` |
-| 4b   | Browser **tree-sitter** `CodebaseParserPort` (replace lightweight specifier extract)         |
-| 5    | Browser scan **UX polish** (progress, cancel, Safari/Firefox ZIP fallback)                   |
+| 4b   | ~~Browser tree-sitter `CodebaseParserPort`~~ **Done** — shared AST extractor + fallback      |
+| 5    | Browser scan **UX polish** (progress/cancel UI, Safari/Firefox ZIP fallback)                 |
 | 6    | Doc / marketing honesty (language coverage, limitations)                                     |
 
 ---
@@ -28,10 +28,10 @@ Do not treat the browser scan as CLI parity (no git TraceLens / publish). Gradua
 
 **Actions:**
 
-- [ ] Post-scan toast / empty-forensics banner: “Install ArchLens CLI for git hotspots & CI” with copy-install + copy-scan (reuse `CLI_*` constants)
+- [x] Post-scan toast: “Install ArchLens CLI for git hotspots & CI” (copy-install/copy-scan affordance still desirable)
 - [ ] After demo Chaos→Advice path, secondary CTA: “Scan your repo in the browser” then “Unlock TraceLens with the CLI”
-- [ ] Getting started guide: reorder to **Demo → Browser scan → CLI** (match Canvas entry)
-- [ ] Fix stale ChaosLens docs that still say “No headless CLI / CI gate” if AdviceLens/`archlens resilience` already covers it
+- [x] Getting started guide: reorder to **Demo → Browser scan → CLI** (match Canvas entry)
+- [x] Fix stale ChaosLens docs that still say “No headless CLI / CI gate” if AdviceLens/`archlens resilience` already covers it
 
 **Done when:** A user who finished browser scan can find CLI install without leaving Canvas, and docs match the three-beat funnel.
 
@@ -43,31 +43,32 @@ Do not treat the browser scan as CLI parity (no git TraceLens / publish). Gradua
 - [x] Remove Node leaks (`baseWriter`, `discoverCsprojFiles`, `createCliCancellation`)
 - [x] CLI depends on `@archlens/analysis`; adapters stay in CLI
 - [x] Canvas `openBrowserLiteScan` runs `CodebaseAnalyzer` via memory FS + source parser adapters
-- [ ] Golden fixture: same TS repo → CLI headless YAML vs browser analyzer YAML (comparable, not byte-identical)
-- [ ] ADR: browser structural scan vs Bun CLI (no git in browser)
+- [x] Golden fixture: same TS repo → direct shared analyzer YAML vs browser scan runner YAML (semantic parity)
+- [x] ADR: browser structural scan vs Bun CLI (no git in browser)
 
 ---
 
 ## Beat 4b — Browser tree-sitter parser
 
-- [ ] Extract shared AST→`ParsedSourceFile` walk from CLI `TreeSitterParserAdapter`
-- [ ] `BrowserTreeSitterParser` using Canvas `treeSitterClient` WASM URLs
-- [ ] Delete canvas `extractTsImports` once tree-sitter path is green
+- [x] Extract shared AST→`ParsedSourceFile` walk from CLI `TreeSitterParserAdapter`
+- [x] `BrowserTreeSitterParser` using Canvas tree-sitter WASM URLs
+- [ ] Delete canvas `extractTsImports` once fallback coverage is no longer needed
 
 ---
 
 ## Beat 5 — Browser scan UX
 
+- [x] Move analysis execution off the main UI thread (worker wrapper; local fallback in tests)
 - [ ] Progress (`files scanned / cap`) and cancel (`AbortSignal`) in startup + toolbar flows
 - [ ] ZIP upload fallback where `showDirectoryPicker` is missing (scan input only — not persistence; ADR-0004)
 - [ ] Optional: write generated YAML into a user-picked `blueprints/` folder (commit path) instead of memory-only port
-- [ ] E2E smoke: startup → browser scan (mocked picker) → context diagram visible
+- [x] E2E-style smoke: startup/store action → browser scan (mocked picker) → context workspace loaded
 
 ---
 
 ## Beat 6 — Honesty & coverage
 
-- [ ] Surface “structure only / TS·JS / no git” in UI and getting-started
+- [x] Surface “structure only / TS·JS / no git” in UI and getting-started
 - [ ] Align CLI language docs with analyzers that actually ship (Go/Java vs guide text)
 - [ ] Add/restore missing ADR-0013 if connection profiles remain on the roadmap
 

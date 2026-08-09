@@ -5,12 +5,18 @@
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
+    "./analyzer": "./src/domain/analyzer.ts",
+    "./iac": "./src/domain/iacAnalyzer.ts",
+    "./model-extractor": "./src/domain/modelExtractor.ts",
+    "./test-path": "./src/domain/testPath.ts",
     "./ports": "./src/domain/ports.ts",
     "./types": "./src/domain/types.ts",
     "./cancellation": "./src/domain/cancellation.ts",
     "./options": "./src/domain/analysisOptions.ts",
+    "./tree-sitter-extract": "./src/parsing/treeSitterAstExtract.ts",
     "./path-filter": "./src/pathFilter/structuralPathFilter.ts",
     "./forensics": "./src/forensics/index.ts",
     "./writers": "./src/writers/index.ts"
@@ -20,7 +26,8 @@
   },
   "dependencies": {
     "@archlens/core": "workspace:*",
-    "ignore": "^7.0.6"
+    "ignore": "^7.0.6",
+    "web-tree-sitter": "0.20.8"
   },
   "devDependencies": {
     "@types/node": "^26.1.1"

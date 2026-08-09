@@ -94,6 +94,46 @@ dependencies: []
     expect(useBlueprintStore.getState().notification).toBeNull();
   });
 
+  it('runs browser repo scan from a mocked source directory and opens generated blueprints', async () => {
+    const makeFileHandle = (name: string, content: string) => ({
+      kind: 'file',
+      name,
+      getFile: async () => new File([content], name),
+    });
+    const srcHandle = {
+      kind: 'directory',
+      name: 'src',
+      async *[Symbol.asyncIterator]() {
+        yield ['index.ts', makeFileHandle('index.ts', "import { service } from './service';\n")];
+        yield ['service.ts', makeFileHandle('service.ts', 'export const service = 1;\n')];
+      },
+    };
+    const rootHandle = {
+      kind: 'directory',
+      name: 'demo-repo',
+      async *[Symbol.asyncIterator]() {
+        yield ['package.json', makeFileHandle('package.json', '{"name":"demo-repo"}')];
+        yield ['src', srcHandle];
+      },
+    };
+
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => rootHandle),
+    });
+
+    const opened = await useBlueprintStore.getState().openBrowserLiteScan();
+
+    const state = useBlueprintStore.getState();
+    expect(opened, state.lastError ?? 'openBrowserLiteScan returned false').toBe(true);
+    expect(state.isWorkspaceOpen).toBe(true);
+    expect(state.isSampleWorkspace).toBe(false);
+    expect(state.workspaceName).toBe('demo-repo');
+    expect(state.schema.level).toBe('context');
+    expect(state.workspaceCatalog.some(entry => entry.path.endsWith('context.yaml'))).toBe(true);
+    expect(state.notification?.title).toBe('Browser scan ready');
+  });
+
   it('should catalog all systems on open and lazy-load when selecting another', async () => {
     mockFiles['another-system.yaml'] = `
 version: ${v3Version}

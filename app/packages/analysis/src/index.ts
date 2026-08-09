@@ -45,3 +45,5 @@ export { discoverSystems, partitionFilesBySystem } from './domain/systemDiscover
 export type { DiscoveredSystem } from './domain/systemDiscovery.ts';
 export { isTestSourcePath, detectTestFramework } from './domain/testPath.ts';
 export type { TestFramework } from './domain/testPath.ts';
+export { extractParsedSourceFileFromTree } from './parsing/treeSitterAstExtract.ts';
+export type { ExtractParsedSourceFileInput } from './parsing/treeSitterAstExtract.ts';

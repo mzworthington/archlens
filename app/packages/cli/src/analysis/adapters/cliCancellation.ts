@@ -1,4 +1,4 @@
-import { CancellationError } from '@archlens/analysis';
+import { CancellationError } from '@archlens/analysis/cancellation';
 
 export type CliCancellation = {
   signal: AbortSignal;

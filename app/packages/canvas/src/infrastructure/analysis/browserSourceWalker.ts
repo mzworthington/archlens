@@ -2,6 +2,7 @@ import {
   LITE_SCAN_EXTENSIONS,
   LITE_SCAN_MAX_FILE_BYTES,
   LITE_SCAN_MAX_FILES,
+  LITE_SCAN_METADATA_FILES,
   LITE_SCAN_SKIP_DIR_NAMES,
 } from '../../application/analysis/liteScanLimits';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
@@ -26,6 +27,10 @@ function isFileHandle(handle: FileSystemHandle): handle is FileHandle {
 function extensionOf(name: string): string {
   const idx = name.lastIndexOf('.');
   return idx >= 0 ? name.slice(idx).toLowerCase() : '';
+}
+
+function shouldReadFile(name: string): boolean {
+  return LITE_SCAN_EXTENSIONS.has(extensionOf(name)) || LITE_SCAN_METADATA_FILES.has(name);
 }
 
 /**
@@ -70,7 +75,7 @@ export async function walkBrowserSourceDirectory(
       }
 
       if (!isFileHandle(handle)) continue;
-      if (!LITE_SCAN_EXTENSIONS.has(extensionOf(name))) continue;
+      if (!shouldReadFile(name)) continue;
 
       const file = await handle.getFile();
       if (file.size > maxFileBytes) continue;
