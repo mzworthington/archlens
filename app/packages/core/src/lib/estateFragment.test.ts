@@ -8,6 +8,7 @@ import {
   isContextYamlPath,
   parseEstateFragmentManifest,
   sanitizeFragmentKeySegment,
+  selectLatestFragmentManifestsByKey,
   selectLatestFragmentsByKey,
   serializeEstateFragmentManifest,
   type EstateFragment,
@@ -125,6 +126,34 @@ describe('Feature: compose estate fragments into one YAML tree', () => {
     expect(selected).toHaveLength(1);
     expect(selected[0]?.runId).toBe('run-b');
     expect(selected[0]?.objects[0]?.content).toBe('new');
+  });
+
+  it('Scenario: selects freshest manifests without needing object bodies', () => {
+    const selected = selectLatestFragmentManifestsByKey([
+      {
+        version: 1,
+        estateId: 'acme',
+        productId: 'payments',
+        fragmentKey: 'payments',
+        sourceRef: 'old',
+        runId: 'run-a',
+        publishedAt: '2026-01-01T00:00:00.000Z',
+        objectPaths: ['systems/payments.yaml'],
+      },
+      {
+        version: 1,
+        estateId: 'acme',
+        productId: 'payments',
+        fragmentKey: 'payments',
+        sourceRef: 'new',
+        runId: 'run-b',
+        publishedAt: '2026-02-01T00:00:00.000Z',
+        objectPaths: ['systems/payments.yaml'],
+      },
+    ]);
+
+    expect(selected).toHaveLength(1);
+    expect(selected[0]?.runId).toBe('run-b');
   });
 
   it('Scenario: later fragment wins for non-context paths', () => {

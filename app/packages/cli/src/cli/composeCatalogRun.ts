@@ -74,12 +74,38 @@ export async function executeComposeCatalogRun(plan: CatalogComposeCliPlan): Pro
       }
       process.exit(0);
       return;
+    case 'unchanged':
+      logger.info(
+        `Latest already at revision ${outcome.revisionId} from ${outcome.contributors.length} fragment(s)` +
+          (outcome.appliedOverlays.length > 0
+            ? ` + ${outcome.appliedOverlays.length} overlay(s)`
+            : '') +
+          ' — skipping snapshot upload.'
+      );
+      if (plan.format === 'json') {
+        process.stdout.write(
+          `${JSON.stringify(
+            {
+              dryRun: false,
+              unchanged: true,
+              revisionId: outcome.revisionId,
+              contributors: outcome.contributors,
+              appliedOverlays: outcome.appliedOverlays.map(o => o.overlayId),
+            },
+            null,
+            2
+          )}\n`
+        );
+      }
+      process.exit(0);
+      return;
     case 'uploaded':
       logger.info(
         `Composed revision ${outcome.result.revisionId} from ${outcome.contributors.length} fragment(s)` +
           (outcome.appliedOverlays.length > 0
             ? ` + ${outcome.appliedOverlays.length} overlay(s)`
             : '') +
+          (outcome.reusedExistingSnapshot ? ' (reused existing snapshot)' : '') +
           ` (attempt ${outcome.attempts}).`
       );
       process.stdout.write(formatPublishUploadResult(outcome.result, plan.format));

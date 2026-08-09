@@ -46,4 +46,47 @@ describe('Feature: estate fragment staging in object storage', () => {
     ]);
     expect(storage.putOrder.at(-1)).toMatch(/manifest\.json$/);
   });
+
+  it('loads YAML bodies only for the freshest run per fragmentKey', async () => {
+    const storage = new InMemoryObjectStorage();
+    await uploadEstateFragment(
+      fragment({
+        estateId: 'acme',
+        productId: 'payments',
+        fragmentKey: 'payments',
+        sourceRef: 'old',
+        runId: 'run-old',
+        publishedAt: '2026-01-01T00:00:00.000Z',
+        objects: [{ path: 'systems/payments.yaml', content: 'old: true\n' }],
+      }),
+      storage
+    );
+    await uploadEstateFragment(
+      fragment({
+        estateId: 'acme',
+        productId: 'payments',
+        fragmentKey: 'payments',
+        sourceRef: 'new',
+        runId: 'run-new',
+        publishedAt: '2026-02-01T00:00:00.000Z',
+        objects: [{ path: 'systems/payments.yaml', content: 'new: true\n' }],
+      }),
+      storage
+    );
+
+    const gets: string[] = [];
+    const originalGet = storage.getObjectText.bind(storage);
+    storage.getObjectText = async key => {
+      gets.push(key);
+      return originalGet(key);
+    };
+
+    const loaded = await loadEstateFragmentsFromStorage(storage);
+    expect(loaded).toHaveLength(1);
+    expect(loaded[0]?.runId).toBe('run-new');
+    expect(loaded[0]?.objects[0]?.content).toBe('new: true\n');
+    expect(gets.filter(key => key.includes('/files/'))).toEqual([
+      'fragments/payments/run-new/files/systems/payments.yaml',
+    ]);
+  });
 });

@@ -28,6 +28,7 @@ export {
   normalizePublicBaseUrl,
 } from './lib/objectKey';
 export { uploadObjects, type UploadObjectsResult } from './lib/uploadObjects';
+export { isTransientObjectStorageError } from './lib/transientObjectStorageError';
 export {
   uploadRemoteCatalogSnapshot,
   type CatalogSnapshotUploadResult,
