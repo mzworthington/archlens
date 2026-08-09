@@ -12,7 +12,6 @@ export {
   mapDomainNodeToRFNode,
   mapDomainDepToRFEdge,
   mapDomainDepsToRFEdges,
-  DEFAULT_LAYOUT_DIRECTION,
   getClosestHandles,
   rebuildSchemaFromCanvas,
 } from './layout/mapping';

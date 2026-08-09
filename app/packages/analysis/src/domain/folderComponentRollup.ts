@@ -6,15 +6,15 @@ export type ComponentIdentity = {
   componentName: string;
 };
 
-export const DEFAULT_LAYOUT_ROOTS = new Set(['src', 'lib', 'source', 'sources']);
+const DEFAULT_LAYOUT_ROOTS = new Set(['src', 'lib', 'source', 'sources']);
 
-export const MONOREPO_PACKAGE_ROOTS = new Set(['packages', 'plugins', 'apps', 'libs', 'services']);
+const MONOREPO_PACKAGE_ROOTS = new Set(['packages', 'plugins', 'apps', 'libs', 'services']);
 
-export function isDeniedLayoutSegment(segment: string): boolean {
+function isDeniedLayoutSegment(segment: string): boolean {
   return LAYOUT_IDENTITY_DENYLIST.has(segment.toLowerCase());
 }
 
-export function titleCaseSegment(segment: string): string {
+function titleCaseSegment(segment: string): string {
   if (!segment) return segment;
   return segment.charAt(0).toUpperCase() + segment.slice(1);
 }
@@ -27,7 +27,7 @@ export function formatFolderComponentName(componentId: string, layerSuffix?: str
   return layerSuffix ? `${label} ${layerSuffix}` : label;
 }
 
-export function isMonorepoPackageSrc(
+function isMonorepoPackageSrc(
   relativePath: string,
   layoutRoots: Set<string> = DEFAULT_LAYOUT_ROOTS
 ): boolean {
@@ -39,7 +39,7 @@ export function isMonorepoPackageSrc(
 }
 
 /** Index in dirParts where meaningful segments begin (after src/ or packages/<pkg>/src/). */
-export function resolveLayoutSliceStart(dirParts: string[], layoutRoots: Set<string>): number {
+function resolveLayoutSliceStart(dirParts: string[], layoutRoots: Set<string>): number {
   const layoutIdx = dirParts.findIndex(p => layoutRoots.has(p.toLowerCase()));
   if (layoutIdx >= 0) return layoutIdx + 1;
 

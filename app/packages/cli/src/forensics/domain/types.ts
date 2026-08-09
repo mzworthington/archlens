@@ -1,9 +1,4 @@
-import type {
-  CoupledPair,
-  FileHistoryTraits,
-  GitCommit,
-  ImportedFileRef,
-} from '@archlens/core/forensics';
+import type { CoupledPair, FileHistoryTraits, GitCommit } from '@archlens/core/forensics';
 import type {
   CoupledFileRef,
   FileMetrics,
@@ -11,8 +6,6 @@ import type {
 } from '@archlens/analysis/forensics';
 
 export type { CoupledFileRef, FileMetrics, ForensicClassification };
-export type ImportCouplingKind = ImportedFileRef['kind'];
-
 export type { CoupledPair, FileHistoryTraits, GitCommit };
 
 export interface StructuralMetrics {

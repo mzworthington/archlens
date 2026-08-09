@@ -2,7 +2,7 @@ import type { SystemDependency, SystemNode, SystemSchema, SourceProvenance } fro
 import { EntityRef, slugify } from '@archlens/core';
 
 /** Minimum source files in a rollup before emitting a drill-down diagram. */
-export const ROLLUP_DRILL_DOWN_MIN_FILES = 2;
+const ROLLUP_DRILL_DOWN_MIN_FILES = 2;
 
 function fileLeafSegment(baseName: string): string {
   return slugify(
@@ -34,10 +34,7 @@ export function shouldEmitRollupDrillDown(node: SystemNode): boolean {
   return Array.isArray(members) && members.length >= ROLLUP_DRILL_DOWN_MIN_FILES;
 }
 
-export function isImmediateChildEntityRef(
-  parentEntityRef: string,
-  childEntityRef: string
-): boolean {
+function isImmediateChildEntityRef(parentEntityRef: string, childEntityRef: string): boolean {
   const prefix = `${parentEntityRef}/`;
   if (!childEntityRef.startsWith(prefix)) return false;
   const rest = childEntityRef.slice(prefix.length);
@@ -45,7 +42,7 @@ export function isImmediateChildEntityRef(
 }
 
 /** One diagram level below a rollup: direct subfolder rollups and file leaves only. */
-export function collectImmediateDrillDownChildren(
+function collectImmediateDrillDownChildren(
   parentEntityRef: string,
   rollupNodes: readonly SystemNode[],
   fileLevelNodes: readonly SystemNode[]
@@ -72,7 +69,7 @@ export function collectImmediateDrillDownChildren(
  * Map a file-leaf (or deeper) ref onto the nearest ancestor that exists as an emitted node.
  * Single-file rollups do not emit drill-down leaves - deps must target the rollup instead.
  */
-export function resolveToEmittedEntityRef(ref: string, emittedRefs: ReadonlySet<string>): string {
+function resolveToEmittedEntityRef(ref: string, emittedRefs: ReadonlySet<string>): string {
   let current: string | null = ref;
   while (current) {
     if (emittedRefs.has(current)) return current;

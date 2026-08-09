@@ -8,7 +8,7 @@ export function parseBuildIdFromHtml(html: string): string | null {
 }
 
 /** Build id baked into this running bundle (vite `define` or index.html meta). */
-export function getLocalBuildId(): string {
+function getLocalBuildId(): string {
   if (typeof __APP_BUILD_ID__ !== 'undefined' && __APP_BUILD_ID__) {
     return __APP_BUILD_ID__;
   }
@@ -17,7 +17,7 @@ export function getLocalBuildId(): string {
 }
 
 /** Fetch the deploy's current build id from index.html (bypass HTTP cache). */
-export async function fetchRemoteBuildId(baseUrl: string): Promise<string | null> {
+async function fetchRemoteBuildId(baseUrl: string): Promise<string | null> {
   try {
     const base = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
     const response = await fetch(`${base}index.html`, { cache: 'no-store' });
@@ -42,7 +42,7 @@ function packageMajorMinor(version: string): string {
 }
 
 /** Shorten git sha / local ids for compact UI labels. */
-export function shortBuildId(buildId: string, length = 7): string {
+function shortBuildId(buildId: string, length = 7): string {
   if (buildId.length <= length) return buildId;
   return buildId.slice(0, length);
 }

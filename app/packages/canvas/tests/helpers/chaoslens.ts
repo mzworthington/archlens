@@ -4,10 +4,7 @@ import { releaseE2ePage } from './navigation';
 import { loadSandbox, ensureRightPanelOpen } from './workspace';
 
 const LARGE_GRAPH_PATH = '/workspace/chaoslens-stress/large-graph';
-const EXTERNAL_SCOPE_PATH = '/workspace/chaoslens-stress/external-scope';
 const FAULT_NODE_LABEL = 'Orders Domain';
-const EXTERNAL_SCOPE_API_LABEL = 'API Gateway';
-const EXTERNAL_AUTH_LABEL = 'Auth Service (External)';
 
 async function holdForRecording(page: Page, ms: number, recording: boolean) {
   if (recording) await page.waitForTimeout(ms);
@@ -85,51 +82,6 @@ export async function runChaoslensDomainOrdersOutageDemo(
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
   await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
   // Partial blast on large graph - hold on heated nodes after ripple (docs GIF only).
-  await holdForRecording(page, 2_500, recording);
-  await releaseE2ePage(page);
-}
-
-/** Load external-scope stress diagram (API depends on workspace sibling Auth). */
-export async function loadChaoslensExternalScopeDiagram(page: Page) {
-  await loadSandbox(page, EXTERNAL_SCOPE_PATH);
-  await fitAndSelect(page, EXTERNAL_SCOPE_API_LABEL);
-  await expect(
-    page.locator('.react-flow__node').filter({ hasText: EXTERNAL_SCOPE_API_LABEL }).first()
-  ).toBeVisible();
-}
-
-/**
- * Docs / smoke flow: simulate API fault, materialize Auth external, fault Auth, show blast to Web.
- */
-export async function runChaoslensExternalScopeDemo(page: Page, options?: ChaoslensDemoOptions) {
-  const recording = Boolean(options?.onRecordingStart);
-  await page.getByRole('button', { name: /enter resilience mode/i }).click();
-  await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
-    timeout: 30_000,
-  });
-  await ensureRightPanelOpen(page);
-  await options?.onRecordingStart?.();
-  await holdForRecording(page, 800, recording);
-
-  await selectFaultTarget(page, EXTERNAL_SCOPE_API_LABEL);
-  await expect(page.getByText(EXTERNAL_AUTH_LABEL)).toBeVisible({ timeout: 30_000 });
-
-  await page.getByTestId('add-fault-to-scenario').click();
-  await expect(page.getByRole('button', { name: /run resilience simulation/i })).toBeEnabled({
-    timeout: 10_000,
-  });
-  await page.getByRole('button', { name: /run resilience simulation/i }).click();
-  await holdForRecording(page, 1_000, recording);
-
-  await selectFaultTarget(page, EXTERNAL_AUTH_LABEL);
-
-  await page.getByRole('radio', { name: 'Region outage' }).click();
-  await page.getByTestId('add-fault-to-scenario').click();
-  await expect(page.getByRole('button', { name: /run resilience simulation/i })).toBeEnabled({
-    timeout: 10_000,
-  });
-  await page.getByRole('button', { name: /run resilience simulation/i }).click();
-  await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
   await holdForRecording(page, 2_500, recording);
   await releaseE2ePage(page);
 }

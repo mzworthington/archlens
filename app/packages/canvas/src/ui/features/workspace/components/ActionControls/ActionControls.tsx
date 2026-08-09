@@ -6,7 +6,6 @@ import {
   Undo,
   Redo,
   MoreHorizontal,
-  FolderOpen,
   HelpCircle,
 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -23,9 +22,6 @@ const menuPanelClass =
 
 const menuItemClass =
   'w-full flex items-center gap-2 px-3 py-2.5 sm:py-2 text-xs font-semibold text-left text-slate-300 hover:bg-slate-900/60 hover:text-slate-100 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
-
-const menuTriggerClass =
-  'flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-slate-100 px-3 py-1.5 min-h-11 sm:min-h-0 rounded-lg text-xs font-semibold border border-slate-800 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
 
 function useControlsDisabled(): boolean {
   return Boolean(useBlueprintStore(s => s.isLoading));
@@ -114,59 +110,6 @@ export const ToolbarPendingChangesButton: React.FC = () => {
     >
       <GitCompare className="w-3.5 h-3.5" />
     </button>
-  );
-};
-
-export const ToolbarSaveButton: React.FC = () => {
-  const { controlsDisabled, handleSave, isWorkspaceOpen } = useSaveAction();
-
-  return (
-    <button
-      onClick={handleSave}
-      disabled={controlsDisabled}
-      className="flex items-center gap-1.5 bg-brand-700 hover:bg-brand-800 text-white px-3 py-1.5 min-h-11 sm:min-h-0 rounded-lg text-xs font-semibold shadow-lg shadow-brand-600/20 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
-      title={isWorkspaceOpen ? 'Save diagram directly in folder' : 'Save YAML to disk'}
-    >
-      <Download className="w-3.5 h-3.5" />
-      <span>{isWorkspaceOpen ? 'Save' : 'Save'}</span>
-    </button>
-  );
-};
-
-export const ToolbarOpenMenu: React.FC = () => {
-  const controlsDisabled = useControlsDisabled();
-  const isWorkspaceOpen = useBlueprintStore(s => s.isWorkspaceOpen);
-  const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
-
-  return (
-    <div ref={anchorRef} className="relative shrink-0">
-      <button
-        type="button"
-        onClick={toggle}
-        disabled={controlsDisabled}
-        className={`${menuTriggerClass} ${!isWorkspaceOpen ? 'border-brand-500/30 bg-brand-600/15 text-brand-400 hover:bg-brand-600/30 hover:text-brand-300' : ''}`}
-        aria-expanded={open}
-        aria-haspopup="menu"
-        aria-label="Open menu"
-        title="Open workspace, file, or import diagram"
-      >
-        <FolderOpen className="w-3.5 h-3.5 text-brand-500" />
-        <span className="hidden sm:inline">Open</span>
-      </button>
-
-      <ToolbarMenuPortal
-        open={open}
-        anchorRef={anchorRef}
-        menuRef={menuRef}
-        menuClassName={menuPanelClass}
-      >
-        <ToolbarOpenMenuItems
-          menuItemClass={menuItemClass}
-          onClose={close}
-          disabled={controlsDisabled}
-        />
-      </ToolbarMenuPortal>
-    </div>
   );
 };
 

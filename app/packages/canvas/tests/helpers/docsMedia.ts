@@ -3,11 +3,11 @@ import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const RECORDING_TRIM_FILE = 'recording-trim.json';
+const RECORDING_TRIM_FILE = 'recording-trim.json';
 
 const canvasRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-export const REPO_ROOT = path.resolve(canvasRoot, '../../..');
-export const DOCS_SCREENSHOTS_DIR = path.join(REPO_ROOT, 'docs/screenshots');
+const REPO_ROOT = path.resolve(canvasRoot, '../../..');
+const DOCS_SCREENSHOTS_DIR = path.join(REPO_ROOT, 'docs/screenshots');
 
 export const RECORD_DOCS_MEDIA = process.env.RECORD_DOCS_MEDIA === '1';
 
@@ -15,7 +15,7 @@ export function docsGifPath(fileName: string): string {
   return path.join(DOCS_SCREENSHOTS_DIR, fileName);
 }
 
-export function hasBinary(name: string): boolean {
+function hasBinary(name: string): boolean {
   const pathEnv = process.env.PATH ?? '';
   for (const dir of pathEnv.split(path.delimiter)) {
     if (!dir) continue;
@@ -60,7 +60,7 @@ export function readRecordingTrimMarker(outputDir: string): number | undefined {
 }
 
 /** Max GIF width for product guides (source captures are large-display 2880×1864). */
-export const DOCS_GIF_WIDTH = 1920;
+const DOCS_GIF_WIDTH = 1920;
 
 /** Convert a Playwright WebM capture into a looping GIF for product guides. */
 export function convertWebmToGif(

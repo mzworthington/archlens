@@ -1,6 +1,9 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "exclude": ["exports", "types"],
+  "rules": {
+    "exports": "error",
+    "types": "error"
+  },
   "ignoreDependencies": [
     "lint-staged",
     "@types/*",
@@ -9,6 +12,10 @@
     "@tree-sitter-grammars/tree-sitter-hcl"
   ],
   "ignoreBinaries": ["make", "ffmpeg", "vhs"],
+  "ignoreExportsUsedInFile": {
+    "interface": true,
+    "type": true
+  },
   "workspaces": {
     "packages/canvas": {
       "project": ["src/**/*.{ts,tsx}", "tests/**/*.ts"],

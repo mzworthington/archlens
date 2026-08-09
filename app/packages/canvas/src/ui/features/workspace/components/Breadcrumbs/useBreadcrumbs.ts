@@ -12,10 +12,6 @@ import {
 } from '@archlens/core';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 
-export type BreadcrumbSegment = BreadcrumbSegmentData & {
-  sameLevelSystems?: Array<{ path: string; name: string; schema: SystemSchema }>;
-};
-
 export function useBreadcrumbs() {
   const {
     currentFilePath,

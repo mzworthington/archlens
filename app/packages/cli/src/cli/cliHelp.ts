@@ -51,7 +51,7 @@ export function wantsHelpFlag(argv: string[]): boolean {
   return argv.includes('--help') || argv.includes('-h');
 }
 
-export function isHelpSubcommand(argv: string[]): boolean {
+function isHelpSubcommand(argv: string[]): boolean {
   return argv[0] === 'help';
 }
 
@@ -153,7 +153,7 @@ export function suggestSubcommand(input: string): string | undefined {
   return bestDistance <= 2 ? best : undefined;
 }
 
-export function reportUnknownSubcommand(argv: string[]): never {
+function reportUnknownSubcommand(argv: string[]): never {
   const unknown = argv[0] ?? '';
   const suggestion = suggestSubcommand(unknown);
   console.error('');

@@ -11,7 +11,7 @@ let initPromise: Promise<boolean> | null = null;
 let initFailed = false;
 const languageCache = new Map<TreeSitterWasmLanguage, Parser.Language>();
 
-export function treeSitterWasmUrl(fileName: string): string {
+function treeSitterWasmUrl(fileName: string): string {
   return `${wasmBase}${fileName}`;
 }
 
@@ -42,7 +42,7 @@ export async function initTreeSitter(): Promise<boolean> {
   return initPromise;
 }
 
-export async function loadTreeSitterLanguage(
+async function loadTreeSitterLanguage(
   lang: TreeSitterWasmLanguage
 ): Promise<Parser.Language | null> {
   if (!hasBrowserRuntime()) {
@@ -72,11 +72,4 @@ export async function loadTreeSitterLanguageForFile(
   const language = await loadTreeSitterLanguage(lang);
   if (!language) return null;
   return { lang, language };
-}
-
-/** @internal Test helper */
-export function resetTreeSitterClientForTests(): void {
-  initPromise = null;
-  initFailed = false;
-  languageCache.clear();
 }

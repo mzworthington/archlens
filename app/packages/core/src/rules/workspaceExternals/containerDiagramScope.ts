@@ -51,7 +51,7 @@ export function isUnderScope(ref: EntityRef, scopeRef: EntityRef): boolean {
   return ref === scopeRef || ref.startsWith(`${scopeRef}/`);
 }
 
-export function dependencyTouchesScope(dep: SystemDependency, scopeRef: EntityRef): boolean {
+function dependencyTouchesScope(dep: SystemDependency, scopeRef: EntityRef): boolean {
   return isUnderScope(dep.from, scopeRef) || isUnderScope(dep.to, scopeRef);
 }
 

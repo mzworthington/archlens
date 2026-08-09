@@ -14,7 +14,6 @@ import {
   type DiagramImportPreview,
 } from './diagramImportShared';
 
-export type IacImportContext = DiagramImportContext;
 export type IacImportPreview = DiagramImportPreview<IacParseResult>;
 
 export function previewIacImport(

@@ -17,7 +17,7 @@ function exitOnCancel(value: unknown): asserts value is string | boolean {
   }
 }
 
-export async function defaultPromptInteractiveGit(): Promise<InteractiveGitChoice> {
+async function defaultPromptInteractiveGit(): Promise<InteractiveGitChoice> {
   const enableForensics = await p.confirm({
     message: 'Attach TraceLens git signals (churn, complexity, ownership)?',
     initialValue: true,

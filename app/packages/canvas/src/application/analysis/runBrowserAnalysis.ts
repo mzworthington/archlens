@@ -6,8 +6,8 @@ import type { LoggerPort } from '@archlens/analysis/ports';
 import { slugifyWorkspaceName } from './slugifyWorkspaceName';
 
 export const BROWSER_SCAN_CWD = '/scan';
-export const BROWSER_SCAN_OUTPUT_ROOT = `${BROWSER_SCAN_CWD}/blueprints`;
-export const BROWSER_SCAN_GLOB = DEFAULT_SCAN_GLOB;
+const BROWSER_SCAN_OUTPUT_ROOT = `${BROWSER_SCAN_CWD}/blueprints`;
+const BROWSER_SCAN_GLOB = DEFAULT_SCAN_GLOB;
 
 /** Analysis filesystem that can hand back the YAML the writers produced. */
 export type ScanFileSystemPort = AnalysisFileSystemPort & {

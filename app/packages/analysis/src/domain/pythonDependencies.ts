@@ -5,7 +5,6 @@ import {
   resolveContainerFromPath,
   type ResolveContainerOptions,
 } from './containerGrouping.ts';
-import { mergeContainerDependencies } from './csharpDependencies.ts';
 import {
   formatFolderComponentName,
   meaningfulDirSegments,
@@ -88,7 +87,7 @@ export function modulePathFromPythonFile(relativePath: string): string | null {
   return parts.join('.');
 }
 
-export function shouldSkipPythonFile(relativePath: string, baseName: string): boolean {
+function shouldSkipPythonFile(relativePath: string, baseName: string): boolean {
   const normalized = relativePath.replace(/\\/g, '/');
   if (/\/migrations\//i.test(normalized)) return true;
   if (baseName === 'conftest') return true;
@@ -145,13 +144,13 @@ function resolveRelativePythonImport(packageContext: string, specifier: string):
   return resolved.length > 0 ? resolved.join('.') : null;
 }
 
-export function isPythonStdlibModule(moduleSpecifier: string): boolean {
+function isPythonStdlibModule(moduleSpecifier: string): boolean {
   if (moduleSpecifier.startsWith('.')) return false;
   const root = moduleSpecifier.split('.')[0] ?? moduleSpecifier;
   return PYTHON_STDLIB_MODULES.has(root);
 }
 
-export function resolvePythonModuleTarget(
+function resolvePythonModuleTarget(
   specifier: string,
   index: Map<string, PythonModuleTarget>
 ): PythonModuleTarget | undefined {
@@ -286,5 +285,3 @@ export function extractPythonDependencies(
 
   return { componentDependencies, containerDependencies };
 }
-
-export { mergeContainerDependencies };

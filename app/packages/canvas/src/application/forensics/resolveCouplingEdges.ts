@@ -1,7 +1,7 @@
 import { normalizeWorkspaceFilepath, type WorkspaceFilepathIndex } from '@archlens/core';
 import type { BlueprintRFNode } from '../store/layoutUtils';
 
-export const COUPLING_GHOST_PREFIX = 'coupling-ghost-';
+const COUPLING_GHOST_PREFIX = 'coupling-ghost-';
 
 export type CouplingPeerResolution = 'canvas' | 'workspace' | 'unmapped';
 
@@ -175,18 +175,6 @@ export function findNodeIdByFilepath(
   }
 
   return undefined;
-}
-
-/** Count nodes on the diagram that have temporal coupling data. */
-export function countCouplingCapableNodes(nodes: BlueprintRFNode[]): number {
-  return nodes.filter(n => (n.data.forensics?.coupledFiles?.length ?? 0) > 0).length;
-}
-
-/** Same count from schema nodes (authoritative when canvas RF nodes are stale). */
-export function countCouplingCapableSchemaNodes(
-  nodes: Array<{ forensics?: { coupledFiles?: unknown[] } }>
-): number {
-  return nodes.filter(n => (n.forensics?.coupledFiles?.length ?? 0) > 0).length;
 }
 
 /**

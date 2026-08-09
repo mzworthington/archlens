@@ -5,7 +5,7 @@ const DIAGRAM_LOADING = '[data-testid="diagram-loading-overlay"]';
 const GOLDEN_JOURNEY_ENTITY_REF = 'samples/golden-journey';
 const GOLDEN_JOURNEY_WORKSPACE_PATH = `/workspace/${GOLDEN_JOURNEY_ENTITY_REF}`;
 
-export async function waitForDiagramIdle(page: Page, timeout = 60_000) {
+async function waitForDiagramIdle(page: Page, timeout = 60_000) {
   const loading = page.locator(DIAGRAM_LOADING);
   const nodes = page.locator('.react-flow__node');
 
@@ -86,17 +86,6 @@ export async function expectGoldenJourneyEstateReady(page: Page) {
   }).toPass({ timeout: 120_000 });
 
   await expectCanvasReady(page, 90_000);
-}
-
-/** Open the Golden Journey estate container diagram from the Samples context view. */
-export async function openGoldenJourneyEstate(page: Page) {
-  await expectCanvasReady(page);
-  await expectGoldenJourneyEstateReady(page);
-}
-
-export async function openPropertiesPanel(page: Page) {
-  const { ensureRightPanelOpen } = await import('./workspace');
-  await ensureRightPanelOpen(page);
 }
 
 export async function clickCanvasNode(page: Page, label: string) {

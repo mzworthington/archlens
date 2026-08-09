@@ -6,7 +6,7 @@ const JAVA_EXTENSIONS = new Set(['java', 'kt', 'kts']);
 const JAVA_LAYOUT_MARKERS = new Set(['java', 'kotlin']);
 
 /** Boilerplate Java/Kotlin sources that add noise without architectural signal. */
-export function shouldSkipJavaFile(relativePath: string, baseName: string): boolean {
+function shouldSkipJavaFile(relativePath: string, baseName: string): boolean {
   const normalized = relativePath.replace(/\\/g, '/');
   if (/\/generated\//i.test(normalized)) return true;
   if (baseName === 'package-info') return true;

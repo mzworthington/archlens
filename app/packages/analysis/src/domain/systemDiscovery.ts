@@ -28,7 +28,6 @@ export {
 export { planIacContextSystems, productHubInputsForIac } from './systemDiscovery/iacContext.ts';
 
 export {
-  entityRefLeaf,
   hubRefForProductNodes,
   normalizeContextGrouping,
   pruneEmptyProductHubs,

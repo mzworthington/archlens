@@ -2,20 +2,6 @@ export const CATALOG_BLUEPRINT_FETCH_CONCURRENCY = 24;
 export const CATALOG_PRELOAD_FETCH_CONCURRENCY = 4;
 const FETCH_ATTEMPTS = 3;
 
-export function normalizeCatalogBaseUrl(baseUrl: string): string {
-  const trimmed = baseUrl.trim();
-  if (!trimmed) {
-    throw new Error('Remote catalog base URL is required');
-  }
-  return trimmed.endsWith('/') ? trimmed : `${trimmed}/`;
-}
-
-export function joinCatalogBaseUrl(baseUrl: string, relativePath: string): string {
-  const normalizedBase = normalizeCatalogBaseUrl(baseUrl);
-  const normalizedPath = relativePath.replace(/^\/+/, '');
-  return new URL(normalizedPath, normalizedBase).toString();
-}
-
 function isTransientNetworkError(error: unknown): boolean {
   if (!(error instanceof Error)) return false;
   return /failed to fetch|networkerror|load failed|network request failed/i.test(error.message);

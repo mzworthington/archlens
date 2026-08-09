@@ -3,11 +3,9 @@ import { expectCanvasReady } from './canvas';
 import { gotoApp, releaseE2ePage } from './navigation';
 import { loadSandbox, ensureRightPanelOpen } from './workspace';
 
-export const GOLDEN_JOURNEY_PATH = '/workspace/samples/golden-journey';
-export const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/samples/golden-journey';
-export const PAYMENT_GATEWAY_ENTITY_REF = 'samples/golden-journey/payment-gateway';
-export const PAYMENT_GATEWAY_LABEL = 'Payment Gateway';
-export const CHECKOUT_API_LABEL = 'Checkout API';
+const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/samples/golden-journey';
+const PAYMENT_GATEWAY_ENTITY_REF = 'samples/golden-journey/payment-gateway';
+const PAYMENT_GATEWAY_LABEL = 'Payment Gateway';
 
 /** Load the golden journey estate diagram used by the outage demo. */
 export async function loadGoldenJourneyDiagram(page: Page) {
@@ -25,7 +23,7 @@ async function paymentGatewayTargetVisible(page: Page): Promise<boolean> {
  * Select Payment Gateway even when onlyRenderVisibleElements has culled it
  * (common after context → estate navigation leaves the viewport tight).
  */
-export async function selectPaymentGateway(page: Page) {
+async function selectPaymentGateway(page: Page) {
   const paymentNode = page.locator(`.react-flow__node[data-id="${PAYMENT_GATEWAY_ENTITY_REF}"]`);
 
   await page.getByRole('button', { name: 'Fit View' }).click();

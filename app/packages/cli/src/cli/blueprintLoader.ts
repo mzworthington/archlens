@@ -9,10 +9,6 @@ export type LoadedBlueprintFile = {
   schema: SystemSchema;
 };
 
-function isYamlFileName(name: string): boolean {
-  return name.endsWith('.yaml') || name.endsWith('.yml');
-}
-
 /**
  * Load all blueprint YAML files under rootDir, reporting parse failures.
  */
@@ -53,16 +49,4 @@ export async function loadBlueprintTree(
   }
 
   return { files, parseErrors };
-}
-
-export function collectYamlPathsFromArg(
-  targetPath: string,
-  fileSystem: AnalysisFileSystemPort
-): string[] {
-  const absolute = path.resolve(targetPath);
-  const name = path.basename(absolute);
-  if (isYamlFileName(name)) {
-    return [absolute];
-  }
-  return listBlueprintSchemaPaths(absolute, fileSystem);
 }

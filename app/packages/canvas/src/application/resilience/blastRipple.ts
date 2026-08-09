@@ -70,7 +70,7 @@ export function computeBlastRippleFrame(
  * Edges on the upstream propagation path ripple when the caller wave is active.
  * Dependency edge source → target: impact flows from target (lower hop) to source (higher hop).
  */
-export function computePropagationEdgeKeys(
+function computePropagationEdgeKeys(
   heatHops: Map<EntityRef, number>,
   edges: ReadonlyArray<{ id: string; source: string; target: string }>,
   elapsedMs: number,

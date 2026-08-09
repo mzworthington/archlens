@@ -1,7 +1,6 @@
 import { BaseWriter } from './baseWriter.ts';
 import type { SystemDependency, SystemNode, SystemSchema, SourceProvenance } from '@archlens/core';
 import {
-  CONTEXT_PERSON_LEAF,
   EntityRef,
   hydrateContextSchema,
   parseSchemaFromYaml,
@@ -17,7 +16,7 @@ import {
 } from '../domain/systemDiscovery.ts';
 import { resolveContextDisplayName, resolveSystemEntityRef } from '../domain/entityRefContext.ts';
 
-export { CONTEXT_PERSON_LEAF, PERSON_EDGE_DESCRIPTION };
+export { PERSON_EDGE_DESCRIPTION };
 
 /** Human label for a new context diagram from a slugified entityRef root. */
 export function contextDisplayName(contextName: string): string {

@@ -88,7 +88,7 @@ export function resolveWorkspacePackageContainer(
  * Repo-relative package directory for a workspace member source file
  * (e.g. `app/packages/canvas/src/App.tsx` → `app/packages/canvas`).
  */
-export function packageDirFromSourcePath(
+function packageDirFromSourcePath(
   relativePath: string,
   options: ResolveContainerOptions = {}
 ): string | null {

@@ -24,7 +24,7 @@ export function isTraceLensUrl(pathname: string, search = ''): boolean {
   return params.get('lens') === 'tracelens' && params.get('view') !== 'recommendations';
 }
 
-export function buildTraceLensPath(scopeEntityRef?: string | null): string {
+function buildTraceLensPath(scopeEntityRef?: string | null): string {
   return buildWorkspacePath(scopeEntityRef);
 }
 

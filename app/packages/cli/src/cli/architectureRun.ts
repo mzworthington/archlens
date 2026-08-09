@@ -25,10 +25,7 @@ import type { InteractiveGitChoice } from './interactiveGitChoice.ts';
 import type { FileMetrics } from '../forensics/domain/types.ts';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { formatAnalysisSpinnerMessage, formatSuccessOutro } from './cliBanner.ts';
-import {
-  defaultPromptInteractiveGit,
-  promptArchitectureInteractive,
-} from './promptArchitectureInteractive.ts';
+import { promptArchitectureInteractive } from './promptArchitectureInteractive.ts';
 
 const DEFAULT_CONTEXT_NAME = 'blueprint';
 
@@ -293,5 +290,3 @@ export async function executeArchitectureRun(
     disposeCancellation();
   }
 }
-
-export { defaultPromptInteractiveGit };

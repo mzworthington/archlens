@@ -2,7 +2,7 @@ export type OutputFormat = 'text' | 'json';
 /** Resilience supports YAML for human-readable artifacts; CI keeps JSON. */
 export type ResilienceOutputFormat = OutputFormat | 'yaml';
 
-export const DEFAULT_WATCH_DEBOUNCE_MS = 500;
+const DEFAULT_WATCH_DEBOUNCE_MS = 500;
 
 export function parseWatchDebounce(argv: string[]): number {
   const raw = flagValue(argv, '--watch-debounce');

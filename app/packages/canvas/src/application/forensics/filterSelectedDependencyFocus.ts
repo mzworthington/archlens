@@ -90,7 +90,7 @@ function nodeLabel(nodes: BlueprintRFNode[], id: string): string {
   return node?.data?.name ?? id;
 }
 
-export const MAX_DEPENDENCY_GRAPH_PEERS = 6;
+const MAX_DEPENDENCY_GRAPH_PEERS = 6;
 
 export type DependencyGraphPeer = {
   entityRef: string;

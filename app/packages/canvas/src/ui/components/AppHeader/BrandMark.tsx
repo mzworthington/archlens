@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'wouter';
 
 /** Crosshair mark from the design-system header. */
-export const BrandIcon: React.FC<{ className?: string }> = ({ className = 'w-8 h-8' }) => (
+const BrandIcon: React.FC<{ className?: string }> = ({ className = 'w-8 h-8' }) => (
   <svg viewBox="0 0 32 32" className={className} aria-hidden>
     <path d="M 16 4 V 28 M 4 16 H 28" stroke="#00f0ff" strokeWidth="1.5" fill="none" />
     <rect x="10" y="10" width="12" height="12" fill="#061125" stroke="#00f0ff" strokeWidth="2" />

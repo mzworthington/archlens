@@ -1,9 +1,7 @@
 import { CONTEXT_MATCHING_SYSTEM_LEAF, EntityRef } from '@archlens/core';
 
-export { CONTEXT_MATCHING_SYSTEM_LEAF };
-
 /** Human-readable context diagram titles keyed by --context / entityRef slug. */
-export const CONTEXT_DISPLAY_NAMES: Record<string, string> = {
+const CONTEXT_DISPLAY_NAMES: Record<string, string> = {
   application: 'Application',
   blueprint: 'ArchLens',
   backstage: 'Backstage',
@@ -15,7 +13,7 @@ export const CONTEXT_DISPLAY_NAMES: Record<string, string> = {
 };
 
 /** Curated product hub labels on context diagrams (e.g. Pulumi example family). */
-export const PRODUCT_HUB_DISPLAY_NAMES: Record<string, string> = {
+const PRODUCT_HUB_DISPLAY_NAMES: Record<string, string> = {
   archlens: 'ArchLens',
   helloworld: 'Pulumi Examples',
 };

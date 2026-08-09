@@ -21,8 +21,8 @@ export type ChaosLensUrlOptions = {
   browseChaosSpecs?: boolean;
 };
 
-export const CHAOS_SPEC_BROWSE_PARAM = 'browse';
-export const CHAOS_SPEC_BROWSE_VALUE = 'chaosspecs';
+const CHAOS_SPEC_BROWSE_PARAM = 'browse';
+const CHAOS_SPEC_BROWSE_VALUE = 'chaosspecs';
 
 const FAULT_TYPES = new Set<FaultType>(['latency', 'error-rate', 'packet-loss', 'region-outage']);
 
@@ -91,7 +91,7 @@ export function isChaosLensUrl(pathname: string, search = ''): boolean {
   return params.get('lens') === 'chaoslens';
 }
 
-export function buildChaosLensPath(scopeEntityRef?: string | null): string {
+function buildChaosLensPath(scopeEntityRef?: string | null): string {
   return buildWorkspacePath(scopeEntityRef);
 }
 
@@ -135,19 +135,6 @@ export function parseChaosLensUrl(pathname: string, search = ''): ChaosLensUrlSt
     return { entityRef, faults, browseChaosSpecs };
   }
   return { entityRef, faults: parseSingleFaultParams(params), browseChaosSpecs };
-}
-
-export function clearChaosLensSearchParams(search = ''): string {
-  const query = search.startsWith('?') ? search.slice(1) : search;
-  const params = new URLSearchParams(query);
-  if (params.get('lens') === 'chaoslens') params.delete('lens');
-  params.delete('resilience');
-  params.delete('fault');
-  params.delete('type');
-  params.delete('severity');
-  params.delete('faults');
-  params.delete(CHAOS_SPEC_BROWSE_PARAM);
-  return params.toString();
 }
 
 export function resilienceFaultsEqual(a: NodeFaultConfig[], b: NodeFaultConfig[]): boolean {

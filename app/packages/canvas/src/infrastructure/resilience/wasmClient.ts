@@ -12,9 +12,9 @@ declare global {
   }
 }
 
-export const RESILIENCE_WASM_BASE = '/resilience-engine';
-export const RESILIENCE_WASM_PATH = `${RESILIENCE_WASM_BASE}/chaoslens.wasm`;
-export const RESILIENCE_WASM_EXEC_PATH = `${RESILIENCE_WASM_BASE}/wasm_exec.js`;
+const RESILIENCE_WASM_BASE = '/resilience-engine';
+const RESILIENCE_WASM_PATH = `${RESILIENCE_WASM_BASE}/chaoslens.wasm`;
+const RESILIENCE_WASM_EXEC_PATH = `${RESILIENCE_WASM_BASE}/wasm_exec.js`;
 
 let wasmReady: Promise<boolean> | null = null;
 
@@ -43,7 +43,7 @@ function loadScript(src: string): Promise<void> {
   });
 }
 
-export async function initResilienceWasm(logger: LoggerPort = noopLogger): Promise<boolean> {
+async function initResilienceWasm(logger: LoggerPort = noopLogger): Promise<boolean> {
   if (typeof window === 'undefined' || typeof WebAssembly === 'undefined') return false;
   if (window.chaosLensSimulate) return true;
   if (wasmReady) return wasmReady;
@@ -70,10 +70,6 @@ export async function initResilienceWasm(logger: LoggerPort = noopLogger): Promi
   })();
 
   return wasmReady;
-}
-
-export function isResilienceWasmReady(): boolean {
-  return typeof window !== 'undefined' && typeof window.chaosLensSimulate === 'function';
 }
 
 export async function runResilienceWasmSimulation(

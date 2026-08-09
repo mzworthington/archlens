@@ -94,15 +94,6 @@ export function filterFeatureMarkdown(
     .trimEnd()}\n`;
 }
 
-export function resolveFeatureFilterMode(
-  query: string,
-  packages: readonly string[]
-): FeatureFilterMode {
-  const q = query.trim().toLowerCase();
-  if (!q) return 'text';
-  return packages.some(p => p.toLowerCase() === q) ? 'package' : 'text';
-}
-
 export function countFeatureMatches(
   markdown: string,
   query: string,

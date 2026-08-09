@@ -12,9 +12,7 @@ export type {
   ComponentEdgeData,
 } from './layoutUtils';
 
-export { resolveRelativePath, getFileName } from '@archlens/core';
-
-export { GOLDEN_JOURNEY_ENTITY_REF, SAMPLES_ENTITY_REF } from './samplesWorkspace';
+export { resolveRelativePath } from '@archlens/core';
 
 export interface BlueprintState
   extends UiState, DiagramState, IoState, ResilienceState, TraceLensState {}

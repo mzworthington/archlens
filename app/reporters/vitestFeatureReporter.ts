@@ -14,7 +14,7 @@ import type { XTestResult, XTestSuite } from 'x-feature-reporter';
 
 export const embeddingPlaceholder = 'vitest-feature-reporter';
 
-export const DEFAULT_FEATURES_UNIT_FILE = path.resolve(
+const DEFAULT_FEATURES_UNIT_FILE = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '../../docs/features-unit.md'
 );
@@ -112,7 +112,7 @@ function sortBuckets(bucket: SuiteBucket): void {
 }
 
 /** Format report Markdown so it matches project Prettier rules. */
-export async function formatFeatureMarkdownFile(filePath: string): Promise<void> {
+async function formatFeatureMarkdownFile(filePath: string): Promise<void> {
   const source = fs.readFileSync(filePath, 'utf8');
   const config = await prettier.resolveConfig(filePath);
   const formatted = await prettier.format(source, {
@@ -125,7 +125,7 @@ export async function formatFeatureMarkdownFile(filePath: string): Promise<void>
 }
 
 /** Build and write the unit-test features Markdown report from Vitest results. */
-export async function generateFeaturesUnitReport(
+async function generateFeaturesUnitReport(
   testModules: ReadonlyArray<TestModule>,
   options: VitestFeatureReporterOptions = {}
 ): Promise<void> {
