@@ -1,5 +1,14 @@
 import React from 'react';
-import { FolderOpen, Map, Terminal, Copy, Check, ArrowRight, Loader2 } from 'lucide-react';
+import {
+  FolderOpen,
+  Map,
+  Terminal,
+  Copy,
+  Check,
+  ArrowRight,
+  Loader2,
+  ScanSearch,
+} from 'lucide-react';
 import { Link } from 'wouter';
 import {
   CLI_GETTING_STARTED_PATH,
@@ -10,6 +19,9 @@ import { WORKSPACE_STARTUP } from '../../content/productOutcomes';
 
 const optionClass =
   'w-full flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
+
+const primaryOptionClass =
+  'w-full flex items-start gap-3 rounded-xl border border-[#00f0ff]/35 bg-[#061125]/80 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/55 hover:bg-[#07162c] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
 
 type CopyableCommandProps = {
   command: string;
@@ -45,6 +57,8 @@ const CopyableCommand: React.FC<CopyableCommandProps> = ({ command, testId, copi
 export type WorkspaceEntryPanelProps = {
   onOpenSample: () => void;
   onOpenDirectory: () => void;
+  /** Structural browser scan — pick a source folder, no CLI install. */
+  onBrowserLiteScan?: () => void;
   disabled?: boolean;
   /** Shown while sandbox/workspace open is in progress (disables actions). */
   loadingMessage?: string | false | null;
@@ -58,10 +72,11 @@ export type WorkspaceEntryPanelProps = {
   titleId?: string;
 };
 
-/** Shared workspace entry — open the bundled demo blueprints or a local blueprint folder. */
+/** Shared workspace entry — demo insight first, then browser scan / folder / CLI. */
 export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
+  onBrowserLiteScan,
   disabled = false,
   loadingMessage = null,
   showCliPanel = false,
@@ -74,6 +89,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   titleId,
 }) => {
   const [copiedKey, setCopiedKey] = React.useState<'install' | 'scan' | null>(null);
+  const [cliExpanded, setCliExpanded] = React.useState(false);
   const statusMessage =
     typeof loadingMessage === 'string' && loadingMessage.trim() ? loadingMessage : null;
   const actionsDisabled = disabled || Boolean(statusMessage);
@@ -113,25 +129,46 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
         </div>
       ) : null}
 
-      <div className={layout === 'grid' ? 'mt-4 grid gap-2 sm:grid-cols-2' : 'mt-4'}>
+      <div className={layout === 'grid' ? 'mt-4 grid gap-2 sm:grid-cols-2' : 'mt-4 space-y-2'}>
         <button
           type="button"
           data-testid="workspace-open-sample"
           onClick={onOpenSample}
           disabled={actionsDisabled}
-          className={optionClass}
+          className={primaryOptionClass}
         >
           <Map className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
           <span>
-            <span className="block text-sm font-semibold text-slate-100">Open demo blueprints</span>
-            <span className="block text-xs text-slate-500 mt-0.5">
-              All peer context diagrams (Blueprint, Backstage, Samples, stress fixtures)
+            <span className="block text-sm font-semibold text-slate-100">
+              Try the demo — simulate a failure
+            </span>
+            <span className="block text-xs text-slate-400 mt-0.5">
+              Opens the golden journey with ChaosLens so you see blast radius and ranked advice
+              first
             </span>
           </span>
         </button>
-      </div>
 
-      <div className={layout === 'grid' ? 'mt-4' : 'mt-3'}>
+        {onBrowserLiteScan ? (
+          <button
+            type="button"
+            data-testid="workspace-browser-lite-scan"
+            onClick={onBrowserLiteScan}
+            disabled={actionsDisabled}
+            className={optionClass}
+          >
+            <ScanSearch className="w-5 h-5 text-[#00f0ff] shrink-0 mt-0.5" />
+            <span>
+              <span className="block text-sm font-semibold text-slate-100">
+                Scan my repo in the browser
+              </span>
+              <span className="block text-xs text-slate-500 mt-0.5">
+                Pick a source folder — structural BlueprintSpec only (no install, no git hotspots)
+              </span>
+            </span>
+          </button>
+        ) : null}
+
         <button
           type="button"
           data-testid="workspace-open-directory"
@@ -142,10 +179,10 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           <FolderOpen className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />
           <span>
             <span className="block text-sm font-semibold text-slate-100">
-              Open workspace from directory
+              Open existing blueprints folder
             </span>
             <span className="block text-xs text-slate-500 mt-0.5">
-              Pick a local folder of YAML blueprints
+              Pick a local folder of YAML blueprints (e.g. after a CLI scan)
             </span>
           </span>
         </button>
@@ -156,15 +193,30 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           className="mt-4 rounded-xl border border-slate-800 bg-slate-950/50 p-4"
           data-testid="workspace-cli-panel"
         >
-          <div className="flex items-start gap-3">
+          <button
+            type="button"
+            className="w-full flex items-start gap-3 text-left cursor-pointer"
+            onClick={() => setCliExpanded(v => !v)}
+            aria-expanded={cliExpanded}
+            data-testid="workspace-cli-panel-toggle"
+          >
             <Terminal className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-            <div className="min-w-0 flex-1 space-y-3">
-              <div>
-                <p className="text-sm font-semibold text-slate-100">Generate from your codebase</p>
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                  Install ArchLens, scan your repo, then open the output folder above.
-                </p>
-              </div>
+            <span className="min-w-0 flex-1">
+              <span className="block text-sm font-semibold text-slate-100">
+                Need git hotspots or CI publish?
+              </span>
+              <span className="block text-xs text-slate-500 mt-1 leading-relaxed">
+                Install the ArchLens CLI for TraceLens forensics, watch mode, and catalog publish.
+              </span>
+            </span>
+            <ArrowRight
+              className={`w-4 h-4 text-slate-500 shrink-0 mt-1 transition ${cliExpanded ? 'rotate-90' : ''}`}
+              aria-hidden
+            />
+          </button>
+
+          {cliExpanded ? (
+            <div className="mt-3 ml-8 space-y-3" data-testid="workspace-cli-panel-body">
               <div className="space-y-1.5">
                 <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500">
                   1. Install
@@ -196,7 +248,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                 <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
-          </div>
+          ) : null}
         </div>
       ) : null}
     </section>

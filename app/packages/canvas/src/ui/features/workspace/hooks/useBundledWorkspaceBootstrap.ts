@@ -6,6 +6,9 @@ import {
   isFolderWorkspacePreferred,
   releaseDemoBootstrapClaim,
 } from '../../../../application/store/workspaceOpenSession';
+import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
+import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
+import { isWorkspacePath } from '../../../../application/navigation/workspaceUrl';
 
 function entityRefFromWorkspaceUrl(pathAfterWorkspace: string | undefined): string | undefined {
   const trimmed = pathAfterWorkspace?.replace(/\/$/, '');
@@ -13,17 +16,19 @@ function entityRefFromWorkspaceUrl(pathAfterWorkspace: string | undefined): stri
 }
 
 /**
- * When a deployed user follows `/workspace/<entityRef>` with no workspace open yet,
- * load the bundled demo so deep links resolve. Never re-forces demo after the user
- * has opened a local folder this session (including while a prior demo load is in flight).
+ * Demo-first bootstrap:
+ * - Bare `/workspace` → open the sandbox and land on ChaosLens (golden journey).
+ * - Deep link `/workspace/<entityRef>` → open sandbox so the entity resolves.
+ * Never re-forces demo after the user opened a folder / browser scan this session.
  */
 export function useBundledWorkspaceBootstrap(): void {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [, params] = useRoute('/workspace/*');
 
   useEffect(() => {
     const entityRef = entityRefFromWorkspaceUrl(params?.['*']);
-    if (!entityRef) return;
+    const bareWorkspace = !entityRef && isWorkspacePath(location.split('?')[0] ?? location);
+    if (!entityRef && !bareWorkspace) return;
 
     const { isWorkspaceOpen, openBundledSample, setIsStartupOpen } = useBlueprintStore.getState();
     if (isWorkspaceOpen) return;
@@ -44,9 +49,12 @@ export function useBundledWorkspaceBootstrap(): void {
       }
       if (opened) {
         setIsStartupOpen(false);
+        if (bareWorkspace) {
+          setLocation(buildChaosLensUrl(GOLDEN_JOURNEY_ENTITY_REF), { replace: true });
+        }
       } else {
         releaseDemoBootstrapClaim();
       }
     })();
-  }, [location, params]);
+  }, [location, params, setLocation]);
 }

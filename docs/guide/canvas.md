@@ -6,22 +6,18 @@ ArchLens Canvas is a C4 workspace over **BlueprintSpec**: author in a local fold
 
 ## Opening a workspace
 
-On bare `/workspace`, a startup chooser asks how to begin:
+On bare `/workspace`, ArchLens **auto-opens the demo estate** and lands on the golden journey with **ChaosLens** so the first minute is insight (blast radius → AdviceLens), not a chooser. If demo load fails — or you reopen the startup gate — the chooser offers:
 
-![Startup chooser](../screenshots/6-startup-chooser.png)
+| Option                              | What it does                                                                                                         |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **Try the demo**                    | Reload the samples catalog and open ChaosLens on the golden journey                                                  |
+| **Scan my repo in the browser**     | File System Access — pick a **source** folder; build a structural BlueprintSpec in memory (TS/JS only, no git / CLI) |
+| **Open existing blueprints folder** | File System Access — pick a local `blueprints/` folder                                                               |
+| **CLI (collapsed)**                 | Install + scan commands for TraceLens forensics, watch mode, and CI publish                                          |
 
-| Option                            | What it does                                                                                                                                          |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Load sandbox**                  | Clear IndexedDB drafts, session layout cache, and undo history; reload the samples catalog (remote R2 estate when configured, else bundled demo YAML) |
-| **Open workspace from directory** | File System Access - pick a local `blueprints/` folder                                                                                                |
-| **Import Mermaid diagram**        | Reset to an empty canvas, then open the Mermaid import wizard                                                                                         |
-| **Import infrastructure**         | Reset to an empty canvas, then open the Terraform / Pulumi import wizard                                                                              |
+Deep links (`/workspace/…`) still bootstrap the demo so entity URLs resolve. Opening a folder or running a browser scan this session prevents demo from overriding that choice.
 
-The app does **not** auto-load the sandbox on first paint. On bare `/workspace` you see the chooser over an empty canvas until you pick an option (or follow a deep link).
-
-**Load sandbox** resets the samples workspace: it wipes local working-copy storage and in-memory session caches, then reloads from the configured catalog (hosted estate on Cloudflare R2 in local/production builds when `VITE_REMOTE_CATALOG_BASE_URL` is set; otherwise the YAML mirrored into the app build). Use it whenever you want a clean demo without leftover drafts.
-
-Deep links (`/workspace/…`) skip the chooser. You can open a folder, a single YAML file, or Mermaid again anytime from the toolbar **Open** menu.
+You can open a folder, scan a repo, a single YAML file, or Mermaid anytime from the toolbar **Open** menu.
 
 ## Layout
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cloud, Download, Folder, GitMerge, ShieldAlert, Upload } from 'lucide-react';
+import { Cloud, Download, Folder, GitMerge, ScanSearch, ShieldAlert, Upload } from 'lucide-react';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { navigateToActiveWorkspaceEntity } from '../../hooks/navigateToActiveWorkspaceEntity';
@@ -35,6 +35,7 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
   const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
   const openWorkspaceDirectory = useBlueprintStore(s => s.openWorkspaceDirectory);
+  const openBrowserLiteScan = useBlueprintStore(s => s.openBrowserLiteScan);
   const loadSchema = useBlueprintStore(s => s.loadSchema);
   const setIsStartupOpen = useBlueprintStore(s => s.setIsStartupOpen);
 
@@ -50,6 +51,17 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
       navigateToActiveWorkspaceEntity(setLocation);
     } catch (err) {
       console.error('Failed to open workspace directory:', err);
+    }
+  };
+
+  const handleBrowserLiteScan = async () => {
+    try {
+      const opened = await openBrowserLiteScan();
+      if (!opened) return;
+      setIsStartupOpen(false);
+      navigateToActiveWorkspaceEntity(setLocation);
+    } catch (err) {
+      console.error('Failed to run browser lite scan:', err);
     }
   };
 
@@ -69,6 +81,22 @@ export const ToolbarOpenMenuItems: React.FC<ToolbarOpenMenuItemsProps> = ({
 
   return (
     <>
+      <button
+        type="button"
+        role="menuitem"
+        onClick={() => {
+          onClose();
+          void handleBrowserLiteScan();
+        }}
+        disabled={disabled}
+        className={menuItemClass}
+        title="Scan a local source folder in the browser (structure only)"
+        id={`browser-lite-scan-action${idSuffix}`}
+        data-testid={`browser-lite-scan-action${idSuffix}`}
+      >
+        <ScanSearch className="w-3.5 h-3.5 text-[#00f0ff] shrink-0" />
+        Scan Repo in Browser
+      </button>
       <button
         type="button"
         role="menuitem"

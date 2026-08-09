@@ -16,12 +16,28 @@ import {
   noopGraphChange,
   noopResilienceEngine,
 } from '../../../core';
-import { loadWorkspaceFromCatalog, loadWorkspaceFromDirectory } from './ioState/openWorkspace';
+import {
+  loadWorkspaceFromCatalog,
+  loadWorkspaceFromDirectory,
+  loadWorkspaceFromYamlFiles,
+} from './ioState/openWorkspace';
 import { selectBundledSampleEntryPath } from '../samplesWorkspace';
 import { scheduleBundledBlueprintPreload } from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { loadSampleWorkspaceSession } from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import { SANDBOX_LOADING_MESSAGE } from '../diagramLoadSession';
-import { beginWorkspaceOpen, isWorkspaceOpenCurrent } from '../workspaceOpenSession';
+import {
+  beginWorkspaceOpen,
+  isWorkspaceOpenCurrent,
+  markFolderWorkspacePreferred,
+} from '../workspaceOpenSession';
+import { buildLiteScanSchemas } from '../../analysis/buildLiteScanSchemas';
+import {
+  pickSourceDirectory,
+  walkBrowserSourceDirectory,
+} from '../../../infrastructure/analysis/browserSourceWalker';
+import { createMemoryScanWorkspacePort } from '../../../infrastructure/analysis/memoryScanWorkspace';
+
+export const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
 export interface IoState {
   fileSystemPort: FileSystemPort;
@@ -53,6 +69,8 @@ export interface IoState {
   loadSchema: () => Promise<boolean>;
   openWorkspaceDirectory: () => Promise<boolean>;
   openBundledSample: () => Promise<boolean>;
+  /** Structural TS/JS scan in the browser (no git / CLI install). */
+  openBrowserLiteScan: () => Promise<boolean>;
   saveActiveDiagram: () => Promise<boolean>;
   clearWorkspaceDrafts: () => Promise<void>;
 }
@@ -216,6 +234,71 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
     } catch (err) {
       logger.error('Failed to open bundled sample workspace', err);
       set({ lastError: (err as Error).message || 'Failed to open bundled sample workspace' });
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  },
+
+  openBrowserLiteScan: async () => {
+    const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
+    const handle = await pickSourceDirectory();
+    if (!handle) return false;
+
+    markFolderWorkspacePreferred();
+    const openGeneration = beginWorkspaceOpen();
+    setIsLoading(BROWSER_LITE_SCAN_LOADING_MESSAGE);
+    try {
+      const walked = await walkBrowserSourceDirectory(handle);
+      if (!isWorkspaceOpenCurrent(openGeneration)) return false;
+      if (walked.files.length === 0) {
+        throw new Error(
+          'No TypeScript or JavaScript source files found (try a package with .ts/.tsx/.js/.jsx).'
+        );
+      }
+
+      const built = buildLiteScanSchemas(walked.files, {
+        workspaceName: walked.directoryName,
+        truncated: walked.truncated,
+      });
+      const scanPort = createMemoryScanWorkspacePort({
+        directoryName: walked.directoryName,
+        files: built.files,
+      });
+
+      const opened = await loadWorkspaceFromYamlFiles({
+        files: built.files,
+        workspaceName: walked.directoryName,
+        preferredEntryPath: `${built.contextEntityRef}/context.yaml`,
+        workingCopy: workingCopyPort,
+        logger,
+        setNotification,
+        initSchema,
+        set,
+        isSampleWorkspace: false,
+        openGeneration,
+        committedPorts: { workspacePort: scanPort, folderWorkspacePort: scanPort },
+      });
+
+      if (opened) {
+        const truncatedNote = built.truncated
+          ? ` Capped at ${built.fileCount} files for browser responsiveness.`
+          : '';
+        setNotification?.({
+          type: 'success',
+          title: 'Browser scan ready',
+          message: `Loaded ${built.fileCount} source file(s) as BlueprintSpec (structure only — no git hotspots).${truncatedNote} Install the ArchLens CLI for TraceLens and CI publish.`,
+        });
+      }
+      return opened;
+    } catch (err) {
+      logger.error('Failed to run browser lite scan', err);
+      set({ lastError: (err as Error).message || 'Failed to scan repository in browser' });
+      setNotification?.({
+        type: 'error',
+        title: 'Browser scan failed',
+        message: (err as Error).message || 'Failed to scan repository in browser',
+      });
       return false;
     } finally {
       setIsLoading(false);

@@ -24,7 +24,7 @@ export const WHY_IT_MATTERS = [
 
 export const WORKSPACE_STARTUP = {
   title: 'See what breaks before your customers do',
-  lede: 'Load the demo estate to simulate failures and ranked advice in minutes — or open blueprints from your own repo.',
+  lede: 'Start with the demo to simulate a failure and get ranked advice — or scan your repo in the browser for an instant structural map.',
 } as const;
 
 export const TRACE_LENS_HERO = {

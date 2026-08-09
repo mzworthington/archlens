@@ -100,6 +100,116 @@ function resolveEntryAgainstCatalog(
   return resolveWorkspaceEntityRefs(filesForResolve, workspaceName);
 }
 
+export type LoadWorkspaceFromYamlFilesDeps = {
+  files: Array<{ name: string; content: string }>;
+  workspaceName: string;
+  workingCopy: WorkingCopyPort;
+  logger: WorkspaceOpenLogger;
+  setNotification?: (n: ToastNotification | null) => void;
+  initSchema: (schema: SystemSchema) => void;
+  set: (partial: Record<string, unknown>) => void;
+  isSampleWorkspace?: boolean;
+  openGeneration?: number;
+  committedPorts?: Record<string, unknown>;
+  /** Prefer this entry path when present (e.g. context.yaml from a lite scan). */
+  preferredEntryPath?: string;
+};
+
+/**
+ * Open a workspace from in-memory BlueprintSpec YAML (browser lite scan, tests, fixtures).
+ * Skips the directory picker; still marks folder preference so demo bootstrap does not override.
+ */
+export async function loadWorkspaceFromYamlFiles(
+  deps: LoadWorkspaceFromYamlFilesDeps
+): Promise<boolean> {
+  const {
+    logger,
+    setNotification,
+    initSchema,
+    set,
+    isSampleWorkspace = false,
+    committedPorts,
+    preferredEntryPath,
+  } = deps;
+
+  const openGeneration = deps.openGeneration ?? beginWorkspaceOpen();
+  if (!isSampleWorkspace) {
+    markFolderWorkspacePreferred();
+  }
+
+  if (deps.files.length === 0) {
+    throw new Error('No blueprint .yaml or .yml files provided');
+  }
+
+  const schemaFiles = deps.files.filter(f => f.name.endsWith('.yaml') || f.name.endsWith('.yml'));
+
+  const nextLoadedSystems = schemaFiles
+    .map(file => {
+      try {
+        const schema = parseSchemaFromYaml(file.content);
+        return {
+          path: file.name,
+          name:
+            schema.name ||
+            file.name
+              .split('/')
+              .pop()!
+              .replace(/\.ya?ml$/, ''),
+          schema,
+        };
+      } catch (err) {
+        logger.warn(`Skipping file ${file.name} as it is not a valid blueprint schema: ${err}`);
+        return null;
+      }
+    })
+    .filter((s): s is NonNullable<typeof s> => s !== null);
+
+  if (nextLoadedSystems.length === 0) {
+    throw new Error('No valid blueprint schemas found');
+  }
+
+  const workspaceName = deps.workspaceName;
+  const resolved = resolveWorkspaceEntityRefs(nextLoadedSystems, workspaceName);
+  const resolvedSystems = nextLoadedSystems.map(sys => ({
+    ...sys,
+    schema: resolved.schemas[sys.path] || sys.schema,
+  }));
+
+  const workspaceCatalog: WorkspaceCatalogEntry[] = buildWorkspaceCatalog(
+    resolvedSystems.map(s => ({ path: s.path, schema: s.schema })),
+    workspaceName
+  );
+
+  const preferred =
+    preferredEntryPath != null
+      ? resolvedSystems.find(s => s.path === preferredEntryPath)
+      : undefined;
+
+  const firstSystem =
+    preferred ||
+    (isSampleWorkspace &&
+      (resolvedSystems.find(s => s.path === 'golden-journey/context.yaml') ||
+        resolvedSystems.find(s => s.path === 'golden-journey/containers.yaml'))) ||
+    resolvedSystems.find(s => s.schema.level === 'context') ||
+    resolvedSystems.find(s => s.schema.level === 'container') ||
+    resolvedSystems[0];
+
+  return finalizeWorkspaceOpen({
+    entryCandidate: firstSystem,
+    resolved,
+    workspaceCatalog,
+    workspaceName,
+    isSampleWorkspace,
+    openGeneration,
+    committedPorts,
+    workingCopy: deps.workingCopy,
+    logger,
+    setNotification,
+    initSchema,
+    set,
+  });
+}
+
 /**
  * Parses YAML files from a workspace folder, builds a lightweight navigation catalog,
  * and fully loads only the entry diagram (context → container → first file).
@@ -131,66 +241,17 @@ export async function loadWorkspaceFromDirectory(deps: OpenWorkspaceDeps): Promi
     throw new Error('No blueprint .yaml or .yml files found in selected directory');
   }
 
-  const schemaFiles = files.filter(f => f.name.endsWith('.yaml') || f.name.endsWith('.yml'));
-
-  const nextLoadedSystems = schemaFiles
-    .map(file => {
-      try {
-        const schema = parseSchemaFromYaml(file.content);
-        return {
-          path: file.name,
-          name:
-            schema.name ||
-            file.name
-              .split('/')
-              .pop()!
-              .replace(/\.ya?ml$/, ''),
-          schema,
-        };
-      } catch (err) {
-        logger.warn(`Skipping file ${file.name} as it is not a valid blueprint schema: ${err}`);
-        return null;
-      }
-    })
-    .filter((s): s is NonNullable<typeof s> => s !== null);
-
-  if (nextLoadedSystems.length === 0) {
-    throw new Error('No valid blueprint schemas found in selected directory');
-  }
-
-  const workspaceName = deps.getDirectoryName();
-  const resolved = resolveWorkspaceEntityRefs(nextLoadedSystems, workspaceName);
-  const resolvedSystems = nextLoadedSystems.map(sys => ({
-    ...sys,
-    schema: resolved.schemas[sys.path] || sys.schema,
-  }));
-
-  const workspaceCatalog: WorkspaceCatalogEntry[] = buildWorkspaceCatalog(
-    resolvedSystems.map(s => ({ path: s.path, schema: s.schema })),
-    workspaceName
-  );
-
-  const firstSystem =
-    (isSampleWorkspace &&
-      (resolvedSystems.find(s => s.path === 'golden-journey/context.yaml') ||
-        resolvedSystems.find(s => s.path === 'golden-journey/containers.yaml'))) ||
-    resolvedSystems.find(s => s.schema.level === 'context') ||
-    resolvedSystems.find(s => s.schema.level === 'container') ||
-    resolvedSystems[0];
-
-  return finalizeWorkspaceOpen({
-    entryCandidate: firstSystem,
-    resolved,
-    workspaceCatalog,
-    workspaceName,
-    isSampleWorkspace,
-    openGeneration,
-    committedPorts,
+  return loadWorkspaceFromYamlFiles({
+    files,
+    workspaceName: deps.getDirectoryName(),
     workingCopy: deps.workingCopy,
     logger,
     setNotification,
     initSchema,
     set,
+    isSampleWorkspace,
+    openGeneration,
+    committedPorts,
   });
 }
 
