@@ -50,13 +50,13 @@ cd resilience-engine
 
 make test          # unit tests (includes KR3 Monte Carlo budget on large-graph)
 make build-wasm    # dist/chaoslens.wasm
-make build-cli     # dist/chaoslens (stdin/stdout CLI - planned)
+make build-cli     # reserved — cmd/chaoslens not in tree yet (product CLI is archlens resilience)
 make copy-wasm     # WASM + wasm_exec.js → canvas public/
-make build         # CLI + copy-wasm
+make build         # copy-wasm (WASM path used by Canvas)
 make all           # test + build
 ```
 
-`go test ./internal/sim` loads `blueprints/chaoslens-stress/large-graph-containers.yaml` and asserts default WASM Monte Carlo settings (`1000` iterations, `severityJitter` `0.12`) finish in under 5 seconds via both `sim.RunMonteCarlo` and `api.RunRequest` (the WASM bridge path).
+`go test ./internal/sim` loads `blueprints/chaoslens-stress/large-graph-containers.yaml` and asserts default WASM Monte Carlo settings (`1000` iterations, `availabilityJitter` `0.12`) finish in under 5 seconds via both `sim.RunMonteCarlo` and `api.RunRequest` (the WASM bridge path).
 
 ---
 
@@ -76,15 +76,9 @@ Request shape matches `@archlens/core/resilience` `WasmSimulationRequest` (schem
 
 ## CLI
 
-Pipe a simulation request JSON on stdin:
+**Product headless path:** use ArchLens CLI AdviceLens — `archlens resilience` and `.github/actions/advicelens-gate` (see [AdviceLens](./guide/advicelens.md)). That runs ChaosLens simulation rules via `@archlens/core` (WASM when available, TypeScript fallback otherwise).
 
-```bash
-make build-cli
-cat request.json | ./dist/chaoslens
-./dist/chaoslens -monte-carlo 2000 -seed 42 < request.json
-```
-
-Stdin/stdout JSON matches `WasmSimulationRequest` / WASM bridge shape.
+**Go stdin `chaoslens` binary:** planned (`make build-cli` / `cmd/chaoslens`) — not present in this repo yet. Do not treat it as shipping.
 
 ## Go package layout
 
@@ -93,7 +87,7 @@ internal/graph   - group boundary expansion, publish-subscribe peer lookup
 internal/sim     - blast radius, integrity radius, SPOF detection, Monte Carlo
 api              - JSON request/response entry
 wasm             - syscall/js export for Canvas
-cmd/chaoslens    - stdin/stdout CLI
+cmd/chaoslens    - planned stdin/stdout CLI (not checked in)
 ```
 
 ---

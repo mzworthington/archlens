@@ -4,6 +4,7 @@ import type { SchemaDiff } from '../../../../../core';
 
 export function useDiffMenu(isOpen: boolean, onClose: () => void) {
   const {
+    checkPendingChanges,
     currentFilePath,
     initSchema,
     loadedSystems,
@@ -49,6 +50,7 @@ export function useDiffMenu(isOpen: boolean, onClose: () => void) {
       });
 
       initSchema(originalSchema);
+      await checkPendingChanges?.();
       logger.info('Reverted active diagram changes to baseline version');
       onClose();
     } catch (err) {
