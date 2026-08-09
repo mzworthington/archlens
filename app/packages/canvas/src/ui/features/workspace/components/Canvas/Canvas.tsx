@@ -13,6 +13,7 @@ import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import { DiagramLoadingOverlay } from './DiagramLoadingOverlay';
 import { EmptyDiagramOverlay } from './EmptyDiagramOverlay';
 import { MermaidEnrichBanner } from './MermaidEnrichBanner';
+import { BrowserLiteScanBanner } from './BrowserLiteScanBanner';
 import { SchemaImportErrorBanner } from './SchemaImportErrorBanner';
 import { navigateToWorkspaceEntity } from '../../../../../application/navigation/navigateToWorkspaceEntity';
 import { useCanvasLoadLayout } from './useCanvasLoadLayout';
@@ -62,6 +63,8 @@ export const Canvas: React.FC = () => {
     currentFilePath,
     mermaidEnrichBannerOpen,
     setMermaidEnrichBannerOpen,
+    browserLiteBannerOpen,
+    setBrowserLiteBannerOpen,
     applyClientLayout,
     layoutSessionId,
     undo,
@@ -106,6 +109,8 @@ export const Canvas: React.FC = () => {
       currentFilePath: state.currentFilePath,
       mermaidEnrichBannerOpen: state.mermaidEnrichBannerOpen,
       setMermaidEnrichBannerOpen: state.setMermaidEnrichBannerOpen,
+      browserLiteBannerOpen: state.browserLiteBannerOpen,
+      setBrowserLiteBannerOpen: state.setBrowserLiteBannerOpen,
       applyClientLayout: state.applyClientLayout,
       layoutSessionId: state.layoutSessionId,
       undo: state.undo,
@@ -278,6 +283,10 @@ export const Canvas: React.FC = () => {
         <MermaidEnrichBanner
           open={mermaidEnrichBannerOpen}
           onDismiss={() => setMermaidEnrichBannerOpen(false)}
+        />
+        <BrowserLiteScanBanner
+          open={browserLiteBannerOpen}
+          onDismiss={() => setBrowserLiteBannerOpen(false)}
         />
         <EmptyDiagramOverlay />
         <DiagramLoadingOverlay />

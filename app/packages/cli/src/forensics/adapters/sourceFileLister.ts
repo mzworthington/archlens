@@ -1,5 +1,5 @@
 import { createSourcePathFilter } from '../../analysis/adapters/pathFilter/sourcePathFilter.ts';
-import { throwIfAborted } from '../../analysis/domain/cancellation.ts';
+import { throwIfAborted } from '@archlens/analysis/cancellation';
 import type { ForensicsOptions } from '../domain/options.ts';
 import type { SourceFileListerPort } from '../domain/ports.ts';
 import { listFilesForGlob } from './sourceFileWalk.ts';

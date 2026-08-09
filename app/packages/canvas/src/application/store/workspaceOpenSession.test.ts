@@ -2,6 +2,7 @@ import { describe, expect, it, beforeEach } from 'vitest';
 import {
   beginWorkspaceOpen,
   claimDemoBootstrap,
+  clearFolderWorkspacePreferred,
   isFolderWorkspacePreferred,
   isWorkspaceOpenCurrent,
   markDemoWorkspacePreferred,
@@ -35,6 +36,15 @@ describe('workspaceOpenSession', () => {
     markDemoWorkspacePreferred();
     expect(isFolderWorkspacePreferred()).toBe(false);
     releaseDemoBootstrapClaim();
+    expect(claimDemoBootstrap()).toBe(true);
+  });
+
+  it('allows demo bootstrap again after clearing a failed folder preference', () => {
+    markFolderWorkspacePreferred();
+    expect(claimDemoBootstrap()).toBe(false);
+    clearFolderWorkspacePreferred();
+    releaseDemoBootstrapClaim();
+    expect(isFolderWorkspacePreferred()).toBe(false);
     expect(claimDemoBootstrap()).toBe(true);
   });
 

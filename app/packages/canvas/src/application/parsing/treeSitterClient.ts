@@ -15,13 +15,14 @@ export function treeSitterWasmUrl(fileName: string): string {
   return `${wasmBase}${fileName}`;
 }
 
+/** True in a window or a worker; false under SSR/Node. */
+function hasBrowserRuntime(): boolean {
+  return typeof self !== 'undefined' && typeof WebAssembly !== 'undefined';
+}
+
 export async function initTreeSitter(): Promise<boolean> {
   if (initFailed) return false;
-  if (
-    import.meta.env.MODE === 'test' ||
-    typeof window === 'undefined' ||
-    typeof WebAssembly === 'undefined'
-  ) {
+  if (import.meta.env.MODE === 'test' || !hasBrowserRuntime()) {
     return false;
   }
 
@@ -44,7 +45,7 @@ export async function initTreeSitter(): Promise<boolean> {
 export async function loadTreeSitterLanguage(
   lang: TreeSitterWasmLanguage
 ): Promise<Parser.Language | null> {
-  if (typeof window === 'undefined' || typeof WebAssembly === 'undefined') {
+  if (!hasBrowserRuntime()) {
     return null;
   }
 

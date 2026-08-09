@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'wouter';
 import type { SimulationResult } from '@archlens/core/resilience';
 import type { Recommendation } from '@archlens/core/recommendations';
 import { RecommendationsList } from '../../recommendations/RecommendationsList';
+import { buildAdviceLensUrl } from '../../forensics/adviceLensUrl';
 
 type Props = {
   result: SimulationResult | null;
@@ -176,7 +178,16 @@ export const TelemetryPanel: React.FC<Props> = ({ result, recommendations = [] }
       ) : null}
 
       {recommendations.length > 0 ? (
-        <RecommendationsList recommendations={recommendations} />
+        <div className="space-y-2">
+          <RecommendationsList recommendations={recommendations} />
+          <Link
+            href={buildAdviceLensUrl()}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00f0ff] hover:text-cyan-300 transition"
+            data-testid="telemetry-open-advicelens"
+          >
+            Open AdviceLens for the full ranked list
+          </Link>
+        </div>
       ) : result.advice.length > 0 ? (
         <div>
           <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">

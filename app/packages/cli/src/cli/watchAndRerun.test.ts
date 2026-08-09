@@ -3,7 +3,7 @@ import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { watchAndRerun, resolveWatchOptions } from './watchAndRerun.ts';
 import { parseArchlensArgv } from './parseArchlensArgv.ts';
 import type { ResolvedArchitectureState } from './architectureRun.ts';
-import { DEFAULT_ANALYSIS_OPTIONS } from '../analysis/domain/analysisOptions.ts';
+import { DEFAULT_ANALYSIS_OPTIONS } from '@archlens/analysis/options';
 
 class FakeWatcher extends EventEmitter {
   close = vi.fn(async () => undefined);

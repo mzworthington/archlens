@@ -1,12 +1,12 @@
 import Parser from 'web-tree-sitter';
 import * as path from 'path';
 import * as fs from 'fs';
-import type { CodebaseParserPort } from '../../domain/ports.ts';
-import type { ParsedSourceFile } from '../../domain/types.ts';
-import type { AnalysisOptions } from '../../domain/analysisOptions.ts';
-import { isTestSourcePath } from '../../domain/testPath.ts';
+import type { CodebaseParserPort } from '@archlens/analysis/ports';
+import type { ParsedSourceFile } from '@archlens/analysis/types';
+import type { AnalysisOptions } from '@archlens/analysis/options';
+import { extractParsedSourceFileFromTree } from '@archlens/analysis/tree-sitter-extract';
 import { createSourcePathFilter, type SourcePathFilter } from '../pathFilter/sourcePathFilter.ts';
-import { throwIfAborted } from '../../domain/cancellation.ts';
+import { throwIfAborted } from '@archlens/analysis/cancellation';
 import { TreeSitterWasmLoader } from './treeSitterLoader.ts';
 import type { TreeSitterScanCache } from './treeSitterForensics.ts';
 
@@ -98,219 +98,33 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
       const relativePath = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
       const cached = this.scanCache?.get(relativePath);
 
-      let content = '';
       let tree: Parser.Tree;
+      let ownsTree = false;
       try {
         if (cached) {
-          content = cached.text;
           tree = cached.tree;
         } else {
-          content = fs.readFileSync(filePath, 'utf8');
+          const content = fs.readFileSync(filePath, 'utf8');
           tree = parser.parse(content);
+          ownsTree = true;
         }
       } catch {
         continue;
       }
 
-      const baseName = path.basename(relativePath, path.extname(relativePath));
-      const isTestFile = isTestSourcePath(relativePath);
-
-      const imports: { moduleSpecifier: string }[] = [];
-      const reExports: { moduleSpecifier: string }[] = [];
-      const newExpressions: { className: string }[] = [];
-      const callExpressions: string[] = [];
-      const namespaces: string[] = [];
-
-      const walk = (node: Parser.SyntaxNode) => {
-        // --- TypeScript/JavaScript parser logic ---
-        if (ext === '.ts' || ext === '.tsx' || ext === '.js' || ext === '.jsx') {
-          if (node.type === 'import_statement') {
-            const literalNode =
-              node.childForFieldName('source') || node.descendantsOfType('literal')[0];
-            if (literalNode) {
-              imports.push({ moduleSpecifier: literalNode.text.replace(/['"`]/g, '') });
-            }
-          }
-          if (node.type === 'export_statement') {
-            const literalNode =
-              node.childForFieldName('source') || node.descendantsOfType('string')[0];
-            if (literalNode) {
-              reExports.push({ moduleSpecifier: literalNode.text.replace(/['"`]/g, '') });
-            }
-          }
-          if (node.type === 'new_expression') {
-            const constructorNode = node.childForFieldName('constructor');
-            if (constructorNode) {
-              newExpressions.push({ className: constructorNode.text });
-            }
-          }
-          if (node.type === 'call_expression') {
-            const fnNode = node.childForFieldName('function');
-            if (fnNode) {
-              callExpressions.push(fnNode.text);
-            }
-          }
+      try {
+        result.push(
+          extractParsedSourceFileFromTree({
+            filePath,
+            relativePath,
+            tree,
+          })
+        );
+      } finally {
+        if (ownsTree) {
+          tree.delete();
         }
-
-        // --- Python parser logic ---
-        if (ext === '.py') {
-          if (node.type === 'import_statement') {
-            node.descendantsOfType('dotted_name').forEach(n => {
-              imports.push({ moduleSpecifier: n.text });
-            });
-          }
-          if (node.type === 'import_from_statement') {
-            const sourceNode =
-              node.childForFieldName('module_name') || node.descendantsOfType('dotted_name')[0];
-            if (sourceNode) {
-              imports.push({ moduleSpecifier: sourceNode.text });
-            }
-          }
-          if (node.type === 'call') {
-            const fnNode = node.childForFieldName('function');
-            if (fnNode) {
-              callExpressions.push(fnNode.text);
-              const firstChar = fnNode.text.charAt(0);
-              if (firstChar >= 'A' && firstChar <= 'Z') {
-                newExpressions.push({ className: fnNode.text });
-              }
-            }
-          }
-        }
-
-        // --- C# parser logic ---
-        if (ext === '.cs') {
-          if (node.type === 'using_directive') {
-            const nameNode =
-              node.childForFieldName('name') ||
-              node.descendantsOfType(['qualified_name', 'identifier'])[0];
-            if (nameNode) {
-              imports.push({ moduleSpecifier: nameNode.text });
-            }
-          }
-          if (node.type === 'object_creation_expression') {
-            const typeNode =
-              node.childForFieldName('type') || node.descendantsOfType('identifier')[0];
-            if (typeNode) {
-              newExpressions.push({ className: typeNode.text });
-            }
-          }
-          if (node.type === 'class_declaration') {
-            const baseList = node.children.find(child => child.type === 'base_list');
-            if (baseList) {
-              for (let i = 0; i < baseList.childCount; i++) {
-                const baseNode = baseList.child(i)!;
-                if (baseNode.type === 'identifier' || baseNode.type === 'generic_name') {
-                  newExpressions.push({ className: baseNode.text });
-                }
-              }
-            }
-          }
-          if (node.type === 'invocation_expression') {
-            const fnNode = node.child(0);
-            if (fnNode) {
-              callExpressions.push(fnNode.text);
-            }
-          }
-          if (
-            node.type === 'namespace_declaration' ||
-            node.type === 'file_scoped_namespace_declaration'
-          ) {
-            const nameNode =
-              node.childForFieldName('name') ||
-              node.descendantsOfType(['qualified_name', 'identifier'])[0];
-            if (nameNode) {
-              namespaces.push(nameNode.text);
-            }
-          }
-        }
-
-        // --- Java parser logic ---
-        if (ext === '.java' || ext === '.kt') {
-          // import com.acme.service.OrderService;
-          if (node.type === 'import_declaration') {
-            const nameNode = node.descendantsOfType(['scoped_identifier', 'identifier'])[0];
-            if (nameNode) {
-              imports.push({ moduleSpecifier: nameNode.text });
-            }
-          }
-          // new OrderRepository()
-          if (node.type === 'object_creation_expression') {
-            const typeNode =
-              node.childForFieldName('type') ?? node.descendantsOfType('type_identifier')[0];
-            if (typeNode) {
-              newExpressions.push({ className: typeNode.text });
-            }
-          }
-          // method calls: service.doSomething()
-          if (node.type === 'method_invocation') {
-            const nameNode = node.childForFieldName('name');
-            const obj = node.childForFieldName('object');
-            const fnText = obj ? `${obj.text}.${nameNode?.text ?? ''}` : (nameNode?.text ?? '');
-            if (fnText) callExpressions.push(fnText);
-          }
-          // package com.acme.orders;
-          if (node.type === 'package_declaration') {
-            const nameNode = node.descendantsOfType(['scoped_identifier', 'identifier'])[0];
-            if (nameNode) {
-              namespaces.push(nameNode.text);
-            }
-          }
-        }
-
-        // --- Go parser logic ---
-        if (ext === '.go') {
-          // import "fmt" / import ( "net/http" )
-          if (node.type === 'import_spec') {
-            const pathNode =
-              node.childForFieldName('path') ??
-              node.descendantsOfType('interpreted_string_literal')[0];
-            if (pathNode) {
-              imports.push({ moduleSpecifier: pathNode.text.replace(/"/g, '') });
-            }
-          }
-          // Uppercase call expressions as pseudo-constructors: http.NewServeMux(), sql.Open()
-          if (node.type === 'call_expression') {
-            const fnNode = node.childForFieldName('function');
-            if (fnNode) {
-              callExpressions.push(fnNode.text);
-              // Treat pkg.TypeName() as construction
-              const parts = fnNode.text.split('.');
-              const leaf = parts[parts.length - 1];
-              if (leaf && leaf[0] >= 'A' && leaf[0] <= 'Z') {
-                newExpressions.push({ className: fnNode.text });
-              }
-            }
-          }
-          // package orders
-          if (node.type === 'package_clause') {
-            const nameNode =
-              node.childForFieldName('name') ?? node.descendantsOfType('package_identifier')[0];
-            if (nameNode) {
-              namespaces.push(nameNode.text);
-            }
-          }
-        }
-
-        // Recursively walk children
-        for (let i = 0; i < node.childCount; i++) {
-          walk(node.child(i)!);
-        }
-      };
-
-      walk(tree.rootNode);
-
-      result.push({
-        filePath,
-        relativePath,
-        baseName,
-        isTestFile,
-        imports,
-        reExports,
-        newExpressions,
-        callExpressions,
-        namespaces,
-      });
+      }
     }
 
     return result;

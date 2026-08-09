@@ -1,8 +1,24 @@
 # Getting started
 
-This page is for **using** ArchLens - install ArchLens, scan a codebase, then open ArchLens Canvas. For hacking on the repo itself, see [Setup & local development](../setup.md).
+This page is for **using** ArchLens - start with the demo, try a browser scan for instant structure, then install the CLI when you need TraceLens/git forensics or CI publish. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
-## 1. Install ArchLens
+## 1. Try the demo
+
+Open the hosted app:
+
+**[https://archlens.dev/workspace](https://archlens.dev/workspace)**
+
+Bare `/workspace` opens the bundled golden journey first, landing in **ChaosLens** so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
+
+## 2. Scan in the browser
+
+From the startup chooser, select **Browser lite scan** and pick a source folder.
+
+This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate structural BlueprintSpec YAML in memory. It is intentionally a **lite / structure-only** preview: TypeScript/JavaScript source files plus package metadata — **no** TraceLens git hotspots, **no** CI publish, and no persisted writes unless you later save/export through Canvas.
+
+Use this path for fast first feedback without installing anything. For in-depth knowledge (git forensics, watch mode, catalog publish), install and run the ArchLens CLI in the next step.
+
+## 3. Install ArchLens CLI
 
 ### macOS / Linux (recommended)
 
@@ -32,7 +48,7 @@ archlens --version
 archlens --help
 ```
 
-## 2. Manual install (fallback)
+## 4. Manual install (fallback)
 
 Grab the latest release from GitHub:
 
@@ -67,7 +83,7 @@ mv archlens tree-sitter*.wasm "$HOME/.local/bin/"
 2. Extract `archlens.exe` and the `tree-sitter*.wasm` files together.
 3. Move them to a folder on your `PATH` (for example `C:\Users\<you>\.local\bin`), or add that folder to **Environment Variables → Path**.
 
-## 3. Scan a codebase
+## 5. Scan a codebase with the CLI
 
 From the root of the project you want to map:
 
@@ -94,7 +110,7 @@ Each file uses the [v4 BlueprintSpec format](./schema.md) - `version` is the pub
 # yaml-language-server: $schema=https://archlens.dev/schemas/latest/blueprint.schema.json
 ```
 
-## 4. Open ArchLens Canvas
+## 6. Open generated blueprints in Canvas
 
 Open the hosted app:
 
@@ -104,12 +120,13 @@ Open the hosted app:
 
 On first open you get a **startup chooser** on bare `/workspace`:
 
-1. **Load sandbox** - clear local drafts/cache and explore the bundled demo diagrams (shipped in the app build).
-2. **Open workspace from directory** - pick the folder that contains your generated `blueprints/` YAML.
-3. Use the system switcher and C4 zoom to explore context → container → component.
-4. Inspect **TraceLens** signals — open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page.
-5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
-6. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema - see [ArchLens Canvas](./canvas.md#import-mermaid).
+1. **Try the demo** - explore the bundled golden journey and simulate a failure.
+2. **Scan my repo in the browser** - pick a source folder for structure-only BlueprintSpec feedback.
+3. **Open existing blueprints folder** - pick the folder that contains generated `blueprints/` YAML.
+4. Use the system switcher and C4 zoom to explore context → container → component.
+5. Inspect **TraceLens** signals — open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page (CLI scans only).
+6. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
+7. Optionally **Import Mermaid** (startup or toolbar **Open** menu) to merge an external diagram into the active schema - see [ArchLens Canvas](./canvas.md#import-mermaid).
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and open the matching diagram directly.
 

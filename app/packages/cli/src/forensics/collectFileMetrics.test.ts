@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { normalizeFilePath } from './domain/attachForensics.ts';
+import { normalizeFilePath } from '@archlens/analysis/forensics';
 
 describe('collectFileMetrics helpers', () => {
   it('normalizes paths for map keys', () => {

@@ -1,8 +1,5 @@
 import ignore, { type Ignore } from 'ignore';
-import {
-  DEFAULT_STRUCTURAL_IGNORE_GLOBS,
-  type AnalysisOptions,
-} from '../../domain/analysisOptions.ts';
+import { DEFAULT_STRUCTURAL_IGNORE_GLOBS, type AnalysisOptions } from '@archlens/analysis/options';
 import { createGitignoreFilter, isIgnoredByGitignore } from './gitignoreFilter.ts';
 
 export type SourcePathFilter = {
