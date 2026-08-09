@@ -102,7 +102,7 @@ Contract, public schema URLs, and field reference: **[ChaosSpec](./chaos-spec.md
 - Multi-fault scenarios via the scenario list, **Browse ChaosSpecs** catalog, or paste/upload import
 - Load and export ChaosSpec from the shared **ChaosSpec** dialog (Import / Export tabs); catalog picker navigates by `diagramRef`
 - WASM Monte Carlo when the resilience engine is deployed; TypeScript fallback uses the same propagation rules without trial bands
-- No headless CLI / CI gate in the product yet
+- Headless estate sweep and CI SLA gates ship via **[AdviceLens](./advicelens.md)** (`archlens resilience`, `.github/actions/advicelens-gate`) — not a separate ChaosLens-only binary
 - No OpenTelemetry import
 - SLA numbers are heuristic, not queue/timeout/pool modeling
 - Executive view omits revenue and user-journey mapping (planned for a later iteration)

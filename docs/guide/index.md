@@ -33,7 +33,7 @@ Use this guide if you want to understand the product, not just the internals.
 - [ArchLens](./cli.md) - scanners, flags, outputs, [declare then scan](./cli.md#declare-then-scan), [meaningful IaC externals](./cli.md#meaningful-external-dependencies)
 - [TraceLens](./tracelens.md) - metrics, coupling overlay, lookback
 - [ChaosLens](./chaoslens.md) - fault injection, blast radius, SLA telemetry
-- [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, YAML studio export, narration (planned)
+- [AdviceLens](./advicelens.md) - ranked recommendations, estate CLI sweep, YAML studio export, narration stub (Phase 5)
 - [BlueprintSpec](./schema.md) - public contract URLs, entity references, [declared system context](./schema.md#declared-system-context) (incl. infra spokes)
 - [ChaosSpec](./chaos-spec.md) - public contract URLs, diagram-bound failure scenarios, live latest schema
 - [Interface tour & journeys](../journeys.md) - day-one flow across products (links to per-product demos)

@@ -150,7 +150,7 @@ After extraction, nodes/edges are classified from imports, constructors, and pat
 
 After writers finish, an **externals pass** enriches component and container YAML with proxy nodes for unresolved cross-diagram dependency endpoints, and synthesizes missing **dependency edges** from component-level evidence when a container diagram shows service nodes (for example API → external Auth). That is how, for example, canvas → core package usage surfaces as external nodes on the canvas component diagram, and cross-container calls appear on container-level storefront diagrams for ChaosLens.
 
-For **C# / .NET**, the analyzer also resolves `.csproj` `<ProjectReference>` edges and cross-namespace `using` dependencies. See the [project roadmap](../../README.md#c-and-net-analysis) for planned Aspire, integration-event, and HTTP/gRPC client detection.
+For **C# / .NET**, the analyzer also resolves `.csproj` `<ProjectReference>` edges and cross-namespace `using` dependencies. See [C# and .NET analysis](../../README.md#c-and-net-analysis) for current coverage and roadmap items (Aspire, integration events, HTTP/gRPC clients).
 
 ---
 
@@ -179,7 +179,7 @@ src/
   cli/                 # entry, argv, interactive prompts
   analysis/
     domain/            # analyzer, extraction, discovery, testPath
-      languages/       # csharp | python | typescript strategies
+      languages/       # csharp | python | typescript | go | java strategies
     adapters/
       parsing/         # ts-morph, tree-sitter, wasm paths
       pathFilter/      # gitignore + structural ignores
