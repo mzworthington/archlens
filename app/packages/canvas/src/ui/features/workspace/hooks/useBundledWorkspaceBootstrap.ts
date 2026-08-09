@@ -6,24 +6,41 @@ import {
   isFolderWorkspacePreferred,
   releaseDemoBootstrapClaim,
 } from '../../../../application/store/workspaceOpenSession';
+import { isWorkspacePath } from '../../../../application/navigation/workspaceUrl';
 
 function entityRefFromWorkspaceUrl(pathAfterWorkspace: string | undefined): string | undefined {
-  const trimmed = pathAfterWorkspace?.replace(/\/$/, '');
+  const trimmed = pathAfterWorkspace?.replace(/^\/+/, '').replace(/\/$/, '');
   return trimmed || undefined;
 }
 
 /**
- * When a deployed user follows `/workspace/<entityRef>` with no workspace open yet,
- * load the bundled demo so deep links resolve. Never re-forces demo after the user
- * has opened a local folder this session (including while a prior demo load is in flight).
+ * Workspace bootstrap:
+ * - Bare `/workspace` → show the startup chooser (do not auto-open demo).
+ * - Deep link `/workspace/<entityRef>` → open sandbox so the entity resolves.
+ * Never re-forces demo after the user opened a folder / browser scan this session.
  */
 export function useBundledWorkspaceBootstrap(): void {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [, params] = useRoute('/workspace/*');
 
   useEffect(() => {
-    const entityRef = entityRefFromWorkspaceUrl(params?.['*']);
-    if (!entityRef) return;
+    const pathOnly = location.split('?')[0] ?? location;
+    if (!isWorkspacePath(pathOnly)) return;
+
+    const entityRef =
+      entityRefFromWorkspaceUrl(params?.['*']) ??
+      // Bare `/workspace` is a separate route; useRoute('/workspace/*') may not match.
+      (pathOnly === '/workspace' || pathOnly === '/workspace/'
+        ? undefined
+        : pathOnly.replace(/^\/workspace\/?/, '') || undefined);
+
+    if (!entityRef) {
+      const { isWorkspaceOpen, setIsStartupOpen } = useBlueprintStore.getState();
+      if (!isWorkspaceOpen) {
+        setIsStartupOpen(true);
+      }
+      return;
+    }
 
     const { isWorkspaceOpen, openBundledSample, setIsStartupOpen } = useBlueprintStore.getState();
     if (isWorkspaceOpen) return;
@@ -44,9 +61,10 @@ export function useBundledWorkspaceBootstrap(): void {
       }
       if (opened) {
         setIsStartupOpen(false);
+        // Deep link stays on the requested entity; URL sync loads the diagram.
       } else {
         releaseDemoBootstrapClaim();
       }
     })();
-  }, [location, params]);
+  }, [location, params, setLocation]);
 }

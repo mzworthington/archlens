@@ -6,13 +6,23 @@ const badgeClass = 'backdrop-blur-md shadow-lg shadow-black/30';
 
 /** Diagram level and validation badges for the canvas top-left chrome. */
 export const WorkspaceStatusBadges: React.FC = () => {
-  const { schema, validationResult, schemaVersionWarning } = useBlueprintStore();
+  const { schema, validationResult, schemaVersionWarning, isBrowserLiteWorkspace } =
+    useBlueprintStore();
 
   return (
     <div
       className="flex flex-wrap items-center gap-2 max-w-[min(100%,20rem)] pointer-events-none"
       data-testid="workspace-status-badges"
     >
+      {isBrowserLiteWorkspace ? (
+        <span
+          className={`px-2 py-0.5 rounded bg-amber-950/90 border border-amber-500/40 text-amber-300 text-[10px] font-semibold uppercase tracking-wider font-mono ${badgeClass}`}
+          title="Structure-only browser scan — run the ArchLens CLI for TraceLens git forensics"
+          data-testid="browser-lite-workspace-badge"
+        >
+          Lite scan
+        </span>
+      ) : null}
       <span
         className={`px-2 py-0.5 rounded bg-blue-950/90 border border-blue-900/40 text-blue-400 text-[10px] font-semibold uppercase tracking-wider font-mono ${badgeClass}`}
       >

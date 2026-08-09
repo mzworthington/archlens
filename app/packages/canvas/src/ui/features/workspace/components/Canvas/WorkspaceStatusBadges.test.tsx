@@ -16,6 +16,7 @@ describe('WorkspaceStatusBadges', () => {
     useBlueprintStore.setState({
       validationResult: { isValid: true, issues: [] },
       schemaVersionWarning: null,
+      isBrowserLiteWorkspace: false,
     });
   });
 
@@ -27,6 +28,13 @@ describe('WorkspaceStatusBadges', () => {
 
     render(<WorkspaceStatusBadges />);
     expect(screen.getByText('component')).toBeInTheDocument();
+  });
+
+  it('displays a lite-scan badge when the workspace came from a browser scan', () => {
+    useBlueprintStore.setState({ isBrowserLiteWorkspace: true });
+
+    render(<WorkspaceStatusBadges />);
+    expect(screen.getByTestId('browser-lite-workspace-badge')).toHaveTextContent(/Lite scan/i);
   });
 
   it('displays valid status badge when validation is successful', () => {

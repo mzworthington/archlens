@@ -21,6 +21,14 @@ export default defineConfig({
       'packages/cli/vitest.config.ts',
       {
         test: {
+          name: 'analysis',
+          root: './packages/analysis',
+          include: ['src/**/*.test.ts'],
+          environment: 'node',
+        },
+      },
+      {
+        test: {
           name: 'core',
           root: './packages/core',
           include: ['src/**/*.test.ts'],

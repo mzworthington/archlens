@@ -1,10 +1,3 @@
-import React, { useCallback } from 'react';
-import { useLocation } from 'wouter';
-import { useBlueprintStore } from '../../../../application/store/store';
-import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
-import { SAMPLES_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
-import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
-import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
 import { DiffMenu } from '../components/DiffMenu/DiffMenu';
 import { ImportMermaidDialog } from '../components/ImportMermaidDialog/ImportMermaidDialog';
 import { ChaosSpecDialog } from '../components/ChaosSpecDialog/ChaosSpecDialog';
@@ -15,6 +8,13 @@ import { CompareDialog } from '../components/CompareDialog/CompareDialog';
 import { KeyboardShortcutsDialog } from '../components/KeyboardShortcutsDialog/KeyboardShortcutsDialog';
 import { ChildLevelExternalsDialog } from '../components/ChildLevelExternalsDialog/ChildLevelExternalsDialog';
 import { WorkspaceSourceCodeDialog } from '../components/SourceCodeDialog/WorkspaceSourceCodeDialog';
+import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
+import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
+import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
+import { useBlueprintStore } from '../../../../application/store/store';
+import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
+import React, { useCallback } from 'react';
+import { useLocation } from 'wouter';
 
 export function useWorkspaceDialogs(): React.ReactNode {
   const [, setLocation] = useLocation();
@@ -41,6 +41,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
     isLoading,
     openWorkspaceDirectory,
     openBundledSample,
+    openBrowserLiteScan,
   } = useBlueprintStore();
 
   const handleOpenSample = useCallback(async () => {
@@ -48,8 +49,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
     if (!opened) return;
 
     setIsStartupOpen(false);
-    // Entry diagram is golden-journey/context.yaml — land on the parent context URL.
-    setLocation(buildWorkspaceEntityHref(SAMPLES_ENTITY_REF), { replace: true });
+    // Insight path: ChaosLens on the golden journey estate.
+    setLocation(buildChaosLensUrl(GOLDEN_JOURNEY_ENTITY_REF), { replace: true });
   }, [openBundledSample, setIsStartupOpen, setLocation]);
 
   const handleOpenDirectory = useCallback(async () => {
@@ -62,6 +63,17 @@ export function useWorkspaceDialogs(): React.ReactNode {
       console.error('Failed to open workspace directory:', err);
     }
   }, [openWorkspaceDirectory, setIsStartupOpen, setLocation]);
+
+  const handleBrowserLiteScan = useCallback(async () => {
+    try {
+      const opened = await openBrowserLiteScan();
+      if (!opened) return;
+      setIsStartupOpen(false);
+      navigateToActiveWorkspaceEntity(setLocation);
+    } catch (err) {
+      console.error('Failed to run browser lite scan:', err);
+    }
+  }, [openBrowserLiteScan, setIsStartupOpen, setLocation]);
 
   return (
     <>
@@ -93,6 +105,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
           isOpen={isStartupOpen}
           onOpenSample={() => void handleOpenSample()}
           onOpenDirectory={() => void handleOpenDirectory()}
+          onBrowserLiteScan={() => void handleBrowserLiteScan()}
           loadingMessage={
             typeof isLoading === 'string' ? isLoading : isLoading ? 'Loading...' : null
           }

@@ -1,4 +1,4 @@
-import { throwIfAborted } from '../../analysis/domain/cancellation.ts';
+import { throwIfAborted } from '@archlens/analysis/cancellation';
 import {
   aggregateFileHistory,
   buildImportCoupling,

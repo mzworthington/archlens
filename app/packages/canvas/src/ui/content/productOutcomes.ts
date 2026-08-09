@@ -24,7 +24,7 @@ export const WHY_IT_MATTERS = [
 
 export const WORKSPACE_STARTUP = {
   title: 'See what breaks before your customers do',
-  lede: 'Load the demo estate to simulate failures and ranked advice in minutes — or open blueprints from your own repo.',
+  lede: 'Start with the demo to simulate a failure and get ranked advice. Browser scan is a lite structural preview — run the ArchLens CLI for TraceLens git forensics and CI publish.',
 } as const;
 
 export const TRACE_LENS_HERO = {

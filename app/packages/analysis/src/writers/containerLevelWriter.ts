@@ -1,0 +1,44 @@
+import { BaseWriter } from './baseWriter.ts';
+import type { SystemNode, SystemDependency, SystemSchema, SourceProvenance } from '@archlens/core';
+import { parseSchemaFromYaml } from '@archlens/core';
+import { seedPreservedPositions } from '@archlens/core/layout';
+import { resolveSystemEntityRef } from '../domain/entityRefContext.ts';
+
+export class ContainerLevelWriter extends BaseWriter {
+  async write(
+    blueprintsDir: string,
+    contextName: string,
+    systemId: string,
+    containerNodesMap: Map<string, SystemNode>,
+    containerDependencies: SystemDependency[],
+    source?: SourceProvenance
+  ): Promise<void> {
+    const systemRef = resolveSystemEntityRef(contextName, systemId);
+    const targetPath = this.fileSystem.getAbsolutePath(blueprintsDir, 'containers.yaml');
+    const nextNodes = Array.from(containerNodesMap.values());
+    const nodes = await this.seedFromDisk(targetPath, nextNodes);
+
+    const containerSchema: SystemSchema = {
+      entityRef: systemRef,
+      name: `${systemId.charAt(0).toUpperCase() + systemId.slice(1)} Containers`,
+      version: '1.0.0',
+      level: 'container',
+      nodes,
+      dependencies: containerDependencies,
+      ...(source ? { source } : {}),
+    };
+
+    await this.writeYaml(targetPath, containerSchema);
+    this.logger.info(`📄 Saved Container schema for [${systemRef}]: ${targetPath}`);
+  }
+
+  private async seedFromDisk(targetPath: string, nextNodes: SystemNode[]): Promise<SystemNode[]> {
+    if (!this.fileSystem.exists(targetPath)) return nextNodes;
+    try {
+      const existing = parseSchemaFromYaml(await this.fileSystem.readSchema(targetPath));
+      return seedPreservedPositions(existing.nodes ?? [], nextNodes);
+    } catch {
+      return nextNodes;
+    }
+  }
+}

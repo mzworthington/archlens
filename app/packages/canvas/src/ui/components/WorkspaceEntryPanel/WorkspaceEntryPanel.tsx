@@ -1,15 +1,32 @@
 import React from 'react';
-import { FolderOpen, Map, Terminal, Copy, Check, ArrowRight, Loader2 } from 'lucide-react';
+import {
+  FolderOpen,
+  Map,
+  Terminal,
+  Copy,
+  Check,
+  ArrowRight,
+  Loader2,
+  ScanSearch,
+  AlertTriangle,
+} from 'lucide-react';
 import { Link } from 'wouter';
 import {
   CLI_GETTING_STARTED_PATH,
   CLI_INSTALL_COMMAND,
   CLI_SCAN_COMMAND,
 } from '../../../constants/cli';
+import { isBrowserDirectoryPickerSupported } from '../../../infrastructure/analysis/browserSourceWalker';
 import { WORKSPACE_STARTUP } from '../../content/productOutcomes';
 
 const optionClass =
   'w-full flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
+
+const primaryOptionClass =
+  'w-full flex items-start gap-3 rounded-xl border border-[#00f0ff]/35 bg-[#061125]/80 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/55 hover:bg-[#07162c] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
+
+const unsupportedOptionClass =
+  'w-full flex items-start gap-3 rounded-xl border border-amber-500/35 bg-amber-950/25 px-4 py-3.5 text-left transition hover:border-amber-500/50 hover:bg-amber-950/35 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40 disabled:opacity-50 disabled:pointer-events-none';
 
 type CopyableCommandProps = {
   command: string;
@@ -45,6 +62,8 @@ const CopyableCommand: React.FC<CopyableCommandProps> = ({ command, testId, copi
 export type WorkspaceEntryPanelProps = {
   onOpenSample: () => void;
   onOpenDirectory: () => void;
+  /** Structural browser scan — pick a source folder, no CLI install. */
+  onBrowserLiteScan?: () => void;
   disabled?: boolean;
   /** Shown while sandbox/workspace open is in progress (disables actions). */
   loadingMessage?: string | false | null;
@@ -58,10 +77,14 @@ export type WorkspaceEntryPanelProps = {
   titleId?: string;
 };
 
-/** Shared workspace entry — open the bundled demo blueprints or a local blueprint folder. */
+const BROWSER_LITE_UNSUPPORTED_MESSAGE =
+  'Folder picking is not available in this browser (Firefox and Safari). Use Chrome or Edge, or install the ArchLens CLI below for a full scan.';
+
+/** Shared workspace entry — demo insight first, then browser scan / folder / CLI. */
 export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
+  onBrowserLiteScan,
   disabled = false,
   loadingMessage = null,
   showCliPanel = false,
@@ -74,6 +97,10 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   titleId,
 }) => {
   const [copiedKey, setCopiedKey] = React.useState<'install' | 'scan' | null>(null);
+  // CLI path is the graduate path — keep it expanded so lite vs full is obvious.
+  const [cliExpanded, setCliExpanded] = React.useState(showCliPanel);
+  const [liteScanFeedback, setLiteScanFeedback] = React.useState<string | null>(null);
+  const directoryPickerSupported = isBrowserDirectoryPickerSupported();
   const statusMessage =
     typeof loadingMessage === 'string' && loadingMessage.trim() ? loadingMessage : null;
   const actionsDisabled = disabled || Boolean(statusMessage);
@@ -86,6 +113,14 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
     } catch {
       // Clipboard may be unavailable in some contexts
     }
+  };
+
+  const handleBrowserLiteScan = () => {
+    if (!directoryPickerSupported) {
+      setLiteScanFeedback(BROWSER_LITE_UNSUPPORTED_MESSAGE);
+      setCliExpanded(true);
+    }
+    onBrowserLiteScan?.();
   };
 
   return (
@@ -113,25 +148,90 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
         </div>
       ) : null}
 
-      <div className={layout === 'grid' ? 'mt-4 grid gap-2 sm:grid-cols-2' : 'mt-4'}>
+      <div className={layout === 'grid' ? 'mt-4 grid gap-2 sm:grid-cols-2' : 'mt-4 space-y-2'}>
         <button
           type="button"
           data-testid="workspace-open-sample"
           onClick={onOpenSample}
           disabled={actionsDisabled}
-          className={optionClass}
+          className={primaryOptionClass}
         >
           <Map className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
           <span>
-            <span className="block text-sm font-semibold text-slate-100">Open demo blueprints</span>
-            <span className="block text-xs text-slate-500 mt-0.5">
-              All peer context diagrams (Blueprint, Backstage, Samples, stress fixtures)
+            <span className="block text-sm font-semibold text-slate-100">
+              Try the demo — simulate a failure
+            </span>
+            <span className="block text-xs text-slate-400 mt-0.5">
+              Opens the golden journey with ChaosLens so you see blast radius and ranked advice
+              first
             </span>
           </span>
         </button>
-      </div>
 
-      <div className={layout === 'grid' ? 'mt-4' : 'mt-3'}>
+        {onBrowserLiteScan ? (
+          <button
+            type="button"
+            data-testid="workspace-browser-lite-scan"
+            onClick={handleBrowserLiteScan}
+            disabled={actionsDisabled}
+            className={directoryPickerSupported ? optionClass : unsupportedOptionClass}
+            aria-describedby={
+              !directoryPickerSupported ? 'workspace-browser-lite-unsupported' : undefined
+            }
+          >
+            <ScanSearch
+              className={`w-5 h-5 shrink-0 mt-0.5 ${directoryPickerSupported ? 'text-[#00f0ff]' : 'text-amber-400'}`}
+            />
+            <span className="min-w-0 flex-1">
+              <span className="flex flex-wrap items-center gap-2">
+                <span className="text-sm font-semibold text-slate-100">Browser lite scan</span>
+                <span
+                  className="inline-flex items-center rounded border border-amber-500/40 bg-amber-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-amber-300"
+                  data-testid="workspace-browser-lite-badge"
+                >
+                  Lite
+                </span>
+                {!directoryPickerSupported ? (
+                  <span
+                    className="inline-flex items-center rounded border border-amber-500/40 bg-amber-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-amber-200"
+                    data-testid="workspace-browser-lite-unavailable-badge"
+                  >
+                    Unavailable here
+                  </span>
+                ) : null}
+              </span>
+              <span className="block text-xs text-slate-400 mt-0.5">
+                {directoryPickerSupported
+                  ? 'Instant structural map of a folder — no git TraceLens, no CI publish. For in-depth forensics, use the CLI below.'
+                  : 'Needs Chrome or Edge (folder picker API). On Firefox/Safari, install the ArchLens CLI below instead.'}
+              </span>
+            </span>
+          </button>
+        ) : null}
+
+        {!directoryPickerSupported && onBrowserLiteScan ? (
+          <div
+            id="workspace-browser-lite-unsupported"
+            className="flex items-start gap-2 rounded-xl border border-amber-500/30 bg-amber-950/40 px-3 py-2.5 text-xs text-amber-100/95"
+            role="status"
+            data-testid="workspace-browser-lite-unsupported"
+          >
+            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden />
+            <p className="leading-relaxed">{BROWSER_LITE_UNSUPPORTED_MESSAGE}</p>
+          </div>
+        ) : null}
+
+        {liteScanFeedback ? (
+          <div
+            className="flex items-start gap-2 rounded-xl border border-amber-500/40 bg-amber-950/50 px-3 py-2.5 text-xs text-amber-100"
+            role="alert"
+            data-testid="workspace-browser-lite-feedback"
+          >
+            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden />
+            <p className="leading-relaxed">{liteScanFeedback}</p>
+          </div>
+        ) : null}
+
         <button
           type="button"
           data-testid="workspace-open-directory"
@@ -142,10 +242,10 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           <FolderOpen className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />
           <span>
             <span className="block text-sm font-semibold text-slate-100">
-              Open workspace from directory
+              Open existing blueprints folder
             </span>
             <span className="block text-xs text-slate-500 mt-0.5">
-              Pick a local folder of YAML blueprints
+              Pick a local folder of YAML blueprints (e.g. after a CLI scan)
             </span>
           </span>
         </button>
@@ -153,18 +253,39 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
 
       {showCliPanel ? (
         <div
-          className="mt-4 rounded-xl border border-slate-800 bg-slate-950/50 p-4"
+          className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-4"
           data-testid="workspace-cli-panel"
         >
-          <div className="flex items-start gap-3">
+          <button
+            type="button"
+            className="w-full flex items-start gap-3 text-left cursor-pointer"
+            onClick={() => setCliExpanded(v => !v)}
+            aria-expanded={cliExpanded}
+            data-testid="workspace-cli-panel-toggle"
+          >
             <Terminal className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-            <div className="min-w-0 flex-1 space-y-3">
-              <div>
-                <p className="text-sm font-semibold text-slate-100">Generate from your codebase</p>
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                  Install ArchLens, scan your repo, then open the output folder above.
-                </p>
-              </div>
+            <span className="min-w-0 flex-1">
+              <span className="flex flex-wrap items-center gap-2">
+                <span className="text-sm font-semibold text-slate-100">
+                  Full analysis — ArchLens CLI
+                </span>
+                <span className="inline-flex items-center rounded border border-emerald-500/40 bg-emerald-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-emerald-300">
+                  Recommended
+                </span>
+              </span>
+              <span className="block text-xs text-slate-400 mt-1 leading-relaxed">
+                Run locally for TraceLens git hotspots, watch mode, and CI catalog publish — depth
+                the browser lite scan cannot provide.
+              </span>
+            </span>
+            <ArrowRight
+              className={`w-4 h-4 text-slate-500 shrink-0 mt-1 transition ${cliExpanded ? 'rotate-90' : ''}`}
+              aria-hidden
+            />
+          </button>
+
+          {cliExpanded ? (
+            <div className="mt-3 ml-8 space-y-3" data-testid="workspace-cli-panel-body">
               <div className="space-y-1.5">
                 <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500">
                   1. Install
@@ -196,7 +317,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                 <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
-          </div>
+          ) : null}
         </div>
       ) : null}
     </section>

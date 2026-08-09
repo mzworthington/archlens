@@ -1,7 +1,7 @@
 import { execFile } from 'child_process';
 import path from 'path';
 import { promisify } from 'util';
-import { throwIfAborted } from '../../analysis/domain/cancellation.ts';
+import { throwIfAborted } from '@archlens/analysis/cancellation';
 import type { ForensicsOptions } from '../domain/options.ts';
 import type { GitHistoryPort } from '../domain/ports.ts';
 import type { GitCommit } from '../domain/types.ts';

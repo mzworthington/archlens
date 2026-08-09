@@ -1,5 +1,5 @@
 import pc from 'picocolors';
-import { DEFAULT_SCAN_GLOB } from '../analysis/domain/analysisOptions.ts';
+import { DEFAULT_SCAN_GLOB } from '@archlens/analysis/options';
 
 function heading(text: string): void {
   console.log(pc.bold(pc.cyan(`\n${text}`)));

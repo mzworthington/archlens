@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import type { AnalysisFileSystemPort } from '../domain/ports.ts';
+import type { AnalysisFileSystemPort } from '@archlens/analysis/ports';
 
 export class NodeFileSystemAdapter implements AnalysisFileSystemPort {
   async writeSchema(filePath: string, yamlContent: string): Promise<void> {

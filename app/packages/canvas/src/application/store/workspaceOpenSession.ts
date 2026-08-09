@@ -26,6 +26,14 @@ export function markFolderWorkspacePreferred(): void {
   demoBootstrapClaimed = true;
 }
 
+/**
+ * Clear a folder preference that never produced an open workspace
+ * (e.g. browser scan failed after the folder picker). Allows demo bootstrap again.
+ */
+export function clearFolderWorkspacePreferred(): void {
+  folderWorkspacePreferred = false;
+}
+
 /** User explicitly opened the bundled demo. */
 export function markDemoWorkspacePreferred(): void {
   folderWorkspacePreferred = false;

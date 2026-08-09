@@ -3,11 +3,19 @@ import { describe, it, expect, vi } from 'vitest';
 import { StartupWorkspaceDialog } from './StartupWorkspaceDialog';
 
 describe('StartupWorkspaceDialog', () => {
-  it('renders sample and open-directory choices when open', () => {
-    render(<StartupWorkspaceDialog isOpen onOpenSample={vi.fn()} onOpenDirectory={vi.fn()} />);
+  it('renders demo, browser scan, and open-directory choices when open', () => {
+    render(
+      <StartupWorkspaceDialog
+        isOpen
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={vi.fn()}
+      />
+    );
 
     expect(screen.getByTestId('startup-workspace-dialog')).toBeInTheDocument();
-    expect(screen.getByTestId('workspace-open-sample')).toHaveTextContent(/Open demo blueprints/i);
+    expect(screen.getByTestId('workspace-open-sample')).toHaveTextContent(/Try the demo/i);
+    expect(screen.getByTestId('workspace-browser-lite-scan')).toBeInTheDocument();
     expect(screen.getByTestId('workspace-open-directory')).toBeInTheDocument();
   });
 
@@ -22,19 +30,23 @@ describe('StartupWorkspaceDialog', () => {
   it('invokes handlers from the embedded entry panel', () => {
     const onOpenSample = vi.fn();
     const onOpenDirectory = vi.fn();
+    const onBrowserLiteScan = vi.fn();
 
     render(
       <StartupWorkspaceDialog
         isOpen
         onOpenSample={onOpenSample}
         onOpenDirectory={onOpenDirectory}
+        onBrowserLiteScan={onBrowserLiteScan}
       />
     );
 
     fireEvent.click(screen.getByTestId('workspace-open-sample'));
+    fireEvent.click(screen.getByTestId('workspace-browser-lite-scan'));
     fireEvent.click(screen.getByTestId('workspace-open-directory'));
 
     expect(onOpenSample).toHaveBeenCalledTimes(1);
+    expect(onBrowserLiteScan).toHaveBeenCalledTimes(1);
     expect(onOpenDirectory).toHaveBeenCalledTimes(1);
   });
 
@@ -44,6 +56,7 @@ describe('StartupWorkspaceDialog', () => {
         isOpen
         onOpenSample={vi.fn()}
         onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={vi.fn()}
         loadingMessage="Loading sandbox..."
       />
     );

@@ -31,6 +31,7 @@ export function resetToEmptyWorkspace(
     loadedSystems: [{ path: EMPTY_WORKSPACE_PATH, name: empty.name, schema: empty }],
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
+    isBrowserLiteWorkspace: false,
     workspaceName: '',
     selectedNodeId: null,
     selectedEdgeId: null,

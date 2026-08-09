@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { NodeFileSystemAdapter } from '../analysis/adapters/nodeFileSystem.ts';
 import { ConsoleLogger } from '../analysis/adapters/consoleLogger.ts';
-import { applyExternalDependenciesPass } from '../writers/externalDependenciesPass.ts';
+import { applyExternalDependenciesPass } from '@archlens/analysis/writers';
 import type { ArchlensCliPlan } from './parseArchlensArgv.ts';
 import { executeForensicsEnrichRun } from './enrichForensicsRun.ts';
 
