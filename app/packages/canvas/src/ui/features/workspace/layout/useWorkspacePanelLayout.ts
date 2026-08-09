@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useBlueprintStore } from '../../../../application/store/store';
 import {
-  WORKSPACE_PANEL_WIDTH,
   resolveActivePanelInSlot,
   type LeftSlotPanelId,
   type WorkspacePanelId,
@@ -59,8 +58,4 @@ export function useWorkspacePanelLayout(): WorkspacePanelLayoutState {
     toggleLeftSlot: toggleLeftCollapsed,
     toggleRightSlot: toggleRightCollapsed,
   };
-}
-
-export function leftPanelWidthPx(): string {
-  return WORKSPACE_PANEL_WIDTH.left;
 }

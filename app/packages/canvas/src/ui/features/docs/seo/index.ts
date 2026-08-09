@@ -7,7 +7,6 @@ export {
   buildJsonLdGraph,
   buildSitemapXml,
   listIndexableSeoPaths,
-  listPrerenderNavLinks,
   resolvePageSeo,
   type PageSeo,
 } from './siteSeo';

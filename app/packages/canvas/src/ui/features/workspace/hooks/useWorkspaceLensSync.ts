@@ -1,16 +1,11 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation, useSearch } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { workspaceEntityRefFromPath } from '../../../../application/navigation/workspaceUrl';
-import { buildTraceLensUrl, isTraceLensUrl } from '../../forensics/traceLensUrl';
-import {
-  buildAdviceLensUrl,
-  isAdviceLensUrl,
-  isEstateLensUrl,
-} from '../../forensics/adviceLensUrl';
+import { isTraceLensUrl } from '../../forensics/traceLensUrl';
+import { isAdviceLensUrl, isEstateLensUrl } from '../../forensics/adviceLensUrl';
 import {
   buildChaosLensUrl,
-  clearChaosLensSearchParams,
   isChaosLensUrl,
   parseChaosLensUrl,
   resilienceFaultsEqual,
@@ -97,64 +92,4 @@ export function useWorkspaceLensSync(): void {
     if (currentUrl(location, search) === desired) return;
     setLocation(desired, { replace: true });
   }, [isResilienceMode, resilienceFaults, isChaosSpecPickerOpen, location, search, setLocation]);
-}
-
-export function useTraceLensNavigation() {
-  const [, setLocation] = useLocation();
-  const setTraceLensMode = useBlueprintStore(s => s.setTraceLensMode);
-
-  const enterTraceLens = useCallback(
-    (scopeEntityRef?: string | null, options?: Parameters<typeof buildTraceLensUrl>[1]) => {
-      setTraceLensMode(true);
-      setLocation(buildTraceLensUrl(scopeEntityRef, options));
-    },
-    [setLocation, setTraceLensMode]
-  );
-
-  const enterAdviceLens = useCallback(
-    (scopeEntityRef?: string | null, options?: Parameters<typeof buildAdviceLensUrl>[1]) => {
-      setTraceLensMode(true);
-      setLocation(buildAdviceLensUrl(scopeEntityRef, options));
-    },
-    [setLocation, setTraceLensMode]
-  );
-
-  const exitTraceLens = useCallback(() => {
-    setTraceLensMode(false);
-    const params = new URLSearchParams(window.location.search);
-    params.delete('lens');
-    params.delete('view');
-    params.delete('plan');
-    params.delete('source');
-    params.delete('fault');
-    params.delete('type');
-    params.delete('severity');
-    params.delete('faults');
-    const query = params.toString();
-    setLocation(`${window.location.pathname}${query ? `?${query}` : ''}`, { replace: true });
-  }, [setLocation, setTraceLensMode]);
-
-  return { enterTraceLens, enterAdviceLens, exitTraceLens };
-}
-
-export function useChaosLensNavigation() {
-  const [location, setLocation] = useLocation();
-  const setResilienceMode = useBlueprintStore(s => s.setResilienceMode);
-  const resilienceFaults = useBlueprintStore(s => s.resilienceFaults);
-
-  const enterChaosLens = useCallback(() => {
-    setResilienceMode(true);
-    setLocation(
-      buildChaosLensUrl(workspaceEntityRefFromPath(location), { faults: resilienceFaults }),
-      { replace: true }
-    );
-  }, [location, resilienceFaults, setLocation, setResilienceMode]);
-
-  const exitChaosLens = useCallback(() => {
-    setResilienceMode(false);
-    const cleared = clearChaosLensSearchParams(window.location.search);
-    setLocation(`${window.location.pathname}${cleared ? `?${cleared}` : ''}`, { replace: true });
-  }, [setLocation, setResilienceMode]);
-
-  return { enterChaosLens, exitChaosLens };
 }

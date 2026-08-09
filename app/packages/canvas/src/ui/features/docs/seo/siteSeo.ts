@@ -295,18 +295,3 @@ export function buildJsonLdGraph(pathname: string): Record<string, unknown> {
     '@graph': graph,
   };
 }
-
-/** Product/nav links embedded in prerendered HTML for crawlers. */
-export function listPrerenderNavLinks(): Array<{ href: string; label: string }> {
-  return [
-    { href: '/', label: 'ArchLens home' },
-    { href: '/guide/canvas', label: 'ArchLens Canvas' },
-    { href: '/guide/cli', label: 'ArchLens' },
-    { href: '/guide/tracelens', label: 'TraceLens' },
-    { href: '/guide/chaoslens', label: 'ChaosLens' },
-    { href: '/guide/advicelens', label: 'AdviceLens' },
-    { href: '/guide/schema', label: 'BlueprintSpec' },
-    { href: '/journeys', label: 'Interface tour' },
-    { href: '/guide', label: 'Product guide' },
-  ];
-}

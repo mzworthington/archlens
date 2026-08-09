@@ -23,15 +23,6 @@ export const WORKSPACE_PANEL_WIDTH_CLASS: Record<WorkspacePanelSlot, string> = {
   right: 'sm:w-80',
 };
 
-/** Panels that share a slot — only one may be active at a time. */
-export const MUTUALLY_EXCLUSIVE_SLOTS: Partial<Record<WorkspacePanelSlot, WorkspacePanelId[]>> = {
-  left: ['codeViewer', 'traceLens'],
-};
-
-export function panelSlot(panelId: WorkspacePanelId): WorkspacePanelSlot {
-  return WORKSPACE_PANEL_SLOTS[panelId];
-}
-
 export function panelsInSlot(slot: WorkspacePanelSlot): WorkspacePanelId[] {
   return (Object.entries(WORKSPACE_PANEL_SLOTS) as [WorkspacePanelId, WorkspacePanelSlot][])
     .filter(([, s]) => s === slot)

@@ -5,9 +5,23 @@ import { injectPrerenderedPageHtml } from '../src/ui/features/docs/seo/prerender
 import {
   buildSitemapXml,
   listIndexableSeoPaths,
-  listPrerenderNavLinks,
   resolvePageSeo,
 } from '../src/ui/features/docs/seo/siteSeo.ts';
+
+/** Product/nav links embedded in prerendered HTML for crawlers. */
+function listPrerenderNavLinks(): Array<{ href: string; label: string }> {
+  return [
+    { href: '/', label: 'ArchLens home' },
+    { href: '/guide/canvas', label: 'ArchLens Canvas' },
+    { href: '/guide/cli', label: 'ArchLens' },
+    { href: '/guide/tracelens', label: 'TraceLens' },
+    { href: '/guide/chaoslens', label: 'ChaosLens' },
+    { href: '/guide/advicelens', label: 'AdviceLens' },
+    { href: '/guide/schema', label: 'BlueprintSpec' },
+    { href: '/journeys', label: 'Interface tour' },
+    { href: '/guide', label: 'Product guide' },
+  ];
+}
 
 function outPathForRoute(outDir: string, routePath: string): string {
   if (routePath === '/') return path.join(outDir, 'index.html');
