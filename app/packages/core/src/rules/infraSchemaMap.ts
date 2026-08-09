@@ -15,7 +15,7 @@ export interface InfraImportOptions {
 }
 
 /** Slugify an IaC address into entityRef path segments. */
-export function addressToEntityRefSlug(address: string): string {
+function addressToEntityRefSlug(address: string): string {
   return (
     address
       .toLowerCase()
@@ -24,7 +24,7 @@ export function addressToEntityRefSlug(address: string): string {
   );
 }
 
-export function mintEntityRef(address: string, parentEntityRef?: string): string {
+function mintEntityRef(address: string, parentEntityRef?: string): string {
   const slug = addressToEntityRefSlug(address);
   if (!parentEntityRef) return slug;
   return `${parentEntityRef}/${slug}`;

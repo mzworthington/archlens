@@ -2,7 +2,7 @@ import { collectDependencyNeighborhood } from './filterSelectedDependencyFocus';
 import { dependencyArrowMarker, getClosestHandles } from '../store/layoutUtils';
 import type { BlueprintRFEdge, BlueprintRFNode } from '../store/layoutUtils';
 
-export const HIDDEN_EXTERNAL_GHOST_PREFIX = 'external-ghost-';
+const HIDDEN_EXTERNAL_GHOST_PREFIX = 'external-ghost-';
 
 const GHOST_LAYOUT_RADIUS = 280;
 

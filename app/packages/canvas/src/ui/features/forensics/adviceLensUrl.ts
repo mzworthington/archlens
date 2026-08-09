@@ -27,7 +27,7 @@ export function isAdviceLensUrl(pathname: string, search = ''): boolean {
   return params.get('lens') === 'advicelens';
 }
 
-export function buildAdviceLensPath(scopeEntityRef?: string | null): string {
+function buildAdviceLensPath(scopeEntityRef?: string | null): string {
   return buildWorkspacePath(scopeEntityRef);
 }
 

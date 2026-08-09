@@ -1,11 +1,6 @@
 import { parse as parseHcl } from '@cruglobal/js-hcl2';
 import type { SystemSchema } from '../models/schema';
-import {
-  addressToEntityRefSlug,
-  infraIrToSchema,
-  mintEntityRef,
-  type InfraImportOptions,
-} from './infraSchemaMap';
+import { infraIrToSchema, type InfraImportOptions } from './infraSchemaMap';
 import {
   normalizeIacSourceFilePath,
   type InfraEdge,
@@ -62,8 +57,6 @@ function parseDocument(source: string, format: TerraformFormat): Record<string, 
   return parseHcl(source) as Record<string, unknown>;
 }
 
-export { addressToEntityRefSlug, mintEntityRef };
-
 function collectExpressionSources(value: unknown, out: string[]): void {
   if (isExpression(value)) {
     if (typeof value.source === 'string' && value.source.length > 0) {
@@ -86,7 +79,7 @@ const META_ROOTS = new Set(['var', 'local', 'path', 'terraform', 'each', 'count'
  * Extract Terraform addresses referenced in an expression source string.
  * Handles TYPE.NAME[.attr], data.TYPE.NAME[.attr], module.NAME[.attr].
  */
-export function extractAddressesFromExpression(source: string): string[] {
+function extractAddressesFromExpression(source: string): string[] {
   const addresses = new Set<string>();
   const re =
     /\b(?:data\.([A-Za-z0-9_]+)\.([A-Za-z0-9_]+)|module\.([A-Za-z0-9_]+)|([A-Za-z][A-Za-z0-9_]*)\.([A-Za-z0-9_]+))(?:\.[A-Za-z0-9_]+)*\b/g;
@@ -242,9 +235,7 @@ function buildEdges(nodes: InfraNode[], warnings: string[]): InfraEdge[] {
   return edges;
 }
 
-export function documentToInfraIR(
-  docs: Array<{ label: string; doc: Record<string, unknown> }>
-): InfraIR {
+function documentToInfraIR(docs: Array<{ label: string; doc: Record<string, unknown> }>): InfraIR {
   const nodes: InfraNode[] = [];
   const seen = new Map<string, string>();
   const warnings: string[] = [];

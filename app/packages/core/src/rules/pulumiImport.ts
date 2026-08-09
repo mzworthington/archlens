@@ -14,9 +14,3 @@ export {
   parsePulumiToSchema,
   parsePulumiBatchToSchema,
 } from './pulumiGraphEmit';
-
-export {
-  pulumiTypeToProviderType,
-  pythonQualifiedToPulumiType,
-  tsQualifiedNameToPulumiType,
-} from './pulumiResourceMap';

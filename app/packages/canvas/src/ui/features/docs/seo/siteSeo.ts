@@ -1,7 +1,7 @@
 import { PRODUCT_HERO } from '../../../content/productOutcomes';
 
 export const SITE_ORIGIN = 'https://archlens.dev';
-export const SITE_NAME = 'ArchLens';
+const SITE_NAME = 'ArchLens';
 export const SITE_SOCIAL_IMAGE = `${SITE_ORIGIN}/assets/social-share.png`;
 
 export type PageSeo = {

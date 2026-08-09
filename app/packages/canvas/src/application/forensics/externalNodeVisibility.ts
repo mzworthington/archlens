@@ -17,7 +17,7 @@ function isInternalCanvasNode(nodes: BlueprintRFNode[], nodeId: string): boolean
 /**
  * Classify an external node using live canvas edges (matches dependency-focus direction).
  */
-export function classifyExternalNodeFromCanvas(
+function classifyExternalNodeFromCanvas(
   entityRef: string,
   nodes: BlueprintRFNode[],
   edges: BlueprintRFEdge[]

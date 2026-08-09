@@ -19,7 +19,7 @@ import { collectDependencyNeighborhoodWithExternals } from './filterSelectedDepe
 import type { BlueprintRFEdge, BlueprintRFNode } from '../store/layoutUtils';
 import { dependencyArrowMarker, getClosestHandles } from '../store/layoutUtils';
 
-export const EXTERNAL_SUMMARY_HUB_EDGE_PREFIX = 'external-summary-';
+const EXTERNAL_SUMMARY_HUB_EDGE_PREFIX = 'external-summary-';
 
 /** C4 context diagrams always show actors and external dependencies individually. */
 export function isContextLevelDiagram(level: C4Level | undefined): boolean {

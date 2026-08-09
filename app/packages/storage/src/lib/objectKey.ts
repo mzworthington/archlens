@@ -1,12 +1,12 @@
 /** Strip leading `/` without regex (avoids CodeQL js/polynomial-redos). */
-export function stripLeadingSlashes(value: string): string {
+function stripLeadingSlashes(value: string): string {
   let start = 0;
   while (start < value.length && value.charCodeAt(start) === 47 /* / */) start++;
   return value.slice(start);
 }
 
 /** Strip leading and trailing `/` without regex (avoids CodeQL js/polynomial-redos). */
-export function stripSurroundingSlashes(value: string): string {
+function stripSurroundingSlashes(value: string): string {
   let start = 0;
   let end = value.length;
   while (start < end && value.charCodeAt(start) === 47 /* / */) start++;

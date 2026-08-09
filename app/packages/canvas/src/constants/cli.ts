@@ -1,6 +1,3 @@
-/** Latest GitHub release - manual install fallback. */
-export const CLI_RELEASES_URL = 'https://github.com/mzworthington/archlens/releases/latest';
-
 /** In-app install walkthrough (install script, verify, scan). */
 export const CLI_GETTING_STARTED_PATH = '/guide/getting-started';
 

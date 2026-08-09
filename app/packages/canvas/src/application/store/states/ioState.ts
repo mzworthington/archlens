@@ -43,7 +43,7 @@ import { runBrowserAnalysisWorker } from '../../../infrastructure/analysis/runBr
 import { isCancellationError } from '@archlens/analysis/cancellation';
 import { CLI_GETTING_STARTED_PATH } from '../../../constants/cli';
 
-export const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
+const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
 export interface IoState {
   fileSystemPort: FileSystemPort;

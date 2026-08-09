@@ -1,5 +1,4 @@
 import {
-  DEFAULT_WATCH_DEBOUNCE_MS,
   defaultEstateKeyPrefix,
   flagValue,
   parseCsv,
@@ -34,7 +33,7 @@ import {
 } from './subcommandArgv.ts';
 
 export type { OutputFormat, ResilienceOutputFormat };
-export { DEFAULT_WATCH_DEBOUNCE_MS, defaultEstateKeyPrefix, resolvePublishSkipValidation };
+export { defaultEstateKeyPrefix };
 
 export type {
   CatalogAcceptOverlayCliPlan,
@@ -43,13 +42,7 @@ export type {
   CatalogPublishFragmentCliPlan,
   CatalogRejectOverlayCliPlan,
 };
-export {
-  parseCatalogAcceptOverlayArgv,
-  parseCatalogComposeArgv,
-  parseCatalogPruneArgv,
-  parseCatalogPublishFragmentArgv,
-  parseCatalogRejectOverlayArgv,
-};
+export { parseCatalogComposeArgv, parseCatalogPruneArgv, parseCatalogPublishFragmentArgv };
 
 export type { DiffCliPlan, PublishCliPlan, ResilienceCliPlan, ValidateCliPlan };
 export { parseDiffArgv, parsePublishArgv, parseResilienceArgv, parseValidateArgv };
@@ -120,23 +113,23 @@ export function isUpdateSubcommand(argv: string[]): boolean {
   return argv[0] === 'update';
 }
 
-export function isValidateSubcommand(argv: string[]): boolean {
+function isValidateSubcommand(argv: string[]): boolean {
   return argv[0] === 'validate';
 }
 
-export function isDiffSubcommand(argv: string[]): boolean {
+function isDiffSubcommand(argv: string[]): boolean {
   return argv[0] === 'diff';
 }
 
-export function isResilienceSubcommand(argv: string[]): boolean {
+function isResilienceSubcommand(argv: string[]): boolean {
   return argv[0] === 'resilience';
 }
 
-export function isPublishSubcommand(argv: string[]): boolean {
+function isPublishSubcommand(argv: string[]): boolean {
   return argv[0] === 'publish';
 }
 
-export function isCatalogSubcommand(argv: string[]): boolean {
+function isCatalogSubcommand(argv: string[]): boolean {
   return argv[0] === 'catalog';
 }
 
@@ -182,7 +175,7 @@ export function skipUpdateCheck(argv: string[]): boolean {
 }
 
 /** True when the user invoked the non-interactive `scan` subcommand or `--scan` flag. */
-export function isScanArgv(argv: string[]): boolean {
+function isScanArgv(argv: string[]): boolean {
   return argv[0] === 'scan' || argv.includes('--scan');
 }
 
@@ -192,7 +185,7 @@ function stripScanTokens(argv: string[]): string[] {
 }
 
 /** True when only enriching existing blueprint YAML (externals pass, no source scan). */
-export function isEnrichArgv(argv: string[]): boolean {
+function isEnrichArgv(argv: string[]): boolean {
   return argv[0] === 'enrich' || argv.includes('--enrich-only');
 }
 

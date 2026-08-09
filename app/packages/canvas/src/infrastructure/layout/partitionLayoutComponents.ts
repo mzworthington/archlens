@@ -50,7 +50,7 @@ export function partitionLayoutComponents(
     .sort((a, b) => [...a.nodeIds].sort()[0]!.localeCompare([...b.nodeIds].sort()[0]!));
 }
 
-export function layoutBounds(
+function layoutBounds(
   positions: Map<string, LayoutPosition>,
   nodes: LayoutNodeInput[]
 ): {
@@ -87,8 +87,8 @@ export function layoutBounds(
 }
 
 /** Lay out large graphs component-by-component so the UI can breathe between chunks. */
-export const LAYOUT_CHUNK_NODE_THRESHOLD = 80;
-export const LAYOUT_COMPONENT_GAP = 120;
+const LAYOUT_CHUNK_NODE_THRESHOLD = 80;
+const LAYOUT_COMPONENT_GAP = 120;
 
 export async function layoutInChunks(
   nodes: LayoutNodeInput[],

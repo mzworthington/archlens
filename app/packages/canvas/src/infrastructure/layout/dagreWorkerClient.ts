@@ -39,13 +39,6 @@ function ensureWorker(): Worker | undefined {
   return worker;
 }
 
-export function resetDagreWorkerForTests(): void {
-  worker?.terminate();
-  worker = undefined;
-  pending.clear();
-  nextRequestId = 0;
-}
-
 function runOnWorker(
   activeWorker: Worker,
   nodes: LayoutNodeInput[],

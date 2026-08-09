@@ -5,15 +5,9 @@ import {
   type OwnershipBreakdown,
 } from '@archlens/core/forensics';
 import { evaluateForensicsConcern, type ConcernLevel, type ForensicsConcern } from './concern';
-import {
-  buildForensicsMetricRows,
-  FORENSICS_METRIC_HELP,
-  type ForensicsMetricRow,
-} from './forensicsMetricRows';
+import { buildForensicsMetricRows, type ForensicsMetricRow } from './forensicsMetricRows';
 
 export type { ForensicsMetricRow };
-export { FORENSICS_METRIC_HELP };
-
 export type ForensicsPanelModel = {
   concern: ForensicsConcern;
   badgeLabel: string;

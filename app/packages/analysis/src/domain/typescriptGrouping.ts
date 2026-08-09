@@ -1,6 +1,4 @@
 import {
-  isMonorepoPackageSrc,
-  meaningfulDirSegments,
   resolveFolderRolledComponent,
   resolveRelativeImportPath,
   type ComponentIdentity,
@@ -75,4 +73,3 @@ export function resolveTypeScriptImportComponentId(
 }
 
 // Re-export for tests that assert monorepo + segment helpers.
-export { isMonorepoPackageSrc, meaningfulDirSegments };

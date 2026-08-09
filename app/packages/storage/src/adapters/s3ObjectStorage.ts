@@ -57,7 +57,7 @@ async function streamToBytes(body: unknown): Promise<Uint8Array> {
  * `$retryable: undefined` even for InternalError - the outer loop is the real
  * backoff. Caps near ~30s of sleep across a single send.
  */
-export const R2_TRANSIENT_SEND_ATTEMPTS = 8;
+const R2_TRANSIENT_SEND_ATTEMPTS = 8;
 
 function isPreconditionFailed(error: unknown): boolean {
   if (!error || typeof error !== 'object') return false;

@@ -10,7 +10,7 @@ export const LITE_SCAN_MAX_TOTAL_BYTES = 8_000_000;
  * Align with CLI languages and `extensionToTreeSitterLanguage` in `@archlens/core`.
  * Terraform/Pulumi are collected separately via `isLiteScanIacPath` for `IacAnalyzer`.
  */
-export const LITE_SCAN_EXTENSIONS = new Set([
+const LITE_SCAN_EXTENSIONS = new Set([
   '.ts',
   '.tsx',
   '.js',
@@ -24,10 +24,10 @@ export const LITE_SCAN_EXTENSIONS = new Set([
 ]);
 
 /** Extensions that the lightweight regex fallback can extract imports from. */
-export const LITE_SCAN_JS_TS_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs']);
+const LITE_SCAN_JS_TS_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs']);
 
 /** Manifests the analyzer reads for naming and workspace-package discovery. */
-export const LITE_SCAN_METADATA_FILES = new Set(['package.json', 'pnpm-workspace.yaml']);
+const LITE_SCAN_METADATA_FILES = new Set(['package.json', 'pnpm-workspace.yaml']);
 /** Metadata has its own budget so manifests cannot crowd out source files. */
 export const LITE_SCAN_MAX_METADATA_FILES = 100;
 

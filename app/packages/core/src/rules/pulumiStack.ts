@@ -64,7 +64,7 @@ export function isPulumiProjectContent(content: string): boolean {
   return hasName && hasRuntime;
 }
 
-export function isPulumiStackConfigFileName(name: string): boolean {
+function isPulumiStackConfigFileName(name: string): boolean {
   return PULUMI_STACK_CONFIG.test(name);
 }
 

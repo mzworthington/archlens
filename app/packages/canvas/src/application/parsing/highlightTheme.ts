@@ -2,7 +2,7 @@
  * Maps tree-sitter highlight capture names to Tailwind classes.
  * @see https://tree-sitter.github.io/tree-sitter/3-syntax-highlighting.html
  */
-export const HIGHLIGHT_THEME: Record<string, string> = {
+const HIGHLIGHT_THEME: Record<string, string> = {
   keyword: 'text-violet-400',
   'keyword.import': 'text-violet-400',
   'keyword.export': 'text-violet-400',

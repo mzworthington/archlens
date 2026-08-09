@@ -1,12 +1,6 @@
 import { normalizeIacSourceFilePath, type InfraEdge, type InfraNode } from './infraIr';
 import { pulumiTypeToProviderType } from './pulumiTypeMap';
 
-export {
-  pulumiTypeToProviderType,
-  pythonQualifiedToPulumiType,
-  tsQualifiedNameToPulumiType,
-} from './pulumiTypeMap';
-
 interface PulumiYamlResource {
   type?: string;
   properties?: Record<string, unknown>;
@@ -33,7 +27,7 @@ export function pushNode(
   });
 }
 
-export function collectPulumiInterpolationRefs(value: unknown, out: Set<string>): void {
+function collectPulumiInterpolationRefs(value: unknown, out: Set<string>): void {
   if (typeof value === 'string') {
     const re = /\$\{([^}.]+)(?:\.[^}]*)?\}/g;
     let match: RegExpExecArray | null;

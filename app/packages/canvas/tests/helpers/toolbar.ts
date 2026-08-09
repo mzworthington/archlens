@@ -57,26 +57,6 @@ async function openOverflowMenu(page: Page) {
   await expect(page.getByRole('menu')).toBeVisible({ timeout: 10_000 });
 }
 
-/** Opens a workspace folder via the startup chooser when present, else the toolbar overflow. */
-export async function openWorkspaceFolder(page: Page) {
-  const startupOpen = page.getByTestId('workspace-open-directory');
-  if (await startupOpen.isVisible().catch(() => false)) {
-    await startupOpen.click();
-    return;
-  }
-
-  await continueWithSample(page);
-
-  const folderItem = page.getByRole('menuitem', { name: 'Open Folder' });
-
-  if (!(await folderItem.isVisible())) {
-    await openOverflowMenu(page);
-  }
-
-  await expect(folderItem).toBeVisible();
-  await folderItem.click();
-}
-
 /**
  * Open the Import Mermaid dialog from the overflow menu.
  * Retries because demo ChaosLens + LazyMount can race the first open.

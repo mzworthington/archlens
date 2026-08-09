@@ -57,26 +57,6 @@ export async function waitForForensicsOffenders(page: Page) {
   ).toBeVisible({ timeout: 90_000 });
 }
 
-export async function workspaceSlug(page: Page): Promise<string> {
-  const { pathname } = new URL(page.url());
-  const prefix = '/workspace/';
-  if (!pathname.startsWith(prefix)) return '';
-  const rest = pathname.slice(prefix.length).replace(/\/$/, '');
-  return decodeURIComponent(rest);
-}
-
-/** Open Explorer on the TraceLens tab (desktop rail or mobile chip). */
-export async function openExplorerTraceLensTab(page: Page) {
-  const leftRail = page.getByTestId('left-panel-rail');
-  if (await leftRail.isVisible().catch(() => false)) {
-    await leftRail.click();
-  } else {
-    await page.getByRole('button', { name: 'Open Explorer' }).click();
-  }
-  await page.getByTestId('left-tab-tracelens').click();
-  await expect(page.getByTestId('workspace-display-controls')).toBeVisible();
-}
-
 /** Open the properties panel when collapsed (desktop rail or mobile chip). */
 export async function ensureRightPanelOpen(page: Page) {
   const panel = page.getByTestId('right-panel');

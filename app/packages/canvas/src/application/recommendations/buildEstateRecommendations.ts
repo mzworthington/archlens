@@ -2,7 +2,6 @@ import {
   buildAdviceLensArtifact,
   buildRefactorRecommendations,
   formatAdviceLensArtifact,
-  formatAdviceLensArtifactJson,
   runEstateResilience,
   type AdviceLensArtifact,
   type AdviceLensArtifactFormat,
@@ -180,10 +179,6 @@ export function estateRecommendationsToAdviceLensArtifact(
     recommendations: report.recommendations.map(toCoreRecommendation),
     diagrams: report.diagrams,
   });
-}
-
-export function formatEstateAdviceLensArtifactJson(report: EstateRecommendationsReport): string {
-  return formatAdviceLensArtifactJson(estateRecommendationsToAdviceLensArtifact(report));
 }
 
 export function formatEstateAdviceLensArtifact(

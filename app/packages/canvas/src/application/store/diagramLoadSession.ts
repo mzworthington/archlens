@@ -1,7 +1,3 @@
-import type { SystemSchema } from '@archlens/core';
-import { shouldAutoLayoutOnLoad } from './layoutUtils';
-import { hasSessionLayout, schemaLayoutFingerprint } from './sessionLayoutCache';
-
 export const DIAGRAM_LOADING_MESSAGE = 'Loading diagram...';
 export const DIAGRAM_LAYOUT_MESSAGE = 'Arranging diagram...';
 export const SANDBOX_LOADING_MESSAGE = 'Loading sandbox...';
@@ -31,14 +27,4 @@ export function endDiagramLoad(
     diagramLoadCount: next,
     ...(next === 0 ? { isLoading: false } : {}),
   });
-}
-
-export function diagramWillAutoLayout(
-  schema: SystemSchema,
-  filePath: string | null | undefined
-): boolean {
-  if (!filePath || schema.nodes.length === 0) return false;
-  return (
-    shouldAutoLayoutOnLoad(schema) && !hasSessionLayout(filePath, schemaLayoutFingerprint(schema))
-  );
 }

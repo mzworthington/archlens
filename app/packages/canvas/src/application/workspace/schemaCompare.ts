@@ -4,7 +4,7 @@ import type { SystemSchema } from '@archlens/core';
  * Stable fingerprint of schema topology (nodes + deps), ignoring canvas
  * coordinates so layout-only draft tweaks don't force a reset.
  */
-export function schemaTopologyKey(schema: SystemSchema): string {
+function schemaTopologyKey(schema: SystemSchema): string {
   const nodes = [...(schema.nodes || [])]
     .map(n =>
       JSON.stringify({

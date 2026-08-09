@@ -253,7 +253,7 @@ export const mapDomainDepsToRFEdges = (deps: SystemDependency[]): BlueprintRFEdg
 export type LayoutDirection = 'TB' | 'LR';
 
 /** Default dependency edge routing: top-to-bottom (caller below callee connects downward). */
-export const DEFAULT_LAYOUT_DIRECTION: LayoutDirection = 'TB';
+const DEFAULT_LAYOUT_DIRECTION: LayoutDirection = 'TB';
 
 export const getClosestHandles = (
   sourceNode: BlueprintRFNode,

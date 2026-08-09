@@ -4,7 +4,7 @@ import { dependencyArrowMarker, getClosestHandles } from '../store/layoutUtils';
 import { resolveCouplingEdges, type CouplingEdgeRef } from './resolveCouplingEdges';
 
 export const COUPLING_EDGE_PREFIX = 'coupling-';
-export const COUPLING_SCHEMA_EDGE_PREFIX = 'coupling-schema-';
+const COUPLING_SCHEMA_EDGE_PREFIX = 'coupling-schema-';
 
 const GHOST_LAYOUT_RADIUS = 300;
 

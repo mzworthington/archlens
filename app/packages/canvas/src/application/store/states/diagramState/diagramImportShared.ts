@@ -49,10 +49,7 @@ function systemsWithSchema(
   return systems;
 }
 
-export function resolveScopedSchema(
-  context: DiagramImportContext,
-  schema: SystemSchema
-): SystemSchema {
+function resolveScopedSchema(context: DiagramImportContext, schema: SystemSchema): SystemSchema {
   const resolved = resolveWorkspaceEntityRefs(
     systemsWithSchema(context.loadedSystems, context.currentFilePath, schema),
     workspaceRoot(context.workspaceName, context.isWorkspaceOpen)

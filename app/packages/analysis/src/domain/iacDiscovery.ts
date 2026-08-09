@@ -1,6 +1,6 @@
 import type { AnalysisFileSystemPort } from './ports.ts';
 
-export const IAC_SKIP_DIR_NAMES = new Set([
+const IAC_SKIP_DIR_NAMES = new Set([
   'node_modules',
   '.terraform',
   '.pulumi',
@@ -32,14 +32,14 @@ export function slugFromPath(rootPath: string, scanRoot: string, scanRootSlug: s
   return directorySlug(normalizedRoot, scanRootSlug);
 }
 
-export function isUnder(parent: string, child: string): boolean {
+function isUnder(parent: string, child: string): boolean {
   const p = parent.replace(/\\/g, '/').replace(/\/$/, '');
   const c = child.replace(/\\/g, '/').replace(/\/$/, '');
   return c === p || c.startsWith(`${p}/`);
 }
 
 /** Keep shallowest root when a nested directory would also match. */
-export function dedupeNestedRootDirs(dirs: string[]): string[] {
+function dedupeNestedRootDirs(dirs: string[]): string[] {
   const sorted = [...dirs].sort((a, b) => a.length - b.length);
   const roots: string[] = [];
   for (const dir of sorted) {

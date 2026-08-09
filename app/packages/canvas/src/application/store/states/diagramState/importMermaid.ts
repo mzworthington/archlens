@@ -5,12 +5,10 @@ import {
   executeDiagramImport,
   parentEntityRefForImport,
   previewDiagramImport,
-  resolveScopedSchema,
   type DiagramImportContext,
   type DiagramImportPreview,
 } from './diagramImportShared';
 
-export type MermaidImportContext = DiagramImportContext;
 export type MermaidImportPreview = DiagramImportPreview<MermaidParseResult>;
 
 export function previewMermaidImport(
@@ -56,5 +54,3 @@ export function executeMermaidImport(
     'Failed to import Mermaid diagram'
   );
 }
-
-export { resolveScopedSchema };
