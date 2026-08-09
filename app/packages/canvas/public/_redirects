@@ -1,10 +1,10 @@
-# Apex is canonical — consolidate www to avoid duplicate indexing.
+# Apex is canonical - consolidate www to avoid duplicate indexing.
 https://www.archlens.dev/* https://archlens.dev/:splat 301
 
 /bundled-blueprints/*  /bundled-blueprints/:splat  200
 /bundled-chaos-specs/* /bundled-chaos-specs/:splat 200
 /schemas/*             /schemas/:splat             200
-# Missing hashed bundles must 404 (not SPA HTML) — otherwise browsers report MIME errors
+# Missing hashed bundles must 404 (not SPA HTML) - otherwise browsers report MIME errors
 # when a stale tab/service worker requests a deleted chunk after deploy.
 /assets/*              /assets/:splat              200
 # Static SEO assets must not fall through to the SPA shell.

@@ -85,7 +85,7 @@ function summaryInput(partial: Partial<ExternalSummaryDisplayInput>): ExternalSu
   };
 }
 
-describe('externalSummaryDisplay — C4 context level', () => {
+describe('externalSummaryDisplay - C4 context level', () => {
   it('does not use external summary collapse on context diagrams', () => {
     expect(
       shouldUseExternalSummaryMode({
@@ -127,7 +127,7 @@ describe('externalSummaryDisplay — C4 context level', () => {
   });
 });
 
-describe('externalSummaryDisplay — external-only container diagrams', () => {
+describe('externalSummaryDisplay - external-only container diagrams', () => {
   function cloudflareOnlySchema(): SystemSchema {
     return {
       name: 'Cloudflare Infrastructure',

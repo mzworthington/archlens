@@ -68,7 +68,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode; ports?: AppPorts
       fileSystemPort: ports.fileSystemPort,
       folderWorkspacePort: ports.folderWorkspacePort,
       sampleWorkspacePort: ports.sampleWorkspacePort,
-      // Preserve the bundled sample adapter when already open — StrictMode remounts
+      // Preserve the bundled sample adapter when already open - StrictMode remounts
       // and races with "Open demo blueprints" used to overwrite it with the folder
       // adapter, breaking lazy diagram loads (zoom-out / URL sync).
       ...(state.isSampleWorkspace ? {} : { workspacePort: ports.folderWorkspacePort }),

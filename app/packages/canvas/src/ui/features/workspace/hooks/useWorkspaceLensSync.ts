@@ -38,7 +38,7 @@ export function useWorkspaceLensSync(): void {
   }, [location, search, isTraceLensMode, setTraceLensMode]);
 
   // URL → ChaosLens mode + faults.
-  // Depend only on the URL — not store faults — so adding a fault cannot re-apply a
+  // Depend only on the URL - not store faults - so adding a fault cannot re-apply a
   // stale empty URL and wipe the scenario before store→URL rewrites the query.
   useEffect(() => {
     const active = isChaosLensUrl(location, search);
@@ -60,7 +60,7 @@ export function useWorkspaceLensSync(): void {
   }, [location, search, applyResilienceUrlState]);
 
   // URL → Browse ChaosSpecs picker (`browse=chaosspecs`).
-  // Depend on URL only — reading store via getState avoids closing a UI-opened picker
+  // Depend on URL only - reading store via getState avoids closing a UI-opened picker
   // before store→URL has written `browse=chaosspecs`.
   useEffect(() => {
     if (!isChaosLensUrl(location, search)) {

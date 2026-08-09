@@ -73,10 +73,10 @@ export interface Recommendation {
   targetName: string;
   title: string;
   detail: string;
-  /** Comparable priority in the range 0–100 (higher = more urgent). */
+  /** Comparable priority in the range 0-100 (higher = more urgent). */
   priority: number;
   evidence: RecommendationEvidence;
   actions: RecommendationAction[];
-  /** AdviceLens Narration enrichment — does not affect rank order. */
+  /** AdviceLens Narration enrichment - does not affect rank order. */
   narration?: RecommendationNarration;
 }

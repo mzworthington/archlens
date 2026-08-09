@@ -1,6 +1,6 @@
 # Contributing to ArchLens
 
-Thanks for your interest in contributing. ArchLens helps teams catch architecture risk early: ArchLens Canvas, ArchLens scanner/publisher, shared `@archlens/core` (BlueprintSpec), and optional TraceLens / ChaosLens / AdviceLens. Authoring stays local; CI can publish living catalogs to object storage.
+Thanks for your interest in contributing. ArchLens helps teams catch architecture risk early: ArchLens Canvas, ArchLens CLI, shared `@archlens/core` (BlueprintSpec), and optional TraceLens / ChaosLens / AdviceLens. Authoring stays local; CI can publish living catalogs to object storage.
 
 ## Before you start
 

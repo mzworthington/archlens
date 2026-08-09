@@ -308,7 +308,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### canvasDisplayGraph
 
-#### buildCanvasVisibleNodes — C4 context level
+#### buildCanvasVisibleNodes - C4 context level
 
 - ✅ always shows actors and external dependencies at context level
 - ✅ keeps actors and externals visible under dependency focus at context level
@@ -595,14 +595,14 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 ### externalSummaryDisplay
 
-#### externalSummaryDisplay — C4 context level
+#### externalSummaryDisplay - C4 context level
 
 - ✅ does not use external summary collapse on context diagrams
 - ✅ keeps on-diagram external dependencies visible at context (no whitelist)
 - ✅ keeps context externals visible even when caller/target toggles are off
 - ✅ does not build summary hubs on context diagrams
 
-#### externalSummaryDisplay — external-only container diagrams
+#### externalSummaryDisplay - external-only container diagrams
 
 - ✅ does not collapse externals when the diagram has no internal nodes
 - ✅ does not build empty summary hubs for external-only diagrams

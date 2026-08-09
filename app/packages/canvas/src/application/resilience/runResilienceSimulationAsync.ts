@@ -37,7 +37,7 @@ export async function runResilienceSimulationAsync(
   );
 
   // Go WASM already computes integrityHeat (resilience-engine/internal/sim/integrity.go).
-  // Per ADR-0005, trust WASM when available — TypeScript only when WASM is unavailable.
+  // Per ADR-0005, trust WASM when available - TypeScript only when WASM is unavailable.
   if (wasmResult) {
     const result = wasmResultToSimulationResult(wasmResult);
     const faultNodeIds = resolveFaultNodeIds(schema, spec);

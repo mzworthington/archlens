@@ -4,8 +4,8 @@
 
 Lifecycle agents, skills, and SOPs are **not** in this repo. Resolve the kit root in this order:
 
-1. **`~/.agents`** — preferred. Local installs symlink this to a clone of [agent-lifecycle-kit](https://github.com/mzworthington/agent-lifecycle-kit) via that repo’s `install.sh`.
-2. **If `~/.agents` is missing** — use a checkout of `agent-lifecycle-kit` instead. Look for (first match wins):
+1. **`~/.agents`** - preferred. Local installs symlink this to a clone of [agent-lifecycle-kit](https://github.com/mzworthington/agent-lifecycle-kit) via that repo’s `install.sh`.
+2. **If `~/.agents` is missing** - use a checkout of `agent-lifecycle-kit` instead. Look for (first match wins):
    - sibling of this repo: `../agent-lifecycle-kit`
    - Cursor Cloud multi-repo path: `/agent/repos/agent-lifecycle-kit`
    - otherwise clone: `git clone https://github.com/mzworthington/agent-lifecycle-kit.git` (then prefer `./install.sh` so `~/.agents` points at it)
@@ -18,7 +18,7 @@ Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-
 
 Dead-code backlog: `<kit>/handover/blueprint/dead-code-backlog.md` (maintain via `agent-prune`).
 
-Before handover or declaring work complete, run `agent-pre-commit` when `.husky/pre-commit` (or equivalent) exists — fix hook failures until green.
+Before handover or declaring work complete, run `agent-pre-commit` when `.husky/pre-commit` (or equivalent) exists - fix hook failures until green.
 
 Before handover, also run `cd app && pnpm typecheck && pnpm build` when you touched `app/packages/canvas` or added tests under `src/` (canvas `tsc -b` includes `*.test.ts`; Vitest passing does not imply typecheck passes). Git hooks: **pre-commit** runs typecheck (and related checks) on staged `app/` files; CI runs the full build.
 
@@ -40,4 +40,4 @@ Core import modules: `app/packages/core/src/rules/mermaidImport.ts`, `schemaMerg
 
 Toolchain is declared in `mise.toml` (node, **bun**, pnpm, go). Cloud agents should boot via `.cursor/environment.json`, which runs `bin/setup-dev-env.sh` (installs mise if needed, `mise install node pnpm bun go`, `pnpm install`, ChaosLens WASM, and bootstraps [agent-lifecycle-kit](https://github.com/mzworthington/agent-lifecycle-kit) into `~/.agents` when missing). Bun must be on `PATH` for CLI build.
 
-If a shell is missing tools: `eval "$(mise activate bash --shims)"` or re-run `bin/setup-dev-env.sh`. Set `SKIP_LIFECYCLE_KIT=1` to skip the kit clone. Docs-media (`ffmpeg`/`vhs`) and Playwright browsers are not part of the default agent install — add them only when needed (`mise install` / `pnpm --filter @archlens/canvas exec playwright install`).
+If a shell is missing tools: `eval "$(mise activate bash --shims)"` or re-run `bin/setup-dev-env.sh`. Set `SKIP_LIFECYCLE_KIT=1` to skip the kit clone. Docs-media (`ffmpeg`/`vhs`) and Playwright browsers are not part of the default agent install - add them only when needed (`mise install` / `pnpm --filter @archlens/canvas exec playwright install`).

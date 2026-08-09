@@ -111,6 +111,68 @@ describe('walkBrowserSourceDirectory', () => {
     expect(result.files.map(f => f.relativePath).sort()).toEqual(['legacy.cjs', 'loader.mjs']);
   });
 
+  it('collects CLI-supported languages plus csproj metadata', async () => {
+    const root = dir('demo-repo', [
+      [
+        'src',
+        dir('src', [
+          ['service.py', file('service.py', 'import os\n')],
+          ['store.go', file('store.go', 'package store\n')],
+          ['OrderService.java', file('OrderService.java', 'package com.acme;\n')],
+          ['OrderService.cs', file('OrderService.cs', 'namespace Acme;\n')],
+        ]),
+      ],
+      [
+        'Acme.csproj',
+        file(
+          'Acme.csproj',
+          '<Project><ItemGroup><ProjectReference Include="Other.csproj" /></ItemGroup></Project>'
+        ),
+      ],
+    ]);
+
+    const result = await walkBrowserSourceDirectory(root);
+
+    expect(result.files.map(f => f.relativePath).sort()).toEqual([
+      'Acme.csproj',
+      'src/OrderService.cs',
+      'src/OrderService.java',
+      'src/service.py',
+      'src/store.go',
+    ]);
+    expect(result.sourceFileCount).toBe(4);
+  });
+
+  it('collects Terraform and Pulumi inputs without counting them as application sources', async () => {
+    const root = dir('infra-repo', [
+      [
+        'infra',
+        dir('infra', [
+          [
+            'main.tf',
+            file('main.tf', 'resource "aws_lambda_function" "api" {\n  function_name = "api"\n}\n'),
+          ],
+          [
+            'Pulumi.yaml',
+            file(
+              'Pulumi.yaml',
+              'name: infra\nruntime: yaml\nresources:\n  api:\n    type: aws:lambda:Function\n'
+            ),
+          ],
+        ]),
+      ],
+    ]);
+
+    const result = await walkBrowserSourceDirectory(root);
+
+    expect(result.files.map(f => f.relativePath).sort()).toEqual([
+      'infra/Pulumi.yaml',
+      'infra/main.tf',
+    ]);
+    expect(result.sourceFileCount).toBe(0);
+    expect(result.iacFileCount).toBe(2);
+  });
+
   it('stops and marks truncated once the cumulative byte budget is exhausted', async () => {
     const root = dir('demo-repo', [
       ['a.ts', file('a.ts', 'x'.repeat(60))],

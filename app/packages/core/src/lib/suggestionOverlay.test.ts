@@ -126,4 +126,23 @@ describe('Feature: suggestion overlays', () => {
     );
     expect(result.applied.map(o => o.overlayId)).toEqual(['a', 'b']);
   });
+
+  it('rejects overlay dependency endpoints that are not entityRefs', () => {
+    const invalid = serializeSuggestionOverlay(
+      overlay({
+        overlayId: 'bad-dep',
+        delta: {
+          nodes: [],
+          dependencies: [
+            {
+              from: 'estate/payments',
+              to: '../billing.yaml',
+              type: 'direct-call',
+            },
+          ],
+        },
+      })
+    );
+    expect(() => parseSuggestionOverlayYaml(invalid)).toThrow(/entityRef/);
+  });
 });

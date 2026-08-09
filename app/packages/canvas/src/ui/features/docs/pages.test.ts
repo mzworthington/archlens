@@ -45,7 +45,7 @@ describe('docs link resolution', () => {
 
     expect(canvas?.productAction).toEqual({ label: 'Open ArchLens Canvas', href: '/workspace' });
     expect(cli?.productAction).toEqual({
-      label: 'Install ArchLens',
+      label: 'Install ArchLens CLI',
       href: '/guide/getting-started',
     });
     expect(tracelens?.productAction?.href).toBe('/workspace?lens=tracelens');

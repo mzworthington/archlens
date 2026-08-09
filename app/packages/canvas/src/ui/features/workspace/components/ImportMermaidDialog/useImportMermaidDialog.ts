@@ -98,7 +98,9 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
         }
       }
       const success = await importMermaid(source, conflictResolutions);
-      if (success) {
+      if (!success) return;
+
+      try {
         setLayoutEngine('elk');
         await applyClientLayout({ persistToSchema: true });
         setMermaidEnrichBannerOpen(true);
@@ -107,8 +109,17 @@ export function useImportMermaidDialog(isOpen: boolean, onClose: () => void) {
           title: 'Import complete',
           message: 'Mermaid diagram merged and laid out with ELK. Commit via Pending Changes.',
         });
-        onClose();
+      } catch (err: unknown) {
+        setNotification({
+          type: 'warning',
+          title: 'Import complete',
+          message:
+            err instanceof Error
+              ? `Merged, but layout failed: ${err.message}`
+              : 'Merged, but automatic layout failed. Commit via Pending Changes.',
+        });
       }
+      onClose();
     } finally {
       setApplying(false);
     }

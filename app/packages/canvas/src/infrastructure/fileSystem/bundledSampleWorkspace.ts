@@ -71,7 +71,7 @@ async function fetchBlueprintContent(relativePath: string): Promise<string> {
 
 /**
  * Prefetch demo YAML bodies into HTTP/SW CacheFirst without parsing them.
- * Failures are ignored — ad-hoc `readFile` remains the source of truth.
+ * Failures are ignored - ad-hoc `readFile` remains the source of truth.
  */
 export async function warmBundledBlueprintBodies(paths: readonly string[]): Promise<void> {
   if (paths.length === 0) return;

@@ -114,7 +114,7 @@ export const ChaosSpecDialog: React.FC<ChaosSpecDialogProps> = ({
               {isImport ? (
                 <>
                   Paste or upload a ChaosSpec YAML scenario. It references the active blueprint by{' '}
-                  <code className="text-slate-400">metadata.diagramRef</code> — no duplicated
+                  <code className="text-slate-400">metadata.diagramRef</code> - no duplicated
                   topology.
                 </>
               ) : (

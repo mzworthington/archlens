@@ -19,10 +19,10 @@ BlueprintSpec and ChaosSpec YAML are shared contracts for Canvas, CLI, IDEs, and
 
 ## Considered Options
 
-- Option A — URL-in-`version` + public `v{N}` / `latest` channels at `archlens.dev/schemas/…`
-- Option B — Semver-only in-file `version` (legacy pre-v3 strings)
-- Option C — Private/unpublished schema (validate only inside ArchLens)
-- Option D — Separate OpenAPI/Protobuf registry alongside Zod
+- Option A - URL-in-`version` + public `v{N}` / `latest` channels at `archlens.dev/schemas/…`
+- Option B - Semver-only in-file `version` (legacy pre-v3 strings)
+- Option C - Private/unpublished schema (validate only inside ArchLens)
+- Option D - Separate OpenAPI/Protobuf registry alongside Zod
 
 ## Decision Outcome
 

@@ -33,7 +33,7 @@ export async function executeComposeCatalogRun(plan: CatalogComposeCliPlan): Pro
     case 'no-fragments':
       if (plan.allowEmpty) {
         logger.info(
-          `No fragments for estate "${plan.estateId}" — skipping compose (--allow-empty).`
+          `No fragments for estate "${plan.estateId}" - skipping compose (--allow-empty).`
         );
         process.exit(0);
         return;
@@ -80,7 +80,7 @@ export async function executeComposeCatalogRun(plan: CatalogComposeCliPlan): Pro
           (outcome.appliedOverlays.length > 0
             ? ` + ${outcome.appliedOverlays.length} overlay(s)`
             : '') +
-          ' — skipping snapshot upload.'
+          ' - skipping snapshot upload.'
       );
       if (plan.format === 'json') {
         process.stdout.write(

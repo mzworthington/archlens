@@ -13,7 +13,7 @@ function listPrerenderNavLinks(): Array<{ href: string; label: string }> {
   return [
     { href: '/', label: 'ArchLens home' },
     { href: '/guide/canvas', label: 'ArchLens Canvas' },
-    { href: '/guide/cli', label: 'ArchLens' },
+    { href: '/guide/cli', label: 'ArchLens CLI' },
     { href: '/guide/tracelens', label: 'TraceLens' },
     { href: '/guide/chaoslens', label: 'ChaosLens' },
     { href: '/guide/advicelens', label: 'AdviceLens' },
@@ -40,7 +40,7 @@ export function emitSiteSeo(): Plugin {
     configResolved(config) {
       outDir = path.resolve(config.root, config.build.outDir);
       resolvedBase = config.base || '/';
-      // Vitest loads the Vite config with a dummy outDir — never emit there.
+      // Vitest loads the Vite config with a dummy outDir - never emit there.
       shouldEmit = config.command === 'build' && !process.env.VITEST;
     },
     closeBundle() {

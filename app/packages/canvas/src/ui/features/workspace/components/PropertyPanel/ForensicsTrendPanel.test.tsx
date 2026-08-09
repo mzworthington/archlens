@@ -10,9 +10,9 @@ describe('ForensicsTrendPanel', () => {
           scope: 'rollup',
           churnByWeek: [2, 1, 0, 3],
           authorBuckets: [2, 1, 0],
-          authorBucketLabels: ['1 author', '2–3', '4+'],
+          authorBucketLabels: ['1 author', '2-3', '4+'],
           complexityBuckets: [1, 0, 2, 1],
-          complexityBucketLabels: ['1–5', '6–10', '11–20', '21+'],
+          complexityBucketLabels: ['1-5', '6-10', '11-20', '21+'],
           fileCount: 4,
         }}
       />

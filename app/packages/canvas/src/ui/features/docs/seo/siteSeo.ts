@@ -25,11 +25,11 @@ type SeoOverride = {
   indexable?: boolean;
 };
 
-/** Canonical public SEO records — keep in sync with docs routes in `pages.ts`. */
+/** Canonical public SEO records - keep in sync with docs routes in `pages.ts`. */
 const PAGE_SEO: Record<string, SeoOverride> = {
   '/': {
     headline: SITE_NAME,
-    title: `${SITE_NAME} — Catch architecture risk before it becomes an outage`,
+    title: `${SITE_NAME} - Catch architecture risk before it becomes an outage`,
     description: `${PRODUCT_HERO.lede} Free open-source BlueprintSpec architecture studio with Canvas, TraceLens, ChaosLens, and AdviceLens.`,
     softwareName: SITE_NAME,
   },
@@ -52,53 +52,53 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/guide/getting-started': {
     headline: 'Getting started with ArchLens',
     description:
-      'Install ArchLens, generate BlueprintSpec YAML from your repo, and open diagrams in ArchLens Canvas in minutes.',
+      'Install ArchLens CLI, generate BlueprintSpec YAML from your repo, and open diagrams in ArchLens Canvas in minutes.',
   },
   '/guide/canvas': {
     headline: 'ArchLens Canvas',
-    title: 'ArchLens Canvas — Interactive C4 architecture diagrams | ArchLens',
+    title: 'ArchLens Canvas - Interactive C4 architecture diagrams | ArchLens',
     description:
-      'ArchLens Canvas is a C4 architecture workspace over BlueprintSpec YAML — bi-directional diagram sync, local folders, and published estate catalogs.',
+      'ArchLens Canvas is a C4 architecture workspace over BlueprintSpec YAML - bi-directional diagram sync, local folders, and published estate catalogs.',
     softwareName: 'ArchLens Canvas',
   },
   '/guide/cli': {
-    headline: 'ArchLens',
-    title: 'ArchLens CLI — Codebase to BlueprintSpec architecture maps | ArchLens',
+    headline: 'ArchLens CLI',
+    title: 'ArchLens CLI - Codebase to BlueprintSpec architecture maps | ArchLens',
     description:
-      'ArchLens scans source code, discovers systems and dependencies, and writes validated multi-level BlueprintSpec YAML architecture maps.',
-    softwareName: 'ArchLens',
+      'ArchLens CLI scans source code, discovers systems and dependencies, and writes validated multi-level BlueprintSpec YAML architecture maps.',
+    softwareName: 'ArchLens CLI',
   },
   '/guide/tracelens': {
     headline: 'TraceLens',
-    title: 'TraceLens — Code hotspot forensics on architecture diagrams | ArchLens',
+    title: 'TraceLens - Code hotspot forensics on architecture diagrams | ArchLens',
     description:
       'TraceLens overlays git churn, complexity, temporal coupling, and blueprint dependency risk on ArchLens architecture diagrams.',
     softwareName: 'TraceLens',
   },
   '/guide/chaoslens': {
     headline: 'ChaosLens',
-    title: 'ChaosLens — Architecture failure simulation without production risk | ArchLens',
+    title: 'ChaosLens - Architecture failure simulation without production risk | ArchLens',
     description:
-      'ChaosLens simulates what-if failures on your BlueprintSpec architecture in the browser — blast radius and SLA impact without game-day breakage.',
+      'ChaosLens simulates what-if failures on your BlueprintSpec architecture in the browser - blast radius and SLA impact without game-day breakage.',
     softwareName: 'ChaosLens',
   },
   '/guide/advicelens': {
     headline: 'AdviceLens',
-    title: 'AdviceLens — Ranked architecture fix recommendations | ArchLens',
+    title: 'AdviceLens - Ranked architecture fix recommendations | ArchLens',
     description:
       'AdviceLens merges TraceLens forensics and ChaosLens simulations into a ranked, evidence-backed architecture action list.',
     softwareName: 'AdviceLens',
   },
   '/guide/schema': {
     headline: 'BlueprintSpec',
-    title: 'BlueprintSpec — YAML architecture contract schema | ArchLens',
+    title: 'BlueprintSpec - YAML architecture contract schema | ArchLens',
     description:
       'BlueprintSpec is the ArchLens YAML SystemSchema contract for C4 systems, containers, components, and entityRef-linked diagrams.',
     softwareName: 'BlueprintSpec',
   },
   '/guide/chaos-spec': {
     headline: 'ChaosSpec',
-    title: 'ChaosSpec — Versioned chaos scenarios for architecture diagrams | ArchLens',
+    title: 'ChaosSpec - Versioned chaos scenarios for architecture diagrams | ArchLens',
     description:
       'ChaosSpec YAML targets BlueprintSpec diagrams so ChaosLens failure scenarios stay versioned beside your architecture.',
     softwareName: 'ChaosSpec',
@@ -152,7 +152,7 @@ function normalizePathname(pathname: string): string {
 function titleFor(headline: string, explicit?: string): string {
   if (explicit) return explicit;
   if (headline === SITE_NAME) {
-    return `${SITE_NAME} — Catch architecture risk before it becomes an outage`;
+    return `${SITE_NAME} - Catch architecture risk before it becomes an outage`;
   }
   return `${headline} | ${SITE_NAME}`;
 }

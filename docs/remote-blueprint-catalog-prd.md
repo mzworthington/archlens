@@ -1,10 +1,10 @@
-# Remote blueprint catalog — product requirements (PRD)
+# Remote blueprint catalog - product requirements (PRD)
 
 **Status:** Draft · **Last updated:** 2026-08-04 · **Contract:** [ADR-0010](./ADRs/0010-remote-blueprint-catalog-contract.md)
 
 ## Problem
 
-Organisations want architecture diagrams that **track their codebase** without checking generated YAML into git or redeploying a documentation site on every merge. ArchLens already produces validated BlueprintSpec YAML in CI; we need a **reference pattern** — **pipeline → object storage → Canvas** — that we run on `archlens.dev` and document for customers.
+Organisations want architecture diagrams that **track their codebase** without checking generated YAML into git or redeploying a documentation site on every merge. ArchLens already produces validated BlueprintSpec YAML in CI; we need a **reference pattern** - **pipeline → object storage → Canvas** - that we run on `archlens.dev` and document for customers.
 
 ## Personas
 
@@ -18,7 +18,7 @@ Organisations want architecture diagrams that **track their codebase** without c
 
 1. **Prove end-to-end** on our own repo: CLI publish → R2 → sandbox on `archlens.dev`.
 2. **Publish a repeatable integration** (contract + example workflow) for customer pipelines.
-3. **Preserve hexagonal boundaries** — shared contract in core; storage and auth behind ports/adapters.
+3. **Preserve hexagonal boundaries** - shared contract in core; storage and auth behind ports/adapters.
 
 ## Non-goals (initial releases)
 
@@ -43,11 +43,11 @@ Full Gherkin scenarios: behavioral contract tests in `app/packages/core/src/lib/
 
 | Slice                   | Outcome                                                                 | Success signal                                            |
 | ----------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------- |
-| **S0 — Contract**       | `manifest.json` + `catalog.json` + YAML layout; CLI `publish --dry-run` | Contract tests in `@archlens/core`                        |
-| **S1 — Hosted sandbox** | Nightly GHA → validate → R2; sandbox reads remote                       | 7 consecutive successful publishes; sandbox paths resolve |
-| **S1b — Refresh**       | User-triggered catalog refresh when `latest` revision changes           | Refresh without full page redeploy                        |
-| **S2 — Org connect**    | Practitioner connection profile UI + one S3-compatible adapter          | Internal dry-run against a customer-style bucket          |
-| **S3 — Hardening**      | Signed URLs, edge proxy, audit logging                                  | Per security review                                       |
+| **S0 - Contract**       | `manifest.json` + `catalog.json` + YAML layout; CLI `publish --dry-run` | Contract tests in `@archlens/core`                        |
+| **S1 - Hosted sandbox** | Nightly GHA → validate → R2; sandbox reads remote                       | 7 consecutive successful publishes; sandbox paths resolve |
+| **S1b - Refresh**       | User-triggered catalog refresh when `latest` revision changes           | Refresh without full page redeploy                        |
+| **S2 - Org connect**    | Practitioner connection profile UI + one S3-compatible adapter          | Internal dry-run against a customer-style bucket          |
+| **S3 - Hardening**      | Signed URLs, edge proxy, audit logging                                  | Per security review                                       |
 
 ## Success metrics
 
@@ -57,19 +57,19 @@ Full Gherkin scenarios: behavioral contract tests in `app/packages/core/src/lib/
 
 ## Constraints and dependencies
 
-- **Read-only in Canvas** — write stays in CLI/CI unless explicitly redesigned.
-- **No secrets in the SPA bundle** — the hosted sandbox uses public-read or edge proxy (ADR-0011); customer credentials via CI or connection profiles (ADR-0013).
-- **Privacy** — published YAML may include repo metadata in `source` blocks; organisations must understand they publish architecture metadata, not source code.
-- **Atomic publish** — `latest/manifest.json` updates only after the full snapshot is uploaded (ADR-0010).
+- **Read-only in Canvas** - write stays in CLI/CI unless explicitly redesigned.
+- **No secrets in the SPA bundle** - the hosted sandbox uses public-read or edge proxy (ADR-0011); customer credentials via CI or connection profiles (ADR-0013).
+- **Privacy** - published YAML may include repo metadata in `source` blocks; organisations must understand they publish architecture metadata, not source code.
+- **Atomic publish** - `latest/manifest.json` updates only after the full snapshot is uploaded (ADR-0010).
 
 ## Open decisions
 
-1. **Offline fallback** — keep static `/bundled-blueprints/` until remote is stable, or remove in S1?
-2. **Public samples estate** — acceptable to expose forensics metadata in published YAML?
-3. **Slice 2 browser auth** — presigned URLs vs public bucket vs Worker broker (ADR-0013).
+1. **Offline fallback** - keep static `/bundled-blueprints/` until remote is stable, or remove in S1?
+2. **Public samples estate** - acceptable to expose forensics metadata in published YAML?
+3. **Slice 2 browser auth** - presigned URLs vs public bucket vs Worker broker (ADR-0013).
 
 ## References
 
-- [ADR-0010 — Catalog contract](./ADRs/0010-remote-blueprint-catalog-contract.md)
-- [ADR-0004 — Local-first workspaces](./ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)
+- [ADR-0010 - Catalog contract](./ADRs/0010-remote-blueprint-catalog-contract.md)
+- [ADR-0004 - Local-first workspaces](./ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)
 - [GitHub Actions workflows](./guide/ci-workflows.md)

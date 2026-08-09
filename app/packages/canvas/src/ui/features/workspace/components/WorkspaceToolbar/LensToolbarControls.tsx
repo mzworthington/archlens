@@ -63,7 +63,7 @@ function ResilienceLensButton() {
       }
       aria-label={
         unavailable && !isResilienceMode
-          ? 'Resilience lens — unavailable on this diagram level'
+          ? 'Resilience lens - unavailable on this diagram level'
           : isResilienceMode
             ? 'Exit resilience mode'
             : 'Enter resilience mode'
@@ -105,7 +105,7 @@ function SimulateButton() {
   );
 }
 
-/** ChaosLens mode toggle — TraceLens lives in the Explorer side panel tabs. */
+/** ChaosLens mode toggle - TraceLens lives in the Explorer side panel tabs. */
 export const LensToolbarControls: React.FC = () => {
   const isResilienceMode = useBlueprintStore(s => s.isResilienceMode);
 

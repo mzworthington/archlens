@@ -22,16 +22,16 @@ This number was reserved in ADR-0010 / ADR-0014 follow-ups. Slice 2 is not start
 
 ## Considered Options
 
-- Option A — **Presigned URL / short-lived token exchange** — CI or an IdP issues time-boxed read URLs; Canvas never holds bucket keys
-- Option B — **Public-read customer bucket** (same pattern as hosted sandbox) — simplest; weakest for private estates
-- Option C — **Edge Worker / broker** — SPA talks to ArchLens-operated or customer Worker that holds credentials and proxies catalog GETs
-- Option D — **Defer Slice 2** — keep hosted public catalog + CLI publish only until a paying/org use case forces auth
+- Option A - **Presigned URL / short-lived token exchange** - CI or an IdP issues time-boxed read URLs; Canvas never holds bucket keys
+- Option B - **Public-read customer bucket** (same pattern as hosted sandbox) - simplest; weakest for private estates
+- Option C - **Edge Worker / broker** - SPA talks to ArchLens-operated or customer Worker that holds credentials and proxies catalog GETs
+- Option D - **Defer Slice 2** - keep hosted public catalog + CLI publish only until a paying/org use case forces auth
 
 ## Decision Outcome
 
 Chosen option: "**Option D** (defer)" until Slice 2 is scheduled.
 
-No browser connection-profile UI or customer-bucket adapter ships yet. When Slice 2 starts, revisit Options A–C against the threat model and pick one **Accepted** successor decision in this file (or a superseding ADR).
+No browser connection-profile UI or customer-bucket adapter ships yet. When Slice 2 starts, revisit Options A-C against the threat model and pick one **Accepted** successor decision in this file (or a superseding ADR).
 
 ### Consequences
 
@@ -42,7 +42,7 @@ No browser connection-profile UI or customer-bucket adapter ships yet. When Slic
 
 ## Architecture sketch
 
-Deferred shape (target when Slice 2 lands) — credentials stay outside the SPA:
+Deferred shape (target when Slice 2 lands) - credentials stay outside the SPA:
 
 ```mermaid
 flowchart LR

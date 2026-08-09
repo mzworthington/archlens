@@ -4,7 +4,7 @@ export type DependencySemantics =
   | 'synchronous'
   | 'async-stream'
   | 'data-access'
-  /** Declarative link from IaC to provisioned infrastructure — not a runtime call. */
+  /** Declarative link from IaC to provisioned infrastructure - not a runtime call. */
   | 'provisioning';
 
 export type PropagationAxis = 'availability' | 'integrity';

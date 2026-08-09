@@ -215,7 +215,7 @@ function offenderFallbackRecommendation(
     title: 'Review forensics signals',
     detail:
       offender.chaosRiskLabel ??
-      `Elevated forensics on ${offender.name} — open the refactor plan or run a failure simulation.`,
+      `Elevated forensics on ${offender.name} - open the refactor plan or run a failure simulation.`,
     priority: Math.max(1, priority),
     evidence: {
       forensics: {

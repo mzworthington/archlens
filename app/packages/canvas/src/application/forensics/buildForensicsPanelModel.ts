@@ -26,7 +26,7 @@ export type ForensicsPanelModel = {
 };
 
 export const COUPLED_FILES_HELP =
-  'Files that often change in the same commits (temporal coupling). Score is Jaccard similarity of commit sets. Enabling focus hides other nodes and shows coupled peers—including cross-diagram matches and unmapped files as dashed ghosts.';
+  'Files that often change in the same commits (temporal coupling). Score is Jaccard similarity of commit sets. Enabling focus hides other nodes and shows coupled peers - including cross-diagram matches and unmapped files as dashed ghosts.';
 
 export const COUPLING_SCHEMA_DEPS_HELP =
   'When coupling focus is on, also draw declared schema dependencies (cyan) between the selected node and its coupled peers.';

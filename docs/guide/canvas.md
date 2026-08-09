@@ -1,23 +1,23 @@
 # ArchLens Canvas
 
-ArchLens Canvas is a C4 workspace over **BlueprintSpec**: author in a local folder, or browse a pipeline-published catalog. Diagrams are views over a strict schema — edit either side and the other stays in sync.
+ArchLens Canvas is a C4 workspace over **BlueprintSpec**: author in a local folder, or browse a pipeline-published catalog. Diagrams are views over a strict schema - edit either side and the other stays in sync.
 
 ![Canvas panels, zoom, and navigation](../screenshots/canvas-tour.gif)
 
 ## Opening a workspace
 
-On bare `/workspace`, ArchLens **auto-opens the demo estate** and lands on the golden journey with **ChaosLens** so the first minute is insight (blast radius → AdviceLens), not a chooser. If demo load fails — or you reopen the startup gate — the chooser offers:
+On bare `/workspace`, ArchLens shows a **startup chooser** - it does **not** auto-open the demo. Choose how to start:
 
-| Option                              | What it does                                                                                                         |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **Try the demo**                    | Reload the samples catalog and open ChaosLens on the golden journey                                                  |
-| **Scan my repo in the browser**     | File System Access — pick a **source** folder; build a structural BlueprintSpec in memory (TS/JS only, no git / CLI) |
-| **Open existing blueprints folder** | File System Access — pick a local `blueprints/` folder                                                               |
-| **CLI (collapsed)**                 | Install + scan commands for TraceLens forensics, watch mode, and CI publish                                          |
+| Option                                       | What it does                                                                                                                                          |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Try the demo**                             | Load the samples catalog and open **ChaosLens** on the golden journey (blast radius → AdviceLens)                                                     |
+| **Browser lite scan**                        | File System Access - pick a **source** folder; build a structural BlueprintSpec in memory (app languages + Terraform/Pulumi; no git / TraceLens / CI) |
+| **Open existing blueprints folder**          | File System Access - pick a local `blueprints/` folder                                                                                                |
+| **Full analysis - ArchLens CLI** (collapsed) | Install + scan commands for TraceLens forensics, watch mode, and CI publish                                                                           |
 
-Deep links (`/workspace/…`) still bootstrap the demo so entity URLs resolve. Opening a folder or running a browser scan this session prevents demo from overriding that choice.
+Deep links (`/workspace/…`) skip the chooser and bootstrap the demo so entity URLs resolve. Opening a folder or running a browser scan this session prevents demo from overriding that choice.
 
-You can open a folder, scan a repo, a single YAML file, or Mermaid anytime from the toolbar **Open** menu.
+You can open a folder, run a browser lite scan, load a single YAML file, or import Mermaid/IaC anytime from the toolbar **Open** menu.
 
 ## Layout
 
@@ -38,7 +38,7 @@ Collapse panels for a clean canvas:
 
 Click a node to select it and open the right-hand **Properties** panel. Edit name, type, properties, and connection descriptions. External systems render with dashed borders.
 
-Forensics metrics, coupling lens, dependency view, and canvas display toggles live in Explorer → **TraceLens** — not in Properties. See [TraceLens](./tracelens.md).
+Forensics metrics, coupling lens, dependency view, and canvas display toggles live in Explorer → **TraceLens** - not in Properties. See [TraceLens](./tracelens.md).
 
 ## C4 navigation
 
@@ -62,7 +62,7 @@ Bring an external flowchart or C4 Mermaid diagram into the **active** schema - A
 
 ![Import Mermaid](../screenshots/7-import-mermaid.png)
 
-1. Open **Import Mermaid** (startup chooser or toolbar **Open** menu).
+1. Open **Import Mermaid** from the toolbar **Open** menu (requires an active diagram).
 2. Paste Mermaid or upload `.mmd` / `.md`.
 3. Review the preview, additions, and any conflicts (keep existing / rename import / overwrite).
 4. **Merge into diagram** - draft-only until you commit via Pending Changes. ELK layout runs after a successful merge.
@@ -73,7 +73,7 @@ Import is lossy: forensics, rich properties, and styling from Mermaid are not pr
 
 Bring Terraform or Pulumi definitions into the **active** schema - ArchLens parses them statically to `SystemSchema`, previews the merge, and applies only what you approve.
 
-1. Open **Import Infrastructure** (startup chooser or toolbar **Open** menu).
+1. Open **Import Infrastructure** from the toolbar **Open** menu (requires an active diagram).
 2. Paste IaC source or upload one or more files (`.tf`, `.tf.json`, `Pulumi.yaml`, `.ts`).
 3. Choose a format or leave **Auto-detect** (Terraform HCL/JSON or Pulumi YAML/TypeScript).
 4. Review resource preview, additions, and any conflicts (keep existing / rename import / overwrite).
@@ -81,7 +81,7 @@ Bring Terraform or Pulumi definitions into the **active** schema - ArchLens pars
 
 No `terraform init` or `pulumi preview` is required - parsing is static, like the CLI IaC passes. Unknown provider types warn and map to a default infra node type. Import Terraform and Pulumi sources in separate sessions (mixed-vendor batches are rejected).
 
-**CLI vs Canvas:** `archlens scan` applies **meaningful external** projection (vendor third-parties on context; primary products on containers; noise filtered). Canvas Import merges the parsed resource graph into the **active** diagram without that filter today — use CLI scan when you want pack-based significance. See [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
+**CLI vs Canvas:** `archlens scan` applies **meaningful external** projection (vendor third-parties on context; primary products on containers; noise filtered). Canvas Import merges the parsed resource graph into the **active** diagram without that filter today - use CLI scan when you want pack-based significance. See [Meaningful external dependencies](./cli.md#meaningful-external-dependencies).
 
 ## External dependencies
 
@@ -116,7 +116,7 @@ When no node is selected, or when expanding the properties panel, you can instan
 
 As you edit systems and drag nodes, ArchLens Canvas keeps draft state local:
 
-- Bundled sandbox - edits are tracked in browser IndexedDB until you reload via **Load sandbox** (which clears storage) or discard manually. When `VITE_REMOTE_CATALOG_BASE_URL` is set, the sandbox YAML comes from the hosted catalog rather than build-time embeds.
+- Bundled sandbox - edits are tracked in browser IndexedDB until you reload via **Try the demo** or discard manually. When `VITE_REMOTE_CATALOG_BASE_URL` is set, the sandbox YAML comes from the hosted catalog rather than build-time embeds.
 - **Opened folder** - drafts are tracked in IndexedDB against the on-disk baseline; **Commit** writes YAML back to the folder via the File System Access API.
 - Click the **Pending Draft Changes** (compare) icon in the top header to see a comprehensive Git-style diff of added, modified, or deleted nodes and dependencies.
 - You can **Revert** draft changes back to the baseline, or **Commit** them to persist (folder workspaces only).
@@ -142,7 +142,7 @@ Canvas visibility and TraceLens overlays are in Explorer → **TraceLens** tab �
 | **Risk Heatmap**                    | Tint nodes by `hotspotScore` (see [TraceLens](./tracelens.md))      |
 | **Coupling Lens**                   | Focus coupled peers on the canvas (see [TraceLens](./tracelens.md)) |
 
-**Lite canvas** is a separate toggle on the bottom toolbar (**Lite** button): faster pan and zoom on large diagrams — hides minimap/grid, simplifies nodes, caps edge animation.
+**Lite canvas** is a separate toggle on the bottom toolbar (**Lite** button): faster pan and zoom on large diagrams - hides minimap/grid, simplifies nodes, caps edge animation.
 
 Dependency edges draw an arrow toward the target (`from` → `to`). Selecting a node animates edges connected to it (all visible edges when focus mode is on; lite canvas caps animation to the selection neighborhood). `prefers-reduced-motion` disables edge dash animation entirely.
 
@@ -164,6 +164,6 @@ ArchLens Canvas installs as a Progressive Web App. After the first visit, the ap
 
 ## Next
 
-- [ArchLens](./cli.md) - how diagrams get generated
+- [ArchLens CLI](./cli.md) - how diagrams get generated
 - [Design system](/design-system) - visual assets & identity sandbox
 - [Interface tour & journeys](../journeys.md) - E2E-oriented walkthrough

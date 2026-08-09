@@ -16,7 +16,7 @@ function formatPage(url) {
 }
 
 function formatScore(score) {
-  return score == null ? '—' : String(Math.round(score * 100));
+  return score == null ? '-' : String(Math.round(score * 100));
 }
 
 function buildSummary() {
@@ -45,9 +45,9 @@ function buildSummary() {
     for (const assertion of failures) {
       const icon = assertion.level === 'error' ? '❌' : '⚠️';
       const actual =
-        assertion.actual == null ? '—' : String(Math.round(assertion.actual * 100));
+        assertion.actual == null ? '-' : String(Math.round(assertion.actual * 100));
       const expected = Math.round(assertion.expected * 100);
-      markdown += `- ${icon} **\`${formatPage(assertion.url)}\`** — ${assertion.auditProperty}: expected ≥ ${expected}, got ${actual}\n`;
+      markdown += `- ${icon} **\`${formatPage(assertion.url)}\`** - ${assertion.auditProperty}: expected ≥ ${expected}, got ${actual}\n`;
     }
   } else if (assertions.length > 0) {
     markdown += '\nAll configured assertions passed.\n';

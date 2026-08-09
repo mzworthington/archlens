@@ -38,6 +38,19 @@ export const DEFAULT_ANALYSIS_OPTIONS: AnalysisOptions = {
 export const DEFAULT_SCAN_GLOB = '**/*.{ts,tsx,cs,java,go,py,tf}';
 
 /**
+ * IaC paths are discovered by `IacAnalyzer`, not the application AST pass.
+ * Kept separate so browser lite scan can collect them while still ignoring them for code parsing.
+ */
+export const STRUCTURAL_IAC_IGNORE_GLOBS: readonly string[] = [
+  '**/*.tf',
+  '**/*.tf.json',
+  '**/Pulumi.yaml',
+  '**/Pulumi.yml',
+  '**/Pulumi.*.yaml',
+  '**/Pulumi.*.yml',
+];
+
+/**
  * Structural (product-agnostic) path noise: docs, tooling, generated output.
  * Applied in addition to `.gitignore`.
  */
@@ -60,13 +73,7 @@ export const DEFAULT_STRUCTURAL_IGNORE_GLOBS: readonly string[] = [
   '.idea/**',
   '**/generated/**',
   '**/__snapshots__/**',
-  // IaC is handled by IacAnalyzer - keep out of AST parsers
-  '**/*.tf',
-  '**/*.tf.json',
-  '**/Pulumi.yaml',
-  '**/Pulumi.yml',
-  '**/Pulumi.*.yaml',
-  '**/Pulumi.*.yml',
+  ...STRUCTURAL_IAC_IGNORE_GLOBS,
 ];
 
 /** Path/folder names that must not become a container identity on their own. */

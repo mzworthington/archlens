@@ -12,7 +12,7 @@ const sample: Recommendation[] = [
     targetName: 'Web App',
     title: 'Add caller-side circuit breaker',
     detail:
-      'In Web App, add a circuit breaker on the outbound client to API — shared dependency with fan-in and no caller-side isolation in application code.',
+      'In Web App, add a circuit breaker on the outbound client to API - shared dependency with fan-in and no caller-side isolation in application code.',
     priority: 95,
     evidence: {
       applicabilityScope: {

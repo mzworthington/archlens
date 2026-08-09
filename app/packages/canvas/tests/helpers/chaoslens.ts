@@ -1,5 +1,5 @@
 import { expect, type Page } from '@playwright/test';
-import { clickCanvasNode } from './canvas';
+import { clickCanvasNode, expectCanvasReady } from './canvas';
 import { releaseE2ePage } from './navigation';
 import { loadSandbox, ensureRightPanelOpen } from './workspace';
 
@@ -9,11 +9,43 @@ const FAULT_NODE_LABEL = 'Orders Domain';
 const EXTERNAL_SCOPE_API_LABEL = 'API Gateway';
 const EXTERNAL_AUTH_LABEL = 'Auth Service (External)';
 
+async function holdForRecording(page: Page, ms: number, recording: boolean) {
+  if (recording) await page.waitForTimeout(ms);
+}
+
+/**
+ * Fit the large stress graphs into view, then select a node.
+ * `onlyRenderVisibleElements` culls off-screen nodes, so force-clicking a culled
+ * label can succeed on a stale locator without updating `selectedNodeId`.
+ */
+async function fitAndSelect(page: Page, label: string) {
+  const fit = page.getByRole('button', { name: 'Fit View' });
+  if (await fit.isVisible().catch(() => false)) {
+    await fit.click();
+    await expectCanvasReady(page, 30_000);
+  }
+  await clickCanvasNode(page, label);
+}
+
+/** Select until ChaosLens FaultControls shows the node as the active target. */
+async function selectFaultTarget(page: Page, label: string) {
+  const faultControls = page.getByTestId('fault-controls');
+  await expect(faultControls).toBeVisible({ timeout: 30_000 });
+  const target = faultControls.getByText(`Target: ${label}`, { exact: true });
+
+  await expect(async () => {
+    await fitAndSelect(page, label);
+    await expect(target).toBeVisible({ timeout: 5_000 });
+  }).toPass({ timeout: 45_000 });
+}
+
 /** Load large-graph stress diagram with Orders Domain selected. */
 export async function loadChaoslensLargeGraphDiagram(page: Page) {
   await loadSandbox(page, LARGE_GRAPH_PATH);
-  await clickCanvasNode(page, FAULT_NODE_LABEL);
-  await page.waitForTimeout(1_500);
+  await fitAndSelect(page, FAULT_NODE_LABEL);
+  await expect(
+    page.locator('.react-flow__node').filter({ hasText: FAULT_NODE_LABEL }).first()
+  ).toBeVisible();
 }
 
 export type ChaoslensDemoOptions = {
@@ -26,20 +58,20 @@ export async function runChaoslensDomainOrdersOutageDemo(
   page: Page,
   options?: ChaoslensDemoOptions
 ) {
+  const recording = Boolean(options?.onRecordingStart);
   await page.getByRole('button', { name: /enter resilience mode/i }).click();
   await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
     timeout: 30_000,
   });
   await ensureRightPanelOpen(page);
   await options?.onRecordingStart?.();
-  await page.waitForTimeout(800);
+  await holdForRecording(page, 800, recording);
 
-  await clickCanvasNode(page, FAULT_NODE_LABEL);
-  await expect(page.getByText(`Target: ${FAULT_NODE_LABEL}`)).toBeVisible({ timeout: 10_000 });
-  await page.waitForTimeout(600);
+  await selectFaultTarget(page, FAULT_NODE_LABEL);
+  await holdForRecording(page, 600, recording);
 
   await page.getByRole('radio', { name: 'Region outage' }).click();
-  await page.waitForTimeout(400);
+  await holdForRecording(page, 400, recording);
 
   await page.getByTestId('add-fault-to-scenario').click();
   await expect(page.getByRole('button', { name: /run resilience simulation/i })).toBeEnabled({
@@ -48,38 +80,38 @@ export async function runChaoslensDomainOrdersOutageDemo(
 
   // Collapse the panel so the blast ripple is visible on the canvas in recordings.
   await page.getByRole('button', { name: 'Toggle right panel' }).click();
-  await page.waitForTimeout(300);
+  await holdForRecording(page, 300, recording);
 
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
   await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
-  // Partial blast on large graph - hold on heated nodes after ripple.
-  await page.waitForTimeout(2_500);
+  // Partial blast on large graph - hold on heated nodes after ripple (docs GIF only).
+  await holdForRecording(page, 2_500, recording);
   await releaseE2ePage(page);
 }
 
 /** Load external-scope stress diagram (API depends on workspace sibling Auth). */
 export async function loadChaoslensExternalScopeDiagram(page: Page) {
   await loadSandbox(page, EXTERNAL_SCOPE_PATH);
-  await clickCanvasNode(page, EXTERNAL_SCOPE_API_LABEL);
-  await page.waitForTimeout(1_000);
+  await fitAndSelect(page, EXTERNAL_SCOPE_API_LABEL);
+  await expect(
+    page.locator('.react-flow__node').filter({ hasText: EXTERNAL_SCOPE_API_LABEL }).first()
+  ).toBeVisible();
 }
 
 /**
  * Docs / smoke flow: simulate API fault, materialize Auth external, fault Auth, show blast to Web.
  */
 export async function runChaoslensExternalScopeDemo(page: Page, options?: ChaoslensDemoOptions) {
+  const recording = Boolean(options?.onRecordingStart);
   await page.getByRole('button', { name: /enter resilience mode/i }).click();
   await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
     timeout: 30_000,
   });
   await ensureRightPanelOpen(page);
   await options?.onRecordingStart?.();
-  await page.waitForTimeout(800);
+  await holdForRecording(page, 800, recording);
 
-  await clickCanvasNode(page, EXTERNAL_SCOPE_API_LABEL);
-  await expect(page.getByText(`Target: ${EXTERNAL_SCOPE_API_LABEL}`)).toBeVisible({
-    timeout: 10_000,
-  });
+  await selectFaultTarget(page, EXTERNAL_SCOPE_API_LABEL);
   await expect(page.getByText(EXTERNAL_AUTH_LABEL)).toBeVisible({ timeout: 30_000 });
 
   await page.getByTestId('add-fault-to-scenario').click();
@@ -87,12 +119,9 @@ export async function runChaoslensExternalScopeDemo(page: Page, options?: Chaosl
     timeout: 10_000,
   });
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
-  await page.waitForTimeout(1_000);
+  await holdForRecording(page, 1_000, recording);
 
-  await clickCanvasNode(page, EXTERNAL_AUTH_LABEL);
-  await expect(page.getByText(`Target: ${EXTERNAL_AUTH_LABEL}`)).toBeVisible({
-    timeout: 10_000,
-  });
+  await selectFaultTarget(page, EXTERNAL_AUTH_LABEL);
 
   await page.getByRole('radio', { name: 'Region outage' }).click();
   await page.getByTestId('add-fault-to-scenario').click();
@@ -101,6 +130,6 @@ export async function runChaoslensExternalScopeDemo(page: Page, options?: Chaosl
   });
   await page.getByRole('button', { name: /run resilience simulation/i }).click();
   await expect(page.locator('[data-availability-heat]').first()).toBeVisible({ timeout: 60_000 });
-  await page.waitForTimeout(2_500);
+  await holdForRecording(page, 2_500, recording);
   await releaseE2ePage(page);
 }

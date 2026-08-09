@@ -12,7 +12,7 @@ export function churnAccelerationRatio(churn30: number, churn365: number): numbe
 }
 
 export function formatChurnAcceleration(ratio: number): string {
-  if (!Number.isFinite(ratio)) return '—';
+  if (!Number.isFinite(ratio)) return '-';
   if (ratio >= 10) return `${ratio.toFixed(0)}× monthly`;
   if (ratio >= 2) return `${ratio.toFixed(1)}× monthly`;
   return `${ratio.toFixed(2)}× monthly`;

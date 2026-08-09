@@ -12,7 +12,7 @@ $GithubRepo = if ($env:ARCHLENS_GITHUB_REPO) { $env:ARCHLENS_GITHUB_REPO } else 
 
 function Show-Usage {
     Write-Host @"
-ArchLens install script (Windows)
+ArchLens CLI install script (Windows)
 
 Usage:
   install.ps1 [-Dir <path>] [-Version <tag>] [-Uninstall]
@@ -48,9 +48,9 @@ function Remove-Install([string]$InstallDir) {
         $removed = $true
     }
     if (-not $removed) {
-        Write-Error "No ArchLens install found in $InstallDir"
+        Write-Error "No ArchLens CLI install found in $InstallDir"
     }
-    Write-Host "Removed ArchLens from $InstallDir"
+    Write-Host "Removed ArchLens CLI from $InstallDir"
 }
 
 function Get-ReleaseTag {
@@ -123,7 +123,7 @@ function Install-Archlens {
     if ($pathEntries -notcontains $installDir) {
         Write-Host @"
 
-Add ArchLens to your PATH:
+Add ArchLens CLI to your PATH:
 
   setx PATH "$installDir;%PATH%"
 

@@ -19,10 +19,10 @@ Canvas and CLI must agree on BlueprintSpec (`SystemSchema`), Zod validation, mer
 
 ## Considered Options
 
-- Option A — Shared `@archlens/core` monorepo package (status quo): schema types, Zod, merge, Mermaid/IaC import, resilience types, forensics helpers; no I/O
-- Option B — Duplicate models per app (Canvas vs CLI each own types/validation)
-- Option C — Separate versioned npm publish with independent semver
-- Option D — Codegen from external IDL (Protobuf/OpenAPI) into each package
+- Option A - Shared `@archlens/core` monorepo package (status quo): schema types, Zod, merge, Mermaid/IaC import, resilience types, forensics helpers; no I/O
+- Option B - Duplicate models per app (Canvas vs CLI each own types/validation)
+- Option C - Separate versioned npm publish with independent semver
+- Option D - Codegen from external IDL (Protobuf/OpenAPI) into each package
 
 ## Decision Outcome
 

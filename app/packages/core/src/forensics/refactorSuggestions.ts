@@ -38,7 +38,7 @@ function pushSuggestion(list: RefactorSuggestion[], suggestion: RefactorSuggesti
 
 /**
  * Derive actionable refactor suggestions from a boundary cluster and ownership context.
- * Display-only guidance — never written to schema YAML.
+ * Display-only guidance - never written to schema YAML.
  */
 export function buildRefactorSuggestions(
   boundary: RefactorBoundary,
@@ -55,8 +55,8 @@ export function buildRefactorSuggestions(
       title: 'Extract shared logic',
       detail:
         coupledCount > 0
-          ? `${members.length} files change together across ${coupledCount} coupled peer${coupledCount === 1 ? '' : 's'} — pull shared code into a module both sides depend on.`
-          : `${members.length} files change together — pull shared code into a module both sides depend on.`,
+          ? `${members.length} files change together across ${coupledCount} coupled peer${coupledCount === 1 ? '' : 's'} - pull shared code into a module both sides depend on.`
+          : `${members.length} files change together - pull shared code into a module both sides depend on.`,
       relatedSections: ['coupled-files', 'boundary-members'],
       priority: 90,
     });
@@ -67,7 +67,7 @@ export function buildRefactorSuggestions(
       kind: 'split-by-container',
       title: 'Split by container boundary',
       detail:
-        'Coupled files span multiple containers — carve ownership along container lines before extracting shared code.',
+        'Coupled files span multiple containers - carve ownership along container lines before extracting shared code.',
       relatedSections: ['boundary-members'],
       priority: 85,
     });
@@ -91,7 +91,7 @@ export function buildRefactorSuggestions(
       kind: 'add-second-owner',
       title: 'Add a second owner',
       detail:
-        'Complex code with concentrated authorship — pair on changes or rotate reviews to reduce bus factor.',
+        'Complex code with concentrated authorship - pair on changes or rotate reviews to reduce bus factor.',
       relatedSections: ['ownership'],
       priority: 75,
     });
@@ -102,7 +102,7 @@ export function buildRefactorSuggestions(
       kind: 'coordinate-ownership',
       title: 'Coordinate before splitting',
       detail:
-        'Multiple authors touch these files — agree on extraction boundaries and review order before refactoring.',
+        'Multiple authors touch these files - agree on extraction boundaries and review order before refactoring.',
       relatedSections: ['ownership', 'boundary-members'],
       priority: 70,
     });

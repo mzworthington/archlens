@@ -82,7 +82,7 @@ export default defineConfig({
           'bundled-chaos-specs/**/*.{yaml,yml}',
         ],
         // Docs screenshots + schema pack are large and non-critical offline.
-        // Do not glob-ignore all bundled-blueprints — that would drop the preload globs above.
+        // Do not glob-ignore all bundled-blueprints - that would drop the preload globs above.
         globIgnores: ['**/docs-assets/**', '**/schemas/**'],
         navigateFallback: 'index.html',
         // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/*, and /assets/* as real assets.

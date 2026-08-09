@@ -19,8 +19,8 @@ export function rollupChurnByWeek(
   return totals;
 }
 
-const COMPLEXITY_BUCKET_LABELS = ['1–5', '6–10', '11–20', '21+'] as const;
-const AUTHOR_BUCKET_LABELS = ['1 author', '2–3', '4+'] as const;
+const COMPLEXITY_BUCKET_LABELS = ['1-5', '6-10', '11-20', '21+'] as const;
+const AUTHOR_BUCKET_LABELS = ['1 author', '2-3', '4+'] as const;
 
 /** File counts per complexity band for micro-chart display. */
 export function bucketComplexityCounts(complexities: readonly number[]): number[] {

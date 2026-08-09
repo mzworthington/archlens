@@ -19,10 +19,10 @@ External Mermaid and IaC must enter ArchLens without corrupting the canonical YA
 
 ## Considered Options
 
-- Option A — Parse → `ImportMergePlan` → conflict UI → apply approved resolutions as drafts into the active diagram (status quo)
-- Option B — Replace the active schema wholesale with the imported schema
-- Option C — Bidirectional Mermaid editing (Code Viewer tab editable with round-trip)
-- Option D — Import only as separate unlinked diagrams
+- Option A - Parse → `ImportMergePlan` → conflict UI → apply approved resolutions as drafts into the active diagram (status quo)
+- Option B - Replace the active schema wholesale with the imported schema
+- Option C - Bidirectional Mermaid editing (Code Viewer tab editable with round-trip)
+- Option D - Import only as separate unlinked diagrams
 
 ## Decision Outcome
 

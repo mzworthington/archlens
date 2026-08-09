@@ -80,7 +80,7 @@ export function resolveHelpRequest(argv: string[]): { isHelp: boolean; topic: He
 export function printCliHelp(topic: HelpTopic = 'overview'): void {
   console.log('');
   console.log(
-    `${pc.bold(pc.cyan('◆'))} ${pc.bold('ARCHLENS')} ${pc.dim(getArchlensVersion())} ${pc.dim('—')} ${pc.dim('C4 blueprints from your codebase')}`
+    `${pc.bold(pc.cyan('◆'))} ${pc.bold('ARCHLENS')} ${pc.dim(getArchlensVersion())} ${pc.dim('-')} ${pc.dim('C4 blueprints from your codebase')}`
   );
 
   switch (topic) {

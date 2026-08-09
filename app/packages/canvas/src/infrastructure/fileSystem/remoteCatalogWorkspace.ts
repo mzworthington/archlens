@@ -6,11 +6,7 @@ import {
 } from '@archlens/core';
 import { createHttpObjectStorage } from '@archlens/storage/http';
 import type { WorkspacePort } from '../../core';
-import {
-  CATALOG_BLUEPRINT_FETCH_CONCURRENCY,
-  CATALOG_PRELOAD_FETCH_CONCURRENCY,
-  mapPool,
-} from './catalogNetworkFetch';
+import { CATALOG_BLUEPRINT_FETCH_CONCURRENCY, mapPool } from './catalogNetworkFetch';
 
 export type RemoteCatalogWorkspaceOptions = {
   baseUrl: string;
@@ -113,31 +109,4 @@ export function createRemoteCatalogWorkspaceAdapter(
       return entries.sort((a, b) => a.name.localeCompare(b.name));
     },
   };
-}
-
-export async function warmRemoteBlueprintBodies(
-  options: RemoteCatalogWorkspaceOptions,
-  paths: readonly string[]
-): Promise<void> {
-  if (paths.length === 0) return;
-  await mapPool(paths, CATALOG_PRELOAD_FETCH_CONCURRENCY, async relativePath => {
-    try {
-      await fetchBlueprintContentForWarm(options, relativePath);
-    } catch {
-      // Best-effort warm; navigation fetch surfaces real errors.
-    }
-  });
-}
-
-async function fetchBlueprintContentForWarm(
-  options: RemoteCatalogWorkspaceOptions,
-  relativePath: string
-): Promise<void> {
-  const resolved = await resolveRemoteCatalog(options);
-  const storage = createHttpObjectStorage({
-    provider: 'http',
-    baseUrl: options.baseUrl,
-    fetchImpl: options.fetchImpl,
-  });
-  await storage.getObject(`${resolved.snapshotPrefix}${relativePath}`);
 }

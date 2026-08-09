@@ -62,6 +62,7 @@ export type GoldenJourneyDemoOptions = {
 
 /** Simulate Payment Gateway region outage and expect AdviceLens circuit-breaker recommendation. */
 export async function runGoldenJourneyOutageDemo(page: Page, options?: GoldenJourneyDemoOptions) {
+  const recording = Boolean(options?.onRecordingStart);
   await page.getByRole('button', { name: /enter resilience mode/i }).click();
   await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
     timeout: 30_000,
@@ -69,7 +70,7 @@ export async function runGoldenJourneyOutageDemo(page: Page, options?: GoldenJou
   await ensureRightPanelOpen(page);
   await expect(page.getByTestId('fault-controls')).toBeVisible({ timeout: 30_000 });
   await options?.onRecordingStart?.();
-  await page.waitForTimeout(600);
+  if (recording) await page.waitForTimeout(600);
 
   await selectPaymentGateway(page);
   await expect(page.getByText(`Target: ${PAYMENT_GATEWAY_LABEL}`)).toBeVisible({
@@ -89,6 +90,6 @@ export async function runGoldenJourneyOutageDemo(page: Page, options?: GoldenJou
     timeout: 30_000,
   });
 
-  await page.waitForTimeout(1_500);
+  if (recording) await page.waitForTimeout(1_500);
   await releaseE2ePage(page);
 }

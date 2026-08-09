@@ -1,7 +1,7 @@
 import { expect, type Page } from '@playwright/test';
-import { continueWithSample } from './toolbar';
-import { expectCanvasReady, expectGoldenJourneyEstateReady } from './canvas';
 import { gotoApp } from './navigation';
+import { expectCanvasReady, expectGoldenJourneyEstateReady } from './canvas';
+import { continueWithSample, exitResilienceModeIfActive } from './toolbar';
 
 const GOLDEN_JOURNEY_ESTATE_PATH = '/workspace/samples/golden-journey';
 const GOLDEN_JOURNEY_WORKSPACE_PATH = GOLDEN_JOURNEY_ESTATE_PATH;
@@ -13,20 +13,18 @@ export async function loadSandbox(page: Page, path = '/workspace/samples') {
 
   await gotoApp(page, '/workspace');
   await continueWithSample(page);
+  await exitResilienceModeIfActive(page);
+
+  const currentPath = new URL(page.url()).pathname.replace(/\/$/, '');
+  if (currentPath !== normalizedTarget || new URL(page.url()).search) {
+    await gotoApp(page, normalizedTarget);
+    const escaped = normalizedTarget.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    await expect(page).toHaveURL(new RegExp(`${escaped}(?:/|\\?|$)`), { timeout: 60_000 });
+  }
 
   if (normalizedTarget === GOLDEN_JOURNEY_ESTATE_PATH) {
     await expectGoldenJourneyEstateReady(page);
     return;
-  }
-
-  const currentPath = new URL(page.url()).pathname.replace(/\/$/, '');
-  if (currentPath !== normalizedTarget) {
-    await page.evaluate(href => {
-      window.history.pushState({}, '', href);
-      window.dispatchEvent(new PopStateEvent('popstate'));
-    }, normalizedTarget);
-    const escaped = normalizedTarget.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    await expect(page).toHaveURL(new RegExp(`${escaped}(?:/|$)`), { timeout: 60_000 });
   }
 
   await expectCanvasReady(page);

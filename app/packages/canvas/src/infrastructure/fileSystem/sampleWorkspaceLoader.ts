@@ -21,7 +21,7 @@ export function resolveRemoteCatalogBaseUrl(): string | undefined {
   return value || undefined;
 }
 
-/** Sync port for composition root — prefers remote when env is set (no network probe). */
+/** Sync port for composition root - prefers remote when env is set (no network probe). */
 export function createSampleWorkspacePort(
   remoteBaseUrl: string | undefined = resolveRemoteCatalogBaseUrl()
 ): WorkspacePort {

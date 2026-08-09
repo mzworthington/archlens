@@ -26,13 +26,13 @@ export const FORENSICS_METRIC_HELP: Record<string, string> = {
   authors: 'Distinct git authors who edited this file in the lookback window.',
   ownership: 'Share of recent commits by the top author - high means concentrated ownership.',
   hotspotScore:
-    'Relative risk from complexity × churn (or line churn when available). 0–1 across the analyzed set.',
+    'Relative risk from complexity × churn (or line churn when available). 0-1 across the analyzed set.',
   lineChurn:
-    'Lines added + removed in the git lookback window — often a sharper hotspot signal than commit count alone.',
+    'Lines added + removed in the git lookback window - often a sharper hotspot signal than commit count alone.',
   complexityPeak:
-    'Highest cyclomatic complexity among functions in this file — spots localized complexity spikes.',
+    'Highest cyclomatic complexity among functions in this file - spots localized complexity spikes.',
   cognitiveComplexity:
-    'Peak cognitive complexity (nested control flow) among functions — harder to read than flat cyclomatic count.',
+    'Peak cognitive complexity (nested control flow) among functions - harder to read than flat cyclomatic count.',
   functionCount: 'Number of functions/methods detected in the file AST.',
   compositeRisk:
     'TraceLens × ChaosLens: hotspotScore × blast radius. Highlights code that is hard to change and painful if it fails.',

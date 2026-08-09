@@ -22,14 +22,14 @@ Today the hosted sandbox uses build-time bundled YAML under `/bundled-blueprints
 
 ## Considered Options
 
-- Option A — Flat bucket root: overwrite `catalog.json` and YAML in place on each publish
-- Option B — Immutable snapshot prefix + `latest` pointer manifest (recommended)
-- Option C — Git LFS or tarball artifact only; Canvas downloads and unpacks entire corpus
-- Option D — New catalog schema (protobuf/GraphQL) instead of existing `catalog.json`
+- Option A - Flat bucket root: overwrite `catalog.json` and YAML in place on each publish
+- Option B - Immutable snapshot prefix + `latest` pointer manifest (recommended)
+- Option C - Git LFS or tarball artifact only; Canvas downloads and unpacks entire corpus
+- Option D - New catalog schema (protobuf/GraphQL) instead of existing `catalog.json`
 
 ## Decision Outcome
 
-Chosen option: "**Option B**" — each successful publish writes an **immutable snapshot** under a revision-specific prefix; a small **`latest/` pointer** (updated last) tells consumers which snapshot is current.
+Chosen option: "**Option B**" - each successful publish writes an **immutable snapshot** under a revision-specific prefix; a small **`latest/` pointer** (updated last) tells consumers which snapshot is current.
 
 ### Snapshot layout
 
@@ -69,7 +69,7 @@ Optional later: `objects[]` with per-file SHA-256 for integrity verification (no
 
 Consumers resolve catalog URL as: `{base}{snapshotPrefix}catalog.json` after reading `latest/manifest.json`. For a pinned revision, skip `latest/` and use `snapshots/{revisionId}/` directly.
 
-**`catalog.json`**: unchanged — JSON array validated by `parseWorkspaceCatalogJson` in `@archlens/core`. Each entry's `path` is relative to the snapshot root (e.g. `app/containers.yaml`).
+**`catalog.json`**: unchanged - JSON array validated by `parseWorkspaceCatalogJson` in `@archlens/core`. Each entry's `path` is relative to the snapshot root (e.g. `app/containers.yaml`).
 
 **YAML files**: valid BlueprintSpec (`SystemSchema`) documents at paths referenced by the catalog. No HTML shell, no SPA fallback on these paths (hosting is ADR-0009 / storage CORS concern, ADR-0011).
 
@@ -81,7 +81,7 @@ Consumers resolve catalog URL as: `{base}{snapshotPrefix}catalog.json` after rea
 4. Write `snapshots/{revisionId}/manifest.json`.
 5. **Atomically switch** `latest/manifest.json` (single-object overwrite after step 4 completes).
 
-Steps 3–4 must finish before step 5 so `latest` never references a partial snapshot.
+Steps 3-4 must finish before step 5 so `latest` never references a partial snapshot.
 
 ### Consume protocol (Canvas adapter)
 
@@ -96,7 +96,7 @@ Steps 3–4 must finish before step 5 so `latest` never references a partial sna
 - Good, because immutable snapshots support rollback, forensics, and "pin to revision" for audits
 - Good, because `catalog.json` and `WorkspaceCatalogEntry` reuse avoids a second navigation model
 - Bad, because storage hosts must serve static JSON/YAML with correct `Content-Type` and CORS (adapter concern, ADR-0011)
-- Bad, because `latest/` overwrite is eventually consistent on some stores — consumers should retry on 404 immediately after publish
+- Bad, because `latest/` overwrite is eventually consistent on some stores - consumers should retry on 404 immediately after publish
 - Follow-up: ADR-0011 (object storage / R2 hosted catalog), ADR-0012 (remote read-only `WorkspacePort` adapter), ADR-0013 (practitioner connection profiles / auth), ADR-0014 (estate fragments + compose so multi-pipeline publishes do not clobber `latest`)
 - Implementation: `@archlens/storage` (`ObjectStoragePort` + R2/S3/Azure/HTTP adapters)
 - Open (slice 1): retain bundled `/bundled-blueprints/` as offline fallback until remote path is stable for 7 consecutive nightly publishes

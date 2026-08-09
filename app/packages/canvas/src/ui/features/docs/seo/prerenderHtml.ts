@@ -33,7 +33,7 @@ function upsertRobots(html: string, content: string): string {
 }
 
 function stripJsonLdScripts(html: string): string {
-  // indexOf scan — avoids incomplete multi-character sanitization / nested <script> leftovers.
+  // indexOf scan - avoids incomplete multi-character sanitization / nested <script> leftovers.
   let result = '';
   let i = 0;
   const lower = html.toLowerCase();

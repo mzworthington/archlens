@@ -1,11 +1,11 @@
-# ArchLens — catch architecture risk before it becomes an outage
+# ArchLens - catch architecture risk before it becomes an outage
 
 [![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml) [![archlens.dev](https://img.shields.io/badge/archlens.dev-open%20app-00f0ff)](https://archlens.dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
 
-ArchLens models systems as **BlueprintSpec** YAML — a living architecture contract you can author locally, publish from CI, and validate with TraceLens, ChaosLens, and AdviceLens while design is still cheap to change.
+ArchLens models systems as **BlueprintSpec** YAML - a living architecture contract you can author locally, publish from CI, and validate with TraceLens, ChaosLens, and AdviceLens while design is still cheap to change.
 
-**Local authoring:** open a folder in ArchLens Canvas, edit diagrams with bi-directional YAML sync, commit when ready — drafts stay on your machine.  
+**Local authoring:** open a folder in ArchLens Canvas, edit diagrams with bi-directional YAML sync, commit when ready - drafts stay on your machine.  
 **Published estate:** scan in CI, publish to object storage, and open a shared read-only catalog without redeploying the app.
 
 ---
@@ -20,9 +20,9 @@ A front-end visual canvas web application client. Double-click boundary nodes to
 
 ---
 
-## ArchLens
+## ArchLens CLI
 
-![ArchLens Interactive Prompts](./docs/screenshots/cli.gif)
+![ArchLens CLI Interactive Prompts](./docs/screenshots/cli.gif)
 
 A command-line static analysis (AST) codebase scanner. It parses source files, extracts modules, identifies components and dependency references, computes an optimal layout using Dagre, and outputs valid BlueprintSpec YAML inside the `blueprints/` directory.
 
@@ -93,7 +93,7 @@ pnpm test:cli
 
 Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git, and on the site):
 
-- **[Product guide](./docs/guide/index.md)** - overview, ArchLens Canvas, ArchLens, TraceLens, ChaosLens
+- **[Product guide](./docs/guide/index.md)** - overview, ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
 - **[Unit test features](./docs/features-unit.md)** - generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**

@@ -130,7 +130,7 @@ Husky + lint-staged validate commits for changes under `app/`, `docs/`, and `res
 
 - Prettier auto-formats staged files (`--write` via lint-staged); the hook then runs full-repo `format:check` (matching CI)
 - Oxlint on TypeScript (`--deny-warnings`)
-- TypeScript typecheck (`tsc -b`, matching the build step) — includes `src/**/*.test.ts` in Canvas
+- TypeScript typecheck (`tsc -b`, matching the build step) - includes `src/**/*.test.ts` in Canvas
 - Knip and `vitest run --changed` on staged `app/` paths
 - When `app/packages/core/` is staged, checks that `schemas/blueprint.schema.json` (and `v*` / `latest` copies) match the Zod contract - commit fails if stale; run `pnpm generate:schema` to refresh
 - When `resilience-engine/**/*.go` is staged, runs `gofmt`, `go vet`, and `go test`

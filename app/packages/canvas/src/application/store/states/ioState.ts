@@ -287,9 +287,9 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
     try {
       const walked = await walkBrowserSourceDirectory(pick.handle, { signal: cancellation.signal });
       if (abortIfSuperseded()) return false;
-      if (walked.sourceFileCount === 0) {
+      if (walked.sourceFileCount === 0 && walked.iacFileCount === 0) {
         throw new Error(
-          'No TypeScript or JavaScript source files found (try a package with .ts/.tsx/.js/.jsx/.mjs/.cjs).'
+          'No supported source or IaC files found (try .ts/.tsx/.js/.jsx/.mjs/.cjs/.py/.go/.java/.cs, or Terraform .tf / Pulumi.yaml).'
         );
       }
 
@@ -302,7 +302,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       if (abortIfSuperseded()) return false;
 
       if (yamlFiles.length === 0) {
-        throw new Error('Scan produced no BlueprintSpec YAML — check the selected folder.');
+        throw new Error('Scan produced no BlueprintSpec YAML - check the selected folder.');
       }
 
       const scanPort = createMemoryScanWorkspacePort({
@@ -335,7 +335,9 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
         setNotification?.({
           type: 'info',
           title: 'Browser lite scan ready',
-          message: `Loaded ${walked.sourceFileCount} source file(s) — structure only (no TraceLens/git hotspots).${truncatedNote} In-memory until you export. Install the ArchLens CLI for forensics, watch mode, and CI publish.`,
+          message: `Loaded ${walked.sourceFileCount} source file(s)${
+            walked.iacFileCount > 0 ? ` and ${walked.iacFileCount} IaC file(s)` : ''
+          } - structure only (no TraceLens/git hotspots).${truncatedNote} In-memory until you export. Install the ArchLens CLI for forensics, watch mode, and CI publish.`,
         });
         return true;
       }

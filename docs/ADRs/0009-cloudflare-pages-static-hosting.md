@@ -19,10 +19,10 @@ ArchLens production (docs + Canvas SPA, JSON Schema hosting, PWA) was deployed t
 
 ## Considered Options
 
-- Option A — GitHub Pages + `404.html` SPA hack (status quo)
-- Option B — Cloudflare Pages with dashboard Git integration
-- Option C — Cloudflare Pages: Pulumi for project/domains, GitHub Actions + Wrangler for static upload
-- Option D — Terraform instead of Pulumi for Cloudflare resources
+- Option A - GitHub Pages + `404.html` SPA hack (status quo)
+- Option B - Cloudflare Pages with dashboard Git integration
+- Option C - Cloudflare Pages: Pulumi for project/domains, GitHub Actions + Wrangler for static upload
+- Option D - Terraform instead of Pulumi for Cloudflare resources
 
 ## Decision Outcome
 

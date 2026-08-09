@@ -1,6 +1,6 @@
-# `@archlens/cli` - Command Line AST Analyzer
+# ArchLens CLI (`@archlens/cli`)
 
-![ArchLens Interactive Prompts](../../docs/screenshots/cli.gif)
+![ArchLens CLI Interactive Prompts](../../docs/screenshots/cli.gif)
 
 Scans a local codebase, extracts modules and dependencies via static analysis, and writes C4-style YAML under `blueprints/`. Diagram layout is handled by ArchLens Canvas (autolayout on open; optional `x`/`y` when you customize positions in the UI).
 
@@ -18,8 +18,8 @@ pnpm dev:cli
 
 ### Modes
 
-1. **Quick scan:** `archlens scan` or `archlens --scan` — headless run using `blueprint.config.json` / defaults (context `blueprint`, output `blueprints`, default glob). Add flags as needed (`--no-git`, `--output=…`).
-2. **Enrich existing YAML:** `archlens enrich` — re-run the externals pass on blueprint files already on disk (adds missing dependency edges and `external: true` proxy nodes; no AST re-scan). Use after upgrading ArchLens or when hand-authored YAML is missing couplings.
+1. **Quick scan:** `archlens scan` or `archlens --scan` - headless run using `blueprint.config.json` / defaults (context `blueprint`, output `blueprints`, default glob). Add flags as needed (`--no-git`, `--output=…`).
+2. **Enrich existing YAML:** `archlens enrich` - re-run the externals pass on blueprint files already on disk (adds missing dependency edges and `external: true` proxy nodes; no AST re-scan). Use after upgrading ArchLens CLI or when hand-authored YAML is missing couplings.
 3. **Interactive (default):** step-by-step prompts for context, glob, output, and whether to enrich with Git forensics.
 4. **Headless / CI:** non-TTY, or when flags are supplied:
 
@@ -73,7 +73,7 @@ Forensics attach a typed `forensics` object onto component nodes (per-file metri
 
 ### Architecture health (`validate`) and structural `diff`
 
-Pin architecture risk in CI without re-scanning source. Default `validate` reports **what to fix in the codebase** — actionable module `direct-call` cycles (not external-proxy / inter-container loops) and TraceLens forensics (hotspots, knowledge silos, heating churn) — with remediation text. Other coupling cycles are listed as informational and do not fail the gate. Scan with git forensics enabled first so hotspot/silo/heating signals are attached.
+Pin architecture risk in CI without re-scanning source. Default `validate` reports **what to fix in the codebase** - actionable module `direct-call` cycles (not external-proxy / inter-container loops) and TraceLens forensics (hotspots, knowledge silos, heating churn) - with remediation text. Other coupling cycles are listed as informational and do not fail the gate. Scan with git forensics enabled first so hotspot/silo/heating signals are attached.
 
 ```bash
 archlens validate blueprints/

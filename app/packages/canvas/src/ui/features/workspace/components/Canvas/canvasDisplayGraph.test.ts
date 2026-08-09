@@ -61,7 +61,7 @@ function contextFixture() {
   return { schema, nodes, edges };
 }
 
-describe('buildCanvasVisibleNodes — C4 context level', () => {
+describe('buildCanvasVisibleNodes - C4 context level', () => {
   it('always shows actors and external dependencies at context level', () => {
     const { schema, nodes, edges } = contextFixture();
     const visible = buildCanvasVisibleNodes({

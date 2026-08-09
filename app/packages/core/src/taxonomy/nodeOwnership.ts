@@ -2,18 +2,18 @@ import type { SystemNode } from '../models/schema';
 
 export const THIRD_PARTY_CLASSIFICATION = 'third-party';
 
-/** IaC declaration in source (Pulumi/Terraform address) — owned code, not the cloud product. */
+/** IaC declaration in source (Pulumi/Terraform address) - owned code, not the cloud product. */
 export const IAC_VIEW_DECLARATION = 'declaration';
-/** Provisioned cloud product/instance projected from IaC — third-party runtime surface. */
+/** Provisioned cloud product/instance projected from IaC - third-party runtime surface. */
 export const IAC_VIEW_RESOURCE = 'resource';
 
-/** Human actors (C4 persons, product personas) — never implementation advice targets. */
+/** Human actors (C4 persons, product personas) - never implementation advice targets. */
 export function isHumanActorNode(node: Pick<SystemNode, 'type' | 'properties'>): boolean {
   if (node.type === 'person') return true;
   return node.properties?.role === 'product-persona';
 }
 
-/** Vendor or SaaS outside your control — observable in simulation, not safeguard targets. */
+/** Vendor or SaaS outside your control - observable in simulation, not safeguard targets. */
 export function isThirdPartyNode(node: Pick<SystemNode, 'properties'>): boolean {
   return node.properties?.classification === THIRD_PARTY_CLASSIFICATION;
 }

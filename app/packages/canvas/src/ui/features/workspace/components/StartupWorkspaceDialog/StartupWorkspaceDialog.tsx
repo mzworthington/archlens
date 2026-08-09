@@ -9,7 +9,7 @@ interface StartupWorkspaceDialogProps {
   loadingMessage?: string | false | null;
 }
 
-/** First-run gate for bare `/workspace` — demo insight, browser scan, or a local folder. */
+/** First-run gate for bare `/workspace` - demo insight, browser scan, or a local folder. */
 export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   isOpen,
   onOpenSample,

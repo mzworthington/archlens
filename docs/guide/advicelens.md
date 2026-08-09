@@ -1,8 +1,8 @@
 # AdviceLens
 
-**AdviceLens** is ArchLens’s evidence-backed recommendation layer. It merges **TraceLens** code-health signals with **ChaosLens** failure simulation into a **ranked action list**—what to fix first, and why.
+**AdviceLens** is ArchLens’s evidence-backed recommendation layer. It merges **TraceLens** code-health signals with **ChaosLens** failure simulation into a **ranked action list** - what to fix first, and why.
 
-Unlike a generic “AI insights” panel, AdviceLens **Core** is fully deterministic: priority and evidence come from structured simulation and forensics. Optional **Narration** (Phase 5) can enrich detail text with LLM-generated fixes grounded on that evidence—without changing rank order.
+Unlike a generic “AI insights” panel, AdviceLens **Core** is fully deterministic: priority and evidence come from structured simulation and forensics. Optional **Narration** (Phase 5) can enrich detail text with LLM-generated fixes grounded on that evidence - without changing rank order.
 
 ## The lens family
 
@@ -12,19 +12,19 @@ Unlike a generic “AI insights” panel, AdviceLens **Core** is fully determini
 | ChaosLens  | What fails and how far does damage spread?     |
 | AdviceLens | What should we fix first, and why?             |
 
-TraceLens and ChaosLens **observe**. AdviceLens **prescribes**—synthesizing their signals into comparable recommendations with evidence.
+TraceLens and ChaosLens **observe**. AdviceLens **prescribes** - synthesizing their signals into comparable recommendations with evidence.
 
 ## Where to see AdviceLens
 
-AdviceLens is **cross-surface** — it prescribes fixes wherever TraceLens and ChaosLens observe signals. The canonical studio entry is **`/workspace?lens=advicelens`**, which opens the **AdviceLens** tab on the TraceLens estate page.
+AdviceLens is **cross-surface** - it prescribes fixes wherever TraceLens and ChaosLens observe signals. The canonical studio entry is **`/workspace?lens=advicelens`**, which opens the **AdviceLens** tab on the TraceLens estate page.
 
 | Surface           | Location                                                                                     |
 | ----------------- | -------------------------------------------------------------------------------------------- |
-| **AdviceLens**    | `/workspace?lens=advicelens` — **TraceLens** estate page, **AdviceLens** tab                 |
-| **TraceLens**     | `/workspace?lens=tracelens` — **TraceLens** estate page, **TraceLens** tab (worst offenders) |
+| **AdviceLens**    | `/workspace?lens=advicelens` - **TraceLens** estate page, **AdviceLens** tab                 |
+| **TraceLens**     | `/workspace?lens=tracelens` - **TraceLens** estate page, **TraceLens** tab (worst offenders) |
 | **Refactor plan** | Slide-over on an offender → AdviceLens list for that boundary                                |
 | **ChaosLens**     | Workspace **Resilience** mode → telemetry panel advice list                                  |
-| **CLI**           | `archlens resilience <path>` — headless estate sweep                                         |
+| **CLI**           | `archlens resilience <path>` - headless estate sweep                                         |
 
 Product docs: [AdviceLens engine](../advicelens-engine.md) (contributors).
 
@@ -35,13 +35,13 @@ Each recommendation includes:
 | Field       | Meaning                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------ |
 | `kind`      | Action type (e.g. `add-circuit-breaker`, `reduce-composite-risk`, `refactor-split-by-container`) |
-| `priority`  | 0–100 urgency score (higher = more urgent)                                                       |
+| `priority`  | 0-100 urgency score (higher = more urgent)                                                       |
 | `source`    | Signal provenance: `chaoslens` or `tracelens`                                                    |
 | `evidence`  | Structured backing (blast radius, hotspot score, composite risk, applicability scope, etc.)      |
 | `actions`   | Optional UI actions (e.g. enable circuit breaker on canvas)                                      |
 | `narration` | Optional AI-enriched detail (Phase 5; `provider: 'adviceLens'`)                                  |
 
-Recommendations are **display-only** by default—they are not written into BlueprintSpec YAML.
+Recommendations are **display-only** by default - they are not written into BlueprintSpec YAML.
 
 ## In TraceLens
 
@@ -71,7 +71,7 @@ archlens resilience ./blueprints --format=yaml --output=advicelens-report.yaml
 archlens resilience ./blueprints --chaos-specs=./chaos-specs
 ```
 
-Output header: **AdviceLens estate report** — diagram count, worst SLA, SPOF totals, and top ranked recommendations with evidence.
+Output header: **AdviceLens estate report** - diagram count, worst SLA, SPOF totals, and top ranked recommendations with evidence.
 
 Structured output is a versioned artifact (`kind: advicelens-estate-report`) with plain-object heat maps. **CI uses JSON**; the studio **Copy YAML** / **Download** defaults to YAML (same fields).
 
@@ -96,9 +96,9 @@ On **TraceLens → AdviceLens**, use **Copy YAML** or **Download** (`advicelens-
 
 ## Applicability matrix
 
-AdviceLens distinguishes **where signals are observed** from **where actions belong**. Resilience safeguards are **application-runtime** concerns (outbound clients, consumer logic, retries) — not IaC or shared infrastructure provisioning.
+AdviceLens distinguishes **where signals are observed** from **where actions belong**. Resilience safeguards are **application-runtime** concerns (outbound clients, consumer logic, retries) - not IaC or shared infrastructure provisioning.
 
-**Who can receive advice:** owned services, apps, and workers — never C4 persons/product personas, and never third-party vendors (safeguards apply on **your** outbound clients instead).
+**Who can receive advice:** owned services, apps, and workers - never C4 persons/product personas, and never third-party vendors (safeguards apply on **your** outbound clients instead).
 
 **External nodes:** `external: true` means a workspace proxy (another diagram in your estate). Add `properties.classification: third-party` for vendors/SaaS outside your control. Canvas shows `(Workspace)` vs `(Third-party)` badges.
 
@@ -106,10 +106,10 @@ AdviceLens distinguishes **where signals are observed** from **where actions bel
 | ------------- | ----------------------- | ------------------------------------------------------------------ | ------------------------ |
 | `context`     | Yes                     | On **calling** services, APIs, and workers (not on brokers/DBs)    | Yes                      |
 | `container`   | Yes                     | On **calling** services, APIs, and workers                         | Yes                      |
-| `component`   | No                      | No — forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
-| `code`        | No                      | No — forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
+| `component`   | No                      | No - forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
+| `code`        | No                      | No - forensics/refactor only; rolls up to container                | Rolled up to `entityRef` |
 
-**SPOF handling:** shared dependencies (databases, brokers) are still detected, but `add-circuit-breaker` targets **callers** — add isolation in the calling service's outbound client, not on the shared resource or its Terraform module. Third-party dependencies (`classification: third-party`) use caller-side wording and `dependencyOwnership: third-party` in evidence. IaC-imported nodes (`iac.address` / `iac.kind` properties) are never safeguard targets. Evidence includes `simulation.dependencyEntityRef` and `evidence.applicabilityScope` for the shared dependency.
+**SPOF handling:** shared dependencies (databases, brokers) are still detected, but `add-circuit-breaker` targets **callers** - add isolation in the calling service's outbound client, not on the shared resource or its Terraform module. Third-party dependencies (`classification: third-party`) use caller-side wording and `dependencyOwnership: third-party` in evidence. IaC-imported nodes (`iac.address` / `iac.kind` properties) are never safeguard targets. Evidence includes `simulation.dependencyEntityRef` and `evidence.applicabilityScope` for the shared dependency.
 
 Core helpers: `isResilienceAdviceTarget()`, `isAdviceActionable()`, `isThirdPartyDependency()`, `isEstateResilienceDiagramLevel()`, `resolveAdviceApplicability()` in `@archlens/core/recommendations`. Ownership helpers: `isHumanActorNode()`, `resolveExternalNodeKind()` in `@archlens/core`.
 
@@ -130,12 +130,12 @@ Core helpers: `isResilienceAdviceTarget()`, `isAdviceActionable()`, `isThirdPart
 | Layer         | Role                                              | CI-safe?                 |
 | ------------- | ------------------------------------------------- | ------------------------ |
 | **Core**      | `buildRecommendations()`, `runEstateResilience()` | Yes                      |
-| **Narration** | `narrateRecommendations()` — optional LLM detail  | Optional; never re-ranks |
+| **Narration** | `narrateRecommendations()` - optional LLM detail  | Optional; never re-ranks |
 
 Narration attaches `narration.citations` (evidence keys the model must ground on). Ranking always uses Core output.
 
 ## Related guides
 
-- [TraceLens](./tracelens.md) — forensics signals that feed composite risk
-- [ChaosLens](./chaoslens.md) — simulation that feeds blast radius and SPOFs
-- [ArchLens CLI](./cli.md) — scanning and `archlens resilience`
+- [TraceLens](./tracelens.md) - forensics signals that feed composite risk
+- [ChaosLens](./chaoslens.md) - simulation that feeds blast radius and SPOFs
+- [ArchLens CLI](./cli.md) - scanning and `archlens resilience`

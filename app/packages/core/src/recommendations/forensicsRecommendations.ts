@@ -105,7 +105,7 @@ function tryBuildForensicsRecommendation(
     targetEntityRef: applicability.adviceTargetEntityRef,
     targetName: applicability.adviceTargetName,
     title: 'Reduce composite risk',
-    detail: `${applicability.scopeName} combines elevated change risk with high blast exposure${contributorNote} — prioritize refactoring or add outbound safeguards in application code before the next incident.`,
+    detail: `${applicability.scopeName} combines elevated change risk with high blast exposure${contributorNote} - prioritize refactoring or add outbound safeguards in application code before the next incident.`,
     priority,
     evidence: {
       forensics: {

@@ -1,7 +1,7 @@
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 
 /**
- * Bundled demo workspace — committed `samples/` is mirrored for offline / PR fallback.
+ * Bundled demo workspace - committed `samples/` is mirrored for offline / PR fallback.
  * Full scanned sample corpora live in the remote catalog (CI publish), not in git.
  */
 export const BUNDLED_WORKSPACE_NAME = 'samples';

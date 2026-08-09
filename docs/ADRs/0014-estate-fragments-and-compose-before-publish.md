@@ -22,16 +22,16 @@ We need a composition model that keeps immutable snapshots while allowing indepe
 
 ## Considered Options
 
-- Option A — Status quo: one job builds the full tree, then ADR-0010 publish (aggregator outside ArchLens)
-- Option B — Fragment staging + `catalog compose` that merges fragments (and overlays) into a new ADR-0010 snapshot with compare-and-swap on `latest`
-- Option C — Mutable in-place bucket objects (no snapshots) edited by each pipeline
-- Option D — Separate catalog per repo; Canvas federates many `latest` pointers
+- Option A - Status quo: one job builds the full tree, then ADR-0010 publish (aggregator outside ArchLens)
+- Option B - Fragment staging + `catalog compose` that merges fragments (and overlays) into a new ADR-0010 snapshot with compare-and-swap on `latest`
+- Option C - Mutable in-place bucket objects (no snapshots) edited by each pipeline
+- Option D - Separate catalog per repo; Canvas federates many `latest` pointers
 
 ## Decision Outcome
 
 Chosen option: "**Option B**", with **Option A** as the interim whole-tree publish pattern until compose ships.
 
-**Validation policy:** catalog push paths (`publish`, `publish-fragment`, `compose`, `scan --publish`) default to **not** blocking on workspace validation. ArchLens prioritises honest visibility of architecture — including incomplete or intentionally invalid trees. Use `archlens validate` or `--validate` on a publish command only when a pipeline wants an optional hard gate. `--skip-validation` is always allowed and wins over `--validate`.
+**Validation policy:** catalog push paths (`publish`, `publish-fragment`, `compose`, `scan --publish`) default to **not** blocking on workspace validation. ArchLens prioritises honest visibility of architecture - including incomplete or intentionally invalid trees. Use `archlens validate` or `--validate` on a publish command only when a pipeline wants an optional hard gate. `--skip-validation` is always allowed and wins over `--validate`.
 
 ### Phase 0 (historical) → shared samples estate
 
@@ -45,7 +45,7 @@ Phase 0 briefly isolated whole-tree publishers under separate prefixes. Once fra
 
 Canvas production builds use `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/samples/`. Layout under the prefix remains ADR-0010 (`latest/`, `snapshots/{rev}/`). Demo scans use `--context={id}` so BlueprintSpec paths do not collide across repos.
 
-### Phase 1+ — fragment contract
+### Phase 1+ - fragment contract
 
 A **fragment** is the unit a pipeline publishes:
 
@@ -70,20 +70,20 @@ estates/{estateId}/
   snapshots/{revisionId}/...         # composed corpus
 ```
 
-### Phase 2 — compose (implemented)
+### Phase 2 - compose (implemented)
 
 `archlens catalog compose --estate={estateId}`:
 
 1. List `fragments/` and load **manifests** for every staged run; fetch YAML bodies only for the freshest run per `fragmentKey` (`publishedAt`, then `runId`).
 2. Merge non-`context.yaml` paths with last-writer-wins; merge `context.yaml` by `entityRef`.
-3. Content-hash the composed YAML into `revisionId`. If `latest/manifest.json` already points at that revision, **exit unchanged** (no snapshot re-upload) — critical for the hourly safety-net so identical corpora are not rewritten.
+3. Content-hash the composed YAML into `revisionId`. If `latest/manifest.json` already points at that revision, **exit unchanged** (no snapshot re-upload) - critical for the hourly safety-net so identical corpora are not rewritten.
 4. Otherwise upload snapshot objects (or reuse an existing `snapshots/{revisionId}/` if present) and **CAS** update `latest/manifest.json` (`If-Match` / `If-None-Match: *`) with retries (`--max-retries`, default 8). On CAS conflict or transient object-storage errors, reload fragments/overlays, exponential backoff (capped at 2s), then retry. The R2 adapter adds its own longer backoff for `InternalError` / 5xx.
 
 Stage inputs with `archlens catalog publish-fragment … --estate=… --product=… --source-ref=… --no-dry-run`.
 
-**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` for single-product publishers. The demo matrix publishes fragments in parallel and runs **one** final compose after all legs. An hourly `compose-catalog` workflow is the safety net (`--allow-empty`) and stays a thin caller — resilience (no-op when unchanged, R2 retries, CAS backoff) lives in the CLI. Jobs that compose share concurrency group `samples-estate-compose`. Storage-event / Worker triggers are deferred.
+**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` for single-product publishers. The demo matrix publishes fragments in parallel and runs **one** final compose after all legs. An hourly `compose-catalog` workflow is the safety net (`--allow-empty`) and stays a thin caller - resilience (no-op when unchanged, R2 retries, CAS backoff) lives in the CLI. Jobs that compose share concurrency group `samples-estate-compose`. Storage-event / Worker triggers are deferred.
 
-### Phase 3 — suggestion overlays (implemented)
+### Phase 3 - suggestion overlays (implemented)
 
 Suggestions do not edit snapshots. Accepting “add dependent” writes an overlay under `overlays/{overlayId}.yaml`; compose merges accepted overlays into the composed tree before publishing. Reject rewrites the same key with `status: rejected` (tombstone).
 
@@ -98,7 +98,7 @@ Overlay document fields: `overlayId`, `estateId`, `status` (`accepted`|`rejected
 ### Consequences
 
 - Good, because immutable snapshots and Canvas read path stay ADR-0010
-- Good, because product (not repo) is the composition key — matches scan domain
+- Good, because product (not repo) is the composition key - matches scan domain
 - Good, because Phase 0 isolation stopped races; the hosted catalog now uses one shared estate with per-product fragments
 - Good, because content-addressed no-op compose keeps the hourly safety-net from rewriting thousands of identical R2 objects
 - Bad, because compose + CAS is new CLI surface and needs conflict / transient retry

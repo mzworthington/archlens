@@ -58,7 +58,7 @@ describe('chaos-specs fixtures', () => {
     );
     expect(validationError).toBeNull();
 
-    // Simulation latency / blast coverage lives in chaoslensStressFixtures.test.ts —
+    // Simulation latency / blast coverage lives in chaoslensStressFixtures.test.ts  -
     // this suite owns document validation + runtime conversion only.
     // Faults may target unresolved externals (expanded at simulate time).
     const { spec } = chaosSpecDocumentToRuntime(document);

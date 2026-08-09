@@ -74,7 +74,7 @@ const TECH_PATH_PREFIXES = [
   '/guide/ci-workflows',
 ];
 
-/** Header hubs — chapter lists live in the sidebar / mobile section scrollers. */
+/** Header hubs - chapter lists live in the sidebar / mobile section scrollers. */
 export const DOCS_NAV: DocsNavItem[] = [
   // path `/guide` is overview-only; surface chapters use the Surfaces hub.
   { label: 'Start', path: '/guide', matchPrefixes: START_PATH_PREFIXES },
@@ -96,7 +96,7 @@ export const DOCS_SIDEBAR: DocsSidebarSection[] = [
     title: 'Surfaces',
     items: [
       { label: 'ArchLens Canvas', path: '/guide/canvas' },
-      { label: 'ArchLens', path: '/guide/cli' },
+      { label: 'ArchLens CLI', path: '/guide/cli' },
       { label: 'TraceLens', path: '/guide/tracelens' },
       { label: 'ChaosLens', path: '/guide/chaoslens' },
       { label: 'AdviceLens', path: '/guide/advicelens' },
@@ -148,12 +148,12 @@ export const DOCS_PAGES: DocsPageMeta[] = [
   },
   {
     path: '/guide/cli',
-    title: 'ArchLens',
+    title: 'ArchLens CLI',
     markdown: guideCliMd,
     dir: 'guide',
     group: 'guide',
     productAction: {
-      label: 'Install ArchLens',
+      label: 'Install ArchLens CLI',
       href: '/guide/getting-started',
     },
   },

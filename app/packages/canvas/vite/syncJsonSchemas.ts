@@ -31,7 +31,7 @@ export function syncJsonSchemas(): Plugin {
 
   return {
     name: 'sync-json-schemas',
-    // Before Vite's publicFiles scan — otherwise /schemas/* falls through to index.html.
+    // Before Vite's publicFiles scan - otherwise /schemas/* falls through to index.html.
     configResolved: sync,
     buildStart: sync,
     configureServer() {

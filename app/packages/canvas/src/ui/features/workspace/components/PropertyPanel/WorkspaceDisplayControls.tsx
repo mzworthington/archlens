@@ -270,7 +270,7 @@ export const WorkspaceDisplayControls: React.FC<WorkspaceDisplayControlsProps> =
         />
         <p className="text-[10px] leading-snug text-slate-500" data-testid="workspace-heatmap-help">
           Tint nodes by TraceLens hotspot score (fill). In ChaosLens, blast radius adds a red border
-          glow on top — both layers can show together.
+          glow on top - both layers can show together.
         </p>
       </>
     ) : null}

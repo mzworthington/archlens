@@ -15,14 +15,14 @@ Teams need to extend the architecture model beyond reposcan by declaring product
 - Hard to reverse: durable `properties.contextOwnership` stamps persist in committed YAML
 - Preserve ADR-0001 (YAML SoT) and ADR-0002 (`entityRef`) without a new BlueprintSpec `kind`
 - Multi-repo operability: prune orphans without deleting sibling-repo systems
-- Canvas stays unchanged — reuse existing load/edit/DiffMenu
+- Canvas stays unchanged - reuse existing load/edit/DiffMenu
 
 ## Considered Options
 
-- Option A — Pure core hydration plan (`hydrateContextSchema`) + CLI writer adapter; author vs scan ownership; prune by `rootPath` scope; optional context folder on seed path
-- Option B — Always regenerate context from scan (status quo), keep personas only in samples
-- Option C — New BlueprintSpec `kind: context` and separate declaration format
-- Option D — Canvas merge-preview before every CLI write
+- Option A - Pure core hydration plan (`hydrateContextSchema`) + CLI writer adapter; author vs scan ownership; prune by `rootPath` scope; optional context folder on seed path
+- Option B - Always regenerate context from scan (status quo), keep personas only in samples
+- Option C - New BlueprintSpec `kind: context` and separate declaration format
+- Option D - Canvas merge-preview before every CLI write
 
 ## Decision Outcome
 
@@ -35,7 +35,7 @@ Chosen option: "**Option A**", because it reuses `level: context` BlueprintSpec,
 - Good, because optional seed paths `blueprints/context.yaml` or `blueprints/<ctx>/context.yaml` prefer an existing file
 - Good, because display `name` is optional estate-wide: omit to derive from `entityRef`; compose/hydrate prefer explicit labels over derived ones (first explicit wins on conflict) so multi-repo seeds need no home/secondary marker
 - Bad, because ownership stamps add a persisted convention callers must honor
-- Good, because IaC scan now passes `proposedThirdParties` / `proposedDependencies` into the same hydration plan (vendor rollups from provider packs — not via workspace-proxy enrich on context). Container products are modeled per [ADR-0016](./0016-iac-declaration-vs-provisioned-infrastructure.md) (declaration `provisions` resource). See [Meaningful external dependencies](../guide/cli.md#meaningful-external-dependencies).
+- Good, because IaC scan now passes `proposedThirdParties` / `proposedDependencies` into the same hydration plan (vendor rollups from provider packs - not via workspace-proxy enrich on context). Container products are modeled per [ADR-0016](./0016-iac-declaration-vs-provisioned-infrastructure.md) (declaration `provisions` resource). See [Meaningful external dependencies](../guide/cli.md#meaningful-external-dependencies).
 
 ## Architecture sketch
 

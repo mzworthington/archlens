@@ -8,6 +8,7 @@ export {
   DEFAULT_ANALYSIS_OPTIONS,
   DEFAULT_SCAN_GLOB,
   DEFAULT_STRUCTURAL_IGNORE_GLOBS,
+  STRUCTURAL_IAC_IGNORE_GLOBS,
   LAYOUT_IDENTITY_DENYLIST,
   type AnalysisOptions,
 } from './domain/analysisOptions.ts';
@@ -18,6 +19,7 @@ export { CancellationError, isCancellationError, throwIfAborted } from './domain
 export {
   createStructuralPathFilter,
   type SourcePathFilter,
+  type StructuralPathFilterOptions,
 } from './pathFilter/structuralPathFilter.ts';
 export {
   attachForensicsToSchema,

@@ -95,11 +95,11 @@ function cycleAction(
 ): string {
   if (severity === 'informational') {
     if (reason === 'includes-external-proxy') {
-      return 'Informational — cycle closes via an external proxy on this diagram; confirm the real module import cycle before refactoring.';
+      return 'Informational - cycle closes via an external proxy on this diagram; confirm the real module import cycle before refactoring.';
     }
-    return 'Informational — cycle uses non-direct-call edges (e.g. inter-container or read-write); treat as coupling context, not a mandatory break.';
+    return 'Informational - cycle uses non-direct-call edges (e.g. inter-container or read-write); treat as coupling context, not a mandatory break.';
   }
-  return 'Break the cycle — extract a shared module or invert one dependency direction.';
+  return 'Break the cycle - extract a shared module or invert one dependency direction.';
 }
 
 /**
@@ -150,7 +150,7 @@ export function assessArchitectureHealth(
           file: file.path,
           entityRef: node.entityRef,
           title: `Hotspot: ${node.name}`,
-          action: 'Split or simplify this module — high complexity combined with frequent change.',
+          action: 'Split or simplify this module - high complexity combined with frequent change.',
           evidence: {
             hotspotScore: forensics.hotspotScore,
             complexity: forensics.complexity,
@@ -166,7 +166,7 @@ export function assessArchitectureHealth(
           entityRef: node.entityRef,
           title: `Knowledge silo: ${node.name}`,
           action:
-            'Share ownership — pair, document boundaries, or reduce complexity so more people can change it safely.',
+            'Share ownership - pair, document boundaries, or reduce complexity so more people can change it safely.',
           evidence: {
             complexity: forensics.complexity,
           },
@@ -182,7 +182,7 @@ export function assessArchitectureHealth(
           entityRef: node.entityRef,
           title: `Heating: ${node.name}`,
           action:
-            'Stabilize change rate — batch related edits, finish the refactor, or pause drive-by churn in this module.',
+            'Stabilize change rate - batch related edits, finish the refactor, or pause drive-by churn in this module.',
           evidence: {
             accelerationRatio: ratio,
             churn30: forensics.churn30,
@@ -203,7 +203,7 @@ export function assessArchitectureHealth(
   };
 }
 
-/** Compare two health reports — used for last-commit / particular-commit baselines. */
+/** Compare two health reports - used for last-commit / particular-commit baselines. */
 export function compareArchitectureHealth(
   baseline: ArchitectureHealthReport,
   current: ArchitectureHealthReport

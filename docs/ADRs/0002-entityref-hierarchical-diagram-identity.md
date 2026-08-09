@@ -8,7 +8,7 @@ deciders: ['ArchLens maintainers']
 
 ## Context and Problem Statement
 
-BlueprintSpec YAML diagrams and nodes need a stable, portable identity so drill-down, cross-file dependencies, merges, and TraceLens rollups stay meaningful across tools. We must decide how parent/child C4 diagrams link and what serves as the integration ID—without inventing a separate parent-pointer mechanism or coupling identity to filesystem layout.
+BlueprintSpec YAML diagrams and nodes need a stable, portable identity so drill-down, cross-file dependencies, merges, and TraceLens rollups stay meaningful across tools. We must decide how parent/child C4 diagrams link and what serves as the integration ID - without inventing a separate parent-pointer mechanism or coupling identity to filesystem layout.
 
 ## Decision Drivers
 
@@ -19,14 +19,14 @@ BlueprintSpec YAML diagrams and nodes need a stable, portable identity so drill-
 
 ## Considered Options
 
-- Option A — Hierarchical entityRef equality linking (status quo): slash-segment FQNs; child `metadata.entityRef` equals parent node `entityRef`; segment count maps to C4 level
-- Option B — Explicit `parentRef` / foreign keys in YAML
-- Option C — File-path–based identity
-- Option D — Opaque UUIDs + separate link table
+- Option A - Hierarchical entityRef equality linking (status quo): slash-segment FQNs; child `metadata.entityRef` equals parent node `entityRef`; segment count maps to C4 level
+- Option B - Explicit `parentRef` / foreign keys in YAML
+- Option C - File-path-based identity
+- Option D - Opaque UUIDs + separate link table
 
 ## Decision Outcome
 
-Chosen option: "**Option A**", because it is already the documented BlueprintSpec contract and core resolution model: `entityRef` is the integration ID; hierarchy is equality of child diagram ref to parent node ref; C4 depth is encoded in segment count. Options B–D add schema surface, path coupling, or indirection without improving merge or drill-down clarity.
+Chosen option: "**Option A**", because it is already the documented BlueprintSpec contract and core resolution model: `entityRef` is the integration ID; hierarchy is equality of child diagram ref to parent node ref; C4 depth is encoded in segment count. Options B-D add schema surface, path coupling, or indirection without improving merge or drill-down clarity.
 
 ### Consequences
 

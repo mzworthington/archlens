@@ -42,7 +42,7 @@ export class ObjectStoragePreconditionFailedError extends Error {
 }
 
 /**
- * Outbound port for object storage — read/write blobs by key.
+ * Outbound port for object storage - read/write blobs by key.
  * Concrete adapters: S3-compatible (R2, AWS S3), Azure Blob, HTTP (read-only CDN).
  */
 export interface ObjectStoragePort {

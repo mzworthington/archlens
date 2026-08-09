@@ -19,9 +19,9 @@ Meaningful IaC projection collapsed Pulumi/Terraform resource addresses into a s
 
 ## Considered Options
 
-- Option A — Dual nodes: internal IaC declaration + external provisioned resource, linked by new dependency type `provisions`
-- Option B — Stop marking products `external` (IaC-only internal nodes; lose third-party semantics)
-- Option C — Status quo single third-party product node with `iac.*` properties
+- Option A - Dual nodes: internal IaC declaration + external provisioned resource, linked by new dependency type `provisions`
+- Option B - Stop marking products `external` (IaC-only internal nodes; lose third-party semantics)
+- Option C - Status quo single third-party product node with `iac.*` properties
 
 ## Decision Outcome
 
@@ -29,7 +29,7 @@ Chosen option: "**Option A**", because declaration and resource need different c
 
 ### Consequences
 
-- Good, because IaC declarations stay first-class internal nodes under the infra spoke (full parse — including supporting/noise addresses)
+- Good, because IaC declarations stay first-class internal nodes under the infra spoke (full parse - including supporting/noise addresses)
 - Good, because only **primary** provisioned products remain third-party externals for context vendors and external summary
 - Good, because `provisions` is not an availability-propagating call (unlike `direct-call`)
 - Bad, because container diagrams include more IaC nodes; scans must be re-run to refresh corpora

@@ -197,6 +197,40 @@ nodes:
     expect(() => parseSchemaFromYaml(invalidYaml)).toThrow();
   });
 
+  it('should reject dependency endpoints that are not entityRefs', () => {
+    const spacesYaml = `
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  name: Bad Dep Endpoints
+nodes:
+  - entityRef: UserApi
+    type: rest-api
+    name: User API
+dependencies:
+  - from: "invalid id with spaces"
+    to: UserApi
+    type: direct-call
+`;
+    expect(() => parseSchemaFromYaml(spacesYaml)).toThrow(/entityRef/);
+
+    const pathYaml = `
+version: https://archlens.dev/schemas/v4/blueprint.schema.json
+level: container
+metadata:
+  name: Bad Dep Path Endpoints
+nodes:
+  - entityRef: UserApi
+    type: rest-api
+    name: User API
+dependencies:
+  - from: UserApi
+    to: ../other.yaml
+    type: direct-call
+`;
+    expect(() => parseSchemaFromYaml(pathYaml)).toThrow(/entityRef/);
+  });
+
   it('should serialize SystemSchema model to a v4 object with metadata', () => {
     const schema: SystemSchema = {
       entityRef: 'demo',

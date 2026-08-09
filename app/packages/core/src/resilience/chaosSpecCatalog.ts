@@ -3,7 +3,7 @@ import type { ChaosSpecDocument } from './chaosSpecDocument';
 
 /** Lightweight ChaosSpec index row for centralized browsing. */
 export type ChaosSpecCatalogEntry = {
-  /** Stable id — typically the relative path (e.g. `payment-outage.yaml`). */
+  /** Stable id - typically the relative path (e.g. `payment-outage.yaml`). */
   id: string;
   name: string;
   description?: string;
@@ -30,7 +30,7 @@ export function toChaosSpecCatalogEntry(
   };
 }
 
-/** Sort by name, then id — stable for picker lists. */
+/** Sort by name, then id - stable for picker lists. */
 export function sortChaosSpecCatalogEntries(
   entries: readonly ChaosSpecCatalogEntry[]
 ): ChaosSpecCatalogEntry[] {

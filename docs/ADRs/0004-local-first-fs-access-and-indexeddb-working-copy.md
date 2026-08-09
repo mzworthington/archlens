@@ -19,10 +19,10 @@ ArchLens Canvas must open and edit BlueprintSpec YAML without a backend workspac
 
 ## Considered Options
 
-- Option A — File System Access (or bundled demos) + IndexedDB working copy + DiffMenu commit/revert
-- Option B — Server-backed workspace sync
-- Option C — Edit disk YAML in place with no draft layer
-- Option D — Download/upload ZIP only
+- Option A - File System Access (or bundled demos) + IndexedDB working copy + DiffMenu commit/revert
+- Option B - Server-backed workspace sync
+- Option C - Edit disk YAML in place with no draft layer
+- Option D - Download/upload ZIP only
 
 ## Decision Outcome
 

@@ -1,8 +1,8 @@
-# Cloudflare hosting — secrets checklist
+# Cloudflare hosting - secrets checklist
 
 Fresh setup for [archlens.dev](https://archlens.dev) on Cloudflare Pages (Pulumi + Wrangler + GitHub Actions).
 
-The **zone** is owned by [`edge-dns`](https://github.com/mzworthington/edge-dns) — see [dns.md](./dns.md). Shared CI/bootstrap tooling also lives there ([reusable Cloudflare CI](https://github.com/mzworthington/edge-dns/blob/main/docs/reusable-cloudflare-ci.md)). This repo keeps thin shims only.
+The **zone** is owned by [`edge-dns`](https://github.com/mzworthington/edge-dns) - see [dns.md](./dns.md). Shared CI/bootstrap tooling also lives there ([reusable Cloudflare CI](https://github.com/mzworthington/edge-dns/blob/main/docs/reusable-cloudflare-ci.md)). This repo keeps thin shims only.
 
 ## Bootstrap
 
@@ -89,7 +89,7 @@ Managed by the edge-dns bootstrap (via the local shim). Nightly publish uses:
 
 ## Deploy
 
-Push to `main` — CI builds and `wrangler pages deploy` publishes.
+Push to `main` - CI builds and `wrangler pages deploy` publishes.
 
 ## Health check
 

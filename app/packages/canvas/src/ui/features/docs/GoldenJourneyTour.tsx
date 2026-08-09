@@ -23,25 +23,25 @@ const ESTATE_PRODUCTS = [
   {
     name: 'Catalog Platform',
     role: 'Discovery',
-    detail: 'Browse and add-to-cart — hands off to Checkout API inside the estate context.',
+    detail: 'Browse and add-to-cart - hands off to Checkout API inside the estate context.',
   },
   {
     name: 'Identity Platform',
     role: 'Access',
     detail:
-      'SSO session handoff into checkout — another product boundary in the same context window.',
+      'SSO session handoff into checkout - another product boundary in the same context window.',
   },
   {
     name: 'Checkout Platform',
     role: 'Golden path',
     detail:
-      'Group boundary for Web/Mobile entry — fault Payment Gateway here for AdviceLens ranking.',
+      'Group boundary for Web/Mobile entry - fault Payment Gateway here for AdviceLens ranking.',
   },
   {
     name: 'Billing Platform',
     role: 'Renewals',
     detail:
-      'Shares Payment Gateway with checkout — fan-in drives caller-side circuit breaker advice.',
+      'Shares Payment Gateway with checkout - fan-in drives caller-side circuit breaker advice.',
   },
 ] as const;
 
@@ -61,7 +61,7 @@ const STEPS: JourneyStep[] = [
     step: 1,
     title: 'Scan the repository',
     product: 'ArchLens CLI',
-    body: 'Run ArchLens against your codebase to emit BlueprintSpec YAML for every product area. The bundled golden-journey estate mirrors what a monorepo scan produces — catalog, identity, checkout, and billing groups in one context window, sharing a Payment Gateway.',
+    body: 'Run ArchLens CLI against your codebase to emit BlueprintSpec YAML for every product area. The bundled golden-journey estate mirrors what a monorepo scan produces - catalog, identity, checkout, and billing groups in one context window, sharing a Payment Gateway.',
     icon: Terminal,
     cli: 'archlens scan ./src --output ./blueprints\narchlens resilience ./blueprints/golden-journey --chaos-specs=./chaos-specs',
     tryLabel: 'CLI guide',
@@ -71,7 +71,7 @@ const STEPS: JourneyStep[] = [
     step: 2,
     title: 'Open the estate context',
     product: 'ArchLens Canvas',
-    body: 'Load Samples to open the Golden Journey estate — personas, storefronts, catalog, identity, checkout, and billing platforms around a shared Payment Gateway. Switch to the Samples context breadcrumb anytime to see persona-only context view.',
+    body: 'Load Samples to open the Golden Journey estate - personas, storefronts, catalog, identity, checkout, and billing platforms around a shared Payment Gateway. Switch to the Samples context breadcrumb anytime to see persona-only context view.',
     icon: ScanSearch,
     tryHref: WORKSPACE_ESTATE,
     tryLabel: 'Open Golden Journey estate',
@@ -80,7 +80,7 @@ const STEPS: JourneyStep[] = [
     step: 3,
     title: 'Simulate Payment Gateway outage',
     product: 'ChaosLens',
-    body: 'Toggle Resilience, select Payment Gateway, add a region-outage fault, and run Simulate. Blast radius crosses group boundaries — from the shared gateway through Checkout Platform to Web and Mobile entry points.',
+    body: 'Toggle Resilience, select Payment Gateway, add a region-outage fault, and run Simulate. Blast radius crosses group boundaries - from the shared gateway through Checkout Platform to Web and Mobile entry points.',
     icon: ShieldAlert,
     tryHref: WORKSPACE_RESILIENCE,
     tryLabel: 'Open in Resilience mode',
@@ -89,7 +89,7 @@ const STEPS: JourneyStep[] = [
     step: 4,
     title: 'See AdviceLens rank the fix',
     product: 'AdviceLens',
-    body: 'The telemetry panel lists ranked recommendations. add-circuit-breaker on Checkout API should top the list — caller-side isolation on the outbound Payment Gateway client, backed by shared-dependency fan-in across product groups.',
+    body: 'The telemetry panel lists ranked recommendations. add-circuit-breaker on Checkout API should top the list - caller-side isolation on the outbound Payment Gateway client, backed by shared-dependency fan-in across product groups.',
     icon: Lightbulb,
     tryHref: ADVICE_URL,
     tryLabel: 'Open estate recommendations',
@@ -177,8 +177,8 @@ export const GoldenJourneyTour: React.FC = () => {
           Day in the life: Payment Gateway outage
         </h2>
         <p className="mt-2 max-w-3xl text-sm text-slate-400 leading-relaxed">
-          One estate context window — catalog, identity, checkout, and billing product groups
-          sharing a Payment Gateway — then ChaosLens simulation, AdviceLens ranking, TraceLens
+          One estate context window - catalog, identity, checkout, and billing product groups
+          sharing a Payment Gateway - then ChaosLens simulation, AdviceLens ranking, TraceLens
           refactor evidence, and ChaosSpec export for your RFC.
         </p>
       </div>
@@ -188,7 +188,7 @@ export const GoldenJourneyTour: React.FC = () => {
         data-testid="golden-journey-estate-map"
       >
         <h3 className="text-xs font-mono uppercase tracking-[0.14em] text-slate-500">
-          Estate context — related products
+          Estate context - related products
         </h3>
         <ul className="mt-3 grid gap-3 sm:grid-cols-2">
           {ESTATE_PRODUCTS.map(product => (
@@ -229,8 +229,8 @@ export const GoldenJourneyTour: React.FC = () => {
           Pre-authored spec:{' '}
           <code className="text-slate-300">
             chaos-specs/golden-journey-payment-gateway-outage.yaml
-          </code>
-          — targets the full estate diagram{' '}
+          </code>{' '}
+          - targets the full estate diagram{' '}
           <code className="text-slate-300">samples/golden-journey</code>. Import from the workspace
           menu in Resilience mode or pass{' '}
           <code className="text-slate-300">--chaos-specs=./chaos-specs</code> to the CLI estate

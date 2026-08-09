@@ -55,7 +55,7 @@ function diagramHasInternalNodes(
 
 /**
  * Collapse peripheral externals into summary hubs on container/component overview.
- * Skip when the diagram is external-only (e.g. IaC vendor surfaces) — those nodes are the content.
+ * Skip when the diagram is external-only (e.g. IaC vendor surfaces) - those nodes are the content.
  */
 export function shouldUseExternalSummaryMode(input: {
   selectedNodeId: string | null;
@@ -130,7 +130,7 @@ export function resolveVisibleExternalEntityRefs(
     isResilienceMode,
   } = input;
 
-  // Context level is defined by actors + external dependencies — never collapse or hide them.
+  // Context level is defined by actors + external dependencies - never collapse or hide them.
   if (isContextLevelDiagram(schema.level)) return null;
 
   if (!input.showCallers && !input.showTargets) return new Set();

@@ -17,7 +17,7 @@ export function createSelectSystem(set: SetFn, get: GetFn) {
     set({ systemSelectInFlight: path });
     const { logger, workspacePort, sampleWorkspacePort, workingCopyPort, isSampleWorkspace } =
       get();
-    // Sample workspace always reads from the injected sample adapter — never the
+    // Sample workspace always reads from the injected sample adapter - never the
     // folder picker port (StrictMode / setPorts races can otherwise leave the wrong port).
     const activeWorkspacePort = isSampleWorkspace ? sampleWorkspacePort : workspacePort;
     beginDiagramLoad(get, set, DIAGRAM_LOADING_MESSAGE);

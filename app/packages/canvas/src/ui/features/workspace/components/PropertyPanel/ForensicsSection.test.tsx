@@ -122,9 +122,9 @@ describe('ForensicsSection', () => {
           scope: 'component',
           churnByWeek: [1, 0, 2, 1],
           authorBuckets: [1, 0, 0],
-          authorBucketLabels: ['1 author', '2–3', '4+'],
+          authorBucketLabels: ['1 author', '2-3', '4+'],
           complexityBuckets: [0, 0, 1, 0],
-          complexityBucketLabels: ['1–5', '6–10', '11–20', '21+'],
+          complexityBucketLabels: ['1-5', '6-10', '11-20', '21+'],
           fileCount: 1,
         }}
         centerLabel="Analyzer"

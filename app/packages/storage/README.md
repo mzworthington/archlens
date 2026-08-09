@@ -4,7 +4,7 @@ Hexagonal object storage port shared by the CLI (publish) and Canvas (read).
 
 ## Port
 
-`ObjectStoragePort` — `getObject`, `getObjectText`, `putObject`, `listObjectKeys`, `deleteObject`
+`ObjectStoragePort` - `getObject`, `getObjectText`, `putObject`, `listObjectKeys`, `deleteObject`
 
 The R2 path (`provider: 'r2'`) wraps sends with longer transient `InternalError` / 5xx retries. Compose also skips re-uploading an existing content-hashed snapshot when `latest` already points at it.
 
