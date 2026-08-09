@@ -38,12 +38,23 @@ curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts
 
 ## Workspace Component Catalog
 
-| Component                                                                             | Path                                           | Language/Framework                       | Description                                                      |
-| :------------------------------------------------------------------------------------ | :--------------------------------------------- | :--------------------------------------- | :--------------------------------------------------------------- |
-| **`@archlens/canvas`**                                                                | [app/packages/canvas/](./app/packages/canvas/) | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                              |
-| **`@archlens/cli`**                                                                   | [app/packages/cli/](./app/packages/cli/)       | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable) |
-| **`@archlens/core`**                                                                  | [app/packages/core/](./app/packages/core/)     | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec) |
+| Component                                                                             | Path                                             | Language/Framework                       | Description                                                         |
+| :------------------------------------------------------------------------------------ | :----------------------------------------------- | :--------------------------------------- | :------------------------------------------------------------------ |
+| **`@archlens/canvas`**                                                                | [app/packages/canvas/](./app/packages/canvas/)   | TypeScript / React / Vite / React Flow   | Front-end visual diagramming client                                 |
+| **`@archlens/cli`**                                                                   | [app/packages/cli/](./app/packages/cli/)         | TS / Node / Bun / Ts-Morph / Tree-Sitter | Production codebase scanner & Bun binary (`archlens` executable)    |
+| **`@archlens/core`**                                                                  | [app/packages/core/](./app/packages/core/)       | TypeScript / Zod                         | Shared domain types, validation, entityRef rules (BlueprintSpec)    |
+| **`@archlens/storage`**                                                               | [app/packages/storage/](./app/packages/storage/) | TypeScript                               | Object-storage port (R2/S3/Azure/HTTP) for publish + remote catalog |
+| **ChaosLens engine**                                                                  | [resilience-engine/](./resilience-engine/)       | Go / WASM                                | Monte Carlo blast-radius sim for Canvas (WASM) + TS fallback        |
 | Schema source of truth is TypeScript + Zod in `@archlens/core` (no Protocol Buffers). |
+
+## C# and .NET analysis
+
+Tree-sitter (default) and the C# language strategy resolve:
+
+- **`.csproj` `<ProjectReference>`** edges across projects in the scan root
+- **Cross-namespace `using`** dependencies when types resolve inside the scanned tree
+
+Roadmap (not shipped): Aspire resource graphs, integration-event wiring, and HTTP/gRPC client detection beyond import/reference evidence.
 
 ---
 

@@ -163,7 +163,11 @@ describe('DiffMenu Component', () => {
     });
 
     const mockInitSchema = vi.fn();
-    useBlueprintStore.setState({ initSchema: mockInitSchema });
+    const mockCheckPendingChanges = vi.fn().mockResolvedValue(undefined);
+    useBlueprintStore.setState({
+      initSchema: mockInitSchema,
+      checkPendingChanges: mockCheckPendingChanges,
+    });
 
     const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true);
     const mockRestoredSchema = {
@@ -192,6 +196,7 @@ describe('DiffMenu Component', () => {
         systemEntityRef: undefined,
       });
       expect(mockInitSchema).toHaveBeenCalledWith(mockRestoredSchema);
+      expect(mockCheckPendingChanges).toHaveBeenCalled();
       expect(mockOnClose).toHaveBeenCalledTimes(1);
     });
 

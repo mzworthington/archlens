@@ -1,9 +1,11 @@
 # ChaosLens resilience simulation engine (Go)
 
-Monte Carlo blast-radius simulation for ArchLens (ChaosLens). The same Go code compiles to:
+Monte Carlo blast-radius simulation for ArchLens (ChaosLens). The Go code compiles to:
 
 - **WebAssembly** for ArchLens Canvas (`chaoslens.wasm`)
-- **CLI** for headless CI checks (`chaoslens`)
+- **(Planned)** native stdin/stdout CLI (`cmd/chaoslens`) — not checked in yet
+
+**Product headless / CI path today:** `archlens resilience` and `.github/actions/advicelens-gate` (AdviceLens), which call the same simulation rules via `@archlens/core` (WASM when available, TypeScript fallback otherwise). See [AdviceLens](../docs/guide/advicelens.md).
 
 Contributor docs: [docs/chaoslens-engine.md](../docs/chaoslens-engine.md). Product guide: [docs/guide/chaoslens.md](../docs/guide/chaoslens.md).
 
@@ -24,20 +26,9 @@ make check
 make copy-wasm
 make ensure-wasm   # copy only when artifacts are missing
 
-# Build native CLI binary
-make build-cli
+# Reserved — fails until cmd/chaoslens lands
+# make build-cli
 ```
-
-## CLI usage
-
-Pipe a simulation request JSON on stdin:
-
-```bash
-cat request.json | ./dist/chaoslens
-./dist/chaoslens -monte-carlo 2000 -seed 42 < request.json
-```
-
-Request shape matches `@archlens/core/resilience` `WasmSimulationRequest` (schema + spec + optional `monteCarlo`).
 
 ## WASM bridge
 
@@ -56,7 +47,7 @@ internal/graph   - group boundary expansion for dependencies
 internal/sim     - blast radius, SPOF detection, Monte Carlo
 api              - JSON request/response entry
 wasm             - syscall/js export for Canvas
-cmd/chaoslens    - stdin/stdout CLI
+cmd/chaoslens    - planned stdin/stdout CLI (not in tree)
 ```
 
 TypeScript in `@archlens/core/resilience` keeps a deterministic fallback when WASM is unavailable.
