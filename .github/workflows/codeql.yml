@@ -2,36 +2,55 @@ name: "CodeQL Analysis"
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   schedule:
-    - cron: '0 12 * * *' # Runs daily at 12:00 UTC
+    - cron: "0 12 * * *" # Runs daily at 12:00 UTC
 
 permissions:
   actions: read
   contents: read
+  packages: read
   security-events: write
 
 jobs:
   analyze:
-    name: Analyze
+    name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # App + Pulumi (infra/cloudflare/*.ts) share the JS/TS extractor.
+          # There is no Pulumi-specific CodeQL language; IaC policy stays with CrossGuard/etc.
+          - language: javascript-typescript
+            build-mode: none
+          # ChaosLens resilience engine under resilience-engine/
+          - language: go
+            build-mode: autobuild
+          # Workflow + composite action YAML under .github/
+          - language: actions
+            build-mode: none
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      # Initialize CodeQL tools and query suites
+      - name: Setup Go
+        if: matrix.language == 'go'
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: resilience-engine/go.mod
+          cache-dependency-path: resilience-engine/go.mod
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
-          languages: javascript-typescript
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
 
-      # Attempt automatic build of source targets
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v4
-
-      # Perform semantic analysis and upload results to GitHub Security tab
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"
