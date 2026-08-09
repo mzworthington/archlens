@@ -21,15 +21,15 @@ function specifierToRelativePath(specifier: string): string | null {
     return null;
   }
 
-  const match = specifier.match(/^(\.+)(.*)$/);
-  if (!match) return null;
-
-  const dots = match[1];
-  const rest = match[2] ?? '';
-  const depth = dots.length - 1;
+  // Count leading dots without regex (avoids CodeQL js/polynomial-redos on /^(\.+)(.*)$/).
+  let dotCount = 0;
+  while (dotCount < specifier.length && specifier[dotCount] === '.') dotCount++;
+  const rest = specifier.slice(dotCount);
+  const depth = dotCount - 1;
   const prefix = depth > 0 ? '../'.repeat(depth) : './';
-  const tail = rest.replace(/\./g, '/');
-  return tail ? `${prefix}${tail}` : prefix.replace(/\/$/, '') || '.';
+  const tail = rest.replaceAll('.', '/');
+  if (tail) return `${prefix}${tail}`;
+  return prefix.endsWith('/') ? prefix.slice(0, -1) || '.' : prefix;
 }
 
 /**

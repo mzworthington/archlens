@@ -47,13 +47,14 @@ function assertNonEmptyString(value: unknown, field: string): asserts value is s
 
 /**
  * Path-safe segment for fragment keys under `fragments/{key}/…`.
+ * Uses match/join (not replace chains) to avoid CodeQL js/polynomial-redos.
  */
 export function sanitizeFragmentKeySegment(value: string): string {
-  const sanitized = value
-    .trim()
-    .replace(/[^a-zA-Z0-9._-]+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-+|-+$/g, '');
+  const sanitized =
+    value
+      .trim()
+      .match(/[a-zA-Z0-9._]+/g)
+      ?.join('-') ?? '';
   return sanitized.length > 0 ? sanitized : 'fragment';
 }
 
