@@ -178,13 +178,18 @@ export async function walkBrowserSourceDirectory(
 
 export type DirectoryPicker = () => Promise<DirectoryPickResult>;
 
+/** True when the File System Access directory picker is available (Chrome/Edge; not Firefox/Safari). */
+export function isBrowserDirectoryPickerSupported(): boolean {
+  return typeof window !== 'undefined' && typeof window.showDirectoryPicker === 'function';
+}
+
 /** Default picker — read-only is enough for lite scan (we write YAML into memory). */
 export const pickSourceDirectory: DirectoryPicker = async () => {
-  if (typeof window === 'undefined' || typeof window.showDirectoryPicker !== 'function') {
+  if (!isBrowserDirectoryPickerSupported()) {
     return { status: 'unsupported' };
   }
   try {
-    const handle = await window.showDirectoryPicker({ mode: 'read' });
+    const handle = await window.showDirectoryPicker!({ mode: 'read' });
     return { status: 'ok', handle };
   } catch {
     // User cancelled or permission denied.

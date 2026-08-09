@@ -128,11 +128,13 @@ dependencies: []
     expect(opened, state.lastError ?? 'openBrowserLiteScan returned false').toBe(true);
     expect(state.isWorkspaceOpen).toBe(true);
     expect(state.isSampleWorkspace).toBe(false);
+    expect(state.isBrowserLiteWorkspace).toBe(true);
+    expect(state.browserLiteBannerOpen).toBe(true);
     expect(state.workspaceName).toBe('demo-repo');
     expect(state.schema.level).toBe('context');
     expect(state.workspaceCatalog.some(entry => entry.path.endsWith('context.yaml'))).toBe(true);
-    expect(state.notification?.title).toBe('Browser scan ready');
-    expect(state.notification?.message).toContain('in-memory only');
+    expect(state.notification?.title).toBe('Browser lite scan ready');
+    expect(state.notification?.message).toContain('structure only');
   });
 
   it('notifies when the browser cannot pick a source directory', async () => {
@@ -146,7 +148,8 @@ dependencies: []
     const state = useBlueprintStore.getState();
 
     expect(opened).toBe(false);
-    expect(state.notification?.title).toBe('Browser scan unavailable');
+    expect(state.notification?.title).toBe('Browser lite scan unavailable');
+    expect(state.notification?.message).toMatch(/Firefox|Safari|File System Access/i);
 
     if (original) {
       Object.defineProperty(window, 'showDirectoryPicker', original);

@@ -41,6 +41,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     currentFilePath: initial.currentFilePath,
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
+    isBrowserLiteWorkspace: false,
     workspaceName: '',
     workspaceCatalog: [],
     loadedSystems: initial.loadedSystems,

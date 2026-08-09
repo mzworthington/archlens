@@ -109,6 +109,8 @@ export type LoadWorkspaceFromYamlFilesDeps = {
   initSchema: (schema: SystemSchema) => void;
   set: (partial: Record<string, unknown>) => void;
   isSampleWorkspace?: boolean;
+  /** True when YAML came from an in-browser structural scan (no CLI forensics). */
+  isBrowserLiteWorkspace?: boolean;
   openGeneration?: number;
   committedPorts?: Record<string, unknown>;
   /** Prefer this entry path when present (e.g. context.yaml from a lite scan). */
@@ -128,6 +130,7 @@ export async function loadWorkspaceFromYamlFiles(
     initSchema,
     set,
     isSampleWorkspace = false,
+    isBrowserLiteWorkspace = false,
     committedPorts,
     preferredEntryPath,
   } = deps;
@@ -200,6 +203,7 @@ export async function loadWorkspaceFromYamlFiles(
     workspaceCatalog,
     workspaceName,
     isSampleWorkspace,
+    isBrowserLiteWorkspace,
     openGeneration,
     committedPorts,
     workingCopy: deps.workingCopy,
@@ -323,6 +327,7 @@ async function finalizeWorkspaceOpen(args: {
   workspaceCatalog: WorkspaceCatalogEntry[];
   workspaceName: string;
   isSampleWorkspace: boolean;
+  isBrowserLiteWorkspace?: boolean;
   openGeneration?: number;
   committedPorts?: Record<string, unknown>;
   workingCopy: WorkingCopyPort;
@@ -337,6 +342,7 @@ async function finalizeWorkspaceOpen(args: {
     workspaceCatalog,
     workspaceName,
     isSampleWorkspace,
+    isBrowserLiteWorkspace = false,
     openGeneration,
     committedPorts,
     workingCopy,
@@ -369,6 +375,8 @@ async function finalizeWorkspaceOpen(args: {
     ...committedPorts,
     isWorkspaceOpen: true,
     isSampleWorkspace,
+    isBrowserLiteWorkspace,
+    browserLiteBannerOpen: isBrowserLiteWorkspace,
     workspaceName,
     workspaceCatalog,
     loadedSystems: [entry],
@@ -383,6 +391,7 @@ async function finalizeWorkspaceOpen(args: {
     catalogSize: workspaceCatalog.length,
     entryPath: entry.path,
     isSampleWorkspace,
+    isBrowserLiteWorkspace,
   });
 
   if (discardedDraftCount > 0) {

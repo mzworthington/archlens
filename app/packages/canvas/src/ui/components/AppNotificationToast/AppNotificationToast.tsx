@@ -25,7 +25,7 @@ export const AppNotificationToast: React.FC = () => {
 
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 top-4 z-[100] flex justify-center px-4"
+      className="pointer-events-none fixed inset-x-0 top-4 z-[200] flex justify-center px-4"
       data-testid="app-notification-toast"
     >
       <div

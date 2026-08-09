@@ -6,18 +6,16 @@ import {
   isFolderWorkspacePreferred,
   releaseDemoBootstrapClaim,
 } from '../../../../application/store/workspaceOpenSession';
-import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
-import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { isWorkspacePath } from '../../../../application/navigation/workspaceUrl';
 
 function entityRefFromWorkspaceUrl(pathAfterWorkspace: string | undefined): string | undefined {
-  const trimmed = pathAfterWorkspace?.replace(/\/$/, '');
+  const trimmed = pathAfterWorkspace?.replace(/^\/+/, '').replace(/\/$/, '');
   return trimmed || undefined;
 }
 
 /**
- * Demo-first bootstrap:
- * - Bare `/workspace` → open the sandbox and land on ChaosLens (golden journey).
+ * Workspace bootstrap:
+ * - Bare `/workspace` → show the startup chooser (do not auto-open demo).
  * - Deep link `/workspace/<entityRef>` → open sandbox so the entity resolves.
  * Never re-forces demo after the user opened a folder / browser scan this session.
  */
@@ -26,9 +24,23 @@ export function useBundledWorkspaceBootstrap(): void {
   const [, params] = useRoute('/workspace/*');
 
   useEffect(() => {
-    const entityRef = entityRefFromWorkspaceUrl(params?.['*']);
-    const bareWorkspace = !entityRef && isWorkspacePath(location.split('?')[0] ?? location);
-    if (!entityRef && !bareWorkspace) return;
+    const pathOnly = location.split('?')[0] ?? location;
+    if (!isWorkspacePath(pathOnly)) return;
+
+    const entityRef =
+      entityRefFromWorkspaceUrl(params?.['*']) ??
+      // Bare `/workspace` is a separate route; useRoute('/workspace/*') may not match.
+      (pathOnly === '/workspace' || pathOnly === '/workspace/'
+        ? undefined
+        : pathOnly.replace(/^\/workspace\/?/, '') || undefined);
+
+    if (!entityRef) {
+      const { isWorkspaceOpen, setIsStartupOpen } = useBlueprintStore.getState();
+      if (!isWorkspaceOpen) {
+        setIsStartupOpen(true);
+      }
+      return;
+    }
 
     const { isWorkspaceOpen, openBundledSample, setIsStartupOpen } = useBlueprintStore.getState();
     if (isWorkspaceOpen) return;
@@ -49,9 +61,7 @@ export function useBundledWorkspaceBootstrap(): void {
       }
       if (opened) {
         setIsStartupOpen(false);
-        if (bareWorkspace) {
-          setLocation(buildChaosLensUrl(GOLDEN_JOURNEY_ENTITY_REF), { replace: true });
-        }
+        // Deep link stays on the requested entity; URL sync loads the diagram.
       } else {
         releaseDemoBootstrapClaim();
       }

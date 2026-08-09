@@ -253,8 +253,17 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
     if (pick.status === 'unsupported') {
       setNotification?.({
         type: 'error',
-        title: 'Browser scan unavailable',
-        message: `This browser does not support folder picking. Use Chrome/Edge, or install the ArchLens CLI — see ${CLI_GETTING_STARTED_PATH}.`,
+        title: 'Browser lite scan unavailable',
+        message:
+          'This browser cannot pick a local folder (Firefox and Safari lack the File System Access API). Use Chrome or Edge, or install the ArchLens CLI for a full scan.',
+        actions: [
+          {
+            label: 'Install guide',
+            onClick: () => {
+              window.location.assign(CLI_GETTING_STARTED_PATH);
+            },
+          },
+        ],
       });
       return false;
     }
@@ -314,6 +323,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
         initSchema,
         set,
         isSampleWorkspace: false,
+        isBrowserLiteWorkspace: true,
         openGeneration,
         committedPorts: { workspacePort: scanPort, folderWorkspacePort: scanPort },
       });
@@ -323,9 +333,9 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
         markFolderWorkspacePreferred();
         const truncatedNote = describeTruncation(walked.truncationReasons, walked.sourceFileCount);
         setNotification?.({
-          type: 'success',
-          title: 'Browser scan ready',
-          message: `Loaded ${walked.sourceFileCount} source file(s) via shared analysis (structure only — no git hotspots).${truncatedNote} Blueprints are in-memory only until you export or use the CLI. Install the ArchLens CLI for TraceLens, CI publish, and disk writes.`,
+          type: 'info',
+          title: 'Browser lite scan ready',
+          message: `Loaded ${walked.sourceFileCount} source file(s) — structure only (no TraceLens/git hotspots).${truncatedNote} In-memory until you export. Install the ArchLens CLI for forensics, watch mode, and CI publish.`,
         });
         return true;
       }

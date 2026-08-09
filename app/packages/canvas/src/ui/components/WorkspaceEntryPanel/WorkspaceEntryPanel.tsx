@@ -8,6 +8,7 @@ import {
   ArrowRight,
   Loader2,
   ScanSearch,
+  AlertTriangle,
 } from 'lucide-react';
 import { Link } from 'wouter';
 import {
@@ -15,6 +16,7 @@ import {
   CLI_INSTALL_COMMAND,
   CLI_SCAN_COMMAND,
 } from '../../../constants/cli';
+import { isBrowserDirectoryPickerSupported } from '../../../infrastructure/analysis/browserSourceWalker';
 import { WORKSPACE_STARTUP } from '../../content/productOutcomes';
 
 const optionClass =
@@ -22,6 +24,9 @@ const optionClass =
 
 const primaryOptionClass =
   'w-full flex items-start gap-3 rounded-xl border border-[#00f0ff]/35 bg-[#061125]/80 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/55 hover:bg-[#07162c] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
+
+const unsupportedOptionClass =
+  'w-full flex items-start gap-3 rounded-xl border border-amber-500/35 bg-amber-950/25 px-4 py-3.5 text-left transition hover:border-amber-500/50 hover:bg-amber-950/35 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40 disabled:opacity-50 disabled:pointer-events-none';
 
 type CopyableCommandProps = {
   command: string;
@@ -72,6 +77,9 @@ export type WorkspaceEntryPanelProps = {
   titleId?: string;
 };
 
+const BROWSER_LITE_UNSUPPORTED_MESSAGE =
+  'Folder picking is not available in this browser (Firefox and Safari). Use Chrome or Edge, or install the ArchLens CLI below for a full scan.';
+
 /** Shared workspace entry — demo insight first, then browser scan / folder / CLI. */
 export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
@@ -89,7 +97,10 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   titleId,
 }) => {
   const [copiedKey, setCopiedKey] = React.useState<'install' | 'scan' | null>(null);
-  const [cliExpanded, setCliExpanded] = React.useState(false);
+  // CLI path is the graduate path — keep it expanded so lite vs full is obvious.
+  const [cliExpanded, setCliExpanded] = React.useState(showCliPanel);
+  const [liteScanFeedback, setLiteScanFeedback] = React.useState<string | null>(null);
+  const directoryPickerSupported = isBrowserDirectoryPickerSupported();
   const statusMessage =
     typeof loadingMessage === 'string' && loadingMessage.trim() ? loadingMessage : null;
   const actionsDisabled = disabled || Boolean(statusMessage);
@@ -102,6 +113,14 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
     } catch {
       // Clipboard may be unavailable in some contexts
     }
+  };
+
+  const handleBrowserLiteScan = () => {
+    if (!directoryPickerSupported) {
+      setLiteScanFeedback(BROWSER_LITE_UNSUPPORTED_MESSAGE);
+      setCliExpanded(true);
+    }
+    onBrowserLiteScan?.();
   };
 
   return (
@@ -153,20 +172,64 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           <button
             type="button"
             data-testid="workspace-browser-lite-scan"
-            onClick={onBrowserLiteScan}
+            onClick={handleBrowserLiteScan}
             disabled={actionsDisabled}
-            className={optionClass}
+            className={directoryPickerSupported ? optionClass : unsupportedOptionClass}
+            aria-describedby={
+              !directoryPickerSupported ? 'workspace-browser-lite-unsupported' : undefined
+            }
           >
-            <ScanSearch className="w-5 h-5 text-[#00f0ff] shrink-0 mt-0.5" />
-            <span>
-              <span className="block text-sm font-semibold text-slate-100">
-                Scan my repo in the browser
+            <ScanSearch
+              className={`w-5 h-5 shrink-0 mt-0.5 ${directoryPickerSupported ? 'text-[#00f0ff]' : 'text-amber-400'}`}
+            />
+            <span className="min-w-0 flex-1">
+              <span className="flex flex-wrap items-center gap-2">
+                <span className="text-sm font-semibold text-slate-100">Browser lite scan</span>
+                <span
+                  className="inline-flex items-center rounded border border-amber-500/40 bg-amber-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-amber-300"
+                  data-testid="workspace-browser-lite-badge"
+                >
+                  Lite
+                </span>
+                {!directoryPickerSupported ? (
+                  <span
+                    className="inline-flex items-center rounded border border-amber-500/40 bg-amber-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-amber-200"
+                    data-testid="workspace-browser-lite-unavailable-badge"
+                  >
+                    Unavailable here
+                  </span>
+                ) : null}
               </span>
-              <span className="block text-xs text-slate-500 mt-0.5">
-                Pick a source folder — structural BlueprintSpec only (no install, no git hotspots)
+              <span className="block text-xs text-slate-400 mt-0.5">
+                {directoryPickerSupported
+                  ? 'Instant structural map of a folder — no git TraceLens, no CI publish. For in-depth forensics, use the CLI below.'
+                  : 'Needs Chrome or Edge (folder picker API). On Firefox/Safari, install the ArchLens CLI below instead.'}
               </span>
             </span>
           </button>
+        ) : null}
+
+        {!directoryPickerSupported && onBrowserLiteScan ? (
+          <div
+            id="workspace-browser-lite-unsupported"
+            className="flex items-start gap-2 rounded-xl border border-amber-500/30 bg-amber-950/40 px-3 py-2.5 text-xs text-amber-100/95"
+            role="status"
+            data-testid="workspace-browser-lite-unsupported"
+          >
+            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden />
+            <p className="leading-relaxed">{BROWSER_LITE_UNSUPPORTED_MESSAGE}</p>
+          </div>
+        ) : null}
+
+        {liteScanFeedback ? (
+          <div
+            className="flex items-start gap-2 rounded-xl border border-amber-500/40 bg-amber-950/50 px-3 py-2.5 text-xs text-amber-100"
+            role="alert"
+            data-testid="workspace-browser-lite-feedback"
+          >
+            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden />
+            <p className="leading-relaxed">{liteScanFeedback}</p>
+          </div>
         ) : null}
 
         <button
@@ -190,7 +253,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
 
       {showCliPanel ? (
         <div
-          className="mt-4 rounded-xl border border-slate-800 bg-slate-950/50 p-4"
+          className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-4"
           data-testid="workspace-cli-panel"
         >
           <button
@@ -202,11 +265,17 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
           >
             <Terminal className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
             <span className="min-w-0 flex-1">
-              <span className="block text-sm font-semibold text-slate-100">
-                Need git hotspots or CI publish?
+              <span className="flex flex-wrap items-center gap-2">
+                <span className="text-sm font-semibold text-slate-100">
+                  Full analysis — ArchLens CLI
+                </span>
+                <span className="inline-flex items-center rounded border border-emerald-500/40 bg-emerald-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-emerald-300">
+                  Recommended
+                </span>
               </span>
-              <span className="block text-xs text-slate-500 mt-1 leading-relaxed">
-                Install the ArchLens CLI for TraceLens forensics, watch mode, and catalog publish.
+              <span className="block text-xs text-slate-400 mt-1 leading-relaxed">
+                Run locally for TraceLens git hotspots, watch mode, and CI catalog publish — depth
+                the browser lite scan cannot provide.
               </span>
             </span>
             <ArrowRight

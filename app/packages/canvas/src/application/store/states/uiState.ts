@@ -48,6 +48,8 @@ export interface UiState {
   sourceCodeProvenance: SourceProvenance | null;
   notification: ToastNotification | null;
   mermaidEnrichBannerOpen: boolean;
+  /** Sticky reminder after a browser lite scan — graduate to CLI for forensics. */
+  browserLiteBannerOpen: boolean;
   focusedCyclePath: string[] | null;
   isLoading: boolean | string;
   diagramLoadCount: number;
@@ -81,6 +83,7 @@ export interface UiState {
   closeSourceCodeDialog: () => void;
   setNotification: (notification: ToastNotification | null) => void;
   setMermaidEnrichBannerOpen: (open: boolean) => void;
+  setBrowserLiteBannerOpen: (open: boolean) => void;
   setLayoutEngine: (engine: LayoutEngineId | null) => void;
   setFocusedCyclePath: (path: string[] | null) => void;
   setIsLoading: (loading: boolean | string) => void;
@@ -118,6 +121,7 @@ export const createUiState = (
   sourceCodeProvenance: null,
   notification: null,
   mermaidEnrichBannerOpen: false,
+  browserLiteBannerOpen: false,
   focusedCyclePath: null,
   isLoading: false,
   diagramLoadCount: 0,
@@ -173,6 +177,7 @@ export const createUiState = (
     set({ isSourceCodeOpen: false, sourceCodeFilepath: null, sourceCodeProvenance: null }),
   setNotification: notification => set({ notification }),
   setMermaidEnrichBannerOpen: open => set({ mermaidEnrichBannerOpen: open }),
+  setBrowserLiteBannerOpen: open => set({ browserLiteBannerOpen: open }),
   setLayoutEngine: engine => set({ layoutEngine: engine }),
   setFocusedCyclePath: path => set({ focusedCyclePath: path }),
   setIsLoading: loading => set({ isLoading: loading }),

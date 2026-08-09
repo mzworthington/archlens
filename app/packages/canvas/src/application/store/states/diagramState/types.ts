@@ -39,6 +39,11 @@ export interface DiagramState {
   isWorkspaceOpen: boolean;
   /** Bundled Samples workspace (read-only; save downloads YAML). */
   isSampleWorkspace: boolean;
+  /**
+   * Workspace came from in-browser structural scan (no git TraceLens / CLI forensics).
+   * Cleared when opening a folder, sample, or empty workspace.
+   */
+  isBrowserLiteWorkspace: boolean;
   workspaceName: string;
   /** Lightweight workspace index (all diagrams). Full schemas live in loadedSystems. */
   workspaceCatalog: WorkspaceCatalogEntry[];
