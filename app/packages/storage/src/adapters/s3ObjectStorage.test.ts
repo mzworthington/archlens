@@ -147,6 +147,100 @@ describe('Feature: S3-compatible object storage (R2 and AWS)', () => {
       storage.putObject({ key: 'latest/manifest.json', body: '{}', ifMatch: 'stale' })
     ).rejects.toBeInstanceOf(ObjectStoragePreconditionFailedError);
   });
+
+  it('retries transient R2 InternalError responses and then succeeds', async () => {
+    const send = vi.fn(async (command: unknown) => {
+      if (!(command instanceof ListObjectsV2Command)) {
+        throw new Error('unexpected command');
+      }
+      if (send.mock.calls.length < 3) {
+        const error = new Error('We encountered an internal error. Please try again.') as Error & {
+          name: string;
+          Code: string;
+          $metadata: { httpStatusCode: number; attempts: number };
+        };
+        error.name = 'InternalError';
+        error.Code = 'InternalError';
+        error.$metadata = { httpStatusCode: 500, attempts: 3 };
+        throw error;
+      }
+      return {
+        Contents: [{ Key: 'fragments/payments/run-1/manifest.json' }],
+        IsTruncated: false,
+      };
+    });
+
+    const storage = createS3ObjectStorage(
+      {
+        provider: 'r2',
+        bucket: 'catalog',
+        accessKeyId: 'key',
+        secretAccessKey: 'secret',
+      },
+      { send }
+    );
+
+    await expect(storage.listObjectKeys('fragments/')).resolves.toEqual([
+      'fragments/payments/run-1/manifest.json',
+    ]);
+    expect(send).toHaveBeenCalledTimes(3);
+  });
+
+  it('does not apply R2 InternalError retries for AWS S3', async () => {
+    const send = vi.fn(async () => {
+      const error = new Error('We encountered an internal error. Please try again.') as Error & {
+        name: string;
+        Code: string;
+        $metadata: { httpStatusCode: number; attempts: number };
+      };
+      error.name = 'InternalError';
+      error.Code = 'InternalError';
+      error.$metadata = { httpStatusCode: 500, attempts: 3 };
+      throw error;
+    });
+
+    const storage = createS3ObjectStorage(
+      {
+        provider: 's3',
+        bucket: 'catalog',
+        accessKeyId: 'key',
+        secretAccessKey: 'secret',
+      },
+      { send }
+    );
+
+    await expect(storage.listObjectKeys('fragments/')).rejects.toMatchObject({
+      name: 'InternalError',
+    });
+    expect(send).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not retry precondition failures', async () => {
+    const send = vi.fn(async () => {
+      const error = new Error('Precondition Failed') as Error & {
+        name: string;
+        $metadata: { httpStatusCode: number };
+      };
+      error.name = 'PreconditionFailed';
+      error.$metadata = { httpStatusCode: 412 };
+      throw error;
+    });
+
+    const storage = createS3ObjectStorage(
+      {
+        provider: 'r2',
+        bucket: 'catalog',
+        accessKeyId: 'key',
+        secretAccessKey: 'secret',
+      },
+      { send }
+    );
+
+    await expect(
+      storage.putObject({ key: 'latest/manifest.json', body: '{}', ifMatch: 'stale' })
+    ).rejects.toBeInstanceOf(ObjectStoragePreconditionFailedError);
+    expect(send).toHaveBeenCalledTimes(1);
+  });
 });
 
 describe('Feature: in-memory object storage CAS', () => {
