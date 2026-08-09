@@ -36,7 +36,7 @@ Consumer: `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/
 Stitching is **not** storage-event driven. The samples estate uses:
 
 1. **Primary** — `publish-samples` and `publish-blueprint-catalog` run `catalog publish-fragment` then `catalog compose` in the same job. `publish-demo-catalog` publishes fragments in parallel matrix legs, then runs **one** compose job after the matrix (avoids concurrent CAS on `latest/manifest.json`).
-2. **Safety net** — [`compose-catalog.yml`](../../.github/workflows/compose-catalog.yml) re-composes `estates/samples/` hourly (`--allow-empty` so an empty fragment set does not fail).
+2. **Safety net** — [`compose-catalog.yml`](../../.github/workflows/compose-catalog.yml) re-composes `estates/samples/` hourly (`--allow-empty` so an empty fragment set does not fail). The job retries the compose command a few times on failure so brief R2 `InternalError` / 5xx blips do not fail the hourly run.
 3. **Retention** — [`prune-catalog.yml`](../../.github/workflows/prune-catalog.yml) runs daily at **07:00 UTC**. Default is **dry-run**; enable deletes via workflow input `execute=true` or repo variable `PRUNE_CATALOG_EXECUTE=true`. Policy: keep the `latest` revision, plus at least the 7 newest snapshots and anything within 14 days; keep 2 newest runs per fragment key. Never deletes `latest/` or `overlays/`. Requires a CLI release that includes `archlens catalog prune`.
 
 Compose jobs share the GitHub Actions concurrency group `samples-estate-compose` so only one samples-estate stitch runs at a time. Compose also reloads fragments and backs off on CAS conflicts (`--max-retries`, default 8).
