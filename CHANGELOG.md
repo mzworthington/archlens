@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-09
+
+### 🐛 Bug Fixes
+
+- _(ci)_ Point Dependabot npm at app and infra workspaces (#74)
+- _(deps)_ Patch Dependabot npm advisories in app workspace (#89)
+- _(security)_ Resolve open CodeQL code-scanning alerts (#90)
+
 ## 2026-08-08
 
 ### 🐛 Bug Fixes
