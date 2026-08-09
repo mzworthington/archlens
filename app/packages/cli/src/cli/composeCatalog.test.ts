@@ -78,8 +78,127 @@ describe('Feature: catalog compose with CAS on latest', () => {
     if (outcome.kind !== 'uploaded') return;
     expect(outcome.contributors).toHaveLength(2);
     expect(outcome.appliedOverlays).toEqual([]);
+    expect(outcome.reusedExistingSnapshot).toBe(false);
     expect(storage.objects.has('latest/manifest.json')).toBe(true);
     expect(storage.putOrder.at(-1)).toBe('latest/manifest.json');
+  });
+
+  it('skips upload when latest already points at the composed revision', async () => {
+    const storage = new InMemoryObjectStorage();
+    await uploadEstateFragment(
+      fragment({
+        estateId: 'acme',
+        productId: 'payments',
+        fragmentKey: 'payments',
+        sourceRef: 'a',
+        runId: 'r1',
+        publishedAt: '2026-01-01T00:00:00.000Z',
+        objects: [{ path: 'systems/payments.yaml', content: minimalYaml('payments') }],
+      }),
+      storage
+    );
+
+    const first = await runComposeCatalog(
+      {
+        estateId: 'acme',
+        format: 'json',
+        dryRun: false,
+        skipValidation: true,
+        maxRetries: 3,
+        allowEmpty: false,
+        keyPrefix: 'estates/acme',
+      },
+      {
+        resolveStorage: () => storage,
+        sleep: noSleep,
+        now: () => new Date('2026-08-04T12:00:00.000Z'),
+      }
+    );
+    expect(first.kind).toBe('uploaded');
+    if (first.kind !== 'uploaded') return;
+
+    const putsBefore = storage.putOrder.length;
+    const second = await runComposeCatalog(
+      {
+        estateId: 'acme',
+        format: 'json',
+        dryRun: false,
+        skipValidation: true,
+        maxRetries: 3,
+        allowEmpty: false,
+        keyPrefix: 'estates/acme',
+      },
+      {
+        resolveStorage: () => storage,
+        sleep: noSleep,
+        now: () => new Date('2026-08-04T13:00:00.000Z'),
+      }
+    );
+
+    expect(second.kind).toBe('unchanged');
+    if (second.kind !== 'unchanged') return;
+    expect(second.revisionId).toBe(first.result.revisionId);
+    expect(storage.putOrder.length).toBe(putsBefore);
+  });
+
+  it('retries transient storage errors then succeeds', async () => {
+    const storage = new InMemoryObjectStorage();
+    await uploadEstateFragment(
+      fragment({
+        estateId: 'acme',
+        productId: 'payments',
+        fragmentKey: 'payments',
+        sourceRef: 'a',
+        runId: 'r1',
+        publishedAt: '2026-01-01T00:00:00.000Z',
+        objects: [{ path: 'systems/payments.yaml', content: minimalYaml('payments') }],
+      }),
+      storage
+    );
+
+    let listCalls = 0;
+    const originalList = storage.listObjectKeys.bind(storage);
+    storage.listObjectKeys = async prefix => {
+      listCalls += 1;
+      if (listCalls === 1) {
+        const error = new Error('We encountered an internal error. Please try again.') as Error & {
+          name: string;
+          Code: string;
+          $metadata: { httpStatusCode: number };
+        };
+        error.name = 'InternalError';
+        error.Code = 'InternalError';
+        error.$metadata = { httpStatusCode: 500 };
+        throw error;
+      }
+      return originalList(prefix);
+    };
+
+    const sleeps: number[] = [];
+    const outcome = await runComposeCatalog(
+      {
+        estateId: 'acme',
+        format: 'json',
+        dryRun: false,
+        skipValidation: true,
+        maxRetries: 3,
+        allowEmpty: false,
+        keyPrefix: 'estates/acme',
+      },
+      {
+        resolveStorage: () => storage,
+        sleep: async ms => {
+          sleeps.push(ms);
+        },
+      }
+    );
+
+    expect(outcome.kind).toBe('uploaded');
+    if (outcome.kind === 'uploaded') {
+      expect(outcome.attempts).toBe(2);
+    }
+    expect(listCalls).toBeGreaterThanOrEqual(2);
+    expect(sleeps).toEqual([100]);
   });
 
   it('exposes capped exponential CAS backoff', () => {

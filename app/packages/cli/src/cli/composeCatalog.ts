@@ -1,6 +1,7 @@
 import {
   applySuggestionOverlays,
   composeEstateFragments,
+  parseRemoteCatalogLatestPointer,
   parseSchemaFromYaml,
   remoteCatalogLatestManifestKey,
   validateBlueprintWorkspace,
@@ -9,6 +10,7 @@ import {
   type SuggestionOverlay,
 } from '@archlens/core';
 import {
+  isTransientObjectStorageError,
   loadEstateFragmentsFromStorage,
   loadSuggestionOverlaysFromStorage,
   ObjectStoragePreconditionFailedError,
@@ -30,7 +32,7 @@ export type ComposeCatalogDeps = {
   loadFragments?: (storage: ObjectStoragePort) => Promise<EstateFragment[]>;
   loadOverlays?: (storage: ObjectStoragePort) => Promise<SuggestionOverlay[]>;
   now?: () => Date;
-  /** Injectable delay between CAS retries (tests). Defaults to real sleep. */
+  /** Injectable delay between CAS / transient retries (tests). Defaults to real sleep. */
   sleep?: (ms: number) => Promise<void>;
 };
 
@@ -49,11 +51,18 @@ export type ComposeCatalogOutcome =
       appliedOverlays: SuggestionOverlay[];
     }
   | {
+      kind: 'unchanged';
+      revisionId: string;
+      contributors: ReturnType<typeof composeEstateFragments>['contributors'];
+      appliedOverlays: SuggestionOverlay[];
+    }
+  | {
       kind: 'uploaded';
       result: PublishUploadResult & { objects: PublishDryRunResult['objects'] };
       contributors: ReturnType<typeof composeEstateFragments>['contributors'];
       appliedOverlays: SuggestionOverlay[];
       attempts: number;
+      reusedExistingSnapshot: boolean;
     }
   | { kind: 'cas-conflict'; attempts: number };
 
@@ -69,7 +78,16 @@ async function readLatestEtag(
   }
 }
 
-/** Exponential backoff before CAS retry attempt N (1-based after first failure). Caps at 2s. */
+async function readLatestRevision(storage: ObjectStoragePort): Promise<string | null> {
+  try {
+    const text = await storage.getObjectText(remoteCatalogLatestManifestKey());
+    return parseRemoteCatalogLatestPointer(JSON.parse(text) as unknown).revision;
+  } catch {
+    return null;
+  }
+}
+
+/** Exponential backoff before CAS/transient retry attempt N (1-based after first failure). Caps at 2s. */
 export function composeCasBackoffMs(failedAttempts: number): number {
   return Math.min(2000, 100 * 2 ** Math.max(0, failedAttempts - 1));
 }
@@ -165,31 +183,35 @@ export async function runComposeCatalog(
   if (!storage) return { kind: 'storage-not-configured' };
 
   const sleep = deps.sleep ?? defaultSleep;
-  let preparedResult = await prepareCompose(plan, storage, deps);
-  if (preparedResult.kind === 'no-fragments') return { kind: 'no-fragments' };
-  if (preparedResult.kind === 'validation-failed') {
-    return {
-      kind: 'validation-failed',
-      validation: preparedResult.validation,
-      parseErrors: preparedResult.parseErrors,
-    };
-  }
-
-  let prepared = preparedResult.prepared;
 
   if (plan.dryRun) {
+    const preparedResult = await prepareCompose(plan, storage, deps);
+    if (preparedResult.kind === 'no-fragments') return { kind: 'no-fragments' };
+    if (preparedResult.kind === 'validation-failed') {
+      return {
+        kind: 'validation-failed',
+        validation: preparedResult.validation,
+        parseErrors: preparedResult.parseErrors,
+      };
+    }
     return {
       kind: 'dry-run',
-      contributors: prepared.contributors,
-      appliedOverlays: prepared.appliedOverlays,
-      result: toPublishDryRunResult(prepared.snapshotPlan, prepared.validation),
+      contributors: preparedResult.prepared.contributors,
+      appliedOverlays: preparedResult.prepared.appliedOverlays,
+      result: toPublishDryRunResult(
+        preparedResult.prepared.snapshotPlan,
+        preparedResult.prepared.validation
+      ),
     };
   }
 
   for (let attempt = 1; attempt <= plan.maxRetries; attempt += 1) {
     if (attempt > 1) {
       await sleep(composeCasBackoffMs(attempt - 1));
-      preparedResult = await prepareCompose(plan, storage, deps);
+    }
+
+    try {
+      const preparedResult = await prepareCompose(plan, storage, deps);
       if (preparedResult.kind === 'no-fragments') return { kind: 'no-fragments' };
       if (preparedResult.kind === 'validation-failed') {
         return {
@@ -198,11 +220,19 @@ export async function runComposeCatalog(
           parseErrors: preparedResult.parseErrors,
         };
       }
-      prepared = preparedResult.prepared;
-    }
 
-    const cas = await readLatestEtag(storage);
-    try {
+      const prepared = preparedResult.prepared;
+      const latestRevision = await readLatestRevision(storage);
+      if (latestRevision === prepared.snapshotPlan.revisionId) {
+        return {
+          kind: 'unchanged',
+          revisionId: prepared.snapshotPlan.revisionId,
+          contributors: prepared.contributors,
+          appliedOverlays: prepared.appliedOverlays,
+        };
+      }
+
+      const cas = await readLatestEtag(storage);
       const upload = await uploadRemoteCatalogSnapshot(prepared.snapshotPlan, storage, {
         latestIfMatch: cas.ifMatch,
         latestIfNoneMatch: cas.ifNoneMatch,
@@ -210,6 +240,7 @@ export async function runComposeCatalog(
       return {
         kind: 'uploaded',
         attempts: attempt,
+        reusedExistingSnapshot: upload.reusedExistingSnapshot,
         contributors: prepared.contributors,
         appliedOverlays: prepared.appliedOverlays,
         result: {
@@ -223,6 +254,9 @@ export async function runComposeCatalog(
       }
       if (error instanceof ObjectStoragePreconditionFailedError) {
         return { kind: 'cas-conflict', attempts: attempt };
+      }
+      if (isTransientObjectStorageError(error) && attempt < plan.maxRetries) {
+        continue;
       }
       throw error;
     }

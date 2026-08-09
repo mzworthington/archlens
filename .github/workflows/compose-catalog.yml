@@ -3,6 +3,8 @@ name: Compose catalog
 # Safety-net stitch: re-compose the shared samples estate from staged fragments + overlays.
 # Primary compose: publish-blueprint-catalog / publish-samples (after fragment);
 # publish-demo-catalog runs one final compose after the matrix (ADR-0014).
+# After a CLI release that includes no-op compose, this job usually skips re-upload when
+# latest already matches the content hash.
 
 on:
   schedule:
@@ -39,10 +41,24 @@ jobs:
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_BLUEPRINT_CATALOG_SECRET_ACCESS_KEY }}
         run: |
           set -euo pipefail
-          archlens catalog compose \
-            --estate=samples \
-            --workspace-name=samples \
-            --key-prefix=estates/samples \
-            --allow-empty \
-            --no-dry-run \
-            --format=json
+          # Defense in depth: CLI has R2 + compose retries; workflow retries whole compose
+          # for residual R2 blips (and for release lag before the no-op compose ships).
+          max_attempts=3
+          for attempt in $(seq 1 "$max_attempts"); do
+            if archlens catalog compose \
+              --estate=samples \
+              --workspace-name=samples \
+              --key-prefix=estates/samples \
+              --allow-empty \
+              --no-dry-run \
+              --format=json; then
+              exit 0
+            fi
+            if [[ "$attempt" -eq "$max_attempts" ]]; then
+              echo "Compose failed after ${max_attempts} workflow attempt(s)." >&2
+              exit 1
+            fi
+            sleep_seconds=$((attempt * 20))
+            echo "Compose attempt ${attempt} failed; retrying in ${sleep_seconds}s…" >&2
+            sleep "$sleep_seconds"
+          done

@@ -1645,6 +1645,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### Feature: catalog compose with CAS on latest
 
 - ✅ composes staged fragments and CAS-updates latest
+- ✅ skips upload when latest already points at the composed revision
+- ✅ retries transient storage errors then succeeds
 - ✅ exposes capped exponential CAS backoff
 - ✅ applies accepted suggestion overlays during compose
 - ✅ retries when latest CAS fails then succeeds
@@ -2855,6 +2857,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### Feature: compose estate fragments into one YAML tree
 
 - ✅ Scenario: keeps the freshest run per fragmentKey
+- ✅ Scenario: selects freshest manifests without needing object bodies
 - ✅ Scenario: later fragment wins for non-context paths
 - ✅ Scenario: merges context.yaml by entityRef preferring explicit display names
 - ✅ Scenario: keeps the first explicit name when two fragments disagree

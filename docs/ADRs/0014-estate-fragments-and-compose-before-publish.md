@@ -74,14 +74,14 @@ estates/{estateId}/
 
 `archlens catalog compose --estate={estateId}`:
 
-1. Load fragments under `fragments/` for the estate key prefix (`estates/{estateId}/` by default).
-2. Keep the freshest run per `fragmentKey` (`publishedAt`, then `runId`).
-3. Merge non-`context.yaml` paths with last-writer-wins; merge `context.yaml` by `entityRef`.
-4. Build ADR-0010 `catalog.json` + snapshot, upload snapshot objects, **CAS** update `latest/manifest.json` (`If-Match` / `If-None-Match: *`) with retries (`--max-retries`, default 8). On conflict, reload fragments/overlays, exponential backoff (capped at 2s), then retry.
+1. List `fragments/` and load **manifests** for every staged run; fetch YAML bodies only for the freshest run per `fragmentKey` (`publishedAt`, then `runId`).
+2. Merge non-`context.yaml` paths with last-writer-wins; merge `context.yaml` by `entityRef`.
+3. Content-hash the composed YAML into `revisionId`. If `latest/manifest.json` already points at that revision, **exit unchanged** (no snapshot re-upload) — critical for the hourly safety-net so identical corpora are not rewritten.
+4. Otherwise upload snapshot objects (or reuse an existing `snapshots/{revisionId}/` if present) and **CAS** update `latest/manifest.json` (`If-Match` / `If-None-Match: *`) with retries (`--max-retries`, default 8). On CAS conflict or transient object-storage errors, reload fragments/overlays, exponential backoff (capped at 2s), then retry. The R2 adapter adds its own longer backoff for `InternalError` / 5xx.
 
 Stage inputs with `archlens catalog publish-fragment … --estate=… --product=… --source-ref=… --no-dry-run`.
 
-**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` for single-product publishers. The demo matrix publishes fragments in parallel and runs **one** final compose after all legs. An hourly `compose-catalog` workflow is the safety net (`--allow-empty`). Jobs that compose share concurrency group `samples-estate-compose`. Storage-event / Worker triggers are deferred.
+**Compose triggers (samples estate):** primary stitch is `publish-fragment` then `compose` for single-product publishers. The demo matrix publishes fragments in parallel and runs **one** final compose after all legs. An hourly `compose-catalog` workflow is the safety net (`--allow-empty`) and retries the whole compose command a few times for residual R2 blips. Jobs that compose share concurrency group `samples-estate-compose`. Storage-event / Worker triggers are deferred.
 
 ### Phase 3 — suggestion overlays (implemented)
 
@@ -100,9 +100,10 @@ Overlay document fields: `overlayId`, `estateId`, `status` (`accepted`|`rejected
 - Good, because immutable snapshots and Canvas read path stay ADR-0010
 - Good, because product (not repo) is the composition key — matches scan domain
 - Good, because Phase 0 isolation stopped races; the hosted catalog now uses one shared estate with per-product fragments
-- Bad, because compose + CAS is new CLI surface and needs conflict retry
+- Good, because content-addressed no-op compose keeps the hourly safety-net from rewriting thousands of identical R2 objects
+- Bad, because compose + CAS is new CLI surface and needs conflict / transient retry
 - Good, because production Canvas loads one estate (`samples`) that unions hand-authored samples, ArchLens, and batch demos via fragments
-- Follow-up: Canvas remote accept UI wiring; optional hard-delete once `deleteObject` exists on the storage port; ADR-0013 remains reserved for connection-profile auth; optional estate index if customers need multi-catalog browsing
+- Follow-up: optional fragment “latest pointer” index to avoid listing every historical run’s objects keys; Canvas remote accept UI wiring; ADR-0013 remains reserved for connection-profile auth; optional estate index if customers need multi-catalog browsing; storage-event / Worker compose triggers
 
 ## Architecture sketch
 

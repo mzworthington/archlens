@@ -128,6 +128,24 @@ export function serializeEstateFragmentManifest(manifest: EstateFragmentManifest
   return `${JSON.stringify(manifest, null, 2)}\n`;
 }
 
+type FragmentFreshness = Pick<EstateFragmentManifest, 'publishedAt' | 'runId' | 'fragmentKey'>;
+
+/**
+ * Keeps the freshest run per `fragmentKey` (by `publishedAt`, then `runId`).
+ */
+export function selectLatestFragmentManifestsByKey(
+  manifests: readonly EstateFragmentManifest[]
+): EstateFragmentManifest[] {
+  const byKey = new Map<string, EstateFragmentManifest>();
+  for (const manifest of manifests) {
+    const existing = byKey.get(manifest.fragmentKey);
+    if (!existing || compareFragmentFreshness(manifest, existing) > 0) {
+      byKey.set(manifest.fragmentKey, manifest);
+    }
+  }
+  return [...byKey.values()].sort((a, b) => compareFragmentFreshness(a, b));
+}
+
 /**
  * Keeps the freshest run per `fragmentKey` (by `publishedAt`, then `runId`).
  */
@@ -142,7 +160,7 @@ export function selectLatestFragmentsByKey(fragments: readonly EstateFragment[])
   return [...byKey.values()].sort((a, b) => compareFragmentFreshness(a, b));
 }
 
-function compareFragmentFreshness(a: EstateFragment, b: EstateFragment): number {
+function compareFragmentFreshness(a: FragmentFreshness, b: FragmentFreshness): number {
   const byTime = a.publishedAt.localeCompare(b.publishedAt);
   if (byTime !== 0) return byTime;
   return a.runId.localeCompare(b.runId);
