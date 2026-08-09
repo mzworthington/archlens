@@ -104,4 +104,15 @@ describe('DocsShell', () => {
     fireEvent.click(within(sidebar).getByRole('button', { name: 'Design tokens' }));
     expect(localNav.onSelect).toHaveBeenCalledWith('tokens');
   });
+
+  it('links author credit to mzworthington.co.uk', () => {
+    render(
+      <DocsShell>
+        <p>content</p>
+      </DocsShell>
+    );
+
+    const credit = screen.getByRole('link', { name: 'Matthew Z Worthington' });
+    expect(credit).toHaveAttribute('href', 'https://mzworthington.co.uk');
+  });
 });
