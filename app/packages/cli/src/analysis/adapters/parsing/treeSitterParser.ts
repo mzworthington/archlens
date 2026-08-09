@@ -99,24 +99,32 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
       const cached = this.scanCache?.get(relativePath);
 
       let tree: Parser.Tree;
+      let ownsTree = false;
       try {
         if (cached) {
           tree = cached.tree;
         } else {
           const content = fs.readFileSync(filePath, 'utf8');
           tree = parser.parse(content);
+          ownsTree = true;
         }
       } catch {
         continue;
       }
 
-      result.push(
-        extractParsedSourceFileFromTree({
-          filePath,
-          relativePath,
-          tree,
-        })
-      );
+      try {
+        result.push(
+          extractParsedSourceFileFromTree({
+            filePath,
+            relativePath,
+            tree,
+          })
+        );
+      } finally {
+        if (ownsTree) {
+          tree.delete();
+        }
+      }
     }
 
     return result;

@@ -27,10 +27,13 @@ import { loadSampleWorkspaceSession } from '../../../infrastructure/fileSystem/s
 import { SANDBOX_LOADING_MESSAGE } from '../diagramLoadSession';
 import {
   beginWorkspaceOpen,
+  clearFolderWorkspacePreferred,
   isWorkspaceOpenCurrent,
   markFolderWorkspacePreferred,
+  releaseDemoBootstrapClaim,
 } from '../workspaceOpenSession';
 import {
+  describeTruncation,
   pickSourceDirectory,
   walkBrowserSourceDirectory,
 } from '../../../infrastructure/analysis/browserSourceWalker';
@@ -38,6 +41,7 @@ import { createMemoryScanWorkspacePort } from '../../../infrastructure/analysis/
 import { createAnalysisLogger } from '../../../infrastructure/analysis/analysisLogger';
 import { runBrowserAnalysisWorker } from '../../../infrastructure/analysis/runBrowserAnalysisWorker';
 import { isCancellationError } from '@archlens/analysis/cancellation';
+import { CLI_GETTING_STARTED_PATH } from '../../../constants/cli';
 
 export const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
@@ -244,10 +248,17 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
 
   openBrowserLiteScan: async () => {
     const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
-    const handle = await pickSourceDirectory();
-    if (!handle) return false;
+    const pick = await pickSourceDirectory();
+    if (pick.status === 'cancelled') return false;
+    if (pick.status === 'unsupported') {
+      setNotification?.({
+        type: 'error',
+        title: 'Browser scan unavailable',
+        message: `This browser does not support folder picking. Use Chrome/Edge, or install the ArchLens CLI — see ${CLI_GETTING_STARTED_PATH}.`,
+      });
+      return false;
+    }
 
-    markFolderWorkspacePreferred();
     const openGeneration = beginWorkspaceOpen();
     setIsLoading(BROWSER_LITE_SCAN_LOADING_MESSAGE);
     // Abandoning the scan (e.g. opening another workspace) must stop the worker too.
@@ -257,12 +268,19 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       cancellation.abort();
       return true;
     };
+
+    const restoreDemoBootstrapIfNeeded = () => {
+      if (get().isWorkspaceOpen) return;
+      clearFolderWorkspacePreferred();
+      releaseDemoBootstrapClaim();
+    };
+
     try {
-      const walked = await walkBrowserSourceDirectory(handle, { signal: cancellation.signal });
+      const walked = await walkBrowserSourceDirectory(pick.handle, { signal: cancellation.signal });
       if (abortIfSuperseded()) return false;
       if (walked.sourceFileCount === 0) {
         throw new Error(
-          'No TypeScript or JavaScript source files found (try a package with .ts/.tsx/.js/.jsx).'
+          'No TypeScript or JavaScript source files found (try a package with .ts/.tsx/.js/.jsx/.mjs/.cjs).'
         );
       }
 
@@ -301,22 +319,27 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       });
 
       if (opened) {
-        const truncatedNote = walked.truncated
-          ? ` Capped at ${walked.sourceFileCount} files for browser responsiveness.`
-          : '';
+        // Only lock out demo bootstrap after a successful scan workspace open.
+        markFolderWorkspacePreferred();
+        const truncatedNote = describeTruncation(walked.truncationReasons, walked.sourceFileCount);
         setNotification?.({
           type: 'success',
           title: 'Browser scan ready',
-          message: `Loaded ${walked.sourceFileCount} source file(s) via shared analysis (structure only — no git hotspots).${truncatedNote} Install the ArchLens CLI for TraceLens and CI publish.`,
+          message: `Loaded ${walked.sourceFileCount} source file(s) via shared analysis (structure only — no git hotspots).${truncatedNote} Blueprints are in-memory only until you export or use the CLI. Install the ArchLens CLI for TraceLens, CI publish, and disk writes.`,
         });
+        return true;
       }
-      return opened;
+
+      restoreDemoBootstrapIfNeeded();
+      return false;
     } catch (err) {
       if (isCancellationError(err)) {
         logger.info('Browser lite scan cancelled');
+        restoreDemoBootstrapIfNeeded();
         return false;
       }
       logger.error('Failed to run browser lite scan', err);
+      restoreDemoBootstrapIfNeeded();
       set({ lastError: (err as Error).message || 'Failed to scan repository in browser' });
       setNotification?.({
         type: 'error',

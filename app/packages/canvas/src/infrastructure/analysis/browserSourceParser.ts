@@ -16,32 +16,38 @@ export class BrowserSourceParser implements CodebaseParserPort {
     private readonly cwd: string = '/scan'
   ) {}
 
+  /** Parse a single walked source with the lightweight extractor. */
+  parseOne(source: LiteScanSourceFile): ParsedSourceFile | null {
+    const relativePath = source.relativePath.replace(/\\/g, '/');
+    if (!isLiteScanSourcePath(relativePath)) return null;
+
+    const baseName =
+      relativePath
+        .split('/')
+        .pop()
+        ?.replace(/\.[^.]+$/, '') ?? relativePath;
+    const { imports, reExports } = extractTsImports(source.content);
+
+    return {
+      filePath: `${this.cwd}/${relativePath}`.replace(/\/{2,}/g, '/'),
+      relativePath,
+      baseName,
+      isTestFile: isTestSourcePath(relativePath),
+      imports: imports.map(moduleSpecifier => ({ moduleSpecifier })),
+      reExports: reExports.map(moduleSpecifier => ({ moduleSpecifier })),
+      newExpressions: [],
+      callExpressions: [],
+    };
+  }
+
   async parseSourceFiles(_globPattern: string, signal?: AbortSignal): Promise<ParsedSourceFile[]> {
     throwIfAborted(signal);
     const result: ParsedSourceFile[] = [];
 
     for (const source of this.sources) {
       throwIfAborted(signal);
-      const relativePath = source.relativePath.replace(/\\/g, '/');
-      if (!isLiteScanSourcePath(relativePath)) continue;
-
-      const baseName =
-        relativePath
-          .split('/')
-          .pop()
-          ?.replace(/\.[^.]+$/, '') ?? relativePath;
-      const { imports, reExports } = extractTsImports(source.content);
-
-      result.push({
-        filePath: `${this.cwd}/${relativePath}`.replace(/\/{2,}/g, '/'),
-        relativePath,
-        baseName,
-        isTestFile: isTestSourcePath(relativePath),
-        imports: imports.map(moduleSpecifier => ({ moduleSpecifier })),
-        reExports: reExports.map(moduleSpecifier => ({ moduleSpecifier })),
-        newExpressions: [],
-        callExpressions: [],
-      });
+      const parsed = this.parseOne(source);
+      if (parsed) result.push(parsed);
     }
 
     return result;

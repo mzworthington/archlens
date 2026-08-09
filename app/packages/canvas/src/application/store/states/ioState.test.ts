@@ -132,6 +132,27 @@ dependencies: []
     expect(state.schema.level).toBe('context');
     expect(state.workspaceCatalog.some(entry => entry.path.endsWith('context.yaml'))).toBe(true);
     expect(state.notification?.title).toBe('Browser scan ready');
+    expect(state.notification?.message).toContain('in-memory only');
+  });
+
+  it('notifies when the browser cannot pick a source directory', async () => {
+    const original = Object.getOwnPropertyDescriptor(window, 'showDirectoryPicker');
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: undefined,
+    });
+
+    const opened = await useBlueprintStore.getState().openBrowserLiteScan();
+    const state = useBlueprintStore.getState();
+
+    expect(opened).toBe(false);
+    expect(state.notification?.title).toBe('Browser scan unavailable');
+
+    if (original) {
+      Object.defineProperty(window, 'showDirectoryPicker', original);
+    } else {
+      Reflect.deleteProperty(window, 'showDirectoryPicker');
+    }
   });
 
   it('should catalog all systems on open and lazy-load when selecting another', async () => {

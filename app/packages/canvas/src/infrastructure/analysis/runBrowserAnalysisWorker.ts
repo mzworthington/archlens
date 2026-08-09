@@ -94,7 +94,8 @@ export function runBrowserAnalysisWorker(
 
     worker.postMessage({
       type: 'scan',
-      sources: [...args.sources],
+      // Structured clone copies once — avoid an intermediate array spread.
+      sources: args.sources,
       directoryName: args.directoryName,
     });
   });

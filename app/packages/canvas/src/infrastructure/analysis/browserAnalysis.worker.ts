@@ -4,7 +4,7 @@ import { createBrowserAnalysisDeps } from './createBrowserAnalysisDeps';
 import type { BrowserAnalysisCommand, BrowserAnalysisResponse } from './browserAnalysisProtocol';
 import { runBrowserAnalysis } from '../../application/analysis/runBrowserAnalysis';
 
-const controller = new AbortController();
+let activeController: AbortController | null = null;
 
 function post(message: BrowserAnalysisResponse): void {
   self.postMessage(message);
@@ -36,9 +36,13 @@ const forwardingLogger: LoggerPort = {
 
 self.onmessage = (event: MessageEvent<BrowserAnalysisCommand>) => {
   if (event.data.type === 'cancel') {
-    controller.abort();
+    activeController?.abort();
     return;
   }
+
+  // Fresh controller per scan so a prior cancel cannot stick on a reused worker.
+  const controller = new AbortController();
+  activeController = controller;
 
   const { sources, directoryName } = event.data;
   void runBrowserAnalysis({
@@ -47,9 +51,14 @@ self.onmessage = (event: MessageEvent<BrowserAnalysisCommand>) => {
     signal: controller.signal,
   })
     .then(result => {
+      if (controller.signal.aborted) return;
       post({ type: 'result', ...result });
     })
     .catch(err => {
+      if (controller.signal.aborted && !isCancellationError(err)) {
+        post({ type: 'error', message: 'Scan cancelled.', cancelled: true });
+        return;
+      }
       post({
         type: 'error',
         message: err instanceof Error ? err.message : 'Browser analysis failed.',

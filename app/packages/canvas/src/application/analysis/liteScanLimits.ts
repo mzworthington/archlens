@@ -3,14 +3,15 @@ export const LITE_SCAN_MAX_FILES = 300;
 export const LITE_SCAN_MAX_FILE_BYTES = 512_000;
 /** Cumulative read budget — sources are structured-cloned into the analysis worker. */
 export const LITE_SCAN_MAX_TOTAL_BYTES = 8_000_000;
-export const LITE_SCAN_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx']);
+/** Align with `extensionToTreeSitterLanguage` for JS/TS. */
+export const LITE_SCAN_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs']);
 
 /** Manifests the analyzer reads for naming and workspace-package discovery. */
 export const LITE_SCAN_METADATA_FILES = new Set(['package.json', 'pnpm-workspace.yaml']);
 /** Metadata has its own budget so manifests cannot crowd out source files. */
 export const LITE_SCAN_MAX_METADATA_FILES = 100;
 
-/** Directory names skipped while walking a source tree. */
+/** Directory names skipped while walking a source tree (plus structural ignore globs). */
 export const LITE_SCAN_SKIP_DIR_NAMES = new Set([
   'node_modules',
   '.git',
@@ -31,18 +32,43 @@ export const LITE_SCAN_SKIP_DIR_NAMES = new Set([
   'venv',
 ]);
 
+export type LiteScanTruncationReason = 'files' | 'bytes' | 'metadata';
+
 function extensionOf(pathOrName: string): string {
-  const idx = pathOrName.lastIndexOf('.');
-  return idx >= 0 ? pathOrName.slice(idx).toLowerCase() : '';
+  const normalized = pathOrName.replace(/\\/g, '/');
+  if (normalized.endsWith('.d.ts')) return '.d.ts';
+  const idx = normalized.lastIndexOf('.');
+  return idx >= 0 ? normalized.slice(idx).toLowerCase() : '';
 }
 
 /** Single source-of-truth for what the browser scan treats as parseable source. */
 export function isLiteScanSourcePath(relativePath: string): boolean {
-  return LITE_SCAN_EXTENSIONS.has(extensionOf(relativePath));
+  const ext = extensionOf(relativePath);
+  if (ext === '.d.ts') return false;
+  return LITE_SCAN_EXTENSIONS.has(ext);
 }
 
 /** Manifest files read by the analyzer but never parsed as source. */
 export function isLiteScanMetadataPath(relativePath: string): boolean {
   const name = relativePath.replace(/\\/g, '/').split('/').pop() ?? relativePath;
   return LITE_SCAN_METADATA_FILES.has(name);
+}
+
+/**
+ * Lower is better. Prefer application source roots when the file cap is hit so
+ * FS enumeration order does not starve `src/` for peripheral scripts.
+ */
+export function liteScanSourcePriority(relativePath: string): number {
+  const path = relativePath.replace(/\\/g, '/');
+  if (/(?:^|\/)(?:src|app)\//.test(path)) return 0;
+  if (/(?:^|\/)packages\/[^/]+\/src\//.test(path)) return 0;
+  return 1;
+}
+
+/** Prefer root manifests over nested package.json copies when metadata is capped. */
+export function liteScanMetadataPriority(relativePath: string): number {
+  const path = relativePath.replace(/\\/g, '/');
+  if (path === 'package.json' || path === 'pnpm-workspace.yaml') return 0;
+  if (!path.includes('/')) return 1;
+  return 2;
 }

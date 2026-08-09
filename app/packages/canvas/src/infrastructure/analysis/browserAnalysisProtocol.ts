@@ -3,7 +3,7 @@ import type { BrowserAnalysisResult } from '../../application/analysis/runBrowse
 
 export type BrowserAnalysisRequest = {
   type: 'scan';
-  sources: LiteScanSourceFile[];
+  sources: readonly LiteScanSourceFile[];
   directoryName: string;
 };
 
