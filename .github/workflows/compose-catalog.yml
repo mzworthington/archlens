@@ -3,6 +3,9 @@ name: Compose catalog
 # Safety-net stitch: re-compose the shared samples estate from staged fragments + overlays.
 # Primary compose: publish-blueprint-catalog / publish-samples (after fragment);
 # publish-demo-catalog runs one final compose after the matrix (ADR-0014).
+# Thin caller only — R2 / compose resilience lives in the CLI (no workflow retries).
+# After a CLI release that includes no-op compose, this job usually skips re-upload when
+# latest already matches the content hash.
 
 on:
   schedule:

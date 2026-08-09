@@ -2,6 +2,7 @@ import {
   estateFragmentManifestKey,
   estateFragmentObjectKey,
   parseEstateFragmentManifest,
+  selectLatestFragmentManifestsByKey,
   serializeEstateFragmentManifest,
   type EstateFragment,
   type EstateFragmentManifest,
@@ -63,18 +64,28 @@ export async function uploadEstateFragment(
 }
 
 /**
- * Load every fragment run that has a `manifest.json` under `fragments/`.
+ * Load the freshest fragment run per `fragmentKey` under `fragments/`.
+ *
+ * Manifests for every run are read so freshness can be decided; YAML object
+ * bodies are fetched only for the selected (latest) runs — older staged runs
+ * are ignored to cut compose read fan-out against object storage.
  */
 export async function loadEstateFragmentsFromStorage(
   storage: ObjectStoragePort
 ): Promise<EstateFragment[]> {
   const keys = await storage.listObjectKeys('fragments/');
   const manifestKeys = keys.filter(key => key.endsWith('/manifest.json'));
-  const fragments: EstateFragment[] = [];
+  const manifests: EstateFragmentManifest[] = [];
 
   for (const manifestKey of manifestKeys) {
     const raw = JSON.parse(await storage.getObjectText(manifestKey)) as unknown;
-    const manifest = parseEstateFragmentManifest(raw);
+    manifests.push(parseEstateFragmentManifest(raw));
+  }
+
+  const selected = selectLatestFragmentManifestsByKey(manifests);
+  const fragments: EstateFragment[] = [];
+
+  for (const manifest of selected) {
     const objects = await Promise.all(
       manifest.objectPaths.map(async path => ({
         path,

@@ -5,9 +5,10 @@ import {
   ListObjectsV2Command,
   PutObjectCommand,
 } from '@aws-sdk/client-s3';
-import { createS3ObjectStorage } from './s3ObjectStorage';
+import { createS3ObjectStorage, r2TransientBackoffMs } from './s3ObjectStorage';
 import { ObjectStoragePreconditionFailedError } from '../ports/objectStoragePort';
 import { InMemoryObjectStorage } from '../testing/inMemoryObjectStorage';
+import { isTransientObjectStorageError } from '../lib/transientObjectStorageError';
 
 describe('Feature: S3-compatible object storage (R2 and AWS)', () => {
   it('stores and retrieves objects through the S3 API', async () => {
@@ -146,6 +147,18 @@ describe('Feature: S3-compatible object storage (R2 and AWS)', () => {
     await expect(
       storage.putObject({ key: 'latest/manifest.json', body: '{}', ifMatch: 'stale' })
     ).rejects.toBeInstanceOf(ObjectStoragePreconditionFailedError);
+  });
+
+  it('exposes longer R2 transient backoff than the previous 2s cap', () => {
+    expect(r2TransientBackoffMs(1)).toBe(250);
+    expect(r2TransientBackoffMs(5)).toBe(4000);
+    expect(r2TransientBackoffMs(8)).toBe(8000);
+    expect(
+      isTransientObjectStorageError({
+        name: 'InternalError',
+        $metadata: { httpStatusCode: 500 },
+      })
+    ).toBe(true);
   });
 
   it('retries transient R2 InternalError responses and then succeeds', async () => {

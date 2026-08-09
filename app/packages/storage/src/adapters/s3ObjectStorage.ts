@@ -8,6 +8,7 @@ import {
 } from '@aws-sdk/client-s3';
 import type { S3CompatibleStorageConfig } from '../config/objectStorageConfig';
 import { joinObjectKey, normalizeObjectKeyPrefix } from '../lib/objectKey';
+import { isTransientObjectStorageError } from '../lib/transientObjectStorageError';
 import type {
   ObjectStorageObjectMeta,
   ObjectStoragePort,
@@ -51,11 +52,12 @@ async function streamToBytes(body: unknown): Promise<Uint8Array> {
 /**
  * R2-only outer attempts after the AWS SDK has already exhausted its own retries.
  * Other S3-compatible backends do not get this wrapper.
+ *
+ * Tuned for Bun + R2 where SDK metadata often shows `attempts: 1` /
+ * `$retryable: undefined` even for InternalError — the outer loop is the real
+ * backoff. Caps near ~30s of sleep across a single send.
  */
-const R2_TRANSIENT_SEND_ATTEMPTS = 5;
-
-const R2_TRANSIENT_ERROR_NAMES =
-  /^(InternalError|SlowDown|ServiceUnavailable|RequestTimeout|TimeoutError|NetworkingError|TooManyRequestsException)$/i;
+export const R2_TRANSIENT_SEND_ATTEMPTS = 8;
 
 function isPreconditionFailed(error: unknown): boolean {
   if (!error || typeof error !== 'object') return false;
@@ -67,21 +69,13 @@ function isPreconditionFailed(error: unknown): boolean {
   );
 }
 
-function isTransientR2Error(error: unknown): boolean {
-  if (!error || typeof error !== 'object' || isPreconditionFailed(error)) return false;
-  const record = error as {
-    name?: string;
-    Code?: string;
-    $metadata?: { httpStatusCode?: number };
-  };
-  const status = record.$metadata?.httpStatusCode;
-  if (status === 429 || (typeof status === 'number' && status >= 500)) return true;
-  const code = record.name ?? record.Code ?? '';
-  return R2_TRANSIENT_ERROR_NAMES.test(code);
-}
-
 async function sleep(ms: number): Promise<void> {
   await new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/** Exposed for unit tests. */
+export function r2TransientBackoffMs(failedAttempts: number): number {
+  return Math.min(8000, 250 * 2 ** Math.max(0, failedAttempts - 1));
 }
 
 async function withR2TransientRetry<T>(
@@ -94,11 +88,10 @@ async function withR2TransientRetry<T>(
       return await operation();
     } catch (error) {
       lastError = error;
-      if (!isTransientR2Error(error) || attempt === attempts) {
+      if (!isTransientObjectStorageError(error) || attempt === attempts) {
         throw error;
       }
-      // Longer than the SDK's short default delay so brief R2 500s can clear.
-      await sleep(Math.min(2000, 100 * 2 ** (attempt - 1)));
+      await sleep(r2TransientBackoffMs(attempt));
     }
   }
   throw lastError;
@@ -120,7 +113,7 @@ export function createS3ObjectStorage(
       secretAccessKey: config.secretAccessKey,
     },
     // R2 occasionally returns InternalError; give the SDK a few more attempts there only.
-    ...(isR2 ? { maxAttempts: 5 } : {}),
+    ...(isR2 ? { maxAttempts: 6 } : {}),
   };
   if (config.endpoint) {
     clientConfig.endpoint = config.endpoint;
