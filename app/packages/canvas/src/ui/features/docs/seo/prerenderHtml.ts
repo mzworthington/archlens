@@ -32,11 +32,51 @@ function upsertRobots(html: string, content: string): string {
   return replaceMetaContent(html, 'name', 'robots', content);
 }
 
+function stripJsonLdScripts(html: string): string {
+  // indexOf scan — avoids incomplete multi-character sanitization / nested <script> leftovers.
+  let result = '';
+  let i = 0;
+  const lower = html.toLowerCase();
+
+  while (i < html.length) {
+    const open = lower.indexOf('<script', i);
+    if (open === -1) {
+      result += html.slice(i);
+      break;
+    }
+
+    const tagEnd = html.indexOf('>', open);
+    if (tagEnd === -1) {
+      result += html.slice(i);
+      break;
+    }
+
+    const openTag = html.slice(open, tagEnd + 1);
+    if (!/\btype\s*=\s*["']application\/ld\+json["']/i.test(openTag)) {
+      result += html.slice(i, tagEnd + 1);
+      i = tagEnd + 1;
+      continue;
+    }
+
+    result += html.slice(i, open);
+    const close = lower.indexOf('</script>', tagEnd + 1);
+    if (close === -1) {
+      break;
+    }
+    i = close + '</script>'.length;
+    while (
+      i < html.length &&
+      (html[i] === ' ' || html[i] === '\t' || html[i] === '\n' || html[i] === '\r')
+    ) {
+      i++;
+    }
+  }
+
+  return result;
+}
+
 function upsertJsonLd(html: string, seo: PageSeo): string {
-  const without = html.replace(
-    /<script\s+type="application\/ld\+json">[\s\S]*?<\/script>\s*/gi,
-    ''
-  );
+  const without = stripJsonLdScripts(html);
   if (!seo.indexable) return without;
   const script = `<script type="application/ld+json">${JSON.stringify(buildJsonLdGraph(seo.path))}</script>`;
   return without.replace(/<\/head>/i, `    ${script}\n  </head>`);

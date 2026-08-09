@@ -7,6 +7,7 @@ import {
   type S3ClientConfig,
 } from '@aws-sdk/client-s3';
 import type { S3CompatibleStorageConfig } from '../config/objectStorageConfig';
+import { joinObjectKey, normalizeObjectKeyPrefix } from '../lib/objectKey';
 import type {
   ObjectStorageObjectMeta,
   ObjectStoragePort,
@@ -78,18 +79,13 @@ export function createS3ObjectStorage(
 
   const client = new S3Client(clientConfig);
   const send = deps.send ?? client.send.bind(client);
-  const prefix = config.keyPrefix ?? '';
+  const prefix = normalizeObjectKeyPrefix(config.keyPrefix);
 
-  const resolveKey = (key: string): string => {
-    const normalized = key.replace(/^\/+/, '');
-    if (!prefix) return normalized;
-    return `${prefix.replace(/^\/+|\/+$/g, '')}/${normalized}`;
-  };
+  const resolveKey = (key: string): string => joinObjectKey(prefix, key);
 
   const stripPrefix = (fullKey: string): string => {
-    const normalizedPrefix = prefix.replace(/^\/+|\/+$/g, '');
-    if (!normalizedPrefix) return fullKey;
-    const withSlash = `${normalizedPrefix}/`;
+    if (!prefix) return fullKey;
+    const withSlash = `${prefix}/`;
     return fullKey.startsWith(withSlash) ? fullKey.slice(withSlash.length) : fullKey;
   };
 

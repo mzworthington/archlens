@@ -133,8 +133,17 @@ async function installUnix(
 }
 
 function quoteCmdArg(arg: string): string {
-  if (!/\s|"/.test(arg)) return arg;
-  return `"${arg.replace(/"/g, '\\"')}"`;
+  // Escape backslashes before quotes so paths cannot break out (CodeQL js/incomplete-sanitization).
+  if (!/[\\"\s]/.test(arg)) return arg;
+  return `"${arg.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
+}
+
+function isSafeWindowsUpdateScript(scriptPath: string, installDir: string): boolean {
+  const resolved = path.resolve(scriptPath);
+  const expected = path.resolve(installDir, 'archlens-update.cmd');
+  if (resolved !== expected) return false;
+  // Reject cmd metacharacters even though the path is constrained to installDir.
+  return !/[(&|<>^%!)]/.test(resolved);
 }
 
 async function installWindows(
@@ -228,12 +237,20 @@ export async function performSelfUpdate(
   options: SelfUpdateOptions = {}
 ): Promise<void> {
   const relaunchArgs = relaunchArgsWithNoUpdateCheck();
-  const launchPath = await installRelease({ ...options, tag });
+  const installDir = options.installDir ?? getInstallDir(options.execPath);
+  const launchPath = await installRelease({ ...options, tag, installDir });
 
   if (process.platform === 'win32' && launchPath.endsWith('.cmd')) {
-    const child = spawn('cmd.exe', ['/c', launchPath], {
+    if (!isSafeWindowsUpdateScript(launchPath, installDir)) {
+      throw new Error(`Refusing to execute unexpected update script: ${launchPath}`);
+    }
+    // Fixed script basename + cwd — avoids shell argv built from env-derived absolute paths
+    // (CodeQL js/shell-command-injection-from-environment).
+    const child = spawn('cmd.exe', ['/d', '/s', '/c', 'archlens-update.cmd'], {
+      cwd: installDir,
       stdio: 'ignore',
       detached: true,
+      windowsHide: true,
     });
     child.unref();
     process.exit(0);

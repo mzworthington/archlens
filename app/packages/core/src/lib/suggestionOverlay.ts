@@ -83,11 +83,23 @@ function parseOverlayDependency(raw: unknown, index: number): SystemDependency {
   };
 }
 
+/** Trim leading/trailing `-` without regex (avoids CodeQL js/polynomial-redos). */
+function trimDashes(value: string): string {
+  let start = 0;
+  let end = value.length;
+  while (start < end && value.charCodeAt(start) === 45 /* - */) start++;
+  while (end > start && value.charCodeAt(end - 1) === 45 /* - */) end--;
+  return value.slice(start, end);
+}
+
 export function sanitizeOverlayId(value: string): string {
-  const sanitized = value
-    .trim()
-    .replace(/[^a-zA-Z0-9._-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+  // Keep hyphens inside segments; only rewrite runs of invalid chars.
+  const joined =
+    value
+      .trim()
+      .match(/[a-zA-Z0-9._-]+/g)
+      ?.join('-') ?? '';
+  const sanitized = trimDashes(joined);
   return sanitized.length > 0 ? sanitized : 'overlay';
 }
 
