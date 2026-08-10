@@ -14,7 +14,26 @@ import guideChaosSpecMd from '@docs/guide/chaos-spec.md?raw';
 import guideCiWorkflowsMd from '@docs/guide/ci-workflows.md?raw';
 import chaoslensEngineMd from '@docs/chaoslens-engine.md?raw';
 import advicelensEngineMd from '@docs/advicelens-engine.md?raw';
+import adrIndexMd from '@docs/ADRs/README.md?raw';
+import adr0001 from '@docs/ADRs/0001-yaml-blueprintspec-as-canonical-format.md?raw';
+import adr0002 from '@docs/ADRs/0002-entityref-hierarchical-diagram-identity.md?raw';
+import adr0003 from '@docs/ADRs/0003-public-json-schema-major-version-channels.md?raw';
+import adr0004 from '@docs/ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md?raw';
+import adr0005 from '@docs/ADRs/0005-go-wasm-chaoslens-with-typescript-fallback.md?raw';
+import adr0006 from '@docs/ADRs/0006-import-as-merge-into-active-diagram.md?raw';
+import adr0007 from '@docs/ADRs/0007-shared-archlens-core-as-published-language.md?raw';
+import adr0008 from '@docs/ADRs/0008-workspace-external-proxy-nodes.md?raw';
+import adr0009 from '@docs/ADRs/0009-cloudflare-pages-static-hosting.md?raw';
+import adr0010 from '@docs/ADRs/0010-remote-blueprint-catalog-contract.md?raw';
+import adr0011 from '@docs/ADRs/0011-object-storage-published-corpora.md?raw';
+import adr0012 from '@docs/ADRs/0012-remote-read-only-workspace-port.md?raw';
+import adr0013 from '@docs/ADRs/0013-practitioner-connection-profiles.md?raw';
+import adr0014 from '@docs/ADRs/0014-estate-fragments-and-compose-before-publish.md?raw';
+import adr0015 from '@docs/ADRs/0015-declared-context-hydration.md?raw';
+import adr0016 from '@docs/ADRs/0016-iac-declaration-vs-provisioned-infrastructure.md?raw';
+import adr0017 from '@docs/ADRs/0017-browser-structural-scan-vs-cli-forensics.md?raw';
 import { ADVICELENS_ENTRY_URL } from '../forensics/adviceLensUrl';
+import { titleFromMarkdown } from './presentDocsMarkdown';
 
 export type DocsNavItem = {
   label: string;
@@ -72,6 +91,7 @@ const TECH_PATH_PREFIXES = [
   '/advicelens-engine',
   '/features-unit',
   '/guide/ci-workflows',
+  '/ADRs',
 ];
 
 /** Header hubs - chapter lists live in the sidebar / mobile section scrollers. */
@@ -112,6 +132,7 @@ export const DOCS_SIDEBAR: DocsSidebarSection[] = [
       { label: 'Setup & local development', path: '/setup' },
       { label: 'Technology stack', path: '/tech-stack' },
       { label: 'Architecture & security', path: '/architecture' },
+      { label: 'ADRs', path: '/ADRs' },
       { label: 'ChaosLens engine', path: '/chaoslens-engine' },
       { label: 'AdviceLens engine', path: '/advicelens-engine' },
     ],
@@ -127,6 +148,45 @@ export function isDocsNavActive(location: string, item: DocsNavItem): boolean {
     );
   }
   return location === item.path || location.startsWith(`${item.path}/`);
+}
+
+function adrPage(stem: string, markdown: string): DocsPageMeta {
+  return {
+    path: `/ADRs/${stem}`,
+    title: titleFromMarkdown(markdown, stem),
+    markdown,
+    dir: 'ADRs',
+    group: 'reference',
+  };
+}
+
+function buildAdrPages(): DocsPageMeta[] {
+  return [
+    {
+      path: '/ADRs',
+      title: 'Architecture Decision Records',
+      markdown: adrIndexMd,
+      dir: 'ADRs',
+      group: 'reference',
+    },
+    adrPage('0001-yaml-blueprintspec-as-canonical-format', adr0001),
+    adrPage('0002-entityref-hierarchical-diagram-identity', adr0002),
+    adrPage('0003-public-json-schema-major-version-channels', adr0003),
+    adrPage('0004-local-first-fs-access-and-indexeddb-working-copy', adr0004),
+    adrPage('0005-go-wasm-chaoslens-with-typescript-fallback', adr0005),
+    adrPage('0006-import-as-merge-into-active-diagram', adr0006),
+    adrPage('0007-shared-archlens-core-as-published-language', adr0007),
+    adrPage('0008-workspace-external-proxy-nodes', adr0008),
+    adrPage('0009-cloudflare-pages-static-hosting', adr0009),
+    adrPage('0010-remote-blueprint-catalog-contract', adr0010),
+    adrPage('0011-object-storage-published-corpora', adr0011),
+    adrPage('0012-remote-read-only-workspace-port', adr0012),
+    adrPage('0013-practitioner-connection-profiles', adr0013),
+    adrPage('0014-estate-fragments-and-compose-before-publish', adr0014),
+    adrPage('0015-declared-context-hydration', adr0015),
+    adrPage('0016-iac-declaration-vs-provisioned-infrastructure', adr0016),
+    adrPage('0017-browser-structural-scan-vs-cli-forensics', adr0017),
+  ];
 }
 
 export const DOCS_PAGES: DocsPageMeta[] = [
@@ -258,6 +318,7 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     group: 'reference',
     filterable: true,
   },
+  ...buildAdrPages(),
 ];
 
 export function findDocsPage(pathname: string): DocsPageMeta | undefined {
@@ -295,10 +356,14 @@ export function resolveDocsHref(href: string, fromDir: string): string | null {
     }
     joined = '/' + baseSegments.join('/');
     joined = joined.replace(/\.md$/, '');
-    if (joined.endsWith('/index')) {
-      joined = joined.slice(0, -'/index'.length) || '/';
-    }
     joined = joined.replace(/\/$/, '') || '/';
+  }
+
+  if (joined.endsWith('/index')) {
+    joined = joined.slice(0, -'/index'.length) || '/';
+  }
+  if (joined.endsWith('/README') || joined === '/README') {
+    joined = joined.replace(/\/?README$/, '') || '/';
   }
 
   if (

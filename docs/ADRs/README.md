@@ -20,5 +20,6 @@ Sparse [MADR](https://adr.github.io/madr/)-style records for choices that are **
 | [0014](./0014-estate-fragments-and-compose-before-publish.md)      | Estate fragments and compose-before-publish                 | Accepted | 2026-08-04 |
 | [0015](./0015-declared-context-hydration.md)                       | Declared system context authorship and scan hydration       | Accepted | 2026-08-05 |
 | [0016](./0016-iac-declaration-vs-provisioned-infrastructure.md)    | Separate IaC declarations from provisioned infrastructure   | Accepted | 2026-08-06 |
+| [0017](./0017-browser-structural-scan-vs-cli-forensics.md)         | Keep browser scan structural; graduate forensics to the CLI | Accepted | 2026-08-09 |
 
 New ADRs: copy an existing record in this directory (for example [0009](./0009-cloudflare-pages-static-hosting.md)) as a starting template for `docs/ADRs/NNNN-short-title.md`. Prefer not adding an ADR unless the choice is hard to reverse or deliberately off-norm.

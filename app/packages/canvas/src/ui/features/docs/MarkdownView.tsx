@@ -3,6 +3,8 @@ import type { Components } from 'react-markdown';
 import { Link } from 'wouter';
 import { resolveDocsAssetSrc, resolveDocsHref } from './pages';
 import { stripHtmlComments } from './stripHtmlComments';
+import { splitDocsMarkdown } from './presentDocsMarkdown';
+import { DocsFrontmatterMeta } from './DocsFrontmatterMeta';
 
 type Props = {
   markdown: string;
@@ -196,11 +198,13 @@ export const MarkdownView: React.FC<Props> = ({ markdown, fromDir }) => {
   }
 
   const { ReactMarkdown, remarkGfm } = libs;
+  const { frontmatter, body } = splitDocsMarkdown(stripHtmlComments(markdown));
 
   return (
     <div className="docs-prose">
+      {frontmatter ? <DocsFrontmatterMeta fields={frontmatter} /> : null}
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={buildComponents(fromDir)}>
-        {stripHtmlComments(markdown)}
+        {body}
       </ReactMarkdown>
     </div>
   );
