@@ -4,10 +4,12 @@ import {
   DOCS_PAGES,
   DOCS_NAV,
   DOCS_SIDEBAR,
+  findDocsPage,
   isDocsNavActive,
   resolveDocsAssetSrc,
   resolveDocsHref,
 } from './pages';
+import { presentDocsMarkdown, splitDocsMarkdown } from './presentDocsMarkdown';
 
 describe('docs link resolution', () => {
   it('resolves relative markdown links within the guide', () => {
@@ -117,6 +119,26 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('./features-unit.md', '')).toBe('/features-unit');
     expect(DOCS_PAGES.some(p => p.path === '/features-unit')).toBe(true);
     expect(DOCS_PAGES.some(p => p.path === '/features-e2e')).toBe(false);
+  });
+
+  it('registers ADR index and detail pages with frontmatter intact', () => {
+    expect(findDocsPage('/ADRs')?.title).toBe('Architecture Decision Records');
+    const adr = findDocsPage('/ADRs/0001-yaml-blueprintspec-as-canonical-format');
+    expect(adr).toBeTruthy();
+    expect(adr?.markdown).toContain('status: Accepted');
+    expect(resolveDocsHref('./0001-yaml-blueprintspec-as-canonical-format.md', 'ADRs')).toBe(
+      '/ADRs/0001-yaml-blueprintspec-as-canonical-format'
+    );
+    expect(resolveDocsHref('./ADRs/README.md', '')).toBe('/ADRs');
+  });
+
+  it('presents YAML frontmatter as structured fields, not a code fence', () => {
+    const { frontmatter, body } = splitDocsMarkdown(
+      "---\nstatus: Accepted\ndeciders: ['ArchLens']\n---\n\n# Title\n"
+    );
+    expect(frontmatter).toEqual({ status: 'Accepted', deciders: 'ArchLens' });
+    expect(body).toContain('# Title');
+    expect(presentDocsMarkdown('---\nstatus: Accepted\n---\n\n# Title\n')).not.toContain('```yaml');
   });
 
   it('resolves current guide chapter paths', () => {

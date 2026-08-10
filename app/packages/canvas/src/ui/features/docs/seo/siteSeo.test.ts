@@ -50,12 +50,29 @@ describe('siteSeo catalog', () => {
 
   it('covers every docs page path with an SEO record', () => {
     for (const page of DOCS_PAGES) {
+      if (page.path.startsWith('/ADRs/')) {
+        const seo = resolvePageSeo(page.path);
+        expect(seo.path).toBe(page.path);
+        expect(seo.title.length).toBeGreaterThan(0);
+        expect(seo.description.length).toBeGreaterThan(20);
+        expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}${page.path}`);
+        expect(seo.indexable).toBe(false);
+        continue;
+      }
+
       expect(SEO_CATALOG_PATHS).toContain(page.path);
       const seo = resolvePageSeo(page.path);
       expect(seo.title.length).toBeGreaterThan(0);
       expect(seo.description.length).toBeGreaterThan(20);
       expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}${page.path === '/' ? '/' : page.path}`);
     }
+  });
+
+  it('covers the ADR index in the SEO catalog', () => {
+    expect(SEO_CATALOG_PATHS).toContain('/ADRs');
+    const seo = resolvePageSeo('/ADRs');
+    expect(seo.indexable).toBe(true);
+    expect(seo.title.toLowerCase()).toContain('decision');
   });
 
   it('marks workspace routes as non-indexable with a workspace title', () => {

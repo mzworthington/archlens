@@ -139,6 +139,11 @@ const PAGE_SEO: Record<string, SeoOverride> = {
       'Generated ArchLens unit-test feature report covering Canvas, CLI, and core BlueprintSpec behavior.',
     indexable: false,
   },
+  '/ADRs': {
+    headline: 'Architecture Decision Records',
+    description:
+      'ArchLens ADRs: sparse MADR records for hard-to-reverse architecture choices across Canvas, CLI, and core.',
+  },
 };
 
 /** Paths that must have SEO records (docs pages + marketing). Exported for catalog sync tests. */
@@ -171,6 +176,23 @@ export function resolvePageSeo(pathname: string): PageSeo {
       ogImageUrl: SITE_SOCIAL_IMAGE,
       indexable: false,
       softwareName: 'ArchLens Canvas',
+    };
+  }
+
+  if (path.startsWith('/ADRs/')) {
+    const stem = path.slice('/ADRs/'.length);
+    const number = stem.match(/^(\d+)/)?.[1];
+    const headline = number
+      ? `Architecture Decision Record ${number}`
+      : 'Architecture Decision Record';
+    return {
+      path,
+      headline,
+      title: titleFor(headline),
+      description: `ArchLens architecture decision record ${stem}: sparse MADR notes for hard-to-reverse product choices.`,
+      canonicalUrl: `${SITE_ORIGIN}${path}`,
+      ogImageUrl: SITE_SOCIAL_IMAGE,
+      indexable: false,
     };
   }
 

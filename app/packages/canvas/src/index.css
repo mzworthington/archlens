@@ -282,10 +282,21 @@ body,
 
 .docs-prose h1 {
   margin: 0 0 1rem;
-  font-size: 1.875rem;
+  font-size: 2.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #f8fafc;
+  line-height: 1.15;
+}
+
+@media (min-width: 640px) {
+  .docs-prose h1 {
+    font-size: 2.5rem;
+  }
+}
+
+.docs-prose [data-testid='docs-frontmatter'] + h1 {
+  margin-top: 0;
 }
 
 .docs-prose h2 {
