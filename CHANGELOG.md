@@ -1,12 +1,36 @@
 # Changelog
 
+## 2026-08-10
+
+### 🚀 Features
+
+- Enhance documentation structure with ADR support and improve Markdown rendering
+
 ## 2026-08-09
+
+### 🚀 Features
+
+- Demo-first onboarding and browser repo scan
+- Add author credit link to DocsShell component
+- Add option to start a blank canvas in workspace entry and startup dialog
 
 ### 🐛 Bug Fixes
 
 - _(ci)_ Point Dependabot npm at app and infra workspaces (#74)
 - _(deps)_ Patch Dependabot npm advisories in app workspace (#89)
 - _(security)_ Resolve open CodeQL code-scanning alerts (#90)
+- _(cli)_ Retry transient R2 InternalError in object storage (#92)
+- _(cli)_ Stabilize estate compose against R2 InternalError (#94)
+
+### ⚙️ Refactoring & Performance
+
+- Update SEO functions and remove unused code
+- Update CI workflow and improve JSON Schema generation
+
+### 🧰 Maintenance & Dependencies
+
+- _(codeql)_ Analyze Go and GitHub Actions alongside JS/TS (#93)
+- E2e test performance improvements
 
 ## 2026-08-08
 
@@ -204,7 +228,7 @@
 - Reduce codebase complexity
 - Bootstrap Cursor agents with mise (including bun) (#25)
 - Bootstrap lifecycle kit in setup; close sim scope Phase 2 (#27)
-- Architecture prune - less drift, fewer lines (#30)
+- Architecture prune — less drift, fewer lines (#30)
 
 ### 📚 Documentation
 
@@ -321,7 +345,7 @@
 
 ### 🚀 Features
 
-- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in Blueprint canvas - without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
+- ChaosLens MVP! ChaosLens simulates what-if failures on the architecture you already have open in Blueprint canvas — without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active
 - Enhance ChaosLens integration with Go/WASM support and update documentation
 
 ### 🐛 Bug Fixes

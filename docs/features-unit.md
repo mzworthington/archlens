@@ -4,6 +4,507 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 <!-- vitest-feature-reporter--start -->
 
+## analysis
+
+### analyzer
+
+#### CodebaseAnalyzer Domain Service
+
+- ✅ should correctly run analysis and delegate to writers
+- ✅ splits complex monorepos into multiple systems from workspaces
+- ✅ uses --system-name for multi-repo product membership
+- ✅ should not throw if analyzing an empty file set
+- ✅ attaches forensics onto component and container nodes when metrics are provided
+- ✅ stops when the abort signal is already aborted
+
+### attachForensics
+
+#### aggregateNodeForensics
+
+- ✅ rolls up max/sum/counts from child forensics
+- ✅ omits loc/sloc on rollups when no child reports them
+- ✅ rolls up author commits from children
+- ✅ rolls up churnByWeek and churn-weighted ownership from children
+- ✅ rolls up dual churn windows from children
+- ✅ rolls up complexity peaks, line churn, and coupled files from children
+
+#### attachForensicsToSchema
+
+- ✅ attaches file metrics to component nodes by filepath
+- ✅ aggregates onto container nodes from matching components
+- ✅ aggregates onto context system nodes from system components
+- ✅ normalizes backslashes in filepath joins
+
+### baseWriter
+
+#### BaseWriter YAML v3 format
+
+- ✅ writes v3 object YAML on context.yaml
+- ✅ writes metadata.source when git provenance is provided
+- ✅ writes v3 object YAML on containers.yaml
+- ✅ writes v3 object YAML on component YAML files
+
+### cancellation
+
+#### cancellation
+
+- ✅ throwIfAborted no-ops without a signal or when not aborted
+- ✅ throwIfAborted throws CancellationError when aborted
+- ✅ identifies cancellation errors
+
+### componentLevelWriter
+
+#### ComponentLevelWriter
+
+- ✅ writes one component schema per container with expected path, entityRef, slugified ids, and filtered nodes
+- ✅ includes dependencies touching the container, including cross-container edges
+- ✅ emits rollup drill-down schemas from rollupDrillDown
+- ✅ strips representative filepaths from parent rollups that have drill-down diagrams
+
+### componentResolver
+
+#### componentResolver
+
+- ✅ dispatches to language-specific rollup resolvers
+- ✅ returns null for unsupported extensions
+
+### containerGrouping
+
+#### containerGrouping
+
+- ✅ groups by packages/<name> instead of the first path segment
+- ✅ falls back to the folder under src/lib
+- ✅ refuses layout-leftover names as container identity
+- ✅ skips packages/<name> without package.json when isPackageRoot is provided
+- ✅ optionally rolls up _-module-_ container names
+- ✅ groups by plugins/<name> the same way as packages/<name>
+- ✅ keeps .NET test projects as the container even under nested Domain folders
+
+#### ModelExtractor
+
+- ✅ assigns package containers, marks tests, and hydrates node types from markers
+- ✅ preserves slash segments in rolled-up component entity refs
+- ✅ marks containers as tests when every source file in them is a test
+- ✅ rolls up C# files by layer, skips boilerplate, types API containers, and links dependencies
+- ✅ creates container nodes and edges from csproj references without source files
+
+### containerLevelWriter
+
+#### ContainerLevelWriter
+
+- ✅ should write container schema with correct entityRef
+- ✅ should slugify context name in entityRef
+- ✅ nests under system when system id matches the context root
+- ✅ writes container nodes without layout positions
+- ✅ should log successful write
+
+### contextLevelWriter
+
+#### contextDisplayName
+
+- ✅ title-cases slugified context roots
+
+#### ContextLevelWriter
+
+- ✅ should write context schema with correct entityRef
+- ✅ should use an explicit display name when provided
+- ✅ should slugify context name in entityRef
+- ✅ writes the context diagram under the --context slug
+- ✅ uses curated display names for peer contexts like E-Shop
+- ✅ sticks a declared landscape system anchor onto eshop/system without duplicates
+- ✅ keeps multi-system product hubs on the context entityRef
+- ✅ should merge a second software-system into an existing context diagram
+- ✅ emits a group frame when systems nest under a shared folder parent
+- ✅ folds IaC folder groups into an existing product hub
+- ✅ nests subsystems under the product group and leaves other products disconnected
+- ✅ should upsert rather than duplicate when rewriting the same system
+- ✅ should log successful write
+- ✅ does not inherit a peer application context when creating infrastructure
+- ✅ prefers an existing root context.yaml seed when the context folder is omitted
+- ✅ hydrates a declared context with personas and does not inject a fallback user
+- ✅ falls back to a fresh context when the declared seed is unreadable
+
+#### personDependenciesForSystems
+
+- ✅ links the person to top-level groups only
+
+#### resolveContextSeedRelativePath
+
+- ✅ prefers root context.yaml when nested path is absent
+- ✅ uses nested context path when present or when creating fresh
+
+#### topLevelSystemNodes
+
+- ✅ returns nodes without a visual parent, excluding the person
+
+### csharpAnalyzer
+
+#### CSharpAnalyzer Strategy
+
+- ✅ supports cs
+- ✅ creates node with default properties
+- ✅ computes container info from C# namespaces
+
+### csharpDependencies
+
+#### csharpDependencies
+
+##### buildCSharpNamespaceIndex
+
+- ✅ maps declared namespaces to container and component ids
+
+##### extractCSharpDependencies
+
+- ✅ links layers via cross-namespace usings within a project
+- ✅ ignores framework usings
+
+##### extractCsprojContainerDependencies
+
+- ✅ creates inter-container edges from ProjectReference entries
+
+##### isFrameworkNamespace
+
+- ✅ filters BCL and common vendor namespaces
+
+### csharpGrouping
+
+#### csharpGrouping
+
+##### classifyCSharpContainer
+
+- ✅ maps Ordering.API (ordering-api) → rest-api
+- ✅ maps OrderProcessor (orderprocessor) → background-worker
+- ✅ maps WebApp (webapp) → web-app
+- ✅ maps ClientApp (clientapp) → web-app
+- ✅ maps EventBus (eventbus) → event-broker
+- ✅ maps Shared (shared) → container
+
+##### isCSharpSourcePath
+
+- ✅ detects .cs paths case-insensitively
+
+##### nodeTypePriority
+
+- ✅ ranks rest-api above relational-database and default
+
+##### resolveCSharpComponent
+
+- ✅ returns null for boilerplate files
+- ✅ rolls up files by the first folder under the project
+- ✅ keeps project-root files as leaf components
+- ✅ rolls up .NET test projects by folder under the test project
+
+##### shouldSkipCSharpFile
+
+- ✅ skips GlobalUsings, Migrations, Designer, and ModelSnapshot files
+- ✅ keeps architectural sources
+
+### entityRefContext
+
+#### entityRefContext
+
+- ✅ maps known context slugs to display titles
+- ✅ nests under a stable system leaf when system id matches the context root
+
+### externalDependenciesPass
+
+#### applyExternalDependenciesPass
+
+- ✅ rewrites component schemas with unresolved external proxy nodes only
+- ✅ rolls component couplings up onto containers.yaml as inter-container edges
+- ✅ does not add component noise onto application/context.yaml
+- ✅ is a no-op when the blueprints tree is empty
+- ✅ adds service-level coupling edges and external component proxies on container diagrams
+
+#### listBlueprintSchemaPaths
+
+- ✅ skips *-overlay.yaml merge helpers
+
+### folderComponentRollup
+
+#### folderComponentRollup
+
+- ✅ rolls up monorepo paths to full folder depth
+- ✅ rolls up monorepo paths to folder depth
+- ✅ keeps simple-repo leaf files under one src folder
+- ✅ rolls up python packages by immediate parent folder
+
+### goAnalyzer
+
+#### GoAnalyzer Strategy
+
+- ✅ supports go
+- ✅ creates a node with Go technology
+- ✅ marks test files
+- ✅ derives container from last meaningful directory segment
+- ✅ classifies http handler directories as rest-api
+- ✅ skips generic top-level dirs (cmd, internal, pkg) and takes next segment
+- ✅ returns null for files at root with only generic dirs
+
+### goGrouping
+
+#### goGrouping
+
+##### resolveGoComponent
+
+- ✅ rolls up by meaningful package directory
+- ✅ skips generic top-level dirs and uses the package folder
+
+### iacAnalyzer
+
+#### IacAnalyzer
+
+- ✅ parses a terraform root and writes containers.yaml + context node
+- ✅ parses a pulumi project and writes containers.yaml + context node
+- ✅ parses a python pulumi project with nested runtime and **main**.py
+- ✅ writes terraform and pulumi roots to context in one pass
+- ✅ links multiple terraform roots under the owning product hub
+- ✅ nests terraform roots under the product hub that owns their path
+- ✅ groups sibling terraform modules under a shared folder frame
+- ✅ nests IaC modules under an existing product hub instead of a folder group
+- ✅ does not overwrite a populated code-scan containers.yaml with an empty IaC result
+- ✅ does not run code-scan fallback for empty terraform roots
+- ✅ no-ops when no IaC roots exist
+- ✅ projects meaningful Cloudflare externals and hydrates context from seed serves
+
+### javaAnalyzer
+
+#### JavaAnalyzer Strategy
+
+- ✅ supports java, kt, and kts
+- ✅ creates a Java node with correct technology
+- ✅ creates a Kotlin node with correct technology
+- ✅ marks test files
+- ✅ derives container from package declaration (3rd segment onward)
+- ✅ classifies controller packages as rest-api
+- ✅ falls back to path when no namespace is present
+
+### javaGrouping
+
+#### javaGrouping
+
+##### resolveJavaComponent
+
+- ✅ returns null for boilerplate files
+- ✅ rolls up files by package folder under src/main/java
+- ✅ falls back to namespace declaration when path layout is missing
+
+### modelExtractor.drillDown
+
+#### ModelExtractor rollup drill-down
+
+- ✅ tracks member filepaths and file-level nodes for folder rollups
+
+### modelExtractor.reExports
+
+#### ModelExtractor re-exports
+
+- ✅ links barrel files to relative modules via export-from declarations
+
+### modelExtractorHelpers
+
+#### applyHydrationUpgrade
+
+- ✅ upgrades node type when hydration has higher priority
+- ✅ keeps existing type when hydration is lower priority
+
+#### findComponentInMap
+
+- ✅ prefers the container-hinted map key
+- ✅ falls back to suffix match when hint misses
+
+#### pushUniqueDependency
+
+- ✅ dedupes identical edges
+
+### nodeTypeHydrator
+
+#### nodeTypeHydrator
+
+- ✅ classifies UI packages as gateway-api
+- ✅ classifies database imports and DbContext construction
+- ✅ classifies event brokers from imports or class names
+- ✅ classifies API controllers from imports or filename markers (language-agnostic)
+- ✅ prefers rest-api over database when *Api.cs also has EF usings
+- ✅ classifies IntegrationEventHandler paths as event-broker
+- ✅ falls back to background-worker when no markers match
+- ✅ hydrates an existing node in place
+- ✅ maps dependency edge types from the target node
+
+### pulumiDiscovery
+
+#### discoverPulumiRoots
+
+- ✅ ignores marketplace catalog YAML named pulumi.yaml that is not a Pulumi project
+- ✅ finds a project with Pulumi.yaml and yaml resources
+- ✅ collects TypeScript sources for nodejs runtime
+- ✅ collects Python sources when runtime is nested under runtime.name
+- ✅ skips nested projects under an outer root
+- ✅ returns empty when no Pulumi projects exist
+- ✅ uses the directory slug when the Pulumi project is the scan root
+
+### pythonAnalyzer
+
+#### PythonAnalyzer Strategy
+
+- ✅ supports py
+- ✅ creates node with default properties
+
+### pythonDependencies
+
+#### pythonDependencies
+
+##### buildPythonModuleIndex
+
+- ✅ indexes modules to container and component ids
+
+##### isPythonSourcePath
+
+- ✅ detects .py files
+
+##### ModelExtractor integration
+
+- ✅ links Python modules via absolute and relative imports
+
+##### modulePathFromPythonFile
+
+- ✅ maps src-layout modules
+- ✅ maps flat package modules
+
+##### resolvePythonImport
+
+- ✅ resolves absolute imports
+- ✅ resolves parent-relative imports
+- ✅ ignores stdlib imports
+
+### rollupDrillDown
+
+#### rollupDrillDown
+
+- ✅ builds file leaf entity refs under a rollup parent
+- ✅ derives nested drill-down yaml paths from entity refs
+- ✅ requires at least two member filepaths before emitting drill-down
+- ✅ builds child component schemas for multi-file rollups
+- ✅ builds nested drill-down schemas for multi-level folder rollups
+- ✅ keeps outgoing dependencies to other rollups for external resolution
+- ✅ rewrites cross-container deps to single-file rollup leaves onto the emitted rollup
+
+### systemDiscovery
+
+#### systemDiscovery
+
+- ✅ extracts workspace roots from globs
+- ✅ parses npm and pnpm workspace declarations
+- ✅ discovers a product hub plus workspace/standalone spokes
+- ✅ withProductHub does not link different products together
+- ✅ respects explicit systems config override and still adds a product hub
+- ✅ pins a single-repo scan to a named system under a shared product hub
+- ✅ reads app/package.json when the repo root has no package manifest
+- ✅ falls back to a single system when no workspaces or standalone packages exist
+- ✅ partitions repo-wide files onto a named multi-repo system instead of the product hub
+- ✅ partitions files by longest matching system root
+- ✅ resolveProductIdForPath uses the same longest-prefix rules as code partitioning
+- ✅ planIacContextSystems nests sibling modules under their shared parent folder
+- ✅ planIacContextSystems folds modules into the product hub when one exists
+- ✅ normalizeContextGrouping collapses orphan folder groups and promotes hubs
+- ✅ normalizeContextGrouping drops empty folder groups nested under a product hub
+- ✅ pruneEmptyProductHubs removes orphaned infrastructure frames
+
+### terraformDiscovery
+
+#### discoverTerraformRoots
+
+- ✅ finds a root with .tf files and skips nested module dirs
+- ✅ uses infrastructure systemId when scan root itself has .tf files
+- ✅ returns empty when no terraform files exist
+
+### testPath
+
+#### detectTestFramework
+
+- ✅ detects JS/TS frameworks from imports
+- ✅ detects Python frameworks
+- ✅ detects .NET frameworks
+- ✅ detects Java/Kotlin frameworks
+- ✅ detects Go testing stdlib and testify
+- ✅ detects jest from path token when no imports
+- ✅ returns null for production code with no test imports
+
+#### testPath
+
+- ✅ marks unit test files and test directories
+- ✅ marks .NET, Go, Java, and Python test conventions
+- ✅ recognises dedicated test-project folder segments
+
+### treeSitterAstExtract
+
+#### extractParsedSourceFileFromTree
+
+- ✅ extracts TypeScript imports, re-exports, constructors, and calls
+- ✅ flags test files from their path
+- ✅ extracts Python imports and capitalised constructor-like calls
+- ✅ extracts Go package clause, imports, and exported constructors
+- ✅ extracts Java package, imports, and object creation
+- ✅ extracts C# namespace, usings, and base types
+
+### typescriptAnalyzer
+
+#### TypeScriptAnalyzer Strategy
+
+- ✅ supports ts, tsx, js, jsx
+- ✅ creates node with correct properties
+- ✅ computes container info correctly
+
+### typescriptGrouping
+
+#### typescriptGrouping
+
+##### isTypeScriptSourcePath
+
+- ✅ detects TS/JS paths case-insensitively
+
+##### resolveRelativeTypeScriptImportPath
+
+- ✅ resolves sibling and parent-relative imports
+
+##### resolveTypeScriptComponent
+
+- ✅ returns null for boilerplate files
+- ✅ rolls up monorepo package paths by folders under src
+- ✅ keeps package src-root files as leaf components
+- ✅ keeps simple-repo leaf files under a single src folder
+- ✅ rolls up files in the same folder to one component
+- ✅ uses the parent folder when the file name matches the folder (index-style)
+
+##### resolveTypeScriptImportComponentId
+
+- ✅ maps import specifiers to rolled-up component ids
+
+##### shouldSkipTypeScriptFile
+
+- ✅ skips config, declaration, and setup boilerplate
+- ✅ skips e2e and unit test trees under packages
+- ✅ keeps architectural sources
+
+### workspacePackages
+
+#### ModelExtractor workspace package imports
+
+- ✅ creates inter-container edges for workspace package imports
+- ✅ resolves workspace package subpath imports to target components
+- ✅ does not treat Node built-ins as local cross-container imports
+- ✅ still resolves relative imports within and across containers
+
+#### workspace package imports and externals pass
+
+- ✅ materializes cross-container package targets as externals on component diagrams
+
+#### workspacePackages
+
+- ✅ detects relative imports
+- ✅ extracts scoped and unscoped package names from module specifiers
+- ✅ builds a package-name → container-id index from source paths and package.json names
+
 ## Canvas
 
 ### _redirects
@@ -36,6 +537,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ builds workspace AdviceLens URLs
 - ✅ parses workspace AdviceLens URLs
 - ✅ detects AdviceLens only via lens=advicelens
+
+### analysisLogger
+
+#### analysisLogger
+
+- ✅ strips emoji chrome from analyzer messages
+- ✅ forwards cleaned messages and drops empty info lines
 
 ### App
 
@@ -163,12 +671,62 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ lists peer context diagrams from the workspace catalog before they are lazy-loaded
 - ✅ keeps peer context switching available on stress context diagrams
 
+### browserAnalysisAdapters
+
+#### browser analysis adapters
+
+- ✅ parses walked sources into ParsedSourceFile records
+- ✅ keeps non-JS/TS files without applying the JS/TS import regex
+- ✅ skips metadata manifests when parsing sources
+- ✅ runs CodebaseAnalyzer against memory FS and emits YAML
+- ✅ preserves semantic parity between direct browser adapters and browser scan runner
+- ✅ runs IacAnalyzer for Terraform roots during browser scan
+
+### BrowserLiteScanBanner
+
+#### BrowserLiteScanBanner
+
+- ✅ renders nothing when closed
+- ✅ shows lite vs CLI messaging and dismisses
+
 ### browserNetworkStatus
 
 #### BrowserNetworkStatusAdapter
 
 - ✅ isOnline mirrors navigator.onLine
 - ✅ notifies subscribers on online/offline events and unsubscribes cleanly
+
+### browserSourceWalker
+
+#### describeTruncation
+
+- ✅ explains which budgets truncated the scan
+
+#### pickSourceDirectory
+
+- ✅ reports unsupported when showDirectoryPicker is missing
+
+#### walkBrowserSourceDirectory
+
+- ✅ collects sources plus analyzer manifests and counts only sources
+- ✅ does not let manifests consume the source budget
+- ✅ prefers src/ over peripheral scripts when the source cap is hit
+- ✅ skips structural noise dirs such as e2e and stories
+- ✅ skips declaration files and includes .mjs/.cjs
+- ✅ collects CLI-supported languages plus csproj metadata
+- ✅ collects Terraform and Pulumi inputs without counting them as application sources
+- ✅ stops and marks truncated once the cumulative byte budget is exhausted
+- ✅ marks metadata truncation when manifests exceed the metadata budget
+- ✅ aborts the walk when the scan signal is cancelled
+
+### browserTreeSitterParser
+
+#### BrowserTreeSitterParser
+
+- ✅ falls back to lightweight parsing when tree-sitter init fails
+- ✅ falls back per file when a language fails to load
+- ✅ parses with the injected runtime and deletes trees after success
+- ✅ falls back per file when parse throws
 
 ### buildCouplingOverlayEdges
 
@@ -543,6 +1101,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows mobile section scrollers for Start, Surfaces, and Tech
 - ✅ shows header hubs for Start, Surfaces, and Tech
 - ✅ shows local section nav on mobile and nested sidebar items when provided
+- ✅ links author credit to mzworthington.co.uk
 
 ### elkLayoutAdapter
 
@@ -606,6 +1165,16 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ does not collapse externals when the diagram has no internal nodes
 - ✅ does not build empty summary hubs for external-only diagrams
+
+### extractTsImports
+
+#### extractTsImports
+
+- ✅ extracts import and export-from specifiers
+
+#### resolveRelativeSpecifier
+
+- ✅ resolves relative imports against known paths
 
 ### fetchSourceFileContent
 
@@ -758,6 +1327,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### ioState Actions & State Management
 
 - ✅ should open workspace, read blueprint.yaml, and mark workspace as open
+- ✅ runs browser repo scan from a mocked source directory and opens generated blueprints
+- ✅ notifies when the browser cannot pick a source directory
 - ✅ should catalog all systems on open and lazy-load when selecting another
 
 ##### loadSchema error handling
@@ -882,6 +1453,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ toggles lite canvas from the bottom toolbar
 
+### liteScanLimits
+
+#### liteScanLimits
+
+- ✅ accepts CLI-supported source extensions and skips declarations
+- ✅ limits lightweight import extraction to JS/TS
+- ✅ treats package manifests and csproj as metadata
+- ✅ recognizes Terraform and Pulumi as IaC inputs, not application sources
+
 ### LiveSchemaPreview
 
 #### LiveSchemaPreview
@@ -896,6 +1476,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ adds workspace entities as external dependencies
 - ✅ materializes unmapped filepaths as new component nodes
+
+### memoryScanWorkspace
+
+#### createMemoryScanWorkspacePort
+
+- ✅ serves YAML from memory and reports directory name
 
 ### MermaidPreview
 
@@ -978,6 +1564,8 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ marks Start vs Surfaces vs Tech hubs active without colliding on CI workflows
 - ✅ registers the AdviceLens engine reference page
 - ✅ resolves feature report pages
+- ✅ registers ADR index and detail pages with frontmatter intact
+- ✅ presents YAML frontmatter as structured fields, not a code fence
 - ✅ resolves current guide chapter paths
 - ✅ resolves in-app TraceLens links
 - ✅ resolves in-app workspace links
@@ -1175,6 +1763,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ collects home and child diagram paths from the workspace catalog
 
+### runBrowserAnalysisWorker
+
+#### runBrowserAnalysisWorker
+
+- ✅ resolves with the worker result and terminates the worker
+- ✅ forwards worker log records to the caller logger
+- ✅ cancels the worker when the scan is aborted
+- ✅ rejects when the worker reports a failure
+
 ### runResilienceSimulationAsync
 
 #### runResilienceSimulationAsync
@@ -1283,6 +1880,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ resolves distinctive homepage metadata with social share image
 - ✅ gives each product surface a unique title and description
 - ✅ covers every docs page path with an SEO record
+- ✅ covers the ADR index in the SEO catalog
 - ✅ marks workspace routes as non-indexable with a workspace title
 - ✅ builds a sitemap that lists indexable URLs and omits workspace
 - ✅ builds JSON-LD graph with Organization, WebSite, and SoftwareApplication nodes
@@ -1299,7 +1897,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### StartupWorkspaceDialog
 
-- ✅ renders sample and open-directory choices when open
+- ✅ renders demo, browser scan, open-directory, and blank-canvas choices when open
 - ✅ renders nothing when closed
 - ✅ invokes handlers from the embedded entry panel
 - ✅ surfaces sandbox loading feedback while open is in progress
@@ -1411,6 +2009,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ derives parent entityRef from the active diagram without loading the parent system
 
+### useBundledWorkspaceBootstrap
+
+#### useBundledWorkspaceBootstrap
+
+- ✅ opens the startup chooser on bare /workspace instead of auto-loading demo
+- ✅ opens the startup chooser on /workspace/ trailing slash without looping
+- ✅ auto-opens sandbox for deep-linked /workspace/<entityRef>
+- ✅ does not reopen the chooser when a workspace is already open
+
 ### useChaosSpecDialog
 
 #### useChaosSpecDialog
@@ -1489,8 +2096,10 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### WorkspaceEntryPanel
 
-- ✅ renders sample and open-directory actions
-- ✅ shows the CLI panel when requested
+- ✅ renders demo, browser lite scan, and open-directory actions
+- ✅ renders blank-canvas action when provided
+- ✅ shows an expanded CLI panel when requested
+- ✅ surfaces unsupported-browser feedback for lite scan when folder picker is missing
 - ✅ invokes the matching handler for each choice
 - ✅ shows loading feedback and disables actions while sandbox opens
 
@@ -1500,6 +2109,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ invalidates older open generations
 - ✅ blocks demo bootstrap after a folder is preferred
+- ✅ allows demo bootstrap again after clearing a failed folder preference
 - ✅ claims demo bootstrap only once until released
 
 ### WorkspacePage
@@ -1532,63 +2142,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### WorkspaceStatusBadges
 
 - ✅ displays the C4 level badge
+- ✅ displays a lite-scan badge when the workspace came from a browser scan
 - ✅ displays valid status badge when validation is successful
 - ✅ displays cycle warning validation status badge when cycle is present
 - ✅ displays schema version warning badge when loaded version mismatches app expectation
 
 ## CLI
-
-### analyzer
-
-#### CodebaseAnalyzer Domain Service
-
-- ✅ should correctly run analysis and delegate to writers
-- ✅ splits complex monorepos into multiple systems from workspaces
-- ✅ uses --system-name for multi-repo product membership
-- ✅ should not throw if analyzing an empty file set
-- ✅ attaches forensics onto component and container nodes when metrics are provided
-- ✅ stops when the abort signal is already aborted
-
-### attachForensics
-
-#### aggregateNodeForensics
-
-- ✅ rolls up max/sum/counts from child forensics
-- ✅ omits loc/sloc on rollups when no child reports them
-- ✅ rolls up author commits from children
-- ✅ rolls up churnByWeek and churn-weighted ownership from children
-- ✅ rolls up dual churn windows from children
-- ✅ rolls up complexity peaks, line churn, and coupled files from children
-
-#### attachForensicsToSchema
-
-- ✅ attaches file metrics to component nodes by filepath
-- ✅ aggregates onto container nodes from matching components
-- ✅ aggregates onto context system nodes from system components
-- ✅ normalizes backslashes in filepath joins
-
-### baseWriter
-
-#### BaseWriter YAML v3 format
-
-- ✅ writes v3 object YAML on context.yaml
-- ✅ writes metadata.source when git provenance is provided
-- ✅ writes v3 object YAML on containers.yaml
-- ✅ writes v3 object YAML on component YAML files
-
-#### resolveLocalSchemaUrl
-
-- ✅ resolves a path-relative schema from this repo blueprints tree
-
-### cancellation
-
-#### cancellation
-
-- ✅ throwIfAborted no-ops without a signal or when not aborted
-- ✅ throwIfAborted throws CancellationError when aborted
-- ✅ identifies cancellation errors
-- ✅ aborts the signal when SIGINT is received
-- ✅ aborts the signal when SIGTERM is received
 
 ### catalogArgv
 
@@ -1607,6 +2166,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders banner without throwing
 - ✅ formats success and spinner copy
 
+### cliCancellation
+
+#### createCliCancellation
+
+- ✅ aborts the signal when SIGINT is received
+- ✅ aborts the signal when SIGTERM is received
+
 ### cliHelp
 
 #### cliHelp
@@ -1623,22 +2189,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### collectFileMetrics helpers
 
 - ✅ normalizes paths for map keys
-
-### componentLevelWriter
-
-#### ComponentLevelWriter
-
-- ✅ writes one component schema per container with expected path, entityRef, slugified ids, and filtered nodes
-- ✅ includes dependencies touching the container, including cross-container edges
-- ✅ emits rollup drill-down schemas from rollupDrillDown
-- ✅ strips representative filepaths from parent rollups that have drill-down diagrams
-
-### componentResolver
-
-#### componentResolver
-
-- ✅ dispatches to language-specific rollup resolvers
-- ✅ returns null for unsupported extensions
 
 ### composeCatalog
 
@@ -1663,167 +2213,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should log info messages with correct icon styles
 - ✅ should log warnings
 - ✅ should log errors with stack trace or error details
-
-### containerGrouping
-
-#### containerGrouping
-
-- ✅ groups by packages/<name> instead of the first path segment
-- ✅ falls back to the folder under src/lib
-- ✅ refuses layout-leftover names as container identity
-- ✅ skips packages/<name> without package.json when isPackageRoot is provided
-- ✅ optionally rolls up _-module-_ container names
-- ✅ groups by plugins/<name> the same way as packages/<name>
-- ✅ keeps .NET test projects as the container even under nested Domain folders
-
-#### ModelExtractor
-
-- ✅ assigns package containers, marks tests, and hydrates node types from markers
-- ✅ preserves slash segments in rolled-up component entity refs
-- ✅ marks containers as tests when every source file in them is a test
-- ✅ rolls up C# files by layer, skips boilerplate, types API containers, and links dependencies
-- ✅ creates container nodes and edges from csproj references without source files
-
-### containerLevelWriter
-
-#### ContainerLevelWriter
-
-- ✅ should write container schema with correct entityRef
-- ✅ should slugify context name in entityRef
-- ✅ nests under system when system id matches the context root
-- ✅ writes container nodes without layout positions
-- ✅ should log successful write
-
-### contextLevelWriter
-
-#### contextDisplayName
-
-- ✅ title-cases slugified context roots
-
-#### ContextLevelWriter
-
-- ✅ should write context schema with correct entityRef
-- ✅ should use an explicit display name when provided
-- ✅ should slugify context name in entityRef
-- ✅ writes the context diagram under the --context slug
-- ✅ uses curated display names for peer contexts like E-Shop
-- ✅ sticks a declared landscape system anchor onto eshop/system without duplicates
-- ✅ keeps multi-system product hubs on the context entityRef
-- ✅ should merge a second software-system into an existing context diagram
-- ✅ emits a group frame when systems nest under a shared folder parent
-- ✅ folds IaC folder groups into an existing product hub
-- ✅ nests subsystems under the product group and leaves other products disconnected
-- ✅ should upsert rather than duplicate when rewriting the same system
-- ✅ should log successful write
-- ✅ does not inherit a peer application context when creating infrastructure
-- ✅ prefers an existing root context.yaml seed when the context folder is omitted
-- ✅ hydrates a declared context with personas and does not inject a fallback user
-- ✅ falls back to a fresh context when the declared seed is unreadable
-
-#### personDependenciesForSystems
-
-- ✅ links the person to top-level groups only
-
-#### resolveContextSeedRelativePath
-
-- ✅ prefers root context.yaml when nested path is absent
-- ✅ uses nested context path when present or when creating fresh
-
-#### topLevelSystemNodes
-
-- ✅ returns nodes without a visual parent, excluding the person
-
-### csharpAnalyzer
-
-#### CSharpAnalyzer Strategy
-
-- ✅ supports cs
-- ✅ creates node with default properties
-- ✅ computes container info from C# namespaces
-
-### csharpDependencies
-
-#### csharpDependencies
-
-##### buildCSharpNamespaceIndex
-
-- ✅ maps declared namespaces to container and component ids
-
-##### extractCSharpDependencies
-
-- ✅ links layers via cross-namespace usings within a project
-- ✅ ignores framework usings
-
-##### extractCsprojContainerDependencies
-
-- ✅ creates inter-container edges from ProjectReference entries
-
-##### isFrameworkNamespace
-
-- ✅ filters BCL and common vendor namespaces
-
-### csharpGrouping
-
-#### csharpGrouping
-
-##### classifyCSharpContainer
-
-- ✅ maps Ordering.API (ordering-api) → rest-api
-- ✅ maps OrderProcessor (orderprocessor) → background-worker
-- ✅ maps WebApp (webapp) → web-app
-- ✅ maps ClientApp (clientapp) → web-app
-- ✅ maps EventBus (eventbus) → event-broker
-- ✅ maps Shared (shared) → container
-
-##### isCSharpSourcePath
-
-- ✅ detects .cs paths case-insensitively
-
-##### nodeTypePriority
-
-- ✅ ranks rest-api above relational-database and default
-
-##### resolveCSharpComponent
-
-- ✅ returns null for boilerplate files
-- ✅ rolls up files by the first folder under the project
-- ✅ keeps project-root files as leaf components
-- ✅ rolls up .NET test projects by folder under the test project
-
-##### shouldSkipCSharpFile
-
-- ✅ skips GlobalUsings, Migrations, Designer, and ModelSnapshot files
-- ✅ keeps architectural sources
-
-### entityRefContext
-
-#### entityRefContext
-
-- ✅ maps known context slugs to display titles
-- ✅ nests under a stable system leaf when system id matches the context root
-
-### externalDependenciesPass
-
-#### applyExternalDependenciesPass
-
-- ✅ rewrites component schemas with unresolved external proxy nodes only
-- ✅ rolls component couplings up onto containers.yaml as inter-container edges
-- ✅ does not add component noise onto application/context.yaml
-- ✅ is a no-op when the blueprints tree is empty
-- ✅ adds service-level coupling edges and external component proxies on container diagrams
-
-#### listBlueprintSchemaPaths
-
-- ✅ skips *-overlay.yaml merge helpers
-
-### folderComponentRollup
-
-#### folderComponentRollup
-
-- ✅ rolls up monorepo paths to full folder depth
-- ✅ rolls up monorepo paths to folder depth
-- ✅ keeps simple-repo leaf files under one src folder
-- ✅ rolls up python packages by immediate parent folder
 
 ### forensicAnalyzer
 
@@ -1893,44 +2282,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns undefined when not inside a git repository
 - ✅ omits remoteUrl when origin is not configured
 
-### goAnalyzer
-
-#### GoAnalyzer Strategy
-
-- ✅ supports go
-- ✅ creates a node with Go technology
-- ✅ marks test files
-- ✅ derives container from last meaningful directory segment
-- ✅ classifies http handler directories as rest-api
-- ✅ skips generic top-level dirs (cmd, internal, pkg) and takes next segment
-- ✅ returns null for files at root with only generic dirs
-
-### goGrouping
-
-#### goGrouping
-
-##### resolveGoComponent
-
-- ✅ rolls up by meaningful package directory
-- ✅ skips generic top-level dirs and uses the package folder
-
-### iacAnalyzer
-
-#### IacAnalyzer
-
-- ✅ parses a terraform root and writes containers.yaml + context node
-- ✅ parses a pulumi project and writes containers.yaml + context node
-- ✅ parses a python pulumi project with nested runtime and **main**.py
-- ✅ writes terraform and pulumi roots to context in one pass
-- ✅ links multiple terraform roots under the owning product hub
-- ✅ nests terraform roots under the product hub that owns their path
-- ✅ groups sibling terraform modules under a shared folder frame
-- ✅ nests IaC modules under an existing product hub instead of a folder group
-- ✅ does not overwrite a populated code-scan containers.yaml with an empty IaC result
-- ✅ does not run code-scan fallback for empty terraform roots
-- ✅ no-ops when no IaC roots exist
-- ✅ projects meaningful Cloudflare externals and hydrates context from seed serves
-
 ### interactiveGitChoice
 
 #### applyInteractiveGitChoice
@@ -1956,28 +2307,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ builds publish and fragment plans with dry-run defaults
 - ✅ builds compose and overlay plans
 
-### javaAnalyzer
-
-#### JavaAnalyzer Strategy
-
-- ✅ supports java, kt, and kts
-- ✅ creates a Java node with correct technology
-- ✅ creates a Kotlin node with correct technology
-- ✅ marks test files
-- ✅ derives container from package declaration (3rd segment onward)
-- ✅ classifies controller packages as rest-api
-- ✅ falls back to path when no namespace is present
-
-### javaGrouping
-
-#### javaGrouping
-
-##### resolveJavaComponent
-
-- ✅ returns null for boilerplate files
-- ✅ rolls up files by package folder under src/main/java
-- ✅ falls back to namespace declaration when path layout is missing
-
 ### loadAnalysisConfig
 
 #### loadAnalysisConfig
@@ -1987,34 +2316,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ loads blueprint.config.yml
 - ✅ merges CLI ignore overrides onto file config
 
-### modelExtractor.drillDown
-
-#### ModelExtractor rollup drill-down
-
-- ✅ tracks member filepaths and file-level nodes for folder rollups
-
-### modelExtractor.reExports
-
-#### ModelExtractor re-exports
-
-- ✅ links barrel files to relative modules via export-from declarations
-
-### modelExtractorHelpers
-
-#### applyHydrationUpgrade
-
-- ✅ upgrades node type when hydration has higher priority
-- ✅ keeps existing type when hydration is lower priority
-
-#### findComponentInMap
-
-- ✅ prefers the container-hinted map key
-- ✅ falls back to suffix match when hint misses
-
-#### pushUniqueDependency
-
-- ✅ dedupes identical edges
-
 ### nodeFileSystem
 
 #### NodeFileSystemAdapter
@@ -2022,20 +2323,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should verify file exists, write to files, and delete files
 - ✅ should create directories and handle package.json name reading
 - ✅ should support path and directory lookups
-
-### nodeTypeHydrator
-
-#### nodeTypeHydrator
-
-- ✅ classifies UI packages as gateway-api
-- ✅ classifies database imports and DbContext construction
-- ✅ classifies event brokers from imports or class names
-- ✅ classifies API controllers from imports or filename markers (language-agnostic)
-- ✅ prefers rest-api over database when *Api.cs also has EF usings
-- ✅ classifies IntegrationEventHandler paths as event-broker
-- ✅ falls back to background-worker when no markers match
-- ✅ hydrates an existing node in place
-- ✅ maps dependency edge types from the target node
 
 ### parseArchlensArgv
 
@@ -2092,52 +2379,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ returns null when only a read-only HTTP catalog is configured
 - ✅ applies CLI bucket overrides on top of environment config
 
-### pulumiDiscovery
-
-#### discoverPulumiRoots
-
-- ✅ ignores marketplace catalog YAML named pulumi.yaml that is not a Pulumi project
-- ✅ finds a project with Pulumi.yaml and yaml resources
-- ✅ collects TypeScript sources for nodejs runtime
-- ✅ collects Python sources when runtime is nested under runtime.name
-- ✅ skips nested projects under an outer root
-- ✅ returns empty when no Pulumi projects exist
-- ✅ uses the directory slug when the Pulumi project is the scan root
-
-### pythonAnalyzer
-
-#### PythonAnalyzer Strategy
-
-- ✅ supports py
-- ✅ creates node with default properties
-
-### pythonDependencies
-
-#### pythonDependencies
-
-##### buildPythonModuleIndex
-
-- ✅ indexes modules to container and component ids
-
-##### isPythonSourcePath
-
-- ✅ detects .py files
-
-##### ModelExtractor integration
-
-- ✅ links Python modules via absolute and relative imports
-
-##### modulePathFromPythonFile
-
-- ✅ maps src-layout modules
-- ✅ maps flat package modules
-
-##### resolvePythonImport
-
-- ✅ resolves absolute imports
-- ✅ resolves parent-relative imports
-- ✅ ignores stdlib imports
-
 ### remoteCatalogRevision
 
 #### computeRemoteCatalogRevisionId
@@ -2153,17 +2394,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ uses explicit --format for structured artifacts
 - ✅ defaults text+output to JSON for CI, unless the path is .yaml
 
-### rollupDrillDown
+### resolveLocalSchemaUrl
 
-#### rollupDrillDown
+#### resolveLocalSchemaUrl
 
-- ✅ builds file leaf entity refs under a rollup parent
-- ✅ derives nested drill-down yaml paths from entity refs
-- ✅ requires at least two member filepaths before emitting drill-down
-- ✅ builds child component schemas for multi-file rollups
-- ✅ builds nested drill-down schemas for multi-level folder rollups
-- ✅ keeps outgoing dependencies to other rollups for external resolution
-- ✅ rewrites cross-container deps to single-file rollup leaves onto the emitted rollup
+- ✅ resolves a path-relative schema from this repo blueprints tree
 
 ### selfUpdate
 
@@ -2227,53 +2462,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ reports up to date when no newer release
 - ✅ runs self-update when a newer release exists
 
-### systemDiscovery
-
-#### systemDiscovery
-
-- ✅ extracts workspace roots from globs
-- ✅ parses npm and pnpm workspace declarations
-- ✅ discovers a product hub plus workspace/standalone spokes
-- ✅ withProductHub does not link different products together
-- ✅ respects explicit systems config override and still adds a product hub
-- ✅ pins a single-repo scan to a named system under a shared product hub
-- ✅ reads app/package.json when the repo root has no package manifest
-- ✅ falls back to a single system when no workspaces or standalone packages exist
-- ✅ partitions repo-wide files onto a named multi-repo system instead of the product hub
-- ✅ partitions files by longest matching system root
-- ✅ resolveProductIdForPath uses the same longest-prefix rules as code partitioning
-- ✅ planIacContextSystems nests sibling modules under their shared parent folder
-- ✅ planIacContextSystems folds modules into the product hub when one exists
-- ✅ normalizeContextGrouping collapses orphan folder groups and promotes hubs
-- ✅ normalizeContextGrouping drops empty folder groups nested under a product hub
-- ✅ pruneEmptyProductHubs removes orphaned infrastructure frames
-
-### terraformDiscovery
-
-#### discoverTerraformRoots
-
-- ✅ finds a root with .tf files and skips nested module dirs
-- ✅ uses infrastructure systemId when scan root itself has .tf files
-- ✅ returns empty when no terraform files exist
-
-### testPath
-
-#### detectTestFramework
-
-- ✅ detects JS/TS frameworks from imports
-- ✅ detects Python frameworks
-- ✅ detects .NET frameworks
-- ✅ detects Java/Kotlin frameworks
-- ✅ detects Go testing stdlib and testify
-- ✅ detects jest from path token when no imports
-- ✅ returns null for production code with no test imports
-
-#### testPath
-
-- ✅ marks unit test files and test directories
-- ✅ marks .NET, Go, Java, and Python test conventions
-- ✅ recognises dedicated test-project folder segments
-
 ### treeSitterComplexity
 
 #### TreeSitterComplexityAdapter
@@ -2325,45 +2513,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should identify test files correctly
 - ✅ should include files under test directories and mark them as tests
 - ✅ should parse export-from re-exports on barrel files
-
-### typescriptAnalyzer
-
-#### TypeScriptAnalyzer Strategy
-
-- ✅ supports ts, tsx, js, jsx
-- ✅ creates node with correct properties
-- ✅ computes container info correctly
-
-### typescriptGrouping
-
-#### typescriptGrouping
-
-##### isTypeScriptSourcePath
-
-- ✅ detects TS/JS paths case-insensitively
-
-##### resolveRelativeTypeScriptImportPath
-
-- ✅ resolves sibling and parent-relative imports
-
-##### resolveTypeScriptComponent
-
-- ✅ returns null for boilerplate files
-- ✅ rolls up monorepo package paths by folders under src
-- ✅ keeps package src-root files as leaf components
-- ✅ keeps simple-repo leaf files under a single src folder
-- ✅ rolls up files in the same folder to one component
-- ✅ uses the parent folder when the file name matches the folder (index-style)
-
-##### resolveTypeScriptImportComponentId
-
-- ✅ maps import specifiers to rolled-up component ids
-
-##### shouldSkipTypeScriptFile
-
-- ✅ skips config, declaration, and setup boilerplate
-- ✅ skips e2e and unit test trees under packages
-- ✅ keeps architectural sources
 
 ### updateCheck
 
@@ -2445,25 +2594,6 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### parseArchlensArgv watch flags
 
 - ✅ parses --watch and --watch-debounce
-
-### workspacePackages
-
-#### ModelExtractor workspace package imports
-
-- ✅ creates inter-container edges for workspace package imports
-- ✅ resolves workspace package subpath imports to target components
-- ✅ does not treat Node built-ins as local cross-container imports
-- ✅ still resolves relative imports within and across containers
-
-#### workspace package imports and externals pass
-
-- ✅ materializes cross-container package targets as externals on component diagrams
-
-#### workspacePackages
-
-- ✅ detects relative imports
-- ✅ extracts scoped and unscoped package names from module specifiers
-- ✅ builds a package-name → container-id index from source paths and package.json names
 
 ## Core
 
@@ -2993,6 +3123,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ should parse valid v3 YAML into SystemSchema model
 - ✅ should throw validation errors for YAML with invalid node types
 - ✅ should throw validation errors for YAML with malformed node IDs
+- ✅ should reject dependency endpoints that are not entityRefs
 - ✅ should serialize SystemSchema model to a v4 object with metadata
 - ✅ should round-trip metadata.source provenance in YAML
 - ✅ should parse v4 YAML with metadata into SystemSchema
@@ -3576,6 +3707,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ Scenario: accepted add-dependent overlays merge into context.yaml
 - ✅ Scenario: rejected overlays are skipped (tombstone)
 - ✅ applies overlays in acceptedAt order
+- ✅ rejects overlay dependency endpoints that are not entityRefs
 
 ### temporalCoupling
 
