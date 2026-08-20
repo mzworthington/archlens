@@ -103,7 +103,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
       : data.external
         ? 'border-dashed border-cyan-600/70 bg-cyan-950 hover:border-cyan-500/80'
         : data.isResilienceFaultTarget
-          ? 'border-red-500/80 bg-slate-900'
+          ? 'resilience-fault-target'
           : selected
             ? 'border-brand-500 bg-slate-900 scale-102'
             : data.dependencyRole === 'upstream'
@@ -115,7 +115,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
                   : data.refactorBoundaryHighlight
                     ? 'border-violet-500/70 bg-slate-900'
                     : activeSafeguards
-                      ? 'border-emerald-500/75 bg-slate-900 hover:border-emerald-400/80'
+                      ? 'resilience-safeguard'
                       : concernBorder
                         ? `${concernBorder} ${solidBg} hover:border-slate-700`
                         : `${solidBg} border-slate-800 hover:border-slate-700`;

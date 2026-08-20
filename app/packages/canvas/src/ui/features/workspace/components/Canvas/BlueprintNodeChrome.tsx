@@ -244,7 +244,7 @@ export const BlueprintNodeTitle: React.FC<TitleProps> = ({
       ) : null}
     </h4>
     <p
-      className="text-xs text-slate-400 font-mono mt-1 truncate select-all"
+      className="text-xs text-slate-200 font-mono mt-1 truncate select-all"
       title={entityRef || id}
     >
       <span dir="rtl" className="block truncate">

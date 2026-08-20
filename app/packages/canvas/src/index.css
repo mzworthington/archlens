@@ -19,8 +19,8 @@
   --color-brand-800: #155e75;
   --color-brand-900: #164e63;
   --color-brand-950: #083344;
-  --color-bp-canvas: #081422;
-  --color-bp-canvas-rgb: 8 20 34;
+  --color-bp-canvas: #173453;
+  --color-bp-canvas-rgb: 23 52 83;
 }
 
 :root {
@@ -170,15 +170,15 @@ body,
 }
 
 .react-flow__edge-path {
-  stroke: rgba(0, 216, 255, 0.4) !important;
-  stroke-width: 2;
+  stroke: #00d8ff !important;
+  stroke-width: 2.5 !important;
   transition: stroke 0.2s ease;
 }
 
 .react-flow__edge.selected .react-flow__edge-path {
   stroke: #00f0ff !important;
-  stroke-width: 3;
-  filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.6));
+  stroke-width: 3.5 !important;
+  filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.9));
 }
 
 .react-flow__edge.animated .react-flow__edge-path {
@@ -236,16 +236,49 @@ body,
 }
 
 .react-flow__edge.blast-propagation-edge .react-flow__edge-path {
-  stroke: #f87171 !important;
+  stroke: #ff3b30 !important;
+  stroke-width: 5 !important;
   stroke-dasharray: 6 4;
   animation: blast-edge-flow 0.45s linear infinite;
-  filter: drop-shadow(0 0 4px rgba(248, 113, 113, 0.55));
+  filter: drop-shadow(0 0 8px rgba(255, 59, 48, 0.9));
 }
 
 @keyframes blast-edge-flow {
   to {
     stroke-dashoffset: -20;
   }
+}
+
+.resilience-fault-target {
+  border-color: #ff3b30 !important;
+  background-color: rgba(255, 59, 48, 0.25) !important;
+  box-shadow:
+    0 0 25px rgba(255, 59, 48, 0.8),
+    inset 0 0 15px rgba(255, 59, 48, 0.5) !important;
+  animation: fault-pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes fault-pulse {
+  from {
+    box-shadow:
+      0 0 12px rgba(255, 59, 48, 0.5),
+      inset 0 0 8px rgba(255, 59, 48, 0.3);
+    border-color: rgba(255, 59, 48, 0.8);
+  }
+  to {
+    box-shadow:
+      0 0 30px rgba(255, 59, 48, 0.95),
+      inset 0 0 20px rgba(255, 59, 48, 0.6);
+    border-color: rgba(255, 59, 48, 1);
+  }
+}
+
+.resilience-safeguard {
+  border-color: #34c759 !important;
+  background-color: rgba(52, 199, 89, 0.2) !important;
+  box-shadow:
+    0 0 20px rgba(52, 199, 89, 0.6),
+    inset 0 0 10px rgba(52, 199, 89, 0.3) !important;
 }
 
 /* Hide scrollbar utility */
