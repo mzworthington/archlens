@@ -27,16 +27,31 @@ export type SourceFileLoadResult = SourceFileLoadSuccess | SourceFileLoadFailure
 
 export type FetchSourceFileContentDeps = {
   readLocalFile?: (repoRelativePath: string) => Promise<string>;
-  fetchText?: (url: string) => Promise<string>;
+  fetchText?: (url: string, init?: RequestInit) => Promise<string>;
+  githubPat?: string;
+  customRemoteUrl?: string;
 };
 
-const defaultFetchText = async (url: string): Promise<string> => {
-  const response = await fetch(url);
+const defaultFetchText = async (url: string, init?: RequestInit): Promise<string> => {
+  const response = await fetch(url, init);
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}`);
   }
   return response.text();
 };
+
+function buildGitHubApiContentsUrl(
+  source: SourceProvenance,
+  repoRelativePath: string
+): string | undefined {
+  if (!source.remoteUrl) return undefined;
+  const match = source.remoteUrl.match(/github\.com[/:]([^/]+)\/([^/.]+)/);
+  if (!match) return undefined;
+  const owner = match[1];
+  const repo = match[2].replace(/\.git$/, '');
+  const commit = source.scannedAtCommit || source.defaultBranch || 'main';
+  return `https://api.github.com/repos/${owner}/${repo}/contents/${repoRelativePath}?ref=${commit}`;
+}
 
 /** Vite (and similar dev servers) return index.html with 200 for unknown asset paths. */
 export function looksLikeSpaHtmlFallback(content: string, requestedPath: string): boolean {
@@ -59,10 +74,20 @@ export async function fetchSourceFileContent(
     return { ok: false, error: 'No filepath provided.' };
   }
 
-  const viewerUrl = source ? buildSourceFileUrl(source, normalizedPath) : undefined;
-  const rawUrl = source ? buildSourceFileRawUrl(source, normalizedPath) : undefined;
-  const repoRelativePath = source
-    ? resolveRepoRelativeFilePath(source, normalizedPath)
+  const effectiveSource: SourceProvenance | undefined = source?.remoteUrl
+    ? { scannedAtCommit: source.scannedAtCommit || source.defaultBranch || 'main', ...source }
+    : deps.customRemoteUrl
+      ? { remoteUrl: deps.customRemoteUrl, scannedAtCommit: 'main' }
+      : undefined;
+
+  const viewerUrl = effectiveSource
+    ? buildSourceFileUrl(effectiveSource, normalizedPath)
+    : undefined;
+  const rawUrl = effectiveSource
+    ? buildSourceFileRawUrl(effectiveSource, normalizedPath)
+    : undefined;
+  const repoRelativePath = effectiveSource
+    ? resolveRepoRelativeFilePath(effectiveSource, normalizedPath)
     : normalizedPath;
 
   if (deps.readLocalFile) {
@@ -96,8 +121,12 @@ export async function fetchSourceFileContent(
   }
 
   const fetchText = deps.fetchText ?? defaultFetchText;
+  const headers: Record<string, string> = deps.githubPat
+    ? { Authorization: `Bearer ${deps.githubPat}` }
+    : {};
+
   try {
-    const content = await fetchText(rawUrl);
+    const content = await fetchText(rawUrl, { headers });
     return {
       ok: true,
       content,
@@ -106,11 +135,34 @@ export async function fetchSourceFileContent(
       viewerUrl,
       rawUrl,
     };
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
+  } catch (rawError) {
+    if (source && deps.githubPat) {
+      const apiUrl = buildGitHubApiContentsUrl(source, repoRelativePath);
+      if (apiUrl) {
+        try {
+          const apiHeaders = {
+            ...headers,
+            Accept: 'application/vnd.github.raw+json',
+          };
+          const content = await fetchText(apiUrl, { headers: apiHeaders });
+          return {
+            ok: true,
+            content,
+            origin: 'remote',
+            filepath: repoRelativePath,
+            viewerUrl,
+            rawUrl,
+          };
+        } catch {
+          // Fall through to original error message
+        }
+      }
+    }
+
+    const message = rawError instanceof Error ? rawError.message : String(rawError);
     return {
       ok: false,
-      error: `Remote source rendering is supported for public repositories (${message}). For private repositories, open the workspace folder locally or view directly in your repository browser.`,
+      error: `Remote source rendering is supported for public repositories (${message}). For private repositories, enter a Personal Access Token (PAT), open the workspace folder locally, or view directly in your repository browser.`,
       viewerUrl,
       rawUrl,
     };

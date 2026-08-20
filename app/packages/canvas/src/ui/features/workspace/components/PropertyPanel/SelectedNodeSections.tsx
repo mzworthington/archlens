@@ -3,6 +3,7 @@ import { Trash2 } from 'lucide-react';
 import { ViewChildExternalsButton } from '../ViewChildExternalsButton';
 import { ConnectionsSection } from './ConnectionsSection';
 import { PropertiesSection } from './PropertiesSection';
+import { SourceCodeSection } from './SourceCodeSection';
 import type { PropertyPanelModel } from './usePropertyPanelModel';
 
 type SelectedNodeSectionsProps = Pick<
@@ -53,8 +54,15 @@ export const SelectedNodeSections: React.FC<SelectedNodeSectionsProps> = ({
 }) => {
   if (!selectedNode || !selectedNodeId) return null;
 
+  const filepath =
+    typeof selectedNode.properties?.filepath === 'string'
+      ? selectedNode.properties.filepath
+      : undefined;
+
   return (
     <>
+      <SourceCodeSection filepath={filepath} source={schema.source} />
+
       <PropertiesSection
         properties={selectedNode.properties}
         propKey={propKey}

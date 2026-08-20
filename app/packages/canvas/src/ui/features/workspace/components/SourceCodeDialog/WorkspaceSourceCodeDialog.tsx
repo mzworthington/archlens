@@ -14,12 +14,19 @@ export const WorkspaceSourceCodeDialog: React.FC = () => {
     isWorkspaceOpen,
     isSampleWorkspace,
     workspacePort,
+    githubPat,
+    setGithubPat,
   } = useBlueprintStore();
 
   const sourceProvenance = useMemo(() => {
-    if (sourceCodeProvenance) return sourceCodeProvenance;
-    if (schema.source) return schema.source;
-    return loadedSystems.find(s => s.path === currentFilePath)?.schema.source;
+    if (sourceCodeProvenance?.remoteUrl) return sourceCodeProvenance;
+    if (schema.source?.remoteUrl) return schema.source;
+    const matchingSystem = loadedSystems.find(s => s.path === currentFilePath)?.schema?.source;
+    if (matchingSystem?.remoteUrl) return matchingSystem;
+    const anySystemWithRemote = loadedSystems.find(s => s.schema?.source?.remoteUrl)?.schema
+      ?.source;
+    if (anySystemWithRemote) return anySystemWithRemote;
+    return sourceCodeProvenance || schema.source;
   }, [sourceCodeProvenance, schema.source, loadedSystems, currentFilePath]);
 
   const readLocalFile = useCallback(
@@ -35,6 +42,8 @@ export const WorkspaceSourceCodeDialog: React.FC = () => {
       source={sourceProvenance}
       isWorkspaceOpen={isWorkspaceOpen && !isSampleWorkspace}
       readLocalFile={readLocalFile}
+      githubPat={githubPat}
+      onSavePat={setGithubPat}
     />
   );
 };

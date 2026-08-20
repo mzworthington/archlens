@@ -101,6 +101,14 @@ Peers resolve via `coupledFiles[].path` ↔ `properties.filepath` on the current
 
 Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds: `hotspotThreshold`, `complexityThreshold`, `minSharedCommits`, `couplingThreshold`, `minChurnForComplexity`, `sinceDays`.
 
+### Source Code Viewer & GitHub PAT
+
+Click **View Code** on any node property card or diagram node to open the in-browser source code viewer.
+
+- **Public Repositories**: Source code is fetched and syntax-highlighted automatically via public git raw/API endpoints.
+- **Private Repositories**: Click the **Add PAT** button at the top right of the Source Code screen to save a scoped GitHub Personal Access Token (PAT). Tokens are saved locally in your browser (`localStorage`) and used for authenticated API fetching.
+- **Local Workspaces**: When running ArchLens CLI or opening a local workspace folder, source files are read directly from disk without network credentials.
+
 ## Next
 
 - [AdviceLens](./advicelens.md) - ranked recommendations from forensics + simulation (`/workspace?lens=advicelens`)

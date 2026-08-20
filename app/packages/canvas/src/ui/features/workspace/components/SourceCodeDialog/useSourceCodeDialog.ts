@@ -11,6 +11,7 @@ export type UseSourceCodeDialogArgs = {
   source?: SourceProvenance;
   isWorkspaceOpen: boolean;
   readLocalFile?: (relativePath: string) => Promise<string>;
+  githubPat?: string | null;
 };
 
 export function useSourceCodeDialog({
@@ -19,6 +20,7 @@ export function useSourceCodeDialog({
   source,
   isWorkspaceOpen,
   readLocalFile,
+  githubPat,
 }: UseSourceCodeDialogArgs) {
   const [result, setResult] = useState<SourceFileLoadResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -33,12 +35,13 @@ export function useSourceCodeDialog({
     try {
       const next = await fetchSourceFileContent(source, filepath, {
         readLocalFile: isWorkspaceOpen ? readLocalFile : undefined,
+        githubPat: githubPat ?? undefined,
       });
       setResult(next);
     } finally {
       setLoading(false);
     }
-  }, [filepath, source, isWorkspaceOpen, readLocalFile]);
+  }, [filepath, source, isWorkspaceOpen, readLocalFile, githubPat]);
 
   useEffect(() => {
     if (!isOpen) {

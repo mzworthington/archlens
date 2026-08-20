@@ -44,7 +44,8 @@ describe('fetchSourceFileContent', () => {
       expect(result.content).toBe('remote code');
     }
     expect(fetchText).toHaveBeenCalledWith(
-      'https://raw.githubusercontent.com/org/repo/abc123/app/packages/cli/foo.ts'
+      'https://raw.githubusercontent.com/org/repo/abc123/app/packages/cli/foo.ts',
+      { headers: {} }
     );
   });
 
@@ -76,5 +77,19 @@ describe('fetchSourceFileContent', () => {
     if (!result.ok) {
       expect(result.error).toMatch(/No git source metadata/i);
     }
+  });
+
+  it('passes Authorization header when githubPat is provided', async () => {
+    const fetchText = vi.fn().mockResolvedValue('private code');
+    const result = await fetchSourceFileContent(source, 'src/secret.ts', {
+      fetchText,
+      githubPat: 'ghp_test12345',
+    });
+
+    expect(result.ok).toBe(true);
+    expect(fetchText).toHaveBeenCalledWith(
+      'https://raw.githubusercontent.com/org/repo/abc123/app/src/secret.ts',
+      { headers: { Authorization: 'Bearer ghp_test12345' } }
+    );
   });
 });

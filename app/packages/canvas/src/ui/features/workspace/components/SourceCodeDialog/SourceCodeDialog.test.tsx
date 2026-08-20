@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { SourceCodeDialog } from './SourceCodeDialog';
 
@@ -112,6 +112,40 @@ describe('SourceCodeDialog', () => {
 
     expect(screen.getByText('Source code preview unavailable')).toBeInTheDocument();
     expect(screen.getByText(/public repositories/i)).toBeInTheDocument();
-    expect(screen.getByText('Tips for private repos:')).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('link', { name: /Open in repository browser/i }).length
+    ).toBeGreaterThan(0);
+  });
+
+  it('allows user to save PAT token for private repository access', async () => {
+    const onSavePat = vi.fn();
+    mockedHook.mockReturnValue({
+      result: {
+        ok: false,
+        error: 'HTTP 404',
+        viewerUrl: 'https://github.com/org/repo/blob/abc/src/answer.ts',
+      },
+      loading: false,
+      reload: vi.fn(),
+    });
+
+    render(
+      <SourceCodeDialog
+        isOpen
+        onClose={() => {}}
+        filepath="src/answer.ts"
+        isWorkspaceOpen={false}
+        onSavePat={onSavePat}
+      />
+    );
+
+    const patBtn = screen.getByRole('button', { name: /Add PAT/i });
+    fireEvent.click(patBtn);
+
+    const input = screen.getByPlaceholderText('ghp_... or github_pat_...');
+    expect(input).toBeInTheDocument();
+
+    const saveBtn = screen.getByRole('button', { name: /Save & Retry/i });
+    expect(saveBtn).toBeInTheDocument();
   });
 });

@@ -46,6 +46,8 @@ export interface UiState {
   isSourceCodeOpen: boolean;
   sourceCodeFilepath: string | null;
   sourceCodeProvenance: SourceProvenance | null;
+  githubPat: string | null;
+  setGithubPat: (pat: string | null) => void;
   notification: ToastNotification | null;
   mermaidEnrichBannerOpen: boolean;
   /** Sticky reminder after a browser lite scan - graduate to CLI for forensics. */
@@ -125,6 +127,20 @@ export const createUiState = (
   focusedCyclePath: null,
   isLoading: false,
   diagramLoadCount: 0,
+  githubPat:
+    typeof window !== 'undefined' && typeof localStorage !== 'undefined'
+      ? localStorage.getItem('archlens_github_pat')
+      : null,
+  setGithubPat: pat => {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      if (pat) {
+        localStorage.setItem('archlens_github_pat', pat);
+      } else {
+        localStorage.removeItem('archlens_github_pat');
+      }
+    }
+    set({ githubPat: pat });
+  },
   toggleShowTests: () => set(state => ({ showTests: !state.showTests })),
   toggleShowUpstreamExternals: () =>
     set(state => ({ showUpstreamExternals: !state.showUpstreamExternals })),
