@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, ExternalLink, RefreshCw, X } from 'lucide-react';
+import { Code2, ExternalLink, Lock, RefreshCw, X } from 'lucide-react';
 import type { SourceProvenance } from '@archlens/core';
 import { useSourceCodeDialog } from './useSourceCodeDialog';
 import { HighlightedSourceCode } from './HighlightedSourceCode';
@@ -119,19 +119,44 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                 Loading source…
               </div>
             ) : result && !result.ok ? (
-              <div className="flex-1 flex flex-col items-center justify-center text-center gap-3 px-6">
-                <p className="text-sm text-red-400">{result.error}</p>
-                {viewerUrl ? (
-                  <a
-                    href={viewerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-semibold text-[#00f0ff] hover:text-cyan-300"
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    Open in repository browser
-                  </a>
-                ) : null}
+              <div className="flex-1 flex flex-col items-center justify-center p-6 min-h-0">
+                <div className="w-full max-w-md bg-slate-900/80 border border-slate-800 rounded-xl p-6 text-center shadow-lg flex flex-col items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-[#00f0ff]">
+                    <Lock className="w-5 h-5" />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <h3 className="text-sm font-semibold text-slate-200">
+                      Source code preview unavailable
+                    </h3>
+                    <p className="text-xs text-slate-400 leading-relaxed">
+                      In-browser source rendering works directly for{' '}
+                      <strong className="text-slate-300 font-semibold">public repositories</strong>.
+                      Private repositories require authenticated browser sessions or local workspace
+                      access.
+                    </p>
+                  </div>
+
+                  <div className="w-full bg-slate-950/60 border border-slate-800/80 rounded-lg p-3 text-left space-y-1 text-[11px] text-slate-400">
+                    <p className="font-semibold text-slate-300">Tips for private repos:</p>
+                    <ul className="list-disc list-inside space-y-0.5 text-slate-400">
+                      <li>Open the workspace folder locally via CLI or folder loader</li>
+                      <li>Click below to view directly in your logged-in browser</li>
+                    </ul>
+                  </div>
+
+                  {viewerUrl ? (
+                    <a
+                      href={viewerUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00f0ff]/10 hover:bg-[#00f0ff]/20 border border-[#00f0ff]/30 text-[#00f0ff] font-semibold text-xs transition cursor-pointer"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Open in repository browser
+                    </a>
+                  ) : null}
+                </div>
               </div>
             ) : result?.ok ? (
               <HighlightedSourceCode content={result.content} filepath={result.filepath} />

@@ -89,4 +89,29 @@ describe('SourceCodeDialog', () => {
 
     expect(screen.getByText('System · frontend-api')).toBeInTheDocument();
   });
+
+  it('renders informative helper card when source preview is unavailable', () => {
+    mockedHook.mockReturnValue({
+      result: {
+        ok: false,
+        error: 'HTTP 404',
+        viewerUrl: 'https://github.com/org/repo/blob/abc/src/answer.ts',
+      },
+      loading: false,
+      reload: vi.fn(),
+    });
+
+    render(
+      <SourceCodeDialog
+        isOpen
+        onClose={() => {}}
+        filepath="src/answer.ts"
+        isWorkspaceOpen={false}
+      />
+    );
+
+    expect(screen.getByText('Source code preview unavailable')).toBeInTheDocument();
+    expect(screen.getByText(/public repositories/i)).toBeInTheDocument();
+    expect(screen.getByText('Tips for private repos:')).toBeInTheDocument();
+  });
 });

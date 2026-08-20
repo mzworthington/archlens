@@ -110,7 +110,7 @@ export async function fetchSourceFileContent(
     const message = error instanceof Error ? error.message : String(error);
     return {
       ok: false,
-      error: `Failed to fetch source (${message}). Try opening the file in your browser.`,
+      error: `Remote source rendering is supported for public repositories (${message}). For private repositories, open the workspace folder locally or view directly in your repository browser.`,
       viewerUrl,
       rawUrl,
     };

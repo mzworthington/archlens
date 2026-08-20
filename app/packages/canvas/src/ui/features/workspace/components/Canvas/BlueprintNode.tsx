@@ -95,7 +95,7 @@ export const BlueprintNode = memo(({ id, data, selected }: NodeProps<CustomNode>
         ? 'border-amber-800/80'
         : null;
 
-  const solidBg = showHotspotHeat ? 'bg-transparent' : 'bg-slate-950';
+  const solidBg = 'bg-slate-950';
   const borderClass = data.hiddenExternalGhost
     ? 'border-dashed border-cyan-500/70 bg-cyan-950/30 hover:border-cyan-400/80'
     : data.couplingGhost

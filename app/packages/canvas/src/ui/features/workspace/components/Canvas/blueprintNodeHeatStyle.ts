@@ -42,7 +42,7 @@ export function blueprintNodeHeatStyle({
     outlineOffset: showIntegrityRisk ? '3px' : undefined,
     ...(showHotspotHeat
       ? {
-          backgroundImage: `linear-gradient(135deg, rgba(239, 68, 68, ${0.08 + hotspotHeat * 0.35}) 0%, rgba(15, 23, 42, 0.96) 100%)`,
+          backgroundImage: `linear-gradient(135deg, rgba(220, 38, 38, ${0.18 + hotspotHeat * 0.35}) 0%, rgba(15, 23, 42, 1) 100%)`,
         }
       : {}),
     ...(showAvailabilityRisk
