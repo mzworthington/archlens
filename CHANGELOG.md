@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-08-20
+
+### 🚀 Features
+
+- Improve ux by increase canvas contrast
+- Improved UX on code viewer
+
+### 🧰 Maintenance & Dependencies
+
+- Reduce blueprint generation to weekly
+
 ## 2026-08-10
 
 ### 🚀 Features

@@ -649,6 +649,12 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ shows a Code button when the node has a filepath and opens the source modal
 - ✅ hides the Code button when the node can zoom into a child diagram
 
+### blueprintNodeHeatStyle
+
+#### blueprintNodeHeatStyle
+
+- ✅ uses opaque linear gradient base when hotspot heat is active
+
 ### BrandMark
 
 #### BrandMark
@@ -1185,6 +1191,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ falls back to raw URL when local read returns SPA HTML
 - ✅ detects SPA HTML fallbacks for non-html paths
 - ✅ returns a helpful error when no source metadata exists
+- ✅ passes Authorization header when githubPat is provided
 
 ### fileSync
 
@@ -1892,6 +1899,15 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders nothing when closed
 - ✅ shows loaded source content when open
 - ✅ shows scan system name when present on provenance
+- ✅ renders informative helper card when source preview is unavailable
+- ✅ allows user to save PAT token for private repository access
+
+### SourceCodeSection
+
+#### SourceCodeSection
+
+- ✅ renders null when no filepath is provided
+- ✅ renders source code section with direct link when filepath and source are provided
 
 ### StartupWorkspaceDialog
 
