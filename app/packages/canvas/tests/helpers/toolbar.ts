@@ -43,10 +43,12 @@ export async function continueWithSample(page: Page) {
 export async function exitResilienceModeIfActive(page: Page) {
   const exitResilience = page.getByRole('button', { name: /exit resilience mode/i });
   if (await exitResilience.isVisible().catch(() => false)) {
-    await exitResilience.click();
-    await expect(page.getByRole('button', { name: /enter resilience mode/i })).toBeVisible({
-      timeout: 30_000,
-    });
+    await exitResilience.click({ force: true });
+    await expect(page.getByTestId('toolbar-resilience-lens')).toHaveAttribute(
+      'aria-pressed',
+      'false',
+      { timeout: 30_000 }
+    );
   }
 }
 
