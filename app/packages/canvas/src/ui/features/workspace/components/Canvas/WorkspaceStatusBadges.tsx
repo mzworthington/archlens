@@ -6,12 +6,17 @@ const badgeClass = 'backdrop-blur-md shadow-lg shadow-black/30';
 
 /** Diagram level and validation badges for the canvas top-left chrome. */
 export const WorkspaceStatusBadges: React.FC = () => {
-  const { schema, validationResult, schemaVersionWarning, isBrowserLiteWorkspace } =
-    useBlueprintStore();
+  const {
+    schema,
+    validationResult,
+    schemaVersionWarning,
+    isBrowserLiteWorkspace,
+    setIsValidationOpen,
+  } = useBlueprintStore();
 
   return (
     <div
-      className="flex flex-wrap items-center gap-2 max-w-[min(100%,20rem)] pointer-events-none"
+      className="flex flex-wrap items-center gap-2 max-w-[min(100%,20rem)]"
       data-testid="workspace-status-badges"
     >
       {isBrowserLiteWorkspace ? (
@@ -39,19 +44,27 @@ export const WorkspaceStatusBadges: React.FC = () => {
         </span>
       ) : null}
       {validationResult.isValid ? (
-        <span
-          className={`flex items-center gap-1 text-[10px] text-emerald-400 font-semibold bg-emerald-950/90 px-2 py-0.5 rounded border border-emerald-900/30 ${badgeClass}`}
+        <button
+          type="button"
+          onClick={() => setIsValidationOpen(true)}
+          className={`flex items-center gap-1 text-[10px] text-emerald-400 font-semibold bg-emerald-950/90 hover:bg-emerald-900/90 px-2 py-0.5 rounded border border-emerald-900/30 transition cursor-pointer ${badgeClass}`}
+          title="View graph validation status"
+          data-testid="validation-status-badge"
         >
           <CheckCircle className="w-3 h-3 shrink-0" />
           <span>Valid</span>
-        </span>
+        </button>
       ) : (
-        <span
-          className={`flex items-center gap-1 text-[10px] text-red-400 font-semibold bg-red-950/90 px-2 py-0.5 rounded border border-red-900/30 animate-pulse ${badgeClass}`}
+        <button
+          type="button"
+          onClick={() => setIsValidationOpen(true)}
+          className={`flex items-center gap-1 text-[10px] text-red-400 font-semibold bg-red-950/90 hover:bg-red-900/90 px-2 py-0.5 rounded border border-red-900/30 animate-pulse transition cursor-pointer ${badgeClass}`}
+          title="Click to inspect validation issues"
+          data-testid="validation-status-badge"
         >
           <AlertTriangle className="w-3 h-3 shrink-0 text-red-400" />
           <span>Cycle Detected</span>
-        </span>
+        </button>
       )}
     </div>
   );

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatAppVersionLabel } from '../../../../../application/pwa/buildInfo';
+import { ComponentCatalog } from './ComponentCatalog';
 import { PropertyPanelContent } from './PropertyPanelContent';
 import { PropertyPanelHeader } from './PropertyPanelHeader';
+import { RightPanelTabs, type RightPanelTabId } from './RightPanelTabs';
 import { usePropertyPanelModel } from './usePropertyPanelModel';
 
 export const PropertyPanel: React.FC = () => {
   const model = usePropertyPanelModel();
+  const [activeTab, setActiveTab] = useState<RightPanelTabId>('properties');
 
   return (
     <div
@@ -16,20 +19,16 @@ export const PropertyPanel: React.FC = () => {
           : 'w-full sm:w-80 border-l border-slate-900'
       }`}
     >
-      <PropertyPanelHeader
-        titleType={model.titleType}
-        selectedNodeId={model.selectedNodeId}
-        selectedEdgeId={model.selectedEdgeId}
-        selectNode={model.selectNode}
-        selectEdge={model.selectEdge}
-        toggleRightCollapsed={model.toggleRightCollapsed}
-        isResilienceMode={model.isResilienceMode}
-        resiliencePanelTab={model.resiliencePanelTab}
-        setResiliencePanelTab={model.setResiliencePanelTab}
-      />
+      <PropertyPanelHeader toggleRightCollapsed={model.toggleRightCollapsed} />
+
+      <RightPanelTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
-        <PropertyPanelContent model={model} />
+        {activeTab === 'properties' ? (
+          <PropertyPanelContent model={model} />
+        ) : (
+          <ComponentCatalog onAddNode={model.addNode} />
+        )}
       </div>
 
       <div className="p-4 border-t border-slate-900 text-center">

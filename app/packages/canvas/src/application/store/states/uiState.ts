@@ -41,6 +41,8 @@ export interface UiState {
   isStartupOpen: boolean;
   isCompareOpen: boolean;
   isShortcutsOpen: boolean;
+  isValidationOpen: boolean;
+  setIsValidationOpen: (open: boolean) => void;
   childExternalsParentRef: string | null;
   expandedExternalHub: ExternalSummaryBand | null;
   isSourceCodeOpen: boolean;
@@ -116,6 +118,8 @@ export const createUiState = (
   isStartupOpen: true,
   isCompareOpen: false,
   isShortcutsOpen: false,
+  isValidationOpen: false,
+  setIsValidationOpen: open => set({ isValidationOpen: open }),
   childExternalsParentRef: null,
   expandedExternalHub: null,
   isSourceCodeOpen: false,

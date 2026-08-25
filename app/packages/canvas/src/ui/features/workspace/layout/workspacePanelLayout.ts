@@ -10,6 +10,7 @@ export type { WorkspacePanelId, WorkspacePanelSlot, LeftSlotPanelId };
 export const WORKSPACE_PANEL_SLOTS: Record<WorkspacePanelId, WorkspacePanelSlot> = {
   codeViewer: 'left',
   traceLens: 'left',
+  chaosLens: 'left',
   properties: 'right',
 };
 

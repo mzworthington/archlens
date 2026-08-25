@@ -10,6 +10,7 @@ import {
   layoutGroupedDomainNodes,
   getClosestHandles,
   isDesktopViewport,
+  resolveDragGroupMembership,
 } from './layoutUtils.ts';
 import type { SystemNode } from '@archlens/core';
 import { getNodePosition } from '@archlens/core';
@@ -93,7 +94,6 @@ describe('mapDomainNodesToRFNodes', () => {
     expect(group?.style).toMatchObject({ width: expect.any(Number), height: expect.any(Number) });
     expect(child?.parentId).toBe('ctx/hub');
     expect(child?.position).toEqual({ x: 56, y: 96 });
-    expect(child?.extent).toBe('parent');
   });
 
   it('does not set React Flow parentId for diagram-membership parentEntityRef', () => {
@@ -375,5 +375,134 @@ describe('isDesktopViewport', () => {
     expect(isDesktopViewport()).toBe(false);
 
     vi.unstubAllGlobals();
+  });
+});
+
+describe('resolveDragGroupMembership', () => {
+  it('parents a node when dragged into a group boundary', () => {
+    const groupNode = {
+      id: 'group-1',
+      type: 'blueprintGroup',
+      position: { x: 100, y: 100 },
+      width: 500,
+      height: 500,
+      style: { width: 500, height: 500 },
+      data: { name: 'Group 1', type: 'group', properties: {} },
+    } as any;
+
+    const childNode = {
+      id: 'node-1',
+      type: 'blueprintNode',
+      position: { x: 200, y: 200 },
+      width: 200,
+      height: 100,
+      data: { name: 'Child Node', type: 'microservice', properties: {} },
+    } as any;
+
+    const updated = resolveDragGroupMembership([groupNode, childNode], ['node-1']);
+    const nextChild = updated.find(n => n.id === 'node-1');
+
+    expect(nextChild?.parentId).toBe('group-1');
+    expect(nextChild?.data.parentEntityRef).toBe('group-1');
+    expect(nextChild?.position).toEqual({ x: 56, y: 96 });
+  });
+
+  it('unparents a node when dragged outside its group boundary', () => {
+    const groupNode = {
+      id: 'group-1',
+      type: 'blueprintGroup',
+      position: { x: 100, y: 100 },
+      width: 400,
+      height: 400,
+      style: { width: 400, height: 400 },
+      data: { name: 'Group 1', type: 'group', properties: {} },
+    } as any;
+
+    const childNode = {
+      id: 'node-1',
+      type: 'blueprintNode',
+      parentId: 'group-1',
+      extent: 'parent',
+      position: { x: 800, y: 300 }, // Dragged far to the right outside group boundary
+      width: 200,
+      height: 100,
+      data: {
+        name: 'Child Node',
+        type: 'microservice',
+        parentEntityRef: 'group-1',
+        properties: {},
+      },
+    } as any;
+
+    const updated = resolveDragGroupMembership([groupNode, childNode], ['node-1']);
+    const nextChild = updated.find(n => n.id === 'node-1');
+
+    expect(nextChild?.parentId).toBeUndefined();
+    expect(nextChild?.extent).toBeUndefined();
+    expect(nextChild?.data.parentEntityRef).toBeUndefined();
+    expect(nextChild?.position).toEqual({ x: 900, y: 400 }); // Absolute position calculated from group offset (100+800, 100+300)
+  });
+
+  it('selects innermost group (smallest area) when nested/overlapping', () => {
+    const outerGroup = {
+      id: 'outer-group',
+      type: 'blueprintGroup',
+      position: { x: 0, y: 0 },
+      width: 1000,
+      height: 1000,
+      style: { width: 1000, height: 1000 },
+      data: { name: 'Outer Group', type: 'group', properties: {} },
+    } as any;
+
+    const innerGroup = {
+      id: 'inner-group',
+      type: 'blueprintGroup',
+      position: { x: 100, y: 100 },
+      width: 300,
+      height: 300,
+      style: { width: 300, height: 300 },
+      data: { name: 'Inner Group', type: 'group', properties: {} },
+    } as any;
+
+    const childNode = {
+      id: 'node-1',
+      type: 'blueprintNode',
+      position: { x: 150, y: 150 },
+      width: 100,
+      height: 50,
+      data: { name: 'Child Node', type: 'microservice', properties: {} },
+    } as any;
+
+    const updated = resolveDragGroupMembership([outerGroup, innerGroup, childNode], ['node-1']);
+    const nextChild = updated.find(n => n.id === 'node-1');
+
+    expect(nextChild?.parentId).toBe('inner-group');
+  });
+
+  it('does not re-parent group containers when dragged', () => {
+    const outerGroup = {
+      id: 'outer-group',
+      type: 'blueprintGroup',
+      position: { x: 0, y: 0 },
+      width: 1000,
+      height: 1000,
+      style: { width: 1000, height: 1000 },
+      data: { name: 'Outer Group', type: 'group', properties: {} },
+    } as any;
+
+    const innerGroup = {
+      id: 'inner-group',
+      type: 'blueprintGroup',
+      position: { x: 100, y: 100 },
+      width: 300,
+      height: 300,
+      style: { width: 300, height: 300 },
+      data: { name: 'Inner Group', type: 'group', properties: {} },
+    } as any;
+
+    const updated = resolveDragGroupMembership([outerGroup, innerGroup], ['inner-group']);
+    const nextInnerGroup = updated.find(n => n.id === 'inner-group');
+
+    expect(nextInnerGroup?.parentId).toBeUndefined();
   });
 });

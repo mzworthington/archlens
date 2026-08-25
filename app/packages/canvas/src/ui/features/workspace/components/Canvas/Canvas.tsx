@@ -253,7 +253,16 @@ export const Canvas: React.FC = () => {
           couplingFocusMode={couplingFocusMode}
         />
 
-        <CanvasTopLeftPanel parentEntityRef={parentEntityRef} onZoomOut={zoomOutToParent} />
+        <CanvasTopLeftPanel
+          parentEntityRef={parentEntityRef}
+          onZoomOut={zoomOutToParent}
+          selectedNodeId={selectedNodeId}
+          selectedEdgeId={selectedEdgeId}
+          onClearSelection={() => {
+            selectNode(null);
+            selectEdge(null);
+          }}
+        />
 
         <DependencyFocusChip
           selectedNodeId={selectedNodeId}

@@ -66,7 +66,6 @@ export function applyRefactorBoundaryAsDraft(
     return {
       ...node,
       parentId: groupEntityRef,
-      extent: 'parent' as const,
     };
   });
 

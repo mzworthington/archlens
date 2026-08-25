@@ -8,6 +8,7 @@ import { CompareDialog } from '../components/CompareDialog/CompareDialog';
 import { KeyboardShortcutsDialog } from '../components/KeyboardShortcutsDialog/KeyboardShortcutsDialog';
 import { ChildLevelExternalsDialog } from '../components/ChildLevelExternalsDialog/ChildLevelExternalsDialog';
 import { WorkspaceSourceCodeDialog } from '../components/SourceCodeDialog/WorkspaceSourceCodeDialog';
+import { ValidationDialog } from '../components/ValidationDialog/ValidationDialog';
 import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
@@ -79,6 +80,11 @@ export function useWorkspaceDialogs(): React.ReactNode {
     }
   }, [openBrowserLiteScan, setIsStartupOpen, setLocation]);
 
+  const handleImportMermaid = useCallback(() => {
+    setIsStartupOpen(false);
+    setIsImportMermaidOpen(true);
+  }, [setIsStartupOpen, setIsImportMermaidOpen]);
+
   const handleStartBlankCanvas = useCallback(() => {
     // Treat as an explicit non-demo choice so deep-link bootstrap does not force the sample.
     markFolderWorkspacePreferred();
@@ -118,6 +124,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onOpenSample={() => void handleOpenSample()}
           onOpenDirectory={() => void handleOpenDirectory()}
           onBrowserLiteScan={() => void handleBrowserLiteScan()}
+          onImportMermaid={handleImportMermaid}
           onStartBlankCanvas={handleStartBlankCanvas}
           loadingMessage={
             typeof isLoading === 'string' ? isLoading : isLoading ? 'Loading...' : null
@@ -138,6 +145,9 @@ export function useWorkspaceDialogs(): React.ReactNode {
       </LazyMountOnOpen>
       <LazyMountOnOpen isOpen={isSourceCodeOpen}>
         <WorkspaceSourceCodeDialog />
+      </LazyMountOnOpen>
+      <LazyMountOnOpen isOpen={useBlueprintStore(s => s.isValidationOpen)}>
+        <ValidationDialog />
       </LazyMountOnOpen>
     </>
   );

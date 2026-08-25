@@ -10,6 +10,7 @@ import {
   Monitor,
   Smartphone,
   Code,
+  BoxSelect,
   type LucideIcon,
 } from 'lucide-react';
 import type { NodeType } from '@archlens/core';
@@ -33,4 +34,5 @@ export const NODE_TYPES: { type: NodeType; label: string; icon: LucideIcon }[] =
   { type: 'serverless-function', label: 'Serverless Fn', icon: Zap },
   { type: 'gateway-api', label: 'Gateway API', icon: Globe },
   { type: 'background-worker', label: 'Background Worker', icon: Cpu },
+  { type: 'group', label: 'Group / Boundary', icon: BoxSelect },
 ];

@@ -6,11 +6,17 @@ import { WorkspaceStatusBadges } from './WorkspaceStatusBadges';
 type CanvasTopLeftPanelProps = {
   parentEntityRef: string | null | undefined;
   onZoomOut: () => void;
+  selectedNodeId: string | null;
+  selectedEdgeId: string | null;
+  onClearSelection: () => void;
 };
 
 export const CanvasTopLeftPanel: React.FC<CanvasTopLeftPanelProps> = ({
   parentEntityRef,
   onZoomOut,
+  selectedNodeId,
+  selectedEdgeId,
+  onClearSelection,
 }) => (
   <Panel position="top-left" className="m-4 flex flex-col items-start gap-2">
     <WorkspaceStatusBadges />
@@ -30,6 +36,20 @@ export const CanvasTopLeftPanel: React.FC<CanvasTopLeftPanelProps> = ({
         <kbd className="hidden sm:inline ml-1 text-[9px] font-mono text-slate-300 bg-slate-900 border border-slate-700 rounded px-1 py-0.5">
           Esc
         </kbd>
+      </button>
+    ) : null}
+    {selectedNodeId || selectedEdgeId ? (
+      <button
+        type="button"
+        onClick={e => {
+          e.stopPropagation();
+          onClearSelection();
+        }}
+        className="flex items-center gap-1.5 bg-slate-950/90 border border-slate-800 hover:border-brand-500/40 hover:bg-slate-900 text-slate-300 hover:text-white px-3 py-1 rounded-lg shadow-lg shadow-black/40 backdrop-blur-md text-xs font-mono transition cursor-pointer"
+        title="Clear current canvas selection"
+        data-testid="clear-selection-button"
+      >
+        Clear Selection
       </button>
     ) : null}
   </Panel>

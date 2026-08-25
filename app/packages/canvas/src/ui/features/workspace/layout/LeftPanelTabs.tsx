@@ -23,6 +23,16 @@ export const LeftPanelTabs: React.FC<Props> = ({ activeTab, onTabChange }) => (
     <button
       type="button"
       role="tab"
+      aria-selected={activeTab === 'chaosLens'}
+      className={tabClass(activeTab === 'chaosLens')}
+      onClick={() => onTabChange('chaosLens')}
+      data-testid="left-tab-chaoslens"
+    >
+      ChaosLens
+    </button>
+    <button
+      type="button"
+      role="tab"
       aria-selected={activeTab === 'traceLens'}
       className={tabClass(activeTab === 'traceLens')}
       onClick={() => onTabChange('traceLens')}

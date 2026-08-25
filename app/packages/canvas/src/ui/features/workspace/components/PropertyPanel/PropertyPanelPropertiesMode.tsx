@@ -1,11 +1,9 @@
 import React from 'react';
 import { GoToEntityButton } from '../GoToEntityButton';
-import { ComponentCatalog } from './ComponentCatalog';
 import { ExternalDependenciesSection } from './ExternalDependenciesSection';
 import { IdentitySection } from './IdentitySection';
 import { SelectedDependencySection } from './SelectedDependencySection';
 import { SelectedNodeSections } from './SelectedNodeSections';
-import { ValidationSection } from './ValidationSection';
 import type { PropertyPanelModel } from './usePropertyPanelModel';
 
 export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }> = ({ model }) => {
@@ -17,8 +15,6 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
     edgeEndpointMissing,
     schema,
     selectedNodeId,
-    validationResult,
-    addNode,
     loadedSystems,
     updateDependency,
     deleteDependency,
@@ -91,8 +87,6 @@ export const PropertyPanelPropertiesMode: React.FC<{ model: PropertyPanelModel }
       ) : (
         <div className="flex flex-col gap-6 w-full min-w-0">
           {loadedSystems.length > 0 ? <ExternalDependenciesSection /> : null}
-          <ValidationSection validationResult={validationResult} />
-          <ComponentCatalog onAddNode={addNode} />
         </div>
       )}
     </>

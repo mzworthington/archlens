@@ -28,4 +28,5 @@ export {
   layoutGroupedDomainNodes,
   repositionExternalRfNodes,
   refreshGroupBoundsFromChildren,
+  resolveDragGroupMembership,
 } from './layout/groupedLayout';

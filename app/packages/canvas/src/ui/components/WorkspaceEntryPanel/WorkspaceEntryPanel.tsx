@@ -10,6 +10,7 @@ import {
   ScanSearch,
   AlertTriangle,
   FilePlus,
+  GitMerge,
 } from 'lucide-react';
 import { Link } from 'wouter';
 import {
@@ -65,6 +66,8 @@ export type WorkspaceEntryPanelProps = {
   onOpenDirectory: () => void;
   /** Structural browser scan - pick a source folder, no CLI install. */
   onBrowserLiteScan?: () => void;
+  /** Import from Mermaid diagram. */
+  onImportMermaid?: () => void;
   /** Start an empty diagram with no demo or folder loaded. */
   onStartBlankCanvas?: () => void;
   disabled?: boolean;
@@ -88,6 +91,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
+  onImportMermaid,
   onStartBlankCanvas,
   disabled = false,
   loadingMessage = null,
@@ -253,6 +257,26 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             </span>
           </span>
         </button>
+
+        {onImportMermaid ? (
+          <button
+            type="button"
+            data-testid="workspace-import-mermaid"
+            onClick={onImportMermaid}
+            disabled={actionsDisabled}
+            className={optionClass}
+          >
+            <GitMerge className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+            <span>
+              <span className="block text-sm font-semibold text-slate-100">
+                Import from mermaid
+              </span>
+              <span className="block text-xs text-slate-500 mt-0.5">
+                Paste or upload a Mermaid diagram (.mmd / .md) to parse into blueprints
+              </span>
+            </span>
+          </button>
+        ) : null}
 
         {onStartBlankCanvas ? (
           <button

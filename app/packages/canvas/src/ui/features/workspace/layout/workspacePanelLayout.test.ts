@@ -13,7 +13,7 @@ describe('workspacePanelLayout', () => {
   });
 
   it('lists mutually exclusive left-slot panels', () => {
-    expect(panelsInSlot('left')).toEqual(['codeViewer', 'traceLens']);
+    expect(panelsInSlot('left')).toEqual(['codeViewer', 'traceLens', 'chaosLens']);
     expect(panelsInSlot('right')).toEqual(['properties']);
   });
 

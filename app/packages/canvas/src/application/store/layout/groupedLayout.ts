@@ -170,3 +170,107 @@ export function refreshGroupBoundsFromChildren(nodes: BlueprintRFNode[]): Bluepr
     return node;
   });
 }
+
+/**
+ * Update group parentage when nodes finish dragging.
+ * If a node's center point is dragged into a group boundary, parent it to that group.
+ * If a node is dragged out of its group boundary, un-parent it back to the main canvas.
+ */
+export function resolveDragGroupMembership(
+  nodes: BlueprintRFNode[],
+  draggedNodeIds: string[]
+): BlueprintRFNode[] {
+  if (nodes.length === 0 || draggedNodeIds.length === 0) return nodes;
+
+  const nodeById = new Map(nodes.map(n => [n.id, n]));
+
+  const groups = nodes.filter(n => n.type === 'blueprintGroup' || n.data?.type === 'group');
+
+  if (groups.length === 0 && nodes.every(n => !n.parentId)) {
+    return nodes;
+  }
+
+  const groupInfos = groups.map(g => {
+    const abs = getAbsoluteNodePosition(g, nodeById);
+    const dims = getNodeDimensions(g);
+    return {
+      id: g.id,
+      minX: abs.x,
+      minY: abs.y,
+      maxX: abs.x + dims.width,
+      maxY: abs.y + dims.height,
+      area: dims.width * dims.height,
+    };
+  });
+
+  const draggedSet = new Set(draggedNodeIds);
+  let changed = false;
+
+  const nextNodes = nodes.map(node => {
+    if (!draggedSet.has(node.id)) return node;
+    // Do not change parentage for group containers themselves
+    if (node.type === 'blueprintGroup' || node.data?.type === 'group') return node;
+
+    const abs = getAbsoluteNodePosition(node, nodeById);
+    const dims = getNodeDimensions(node);
+    const centerX = abs.x + dims.width / 2;
+    const centerY = abs.y + dims.height / 2;
+
+    // Find candidate containing groups (excluding node itself)
+    const matchingGroups = groupInfos.filter(
+      g =>
+        g.id !== node.id &&
+        centerX >= g.minX &&
+        centerX <= g.maxX &&
+        centerY >= g.minY &&
+        centerY <= g.maxY
+    );
+
+    // If multiple groups match, pick smallest area group (innermost)
+    matchingGroups.sort((a, b) => a.area - b.area);
+    const targetGroup = matchingGroups[0];
+
+    const currentParentId =
+      typeof node.parentId === 'string'
+        ? node.parentId
+        : typeof node.data?.parentEntityRef === 'string'
+          ? node.data.parentEntityRef
+          : undefined;
+
+    const targetGroupId = targetGroup?.id;
+
+    if (targetGroupId === currentParentId) return node;
+
+    changed = true;
+
+    if (targetGroup) {
+      // Re-parent node to target group
+      const relX = Math.max(0, abs.x - targetGroup.minX);
+      const relY = Math.max(0, abs.y - targetGroup.minY);
+      return {
+        ...node,
+        parentId: targetGroup.id,
+        position: { x: relX, y: relY },
+        data: {
+          ...node.data,
+          parentEntityRef: targetGroup.id,
+        },
+      };
+    } else {
+      // Un-parent node to top-level canvas
+      const { parentId: _parentId, extent: _extent, ...rest } = node;
+      return {
+        ...rest,
+        position: { x: abs.x, y: abs.y },
+        data: {
+          ...node.data,
+          parentEntityRef: undefined,
+        },
+      };
+    }
+  });
+
+  if (!changed) return nodes;
+
+  return refreshGroupBoundsFromChildren(nextNodes);
+}

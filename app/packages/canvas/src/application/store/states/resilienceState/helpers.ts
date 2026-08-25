@@ -5,6 +5,8 @@ import type { BlueprintState } from '../../store';
 
 export function resilienceModePanelPatch(): Partial<BlueprintState> {
   return {
+    activeLeftPanel: 'chaosLens',
+    leftCollapsed: false,
     resiliencePanelTab: 'simulation',
     ...(isDesktopViewport() ? { rightCollapsed: false } : {}),
   };

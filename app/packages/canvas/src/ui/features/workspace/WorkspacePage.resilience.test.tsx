@@ -22,7 +22,7 @@ describe('WorkspacePage resilience mode', () => {
   beforeEach(() => {
     useBlueprintStore.setState({
       isStartupOpen: false,
-      leftCollapsed: true,
+      leftCollapsed: false,
       rightCollapsed: false,
       isResilienceMode: false,
       selectedNodeId: 'shop/payment',

@@ -58,11 +58,13 @@ describe('PropertyPanel UI Component', () => {
     expect(screen.getByLabelText('Search external dependencies')).toBeInTheDocument();
   });
 
-  it('should render Workspace config and Catalog when no node is selected', () => {
+  it('should render Workspace config when no node is selected, and Catalog when tab is clicked', () => {
     render(<PropertyPanel />);
 
     expect(screen.getByText(/Properties Panel/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Name/i)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByTestId('right-tab-catalog'));
     expect(screen.getByText('Component Catalog')).toBeInTheDocument();
     expect(screen.getByText('REST API')).toBeInTheDocument();
     expect(screen.getByText('Event Broker')).toBeInTheDocument();
@@ -90,61 +92,29 @@ describe('PropertyPanel UI Component', () => {
     expect(slugInput).toHaveValue('awesome-cloud-workspace');
   });
 
-  it('should trigger node creation when catalog component is clicked', () => {
+  it('should trigger node creation when catalog component is clicked in Catalog tab', () => {
     render(<PropertyPanel />);
 
     expect(useBlueprintStore.getState().nodes).toHaveLength(2);
 
+    fireEvent.click(screen.getByTestId('right-tab-catalog'));
     fireEvent.click(screen.getByText('REST API'));
 
     expect(useBlueprintStore.getState().nodes).toHaveLength(3);
   });
 
-  it('should show validation success message when architecture is acyclic', () => {
+  it('should trigger group node creation when Group / Boundary component is clicked in Catalog tab', () => {
     render(<PropertyPanel />);
 
-    expect(screen.getByText('Architecture Valid')).toBeInTheDocument();
-    expect(screen.getByText(/No cyclic loops or invalid boundaries/i)).toBeInTheDocument();
-  });
+    expect(useBlueprintStore.getState().nodes).toHaveLength(2);
 
-  it('should hide validation success when connection issues exist', () => {
-    useBlueprintStore.setState({
-      validationResult: {
-        isValid: false,
-        issues: [
-          {
-            type: 'invalid-connection',
-            message: 'Dependency source node "missing-node" does not exist.',
-          },
-        ],
-      },
-    });
+    fireEvent.click(screen.getByTestId('right-tab-catalog'));
+    fireEvent.click(screen.getByText('Group / Boundary'));
 
-    render(<PropertyPanel />);
-
-    expect(screen.queryByText('Architecture Valid')).not.toBeInTheDocument();
-    expect(screen.getByText('Validation Alert')).toBeInTheDocument();
-  });
-
-  it('should show cycle warning alert when circular dependency is triggered', () => {
-    const { onConnect } = useBlueprintStore.getState();
-    onConnect({
-      source: 'cloud-infrastructure-workspace/gateway-api',
-      target: 'cloud-infrastructure-workspace/session-store',
-      sourceHandle: null,
-      targetHandle: null,
-    });
-    onConnect({
-      source: 'cloud-infrastructure-workspace/session-store',
-      target: 'cloud-infrastructure-workspace/gateway-api',
-      sourceHandle: null,
-      targetHandle: null,
-    });
-
-    render(<PropertyPanel />);
-
-    expect(screen.getByText('Circular Dependency')).toBeInTheDocument();
-    expect(screen.getByText(/Circular dependency detected/i)).toBeInTheDocument();
+    const nodes = useBlueprintStore.getState().nodes;
+    expect(nodes).toHaveLength(3);
+    const groupNode = nodes.find(n => n.data.type === 'group');
+    expect(groupNode).toBeDefined();
   });
 
   it('should display node attributes editor when a node is selected', () => {

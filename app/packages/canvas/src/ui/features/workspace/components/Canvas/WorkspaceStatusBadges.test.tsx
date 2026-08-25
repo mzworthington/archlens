@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { WorkspaceStatusBadges } from './WorkspaceStatusBadges';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -42,16 +42,21 @@ describe('WorkspaceStatusBadges', () => {
     expect(screen.getByText('Valid')).toBeInTheDocument();
   });
 
-  it('displays cycle warning validation status badge when cycle is present', () => {
+  it('displays cycle warning validation status badge when cycle is present and opens modal on click', () => {
     useBlueprintStore.setState({
       validationResult: {
         isValid: false,
         issues: [{ type: 'cycle', message: 'Cycle detected', path: ['node1', 'node2'] }],
       },
+      isValidationOpen: false,
     });
 
     render(<WorkspaceStatusBadges />);
-    expect(screen.getByText('Cycle Detected')).toBeInTheDocument();
+    const badge = screen.getByTestId('validation-status-badge');
+    expect(badge).toHaveTextContent('Cycle Detected');
+
+    fireEvent.click(badge);
+    expect(useBlueprintStore.getState().isValidationOpen).toBe(true);
   });
 
   it('displays schema version warning badge when loaded version mismatches app expectation', () => {

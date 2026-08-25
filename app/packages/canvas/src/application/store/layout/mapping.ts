@@ -206,7 +206,7 @@ export const mapDomainNodesToRFNodes = (nodes: SystemNode[]): BlueprintRFNode[] 
       id: ref,
       type: 'blueprintNode',
       position: childPos ?? { x: nodePos?.x ?? 0, y: nodePos?.y ?? 0 },
-      ...(parentOnDiagram ? { parentId: parentOnDiagram, extent: 'parent' as const } : {}),
+      ...(parentOnDiagram ? { parentId: parentOnDiagram } : {}),
       data: buildComponentNodeData(node, ref),
     });
   }

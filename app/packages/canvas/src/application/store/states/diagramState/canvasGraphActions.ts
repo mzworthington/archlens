@@ -1,4 +1,8 @@
-import { refreshGroupBoundsFromChildren, isDesktopViewport } from '../../layoutUtils';
+import {
+  refreshGroupBoundsFromChildren,
+  resolveDragGroupMembership,
+  isDesktopViewport,
+} from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
 import { addNodeMutation, updateNodeMutation, deleteNodeMutation } from './nodeMutations';
 import {
@@ -38,13 +42,22 @@ export function createCanvasGraphActions(set: SetFn, get: GetFn) {
       if (hasRemoval) {
         get().recordHistory();
       }
-      const finishedDrag = changes.some(
-        c => c.type === 'position' && 'dragging' in c && c.dragging === false
+      const finishedDragChanges = changes.filter(
+        c =>
+          c.type === 'position' &&
+          'dragging' in c &&
+          c.dragging === false &&
+          typeof c.id === 'string'
       );
+      const finishedDrag = finishedDragChanges.length > 0;
       if (finishedDrag) {
         get().markLayoutCustomized();
       }
       let nextNodes = get().graphChangePort.applyNodeChanges(changes, get().nodes);
+      if (finishedDrag) {
+        const draggedIds = finishedDragChanges.map(c => c.id as string);
+        nextNodes = resolveDragGroupMembership(nextNodes, draggedIds);
+      }
       if (changes.some(c => c.type === 'dimensions')) {
         nextNodes = refreshGroupBoundsFromChildren(nextNodes);
       }
@@ -88,15 +101,22 @@ export function createCanvasGraphActions(set: SetFn, get: GetFn) {
     },
 
     selectNode: (id: string | null, options?: SelectionOptions) => {
-      const expandPanel = shouldExpandPropertyPanel(id !== null, options);
-      const dependencyViewMode = id
+      let resolvedId = id;
+      if (id !== null) {
+        const matchingNode = get().nodes.find(n => n.id === id || n.data?.entityRef === id);
+        if (matchingNode) {
+          resolvedId = matchingNode.id;
+        }
+      }
+      const expandPanel = shouldExpandPropertyPanel(resolvedId !== null, options);
+      const dependencyViewMode = resolvedId
         ? get().dependencyViewMode === 'full'
           ? 'focus'
           : get().dependencyViewMode
         : 'full';
       set({
-        selectedNodeId: id,
-        selectedEdgeId: id ? null : get().selectedEdgeId,
+        selectedNodeId: resolvedId,
+        selectedEdgeId: resolvedId ? null : get().selectedEdgeId,
         rightCollapsed: expandPanel ? false : get().rightCollapsed,
         dependencyViewMode,
       });

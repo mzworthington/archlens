@@ -444,4 +444,16 @@ describe('Canvas Component', () => {
       expect(mockSetLocation).toHaveBeenCalledWith('/workspace/root');
     });
   });
+
+  it('renders Clear Selection button below Zoom out when node is selected', () => {
+    useBlueprintStore.setState({ selectedNodeId: 'node1' });
+    render(<Canvas />);
+
+    const clearButton = screen.getByTestId('clear-selection-button');
+    expect(clearButton).toBeInTheDocument();
+    expect(clearButton).toHaveTextContent('Clear Selection');
+
+    fireEvent.click(clearButton);
+    expect(useBlueprintStore.getState().selectedNodeId).toBeNull();
+  });
 });
