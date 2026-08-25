@@ -43,7 +43,7 @@ export async function continueWithSample(page: Page) {
 export async function exitResilienceModeIfActive(page: Page) {
   const exitResilience = page.getByRole('button', { name: /exit resilience mode/i });
   if (await exitResilience.isVisible().catch(() => false)) {
-    await exitResilience.click({ force: true });
+    await exitResilience.dispatchEvent('click');
     await expect(page.getByTestId('toolbar-resilience-lens')).toHaveAttribute(
       'aria-pressed',
       'false',

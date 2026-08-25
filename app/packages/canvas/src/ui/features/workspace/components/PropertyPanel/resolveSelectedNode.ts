@@ -17,11 +17,16 @@ export function resolveSelectedSchemaNode(
   selectedRfNode: BlueprintRFNode | undefined
 ): SystemNode | null {
   if (!selectedRfNode) return null;
+  const rfId = selectedRfNode.id;
+  const rfRef = selectedRfNode.data.entityRef;
   return (
     schema.nodes.find(
       node =>
-        node.entityRef === selectedRfNode.data.entityRef ||
-        node.entityRef?.endsWith('/' + selectedRfNode.id)
+        node.entityRef === rfRef ||
+        node.entityRef === rfId ||
+        (node.entityRef && rfId.endsWith('/' + node.entityRef)) ||
+        (node.entityRef && rfRef?.endsWith('/' + node.entityRef)) ||
+        (node.entityRef && node.entityRef.endsWith('/' + rfId))
     ) ?? null
   );
 }
