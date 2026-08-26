@@ -12,6 +12,33 @@ import { drillIntoZoomable, expectCanvasReady } from '../helpers/canvas';
 test.describe('docs media recordings', () => {
   test.skip(!RECORD_DOCS_MEDIA, 'Set RECORD_DOCS_MEDIA=1 to record docs media');
 
+  test('canvas-tour.gif', async ({ page }) => {
+    await loadSandbox(page);
+    await expectCanvasReady(page);
+
+    await page.getByRole('button', { name: 'Toggle left panel' }).click();
+    await page.getByRole('button', { name: 'Toggle right panel' }).click();
+    await page.waitForTimeout(600);
+
+    await page.getByRole('button', { name: 'Toggle left panel' }).click();
+    await page.getByRole('button', { name: 'Toggle right panel' }).click();
+    await page.waitForTimeout(400);
+
+    await drillIntoZoomable(page, 'Golden Journey');
+    await page.waitForTimeout(600);
+
+    await drillIntoZoomable(page, 'Checkout API');
+    await page.waitForTimeout(600);
+
+    await page.getByTestId('zoom-out-button').click();
+    await expectCanvasReady(page);
+    await page.waitForTimeout(400);
+
+    await page.getByTestId('zoom-out-button').click();
+    await expectCanvasReady(page);
+    await page.waitForTimeout(400);
+  });
+
   test('golden-journey.gif', async ({ page }, testInfo) => {
     const recordingStartedAt = Date.now();
     await loadGoldenJourneyDiagram(page);
@@ -37,33 +64,6 @@ test.describe('docs media recordings', () => {
   test('tracelens.gif', async ({ page }) => {
     test.setTimeout(120_000);
     await runTraceLensDemo(page);
-    await page.waitForTimeout(600);
-  });
-
-  test('canvas-tour.gif', async ({ page }) => {
-    await loadSandbox(page);
-    await expectCanvasReady(page);
-
-    await page.getByRole('button', { name: 'Toggle left panel' }).click();
-    await page.getByRole('button', { name: 'Toggle right panel' }).click();
-    await page.waitForTimeout(1_000);
-
-    await page.getByRole('button', { name: 'Toggle left panel' }).click();
-    await page.getByRole('button', { name: 'Toggle right panel' }).click();
-    await page.waitForTimeout(800);
-
-    await drillIntoZoomable(page, 'Golden Journey');
-    await page.waitForTimeout(1_200);
-
-    await drillIntoZoomable(page, 'Checkout API');
-    await page.waitForTimeout(1_500);
-
-    await page.getByTestId('zoom-out-button').click();
-    await expectCanvasReady(page);
-    await page.waitForTimeout(800);
-
-    await page.getByTestId('zoom-out-button').click();
-    await expectCanvasReady(page);
     await page.waitForTimeout(600);
   });
 });
