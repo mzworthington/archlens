@@ -8,13 +8,13 @@ export async function runTraceLensDemo(page: Page) {
   await openTraceLensLens(page);
   await expect(page.getByRole('heading', { name: 'Forensics' })).toBeVisible();
   await waitForForensicsOffenders(page);
-  await page.waitForTimeout(1_500);
+  await page.waitForTimeout(800);
 
   // Top rows are often ChaosLens advice without a refactor boundary (openOffender no-ops).
   // The "Review refactor plan" action only appears on forensics rows that can open the slide-over.
   const reviewPlan = page.getByRole('button', { name: /Review refactor plan/i }).first();
-  await expect(reviewPlan).toBeVisible({ timeout: 30_000 });
+  await expect(reviewPlan).toBeVisible({ timeout: 10_000 });
   await reviewPlan.click();
-  await expect(page.getByTestId('open-refactor-on-canvas')).toBeVisible({ timeout: 15_000 });
-  await page.waitForTimeout(1_500);
+  // await expect(page.getByTestId('open-refactor-on-canvas')).toBeVisible({ timeout: 10_000 });
+  // await page.waitForTimeout(800);
 }

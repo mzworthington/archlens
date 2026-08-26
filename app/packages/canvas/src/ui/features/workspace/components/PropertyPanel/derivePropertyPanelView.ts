@@ -36,7 +36,7 @@ export function derivePropertyPanelView({
   resilienceSafeguards: Partial<Record<string, NodeSafeguards>>;
 }) {
   const selectedRFNode = resolveSelectedRfNode(nodes, selectedNodeId);
-  const selectedNode = resolveSelectedSchemaNode(schema, selectedRFNode);
+  const selectedNode = resolveSelectedSchemaNode(schema, selectedRFNode, selectedNodeId);
   const selectedEdge = findSelectedEdge(edges, selectedEdgeId);
   const edgeEndpointMissing = isEdgeEndpointMissing(nodes, selectedEdge);
 

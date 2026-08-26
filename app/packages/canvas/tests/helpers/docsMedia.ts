@@ -76,7 +76,7 @@ export function convertWebmToGif(
     trimBeforeSec > 0 ? ['-ss', String(trimBeforeSec), '-i', webmPath] : ['-i', webmPath];
   // Higher fps + 1920px lanczos + full-palette dither keeps large-display UI readable in docs.
   const filter =
-    `[0:v]fps=15,scale=${width}:-1:flags=lanczos,split[s0][s1];` +
+    `[0:v]fps=10,scale=${width}:-1:flags=lanczos,split[s0][s1];` +
     `[s0]palettegen=stats_mode=full:max_colors=256[p];` +
     `[s1][p]paletteuse=dither=sierra2_4a`;
   execFileSync('ffmpeg', ['-y', ...inputArgs, '-filter_complex', filter, '-loop', '0', gifPath], {

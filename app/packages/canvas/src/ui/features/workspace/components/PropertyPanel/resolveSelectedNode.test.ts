@@ -41,8 +41,12 @@ describe('resolveSelectedSchemaNode', () => {
     expect(resolveSelectedSchemaNode(schema, rf)?.entityRef).toBe('shop/api');
   });
 
+  it('falls back to resolving schema node by selectedNodeId when RF node is undefined', () => {
+    expect(resolveSelectedSchemaNode(schema, undefined, 'shop/db')?.entityRef).toBe('shop/db');
+  });
+
   it('returns null when nothing is selected', () => {
-    expect(resolveSelectedSchemaNode(schema, undefined)).toBeNull();
+    expect(resolveSelectedSchemaNode(schema, undefined, null)).toBeNull();
   });
 });
 

@@ -14,19 +14,29 @@ export function resolveSelectedRfNode(
 
 export function resolveSelectedSchemaNode(
   schema: SystemSchema,
-  selectedRfNode: BlueprintRFNode | undefined
+  selectedRfNode: BlueprintRFNode | undefined,
+  selectedNodeId?: string | null
 ): SystemNode | null {
-  if (!selectedRfNode) return null;
-  const rfId = selectedRfNode.id;
-  const rfRef = selectedRfNode.data.entityRef;
-  return (
-    schema.nodes.find(
+  if (selectedRfNode) {
+    const rfId = selectedRfNode.id;
+    const rfRef = selectedRfNode.data.entityRef;
+    const match = schema.nodes.find(
       node =>
         node.entityRef === rfRef ||
         node.entityRef === rfId ||
         (node.entityRef && rfId.endsWith('/' + node.entityRef)) ||
         (node.entityRef && rfRef?.endsWith('/' + node.entityRef)) ||
         (node.entityRef && node.entityRef.endsWith('/' + rfId))
+    );
+    if (match) return match;
+  }
+  if (!selectedNodeId) return null;
+  return (
+    schema.nodes.find(
+      node =>
+        node.entityRef === selectedNodeId ||
+        node.entityRef?.endsWith('/' + selectedNodeId) ||
+        selectedNodeId.endsWith('/' + node.entityRef)
     ) ?? null
   );
 }
