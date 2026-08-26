@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-08-26
+
+### 🧰 Maintenance & Dependencies
+
+- Reduce tour gif size
+- Update wrangler to v4
+
+## 2026-08-25
+
+### ⚙️ Refactoring & Performance
+
+- Implement flexible workspace panel layout with tabs and improve canvas node dragging behavior
+
 ## 2026-08-20
 
 ### 🚀 Features

@@ -869,6 +869,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ renders error alert notification toast when lastError is set
 - ✅ triggers zoomIntoNode store action on double clicking a C4 node
 - ✅ shows a Zoom out button that navigates to the parent system
+- ✅ renders Clear Selection button below Zoom out when node is selected
 
 ### canvasDisplayGraph
 
@@ -1413,6 +1414,13 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ does not set React Flow parentId for diagram-membership parentEntityRef
 - ✅ round-trips parentEntityRef through rebuildSchemaFromCanvas
 
+#### resolveDragGroupMembership
+
+- ✅ parents a node when dragged into a group boundary
+- ✅ unparents a node when dragged outside its group boundary
+- ✅ selects innermost group (smallest area) when nested/overlapping
+- ✅ does not re-parent group containers when dragged
+
 #### shouldAutoLayoutOnLoad
 
 - ✅ skips auto layout only when every node has saved coordinates
@@ -1607,13 +1615,11 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### PropertyPanel UI Component
 
 - ✅ should render External Dependencies section when no node is selected and workspace is loaded
-- ✅ should render Workspace config and Catalog when no node is selected
+- ✅ should render Workspace config when no node is selected, and Catalog when tab is clicked
 - ✅ should render Diagram C4 Level selector and trigger updateSchemaLevel on change
 - ✅ should render read-only Diagram entityRef from workspaceName or schema.name
-- ✅ should trigger node creation when catalog component is clicked
-- ✅ should show validation success message when architecture is acyclic
-- ✅ should hide validation success when connection issues exist
-- ✅ should show cycle warning alert when circular dependency is triggered
+- ✅ should trigger node creation when catalog component is clicked in Catalog tab
+- ✅ should trigger group node creation when Group / Boundary component is clicked in Catalog tab
 - ✅ should display node attributes editor when a node is selected
 - ✅ should rename node and metadata attributes when edited in node details
 - ✅ should allow adding custom metadata attributes to the component
@@ -1762,6 +1768,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### resolveSelectedSchemaNode
 
 - ✅ resolves schema node from RF selection
+- ✅ falls back to resolving schema node by selectedNodeId when RF node is undefined
 - ✅ returns null when nothing is selected
 
 ### resolveTraceLensScopeDiagrams
@@ -2160,7 +2167,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ displays the C4 level badge
 - ✅ displays a lite-scan badge when the workspace came from a browser scan
 - ✅ displays valid status badge when validation is successful
-- ✅ displays cycle warning validation status badge when cycle is present
+- ✅ displays cycle warning validation status badge when cycle is present and opens modal on click
 - ✅ displays schema version warning badge when loaded version mismatches app expectation
 
 ## CLI
