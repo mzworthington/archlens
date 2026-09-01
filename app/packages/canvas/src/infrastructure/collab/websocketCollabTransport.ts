@@ -20,7 +20,7 @@ export {
 };
 
 /** Default backoff between reconnect attempts (mobile network flaps). */
-export const DEFAULT_COLLAB_RECONNECT_DELAYS_MS = [500, 1000, 2000, 4000, 8000, 15_000] as const;
+const DEFAULT_COLLAB_RECONNECT_DELAYS_MS = [500, 1000, 2000, 4000, 8000, 15_000] as const;
 
 export function collabFrameToArrayBuffer(frame: Uint8Array): ArrayBuffer {
   return frame.buffer.slice(frame.byteOffset, frame.byteOffset + frame.byteLength) as ArrayBuffer;
