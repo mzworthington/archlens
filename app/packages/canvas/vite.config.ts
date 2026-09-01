@@ -84,7 +84,10 @@ export default defineConfig({
         // Docs screenshots + schema pack are large and non-critical offline.
         // Do not glob-ignore all bundled-blueprints - that would drop the preload globs above.
         globIgnores: ['**/docs-assets/**', '**/schemas/**'],
-        navigateFallback: 'index.html',
+        // CF Pages 308s /index.html → /. Navigation requests have redirect
+        // mode "manual"; a redirected SW response becomes net::ERR_FAILED.
+        navigateFallback: '/',
+        additionalManifestEntries: [{ url: '/', revision: appBuildId }],
         // Keep /schemas/*, /bundled-blueprints/*, /bundled-chaos-specs/*, and /assets/* as real assets.
         navigateFallbackDenylist: [
           /^\/schemas\//,

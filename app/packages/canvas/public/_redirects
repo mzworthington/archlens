@@ -10,4 +10,8 @@ https://www.archlens.dev/* https://archlens.dev/:splat 301
 # Static SEO assets must not fall through to the SPA shell.
 /sitemap.xml           /sitemap.xml                200
 /robots.txt            /robots.txt                 200
+# Cloudflare Pages pretty-URLs 308 /index.html → /. Workbox navigateFallback
+# and any SW fetch of that path cannot return a redirected Response to a
+# navigation request (Chrome: net::ERR_FAILED). Serve the file with 200.
+/index.html            /index.html                 200
 /*                     /index.html                 200
