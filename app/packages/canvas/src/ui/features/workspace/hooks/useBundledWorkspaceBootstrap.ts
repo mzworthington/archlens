@@ -11,7 +11,10 @@ import {
   workspaceEntityRefFromPath,
   workspaceEntityRefFromRouteParam,
 } from '../../../../application/navigation/workspaceUrl';
-import { parseCollabRoomId } from '../../../../application/navigation/collabRoomUrl';
+import {
+  parseCollabRoomId,
+  enableCollaborationFromShareLink,
+} from '../../../../application/navigation/collabRoomUrl';
 import {
   COLLABORATION_FEATURE,
   isFeatureEnabled,
@@ -22,7 +25,7 @@ import { EMPTY_WORKSPACE_ENTITY_REF } from '../../../../application/store/states
  * Workspace bootstrap:
  * - Bare `/workspace` (or `/workspace/`) → show the startup chooser (do not auto-open demo).
  * - Deep link `/workspace/<entityRef>` → open sandbox so the entity resolves.
- * - Collab flag + empty-workspace or `?room=` → stay on the current canvas (do not load demo).
+ * - Collab `?room=` or empty-workspace with the flag on → stay on the current canvas (do not load demo).
  * Never re-forces demo after the user opened a folder / browser scan this session.
  */
 export function useBundledWorkspaceBootstrap(): void {
@@ -41,10 +44,14 @@ export function useBundledWorkspaceBootstrap(): void {
       // Bare `/workspace` is a separate route; useRoute('/workspace/*') may not match.
       workspaceEntityRefFromPath(pathOnly);
 
+    const roomId = parseCollabRoomId(search);
+    if (roomId) {
+      enableCollaborationFromShareLink(search);
+    }
+
     const collabEnabled = isFeatureEnabled(COLLABORATION_FEATURE);
     const skipDemoForCollab =
-      collabEnabled &&
-      (Boolean(parseCollabRoomId(search)) || entityRef === EMPTY_WORKSPACE_ENTITY_REF);
+      Boolean(roomId) || (collabEnabled && entityRef === EMPTY_WORKSPACE_ENTITY_REF);
 
     if (skipDemoForCollab) {
       const { isStartupOpen, setIsStartupOpen } = useBlueprintStore.getState();

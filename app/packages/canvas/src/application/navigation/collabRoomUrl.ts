@@ -1,3 +1,5 @@
+import { COLLABORATION_FEATURE, setFeatureEnabled } from './featureGate';
+
 const COLLAB_ROOM_PARAM = 'room';
 
 const ROOM_ID_PATTERN = /^[a-zA-Z0-9_-]{8,64}$/;
@@ -20,6 +22,16 @@ function queryFromSearch(search: string): URLSearchParams {
 export function parseCollabRoomId(search: string): string | null {
   const room = queryFromSearch(search).get(COLLAB_ROOM_PARAM)?.trim() ?? '';
   return isValidCollabRoomId(room) ? room : null;
+}
+
+/** A valid `?room=` share link unlocks live collaboration in this browser. */
+export function enableCollaborationFromShareLink(
+  search: string,
+  storage?: Parameters<typeof setFeatureEnabled>[2]
+): boolean {
+  if (!parseCollabRoomId(search)) return false;
+  setFeatureEnabled(COLLABORATION_FEATURE, true, storage);
+  return true;
 }
 
 export function withCollabRoom(pathname: string, search: string, roomId: string): string {

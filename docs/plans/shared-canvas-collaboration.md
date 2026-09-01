@@ -23,7 +23,7 @@ Share-link rooms (room id in the URL, optional display name) are the slice-B def
 
 Flags live in `localStorage` (`archlens.feature.<id>`). Toggle them from **More actions → Feature flags** on the workspace toolbar. Collaboration is one catalogued id (`collaboration`). Add/remove ids as slices come and go; do not copy the gate.
 
-Share links carry `?room=` only. Each browser must turn Live collaboration on from the flags modal.
+Share links carry `?room=` only. Opening a valid room URL turns Live collaboration on in that browser so the guest can join without the flags modal.
 
 ---
 

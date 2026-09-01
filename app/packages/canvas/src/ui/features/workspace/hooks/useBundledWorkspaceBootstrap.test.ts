@@ -114,11 +114,10 @@ describe('useBundledWorkspaceBootstrap', () => {
     expect(openBundledSample).not.toHaveBeenCalled();
   });
 
-  it('does not auto-open sandbox when a collab room is in the query and the flag is on', async () => {
+  it('does not auto-open sandbox when a collab room is in the query without the flag already on', async () => {
     mockLocation = '/workspace/golden-journey';
     mockParams = { '*': 'golden-journey' };
-    mockSearch = '?room=abcdefgh';
-    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
+    mockSearch = '?room=b361b20b-f34f-4bbe-935e-f39c0f6aea44';
     const openBundledSample = vi.fn().mockResolvedValue(true);
     useBlueprintStore.setState({ openBundledSample, isStartupOpen: true });
 
@@ -128,6 +127,7 @@ describe('useBundledWorkspaceBootstrap', () => {
       expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
     });
     expect(openBundledSample).not.toHaveBeenCalled();
+    expect(localStorage.getItem(featureStorageKey(COLLABORATION_FEATURE))).toBe('1');
   });
 
   it('does not open the startup chooser when a collab room is on bare /workspace', async () => {
