@@ -7,18 +7,26 @@ interface StartupWorkspaceDialogProps {
   onOpenDirectory: () => void;
   onBrowserLiteScan?: () => void;
   onImportMermaid?: () => void;
+  onImportIac?: () => void;
   onStartBlankCanvas?: () => void;
+  onShareBlankCanvas?: () => void;
+  onShareDirectory?: () => void;
+  onShareFile?: () => void;
   loadingMessage?: string | false | null;
 }
 
-/** First-run gate for bare `/workspace` - demo, scan, folder, or blank canvas. */
+/** First-run gate for bare `/workspace` - intent buckets then leaf actions. */
 export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   isOpen,
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
   onImportMermaid,
+  onImportIac,
   onStartBlankCanvas,
+  onShareBlankCanvas,
+  onShareDirectory,
+  onShareFile,
   loadingMessage = null,
 }) => {
   if (!isOpen) return null;
@@ -34,13 +42,17 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
       <div className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm" />
 
       <div className="fixed inset-0 flex items-center justify-center p-4 pointer-events-none overflow-y-auto">
-        <div className="pointer-events-auto w-full max-w-lg my-auto bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl p-5">
+        <div className="pointer-events-auto w-full max-w-xl my-auto bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl p-5">
           <WorkspaceEntryPanel
             onOpenSample={onOpenSample}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}
             onImportMermaid={onImportMermaid}
+            onImportIac={onImportIac}
             onStartBlankCanvas={onStartBlankCanvas}
+            onShareBlankCanvas={onShareBlankCanvas}
+            onShareDirectory={onShareDirectory}
+            onShareFile={onShareFile}
             loadingMessage={loadingMessage}
             showCliPanel
             titleId="startup-workspace-title"

@@ -18,7 +18,7 @@ Use this guide if you want to understand the product, not just the internals.
 
 ## Typical flow
 
-1. Open **ArchLens Canvas** at `/workspace` - the **startup chooser** appears (nothing auto-loads). Pick **Try the demo** for ChaosLens insight, or **Browser lite scan** for a quick structural map of a local folder.
+1. Open **ArchLens Canvas** at `/workspace` - the **startup chooser** appears (nothing auto-loads). Pick an intent (**Investigate** / **Collaborate** / **Ideate**), or use the secondary **Try the demo** strip for ChaosLens insight.
 2. When you need TraceLens/git forensics or CI publish, **install ArchLens CLI** (`curl … | bash` on macOS/Linux) - see [Getting started](./getting-started.md).
 3. Run **ArchLens CLI** against a codebase to generate blueprint YAML (optionally **publish** from CI to object storage).
 4. Return to Canvas and choose **Open existing blueprints folder**, or keep exploring the demo. Import Mermaid/IaC from the toolbar **Open** menu once a diagram is active.
