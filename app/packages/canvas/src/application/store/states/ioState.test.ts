@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { WorkspaceCatalogEntry } from '@archlens/core';
 import { useBlueprintStore } from '../store';
+import type { WorkspacePort } from '../../../core';
 import { db } from '../../../infrastructure/db/db';
 import { dexieWorkingCopyAdapter } from '../../../infrastructure/db/dexieWorkingCopyAdapter';
 import { SAMPLES_CONTEXT_PATH } from '../samplesWorkspace';
@@ -38,7 +39,7 @@ dependencies: []
 `,
   };
 
-  const mockWorkspacePort: any = {
+  const mockWorkspacePort: WorkspacePort = {
     selectDirectory: async () => true,
     readFile: async (path: string) => {
       if (mockFiles[path]) return mockFiles[path];

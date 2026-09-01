@@ -19,6 +19,24 @@ import {
 } from './applyStateHelpers';
 import { sortNodesForReactFlow } from '../../layoutUtils';
 import { setSessionLayout, schemaLayoutFingerprint } from '../../sessionLayoutCache';
+import type { BlueprintStoreSet } from '../../store';
+import type { CollabSessionPort, LoggerPort, WorkingCopyPort } from '../../../../core';
+
+export type ApplyStateSnapshot = {
+  schema?: Pick<SystemSchema, 'name'> & Partial<SystemSchema>;
+  loadedSystems?: Array<{ path: string; name: string; schema: SystemSchema }>;
+  currentFilePath?: string;
+  layoutCustomized?: boolean;
+  validationResult?: ValidationResult;
+  logger?: Partial<LoggerPort>;
+  workingCopyPort?: Pick<WorkingCopyPort, 'saveWorkingSchema'> | null;
+  checkPendingChanges?: () => void | Promise<void>;
+  collabSessionPort?: Pick<CollabSessionPort, 'isActive' | 'pushSchema'> | null;
+  workspaceName?: string;
+  isWorkspaceOpen?: boolean;
+};
+
+export type ApplyStateGet = () => ApplyStateSnapshot;
 
 export type ApplyStateUpdateOptions = {
   /** When false, skip IndexedDB working-copy sync (e.g. autolayout without persisting coords). */
@@ -38,8 +56,8 @@ function validationIssueSignature(result: ValidationResult): string {
  * workspace, validate, refresh YAML, and persist the working copy.
  */
 export function applyStateUpdates(
-  set: (partial: Record<string, unknown>) => void,
-  get: () => any,
+  set: BlueprintStoreSet,
+  get: ApplyStateGet,
   nextNodes: BlueprintRFNode[],
   nextEdges: BlueprintRFEdge[],
   customSchemaName?: string,
@@ -50,10 +68,16 @@ export function applyStateUpdates(
 ) {
   const syncWorkingCopy = options.syncWorkingCopy !== false;
   const updateSessionLayout = options.updateSessionLayout !== false;
-  const currentSchema = get().schema as SystemSchema;
+  const currentSchema = get().schema ?? {
+    name: 'Untitled',
+    version: '1.0.0',
+    level: 'container' as C4Level,
+    nodes: [],
+    dependencies: [],
+  };
   const name = customSchemaName ?? currentSchema.name;
-  const version = currentSchema.version;
-  const level = customSchemaLevel ?? currentSchema.level;
+  const version = currentSchema.version ?? '1.0.0';
+  const level = customSchemaLevel ?? currentSchema.level ?? 'container';
   const entityRef =
     customEntityRef !== undefined
       ? customEntityRef === null
@@ -83,10 +107,26 @@ export function applyStateUpdates(
       return sys;
     }) || [];
 
-  const workspaceName = resolveWorkspaceName(get, name, level);
+  const workspaceName = resolveWorkspaceName(
+    () => ({
+      workspaceName: get().workspaceName ?? '',
+      isWorkspaceOpen: get().isWorkspaceOpen === true,
+      schema: {
+        name: currentSchema.name,
+        version,
+        level,
+        nodes: currentSchema.nodes ?? [],
+        dependencies: currentSchema.dependencies ?? [],
+        entityRef: currentSchema.entityRef,
+        source: currentSchema.source,
+      },
+    }),
+    name,
+    level
+  );
 
   const resolved = resolveWorkspaceEntityRefs(nextLoadedSystems, workspaceName);
-  const currentFilePath = get().currentFilePath as string;
+  const currentFilePath = get().currentFilePath ?? '';
   const fileRefMap = resolved.nodeRefMap[currentFilePath] || {};
   const activeResolvedSchema = resolved.schemas[currentFilePath];
   const systemId =
@@ -96,13 +136,13 @@ export function applyStateUpdates(
   const validationResult = validateGraph(nextSchemaMapped);
   const yamlCode = serializeSchemaToYaml(nextSchemaMapped);
 
-  const prevValidation = get().validationResult as ValidationResult | undefined;
+  const prevValidation = get().validationResult;
   const validationChanged =
     validationIssueSignature(validationResult) !==
     validationIssueSignature(prevValidation ?? { isValid: true, issues: [] });
 
-  if (!validationResult.isValid && validationChanged && get().logger) {
-    get().logger.warn('Schema validation warnings triggered', {
+  if (!validationResult.isValid && validationChanged) {
+    get().logger?.warn?.('Schema validation warnings triggered', {
       issues: validationResult.issues.map(
         (i: { type: string; message: string; path?: string[] }) => ({
           type: i.type,
@@ -165,9 +205,7 @@ export function applyStateUpdates(
         get().checkPendingChanges?.();
       })
       .catch((err: unknown) => {
-        if (get().logger) {
-          get().logger.error('Failed to sync working schema to IndexedDB', err);
-        }
+        get().logger?.error?.('Failed to sync working schema to IndexedDB', err);
       });
   }
 

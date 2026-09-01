@@ -112,9 +112,30 @@ describe('fileSync Adapters', () => {
   });
 
   describe('BrowserWorkspaceAdapter (WorkspacePort)', () => {
-    let mockFileHandle: any;
-    let mockSubFileHandle: any;
-    let mockDirectoryHandle: any;
+    type MockFileHandle = {
+      kind: 'file';
+      name: string;
+      getFile?: ReturnType<typeof vi.fn>;
+    };
+    type MockDirectoryHandle = {
+      kind?: 'directory';
+      name: string;
+      values: () => AsyncIterable<MockFileHandle | MockDirectoryHandle>;
+      getDirectoryHandle: ReturnType<typeof vi.fn>;
+      getFileHandle: ReturnType<typeof vi.fn>;
+      queryPermission: ReturnType<typeof vi.fn>;
+      requestPermission: ReturnType<typeof vi.fn>;
+    };
+
+    async function* iterateHandles(entries: Array<MockFileHandle | MockDirectoryHandle>) {
+      for (const entry of entries) {
+        yield entry;
+      }
+    }
+
+    let mockFileHandle: MockFileHandle;
+    let mockSubFileHandle: MockFileHandle;
+    let mockDirectoryHandle: MockDirectoryHandle;
 
     beforeEach(() => {
       mockFileHandle = {
@@ -130,22 +151,7 @@ describe('fileSync Adapters', () => {
       };
       mockDirectoryHandle = {
         name: 'SelectedWorkspaceFolder',
-        values: () => {
-          return {
-            [Symbol.asyncIterator]() {
-              let index = 0;
-              const entries = [mockFileHandle, mockSubFileHandle];
-              return {
-                async next() {
-                  if (index < entries.length) {
-                    return { value: entries[index++], done: false };
-                  }
-                  return { done: true };
-                },
-              };
-            },
-          };
-        },
+        values: () => iterateHandles([mockFileHandle, mockSubFileHandle]),
         getDirectoryHandle: vi.fn(),
         getFileHandle: vi.fn(),
         queryPermission: vi.fn().mockResolvedValue('granted'),
@@ -182,52 +188,25 @@ describe('fileSync Adapters', () => {
     });
 
     it('readDirectoryFiles traverses child directories recursively and reads all yaml files', async () => {
-      const mockNestedFile = {
+      const mockNestedFile: MockFileHandle = {
         kind: 'file',
         name: 'nested-config.yaml',
         getFile: vi.fn().mockResolvedValue({
           text: vi.fn().mockResolvedValue('nested config content'),
         }),
       };
-      const mockNestedDir = {
+      const mockNestedDir: MockDirectoryHandle = {
         kind: 'directory',
         name: 'subfolder',
-        values: () => {
-          return {
-            [Symbol.asyncIterator]() {
-              let index = 0;
-              const entries = [mockNestedFile];
-              return {
-                async next() {
-                  if (index < entries.length) {
-                    return { value: entries[index++], done: false };
-                  }
-                  return { done: true };
-                },
-              };
-            },
-          };
-        },
+        values: () => iterateHandles([mockNestedFile]),
+        getDirectoryHandle: vi.fn(),
+        getFileHandle: vi.fn(),
+        queryPermission: vi.fn().mockResolvedValue('granted'),
+        requestPermission: vi.fn().mockResolvedValue('granted'),
       };
 
-      // Temporarily mock values on directory handle to include directory
       const originalValues = mockDirectoryHandle.values;
-      mockDirectoryHandle.values = () => {
-        return {
-          [Symbol.asyncIterator]() {
-            let index = 0;
-            const entries = [mockFileHandle, mockNestedDir];
-            return {
-              async next() {
-                if (index < entries.length) {
-                  return { value: entries[index++], done: false };
-                }
-                return { done: true };
-              },
-            };
-          },
-        };
-      };
+      mockDirectoryHandle.values = () => iterateHandles([mockFileHandle, mockNestedDir]);
 
       await BrowserWorkspaceAdapter.selectDirectory();
       const files = await BrowserWorkspaceAdapter.readDirectoryFiles();

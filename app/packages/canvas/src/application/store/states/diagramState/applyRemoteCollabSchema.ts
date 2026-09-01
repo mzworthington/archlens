@@ -7,8 +7,9 @@ import {
 } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
 import type { DiagramStateDeps } from './types';
+import type { BlueprintStoreSet } from '../../store';
 
-type SetFn = (partial: Record<string, unknown>) => void;
+type SetFn = BlueprintStoreSet;
 type GetFn = () => DiagramStateDeps;
 
 /** Apply a schema that arrived from the collab session without echoing it back. */

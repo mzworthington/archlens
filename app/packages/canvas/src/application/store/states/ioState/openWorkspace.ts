@@ -15,6 +15,7 @@ import {
 } from '../../workspaceOpenSession';
 
 import type { ToastNotification } from '../uiState';
+import type { BlueprintStoreSet } from '../../store';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
@@ -32,7 +33,7 @@ type OpenWorkspaceDeps = {
   logger: WorkspaceOpenLogger;
   setNotification?: (n: ToastNotification | null) => void;
   initSchema: (schema: SystemSchema) => void;
-  set: (partial: Record<string, unknown>) => void;
+  set: BlueprintStoreSet;
   isSampleWorkspace?: boolean;
   /** Extra store fields applied atomically with finalize (e.g. workspace ports). */
   committedPorts?: Record<string, unknown>;
@@ -47,7 +48,7 @@ export type LoadWorkspaceFromCatalogDeps = {
   logger: WorkspaceOpenLogger;
   setNotification?: (n: ToastNotification | null) => void;
   initSchema: (schema: SystemSchema) => void;
-  set: (partial: Record<string, unknown>) => void;
+  set: BlueprintStoreSet;
   isSampleWorkspace?: boolean;
   /** When set, finalize is skipped if a newer open started. */
   openGeneration?: number;
@@ -107,7 +108,7 @@ export type LoadWorkspaceFromYamlFilesDeps = {
   logger: WorkspaceOpenLogger;
   setNotification?: (n: ToastNotification | null) => void;
   initSchema: (schema: SystemSchema) => void;
-  set: (partial: Record<string, unknown>) => void;
+  set: BlueprintStoreSet;
   isSampleWorkspace?: boolean;
   /** True when YAML came from an in-browser structural scan (no CLI forensics). */
   isBrowserLiteWorkspace?: boolean;
@@ -334,7 +335,7 @@ async function finalizeWorkspaceOpen(args: {
   logger: WorkspaceOpenLogger;
   setNotification?: (n: ToastNotification | null) => void;
   initSchema: (schema: SystemSchema) => void;
-  set: (partial: Record<string, unknown>) => void;
+  set: BlueprintStoreSet;
 }): Promise<boolean> {
   const {
     entryCandidate,

@@ -13,8 +13,9 @@ import {
 import type { CanvasNodeChange, CanvasEdgeChange, CanvasConnection } from '../../../../core';
 import type { SystemNode, SystemDependency, NodeType } from '@archlens/core';
 import type { DiagramStateDeps, SelectionOptions } from './types';
+import type { BlueprintStoreSet } from '../../store';
 
-type SetFn = (partial: Record<string, unknown>) => void;
+type SetFn = BlueprintStoreSet;
 type GetFn = () => DiagramStateDeps;
 
 function shouldExpandPropertyPanel(hasSelection: boolean, options?: SelectionOptions): boolean {

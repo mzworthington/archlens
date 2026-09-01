@@ -8,6 +8,15 @@ import {
   ToolbarShortcutsButton,
 } from './ActionControls';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import type { SystemSchema } from '@archlens/core';
+
+const emptyHistorySchema: SystemSchema = {
+  name: 'History',
+  version: '1.0.0',
+  level: 'container',
+  nodes: [],
+  dependencies: [],
+};
 
 const toolbarActions = (
   <div className="flex items-center gap-1.5">
@@ -211,7 +220,7 @@ describe('ActionControls Component', () => {
     expect(undoBtn).toBeDisabled();
 
     useBlueprintStore.setState({
-      past: [{ nodes: [], edges: [], schema: {} as any }],
+      past: [{ nodes: [], edges: [], schema: emptyHistorySchema }],
     });
     rerender(<ReactFlowProvider>{toolbarActions}</ReactFlowProvider>);
     expect(undoBtn).not.toBeDisabled();
@@ -232,7 +241,7 @@ describe('ActionControls Component', () => {
     expect(redoBtn).toBeDisabled();
 
     useBlueprintStore.setState({
-      future: [{ nodes: [], edges: [], schema: {} as any }],
+      future: [{ nodes: [], edges: [], schema: emptyHistorySchema }],
     });
     rerender(<ReactFlowProvider>{toolbarActions}</ReactFlowProvider>);
     expect(redoBtn).not.toBeDisabled();

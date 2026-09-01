@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type { SystemSchema } from '@archlens/core';
+import type { C4Level, DependencyType, SystemSchema } from '@archlens/core';
 import { getNodePosition, withNodePosition } from '@archlens/core';
 import type { SchemaDiff, WorkingCopyNode, WorkingCopyDependency } from '../../core';
 
@@ -25,6 +25,29 @@ class BlueprintDatabase extends Dexie {
 }
 
 export const db = new BlueprintDatabase();
+
+const C4_LEVELS: ReadonlySet<string> = new Set(['context', 'container', 'component', 'code']);
+const DEPENDENCY_TYPES: ReadonlySet<string> = new Set([
+  'direct-call',
+  'publish-subscribe',
+  'read-write',
+  'inter-container',
+  'provisions',
+]);
+
+function parseC4Level(value: string | undefined): C4Level {
+  if (value && C4_LEVELS.has(value)) {
+    return value as C4Level;
+  }
+  return 'container';
+}
+
+function parseDependencyType(value: string): DependencyType {
+  if (DEPENDENCY_TYPES.has(value)) {
+    return value as DependencyType;
+  }
+  return 'direct-call';
+}
 
 function systemNodeFromDb(n: DbNode): SystemSchema['nodes'][number] {
   const node: SystemSchema['nodes'][number] = {
@@ -245,13 +268,13 @@ export async function revertWorkingSchema(
   const originalSchema: SystemSchema = {
     name: systemName || 'Restored Schema',
     version: systemVersion || '1.0.0',
-    level: (systemLevel as any) || 'container',
+    level: parseC4Level(systemLevel),
     entityRef: systemEntityRef,
     nodes: originalNodes.map(systemNodeFromDb),
     dependencies: originalDeps.map(d => ({
       from: d.fromRef,
       to: d.toRef,
-      type: d.type as any,
+      type: parseDependencyType(d.type),
       description: d.description,
     })),
   };
@@ -297,13 +320,13 @@ export async function loadWorkingSchema(
   return {
     name: systemName || 'Working Schema',
     version: systemVersion || '1.0.0',
-    level: (systemLevel as any) || 'container',
+    level: parseC4Level(systemLevel),
     entityRef: systemEntityRef,
     nodes: workingNodes.map(systemNodeFromDb),
     dependencies: workingDeps.map(d => ({
       from: d.fromRef,
       to: d.toRef,
-      type: d.type as any,
+      type: parseDependencyType(d.type),
       description: d.description,
     })),
   };

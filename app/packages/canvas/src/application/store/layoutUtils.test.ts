@@ -12,10 +12,43 @@ import {
   isDesktopViewport,
   resolveDragGroupMembership,
 } from './layoutUtils.ts';
-import type { SystemNode } from '@archlens/core';
+import type { NodeType, SystemNode } from '@archlens/core';
 import { getNodePosition } from '@archlens/core';
 import { groupLayoutDimensions } from '@archlens/core/layout';
 import { createBrowserLayoutRegistry } from '../../infrastructure/layout/createBrowserLayoutRegistry';
+import type { BlueprintRFNode } from './layout/mapping';
+
+function testRfNode(opts: {
+  id: string;
+  type: string;
+  position: { x: number; y: number };
+  width?: number;
+  height?: number;
+  parentId?: string;
+  extent?: string;
+  style?: { width: number; height: number };
+  data: {
+    name: string;
+    type: NodeType;
+    properties: Record<string, never>;
+    parentEntityRef?: string;
+  };
+}): BlueprintRFNode {
+  return {
+    id: opts.id,
+    type: opts.type,
+    position: opts.position,
+    width: opts.width,
+    height: opts.height,
+    parentId: opts.parentId,
+    extent: opts.extent,
+    style: opts.style,
+    data: {
+      id: opts.id,
+      ...opts.data,
+    },
+  };
+}
 
 describe('layoutUtils forensics plumbing', () => {
   it('maps node forensics onto RF node data', () => {
@@ -380,7 +413,7 @@ describe('isDesktopViewport', () => {
 
 describe('resolveDragGroupMembership', () => {
   it('parents a node when dragged into a group boundary', () => {
-    const groupNode = {
+    const groupNode = testRfNode({
       id: 'group-1',
       type: 'blueprintGroup',
       position: { x: 100, y: 100 },
@@ -388,16 +421,16 @@ describe('resolveDragGroupMembership', () => {
       height: 500,
       style: { width: 500, height: 500 },
       data: { name: 'Group 1', type: 'group', properties: {} },
-    } as any;
+    });
 
-    const childNode = {
+    const childNode = testRfNode({
       id: 'node-1',
       type: 'blueprintNode',
       position: { x: 200, y: 200 },
       width: 200,
       height: 100,
       data: { name: 'Child Node', type: 'microservice', properties: {} },
-    } as any;
+    });
 
     const updated = resolveDragGroupMembership([groupNode, childNode], ['node-1']);
     const nextChild = updated.find(n => n.id === 'node-1');
@@ -408,7 +441,7 @@ describe('resolveDragGroupMembership', () => {
   });
 
   it('unparents a node when dragged outside its group boundary', () => {
-    const groupNode = {
+    const groupNode = testRfNode({
       id: 'group-1',
       type: 'blueprintGroup',
       position: { x: 100, y: 100 },
@@ -416,9 +449,9 @@ describe('resolveDragGroupMembership', () => {
       height: 400,
       style: { width: 400, height: 400 },
       data: { name: 'Group 1', type: 'group', properties: {} },
-    } as any;
+    });
 
-    const childNode = {
+    const childNode = testRfNode({
       id: 'node-1',
       type: 'blueprintNode',
       parentId: 'group-1',
@@ -432,7 +465,7 @@ describe('resolveDragGroupMembership', () => {
         parentEntityRef: 'group-1',
         properties: {},
       },
-    } as any;
+    });
 
     const updated = resolveDragGroupMembership([groupNode, childNode], ['node-1']);
     const nextChild = updated.find(n => n.id === 'node-1');
@@ -444,7 +477,7 @@ describe('resolveDragGroupMembership', () => {
   });
 
   it('selects innermost group (smallest area) when nested/overlapping', () => {
-    const outerGroup = {
+    const outerGroup = testRfNode({
       id: 'outer-group',
       type: 'blueprintGroup',
       position: { x: 0, y: 0 },
@@ -452,9 +485,9 @@ describe('resolveDragGroupMembership', () => {
       height: 1000,
       style: { width: 1000, height: 1000 },
       data: { name: 'Outer Group', type: 'group', properties: {} },
-    } as any;
+    });
 
-    const innerGroup = {
+    const innerGroup = testRfNode({
       id: 'inner-group',
       type: 'blueprintGroup',
       position: { x: 100, y: 100 },
@@ -462,16 +495,16 @@ describe('resolveDragGroupMembership', () => {
       height: 300,
       style: { width: 300, height: 300 },
       data: { name: 'Inner Group', type: 'group', properties: {} },
-    } as any;
+    });
 
-    const childNode = {
+    const childNode = testRfNode({
       id: 'node-1',
       type: 'blueprintNode',
       position: { x: 150, y: 150 },
       width: 100,
       height: 50,
       data: { name: 'Child Node', type: 'microservice', properties: {} },
-    } as any;
+    });
 
     const updated = resolveDragGroupMembership([outerGroup, innerGroup, childNode], ['node-1']);
     const nextChild = updated.find(n => n.id === 'node-1');
@@ -480,7 +513,7 @@ describe('resolveDragGroupMembership', () => {
   });
 
   it('does not re-parent group containers when dragged', () => {
-    const outerGroup = {
+    const outerGroup = testRfNode({
       id: 'outer-group',
       type: 'blueprintGroup',
       position: { x: 0, y: 0 },
@@ -488,9 +521,9 @@ describe('resolveDragGroupMembership', () => {
       height: 1000,
       style: { width: 1000, height: 1000 },
       data: { name: 'Outer Group', type: 'group', properties: {} },
-    } as any;
+    });
 
-    const innerGroup = {
+    const innerGroup = testRfNode({
       id: 'inner-group',
       type: 'blueprintGroup',
       position: { x: 100, y: 100 },
@@ -498,7 +531,7 @@ describe('resolveDragGroupMembership', () => {
       height: 300,
       style: { width: 300, height: 300 },
       data: { name: 'Inner Group', type: 'group', properties: {} },
-    } as any;
+    });
 
     const updated = resolveDragGroupMembership([outerGroup, innerGroup], ['inner-group']);
     const nextInnerGroup = updated.find(n => n.id === 'inner-group');

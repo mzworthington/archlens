@@ -1,4 +1,5 @@
 import type { SystemSchema } from '@archlens/core';
+import type { BlueprintStoreSet } from '../../store';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
@@ -6,7 +7,7 @@ type LoadedSystem = { path: string; name: string; schema: SystemSchema };
  * Shared path for YAML/JSON import: register schema in loadedSystems and activate it.
  */
 export function importSchemaContent(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: () => {
     loadedSystems: LoadedSystem[];
     initSchema: (schema: SystemSchema) => void;

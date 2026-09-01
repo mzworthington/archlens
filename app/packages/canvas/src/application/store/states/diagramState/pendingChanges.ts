@@ -1,6 +1,7 @@
 import type { DiagramStateDeps } from './types';
+import type { BlueprintStoreSet } from '../../store';
 
-type SetFn = (partial: Record<string, unknown>) => void;
+type SetFn = BlueprintStoreSet;
 type GetFn = () => DiagramStateDeps;
 
 export function createCheckPendingChanges(set: SetFn, get: GetFn) {

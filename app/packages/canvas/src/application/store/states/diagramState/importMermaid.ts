@@ -8,6 +8,7 @@ import {
   type DiagramImportContext,
   type DiagramImportPreview,
 } from './diagramImportShared';
+import type { BlueprintStoreSet } from '../../store';
 
 export type MermaidImportPreview = DiagramImportPreview<MermaidParseResult>;
 
@@ -24,7 +25,7 @@ export function previewMermaidImport(
 }
 
 export function executeMermaidImport(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: () => {
     schema: import('@archlens/core').SystemSchema;
     nodes: import('../../layoutUtils').BlueprintRFNode[];

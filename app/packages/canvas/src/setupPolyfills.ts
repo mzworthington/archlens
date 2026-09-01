@@ -70,7 +70,8 @@ if (typeof window !== 'undefined') {
 }
 
 // Polyfill JSDOM window global inside Node vm isolation
-if (typeof globalThis !== 'undefined' && (globalThis as any).window) {
-  (globalThis as any).window.indexedDB = fakeIndexedDB;
-  (globalThis as any).window.IDBKeyRange = IDBKeyRange;
+const jsdomWindow = (globalThis as { window?: typeof globalThis & Window }).window;
+if (jsdomWindow) {
+  jsdomWindow.indexedDB = fakeIndexedDB;
+  jsdomWindow.IDBKeyRange = IDBKeyRange;
 }

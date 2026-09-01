@@ -6,6 +6,7 @@ import {
 } from '@archlens/core';
 import type { WorkingCopyPort, WorkspacePort, LoggerPort } from '../../../../core';
 import { applyDiskFirstDraftResolution } from './openWorkspace';
+import type { BlueprintStoreSet } from '../../store';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
@@ -19,7 +20,7 @@ export type EnsureSystemLoadedDeps = {
     workspaceName: string;
     nodeRefMap: Record<string, Record<string, string>>;
   };
-  set: (partial: Record<string, unknown>) => void;
+  set: BlueprintStoreSet;
 };
 
 /** In-flight loads keyed by path so concurrent navigations coalesce. */

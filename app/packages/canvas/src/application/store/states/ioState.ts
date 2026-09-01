@@ -47,6 +47,7 @@ import { runBrowserAnalysisWorker } from '../../../infrastructure/analysis/runBr
 import { isCancellationError } from '@archlens/analysis/cancellation';
 import { CLI_GETTING_STARTED_PATH } from '../../../constants/cli';
 import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/collabDisplayName';
+import type { BlueprintStoreSet } from '../store';
 
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
@@ -95,7 +96,7 @@ export interface IoState {
 
 type IoStateDeps = IoState & DiagramState & UiState;
 
-export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
+export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): IoState => ({
   fileSystemPort: noopFileSystem,
   workspacePort: noopWorkspace,
   folderWorkspacePort: noopWorkspace,

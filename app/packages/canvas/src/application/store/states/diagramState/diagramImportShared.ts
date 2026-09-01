@@ -11,6 +11,7 @@ import {
 import type { BlueprintRFNode } from '../../layoutUtils';
 import { mapDomainDepsToRFEdges, mapDomainNodeToRFNode } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
+import type { BlueprintStoreSet } from '../../store';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
@@ -146,7 +147,7 @@ function buildMergedRfNodes(
 }
 
 export function executeDiagramImport(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: () => {
     nodes: BlueprintRFNode[];
     loadedSystems: LoadedSystem[];

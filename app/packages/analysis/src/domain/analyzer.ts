@@ -4,6 +4,7 @@ import { ContextLevelWriter } from '../writers/contextLevelWriter.ts';
 import { ContainerLevelWriter } from '../writers/containerLevelWriter.ts';
 import { ComponentLevelWriter } from '../writers/componentLevelWriter.ts';
 import type { SystemNode, SourceProvenance } from '@archlens/core';
+import type { ParsedSourceFile } from './types.ts';
 import { DEFAULT_ANALYSIS_OPTIONS, type AnalysisOptions } from './analysisOptions.ts';
 import {
   discoverSystems,
@@ -49,7 +50,7 @@ export class CodebaseAnalyzer {
     };
   }
 
-  private getMeaningfulName(sourceFiles: any[], globPattern: string): string {
+  private getMeaningfulName(sourceFiles: ParsedSourceFile[], globPattern: string): string {
     const topNamespaces: string[] = [];
     sourceFiles.forEach(file => {
       if (file.namespaces) {

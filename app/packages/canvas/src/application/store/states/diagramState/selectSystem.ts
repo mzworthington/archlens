@@ -6,8 +6,9 @@ import {
 import { yieldToUi } from '../../yieldToUi';
 import { ensureSystemLoaded } from '../ioState/ensureSystemLoaded';
 import type { DiagramStateDeps } from './types';
+import type { BlueprintStoreSet } from '../../store';
 
-type SetFn = (partial: Record<string, unknown>) => void;
+type SetFn = BlueprintStoreSet;
 type GetFn = () => DiagramStateDeps;
 
 export function createSelectSystem(set: SetFn, get: GetFn) {

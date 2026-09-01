@@ -13,6 +13,7 @@ import {
   type DiagramImportContext,
   type DiagramImportPreview,
 } from './diagramImportShared';
+import type { BlueprintStoreSet } from '../../store';
 
 export type IacImportPreview = DiagramImportPreview<IacParseResult>;
 
@@ -31,7 +32,7 @@ export function previewIacImport(
 }
 
 export function executeIacImport(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: () => {
     schema: import('@archlens/core').SystemSchema;
     nodes: import('../../layoutUtils').BlueprintRFNode[];

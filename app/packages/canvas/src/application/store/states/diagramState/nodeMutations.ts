@@ -3,8 +3,9 @@ import { withNodePosition } from '@archlens/core';
 import { mapDomainNodeToRFNode } from '../../layoutUtils';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
+import type { BlueprintStoreSet } from '../../store';
 
-type SetFn = (partial: Record<string, unknown>) => void;
+type SetFn = BlueprintStoreSet;
 type GetFn = () => {
   nodes: BlueprintRFNode[];
   edges: BlueprintRFEdge[];

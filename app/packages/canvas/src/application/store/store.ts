@@ -17,6 +17,12 @@ export { resolveRelativePath } from '@archlens/core';
 export interface BlueprintState
   extends UiState, DiagramState, IoState, ResilienceState, TraceLensState {}
 
+export type BlueprintStoreSet = {
+  bivarianceHack(
+    partial: Partial<BlueprintState> | ((state: BlueprintState) => Partial<BlueprintState>)
+  ): void;
+}['bivarianceHack'];
+
 export const useBlueprintStore = create<BlueprintState>((set, get) => ({
   ...createUiState(set),
   ...createDiagramState(set, get),

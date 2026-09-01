@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import type { AnchorHTMLAttributes, ReactNode } from 'react';
 import { WorkspacePage } from './ui/features/workspace/WorkspacePage';
 import { AppProvider } from './application/context/AppContext';
 import { useBlueprintStore } from './application/store/store';
@@ -21,7 +22,11 @@ vi.mock('wouter', () => ({
     return q >= 0 ? mockLocation.slice(q + 1) : '';
   },
   useRoute: () => [mockMatch, mockParams],
-  Link: ({ href, children, ...props }: any) => (
+  Link: ({
+    href,
+    children,
+    ...props
+  }: AnchorHTMLAttributes<HTMLAnchorElement> & { children?: ReactNode }) => (
     <a href={href} {...props}>
       {children}
     </a>
@@ -37,7 +42,7 @@ vi.mock('./ui/features/workspace/components/Canvas/Canvas', () => ({
 }));
 
 vi.mock('@xyflow/react', () => ({
-  ReactFlowProvider: ({ children }: any) => <>{children}</>,
+  ReactFlowProvider: ({ children }: { children?: ReactNode }) => <>{children}</>,
   useReactFlow: () => ({
     getNode: vi.fn(),
     setCenter: vi.fn(),

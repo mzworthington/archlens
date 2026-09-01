@@ -3,8 +3,9 @@ import type { SystemDependency } from '@archlens/core';
 import type { BlueprintRFEdge, ComponentEdgeData } from '../../layoutUtils';
 import { dependencyArrowMarker } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
+import type { BlueprintStoreSet } from '../../store';
 
-type SetFn = (partial: Record<string, unknown>) => void;
+type SetFn = BlueprintStoreSet;
 type GetFn = () => {
   nodes: import('../../layoutUtils').BlueprintRFNode[];
   edges: BlueprintRFEdge[];

@@ -1,5 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import { ReactFlow, Background, Controls, BackgroundVariant, Panel } from '@xyflow/react';
+import type { NodeTypes } from '@xyflow/react';
 import { useShallow } from 'zustand/react/shallow';
 import { useLocation } from 'wouter';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -137,9 +138,9 @@ export const Canvas: React.FC = () => {
   });
 
   const nodeTypes = useMemo(
-    () => ({
-      blueprintNode: BlueprintNode as any,
-      blueprintGroup: BlueprintGroupNode as any,
+    (): NodeTypes => ({
+      blueprintNode: BlueprintNode,
+      blueprintGroup: BlueprintGroupNode,
     }),
     []
   );

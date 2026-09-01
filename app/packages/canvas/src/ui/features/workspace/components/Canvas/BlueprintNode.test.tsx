@@ -2,6 +2,9 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { BlueprintNode } from './BlueprintNode';
 import { useBlueprintStore } from '../../../../../application/store/store';
+import type { ComponentNodeData } from '../../../../../application/store/store';
+import type { ForensicClassification } from '@archlens/core';
+import type { Node, NodeProps } from '@xyflow/react';
 
 const mockSetLocation = vi.fn();
 vi.mock('wouter', () => ({
@@ -11,7 +14,7 @@ vi.mock('wouter', () => ({
 
 vi.mock('@xyflow/react', () => {
   return {
-    Handle: ({ type, position, id }: any) => (
+    Handle: ({ type, position, id }: { type: string; position: string; id?: string }) => (
       <div data-testid={`handle-${type}-${position}`} id={id} />
     ),
     Position: {
@@ -45,7 +48,7 @@ describe('BlueprintNode Component', () => {
     useBlueprintStore.setState({ selectedNodeId: null, liteCanvas: false });
   });
 
-  const defaultProps = {
+  const defaultProps: NodeProps<Node<ComponentNodeData, 'blueprintNode'>> = {
     id: 'test-node-1',
     type: 'blueprintNode',
     data: {
@@ -58,12 +61,13 @@ describe('BlueprintNode Component', () => {
     selected: false,
     zIndex: 0,
     isConnectable: true,
-    xPos: 0,
-    yPos: 0,
     dragging: false,
+    draggable: true,
+    selectable: true,
+    deletable: true,
     positionAbsoluteX: 0,
     positionAbsoluteY: 0,
-  } as any;
+  };
 
   it('renders correctly with basic node details', () => {
     render(<BlueprintNode {...defaultProps} />);
@@ -106,7 +110,7 @@ describe('BlueprintNode Component', () => {
           complexity: 20,
           authorCount: 1,
           hotspotScore: 0.9,
-          classifications: ['hotspot', 'knowledge-silo'],
+          classifications: ['hotspot', 'knowledge-silo'] as ForensicClassification[],
         },
       },
     };

@@ -19,13 +19,17 @@ import { createInitSchema } from './diagramState/initSchema';
 import { createApplyClientLayout } from './diagramState/applyClientLayout';
 import { applyRemoteCollabSchema } from './diagramState/applyRemoteCollabSchema';
 import { createCanvasGraphActions } from './diagramState/canvasGraphActions';
+import type { BlueprintStoreSet } from '../store';
 import type { DiagramState, DiagramStateDeps } from './diagramState/types';
 
 export type { DiagramState, SelectionOptions } from './diagramState/types';
 
 const initial = createDiagramInitialState();
 
-export const createDiagramState = (set: any, get: () => DiagramStateDeps): DiagramState => {
+export const createDiagramState = (
+  set: BlueprintStoreSet,
+  get: () => DiagramStateDeps
+): DiagramState => {
   const historyActions = createHistoryActions(set, get);
   const canvasGraphActions = createCanvasGraphActions(set, get);
 

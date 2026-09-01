@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Canvas } from './Canvas';
 import { useBlueprintStore } from '../../../../../application/store/store';
@@ -7,17 +8,30 @@ const mockSetLocation = vi.fn();
 vi.mock('wouter', () => ({
   useLocation: () => ['/workspace/application', mockSetLocation],
   useSearch: () => '',
-  Link: ({ children, to }: any) => <a href={to}>{children}</a>,
+  Link: ({ children, to }: { children?: ReactNode; to?: string }) => <a href={to}>{children}</a>,
 }));
 
 vi.mock('@xyflow/react', () => {
+  type MockFlowNode = { id: string; data?: { entityRef?: string; hotspotHeat?: number } };
+  type MockReactFlowProps = {
+    children?: ReactNode;
+    nodes: MockFlowNode[];
+    edges: unknown[];
+    onNodeDoubleClick?: (event: MouseEvent | null, node: MockFlowNode) => void;
+  };
+  type MockPanelProps = {
+    children?: ReactNode;
+    position?: string;
+    'data-testid'?: string;
+  };
+
   return {
-    ReactFlow: ({ children, nodes, edges, onNodeDoubleClick }: any) => (
+    ReactFlow: ({ children, nodes, edges, onNodeDoubleClick }: MockReactFlowProps) => (
       <div data-testid="react-flow">
         <div data-testid="nodes-count">{nodes.length}</div>
         <div data-testid="edges-count">{edges.length}</div>
         <div data-testid="heated-nodes-count">
-          {nodes.filter((n: any) => (n.data?.hotspotHeat ?? 0) > 0).length}
+          {nodes.filter(n => (n.data?.hotspotHeat ?? 0) > 0).length}
         </div>
         <button
           data-testid="double-click-node"
@@ -37,7 +51,7 @@ vi.mock('@xyflow/react', () => {
     Background: () => <div data-testid="background" />,
     Controls: () => <div data-testid="controls" />,
     MiniMap: () => <div data-testid="minimap" />,
-    Panel: ({ children, position, ...props }: any) => (
+    Panel: ({ children, position, ...props }: MockPanelProps) => (
       <div data-testid={props['data-testid'] ?? `panel-${position}`}>{children}</div>
     ),
     BackgroundVariant: {
@@ -48,7 +62,9 @@ vi.mock('@xyflow/react', () => {
       getInternalNode: () => undefined,
       screenToFlowPosition: (pos: { x: number; y: number }) => pos,
     }),
-    ViewportPortal: ({ children }: any) => <div data-testid="viewport-portal">{children}</div>,
+    ViewportPortal: ({ children }: { children?: ReactNode }) => (
+      <div data-testid="viewport-portal">{children}</div>
+    ),
   };
 });
 

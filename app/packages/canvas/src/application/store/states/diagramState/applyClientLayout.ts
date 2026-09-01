@@ -10,8 +10,9 @@ import {
 import { computeClientLayout } from '../../../layout/computeClientLayout';
 import { applyStateUpdates } from './applyStateUpdates';
 import type { DiagramStateDeps } from './types';
+import type { BlueprintStoreSet } from '../../store';
 
-type SetFn = (partial: Record<string, unknown>) => void;
+type SetFn = BlueprintStoreSet;
 type GetFn = () => DiagramStateDeps;
 
 export function createApplyClientLayout(set: SetFn, get: GetFn) {

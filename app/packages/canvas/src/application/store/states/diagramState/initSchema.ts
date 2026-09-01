@@ -23,9 +23,9 @@ import {
 } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
 import type { DiagramStateDeps } from './types';
-import type { BlueprintState } from '../../store';
+import type { BlueprintState, BlueprintStoreSet } from '../../store';
 
-type SetFn = (partial: Record<string, unknown>) => void;
+type SetFn = BlueprintStoreSet;
 type GetFn = () => DiagramStateDeps;
 
 export function createInitSchema(set: SetFn, get: GetFn) {

@@ -1,4 +1,5 @@
 import type { SystemSchema } from '@archlens/core';
+import type { BlueprintStoreSet } from '../../store';
 
 export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = {
   name: 'Empty Workspace',
@@ -18,7 +19,7 @@ export const EMPTY_WORKSPACE_ENTITY_REF = 'empty-workspace';
  * Used when starting from Mermaid import so merge is not against bundled demos.
  */
 export function resetToEmptyWorkspace(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: () => {
     initSchema: (schema: SystemSchema) => void;
     clearHistory: () => void;

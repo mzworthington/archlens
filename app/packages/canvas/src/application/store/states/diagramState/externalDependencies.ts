@@ -22,6 +22,7 @@ import {
 import type { BlueprintRFEdge, BlueprintRFNode } from '../../layoutUtils';
 import { applyStateUpdates } from './applyStateUpdates';
 import type { ToastNotification } from '../uiState';
+import type { BlueprintStoreSet } from '../../store';
 
 type LoadedSystem = { path: string; name: string; schema: SystemSchema };
 
@@ -88,7 +89,7 @@ export function listWorkspaceExternalCandidates(
 }
 
 function mergeExternalNodesOntoCanvas(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: StoreGet,
   entities: WorkspaceEntity[],
   dependencies?: SystemDependency[]
@@ -150,7 +151,7 @@ function mergeExternalNodesOntoCanvas(
  * inter-container edges (with component-pair descriptions) onto the canvas.
  */
 function applyContainerRollupToCanvas(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: StoreGet,
   enriched: SystemSchema
 ): { nodesAdded: number; edgesAdded: number } {
@@ -211,7 +212,7 @@ function applyContainerRollupToCanvas(
 }
 
 export function addExternalDependencies(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: StoreGet,
   entityRefs: EntityRef[],
   dependencies?: SystemDependency[]
@@ -238,10 +239,7 @@ export function addExternalDependencies(
   }
 }
 
-export function syncSuggestedExternals(
-  set: (partial: Record<string, unknown>) => void,
-  get: StoreGet
-) {
+export function syncSuggestedExternals(set: BlueprintStoreSet, get: StoreGet) {
   void set;
   const context = requireWorkspaceContext(get);
   if (!context) return;
@@ -319,7 +317,7 @@ export function syncSuggestedExternals(
 }
 
 export function expandExternalSummaryHub(
-  set: (partial: Record<string, unknown>) => void,
+  set: BlueprintStoreSet,
   get: StoreGet,
   band: ExternalSummaryBand
 ) {

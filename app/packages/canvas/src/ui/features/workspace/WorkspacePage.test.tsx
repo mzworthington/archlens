@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import type { AnchorHTMLAttributes, ReactNode } from 'react';
 import { WorkspacePage } from './WorkspacePage';
 import { useBlueprintStore } from '../../../application/store/store';
 
@@ -8,7 +9,7 @@ const mockSetLocation = vi.fn(newLoc => {
   mockLocation = newLoc;
 });
 let mockMatch = true;
-let mockParams: any = { '*': 'my-system' };
+let mockParams: { '*': string } = { '*': 'my-system' };
 
 vi.mock('wouter', () => ({
   useLocation: () => {
@@ -20,12 +21,16 @@ vi.mock('wouter', () => ({
     return q >= 0 ? mockLocation.slice(q + 1) : '';
   },
   useRoute: () => [mockMatch, mockParams],
-  Link: ({ href, children, ...props }: any) => (
+  Link: ({
+    href,
+    children,
+    ...props
+  }: AnchorHTMLAttributes<HTMLAnchorElement> & { children?: ReactNode }) => (
     <a href={href} {...props}>
       {children}
     </a>
   ),
-  Router: ({ children }: any) => <>{children}</>,
+  Router: ({ children }: { children?: ReactNode }) => <>{children}</>,
 }));
 
 vi.mock('./layout/LeftWorkspacePanel', () => ({

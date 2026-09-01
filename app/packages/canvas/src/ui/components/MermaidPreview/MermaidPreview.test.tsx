@@ -10,23 +10,25 @@ vi.mock('mermaid', () => ({
   },
 }));
 
+type MermaidRenderResult = { svg: string; diagramType: string };
+
 describe('MermaidPreview Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('renders loading state initially then displays rendered SVG', async () => {
-    let resolveRender: (val: any) => void = () => {};
-    const renderPromise = new Promise(resolve => {
+    let resolveRender: (val: MermaidRenderResult) => void = () => {};
+    const renderPromise = new Promise<MermaidRenderResult>(resolve => {
       resolveRender = resolve;
     });
-    vi.mocked(mermaid.render).mockImplementation(() => renderPromise as any);
+    vi.mocked(mermaid.render).mockImplementation(() => renderPromise);
 
     render(<MermaidPreview code="graph TD; A-->B;" />);
 
     expect(screen.getByText('Generating flowchart...')).toBeInTheDocument();
 
-    resolveRender({ svg: '<svg data-testid="mock-svg">Mock SVG</svg>' });
+    resolveRender({ svg: '<svg data-testid="mock-svg">Mock SVG</svg>', diagramType: 'flowchart' });
 
     await waitFor(() => {
       expect(screen.getByTestId('mock-svg')).toBeInTheDocument();
@@ -49,7 +51,8 @@ describe('MermaidPreview Component', () => {
   it('opens and closes expanded portal view', async () => {
     vi.mocked(mermaid.render).mockResolvedValue({
       svg: '<svg data-testid="mock-svg">Mock SVG</svg>',
-    } as any);
+      diagramType: 'flowchart',
+    });
 
     render(<MermaidPreview code="graph TD; A-->B;" />);
 

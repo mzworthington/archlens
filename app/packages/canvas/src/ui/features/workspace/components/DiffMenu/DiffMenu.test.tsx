@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { DiffMenu } from './DiffMenu';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import type { WorkingCopyPort } from '../../../../../core';
+import type { LoggerPort, WorkingCopyPort } from '../../../../../core';
 
 const computeSchemaDiff = vi.fn();
 const revertWorkingSchema = vi.fn();
@@ -45,8 +45,7 @@ describe('DiffMenu Component', () => {
         info: vi.fn(),
         error: vi.fn(),
         warn: vi.fn(),
-        debug: vi.fn(),
-      } as any,
+      } satisfies LoggerPort,
     });
   });
 

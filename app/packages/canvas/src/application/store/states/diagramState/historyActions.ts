@@ -1,10 +1,10 @@
 import { applyStateUpdates } from './applyStateUpdates';
+import type { BlueprintStoreSet } from '../../store';
 import type { DiagramStateDeps } from './types';
 
-type SetFn = (partial: Record<string, unknown>) => void;
 type GetFn = () => DiagramStateDeps;
 
-export function createHistoryActions(set: SetFn, get: GetFn) {
+export function createHistoryActions(set: BlueprintStoreSet, get: GetFn) {
   return {
     recordHistory: () => {
       const { nodes, edges, schema } = get();
