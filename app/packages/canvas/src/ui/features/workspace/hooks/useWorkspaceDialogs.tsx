@@ -10,6 +10,7 @@ import { FeatureFlagsDialog } from '../components/FeatureFlagsDialog/FeatureFlag
 import { ChildLevelExternalsDialog } from '../components/ChildLevelExternalsDialog/ChildLevelExternalsDialog';
 import { WorkspaceSourceCodeDialog } from '../components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { ValidationDialog } from '../components/ValidationDialog/ValidationDialog';
+import { CollabShareDialog } from '../components/CollabShareDialog/CollabShareDialog';
 import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
@@ -18,11 +19,13 @@ import { markFolderWorkspacePreferred } from '../../../../application/store/work
 import { EMPTY_WORKSPACE_ENTITY_REF } from '../../../../application/store/states/diagramState/resetToEmptyWorkspace';
 import { buildWorkspaceEntityHref } from '../../../../application/store/sandboxWorkspace';
 import { LazyMountOnOpen } from '../components/LazyMountOnOpen';
+import { useCollabShareSession } from './useCollabShareSession';
 import React, { useCallback } from 'react';
 import { useLocation } from 'wouter';
 
 export function useWorkspaceDialogs(): React.ReactNode {
   const [, setLocation] = useLocation();
+  const collabShare = useCollabShareSession();
   const {
     isDiffOpen,
     setIsDiffOpen,
@@ -50,6 +53,7 @@ export function useWorkspaceDialogs(): React.ReactNode {
     openBundledSample,
     openBrowserLiteScan,
     resetToEmptyWorkspace,
+    loadSchema,
   } = useBlueprintStore();
 
   const handleOpenSample = useCallback(async () => {
@@ -84,9 +88,20 @@ export function useWorkspaceDialogs(): React.ReactNode {
   }, [openBrowserLiteScan, setIsStartupOpen, setLocation]);
 
   const handleImportMermaid = useCallback(() => {
+    markFolderWorkspacePreferred();
+    resetToEmptyWorkspace();
     setIsStartupOpen(false);
+    setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
     setIsImportMermaidOpen(true);
-  }, [setIsStartupOpen, setIsImportMermaidOpen]);
+  }, [resetToEmptyWorkspace, setIsStartupOpen, setIsImportMermaidOpen, setLocation]);
+
+  const handleImportIac = useCallback(() => {
+    markFolderWorkspacePreferred();
+    resetToEmptyWorkspace();
+    setIsStartupOpen(false);
+    setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
+    setIsImportIacOpen(true);
+  }, [resetToEmptyWorkspace, setIsStartupOpen, setIsImportIacOpen, setLocation]);
 
   const handleStartBlankCanvas = useCallback(() => {
     // Treat as an explicit non-demo choice so deep-link bootstrap does not force the sample.
@@ -95,6 +110,37 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setIsStartupOpen(false);
     setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
   }, [resetToEmptyWorkspace, setIsStartupOpen, setLocation]);
+
+  const handleShareBlankCanvas = useCallback(() => {
+    markFolderWorkspacePreferred();
+    resetToEmptyWorkspace();
+    setIsStartupOpen(false);
+    setLocation(buildWorkspaceEntityHref(EMPTY_WORKSPACE_ENTITY_REF), { replace: true });
+    collabShare.openShareDialog();
+  }, [collabShare, resetToEmptyWorkspace, setIsStartupOpen, setLocation]);
+
+  const handleShareDirectory = useCallback(async () => {
+    try {
+      const opened = await openWorkspaceDirectory();
+      if (!opened) return;
+      setIsStartupOpen(false);
+      navigateToActiveWorkspaceEntity(setLocation);
+      collabShare.openShareDialog();
+    } catch (err) {
+      console.error('Failed to open workspace directory for share:', err);
+    }
+  }, [collabShare, openWorkspaceDirectory, setIsStartupOpen, setLocation]);
+
+  const handleShareFile = useCallback(async () => {
+    try {
+      const opened = await loadSchema();
+      if (!opened) return;
+      setIsStartupOpen(false);
+      collabShare.openShareDialog();
+    } catch (err) {
+      console.error('Failed to open file for share:', err);
+    }
+  }, [collabShare, loadSchema, setIsStartupOpen]);
 
   return (
     <>
@@ -128,12 +174,24 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onOpenDirectory={() => void handleOpenDirectory()}
           onBrowserLiteScan={() => void handleBrowserLiteScan()}
           onImportMermaid={handleImportMermaid}
+          onImportIac={handleImportIac}
           onStartBlankCanvas={handleStartBlankCanvas}
+          onShareBlankCanvas={handleShareBlankCanvas}
+          onShareDirectory={() => void handleShareDirectory()}
+          onShareFile={() => void handleShareFile()}
           loadingMessage={
             typeof isLoading === 'string' ? isLoading : isLoading ? 'Loading...' : null
           }
         />
       ) : null}
+      <CollabShareDialog
+        isOpen={collabShare.shareOpen}
+        initialName={collabShare.initialName}
+        participants={collabShare.participants}
+        onCopyLink={collabShare.handleCopyLink}
+        onSaveName={collabShare.onSaveName}
+        onCancel={collabShare.onCancelShare}
+      />
       <LazyMountOnOpen isOpen={isCompareOpen}>
         <CompareDialog isOpen={isCompareOpen} onClose={() => setIsCompareOpen(false)} />
       </LazyMountOnOpen>

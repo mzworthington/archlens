@@ -8,11 +8,11 @@ Open the hosted app:
 
 **[https://archlens.dev/workspace](https://archlens.dev/workspace)**
 
-Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an option). Select **Try the demo** to open the golden journey with **ChaosLens**, so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
+Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an option). Choose an intent — **Investigate** (scan, open folder, import, CLI), **Collaborate** (share blank / folder / file), or **Ideate** (solo blank canvas). New here? Use the secondary **Try the demo** strip to open the golden journey with **ChaosLens**, so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
 
 ## 2. Scan in the browser
 
-From the same startup chooser, select **Browser lite scan** and pick a source folder.
+From the same startup chooser, under **Investigate**, select **Browser lite scan** and pick a source folder.
 
 This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate structural BlueprintSpec YAML in memory. It is intentionally a **lite / structure-only** preview: application languages (`ts`/`tsx`/`js`/`cs`/`java`/`go`/`py`) plus Terraform/Pulumi via the same `IacAnalyzer` pass as the CLI - **no** TraceLens git hotspots, **no** CI publish, and no persisted writes unless you later save/export through Canvas.
 
@@ -120,13 +120,12 @@ Open the hosted app:
 
 On first open you get a **startup chooser** on bare `/workspace`:
 
-1. **Try the demo** - explore the bundled golden journey and simulate a failure (lands in ChaosLens).
-2. **Browser lite scan** - pick a source folder for structure-only BlueprintSpec feedback.
-3. **Open existing blueprints folder** - pick the folder that contains generated `blueprints/` YAML.
-4. Use the system switcher and C4 zoom to explore context → container → component.
-5. Inspect **TraceLens** signals - open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page (CLI scans only).
-6. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
-7. Optionally **Import Mermaid** from the toolbar **Open** menu to merge an external diagram into the active schema - see [ArchLens Canvas](./canvas.md#import-mermaid).
+1. Pick an intent — **Investigate** (lite scan, open folder, import, CLI), **Collaborate** (share blank / folder / file), or **Ideate** (solo blank canvas).
+2. Or use the secondary **Try the demo** strip - explore the bundled golden journey and simulate a failure (lands in ChaosLens).
+3. Use the system switcher and C4 zoom to explore context → container → component.
+4. Inspect **TraceLens** signals - open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page (CLI scans only).
+5. Toggle **ChaosLens** from the bottom toolbar (**Resilience** button) to simulate faults on the active diagram - see [ChaosLens](./chaoslens.md).
+6. Optionally **Import Mermaid** / **Import Infrastructure** from Investigate or the toolbar **Open** menu - see [ArchLens Canvas](./canvas.md#import-mermaid).
 
 Deep links (`/workspace/blueprint`, etc.) skip the chooser and bootstrap the demo so the matching diagram resolves.
 

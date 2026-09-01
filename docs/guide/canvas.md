@@ -6,14 +6,14 @@ ArchLens Canvas is a C4 workspace over **BlueprintSpec**: author in a local fold
 
 ## Opening a workspace
 
-On bare `/workspace`, ArchLens shows a **startup chooser** - it does **not** auto-open the demo. Choose how to start:
+On bare `/workspace`, ArchLens shows a **startup chooser** - it does **not** auto-open the demo. Pick an **intent**, then a leaf action:
 
-| Option                                       | What it does                                                                                                                                          |
-| -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Try the demo**                             | Load the samples catalog and open **ChaosLens** on the golden journey (blast radius → AdviceLens)                                                     |
-| **Browser lite scan**                        | File System Access - pick a **source** folder; build a structural BlueprintSpec in memory (app languages + Terraform/Pulumi; no git / TraceLens / CI) |
-| **Open existing blueprints folder**          | File System Access - pick a local `blueprints/` folder                                                                                                |
-| **Full analysis - ArchLens CLI** (collapsed) | Install + scan commands for TraceLens forensics, watch mode, and CI publish                                                                           |
+| Intent / option                    | What it does                                                                                       |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Investigate**                    | Map or import: browser lite scan, open blueprints folder, Mermaid / IaC import, or ArchLens CLI    |
+| **Collaborate**                    | Share blank room, or open a folder/file then create a live share link (enables Live collaboration) |
+| **Ideate**                         | Solo blank canvas (share later from the toolbar)                                                   |
+| **Try the demo** (secondary strip) | Load the samples catalog and open **ChaosLens** on the golden journey (blast radius → AdviceLens)  |
 
 Deep links (`/workspace/…`) skip the chooser and bootstrap the demo so entity URLs resolve. Opening a folder or running a browser scan this session prevents demo from overriding that choice.
 

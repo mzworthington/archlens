@@ -11,6 +11,12 @@ import {
   AlertTriangle,
   FilePlus,
   GitMerge,
+  Cloud,
+  Users,
+  Share2,
+  Upload,
+  Lightbulb,
+  Search,
 } from 'lucide-react';
 import { Link } from 'wouter';
 import {
@@ -22,13 +28,13 @@ import { isBrowserDirectoryPickerSupported } from '../../../infrastructure/analy
 import { WORKSPACE_STARTUP } from '../../content/productOutcomes';
 
 const optionClass =
-  'w-full flex items-start gap-3 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
-
-const primaryOptionClass =
-  'w-full flex items-start gap-3 rounded-xl border border-[#00f0ff]/35 bg-[#061125]/80 px-4 py-3.5 text-left transition hover:border-[#00f0ff]/55 hover:bg-[#07162c] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
+  'w-full flex items-start gap-3 rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
 
 const unsupportedOptionClass =
-  'w-full flex items-start gap-3 rounded-xl border border-amber-500/35 bg-amber-950/25 px-4 py-3.5 text-left transition hover:border-amber-500/50 hover:bg-amber-950/35 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40 disabled:opacity-50 disabled:pointer-events-none';
+  'w-full flex items-start gap-3 rounded-lg border border-amber-500/35 bg-amber-950/25 px-3 py-2.5 text-left transition hover:border-amber-500/50 hover:bg-amber-950/35 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40 disabled:opacity-50 disabled:pointer-events-none';
+
+const sampleStripClass =
+  'w-full flex items-start gap-3 rounded-xl border border-amber-500/40 bg-amber-950/20 px-4 py-3.5 text-left transition hover:border-amber-500/55 hover:bg-amber-950/30 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/40 disabled:opacity-50 disabled:pointer-events-none';
 
 type CopyableCommandProps = {
   command: string;
@@ -68,8 +74,16 @@ export type WorkspaceEntryPanelProps = {
   onBrowserLiteScan?: () => void;
   /** Import from Mermaid diagram. */
   onImportMermaid?: () => void;
-  /** Start an empty diagram with no demo or folder loaded. */
+  /** Import Terraform / Pulumi into an empty starter diagram. */
+  onImportIac?: () => void;
+  /** Start an empty diagram with no demo or folder loaded (Ideate). */
   onStartBlankCanvas?: () => void;
+  /** Collaborate: blank canvas then share link. */
+  onShareBlankCanvas?: () => void;
+  /** Collaborate: open blueprints folder then share. */
+  onShareDirectory?: () => void;
+  /** Collaborate: open a YAML file then share. */
+  onShareFile?: () => void;
   disabled?: boolean;
   /** Shown while sandbox/workspace open is in progress (disables actions). */
   loadingMessage?: string | false | null;
@@ -86,20 +100,23 @@ export type WorkspaceEntryPanelProps = {
 const BROWSER_LITE_UNSUPPORTED_MESSAGE =
   'Folder picking is not available in this browser (Firefox and Safari). Use Chrome or Edge, or install the ArchLens CLI below for a full scan.';
 
-/** Shared workspace entry - demo insight first, then browser scan / folder / blank / CLI. */
+/** Intent-first workspace entry - Investigate / Collaborate / Ideate, sample strip secondary. */
 export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onOpenSample,
   onOpenDirectory,
   onBrowserLiteScan,
   onImportMermaid,
+  onImportIac,
   onStartBlankCanvas,
+  onShareBlankCanvas,
+  onShareDirectory,
+  onShareFile,
   disabled = false,
   loadingMessage = null,
   showCliPanel = false,
   title = WORKSPACE_STARTUP.title,
   description = WORKSPACE_STARTUP.lede,
   badge = 'Workspace',
-  layout = 'stack',
   className = '',
   testId = 'workspace-entry',
   titleId,
@@ -112,6 +129,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   const statusMessage =
     typeof loadingMessage === 'string' && loadingMessage.trim() ? loadingMessage : null;
   const actionsDisabled = disabled || Boolean(statusMessage);
+  const showCollaborate = Boolean(onShareBlankCanvas || onShareDirectory || onShareFile);
 
   const handleCopyCommand = async (key: 'install' | 'scan', command: string) => {
     try {
@@ -156,13 +174,351 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
         </div>
       ) : null}
 
-      <div className={layout === 'grid' ? 'mt-4 grid gap-2 sm:grid-cols-2' : 'mt-4 space-y-2'}>
+      <div className="mt-4 space-y-3">
+        <section
+          className="rounded-xl border border-slate-800 bg-slate-950/40 p-3"
+          data-testid="workspace-intent-investigate"
+          aria-labelledby="workspace-intent-investigate-title"
+        >
+          <div className="flex items-start gap-2 mb-2.5 px-0.5">
+            <Search className="w-4 h-4 text-[#00f0ff] shrink-0 mt-0.5" aria-hidden />
+            <div>
+              <h3
+                id="workspace-intent-investigate-title"
+                className="text-sm font-semibold text-slate-100"
+              >
+                Investigate
+              </h3>
+              <p className="text-xs text-slate-500 mt-0.5">Map or import real systems</p>
+            </div>
+          </div>
+          <div className="space-y-1.5">
+            {onBrowserLiteScan ? (
+              <button
+                type="button"
+                data-testid="workspace-browser-lite-scan"
+                onClick={handleBrowserLiteScan}
+                disabled={actionsDisabled}
+                className={directoryPickerSupported ? optionClass : unsupportedOptionClass}
+                aria-describedby={
+                  !directoryPickerSupported ? 'workspace-browser-lite-unsupported' : undefined
+                }
+              >
+                <ScanSearch
+                  className={`w-4 h-4 shrink-0 mt-0.5 ${directoryPickerSupported ? 'text-[#00f0ff]' : 'text-amber-400'}`}
+                />
+                <span className="min-w-0 flex-1">
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span className="text-sm font-semibold text-slate-100">Browser lite scan</span>
+                    <span
+                      className="inline-flex items-center rounded border border-amber-500/40 bg-amber-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-amber-300"
+                      data-testid="workspace-browser-lite-badge"
+                    >
+                      Lite
+                    </span>
+                    {!directoryPickerSupported ? (
+                      <span
+                        className="inline-flex items-center rounded border border-amber-500/40 bg-amber-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-amber-200"
+                        data-testid="workspace-browser-lite-unavailable-badge"
+                      >
+                        Unavailable here
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="block text-xs text-slate-400 mt-0.5">
+                    {directoryPickerSupported
+                      ? 'Instant structural map of a folder - no git TraceLens, no CI publish.'
+                      : 'Needs Chrome or Edge (folder picker API). Use the ArchLens CLI instead.'}
+                  </span>
+                </span>
+              </button>
+            ) : null}
+
+            {!directoryPickerSupported && onBrowserLiteScan ? (
+              <div
+                id="workspace-browser-lite-unsupported"
+                className="flex items-start gap-2 rounded-lg border border-amber-500/30 bg-amber-950/40 px-3 py-2 text-xs text-amber-100/95"
+                role="status"
+                data-testid="workspace-browser-lite-unsupported"
+              >
+                <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden />
+                <p className="leading-relaxed">{BROWSER_LITE_UNSUPPORTED_MESSAGE}</p>
+              </div>
+            ) : null}
+
+            {liteScanFeedback ? (
+              <div
+                className="flex items-start gap-2 rounded-lg border border-amber-500/40 bg-amber-950/50 px-3 py-2 text-xs text-amber-100"
+                role="alert"
+                data-testid="workspace-browser-lite-feedback"
+              >
+                <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden />
+                <p className="leading-relaxed">{liteScanFeedback}</p>
+              </div>
+            ) : null}
+
+            <button
+              type="button"
+              data-testid="workspace-open-directory"
+              onClick={onOpenDirectory}
+              disabled={actionsDisabled}
+              className={optionClass}
+            >
+              <FolderOpen className="w-4 h-4 text-brand-400 shrink-0 mt-0.5" />
+              <span>
+                <span className="block text-sm font-semibold text-slate-100">
+                  Open existing blueprints folder
+                </span>
+                <span className="block text-xs text-slate-500 mt-0.5">
+                  Pick a local folder of YAML blueprints (e.g. after a CLI scan)
+                </span>
+              </span>
+            </button>
+
+            {onImportMermaid ? (
+              <button
+                type="button"
+                data-testid="workspace-import-mermaid"
+                onClick={onImportMermaid}
+                disabled={actionsDisabled}
+                className={optionClass}
+              >
+                <GitMerge className="w-4 h-4 text-violet-400 shrink-0 mt-0.5" />
+                <span>
+                  <span className="block text-sm font-semibold text-slate-100">
+                    Import from Mermaid
+                  </span>
+                  <span className="block text-xs text-slate-500 mt-0.5">
+                    Paste or upload a Mermaid diagram (.mmd / .md)
+                  </span>
+                </span>
+              </button>
+            ) : null}
+
+            {onImportIac ? (
+              <button
+                type="button"
+                data-testid="workspace-import-iac"
+                onClick={onImportIac}
+                disabled={actionsDisabled}
+                className={optionClass}
+              >
+                <Cloud className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                <span>
+                  <span className="block text-sm font-semibold text-slate-100">
+                    Import infrastructure
+                  </span>
+                  <span className="block text-xs text-slate-500 mt-0.5">
+                    Terraform or Pulumi into a starter diagram
+                  </span>
+                </span>
+              </button>
+            ) : null}
+
+            {showCliPanel ? (
+              <div
+                className="rounded-lg border border-emerald-500/30 bg-emerald-950/20 p-3"
+                data-testid="workspace-cli-panel"
+              >
+                <button
+                  type="button"
+                  className="w-full flex items-start gap-3 text-left cursor-pointer"
+                  onClick={() => setCliExpanded(v => !v)}
+                  aria-expanded={cliExpanded}
+                  data-testid="workspace-cli-panel-toggle"
+                >
+                  <Terminal className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <span className="min-w-0 flex-1">
+                    <span className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-semibold text-slate-100">
+                        Full analysis - ArchLens CLI
+                      </span>
+                      <span className="inline-flex items-center rounded border border-emerald-500/40 bg-emerald-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-emerald-300">
+                        Recommended
+                      </span>
+                    </span>
+                    <span className="block text-xs text-slate-400 mt-1 leading-relaxed">
+                      TraceLens git hotspots, watch mode, and CI catalog publish.
+                    </span>
+                  </span>
+                  <ArrowRight
+                    className={`w-4 h-4 text-slate-500 shrink-0 mt-1 transition ${cliExpanded ? 'rotate-90' : ''}`}
+                    aria-hidden
+                  />
+                </button>
+
+                {cliExpanded ? (
+                  <div className="mt-3 ml-7 space-y-3" data-testid="workspace-cli-panel-body">
+                    <div className="space-y-1.5">
+                      <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500">
+                        1. Install
+                      </p>
+                      <CopyableCommand
+                        command={CLI_INSTALL_COMMAND}
+                        testId="workspace-cli-install"
+                        copied={copiedKey === 'install'}
+                        onCopy={() => void handleCopyCommand('install', CLI_INSTALL_COMMAND)}
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500">
+                        2. Scan
+                      </p>
+                      <CopyableCommand
+                        command={CLI_SCAN_COMMAND}
+                        testId="workspace-cli-scan"
+                        copied={copiedKey === 'scan'}
+                        onCopy={() => void handleCopyCommand('scan', CLI_SCAN_COMMAND)}
+                      />
+                    </div>
+                    <Link
+                      href={CLI_GETTING_STARTED_PATH}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00f0ff] hover:text-cyan-300 transition"
+                      data-testid="workspace-cli-install-guide"
+                    >
+                      Install guide
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
+        </section>
+
+        {showCollaborate ? (
+          <section
+            className="rounded-xl border border-slate-800 bg-slate-950/40 p-3"
+            data-testid="workspace-intent-collaborate"
+            aria-labelledby="workspace-intent-collaborate-title"
+          >
+            <div className="flex items-start gap-2 mb-2.5 px-0.5">
+              <Users className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" aria-hidden />
+              <div>
+                <h3
+                  id="workspace-intent-collaborate-title"
+                  className="text-sm font-semibold text-slate-100"
+                >
+                  Collaborate
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Share a canvas with others - collects display name and creates a share link
+                </p>
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              {onShareBlankCanvas ? (
+                <button
+                  type="button"
+                  data-testid="workspace-share-blank"
+                  onClick={onShareBlankCanvas}
+                  disabled={actionsDisabled}
+                  className={optionClass}
+                >
+                  <Share2 className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" />
+                  <span>
+                    <span className="block text-sm font-semibold text-slate-100">
+                      Share blank room
+                    </span>
+                    <span className="block text-xs text-slate-500 mt-0.5">
+                      Empty canvas with a live editing link
+                    </span>
+                  </span>
+                </button>
+              ) : null}
+              {onShareDirectory ? (
+                <button
+                  type="button"
+                  data-testid="workspace-share-directory"
+                  onClick={onShareDirectory}
+                  disabled={actionsDisabled}
+                  className={optionClass}
+                >
+                  <FolderOpen className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" />
+                  <span>
+                    <span className="block text-sm font-semibold text-slate-100">
+                      Open folder then share
+                    </span>
+                    <span className="block text-xs text-slate-500 mt-0.5">
+                      Load blueprints locally, then create a share link
+                    </span>
+                  </span>
+                </button>
+              ) : null}
+              {onShareFile ? (
+                <button
+                  type="button"
+                  data-testid="workspace-share-file"
+                  onClick={onShareFile}
+                  disabled={actionsDisabled}
+                  className={optionClass}
+                >
+                  <Upload className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" />
+                  <span>
+                    <span className="block text-sm font-semibold text-slate-100">
+                      Open file then share
+                    </span>
+                    <span className="block text-xs text-slate-500 mt-0.5">
+                      Load a YAML blueprint, then create a share link
+                    </span>
+                  </span>
+                </button>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
+
+        {onStartBlankCanvas ? (
+          <section
+            className="rounded-xl border border-slate-800 bg-slate-950/40 p-3"
+            data-testid="workspace-intent-ideate"
+            aria-labelledby="workspace-intent-ideate-title"
+          >
+            <div className="flex items-start gap-2 mb-2.5 px-0.5">
+              <Lightbulb className="w-4 h-4 text-slate-300 shrink-0 mt-0.5" aria-hidden />
+              <div>
+                <h3
+                  id="workspace-intent-ideate-title"
+                  className="text-sm font-semibold text-slate-100"
+                >
+                  Ideate
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Sketch from scratch - solo; share later from the toolbar
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              data-testid="workspace-start-blank"
+              onClick={onStartBlankCanvas}
+              disabled={actionsDisabled}
+              className={optionClass}
+            >
+              <FilePlus className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+              <span>
+                <span className="block text-sm font-semibold text-slate-100">
+                  Start a blank canvas
+                </span>
+                <span className="block text-xs text-slate-500 mt-0.5">
+                  Empty diagram - draw or import when you are ready
+                </span>
+              </span>
+            </button>
+          </section>
+        ) : null}
+      </div>
+
+      <div className="mt-4 pt-3 border-t border-slate-800/80">
+        <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500 mb-2">
+          Or try the sample
+        </p>
         <button
           type="button"
           data-testid="workspace-open-sample"
           onClick={onOpenSample}
           disabled={actionsDisabled}
-          className={primaryOptionClass}
+          className={sampleStripClass}
         >
           <Map className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
           <span>
@@ -175,199 +531,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             </span>
           </span>
         </button>
-
-        {onBrowserLiteScan ? (
-          <button
-            type="button"
-            data-testid="workspace-browser-lite-scan"
-            onClick={handleBrowserLiteScan}
-            disabled={actionsDisabled}
-            className={directoryPickerSupported ? optionClass : unsupportedOptionClass}
-            aria-describedby={
-              !directoryPickerSupported ? 'workspace-browser-lite-unsupported' : undefined
-            }
-          >
-            <ScanSearch
-              className={`w-5 h-5 shrink-0 mt-0.5 ${directoryPickerSupported ? 'text-[#00f0ff]' : 'text-amber-400'}`}
-            />
-            <span className="min-w-0 flex-1">
-              <span className="flex flex-wrap items-center gap-2">
-                <span className="text-sm font-semibold text-slate-100">Browser lite scan</span>
-                <span
-                  className="inline-flex items-center rounded border border-amber-500/40 bg-amber-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-amber-300"
-                  data-testid="workspace-browser-lite-badge"
-                >
-                  Lite
-                </span>
-                {!directoryPickerSupported ? (
-                  <span
-                    className="inline-flex items-center rounded border border-amber-500/40 bg-amber-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-amber-200"
-                    data-testid="workspace-browser-lite-unavailable-badge"
-                  >
-                    Unavailable here
-                  </span>
-                ) : null}
-              </span>
-              <span className="block text-xs text-slate-400 mt-0.5">
-                {directoryPickerSupported
-                  ? 'Instant structural map of a folder - no git TraceLens, no CI publish. For in-depth forensics, use the CLI below.'
-                  : 'Needs Chrome or Edge (folder picker API). On Firefox/Safari, install the ArchLens CLI below instead.'}
-              </span>
-            </span>
-          </button>
-        ) : null}
-
-        {!directoryPickerSupported && onBrowserLiteScan ? (
-          <div
-            id="workspace-browser-lite-unsupported"
-            className="flex items-start gap-2 rounded-xl border border-amber-500/30 bg-amber-950/40 px-3 py-2.5 text-xs text-amber-100/95"
-            role="status"
-            data-testid="workspace-browser-lite-unsupported"
-          >
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden />
-            <p className="leading-relaxed">{BROWSER_LITE_UNSUPPORTED_MESSAGE}</p>
-          </div>
-        ) : null}
-
-        {liteScanFeedback ? (
-          <div
-            className="flex items-start gap-2 rounded-xl border border-amber-500/40 bg-amber-950/50 px-3 py-2.5 text-xs text-amber-100"
-            role="alert"
-            data-testid="workspace-browser-lite-feedback"
-          >
-            <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden />
-            <p className="leading-relaxed">{liteScanFeedback}</p>
-          </div>
-        ) : null}
-
-        <button
-          type="button"
-          data-testid="workspace-open-directory"
-          onClick={onOpenDirectory}
-          disabled={actionsDisabled}
-          className={optionClass}
-        >
-          <FolderOpen className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />
-          <span>
-            <span className="block text-sm font-semibold text-slate-100">
-              Open existing blueprints folder
-            </span>
-            <span className="block text-xs text-slate-500 mt-0.5">
-              Pick a local folder of YAML blueprints (e.g. after a CLI scan)
-            </span>
-          </span>
-        </button>
-
-        {onImportMermaid ? (
-          <button
-            type="button"
-            data-testid="workspace-import-mermaid"
-            onClick={onImportMermaid}
-            disabled={actionsDisabled}
-            className={optionClass}
-          >
-            <GitMerge className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-            <span>
-              <span className="block text-sm font-semibold text-slate-100">
-                Import from mermaid
-              </span>
-              <span className="block text-xs text-slate-500 mt-0.5">
-                Paste or upload a Mermaid diagram (.mmd / .md) to parse into blueprints
-              </span>
-            </span>
-          </button>
-        ) : null}
-
-        {onStartBlankCanvas ? (
-          <button
-            type="button"
-            data-testid="workspace-start-blank"
-            onClick={onStartBlankCanvas}
-            disabled={actionsDisabled}
-            className={optionClass}
-          >
-            <FilePlus className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
-            <span>
-              <span className="block text-sm font-semibold text-slate-100">
-                Start a blank canvas
-              </span>
-              <span className="block text-xs text-slate-500 mt-0.5">
-                Empty diagram - draw or import Mermaid / IaC when you are ready
-              </span>
-            </span>
-          </button>
-        ) : null}
       </div>
-
-      {showCliPanel ? (
-        <div
-          className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-4"
-          data-testid="workspace-cli-panel"
-        >
-          <button
-            type="button"
-            className="w-full flex items-start gap-3 text-left cursor-pointer"
-            onClick={() => setCliExpanded(v => !v)}
-            aria-expanded={cliExpanded}
-            data-testid="workspace-cli-panel-toggle"
-          >
-            <Terminal className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="min-w-0 flex-1">
-              <span className="flex flex-wrap items-center gap-2">
-                <span className="text-sm font-semibold text-slate-100">
-                  Full analysis - ArchLens CLI
-                </span>
-                <span className="inline-flex items-center rounded border border-emerald-500/40 bg-emerald-950/80 px-1.5 py-0.5 text-[9px] font-mono font-bold uppercase tracking-[0.14em] text-emerald-300">
-                  Recommended
-                </span>
-              </span>
-              <span className="block text-xs text-slate-400 mt-1 leading-relaxed">
-                Run locally for TraceLens git hotspots, watch mode, and CI catalog publish - depth
-                the browser lite scan cannot provide.
-              </span>
-            </span>
-            <ArrowRight
-              className={`w-4 h-4 text-slate-500 shrink-0 mt-1 transition ${cliExpanded ? 'rotate-90' : ''}`}
-              aria-hidden
-            />
-          </button>
-
-          {cliExpanded ? (
-            <div className="mt-3 ml-8 space-y-3" data-testid="workspace-cli-panel-body">
-              <div className="space-y-1.5">
-                <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500">
-                  1. Install
-                </p>
-                <CopyableCommand
-                  command={CLI_INSTALL_COMMAND}
-                  testId="workspace-cli-install"
-                  copied={copiedKey === 'install'}
-                  onCopy={() => void handleCopyCommand('install', CLI_INSTALL_COMMAND)}
-                />
-              </div>
-              <div className="space-y-1.5">
-                <p className="text-[10px] font-mono uppercase tracking-[0.14em] text-slate-500">
-                  2. Scan
-                </p>
-                <CopyableCommand
-                  command={CLI_SCAN_COMMAND}
-                  testId="workspace-cli-scan"
-                  copied={copiedKey === 'scan'}
-                  onCopy={() => void handleCopyCommand('scan', CLI_SCAN_COMMAND)}
-                />
-              </div>
-              <Link
-                href={CLI_GETTING_STARTED_PATH}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00f0ff] hover:text-cyan-300 transition"
-                data-testid="workspace-cli-install-guide"
-              >
-                Install guide
-                <ArrowRight className="w-3 h-3" />
-              </Link>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
     </section>
   );
 };
