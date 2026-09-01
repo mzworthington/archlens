@@ -8,6 +8,11 @@ updates:
       day: "sunday"
       time: "00:00"
     open-pull-requests-limit: 10
+    # web-tree-sitter 0.26+ cannot load tree-sitter-wasms 0.1.13 (0.20 ABI / dylink).
+    # https://github.com/tree-sitter/tree-sitter/issues/5171
+    ignore:
+      - dependency-name: "web-tree-sitter"
+        versions: [">=0.21.0"]
 
   # Cloudflare Pulumi project (separate pnpm workspace)
   - package-ecosystem: "npm"

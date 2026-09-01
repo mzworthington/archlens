@@ -1,10 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { wasmFileName, type TreeSitterWasmLanguage } from '@archlens/core';
+import { wasmFileName } from '@archlens/core';
 import { resolveTreeSitterWasmSourceDirs } from '@archlens/core/tree-sitter-wasm';
-
-export { type TreeSitterWasmLanguage };
 
 /**
  * Candidate directories that may contain language .wasm files.

@@ -6,7 +6,6 @@ import {
   parseSinceDays,
   parseWatchDebounce,
   resolvePublishSkipValidation,
-  type OutputFormat,
   type ResilienceOutputFormat,
 } from './argvFlags.ts';
 import {
@@ -32,7 +31,7 @@ import {
   type ValidateCliPlan,
 } from './subcommandArgv.ts';
 
-export type { OutputFormat, ResilienceOutputFormat };
+export type { ResilienceOutputFormat };
 export { defaultEstateKeyPrefix };
 
 export type {

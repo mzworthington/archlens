@@ -25,23 +25,28 @@ export function useSourceCodeDialog({
   const [result, setResult] = useState<SourceFileLoadResult | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const load = useCallback(async () => {
-    if (!filepath) {
-      setResult({ ok: false, error: 'This node has no filepath.' });
-      return;
-    }
+  const load = useCallback(
+    async (isCancelled: () => boolean = () => false) => {
+      if (!filepath) {
+        if (!isCancelled()) {
+          setResult({ ok: false, error: 'This node has no filepath.' });
+        }
+        return;
+      }
 
-    setLoading(true);
-    try {
-      const next = await fetchSourceFileContent(source, filepath, {
-        readLocalFile: isWorkspaceOpen ? readLocalFile : undefined,
-        githubPat: githubPat ?? undefined,
-      });
-      setResult(next);
-    } finally {
-      setLoading(false);
-    }
-  }, [filepath, source, isWorkspaceOpen, readLocalFile, githubPat]);
+      if (!isCancelled()) setLoading(true);
+      try {
+        const next = await fetchSourceFileContent(source, filepath, {
+          readLocalFile: isWorkspaceOpen ? readLocalFile : undefined,
+          githubPat: githubPat ?? undefined,
+        });
+        if (!isCancelled()) setResult(next);
+      } finally {
+        if (!isCancelled()) setLoading(false);
+      }
+    },
+    [filepath, source, isWorkspaceOpen, readLocalFile, githubPat]
+  );
 
   useEffect(() => {
     if (!isOpen) {
@@ -49,7 +54,11 @@ export function useSourceCodeDialog({
       setLoading(false);
       return;
     }
-    void load();
+    let cancelled = false;
+    void load(() => cancelled);
+    return () => {
+      cancelled = true;
+    };
   }, [isOpen, load]);
 
   return {

@@ -5,12 +5,7 @@ import { createIoState, type IoState } from './states/ioState';
 import { createResilienceState, type ResilienceState } from './states/resilienceState';
 import { createTraceLensState, type TraceLensState } from './states/traceLensState';
 
-export type {
-  BlueprintRFNode,
-  BlueprintRFEdge,
-  ComponentNodeData,
-  ComponentEdgeData,
-} from './layoutUtils';
+export type { ComponentNodeData } from './layoutUtils';
 
 export { resolveRelativePath } from '@archlens/core';
 

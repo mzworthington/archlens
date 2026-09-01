@@ -3,12 +3,7 @@
  * Implementation lives under `./systemDiscovery/`.
  */
 
-export type {
-  DiscoveredSystem,
-  DiscoverSystemsOptions,
-  IacContextSystemInput,
-  SystemDiscoveryFs,
-} from './systemDiscovery/types.ts';
+export type { DiscoveredSystem, SystemDiscoveryFs } from './systemDiscovery/types.ts';
 
 export {
   parseNpmWorkspaces,

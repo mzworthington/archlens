@@ -4,7 +4,6 @@ export {
   dependencyArrowMarker,
   shouldAnimateDependencyEdge,
 } from './layout/edgeAnimation';
-export type { CanvasEdgeMarker, EdgeAnimationOptions } from './layout/edgeAnimation';
 export {
   getNodeDimensions,
   sortNodesForReactFlow,
@@ -20,7 +19,6 @@ export type {
   BlueprintRFNode,
   ComponentEdgeData,
   BlueprintRFEdge,
-  LayoutDirection,
 } from './layout/mapping';
 export {
   getAbsoluteNodePosition,

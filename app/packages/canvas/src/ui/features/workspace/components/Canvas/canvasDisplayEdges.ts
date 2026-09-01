@@ -22,8 +22,6 @@ import {
 } from '../../../../../application/forensics/dependencyViewMode';
 import type { CanvasDisplayEdgesInput } from './canvasDisplayTypes';
 
-export type { CanvasDisplayEdgesInput } from './canvasDisplayTypes';
-
 export function buildCanvasDisplayEdges({
   filteredEdges,
   filteredNodes,
