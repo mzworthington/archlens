@@ -1,5 +1,5 @@
 import type { ForensicsOptions } from './options.ts';
-import type { CoupledPair, FileHistoryTraits, ForensicReport, StructuralMetrics } from './types.ts';
+import type { ForensicReport, StructuralMetrics } from './types.ts';
 
 export interface SourceFileListerPort {
   /**
@@ -55,4 +55,4 @@ export interface ForensicAnalyzerPorts {
   reporters: ReporterPort[];
 }
 
-export type { CoupledPair, FileHistoryTraits, ForensicReport, StructuralMetrics };
+export type { ForensicReport, StructuralMetrics };

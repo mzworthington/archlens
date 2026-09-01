@@ -19,8 +19,6 @@ import {
 } from '../../../../../application/forensics/dependencyViewMode';
 import type { CanvasDisplayNodesInput } from './canvasDisplayTypes';
 
-export type { CanvasDisplayNodesInput, CanvasExternalSummaryContext } from './canvasDisplayTypes';
-
 export function buildCanvasDisplayNodes({
   filteredNodes,
   filteredEdges,

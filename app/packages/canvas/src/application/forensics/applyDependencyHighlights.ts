@@ -1,7 +1,5 @@
 import type { BlueprintRFEdge, BlueprintRFNode } from '../store/layoutUtils';
-import { resolveDependencyRoles, type DependencyRole } from './filterSelectedDependencyFocus';
-
-export type { DependencyRole };
+import { resolveDependencyRoles } from './filterSelectedDependencyFocus';
 
 export function applyDependencyHighlights(
   nodes: BlueprintRFNode[],

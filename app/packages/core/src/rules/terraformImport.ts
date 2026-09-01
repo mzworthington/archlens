@@ -312,6 +312,3 @@ export function parseTerraformBatchToSchema(
   const { schema, warnings } = infraIrToSchema(ir, options);
   return { schema, format, warnings };
 }
-
-// Re-export kinds for adapters
-export type { InfraKind, InfraIR, InfraNode, InfraEdge } from './infraIr';
