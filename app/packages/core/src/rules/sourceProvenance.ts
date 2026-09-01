@@ -19,6 +19,16 @@ export function normalizeGitRemoteUrl(raw: string): string | undefined {
   return undefined;
 }
 
+/** Allow only http(s) URLs so attacker-controlled `javascript:` values cannot become `href`. */
+export function safeHttpUrl(url: string | undefined): string | undefined {
+  if (!url) return undefined;
+  const trimmed = url.trim();
+  if (trimmed.startsWith('https://') || trimmed.startsWith('http://')) {
+    return trimmed;
+  }
+  return undefined;
+}
+
 /** Combine scan-root-relative node filepath with optional scanRoot offset from git root. */
 export function resolveRepoRelativeFilePath(
   source: SourceProvenance,

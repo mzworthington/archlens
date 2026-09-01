@@ -2,17 +2,27 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { UpdateBanner } from './UpdateBanner';
 
-const updateServiceWorker = vi.fn();
+const { swUpdate, updateServiceWorker, setNeedRefresh } = vi.hoisted(() => ({
+  swUpdate: vi.fn().mockResolvedValue(undefined),
+  updateServiceWorker: vi.fn(),
+  setNeedRefresh: vi.fn(),
+}));
+
 let needRefresh = false;
-const setNeedRefresh = vi.fn((value: boolean) => {
-  needRefresh = value;
-});
 
 vi.mock('virtual:pwa-register/react', () => ({
-  useRegisterSW: () => ({
-    needRefresh: [needRefresh, setNeedRefresh],
-    updateServiceWorker,
-  }),
+  useRegisterSW: (options?: {
+    onRegisteredSW?: (
+      url: string,
+      registration?: Pick<ServiceWorkerRegistration, 'update'>
+    ) => void;
+  }) => {
+    options?.onRegisteredSW?.('/sw.js', { update: swUpdate });
+    return {
+      needRefresh: [needRefresh, setNeedRefresh],
+      updateServiceWorker,
+    };
+  },
 }));
 
 describe('UpdateBanner', () => {
@@ -20,11 +30,17 @@ describe('UpdateBanner', () => {
     needRefresh = false;
     updateServiceWorker.mockClear();
     setNeedRefresh.mockClear();
+    swUpdate.mockClear();
   });
 
   it('is hidden when no update is pending', () => {
     render(<UpdateBanner />);
     expect(screen.queryByTestId('update-banner')).toBeNull();
+  });
+
+  it('asks the registered service worker to check for updates on mount', () => {
+    render(<UpdateBanner />);
+    expect(swUpdate).toHaveBeenCalled();
   });
 
   it('shows refresh prompt when the service worker reports an update', () => {

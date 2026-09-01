@@ -160,7 +160,7 @@ Simulation is display-only - YAML is not modified. TraceLens **Risk heatmap** is
 
 ## Offline / PWA
 
-ArchLens Canvas installs as a Progressive Web App. After the first visit, the app shell can load offline so you can keep editing a local workspace; an offline banner appears when the network drops. When a newer build is deployed, an update banner at the top offers **Refresh** (recommended) so you load the latest hashed assets and service worker. Docs screenshots and public schema URLs are not required for offline canvas use.
+ArchLens Canvas installs as a Progressive Web App. After the first visit, the app shell can load offline so you can keep editing a local workspace; an offline banner appears when the network drops. When a newer build is deployed, an update banner at the top offers **Refresh** (recommended) so you load the latest hashed assets and service worker. A visible tab looks for that deploy right away and about once a minute, so you do not have to leave the tab first. Docs screenshots and public schema URLs are not required for offline canvas use.
 
 ## Next
 

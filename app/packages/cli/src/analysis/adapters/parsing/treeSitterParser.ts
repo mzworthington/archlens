@@ -9,6 +9,7 @@ import { createSourcePathFilter, type SourcePathFilter } from '../pathFilter/sou
 import { throwIfAborted } from '@archlens/analysis/cancellation';
 import { TreeSitterWasmLoader } from './treeSitterLoader.ts';
 import type { TreeSitterScanCache } from './treeSitterForensics.ts';
+import { parseIncludeGlobPattern } from './includeGlobPattern.ts';
 
 export class TreeSitterParserAdapter implements CodebaseParserPort {
   private readonly wasmLoader = new TreeSitterWasmLoader();
@@ -21,31 +22,6 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
 
   private async getLanguage(ext: string): Promise<Parser.Language | null> {
     return this.wasmLoader.getLanguageForExtension(ext);
-  }
-
-  private parseGlobPattern(pattern: string): { dir: string; extensions: string[] } {
-    const resolvedPattern = path.resolve(process.cwd(), pattern);
-    const baseDir = resolvedPattern.split('**')[0].replace(/\/$/, '').replace(/\\$/, '');
-
-    const extMatch = resolvedPattern.match(/\{([^}]+)\}/);
-    let extensions: string[] = [];
-    if (extMatch) {
-      extensions = extMatch[1].split(',').map(e => '.' + e.trim().replace(/^\./, ''));
-    } else {
-      const singleExtMatch = resolvedPattern.match(/\.([a-zA-Z0-9]+)$/);
-      if (singleExtMatch) {
-        extensions = ['.' + singleExtMatch[1]];
-      }
-    }
-
-    if (extensions.length === 0) {
-      extensions = ['.ts', '.tsx', '.js', '.jsx', '.py', '.go', '.java', '.cs'];
-    }
-
-    return {
-      dir: baseDir || path.resolve(process.cwd(), 'src'),
-      extensions,
-    };
   }
 
   private getFilesRecursively(dir: string, extensions: string[]): string[] {
@@ -81,7 +57,7 @@ export class TreeSitterParserAdapter implements CodebaseParserPort {
     await TreeSitterWasmLoader.ensureInitialized();
     this.pathFilter = createSourcePathFilter(process.cwd(), this.options);
 
-    const { dir, extensions } = this.parseGlobPattern(globPattern);
+    const { dir, extensions } = parseIncludeGlobPattern(globPattern, process.cwd());
     const matchedFiles = this.getFilesRecursively(dir, extensions);
 
     const result: ParsedSourceFile[] = [];

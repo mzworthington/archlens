@@ -72,7 +72,7 @@ pulumi up
 | Path                                              | Purpose                                                                           |
 | ------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `wrangler.toml`                                   | Pages project name + output directory                                             |
-| `app/packages/canvas/public/_redirects`           | SPA routing                                                                       |
+| `app/packages/canvas/public/_redirects`           | www→apex, asset 404s, `/index.html` 200 (Pages default SPA has no `404.html`)     |
 | `.github/workflows/pulumi-cloudflare.yml`         | Thin caller → edge-dns reusable workflow                                          |
 | `.github/workflows/ci.yml`                        | Build + Pages deploy + collab Worker deploy; manual `workflow_dispatch` on `main` |
 | `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/samples/` (product `archlens`)                 |

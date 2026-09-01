@@ -1,16 +1,24 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { hasRemoteBuildUpdate } from '../../../application/pwa/buildInfo';
+import { startPeriodicUpdateChecks } from '../../../application/pwa/updateCheck';
 
 /**
  * Prompt when a new production build is available (service worker or index.html build id).
  */
 export function UpdateBanner() {
+  const registrationRef = useRef<Pick<ServiceWorkerRegistration, 'update'> | undefined>(undefined);
   const {
     needRefresh: [needRefresh, setNeedRefresh],
     updateServiceWorker,
-  } = useRegisterSW({ immediate: true });
+  } = useRegisterSW({
+    immediate: true,
+    onRegisteredSW(_url, registration) {
+      registrationRef.current = registration;
+      void registration?.update();
+    },
+  });
 
   const [fallbackRefresh, setFallbackRefresh] = useState(false);
 
@@ -21,11 +29,17 @@ export function UpdateBanner() {
   }, []);
 
   useEffect(() => {
-    const onVisible = () => {
-      if (document.visibilityState === 'visible') void checkForRemoteUpdate();
-    };
-    document.addEventListener('visibilitychange', onVisible);
-    return () => document.removeEventListener('visibilitychange', onVisible);
+    return startPeriodicUpdateChecks({
+      check: () => {
+        void registrationRef.current?.update();
+        void checkForRemoteUpdate();
+      },
+      isVisible: () => document.visibilityState === 'visible',
+      subscribeVisibility: onChange => {
+        document.addEventListener('visibilitychange', onChange);
+        return () => document.removeEventListener('visibilitychange', onChange);
+      },
+    });
   }, [checkForRemoteUpdate]);
 
   const show = needRefresh || fallbackRefresh;

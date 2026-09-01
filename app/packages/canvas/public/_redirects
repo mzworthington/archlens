@@ -1,17 +1,11 @@
-# Apex is canonical - consolidate www to avoid duplicate indexing.
+# Apex is canonical.
 https://www.archlens.dev/* https://archlens.dev/:splat 301
 
+# Proxy to self so missing files 404 instead of the Pages SPA shell.
+/assets/*              /assets/:splat              200
 /bundled-blueprints/*  /bundled-blueprints/:splat  200
 /bundled-chaos-specs/* /bundled-chaos-specs/:splat 200
 /schemas/*             /schemas/:splat             200
-# Missing hashed bundles must 404 (not SPA HTML) - otherwise browsers report MIME errors
-# when a stale tab/service worker requests a deleted chunk after deploy.
-/assets/*              /assets/:splat              200
-# Static SEO assets must not fall through to the SPA shell.
-/sitemap.xml           /sitemap.xml                200
-/robots.txt            /robots.txt                 200
-# Cloudflare Pages pretty-URLs 308 /index.html → /. Workbox navigateFallback
-# and any SW fetch of that path cannot return a redirected Response to a
-# navigation request (Chrome: net::ERR_FAILED). Serve the file with 200.
+
+# Pages pretty-URLs 308 /index.html → /; Workbox cannot return that to a navigation.
 /index.html            /index.html                 200
-/*                     /index.html                 200

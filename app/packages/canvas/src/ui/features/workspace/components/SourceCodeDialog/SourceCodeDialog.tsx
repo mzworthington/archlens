@@ -1,8 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import { Code2, ExternalLink, Key, Lock, RefreshCw, X, Eye, EyeOff } from 'lucide-react';
-import type { SourceProvenance } from '@archlens/core';
+import {
+  buildSourceFileUrl,
+  normalizeGitRemoteUrl,
+  safeHttpUrl,
+  type SourceProvenance,
+} from '@archlens/core';
 import { useSourceCodeDialog } from './useSourceCodeDialog';
 import { HighlightedSourceCode } from './HighlightedSourceCode';
+
+const CUSTOM_REPO_URL_KEY = 'archlens_custom_repo_url';
+
+function readStoredRepoUrl(): string {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') return '';
+  return normalizeGitRemoteUrl(localStorage.getItem(CUSTOM_REPO_URL_KEY) ?? '') ?? '';
+}
+
+function ExternalHttpLink({
+  href,
+  className,
+  title,
+  children,
+  'aria-label': ariaLabel,
+}: {
+  href: string;
+  className?: string;
+  title?: string;
+  children: React.ReactNode;
+  'aria-label'?: string;
+}) {
+  // Protocol allowlist at the sink — CodeQL js/xss-through-dom.
+  if (!href.startsWith('https://') && !href.startsWith('http://')) {
+    return null;
+  }
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      title={title}
+      aria-label={ariaLabel}
+    >
+      {children}
+    </a>
+  );
+}
 
 interface SourceCodeDialogProps {
   isOpen: boolean;
@@ -42,19 +85,8 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
     setTokenInput(githubPat ?? '');
   }, [githubPat]);
 
-  const [repoUrlInput, setRepoUrlInput] = useState(() => {
-    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-      return localStorage.getItem('archlens_custom_repo_url') || '';
-    }
-    return '';
-  });
-
-  const [activeRepoUrl, setActiveRepoUrl] = useState(() => {
-    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-      return localStorage.getItem('archlens_custom_repo_url') || '';
-    }
-    return '';
-  });
+  const [repoUrlInput, setRepoUrlInput] = useState(readStoredRepoUrl);
+  const [activeRepoUrl, setActiveRepoUrl] = useState(readStoredRepoUrl);
 
   if (!isOpen) return null;
 
@@ -65,15 +97,19 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
       ? result.filepath
       : filepath?.replace(/\\/g, '/').replace(/^\.\//, '');
 
-  const effectiveRemoteUrl = source?.remoteUrl || activeRepoUrl;
-
-  const computedViewerUrl =
-    rawViewerUrl ||
-    (effectiveRemoteUrl && displayPath
-      ? `${effectiveRemoteUrl.replace(/\.git$/, '').replace(/\/$/, '')}/blob/${source?.scannedAtCommit || source?.defaultBranch || 'main'}/${displayPath}`
-      : undefined);
-
-  const viewerUrl = computedViewerUrl;
+  const effectiveRemoteUrl = normalizeGitRemoteUrl(source?.remoteUrl || activeRepoUrl || '');
+  const fallbackViewerUrl =
+    effectiveRemoteUrl && displayPath
+      ? buildSourceFileUrl(
+          {
+            ...source,
+            remoteUrl: effectiveRemoteUrl,
+            scannedAtCommit: source?.scannedAtCommit || source?.defaultBranch || 'main',
+          },
+          displayPath
+        )
+      : undefined;
+  const viewerUrl = safeHttpUrl(rawViewerUrl || fallbackViewerUrl);
 
   const handleSaveToken = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -120,16 +156,14 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                   <p className="text-xs text-slate-400 mt-0.5 font-mono break-all">{displayPath}</p>
                 ) : null}
                 {viewerUrl ? (
-                  <a
+                  <ExternalHttpLink
                     href={viewerUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs text-[#00f0ff] hover:underline font-mono mt-1 font-semibold cursor-pointer"
                     title="Open in repository browser / GitHub"
                   >
                     <ExternalLink className="w-3.5 h-3.5 shrink-0" />
                     <span>Open in GitHub</span>
-                  </a>
+                  </ExternalHttpLink>
                 ) : null}
                 {result?.ok ? (
                   <p className="text-[10px] uppercase tracking-wider text-slate-500 mt-1">
@@ -172,16 +206,14 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
               </button>
 
               {viewerUrl ? (
-                <a
+                <ExternalHttpLink
                   href={viewerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="p-2 rounded-lg text-slate-400 hover:text-[#00f0ff] hover:bg-slate-900 transition"
                   aria-label="Open in repository browser"
                   title="Open in repository browser"
                 >
                   <ExternalLink className="w-4 h-4" />
-                </a>
+                </ExternalHttpLink>
               ) : null}
 
               <button
@@ -284,15 +316,13 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                   </div>
 
                   {viewerUrl ? (
-                    <a
+                    <ExternalHttpLink
                       href={viewerUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00f0ff]/15 hover:bg-[#00f0ff]/25 border border-[#00f0ff]/40 text-[#00f0ff] font-bold text-xs transition cursor-pointer shadow-md"
                     >
                       <ExternalLink className="w-4 h-4 shrink-0 text-[#00f0ff]" />
                       <span>Open in GitHub</span>
-                    </a>
+                    </ExternalHttpLink>
                   ) : (
                     <div className="w-full bg-slate-950/80 border border-slate-800 rounded-lg p-3 text-left space-y-2">
                       <p className="text-[11px] text-slate-400">
@@ -302,14 +332,15 @@ export const SourceCodeDialog: React.FC<SourceCodeDialogProps> = ({
                       <form
                         onSubmit={e => {
                           e.preventDefault();
-                          const clean = repoUrlInput.trim();
+                          const remote = normalizeGitRemoteUrl(repoUrlInput);
                           if (
-                            clean &&
+                            remote &&
                             typeof window !== 'undefined' &&
                             typeof localStorage !== 'undefined'
                           ) {
-                            localStorage.setItem('archlens_custom_repo_url', clean);
-                            setActiveRepoUrl(clean);
+                            localStorage.setItem(CUSTOM_REPO_URL_KEY, remote);
+                            setActiveRepoUrl(remote);
+                            setRepoUrlInput(remote);
                           }
                         }}
                         className="flex gap-2"

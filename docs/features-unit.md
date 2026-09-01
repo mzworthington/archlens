@@ -511,7 +511,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### _redirects (Cloudflare Pages SPA routing)
 
-- ✅ serves static assets and /index.html (200) before the SPA fallback so Workbox is not 308-redirected
+- ✅ canonicalises www, 404s real asset prefixes, and serves /index.html without a pretty-URL 308
 
 ### ActionControls
 

@@ -86,7 +86,7 @@ pnpm --filter @archlens/collab dev
 VITE_COLLAB_WS_URL=ws://127.0.0.1:8787 pnpm dev
 ```
 
-Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app - **Refresh** activates the new service worker; **Later** dismisses until the next check (tab focus also re-checks `index.html` with `cache: no-store`).
+Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app - **Refresh** activates the new service worker; **Later** dismisses until the next check. A visible tab checks immediately, every 60 seconds, and again when you return to the tab (`index.html` with `cache: no-store`, plus `registration.update()`).
 
 ### Bundled demo blueprints
 

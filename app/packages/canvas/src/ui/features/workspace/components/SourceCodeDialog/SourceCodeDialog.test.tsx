@@ -20,6 +20,7 @@ const mockedHook = vi.mocked(useSourceCodeDialog);
 
 describe('SourceCodeDialog', () => {
   beforeEach(() => {
+    localStorage.clear();
     mockedHook.mockReturnValue({
       result: {
         ok: true,
@@ -147,5 +148,80 @@ describe('SourceCodeDialog', () => {
 
     const saveBtn = screen.getByRole('button', { name: /Save & Retry/i });
     expect(saveBtn).toBeInTheDocument();
+  });
+
+  it('does not use a javascript: custom repo URL as a link href', () => {
+    mockedHook.mockReturnValue({
+      result: { ok: false, error: 'No remote' },
+      loading: false,
+      reload: vi.fn(),
+    });
+
+    render(
+      <SourceCodeDialog
+        isOpen
+        onClose={() => {}}
+        filepath="src/answer.ts"
+        isWorkspaceOpen={false}
+      />
+    );
+
+    fireEvent.change(screen.getByPlaceholderText('https://github.com/owner/repo'), {
+      target: { value: 'javascript:alert(1)' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /Save & View Link/i }));
+
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('builds an https viewer link from a custom GitHub repo URL', () => {
+    mockedHook.mockReturnValue({
+      result: { ok: false, error: 'No remote' },
+      loading: false,
+      reload: vi.fn(),
+    });
+
+    render(
+      <SourceCodeDialog
+        isOpen
+        onClose={() => {}}
+        filepath="src/answer.ts"
+        isWorkspaceOpen={false}
+      />
+    );
+
+    fireEvent.change(screen.getByPlaceholderText('https://github.com/owner/repo'), {
+      target: { value: 'https://github.com/owner/repo' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /Save & View Link/i }));
+
+    const links = screen.getAllByRole('link');
+    expect(links.length).toBeGreaterThan(0);
+    for (const link of links) {
+      expect(link).toHaveAttribute('href', 'https://github.com/owner/repo/blob/main/src/answer.ts');
+    }
+  });
+
+  it('ignores javascript: viewer URLs returned by the loader', () => {
+    mockedHook.mockReturnValue({
+      result: {
+        ok: false,
+        error: 'HTTP 404',
+        viewerUrl: 'javascript:alert(1)',
+      },
+      loading: false,
+      reload: vi.fn(),
+    });
+
+    render(
+      <SourceCodeDialog
+        isOpen
+        onClose={() => {}}
+        filepath="src/answer.ts"
+        isWorkspaceOpen={false}
+      />
+    );
+
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 });

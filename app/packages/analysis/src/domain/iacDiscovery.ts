@@ -16,11 +16,12 @@ const IAC_SKIP_DIR_NAMES = new Set([
 export function directorySlug(dirPath: string, fallback: string): string {
   const base = dirPath.replace(/\\/g, '/').replace(/\/$/, '').split('/').filter(Boolean).pop();
   if (!base) return fallback;
+  // match/join — not replace chains — to avoid CodeQL js/polynomial-redos on `-+`.
   return (
     base
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '') || fallback
+      .match(/[a-z0-9]+/g)
+      ?.join('-') || fallback
   );
 }
 

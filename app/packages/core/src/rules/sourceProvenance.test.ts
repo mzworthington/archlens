@@ -4,6 +4,7 @@ import {
   resolveRepoRelativeFilePath,
   buildSourceFileUrl,
   buildSourceFileRawUrl,
+  safeHttpUrl,
 } from './sourceProvenance';
 import type { SourceProvenance } from '../models/schema';
 
@@ -23,6 +24,26 @@ describe('normalizeGitRemoteUrl', () => {
   it('returns undefined for empty input', () => {
     expect(normalizeGitRemoteUrl('')).toBeUndefined();
     expect(normalizeGitRemoteUrl('   ')).toBeUndefined();
+  });
+
+  it('returns undefined for javascript: and other non-http schemes', () => {
+    expect(normalizeGitRemoteUrl('javascript:alert(1)')).toBeUndefined();
+    expect(normalizeGitRemoteUrl('data:text/html,pwned')).toBeUndefined();
+  });
+});
+
+describe('safeHttpUrl', () => {
+  it('allows http(s) URLs', () => {
+    expect(safeHttpUrl('https://github.com/org/repo')).toBe('https://github.com/org/repo');
+    expect(safeHttpUrl('http://gitlab.example/org/repo')).toBe('http://gitlab.example/org/repo');
+  });
+
+  it('rejects javascript: and other non-http schemes', () => {
+    expect(safeHttpUrl('javascript:alert(1)')).toBeUndefined();
+    expect(safeHttpUrl('data:text/html,pwned')).toBeUndefined();
+    expect(safeHttpUrl('/relative/path')).toBeUndefined();
+    expect(safeHttpUrl('')).toBeUndefined();
+    expect(safeHttpUrl(undefined)).toBeUndefined();
   });
 });
 
