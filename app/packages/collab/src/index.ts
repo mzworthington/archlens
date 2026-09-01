@@ -1,5 +1,13 @@
 import * as Y from 'yjs';
-import { COLLAB_MSG_SYNC, COLLAB_MSG_UPDATE, decodeCollabFrame, encodeCollabFrame } from './frames';
+import {
+  COLLAB_MSG_SYNC,
+  COLLAB_MSG_UPDATE,
+  COLLAB_MSG_AWARENESS,
+  COLLAB_MSG_AWARENESS_QUERY,
+  decodeCollabFrame,
+  encodeCollabFrame,
+  isPersistedCollabFrame,
+} from './frames';
 import { resolveCollabRoomPath } from './roomRoute';
 
 export interface Env {
@@ -52,6 +60,17 @@ export class CollabRoom {
     if (typeof message === 'string') return;
     const frame = decodeCollabFrame(message);
     if (!frame) return;
+
+    if (frame.kind === COLLAB_MSG_AWARENESS || frame.kind === COLLAB_MSG_AWARENESS_QUERY) {
+      const outbound = encodeCollabFrame(frame.kind, frame.update);
+      for (const peer of this.ctx.getWebSockets()) {
+        if (peer !== ws) peer.send(outbound);
+      }
+      return;
+    }
+
+    if (!isPersistedCollabFrame(frame.kind)) return;
+
     const doc = await this.loadDoc();
     Y.applyUpdate(doc, frame.update);
     await this.persist(doc);

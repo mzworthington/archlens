@@ -40,3 +40,10 @@ export function withCollabRoom(pathname: string, search: string, roomId: string)
   const query = params.toString();
   return query ? `${pathname}?${query}` : pathname;
 }
+
+export function withoutCollabRoom(pathname: string, search: string): string {
+  const params = queryFromSearch(search);
+  params.delete(COLLAB_ROOM_PARAM);
+  const query = params.toString();
+  return query ? `${pathname}?${query}` : pathname;
+}

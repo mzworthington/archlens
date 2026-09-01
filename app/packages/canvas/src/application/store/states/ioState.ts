@@ -9,6 +9,7 @@ import {
   type GraphChangePort,
   type ResilienceEnginePort,
   type CollabSessionPort,
+  type CollabPresence,
   noopFileSystem,
   noopWorkspace,
   noopLogger,
@@ -17,6 +18,7 @@ import {
   noopGraphChange,
   noopResilienceEngine,
   noopCollabSession,
+  EMPTY_COLLAB_PRESENCE,
 } from '../../../core';
 import {
   loadWorkspaceFromCatalog,
@@ -44,6 +46,7 @@ import { createAnalysisLogger } from '../../../infrastructure/analysis/analysisL
 import { runBrowserAnalysisWorker } from '../../../infrastructure/analysis/runBrowserAnalysisWorker';
 import { isCancellationError } from '@archlens/analysis/cancellation';
 import { CLI_GETTING_STARTED_PATH } from '../../../constants/cli';
+import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/collabDisplayName';
 
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
@@ -60,6 +63,7 @@ export interface IoState {
   graphChangePort: GraphChangePort;
   resilienceEnginePort: ResilienceEnginePort;
   collabSessionPort: CollabSessionPort;
+  collabPresence: CollabPresence;
   setPorts: (
     ports: Partial<{
       fileSystemPort: FileSystemPort;
@@ -83,8 +87,10 @@ export interface IoState {
   openBrowserLiteScan: () => Promise<boolean>;
   saveActiveDiagram: () => Promise<boolean>;
   clearWorkspaceDrafts: () => Promise<void>;
-  joinCollabRoom: (roomId: string) => Promise<void>;
+  joinCollabRoom: (roomId: string, displayName: string) => Promise<void>;
   leaveCollabRoom: () => void;
+  setCollabCursor: (position: { x: number; y: number } | null) => void;
+  updateCollabDisplayName: (name: string) => boolean;
 }
 
 type IoStateDeps = IoState & DiagramState & UiState;
@@ -100,6 +106,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
   graphChangePort: noopGraphChange,
   resilienceEnginePort: noopResilienceEngine,
   collabSessionPort: noopCollabSession,
+  collabPresence: EMPTY_COLLAB_PRESENCE,
   setPorts: ports => set((state: IoStateDeps) => ({ ...state, ...ports })),
 
   saveSchema: async () => {
@@ -437,13 +444,15 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
     }
   },
 
-  joinCollabRoom: async (roomId: string) => {
+  joinCollabRoom: async (roomId: string, displayName: string) => {
     const { collabSessionPort, schema, applyRemoteCollabSchema, logger } = get();
     try {
       await collabSessionPort.join({
         roomId,
         seedSchema: schema,
+        displayName,
         onSchema: applyRemoteCollabSchema,
+        onPresence: presence => set({ collabPresence: presence }),
       });
     } catch (err) {
       logger.error('Failed to join collab room', err);
@@ -452,5 +461,17 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
 
   leaveCollabRoom: () => {
     get().collabSessionPort.leave();
+    set({ collabPresence: EMPTY_COLLAB_PRESENCE });
+  },
+
+  setCollabCursor: (position: { x: number; y: number } | null) => {
+    get().collabSessionPort.setCursor(position);
+  },
+
+  updateCollabDisplayName: (raw: string) => {
+    const name = persistCollabDisplayName(raw);
+    if (!name) return false;
+    get().collabSessionPort.setDisplayName(name);
+    return true;
   },
 });

@@ -12,6 +12,8 @@ import { useTraceLensOnboarding } from '../../hooks/useTraceLensOnboarding';
 import { useActiveDiagramEntity } from '../../hooks/useActiveDiagramEntity';
 import { DiagramLoadingOverlay } from './DiagramLoadingOverlay';
 import { EmptyDiagramOverlay } from './EmptyDiagramOverlay';
+import { CollabCursors } from './CollabCursors';
+import { useCollabCursorTracking } from './useCollabCursorTracking';
 import { MermaidEnrichBanner } from './MermaidEnrichBanner';
 import { BrowserLiteScanBanner } from './BrowserLiteScanBanner';
 import { SchemaImportErrorBanner } from './SchemaImportErrorBanner';
@@ -188,6 +190,8 @@ export const Canvas: React.FC = () => {
   useSpotlightEdge(selectedEdgeId, displayEdges, displayNodes);
 
   const { onDragOver, onDrop } = useCanvasDropNode(addNode);
+  const collabCursors = useBlueprintStore(s => s.collabPresence.cursors);
+  const { onPointerMove, onPointerLeave } = useCollabCursorTracking();
 
   return (
     <div className="flex-1 h-full relative">
@@ -231,6 +235,8 @@ export const Canvas: React.FC = () => {
         }}
         onDragOver={onDragOver}
         onDrop={onDrop}
+        onPointerMove={onPointerMove}
+        onPointerLeave={onPointerLeave}
         nodeTypes={nodeTypes}
         edgesFocusable
         elementsSelectable
@@ -240,6 +246,7 @@ export const Canvas: React.FC = () => {
         fitView
         className="h-full"
       >
+        <CollabCursors cursors={collabCursors} />
         {!liteCanvas && (
           <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="#334155" />
         )}

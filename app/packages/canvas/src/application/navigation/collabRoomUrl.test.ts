@@ -6,6 +6,7 @@ import {
   isValidCollabRoomId,
   parseCollabRoomId,
   withCollabRoom,
+  withoutCollabRoom,
 } from './collabRoomUrl';
 
 function memoryStorage(initial: Record<string, string> = {}): Storage {
@@ -49,6 +50,10 @@ describe('collabRoomUrl', () => {
     expect(withCollabRoom('/workspace/shop', '?lens=chaos', 'abcdefgh')).toBe(
       '/workspace/shop?lens=chaos&room=abcdefgh'
     );
+    expect(withoutCollabRoom('/workspace/shop', '?lens=chaos&room=abcdefgh')).toBe(
+      '/workspace/shop?lens=chaos'
+    );
+    expect(withoutCollabRoom('/workspace/shop', '?room=abcdefgh')).toBe('/workspace/shop');
   });
 
   it('turns collaboration on when a share link has a valid room', () => {

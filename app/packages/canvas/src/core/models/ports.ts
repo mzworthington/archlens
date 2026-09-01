@@ -178,6 +178,36 @@ export const noopWorkingCopy: WorkingCopyPort = {
   clearAllDrafts: async () => {},
 };
 
+/** A named person in the room, including the local user. */
+export type CollabParticipant = {
+  clientId: number;
+  name: string;
+  color: string;
+  isLocal: boolean;
+};
+
+/** Remote pointer in flow coordinates. Local cursor is never included. */
+export type CollabPeerCursor = {
+  clientId: number;
+  name: string;
+  color: string;
+  x: number;
+  y: number;
+};
+
+/** Ephemeral room presence. `connectedCount` includes the local user. */
+export type CollabPresence = {
+  connectedCount: number;
+  cursors: CollabPeerCursor[];
+  participants: CollabParticipant[];
+};
+
+export const EMPTY_COLLAB_PRESENCE: CollabPresence = {
+  connectedCount: 0,
+  cursors: [],
+  participants: [],
+};
+
 /**
  * Driven outbound port for an optional realtime collaboration session.
  * Implementations must not leak CRDT types into the application store.
@@ -186,10 +216,16 @@ export interface CollabSessionPort {
   join(args: {
     roomId: string;
     seedSchema: import('@archlens/core').SystemSchema;
+    displayName: string;
     onSchema: (schema: import('@archlens/core').SystemSchema) => void;
+    onPresence: (presence: CollabPresence) => void;
   }): Promise<void>;
   /** Apply a local schema mutation. No-op when not in a room. */
   pushSchema(schema: import('@archlens/core').SystemSchema): void;
+  /** Publish the local pointer in flow coordinates, or hide it. */
+  setCursor(position: { x: number; y: number } | null): void;
+  /** Update the local display name while a room is active. */
+  setDisplayName(name: string): void;
   leave(): void;
   isActive(): boolean;
   roomId(): string | null;
@@ -198,6 +234,8 @@ export interface CollabSessionPort {
 export const noopCollabSession: CollabSessionPort = {
   join: async () => {},
   pushSchema: () => {},
+  setCursor: () => {},
+  setDisplayName: () => {},
   leave: () => {},
   isActive: () => false,
   roomId: () => null,

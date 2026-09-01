@@ -1,6 +1,6 @@
 # Shared canvas collaboration
 
-**Status:** Slice B in progress · **Last updated:** 2026-09-01 · **Implementation:** core mapping + Canvas session; Worker in `app/packages/collab/`; production hostname `collab.archlens.dev`
+**Status:** Slice C presence in progress · **Last updated:** 2026-09-01 · **Implementation:** core mapping + Canvas session + named cursors; Worker in `app/packages/collab/`; production hostname `collab.archlens.dev`
 
 Contributor design for realtime co-editing of ArchLens diagrams. Local-first folder workspaces stay as they are ([ADR-0004](../ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)). Collaboration is an **opt-in session**, not a replacement for File System Access or IndexedDB drafts.
 
@@ -15,9 +15,9 @@ Do **not** write an ADR in this pass. Yjs as the shared working copy is ADR-wort
 | Slice      | Ships                                                                                                                                                                                       | Deferred           |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **B (v1)** | Shared live diagram **and** shared `SystemSchema`: nodes, dependencies, `entityRef`, layout positions, merge into the working copy. DiffMenu remains the only disk write, still user-gated. | —                  |
-| **C**      | Comments/threads, presence/cursors, first-class collab-vs-disk conflict preview, multi-file workspace rooms                                                                                 | Explicit follow-up |
+| **C**      | Named cursors, connected-user count, display name at share/join. Comments/threads, first-class collab-vs-disk conflict preview, multi-file workspace rooms, auth remain follow-ups.         | Explicit follow-up |
 
-Share-link rooms (room id in the URL, optional display name) are the slice-B default. There is no product auth today; Access or accounts wait for slice C.
+Share-link rooms (room id in the URL) are the slice-B default. Sharer and guests enter a **display name** before joining; that name is shown on their cursor and counted in the connected-user badge. There is no product auth today; Access or accounts wait for a later slice C follow-up.
 
 ### Feature flags (iteration)
 
@@ -401,8 +401,10 @@ Started in-tree:
 2. **Gear 2** — `CollabSessionPort` + Yjs adapter; share link `?room=`; BroadcastChannel for same-origin tabs.
 3. **Worker** — `@archlens/collab` Durable Object room (`app/packages/collab`). Production: `wss://collab.archlens.dev` (CI `deploy-collab` + Pulumi `WorkersCustomDomain`). Local: `VITE_COLLAB_WS_URL=ws://127.0.0.1:8787` and `pnpm --filter @archlens/collab dev`.
 
+4. **Presence** — Yjs Awareness for named cursors and connected count. Display name is collected at share/join; it is not stored in the CRDT.
+
 Still later:
 
 1. **ADR** — Yjs shared working copy vs YAML-on-disk, once we commit the choice as lasting.
 2. **Catalog PRD** — drop or qualify the “multi-user real-time collaboration” non-goal.
-3. **Slice C** — Awareness presence, comments, collab-vs-disk conflict preview, multi-file rooms, auth.
+3. **Slice C remainder** — comments, collab-vs-disk conflict preview, multi-file rooms, auth.

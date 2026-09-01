@@ -48,6 +48,7 @@ vi.mock('@xyflow/react', () => {
       getInternalNode: () => undefined,
       screenToFlowPosition: (pos: { x: number; y: number }) => pos,
     }),
+    ViewportPortal: ({ children }: any) => <div data-testid="viewport-portal">{children}</div>,
   };
 });
 

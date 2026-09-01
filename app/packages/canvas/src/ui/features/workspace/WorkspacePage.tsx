@@ -10,6 +10,7 @@ import { useBundledWorkspaceBootstrap } from './hooks/useBundledWorkspaceBootstr
 import { useUrlSync } from './hooks/useUrlSync';
 import { useWorkspaceLensSync } from './hooks/useWorkspaceLensSync';
 import { useCollabRoomSync } from './hooks/useCollabRoomSync';
+import { CollabNameDialog } from './components/CollabNameDialog/CollabNameDialog';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
 import { useBlueprintStore } from '../../../application/store/store';
 import { WorkspacePanelRail } from './layout/WorkspacePanelRail';
@@ -23,7 +24,7 @@ export const WorkspacePage: React.FC = () => {
   useBundledWorkspaceBootstrap();
   useUrlSync();
   useWorkspaceLensSync();
-  useCollabRoomSync();
+  const collabJoin = useCollabRoomSync();
 
   useKeyboardNavigation({
     onShortcutsOpen: () => setIsShortcutsOpen(true),
@@ -65,6 +66,12 @@ export const WorkspacePage: React.FC = () => {
         </div>
       </div>
       {workspaceDialogs}
+      <CollabNameDialog
+        isOpen={collabJoin.needsDisplayName}
+        initialName={collabJoin.prefillName}
+        onConfirm={collabJoin.confirmDisplayName}
+        onCancel={collabJoin.cancelJoin}
+      />
     </ReactFlowProvider>
   );
 };

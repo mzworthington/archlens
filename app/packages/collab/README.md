@@ -32,4 +32,4 @@ On `main`, CI deploys this Worker then (separately) attaches the custom domain v
 
 ## Protocol
 
-Binary frames: byte 0 is `0` (full state) or `1` (incremental update); the rest is a Yjs update.
+Binary frames: byte 0 is `0` (full state), `1` (incremental update), `2` (awareness), or `3` (awareness query); the rest is the payload. Awareness frames are forwarded to peers and **not** persisted on the Durable Object.
