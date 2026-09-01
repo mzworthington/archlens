@@ -1,33 +1,16 @@
-import { describe, expect, it, afterEach } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
-import {
-  COLLABORATION_FEATURE,
-  featureStorageKey,
-} from '../../../../../application/navigation/featureGate';
+import { describe, expect, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { FEATURE_FLAGS } from '../../../../../application/navigation/featureGate';
 import { FeatureFlagsDialog } from './FeatureFlagsDialog';
 
-afterEach(() => {
-  localStorage.removeItem(featureStorageKey(COLLABORATION_FEATURE));
-});
-
 describe('FeatureFlagsDialog', () => {
-  it('renders a labelled switch for each catalogued flag', () => {
+  it('shows an empty state when no flags are catalogued', () => {
+    expect(FEATURE_FLAGS).toEqual([]);
     render(<FeatureFlagsDialog isOpen onClose={() => undefined} />);
 
     expect(screen.getByRole('dialog', { name: 'Feature flags' })).toBeInTheDocument();
-    const toggle = screen.getByRole('switch', { name: 'Live collaboration' });
-    expect(toggle).toHaveAttribute('aria-checked', 'false');
-  });
-
-  it('persists a toggle in this browser', () => {
-    render(<FeatureFlagsDialog isOpen onClose={() => undefined} />);
-
-    fireEvent.click(screen.getByRole('switch', { name: 'Live collaboration' }));
-    expect(screen.getByRole('switch', { name: 'Live collaboration' })).toHaveAttribute(
-      'aria-checked',
-      'true'
-    );
-    expect(localStorage.getItem(featureStorageKey(COLLABORATION_FEATURE))).toBe('1');
+    expect(screen.getByText('No preview features right now.')).toBeInTheDocument();
+    expect(screen.queryByRole('switch')).not.toBeInTheDocument();
   });
 
   it('does not render when closed', () => {

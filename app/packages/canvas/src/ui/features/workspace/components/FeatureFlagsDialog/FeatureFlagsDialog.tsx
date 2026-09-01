@@ -94,20 +94,26 @@ export const FeatureFlagsDialog: React.FC<FeatureFlagsDialogProps> = ({ isOpen, 
           </div>
 
           <div className="p-4 space-y-4">
-            <ul className="space-y-4">
-              {FEATURE_FLAGS.map(flag => (
-                <li key={flag.id}>
-                  <FeatureFlagSwitch
-                    id={flag.id}
-                    label={flag.label}
-                    description={flag.description}
-                  />
-                </li>
-              ))}
-            </ul>
-            <p className="text-[10px] text-slate-600 pt-2 border-t border-slate-900">
-              These stay on in this browser until you turn them off.
-            </p>
+            {FEATURE_FLAGS.length === 0 ? (
+              <p className="text-sm text-slate-400">No preview features right now.</p>
+            ) : (
+              <>
+                <ul className="space-y-4">
+                  {FEATURE_FLAGS.map(flag => (
+                    <li key={flag.id}>
+                      <FeatureFlagSwitch
+                        id={flag.id}
+                        label={flag.label}
+                        description={flag.description}
+                      />
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-[10px] text-slate-600 pt-2 border-t border-slate-900">
+                  These stay on in this browser until you turn them off.
+                </p>
+              </>
+            )}
           </div>
         </div>
       </div>

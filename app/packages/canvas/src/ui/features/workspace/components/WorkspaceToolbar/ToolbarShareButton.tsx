@@ -7,8 +7,6 @@ import {
   parseCollabRoomId,
   withCollabRoom,
 } from '../../../../../application/navigation/collabRoomUrl';
-import { COLLABORATION_FEATURE } from '../../../../../application/navigation/featureGate';
-import { useFeatureFlag } from '../../../../hooks/useFeatureFlag';
 import { getCollabPrefillDisplayName } from '../../../../../application/collab/collabDisplayName';
 import { CollabShareDialog } from '../CollabShareDialog/CollabShareDialog';
 
@@ -18,7 +16,6 @@ const iconBtnClass =
 export const ToolbarShareButton: React.FC = () => {
   const [pathname, setLocation] = useLocation();
   const search = useSearch();
-  const collabEnabled = useFeatureFlag(COLLABORATION_FEATURE);
   const isLoading = useBlueprintStore(s => s.isLoading);
   const setNotification = useBlueprintStore(s => s.setNotification);
   const isActive = useBlueprintStore(s => s.collabSessionPort.isActive());
@@ -59,8 +56,6 @@ export const ToolbarShareButton: React.FC = () => {
     },
     [copyShareLink, roomFromUrl, updateCollabDisplayName]
   );
-
-  if (!collabEnabled) return null;
 
   const peopleLabel =
     connectedCount === 1 ? '1 person editing' : `${connectedCount} people editing`;

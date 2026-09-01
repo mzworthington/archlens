@@ -189,15 +189,14 @@ describe('ActionControls Component', () => {
     confirmSpy.mockRestore();
   });
 
-  it('opens feature flags from the overflow menu', () => {
+  it('hides feature flags from the overflow menu when none are catalogued', () => {
     const setIsFeatureFlagsOpen = vi.fn();
     useBlueprintStore.setState({ setIsFeatureFlagsOpen });
 
     renderToolbarActions();
     openMoreMenu();
-    fireEvent.click(screen.getByRole('menuitem', { name: 'Feature flags' }));
-
-    expect(setIsFeatureFlagsOpen).toHaveBeenCalledWith(true);
+    expect(screen.queryByRole('menuitem', { name: 'Feature flags' })).not.toBeInTheDocument();
+    expect(setIsFeatureFlagsOpen).not.toHaveBeenCalled();
   });
 
   it('disables buttons when isLoading is true', () => {

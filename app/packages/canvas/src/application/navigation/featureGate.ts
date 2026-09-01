@@ -11,16 +11,11 @@ export type FeatureFlagDefinition = {
   description: string;
 };
 
-/** Current in-flight flags. Add an id here when a slice is gated; remove when it ships or dies. */
-export const COLLABORATION_FEATURE = 'collaboration';
-
-export const FEATURE_FLAGS: readonly FeatureFlagDefinition[] = [
-  {
-    id: COLLABORATION_FEATURE,
-    label: 'Live collaboration',
-    description: 'Share a live editing link so others can edit this diagram with you.',
-  },
-];
+/**
+ * Current in-flight flags. Add an id here when a slice is gated; remove when it ships or dies.
+ * Live collaboration shipped — catalog is empty until the next gated preview.
+ */
+export const FEATURE_FLAGS: readonly FeatureFlagDefinition[] = [];
 
 const listeners = new Set<() => void>();
 

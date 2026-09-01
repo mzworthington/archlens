@@ -6,13 +6,9 @@ import {
   parseCollabRoomId,
   withCollabRoom,
 } from '../../../../application/navigation/collabRoomUrl';
-import {
-  COLLABORATION_FEATURE,
-  setFeatureEnabled,
-} from '../../../../application/navigation/featureGate';
 import { getCollabPrefillDisplayName } from '../../../../application/collab/collabDisplayName';
 
-/** Enable live collab + share-dialog state shared by toolbar and startup Collaborate intent. */
+/** Share-dialog state shared by toolbar and startup Collaborate intent. */
 export function useCollabShareSession() {
   const [pathname, setLocation] = useLocation();
   const search = useSearch();
@@ -22,14 +18,9 @@ export function useCollabShareSession() {
   const roomFromUrl = parseCollabRoomId(search);
   const [shareOpen, setShareOpen] = useState(false);
 
-  const enableCollaboration = useCallback(() => {
-    setFeatureEnabled(COLLABORATION_FEATURE, true);
-  }, []);
-
   const openShareDialog = useCallback(() => {
-    enableCollaboration();
     setShareOpen(true);
-  }, [enableCollaboration]);
+  }, []);
 
   const copyShareLink = useCallback(
     async (roomId: string) => {
@@ -67,7 +58,6 @@ export function useCollabShareSession() {
     shareOpen,
     setShareOpen,
     openShareDialog,
-    enableCollaboration,
     participants,
     initialName: getCollabPrefillDisplayName(),
     handleCopyLink,

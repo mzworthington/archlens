@@ -3,11 +3,6 @@ import { act, renderHook } from '@testing-library/react';
 import { useCollabRoomSync } from './useCollabRoomSync';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { setCollabDisplayName } from '../../../../application/collab/collabDisplayName';
-import {
-  COLLABORATION_FEATURE,
-  featureStorageKey,
-  setFeatureEnabled,
-} from '../../../../application/navigation/featureGate';
 
 let mockSearch = '';
 const mockSetLocation = vi.fn();
@@ -21,7 +16,6 @@ describe('useCollabRoomSync', () => {
   beforeEach(() => {
     mockSearch = '';
     mockSetLocation.mockReset();
-    localStorage.removeItem(featureStorageKey(COLLABORATION_FEATURE));
     sessionStorage.clear();
     localStorage.removeItem('archlens.collab.displayName');
     useBlueprintStore.setState({
@@ -31,7 +25,7 @@ describe('useCollabRoomSync', () => {
     });
   });
 
-  it('does not join a room when there is no share link and the flag is off', () => {
+  it('does not join a room when there is no share link', () => {
     mockSearch = '';
     renderHook(() => useCollabRoomSync());
     expect(useBlueprintStore.getState().joinCollabRoom).not.toHaveBeenCalled();
@@ -41,19 +35,16 @@ describe('useCollabRoomSync', () => {
     mockSearch = '?room=nope';
     renderHook(() => useCollabRoomSync());
     expect(useBlueprintStore.getState().joinCollabRoom).not.toHaveBeenCalled();
-    expect(localStorage.getItem(featureStorageKey(COLLABORATION_FEATURE))).toBeNull();
   });
 
-  it('unlocks collaboration from a share link but waits for a display name', () => {
+  it('waits for a display name before joining a share link', () => {
     mockSearch = '?room=b361b20b-f34f-4bbe-935e-f39c0f6aea44';
     const { result } = renderHook(() => useCollabRoomSync());
-    expect(localStorage.getItem(featureStorageKey(COLLABORATION_FEATURE))).toBe('1');
     expect(useBlueprintStore.getState().joinCollabRoom).not.toHaveBeenCalled();
     expect(result.current.needsDisplayName).toBe(true);
   });
 
   it('joins after a display name is provided', () => {
-    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
     mockSearch = '?room=abcdefgh';
     const { result } = renderHook(() => useCollabRoomSync());
     expect(useBlueprintStore.getState().joinCollabRoom).not.toHaveBeenCalled();
@@ -65,8 +56,7 @@ describe('useCollabRoomSync', () => {
     expect(useBlueprintStore.getState().joinCollabRoom).toHaveBeenCalledWith('abcdefgh', 'Ada');
   });
 
-  it('joins a named session from the URL on a blank canvas when the flag is on', () => {
-    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
+  it('joins a named session from the URL on a blank canvas', () => {
     setCollabDisplayName('Ada');
     mockSearch = '?room=abcdefgh';
     renderHook(() => useCollabRoomSync());
@@ -74,7 +64,6 @@ describe('useCollabRoomSync', () => {
   });
 
   it('keeps joining while the room stays in the query', () => {
-    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
     setCollabDisplayName('Ada');
     mockSearch = '?room=abcdefgh';
     const { rerender } = renderHook(() => useCollabRoomSync());
@@ -86,22 +75,19 @@ describe('useCollabRoomSync', () => {
     expect(useBlueprintStore.getState().leaveCollabRoom).not.toHaveBeenCalled();
   });
 
-  it('leaves the room when the flag is turned off', () => {
-    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
+  it('leaves the room when the room query is removed', () => {
     setCollabDisplayName('Ada');
     mockSearch = '?room=abcdefgh';
-    renderHook(() => useCollabRoomSync());
+    const { rerender } = renderHook(() => useCollabRoomSync());
     expect(useBlueprintStore.getState().joinCollabRoom).toHaveBeenCalledTimes(1);
 
-    act(() => {
-      setFeatureEnabled(COLLABORATION_FEATURE, false);
-    });
+    mockSearch = '';
+    rerender();
     expect(useBlueprintStore.getState().leaveCollabRoom).toHaveBeenCalled();
   });
 
   it('strips the room from the URL when a guest cancels join', () => {
     mockSearch = '?room=abcdefgh';
-    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
     const { result } = renderHook(() => useCollabRoomSync());
     act(() => {
       result.current.cancelJoin();
