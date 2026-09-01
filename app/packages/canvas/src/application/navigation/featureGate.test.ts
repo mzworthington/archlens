@@ -1,6 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
-  COLLABORATION_FEATURE,
   FEATURE_FLAGS,
   featureStorageKey,
   isFeatureEnabled,
@@ -34,7 +33,6 @@ function memoryStorage(initial: Record<string, string> = {}): Storage {
 
 afterEach(() => {
   localStorage.removeItem(featureStorageKey('widgets'));
-  localStorage.removeItem(featureStorageKey(COLLABORATION_FEATURE));
 });
 
 describe('isFeatureEnabled', () => {
@@ -101,8 +99,8 @@ describe('subscribeFeatureFlags', () => {
 });
 
 describe('feature catalog', () => {
-  it('lists collaboration as a toggleable flag', () => {
-    expect(FEATURE_FLAGS.some(flag => flag.id === COLLABORATION_FEATURE)).toBe(true);
-    expect(featureStorageKey(COLLABORATION_FEATURE)).toBe('archlens.feature.collaboration');
+  it('is empty after live collaboration shipped', () => {
+    expect(FEATURE_FLAGS).toEqual([]);
+    expect(featureStorageKey('widgets')).toBe('archlens.feature.widgets');
   });
 });

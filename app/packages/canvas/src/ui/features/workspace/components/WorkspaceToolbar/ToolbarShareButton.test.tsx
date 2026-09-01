@@ -2,10 +2,6 @@ import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { ToolbarShareButton } from './ToolbarShareButton';
 import { useBlueprintStore } from '../../../../../application/store/store';
-import {
-  COLLABORATION_FEATURE,
-  featureStorageKey,
-} from '../../../../../application/navigation/featureGate';
 import { noopCollabSession } from '../../../../../core';
 
 const mockSetLocation = vi.fn();
@@ -20,7 +16,6 @@ describe('ToolbarShareButton', () => {
   beforeEach(() => {
     mockSearch = '?room=abcdefgh';
     mockSetLocation.mockReset();
-    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
     sessionStorage.clear();
     localStorage.removeItem('archlens.collab.displayName');
     useBlueprintStore.setState({

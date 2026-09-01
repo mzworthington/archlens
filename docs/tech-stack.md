@@ -15,7 +15,7 @@ For module boundaries and hexagonal layout, see [Architecture & security](./arch
 | **CLI**                    | TypeScript, Bun compile → standalone `archlens` binary; ts-morph + tree-sitter                  |
 | **ChaosLens engine**       | Go → WebAssembly (`resilience-engine/`), loaded in the browser                                  |
 | **Persistence (browser)**  | IndexedDB (Dexie), File System Access API, service worker (PWA)                                 |
-| **Collab (opt-in)**        | Yjs shared working copy; BroadcastChannel locally; Worker + Durable Object (`@archlens/collab`) |
+| **Collab**                 | Yjs shared working copy; BroadcastChannel locally; Worker + Durable Object (`@archlens/collab`) |
 | **Hosting**                | Cloudflare Pages + CDN; custom domain `archlens.dev`; collab Worker `collab.archlens.dev`       |
 | **Infrastructure as code** | Pulumi (TypeScript), `@pulumi/cloudflare`, stack state in Pulumi Cloud                          |
 | **Deploy**                 | GitHub Actions → `pnpm build` → Wrangler `pages deploy` + collab `wrangler deploy`              |
