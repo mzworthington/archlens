@@ -1,1 +1,1 @@
-export { WorkspaceEntryPanel, type WorkspaceEntryPanelProps } from './WorkspaceEntryPanel';
+export { WorkspaceEntryPanel } from './WorkspaceEntryPanel';

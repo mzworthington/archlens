@@ -22,7 +22,7 @@ import { createCanvasGraphActions } from './diagramState/canvasGraphActions';
 import type { BlueprintStoreSet } from '../store';
 import type { DiagramState, DiagramStateDeps } from './diagramState/types';
 
-export type { DiagramState, SelectionOptions } from './diagramState/types';
+export type { DiagramState } from './diagramState/types';
 
 const initial = createDiagramInitialState();
 
