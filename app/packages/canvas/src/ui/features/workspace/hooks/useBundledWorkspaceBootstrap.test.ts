@@ -101,7 +101,8 @@ describe('useBundledWorkspaceBootstrap', () => {
   it('does not auto-open sandbox for /workspace/empty-workspace when collab is enabled', async () => {
     mockLocation = '/workspace/empty-workspace';
     mockParams = { '*': 'empty-workspace' };
-    mockSearch = '?feature-collaboration=true';
+    mockSearch = '';
+    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
     const openBundledSample = vi.fn().mockResolvedValue(true);
     useBlueprintStore.setState({ openBundledSample, isStartupOpen: true });
 
@@ -116,7 +117,8 @@ describe('useBundledWorkspaceBootstrap', () => {
   it('does not auto-open sandbox when a collab room is in the query and the flag is on', async () => {
     mockLocation = '/workspace/golden-journey';
     mockParams = { '*': 'golden-journey' };
-    mockSearch = '?feature-collaboration=true&room=abcdefgh';
+    mockSearch = '?room=abcdefgh';
+    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
     const openBundledSample = vi.fn().mockResolvedValue(true);
     useBlueprintStore.setState({ openBundledSample, isStartupOpen: true });
 
@@ -131,7 +133,8 @@ describe('useBundledWorkspaceBootstrap', () => {
   it('does not open the startup chooser when a collab room is on bare /workspace', async () => {
     mockLocation = '/workspace';
     mockParams = { '*': '' };
-    mockSearch = '?feature-collaboration=true&room=abcdefgh';
+    mockSearch = '?room=abcdefgh';
+    localStorage.setItem(featureStorageKey(COLLABORATION_FEATURE), '1');
     const openBundledSample = vi.fn().mockResolvedValue(true);
     useBlueprintStore.setState({ openBundledSample });
 

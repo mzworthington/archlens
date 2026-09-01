@@ -21,17 +21,9 @@ Share-link rooms (room id in the URL, optional display name) are the slice-B def
 
 ### Feature flags (iteration)
 
-Query-string flags are generic (`featureGate.ts`). Any kebab-case id works: `?feature-<id>=true` latches into `localStorage` (`archlens.feature.<id>`) until `?feature-<id>=no`. The app shell latches every `feature-*` param so later navigation can drop the query.
+Flags live in `localStorage` (`archlens.feature.<id>`). Toggle them from **More actions → Feature flags** on the workspace toolbar. Collaboration is one catalogued id (`collaboration`). Add/remove ids as slices come and go; do not copy the gate.
 
-Collaboration is one id (`collaboration`). Add/remove ids as slices come and go; do not copy the gate.
-
-| Query                                            | Effect                                                         |
-| ------------------------------------------------ | -------------------------------------------------------------- |
-| `?feature-collaboration=true` (also `1` / `yes`) | Enable and persist                                             |
-| `?feature-collaboration=no` (also `0` / `false`) | Disable and clear storage                                      |
-| no query                                         | Use the stored value (second tab on this origin stays enabled) |
-
-Share links also write `feature-collaboration=true` so a guest on another machine can unlock.
+Share links carry `?room=` only. Each browser must turn Live collaboration on from the flags modal.
 
 ---
 

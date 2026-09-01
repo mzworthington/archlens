@@ -41,6 +41,7 @@ export interface UiState {
   isStartupOpen: boolean;
   isCompareOpen: boolean;
   isShortcutsOpen: boolean;
+  isFeatureFlagsOpen: boolean;
   isValidationOpen: boolean;
   setIsValidationOpen: (open: boolean) => void;
   childExternalsParentRef: string | null;
@@ -80,6 +81,7 @@ export interface UiState {
   setIsStartupOpen: (open: boolean) => void;
   setIsCompareOpen: (open: boolean) => void;
   setIsShortcutsOpen: (open: boolean) => void;
+  setIsFeatureFlagsOpen: (open: boolean) => void;
   openChildLevelExternals: (parentEntityRef: string) => void;
   closeChildLevelExternals: () => void;
   setExpandedExternalHub: (band: ExternalSummaryBand | null) => void;
@@ -118,6 +120,7 @@ export const createUiState = (
   isStartupOpen: true,
   isCompareOpen: false,
   isShortcutsOpen: false,
+  isFeatureFlagsOpen: false,
   isValidationOpen: false,
   setIsValidationOpen: open => set({ isValidationOpen: open }),
   childExternalsParentRef: null,
@@ -185,6 +188,7 @@ export const createUiState = (
     set(state => (state.isStartupOpen === open ? state : { isStartupOpen: open })),
   setIsCompareOpen: open => set({ isCompareOpen: open }),
   setIsShortcutsOpen: open => set({ isShortcutsOpen: open }),
+  setIsFeatureFlagsOpen: open => set({ isFeatureFlagsOpen: open }),
   openChildLevelExternals: parentEntityRef => set({ childExternalsParentRef: parentEntityRef }),
   closeChildLevelExternals: () => set({ childExternalsParentRef: null }),
   setExpandedExternalHub: band => set({ expandedExternalHub: band }),

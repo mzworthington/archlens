@@ -1,17 +1,8 @@
-import { useSearch } from 'wouter';
-import {
-  isFeatureEnabled,
-  latchFeaturesFromSearch,
-} from '../../application/navigation/featureGate';
+import { useCallback, useSyncExternalStore } from 'react';
+import { isFeatureEnabled, subscribeFeatureFlags } from '../../application/navigation/featureGate';
 
-/** Latch every `feature-*` query param for this origin. Mount once in the app shell. */
-export function useFeatureFlagLatch(): void {
-  const search = useSearch();
-  latchFeaturesFromSearch(search);
-}
-
-/** Read (and latch) one `?feature-<id>=` flag. */
+/** Read one persisted flag. Re-renders when any flag is toggled in this tab. */
 export function useFeatureFlag(flagId: string): boolean {
-  const search = useSearch();
-  return isFeatureEnabled(flagId, search);
+  const getSnapshot = useCallback(() => isFeatureEnabled(flagId), [flagId]);
+  return useSyncExternalStore(subscribeFeatureFlags, getSnapshot, () => false);
 }

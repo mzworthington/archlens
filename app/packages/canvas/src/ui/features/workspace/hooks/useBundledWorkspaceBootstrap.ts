@@ -41,7 +41,7 @@ export function useBundledWorkspaceBootstrap(): void {
       // Bare `/workspace` is a separate route; useRoute('/workspace/*') may not match.
       workspaceEntityRefFromPath(pathOnly);
 
-    const collabEnabled = isFeatureEnabled(COLLABORATION_FEATURE, search);
+    const collabEnabled = isFeatureEnabled(COLLABORATION_FEATURE);
     const skipDemoForCollab =
       collabEnabled &&
       (Boolean(parseCollabRoomId(search)) || entityRef === EMPTY_WORKSPACE_ENTITY_REF);

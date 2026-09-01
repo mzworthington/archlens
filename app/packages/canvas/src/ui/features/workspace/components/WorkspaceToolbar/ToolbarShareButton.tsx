@@ -7,10 +7,7 @@ import {
   parseCollabRoomId,
   withCollabRoom,
 } from '../../../../../application/navigation/collabRoomUrl';
-import {
-  COLLABORATION_FEATURE,
-  withFeatureQuery,
-} from '../../../../../application/navigation/featureGate';
+import { COLLABORATION_FEATURE } from '../../../../../application/navigation/featureGate';
 import { useFeatureFlag } from '../../../../hooks/useFeatureFlag';
 
 const iconBtnClass =
@@ -27,7 +24,7 @@ export const ToolbarShareButton: React.FC = () => {
 
   const handleShare = useCallback(async () => {
     const roomId = roomFromUrl ?? createCollabRoomId();
-    const next = withCollabRoom(pathname, withFeatureQuery(search, COLLABORATION_FEATURE), roomId);
+    const next = withCollabRoom(pathname, search, roomId);
     setLocation(next);
     const url = `${window.location.origin}${next}`;
     try {

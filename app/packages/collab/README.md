@@ -24,7 +24,7 @@ Canvas:
 VITE_COLLAB_WS_URL=ws://127.0.0.1:8787 pnpm dev
 ```
 
-Then open two browsers to the same `/workspace?...&room=...` URL (with `feature-collaboration=true`).
+Then open two browsers to the same `/workspace?...&room=...` URL after turning **Live collaboration** on from **More actions → Feature flags**.
 
 ## Production
 

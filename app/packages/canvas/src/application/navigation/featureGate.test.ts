@@ -1,11 +1,11 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   COLLABORATION_FEATURE,
-  featureQueryParam,
+  FEATURE_FLAGS,
   featureStorageKey,
   isFeatureEnabled,
-  latchFeaturesFromSearch,
-  withFeatureQuery,
+  setFeatureEnabled,
+  subscribeFeatureFlags,
 } from './featureGate';
 
 function memoryStorage(initial: Record<string, string> = {}): Storage {
@@ -39,83 +39,70 @@ afterEach(() => {
 
 describe('isFeatureEnabled', () => {
   it('is off by default', () => {
-    expect(isFeatureEnabled('widgets', '', memoryStorage())).toBe(false);
+    expect(isFeatureEnabled('widgets', memoryStorage())).toBe(false);
   });
 
-  it('enables when feature-<id>=true and persists to storage', () => {
-    const storage = memoryStorage();
-    expect(isFeatureEnabled('widgets', '?feature-widgets=true', storage)).toBe(true);
-    expect(storage.getItem(featureStorageKey('widgets'))).toBe('1');
-  });
-
-  it('accepts 1 and yes', () => {
-    expect(isFeatureEnabled('widgets', '?feature-widgets=1', memoryStorage())).toBe(true);
-    expect(isFeatureEnabled('widgets', '?feature-widgets=yes', memoryStorage())).toBe(true);
-  });
-
-  it('stays enabled from storage without the query', () => {
+  it('stays enabled from storage', () => {
     const storage = memoryStorage({ [featureStorageKey('widgets')]: '1' });
-    expect(isFeatureEnabled('widgets', '', storage)).toBe(true);
-  });
-
-  it('disables when feature-<id>=no and clears storage', () => {
-    const storage = memoryStorage({ [featureStorageKey('widgets')]: '1' });
-    expect(isFeatureEnabled('widgets', '?feature-widgets=no', storage)).toBe(false);
-    expect(storage.getItem(featureStorageKey('widgets'))).toBeNull();
-  });
-
-  it('disables when feature-<id>=0 or false and clears storage', () => {
-    const storageZero = memoryStorage({ [featureStorageKey('widgets')]: '1' });
-    expect(isFeatureEnabled('widgets', '?feature-widgets=0', storageZero)).toBe(false);
-    expect(storageZero.getItem(featureStorageKey('widgets'))).toBeNull();
-
-    const storageFalse = memoryStorage({ [featureStorageKey('widgets')]: '1' });
-    expect(isFeatureEnabled('widgets', '?feature-widgets=false', storageFalse)).toBe(false);
-    expect(storageFalse.getItem(featureStorageKey('widgets'))).toBeNull();
-  });
-
-  it('ignores unknown values and keeps the stored preference', () => {
-    const storage = memoryStorage({ [featureStorageKey('widgets')]: '1' });
-    expect(isFeatureEnabled('widgets', '?feature-widgets=maybe', storage)).toBe(true);
-    expect(storage.getItem(featureStorageKey('widgets'))).toBe('1');
+    expect(isFeatureEnabled('widgets', storage)).toBe(true);
   });
 
   it('does not leak enablement across flag ids', () => {
-    const storage = memoryStorage();
-    expect(isFeatureEnabled('widgets', '?feature-widgets=true', storage)).toBe(true);
-    expect(isFeatureEnabled('preview', '', storage)).toBe(false);
+    const storage = memoryStorage({ [featureStorageKey('widgets')]: '1' });
+    expect(isFeatureEnabled('widgets', storage)).toBe(true);
+    expect(isFeatureEnabled('preview', storage)).toBe(false);
   });
 
   it('uses localStorage by default so enable survives a new tab', () => {
     localStorage.setItem(featureStorageKey('widgets'), '1');
-    expect(isFeatureEnabled('widgets', '')).toBe(true);
+    expect(isFeatureEnabled('widgets')).toBe(true);
+  });
+
+  it('rejects invalid flag ids', () => {
+    const storage = memoryStorage({ [featureStorageKey('Foo')]: '1' });
+    expect(isFeatureEnabled('Foo', storage)).toBe(false);
+    expect(isFeatureEnabled('', storage)).toBe(false);
   });
 });
 
-describe('latchFeaturesFromSearch', () => {
-  it('latches every feature-* param so later reads do not need the query', () => {
+describe('setFeatureEnabled', () => {
+  it('persists an enabled flag', () => {
     const storage = memoryStorage();
-    latchFeaturesFromSearch('?feature-widgets=true&feature-preview=no', storage);
-    expect(isFeatureEnabled('widgets', '', storage)).toBe(true);
-    expect(isFeatureEnabled('preview', '', storage)).toBe(false);
+    setFeatureEnabled('widgets', true, storage);
+    expect(storage.getItem(featureStorageKey('widgets'))).toBe('1');
+    expect(isFeatureEnabled('widgets', storage)).toBe(true);
+  });
+
+  it('clears storage when disabled', () => {
+    const storage = memoryStorage({ [featureStorageKey('widgets')]: '1' });
+    setFeatureEnabled('widgets', false, storage);
+    expect(storage.getItem(featureStorageKey('widgets'))).toBeNull();
+    expect(isFeatureEnabled('widgets', storage)).toBe(false);
   });
 
   it('ignores invalid flag ids', () => {
     const storage = memoryStorage();
-    latchFeaturesFromSearch('?feature-=true&feature-Foo=true&feature-a/b=true', storage);
+    setFeatureEnabled('Foo', true, storage);
     expect(storage.getItem(featureStorageKey('Foo'))).toBeNull();
   });
 });
 
-describe('withFeatureQuery', () => {
-  it('adds feature-<id>=true while keeping other params', () => {
-    expect(withFeatureQuery('?lens=chaos', 'widgets')).toBe('?lens=chaos&feature-widgets=true');
+describe('subscribeFeatureFlags', () => {
+  it('notifies listeners when a flag is set', () => {
+    const storage = memoryStorage();
+    const listener = vi.fn();
+    const unsubscribe = subscribeFeatureFlags(listener);
+    setFeatureEnabled('widgets', true, storage);
+    expect(listener).toHaveBeenCalledTimes(1);
+    unsubscribe();
+    setFeatureEnabled('widgets', false, storage);
+    expect(listener).toHaveBeenCalledTimes(1);
   });
 });
 
-describe('collaboration flag id', () => {
-  it('uses the feature-collaboration query param', () => {
-    expect(featureQueryParam(COLLABORATION_FEATURE)).toBe('feature-collaboration');
+describe('feature catalog', () => {
+  it('lists collaboration as a toggleable flag', () => {
+    expect(FEATURE_FLAGS.some(flag => flag.id === COLLABORATION_FEATURE)).toBe(true);
     expect(featureStorageKey(COLLABORATION_FEATURE)).toBe('archlens.feature.collaboration');
   });
 });

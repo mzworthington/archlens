@@ -7,6 +7,7 @@ import {
   Redo,
   MoreHorizontal,
   HelpCircle,
+  Flag,
 } from 'lucide-react';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { useToolbarMenu } from '../WorkspaceToolbar/useToolbarMenu';
@@ -155,6 +156,7 @@ export const ToolbarOverflowMenu: React.FC = () => {
   const { controlsDisabled, handleClear } = useClearAction();
   const { controlsDisabled: saveDisabled, handleSave, isWorkspaceOpen } = useSaveAction();
   const setIsCompareOpen = useBlueprintStore(s => s.setIsCompareOpen);
+  const setIsFeatureFlagsOpen = useBlueprintStore(s => s.setIsFeatureFlagsOpen);
   const loadedSystems = useBlueprintStore(s => s.loadedSystems);
   const { open, toggle, close, anchorRef, menuRef } = useToolbarMenu();
 
@@ -218,6 +220,22 @@ export const ToolbarOverflowMenu: React.FC = () => {
         >
           <GitCompare className="w-3.5 h-3.5 shrink-0" />
           Compare Systems
+        </button>
+
+        <button
+          type="button"
+          role="menuitem"
+          onClick={() => {
+            close();
+            setIsFeatureFlagsOpen(true);
+          }}
+          disabled={controlsDisabled}
+          className={menuItemClass}
+          title="Turn preview features on or off"
+          data-testid="toolbar-feature-flags"
+        >
+          <Flag className="w-3.5 h-3.5 shrink-0" />
+          Feature flags
         </button>
 
         <button

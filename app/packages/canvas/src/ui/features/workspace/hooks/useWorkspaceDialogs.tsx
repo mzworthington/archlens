@@ -6,6 +6,7 @@ import { ImportIacDialog } from '../components/ImportIacDialog/ImportIacDialog';
 import { StartupWorkspaceDialog } from '../components/StartupWorkspaceDialog/StartupWorkspaceDialog';
 import { CompareDialog } from '../components/CompareDialog/CompareDialog';
 import { KeyboardShortcutsDialog } from '../components/KeyboardShortcutsDialog/KeyboardShortcutsDialog';
+import { FeatureFlagsDialog } from '../components/FeatureFlagsDialog/FeatureFlagsDialog';
 import { ChildLevelExternalsDialog } from '../components/ChildLevelExternalsDialog/ChildLevelExternalsDialog';
 import { WorkspaceSourceCodeDialog } from '../components/SourceCodeDialog/WorkspaceSourceCodeDialog';
 import { ValidationDialog } from '../components/ValidationDialog/ValidationDialog';
@@ -40,6 +41,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
     setIsCompareOpen,
     isShortcutsOpen,
     setIsShortcutsOpen,
+    isFeatureFlagsOpen,
+    setIsFeatureFlagsOpen,
     childExternalsParentRef,
     isSourceCodeOpen,
     isLoading,
@@ -138,6 +141,12 @@ export function useWorkspaceDialogs(): React.ReactNode {
         <KeyboardShortcutsDialog
           isOpen={isShortcutsOpen}
           onClose={() => setIsShortcutsOpen(false)}
+        />
+      </LazyMountOnOpen>
+      <LazyMountOnOpen isOpen={isFeatureFlagsOpen}>
+        <FeatureFlagsDialog
+          isOpen={isFeatureFlagsOpen}
+          onClose={() => setIsFeatureFlagsOpen(false)}
         />
       </LazyMountOnOpen>
       <LazyMountOnOpen isOpen={childExternalsParentRef != null}>
