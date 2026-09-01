@@ -33,3 +33,5 @@ On `main`, CI deploys this Worker then (separately) attaches the custom domain v
 ## Protocol
 
 Binary frames: byte 0 is `0` (full state), `1` (incremental update), `2` (awareness), or `3` (awareness query); the rest is the payload. Awareness frames are forwarded to peers and **not** persisted on the Durable Object.
+
+Canvas clients reconnect with backoff after unexpected socket closes, and also on `online` / tab-visible signals (important on mobile when the OS suspends WebSockets). On each open they re-send full Yjs state plus awareness so peers converge after a flap.
