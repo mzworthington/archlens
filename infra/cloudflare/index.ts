@@ -118,7 +118,7 @@ const catalogCustomDomain = new cloudflare.R2CustomDomain('blueprint-catalog-dom
  * Collab share-link rooms. Script + Durable Object ship via Wrangler
  * (`app/packages/collab`); this stack attaches the hostname. Cloudflare
  * creates DNS + cert. The Worker must already have a deployed version —
- * CI `deploy-collab` on main, or `pnpm --filter @archlens/collab deploy`
+ * CI `deploy-collab` on main, or `pnpm --filter @archlens/collab run deploy`
  * before the first apply that creates WorkersCustomDomain.
  */
 new cloudflare.WorkersCustomDomain('collab-domain', {

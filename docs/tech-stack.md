@@ -92,15 +92,15 @@ flowchart LR
   CollabHost --> CollabWorker
 ```
 
-| Piece             | Location / tool                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| Pages project     | Pulumi `cloudflare.PagesProject` (`infra/cloudflare/`)                             |
-| Custom domains    | Pulumi `PagesDomain` (apex + `www`); `WorkersCustomDomain` (`collab.archlens.dev`) |
-| Static upload     | `wrangler pages deploy` from `.github/workflows/ci.yml`                            |
-| Collab Worker     | `pnpm --filter @archlens/collab deploy` from the same workflow (`deploy-collab`)   |
-| SPA routing       | `public/_redirects` (`/schemas/*` passthrough, `/*` → `index.html`)                |
-| IaC workflow      | `.github/workflows/pulumi-cloudflare.yml` → edge-dns reusable workflow             |
-| Bootstrap secrets | `bin/setup-cloudflare-hosting.sh` (thin shim → edge-dns; bws → GitHub + Pulumi)    |
+| Piece             | Location / tool                                                                      |
+| ----------------- | ------------------------------------------------------------------------------------ |
+| Pages project     | Pulumi `cloudflare.PagesProject` (`infra/cloudflare/`)                               |
+| Custom domains    | Pulumi `PagesDomain` (apex + `www`); `WorkersCustomDomain` (`collab.archlens.dev`)   |
+| Static upload     | `wrangler pages deploy` from `.github/workflows/ci.yml`                              |
+| Collab Worker     | `pnpm --filter @archlens/collab run deploy` from the same workflow (`deploy-collab`) |
+| SPA routing       | `public/_redirects` (`/schemas/*` passthrough, `/*` → `index.html`)                  |
+| IaC workflow      | `.github/workflows/pulumi-cloudflare.yml` → edge-dns reusable workflow               |
+| Bootstrap secrets | `bin/setup-cloudflare-hosting.sh` (thin shim → edge-dns; bws → GitHub + Pulumi)      |
 
 Stack config with account/zone IDs and API tokens is **not** committed - see [cloudflare-secrets.md](./cloudflare-secrets.md) and `infra/cloudflare/Pulumi.prod.yaml.example`.
 

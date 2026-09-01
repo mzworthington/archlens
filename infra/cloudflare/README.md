@@ -16,7 +16,7 @@ Pages project, custom domains, catalog R2, and the collab Worker hostname for [a
 | `R2CustomDomain`                        | Public read at `blueprints.archlens.dev`                            |
 | `WorkersCustomDomain`                   | `collab.archlens.dev` → Worker `archlens-collab` (DNS + cert)       |
 
-Collab **script** content is not updated by Pulumi. CI job `deploy-collab` runs `pnpm --filter @archlens/collab deploy` on `main`. Custom domains need that deployment before the first attach — if Pulumi apply races ahead, re-run **Pulumi Cloudflare** after the Worker job is green.
+Collab **script** content is not updated by Pulumi. CI job `deploy-collab` runs `pnpm --filter @archlens/collab run deploy` on `main`. Custom domains need that deployment before the first attach — if Pulumi apply races ahead, re-run **Pulumi Cloudflare** after the Worker job is green.
 
 If Web Analytics or Observatory was enabled in the dashboard first, import before `pulumi up`:
 

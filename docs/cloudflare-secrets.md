@@ -91,7 +91,7 @@ Managed by the edge-dns bootstrap (via the local shim). Nightly publish uses:
 
 ## Deploy
 
-Push to `main` — CI builds the Canvas SPA (`wrangler pages deploy`), deploys the collab Worker (`pnpm --filter @archlens/collab deploy`), and bakes `VITE_COLLAB_WS_URL=wss://collab.archlens.dev` into the production bundle. Pulumi attaches `collab.archlens.dev` when `infra/cloudflare` changes (or on a manual **Pulumi Cloudflare** run).
+Push to `main` — CI builds the Canvas SPA (`wrangler pages deploy`), deploys the collab Worker (`pnpm --filter @archlens/collab run deploy`), and bakes `VITE_COLLAB_WS_URL=wss://collab.archlens.dev` into the production bundle. Pulumi attaches `collab.archlens.dev` when `infra/cloudflare` changes (or on a manual **Pulumi Cloudflare** run).
 
 Custom domains need a deployed Worker version first. If the first Pulumi apply fails on `WorkersCustomDomain`, wait for **deploy-collab** to finish and re-run Pulumi.
 
@@ -100,7 +100,7 @@ Custom domains need a deployed Worker version first. If the first Pulumi apply f
 ```bash
 curl -sI "https://archlens.dev/bundled-blueprints/catalog.json"
 curl -sI "https://blueprints.archlens.dev/latest/manifest.json"
-curl -sI "https://collab.archlens.dev/"
+curl -sI "https://collab.archlens.dev/room/abcdefgh"
 ```
 
-The collab hostname answers `426` on a plain HTTP GET (WebSocket upgrade required). That is enough to confirm the Worker and custom domain are attached.
+A plain GET to `/` on the collab hostname is `404`. A room path without a WebSocket upgrade is `426`. Either proves the Worker and custom domain are attached.
