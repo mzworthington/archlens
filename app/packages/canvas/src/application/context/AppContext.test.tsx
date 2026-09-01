@@ -12,6 +12,7 @@ import {
   noopGraphChange,
   noopResilienceEngine,
   alwaysOnlineNetworkStatus,
+  noopCollabSession,
 } from '../../core';
 
 const samplePort = {
@@ -35,6 +36,7 @@ function testPorts(overrides: Partial<AppPorts> = {}): AppPorts {
     graphChangePort: noopGraphChange,
     networkStatus: alwaysOnlineNetworkStatus,
     resilienceEnginePort: noopResilienceEngine,
+    collabSessionPort: noopCollabSession,
     ...overrides,
   };
 }

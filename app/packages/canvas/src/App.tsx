@@ -6,6 +6,7 @@ import { UpdateBanner } from './ui/components/UpdateBanner/UpdateBanner';
 import { AppNotificationToast } from './ui/components/AppNotificationToast/AppNotificationToast';
 import { useApp } from './application/context/AppContext';
 import { usePageSeo } from './ui/features/docs/seo';
+import { useFeatureFlagLatch } from './ui/hooks/useFeatureFlag';
 
 const DocsHome = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsHome })));
 const DocsPage = lazy(() => import('./ui/features/docs').then(m => ({ default: m.DocsPage })));
@@ -33,12 +34,18 @@ function DocumentSeo() {
   return null;
 }
 
+function FeatureFlagLatch() {
+  useFeatureFlagLatch();
+  return null;
+}
+
 function App() {
   const { networkStatus } = useApp();
 
   return (
     <Router base={routerBase}>
       <DocumentSeo />
+      <FeatureFlagLatch />
       <UpdateBanner />
       <AppNotificationToast />
       <OfflineBanner networkStatus={networkStatus} />

@@ -8,18 +8,19 @@ For module boundaries and hexagonal layout, see [Architecture & security](./arch
 
 ## At a glance
 
-| Layer                      | Choices                                                                                   |
-| -------------------------- | ----------------------------------------------------------------------------------------- |
-| **Canvas (web)**           | React 19, TypeScript, Vite, Tailwind CSS 4, Zustand, React Flow (`@xyflow/react`), Wouter |
-| **Shared domain**          | `@archlens/core` - Zod schemas, parsers, merge rules, resilience simulation               |
-| **CLI**                    | TypeScript, Bun compile → standalone `archlens` binary; ts-morph + tree-sitter            |
-| **ChaosLens engine**       | Go → WebAssembly (`resilience-engine/`), loaded in the browser                            |
-| **Persistence (browser)**  | IndexedDB (Dexie), File System Access API, service worker (PWA)                           |
-| **Hosting**                | Cloudflare Pages + CDN; custom domain `archlens.dev`                                      |
-| **Infrastructure as code** | Pulumi (TypeScript), `@pulumi/cloudflare`, stack state in Pulumi Cloud                    |
-| **Deploy**                 | GitHub Actions → `pnpm build` → Wrangler `pages deploy`                                   |
-| **Secrets**                | Bitwarden Secrets Manager (`bws`) locally; GitHub Actions secrets in CI                   |
-| **Toolchain**              | Mise (`mise.toml`): Node, pnpm, Bun, Go                                                   |
+| Layer                      | Choices                                                                                         |
+| -------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Canvas (web)**           | React 19, TypeScript, Vite, Tailwind CSS 4, Zustand, React Flow (`@xyflow/react`), Wouter       |
+| **Shared domain**          | `@archlens/core` - Zod schemas, parsers, merge rules, resilience simulation                     |
+| **CLI**                    | TypeScript, Bun compile → standalone `archlens` binary; ts-morph + tree-sitter                  |
+| **ChaosLens engine**       | Go → WebAssembly (`resilience-engine/`), loaded in the browser                                  |
+| **Persistence (browser)**  | IndexedDB (Dexie), File System Access API, service worker (PWA)                                 |
+| **Collab (opt-in)**        | Yjs shared working copy; BroadcastChannel locally; Worker + Durable Object (`@archlens/collab`) |
+| **Hosting**                | Cloudflare Pages + CDN; custom domain `archlens.dev`                                            |
+| **Infrastructure as code** | Pulumi (TypeScript), `@pulumi/cloudflare`, stack state in Pulumi Cloud                          |
+| **Deploy**                 | GitHub Actions → `pnpm build` → Wrangler `pages deploy`                                         |
+| **Secrets**                | Bitwarden Secrets Manager (`bws`) locally; GitHub Actions secrets in CI                         |
+| **Toolchain**              | Mise (`mise.toml`): Node, pnpm, Bun, Go                                                         |
 
 ---
 
@@ -45,11 +46,12 @@ Docs and the live product share one build - Markdown under `docs/` is imported a
 
 ## Monorepo (`app/`)
 
-| Package            | Role                                                                                           |
-| ------------------ | ---------------------------------------------------------------------------------------------- |
-| `@archlens/core`   | Pure domain: Zod contracts, YAML/Mermaid/Terraform parsers, workspace catalog, ChaosLens rules |
-| `@archlens/canvas` | Canvas PWA, docs site, workspace adapters                                                      |
-| `@archlens/cli`    | Static analysis CLI, blueprint writers, AdviceLens estate runner                               |
+| Package            | Role                                                                                            |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| `@archlens/core`   | Pure domain: Zod contracts, YAML/Mermaid/Terraform parsers, workspace catalog, ChaosLens rules  |
+| `@archlens/canvas` | Canvas PWA, docs site, workspace adapters                                                       |
+| `@archlens/cli`    | Static analysis CLI, blueprint writers, AdviceLens estate runner                                |
+| `@archlens/collab` | Cloudflare Worker + Durable Object for Yjs share-link rooms (Wrangler; not in the Pages bundle) |
 
 **pnpm** workspaces (`app/pnpm-workspace.yaml`). **Vitest** for unit tests; **oxlint** + **Prettier** for lint/format. **Knip** for unused-code checks in CI.
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation, useRoute } from 'wouter';
+import { useLocation, useRoute, useSearch } from 'wouter';
 import { useBlueprintStore } from '../../../../application/store/store';
 import {
   claimDemoBootstrap,
@@ -11,16 +11,24 @@ import {
   workspaceEntityRefFromPath,
   workspaceEntityRefFromRouteParam,
 } from '../../../../application/navigation/workspaceUrl';
+import { parseCollabRoomId } from '../../../../application/navigation/collabRoomUrl';
+import {
+  COLLABORATION_FEATURE,
+  isFeatureEnabled,
+} from '../../../../application/navigation/featureGate';
+import { EMPTY_WORKSPACE_ENTITY_REF } from '../../../../application/store/states/diagramState/resetToEmptyWorkspace';
 
 /**
  * Workspace bootstrap:
  * - Bare `/workspace` (or `/workspace/`) → show the startup chooser (do not auto-open demo).
  * - Deep link `/workspace/<entityRef>` → open sandbox so the entity resolves.
+ * - Collab flag + empty-workspace or `?room=` → stay on the current canvas (do not load demo).
  * Never re-forces demo after the user opened a folder / browser scan this session.
  */
 export function useBundledWorkspaceBootstrap(): void {
   const [location, setLocation] = useLocation();
   const [, params] = useRoute('/workspace/*');
+  const search = useSearch();
   // Depend on the splat string — wouter returns a new params object every render.
   const routeSplat = params?.['*'];
 
@@ -32,6 +40,17 @@ export function useBundledWorkspaceBootstrap(): void {
       workspaceEntityRefFromRouteParam(routeSplat) ??
       // Bare `/workspace` is a separate route; useRoute('/workspace/*') may not match.
       workspaceEntityRefFromPath(pathOnly);
+
+    const collabEnabled = isFeatureEnabled(COLLABORATION_FEATURE, search);
+    const skipDemoForCollab =
+      collabEnabled &&
+      (Boolean(parseCollabRoomId(search)) || entityRef === EMPTY_WORKSPACE_ENTITY_REF);
+
+    if (skipDemoForCollab) {
+      const { isStartupOpen, setIsStartupOpen } = useBlueprintStore.getState();
+      if (isStartupOpen) setIsStartupOpen(false);
+      return;
+    }
 
     if (!entityRef) {
       const { isWorkspaceOpen, isStartupOpen, setIsStartupOpen } = useBlueprintStore.getState();
@@ -65,5 +84,5 @@ export function useBundledWorkspaceBootstrap(): void {
         releaseDemoBootstrapClaim();
       }
     })();
-  }, [location, routeSplat, setLocation]);
+  }, [location, routeSplat, search, setLocation]);
 }

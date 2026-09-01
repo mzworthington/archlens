@@ -3,20 +3,28 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { useBundledWorkspaceBootstrap } from './useBundledWorkspaceBootstrap';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { resetWorkspaceOpenSessionForTests } from '../../../../application/store/workspaceOpenSession';
+import {
+  COLLABORATION_FEATURE,
+  featureStorageKey,
+} from '../../../../application/navigation/featureGate';
 
 let mockLocation = '/workspace';
+let mockSearch = '';
 let mockParams: { '*': string } | null = { '*': '' };
 const mockSetLocation = vi.fn();
 
 vi.mock('wouter', () => ({
   useLocation: () => [mockLocation, mockSetLocation],
   useRoute: () => [true, mockParams],
+  useSearch: () => mockSearch,
 }));
 
 describe('useBundledWorkspaceBootstrap', () => {
   beforeEach(() => {
     resetWorkspaceOpenSessionForTests();
+    localStorage.removeItem(featureStorageKey(COLLABORATION_FEATURE));
     mockLocation = '/workspace';
+    mockSearch = '';
     mockParams = { '*': '' };
     mockSetLocation.mockClear();
     useBlueprintStore.setState({
@@ -88,5 +96,50 @@ describe('useBundledWorkspaceBootstrap', () => {
     await waitFor(() => {
       expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
     });
+  });
+
+  it('does not auto-open sandbox for /workspace/empty-workspace when collab is enabled', async () => {
+    mockLocation = '/workspace/empty-workspace';
+    mockParams = { '*': 'empty-workspace' };
+    mockSearch = '?feature-collaboration=true';
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({ openBundledSample, isStartupOpen: true });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
+  });
+
+  it('does not auto-open sandbox when a collab room is in the query and the flag is on', async () => {
+    mockLocation = '/workspace/golden-journey';
+    mockParams = { '*': 'golden-journey' };
+    mockSearch = '?feature-collaboration=true&room=abcdefgh';
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({ openBundledSample, isStartupOpen: true });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
+  });
+
+  it('does not open the startup chooser when a collab room is on bare /workspace', async () => {
+    mockLocation = '/workspace';
+    mockParams = { '*': '' };
+    mockSearch = '?feature-collaboration=true&room=abcdefgh';
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({ openBundledSample });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
   });
 });

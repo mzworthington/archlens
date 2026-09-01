@@ -9,6 +9,7 @@ import { useWorkspaceDialogs } from './hooks/useWorkspaceDialogs';
 import { useBundledWorkspaceBootstrap } from './hooks/useBundledWorkspaceBootstrap';
 import { useUrlSync } from './hooks/useUrlSync';
 import { useWorkspaceLensSync } from './hooks/useWorkspaceLensSync';
+import { useCollabRoomSync } from './hooks/useCollabRoomSync';
 import { useKeyboardNavigation } from './hooks/useKeyboardNavigation';
 import { useBlueprintStore } from '../../../application/store/store';
 import { WorkspacePanelRail } from './layout/WorkspacePanelRail';
@@ -22,6 +23,7 @@ export const WorkspacePage: React.FC = () => {
   useBundledWorkspaceBootstrap();
   useUrlSync();
   useWorkspaceLensSync();
+  useCollabRoomSync();
 
   useKeyboardNavigation({
     onShortcutsOpen: () => setIsShortcutsOpen(true),

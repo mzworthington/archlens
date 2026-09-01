@@ -35,6 +35,7 @@ export default defineConfig({
           environment: 'node',
         },
       },
+      'packages/collab/vitest.config.ts',
       {
         test: {
           name: 'reporters',

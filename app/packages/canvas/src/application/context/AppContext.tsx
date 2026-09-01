@@ -9,6 +9,7 @@ import type {
   WorkingCopyPort,
   GraphChangePort,
   ResilienceEnginePort,
+  CollabSessionPort,
 } from '../../core';
 import {
   noopFileSystem,
@@ -19,6 +20,7 @@ import {
   noopGraphChange,
   noopResilienceEngine,
   alwaysOnlineNetworkStatus,
+  noopCollabSession,
 } from '../../core';
 import { useBlueprintStore } from '../store/store';
 
@@ -32,6 +34,7 @@ export type AppPorts = {
   graphChangePort: GraphChangePort;
   networkStatus: NetworkStatusPort;
   resilienceEnginePort: ResilienceEnginePort;
+  collabSessionPort: CollabSessionPort;
 };
 
 interface AppContextProps {
@@ -53,6 +56,7 @@ const defaultPorts: AppPorts = {
   graphChangePort: noopGraphChange,
   networkStatus: alwaysOnlineNetworkStatus,
   resilienceEnginePort: noopResilienceEngine,
+  collabSessionPort: noopCollabSession,
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode; ports?: AppPorts }> = ({
@@ -77,6 +81,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode; ports?: AppPorts
       workingCopyPort: ports.workingCopyPort,
       graphChangePort: ports.graphChangePort,
       resilienceEnginePort: ports.resilienceEnginePort,
+      collabSessionPort: ports.collabSessionPort,
     });
 
     // Deep-linked `/workspace/...` routes load diagrams via URL sync instead.

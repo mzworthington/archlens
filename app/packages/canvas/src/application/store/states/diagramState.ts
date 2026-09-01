@@ -17,6 +17,7 @@ import { createCheckPendingChanges } from './diagramState/pendingChanges';
 import { createSelectSystem } from './diagramState/selectSystem';
 import { createInitSchema } from './diagramState/initSchema';
 import { createApplyClientLayout } from './diagramState/applyClientLayout';
+import { applyRemoteCollabSchema } from './diagramState/applyRemoteCollabSchema';
 import { createCanvasGraphActions } from './diagramState/canvasGraphActions';
 import type { DiagramState, DiagramStateDeps } from './diagramState/types';
 
@@ -61,6 +62,7 @@ export const createDiagramState = (set: any, get: () => DiagramStateDeps): Diagr
     ...canvasGraphActions,
 
     applyRefactorBoundaryAsDraft: boundary => applyRefactorBoundaryAsDraft(boundary, get, set),
+    applyRemoteCollabSchema: schema => applyRemoteCollabSchema(set, get, schema),
 
     markLayoutCustomized: () => {
       if (!get().layoutCustomized) {

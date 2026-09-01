@@ -18,6 +18,7 @@ export * from './rules/validateBlueprintWorkspace';
 export * from './rules/architectureHealth';
 export * from './rules/dependencyCycles';
 export * from './rules/schemaMerge';
+export * from './rules/collabDocument';
 export * from './rules/contextHydration';
 export * from './rules/contextDeclaration';
 export * from './rules/iacExternalSignificance';

@@ -6,6 +6,8 @@ For languages, frameworks, and hosting (React, Pulumi, Cloudflare, etc.), see [T
 
 Hard-to-reverse design choices are recorded as sparse MADRs under [Architecture Decision Records](./ADRs/README.md).
 
+Proposed realtime collaboration (Yjs shared working copy, not implemented): [Shared canvas collaboration](./plans/shared-canvas-collaboration.md).
+
 For using ArchLens products, start with the [Product guide](./guide/index.md).
 
 ---
@@ -144,12 +146,15 @@ Shared by Canvas and CLI. TypeScript + Zod - no Protocol Buffers.
 - `LayoutRegistryPort` / `LayoutEnginePort`: client-side graph layout engines (dagre, ELK, d3-hierarchy).
 - `WorkingCopyPort`: IndexedDB working-copy / baseline persistence and schema diffs.
 - `GraphChangePort`: apply canvas node/edge change lists (React Flow adapter).
+- `CollabSessionPort`: optional Yjs room (share-link); see [Shared canvas collaboration](./plans/shared-canvas-collaboration.md).
 
 ### 3. Canvas adapters & store (`app/packages/canvas/src/`)
 
 - `infrastructure/fileSystem/` - browser FS Access adapters.
 - `infrastructure/layout/` - graph layout adapters + `createBrowserLayoutRegistry` (engines lazy-loaded on first use).
 - `infrastructure/db/` - IndexedDB working copy / baseline diffs.
+- `infrastructure/collab/` - Yjs collab session + BroadcastChannel / WebSocket transports.
+- Worker runtime: [`app/packages/collab`](../app/packages/collab) (`@archlens/collab`) — Durable Object rooms; not bundled into Pages.
 - `infrastructure/network/` - online/offline status for the offline banner.
 - `application/layout/` - pure layout use-case (`computeClientLayout`) and grid policy.
 - `application/store/` - Zustand composition (`uiState`, `diagramState`, `ioState`, `resilienceState`).

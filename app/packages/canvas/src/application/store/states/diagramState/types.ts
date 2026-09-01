@@ -112,6 +112,8 @@ export interface DiagramState {
   }) => Promise<void>;
   markLayoutCustomized: () => void;
   applyRefactorBoundaryAsDraft: (boundary: RefactorBoundary) => boolean;
+  /** Apply a schema from the collab session without pushing it back to the room. */
+  applyRemoteCollabSchema: (schema: SystemSchema) => void;
 }
 
 export type DiagramStateDeps = DiagramState & UiState & IoState;

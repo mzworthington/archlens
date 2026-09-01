@@ -9,6 +9,9 @@ import { ConsoleLoggerAdapter } from '../infrastructure/logging/logger';
 import { BrowserNetworkStatusAdapter } from '../infrastructure/network/browserNetworkStatus';
 import { dexieWorkingCopyAdapter } from '../infrastructure/db/dexieWorkingCopyAdapter';
 import { runResilienceWasmSimulation } from '../infrastructure/resilience/wasmClient';
+import { createBroadcastChannelTransport } from '../infrastructure/collab/broadcastChannelTransport';
+import { createWebsocketCollabTransport } from '../infrastructure/collab/websocketCollabTransport';
+import { createYjsCollabSession } from '../infrastructure/collab/yjsCollabSessionAdapter';
 import type {
   FileSystemPort,
   WorkspacePort,
@@ -18,6 +21,7 @@ import type {
   GraphChangePort,
   NetworkStatusPort,
   ResilienceEnginePort,
+  CollabSessionPort,
 } from '../core';
 
 export type BrowserPorts = {
@@ -30,10 +34,16 @@ export type BrowserPorts = {
   graphChangePort: GraphChangePort;
   networkStatus: NetworkStatusPort;
   resilienceEnginePort: ResilienceEnginePort;
+  collabSessionPort: CollabSessionPort;
 };
 
 /** Browser composition root - only place that constructs concrete adapters. */
 export function createBrowserPorts(): BrowserPorts {
+  const wsUrl = import.meta.env.VITE_COLLAB_WS_URL?.trim();
+  const transport = wsUrl
+    ? createWebsocketCollabTransport(wsUrl)
+    : createBroadcastChannelTransport();
+
   return {
     fileSystemPort: BrowserFileSystemAdapter,
     folderWorkspacePort: BrowserWorkspaceAdapter,
@@ -46,5 +56,6 @@ export function createBrowserPorts(): BrowserPorts {
     resilienceEnginePort: {
       runSimulation: runResilienceWasmSimulation,
     },
+    collabSessionPort: createYjsCollabSession({ transport }),
   };
 }

@@ -25,7 +25,7 @@ async function fitAndSelect(page: Page, label: string) {
 }
 
 /** Select until ChaosLens FaultControls shows the node as the active target. */
-async function selectFaultTarget(page: Page, label: string) {
+export async function selectFaultTarget(page: Page, label: string) {
   const faultControls = page.getByTestId('fault-controls');
   await expect(faultControls).toBeVisible({ timeout: 30_000 });
   const target = faultControls.getByText(`Target: ${label}`, { exact: true });

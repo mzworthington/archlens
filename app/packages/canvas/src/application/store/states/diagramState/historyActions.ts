@@ -20,6 +20,7 @@ export function createHistoryActions(set: SetFn, get: GetFn) {
     },
 
     undo: () => {
+      if (get().collabSessionPort?.isActive()) return;
       const { past, future, nodes, edges, schema } = get();
       if (past.length === 0) return;
 
@@ -40,6 +41,7 @@ export function createHistoryActions(set: SetFn, get: GetFn) {
     },
 
     redo: () => {
+      if (get().collabSessionPort?.isActive()) return;
       const { past, future, nodes, edges, schema } = get();
       if (future.length === 0) return;
 

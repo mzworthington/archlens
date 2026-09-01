@@ -6,6 +6,7 @@ import { useBlueprintStore } from '../../../../../application/store/store';
 const mockSetLocation = vi.fn();
 vi.mock('wouter', () => ({
   useLocation: () => ['/workspace/application', mockSetLocation],
+  useSearch: () => '',
   Link: ({ children, to }: any) => <a href={to}>{children}</a>,
 }));
 

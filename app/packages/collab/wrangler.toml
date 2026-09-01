@@ -1,0 +1,10 @@
+name = "archlens-collab"
+main = "src/index.ts"
+compatibility_date = "2026-08-04"
+
+[durable_objects]
+bindings = [{ name = "COLLAB_ROOMS", class_name = "CollabRoom" }]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["CollabRoom"]

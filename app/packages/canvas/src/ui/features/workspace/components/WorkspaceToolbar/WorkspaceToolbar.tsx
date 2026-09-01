@@ -10,10 +10,12 @@ import {
 import { LayoutEngineControls } from '../LayoutEngineControls/LayoutEngineControls';
 import { LensToolbarControls } from './LensToolbarControls';
 import { LiteCanvasButton } from './LiteCanvasButton';
+import { ToolbarShareButton } from './ToolbarShareButton';
 
 const toolbarActions = (
   <>
     <ToolbarShortcutsButton />
+    <ToolbarShareButton />
     <ToolbarPendingChangesButton />
     <ToolbarEditActions />
     <ToolbarOverflowMenu />

@@ -178,6 +178,31 @@ export const noopWorkingCopy: WorkingCopyPort = {
   clearAllDrafts: async () => {},
 };
 
+/**
+ * Driven outbound port for an optional realtime collaboration session.
+ * Implementations must not leak CRDT types into the application store.
+ */
+export interface CollabSessionPort {
+  join(args: {
+    roomId: string;
+    seedSchema: import('@archlens/core').SystemSchema;
+    onSchema: (schema: import('@archlens/core').SystemSchema) => void;
+  }): Promise<void>;
+  /** Apply a local schema mutation. No-op when not in a room. */
+  pushSchema(schema: import('@archlens/core').SystemSchema): void;
+  leave(): void;
+  isActive(): boolean;
+  roomId(): string | null;
+}
+
+export const noopCollabSession: CollabSessionPort = {
+  join: async () => {},
+  pushSchema: () => {},
+  leave: () => {},
+  isActive: () => false,
+  roomId: () => null,
+};
+
 /** Opaque canvas graph change payloads (React Flow NodeChange / EdgeChange at the adapter). */
 export type CanvasNodeChange = { type: string; id?: string; [key: string]: unknown };
 export type CanvasEdgeChange = { type: string; id?: string; [key: string]: unknown };

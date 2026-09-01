@@ -56,7 +56,7 @@ export function createInitSchema(set: SetFn, get: GetFn) {
         schema.level,
         schema.entityRef ?? null,
         schema.source,
-        { syncWorkingCopy: false, updateSessionLayout: false }
+        { syncWorkingCopy: false, updateSessionLayout: false, pushCollab: false }
       );
       set({ layoutSessionId: get().layoutSessionId + 1 });
       return;
@@ -101,7 +101,9 @@ export function createInitSchema(set: SetFn, get: GetFn) {
       normalized.level,
       normalized.entityRef ?? null,
       normalized.source,
-      needsAutoLayout ? { syncWorkingCopy: false, updateSessionLayout: false } : undefined
+      needsAutoLayout
+        ? { syncWorkingCopy: false, updateSessionLayout: false, pushCollab: false }
+        : { pushCollab: false }
     );
     set({ layoutSessionId: get().layoutSessionId + 1 });
   };

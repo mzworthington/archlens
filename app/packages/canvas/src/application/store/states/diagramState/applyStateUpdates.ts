@@ -25,6 +25,8 @@ export type ApplyStateUpdateOptions = {
   syncWorkingCopy?: boolean;
   /** When false, do not update the in-memory session layout cache. */
   updateSessionLayout?: boolean;
+  /** When false, do not push the rebuilt schema into an active collab session (loads / remote applies). */
+  pushCollab?: boolean;
 };
 
 function validationIssueSignature(result: ValidationResult): string {
@@ -167,5 +169,11 @@ export function applyStateUpdates(
           get().logger.error('Failed to sync working schema to IndexedDB', err);
         }
       });
+  }
+
+  const pushCollab = options.pushCollab !== false;
+  const collab = get().collabSessionPort;
+  if (pushCollab && collab?.isActive()) {
+    collab.pushSchema(resolvedSchema);
   }
 }

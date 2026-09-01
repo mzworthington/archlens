@@ -14,5 +14,6 @@ export function wireBrowserPorts(ports: BrowserPorts): void {
     workingCopyPort: ports.workingCopyPort,
     graphChangePort: ports.graphChangePort,
     resilienceEnginePort: ports.resilienceEnginePort,
+    collabSessionPort: ports.collabSessionPort,
   });
 }

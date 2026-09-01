@@ -1,0 +1,24 @@
+{
+  "name": "@archlens/collab",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./frames": "./src/frames.ts"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "yjs": "^13.6.32"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20260831.1",
+    "typescript": "~7.0.2",
+    "wrangler": "^4.28.0"
+  }
+}

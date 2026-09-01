@@ -8,6 +8,7 @@ import {
   type WorkingCopyPort,
   type GraphChangePort,
   type ResilienceEnginePort,
+  type CollabSessionPort,
   noopFileSystem,
   noopWorkspace,
   noopLogger,
@@ -15,6 +16,7 @@ import {
   noopWorkingCopy,
   noopGraphChange,
   noopResilienceEngine,
+  noopCollabSession,
 } from '../../../core';
 import {
   loadWorkspaceFromCatalog,
@@ -57,6 +59,7 @@ export interface IoState {
   workingCopyPort: WorkingCopyPort;
   graphChangePort: GraphChangePort;
   resilienceEnginePort: ResilienceEnginePort;
+  collabSessionPort: CollabSessionPort;
   setPorts: (
     ports: Partial<{
       fileSystemPort: FileSystemPort;
@@ -68,6 +71,7 @@ export interface IoState {
       workingCopyPort: WorkingCopyPort;
       graphChangePort: GraphChangePort;
       resilienceEnginePort: ResilienceEnginePort;
+      collabSessionPort: CollabSessionPort;
     }>
   ) => void;
 
@@ -79,6 +83,8 @@ export interface IoState {
   openBrowserLiteScan: () => Promise<boolean>;
   saveActiveDiagram: () => Promise<boolean>;
   clearWorkspaceDrafts: () => Promise<void>;
+  joinCollabRoom: (roomId: string) => Promise<void>;
+  leaveCollabRoom: () => void;
 }
 
 type IoStateDeps = IoState & DiagramState & UiState;
@@ -93,6 +99,7 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
   workingCopyPort: noopWorkingCopy,
   graphChangePort: noopGraphChange,
   resilienceEnginePort: noopResilienceEngine,
+  collabSessionPort: noopCollabSession,
   setPorts: ports => set((state: IoStateDeps) => ({ ...state, ...ports })),
 
   saveSchema: async () => {
@@ -428,5 +435,22 @@ export const createIoState = (set: any, get: () => IoStateDeps): IoState => ({
       });
       return false;
     }
+  },
+
+  joinCollabRoom: async (roomId: string) => {
+    const { collabSessionPort, schema, applyRemoteCollabSchema, logger } = get();
+    try {
+      await collabSessionPort.join({
+        roomId,
+        seedSchema: schema,
+        onSchema: applyRemoteCollabSchema,
+      });
+    } catch (err) {
+      logger.error('Failed to join collab room', err);
+    }
+  },
+
+  leaveCollabRoom: () => {
+    get().collabSessionPort.leave();
   },
 });
