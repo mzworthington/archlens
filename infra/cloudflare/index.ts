@@ -72,6 +72,7 @@ const webAnalytics = new cloudflare.WebAnalyticsSite('web-analytics', {
   accountId,
   zoneTag: zoneId,
   autoInstall: true,
+  enabled: true,
 });
 
 new cloudflare.ObservatoryScheduledTest('observatory-apex', {
@@ -133,6 +134,7 @@ export const pagesProjectNameOut = pagesProject.name;
 export const pagesSubdomain = pagesProject.subdomain;
 export const zoneName = zone.name;
 export const webAnalyticsSiteTag = webAnalytics.siteTag;
+export const webAnalyticsSiteToken = webAnalytics.siteToken;
 export const blueprintCatalogBucketName = catalogBucket.name;
 export const blueprintCatalogDomain = catalogCustomDomain.domain;
 export const collabWorkerNameOut = collabWorkerName;
