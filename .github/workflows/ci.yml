@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       deploy_to_cloudflare:
-        description: Deploy Canvas build to Cloudflare Pages after CI (main only)
+        description: Deploy Canvas (Pages) and collab Worker after CI (main only)
         type: boolean
         default: true
 
@@ -218,6 +218,7 @@ jobs:
       - name: Compile Production Build
         env:
           VITE_REMOTE_CATALOG_BASE_URL: ${{ github.ref == 'refs/heads/main' && 'https://blueprints.archlens.dev/estates/samples/' || '' }}
+          VITE_COLLAB_WS_URL: ${{ github.ref == 'refs/heads/main' && 'wss://collab.archlens.dev' || '' }}
         run: pnpm build
         working-directory: app
 
@@ -257,6 +258,46 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy app/packages/canvas/dist --project-name=archlens --branch=main
+
+  deploy-collab:
+    needs: [quality, unit-tests]
+    if: >-
+      github.ref == 'refs/heads/main'
+      && (
+        github.event_name == 'push'
+        || (github.event_name == 'workflow_dispatch' && inputs.deploy_to_cloudflare)
+      )
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://collab.archlens.dev
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.10.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: app
+
+      - name: Deploy collab Worker
+        working-directory: app
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm --filter @archlens/collab deploy
 
   check-release:
     needs: [build, e2e]

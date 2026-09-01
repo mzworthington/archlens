@@ -1,6 +1,6 @@
 # Shared canvas collaboration
 
-**Status:** Slice B in progress · **Last updated:** 2026-09-01 · **Implementation:** core mapping + Canvas session (BroadcastChannel); Worker in `app/packages/collab/`
+**Status:** Slice B in progress · **Last updated:** 2026-09-01 · **Implementation:** core mapping + Canvas session; Worker in `app/packages/collab/`; production hostname `collab.archlens.dev`
 
 Contributor design for realtime co-editing of ArchLens diagrams. Local-first folder workspaces stay as they are ([ADR-0004](../ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)). Collaboration is an **opt-in session**, not a replacement for File System Access or IndexedDB drafts.
 
@@ -296,31 +296,33 @@ Hexagon: UI → Zustand (application) → ports → infrastructure; pure domain 
 
 **Static SPA on Cloudflare Pages** — not Workers-first.
 
-| Piece     | Reality                                                                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| App       | React Canvas SPA (`app/packages/canvas/dist`)                                                                                              |
-| Deploy    | GHA → `wrangler pages deploy` → project `archlens`                                                                                         |
-| Wrangler  | Root `wrangler.toml` is Pages-only (`pages_build_output_dir`); no Worker script, no Durable Object bindings                                |
-| IaC       | [`infra/cloudflare/`](../../infra/cloudflare/) Pulumi: Pages project, apex/`www` DNS + PagesDomain, Web Analytics, Observatory, R2 catalog |
-| Catalog   | Public R2 `archlens-blueprint-catalog` at `blueprints.archlens.dev` (CORS GET/HEAD from site + localhost)                                  |
-| DNS split | **edge-dns** owns zone `archlens.dev`; **ArchLens** owns product DNS / Pages / R2                                                          |
+| Piece     | Reality                                                                                                                                                                                     |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| App       | React Canvas SPA (`app/packages/canvas/dist`)                                                                                                                                               |
+| Deploy    | GHA → `wrangler pages deploy` (SPA) + `wrangler deploy` (`@archlens/collab`); Pulumi attaches `collab.archlens.dev`                                                                         |
+| Wrangler  | Root `wrangler.toml` is Pages-only; collab Worker lives in `app/packages/collab/wrangler.toml`                                                                                              |
+| IaC       | [`infra/cloudflare/`](../../infra/cloudflare/) Pulumi: Pages project, apex/`www` DNS + PagesDomain, Web Analytics, Observatory, R2 catalog, `WorkersCustomDomain` for `collab.archlens.dev` |
+| Catalog   | Public R2 `archlens-blueprint-catalog` at `blueprints.archlens.dev` (CORS GET/HEAD from site + localhost)                                                                                   |
+| DNS split | **edge-dns** owns zone `archlens.dev`; **ArchLens** owns product DNS / Pages / R2 / collab hostname                                                                                         |
 
 Prod sandbox uses `VITE_REMOTE_CATALOG_BASE_URL=https://blueprints.archlens.dev/estates/samples/` on `main` builds. Write path is CI/CLI → R2 via `@archlens/storage`, not the browser.
 
 ```mermaid
 flowchart LR
   GHA[GitHub Actions] -->|pages deploy| Pages[Cloudflare Pages]
+  GHA -->|collab wrangler deploy| Collab[archlens-collab Worker]
   GHA -->|archlens publish| R2[(R2 catalog)]
   Pulumi[infra cloudflare] --> Pages
   Pulumi --> R2
+  Pulumi --> CollabHost[collab.archlens.dev]
+  CollabHost --> Collab
   edgeDNS[edge-dns zone] --> Zone[archlens.dev]
   Pages --> Users[Browsers]
+  Collab --> Users
   R2 --> Users
 ```
 
-No Pages Functions, no Worker package, no Durable Objects, no WebSocket/collab stack.
-
-`@archlens/storage` is CLI/publish object storage (R2/S3/Azure/HTTP) — not a live sync backend.
+Pages stays a static SPA. Share-link rooms are a separate Worker + Durable Object (`@archlens/collab`) at `collab.archlens.dev`. `@archlens/storage` is CLI/publish object storage (R2/S3/Azure/HTTP) — not a live sync backend.
 
 ### Auth
 
@@ -328,7 +330,7 @@ None for product users. No Clerk, Cloudflare Access, OAuth, or Zero Trust on the
 
 [ADR-0013](../ADRs/0013-practitioner-connection-profiles.md) (connection profiles / private buckets) is **Deferred**. [ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md) mentions deferred Worker compose triggers for catalog ops, not collab.
 
-Durable Objects **can** be added: Cloudflare account + Pulumi + reusable CI already exist. Nothing in hosting blocks a Worker+DO; it is greenfield product infra.
+Share-link rooms are unauthenticated in slice B. Auth (Access or accounts) waits for slice C.
 
 ---
 
@@ -405,11 +407,10 @@ Started in-tree:
 
 1. **Gear 1** — `SystemSchema` ↔ collab document projection in `@archlens/core` (`rules/collabDocument.ts`).
 2. **Gear 2** — `CollabSessionPort` + Yjs adapter; share link `?room=`; BroadcastChannel for same-origin tabs.
-3. **Worker** — `@archlens/collab` Durable Object room (`app/packages/collab`). Set `VITE_COLLAB_WS_URL` (for example `ws://127.0.0.1:8787`) and run `pnpm --filter @archlens/collab dev`.
+3. **Worker** — `@archlens/collab` Durable Object room (`app/packages/collab`). Production: `wss://collab.archlens.dev` (CI `deploy-collab` + Pulumi `WorkersCustomDomain`). Local: `VITE_COLLAB_WS_URL=ws://127.0.0.1:8787` and `pnpm --filter @archlens/collab dev`.
 
 Still later:
 
 1. **ADR** — Yjs shared working copy vs YAML-on-disk, once we commit the choice as lasting.
 2. **Catalog PRD** — drop or qualify the “multi-user real-time collaboration” non-goal.
 3. **Slice C** — Awareness presence, comments, collab-vs-disk conflict preview, multi-file rooms, auth.
-4. **Pulumi / DNS** — `collab.archlens.dev` and production Worker deploy.

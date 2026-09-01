@@ -52,9 +52,11 @@ Create at [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/p
 
 - Account → **Cloudflare Pages: Edit**
 - Account → **R2: Edit** (Pulumi bucket + custom domain)
+- Account → **Workers Scripts: Edit** (collab Worker deploy)
 - Account → **Account Settings: Read** + **Edit** (Web Analytics)
 - Zone → **Zone: Read**
 - Zone → **DNS: Edit**
+- Zone → **Workers Routes: Edit** (collab custom domain)
 - Zone → **Zone Settings: Edit** (Observatory scheduled tests)
 
 ### Object storage (`@archlens/storage`)
@@ -89,11 +91,16 @@ Managed by the edge-dns bootstrap (via the local shim). Nightly publish uses:
 
 ## Deploy
 
-Push to `main` - CI builds and `wrangler pages deploy` publishes.
+Push to `main` — CI builds the Canvas SPA (`wrangler pages deploy`), deploys the collab Worker (`pnpm --filter @archlens/collab deploy`), and bakes `VITE_COLLAB_WS_URL=wss://collab.archlens.dev` into the production bundle. Pulumi attaches `collab.archlens.dev` when `infra/cloudflare` changes (or on a manual **Pulumi Cloudflare** run).
+
+Custom domains need a deployed Worker version first. If the first Pulumi apply fails on `WorkersCustomDomain`, wait for **deploy-collab** to finish and re-run Pulumi.
 
 ## Health check
 
 ```bash
 curl -sI "https://archlens.dev/bundled-blueprints/catalog.json"
 curl -sI "https://blueprints.archlens.dev/latest/manifest.json"
+curl -sI "https://collab.archlens.dev/"
 ```
+
+The collab hostname answers `426` on a plain HTTP GET (WebSocket upgrade required). That is enough to confirm the Worker and custom domain are attached.

@@ -6,7 +6,7 @@ For languages, frameworks, and hosting (React, Pulumi, Cloudflare, etc.), see [T
 
 Hard-to-reverse design choices are recorded as sparse MADRs under [Architecture Decision Records](./ADRs/README.md).
 
-Proposed realtime collaboration (Yjs shared working copy, not implemented): [Shared canvas collaboration](./plans/shared-canvas-collaboration.md).
+Proposed realtime collaboration (Yjs shared working copy; slice B in progress): [Shared canvas collaboration](./plans/shared-canvas-collaboration.md). Production rooms are a Worker + Durable Object at `collab.archlens.dev`.
 
 For using ArchLens products, start with the [Product guide](./guide/index.md).
 
@@ -154,7 +154,7 @@ Shared by Canvas and CLI. TypeScript + Zod - no Protocol Buffers.
 - `infrastructure/layout/` - graph layout adapters + `createBrowserLayoutRegistry` (engines lazy-loaded on first use).
 - `infrastructure/db/` - IndexedDB working copy / baseline diffs.
 - `infrastructure/collab/` - Yjs collab session + BroadcastChannel / WebSocket transports.
-- Worker runtime: [`app/packages/collab`](../app/packages/collab) (`@archlens/collab`) — Durable Object rooms; not bundled into Pages.
+- Worker runtime: [`app/packages/collab`](../app/packages/collab) (`@archlens/collab`) — Durable Object rooms at `collab.archlens.dev`; not bundled into Pages.
 - `infrastructure/network/` - online/offline status for the offline banner.
 - `application/layout/` - pure layout use-case (`computeClientLayout`) and grid policy.
 - `application/store/` - Zustand composition (`uiState`, `diagramState`, `ioState`, `resilienceState`).

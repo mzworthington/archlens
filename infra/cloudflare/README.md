@@ -1,19 +1,22 @@
 # Cloudflare infrastructure (Pulumi)
 
-Pages project, custom domains, and DNS for [archlens.dev](https://archlens.dev). The SPA is built in CI and deployed with `wrangler pages deploy`.
+Pages project, custom domains, catalog R2, and the collab Worker hostname for [archlens.dev](https://archlens.dev). The SPA is built in CI and deployed with `wrangler pages deploy`. The collab script ships with `wrangler deploy` from `@archlens/collab`.
 
 ## Resources
 
-| Resource | Purpose |
-|----------|---------|
-| `PagesProject` | Direct-upload project (`archlens`) |
-| `DnsRecord` (`apex-pages`, `www-pages`) | Proxied CNAMEs → `pagesProject.subdomain` |
-| `PagesDomain` | Attaches apex + `www` to the Pages project (SSL / hostname binding) |
-| `WebAnalyticsSite` | Zone RUM / Web Analytics (`autoInstall`) |
-| `ObservatoryScheduledTest` | Synthetic Speed test for the apex hostname |
-| `R2Bucket` | Published blueprint catalog corpus (`archlens-blueprint-catalog`) |
-| `R2BucketCors` | Browser GET/HEAD from `archlens.dev` and local dev |
-| `R2CustomDomain` | Public read at `blueprints.archlens.dev` |
+| Resource                                | Purpose                                                             |
+| --------------------------------------- | ------------------------------------------------------------------- |
+| `PagesProject`                          | Direct-upload project (`archlens`)                                  |
+| `DnsRecord` (`apex-pages`, `www-pages`) | Proxied CNAMEs → `pagesProject.subdomain`                           |
+| `PagesDomain`                           | Attaches apex + `www` to the Pages project (SSL / hostname binding) |
+| `WebAnalyticsSite`                      | Zone RUM / Web Analytics (`autoInstall`)                            |
+| `ObservatoryScheduledTest`              | Synthetic Speed test for the apex hostname                          |
+| `R2Bucket`                              | Published blueprint catalog corpus (`archlens-blueprint-catalog`)   |
+| `R2BucketCors`                          | Browser GET/HEAD from `archlens.dev` and local dev                  |
+| `R2CustomDomain`                        | Public read at `blueprints.archlens.dev`                            |
+| `WorkersCustomDomain`                   | `collab.archlens.dev` → Worker `archlens-collab` (DNS + cert)       |
+
+Collab **script** content is not updated by Pulumi. CI job `deploy-collab` runs `pnpm --filter @archlens/collab deploy` on `main`. Custom domains need that deployment before the first attach — if Pulumi apply races ahead, re-run **Pulumi Cloudflare** after the Worker job is green.
 
 If Web Analytics or Observatory was enabled in the dashboard first, import before `pulumi up`:
 
@@ -58,7 +61,7 @@ pulumi up
 
 ## Token permissions
 
-`CLOUDFLARE_API_TOKEN` needs Pages, R2, DNS, Account Settings (Read + Edit), and Zone Settings Edit. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
+`CLOUDFLARE_API_TOKEN` needs Pages, Workers Scripts, Workers Routes, R2, DNS, Account Settings (Read + Edit), and Zone Settings Edit. Full list: [docs/cloudflare-secrets.md](../../docs/cloudflare-secrets.md).
 
 ## Stack config
 
@@ -66,17 +69,17 @@ pulumi up
 
 ## Related files
 
-| Path | Purpose |
-|------|---------|
-| `wrangler.toml` | Pages project name + output directory |
-| `app/packages/canvas/public/_redirects` | SPA routing |
-| `.github/workflows/pulumi-cloudflare.yml` | Thin caller → edge-dns reusable workflow |
-| `.github/workflows/ci.yml` | Build + wrangler deploy; manual `workflow_dispatch` on `main` |
-| `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/samples/` (product `archlens`) |
-| `.github/workflows/publish-demo-catalog.yml` | Matrix demos → fragment; one final compose `estates/samples/` |
-| `.github/workflows/publish-samples.yml` | `samples/` → fragment → compose `estates/samples/` |
-| `.github/workflows/compose-catalog.yml` | Hourly safety-net compose for `estates/samples/` |
-| `.github/actions/setup-archlens-cli` | Install CLI from GitHub Releases for catalog workflows |
+| Path                                              | Purpose                                                                           |
+| ------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `wrangler.toml`                                   | Pages project name + output directory                                             |
+| `app/packages/canvas/public/_redirects`           | SPA routing                                                                       |
+| `.github/workflows/pulumi-cloudflare.yml`         | Thin caller → edge-dns reusable workflow                                          |
+| `.github/workflows/ci.yml`                        | Build + Pages deploy + collab Worker deploy; manual `workflow_dispatch` on `main` |
+| `.github/workflows/publish-blueprint-catalog.yml` | Scan → fragment → compose `estates/samples/` (product `archlens`)                 |
+| `.github/workflows/publish-demo-catalog.yml`      | Matrix demos → fragment; one final compose `estates/samples/`                     |
+| `.github/workflows/publish-samples.yml`           | `samples/` → fragment → compose `estates/samples/`                                |
+| `.github/workflows/compose-catalog.yml`           | Hourly safety-net compose for `estates/samples/`                                  |
+| `.github/actions/setup-archlens-cli`              | Install CLI from GitHub Releases for catalog workflows                            |
 
 Workflow index (all triggers): [docs/guide/ci-workflows.md](../../docs/guide/ci-workflows.md).
 

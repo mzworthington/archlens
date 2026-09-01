@@ -77,7 +77,14 @@ Opens the Vite canvas app. Docs and workspace share the same React app.
 pnpm build
 ```
 
-Cloudflare Pages deploys ArchLens Canvas `dist/` (docs + app in one SPA) via GitHub Actions and Wrangler. See [cloudflare-secrets.md](./cloudflare-secrets.md) and [infra/cloudflare/README.md](../infra/cloudflare/README.md). The production build registers a service worker (PWA) so the Canvas shell can load offline after the first visit.
+Cloudflare Pages deploys ArchLens Canvas `dist/` (docs + app in one SPA) via GitHub Actions and Wrangler. The collab Worker deploys from the same pipeline (`@archlens/collab`). See [cloudflare-secrets.md](./cloudflare-secrets.md) and [infra/cloudflare/README.md](../infra/cloudflare/README.md). The production build registers a service worker (PWA) so the Canvas shell can load offline after the first visit.
+
+Same-machine collab tabs work over BroadcastChannel without a Worker. To exercise share-links locally:
+
+```bash
+pnpm --filter @archlens/collab dev
+VITE_COLLAB_WS_URL=ws://127.0.0.1:8787 pnpm dev
+```
 
 Each production build gets a unique **build id** (from `GITHUB_SHA` in CI, injected into `index.html` and the JS bundle). When a new deploy is live, users see an **update banner** at the top of the app - **Refresh** activates the new service worker; **Later** dismisses until the next check (tab focus also re-checks `index.html` with `cache: no-store`).
 

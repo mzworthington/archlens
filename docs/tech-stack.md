@@ -16,9 +16,9 @@ For module boundaries and hexagonal layout, see [Architecture & security](./arch
 | **ChaosLens engine**       | Go → WebAssembly (`resilience-engine/`), loaded in the browser                                  |
 | **Persistence (browser)**  | IndexedDB (Dexie), File System Access API, service worker (PWA)                                 |
 | **Collab (opt-in)**        | Yjs shared working copy; BroadcastChannel locally; Worker + Durable Object (`@archlens/collab`) |
-| **Hosting**                | Cloudflare Pages + CDN; custom domain `archlens.dev`                                            |
+| **Hosting**                | Cloudflare Pages + CDN; custom domain `archlens.dev`; collab Worker `collab.archlens.dev`       |
 | **Infrastructure as code** | Pulumi (TypeScript), `@pulumi/cloudflare`, stack state in Pulumi Cloud                          |
-| **Deploy**                 | GitHub Actions → `pnpm build` → Wrangler `pages deploy`                                         |
+| **Deploy**                 | GitHub Actions → `pnpm build` → Wrangler `pages deploy` + collab `wrangler deploy`              |
 | **Secrets**                | Bitwarden Secrets Manager (`bws`) locally; GitHub Actions secrets in CI                         |
 | **Toolchain**              | Mise (`mise.toml`): Node, pnpm, Bun, Go                                                         |
 
@@ -82,20 +82,25 @@ See [ChaosLens engine](./chaoslens-engine.md).
 flowchart LR
   GHA[GitHub Actions] --> Build[pnpm build]
   Build --> Dist[canvas/dist]
-  Dist --> Wrangler[wrangler pages deploy]
-  Wrangler --> CFP[Cloudflare Pages CDN]
+  Dist --> PagesDeploy[wrangler pages deploy]
+  GHA --> CollabDeploy[wrangler deploy collab]
+  PagesDeploy --> CFP[Cloudflare Pages CDN]
+  CollabDeploy --> CollabWorker[archlens-collab Worker]
   Pulumi[Pulumi stack prod] --> CFP
   Pulumi --> Domains[archlens.dev + www]
+  Pulumi --> CollabHost[collab.archlens.dev]
+  CollabHost --> CollabWorker
 ```
 
-| Piece             | Location / tool                                                                 |
-| ----------------- | ------------------------------------------------------------------------------- |
-| Pages project     | Pulumi `cloudflare.PagesProject` (`infra/cloudflare/`)                          |
-| Custom domains    | Pulumi `cloudflare.PagesDomain` (apex + `www`)                                  |
-| Static upload     | `wrangler pages deploy` from `.github/workflows/ci.yml`                         |
-| SPA routing       | `public/_redirects` (`/schemas/*` passthrough, `/*` → `index.html`)             |
-| IaC workflow      | `.github/workflows/pulumi-cloudflare.yml` → edge-dns reusable workflow          |
-| Bootstrap secrets | `bin/setup-cloudflare-hosting.sh` (thin shim → edge-dns; bws → GitHub + Pulumi) |
+| Piece             | Location / tool                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| Pages project     | Pulumi `cloudflare.PagesProject` (`infra/cloudflare/`)                             |
+| Custom domains    | Pulumi `PagesDomain` (apex + `www`); `WorkersCustomDomain` (`collab.archlens.dev`) |
+| Static upload     | `wrangler pages deploy` from `.github/workflows/ci.yml`                            |
+| Collab Worker     | `pnpm --filter @archlens/collab deploy` from the same workflow (`deploy-collab`)   |
+| SPA routing       | `public/_redirects` (`/schemas/*` passthrough, `/*` → `index.html`)                |
+| IaC workflow      | `.github/workflows/pulumi-cloudflare.yml` → edge-dns reusable workflow             |
+| Bootstrap secrets | `bin/setup-cloudflare-hosting.sh` (thin shim → edge-dns; bws → GitHub + Pulumi)    |
 
 Stack config with account/zone IDs and API tokens is **not** committed - see [cloudflare-secrets.md](./cloudflare-secrets.md) and `infra/cloudflare/Pulumi.prod.yaml.example`.
 
@@ -110,8 +115,9 @@ Canonical map of every workflow (purpose + triggers): [GitHub Actions workflows]
 1. **quality** - format, lint, typecheck, schema check, knip, Go vet
 2. **unit-tests** - Vitest coverage, Go tests
 3. **e2e** - Playwright
-4. **build** - production canvas + CLI artifacts
+4. **build** - production canvas + CLI artifacts (`VITE_COLLAB_WS_URL` on `main`)
 5. **deploy-cloudflare** - Wrangler upload to Pages (`main` only)
+6. **deploy-collab** - Wrangler deploy of `@archlens/collab` (`main` only)
 
 CLI releases are a separate job chain (`release-cli.sh`) when conventional commits warrant a tag. Catalog publish and `samples/` publish live in sibling workflows (see the map above).
 

@@ -9,6 +9,8 @@ const apexDomain = config.require('apexDomain');
 const wwwDomain = config.require('wwwDomain');
 const catalogBucketName = config.require('catalogBucketName');
 const catalogDomain = config.require('catalogDomain');
+const collabWorkerName = config.get('collabWorkerName') ?? 'archlens-collab';
+const collabDomain = config.get('collabDomain') ?? `collab.${apexDomain}`;
 
 const pagesProject = new cloudflare.PagesProject('archlens', {
   accountId,
@@ -27,7 +29,7 @@ const apexDns = new cloudflare.DnsRecord(
     ttl: 1,
     comment: 'ArchLens Cloudflare Pages',
   },
-  { deleteBeforeReplace: true },
+  { deleteBeforeReplace: true }
 );
 
 const wwwDns = new cloudflare.DnsRecord(
@@ -41,7 +43,7 @@ const wwwDns = new cloudflare.DnsRecord(
     ttl: 1,
     comment: 'ArchLens Cloudflare Pages',
   },
-  { deleteBeforeReplace: true },
+  { deleteBeforeReplace: true }
 );
 
 new cloudflare.PagesDomain(
@@ -51,7 +53,7 @@ new cloudflare.PagesDomain(
     projectName: pagesProject.name,
     name: apexDomain,
   },
-  { dependsOn: [apexDns] },
+  { dependsOn: [apexDns] }
 );
 
 new cloudflare.PagesDomain(
@@ -61,7 +63,7 @@ new cloudflare.PagesDomain(
     projectName: pagesProject.name,
     name: wwwDomain,
   },
-  { dependsOn: [wwwDns] },
+  { dependsOn: [wwwDns] }
 );
 
 const zone = cloudflare.getZoneOutput({ zoneId });
@@ -112,9 +114,26 @@ const catalogCustomDomain = new cloudflare.R2CustomDomain('blueprint-catalog-dom
   enabled: true,
 });
 
+/**
+ * Collab share-link rooms. Script + Durable Object ship via Wrangler
+ * (`app/packages/collab`); this stack attaches the hostname. Cloudflare
+ * creates DNS + cert. The Worker must already have a deployed version —
+ * CI `deploy-collab` on main, or `pnpm --filter @archlens/collab deploy`
+ * before the first apply that creates WorkersCustomDomain.
+ */
+new cloudflare.WorkersCustomDomain('collab-domain', {
+  accountId,
+  zoneId,
+  zoneName: zone.name,
+  hostname: collabDomain,
+  service: collabWorkerName,
+});
+
 export const pagesProjectNameOut = pagesProject.name;
 export const pagesSubdomain = pagesProject.subdomain;
 export const zoneName = zone.name;
 export const webAnalyticsSiteTag = webAnalytics.siteTag;
 export const blueprintCatalogBucketName = catalogBucket.name;
 export const blueprintCatalogDomain = catalogCustomDomain.domain;
+export const collabWorkerNameOut = collabWorkerName;
+export const collabDomainOut = collabDomain;
