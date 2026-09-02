@@ -327,7 +327,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                     </span>
                     <span className="block text-xs text-slate-400 mt-0.5">
                       {directoryPickerSupported
-                        ? 'Instant structural map of a folder - no git TraceLens, no CI publish.'
+                        ? 'Instant structural map of a folder'
                         : 'Needs Chrome or Edge (folder picker API). Use the ArchLens CLI instead.'}
                     </span>
                   </span>
@@ -370,7 +370,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                     Open existing blueprints folder
                   </span>
                   <span className="block text-xs text-slate-500 mt-0.5">
-                    Pick a local folder of YAML blueprints (e.g. after a CLI scan)
+                    Pick a local folder of blueprints
                   </span>
                 </span>
               </button>
@@ -487,7 +487,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                     Ideate
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    Sketch from scratch - solo; share later from the toolbar
+                    Sketch from scratch - solo; share later
                   </p>
                 </div>
               </div>
@@ -506,7 +506,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                         Start a blank canvas
                       </span>
                       <span className="block text-xs text-slate-500 mt-0.5">
-                        Empty diagram - draw or import when you are ready
+                        Draw or import when you are ready
                       </span>
                     </span>
                   </button>
@@ -525,7 +525,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                         Import from Mermaid
                       </span>
                       <span className="block text-xs text-slate-500 mt-0.5">
-                        Paste or upload a Mermaid diagram (.mmd / .md)
+                        Paste or upload a Mermaid diagram
                       </span>
                     </span>
                   </button>
