@@ -41,6 +41,7 @@ describe('resetToEmptyWorkspace', () => {
       workspaceName: 'Sandbox',
       isWorkspaceOpen: false,
       selectedNodeId: 'a/sys',
+      rightPanelTab: 'properties',
     });
   });
 
@@ -59,6 +60,7 @@ describe('resetToEmptyWorkspace', () => {
     expect(state.loadedSystems[0]?.schema.nodes).toEqual([]);
     expect(state.workspaceName).toBe('Empty Workspace');
     expect(state.selectedNodeId).toBeNull();
+    expect(state.rightPanelTab).toBe('catalog');
     expect(state.schema.version).toBe(systemSchemaPublicUrl());
     expect(state.schemaVersionWarning).toBeNull();
     expect(assessSchemaVersion(EMPTY_WORKSPACE_SCHEMA.version)).toBeNull();

@@ -24,6 +24,7 @@ describe('_redirects (Cloudflare Pages)', () => {
       '/bundled-chaos-specs/* /bundled-chaos-specs/:splat 200',
       '/schemas/*             /schemas/:splat             200',
       '/index.html            /index.html                 200',
+      '/version.json          /version.json               200',
     ]);
     expect(lines.some(line => line.startsWith('/*'))).toBe(false);
   });

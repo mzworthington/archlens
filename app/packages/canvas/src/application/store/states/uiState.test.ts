@@ -28,7 +28,8 @@ describe('uiState Actions & State Management', () => {
     expect(state.showHotspotHeatmap).toBe(true);
     expect(state.liteCanvas).toBe(false);
     expect(state.leftCollapsed).toBe(true);
-    expect(state.rightCollapsed).toBe(true);
+    expect(state.rightCollapsed).toBe(false);
+    expect(state.rightPanelTab).toBe('properties');
     expect(state.showDesignSystem).toBe(false);
     expect(state.isDiffOpen).toBe(false);
   });
@@ -123,9 +124,10 @@ describe('uiState Actions & State Management', () => {
   });
 
   it('should manage leftCollapsed and rightCollapsed panel states', () => {
+    useBlueprintStore.setState({ leftCollapsed: true, rightCollapsed: false });
     const store = useBlueprintStore.getState();
     expect(store.leftCollapsed).toBe(true);
-    expect(store.rightCollapsed).toBe(true);
+    expect(store.rightCollapsed).toBe(false);
 
     store.toggleLeftCollapsed();
     expect(useBlueprintStore.getState().leftCollapsed).toBe(false);
@@ -134,10 +136,10 @@ describe('uiState Actions & State Management', () => {
     expect(useBlueprintStore.getState().leftCollapsed).toBe(true);
 
     store.toggleRightCollapsed();
-    expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
 
     store.toggleRightCollapsed();
-    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
   });
 
   it('should set showDesignSystem value via setShowDesignSystem action', () => {

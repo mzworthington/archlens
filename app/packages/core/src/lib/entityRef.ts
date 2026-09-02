@@ -1,5 +1,5 @@
-import type { C4Level, SystemSchema } from '../models/schema';
-import { slugify } from './slug';
+import type { C4Level, SystemSchema } from '../models/schema.ts';
+import { slugify } from './slug.ts';
 
 /** Shared FQN shape for schema identity and node refs (no file paths). */
 export const ENTITY_REF_PATTERN = /^[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)*$/;

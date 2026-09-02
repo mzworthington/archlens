@@ -28,6 +28,15 @@ describe('StartupWorkspaceDialog', () => {
     expect(screen.getByTestId('workspace-import-iac')).toBeInTheDocument();
     expect(screen.getByTestId('workspace-share-blank')).toBeInTheDocument();
     expect(screen.getByTestId('workspace-start-blank')).toHaveTextContent(/blank canvas/i);
+    expect(screen.getByTestId('workspace-intent-ideate')).toContainElement(
+      screen.getByTestId('workspace-import-mermaid')
+    );
+    expect(
+      screen
+        .getByTestId('workspace-open-sample')
+        .compareDocumentPosition(screen.getByTestId('workspace-intent-investigate'))
+    ).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(screen.getByTestId('workspace-intent-row')).toHaveClass('sm:grid-cols-3');
   });
 
   it('renders nothing when closed', () => {

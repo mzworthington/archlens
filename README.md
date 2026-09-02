@@ -16,7 +16,7 @@ ArchLens models systems as **BlueprintSpec** YAML - a living architecture contra
 
 A front-end visual canvas web application client. Double-click boundary nodes to drill down into C4 container/component levels and edit schemas side-by-side with code-viewer synchronization.
 
-👉 **Learn more:** [app/packages/canvas/README.md](./app/packages/canvas/README.md)
+👉 **Learn more:** [app/packages/canvas/README.md](./app/packages/canvas/README.md).
 
 ---
 

@@ -549,7 +549,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### App Layout and Collapsible Panels
 
-- ✅ should have panels hidden by default and support toggling them
+- ✅ should have the left panel hidden and the right panel open by default and support toggling them
 
 ### AppContext
 
@@ -868,6 +868,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 - ✅ triggers openWorkspaceDirectory store action when Open Folder is clicked
 - ✅ renders error alert notification toast when lastError is set
 - ✅ triggers zoomIntoNode store action on double clicking a C4 node
+- ✅ opens the properties panel and Properties tab on node double-click
 - ✅ shows a Zoom out button that navigates to the parent system
 - ✅ renders Clear Selection button below Zoom out when node is selected
 
@@ -1616,6 +1617,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 - ✅ should render External Dependencies section when no node is selected and workspace is loaded
 - ✅ should render Workspace config when no node is selected, and Catalog when tab is clicked
+- ✅ shows Catalog when the stored right panel tab is catalog
 - ✅ should render Diagram C4 Level selector and trigger updateSchemaLevel on change
 - ✅ should render read-only Diagram entityRef from workspaceName or schema.name
 - ✅ should trigger node creation when catalog component is clicked in Catalog tab
@@ -1685,6 +1687,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 #### resetToEmptyWorkspace
 
 - ✅ clears sandbox systems and leaves a blank diagram
+- ✅ switches the right panel to the Catalog tab
 
 ### resilienceState
 
@@ -1920,7 +1923,7 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### StartupWorkspaceDialog
 
-- ✅ renders demo, browser scan, open-directory, and blank-canvas choices when open
+- ✅ renders intent buckets with sample strip when open
 - ✅ renders nothing when closed
 - ✅ invokes handlers from the embedded entry panel
 - ✅ surfaces sandbox loading feedback while open is in progress
@@ -2119,9 +2122,9 @@ Generated from Vitest (`pnpm generate:features-unit`).
 
 #### WorkspaceEntryPanel
 
-- ✅ renders demo, browser lite scan, and open-directory actions
+- ✅ renders the sample strip above Investigate / Collaborate / Ideate as a horizontal row
 - ✅ renders blank-canvas action when provided
-- ✅ shows an expanded CLI panel when requested
+- ✅ shows a collapsed CLI panel that expands on toggle
 - ✅ surfaces unsupported-browser feedback for lite scan when folder picker is missing
 - ✅ invokes the matching handler for each choice
 - ✅ shows loading feedback and disables actions while sandbox opens

@@ -3,7 +3,9 @@ import type { LayoutEngineId } from '../../../core';
 import type { ExternalSummaryBand, SourceProvenance } from '@archlens/core';
 import type { DependencyViewMode } from '../../forensics/dependencyViewMode';
 import type { LeftSlotPanelId } from '../../layout/workspacePanels';
+import type { RightPanelTabId } from '../../layout/rightPanelTab';
 import { toggleDependencyViewMode } from '../../forensics/dependencyViewMode';
+import { isDesktopViewport } from '../layoutUtils';
 
 export type { DependencyViewMode };
 
@@ -32,6 +34,8 @@ export interface UiState {
   layoutEngine: LayoutEngineId | null;
   leftCollapsed: boolean;
   rightCollapsed: boolean;
+  rightPanelTab: RightPanelTabId;
+  setRightPanelTab: (tab: RightPanelTabId) => void;
   activeLeftPanel: LeftSlotPanelId;
   setActiveLeftPanel: (panel: LeftSlotPanelId) => void;
   showDesignSystem: boolean;
@@ -111,7 +115,9 @@ export const createUiState = (
   liteCanvas: false,
   layoutEngine: null,
   leftCollapsed: true,
-  rightCollapsed: true,
+  rightCollapsed: !isDesktopViewport(),
+  rightPanelTab: 'properties',
+  setRightPanelTab: tab => set({ rightPanelTab: tab }),
   activeLeftPanel: 'codeViewer',
   showDesignSystem: false,
   isDiffOpen: false,

@@ -40,6 +40,7 @@ export function resetToEmptyWorkspace(
     selectedNodeId: null,
     selectedEdgeId: null,
     focusedCyclePath: null,
+    rightPanelTab: 'catalog',
   });
 
   get().initSchema(empty);

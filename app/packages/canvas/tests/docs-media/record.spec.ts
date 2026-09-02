@@ -17,7 +17,6 @@ test.describe('docs media recordings', () => {
     await expectCanvasReady(page);
 
     await page.getByRole('button', { name: 'Toggle left panel' }).click();
-    await page.getByRole('button', { name: 'Toggle right panel' }).click();
     await page.waitForTimeout(600);
 
     await page.getByRole('button', { name: 'Toggle left panel' }).click();

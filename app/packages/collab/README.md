@@ -8,7 +8,7 @@ Durable Object room for Yjs share-links (`?room=`). Lives in the `app/` pnpm wor
 | Local with Worker          | `VITE_COLLAB_WS_URL=ws://127.0.0.1:8787`       |
 | Production (`main` CI)     | `wss://collab.archlens.dev` baked into the SPA |
 
-Hostname `collab.archlens.dev` is attached in Pulumi (`infra/cloudflare`). Script deploy is Wrangler (`pnpm --filter @archlens/collab run deploy` in CI on `main`).
+Hostname `collab.archlens.dev` is attached in Pulumi (`infra/cloudflare`). Script deploy is Wrangler (`wrangler deploy --var GIT_SHA:<sha>` in CI on `main`). `GET /health` returns `{ ok, sha }` for deploy smoke.
 
 ## Local
 

@@ -398,6 +398,22 @@ describe('Canvas Component', () => {
     });
   });
 
+  it('opens the properties panel and Properties tab on node double-click', () => {
+    useBlueprintStore.setState({
+      rightCollapsed: true,
+      rightPanelTab: 'catalog',
+      selectedNodeId: null,
+    });
+
+    render(<Canvas />);
+    fireEvent.click(screen.getByTestId('double-click-node'));
+
+    const state = useBlueprintStore.getState();
+    expect(state.rightCollapsed).toBe(false);
+    expect(state.rightPanelTab).toBe('properties');
+    expect(state.selectedNodeId).toBe('test-node-1');
+  });
+
   it('shows a Zoom out button that navigates to the parent system', async () => {
     mockSetLocation.mockClear();
 

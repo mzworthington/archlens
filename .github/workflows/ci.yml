@@ -13,12 +13,12 @@ on:
         default: true
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 concurrency:
-  group: deploy-${{ github.ref }}
-  cancel-in-progress: true
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   quality:
@@ -253,14 +253,31 @@ jobs:
           path: app/packages/canvas/dist
 
       - name: Deploy to Cloudflare Pages
+        id: deploy_pages
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy app/packages/canvas/dist --project-name=archlens --branch=main
 
+      - name: Publish Canvas deploy summary
+        if: always()
+        env:
+          PAGES_URL: ${{ steps.deploy_pages.outputs.deployment-url }}
+        run: |
+          {
+            echo "## Canvas Pages"
+            echo "- **env:** production"
+            echo "- **sha:** \`${GITHUB_SHA}\`"
+            echo "- **build id:** \`${GITHUB_SHA:0:12}\`"
+            echo "- **url:** https://archlens.dev"
+            if [ -n "${PAGES_URL}" ]; then
+              echo "- **deployment url:** ${PAGES_URL}"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
   deploy-collab:
-    needs: [quality, unit-tests]
+    needs: [quality, unit-tests, e2e]
     if: >-
       github.ref == 'refs/heads/main'
       && (
@@ -293,11 +310,22 @@ jobs:
         working-directory: app
 
       - name: Deploy collab Worker
-        working-directory: app
+        working-directory: app/packages/collab
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: pnpm --filter @archlens/collab run deploy
+        run: pnpm exec wrangler deploy --var GIT_SHA:${{ github.sha }}
+
+      - name: Publish collab deploy summary
+        if: always()
+        run: |
+          {
+            echo "## Collab Worker"
+            echo "- **env:** production"
+            echo "- **sha:** \`${GITHUB_SHA}\`"
+            echo "- **url:** https://collab.archlens.dev"
+            echo "- **health:** https://collab.archlens.dev/health"
+          } >> "$GITHUB_STEP_SUMMARY"
 
   check-release:
     needs: [build, e2e]
@@ -385,6 +413,9 @@ jobs:
     needs: [check-release, build-ts-cli-binaries]
     if: needs.check-release.outputs.release_cli == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7

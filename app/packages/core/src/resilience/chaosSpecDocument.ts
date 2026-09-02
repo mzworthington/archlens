@@ -1,14 +1,14 @@
 import * as yaml from 'js-yaml';
 import { z } from 'zod';
-import { ENTITY_REF_PATTERN } from '../lib/entityRef';
+import { ENTITY_REF_PATTERN } from '../lib/entityRef.ts';
 import {
   CHAOS_SCHEMA_MAJOR_VERSION,
   chaosSchemaPublicUrl,
   chaosYamlLanguageServerDirective,
-} from '../models/chaosVersion';
-import type { EntityRef, SystemSchema } from '../models/schema';
-import type { ChaosSpec, FaultType, NodeFaultConfig, NodeSafeguards } from './faultSpec';
-import type { MonteCarloConfig } from './monteCarlo';
+} from '../models/chaosVersion.ts';
+import type { EntityRef, SystemSchema } from '../models/schema.ts';
+import type { ChaosSpec, FaultType, NodeFaultConfig, NodeSafeguards } from './faultSpec.ts';
+import type { MonteCarloConfig } from './monteCarlo.ts';
 
 const entityRefStringSchema = z
   .string()

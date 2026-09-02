@@ -1,5 +1,5 @@
-import type { C4Level, NodeType, SystemSchema } from '../models/schema';
-import { getSchemaEntityRef, entityRefParentPrefix } from './entityRef';
+import type { C4Level, NodeType, SystemSchema } from '../models/schema.ts';
+import { getSchemaEntityRef, entityRefParentPrefix } from './entityRef.ts';
 
 export type LoadedSystemSchemaRef = { path: string; schema: SystemSchema };
 

@@ -1,4 +1,4 @@
-import { slugify } from '../lib/slug';
+import { slugify } from '../lib/slug.ts';
 
 export type C4Level = 'context' | 'container' | 'component' | 'code';
 

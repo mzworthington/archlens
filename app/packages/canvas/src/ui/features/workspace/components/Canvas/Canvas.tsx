@@ -230,6 +230,8 @@ export const Canvas: React.FC = () => {
         }}
         onNodeDragStart={() => recordHistory()}
         onNodeDoubleClick={(_, node) => {
+          selectNode(node.id, { expandPanel: true });
+          useBlueprintStore.getState().setRightPanelTab('properties');
           const entityRef = node.data?.entityRef as string | undefined;
           if (!entityRef || !resolveChildDiagramEntry(workspaceCatalog, entityRef)) return;
           navigateToWorkspaceEntity(entityRef, { workspaceCatalog, setLocation });

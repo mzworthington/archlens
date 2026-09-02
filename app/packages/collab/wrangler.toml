@@ -5,6 +5,10 @@ main = "src/index.ts"
 compatibility_date = "2026-08-04"
 workers_dev = true
 
+# Overridden at deploy with --var GIT_SHA:<github.sha>
+[vars]
+GIT_SHA = "local"
+
 [observability]
 enabled = true
 

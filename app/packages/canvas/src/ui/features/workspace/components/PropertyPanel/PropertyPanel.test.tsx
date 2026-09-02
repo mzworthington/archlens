@@ -10,6 +10,7 @@ describe('PropertyPanel UI Component', () => {
       currentFilePath: 'blueprint.yaml',
       workspaceName: undefined,
       loadedSystems: [],
+      rightPanelTab: 'properties',
     });
 
     const { initSchema } = useBlueprintStore.getState();
@@ -68,6 +69,14 @@ describe('PropertyPanel UI Component', () => {
     expect(screen.getByText('Component Catalog')).toBeInTheDocument();
     expect(screen.getByText('REST API')).toBeInTheDocument();
     expect(screen.getByText('Event Broker')).toBeInTheDocument();
+  });
+
+  it('shows Catalog when the stored right panel tab is catalog', () => {
+    useBlueprintStore.setState({ rightPanelTab: 'catalog' });
+    render(<PropertyPanel />);
+
+    expect(screen.getByText('Component Catalog')).toBeInTheDocument();
+    expect(screen.getByTestId('right-tab-catalog')).toHaveAttribute('aria-selected', 'true');
   });
 
   it('should render Diagram C4 Level selector and trigger updateSchemaLevel on change', () => {

@@ -5,7 +5,11 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { emitSiteSeo } from './vite/emitSiteSeo.ts';
-import { injectBuildIdMeta, resolveBuildId } from './vite/injectBuildIdMeta.ts';
+import {
+  emitVersionJson,
+  injectBuildIdMeta,
+  resolveDeployIdentity,
+} from './vite/injectBuildIdMeta.ts';
 import { canvasPackageRoot, repoDocs } from './vite/paths.ts';
 import { syncBundledBlueprints } from './vite/syncBundledBlueprints.ts';
 import { syncBundledChaosSpecs } from './vite/syncChaosSpecs.ts';
@@ -14,7 +18,8 @@ import { syncJsonSchemas } from './vite/syncJsonSchemas.ts';
 import { syncTreeSitterWasms } from './vite/syncTreeSitterWasms.ts';
 
 const base = process.env.VITE_BASE || '/';
-const appBuildId = resolveBuildId();
+const deployIdentity = resolveDeployIdentity();
+const appBuildId = deployIdentity.buildId;
 const appPackageVersion = JSON.parse(
   fs.readFileSync(path.join(canvasPackageRoot, 'package.json'), 'utf8')
 ).version as string;
@@ -35,6 +40,7 @@ export default defineConfig({
     syncJsonSchemas(),
     syncTreeSitterWasms(),
     injectBuildIdMeta(appBuildId),
+    emitVersionJson(deployIdentity),
     emitSiteSeo(),
     VitePWA({
       registerType: 'prompt',
@@ -83,7 +89,7 @@ export default defineConfig({
         ],
         // Docs screenshots + schema pack are large and non-critical offline.
         // Do not glob-ignore all bundled-blueprints - that would drop the preload globs above.
-        globIgnores: ['**/docs-assets/**', '**/schemas/**'],
+        globIgnores: ['**/docs-assets/**', '**/schemas/**', '**/version.json'],
         // CF Pages 308s /index.html → /. Navigation requests have redirect
         // mode "manual"; a redirected SW response becomes net::ERR_FAILED.
         navigateFallback: '/',
@@ -96,6 +102,7 @@ export default defineConfig({
           /^\/assets\//,
           /^\/sitemap\.xml$/,
           /^\/robots\.txt$/,
+          /^\/version\.json$/,
         ],
         runtimeCaching: [
           {

@@ -24,7 +24,7 @@ export const WHY_IT_MATTERS = [
 
 export const WORKSPACE_STARTUP = {
   title: 'What do you want to do?',
-  lede: 'Pick an intent - Investigate, Collaborate, or Ideate. You can switch later from Open. New here? Try the demo at the bottom.',
+  lede: 'Pick an intent - Investigate, Collaborate, or Ideate. You can switch later from Open. New here? Try the demo first.',
 } as const;
 
 export const TRACE_LENS_HERO = {

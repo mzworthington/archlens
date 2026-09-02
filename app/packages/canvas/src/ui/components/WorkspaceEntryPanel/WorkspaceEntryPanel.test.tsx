@@ -22,7 +22,7 @@ describe('WorkspaceEntryPanel', () => {
     }
   });
 
-  it('renders Investigate / Collaborate / Ideate intents with sample as a secondary strip', () => {
+  it('renders the sample strip above Investigate / Collaborate / Ideate as a horizontal row', () => {
     render(
       <WorkspaceEntryPanel
         onOpenSample={vi.fn()}
@@ -52,11 +52,10 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-import-mermaid')).toHaveTextContent(
       /Import from Mermaid/i
     );
-    expect(screen.getByTestId('workspace-import-iac')).toHaveTextContent(/Import infrastructure/i);
-    expect(screen.getByTestId('workspace-cli-panel')).toHaveTextContent(
-      /Full analysis - ArchLens CLI/i
+    expect(screen.getByTestId('workspace-intent-ideate')).toContainElement(
+      screen.getByTestId('workspace-import-mermaid')
     );
-
+    expect(screen.getByTestId('workspace-import-iac')).toHaveTextContent(/Import infrastructure/i);
     expect(screen.getByTestId('workspace-share-blank')).toHaveTextContent(/Share blank room/i);
     expect(screen.getByTestId('workspace-share-directory')).toHaveTextContent(
       /Open folder then share/i
@@ -65,10 +64,21 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-start-blank')).toHaveTextContent(/Start a blank canvas/i);
 
     const sample = screen.getByTestId('workspace-open-sample');
+    const cli = screen.getByTestId('workspace-cli-panel');
     expect(sample).toHaveTextContent(/Try the demo/i);
-    expect(sample.compareDocumentPosition(screen.getByTestId('workspace-intent-investigate'))).toBe(
-      Node.DOCUMENT_POSITION_PRECEDING
+    expect(cli).toHaveTextContent(/Full analysis - ArchLens CLI/i);
+    expect(sample.compareDocumentPosition(cli)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
+    expect(cli.compareDocumentPosition(screen.getByTestId('workspace-intent-investigate'))).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING
     );
+    expect(screen.getByTestId('workspace-intent-investigate')).not.toContainElement(cli);
+    expect(screen.getByTestId('workspace-intent-row')).toHaveClass(
+      'sm:grid-cols-3',
+      'items-stretch'
+    );
+    expect(screen.getByTestId('workspace-intent-investigate')).toHaveClass('h-full');
+    expect(screen.getByTestId('workspace-intent-collaborate')).toHaveClass('h-full');
+    expect(screen.getByTestId('workspace-intent-ideate')).toHaveClass('h-full');
   });
 
   it('hides Collaborate when no share handlers are provided', () => {
@@ -84,16 +94,24 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-intent-ideate')).toBeInTheDocument();
   });
 
-  it('shows an expanded CLI panel when requested', () => {
+  it('shows a collapsed CLI panel that expands on toggle', () => {
     render(<WorkspaceEntryPanel onOpenSample={vi.fn()} onOpenDirectory={vi.fn()} showCliPanel />);
 
     expect(screen.getByTestId('workspace-cli-panel')).toHaveTextContent(
       /Full analysis - ArchLens CLI/i
     );
-    expect(screen.getByTestId('workspace-cli-panel-body')).toBeInTheDocument();
+    expect(screen.queryByTestId('workspace-cli-panel-body')).not.toBeInTheDocument();
+    expect(screen.getByTestId('workspace-cli-panel-toggle')).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
 
     fireEvent.click(screen.getByTestId('workspace-cli-panel-toggle'));
-    expect(screen.queryByTestId('workspace-cli-panel-body')).not.toBeInTheDocument();
+    expect(screen.getByTestId('workspace-cli-panel-body')).toBeInTheDocument();
+    expect(screen.getByTestId('workspace-cli-panel-toggle')).toHaveAttribute(
+      'aria-expanded',
+      'true'
+    );
   });
 
   it('surfaces unsupported-browser feedback for lite scan when folder picker is missing', () => {

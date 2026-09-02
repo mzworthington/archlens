@@ -1,6 +1,5 @@
 import React from 'react';
-
-export type RightPanelTabId = 'properties' | 'catalog';
+import type { RightPanelTabId } from '../../../../../application/layout/rightPanelTab';
 
 type Props = {
   activeTab: RightPanelTabId;

@@ -42,8 +42,9 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
       <div className="fixed inset-0 bg-[#020617]/80 backdrop-blur-sm" />
 
       <div className="fixed inset-0 flex items-center justify-center p-4 pointer-events-none overflow-y-auto">
-        <div className="pointer-events-auto w-full max-w-xl my-auto bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl p-5">
+        <div className="pointer-events-auto w-full max-w-6xl my-auto bg-slate-950/95 glass-panel border border-slate-800 rounded-xl shadow-2xl p-5">
           <WorkspaceEntryPanel
+            layout="grid"
             onOpenSample={onOpenSample}
             onOpenDirectory={onOpenDirectory}
             onBrowserLiteScan={onBrowserLiteScan}

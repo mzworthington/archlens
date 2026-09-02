@@ -8,10 +8,12 @@ import {
   encodeCollabFrame,
   isPersistedCollabFrame,
 } from './frames';
+import { collabHealthResponse, isCollabHealthPath } from './health';
 import { resolveCollabRoomPath } from './roomRoute';
 
 export interface Env {
   COLLAB_ROOMS: DurableObjectNamespace;
+  GIT_SHA?: string;
 }
 
 export class CollabRoom {
@@ -83,7 +85,11 @@ export class CollabRoom {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const route = resolveCollabRoomPath(new URL(request.url).pathname);
+    const pathname = new URL(request.url).pathname;
+    if (isCollabHealthPath(pathname)) {
+      return collabHealthResponse(env.GIT_SHA);
+    }
+    const route = resolveCollabRoomPath(pathname);
     if (route.kind === 'not-found') {
       return new Response('Not found', { status: 404 });
     }

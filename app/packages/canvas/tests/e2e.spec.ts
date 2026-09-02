@@ -24,17 +24,17 @@ test.describe('Blueprint E2E Journeys', () => {
     const rightPanel = page.getByTestId('right-panel');
 
     await expect(leftPanel).toHaveCount(0);
-    await expect(rightPanel).toHaveCount(0);
+    await expect(rightPanel).toBeVisible();
 
     await leftPanelButton.click();
     await expect(leftPanel).toBeVisible();
     await rightPanelButton.click();
-    await expect(rightPanel).toBeVisible();
+    await expect(rightPanel).toHaveCount(0);
 
     await leftPanelButton.click();
     await expect(leftPanel).toHaveCount(0);
     await rightPanelButton.click();
-    await expect(rightPanel).toHaveCount(0);
+    await expect(rightPanel).toBeVisible();
 
     const statusBadges = page.getByTestId('workspace-status-badges');
     await expect(statusBadges.getByText('context', { exact: true })).toBeVisible();

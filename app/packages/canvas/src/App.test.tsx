@@ -61,7 +61,7 @@ describe('App Layout and Collapsible Panels', () => {
       workspaceName: undefined,
       isWorkspaceOpen: false,
       leftCollapsed: true,
-      rightCollapsed: true,
+      rightCollapsed: false,
       isStartupOpen: false,
       systemSelectInFlight: null,
       isLoading: false,
@@ -91,7 +91,7 @@ describe('App Layout and Collapsible Panels', () => {
     });
   });
 
-  it('should have panels hidden by default and support toggling them', () => {
+  it('should have the left panel hidden and the right panel open by default and support toggling them', () => {
     render(
       <AppProvider>
         <WorkspacePage />
@@ -104,18 +104,18 @@ describe('App Layout and Collapsible Panels', () => {
     expect(rightToggle).toBeInTheDocument();
 
     expect(useBlueprintStore.getState().leftCollapsed).toBe(true);
-    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
 
     fireEvent.click(leftToggle);
     expect(useBlueprintStore.getState().leftCollapsed).toBe(false);
 
     fireEvent.click(rightToggle);
-    expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
 
     fireEvent.click(leftToggle);
     expect(useBlueprintStore.getState().leftCollapsed).toBe(true);
 
     fireEvent.click(rightToggle);
-    expect(useBlueprintStore.getState().rightCollapsed).toBe(true);
+    expect(useBlueprintStore.getState().rightCollapsed).toBe(false);
   });
 });

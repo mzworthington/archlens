@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { formatAppVersionLabel } from '../../../../../application/pwa/buildInfo';
 import { ComponentCatalog } from './ComponentCatalog';
 import { PropertyPanelContent } from './PropertyPanelContent';
 import { PropertyPanelHeader } from './PropertyPanelHeader';
-import { RightPanelTabs, type RightPanelTabId } from './RightPanelTabs';
+import { RightPanelTabs } from './RightPanelTabs';
 import { usePropertyPanelModel } from './usePropertyPanelModel';
+import { useBlueprintStore } from '../../../../../application/store/store';
 
 export const PropertyPanel: React.FC = () => {
   const model = usePropertyPanelModel();
-  const [activeTab, setActiveTab] = useState<RightPanelTabId>('properties');
+  const activeTab = useBlueprintStore(s => s.rightPanelTab);
+  const setRightPanelTab = useBlueprintStore(s => s.setRightPanelTab);
 
   return (
     <div
@@ -21,7 +23,7 @@ export const PropertyPanel: React.FC = () => {
     >
       <PropertyPanelHeader toggleRightCollapsed={model.toggleRightCollapsed} />
 
-      <RightPanelTabs activeTab={activeTab} onTabChange={setActiveTab} />
+      <RightPanelTabs activeTab={activeTab} onTabChange={setRightPanelTab} />
 
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
         {activeTab === 'properties' ? (

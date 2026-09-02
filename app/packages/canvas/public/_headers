@@ -1,0 +1,7 @@
+# Live smoke must see this commit, not a cached JSON body.
+/version.json
+  Cache-Control: no-store
+
+# Prerendered HTML shells should revalidate after a Pages deploy.
+/*.html
+  Cache-Control: no-cache

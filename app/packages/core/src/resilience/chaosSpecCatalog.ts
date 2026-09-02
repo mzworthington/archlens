@@ -1,5 +1,5 @@
-import { resolveEntityHome, type WorkspaceCatalogEntry } from '../lib/workspaceCatalog';
-import type { ChaosSpecDocument } from './chaosSpecDocument';
+import { resolveEntityHome, type WorkspaceCatalogEntry } from '../lib/workspaceCatalog.ts';
+import type { ChaosSpecDocument } from './chaosSpecDocument.ts';
 
 /** Lightweight ChaosSpec index row for centralized browsing. */
 export type ChaosSpecCatalogEntry = {
