@@ -56,7 +56,12 @@ export function createInitSchema(set: SetFn, get: GetFn) {
         schema.level,
         schema.entityRef ?? null,
         schema.source,
-        { syncWorkingCopy: false, updateSessionLayout: false, pushCollab: false }
+        {
+          syncWorkingCopy: false,
+          updateSessionLayout: false,
+          pushCollab: false,
+          version: schema.version,
+        }
       );
       set({ layoutSessionId: get().layoutSessionId + 1 });
       return;
@@ -102,8 +107,13 @@ export function createInitSchema(set: SetFn, get: GetFn) {
       normalized.entityRef ?? null,
       normalized.source,
       needsAutoLayout
-        ? { syncWorkingCopy: false, updateSessionLayout: false, pushCollab: false }
-        : { pushCollab: false }
+        ? {
+            syncWorkingCopy: false,
+            updateSessionLayout: false,
+            pushCollab: false,
+            version: normalized.version,
+          }
+        : { pushCollab: false, version: normalized.version }
     );
     set({ layoutSessionId: get().layoutSessionId + 1 });
   };

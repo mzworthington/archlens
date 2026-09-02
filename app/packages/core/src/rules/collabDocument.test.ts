@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import type { SystemSchema } from '../models/schema';
+import { systemSchemaPublicUrl } from '../models/schemaVersion';
 import {
   collabDependencyKey,
   collabDocumentToSchema,
   diffCollabDocuments,
+  emptyCollabDocument,
   parseCollabDependencyKey,
   schemaToCollabDocument,
 } from './collabDocument';
@@ -46,6 +48,12 @@ describe('collabDependencyKey', () => {
       to: 'b',
       type: 'direct-call',
     });
+  });
+});
+
+describe('emptyCollabDocument', () => {
+  it('starts on the current schema contract, not legacy semver', () => {
+    expect(emptyCollabDocument().meta.version).toBe(systemSchemaPublicUrl());
   });
 });
 

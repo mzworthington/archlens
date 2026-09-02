@@ -15,6 +15,7 @@ import { useToolbarMenu } from '../WorkspaceToolbar/useToolbarMenu';
 import { ToolbarMenuPortal } from '../WorkspaceToolbar/ToolbarMenuPortal';
 import { DiagramExportMenuItems } from '../WorkspaceToolbar/DiagramExportMenuItems';
 import { ToolbarOpenMenuItems } from './toolbarMenuItems';
+import { EMPTY_WORKSPACE_SCHEMA } from '../../../../../application/store/states/diagramState/resetToEmptyWorkspace';
 
 const iconBtnClass =
   'min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 p-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800 disabled:opacity-30 disabled:hover:bg-slate-900 disabled:hover:text-slate-400 transition cursor-pointer disabled:cursor-not-allowed flex items-center justify-center';
@@ -61,9 +62,7 @@ function useClearAction() {
         setIsLoading(false);
       }
       initSchema({
-        name: 'Empty Workspace',
-        version: '1.0.0',
-        level: 'container',
+        ...EMPTY_WORKSPACE_SCHEMA,
         nodes: [],
         dependencies: [],
       });

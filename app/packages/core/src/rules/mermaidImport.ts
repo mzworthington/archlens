@@ -1,4 +1,5 @@
 import type { C4Level, NodeType, SystemDependency, SystemSchema } from '../models/schema';
+import { systemSchemaPublicUrl } from '../models/schemaVersion';
 import { slugify } from '../lib/slug';
 import { resolveShortEntityRef } from '../lib/entityRef';
 
@@ -171,7 +172,7 @@ function parseC4(
 
   const schema: SystemSchema = {
     name: 'Imported C4 Diagram',
-    version: '1.0.0',
+    version: systemSchemaPublicUrl(),
     level: levelMap[format] ?? options.targetLevel,
     nodes: nodes.map(n => ({
       entityRef: n.id,
@@ -419,7 +420,7 @@ function parseFlowchart(source: string, options: MermaidImportOptions): MermaidP
 
   const schema: SystemSchema = {
     name: 'Imported Flowchart',
-    version: '1.0.0',
+    version: systemSchemaPublicUrl(),
     level: options.targetLevel,
     nodes: nodes.map(n => ({
       entityRef: n.id,

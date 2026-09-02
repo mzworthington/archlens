@@ -1,3 +1,4 @@
+import { assessSchemaVersion, systemSchemaPublicUrl } from '@archlens/core';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { useBlueprintStore } from '../../store';
 import { EMPTY_WORKSPACE_PATH, EMPTY_WORKSPACE_SCHEMA } from './resetToEmptyWorkspace';
@@ -58,5 +59,8 @@ describe('resetToEmptyWorkspace', () => {
     expect(state.loadedSystems[0]?.schema.nodes).toEqual([]);
     expect(state.workspaceName).toBe('Empty Workspace');
     expect(state.selectedNodeId).toBeNull();
+    expect(state.schema.version).toBe(systemSchemaPublicUrl());
+    expect(state.schemaVersionWarning).toBeNull();
+    expect(assessSchemaVersion(EMPTY_WORKSPACE_SCHEMA.version)).toBeNull();
   });
 });

@@ -1,9 +1,9 @@
-import type { SystemSchema } from '@archlens/core';
+import { systemSchemaPublicUrl, type SystemSchema } from '@archlens/core';
 import type { BlueprintStoreSet } from '../../store';
 
 export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = {
   name: 'Empty Workspace',
-  version: '1.0.0',
+  version: systemSchemaPublicUrl(),
   level: 'container',
   nodes: [],
   dependencies: [],

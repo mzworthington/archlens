@@ -4,6 +4,7 @@ import {
   resolveWorkspaceEntityRefs,
   buildWorkspaceCatalog,
   assessSchemaVersion,
+  systemSchemaPublicUrl,
 } from '@archlens/core';
 import type { WorkingCopyPort } from '../../../../core';
 import { resolveSchemaOnWorkspaceOpen } from '../../../workspace/schemaCompare';
@@ -85,7 +86,7 @@ function resolveEntryAgainstCatalog(
       path: contextEntry.path,
       schema: {
         name: contextEntry.name,
-        version: '1.0.0',
+        version: systemSchemaPublicUrl(),
         level: 'context',
         entityRef: contextEntry.entityRef,
         nodes: contextEntry.nodeEntityRefs.map(entityRef => ({

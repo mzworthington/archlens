@@ -1,6 +1,7 @@
 import {
   validateGraph,
   serializeSchemaToYaml,
+  systemSchemaPublicUrl,
   type SystemSchema,
   type C4Level,
   type SourceProvenance,
@@ -45,6 +46,8 @@ export type ApplyStateUpdateOptions = {
   updateSessionLayout?: boolean;
   /** When false, do not push the rebuilt schema into an active collab session (loads / remote applies). */
   pushCollab?: boolean;
+  /** Contract version to persist (schema URL). Defaults to the current store schema. */
+  version?: string;
 };
 
 function validationIssueSignature(result: ValidationResult): string {
@@ -70,13 +73,13 @@ export function applyStateUpdates(
   const updateSessionLayout = options.updateSessionLayout !== false;
   const currentSchema = get().schema ?? {
     name: 'Untitled',
-    version: '1.0.0',
+    version: systemSchemaPublicUrl(),
     level: 'container' as C4Level,
     nodes: [],
     dependencies: [],
   };
   const name = customSchemaName ?? currentSchema.name;
-  const version = currentSchema.version ?? '1.0.0';
+  const version = options.version ?? currentSchema.version ?? systemSchemaPublicUrl();
   const level = customSchemaLevel ?? currentSchema.level ?? 'container';
   const entityRef =
     customEntityRef !== undefined

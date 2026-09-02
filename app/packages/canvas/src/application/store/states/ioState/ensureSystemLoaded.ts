@@ -2,6 +2,7 @@ import type { SystemSchema } from '@archlens/core';
 import {
   parseSchemaFromYaml,
   resolveWorkspaceEntityRefs,
+  systemSchemaPublicUrl,
   type WorkspaceCatalogEntry,
 } from '@archlens/core';
 import type { WorkingCopyPort, WorkspacePort, LoggerPort } from '../../../../core';
@@ -81,7 +82,7 @@ export async function ensureSystemLoaded(
           path: contextEntry.path,
           schema: {
             name: contextEntry.name,
-            version: '1.0.0',
+            version: systemSchemaPublicUrl(),
             level: 'context',
             entityRef: contextEntry.entityRef,
             nodes: contextEntry.nodeEntityRefs.map(entityRef => ({

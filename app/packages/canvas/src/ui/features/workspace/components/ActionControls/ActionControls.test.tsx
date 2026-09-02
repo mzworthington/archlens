@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ReactFlowProvider } from '@xyflow/react';
+import { systemSchemaPublicUrl } from '@archlens/core';
 import {
   ToolbarEditActions,
   ToolbarOverflowMenu,
@@ -165,7 +166,7 @@ describe('ActionControls Component', () => {
     expect(clearWorkspaceDraftsMock).toHaveBeenCalled();
     expect(initSchemaMock).toHaveBeenCalledWith({
       name: 'Empty Workspace',
-      version: '1.0.0',
+      version: systemSchemaPublicUrl(),
       level: 'container',
       nodes: [],
       dependencies: [],

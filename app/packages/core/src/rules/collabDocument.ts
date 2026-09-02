@@ -5,6 +5,7 @@ import type {
   SystemNode,
   SystemSchema,
 } from '../models/schema';
+import { systemSchemaPublicUrl } from '../models/schemaVersion';
 
 export type CollabSchemaMeta = {
   name: string;
@@ -107,7 +108,7 @@ export function schemaToCollabDocument(schema: SystemSchema): CollabDocument {
 
 export function emptyCollabDocument(): CollabDocument {
   return {
-    meta: { name: '', version: '1.0.0', level: 'container' },
+    meta: { name: '', version: systemSchemaPublicUrl(), level: 'container' },
     nodes: {},
     dependencies: {},
   };

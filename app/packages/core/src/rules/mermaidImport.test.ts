@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { systemSchemaPublicUrl } from '../models/schemaVersion';
 import { parseMermaidToSchema, extractMermaidFromMarkdown } from './mermaidImport';
 
 describe('parseMermaidToSchema - flowchart', () => {
@@ -11,6 +12,7 @@ describe('parseMermaidToSchema - flowchart', () => {
     const result = parseMermaidToSchema(mermaid, { targetLevel: 'container' });
 
     expect(result.format).toBe('flowchart');
+    expect(result.schema.version).toBe(systemSchemaPublicUrl());
     expect(result.schema.level).toBe('container');
     expect(result.schema.nodes).toHaveLength(2);
     expect(result.schema.nodes.find(n => n.entityRef === 'gateway')).toMatchObject({
@@ -132,6 +134,7 @@ describe('parseMermaidToSchema - C4', () => {
     const result = parseMermaidToSchema(mermaid, { targetLevel: 'context' });
 
     expect(result.format).toBe('c4-context');
+    expect(result.schema.version).toBe(systemSchemaPublicUrl());
     expect(result.schema.level).toBe('context');
     expect(result.schema.nodes).toHaveLength(2);
     expect(result.schema.nodes.find(n => n.entityRef === 'user')).toMatchObject({

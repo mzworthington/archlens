@@ -1,4 +1,9 @@
-import { validateGraph, serializeSchemaToYaml, type SystemSchema } from '@archlens/core';
+import {
+  validateGraph,
+  serializeSchemaToYaml,
+  systemSchemaPublicUrl,
+  type SystemSchema,
+} from '@archlens/core';
 import type { BlueprintRFNode, BlueprintRFEdge } from '../../layoutUtils';
 import { SAMPLES_CONTEXT_PATH } from '../../samplesWorkspace';
 
@@ -15,7 +20,7 @@ export interface DiagramInitialState {
 
 const emptySchema: SystemSchema = {
   name: 'Loading',
-  version: '1.0.0',
+  version: systemSchemaPublicUrl(),
   level: 'context',
   nodes: [],
   dependencies: [],
