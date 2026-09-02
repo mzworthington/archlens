@@ -26,8 +26,10 @@ import { useCanvasDisplayGraph } from './useCanvasDisplayGraph';
 import { CanvasLensLegends } from './CanvasLensLegends';
 import { CanvasTopLeftPanel } from './CanvasTopLeftPanel';
 import { CanvasMiniMap } from './CanvasMiniMap';
+import { CanvasZoomReadout } from './CanvasZoomReadout';
 import { DependencyFocusChip } from './DependencyFocusChip';
 import { useSpotlightEdge } from './useSpotlightEdge';
+import { BLANK_CANVAS_ZOOM } from '../../../../../application/canvas/diagramViewport';
 
 export const Canvas: React.FC = () => {
   const [, setLocation] = useLocation();
@@ -246,14 +248,16 @@ export const Canvas: React.FC = () => {
         onlyRenderVisibleElements
         minZoom={0.05}
         maxZoom={4}
-        fitView
+        defaultViewport={{ x: 0, y: 0, zoom: BLANK_CANVAS_ZOOM }}
         className="h-full"
       >
         <CollabCursors cursors={collabCursors} />
         {!liteCanvas && (
           <Background variant={BackgroundVariant.Dots} gap={24} size={1} color="#334155" />
         )}
-        <Controls position="top-right" />
+        <Controls position="top-right" aria-label="Canvas viewport">
+          <CanvasZoomReadout />
+        </Controls>
 
         <CanvasLensLegends
           isResilienceMode={isResilienceMode}

@@ -79,6 +79,9 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-intent-investigate')).toHaveClass('h-full');
     expect(screen.getByTestId('workspace-intent-collaborate')).toHaveClass('h-full');
     expect(screen.getByTestId('workspace-intent-ideate')).toHaveClass('h-full');
+    for (const name of ['Investigate', 'Collaborate', 'Ideate']) {
+      expect(screen.getByRole('heading', { name })).toHaveClass('text-xl', 'font-bold');
+    }
   });
 
   it('hides Collaborate when no share handlers are provided', () => {

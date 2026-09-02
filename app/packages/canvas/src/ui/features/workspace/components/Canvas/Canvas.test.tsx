@@ -49,7 +49,9 @@ vi.mock('@xyflow/react', () => {
       </div>
     ),
     Background: () => <div data-testid="background" />,
-    Controls: () => <div data-testid="controls" />,
+    Controls: ({ children }: { children?: ReactNode }) => (
+      <div data-testid="controls">{children}</div>
+    ),
     MiniMap: () => <div data-testid="minimap" />,
     Panel: ({ children, position, ...props }: MockPanelProps) => (
       <div data-testid={props['data-testid'] ?? `panel-${position}`}>{children}</div>
@@ -59,9 +61,12 @@ vi.mock('@xyflow/react', () => {
     },
     useReactFlow: () => ({
       fitView: vi.fn(),
+      setViewport: vi.fn(),
       getInternalNode: () => undefined,
       screenToFlowPosition: (pos: { x: number; y: number }) => pos,
     }),
+    useStore: (select: (state: { transform: [number, number, number] }) => unknown) =>
+      select({ transform: [0, 0, 0.55] }),
     ViewportPortal: ({ children }: { children?: ReactNode }) => (
       <div data-testid="viewport-portal">{children}</div>
     ),
@@ -113,6 +118,10 @@ describe('Canvas Component', () => {
     expect(screen.getByTestId('edges-count')).toHaveTextContent('1');
     expect(screen.getByTestId('background')).toBeInTheDocument();
     expect(screen.getByTestId('controls')).toBeInTheDocument();
+    expect(screen.getByTestId('controls')).toContainElement(
+      screen.getByTestId('canvas-zoom-percent')
+    );
+    expect(screen.getByTestId('canvas-zoom-percent')).toHaveTextContent('55%');
     expect(screen.getByTestId('minimap')).toBeInTheDocument();
   });
 

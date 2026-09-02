@@ -12,6 +12,7 @@ import {
 } from '../../../../../application/store/diagramLoadSession';
 import { yieldToUi } from '../../../../../application/store/yieldToUi';
 import { shouldAutoLayoutOnLoad } from '../../../../../application/store/layoutUtils';
+import { viewportForLoadedDiagram } from '../../../../../application/canvas/diagramViewport';
 
 export function useCanvasLoadLayout(
   currentFilePath: string,
@@ -23,9 +24,11 @@ export function useCanvasLoadLayout(
     engine?: import('../../../../../core').LayoutEngineId;
   }) => Promise<void>
 ): void {
-  const { fitView } = useReactFlow();
+  const { fitView, setViewport } = useReactFlow();
   const fitViewRef = useRef(fitView);
+  const setViewportRef = useRef(setViewport);
   fitViewRef.current = fitView;
+  setViewportRef.current = setViewport;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -74,7 +77,13 @@ export function useCanvasLoadLayout(
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          fitViewRef.current({ padding: 0.12 });
+          const nodeCount = useBlueprintStore.getState().schema.nodes.length;
+          const viewport = viewportForLoadedDiagram(nodeCount);
+          if (viewport.kind === 'blank') {
+            void setViewportRef.current?.({ x: 0, y: 0, zoom: viewport.zoom });
+            return;
+          }
+          fitViewRef.current({ padding: viewport.padding, maxZoom: viewport.maxZoom });
         });
       });
     };

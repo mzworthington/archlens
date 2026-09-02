@@ -11,6 +11,7 @@ import { importSchemaContent } from './diagramState/importSchema';
 import { createDiagramInitialState } from './diagramState/initialState';
 import { applyRefactorBoundaryAsDraft } from '../../forensics/applyRefactorBoundaryAsDraft';
 import { resetToEmptyWorkspace as resetToEmptyWorkspaceAction } from './diagramState/resetToEmptyWorkspace';
+import { restoreEmptyWorkspaceDraft as restoreEmptyWorkspaceDraftAction } from './diagramState/restoreEmptyWorkspaceDraft';
 import { materializeCouplingGhostOnDiagram } from '../../forensics/materializeCouplingGhost';
 import { createHistoryActions } from './diagramState/historyActions';
 import { createCheckPendingChanges } from './diagramState/pendingChanges';
@@ -19,6 +20,7 @@ import { createInitSchema } from './diagramState/initSchema';
 import { createApplyClientLayout } from './diagramState/applyClientLayout';
 import { applyRemoteCollabSchema } from './diagramState/applyRemoteCollabSchema';
 import { createCanvasGraphActions } from './diagramState/canvasGraphActions';
+import { blankCanvasEntityRefFromName } from './ioState/blankCanvasSession';
 import type { BlueprintStoreSet } from '../store';
 import type { DiagramState, DiagramStateDeps } from './diagramState/types';
 
@@ -78,10 +80,25 @@ export const createDiagramState = (
       resetToEmptyWorkspaceAction(set, get);
     },
 
+    restoreEmptyWorkspaceDraft: options => restoreEmptyWorkspaceDraftAction(set, get, options),
+
     updateSchemaName: name => {
-      const level = get().schema.level;
+      const { schema, isWorkspaceOpen } = get();
+      const level = schema.level;
       if (level === 'container' || level === 'context') {
         set({ workspaceName: name });
+      }
+      if (!isWorkspaceOpen) {
+        applyStateUpdates(
+          set,
+          get,
+          get().nodes,
+          get().edges,
+          name,
+          undefined,
+          blankCanvasEntityRefFromName(name)
+        );
+        return;
       }
       applyStateUpdates(set, get, get().nodes, get().edges, name);
     },

@@ -1,5 +1,6 @@
 import { systemSchemaPublicUrl, type SystemSchema } from '@archlens/core';
 import type { BlueprintStoreSet } from '../../store';
+import { markEmptyWorkspaceResetThisSession } from './emptyWorkspaceDraft';
 
 export const EMPTY_WORKSPACE_SCHEMA: SystemSchema = {
   name: 'Empty Workspace',
@@ -26,6 +27,7 @@ export function resetToEmptyWorkspace(
   }
 ): void {
   get().clearHistory();
+  markEmptyWorkspaceResetThisSession();
 
   const empty = { ...EMPTY_WORKSPACE_SCHEMA, nodes: [], dependencies: [] };
 

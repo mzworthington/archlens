@@ -47,6 +47,8 @@ import { runBrowserAnalysisWorker } from '../../../infrastructure/analysis/runBr
 import { isCancellationError } from '@archlens/analysis/cancellation';
 import { CLI_GETTING_STARTED_PATH } from '../../../constants/cli';
 import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/collabDisplayName';
+import { yamlFileNameFromDiagramName } from './ioState/yamlFileNameFromDiagramName';
+import { persistBlankCanvasSessionFromSchema } from './ioState/blankCanvasSession';
 import type { BlueprintStoreSet } from '../store';
 
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
@@ -111,30 +113,42 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
   setPorts: ports => set((state: IoStateDeps) => ({ ...state, ...ports })),
 
   saveSchema: async () => {
-    const { yamlCode, schema, fileSystemPort, logger, setNotification } = get();
-    const sanitizedName = schema.name.toLowerCase().replace(/[^a-z0-9_-]/g, '_');
+    const {
+      yamlCode,
+      schema,
+      fileSystemPort,
+      logger,
+      setNotification,
+      importYaml,
+      isWorkspaceOpen,
+    } = get();
+    const fileName = yamlFileNameFromDiagramName(schema.name);
     const start = performance.now();
-    logger.info('Initiating schema file write', { file: `${sanitizedName}.yaml` });
+    logger.info('Initiating schema file write', { file: fileName });
 
     try {
-      const success = await fileSystemPort.saveSchema(
-        yamlCode,
-        `${sanitizedName || 'blueprint'}.yaml`
-      );
+      const saved = await fileSystemPort.saveSchema(yamlCode, fileName);
       const duration = performance.now() - start;
-      if (success) {
+      if (saved) {
         logger.info('Schema file written successfully', { durationMs: Math.round(duration) });
+        if (!isWorkspaceOpen) {
+          const reloaded = importYaml(saved.content);
+          if (reloaded) {
+            set({ currentFilePath: saved.fileName });
+            persistBlankCanvasSessionFromSchema(saved.fileName, get().schema);
+          }
+        }
         setNotification?.({
           type: 'success',
           title: 'Schema Saved',
-          message: `Successfully downloaded ${sanitizedName || 'blueprint'}.yaml`,
+          message: `Successfully saved ${saved.fileName}`,
         });
       } else {
         logger.warn('Schema file write cancelled or failed', {
           durationMs: Math.round(duration),
         });
       }
-      return success;
+      return Boolean(saved);
     } catch (err) {
       logger.error('Failed to save schema file', err);
       setNotification?.({

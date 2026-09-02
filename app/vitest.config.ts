@@ -43,6 +43,13 @@ export default defineConfig({
           environment: 'node',
         },
       },
+      {
+        test: {
+          name: 'deploySmoke',
+          include: ['scripts/deploySmoke/**/*.test.ts'],
+          environment: 'node',
+        },
+      },
     ],
     reporters: generateFeaturesUnit
       ? ['default', new VitestFeatureReporter({ outputFile: featuresUnitOutputFile })]

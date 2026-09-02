@@ -119,8 +119,8 @@ describe('WorkspacePage Component', () => {
   it('should support expanding and collapsing left and right side panels', () => {
     render(<WorkspacePage />);
 
-    const leftToggle = screen.getByLabelText('Toggle left panel');
-    const rightToggle = screen.getByLabelText('Toggle right panel');
+    const leftToggle = screen.getByLabelText('Show explorer');
+    const rightToggle = screen.getByLabelText('Show properties');
 
     fireEvent.click(leftToggle);
     expect(useBlueprintStore.getState().leftCollapsed).toBe(false);

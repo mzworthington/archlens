@@ -3,6 +3,8 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { useBundledWorkspaceBootstrap } from './useBundledWorkspaceBootstrap';
 import { useBlueprintStore } from '../../../../application/store/store';
 import { resetWorkspaceOpenSessionForTests } from '../../../../application/store/workspaceOpenSession';
+import { resetEmptyWorkspaceDraftSessionForTests } from '../../../../application/store/states/diagramState/emptyWorkspaceDraft';
+import { persistBlankCanvasSession } from '../../../../application/store/states/ioState/blankCanvasSession';
 
 let mockLocation = '/workspace';
 let mockSearch = '';
@@ -18,6 +20,7 @@ vi.mock('wouter', () => ({
 describe('useBundledWorkspaceBootstrap', () => {
   beforeEach(() => {
     resetWorkspaceOpenSessionForTests();
+    resetEmptyWorkspaceDraftSessionForTests();
     mockLocation = '/workspace';
     mockSearch = '';
     mockParams = { '*': '' };
@@ -97,7 +100,12 @@ describe('useBundledWorkspaceBootstrap', () => {
     mockParams = { '*': 'empty-workspace' };
     mockSearch = '';
     const openBundledSample = vi.fn().mockResolvedValue(true);
-    useBlueprintStore.setState({ openBundledSample, isStartupOpen: true });
+    const restoreEmptyWorkspaceDraft = vi.fn().mockResolvedValue(false);
+    useBlueprintStore.setState({
+      openBundledSample,
+      restoreEmptyWorkspaceDraft,
+      isStartupOpen: true,
+    });
 
     renderHook(() => useBundledWorkspaceBootstrap());
 
@@ -105,6 +113,51 @@ describe('useBundledWorkspaceBootstrap', () => {
       expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
     });
     expect(openBundledSample).not.toHaveBeenCalled();
+    expect(restoreEmptyWorkspaceDraft).toHaveBeenCalledWith({
+      expectedEntityRef: 'empty-workspace',
+    });
+  });
+
+  it('restores a named blank-canvas session instead of opening the demo', async () => {
+    persistBlankCanvasSession({
+      filePath: 'super_amazing.yaml',
+      entityRef: 'super-amazing',
+      name: 'Super amazing',
+    });
+    mockLocation = '/workspace/super-amazing';
+    mockParams = { '*': 'super-amazing' };
+    mockSearch = '';
+    const openBundledSample = vi.fn().mockResolvedValue(true);
+    const restoreEmptyWorkspaceDraft = vi.fn().mockResolvedValue(true);
+    useBlueprintStore.setState({
+      openBundledSample,
+      restoreEmptyWorkspaceDraft,
+      isStartupOpen: true,
+    });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(restoreEmptyWorkspaceDraft).toHaveBeenCalledWith({
+        expectedEntityRef: 'super-amazing',
+      });
+    });
+    expect(openBundledSample).not.toHaveBeenCalled();
+  });
+
+  it('does not restore an empty-workspace draft when a collab room is present', async () => {
+    mockLocation = '/workspace/empty-workspace';
+    mockParams = { '*': 'empty-workspace' };
+    mockSearch = '?room=abcdefgh';
+    const restoreEmptyWorkspaceDraft = vi.fn().mockResolvedValue(false);
+    useBlueprintStore.setState({ restoreEmptyWorkspaceDraft, isStartupOpen: true });
+
+    renderHook(() => useBundledWorkspaceBootstrap());
+
+    await waitFor(() => {
+      expect(useBlueprintStore.getState().isStartupOpen).toBe(false);
+    });
+    expect(restoreEmptyWorkspaceDraft).not.toHaveBeenCalled();
   });
 
   it('does not auto-open sandbox when a collab room is in the query', async () => {

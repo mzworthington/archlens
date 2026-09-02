@@ -27,7 +27,7 @@ export const BrowserFileSystemAdapter: FileSystemPort = {
    * Saves a YAML string directly to the local filesystem using showSaveFilePicker
    * or downloads it as a fallback.
    */
-  saveSchema: async (yamlContent: string, fileName: string): Promise<boolean> => {
+  saveSchema: async (yamlContent: string, fileName: string) => {
     try {
       if (hasSaveFilePicker(window)) {
         const handle = await window.showSaveFilePicker({
@@ -42,7 +42,9 @@ export const BrowserFileSystemAdapter: FileSystemPort = {
         const writable = await handle.createWritable();
         await writable.write(yamlContent);
         await writable.close();
-        return true;
+        const file = await handle.getFile();
+        const content = await file.text();
+        return { fileName: handle.name || fileName, content };
       } else {
         const blob = new Blob([yamlContent], { type: 'text/yaml;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
@@ -53,11 +55,11 @@ export const BrowserFileSystemAdapter: FileSystemPort = {
         link.click();
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
-        return true;
+        return { fileName, content: yamlContent };
       }
     } catch (e) {
       if ((e as Error).name === 'AbortError') {
-        return false;
+        return null;
       }
       throw e;
     }

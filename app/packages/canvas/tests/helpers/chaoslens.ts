@@ -76,7 +76,7 @@ export async function runChaoslensDomainOrdersOutageDemo(
   });
 
   // Collapse the panel so the blast ripple is visible on the canvas in recordings.
-  await page.getByRole('button', { name: 'Toggle right panel' }).click();
+  await page.getByTestId('right-panel-rail').click();
   await holdForRecording(page, 300, recording);
 
   await page.getByRole('button', { name: /run resilience simulation/i }).click();

@@ -11,8 +11,14 @@ export { noopLogger } from '@archlens/core/logging';
 /**
  * Driven Outbound Port for local file operations.
  */
+/** Bytes written by saveSchema (re-read after File System Access, or the download payload). */
+export type SavedSchemaFile = {
+  fileName: string;
+  content: string;
+};
+
 export interface FileSystemPort {
-  saveSchema(yamlContent: string, fileName: string): Promise<boolean>;
+  saveSchema(yamlContent: string, fileName: string): Promise<SavedSchemaFile | null>;
   loadSchema(): Promise<string | null>;
 }
 
@@ -32,7 +38,7 @@ export interface WorkspacePort {
  * Safe default noop filesystem implementation.
  */
 export const noopFileSystem: FileSystemPort = {
-  saveSchema: async () => false,
+  saveSchema: async () => null,
   loadSchema: async () => null,
 };
 

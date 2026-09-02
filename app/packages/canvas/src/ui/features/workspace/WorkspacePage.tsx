@@ -7,6 +7,7 @@ import { PropertyPanel } from './components/PropertyPanel/PropertyPanel';
 import { Header } from './components/Header/Header';
 import { useWorkspaceDialogs } from './hooks/useWorkspaceDialogs';
 import { useBundledWorkspaceBootstrap } from './hooks/useBundledWorkspaceBootstrap';
+import { useBlankCanvasUnloadGuard } from './hooks/useBlankCanvasUnloadGuard';
 import { useUrlSync } from './hooks/useUrlSync';
 import { useWorkspaceLensSync } from './hooks/useWorkspaceLensSync';
 import { useCollabRoomSync } from './hooks/useCollabRoomSync';
@@ -22,6 +23,7 @@ export const WorkspacePage: React.FC = () => {
   const workspaceDialogs = useWorkspaceDialogs();
 
   useBundledWorkspaceBootstrap();
+  useBlankCanvasUnloadGuard();
   useUrlSync();
   useWorkspaceLensSync();
   const collabJoin = useCollabRoomSync();
@@ -50,16 +52,14 @@ export const WorkspacePage: React.FC = () => {
                 panelWidthPx={WORKSPACE_PANEL_WIDTH.left}
                 expandTitle={layout.leftRailTitle.expand}
                 collapseTitle={layout.leftRailTitle.collapse}
-                ariaLabel="Toggle left panel"
               />
               <WorkspacePanelRail
                 slot="right"
                 collapsed={layout.rightCollapsed}
                 onToggle={layout.toggleRightSlot}
                 panelWidthPx={WORKSPACE_PANEL_WIDTH.right}
-                expandTitle="Expand Properties Panel"
-                collapseTitle="Collapse Properties Panel"
-                ariaLabel="Toggle right panel"
+                expandTitle="Show properties"
+                collapseTitle="Hide properties"
               />
             </>
           ) : null}

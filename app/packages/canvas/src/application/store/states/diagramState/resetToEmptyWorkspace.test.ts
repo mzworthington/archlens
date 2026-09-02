@@ -65,4 +65,12 @@ describe('resetToEmptyWorkspace', () => {
     expect(state.schemaVersionWarning).toBeNull();
     expect(assessSchemaVersion(EMPTY_WORKSPACE_SCHEMA.version)).toBeNull();
   });
+
+  it('promotes the URL entity when the blank canvas is named', () => {
+    useBlueprintStore.getState().resetToEmptyWorkspace();
+    useBlueprintStore.getState().updateSchemaName('Super amazing');
+
+    expect(useBlueprintStore.getState().schema.name).toBe('Super amazing');
+    expect(useBlueprintStore.getState().schema.entityRef).toBe('super-amazing');
+  });
 });

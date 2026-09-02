@@ -39,6 +39,10 @@ const sampleStripClass =
 const intentCardClass =
   'rounded-xl border border-slate-800 bg-slate-950/40 p-3 min-w-0 h-full flex flex-col';
 
+const intentHeadingRowClass = 'flex items-start gap-2.5 mb-3 px-0.5';
+const intentHeadingIconClass = 'w-5 h-5 text-[#00f0ff] shrink-0 mt-0.5';
+const intentHeadingTitleClass = 'text-xl font-bold tracking-tight text-white';
+
 type CopyableCommandProps = {
   command: string;
   testId: string;
@@ -277,13 +281,10 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
             data-testid="workspace-intent-investigate"
             aria-labelledby="workspace-intent-investigate-title"
           >
-            <div className="flex items-start gap-2 mb-2.5 px-0.5">
-              <Search className="w-4 h-4 text-[#00f0ff] shrink-0 mt-0.5" aria-hidden />
+            <div className={intentHeadingRowClass}>
+              <Search className={intentHeadingIconClass} aria-hidden />
               <div>
-                <h3
-                  id="workspace-intent-investigate-title"
-                  className="text-sm font-semibold text-slate-100"
-                >
+                <h3 id="workspace-intent-investigate-title" className={intentHeadingTitleClass}>
                   Investigate
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">Map or import real systems</p>
@@ -402,13 +403,10 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
               data-testid="workspace-intent-collaborate"
               aria-labelledby="workspace-intent-collaborate-title"
             >
-              <div className="flex items-start gap-2 mb-2.5 px-0.5">
-                <Users className="w-4 h-4 text-sky-300 shrink-0 mt-0.5" aria-hidden />
+              <div className={intentHeadingRowClass}>
+                <Users className={intentHeadingIconClass} aria-hidden />
                 <div>
-                  <h3
-                    id="workspace-intent-collaborate-title"
-                    className="text-sm font-semibold text-slate-100"
-                  >
+                  <h3 id="workspace-intent-collaborate-title" className={intentHeadingTitleClass}>
                     Collaborate
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">Share a canvas with others</p>
@@ -482,13 +480,10 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
               data-testid="workspace-intent-ideate"
               aria-labelledby="workspace-intent-ideate-title"
             >
-              <div className="flex items-start gap-2 mb-2.5 px-0.5">
-                <Lightbulb className="w-4 h-4 text-slate-300 shrink-0 mt-0.5" aria-hidden />
+              <div className={intentHeadingRowClass}>
+                <Lightbulb className={intentHeadingIconClass} aria-hidden />
                 <div>
-                  <h3
-                    id="workspace-intent-ideate-title"
-                    className="text-sm font-semibold text-slate-100"
-                  >
+                  <h3 id="workspace-intent-ideate-title" className={intentHeadingTitleClass}>
                     Ideate
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">

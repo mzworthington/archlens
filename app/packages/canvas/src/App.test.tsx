@@ -4,6 +4,8 @@ import type { AnchorHTMLAttributes, ReactNode } from 'react';
 import { WorkspacePage } from './ui/features/workspace/WorkspacePage';
 import { AppProvider } from './application/context/AppContext';
 import { useBlueprintStore } from './application/store/store';
+import { noopWorkingCopy } from './core';
+import { resetEmptyWorkspaceDraftSessionForTests } from './application/store/states/diagramState/emptyWorkspaceDraft';
 
 let mockLocation = '/workspace/empty-workspace';
 const mockSetLocation = vi.fn((newLoc: string) => {
@@ -55,6 +57,7 @@ describe('App Layout and Collapsible Panels', () => {
     mockMatch = true;
     mockParams = { '*': 'empty-workspace' };
     mockSetLocation.mockClear();
+    resetEmptyWorkspaceDraftSessionForTests();
 
     useBlueprintStore.setState({
       currentFilePath: 'blueprint.yaml',
@@ -66,6 +69,7 @@ describe('App Layout and Collapsible Panels', () => {
       systemSelectInFlight: null,
       isLoading: false,
       diagramLoadCount: 0,
+      workingCopyPort: noopWorkingCopy,
       schema: {
         name: 'Empty Workspace',
         version: '1.0.0',
@@ -98,8 +102,8 @@ describe('App Layout and Collapsible Panels', () => {
       </AppProvider>
     );
 
-    const leftToggle = screen.getByLabelText('Toggle left panel');
-    const rightToggle = screen.getByLabelText('Toggle right panel');
+    const leftToggle = screen.getByLabelText('Show explorer');
+    const rightToggle = screen.getByLabelText('Hide properties');
     expect(leftToggle).toBeInTheDocument();
     expect(rightToggle).toBeInTheDocument();
 

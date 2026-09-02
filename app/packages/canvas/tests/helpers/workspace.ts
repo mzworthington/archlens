@@ -65,7 +65,7 @@ export async function ensureRightPanelOpen(page: Page) {
     if (await mobile.isVisible().catch(() => false)) {
       await mobile.click();
     } else {
-      await page.getByRole('button', { name: 'Toggle right panel' }).click();
+      await page.getByTestId('right-panel-rail').click();
     }
   }
   await expect(panel).toBeVisible({ timeout: 30_000 });

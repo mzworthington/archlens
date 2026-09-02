@@ -109,7 +109,7 @@ describe('Breadcrumbs Component', () => {
     render(<Breadcrumbs />);
 
     expect(screen.queryByTestId('workspace-mode-toggle')).not.toBeInTheDocument();
-    expect(screen.getAllByText('Main App System').length).toBeGreaterThan(0);
+    expect(screen.getAllByDisplayValue('Main App System').length).toBeGreaterThan(0);
   });
 
   it('renders next hierarchy level preview when a node with next level component schema is selected', () => {
@@ -452,11 +452,11 @@ describe('Breadcrumbs Component', () => {
       </Router>
     );
 
-    expect(screen.getAllByText('Main App System').length).toBeGreaterThan(0);
+    expect(screen.getAllByDisplayValue('Main App System').length).toBeGreaterThan(0);
 
     fireEvent.click(screen.getByRole('button', { name: 'Open diagram location menu' }));
 
-    expect(screen.getAllByText('Main App System').length).toBeGreaterThan(1);
+    expect(screen.getAllByDisplayValue('Main App System').length).toBeGreaterThan(1);
   });
 
   it('lists peer context diagrams from the workspace catalog before they are lazy-loaded', () => {

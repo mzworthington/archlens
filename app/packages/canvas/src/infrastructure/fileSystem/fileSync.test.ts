@@ -22,15 +22,19 @@ describe('fileSync Adapters', () => {
           close: vi.fn().mockResolvedValue(undefined),
         };
         const mockFileHandle = {
+          name: 'test.yaml',
           createWritable: vi.fn().mockResolvedValue(mockWritable),
+          getFile: vi.fn().mockResolvedValue({
+            text: vi.fn().mockResolvedValue('yaml-content-from-disk'),
+          }),
         };
         const mockShowSaveFilePicker = vi.fn().mockResolvedValue(mockFileHandle);
 
         vi.stubGlobal('showSaveFilePicker', mockShowSaveFilePicker);
 
-        const success = await BrowserFileSystemAdapter.saveSchema('yaml-content', 'test.yaml');
+        const saved = await BrowserFileSystemAdapter.saveSchema('yaml-content', 'test.yaml');
 
-        expect(success).toBe(true);
+        expect(saved).toEqual({ fileName: 'test.yaml', content: 'yaml-content-from-disk' });
         expect(mockShowSaveFilePicker).toHaveBeenCalledWith({
           suggestedName: 'test.yaml',
           types: [
@@ -58,9 +62,9 @@ describe('fileSync Adapters', () => {
           return el;
         });
 
-        const success = await BrowserFileSystemAdapter.saveSchema('yaml-content', 'test.yaml');
+        const saved = await BrowserFileSystemAdapter.saveSchema('yaml-content', 'test.yaml');
 
-        expect(success).toBe(true);
+        expect(saved).toEqual({ fileName: 'test.yaml', content: 'yaml-content' });
         expect(mockClick).toHaveBeenCalled();
       });
     });

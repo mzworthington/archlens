@@ -4,6 +4,7 @@ import { Link, useLocation, useSearch } from 'wouter';
 import { getSchemaEntityRef, type C4Level, type SystemSchema } from '@archlens/core';
 import { useBreadcrumbs } from './useBreadcrumbs';
 import { WorkspaceModeToggle } from './WorkspaceModeToggle';
+import { BlankCanvasFileSave } from './BlankCanvasFileSave';
 import { buildWorkspaceEntityHref } from '../../../../../application/store/sandboxWorkspace';
 import { useBlueprintStore } from '../../../../../application/store/store';
 import { navigateToActiveWorkspaceEntity } from '../../hooks/navigateToActiveWorkspaceEntity';
@@ -211,6 +212,19 @@ export const Breadcrumbs: React.FC = () => {
                   <span className="truncate max-w-[80px] sm:max-w-[150px]">{seg.name}</span>
                   <ChevronDown className="w-3.5 h-3.5 shrink-0 text-slate-400" />
                 </button>
+              ) : isLast && !isWorkspaceOpen ? (
+                <BlankCanvasFileSave
+                  compact={compact}
+                  onSaved={() => {
+                    onNavigate?.();
+                    const { schema: nextSchema, workspaceName: nextWorkspace } =
+                      useBlueprintStore.getState();
+                    setLocation(
+                      workspaceLink(getSchemaEntityRef(nextSchema, nextWorkspace || undefined)),
+                      { replace: true }
+                    );
+                  }}
+                />
               ) : (
                 <div
                   className={

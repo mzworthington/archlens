@@ -18,8 +18,8 @@ test.describe('Blueprint E2E Journeys', () => {
     test.setTimeout(180_000);
     await loadSandbox(page);
 
-    const leftPanelButton = page.getByRole('button', { name: 'Toggle left panel' });
-    const rightPanelButton = page.getByRole('button', { name: 'Toggle right panel' });
+    const leftPanelButton = page.getByTestId('left-panel-rail');
+    const rightPanelButton = page.getByTestId('right-panel-rail');
     const leftPanel = page.getByTestId('left-panel');
     const rightPanel = page.getByTestId('right-panel');
 

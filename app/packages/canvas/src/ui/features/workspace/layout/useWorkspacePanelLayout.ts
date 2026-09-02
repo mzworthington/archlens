@@ -39,8 +39,8 @@ export function useWorkspacePanelLayout(): WorkspacePanelLayoutState {
 
   const leftRailTitle = useMemo(
     () => ({
-      expand: 'Expand Explorer',
-      collapse: 'Collapse Explorer',
+      expand: 'Show explorer',
+      collapse: 'Hide explorer',
     }),
     []
   );

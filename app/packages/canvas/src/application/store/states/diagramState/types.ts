@@ -67,6 +67,11 @@ export interface DiagramState {
   initSchema: (schema: SystemSchema) => void;
   /** Blank canvas with no sandbox systems - used before Mermaid import from startup. */
   resetToEmptyWorkspace: () => void;
+  /** Rehydrate an Ideate IndexedDB draft after a refresh (no folder open). */
+  restoreEmptyWorkspaceDraft: (options?: {
+    hasCollabRoom?: boolean;
+    expectedEntityRef?: string;
+  }) => Promise<boolean>;
   updateSchemaName: (name: string) => void;
   updateSchemaLevel: (level: C4Level) => void;
   importYaml: (yamlContent: string) => boolean;

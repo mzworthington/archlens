@@ -118,6 +118,8 @@ Canonical map of every workflow (purpose + triggers): [GitHub Actions workflows]
 4. **build** - production canvas + CLI artifacts (`VITE_COLLAB_WS_URL` on `main`)
 5. **deploy-cloudflare** - Wrangler upload to Pages (`main` only)
 6. **deploy-collab** - Wrangler deploy of `@archlens/collab` (`main` only)
+7. **smoke** - live SHA + `/workspace` + collab `/health`; restore previous Pages/Worker identity on failure
+8. **merge-gate** - required-check aggregator (verify on every run; smoke on main deploys)
 
 CLI releases are a separate job chain (`release-cli.sh`) when conventional commits warrant a tag. Catalog publish and `samples/` publish live in sibling workflows (see the map above).
 

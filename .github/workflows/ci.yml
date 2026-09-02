@@ -2,9 +2,9 @@ name: CI & Deployment Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
     inputs:
       deploy_to_cloudflare:
@@ -239,55 +239,15 @@ jobs:
         || (github.event_name == 'workflow_dispatch' && inputs.deploy_to_cloudflare)
       )
     runs-on: ubuntu-latest
+    concurrency:
+      group: production-pages
+      cancel-in-progress: false
     environment:
       name: production
       url: https://archlens.dev
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v7
-
-      - name: Download canvas dist
-        uses: actions/download-artifact@v8
-        with:
-          name: canvas-dist
-          path: app/packages/canvas/dist
-
-      - name: Deploy to Cloudflare Pages
-        id: deploy_pages
-        uses: cloudflare/wrangler-action@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy app/packages/canvas/dist --project-name=archlens --branch=main
-
-      - name: Publish Canvas deploy summary
-        if: always()
-        env:
-          PAGES_URL: ${{ steps.deploy_pages.outputs.deployment-url }}
-        run: |
-          {
-            echo "## Canvas Pages"
-            echo "- **env:** production"
-            echo "- **sha:** \`${GITHUB_SHA}\`"
-            echo "- **build id:** \`${GITHUB_SHA:0:12}\`"
-            echo "- **url:** https://archlens.dev"
-            if [ -n "${PAGES_URL}" ]; then
-              echo "- **deployment url:** ${PAGES_URL}"
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
-
-  deploy-collab:
-    needs: [quality, unit-tests, e2e]
-    if: >-
-      github.ref == 'refs/heads/main'
-      && (
-        github.event_name == 'push'
-        || (github.event_name == 'workflow_dispatch' && inputs.deploy_to_cloudflare)
-      )
-    runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: https://collab.archlens.dev
+    outputs:
+      previous_deployment_id: ${{ steps.capture.outputs.previous_deployment_id }}
+      previous_sha: ${{ steps.capture.outputs.previous_sha }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
@@ -309,6 +269,95 @@ jobs:
         run: pnpm install --frozen-lockfile
         working-directory: app
 
+      - name: Capture previous Pages identity
+        id: capture
+        working-directory: app
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm exec tsx scripts/deploySmoke/run.ts capture-pages
+
+      - name: Download canvas dist
+        uses: actions/download-artifact@v8
+        with:
+          name: canvas-dist
+          path: app/packages/canvas/dist
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy_pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy app/packages/canvas/dist --project-name=archlens --branch=main
+
+      - name: Publish Canvas deploy summary
+        if: always()
+        env:
+          PAGES_URL: ${{ steps.deploy_pages.outputs.deployment-url }}
+          PREVIOUS_ID: ${{ steps.capture.outputs.previous_deployment_id }}
+        run: |
+          {
+            echo "## Canvas Pages"
+            echo "- **env:** production"
+            echo "- **sha:** \`${GITHUB_SHA}\`"
+            echo "- **build id:** \`${GITHUB_SHA:0:12}\`"
+            echo "- **url:** https://archlens.dev"
+            if [ -n "${PAGES_URL}" ]; then
+              echo "- **deployment url:** ${PAGES_URL}"
+            fi
+            if [ -n "${PREVIOUS_ID}" ]; then
+              echo "- **previous deployment:** \`${PREVIOUS_ID}\`"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  deploy-collab:
+    needs: [quality, unit-tests, e2e]
+    if: >-
+      github.ref == 'refs/heads/main'
+      && (
+        github.event_name == 'push'
+        || (github.event_name == 'workflow_dispatch' && inputs.deploy_to_cloudflare)
+      )
+    runs-on: ubuntu-latest
+    concurrency:
+      group: production-collab
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: https://collab.archlens.dev
+    outputs:
+      previous_version_id: ${{ steps.capture.outputs.previous_version_id }}
+      previous_sha: ${{ steps.capture.outputs.previous_sha }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.10.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: app
+
+      - name: Capture previous collab identity
+        id: capture
+        working-directory: app
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm exec tsx scripts/deploySmoke/run.ts capture-collab
+
       - name: Deploy collab Worker
         working-directory: app/packages/collab
         env:
@@ -318,6 +367,8 @@ jobs:
 
       - name: Publish collab deploy summary
         if: always()
+        env:
+          PREVIOUS_ID: ${{ steps.capture.outputs.previous_version_id }}
         run: |
           {
             echo "## Collab Worker"
@@ -325,7 +376,98 @@ jobs:
             echo "- **sha:** \`${GITHUB_SHA}\`"
             echo "- **url:** https://collab.archlens.dev"
             echo "- **health:** https://collab.archlens.dev/health"
+            if [ -n "${PREVIOUS_ID}" ]; then
+              echo "- **previous version:** \`${PREVIOUS_ID}\`"
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
+
+  smoke:
+    name: smoke
+    needs: [deploy-cloudflare, deploy-collab]
+    if: >-
+      github.ref == 'refs/heads/main'
+      && (
+        github.event_name == 'push'
+        || (github.event_name == 'workflow_dispatch' && inputs.deploy_to_cloudflare)
+      )
+    runs-on: ubuntu-latest
+    concurrency:
+      group: production-smoke
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: https://archlens.dev
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 11.10.0
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: app
+
+      - name: Smoke production and roll back on failure
+        working-directory: app
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PAGES_PREVIOUS_DEPLOYMENT_ID: ${{ needs.deploy-cloudflare.outputs.previous_deployment_id }}
+          PAGES_PREVIOUS_SHA: ${{ needs.deploy-cloudflare.outputs.previous_sha }}
+          COLLAB_PREVIOUS_VERSION_ID: ${{ needs.deploy-collab.outputs.previous_version_id }}
+          COLLAB_PREVIOUS_SHA: ${{ needs.deploy-collab.outputs.previous_sha }}
+        run: pnpm exec tsx scripts/deploySmoke/run.ts smoke
+
+  merge-gate:
+    name: merge-gate
+    needs: [quality, unit-tests, e2e, build, smoke]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require verify (and prod smoke on main deploy)
+        env:
+          QUALITY: ${{ needs.quality.result }}
+          UNIT: ${{ needs.unit-tests.result }}
+          E2E: ${{ needs.e2e.result }}
+          BUILD: ${{ needs.build.result }}
+          SMOKE: ${{ needs.smoke.result }}
+          REF: ${{ github.ref }}
+          EVENT: ${{ github.event_name }}
+          DEPLOY: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy_to_cloudflare }}
+        run: |
+          fail=0
+          for name in QUALITY UNIT E2E BUILD; do
+            eval "val=\${$name}"
+            echo "$name=$val"
+            if [ "$val" != "success" ]; then
+              fail=1
+            fi
+          done
+          echo "SMOKE=$SMOKE"
+          main_deploy=0
+          if [ "$REF" = "refs/heads/main" ] && { [ "$EVENT" = "push" ] || [ "$DEPLOY" = "true" ]; }; then
+            main_deploy=1
+          fi
+          if [ "$main_deploy" = "1" ]; then
+            if [ "$SMOKE" != "success" ]; then
+              fail=1
+            fi
+          elif [ "$SMOKE" != "success" ] && [ "$SMOKE" != "skipped" ]; then
+            fail=1
+          fi
+          exit "$fail"
 
   check-release:
     needs: [build, e2e]

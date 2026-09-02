@@ -8,6 +8,7 @@ import { SAMPLES_CONTEXT_PATH } from '../samplesWorkspace';
 import * as sampleWorkspaceLoader from '../../../infrastructure/fileSystem/sampleWorkspaceLoader';
 import * as bundledSampleWorkspace from '../../../infrastructure/fileSystem/bundledSampleWorkspace';
 import { resetWorkspaceOpenSessionForTests } from '../workspaceOpenSession';
+import { readBlankCanvasSession } from './ioState/blankCanvasSession';
 
 describe('ioState Actions & State Management', () => {
   const v3Version = 'https://archlens.dev/schemas/v4/blueprint.schema.json';
@@ -196,7 +197,7 @@ dependencies: []
     it('should return false if saveSchema port operation fails', async () => {
       const store = useBlueprintStore.getState();
       const spySave = vi.spyOn(store.fileSystemPort, 'saveSchema');
-      spySave.mockResolvedValue(false);
+      spySave.mockResolvedValue(null);
 
       const success = await store.saveSchema();
       expect(success).toBe(false);
@@ -210,6 +211,32 @@ dependencies: []
 
       const success = await store.saveSchema();
       expect(success).toBe(false);
+      spySave.mockRestore();
+    });
+
+    it('reloads the written YAML when no folder workspace is open', async () => {
+      useBlueprintStore.setState({ isWorkspaceOpen: false });
+      const store = useBlueprintStore.getState();
+      const spySave = vi.spyOn(store.fileSystemPort, 'saveSchema');
+      spySave.mockResolvedValue({
+        fileName: 'checkout.yaml',
+        content: `version: ${v3Version}
+level: container
+metadata:
+  name: Checkout
+nodes: []`,
+      });
+
+      const success = await store.saveSchema();
+      expect(success).toBe(true);
+      expect(useBlueprintStore.getState().schema.name).toBe('Checkout');
+      expect(useBlueprintStore.getState().currentFilePath).toBe('checkout.yaml');
+      expect(readBlankCanvasSession()).toEqual(
+        expect.objectContaining({
+          filePath: 'checkout.yaml',
+          name: 'Checkout',
+        })
+      );
       spySave.mockRestore();
     });
   });

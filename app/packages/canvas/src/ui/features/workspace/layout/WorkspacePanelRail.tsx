@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Braces, ChevronLeft, ChevronRight, SlidersHorizontal } from 'lucide-react';
 import type { WorkspacePanelSlot } from './workspacePanelLayout';
 
 export interface WorkspacePanelRailProps {
@@ -9,7 +9,6 @@ export interface WorkspacePanelRailProps {
   panelWidthPx: string;
   expandTitle: string;
   collapseTitle: string;
-  ariaLabel: string;
 }
 
 export const WorkspacePanelRail: React.FC<WorkspacePanelRailProps> = ({
@@ -19,7 +18,6 @@ export const WorkspacePanelRail: React.FC<WorkspacePanelRailProps> = ({
   panelWidthPx,
   expandTitle,
   collapseTitle,
-  ariaLabel,
 }) => {
   const isLeft = slot === 'left';
   const positionStyle = isLeft
@@ -27,26 +25,25 @@ export const WorkspacePanelRail: React.FC<WorkspacePanelRailProps> = ({
     : { right: collapsed ? '0px' : `calc(min(${panelWidthPx}, 100vw - 40px))` };
 
   const roundedClass = isLeft ? 'rounded-r-xl border-l-0' : 'rounded-l-xl border-r-0';
+  const label = collapsed ? expandTitle : collapseTitle;
+  const PanelIcon = isLeft ? Braces : SlidersHorizontal;
+  const CollapseChevron = isLeft ? ChevronLeft : ChevronRight;
 
   return (
     <button
+      type="button"
       onClick={onToggle}
-      className={`hidden sm:flex absolute top-1/2 -translate-y-1/2 z-50 bg-slate-900 border border-slate-850 hover:border-slate-700 text-slate-400 hover:text-slate-200 hover:bg-slate-850 p-2 ${roundedClass} shadow-2xl transition-all duration-300 ease-in-out focus:outline-none cursor-pointer items-center justify-center`}
+      className={`hidden sm:flex absolute top-1/2 -translate-y-1/2 z-50 bg-slate-900 border border-slate-850 hover:border-[#00f0ff]/40 text-slate-400 hover:text-[#00f0ff] hover:bg-slate-850 p-2.5 ${roundedClass} shadow-2xl transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/50 cursor-pointer items-center justify-center`}
       style={positionStyle}
-      aria-label={ariaLabel}
-      title={collapsed ? expandTitle : collapseTitle}
+      aria-label={label}
+      aria-expanded={!collapsed}
+      title={label}
       data-testid={`${slot}-panel-rail`}
     >
-      {isLeft ? (
-        collapsed ? (
-          <ChevronRight className="w-4 h-4" />
-        ) : (
-          <ChevronLeft className="w-4 h-4" />
-        )
-      ) : collapsed ? (
-        <ChevronLeft className="w-4 h-4" />
+      {collapsed ? (
+        <PanelIcon className="w-4 h-4 text-[#00f0ff]" data-testid={`${slot}-panel-rail-icon`} />
       ) : (
-        <ChevronRight className="w-4 h-4" />
+        <CollapseChevron className="w-4 h-4" data-testid={`${slot}-panel-rail-chevron`} />
       )}
     </button>
   );
