@@ -64,12 +64,12 @@ ensure_wasm() {
   make -C resilience-engine ensure-wasm
 }
 
-# Resolve agent-lifecycle-kit so Cloud/local agents can use skills under ~/.agents.
+# Resolve Waykit so Cloud/local agents can use skills under ~/.agents.
 # Mirrors AGENTS.md: ~/.agents → sibling checkout → /agent/repos → clone + install.sh.
 # Set SKIP_LIFECYCLE_KIT=1 to skip (offline / restricted networks).
 ensure_lifecycle_kit() {
   if [[ "${SKIP_LIFECYCLE_KIT:-}" == "1" ]]; then
-    echo "⏭ Skipping agent-lifecycle-kit (SKIP_LIFECYCLE_KIT=1)"
+    echo "⏭ Skipping Waykit (SKIP_LIFECYCLE_KIT=1)"
     return 0
   fi
 
@@ -81,8 +81,11 @@ ensure_lifecycle_kit() {
   local kit=""
   local candidate
   for candidate in \
+    "${ROOT}/../waykit" \
     "${ROOT}/../agent-lifecycle-kit" \
+    "/agent/repos/waykit" \
     "/agent/repos/agent-lifecycle-kit" \
+    "${HOME}/.cache/waykit" \
     "${HOME}/.cache/agent-lifecycle-kit"; do
     if [[ -d "${candidate}/skills" ]]; then
       kit="$(cd "${candidate}" && pwd)"
@@ -94,17 +97,17 @@ ensure_lifecycle_kit() {
     local parent
     parent="$(cd "$(dirname "${ROOT}")" && pwd)"
     if [[ -d "/agent/repos" ]]; then
-      kit="/agent/repos/agent-lifecycle-kit"
+      kit="/agent/repos/waykit"
     elif [[ -w "${parent}" ]]; then
-      kit="${parent}/agent-lifecycle-kit"
+      kit="${parent}/waykit"
     else
-      kit="${HOME}/.cache/agent-lifecycle-kit"
+      kit="${HOME}/.cache/waykit"
     fi
 
     if [[ ! -d "${kit}/.git" ]]; then
-      echo "▶ Cloning agent-lifecycle-kit → ${kit}"
+      echo "▶ Cloning Waykit → ${kit}"
       mkdir -p "$(dirname "${kit}")"
-      git clone --depth 1 https://github.com/mzworthington/agent-lifecycle-kit.git "${kit}"
+      git clone --depth 1 https://github.com/mzworthington/waykit.git "${kit}"
     fi
   fi
 
