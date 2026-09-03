@@ -25,7 +25,16 @@ export async function expectCanvasReady(page: Page, timeout = 60_000): Promise<L
   await waitForDiagramIdle(page, timeout);
   const nodes = page.locator('.react-flow__node');
   await expect(nodes.first()).toBeVisible({ timeout: 30_000 });
+  await dismissValidationDialogIfOpen(page);
   return nodes;
+}
+
+/** Close Graph Validation overlay so toolbar clicks are not intercepted. */
+async function dismissValidationDialogIfOpen(page: Page) {
+  const dialog = page.getByTestId('validation-dialog');
+  if (!(await dialog.isVisible().catch(() => false))) return;
+  await page.getByRole('button', { name: 'Close validation dialog' }).click();
+  await expect(dialog).toHaveCount(0, { timeout: 10_000 });
 }
 
 export async function drillIntoFirstZoomable(page: Page, nodeName = 'Golden Journey') {

@@ -19,6 +19,7 @@ export type GoldenJourneyDemoOptions = {
 /** Simulate Payment Gateway region outage and expect AdviceLens circuit-breaker recommendation. */
 export async function runGoldenJourneyOutageDemo(page: Page, options?: GoldenJourneyDemoOptions) {
   const recording = Boolean(options?.onRecordingStart);
+  await expectGoldenJourneyEstateReady(page);
   await page.getByRole('button', { name: /enter resilience mode/i }).click();
   await expect(page.getByRole('button', { name: /exit resilience mode/i })).toBeVisible({
     timeout: 30_000,

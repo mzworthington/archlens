@@ -44,16 +44,14 @@ export const WorkspaceStatusBadges: React.FC = () => {
         </span>
       ) : null}
       {validationResult.isValid ? (
-        <button
-          type="button"
-          onClick={() => setIsValidationOpen(true)}
-          className={`flex items-center gap-1 text-[10px] text-emerald-400 font-semibold bg-emerald-950/90 hover:bg-emerald-900/90 px-2 py-0.5 rounded border border-emerald-900/30 transition cursor-pointer ${badgeClass}`}
-          title="View graph validation status"
+        <span
+          className={`flex items-center gap-1 text-[10px] text-emerald-400 font-semibold bg-emerald-950/90 px-2 py-0.5 rounded border border-emerald-900/30 ${badgeClass}`}
+          title="Architecture graph is valid"
           data-testid="validation-status-badge"
         >
           <CheckCircle className="w-3 h-3 shrink-0" />
           <span>Valid</span>
-        </button>
+        </span>
       ) : (
         <button
           type="button"

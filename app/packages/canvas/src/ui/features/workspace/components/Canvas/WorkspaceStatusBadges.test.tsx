@@ -17,6 +17,7 @@ describe('WorkspaceStatusBadges', () => {
       validationResult: { isValid: true, issues: [] },
       schemaVersionWarning: null,
       isBrowserLiteWorkspace: false,
+      isValidationOpen: false,
     });
   });
 
@@ -40,6 +41,12 @@ describe('WorkspaceStatusBadges', () => {
   it('displays valid status badge when validation is successful', () => {
     render(<WorkspaceStatusBadges />);
     expect(screen.getByText('Valid')).toBeInTheDocument();
+  });
+
+  it('does not open the validation dialog from the valid status chip', () => {
+    render(<WorkspaceStatusBadges />);
+    fireEvent.click(screen.getByTestId('validation-status-badge'));
+    expect(useBlueprintStore.getState().isValidationOpen).toBe(false);
   });
 
   it('displays cycle warning validation status badge when cycle is present and opens modal on click', () => {
