@@ -27,7 +27,7 @@ One-shot bootstrap (also used by Cursor Cloud via `.cursor/environment.json`):
 bin/setup-dev-env.sh
 ```
 
-That script also bootstraps [Waykit](https://github.com/mzworthington/waykit) when needed (sibling checkout or clone). Skip with `SKIP_LIFECYCLE_KIT=1`.
+That script also bootstraps [Waykit](https://github.com/mzworthington/waykit) when needed (sibling checkout or clone). Skip with `SKIP_LIFECYCLE_KIT=1`. Check the handshake with `wk align .`. Project MCP is the kit `default` profile (`.cursor/mcp.json`). For live Cloudflare work, `wk mcp cloudflare-ops --project` for that session, then restore `wk mcp default --project`.
 
 The production toolchain is TypeScript under `app/` plus Go for **ChaosLens** (`resilience-engine/`).
 

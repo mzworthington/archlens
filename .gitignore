@@ -51,6 +51,7 @@ app/packages/canvas/public/tree-sitter/
 .vscode/*
 !.vscode/extensions.json
 !.vscode/settings.json
+!.vscode/mcp.json
 .idea
 .DS_Store
 *.suo
@@ -85,3 +86,9 @@ docs/screenshots/.record-scratch/
 
 # Local git worktrees and scratch patches (never commit)
 .worktrees/
+
+# Antigravity workspace MCP (wk mcp --project / wk init)
+.agents/mcp_config.json
+
+# wk mcp backups of host MCP files
+**/*.bak.*

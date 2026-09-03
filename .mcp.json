@@ -1,0 +1,47 @@
+{
+  "mcpServers": {
+    "kit-knowledge": {
+      "command": "node",
+      "args": [
+        "--import",
+        "${userHome}/.agents/node_modules/tsx/dist/esm/index.mjs",
+        "${userHome}/.agents/mcps/servers/kit-knowledge/src/server.ts"
+      ],
+      "env": {
+        "KIT_ROOT": "${userHome}/.agents"
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "memory": {
+      "command": "node",
+      "args": [
+        "--import",
+        "${userHome}/.agents/node_modules/tsx/dist/esm/index.mjs",
+        "${userHome}/.agents/mcps/servers/memory/src/server.ts"
+      ],
+      "env": {
+        "KIT_ROOT": "${userHome}/.agents",
+        "MEMORY_FILE_PATH": "${userHome}/.agents/sync/mcp-memory.jsonl"
+      }
+    },
+    "linear": {
+      "url": "https://mcp.linear.app/mcp"
+    }
+  }
+}

@@ -1,43 +1,40 @@
-# Agent guidance
+# Agent Handshake
 
-## Lifecycle kit location
+Standards and lifecycle agents live in `~/.agents` ([Waykit](https://github.com/mzworthington/waykit)).
 
-Lifecycle agents, skills, and SOPs are **not** in this repo. Resolve the kit root in this order:
+Start from `~/.agents/AGENTS.md` (thin index). **Do not** bulk-read philosophy, SOPs, or skills up front.
 
-1. **`~/.agents`** - preferred. Local installs symlink this to a clone of [Waykit](https://github.com/mzworthington/waykit) via that repo’s `install.sh`.
-2. **If `~/.agents` is missing** - use a Waykit checkout. Look for (first match wins):
-   - sibling of this repo: `../waykit` or `../agent-lifecycle-kit` (legacy folder name)
-   - Cursor Cloud multi-repo path: `/agent/repos/waykit` or `/agent/repos/agent-lifecycle-kit`
-   - otherwise clone: `git clone https://github.com/mzworthington/waykit.git` (then prefer `./install.sh` so `~/.agents` points at it)
+If `~/.agents` is missing: sibling `../waykit` (or `../agent-lifecycle-kit`), Cursor Cloud `/agent/repos/waykit`, or `bin/setup-dev-env.sh` (set `SKIP_LIFECYCLE_KIT=1` to skip). Prefer `./install.sh` in that clone so `~/.agents` points at it.
 
-Treat that directory as the kit root (same layout as `~/.agents`: `AGENTS.md`, `CODING_PHILOSOPHY.md`, `skills/`, `SOPs/`, `handover/`). Read `<kit>/AGENTS.md` and `<kit>/CODING_PHILOSOPHY.md` before phase work. Skills live at `<kit>/skills/<name>/SKILL.md`.
+| Situation                          | Load                                                                     |
+| ---------------------------------- | ------------------------------------------------------------------------ |
+| Any task                           | `~/.agents/AGENTS.md` invariants + phase table                           |
+| Architecture / new structure       | `CODING_PHILOSOPHY.md` (or kit-knowledge `get_philosophy_section`)       |
+| Feature lifecycle                  | `skills/agent-orchestrator`                                              |
+| Bug / CI / live symptom            | `skills/agent-debug`                                                     |
+| Cloudflare Pages / RUM / beacon    | `skills/agent-cloudflare-ops` (`wk mcp cloudflare-ops --project`)        |
+| Prompt / MCP tool / routing change | `docs/edd.md` + EDD SOP (`wk eval run\|ci`)                              |
+| Handshake / kit bootstrap          | `wk align .` (pointers, MCP, commit-msg). Community files: `wk doctor .` |
+| SOP / handover lookup              | kit-knowledge MCP                                                        |
+| Durable project facts              | memory MCP (glossary, SLOs, prefs — never secrets)                       |
 
-Phase handover artifacts: `<kit>/handover/archlens/` (when using `~/.agents`, that is `~/.agents/handover/archlens/`).
+Phase handovers: `~/.agents/handover/archlens/`. Dead-code and complexity backlogs live there (`agent-prune`).
 
-Invoke phase work via skills such as `agent-orchestrator`, `agent-spec`, `agent-tdd`, `agent-adapter`, `agent-security`, `agent-arch-drift`, `agent-prune`, `agent-telemetry`, and `agent-pre-commit`.
+For bugs and failed jobs, use `agent-debug`. Do not open the full feature lifecycle unless RCA needs a new capability.
 
-Dead-code backlog: `<kit>/handover/blueprint/dead-code-backlog.md` (maintain via `agent-prune`).
+For non-trivial feature work, before coding: inventory tests (functional + XFN), complete an XFN apply/skip matrix, then orchestrator routing (grill if unsettled → spec → TDD → XFN → audit → release).
 
-Before handover or declaring work complete, run `agent-pre-commit` when `.husky/pre-commit` (or equivalent) exists - fix hook failures until green.
+## ArchLens invariants
 
-Before handover, also run `cd app && pnpm typecheck && pnpm build` when you touched `app/packages/canvas` or added tests under `src/` (canvas `tsc -b` includes `*.test.ts`; Vitest passing does not imply typecheck passes). Git hooks: **pre-commit** runs typecheck (and related checks) on staged `app/` files; CI runs the full build.
+- **Canonical format:** YAML `SystemSchema` (BlueprintSpec) linked by `entityRef`. Mermaid is a derived export (`serializeSchemaToMermaid` in `@archlens/core`).
+- **Imports:** External diagrams enter via import wizards into `SystemSchema` with conflict preview. Do not make export-only views editable.
+- **Workspaces:** Prefer merge-into-active-diagram. Disk writes go through the DiffMenu commit flow.
+- **TDD for parsers/merge:** Red → green → refactor in `@archlens/core`. UI stays in canvas adapters. Core modules: `mermaidImport.ts`, `schemaMerge.ts`. Terraform parsing is CLI-only (`terraformImport.ts`).
 
-## ArchLens domain conventions
+## Toolchain
 
-- **Canonical format:** YAML `SystemSchema` files (BlueprintSpec) linked by `entityRef` - not Mermaid. Mermaid is a derived export (`serializeSchemaToMermaid` in `@archlens/core`).
-- **Import direction:** External diagrams enter via **import wizards** that parse into `SystemSchema`, preview merge conflicts, and apply only user-approved changes. Do not make export-only views (e.g. Code Viewer Mermaid tab) editable.
-- **Populated workspaces:** Prefer **merge-into-active-diagram** with conflict preview over wholesale file replacement. Disk writes go through the existing DiffMenu commit flow.
+Declared in `mise.toml` (node, bun, pnpm, go). Cloud: `.cursor/environment.json` → `bin/setup-dev-env.sh`. Details: [docs/setup.md](docs/setup.md).
 
-## TDD mandate
+MCP: kit `default` in `.cursor/mcp.json`. Do not stack Cloudflare onto that file. For live CF work, compose `wk mcp cloudflare-ops --project` for that session, then restore `wk mcp default --project`.
 
-1. **Red:** Write failing unit tests in `@archlens/core` for pure domain logic (parsers, merge plans) before implementation.
-2. **Green:** Minimal implementation to pass tests.
-3. **Refactor:** Only after green; keep parsers and merge logic in core, UI in canvas adapters.
-
-Core import modules: `app/packages/core/src/rules/mermaidImport.ts`, `schemaMerge.ts`. Terraform parsing: `terraformImport.ts` (CLI only).
-
-## Cursor Cloud / agent toolchain
-
-Toolchain is declared in `mise.toml` (node, **bun**, pnpm, go). Cloud agents should boot via `.cursor/environment.json`, which runs `bin/setup-dev-env.sh` (installs mise if needed, `mise install node pnpm bun go`, `pnpm install`, ChaosLens WASM, and bootstraps [Waykit](https://github.com/mzworthington/waykit) into `~/.agents` when missing). Bun must be on `PATH` for CLI build.
-
-If a shell is missing tools: `eval "$(mise activate bash --shims)"` or re-run `bin/setup-dev-env.sh`. Set `SKIP_LIFECYCLE_KIT=1` to skip the kit clone. Docs-media (`ffmpeg`/`vhs`) and Playwright browsers are not part of the default agent install - add them only when needed (`mise install` / `pnpm --filter @archlens/canvas exec playwright install`).
+Before handover: `agent-pre-commit` when `.husky/pre-commit` exists. If you touched `app/packages/canvas` or tests under `src/`, also `cd app && pnpm typecheck && pnpm build`.
