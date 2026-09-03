@@ -291,7 +291,9 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy app/packages/canvas/dist --project-name=archlens --branch=main
+          workingDirectory: app
+          packageManager: pnpm
+          command: pages deploy packages/canvas/dist --project-name=archlens --branch=main
 
       - name: Publish Canvas deploy summary
         if: always()
