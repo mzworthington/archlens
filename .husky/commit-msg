@@ -1,0 +1,47 @@
+#!/usr/bin/env sh
+# Conventional Commits subject check (SOPs/conventional-commits.md).
+# Git / Husky / pre-commit pass COMMIT_EDITMSG as $1.
+# Keep in sync with kit/src/commits/conventional.ts
+set -eu
+
+MSG_FILE="${1:-}"
+if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+  echo "Not a conventional commit: missing commit message file." >&2
+  echo "Use type(optional-scope): description" >&2
+  exit 1
+fi
+
+subject=$(awk '
+  /^# .* >8 / { exit }
+  /^#/ { next }
+  NF { print; exit }
+' "$MSG_FILE")
+
+if [ -z "$subject" ]; then
+  echo "Not a conventional commit: empty subject. Use type(optional-scope): description" >&2
+  exit 1
+fi
+
+case "$subject" in
+  Merge\ *|Revert\ \"*)
+    exit 0
+    ;;
+esac
+
+if [ "${#subject}" -gt 100 ]; then
+  echo "Not a conventional commit: subject exceeds 100 characters" >&2
+  exit 1
+fi
+
+case "$subject" in
+  *.)
+    echo "Not a conventional commit: subject must not end with a period. Use type(optional-scope): description" >&2
+    exit 1
+    ;;
+esac
+
+printf '%s\n' "$subject" | grep -Eq '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9][a-z0-9._/-]*\))?(!)?: [a-z0-9].*$' || {
+  echo "Not a conventional commit: ${subject}. Use type(optional-scope): description" >&2
+  echo "types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert" >&2
+  exit 1
+}
