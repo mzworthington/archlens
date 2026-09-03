@@ -219,6 +219,8 @@ jobs:
         env:
           VITE_REMOTE_CATALOG_BASE_URL: ${{ github.ref == 'refs/heads/main' && 'https://blueprints.archlens.dev/estates/samples/' || '' }}
           VITE_COLLAB_WS_URL: ${{ github.ref == 'refs/heads/main' && 'wss://collab.archlens.dev' || '' }}
+          POSTHOG_TOKEN: ${{ secrets.POSTHOG_TOKEN }}
+          POSTHOG_HOST: ${{ github.ref == 'refs/heads/main' && 'https://a.mzworthington.co.uk' || '' }}
         run: pnpm build
         working-directory: app
 

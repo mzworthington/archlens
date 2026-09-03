@@ -88,6 +88,7 @@ describe('siteSeo catalog', () => {
     expect(paths).toContain('/guide/chaoslens');
     expect(paths).toContain('/guide/tracelens');
     expect(paths).toContain('/journeys');
+    expect(paths).toContain('/privacy');
     expect(paths).not.toContain('/workspace');
 
     const xml = buildSitemapXml(paths, '2026-08-06');

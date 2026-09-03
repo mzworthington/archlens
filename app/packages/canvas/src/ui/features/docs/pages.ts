@@ -32,6 +32,7 @@ import adr0014 from '@docs/ADRs/0014-estate-fragments-and-compose-before-publish
 import adr0015 from '@docs/ADRs/0015-declared-context-hydration.md?raw';
 import adr0016 from '@docs/ADRs/0016-iac-declaration-vs-provisioned-infrastructure.md?raw';
 import adr0017 from '@docs/ADRs/0017-browser-structural-scan-vs-cli-forensics.md?raw';
+import privacyMd from '@docs/privacy.md?raw';
 import { ADVICELENS_ENTRY_URL } from '../forensics/adviceLensUrl';
 import { titleFromMarkdown } from './presentDocsMarkdown';
 
@@ -307,6 +308,13 @@ export const DOCS_PAGES: DocsPageMeta[] = [
     path: '/architecture',
     title: 'Architecture & security',
     markdown: architectureMd,
+    dir: '',
+    group: 'reference',
+  },
+  {
+    path: '/privacy',
+    title: 'Privacy policy',
+    markdown: privacyMd,
     dir: '',
     group: 'reference',
   },

@@ -10,6 +10,11 @@ test.describe('Accessibility (axe)', () => {
     await expectNoSeriousA11yViolations(page, 'docs home');
   });
 
+  test('privacy policy', async ({ page }) => {
+    await gotoApp(page, '/privacy');
+    await expectNoSeriousA11yViolations(page, 'privacy policy');
+  });
+
   test('workspace canvas after sandbox load', async ({ page }) => {
     await loadSandbox(page);
     await expectNoSeriousA11yViolations(page, 'workspace canvas');

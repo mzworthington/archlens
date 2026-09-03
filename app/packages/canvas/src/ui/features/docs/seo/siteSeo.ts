@@ -144,6 +144,11 @@ const PAGE_SEO: Record<string, SeoOverride> = {
     description:
       'ArchLens ADRs: sparse MADR records for hard-to-reverse architecture choices across Canvas, CLI, and core.',
   },
+  '/privacy': {
+    headline: 'Privacy policy',
+    description:
+      'How ArchLens handles diagrams on your device, Cloudflare hosting, and cookieless PostHog Cloud EU analytics.',
+  },
 };
 
 /** Paths that must have SEO records (docs pages + marketing). Exported for catalog sync tests. */

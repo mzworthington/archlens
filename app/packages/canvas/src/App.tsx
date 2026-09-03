@@ -53,6 +53,7 @@ function App() {
           <Route path="/tech-stack" component={DocsPage} />
           <Route path="/chaoslens-engine" component={DocsPage} />
           <Route path="/architecture" component={DocsPage} />
+          <Route path="/privacy" component={DocsPage} />
           <Route path="/journeys" component={JourneysPage} />
           <Route path="/features-unit" component={DocsPage} />
           <Route path="/" component={DocsHome} />

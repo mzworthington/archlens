@@ -71,6 +71,8 @@ Opens the Vite canvas app. Docs and workspace share the same React app.
 
 **Sandbox / samples:** local `pnpm dev` loads **Load sandbox** from the Cloudflare catalog (`https://blueprints.archlens.dev/estates/samples/`) via `app/packages/canvas/.env.development`. If R2 is unreachable, the app falls back to mirrored `samples/` under `/bundled-blueprints/`. To force offline bundled samples, create `app/packages/canvas/.env.development.local` with an empty `VITE_REMOTE_CATALOG_BASE_URL=`.
 
+**Product analytics:** Canvas reads `POSTHOG_TOKEN` (PostHog project API key). Put it in the environment or `app/packages/canvas/.env.development.local`. Production builds on `main` bake `secrets.POSTHOG_TOKEN`. Missing token: no capture in production; in `pnpm dev` the console logs that events will be missed. Ingest defaults to the reverse proxy `https://a.mzworthington.co.uk` (`POSTHOG_HOST` to override). The SDK uses `cookieless_mode: 'always'` (no PostHog cookies or local/session storage); in PostHog, enable **Cookieless server hash mode** under project settings → Web analytics or cookieless events are dropped. Self-driving (scouts, GitHub) is configured in the PostHog app, not this repo.
+
 ### 3. Build Production Artifacts
 
 ```bash

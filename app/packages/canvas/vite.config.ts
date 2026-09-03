@@ -27,6 +27,8 @@ const appPackageVersion = JSON.parse(
 // https://vite.dev/config/
 export default defineConfig({
   base,
+  // Project API key is a public phc_ token; expose only POSTHOG_TOKEN / POSTHOG_HOST.
+  envPrefix: ['VITE_', 'POSTHOG_TOKEN', 'POSTHOG_HOST'],
   define: {
     __APP_BUILD_ID__: JSON.stringify(appBuildId),
     __APP_PACKAGE_VERSION__: JSON.stringify(appPackageVersion),

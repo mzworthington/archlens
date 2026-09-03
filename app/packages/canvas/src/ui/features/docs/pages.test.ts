@@ -66,6 +66,15 @@ describe('docs link resolution', () => {
     expect(resolveDocsHref('/guide/', '')).toBe('/guide');
     expect(resolveDocsHref('/setup', '')).toBe('/setup');
     expect(resolveDocsHref('/chaoslens-engine', '')).toBe('/chaoslens-engine');
+    expect(resolveDocsHref('/privacy', '')).toBe('/privacy');
+  });
+
+  it('registers the privacy policy page without putting it in the Tech sidebar', () => {
+    const page = findDocsPage('/privacy');
+    expect(page?.title).toBe('Privacy policy');
+    expect(page?.markdown).toMatch(/PostHog/);
+    expect(page?.markdown).toMatch(/Cloud EU/);
+    expect(DOCS_SIDEBAR.flatMap(s => s.items).some(i => i.path === '/privacy')).toBe(false);
   });
 
   it('registers CI workflows and Tech sidebar pages', () => {

@@ -249,16 +249,23 @@ export const DocsShell: React.FC<Props> = ({
       </div>
 
       <footer className="mx-auto max-w-6xl px-4 pb-10 pt-2 sm:px-6">
-        <p className="text-center font-mono text-[11px] tracking-wide text-slate-500">
-          Made by{' '}
-          <a
-            href="https://mzworthington.co.uk"
-            className="text-slate-400 transition-colors hover:text-[#00f0ff]"
-            rel="noopener noreferrer"
-          >
-            Matthew Z Worthington
-          </a>
-        </p>
+        <div className="flex flex-col items-center gap-2 text-center font-mono text-[11px] tracking-wide text-slate-500">
+          <nav aria-label="Legal">
+            <Link href="/privacy" className="text-slate-400 transition-colors hover:text-[#00f0ff]">
+              Privacy policy
+            </Link>
+          </nav>
+          <p>
+            Made by{' '}
+            <a
+              href="https://mzworthington.co.uk"
+              className="text-slate-400 transition-colors hover:text-[#00f0ff]"
+              rel="noopener noreferrer"
+            >
+              Matthew Z Worthington
+            </a>
+          </p>
+        </div>
       </footer>
     </div>
   );

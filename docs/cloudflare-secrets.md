@@ -37,12 +37,13 @@ After bootstrap: `cd infra/cloudflare && pulumi up`, or merge to `main` (preview
 
 ## Secrets
 
-| Key                     | Used by                                                  |
-| ----------------------- | -------------------------------------------------------- |
-| `CLOUDFLARE_API_TOKEN`  | GitHub Actions (wrangler) + Pulumi                       |
-| `CLOUDFLARE_ACCOUNT_ID` | GitHub Actions + Pulumi (auto-resolved if missing)       |
-| `CLOUDFLARE_ZONE_ID`    | GitHub Actions + Pulumi (auto-resolved if missing)       |
-| `PULUMI_ACCESS_TOKEN`   | GitHub Actions (pulumi workflow; auto-minted if missing) |
+| Key                     | Used by                                                                        |
+| ----------------------- | ------------------------------------------------------------------------------ |
+| `CLOUDFLARE_API_TOKEN`  | GitHub Actions (wrangler) + Pulumi                                             |
+| `CLOUDFLARE_ACCOUNT_ID` | GitHub Actions + Pulumi (auto-resolved if missing)                             |
+| `CLOUDFLARE_ZONE_ID`    | GitHub Actions + Pulumi (auto-resolved if missing)                             |
+| `PULUMI_ACCESS_TOKEN`   | GitHub Actions (pulumi workflow; auto-minted if missing)                       |
+| `POSTHOG_TOKEN`         | GitHub Actions canvas build (`main`) — PostHog project API key (public `phc_`) |
 
 ## Cloudflare API token
 

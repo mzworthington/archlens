@@ -4,6 +4,8 @@
 interface ImportMetaEnv {
   readonly VITE_REMOTE_CATALOG_BASE_URL?: string;
   readonly VITE_COLLAB_WS_URL?: string;
+  readonly POSTHOG_TOKEN?: string;
+  readonly POSTHOG_HOST?: string;
 }
 
 interface ImportMeta {
