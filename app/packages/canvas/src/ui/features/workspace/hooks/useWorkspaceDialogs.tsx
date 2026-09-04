@@ -49,9 +49,11 @@ export function useWorkspaceDialogs(): React.ReactNode {
     childExternalsParentRef,
     isSourceCodeOpen,
     isLoading,
+    liteScanProgress,
     openWorkspaceDirectory,
     openBundledSample,
     openBrowserLiteScan,
+    cancelBrowserLiteScan,
     resetToEmptyWorkspace,
     loadSchema,
   } = useBlueprintStore();
@@ -182,6 +184,8 @@ export function useWorkspaceDialogs(): React.ReactNode {
           loadingMessage={
             typeof isLoading === 'string' ? isLoading : isLoading ? 'Loading...' : null
           }
+          scanProgress={liteScanProgress}
+          onCancelScan={cancelBrowserLiteScan}
         />
       ) : null}
       <CollabShareDialog

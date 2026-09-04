@@ -207,6 +207,22 @@ describe('walkBrowserSourceDirectory', () => {
     expect(result.truncationReasons).toContain('metadata');
   });
 
+  it('reports file and byte progress while walking and reading', async () => {
+    const root = dir('demo-repo', [
+      ['src', dir('src', [['a.ts', file('a.ts', 'export const a = 1;')]])],
+    ]);
+    const snapshots: Array<{ phase: string; filesScanned: number }> = [];
+
+    await walkBrowserSourceDirectory(root, {
+      onProgress: progress => {
+        snapshots.push({ phase: progress.phase, filesScanned: progress.filesScanned });
+      },
+    });
+
+    expect(snapshots.some(s => s.phase === 'walking' && s.filesScanned >= 1)).toBe(true);
+    expect(snapshots.some(s => s.phase === 'reading' && s.filesScanned === 1)).toBe(true);
+  });
+
   it('aborts the walk when the scan signal is cancelled', async () => {
     const controller = new AbortController();
     controller.abort();
@@ -235,9 +251,13 @@ describe('pickSourceDirectory', () => {
 });
 
 describe('describeTruncation', () => {
-  it('explains which budgets truncated the scan', () => {
-    expect(describeTruncation(['files', 'bytes'], 12)).toContain('source file cap (12)');
-    expect(describeTruncation(['files', 'bytes'], 12)).toContain('total size budget');
+  it('explains which budgets truncated the scan and that git is not included', () => {
+    const note = describeTruncation(['files', 'bytes'], 12);
+    expect(note).toContain('Skipped remaining files');
+    expect(note).toContain('source file cap (12)');
+    expect(note).toContain('total size budget');
+    expect(note).toContain('Structure only');
+    expect(note).toMatch(/no git/i);
     expect(describeTruncation([], 12)).toBe('');
   });
 });

@@ -6,7 +6,7 @@ For languages, frameworks, and hosting (React, Pulumi, Cloudflare, etc.), see [T
 
 Hard-to-reverse design choices are recorded as sparse MADRs under [Architecture Decision Records](./ADRs/README.md).
 
-Proposed realtime collaboration (Yjs shared working copy; slice B in progress): [Shared canvas collaboration](./plans/shared-canvas-collaboration.md). Production rooms are a Worker + Durable Object at `collab.archlens.dev`.
+Live share-link collaboration (Yjs working copy, named cursors, connected-user count): [Shared canvas collaboration](./plans/shared-canvas-collaboration.md). Production rooms are a Worker + Durable Object at `collab.archlens.dev`. Same-origin tabs can use BroadcastChannel without the Worker. Unauthenticated rooms are ephemeral and do not replace local folder commit.
 
 For using ArchLens products, start with the [Product guide](./guide/index.md).
 

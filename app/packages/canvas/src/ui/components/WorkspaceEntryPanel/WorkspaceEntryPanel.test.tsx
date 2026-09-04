@@ -44,8 +44,9 @@ describe('WorkspaceEntryPanel', () => {
     expect(screen.getByTestId('workspace-intent-ideate')).toBeInTheDocument();
 
     expect(screen.getByTestId('workspace-browser-lite-scan')).toHaveTextContent(
-      /Browser lite scan/i
+      /Structure only \(no git\)/i
     );
+    expect(screen.getByTestId('workspace-browser-lite-scan')).toHaveTextContent(/Python/i);
     expect(screen.getByTestId('workspace-open-directory')).toHaveTextContent(
       /Open existing blueprints folder/i
     );
@@ -227,5 +228,33 @@ describe('WorkspaceEntryPanel', () => {
     fireEvent.click(screen.getByTestId('workspace-share-blank'));
     expect(onOpenSample).not.toHaveBeenCalled();
     expect(onShareBlankCanvas).not.toHaveBeenCalled();
+  });
+
+  it('shows live scan progress and keeps cancel reachable while other actions are disabled', () => {
+    const onCancelScan = vi.fn();
+    render(
+      <WorkspaceEntryPanel
+        onOpenSample={vi.fn()}
+        onOpenDirectory={vi.fn()}
+        onBrowserLiteScan={vi.fn()}
+        loadingMessage="Scanning repository in browser…"
+        scanProgress={{
+          phase: 'reading',
+          filesScanned: 147,
+          fileCap: 300,
+          bytesRead: 2_000_000,
+          byteCap: 8_000_000,
+        }}
+        onCancelScan={onCancelScan}
+      />
+    );
+
+    expect(screen.getByTestId('browser-lite-scan-progress-files')).toHaveTextContent(
+      '147 / 300 files'
+    );
+    expect(screen.getByRole('button', { name: 'Cancel scan' })).toBeEnabled();
+    expect(screen.getByTestId('workspace-open-sample')).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel scan' }));
+    expect(onCancelScan).toHaveBeenCalledTimes(1);
   });
 });

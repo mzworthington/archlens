@@ -137,6 +137,47 @@ dependencies: []
     expect(state.workspaceCatalog.some(entry => entry.path.endsWith('context.yaml'))).toBe(true);
     expect(state.notification?.title).toBe('Browser lite scan ready');
     expect(state.notification?.message).toContain('structure only');
+    expect(state.liteScanProgress).toBeNull();
+  });
+
+  it('cancels an in-flight browser lite scan without opening a workspace', async () => {
+    let releaseWalk: () => void = () => undefined;
+    const gate = new Promise<void>(resolve => {
+      releaseWalk = resolve;
+    });
+    const hangingDir = {
+      kind: 'directory',
+      name: 'slow-repo',
+      async *[Symbol.asyncIterator]() {
+        await gate;
+        yield [
+          'a.ts',
+          {
+            kind: 'file',
+            name: 'a.ts',
+            getFile: async () => new File(['export const a = 1;'], 'a.ts'),
+          },
+        ];
+      },
+    };
+
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => hangingDir),
+    });
+
+    const pending = useBlueprintStore.getState().openBrowserLiteScan();
+    await vi.waitFor(() => {
+      expect(useBlueprintStore.getState().isLoading).toBeTruthy();
+    });
+
+    useBlueprintStore.getState().cancelBrowserLiteScan();
+    releaseWalk();
+
+    expect(await pending).toBe(false);
+    expect(useBlueprintStore.getState().isWorkspaceOpen).toBe(false);
+    expect(useBlueprintStore.getState().liteScanProgress).toBeNull();
+    expect(useBlueprintStore.getState().isLoading).toBe(false);
   });
 
   it('notifies when the browser cannot pick a source directory', async () => {

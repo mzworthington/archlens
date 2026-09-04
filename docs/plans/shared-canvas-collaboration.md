@@ -1,10 +1,10 @@
 # Shared canvas collaboration
 
-**Status:** Slice C presence in progress · **Last updated:** 2026-09-01 · **Implementation:** core mapping + Canvas session + named cursors; Worker in `app/packages/collab/`; production hostname `collab.archlens.dev`
+**Status:** Share-link rooms shipped (presence + Worker) · **Last updated:** 2026-09-04 · **Implementation:** core mapping + Canvas session + named cursors; Worker in `app/packages/collab/`; production hostname `collab.archlens.dev`
 
 Contributor design for realtime co-editing of ArchLens diagrams. Local-first folder workspaces stay as they are ([ADR-0004](../ADRs/0004-local-first-fs-access-and-indexeddb-working-copy.md)). Collaboration is an **opt-in session**, not a replacement for File System Access or IndexedDB drafts.
 
-Related: [Architecture](../architecture.md), [Technology stack](../tech-stack.md), [Remote catalog PRD](../remote-blueprint-catalog-prd.md) (lists multi-user realtime as a non-goal for catalog releases — that non-goal will need a later edit when this ships).
+Related: [Architecture](../architecture.md), [Technology stack](../tech-stack.md), [Remote catalog PRD](../remote-blueprint-catalog-prd.md) (catalog non-goals do **not** include live share-link rooms — those shipped separately).
 
 Do **not** write an ADR in this pass. Yjs as the shared working copy is ADR-worthy; sparse MADRs wait until the choice is committed in code ([ADRs](../ADRs/README.md)).
 
@@ -21,7 +21,7 @@ Share-link rooms (room id in the URL) are the slice-B default. Sharer and guests
 
 ### Feature flags (iteration)
 
-Flags live in `localStorage` (`archlens.feature.<id>`). Toggle them from **More actions → Feature flags** when any ids are catalogued in `FEATURE_FLAGS`. Live collaboration has shipped and is no longer gated — add/remove other preview ids as slices come and go; do not copy the gate.
+Flags live in `localStorage` (`archlens.feature.<id>`). **More actions → Feature flags** is shown only when ids are catalogued in `FEATURE_FLAGS` (currently empty — the menu entry is hidden). Live collaboration has shipped and is no longer gated — add/remove other preview ids as slices come and go; do not copy the gate.
 
 Share links carry `?room=` only. Opening a valid room URL joins the session after the guest enters a display name.
 
@@ -105,7 +105,7 @@ Keep R2 as catalog/snapshot storage. Durable Objects hold live room state. `@arc
 
 ## Exploration: canvas today
 
-**Bottom line:** ArchLens Canvas is a **local-first, single-user SPA**. Edits live in Zustand + React Flow, draft to IndexedDB, and commit to disk via DiffMenu. There is no realtime sync, WebSocket, Durable Object, presence, or multi-user session. Collaboration-like behavior today is import conflict preview, baseline vs working-copy diffs, and URL deep links. Multi-user realtime is an explicit non-goal of the remote catalog PRD.
+**Bottom line:** ArchLens Canvas is **local-first**. Folder workspaces still draft to IndexedDB and commit via DiffMenu. **Opt-in share-link rooms** sync the active diagram through Yjs (BroadcastChannel locally; WebSocket + Durable Object in production) with presence (display name, cursors, connected count including you). Unauthenticated rooms are not a catalog, not disk, and not a substitute for CLI publish. The remote catalog PRD remains about pipeline → object storage → Canvas, not about collab rooms.
 
 ### Rendering and state
 
@@ -406,5 +406,5 @@ Started in-tree:
 Still later:
 
 1. **ADR** — Yjs shared working copy vs YAML-on-disk, once we commit the choice as lasting.
-2. **Catalog PRD** — drop or qualify the “multi-user real-time collaboration” non-goal.
+2. **Catalog PRD** — collab is no longer listed as a catalog non-goal; keep catalog vs share-link caveats if the PRD drifts.
 3. **Slice C remainder** — comments, collab-vs-disk conflict preview, multi-file rooms, auth.

@@ -20,12 +20,13 @@ Organisations want architecture diagrams that **track their codebase** without c
 2. **Publish a repeatable integration** (contract + example workflow) for customer pipelines.
 3. **Preserve hexagonal boundaries** - shared contract in core; storage and auth behind ports/adapters.
 
-## Non-goals (initial releases)
+## Non-goals (catalog releases)
 
-- Bi-directional sync (Canvas edits → storage)
-- Multi-user real-time collaboration
+- Bi-directional sync (Canvas edits → catalog storage)
 - Hosting or managing customer buckets for them
 - Downloading the full corpus before browsing (catalog-first, lazy YAML only)
+
+Live canvas share-link rooms (Yjs over a Worker + Durable Object, optional BroadcastChannel locally) are **shipped** and are not a catalog feature. Unauthenticated rooms are ephemeral; they are not a substitute for catalog publish or disk commit. See [Shared canvas collaboration](./plans/shared-canvas-collaboration.md).
 
 ## User stories (summary)
 

@@ -26,6 +26,8 @@ import {
 } from '../../../constants/cli';
 import { isBrowserDirectoryPickerSupported } from '../../../infrastructure/analysis/browserSourceWalker';
 import { WORKSPACE_STARTUP } from '../../content/productOutcomes';
+import type { LiteScanProgress } from '../../../application/analysis/liteScanProgress';
+import { BrowserLiteScanProgress } from '../BrowserLiteScanProgress/BrowserLiteScanProgress';
 
 const optionClass =
   'w-full flex items-start gap-3 rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2.5 text-left transition hover:border-[#00f0ff]/35 hover:bg-slate-900/70 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00f0ff]/40 disabled:opacity-50 disabled:pointer-events-none';
@@ -94,6 +96,9 @@ export type WorkspaceEntryPanelProps = {
   disabled?: boolean;
   /** Shown while sandbox/workspace open is in progress (disables actions). */
   loadingMessage?: string | false | null;
+  /** Live browser lite scan progress (chooser). */
+  scanProgress?: LiteScanProgress | null;
+  onCancelScan?: () => void;
   showCliPanel?: boolean;
   title?: string;
   description?: React.ReactNode;
@@ -120,6 +125,8 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
   onShareFile,
   disabled = false,
   loadingMessage = null,
+  scanProgress = null,
+  onCancelScan,
   showCliPanel = false,
   title = WORKSPACE_STARTUP.title,
   description = WORKSPACE_STARTUP.lede,
@@ -166,7 +173,11 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
       </h2>
       <p className="mt-2 text-sm text-slate-400 leading-relaxed max-w-2xl">{description}</p>
 
-      {statusMessage ? (
+      {scanProgress && onCancelScan ? (
+        <div className="mt-4 rounded-xl border border-[#00f0ff]/25 bg-[#061125]/70 px-4 py-3">
+          <BrowserLiteScanProgress progress={scanProgress} onCancel={onCancelScan} />
+        </div>
+      ) : statusMessage ? (
         <div
           className="mt-4 flex items-center gap-2 rounded-xl border border-[#00f0ff]/25 bg-[#061125]/70 px-4 py-3"
           role="status"
@@ -327,7 +338,7 @@ export const WorkspaceEntryPanel: React.FC<WorkspaceEntryPanelProps> = ({
                     </span>
                     <span className="block text-xs text-slate-400 mt-0.5">
                       {directoryPickerSupported
-                        ? 'Instant structural map of a folder'
+                        ? 'Structure only (no git): TS, JS, Python, Go, Java, C#, Terraform, Pulumi'
                         : 'Needs Chrome or Edge (folder picker API). Use the ArchLens CLI instead.'}
                     </span>
                   </span>

@@ -197,6 +197,8 @@ export const ImportMermaidDialog: React.FC<ImportMermaidDialogProps> = ({ isOpen
                               )
                             }
                             className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-slate-200"
+                            data-testid={`import-conflict-${c.entityRef}`}
+                            aria-label={`Resolve conflict for ${c.entityRef}`}
                           >
                             {RESOLUTION_OPTIONS.map(opt => (
                               <option key={opt.value} value={opt.value}>

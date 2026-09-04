@@ -16,6 +16,7 @@ import {
   liteScanSourcePriority,
   type LiteScanTruncationReason,
 } from '../../application/analysis/liteScanLimits';
+import type { LiteScanProgress } from '../../application/analysis/liteScanProgress';
 import type { LiteScanSourceFile } from '../../application/analysis/liteScanTypes';
 
 export type BrowserSourceWalkResult = {
@@ -92,6 +93,7 @@ export async function walkBrowserSourceDirectory(
     maxFileBytes?: number;
     maxTotalBytes?: number;
     signal?: AbortSignal;
+    onProgress?: (progress: LiteScanProgress) => void;
   } = {}
 ): Promise<BrowserSourceWalkResult> {
   const maxFiles = options.maxFiles ?? LITE_SCAN_MAX_FILES;
@@ -102,6 +104,19 @@ export async function walkBrowserSourceDirectory(
   const pathFilter = createStructuralPathFilter({ ignore: [], include: [], allowIac: true });
 
   const candidates: Candidate[] = [];
+  const report = (
+    phase: LiteScanProgress['phase'],
+    filesScanned: number,
+    bytesRead: number
+  ): void => {
+    options.onProgress?.({
+      phase,
+      filesScanned,
+      fileCap: maxFiles,
+      bytesRead,
+      byteCap: maxTotalBytes,
+    });
+  };
 
   const visit = async (dir: DirHandle, prefix: string): Promise<void> => {
     throwIfCancelled(options.signal);
@@ -135,6 +150,7 @@ export async function walkBrowserSourceDirectory(
       const kind = candidateKind(relativePath, hasPulumiProject);
       if (!kind) continue;
       candidates.push({ relativePath, handle, kind });
+      report('walking', candidates.length, 0);
     }
 
     for (const [name, handle] of dirEntries) {
@@ -194,9 +210,13 @@ export async function walkBrowserSourceDirectory(
     const content = await file.text();
     totalBytes += file.size;
     files.push({ relativePath: candidate.relativePath, content });
-    if (budget === 'metadata') return true;
+    if (budget === 'metadata') {
+      report('reading', sourceCount + iacCount, totalBytes);
+      return true;
+    }
     if (candidate.kind === 'iac') iacCount += 1;
     else sourceCount += 1;
+    report('reading', sourceCount + iacCount, totalBytes);
     return true;
   };
 
@@ -256,5 +276,5 @@ export function describeTruncation(
   if (reasons.includes('metadata')) {
     parts.push('manifest budget');
   }
-  return ` Truncated by ${parts.join(' and ')} for browser responsiveness.`;
+  return ` Skipped remaining files after hitting the ${parts.join(' and ')}. Structure only — no git history.`;
 }

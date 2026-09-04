@@ -45,6 +45,8 @@ import { createMemoryScanWorkspacePort } from '../../../infrastructure/analysis/
 import { createAnalysisLogger } from '../../../infrastructure/analysis/analysisLogger';
 import { runBrowserAnalysisWorker } from '../../../infrastructure/analysis/runBrowserAnalysisWorker';
 import { isCancellationError } from '@archlens/analysis/cancellation';
+import type { LiteScanProgress } from '../../analysis/liteScanProgress';
+import { LITE_SCAN_MAX_FILES, LITE_SCAN_MAX_TOTAL_BYTES } from '../../analysis/liteScanLimits';
 import { CLI_GETTING_STARTED_PATH } from '../../../constants/cli';
 import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/collabDisplayName';
 import { yamlFileNameFromDiagramName } from './ioState/yamlFileNameFromDiagramName';
@@ -52,6 +54,8 @@ import { persistBlankCanvasSessionFromSchema } from './ioState/blankCanvasSessio
 import type { BlueprintStoreSet } from '../store';
 
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
+
+let browserLiteScanController: AbortController | null = null;
 
 export interface IoState {
   fileSystemPort: FileSystemPort;
@@ -88,6 +92,10 @@ export interface IoState {
   openBundledSample: () => Promise<boolean>;
   /** Structural TS/JS scan in the browser (no git / CLI install). */
   openBrowserLiteScan: () => Promise<boolean>;
+  /** Live files/bytes while a browser lite scan is in flight. */
+  liteScanProgress: LiteScanProgress | null;
+  /** Abort the in-flight browser lite scan (chooser or toolbar). */
+  cancelBrowserLiteScan: () => void;
   saveActiveDiagram: () => Promise<boolean>;
   clearWorkspaceDrafts: () => Promise<void>;
   joinCollabRoom: (roomId: string, displayName: string) => Promise<void>;
@@ -110,6 +118,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
   resilienceEnginePort: noopResilienceEngine,
   collabSessionPort: noopCollabSession,
   collabPresence: EMPTY_COLLAB_PRESENCE,
+  liteScanProgress: null,
   setPorts: ports => set((state: IoStateDeps) => ({ ...state, ...ports })),
 
   saveSchema: async () => {
@@ -275,6 +284,10 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
     }
   },
 
+  cancelBrowserLiteScan: () => {
+    browserLiteScanController?.abort();
+  },
+
   openBrowserLiteScan: async () => {
     const { workingCopyPort, logger, setNotification, initSchema, setIsLoading } = get();
     const pick = await pickSourceDirectory();
@@ -299,8 +312,8 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
 
     const openGeneration = beginWorkspaceOpen();
     setIsLoading(BROWSER_LITE_SCAN_LOADING_MESSAGE);
-    // Abandoning the scan (e.g. opening another workspace) must stop the worker too.
     const cancellation = new AbortController();
+    browserLiteScanController = cancellation;
     const abortIfSuperseded = () => {
       if (isWorkspaceOpenCurrent(openGeneration)) return false;
       cancellation.abort();
@@ -313,14 +326,30 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       releaseDemoBootstrapClaim();
     };
 
+    const reportProgress = (progress: LiteScanProgress) => {
+      if (!isWorkspaceOpenCurrent(openGeneration)) return;
+      set({ liteScanProgress: progress });
+    };
+
     try {
-      const walked = await walkBrowserSourceDirectory(pick.handle, { signal: cancellation.signal });
+      const walked = await walkBrowserSourceDirectory(pick.handle, {
+        signal: cancellation.signal,
+        onProgress: reportProgress,
+      });
       if (abortIfSuperseded()) return false;
       if (walked.sourceFileCount === 0 && walked.iacFileCount === 0) {
         throw new Error(
           'No supported source or IaC files found (try .ts/.tsx/.js/.jsx/.mjs/.cjs/.py/.go/.java/.cs, or Terraform .tf / Pulumi.yaml).'
         );
       }
+
+      reportProgress({
+        phase: 'analyzing',
+        filesScanned: walked.sourceFileCount + walked.iacFileCount,
+        fileCap: LITE_SCAN_MAX_FILES,
+        bytesRead: get().liteScanProgress?.bytesRead ?? 0,
+        byteCap: LITE_SCAN_MAX_TOTAL_BYTES,
+      });
 
       const { yamlFiles } = await runBrowserAnalysisWorker({
         sources: walked.files,
@@ -389,7 +418,11 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       });
       return false;
     } finally {
+      if (browserLiteScanController === cancellation) {
+        browserLiteScanController = null;
+      }
       cancellation.abort();
+      set({ liteScanProgress: null });
       setIsLoading(false);
     }
   },

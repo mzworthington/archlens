@@ -37,7 +37,7 @@ async function openImportMermaidMenu(page: Page) {
 }
 
 /** Paste Mermaid into the import dialog and wait for merge preview. */
-async function fillMermaidImport(page: Page, mermaid: string) {
+export async function fillMermaidImport(page: Page, mermaid: string) {
   await openImportMermaidMenu(page);
   const dialog = page.getByTestId('import-mermaid-dialog');
   await expect(dialog).toBeVisible({ timeout: 30_000 });
@@ -55,4 +55,15 @@ export async function mergeMermaidIntoDiagram(page: Page, mermaid: string) {
   await merge.click({ force: true });
   // Dialog stays mounted (invisible) after close - assert hidden, not removed.
   await expect(dialog).toBeHidden({ timeout: 60_000 });
+}
+
+export async function setImportConflictResolution(
+  page: Page,
+  entityRef: string,
+  label: 'Keep existing' | 'Rename import' | 'Overwrite'
+) {
+  const dialog = page.getByTestId('import-mermaid-dialog');
+  const select = dialog.getByTestId(`import-conflict-${entityRef}`);
+  await expect(select).toBeVisible({ timeout: 15_000 });
+  await select.selectOption({ label });
 }

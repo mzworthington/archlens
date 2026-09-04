@@ -1,5 +1,6 @@
 import React from 'react';
 import { WorkspaceEntryPanel } from '../../../../components/WorkspaceEntryPanel';
+import type { LiteScanProgress } from '../../../../../application/analysis/liteScanProgress';
 
 interface StartupWorkspaceDialogProps {
   isOpen: boolean;
@@ -13,6 +14,8 @@ interface StartupWorkspaceDialogProps {
   onShareDirectory?: () => void;
   onShareFile?: () => void;
   loadingMessage?: string | false | null;
+  scanProgress?: LiteScanProgress | null;
+  onCancelScan?: () => void;
 }
 
 /** First-run gate for bare `/workspace` - intent buckets then leaf actions. */
@@ -28,6 +31,8 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
   onShareDirectory,
   onShareFile,
   loadingMessage = null,
+  scanProgress = null,
+  onCancelScan,
 }) => {
   if (!isOpen) return null;
 
@@ -55,6 +60,8 @@ export const StartupWorkspaceDialog: React.FC<StartupWorkspaceDialogProps> = ({
             onShareDirectory={onShareDirectory}
             onShareFile={onShareFile}
             loadingMessage={loadingMessage}
+            scanProgress={scanProgress}
+            onCancelScan={onCancelScan}
             showCliPanel
             titleId="startup-workspace-title"
           />

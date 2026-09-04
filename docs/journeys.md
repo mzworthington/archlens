@@ -39,6 +39,7 @@ pnpm exec playwright test e2e-golden-journey.spec.ts
 | ------------------------------- | ----------------------------------------------------------------------------------- |
 | `e2e.spec.ts`                   | Startup chooser, panels + zoom, phone chrome                                        |
 | `e2e-import-merge-diff.spec.ts` | Mermaid merge, DiffMenu revert/commit download, conflict keep-existing + idempotent |
+| `e2e-collab-join.spec.ts`       | Share-link join: display name then connected count includes you                     |
 | `e2e-remote-catalog.spec.ts`    | Publish→consume via fixture `latest/manifest.json` + snapshot                       |
 | `e2e-golden-journey.spec.ts`    | Payment Gateway outage → AdviceLens circuit-breaker                                 |
 | `e2e-chaoslens.spec.ts`         | Large-graph resilience simulation smoke                                             |
