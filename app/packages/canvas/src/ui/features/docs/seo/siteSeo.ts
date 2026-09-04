@@ -100,7 +100,7 @@ const PAGE_SEO: Record<string, SeoOverride> = {
     headline: 'ChaosSpec',
     title: 'ChaosSpec - Versioned chaos scenarios for architecture diagrams | ArchLens',
     description:
-      'ChaosSpec YAML targets BlueprintSpec diagrams so ChaosLens failure scenarios stay versioned beside your architecture.',
+      'ChaosSpec targets BlueprintSpec diagrams so ChaosLens failure scenarios stay versioned beside your architecture.',
     softwareName: 'ChaosSpec',
   },
   '/guide/ci-workflows': {

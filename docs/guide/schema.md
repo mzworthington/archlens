@@ -9,7 +9,7 @@
 Every blueprint file describes one view of your systems architecture: who appears on the diagram, how they relate, and (optionally) layout and TraceLens signals. BlueprintSpec ensures that:
 
 - The same file loads in ArchLens Canvas, passes CI checks, and round-trips through import/export.
-- External tools can validate YAML without running ArchLens - by pointing at a public BlueprintSpec URL.
+- External tools can validate BlueprintSpec without running ArchLens - by pointing at a public schema URL.
 - Breaking changes are rare and versioned; non-breaking additions ship on the `latest` channel.
 
 Under the hood, rules are defined once in `@archlens/core` and published as JSON Schema for editors and integrators.

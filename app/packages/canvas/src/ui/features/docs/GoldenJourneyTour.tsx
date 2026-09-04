@@ -61,7 +61,7 @@ const STEPS: JourneyStep[] = [
     step: 1,
     title: 'Scan the repository',
     product: 'ArchLens CLI',
-    body: 'Run ArchLens CLI against your codebase to emit BlueprintSpec YAML for every product area. The bundled golden-journey estate mirrors what a monorepo scan produces - catalog, identity, checkout, and billing groups in one context window, sharing a Payment Gateway.',
+    body: 'Run ArchLens CLI against your codebase to emit BlueprintSpec for every product area. The bundled golden-journey estate mirrors what a monorepo scan produces - catalog, identity, checkout, and billing groups in one context window, sharing a Payment Gateway.',
     icon: Terminal,
     cli: 'archlens scan ./src --output ./blueprints\narchlens resilience ./blueprints/golden-journey --chaos-specs=./chaos-specs',
     tryLabel: 'CLI guide',

@@ -112,6 +112,6 @@ Contract, public schema URLs, and field reference: **[ChaosSpec](./chaos-spec.md
 - [AdviceLens](./advicelens.md) - ranked recommendations from simulation + forensics
 - [ArchLens Canvas](./canvas.md) - panels, display toggles, navigation
 - [TraceLens](./tracelens.md) - hotspot heatmap (disabled during ChaosLens)
-- [ChaosSpec](./chaos-spec.md) - scenario YAML contract and public schema URLs
+- [ChaosSpec](./chaos-spec.md) - scenario contract and public schema URLs
 - [BlueprintSpec](./schema.md) - `dependencies` and `entityRef` rules
 - [ChaosLens engine](../chaoslens-engine.md) - Go/WASM engine, local WASM build, core API (contributors)

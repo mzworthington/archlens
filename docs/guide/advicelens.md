@@ -41,7 +41,7 @@ Each recommendation includes:
 | `actions`   | Optional UI actions (e.g. enable circuit breaker on canvas)                                      |
 | `narration` | Optional AI-enriched detail (Phase 5; `provider: 'adviceLens'`)                                  |
 
-Recommendations are **display-only** by default - they are not written into BlueprintSpec YAML.
+Recommendations are **display-only** by default - they are not written into BlueprintSpec.
 
 ## In TraceLens
 
@@ -62,7 +62,7 @@ Signal badges still show **ChaosLens** or **TraceLens** (where the underlying si
 
 ## Headless estate sweep (CLI)
 
-From a directory of blueprint YAML files:
+From a directory of BlueprintSpec files:
 
 ```bash
 archlens resilience ./blueprints

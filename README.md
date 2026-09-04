@@ -5,7 +5,7 @@
 
 ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**. Author locally, or publish from CI. TraceLens, ChaosLens and AdviceLens run on the same map.
 
-**Local authoring:** open a folder in ArchLens Canvas, edit diagrams with bi-directional YAML sync, commit when ready - drafts stay on your machine.  
+**Local authoring:** open a folder in ArchLens Canvas, edit the map, commit when ready - drafts stay on your machine.  
 **Published estate:** scan in CI, publish to object storage, and open a shared read-only catalog without redeploying the app.
 
 ---

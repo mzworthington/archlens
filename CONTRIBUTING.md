@@ -65,7 +65,7 @@ We may ask for revisions or additional tests before merging. Small, well-tested 
 
 ## Project conventions
 
-- **Canonical format:** YAML `SystemSchema` files (BlueprintSpec) linked by `entityRef` - not Mermaid. Mermaid is a derived export.
+- **Canonical format:** BlueprintSpec (`SystemSchema`) linked by `entityRef` - not Mermaid. On disk that is YAML. Mermaid is a derived export.
 - **Imports:** External diagrams enter via import wizards that parse into `SystemSchema`, preview merge conflicts, and apply only user-approved changes.
 - **Workspace edits:** Prefer merge-into-active-diagram with conflict preview over wholesale file replacement.
 

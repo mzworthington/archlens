@@ -1,6 +1,6 @@
 # ChaosSpec
 
-**ChaosSpec** is the failure-scenario format ChaosLens, AdviceLens and CI use to describe what-if faults against a BlueprintSpec diagram. This page is for teams integrating with that YAML: authoring scenarios by hand, exporting from **ArchLens Canvas** or loading them in `archlens resilience`. It covers the **JSON Schema** validation surface and how scenarios bind to diagrams via **`diagramRef`**.
+**ChaosSpec** is the failure-scenario format ChaosLens, AdviceLens and CI use to describe what-if faults against a BlueprintSpec diagram. This page is for teams integrating with that contract: authoring scenarios by hand, exporting from **ArchLens Canvas** or loading them in `archlens resilience`. It covers the **JSON Schema** validation surface and how scenarios bind to diagrams via **`diagramRef`**.
 
 ChaosSpec does **not** duplicate topology. It references an existing BlueprintSpec diagram and lists faults (and optional safeguard overrides) against that diagram’s `entityRef`s.
 
@@ -11,7 +11,7 @@ ChaosSpec does **not** duplicate topology. It references an existing BlueprintSp
 Every chaos-spec file describes one named failure scenario: which diagram it targets, which nodes fault, and (optionally) safeguard overrides and Monte Carlo settings. ChaosSpec ensures that:
 
 - The same file loads in ArchLens Canvas (ChaosSpec dialog), validates against public JSON Schema, and runs in headless AdviceLens sweeps.
-- External tools can validate YAML without running ArchLens - by pointing at a public ChaosSpec URL.
+- External tools can validate ChaosSpec without running ArchLens - by pointing at a public schema URL.
 - Topology stays in BlueprintSpec; scenarios stay small, reviewable, and version-controlled under `chaos-specs/`.
 - Breaking changes are rare and versioned; non-breaking additions ship on the `latest` channel.
 

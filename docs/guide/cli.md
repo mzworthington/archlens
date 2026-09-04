@@ -1,6 +1,6 @@
 # ArchLens CLI
 
-**ArchLens CLI** scans source, discovers systems and dependencies, lays them out with Dagre and writes multi-level blueprint YAML.
+**ArchLens CLI** scans source, discovers systems and dependencies, lays them out with Dagre and writes BlueprintSpec.
 
 ![CLI prompts](../screenshots/cli.gif)
 
@@ -43,7 +43,7 @@ See [GitHub Actions workflows](./ci-workflows.md) for publish → fragment → c
 
 ## Remote catalog (fragments + compose)
 
-BlueprintSpec YAML is unchanged. Multi-pipeline publishing stages **fragments** and optional **suggestion overlays**, then **composes** them into an ADR-0010 `latest` snapshot ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)).
+BlueprintSpec is unchanged. Multi-pipeline publishing stages **fragments** and optional **suggestion overlays**, then **composes** them into an ADR-0010 `latest` snapshot ([ADR-0014](../ADRs/0014-estate-fragments-and-compose-before-publish.md)).
 
 | Command                                             | Purpose                                                    |
 | --------------------------------------------------- | ---------------------------------------------------------- |
