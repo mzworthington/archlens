@@ -32,7 +32,7 @@ const FLOW = [
   {
     step: '1',
     title: 'Scan the repo',
-    body: 'ArchLens CLI writes validated BlueprintSpec YAML: systems, containers and the edges between them.',
+    body: 'ArchLens CLI writes a validated BlueprintSpec: systems, containers and the edges between them.',
   },
   {
     step: '2',
@@ -41,17 +41,17 @@ const FLOW = [
   },
   {
     step: '3',
-    title: 'Fault it in review',
-    body: 'TraceLens and ChaosLens run on that same YAML. AdviceLens ranks the change before you spend the redesign budget.',
+    title: 'Fault it on the map',
+    body: 'TraceLens and ChaosLens run on that same contract. AdviceLens ranks the change before you spend the redesign budget.',
   },
 ] as const;
 
 const PRODUCTS: Product[] = [
   {
     title: 'ArchLens Canvas',
-    tagline: 'C4 workspace over BlueprintSpec',
+    tagline: 'Workspace over BlueprintSpec',
     details:
-      'Author in a local folder with YAML that stays in sync, or open a catalog your pipeline published.',
+      'Author in a local folder with diagrams that stay in sync, or open a catalog your pipeline published.',
     href: '/guide/canvas',
     category: 'Platform',
     icon: Layers,
@@ -60,8 +60,7 @@ const PRODUCTS: Product[] = [
   {
     title: 'ArchLens CLI',
     tagline: 'Repo to BlueprintSpec',
-    details:
-      'Static analysis writes systems, containers and dependencies as YAML your CI can validate.',
+    details: 'Static analysis writes systems, containers and dependencies your CI can validate.',
     href: '/guide/cli',
     category: 'Platform',
     icon: Terminal,
@@ -71,7 +70,7 @@ const PRODUCTS: Product[] = [
     title: 'TraceLens',
     tagline: 'Git and complexity on the nodes',
     details:
-      'Churn, complexity and coupling on the C4 nodes you already maintain. Hotspots sit on the map.',
+      'Churn, complexity and coupling on the nodes you already maintain. Hotspots sit on the map.',
     href: '/guide/tracelens',
     category: 'Intelligence',
     role: 'Observes',
@@ -98,9 +97,9 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'BlueprintSpec',
-    tagline: 'The YAML contract',
+    tagline: 'The architecture contract',
     details:
-      'Schema and entity references the CLI, Canvas and CI all validate against. One format, not a slide export.',
+      'Schema and entity references the CLI, Canvas and CI all validate against. One contract, not a slide export.',
     href: '/guide/schema',
     category: 'Contract',
     icon: FileCode2,
@@ -110,7 +109,7 @@ const PRODUCTS: Product[] = [
     title: 'ChaosSpec',
     tagline: 'Failure scenarios against that contract',
     details:
-      'YAML that binds faults to a BlueprintSpec diagram. Canvas, CLI and CI validate the same schema.',
+      'Scenarios that bind faults to a BlueprintSpec diagram. Canvas, CLI and CI validate the same schema.',
     href: '/guide/chaos-spec',
     category: 'Contract',
     icon: FileCode2,
@@ -287,7 +286,7 @@ export const DocsHome: React.FC = () => {
             id="why-it-matters-heading"
             className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-5"
           >
-            In a design review
+            On the diagram
           </h2>
           <ul className="grid gap-4 sm:grid-cols-3">
             {WHY_IT_MATTERS.map((item, index) => {
@@ -341,7 +340,7 @@ export const DocsHome: React.FC = () => {
                 The tools
               </h2>
               <p className="mt-1 text-sm text-slate-400">
-                Canvas and CLI sit on BlueprintSpec. The lenses read the same YAML.
+                Canvas and CLI sit on BlueprintSpec. The lenses read the same contract.
               </p>
             </div>
             <Link

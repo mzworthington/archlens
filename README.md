@@ -3,7 +3,7 @@
 [![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml) [![archlens.dev](https://img.shields.io/badge/archlens.dev-open%20app-00f0ff)](https://archlens.dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
 
-ArchLens models systems as **BlueprintSpec** YAML: a contract you can author locally, generate from a repo and publish from CI. TraceLens, ChaosLens and AdviceLens run on that same YAML.
+ArchLens models systems as **BlueprintSpec**: an architecture contract you can author locally, generate from a repo and publish from CI. TraceLens, ChaosLens and AdviceLens run on that same contract.
 
 **Local authoring:** open a folder in ArchLens Canvas, edit diagrams with bi-directional YAML sync, commit when ready - drafts stay on your machine.  
 **Published estate:** scan in CI, publish to object storage, and open a shared read-only catalog without redeploying the app.
@@ -14,7 +14,7 @@ ArchLens models systems as **BlueprintSpec** YAML: a contract you can author loc
 
 ![ArchLens Interface Tour & Catalog](./docs/screenshots/1-panels-expanded.png)
 
-A C4 workspace in the browser. Double-click boundary nodes to drill into container and component diagrams. YAML in Explorer stays in sync with the canvas.
+A workspace in the browser. Double-click boundary nodes to drill into container and component diagrams. Explorer stays in sync with the canvas.
 
 Package notes: [app/packages/canvas/README.md](./app/packages/canvas/README.md).
 
@@ -24,7 +24,7 @@ Package notes: [app/packages/canvas/README.md](./app/packages/canvas/README.md).
 
 ![ArchLens CLI Interactive Prompts](./docs/screenshots/cli.gif)
 
-A command-line static analysis scanner. It parses source, extracts modules and dependencies, lays them out with Dagre and writes BlueprintSpec YAML under `blueprints/`.
+A command-line static analysis scanner. It parses source, extracts modules and dependencies, lays them out with Dagre and writes BlueprintSpec under `blueprints/`.
 
 **Install (macOS / Linux):**
 

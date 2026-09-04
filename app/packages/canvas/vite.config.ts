@@ -51,7 +51,7 @@ export default defineConfig({
         name: 'ArchLens',
         short_name: 'ArchLens',
         description:
-          'ArchLens maps your codebase as an interactive C4-style diagram - explore systems, containers, and components.',
+          'ArchLens maps your codebase as an interactive architecture diagram - explore systems, containers and components.',
         theme_color: '#040914',
         background_color: '#040914',
         display: 'standalone',

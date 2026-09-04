@@ -2,7 +2,7 @@
 
 ![ArchLens CLI Interactive Prompts](../../docs/screenshots/cli.gif)
 
-Scans a local codebase, extracts modules and dependencies via static analysis, and writes C4-style YAML under `blueprints/`. Diagram layout is handled by ArchLens Canvas (autolayout on open; optional `x`/`y` when you customize positions in the UI).
+Scans a local codebase, extracts modules and dependencies via static analysis, and writes BlueprintSpec under `blueprints/`. Diagram layout is handled by ArchLens Canvas (autolayout on open; optional `x`/`y` when you customize positions in the UI).
 
 Supports **multi-system** / monorepo discovery, **product hubs** on the context diagram, **type hydration**, **gitignore + structural filters**, **optional Git forensics**, and **cancelable** runs (Ctrl+C).
 

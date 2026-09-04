@@ -31,7 +31,7 @@ describe('DocsHome', () => {
     expect(screen.getByText('Local first')).toBeInTheDocument();
     expect(screen.getByText(/uploaded to ArchLens servers/i)).toBeInTheDocument();
     expect(screen.getByText(/author locally, or publish the estate/i)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'In a design review' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'On the diagram' })).toBeInTheDocument();
     expect(screen.getByText('Game day on the diagram')).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
       0
@@ -58,7 +58,7 @@ describe('DocsHome', () => {
     render(<DocsHome />);
 
     expect(
-      screen.getByRole('link', { name: 'ArchLens Canvas: C4 workspace over BlueprintSpec' })
+      screen.getByRole('link', { name: 'ArchLens Canvas: Workspace over BlueprintSpec' })
     ).toHaveAttribute('href', '/guide/canvas');
     expect(
       screen.getByRole('link', { name: 'ArchLens CLI: Repo to BlueprintSpec' })

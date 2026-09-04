@@ -1,6 +1,6 @@
 # Product guide
 
-ArchLens is a C4 studio over **BlueprintSpec** YAML. Scan a repo, overlay git hotspots, simulate failures on the same diagram and walk out of the review with a ranked list.
+ArchLens is a studio over **BlueprintSpec**. Scan a repo, overlay git hotspots, simulate failures on the same diagram and leave with a ranked list.
 
 Use this guide for the product, not the internals.
 
@@ -8,7 +8,7 @@ Use this guide for the product, not the internals.
 
 | Product             | Role                                                                                                               |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **ArchLens Canvas** | C4 canvas (PWA): local folder authoring, Mermaid import, YAML/JSON sync and read-only published catalogs           |
+| **ArchLens Canvas** | Interactive canvas (PWA): local folder authoring, Mermaid import, YAML/JSON sync and read-only published catalogs  |
 | **ArchLens CLI**    | Static analysis that writes `blueprints/*.yaml` and can publish corpora to object storage for a shared estate view |
 | **TraceLens**       | Optional (on by default) git + complexity signals attached onto nodes as `forensics`                               |
 | **ChaosLens**       | Fault injection, blast-radius heatmap and SLA telemetry on the live diagram                                        |

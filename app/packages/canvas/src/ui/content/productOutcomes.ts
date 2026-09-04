@@ -1,9 +1,9 @@
-/** Shared outcome copy. Write for architects, CTOs and engineering directors. */
+/** Shared outcome copy. Product names first. BlueprintSpec is the architecture contract, not a YAML pitch. */
 
 export const PRODUCT_HERO = {
   headline: 'Catch architecture risk before it becomes an outage',
   documentTitle: 'ArchLens - Catch architecture risk before it becomes an outage',
-  lede: 'The CLI writes BlueprintSpec YAML from the repo. Canvas is the workspace over that contract. Overlay git hotspots, simulate a dependency dying, then walk out of the review with a ranked list instead of another parking lot of actions.',
+  lede: 'Canvas is the workspace over BlueprintSpec. The CLI writes that contract from the repo. Overlay git hotspots, simulate a dependency dying, then leave with a ranked list instead of another parking lot of actions.',
   trustLine:
     'Open source. No account. Drafts stay in the browser or the folder you open. Nothing is uploaded to ArchLens servers unless you publish a catalog from CI.',
 } as const;
@@ -15,10 +15,10 @@ export const WHY_IT_MATTERS = [
   },
   {
     title: 'Hotspots on the same nodes',
-    body: 'TraceLens attaches churn, complexity and coupling to the C4 nodes you maintain. Fragile files sit on the map, not in a separate dashboard.',
+    body: 'TraceLens attaches churn, complexity and coupling to the nodes you maintain. Fragile files sit on the map, not in a separate dashboard.',
   },
   {
-    title: 'A ranked list for the RFC',
+    title: 'A ranked list of what to change',
     body: 'AdviceLens merges those signals and orders the work. Scores come from simulation and forensics, not a chatbot paragraph.',
   },
 ] as const;

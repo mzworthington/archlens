@@ -114,7 +114,7 @@ export const DocsShell: React.FC<Props> = ({
         badge="DOCS"
         subtitle={
           isLanding
-            ? 'C4 maps, git hotspots and failure simulation'
+            ? 'Architecture maps, git hotspots and failure simulation'
             : 'Product guide, technology and CI'
         }
       >

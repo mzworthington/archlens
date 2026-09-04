@@ -47,25 +47,25 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/guide': {
     headline: 'Product guide',
     description:
-      'ArchLens product guide: BlueprintSpec YAML, Canvas, the CLI, TraceLens, ChaosLens and AdviceLens.',
+      'ArchLens product guide: Canvas, the CLI, TraceLens, ChaosLens, AdviceLens and BlueprintSpec.',
   },
   '/guide/getting-started': {
     headline: 'Getting started with ArchLens',
     description:
-      'Install ArchLens CLI, generate BlueprintSpec YAML from your repo and open the diagrams in Canvas.',
+      'Install ArchLens CLI, generate BlueprintSpec from your repo and open the diagrams in Canvas.',
   },
   '/guide/canvas': {
     headline: 'ArchLens Canvas',
-    title: 'ArchLens Canvas - Interactive C4 architecture diagrams | ArchLens',
+    title: 'ArchLens Canvas - Interactive architecture diagrams | ArchLens',
     description:
-      'ArchLens Canvas is a C4 workspace over BlueprintSpec YAML: local folders, diagram/YAML sync and catalogs published from CI.',
+      'ArchLens Canvas is a workspace over BlueprintSpec: local folders, diagram sync and catalogs published from CI.',
     softwareName: 'ArchLens Canvas',
   },
   '/guide/cli': {
     headline: 'ArchLens CLI',
     title: 'ArchLens CLI - Codebase to BlueprintSpec architecture maps | ArchLens',
     description:
-      'ArchLens CLI scans source, discovers systems and dependencies and writes validated multi-level BlueprintSpec YAML.',
+      'ArchLens CLI scans source, discovers systems and dependencies and writes a validated multi-level BlueprintSpec.',
     softwareName: 'ArchLens CLI',
   },
   '/guide/tracelens': {
@@ -86,14 +86,14 @@ const PAGE_SEO: Record<string, SeoOverride> = {
     headline: 'AdviceLens',
     title: 'AdviceLens - Ranked architecture fix recommendations | ArchLens',
     description:
-      'AdviceLens merges TraceLens forensics and ChaosLens simulations into a ranked action list for review and CI.',
+      'AdviceLens merges TraceLens forensics and ChaosLens simulations into a ranked action list for the studio and CI.',
     softwareName: 'AdviceLens',
   },
   '/guide/schema': {
     headline: 'BlueprintSpec',
-    title: 'BlueprintSpec - YAML architecture contract schema | ArchLens',
+    title: 'BlueprintSpec - Architecture contract schema | ArchLens',
     description:
-      'BlueprintSpec is the ArchLens YAML SystemSchema contract for C4 systems, containers, components and entityRef-linked diagrams.',
+      'BlueprintSpec is the ArchLens architecture contract for systems, containers, components and entityRef-linked diagrams.',
     softwareName: 'BlueprintSpec',
   },
   '/guide/chaos-spec': {
