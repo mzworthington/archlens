@@ -94,7 +94,7 @@ export const ComponentsSection: React.FC = () => (
         3. Product marketing cards
       </h3>
       <p className="text-xs text-slate-400">
-        Homepage and docs use full-card links with icon, category badge, tagline, and body copy.
+        Homepage and docs use full-card links with icon, category badge, tagline and body copy.
       </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Link
@@ -114,12 +114,12 @@ export const ComponentsSection: React.FC = () => (
           <h4 className="mt-4 text-base font-semibold text-white group-hover:text-[#00f0ff] transition-colors">
             ChaosLens
           </h4>
-          <p className="mt-1 text-xs font-medium text-slate-300">Resilience simulation</p>
+          <p className="mt-1 text-xs font-medium text-slate-300">Break a service on the map</p>
           <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-            Model faults on the live diagram and surface single points of failure in design reviews.
+            Fault a service on the map you have open. See what else fails. Production stays up.
           </p>
           <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#00f0ff]">
-            Learn more
+            ChaosLens guide
             <ArrowRight className="h-3.5 w-3.5" aria-hidden />
           </span>
         </Link>
@@ -131,7 +131,7 @@ export const ComponentsSection: React.FC = () => (
             </span>
             <h4 className="mt-3 text-sm font-semibold text-white">Flow step card</h4>
             <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-              Numbered steps for &quot;How teams use ArchLens&quot; on the homepage.
+              Numbered steps for &quot;CLI, Canvas, then the lenses&quot; on the homepage.
             </p>
           </div>
           <div className="rounded-2xl border border-[#00f0ff]/15 bg-gradient-to-br from-[#00f0ff]/10 via-transparent to-transparent p-5 flex items-center justify-between gap-4">

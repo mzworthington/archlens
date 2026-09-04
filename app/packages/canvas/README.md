@@ -2,7 +2,7 @@
 
 This is the front-end web application client for **ArchLens Canvas**. It is built using **Vite**, **React**, **React Flow**, and **Zustand**.
 
-Interactive C4 canvas for composing and governing **BlueprintSpec** diagrams - local folder authoring, bi-directional YAML sync, and optional read-only catalogs published from CI.
+Interactive canvas over **BlueprintSpec** diagrams: local folder authoring, diagrams that stay in sync with the canvas and optional read-only catalogs published from CI.
 
 ---
 

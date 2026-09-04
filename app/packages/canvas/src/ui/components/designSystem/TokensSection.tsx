@@ -14,8 +14,7 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
         <Palette className="w-5 h-5 text-[#00f0ff]" /> Design Tokens (Theme Variables)
       </h2>
       <p className="text-xs text-slate-400 mt-1">
-        Standardized styling parameters used across the system layout to guarantee aesthetic
-        consistency.
+        Standardized CSS variables used by the homepage, docs and canvas.
       </p>
     </div>
 
@@ -127,8 +126,7 @@ export const TokensSection: React.FC<TokensSectionProps> = ({ copiedId, copyToCl
         Product category accents
       </h3>
       <p className="text-xs text-slate-400">
-        Used on the product homepage and docs for Platform, Intelligence, Resilience, and Contract
-        badges.
+        Used on the homepage and docs for Platform, Intelligence, Resilience and Contract badges.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {(

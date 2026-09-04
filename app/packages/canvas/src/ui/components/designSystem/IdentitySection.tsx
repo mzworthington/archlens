@@ -21,7 +21,7 @@ const IDENTITY_GUIDELINES = [
   {
     title: 'Product naming',
     details:
-      'Customer-facing copy uses official names: ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens, and BlueprintSpec.',
+      'Customer-facing copy uses official names: ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens, AdviceLens, BlueprintSpec and ChaosSpec.',
   },
 ];
 
@@ -38,7 +38,7 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
           <div className="min-w-0">
             <h2 className="text-xl font-bold text-white tracking-tight">Schematic by design</h2>
             <p className="mt-2 max-w-2xl text-sm text-slate-400 leading-relaxed">
-              Drafting grids, cyan accents, and product-centric patterns for homepage, docs, and
+              Drafting grids, cyan accents and product-centric patterns for homepage, docs and
               canvas.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -84,8 +84,8 @@ export const IdentitySection: React.FC<IdentitySectionProps> = ({ embedded, setA
               Schematic by design
             </h2>
             <p className="mt-4 max-w-xl text-slate-400 text-base sm:text-lg leading-relaxed">
-              Shared visual language for the product homepage, docs, and canvas - drafting grids,
-              cyan accents, and product-centric marketing patterns.
+              Shared visual language for the homepage, docs and canvas: drafting grids, cyan accents
+              and product-centric marketing patterns.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <button

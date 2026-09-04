@@ -91,7 +91,7 @@ export function printOverviewHelp(): void {
 
 export function printScanHelp(): void {
   heading('archlens scan');
-  line(`  ${pc.dim('Non-interactive architecture scan from source to C4 YAML.')}`);
+  line(`  ${pc.dim('Non-interactive architecture scan from source to BlueprintSpec.')}`);
   line('');
 
   heading('USAGE');

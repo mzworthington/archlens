@@ -27,21 +27,23 @@ describe('DocsHome', () => {
 
     expect(screen.getByTestId('docs-home')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: PRODUCT_HERO.headline })).toBeInTheDocument();
-    expect(screen.getByText('Free & open source')).toBeInTheDocument();
-    expect(screen.getByText('Local + published')).toBeInTheDocument();
-    expect(screen.getAllByText(/no uploads to archlens servers/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/author locally or publish the estate/i)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Why it matters' })).toBeInTheDocument();
-    expect(screen.getByText('Simulate without touching production')).toBeInTheDocument();
+    expect(screen.getByText('Open source')).toBeInTheDocument();
+    expect(screen.getByText('Local first')).toBeInTheDocument();
+    expect(screen.getByText(/uploaded to ArchLens servers/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'On the diagram' })).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { name: 'ChaosLens' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
       0
     );
-    expect(screen.getByRole('heading', { name: 'How teams use ArchLens' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Product suite' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'CLI, Canvas, then the lenses' })
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'The tools' })).toBeInTheDocument();
     expect(screen.getByText('ArchLens Canvas')).toBeInTheDocument();
     expect(screen.getByText('ArchLens CLI')).toBeInTheDocument();
-    expect(screen.getByText('ChaosLens')).toBeInTheDocument();
+    expect(screen.getAllByText('ChaosLens').length).toBeGreaterThan(0);
     expect(screen.getByText('BlueprintSpec')).toBeInTheDocument();
+    expect(screen.getByText('ChaosSpec')).toBeInTheDocument();
     expect(screen.getByText('Observes')).toBeInTheDocument();
     expect(screen.getByText('Prescribes')).toBeInTheDocument();
     expect(screen.getByText('Resilience')).toBeInTheDocument();
@@ -57,14 +59,14 @@ describe('DocsHome', () => {
     render(<DocsHome />);
 
     expect(
-      screen.getByRole('link', { name: 'ArchLens Canvas: Visual architecture studio' })
+      screen.getByRole('link', { name: 'ArchLens Canvas: The map you work on' })
     ).toHaveAttribute('href', '/guide/canvas');
-    expect(
-      screen.getByRole('link', { name: 'ArchLens CLI: Code to architecture' })
-    ).toHaveAttribute('href', '/guide/cli');
-    expect(screen.getByRole('link', { name: 'ChaosLens: Resilience simulation' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'ArchLens CLI: Scan the repo' })).toHaveAttribute(
       'href',
-      '/guide/chaoslens'
+      '/guide/cli'
     );
+    expect(
+      screen.getByRole('link', { name: 'ChaosLens: Break a service on the map' })
+    ).toHaveAttribute('href', '/guide/chaoslens');
   });
 });

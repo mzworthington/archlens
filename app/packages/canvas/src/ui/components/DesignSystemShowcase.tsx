@@ -65,7 +65,7 @@ export const DesignSystemShowcase: React.FC<DesignSystemShowcaseProps> = ({
         <AppHeader
           sticky
           badge="DESIGN SYSTEM"
-          subtitle="Visual language for the ArchLens product suite - tokens, marketing patterns, and canvas UI."
+          subtitle="Visual language for ArchLens: tokens, marketing patterns and canvas UI."
         />
       ) : null}
 

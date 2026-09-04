@@ -3,9 +3,9 @@
 [![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml) [![archlens.dev](https://img.shields.io/badge/archlens.dev-open%20app-00f0ff)](https://archlens.dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
 
-ArchLens models systems as **BlueprintSpec** YAML - a living architecture contract you can author locally, publish from CI, and validate with TraceLens, ChaosLens, and AdviceLens while design is still cheap to change.
+ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**. Author locally, or publish from CI. TraceLens, ChaosLens and AdviceLens run on the same map.
 
-**Local authoring:** open a folder in ArchLens Canvas, edit diagrams with bi-directional YAML sync, commit when ready - drafts stay on your machine.  
+**Local authoring:** open a folder in ArchLens Canvas, edit the map, commit when ready - drafts stay on your machine.  
 **Published estate:** scan in CI, publish to object storage, and open a shared read-only catalog without redeploying the app.
 
 ---
@@ -14,9 +14,9 @@ ArchLens models systems as **BlueprintSpec** YAML - a living architecture contra
 
 ![ArchLens Interface Tour & Catalog](./docs/screenshots/1-panels-expanded.png)
 
-A front-end visual canvas web application client. Double-click boundary nodes to drill down into C4 container/component levels and edit schemas side-by-side with code-viewer synchronization.
+A workspace in the browser. Double-click boundary nodes to drill into container and component diagrams. Explorer stays in sync with the canvas.
 
-👉 **Learn more:** [app/packages/canvas/README.md](./app/packages/canvas/README.md).
+Package notes: [app/packages/canvas/README.md](./app/packages/canvas/README.md).
 
 ---
 
@@ -24,7 +24,7 @@ A front-end visual canvas web application client. Double-click boundary nodes to
 
 ![ArchLens CLI Interactive Prompts](./docs/screenshots/cli.gif)
 
-A command-line static analysis (AST) codebase scanner. It parses source files, extracts modules, identifies components and dependency references, computes an optimal layout using Dagre, and outputs valid BlueprintSpec YAML inside the `blueprints/` directory.
+A command-line static analysis scanner. It parses source, extracts modules and dependencies, lays them out with Dagre and writes BlueprintSpec under `blueprints/`.
 
 **Install (macOS / Linux):**
 
@@ -32,7 +32,7 @@ A command-line static analysis (AST) codebase scanner. It parses source files, e
 curl -fsSL https://raw.githubusercontent.com/mzworthington/archlens/main/scripts/install.sh | bash
 ```
 
-👉 **Learn more:** [app/packages/cli/README.md](./app/packages/cli/README.md) · [Getting started](./docs/guide/getting-started.md)
+CLI reference: [app/packages/cli/README.md](./app/packages/cli/README.md) · [Getting started](./docs/guide/getting-started.md)
 
 ---
 
@@ -93,7 +93,7 @@ pnpm test:cli
 
 Product guide and reference live as Markdown under [`docs/`](./docs/) (same files locally, in git, and on the site):
 
-- **[Product guide](./docs/guide/index.md)** - overview, ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens
+- **[Product guide](./docs/guide/index.md)** - overview, Canvas, CLI, TraceLens, ChaosLens
 - **[E2E Journeys & Interface Tour](./docs/journeys.md)**
 - **[Unit test features](./docs/features-unit.md)** - generated Vitest feature report (`pnpm generate:features-unit`)
 - **[System Architecture & Security](./docs/architecture.md)**

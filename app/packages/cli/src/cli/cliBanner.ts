@@ -55,7 +55,7 @@ export function renderCliBanner(version = getArchlensVersion()): void {
   console.log(borderLine());
   console.log(titleLine());
   console.log(borderLine());
-  console.log(taglineLine('Map your codebase to C4 architecture blueprints'));
+  console.log(taglineLine('Map your codebase to architecture blueprints'));
   console.log(taglineLine('Context · Containers · Components · TraceLens'));
   console.log(borderLine());
   console.log(versionLine(version));

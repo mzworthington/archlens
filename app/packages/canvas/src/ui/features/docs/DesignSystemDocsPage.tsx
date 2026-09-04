@@ -31,8 +31,7 @@ export const DesignSystemDocsPage: React.FC = () => {
         </p>
         <h1 className="text-2xl font-bold text-white sm:text-3xl">Design system</h1>
         <p className="mt-2 max-w-2xl text-sm text-slate-400 leading-relaxed">
-          Tokens, components, and visual patterns shared across the product homepage, docs, and
-          canvas.
+          Tokens, components and visual patterns shared across the homepage, docs and canvas.
         </p>
       </header>
       <DesignSystemShowcase embedded activeTab={activeTab} onTabChange={setActiveTab} />

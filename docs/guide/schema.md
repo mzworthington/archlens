@@ -1,6 +1,6 @@
 # BlueprintSpec
 
-**BlueprintSpec** is the declarative architecture format - the shared contract every product reads and writes. This page is for teams integrating with BlueprintSpec YAML: whether you author diagrams by hand, generate them from **ArchLens CLI**, or consume them in another tool. It explains the **JSON Schema** validation surface and how we name and link parts of an architecture using **`entityRef`**.
+**BlueprintSpec** is the architecture contract every ArchLens surface reads and writes. This page is for teams integrating with that contract: authoring by hand, generating from **ArchLens CLI** or consuming it in another tool. It covers the **JSON Schema** validation surface and how we name and link parts of an architecture with **`entityRef`**.
 
 ---
 
@@ -9,7 +9,7 @@
 Every blueprint file describes one view of your systems architecture: who appears on the diagram, how they relate, and (optionally) layout and TraceLens signals. BlueprintSpec ensures that:
 
 - The same file loads in ArchLens Canvas, passes CI checks, and round-trips through import/export.
-- External tools can validate YAML without running ArchLens - by pointing at a public BlueprintSpec URL.
+- External tools can validate BlueprintSpec without running ArchLens - by pointing at a public schema URL.
 - Breaking changes are rare and versioned; non-breaking additions ship on the `latest` channel.
 
 Under the hood, rules are defined once in `@archlens/core` and published as JSON Schema for editors and integrators.
@@ -27,7 +27,7 @@ We use it to:
 - **Connect diagrams in a hierarchy** - zoom from a context map into a container map, then into components. A child diagram’s identity matches the parent node you double-clicked.
 - **Express dependencies across boundaries** - “Service A calls Service B” uses each party’s `entityRef`, even when they live in different YAML files.
 - **Align generated and hand-edited views** - ArchLens, IaC import, and ArchLens Canvas all resolve to the same identifiers so merges and diffs stay meaningful.
-- **Anchor TraceLens and ownership** - git and complexity signals roll up along the same tree the business already uses for C4 views.
+- **Anchor TraceLens and ownership** - git and complexity signals roll up along the same tree the business already uses for architecture views.
 
 Think of `entityRef` as a **breadcrumb trail** from the widest scope down to the finest grain you model, not as a file path or repository folder (though the CLI often infers sensible values from repo layout).
 
@@ -36,7 +36,7 @@ Think of `entityRef` as a **breadcrumb trail** from the widest scope down to the
 References are built from **short, URL-safe segments** joined by `/`:
 
 - Human labels are **slugified**: lower case, spaces → hyphens, punctuation removed (e.g. `App Service` → `app-service`).
-- Each extra `/` means **one level deeper** in the C4 zoom model.
+- Each extra `/` means **one level deeper** in the zoom model.
 
 | Segments | Typical scope       | Example                       | What it represents                                        |
 | -------- | ------------------- | ----------------------------- | --------------------------------------------------------- |

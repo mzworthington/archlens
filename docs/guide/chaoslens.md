@@ -1,6 +1,6 @@
 # ChaosLens
 
-**ChaosLens** simulates **what-if failures** on the architecture you already have open in ArchLens Canvas - without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active diagram.
+**ChaosLens** simulates **what-if failures** on the architecture you already have open in ArchLens Canvas, without a separate diagram or route. It runs on the normal workspace canvas against the active diagram.
 
 ![ChaosLens simulation](../screenshots/chaoslens.gif)
 
@@ -112,6 +112,6 @@ Contract, public schema URLs, and field reference: **[ChaosSpec](./chaos-spec.md
 - [AdviceLens](./advicelens.md) - ranked recommendations from simulation + forensics
 - [ArchLens Canvas](./canvas.md) - panels, display toggles, navigation
 - [TraceLens](./tracelens.md) - hotspot heatmap (disabled during ChaosLens)
-- [ChaosSpec](./chaos-spec.md) - scenario YAML contract and public schema URLs
+- [ChaosSpec](./chaos-spec.md) - scenario contract and public schema URLs
 - [BlueprintSpec](./schema.md) - `dependencies` and `entityRef` rules
 - [ChaosLens engine](../chaoslens-engine.md) - Go/WASM engine, local WASM build, core API (contributors)
