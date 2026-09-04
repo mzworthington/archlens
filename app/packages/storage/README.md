@@ -6,7 +6,9 @@ Hexagonal object storage port shared by the CLI (publish) and Canvas (read).
 
 `ObjectStoragePort` - `getObject`, `getObjectText`, `putObject`, `listObjectKeys`, `deleteObject`
 
-The R2 path (`provider: 'r2'`) wraps sends with longer transient `InternalError` / 5xx retries. Compose also skips re-uploading an existing content-hashed snapshot when `latest` already points at it.
+The R2 path (`provider: 'r2'`) wraps sends with longer transient `InternalError` / 5xx retries (8 outer attempts). The HTTP consume path uses the same 8-attempt budget with backoff capped at 2s so Canvas can ride out CDN/R2 500s without waiting on the SDK send loop. Compose also skips re-uploading an existing content-hashed snapshot when `latest` already points at it.
+
+Load coverage (concurrent publish puts + consume gets under injected 5xx) lives in `src/catalog/catalogPublishConsumeLoad.test.ts`. That is the catalog reliability gate — not the Yjs share-link collab path.
 
 ## Adapters
 

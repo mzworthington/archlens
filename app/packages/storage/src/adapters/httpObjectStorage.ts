@@ -1,26 +1,28 @@
 import { joinPublicBaseUrl, normalizePublicBaseUrl } from '../lib/objectKey';
 import type { HttpObjectStorageConfig } from '../config/objectStorageConfig';
+import {
+  HTTP_TRANSIENT_FETCH_ATTEMPTS,
+  defaultSleep,
+  httpTransientBackoffMs,
+} from '../lib/httpTransientRetry';
 import type {
   ObjectStorageObjectMeta,
   ObjectStoragePort,
   ObjectStoragePutRequest,
 } from '../ports/objectStoragePort';
 
-const FETCH_ATTEMPTS = 3;
+export { HTTP_TRANSIENT_FETCH_ATTEMPTS, httpTransientBackoffMs } from '../lib/httpTransientRetry';
 
 function isTransientNetworkError(error: unknown): boolean {
   if (!(error instanceof Error)) return false;
   return /failed to fetch|networkerror|load failed|network request failed/i.test(error.message);
 }
 
-async function sleep(ms: number): Promise<void> {
-  await new Promise(resolve => setTimeout(resolve, ms));
-}
-
 async function fetchBytes(
   url: string,
   fetchImpl: typeof fetch,
-  attempts = FETCH_ATTEMPTS
+  sleep: (ms: number) => Promise<void>,
+  attempts = HTTP_TRANSIENT_FETCH_ATTEMPTS
 ): Promise<{ body: Uint8Array; etag?: string }> {
   let lastError: unknown;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -42,7 +44,7 @@ async function fetchBytes(
       isTransientNetworkError(lastError) ||
       /HTTP (429|5\d\d)/.test(String(lastError instanceof Error ? lastError.message : lastError));
     if (!retryable || attempt === attempts) break;
-    await sleep(50 * attempt);
+    await sleep(httpTransientBackoffMs(attempt));
   }
 
   const message = lastError instanceof Error ? lastError.message : String(lastError);
@@ -56,6 +58,7 @@ async function fetchBytes(
 export function createHttpObjectStorage(config: HttpObjectStorageConfig): ObjectStoragePort {
   const baseUrl = normalizePublicBaseUrl(config.baseUrl);
   const fetchImpl = config.fetchImpl ?? fetch;
+  const sleep = config.sleep ?? defaultSleep;
 
   return {
     provider: 'http',
@@ -67,7 +70,7 @@ export function createHttpObjectStorage(config: HttpObjectStorageConfig): Object
       return new TextDecoder().decode(bytes);
     },
     async getObjectWithMeta(key: string): Promise<ObjectStorageObjectMeta> {
-      return fetchBytes(joinPublicBaseUrl(baseUrl, key), fetchImpl);
+      return fetchBytes(joinPublicBaseUrl(baseUrl, key), fetchImpl, sleep);
     },
     async listObjectKeys(_prefix: string): Promise<string[]> {
       throw new Error('HTTP object storage does not support listing');

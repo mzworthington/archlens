@@ -1,3 +1,4 @@
+import { classifyHotspotScoreTrend, formatHotspotScoreTrend } from '@archlens/core/forensics';
 import type {
   EstateRecommendation,
   RankedEstateItem,
@@ -61,6 +62,10 @@ export function EstateRankedRow({
     offender?.onResilienceCriticalPath ? 'BLAST' : null,
     item.isFallback ? 'FORENSICS' : null,
   ].filter(Boolean) as string[];
+  const hotspotTrend =
+    offender?.hotspotScoreByWeek && offender.hotspotScoreByWeek.length > 1
+      ? classifyHotspotScoreTrend(offender.hotspotScoreByWeek)
+      : null;
 
   return (
     <div
@@ -100,7 +105,21 @@ export function EstateRankedRow({
               style={{ width: `${scorePct}%` }}
             />
           </div>
-          {offender?.churnByWeek && offender.churnByWeek.length > 0 ? (
+          {offender?.hotspotScoreByWeek && offender.hotspotScoreByWeek.length > 1 ? (
+            <div className="flex items-center justify-end gap-1.5 text-[#00f0ff]/70">
+              {hotspotTrend ? (
+                <span className="font-mono text-[9px] uppercase tracking-wider text-slate-400">
+                  {formatHotspotScoreTrend(hotspotTrend)}
+                </span>
+              ) : null}
+              <ChurnSparkline
+                data={offender.hotspotScoreByWeek}
+                width={72}
+                height={20}
+                testId="hotspot-sparkline"
+              />
+            </div>
+          ) : offender?.churnByWeek && offender.churnByWeek.length > 0 ? (
             <div className="flex justify-end text-[#00f0ff]/70">
               <ChurnSparkline data={offender.churnByWeek} width={72} height={20} />
             </div>

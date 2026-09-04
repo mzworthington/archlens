@@ -25,4 +25,24 @@ describe('ForensicsTrendPanel', () => {
     expect(screen.getAllByTestId('micro-bar-chart')).toHaveLength(2);
     expect(screen.getByTestId('churn-sparkline')).toBeInTheDocument();
   });
+
+  it('renders hotspotScore sparkline and getting-worse label', () => {
+    render(
+      <ForensicsTrendPanel
+        dashboard={{
+          scope: 'component',
+          hotspotScoreByWeek: [0, 0, 0, 0, 0.8, 0.9, 1, 1],
+          hotspotScoreTrend: 'rising',
+          authorBuckets: [0, 0, 0],
+          authorBucketLabels: ['1 author', '2-3', '4+'],
+          complexityBuckets: [0, 0, 0, 0],
+          complexityBucketLabels: ['1-5', '6-10', '11-20', '21+'],
+          fileCount: 1,
+        }}
+      />
+    );
+
+    expect(screen.getByTestId('forensics-trend-hotspot')).toHaveTextContent(/getting worse/i);
+    expect(screen.getByTestId('hotspot-sparkline')).toBeInTheDocument();
+  });
 });

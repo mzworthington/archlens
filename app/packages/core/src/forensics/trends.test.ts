@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { bucketAuthorActivity, bucketComplexityCounts, rollupChurnByWeek } from './trends';
+import {
+  bucketAuthorActivity,
+  bucketComplexityCounts,
+  rollupChurnByWeek,
+  rollupMaxByWeek,
+} from './trends';
 
 describe('rollupChurnByWeek', () => {
   it('sums aligned weekly buckets across series', () => {
@@ -17,6 +22,16 @@ describe('rollupChurnByWeek', () => {
 
   it('returns undefined when no series have data', () => {
     expect(rollupChurnByWeek([undefined, [], undefined])).toBeUndefined();
+  });
+});
+
+describe('rollupMaxByWeek', () => {
+  it('keeps the peak aligned weekly value across series', () => {
+    expect(rollupMaxByWeek([[0.2, 0.1, 0.4], [0.9, 0, 0.3], undefined])).toEqual([0.9, 0.1, 0.4]);
+  });
+
+  it('returns undefined when no series have data', () => {
+    expect(rollupMaxByWeek([undefined, []])).toBeUndefined();
   });
 });
 

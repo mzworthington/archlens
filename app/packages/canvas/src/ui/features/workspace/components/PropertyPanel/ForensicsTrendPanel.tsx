@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatHotspotScoreTrend } from '@archlens/core/forensics';
 import type { ForensicsTrendDashboard } from '../../../../../application/forensics/buildForensicsTrendDashboard';
 import { ChurnSparkline } from '../../../../components/ChurnSparkline/ChurnSparkline';
 import { MicroBarChart } from '../../../../components/MicroBarChart/MicroBarChart';
@@ -54,6 +55,26 @@ export const ForensicsTrendPanel: React.FC<ForensicsTrendPanelProps> = ({ dashbo
           {dashboard.scope === 'rollup' ? `${dashboard.fileCount} files` : 'This file'}
         </span>
       </div>
+
+      {dashboard.hotspotScoreByWeek && dashboard.hotspotScoreByWeek.length > 1 ? (
+        <TrendCard
+          title="hotspotScore"
+          summary={
+            dashboard.hotspotScoreTrend
+              ? formatHotspotScoreTrend(dashboard.hotspotScoreTrend)
+              : `${dashboard.hotspotScoreByWeek.length} weeks`
+          }
+          help="Weekly relative hotspotScore over the lookback window (oldest week on the left). Current complexity × that week's churn — not a history of previous scans."
+          testId="forensics-trend-hotspot"
+        >
+          <ChurnSparkline
+            data={dashboard.hotspotScoreByWeek}
+            width={120}
+            height={28}
+            testId="hotspot-sparkline"
+          />
+        </TrendCard>
+      ) : null}
 
       {dashboard.churnByWeek && dashboard.churnByWeek.length > 0 ? (
         <TrendCard

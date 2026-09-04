@@ -5,16 +5,18 @@ export interface ChurnSparklineProps {
   width?: number;
   height?: number;
   className?: string;
+  testId?: string;
 }
 
 /**
- * Display-only micro chart for weekly churn counts (oldest week on the left).
+ * Display-only micro chart for weekly series (oldest week on the left).
  */
 export const ChurnSparkline: React.FC<ChurnSparklineProps> = ({
   data,
   width = 96,
   height = 24,
   className = '',
+  testId = 'churn-sparkline',
 }) => {
   const points = useMemo(() => {
     if (data.length === 0) return '';
@@ -37,7 +39,7 @@ export const ChurnSparkline: React.FC<ChurnSparklineProps> = ({
       height={height}
       viewBox={`0 0 ${width} ${height}`}
       className={className}
-      data-testid="churn-sparkline"
+      data-testid={testId}
       aria-hidden
     >
       <polyline

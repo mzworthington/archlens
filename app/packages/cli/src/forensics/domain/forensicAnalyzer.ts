@@ -3,6 +3,7 @@ import {
   aggregateFileHistory,
   buildImportCoupling,
   classifyFile,
+  computeHotspotScoreByWeek,
   computeHotspotScores,
   computeTemporalCoupling,
 } from '@archlens/core/forensics';
@@ -124,6 +125,13 @@ export class ForensicAnalyzer {
       };
     });
     const hotspotScores = computeHotspotScores(scoreInputs);
+    const hotspotScoresByWeek = computeHotspotScoreByWeek(
+      paths.map(path => {
+        const s = structuralByPath.get(path) ?? { ...emptyStructural, path };
+        const h = historyByPath.get(path)!;
+        return { path, complexity: s.complexity, churnByWeek: h.churnByWeek };
+      })
+    );
 
     let files: FileMetrics[] = paths.map(path => {
       const s = structuralByPath.get(path) ?? { ...emptyStructural, path };
@@ -162,6 +170,9 @@ export class ForensicAnalyzer {
             }
           : {}),
         churnByWeek: h.churnByWeek,
+        ...(hotspotScoresByWeek.get(path)
+          ? { hotspotScoreByWeek: hotspotScoresByWeek.get(path) }
+          : {}),
         authorCount: h.authorCount,
         topAuthorPercent: h.topAuthorPercent,
         authors: h.authors,

@@ -24,6 +24,8 @@ export type HttpObjectStorageConfig = {
   provider: 'http';
   baseUrl: string;
   fetchImpl?: typeof fetch;
+  /** Injectable delay between transient HTTP retries (tests). */
+  sleep?: (ms: number) => Promise<void>;
 };
 
 export type ObjectStorageConfig =

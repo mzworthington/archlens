@@ -109,6 +109,47 @@ describe('ForensicAnalyzer', () => {
     expect(reporter.report).toHaveBeenCalledTimes(1);
   });
 
+  it('attaches weekly hotspotScore series from lookback churn buckets', async () => {
+    const now = new Date('2026-07-15T12:00:00.000Z');
+    const lister = new FakeLister(['hot.ts', 'cold.ts']);
+    const complexity = new FakeComplexity([
+      { path: 'hot.ts', complexity: 20, loc: 100, sloc: 80 },
+      { path: 'cold.ts', complexity: 2, loc: 10, sloc: 8 },
+    ]);
+    const git = new FakeGit([
+      {
+        hash: 'old-cold',
+        authorEmail: 'a@ex.com',
+        authorDate: new Date('2026-06-20T12:00:00.000Z'),
+        paths: ['cold.ts'],
+      },
+      {
+        hash: 'new-hot',
+        authorEmail: 'b@ex.com',
+        authorDate: new Date('2026-07-14T12:00:00.000Z'),
+        paths: ['hot.ts'],
+      },
+    ]);
+    const analyzer = new ForensicAnalyzer({
+      fileLister: lister,
+      complexity,
+      gitHistory: git,
+      importGraph: new FakeImportGraph(),
+      reporters: [],
+    });
+
+    const report = await analyzer.run({
+      rootPath: '/repo',
+      now: () => now,
+      options: { sinceDays: 28, shortChurnDays: 0 },
+    });
+
+    const hot = report.files.find(f => f.path === 'hot.ts')!;
+    expect(hot.hotspotScoreByWeek).toHaveLength(4);
+    expect(hot.hotspotScoreByWeek?.[0]).toBe(0);
+    expect(hot.hotspotScoreByWeek?.[3]).toBe(1);
+  });
+
   it('skips AST for cold files when minChurnForComplexity is set but still counts loc', async () => {
     const lister = new FakeLister(['cold.ts', 'warm.ts']);
     const complexity = new FakeComplexity([

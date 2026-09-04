@@ -15,6 +15,7 @@ export * from './forensics/rollupCoupledFiles';
 export * from './forensics/gitHistory';
 export * from './forensics/temporalCoupling';
 export * from './forensics/hotspotScoring';
+export * from './forensics/hotspotTrend';
 export * from './forensics/classifyFile';
 export * from './forensics/chaosRiskContext';
 export * from './forensics/describeChaosRiskContext';

@@ -74,6 +74,7 @@ export function toRankedOffender(
     sinceDays: forensics.sinceDays,
     dependencyCount,
     churnByWeek: forensics.churnByWeek,
+    hotspotScoreByWeek: forensics.hotspotScoreByWeek,
     ...chaosScores,
   };
 }

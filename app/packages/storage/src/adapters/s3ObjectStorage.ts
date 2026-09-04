@@ -80,7 +80,8 @@ export function r2TransientBackoffMs(failedAttempts: number): number {
 
 async function withR2TransientRetry<T>(
   operation: () => Promise<T>,
-  attempts = R2_TRANSIENT_SEND_ATTEMPTS
+  attempts: number,
+  sleepFn: (ms: number) => Promise<void>
 ): Promise<T> {
   let lastError: unknown;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -91,7 +92,7 @@ async function withR2TransientRetry<T>(
       if (!isTransientObjectStorageError(error) || attempt === attempts) {
         throw error;
       }
-      await sleep(r2TransientBackoffMs(attempt));
+      await sleepFn(r2TransientBackoffMs(attempt));
     }
   }
   throw lastError;
@@ -99,6 +100,7 @@ async function withR2TransientRetry<T>(
 
 export type S3ObjectStorageDeps = {
   send?: S3Client['send'];
+  sleep?: (ms: number) => Promise<void>;
 };
 
 export function createS3ObjectStorage(
@@ -124,7 +126,11 @@ export function createS3ObjectStorage(
   // Outer backoff is R2-specific; AWS S3 / other backends use the SDK defaults only.
   const send: S3Client['send'] = isR2
     ? (((command, options) =>
-        withR2TransientRetry(() => rawSend(command, options))) as S3Client['send'])
+        withR2TransientRetry(
+          () => rawSend(command, options),
+          R2_TRANSIENT_SEND_ATTEMPTS,
+          deps.sleep ?? sleep
+        )) as S3Client['send'])
     : rawSend;
   const prefix = normalizeObjectKeyPrefix(config.keyPrefix);
 

@@ -72,6 +72,7 @@ const nodeForensicsSchema = z.object({
   churn30: z.number().optional(),
   churn365: z.number().optional(),
   churnByWeek: z.array(z.number().nonnegative()).optional(),
+  hotspotScoreByWeek: z.array(z.number().nonnegative()).optional(),
   authorCount: z.number().optional(),
   topAuthorPercent: z.number().optional(),
   authors: z.array(forensicAuthorSchema).optional(),

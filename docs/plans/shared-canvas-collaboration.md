@@ -99,7 +99,7 @@ Pages stays static. A collab backend needs:
 3. Share-link rooms for slice B; auth later
 4. Canvas adapter on `CollabSessionPort`
 
-Keep R2 as catalog/snapshot storage. Durable Objects hold live room state. `@archlens/storage` stays the CI/CLI publish port — wrong layer for realtime rooms.
+Keep R2 as catalog/snapshot storage. Durable Objects hold live room state. `@archlens/storage` stays the CI/CLI publish port — wrong layer for realtime rooms. Catalog publish/consume has an in-process load suite for transient R2/CDN 5xx; that reliability work does not make the catalog a stand-in for share-link collab.
 
 ---
 

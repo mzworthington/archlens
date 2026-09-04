@@ -18,6 +18,7 @@ On component nodes (joined by `properties.filepath`):
 | `authorCount` / `topAuthorPercent` | Ownership concentration                            |
 | `authors`                          | Per-author commit counts in the lookback window    |
 | `hotspotScore`                     | Relative risk from complexity × churn              |
+| `hotspotScoreByWeek`               | Weekly relative hotspotScore (oldest week first)   |
 | `classifications`                  | e.g. `hotspot`, `knowledge-silo`                   |
 | `coupledFiles`                     | Temporally coupled peers (scores + shared commits) |
 | `sinceDays`                        | Lookback window used for this run                  |
@@ -32,6 +33,7 @@ forensics:
   churn: 8
   hotspotScore: 0.9
   sinceDays: 90
+  hotspotScoreByWeek: [0.1, 0.2, 0.4, 0.9]
   classifications:
     - hotspot
   coupledFiles:
@@ -59,6 +61,16 @@ Open **`/workspace?lens=tracelens`** (header badge **TRACELENS**) or use **View 
 The page title is **TraceLens**, with tabs **TraceLens | AdviceLens**.
 
 **Workspace complexity** (top of the page) summarizes the loaded estate: diagrams, nodes, dependencies, forensics file coverage, LOC/SLOC, max/avg complexity, hotspot and knowledge-silo counts. Totals come from TraceLens blocks on blueprint nodes (re-scan with git enabled if they are missing).
+
+### Snapshot vs trend
+
+`hotspotScore` is one number for the whole `--git-since` window: this file is currently high relative to the rest of the scan. That does not tell you whether the file is heating up.
+
+When git history is present, TraceLens also stores `hotspotScoreByWeek` (oldest week on the left). Each week is the same relative score, using **today's** complexity and that week's churn. It is not a stash of previous CLI scans, and it does not reconstruct old AST complexity.
+
+On the estate list and in Explorer → TraceLens, the sparkline next to a hotspot uses that series. The label **getting worse** / **easing** / **steady** compares the last four weeks with the four before them. Dual-window `churn30` vs `churn365` still shows raw commit acceleration.
+
+The **Trend dashboard** on a selected node shows the hotspotScore sparkline first, then weekly commit churn and the author/complexity histograms.
 
 | Tab            | Content                                                                                                                                                                                                                                                                      |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -101,13 +113,13 @@ Peers resolve via `coupledFiles[].path` ↔ `properties.filepath` on the current
 
 Optional `forensics` section in `blueprint.config.json` (or yaml) for thresholds: `hotspotThreshold`, `complexityThreshold`, `minSharedCommits`, `couplingThreshold`, `minChurnForComplexity`, `sinceDays`.
 
-### Source Code Viewer & GitHub PAT
+### Source Code Viewer
 
 Click **View Code** on any node property card or diagram node to open the in-browser source code viewer.
 
-- **Public Repositories**: Source code is fetched and syntax-highlighted automatically via public git raw/API endpoints.
-- **Private Repositories**: Click the **Add PAT** button at the top right of the Source Code screen to save a scoped GitHub Personal Access Token (PAT). Tokens are saved locally in your browser (`localStorage`) and used for authenticated API fetching.
-- **Local Workspaces**: When running ArchLens CLI or opening a local workspace folder, source files are read directly from disk without network credentials.
+- **Public repositories**: Source code is fetched and syntax-highlighted automatically via public git raw/API endpoints.
+- **Private repositories**: In-browser preview is not available from the hosted app (Canvas does not store GitHub tokens). Open the file on GitHub, or open the workspace folder locally so files are read from disk.
+- **Local workspaces**: When running ArchLens CLI or opening a local workspace folder, source files are read directly from disk without network credentials.
 
 ## Next
 

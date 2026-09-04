@@ -1,8 +1,10 @@
 import type { NodeForensics } from '@archlens/core';
 import {
+  classifyHotspotScoreTrend,
   churnAccelerationRatio,
   churnAccelerationTone,
   formatChurnAcceleration,
+  formatHotspotScoreTrend,
 } from '@archlens/core/forensics';
 
 export type ForensicsMetricRow = {
@@ -26,7 +28,9 @@ const FORENSICS_METRIC_HELP: Record<string, string> = {
   authors: 'Distinct git authors who edited this file in the lookback window.',
   ownership: 'Share of recent commits by the top author - high means concentrated ownership.',
   hotspotScore:
-    'Relative risk from complexity × churn (or line churn when available). 0-1 across the analyzed set.',
+    'Relative risk from complexity × churn (or line churn when available). 0-1 across the analyzed set. One number for the whole lookback window — use hotspotTrend to see whether that risk is climbing week to week.',
+  hotspotTrend:
+    'Weekly relative hotspotScore (oldest week on the left). Uses current complexity × that week’s churn, not a stash of previous scans. Getting worse means the last four weeks sit above the four before them.',
   lineChurn:
     'Lines added + removed in the git lookback window - often a sharper hotspot signal than commit count alone.',
   complexityPeak:
@@ -167,6 +171,17 @@ function pushOwnershipAndRiskRows(
       value: forensics.hotspotScore.toFixed(2),
       help: FORENSICS_METRIC_HELP.hotspotScore,
       tone: forensics.hotspotScore >= 0.5 ? 'danger' : 'none',
+    });
+  }
+  if (forensics.hotspotScoreByWeek && forensics.hotspotScoreByWeek.length > 1) {
+    const trend = classifyHotspotScoreTrend(forensics.hotspotScoreByWeek);
+    rows.push({
+      label: 'hotspotTrend',
+      value: trend
+        ? formatHotspotScoreTrend(trend)
+        : `${forensics.hotspotScoreByWeek.length} weeks`,
+      help: FORENSICS_METRIC_HELP.hotspotTrend,
+      tone: trend === 'rising' ? 'danger' : 'none',
     });
   }
   if (compositeRiskScore !== undefined) {

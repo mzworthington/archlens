@@ -19,6 +19,24 @@ export function rollupChurnByWeek(
   return totals;
 }
 
+/** Keep the highest aligned weekly value; returns undefined when no series have data. */
+export function rollupMaxByWeek(
+  series: readonly (readonly number[] | undefined)[]
+): number[] | undefined {
+  const populated = series.filter((s): s is readonly number[] => !!s && s.length > 0);
+  if (populated.length === 0) return undefined;
+
+  const weekCount = Math.max(...populated.map(s => s.length));
+  const peaks = new Array<number>(weekCount).fill(0);
+  for (const buckets of populated) {
+    for (let i = 0; i < buckets.length; i++) {
+      const value = buckets[i] ?? 0;
+      if (value > peaks[i]) peaks[i] = value;
+    }
+  }
+  return peaks;
+}
+
 const COMPLEXITY_BUCKET_LABELS = ['1-5', '6-10', '11-20', '21+'] as const;
 const AUTHOR_BUCKET_LABELS = ['1 author', '2-3', '4+'] as const;
 

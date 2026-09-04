@@ -5,7 +5,9 @@ import {
   FORENSICS_COMPLEXITY_BUCKET_LABELS,
   bucketAuthorActivity,
   bucketComplexityCounts,
+  classifyHotspotScoreTrend,
   rollupChurnByWeek,
+  rollupMaxByWeek,
 } from '@archlens/core/forensics';
 
 export type LoadedSystemRef = {
@@ -63,6 +65,8 @@ export function collectDescendantForensics(
 export type ForensicsTrendDashboard = {
   scope: 'component' | 'rollup';
   churnByWeek?: number[];
+  hotspotScoreByWeek?: number[];
+  hotspotScoreTrend?: 'rising' | 'falling' | 'steady';
   authorBuckets: number[];
   authorBucketLabels: readonly string[];
   complexityBuckets: number[];
@@ -73,6 +77,7 @@ export type ForensicsTrendDashboard = {
 function hasTrendData(dashboard: ForensicsTrendDashboard): boolean {
   return (
     (dashboard.churnByWeek?.some(v => v > 0) ?? false) ||
+    (dashboard.hotspotScoreByWeek?.length ?? 0) > 1 ||
     dashboard.authorBuckets.some(v => v > 0) ||
     dashboard.complexityBuckets.some(v => v > 0)
   );
@@ -92,6 +97,14 @@ export function buildForensicsTrendDashboard(
   const churnByWeek =
     forensics.churnByWeek ??
     (descendants.length > 0 ? rollupChurnByWeek(descendants.map(d => d.churnByWeek)) : undefined);
+  const hotspotScoreByWeek =
+    forensics.hotspotScoreByWeek ??
+    (descendants.length > 0
+      ? rollupMaxByWeek(descendants.map(d => d.hotspotScoreByWeek))
+      : undefined);
+  const hotspotScoreTrend = hotspotScoreByWeek
+    ? (classifyHotspotScoreTrend(hotspotScoreByWeek) ?? undefined)
+    : undefined;
 
   const complexities = source
     .map(d => d.complexity)
@@ -103,6 +116,8 @@ export function buildForensicsTrendDashboard(
   const dashboard: ForensicsTrendDashboard = {
     scope: isRollup && descendants.length > 0 ? 'rollup' : 'component',
     churnByWeek,
+    hotspotScoreByWeek,
+    hotspotScoreTrend,
     authorBuckets: bucketAuthorActivity(authorCounts),
     authorBucketLabels: FORENSICS_AUTHOR_BUCKET_LABELS,
     complexityBuckets: bucketComplexityCounts(complexities),

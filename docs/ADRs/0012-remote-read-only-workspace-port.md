@@ -39,7 +39,7 @@ Chosen option: "**Option B**".
 - If `VITE_REMOTE_CATALOG_BASE_URL` is set → remote adapter
 - Else → `BundledSampleWorkspaceAdapter` (local dev, PR previews, offline fallback)
 
-Shared fetch utilities live in `catalogNetworkFetch.ts` (retry, concurrency pool).
+Remote catalog fetches retry in the HTTP object-storage adapter (`HTTP_TRANSIENT_FETCH_ATTEMPTS`). Bundled Pages assets share that budget via `catalogNetworkFetch.ts` (retry + concurrency pool). Concurrent publish/consume 5xx behaviour is covered by `@archlens/storage` load tests, not by this adapter.
 
 ### Consequences
 

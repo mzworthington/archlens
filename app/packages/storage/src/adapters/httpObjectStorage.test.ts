@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { createHttpObjectStorage } from './httpObjectStorage';
+import { createHttpObjectStorage, httpTransientBackoffMs } from './httpObjectStorage';
 
 describe('Feature: Read remote catalog over HTTPS', () => {
   it('fetches objects from a public catalog base URL', async () => {
@@ -26,5 +26,29 @@ describe('Feature: Read remote catalog over HTTPS', () => {
     await expect(storage.putObject({ key: 'latest/manifest.json', body: '{}' })).rejects.toThrow(
       /read-only/i
     );
+  });
+
+  it('retries HTTP 500 then succeeds', async () => {
+    const fetchImpl = vi.fn(async () => {
+      if (fetchImpl.mock.calls.length < 4) {
+        return new Response('InternalError', { status: 500 });
+      }
+      return new Response('ok', { status: 200 });
+    });
+    const storage = createHttpObjectStorage({
+      provider: 'http',
+      baseUrl: 'https://blueprints.example.dev/',
+      fetchImpl,
+      sleep: async () => undefined,
+    });
+
+    await expect(storage.getObjectText('latest/manifest.json')).resolves.toBe('ok');
+    expect(fetchImpl).toHaveBeenCalledTimes(4);
+  });
+
+  it('exposes longer HTTP consume backoff than the previous 50ms steps', () => {
+    expect(httpTransientBackoffMs(1)).toBe(100);
+    expect(httpTransientBackoffMs(5)).toBe(1600);
+    expect(httpTransientBackoffMs(8)).toBe(2000);
   });
 });

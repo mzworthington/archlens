@@ -25,6 +25,7 @@ export interface FileMetrics {
   /** Long-window churn (typically 365d); mirrors `churn` when dual windows are enabled. */
   churn365?: number;
   churnByWeek?: number[];
+  hotspotScoreByWeek?: number[];
   authorCount: number;
   topAuthorPercent: number;
   authors: { email: string; commits: number }[];

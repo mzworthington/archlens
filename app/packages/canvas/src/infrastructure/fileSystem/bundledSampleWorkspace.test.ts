@@ -222,7 +222,7 @@ describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
         const relativePath = relativeFromUrl(input);
         if (relativePath === 'catalog.json') {
           catalogAttempts += 1;
-          if (catalogAttempts <= 3) {
+          if (catalogAttempts <= 8) {
             throw new TypeError('Failed to fetch');
           }
           return new Response(JSON.stringify(tinyCatalog), { status: 200 });
@@ -232,13 +232,19 @@ describe('BundledSampleWorkspaceAdapter fetch resilience', () => {
     );
 
     const { BundledSampleWorkspaceAdapter } = await import('./bundledSampleWorkspace');
-    await expect(BundledSampleWorkspaceAdapter.readDirectoryFiles()).rejects.toThrow(
-      /Failed to fetch blueprint catalog/i
-    );
+    vi.useFakeTimers();
+    const firstLoad = BundledSampleWorkspaceAdapter.readDirectoryFiles();
+    const firstResult = firstLoad.catch((error: unknown) => error);
+    await vi.runAllTimersAsync();
+    await expect(firstResult).resolves.toBeInstanceOf(Error);
+    await expect(firstResult).resolves.toMatchObject({
+      message: expect.stringMatching(/Failed to fetch blueprint catalog/i),
+    });
+    vi.useRealTimers();
 
     const files = await BundledSampleWorkspaceAdapter.readDirectoryFiles();
     expect(files).toHaveLength(2);
-    expect(catalogAttempts).toBe(4);
+    expect(catalogAttempts).toBe(9);
   });
 
   it('limits concurrent blueprint downloads', async () => {

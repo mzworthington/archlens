@@ -3,6 +3,7 @@ import { EntityRef } from '@archlens/core';
 import {
   rollupChurnByWeek,
   rollupForensicAuthors,
+  rollupMaxByWeek,
   rollupTopCoupledFiles,
 } from '@archlens/core/forensics';
 import type { FileMetrics } from './types.ts';
@@ -26,6 +27,9 @@ export function fileMetricsToNodeForensics(metrics: FileMetrics): NodeForensics 
     ...(metrics.churn30 !== undefined ? { churn30: metrics.churn30 } : {}),
     ...(metrics.churn365 !== undefined ? { churn365: metrics.churn365 } : {}),
     churnByWeek: metrics.churnByWeek,
+    ...(metrics.hotspotScoreByWeek && metrics.hotspotScoreByWeek.length > 0
+      ? { hotspotScoreByWeek: metrics.hotspotScoreByWeek }
+      : {}),
     authorCount: metrics.authorCount,
     topAuthorPercent: metrics.topAuthorPercent,
     ...(metrics.authors && metrics.authors.length > 0 ? { authors: metrics.authors } : {}),
@@ -77,6 +81,7 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
   let weightedOwnership = 0;
   const classificationSet = new Set<'hotspot' | 'knowledge-silo'>();
   const churnByWeekSeries: (number[] | undefined)[] = [];
+  const hotspotScoreByWeekSeries: (number[] | undefined)[] = [];
 
   for (const node of withForensics) {
     const f = node.forensics!;
@@ -113,6 +118,7 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
       shortChurnDays = f.shortChurnDays;
     }
     churnByWeekSeries.push(f.churnByWeek);
+    hotspotScoreByWeekSeries.push(f.hotspotScoreByWeek);
     const childChurn = f.churn ?? 0;
     if (childChurn > 0 && f.topAuthorPercent != null) {
       ownershipWeight += childChurn;
@@ -126,6 +132,7 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
   }
 
   const churnByWeek = rollupChurnByWeek(churnByWeekSeries);
+  const hotspotScoreByWeek = rollupMaxByWeek(hotspotScoreByWeekSeries);
   const topAuthorPercent = ownershipWeight > 0 ? weightedOwnership / ownershipWeight : undefined;
   const authors = rollupForensicAuthors(withForensics.map(n => n.forensics!));
   const coupledFiles = rollupTopCoupledFiles(withForensics);
@@ -149,6 +156,7 @@ export function aggregateNodeForensics(nodes: readonly SystemNode[]): NodeForens
     ...(coupledFiles.length > 0 ? { coupledFiles } : {}),
     ...(authors.length > 0 ? { authors } : {}),
     ...(churnByWeek ? { churnByWeek } : {}),
+    ...(hotspotScoreByWeek ? { hotspotScoreByWeek } : {}),
     ...(topAuthorPercent !== undefined ? { topAuthorPercent } : {}),
     ...(sinceDays !== undefined ? { sinceDays } : {}),
     ...(shortChurnDays !== undefined ? { shortChurnDays } : {}),

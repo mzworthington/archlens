@@ -121,6 +121,8 @@ describe('ForensicsSection', () => {
         trendDashboard={{
           scope: 'component',
           churnByWeek: [1, 0, 2, 1],
+          hotspotScoreByWeek: [0.1, 0.2, 0.3, 0.8],
+          hotspotScoreTrend: 'rising',
           authorBuckets: [1, 0, 0],
           authorBucketLabels: ['1 author', '2-3', '4+'],
           complexityBuckets: [0, 0, 1, 0],
@@ -133,6 +135,7 @@ describe('ForensicsSection', () => {
     );
 
     expect(screen.getByTestId('forensics-trend-panel')).toBeInTheDocument();
+    expect(screen.getByTestId('forensics-trend-hotspot')).toHaveTextContent(/getting worse/i);
     expect(screen.getByTestId('forensics-trend-churn')).toBeInTheDocument();
     expect(screen.getByTestId('churn-sparkline')).toBeInTheDocument();
     expect(screen.getByTestId('forensics-trend-authors')).toBeInTheDocument();

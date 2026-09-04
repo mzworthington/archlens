@@ -167,6 +167,8 @@ export interface NodeForensics {
   churn30?: number;
   churn365?: number;
   churnByWeek?: number[];
+  /** Weekly relative hotspotScore (oldest week first); current complexity × that week's churn. */
+  hotspotScoreByWeek?: number[];
   authorCount?: number;
   topAuthorPercent?: number;
   authors?: ForensicAuthor[];

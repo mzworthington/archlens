@@ -1,6 +1,7 @@
+import { HTTP_TRANSIENT_FETCH_ATTEMPTS, httpTransientBackoffMs } from '@archlens/storage/http';
+
 export const CATALOG_BLUEPRINT_FETCH_CONCURRENCY = 24;
 export const CATALOG_PRELOAD_FETCH_CONCURRENCY = 4;
-const FETCH_ATTEMPTS = 3;
 
 function isTransientNetworkError(error: unknown): boolean {
   if (!(error instanceof Error)) return false;
@@ -22,7 +23,7 @@ async function sleep(ms: number): Promise<void> {
 
 export async function fetchResponseWithRetry(
   url: string,
-  attempts = FETCH_ATTEMPTS,
+  attempts = HTTP_TRANSIENT_FETCH_ATTEMPTS,
   fetchImpl: typeof fetch = fetch
 ): Promise<Response> {
   let lastError: unknown;
@@ -44,7 +45,7 @@ export async function fetchResponseWithRetry(
       isTransientNetworkError(lastError) ||
       /HTTP (429|5\d\d)/.test(String(lastError instanceof Error ? lastError.message : lastError));
     if (!retryable || attempt === attempts) break;
-    await sleep(50 * attempt);
+    await sleep(httpTransientBackoffMs(attempt));
   }
   throw lastError instanceof Error ? lastError : new Error(String(lastError));
 }

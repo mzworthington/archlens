@@ -161,6 +161,25 @@ describe('aggregateNodeForensics', () => {
     });
   });
 
+  it('rolls up peak hotspotScoreByWeek from children', () => {
+    const children: SystemNode[] = [
+      {
+        entityRef: 'a/b/c1',
+        type: 'component',
+        name: 'c1',
+        forensics: { hotspotScoreByWeek: [0.1, 0.4, 0.2] },
+      },
+      {
+        entityRef: 'a/b/c2',
+        type: 'component',
+        name: 'c2',
+        forensics: { hotspotScoreByWeek: [0.3, 0.05, 0.9] },
+      },
+    ];
+
+    expect(aggregateNodeForensics(children)?.hotspotScoreByWeek).toEqual([0.3, 0.4, 0.9]);
+  });
+
   it('rolls up dual churn windows from children', () => {
     const children: SystemNode[] = [
       {

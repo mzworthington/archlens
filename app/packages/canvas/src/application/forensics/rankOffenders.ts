@@ -61,6 +61,8 @@ export type RankedOffender = {
   chaosRiskLabel?: string;
   /** Weekly churn counts for micro sparklines (oldest week first). */
   churnByWeek?: number[];
+  /** Weekly relative hotspotScore (oldest week first). */
+  hotspotScoreByWeek?: number[];
 };
 
 /**

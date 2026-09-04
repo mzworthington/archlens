@@ -65,6 +65,21 @@ describe('buildForensicsTrendDashboard', () => {
     });
   });
 
+  it('includes hotspotScoreByWeek direction from the weekly series', () => {
+    const dashboard = buildForensicsTrendDashboard(
+      {
+        complexity: 12,
+        authorCount: 1,
+        hotspotScoreByWeek: [0, 0, 0, 0, 0.8, 0.9, 1, 1],
+      },
+      [],
+      'component'
+    );
+
+    expect(dashboard?.hotspotScoreByWeek).toEqual([0, 0, 0, 0, 0.8, 0.9, 1, 1]);
+    expect(dashboard?.hotspotScoreTrend).toBe('rising');
+  });
+
   it('rolls up descendant trends for containers', () => {
     const descendants = [
       { complexity: 4, authorCount: 1, churnByWeek: [1, 0, 1] },

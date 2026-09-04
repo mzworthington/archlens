@@ -77,7 +77,7 @@ estates/{estateId}/
 1. List `fragments/` and load **manifests** for every staged run; fetch YAML bodies only for the freshest run per `fragmentKey` (`publishedAt`, then `runId`).
 2. Merge non-`context.yaml` paths with last-writer-wins; merge `context.yaml` by `entityRef`.
 3. Content-hash the composed YAML into `revisionId`. If `latest/manifest.json` already points at that revision, **exit unchanged** (no snapshot re-upload) - critical for the hourly safety-net so identical corpora are not rewritten.
-4. Otherwise upload snapshot objects (or reuse an existing `snapshots/{revisionId}/` if present) and **CAS** update `latest/manifest.json` (`If-Match` / `If-None-Match: *`) with retries (`--max-retries`, default 8). On CAS conflict or transient object-storage errors, reload fragments/overlays, exponential backoff (capped at 2s), then retry. The R2 adapter adds its own longer backoff for `InternalError` / 5xx.
+4. Otherwise upload snapshot objects (or reuse an existing `snapshots/{revisionId}/` if present) and **CAS** update `latest/manifest.json` (`If-Match` / `If-None-Match: *`) with retries (`--max-retries`, default 8). On CAS conflict or transient object-storage errors, reload fragments/overlays, exponential backoff (capped at 2s), then retry. The R2 adapter adds its own longer backoff for `InternalError` / 5xx. Canvas HTTP consume uses 8 attempts with a 2s backoff cap.
 
 Stage inputs with `archlens catalog publish-fragment … --estate=… --product=… --source-ref=… --no-dry-run`.
 
