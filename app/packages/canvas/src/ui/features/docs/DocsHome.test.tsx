@@ -29,7 +29,7 @@ describe('DocsHome', () => {
     expect(screen.getByRole('heading', { name: PRODUCT_HERO.headline })).toBeInTheDocument();
     expect(screen.getByText('Open source')).toBeInTheDocument();
     expect(screen.getByText('Local first')).toBeInTheDocument();
-    expect(screen.getAllByText(/no uploads to archlens servers/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/uploaded to ArchLens servers/i)).toBeInTheDocument();
     expect(screen.getByText(/author locally, or publish the estate/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'In a design review' })).toBeInTheDocument();
     expect(screen.getByText('Game day on the diagram')).toBeInTheDocument();
@@ -60,10 +60,9 @@ describe('DocsHome', () => {
     expect(
       screen.getByRole('link', { name: 'ArchLens Canvas: C4 workspace over BlueprintSpec' })
     ).toHaveAttribute('href', '/guide/canvas');
-    expect(screen.getByRole('link', { name: 'ArchLens CLI: Repo to BlueprintSpec' })).toHaveAttribute(
-      'href',
-      '/guide/cli'
-    );
+    expect(
+      screen.getByRole('link', { name: 'ArchLens CLI: Repo to BlueprintSpec' })
+    ).toHaveAttribute('href', '/guide/cli');
     expect(
       screen.getByRole('link', { name: 'ChaosLens: What-if failures on the live diagram' })
     ).toHaveAttribute('href', '/guide/chaoslens');
