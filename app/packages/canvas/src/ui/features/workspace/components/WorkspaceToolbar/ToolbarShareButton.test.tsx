@@ -31,6 +31,7 @@ describe('ToolbarShareButton', () => {
         ],
       },
       updateCollabDisplayName: vi.fn().mockReturnValue(true),
+      endCollabRoom: vi.fn(),
     });
     Object.defineProperty(navigator, 'clipboard', {
       configurable: true,

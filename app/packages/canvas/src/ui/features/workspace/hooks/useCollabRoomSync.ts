@@ -11,11 +11,16 @@ import {
   setCollabDisplayName,
   subscribeCollabDisplayName,
 } from '../../../../application/collab/collabDisplayName';
+import {
+  credentialsForCollabRoom,
+  saveCollabGuestSecret,
+} from '../../../../application/collab/collabRoomCredentials';
 
 export type CollabRoomSync = {
   needsDisplayName: boolean;
   prefillName: string;
-  confirmDisplayName: (name: string) => void;
+  joinError: string | null;
+  confirmJoin: (name: string, secret: string) => void;
   cancelJoin: () => void;
 };
 
@@ -25,6 +30,7 @@ export function useCollabRoomSync(): CollabRoomSync {
   const search = useSearch();
   const joinCollabRoom = useBlueprintStore(s => s.joinCollabRoom);
   const leaveCollabRoom = useBlueprintStore(s => s.leaveCollabRoom);
+  const joinError = useBlueprintStore(s => s.collabJoinError);
   const joinedRef = useRef<string | null>(null);
   const displayName = useSyncExternalStore(
     subscribeCollabDisplayName,
@@ -50,7 +56,7 @@ export function useCollabRoomSync(): CollabRoomSync {
     }
     if (joinedRef.current === roomId) return;
     joinedRef.current = roomId;
-    void joinCollabRoom(roomId, displayName);
+    void joinCollabRoom(roomId, displayName, credentialsForCollabRoom(roomId));
   }, [search, displayName, joinCollabRoom, leaveCollabRoom, roomId]);
 
   useEffect(() => {
@@ -62,13 +68,29 @@ export function useCollabRoomSync(): CollabRoomSync {
     };
   }, []);
 
-  const confirmDisplayName = useCallback((name: string) => {
-    setCollabDisplayName(name);
-  }, []);
+  const confirmJoin = useCallback(
+    (name: string, secret: string) => {
+      if (!roomId) {
+        setCollabDisplayName(name);
+        return;
+      }
+      saveCollabGuestSecret(roomId, secret);
+      setCollabDisplayName(name);
+      joinedRef.current = roomId;
+      void joinCollabRoom(roomId, name, credentialsForCollabRoom(roomId));
+    },
+    [joinCollabRoom, roomId]
+  );
 
   const cancelJoin = useCallback(() => {
     setLocation(withoutCollabRoom(pathname, search));
   }, [pathname, search, setLocation]);
 
-  return { needsDisplayName, prefillName, confirmDisplayName, cancelJoin };
+  return {
+    needsDisplayName: needsDisplayName || Boolean(roomId && joinError),
+    prefillName,
+    joinError,
+    confirmJoin,
+    cancelJoin,
+  };
 }

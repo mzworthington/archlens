@@ -8,7 +8,14 @@ import {
   withCollabRoom,
 } from '../../../../../application/navigation/collabRoomUrl';
 import { getCollabPrefillDisplayName } from '../../../../../application/collab/collabDisplayName';
-import { CollabShareDialog } from '../CollabShareDialog/CollabShareDialog';
+import {
+  readCollabHostToken,
+  stageCollabHostShare,
+} from '../../../../../application/collab/collabRoomCredentials';
+import {
+  CollabShareDialog,
+  type CollabShareCopyOptions,
+} from '../CollabShareDialog/CollabShareDialog';
 
 const iconBtnClass =
   'min-h-11 min-w-11 sm:min-h-0 sm:min-w-0 p-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800 disabled:opacity-30 disabled:hover:bg-slate-900 disabled:hover:text-slate-400 transition cursor-pointer disabled:cursor-not-allowed flex items-center justify-center';
@@ -22,6 +29,7 @@ export const ToolbarShareButton: React.FC = () => {
   const connectedCount = useBlueprintStore(s => s.collabPresence.connectedCount);
   const participants = useBlueprintStore(s => s.collabPresence.participants);
   const updateCollabDisplayName = useBlueprintStore(s => s.updateCollabDisplayName);
+  const endCollabRoom = useBlueprintStore(s => s.endCollabRoom);
   const roomFromUrl = parseCollabRoomId(search);
   const [shareOpen, setShareOpen] = useState(false);
 
@@ -49,9 +57,10 @@ export const ToolbarShareButton: React.FC = () => {
   );
 
   const handleCopyLink = useCallback(
-    (name: string) => {
+    (name: string, options: CollabShareCopyOptions) => {
       updateCollabDisplayName(name);
       const roomId = roomFromUrl ?? createCollabRoomId();
+      stageCollabHostShare(roomId, options);
       void copyShareLink(roomId);
     },
     [copyShareLink, roomFromUrl, updateCollabDisplayName]
@@ -97,8 +106,13 @@ export const ToolbarShareButton: React.FC = () => {
         isOpen={shareOpen}
         initialName={getCollabPrefillDisplayName()}
         participants={participants}
+        canEndRoom={Boolean(roomFromUrl && readCollabHostToken(roomFromUrl))}
         onCopyLink={handleCopyLink}
         onSaveName={updateCollabDisplayName}
+        onEndRoom={() => {
+          endCollabRoom();
+          setShareOpen(false);
+        }}
         onCancel={() => setShareOpen(false)}
       />
     </>

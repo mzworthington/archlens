@@ -32,6 +32,8 @@ On `main`, CI deploys this Worker then (separately) attaches the custom domain v
 
 ## Protocol
 
-Binary frames: byte 0 is `0` (full state), `1` (incremental update), `2` (awareness), or `3` (awareness query); the rest is the payload. Awareness frames are forwarded to peers and **not** persisted on the Durable Object.
+Binary frames: byte 0 is `0` (full state), `1` (incremental update), `2` (awareness), or `3` (awareness query); the rest is the payload. Awareness frames are forwarded to admitted peers and **not** persisted on the Durable Object.
 
-Canvas clients reconnect with backoff after unexpected socket closes, and also on `online` / tab-visible signals (important on mobile when the OS suspends WebSockets). On each open they re-send full Yjs state plus awareness so peers converge after a flap.
+Text frames are JSON room control (`claim` / `join` / `end` from the client; `admitted` / `need-secret` / `denied` / `ended` / `unclaimed` from the Worker). The Worker does **not** send Yjs state until the socket is admitted. Open rooms are labelled anyone-with-the-link. Protected rooms require a creator-set secret (not in the URL). Sign-in is out of scope.
+
+Canvas clients reconnect with backoff after unexpected socket closes, and also on `online` / tab-visible signals (important on mobile when the OS suspends WebSockets). After admit they re-send full Yjs state plus awareness so peers converge after a flap. A `denied` or `ended` control stops reconnect.

@@ -6,20 +6,26 @@ import { CollabDialogPortal } from './CollabDialogPortal';
 interface CollabNameDialogProps {
   isOpen: boolean;
   initialName?: string;
-  onConfirm: (name: string) => void;
+  joinError?: string | null;
+  onConfirm: (name: string, secret: string) => void;
   onCancel: () => void;
 }
 
 export const CollabNameDialog: React.FC<CollabNameDialogProps> = ({
   isOpen,
   initialName = '',
+  joinError = null,
   onConfirm,
   onCancel,
 }) => {
   const titleId = useId();
   const inputId = useId();
+  const secretId = useId();
   const errorId = useId();
+  const secretHintId = useId();
+  const secretErrorId = useId();
   const [draft, setDraft] = useState(initialName);
+  const [secret, setSecret] = useState('');
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
@@ -45,7 +51,7 @@ export const CollabNameDialog: React.FC<CollabNameDialogProps> = ({
       setShowError(true);
       return;
     }
-    onConfirm(name);
+    onConfirm(name, secret);
   };
 
   return (
@@ -89,7 +95,8 @@ export const CollabNameDialog: React.FC<CollabNameDialogProps> = ({
 
             <div className="p-4 space-y-3">
               <p className="text-sm text-slate-400 leading-relaxed">
-                Enter the name others will see on your cursor.
+                Enter the name others will see on your cursor. If the host set a secret, enter that
+                too before the diagram appears.
               </p>
               <div>
                 <label
@@ -117,6 +124,33 @@ export const CollabNameDialog: React.FC<CollabNameDialogProps> = ({
                 {showError ? (
                   <p id={errorId} className="mt-1.5 text-xs text-rose-300">
                     Enter a name (1–40 characters).
+                  </p>
+                ) : null}
+              </div>
+              <div>
+                <label
+                  htmlFor={secretId}
+                  className="block text-xs font-semibold text-slate-300 mb-1"
+                >
+                  Room secret
+                </label>
+                <input
+                  id={secretId}
+                  type="password"
+                  value={secret}
+                  maxLength={128}
+                  autoComplete="current-password"
+                  aria-invalid={Boolean(joinError)}
+                  aria-describedby={joinError ? `${secretHintId} ${secretErrorId}` : secretHintId}
+                  onChange={event => setSecret(event.target.value)}
+                  className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+                />
+                <p id={secretHintId} className="mt-1.5 text-xs text-slate-500">
+                  Leave blank if the host said anyone with the link can join.
+                </p>
+                {joinError ? (
+                  <p id={secretErrorId} className="mt-1.5 text-xs text-rose-300">
+                    {joinError}
                   </p>
                 ) : null}
               </div>

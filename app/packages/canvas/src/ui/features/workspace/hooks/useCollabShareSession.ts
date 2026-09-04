@@ -7,6 +7,11 @@ import {
   withCollabRoom,
 } from '../../../../application/navigation/collabRoomUrl';
 import { getCollabPrefillDisplayName } from '../../../../application/collab/collabDisplayName';
+import {
+  readCollabHostToken,
+  stageCollabHostShare,
+} from '../../../../application/collab/collabRoomCredentials';
+import type { CollabShareCopyOptions } from '../components/CollabShareDialog/CollabShareDialog';
 
 /** Share-dialog state shared by toolbar and startup Collaborate intent. */
 export function useCollabShareSession() {
@@ -15,6 +20,7 @@ export function useCollabShareSession() {
   const setNotification = useBlueprintStore(s => s.setNotification);
   const participants = useBlueprintStore(s => s.collabPresence.participants);
   const updateCollabDisplayName = useBlueprintStore(s => s.updateCollabDisplayName);
+  const endCollabRoom = useBlueprintStore(s => s.endCollabRoom);
   const roomFromUrl = parseCollabRoomId(search);
   const [shareOpen, setShareOpen] = useState(false);
 
@@ -46,13 +52,19 @@ export function useCollabShareSession() {
   );
 
   const handleCopyLink = useCallback(
-    (name: string) => {
+    (name: string, options: CollabShareCopyOptions) => {
       updateCollabDisplayName(name);
       const roomId = roomFromUrl ?? createCollabRoomId();
+      stageCollabHostShare(roomId, options);
       void copyShareLink(roomId);
     },
     [copyShareLink, roomFromUrl, updateCollabDisplayName]
   );
+
+  const handleEndRoom = useCallback(() => {
+    endCollabRoom();
+    setShareOpen(false);
+  }, [endCollabRoom]);
 
   return {
     shareOpen,
@@ -60,7 +72,9 @@ export function useCollabShareSession() {
     openShareDialog,
     participants,
     initialName: getCollabPrefillDisplayName(),
+    canEndRoom: Boolean(roomFromUrl && readCollabHostToken(roomFromUrl)),
     handleCopyLink,
+    handleEndRoom,
     onSaveName: updateCollabDisplayName,
     onCancelShare: () => setShareOpen(false),
   };

@@ -69,7 +69,8 @@ export const WorkspacePage: React.FC = () => {
       <CollabNameDialog
         isOpen={collabJoin.needsDisplayName}
         initialName={collabJoin.prefillName}
-        onConfirm={collabJoin.confirmDisplayName}
+        joinError={collabJoin.joinError}
+        onConfirm={collabJoin.confirmJoin}
         onCancel={collabJoin.cancelJoin}
       />
     </ReactFlowProvider>

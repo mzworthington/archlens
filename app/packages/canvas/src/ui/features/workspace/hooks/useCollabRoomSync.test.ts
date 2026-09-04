@@ -20,6 +20,7 @@ describe('useCollabRoomSync', () => {
     localStorage.removeItem('archlens.collab.displayName');
     useBlueprintStore.setState({
       isWorkspaceOpen: false,
+      collabJoinError: null,
       joinCollabRoom: vi.fn().mockResolvedValue(undefined),
       leaveCollabRoom: vi.fn(),
     });
@@ -50,17 +51,40 @@ describe('useCollabRoomSync', () => {
     expect(useBlueprintStore.getState().joinCollabRoom).not.toHaveBeenCalled();
 
     act(() => {
-      result.current.confirmDisplayName('Ada');
+      result.current.confirmJoin('Ada', '');
     });
 
-    expect(useBlueprintStore.getState().joinCollabRoom).toHaveBeenCalledWith('abcdefgh', 'Ada');
+    expect(useBlueprintStore.getState().joinCollabRoom).toHaveBeenCalledWith(
+      'abcdefgh',
+      'Ada',
+      expect.objectContaining({})
+    );
+  });
+
+  it('sends a guest secret when joining a protected room', () => {
+    mockSearch = '?room=abcdefgh';
+    const { result } = renderHook(() => useCollabRoomSync());
+
+    act(() => {
+      result.current.confirmJoin('Ada', 'correct-secret');
+    });
+
+    expect(useBlueprintStore.getState().joinCollabRoom).toHaveBeenCalledWith(
+      'abcdefgh',
+      'Ada',
+      expect.objectContaining({ secret: 'correct-secret' })
+    );
   });
 
   it('joins a named session from the URL on a blank canvas', () => {
     setCollabDisplayName('Ada');
     mockSearch = '?room=abcdefgh';
     renderHook(() => useCollabRoomSync());
-    expect(useBlueprintStore.getState().joinCollabRoom).toHaveBeenCalledWith('abcdefgh', 'Ada');
+    expect(useBlueprintStore.getState().joinCollabRoom).toHaveBeenCalledWith(
+      'abcdefgh',
+      'Ada',
+      expect.objectContaining({})
+    );
   });
 
   it('keeps joining while the room stays in the query', () => {

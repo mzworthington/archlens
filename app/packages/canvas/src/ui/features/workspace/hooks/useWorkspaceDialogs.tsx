@@ -192,8 +192,10 @@ export function useWorkspaceDialogs(): React.ReactNode {
         isOpen={collabShare.shareOpen}
         initialName={collabShare.initialName}
         participants={collabShare.participants}
+        canEndRoom={collabShare.canEndRoom}
         onCopyLink={collabShare.handleCopyLink}
         onSaveName={collabShare.onSaveName}
+        onEndRoom={collabShare.handleEndRoom}
         onCancel={collabShare.onCancelShare}
       />
       <LazyMountOnOpen isOpen={isCompareOpen}>

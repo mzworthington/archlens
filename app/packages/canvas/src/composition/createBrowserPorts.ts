@@ -56,6 +56,10 @@ export function createBrowserPorts(): BrowserPorts {
     resilienceEnginePort: {
       runSimulation: runResilienceWasmSimulation,
     },
-    collabSessionPort: createYjsCollabSession({ transport }),
+    collabSessionPort: createYjsCollabSession({
+      transport,
+      syncWaitMs: wsUrl ? 50 : 0,
+      controlWaitMs: wsUrl ? 8_000 : 0,
+    }),
   };
 }

@@ -17,12 +17,15 @@ import {
   type CollabSessionPort,
 } from '../../core';
 import type { CollabTransport } from './collabTransport';
+import type { CollabClientControl } from '@archlens/collab/roomControl';
 import { applyCollabPatch, readCollabDocument, YJS_LOCAL_ORIGIN } from './yjsSchemaProjection';
 
 export type YjsCollabSessionOptions = {
   transport: CollabTransport;
   /** Wait for peers to hydrate an existing room before seeding. */
   syncWaitMs?: number;
+  /** How long to wait for a Worker admit/deny before treating the transport as local. */
+  controlWaitMs?: number;
 };
 
 function documentIsEmpty(doc: CollabDocument): boolean {
@@ -41,6 +44,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
   let ydoc: Y.Doc | null = null;
   let awareness: Awareness | null = null;
   let disconnect: (() => void) | null = null;
+  let sendControl: ((message: CollabClientControl) => void) | null = null;
   let activeRoom: string | null = null;
   let lastLocal = emptyCollabDocument();
   let pushing = false;
@@ -52,6 +56,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
     }
     disconnect?.();
     disconnect = null;
+    sendControl = null;
     awareness = null;
     ydoc?.destroy();
     ydoc = null;
@@ -62,7 +67,15 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
   };
 
   const port: CollabSessionPort = {
-    async join({ roomId, seedSchema, displayName, onSchema, onPresence: nextOnPresence }) {
+    async join({
+      roomId,
+      seedSchema,
+      displayName,
+      onSchema,
+      onPresence: nextOnPresence,
+      credentials,
+      onRoomControl,
+    }) {
       leave();
       const name = normalizeCollabDisplayName(displayName);
       if (!name) return;
@@ -91,8 +104,42 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       });
       emitPresence(awareness, nextOnPresence);
 
-      disconnect = options.transport.connect(roomId, ydoc, awareness);
-      await new Promise(resolve => setTimeout(resolve, syncWaitMs));
+      const liveDoc = ydoc;
+      const liveAwareness = awareness;
+      if (!liveDoc || !liveAwareness) return;
+
+      let controlSeen = false;
+      let admitted = false;
+      await new Promise<void>(resolve => {
+        let settled = false;
+        const finish = () => {
+          if (settled) return;
+          settled = true;
+          resolve();
+        };
+        const controlWaitMs = options.controlWaitMs ?? (syncWaitMs === 0 ? 0 : 8_000);
+        const timer = setTimeout(finish, controlWaitMs);
+        const session = options.transport.connect(roomId, liveDoc, liveAwareness, {
+          credentials,
+          onControl: message => {
+            controlSeen = true;
+            admitted = message.op === 'admitted';
+            onRoomControl?.(message.op);
+            clearTimeout(timer);
+            finish();
+          },
+        });
+        disconnect = session.dispose;
+        sendControl = session.sendControl;
+      });
+      if (syncWaitMs > 0) {
+        await new Promise(resolve => setTimeout(resolve, syncWaitMs));
+      }
+      if (!controlSeen) admitted = true;
+      if (!admitted) {
+        leave();
+        return;
+      }
 
       if (ydoc && documentIsEmpty(readCollabDocument(ydoc))) {
         const seed = schemaToCollabDocument(seedSchema);
@@ -129,6 +176,11 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       const name = normalizeCollabDisplayName(raw);
       if (!name) return;
       awareness?.setLocalStateField('name', name);
+    },
+
+    endRoom(hostToken) {
+      if (!hostToken || !sendControl) return;
+      sendControl({ v: 1, op: 'end', hostToken });
     },
 
     leave,

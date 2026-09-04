@@ -13,6 +13,7 @@ vi.mock('../../../../application/store/store', () => ({
       setNotification: vi.fn(),
       collabPresence: { participants: [] },
       updateCollabDisplayName: vi.fn(() => true),
+      endCollabRoom: vi.fn(),
     }),
 }));
 

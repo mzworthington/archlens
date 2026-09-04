@@ -17,7 +17,7 @@ Do **not** write an ADR in this pass. Yjs as the shared working copy is ADR-wort
 | **B (v1)** | Shared live diagram **and** shared `SystemSchema`: nodes, dependencies, `entityRef`, layout positions, merge into the working copy. DiffMenu remains the only disk write, still user-gated. | —                  |
 | **C**      | Named cursors, connected-user count, display name at share/join. Comments/threads, first-class collab-vs-disk conflict preview, multi-file workspace rooms, auth remain follow-ups.         | Explicit follow-up |
 
-Share-link rooms (room id in the URL) are the slice-B default. Sharer and guests enter a **display name** before joining; that name is shown on their cursor and counted in the connected-user badge. There is no product auth today; Access or accounts wait for a later slice C follow-up.
+Share-link rooms (room id in the URL) are the slice-B default. Sharer and guests enter a **display name** before joining; that name is shown on their cursor and counted in the connected-user badge. Rooms may be **anyone with the link** or **secret-protected** (MZW-48). There is no product sign-in; Access or accounts wait for a later follow-up.
 
 ### Feature flags (iteration)
 

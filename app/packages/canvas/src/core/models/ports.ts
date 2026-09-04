@@ -225,6 +225,16 @@ export interface CollabSessionPort {
     displayName: string;
     onSchema: (schema: import('@archlens/core').SystemSchema) => void;
     onPresence: (presence: CollabPresence) => void;
+    credentials?: {
+      hostToken?: string;
+      secret?: string;
+      claim?: {
+        access: 'open' | 'secret';
+        secret?: string;
+        expiresAtMs?: number;
+      };
+    };
+    onRoomControl?: (event: 'admitted' | 'need-secret' | 'denied' | 'ended' | 'unclaimed') => void;
   }): Promise<void>;
   /** Apply a local schema mutation. No-op when not in a room. */
   pushSchema(schema: import('@archlens/core').SystemSchema): void;
@@ -232,6 +242,8 @@ export interface CollabSessionPort {
   setCursor(position: { x: number; y: number } | null): void;
   /** Update the local display name while a room is active. */
   setDisplayName(name: string): void;
+  /** Host-only: revoke the live room. No-op when not the host. */
+  endRoom(hostToken: string | null): void;
   leave(): void;
   isActive(): boolean;
   roomId(): string | null;
@@ -242,6 +254,7 @@ export const noopCollabSession: CollabSessionPort = {
   pushSchema: () => {},
   setCursor: () => {},
   setDisplayName: () => {},
+  endRoom: () => {},
   leave: () => {},
   isActive: () => false,
   roomId: () => null,

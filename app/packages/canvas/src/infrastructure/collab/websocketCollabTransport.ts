@@ -1,6 +1,8 @@
 import * as Y from 'yjs';
 import { applyAwarenessUpdate, encodeAwarenessUpdate } from 'y-protocols/awareness';
-import type { CollabTransport } from './collabTransport';
+import type { CollabClientControl, CollabServerControl } from '@archlens/collab/roomControl';
+import { encodeControl, parseServerControl } from '@archlens/collab/roomControl';
+import type { CollabTransport, CollabTransportConnectOptions } from './collabTransport';
 import {
   COLLAB_MSG_AWARENESS,
   COLLAB_MSG_AWARENESS_QUERY,
@@ -55,6 +57,29 @@ export type WebsocketCollabTransportOptions = {
   subscribeReconnectSignals?: (onSignal: () => void) => () => void;
 };
 
+function clientHello(
+  options: CollabTransportConnectOptions | undefined,
+  hasClaimed: boolean
+): CollabClientControl {
+  const credentials = options?.credentials;
+  if (credentials?.claim && !hasClaimed) {
+    return {
+      v: 1,
+      op: 'claim',
+      access: credentials.claim.access,
+      hostToken: credentials.hostToken ?? '',
+      secret: credentials.claim.secret,
+      expiresAtMs: credentials.claim.expiresAtMs,
+    };
+  }
+  return {
+    v: 1,
+    op: 'join',
+    secret: credentials?.secret,
+    hostToken: credentials?.hostToken,
+  };
+}
+
 export function createWebsocketCollabTransport(
   baseUrl: string,
   options: WebsocketCollabTransportOptions = {}
@@ -68,7 +93,7 @@ export function createWebsocketCollabTransport(
     options.subscribeReconnectSignals ?? defaultSubscribeReconnectSignals;
 
   return {
-    connect(roomId, ydoc, awareness) {
+    connect(roomId, ydoc, awareness, connectOptions) {
       const url = `${normalized}/room/${encodeURIComponent(roomId)}`;
       const origin = {};
       let socket: WebSocket | null = null;
@@ -76,6 +101,9 @@ export function createWebsocketCollabTransport(
       let reconnectAttempt = 0;
       let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
       let intentionalClose = false;
+      let haltReconnect = false;
+      let admitted = false;
+      let hasClaimed = false;
 
       const clearReconnectTimer = () => {
         if (reconnectTimer != null) {
@@ -85,7 +113,7 @@ export function createWebsocketCollabTransport(
       };
 
       const sendOnCurrent = (kind: 0 | 1 | 2 | 3, payload: Uint8Array) => {
-        if (!socket) return;
+        if (!socket || !admitted) return;
         sendFrame(socket, kind, payload);
       };
 
@@ -106,9 +134,52 @@ export function createWebsocketCollabTransport(
       };
       awareness?.on('update', onAwarenessUpdate);
 
+      const flushOpenHandshake = (openSocket: WebSocket) => {
+        sendFrame(openSocket, COLLAB_MSG_SYNC, Y.encodeStateAsUpdate(ydoc));
+        if (awareness) {
+          sendFrame(
+            openSocket,
+            COLLAB_MSG_AWARENESS,
+            encodeAwarenessUpdate(awareness, [awareness.clientID])
+          );
+          sendFrame(openSocket, COLLAB_MSG_AWARENESS_QUERY, Uint8Array.of(0));
+        }
+      };
+
+      const handleControl = (message: CollabServerControl) => {
+        connectOptions?.onControl?.(message);
+        if (message.op === 'admitted') {
+          haltReconnect = false;
+          admitted = true;
+          hasClaimed = true;
+          if (socket && socket.readyState === WebSocket.OPEN) {
+            flushOpenHandshake(socket);
+          }
+          return;
+        }
+        if (
+          message.op === 'denied' ||
+          message.op === 'ended' ||
+          message.op === 'need-secret' ||
+          message.op === 'unclaimed'
+        ) {
+          admitted = false;
+          if (message.op === 'denied' || message.op === 'ended') {
+            haltReconnect = true;
+            clearReconnectTimer();
+          }
+        }
+      };
+
       const handleMessage = (event: MessageEvent) => {
         const data = event.data;
+        if (typeof data === 'string') {
+          const control = parseServerControl(data);
+          if (control) handleControl(control);
+          return;
+        }
         if (!(data instanceof ArrayBuffer) && !(data instanceof Uint8Array)) return;
+        if (!admitted) return;
         const frame = decodeCollabFrame(data);
         if (!frame) return;
         if (frame.kind === COLLAB_MSG_AWARENESS) {
@@ -125,20 +196,8 @@ export function createWebsocketCollabTransport(
         Y.applyUpdate(ydoc, frame.update, origin);
       };
 
-      const flushOpenHandshake = (openSocket: WebSocket) => {
-        sendFrame(openSocket, COLLAB_MSG_SYNC, Y.encodeStateAsUpdate(ydoc));
-        if (awareness) {
-          sendFrame(
-            openSocket,
-            COLLAB_MSG_AWARENESS,
-            encodeAwarenessUpdate(awareness, [awareness.clientID])
-          );
-          sendFrame(openSocket, COLLAB_MSG_AWARENESS_QUERY, Uint8Array.of(0));
-        }
-      };
-
       const scheduleReconnect = () => {
-        if (disposed || reconnectTimer != null) return;
+        if (disposed || haltReconnect || reconnectTimer != null) return;
         const delayIndex = Math.min(reconnectAttempt, reconnectDelaysMs.length - 1);
         const delay = reconnectDelaysMs[delayIndex] ?? 15_000;
         reconnectAttempt += 1;
@@ -159,6 +218,7 @@ export function createWebsocketCollabTransport(
           socket.close();
         }
         intentionalClose = false;
+        admitted = false;
 
         const next = createWebSocket(url);
         next.binaryType = 'arraybuffer';
@@ -168,16 +228,19 @@ export function createWebsocketCollabTransport(
         next.addEventListener('open', () => {
           if (disposed || socket !== next) return;
           reconnectAttempt = 0;
-          flushOpenHandshake(next);
+          if (next.readyState === WebSocket.OPEN) {
+            next.send(encodeControl(clientHello(connectOptions, hasClaimed)));
+          }
         });
         next.addEventListener('close', () => {
           if (disposed || intentionalClose || socket !== next) return;
+          admitted = false;
           scheduleReconnect();
         });
       };
 
       const onReconnectSignal = () => {
-        if (disposed) return;
+        if (disposed || haltReconnect) return;
         if (socket && socket.readyState === WebSocket.OPEN) return;
         clearReconnectTimer();
         openSocket();
@@ -186,20 +249,26 @@ export function createWebsocketCollabTransport(
 
       openSocket();
 
-      return () => {
-        disposed = true;
-        clearReconnectTimer();
-        unsubscribeSignals();
-        ydoc.off('update', onDocUpdate);
-        awareness?.off('update', onAwarenessUpdate);
-        intentionalClose = true;
-        if (
-          socket &&
-          (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING)
-        ) {
-          socket.close();
-        }
-        socket = null;
+      return {
+        dispose: () => {
+          disposed = true;
+          clearReconnectTimer();
+          unsubscribeSignals();
+          ydoc.off('update', onDocUpdate);
+          awareness?.off('update', onAwarenessUpdate);
+          intentionalClose = true;
+          if (
+            socket &&
+            (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING)
+          ) {
+            socket.close();
+          }
+          socket = null;
+        },
+        sendControl: (message: CollabClientControl) => {
+          if (!socket || socket.readyState !== WebSocket.OPEN) return;
+          socket.send(encodeControl(message));
+        },
       };
     },
   };

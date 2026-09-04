@@ -49,6 +49,7 @@ import type { LiteScanProgress } from '../../analysis/liteScanProgress';
 import { LITE_SCAN_MAX_FILES, LITE_SCAN_MAX_TOTAL_BYTES } from '../../analysis/liteScanLimits';
 import { CLI_GETTING_STARTED_PATH } from '../../../constants/cli';
 import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/collabDisplayName';
+import { readCollabHostToken } from '../../collab/collabRoomCredentials';
 import { yamlFileNameFromDiagramName } from './ioState/yamlFileNameFromDiagramName';
 import { persistBlankCanvasSessionFromSchema } from './ioState/blankCanvasSession';
 import type { BlueprintStoreSet } from '../store';
@@ -71,6 +72,8 @@ export interface IoState {
   resilienceEnginePort: ResilienceEnginePort;
   collabSessionPort: CollabSessionPort;
   collabPresence: CollabPresence;
+  /** Set when a protected room rejects the guest. */
+  collabJoinError: string | null;
   setPorts: (
     ports: Partial<{
       fileSystemPort: FileSystemPort;
@@ -98,7 +101,20 @@ export interface IoState {
   cancelBrowserLiteScan: () => void;
   saveActiveDiagram: () => Promise<boolean>;
   clearWorkspaceDrafts: () => Promise<void>;
-  joinCollabRoom: (roomId: string, displayName: string) => Promise<void>;
+  joinCollabRoom: (
+    roomId: string,
+    displayName: string,
+    credentials?: {
+      hostToken?: string;
+      secret?: string;
+      claim?: {
+        access: 'open' | 'secret';
+        secret?: string;
+        expiresAtMs?: number;
+      };
+    }
+  ) => Promise<void>;
+  endCollabRoom: () => void;
   leaveCollabRoom: () => void;
   setCollabCursor: (position: { x: number; y: number } | null) => void;
   updateCollabDisplayName: (name: string) => boolean;
@@ -118,6 +134,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
   resilienceEnginePort: noopResilienceEngine,
   collabSessionPort: noopCollabSession,
   collabPresence: EMPTY_COLLAB_PRESENCE,
+  collabJoinError: null,
   liteScanProgress: null,
   setPorts: ports => set((state: IoStateDeps) => ({ ...state, ...ports })),
 
@@ -492,24 +509,59 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
     }
   },
 
-  joinCollabRoom: async (roomId: string, displayName: string) => {
-    const { collabSessionPort, schema, applyRemoteCollabSchema, logger } = get();
+  joinCollabRoom: async (roomId, displayName, credentials) => {
+    const { collabSessionPort, schema, applyRemoteCollabSchema, logger, setNotification } = get();
     try {
+      set({ collabJoinError: null });
       await collabSessionPort.join({
         roomId,
         seedSchema: schema,
         displayName,
+        credentials,
         onSchema: applyRemoteCollabSchema,
         onPresence: presence => set({ collabPresence: presence }),
+        onRoomControl: event => {
+          if (event === 'admitted') {
+            set({ collabJoinError: null });
+            return;
+          }
+          if (event === 'need-secret') {
+            set({
+              collabJoinError: 'This room needs a secret before the diagram is shown.',
+            });
+            return;
+          }
+          if (event === 'denied') {
+            set({
+              collabJoinError: 'That secret does not match. The diagram is still hidden.',
+            });
+            return;
+          }
+          if (event === 'ended') {
+            setNotification?.({
+              type: 'info',
+              title: 'Live session ended',
+              message: 'The host closed this room. New joins will not work.',
+            });
+            get().leaveCollabRoom();
+          }
+        },
       });
     } catch (err) {
       logger.error('Failed to join collab room', err);
     }
   },
 
+  endCollabRoom: () => {
+    const { collabSessionPort } = get();
+    const roomId = collabSessionPort.roomId();
+    const hostToken = roomId ? readCollabHostToken(roomId) : null;
+    collabSessionPort.endRoom(hostToken);
+  },
+
   leaveCollabRoom: () => {
     get().collabSessionPort.leave();
-    set({ collabPresence: EMPTY_COLLAB_PRESENCE });
+    set({ collabPresence: EMPTY_COLLAB_PRESENCE, collabJoinError: null });
   },
 
   setCollabCursor: (position: { x: number; y: number } | null) => {

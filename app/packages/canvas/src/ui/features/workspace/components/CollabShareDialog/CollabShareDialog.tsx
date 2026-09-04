@@ -3,12 +3,20 @@ import { Users, X } from 'lucide-react';
 import { normalizeCollabDisplayName, type CollabParticipant } from '../../../../../core';
 import { CollabDialogPortal } from '../CollabNameDialog/CollabDialogPortal';
 
+export type CollabShareCopyOptions = {
+  access: 'open' | 'secret';
+  secret: string;
+  expiresInHours: 0 | 8 | 24;
+};
+
 interface CollabShareDialogProps {
   isOpen: boolean;
   initialName?: string;
   participants: CollabParticipant[];
-  onCopyLink: (name: string) => void;
+  canEndRoom?: boolean;
+  onCopyLink: (name: string, options: CollabShareCopyOptions) => void;
   onSaveName: (name: string) => boolean;
+  onEndRoom?: () => void;
   onCancel: () => void;
 }
 
@@ -16,21 +24,32 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
   isOpen,
   initialName = '',
   participants,
+  canEndRoom = false,
   onCopyLink,
   onSaveName,
+  onEndRoom,
   onCancel,
 }) => {
   const titleId = useId();
   const inputId = useId();
   const errorId = useId();
   const listId = useId();
+  const openAccessId = useId();
+  const secretAccessId = useId();
+  const shareSecretId = useId();
+  const expireId = useId();
   const [draft, setDraft] = useState(initialName);
   const [showError, setShowError] = useState(false);
+  const [access, setAccess] = useState<'open' | 'secret'>('open');
+  const [secret, setSecret] = useState('');
+  const [secretError, setSecretError] = useState(false);
+  const [expiresInHours, setExpiresInHours] = useState<0 | 8 | 24>(0);
 
   useEffect(() => {
     if (!isOpen) return;
     setDraft(initialName);
     setShowError(false);
+    setSecretError(false);
   }, [isOpen, initialName]);
 
   useEffect(() => {
@@ -161,7 +180,107 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
                 )}
               </section>
 
+              <fieldset className="space-y-2">
+                <legend className="text-xs font-semibold text-slate-300">Who can join</legend>
+                <label className="flex items-start gap-2 text-sm text-slate-200 cursor-pointer">
+                  <input
+                    id={openAccessId}
+                    type="radio"
+                    name="collab-room-access"
+                    checked={access === 'open'}
+                    onChange={() => setAccess('open')}
+                    className="mt-1"
+                  />
+                  <span>
+                    Anyone with the link
+                    <span className="block text-xs text-slate-500 font-normal">
+                      A forwarded URL is enough to edit.
+                    </span>
+                  </span>
+                </label>
+                <label className="flex items-start gap-2 text-sm text-slate-200 cursor-pointer">
+                  <input
+                    id={secretAccessId}
+                    type="radio"
+                    name="collab-room-access"
+                    checked={access === 'secret'}
+                    onChange={() => setAccess('secret')}
+                    className="mt-1"
+                  />
+                  <span>
+                    Require a secret
+                    <span className="block text-xs text-slate-500 font-normal">
+                      Guests type this before they see the diagram. It is not in the link.
+                    </span>
+                  </span>
+                </label>
+              </fieldset>
+
+              {access === 'secret' ? (
+                <div>
+                  <label
+                    htmlFor={shareSecretId}
+                    className="block text-xs font-semibold text-slate-300 mb-1"
+                  >
+                    Room secret
+                  </label>
+                  <input
+                    id={shareSecretId}
+                    type="password"
+                    value={secret}
+                    maxLength={128}
+                    autoComplete="new-password"
+                    aria-invalid={secretError}
+                    onChange={event => {
+                      setSecret(event.target.value);
+                      if (secretError) setSecretError(false);
+                    }}
+                    className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+                  />
+                  {secretError ? (
+                    <p className="mt-1.5 text-xs text-rose-300">
+                      Use at least 8 characters. Share it separately from the link.
+                    </p>
+                  ) : (
+                    <p className="mt-1.5 text-xs text-slate-500">
+                      At least 8 characters. Tell people this out of band.
+                    </p>
+                  )}
+                </div>
+              ) : null}
+
+              <div>
+                <label
+                  htmlFor={expireId}
+                  className="block text-xs font-semibold text-slate-300 mb-1"
+                >
+                  End automatically
+                </label>
+                <select
+                  id={expireId}
+                  value={expiresInHours}
+                  onChange={event => {
+                    const value = Number(event.target.value);
+                    setExpiresInHours(value === 8 || value === 24 ? value : 0);
+                  }}
+                  className="w-full rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-sm text-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+                >
+                  <option value={0}>Keep until I end it</option>
+                  <option value={8}>In 8 hours</option>
+                  <option value={24}>In 24 hours</option>
+                </select>
+              </div>
+
               <div className="flex justify-end gap-2 pt-1">
+                {canEndRoom && onEndRoom ? (
+                  <button
+                    type="button"
+                    onClick={onEndRoom}
+                    className="mr-auto px-3 py-2 text-xs font-semibold rounded-lg text-rose-300 hover:text-rose-200 hover:bg-slate-900 transition cursor-pointer"
+                  >
+                    End this session
+                  </button>
+                ) : null}
                 <button
                   type="button"
                   onClick={onCancel}
@@ -174,7 +293,11 @@ export const CollabShareDialog: React.FC<CollabShareDialogProps> = ({
                   onClick={() => {
                     const name = validName();
                     if (!name) return;
-                    onCopyLink(name);
+                    if (access === 'secret' && secret.trim().length < 8) {
+                      setSecretError(true);
+                      return;
+                    }
+                    onCopyLink(name, { access, secret, expiresInHours });
                   }}
                   className="px-3 py-2 text-xs font-semibold rounded-lg bg-sky-500 text-slate-950 hover:bg-sky-400 transition cursor-pointer"
                 >

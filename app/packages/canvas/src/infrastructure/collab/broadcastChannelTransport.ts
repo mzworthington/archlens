@@ -94,10 +94,13 @@ export function createBroadcastChannelTransport(): CollabTransport {
         channel.postMessage({ type: 'awareness-query' } satisfies ChannelMessage);
       }
 
-      return () => {
-        ydoc.off('update', onDocUpdate);
-        awareness?.off('update', onAwarenessUpdate);
-        channel.close();
+      return {
+        dispose: () => {
+          ydoc.off('update', onDocUpdate);
+          awareness?.off('update', onAwarenessUpdate);
+          channel.close();
+        },
+        sendControl: () => {},
       };
     },
   };

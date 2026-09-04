@@ -8,13 +8,20 @@ import {
   encodeCollabFrame,
   isPersistedCollabFrame,
 } from './frames';
+import { handleRoomControl } from './handleRoomControl';
 import { collabHealthResponse, isCollabHealthPath } from './health';
+import { encodeControl, parseClientControl } from './roomControl';
+import { parseStoredPolicy, type RoomPolicy } from './roomPolicy';
 import { resolveCollabRoomPath } from './roomRoute';
 
 export interface Env {
   COLLAB_ROOMS: DurableObjectNamespace;
   GIT_SHA?: string;
 }
+
+type SocketGate = { admitted: boolean };
+
+const POLICY_KEY = 'policy';
 
 export class CollabRoom {
   private doc: Y.Doc | null = null;
@@ -40,6 +47,39 @@ export class CollabRoom {
     await this.ctx.storage.put('ydoc', update.slice().buffer);
   }
 
+  private async loadPolicy(): Promise<RoomPolicy | null> {
+    return parseStoredPolicy(await this.ctx.storage.get(POLICY_KEY));
+  }
+
+  private gate(ws: WebSocket): SocketGate {
+    const stored = ws.deserializeAttachment() as SocketGate | null | undefined;
+    return stored ?? { admitted: false };
+  }
+
+  private setGate(ws: WebSocket, gate: SocketGate): void {
+    ws.serializeAttachment(gate);
+  }
+
+  private async sendSnapshot(ws: WebSocket): Promise<void> {
+    const doc = await this.loadDoc();
+    const state = Y.encodeStateAsUpdate(doc);
+    if (state.byteLength > 0) {
+      ws.send(encodeCollabFrame(COLLAB_MSG_SYNC, state));
+    }
+  }
+
+  private async closeAll(reason: 'ended'): Promise<void> {
+    const payload = encodeControl({ v: 1, op: reason });
+    for (const peer of this.ctx.getWebSockets()) {
+      try {
+        peer.send(payload);
+        peer.close(1000, reason);
+      } catch {
+        // Peer already gone.
+      }
+    }
+  }
+
   async fetch(request: Request): Promise<Response> {
     if (request.headers.get('Upgrade') !== 'websocket') {
       return new Response('Expected WebSocket', { status: 426 });
@@ -48,25 +88,43 @@ export class CollabRoom {
     const client = pair[0];
     const server = pair[1];
     this.ctx.acceptWebSocket(server);
-
-    const doc = await this.loadDoc();
-    const state = Y.encodeStateAsUpdate(doc);
-    if (state.byteLength > 0) {
-      server.send(encodeCollabFrame(COLLAB_MSG_SYNC, state));
-    }
-
+    this.setGate(server, { admitted: false });
     return new Response(null, { status: 101, webSocket: client });
   }
 
   async webSocketMessage(ws: WebSocket, message: ArrayBuffer | string): Promise<void> {
-    if (typeof message === 'string') return;
+    if (typeof message === 'string') {
+      const control = parseClientControl(message);
+      if (!control) {
+        ws.send(encodeControl({ v: 1, op: 'denied' }));
+        return;
+      }
+      const current = await this.loadPolicy();
+      const outcome = await handleRoomControl(current, control, Date.now());
+      if (outcome.policy) {
+        await this.ctx.storage.put(POLICY_KEY, outcome.policy);
+      }
+      ws.send(encodeControl(outcome.reply));
+      if (outcome.broadcastEnded) {
+        await this.closeAll('ended');
+        return;
+      }
+      if (outcome.admit) {
+        this.setGate(ws, { admitted: true });
+        await this.sendSnapshot(ws);
+      }
+      return;
+    }
+
+    if (!this.gate(ws).admitted) return;
+
     const frame = decodeCollabFrame(message);
     if (!frame) return;
 
     if (frame.kind === COLLAB_MSG_AWARENESS || frame.kind === COLLAB_MSG_AWARENESS_QUERY) {
       const outbound = encodeCollabFrame(frame.kind, frame.update);
       for (const peer of this.ctx.getWebSockets()) {
-        if (peer !== ws) peer.send(outbound);
+        if (peer !== ws && this.gate(peer).admitted) peer.send(outbound);
       }
       return;
     }
@@ -78,7 +136,7 @@ export class CollabRoom {
     await this.persist(doc);
     const outbound = encodeCollabFrame(COLLAB_MSG_UPDATE, frame.update);
     for (const peer of this.ctx.getWebSockets()) {
-      if (peer !== ws) peer.send(outbound);
+      if (peer !== ws && this.gate(peer).admitted) peer.send(outbound);
     }
   }
 }

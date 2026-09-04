@@ -61,11 +61,14 @@ function createLinkedTransports(): [CollabTransport, CollabTransport] {
         }
       }
 
-      return () => {
-        ydoc.off('update', onUpdate);
-        awareness?.off('update', onAwarenessUpdate);
-        docs[slot] = null;
-        awarenesses[slot] = null;
+      return {
+        dispose: () => {
+          ydoc.off('update', onUpdate);
+          awareness?.off('update', onAwarenessUpdate);
+          docs[slot] = null;
+          awarenesses[slot] = null;
+        },
+        sendControl: () => {},
       };
     };
 

@@ -21,6 +21,7 @@ class FakeWebSocket {
   readyState = FakeWebSocket.CONNECTING;
   binaryType = 'arraybuffer';
   readonly sent: ArrayBuffer[] = [];
+  readonly sentText: string[] = [];
   private readonly listeners = new Map<string, Set<(event: { data?: unknown }) => void>>();
 
   constructor(readonly url: string) {
@@ -39,7 +40,11 @@ class FakeWebSocket {
     this.listeners.set(type, set);
   }
 
-  send(data: ArrayBuffer): void {
+  send(data: ArrayBuffer | string): void {
+    if (typeof data === 'string') {
+      this.sentText.push(data);
+      return;
+    }
     this.sent.push(data);
   }
 
@@ -58,6 +63,10 @@ class FakeWebSocket {
     this.emit('message', { data: collabFrameToArrayBuffer(frame) });
   }
 
+  receiveText(text: string): void {
+    this.emit('message', { data: text });
+  }
+
   private emit(type: string, event: { data?: unknown } = {}): void {
     for (const listener of this.listeners.get(type) ?? []) {
       listener(event);
@@ -67,6 +76,10 @@ class FakeWebSocket {
 
 function sentKinds(socket: FakeWebSocket): number[] {
   return socket.sent.map(buf => decodeCollabFrame(buf)?.kind).filter((k): k is number => k != null);
+}
+
+function admitOpen(socket: FakeWebSocket): void {
+  socket.receiveText(JSON.stringify({ v: 1, op: 'admitted', access: 'open' }));
 }
 
 describe('collab websocket frames', () => {
@@ -102,10 +115,13 @@ describe('createWebsocketCollabTransport reconnect', () => {
     const awareness = new Awareness(ydoc);
     awareness.setLocalState({ name: 'Ada', color: '#fff', cursor: null });
 
-    const dispose = transport.connect('room-abcd', ydoc, awareness);
+    const session = transport.connect('room-abcd', ydoc, awareness);
     expect(FakeWebSocket.instances).toHaveLength(1);
     const first = FakeWebSocket.instances[0]!;
     first.open();
+    expect(first.sentText).toHaveLength(1);
+    expect(JSON.parse(first.sentText[0]!)).toEqual({ v: 1, op: 'join' });
+    admitOpen(first);
     expect(sentKinds(first)).toEqual([
       COLLAB_MSG_SYNC,
       COLLAB_MSG_AWARENESS,
@@ -119,13 +135,14 @@ describe('createWebsocketCollabTransport reconnect', () => {
     const second = FakeWebSocket.instances[1]!;
     expect(second.url).toBe('wss://collab.test/room/room-abcd');
     second.open();
+    admitOpen(second);
     expect(sentKinds(second)).toEqual([
       COLLAB_MSG_SYNC,
       COLLAB_MSG_AWARENESS,
       COLLAB_MSG_AWARENESS_QUERY,
     ]);
 
-    dispose();
+    session.dispose();
   });
 
   it('forwards local doc updates on the reconnected socket', () => {
@@ -135,20 +152,22 @@ describe('createWebsocketCollabTransport reconnect', () => {
       reconnectDelaysMs: [50],
     });
     const ydoc = new Y.Doc();
-    const dispose = transport.connect('room-efgh', ydoc);
+    const session = transport.connect('room-efgh', ydoc);
 
     const first = FakeWebSocket.instances[0]!;
     first.open();
+    admitOpen(first);
     first.close();
     vi.advanceTimersByTime(50);
     const second = FakeWebSocket.instances[1]!;
     second.open();
+    admitOpen(second);
     second.sent.length = 0;
 
     ydoc.getMap('meta').set('name', 'Shop');
     expect(sentKinds(second)).toContain(COLLAB_MSG_UPDATE);
 
-    dispose();
+    session.dispose();
   });
 
   it('does not reconnect after dispose', () => {
@@ -158,10 +177,11 @@ describe('createWebsocketCollabTransport reconnect', () => {
       reconnectDelaysMs: [25],
     });
     const ydoc = new Y.Doc();
-    const dispose = transport.connect('room-ijkl', ydoc);
+    const session = transport.connect('room-ijkl', ydoc);
     const first = FakeWebSocket.instances[0]!;
     first.open();
-    dispose();
+    admitOpen(first);
+    session.dispose();
     first.close();
     vi.advanceTimersByTime(100);
     expect(FakeWebSocket.instances).toHaveLength(1);
@@ -179,16 +199,17 @@ describe('createWebsocketCollabTransport reconnect', () => {
       },
     });
     const ydoc = new Y.Doc();
-    const dispose = transport.connect('room-mnop', ydoc);
+    const session = transport.connect('room-mnop', ydoc);
     const first = FakeWebSocket.instances[0]!;
     first.open();
+    admitOpen(first);
     first.close();
 
     expect(FakeWebSocket.instances).toHaveLength(1);
     for (const listener of signalListeners) listener();
     expect(FakeWebSocket.instances).toHaveLength(2);
 
-    dispose();
+    session.dispose();
   });
 
   it('applies remote updates after reconnect using a stable origin', () => {
@@ -198,12 +219,14 @@ describe('createWebsocketCollabTransport reconnect', () => {
       reconnectDelaysMs: [10],
     });
     const ydoc = new Y.Doc();
-    const dispose = transport.connect('room-qrst', ydoc);
+    const session = transport.connect('room-qrst', ydoc);
     FakeWebSocket.instances[0]!.open();
+    admitOpen(FakeWebSocket.instances[0]!);
     FakeWebSocket.instances[0]!.close();
     vi.advanceTimersByTime(10);
     const second = FakeWebSocket.instances[1]!;
     second.open();
+    admitOpen(second);
 
     const remote = new Y.Doc();
     remote.getMap('meta').set('name', 'FromPeer');
@@ -211,6 +234,31 @@ describe('createWebsocketCollabTransport reconnect', () => {
     second.receive(encodeCollabFrame(COLLAB_MSG_SYNC, update));
 
     expect(ydoc.getMap('meta').get('name')).toBe('FromPeer');
-    dispose();
+    session.dispose();
+  });
+
+  it('does not sync the diagram or reconnect after a denied secret', () => {
+    vi.useFakeTimers();
+    const onControl = vi.fn();
+    const transport = createWebsocketCollabTransport('wss://collab.test', {
+      createWebSocket: url => new FakeWebSocket(url) as unknown as WebSocket,
+      reconnectDelaysMs: [100],
+    });
+    const ydoc = new Y.Doc();
+    const session = transport.connect('room-deny', ydoc, undefined, {
+      credentials: { secret: 'wrong-secret' },
+      onControl,
+    });
+    const first = FakeWebSocket.instances[0]!;
+    first.open();
+    first.receiveText(JSON.stringify({ v: 1, op: 'denied' }));
+    expect(onControl).toHaveBeenCalledWith({ v: 1, op: 'denied' });
+    expect(sentKinds(first)).toEqual([]);
+
+    first.close();
+    vi.advanceTimersByTime(500);
+    expect(FakeWebSocket.instances).toHaveLength(1);
+
+    session.dispose();
   });
 });
