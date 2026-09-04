@@ -110,6 +110,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
 
       let controlSeen = false;
       let admitted = false;
+      const controlWaitMs = options.controlWaitMs ?? (syncWaitMs === 0 ? 0 : 8_000);
       await new Promise<void>(resolve => {
         let settled = false;
         const finish = () => {
@@ -117,7 +118,6 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
           settled = true;
           resolve();
         };
-        const controlWaitMs = options.controlWaitMs ?? (syncWaitMs === 0 ? 0 : 8_000);
         const timer = setTimeout(finish, controlWaitMs);
         const session = options.transport.connect(roomId, liveDoc, liveAwareness, {
           credentials,
@@ -135,7 +135,7 @@ export function createYjsCollabSession(options: YjsCollabSessionOptions): Collab
       if (syncWaitMs > 0) {
         await new Promise(resolve => setTimeout(resolve, syncWaitMs));
       }
-      if (!controlSeen) admitted = true;
+      if (!controlSeen) admitted = controlWaitMs === 0;
       if (!admitted) {
         leave();
         return;

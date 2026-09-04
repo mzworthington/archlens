@@ -5,6 +5,7 @@ import {
   applyEnd,
   COLLAB_SECRET_MIN_LENGTH,
   effectiveAccess,
+  expirePolicyIfDue,
   sha256Hex,
 } from './roomPolicy';
 
@@ -94,7 +95,7 @@ describe('roomPolicy', () => {
     });
   });
 
-  it('expires a room so new joins fail', async () => {
+  it('expires a room so new joins fail and current guests must be told', async () => {
     const claimed = await applyClaim(null, {
       hostToken: 'host-token',
       access: 'open',
@@ -103,10 +104,19 @@ describe('roomPolicy', () => {
     expect(claimed.ok).toBe(true);
     if (!claimed.ok) return;
     expect(await admitClient(claimed.policy, {}, now)).toEqual({ ok: true, access: 'open' });
+    expect(expirePolicyIfDue(claimed.policy, now)).toBeNull();
     expect(await admitClient(claimed.policy, {}, now + 2_000)).toEqual({
       ok: false,
       reason: 'ended',
     });
+    expect(expirePolicyIfDue(claimed.policy, now + 2_000)).toEqual({
+      ...claimed.policy,
+      access: 'ended',
+      expiresAtMs: null,
+    });
+    expect(
+      expirePolicyIfDue({ ...claimed.policy, access: 'ended', expiresAtMs: null }, now + 2_000)
+    ).toBeNull();
   });
 
   it('does not let a second host steal an already claimed room', async () => {

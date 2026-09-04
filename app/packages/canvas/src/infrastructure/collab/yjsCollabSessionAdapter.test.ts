@@ -196,6 +196,32 @@ describe('createYjsCollabSession', () => {
     sessionB.leave();
   });
 
+  it('does not seed the diagram when the Worker never admits the socket', async () => {
+    const silent: CollabTransport = {
+      connect: () => ({
+        dispose: () => {},
+        sendControl: () => {},
+      }),
+    };
+    const received: SystemSchema[] = [];
+    const session = createYjsCollabSession({
+      transport: silent,
+      syncWaitMs: 0,
+      controlWaitMs: 5,
+    });
+
+    await session.join({
+      roomId: 'room-timeout',
+      seedSchema: seed,
+      displayName: 'Ada',
+      onSchema: schema => received.push(schema),
+      onPresence: () => {},
+    });
+
+    expect(session.isActive()).toBe(false);
+    expect(received).toEqual([]);
+  });
+
   it('does not join without a display name', async () => {
     const [transportA] = createLinkedTransports();
     const sessionA = createYjsCollabSession({ transport: transportA, syncWaitMs: 0 });

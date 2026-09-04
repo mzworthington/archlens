@@ -74,6 +74,13 @@ export function effectiveAccess(policy: RoomPolicy, nowMs: number): RoomAccess {
   return policy.access;
 }
 
+/** Persistable ended policy when the clock has passed expiry. Null if still live or already ended. */
+export function expirePolicyIfDue(policy: RoomPolicy, nowMs: number): RoomPolicy | null {
+  if (policy.access === 'ended') return null;
+  if (effectiveAccess(policy, nowMs) !== 'ended') return null;
+  return { ...policy, access: 'ended', expiresAtMs: null };
+}
+
 function normalizeSecret(secret: string | undefined): string | null {
   const trimmed = secret?.trim() ?? '';
   if (trimmed.length < COLLAB_SECRET_MIN_LENGTH) return null;

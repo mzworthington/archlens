@@ -11,7 +11,7 @@ import {
 import { handleRoomControl } from './handleRoomControl';
 import { collabHealthResponse, isCollabHealthPath } from './health';
 import { encodeControl, parseClientControl } from './roomControl';
-import { parseStoredPolicy, type RoomPolicy } from './roomPolicy';
+import { expirePolicyIfDue, parseStoredPolicy, type RoomPolicy } from './roomPolicy';
 import { resolveCollabRoomPath } from './roomRoute';
 
 export interface Env {
@@ -80,6 +80,29 @@ export class CollabRoom {
     }
   }
 
+  private async syncAlarm(policy: RoomPolicy | null): Promise<void> {
+    if (policy?.expiresAtMs != null && policy.access !== 'ended') {
+      await this.ctx.storage.setAlarm(policy.expiresAtMs);
+      return;
+    }
+    await this.ctx.storage.deleteAlarm();
+  }
+
+  private async endIfExpired(nowMs = Date.now()): Promise<boolean> {
+    const current = await this.loadPolicy();
+    if (!current) return false;
+    const expired = expirePolicyIfDue(current, nowMs);
+    if (!expired) return false;
+    await this.ctx.storage.put(POLICY_KEY, expired);
+    await this.syncAlarm(expired);
+    await this.closeAll('ended');
+    return true;
+  }
+
+  async alarm(): Promise<void> {
+    await this.endIfExpired();
+  }
+
   async fetch(request: Request): Promise<Response> {
     if (request.headers.get('Upgrade') !== 'websocket') {
       return new Response('Expected WebSocket', { status: 426 });
@@ -99,10 +122,12 @@ export class CollabRoom {
         ws.send(encodeControl({ v: 1, op: 'denied' }));
         return;
       }
+      if (await this.endIfExpired()) return;
       const current = await this.loadPolicy();
       const outcome = await handleRoomControl(current, control, Date.now());
       if (outcome.policy) {
         await this.ctx.storage.put(POLICY_KEY, outcome.policy);
+        await this.syncAlarm(outcome.policy);
       }
       ws.send(encodeControl(outcome.reply));
       if (outcome.broadcastEnded) {
@@ -116,6 +141,7 @@ export class CollabRoom {
       return;
     }
 
+    if (await this.endIfExpired()) return;
     if (!this.gate(ws).admitted) return;
 
     const frame = decodeCollabFrame(message);
