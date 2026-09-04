@@ -1,5 +1,14 @@
 import { describe, expect, it, vi } from 'vitest';
-import { initBrowserPostHog } from './initBrowserPostHog';
+import type { CaptureResult } from 'posthog-js';
+import { dropBenignBrowserExceptions, initBrowserPostHog } from './initBrowserPostHog';
+
+function exceptionEvent(value: string): CaptureResult {
+  return {
+    uuid: 'test-uuid',
+    event: '$exception',
+    properties: { $exception_list: [{ value, mechanism: { synthetic: true, handled: false } }] },
+  };
+}
 
 describe('initBrowserPostHog', () => {
   it('does not call the client when analytics is disabled', () => {
@@ -30,7 +39,29 @@ describe('initBrowserPostHog', () => {
       capture_pageview: 'history_change',
       cookieless_mode: 'always',
       person_profiles: 'never',
+      before_send: dropBenignBrowserExceptions,
     });
     expect(startExceptionAutocapture).toHaveBeenCalledOnce();
+  });
+});
+
+describe('dropBenignBrowserExceptions', () => {
+  it('drops the ResizeObserver loop notification', () => {
+    const event = exceptionEvent('ResizeObserver loop completed with undelivered notifications');
+    expect(dropBenignBrowserExceptions(event)).toBeNull();
+  });
+
+  it('keeps a real application exception', () => {
+    const event = exceptionEvent('Cannot read properties of undefined');
+    expect(dropBenignBrowserExceptions(event)).toBe(event);
+  });
+
+  it('keeps non-exception events', () => {
+    const event: CaptureResult = { uuid: 'test-uuid', event: '$pageview', properties: {} };
+    expect(dropBenignBrowserExceptions(event)).toBe(event);
+  });
+
+  it('passes a null event through', () => {
+    expect(dropBenignBrowserExceptions(null)).toBeNull();
   });
 });
