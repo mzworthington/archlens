@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { RefreshCw } from 'lucide-react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { hasRemoteBuildUpdate } from '../../../application/pwa/buildInfo';
+import { requestServiceWorkerUpdate } from '../../../application/pwa/requestServiceWorkerUpdate';
 import { startPeriodicUpdateChecks } from '../../../application/pwa/updateCheck';
 
 /**
@@ -16,7 +17,7 @@ export function UpdateBanner() {
     immediate: true,
     onRegisteredSW(_url, registration) {
       registrationRef.current = registration;
-      void registration?.update();
+      void requestServiceWorkerUpdate(registration);
     },
   });
 
@@ -31,7 +32,7 @@ export function UpdateBanner() {
   useEffect(() => {
     return startPeriodicUpdateChecks({
       check: () => {
-        void registrationRef.current?.update();
+        void requestServiceWorkerUpdate(registrationRef.current);
         void checkForRemoteUpdate();
       },
       isVisible: () => document.visibilityState === 'visible',
