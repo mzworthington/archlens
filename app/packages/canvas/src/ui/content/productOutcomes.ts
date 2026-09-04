@@ -1,8 +1,8 @@
 /** Shared outcome copy. Write for architects, CTOs and engineering directors. */
 
 export const PRODUCT_HERO = {
-  headline: 'A C4 map you can fault in a design review',
-  documentTitle: 'ArchLens - C4 maps you can fault in review',
+  headline: 'Catch architecture risk before it becomes an outage',
+  documentTitle: 'ArchLens - Catch architecture risk before it becomes an outage',
   lede: 'The CLI writes BlueprintSpec YAML from the repo. Canvas is the workspace over that contract. Overlay git hotspots, simulate a dependency dying, then walk out of the review with a ranked list instead of another parking lot of actions.',
   trustLine:
     'Open source. No account. Drafts stay in the browser or the folder you open. Nothing is uploaded to ArchLens servers unless you publish a catalog from CI.',

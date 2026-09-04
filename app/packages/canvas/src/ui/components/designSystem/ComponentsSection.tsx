@@ -114,7 +114,9 @@ export const ComponentsSection: React.FC = () => (
           <h4 className="mt-4 text-base font-semibold text-white group-hover:text-[#00f0ff] transition-colors">
             ChaosLens
           </h4>
-          <p className="mt-1 text-xs font-medium text-slate-300">What-if failures on the live diagram</p>
+          <p className="mt-1 text-xs font-medium text-slate-300">
+            What-if failures on the live diagram
+          </p>
           <p className="mt-2 text-sm text-slate-400 leading-relaxed">
             Fault a service on the map you have open. Blast radius and SLA bands, without a game day
             in production.
