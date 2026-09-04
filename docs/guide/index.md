@@ -1,20 +1,20 @@
 # Product guide
 
-ArchLens helps teams **catch architecture risk before it becomes an outage** - model failures on living diagrams, surface code hotspots, and get a ranked fix list while design is still cheap to change.
+ArchLens is a C4 studio over **BlueprintSpec** YAML. Scan a repo, overlay git hotspots, simulate failures on the same diagram and leave review with a ranked list.
 
-Use this guide if you want to understand the product, not just the internals.
+Use this guide for the product, not the internals.
 
 ## What you get
 
 | Product             | Role                                                                                                               |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **ArchLens Canvas** | C4 canvas (PWA): local folder authoring, Mermaid import, YAML/JSON sync, and read-only published catalogs          |
+| **ArchLens Canvas** | C4 canvas (PWA): local folder authoring, Mermaid import, YAML/JSON sync and read-only published catalogs           |
 | **ArchLens CLI**    | Static analysis that writes `blueprints/*.yaml` and can publish corpora to object storage for a shared estate view |
 | **TraceLens**       | Optional (on by default) git + complexity signals attached onto nodes as `forensics`                               |
-| **ChaosLens**       | Fault injection, blast-radius heatmap, and SLA telemetry on the live diagram                                       |
-| **AdviceLens**      | Ranked, evidence-backed recommendations merging TraceLens + ChaosLens (studio, CLI, CI)                            |
-| **BlueprintSpec**   | Declarative architecture contract - public schema URLs, `entityRef` identity, validation rules                     |
-| **ChaosSpec**       | Declarative failure scenarios - public schema URLs, `diagramRef` binding, faults without duplicating topology      |
+| **ChaosLens**       | Fault injection, blast-radius heatmap and SLA telemetry on the live diagram                                        |
+| **AdviceLens**      | Ranked recommendations from TraceLens + ChaosLens (studio, CLI, CI)                                                |
+| **BlueprintSpec**   | YAML architecture contract: public schema URLs, `entityRef` identity, validation rules                             |
+| **ChaosSpec**       | Failure scenarios: public schema URLs, `diagramRef` binding, faults without duplicating topology                   |
 
 ## Typical flow
 

@@ -1,37 +1,38 @@
-/** Shared outcome copy - lead with why teams care, not feature lists. */
+/** Shared outcome copy. Write for architects, CTOs and engineering directors. */
 
 export const PRODUCT_HERO = {
-  headline: 'Catch architecture risk before it becomes an outage',
-  lede: 'Model failures on your diagram, surface code hotspots, and get a ranked fix list - while design is still cheap to change.',
+  headline: 'A C4 map you can fault in a design review',
+  documentTitle: 'ArchLens - C4 maps you can fault in review',
+  lede: 'The CLI writes BlueprintSpec YAML from the repo. Canvas is the workspace over that contract. Overlay git hotspots, simulate a dependency dying, then leave review with a ranked list instead of another parking lot of actions.',
   trustLine:
-    'Free and open source. Author locally in your browser or folders you open - no account, no uploads to ArchLens servers. Publish BlueprintSpec from CI when the team needs a shared, living estate view.',
+    'Open source. No account. Drafts stay in the browser or the folder you open. Nothing is uploaded to ArchLens servers unless you publish a catalog from CI.',
 } as const;
 
 export const WHY_IT_MATTERS = [
   {
-    title: 'Simulate without touching production',
-    body: 'ChaosLens faults your BlueprintSpec in the browser - see blast radius and SLA impact in seconds, with no game-day breakage.',
+    title: 'Game day on the diagram',
+    body: 'ChaosLens faults a service on the BlueprintSpec you already have open. Blast radius and SLA bands in the browser. Production stays untouched.',
   },
   {
-    title: 'See fragile code on the diagram',
-    body: 'TraceLens attaches git churn, complexity, and schema dependencies to the nodes you already maintain - hotspots and connection risk visible where architects actually work.',
+    title: 'Hotspots on the same nodes',
+    body: 'TraceLens attaches churn, complexity and coupling to the C4 nodes you maintain. Fragile files sit on the map, not in a separate dashboard.',
   },
   {
-    title: 'Know what to fix first',
-    body: 'AdviceLens merges simulation and forensics into one ranked, evidence-backed action list for review, RFCs, and CI.',
+    title: 'A ranked list for the RFC',
+    body: 'AdviceLens merges those signals and orders the work. Scores come from simulation and forensics, not a chatbot paragraph.',
   },
 ] as const;
 
 export const WORKSPACE_STARTUP = {
   title: 'What do you want to do?',
-  lede: 'Pick an intent - Investigate, Collaborate, or Ideate. You can switch later from Open. New here? Try the demo first.',
+  lede: 'Pick an intent: Investigate, Collaborate or Ideate. You can switch later from Open. New here? Try the demo first.',
 } as const;
 
 export const TRACE_LENS_HERO = {
   pageTitle: 'Forensics',
   offenders: {
     sectionTitle: 'Worst offenders',
-    body: 'Estate-wide ranking by git metrics, temporal coupling, and blueprint dependency hotspots on every loaded diagram. Find nodes that amplify outage risk before you refactor.',
+    body: 'Estate-wide ranking by git metrics, temporal coupling and blueprint dependency hotspots on every loaded diagram. Find nodes that amplify outage risk before you refactor.',
   },
   recommendations: {
     body: 'Headless ChaosLens scenarios across every loaded diagram, merged with TraceLens git and connection signals. Click a row for evidence and the next action.',

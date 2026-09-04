@@ -31,27 +31,27 @@ const WHY_ICONS: LucideIcon[] = [ShieldAlert, GitBranch, Lightbulb];
 const FLOW = [
   {
     step: '1',
-    title: 'Generate from code',
-    body: 'ArchLens scans your repo and writes validated BlueprintSpec YAML.',
+    title: 'Scan the repo',
+    body: 'ArchLens CLI writes validated BlueprintSpec YAML: systems, containers and the edges between them.',
   },
   {
     step: '2',
-    title: 'Author locally or publish the estate',
-    body: 'Refine diagrams in Canvas with local folders (drafts stay on-device), or publish from CI to object storage for a shared read-only catalog.',
+    title: 'Author locally, or publish the estate',
+    body: 'Open the folder in Canvas (drafts stay on-device), or publish from CI to object storage for a shared read-only catalog.',
   },
   {
     step: '3',
-    title: 'Validate before you ship',
-    body: 'TraceLens, ChaosLens, and AdviceLens surface risk, resilience gaps, and ranked fixes while architecture is still cheap to change.',
+    title: 'Fault it in review',
+    body: 'TraceLens and ChaosLens run on that same YAML. AdviceLens ranks the change before you spend the redesign budget.',
   },
 ] as const;
 
 const PRODUCTS: Product[] = [
   {
     title: 'ArchLens Canvas',
-    tagline: 'Visual architecture studio',
+    tagline: 'C4 workspace over BlueprintSpec',
     details:
-      'C4 workspace with bi-directional YAML sync - author in a local folder, or open a pipeline-published catalog.',
+      'Author in a local folder with YAML that stays in sync, or open a catalog your pipeline published.',
     href: '/guide/canvas',
     category: 'Platform',
     icon: Layers,
@@ -59,9 +59,9 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'ArchLens CLI',
-    tagline: 'Code to architecture',
+    tagline: 'Repo to BlueprintSpec',
     details:
-      'Static analysis that discovers systems, containers, and dependencies - keeping blueprints aligned with production.',
+      'Static analysis writes systems, containers and dependencies as YAML your CI can validate.',
     href: '/guide/cli',
     category: 'Platform',
     icon: Terminal,
@@ -69,9 +69,9 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'TraceLens',
-    tagline: 'Operational intelligence',
+    tagline: 'Git and complexity on the nodes',
     details:
-      'Git churn, complexity, and coupling on every node - highlight hotspots and refactoring boundaries early.',
+      'Churn, complexity and coupling on the C4 nodes you already maintain. Hotspots sit on the map.',
     href: '/guide/tracelens',
     category: 'Intelligence',
     role: 'Observes',
@@ -79,18 +79,18 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'ChaosLens',
-    tagline: 'Resilience simulation',
+    tagline: 'What-if failures on the live diagram',
     details:
-      'Model faults on the live diagram, see blast radius and SLA impact, and catch single points of failure in review.',
+      'Fault a service on the map you have open. Blast radius and SLA bands, without a game day in production.',
     href: '/guide/chaoslens',
     category: 'Resilience',
     icon: ShieldAlert,
   },
   {
     title: 'AdviceLens',
-    tagline: 'Ranked architectural advice',
+    tagline: 'What to fix first',
     details:
-      'Merge TraceLens and ChaosLens signals into evidence-backed recommendations - studio, CLI, and CI.',
+      'Same ranked list in the studio, the CLI and CI. Priority comes from simulation and forensics, not an LLM.',
     href: '/guide/advicelens',
     category: 'Intelligence',
     role: 'Prescribes',
@@ -98,9 +98,9 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'BlueprintSpec',
-    tagline: 'Shared architecture contract',
+    tagline: 'The YAML contract',
     details:
-      'Declarative YAML schema and entity references your CLI, canvas, and CI pipelines can validate against.',
+      'Schema and entity references the CLI, Canvas and CI all validate against. One format, not a slide export.',
     href: '/guide/schema',
     category: 'Contract',
     icon: FileCode2,
@@ -108,9 +108,9 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'ChaosSpec',
-    tagline: 'Shared failure-scenario contract',
+    tagline: 'Failure scenarios against that contract',
     details:
-      'Declarative YAML scenarios that bind faults to a BlueprintSpec diagram - Canvas, CLI, and CI validate against the same schema.',
+      'YAML that binds faults to a BlueprintSpec diagram. Canvas, CLI and CI validate the same schema.',
     href: '/guide/chaos-spec',
     category: 'Contract',
     icon: FileCode2,
@@ -135,6 +135,10 @@ function productBadge(product: Product): { label: string; className: string } {
     return { label: product.role, className: ROLE_STYLES[product.role] };
   }
   return { label: product.category, className: CATEGORY_STYLES[product.category] };
+}
+
+function productGuideCta(product: Product): string {
+  return `${product.title.replace(/^ArchLens /, '')} guide`;
 }
 
 function ProductCard({ product }: { product: Product }) {
@@ -166,7 +170,7 @@ function ProductCard({ product }: { product: Product }) {
           <p className="mt-1 text-sm text-slate-400 leading-relaxed">{product.details}</p>
         </div>
         <span className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-emerald-300 group-hover:gap-2 transition-all sm:self-center">
-          Learn more
+          {productGuideCta(product)}
           <ArrowRight className="h-3.5 w-3.5" aria-hidden />
         </span>
       </Link>
@@ -197,7 +201,7 @@ function ProductCard({ product }: { product: Product }) {
       <p className="mt-1 text-xs font-medium text-slate-300">{product.tagline}</p>
       <p className="mt-2 text-sm text-slate-400 leading-relaxed flex-1">{product.details}</p>
       <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-[#00f0ff] group-hover:gap-2 transition-all">
-        Learn more
+        {productGuideCta(product)}
         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
       </span>
     </Link>
@@ -206,7 +210,7 @@ function ProductCard({ product }: { product: Product }) {
 
 export const DocsHome: React.FC = () => {
   const featured = PRODUCTS.filter(p => p.featured);
-  const foundational = PRODUCTS.find(p => p.foundational);
+  const foundational = PRODUCTS.filter(p => p.foundational);
   const suite = PRODUCTS.filter(p => !p.featured && !p.foundational);
 
   return (
@@ -221,10 +225,10 @@ export const DocsHome: React.FC = () => {
                   ArchLens
                 </p>
                 <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-emerald-300">
-                  Free & open source
+                  Open source
                 </span>
                 <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider text-sky-300">
-                  Local + published
+                  Local first
                 </span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.1]">
@@ -248,13 +252,13 @@ export const DocsHome: React.FC = () => {
                   href="/journeys"
                   className="inline-flex items-center justify-center rounded-xl border border-[#00f0ff]/40 px-5 py-3 text-sm font-semibold text-[#00f0ff] hover:text-white hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] transition-colors"
                 >
-                  5-minute journey
+                  5-minute walkthrough
                 </Link>
                 <Link
                   href="/guide/getting-started"
                   className="inline-flex items-center justify-center rounded-xl border border-white/10 px-5 py-3 text-sm font-semibold text-slate-200 hover:bg-white/5 transition-colors"
                 >
-                  Install & get started
+                  Install the CLI
                 </Link>
               </div>
               <p className="mt-4 text-sm text-slate-500">
@@ -283,7 +287,7 @@ export const DocsHome: React.FC = () => {
             id="why-it-matters-heading"
             className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-5"
           >
-            Why it matters
+            In a design review
           </h2>
           <ul className="grid gap-4 sm:grid-cols-3">
             {WHY_IT_MATTERS.map((item, index) => {
@@ -309,7 +313,7 @@ export const DocsHome: React.FC = () => {
             id="how-it-works-heading"
             className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-5"
           >
-            How teams use ArchLens
+            From repo to ranked list
           </h2>
           <ol className="grid gap-4 sm:grid-cols-3">
             {FLOW.map(item => (
@@ -334,10 +338,10 @@ export const DocsHome: React.FC = () => {
                 id="products-heading"
                 className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500"
               >
-                Product suite
+                The tools
               </h2>
               <p className="mt-1 text-sm text-slate-400">
-                Platform, intelligence, resilience, and contract - composed around BlueprintSpec.
+                Canvas and CLI sit on BlueprintSpec. The lenses read the same YAML.
               </p>
             </div>
             <Link
@@ -359,9 +363,11 @@ export const DocsHome: React.FC = () => {
               <ProductCard key={product.title} product={product} />
             ))}
           </div>
-          {foundational && (
-            <div className="mt-4">
-              <ProductCard product={foundational} />
+          {foundational.length > 0 && (
+            <div className="mt-4 grid gap-4">
+              {foundational.map(product => (
+                <ProductCard key={product.title} product={product} />
+              ))}
             </div>
           )}
         </section>
@@ -372,10 +378,9 @@ export const DocsHome: React.FC = () => {
               <ScanSearch className="h-5 w-5" aria-hidden />
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-white">Try it in five minutes</h2>
+              <h2 className="text-lg font-semibold text-white">Open the sandbox</h2>
               <p className="mt-1 text-sm text-slate-400 max-w-md">
-                Load the sandbox, fault a service, and read ranked AdviceLens output - no sign-up,
-                no production risk.
+                Load the demo, fault a service, read the AdviceLens ranking. No sign-up.
               </p>
             </div>
           </div>
@@ -390,7 +395,7 @@ export const DocsHome: React.FC = () => {
               href="/guide/getting-started"
               className="inline-flex items-center justify-center rounded-xl border border-white/10 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:bg-white/5 transition-colors"
             >
-              Getting started
+              Install the CLI
             </Link>
           </div>
         </section>

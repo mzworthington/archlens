@@ -16,8 +16,8 @@ ArchLens is built on a custom design language for architecture diagrams and prod
 ## Design tokens
 
 - **Brand colors:** Cyan primary, blueprint navy, slate surfaces, grid borders.
-- **Product category accents:** Platform (sky), Intelligence (violet), Resilience (amber), Contract (emerald) - used on the homepage and docs.
-- **Typography:** Sans for headings and body; mono for labels, entity refs, and section eyebrows.
+- **Product category accents:** Platform (sky), Intelligence (violet), Resilience (amber), Contract (emerald). Used on the homepage and docs.
+- **Typography:** Sans for headings and body. Mono for labels, entity refs and section eyebrows.
 
 ---
 
@@ -26,7 +26,7 @@ ArchLens is built on a custom design language for architecture diagrams and prod
 Documented under **UI Components** in the showcase:
 
 - **CTAs:** Solid primary, outline secondary, subtle tertiary; canvas toolbars keep the glow variant.
-- **Product cards:** Full-card links with icon, category badge, tagline, and short business copy.
+- **Product cards:** Full-card links with icon, category badge, tagline and short body copy.
 - **Flow steps:** Numbered cards for onboarding narratives.
 - **CTA strip:** Gradient banner with icon + dual actions.
 

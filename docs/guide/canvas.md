@@ -1,6 +1,6 @@
 # ArchLens Canvas
 
-ArchLens Canvas is a C4 workspace over **BlueprintSpec**: author in a local folder, or browse a pipeline-published catalog. Diagrams are views over a strict schema - edit either side and the other stays in sync.
+ArchLens Canvas is a C4 workspace over **BlueprintSpec**: author in a local folder, or browse a catalog your pipeline published. Diagrams are views over a strict schema. Edit either side and the other stays in sync.
 
 ![Canvas panels, zoom, and navigation](../screenshots/canvas-tour.gif)
 

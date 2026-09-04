@@ -29,71 +29,71 @@ type SeoOverride = {
 const PAGE_SEO: Record<string, SeoOverride> = {
   '/': {
     headline: SITE_NAME,
-    title: `${SITE_NAME} - Catch architecture risk before it becomes an outage`,
-    description: `${PRODUCT_HERO.lede} Free open-source BlueprintSpec architecture studio with Canvas, TraceLens, ChaosLens, and AdviceLens.`,
+    title: PRODUCT_HERO.documentTitle,
+    description: `${PRODUCT_HERO.lede} Open-source BlueprintSpec studio: Canvas, TraceLens, ChaosLens and AdviceLens.`,
     softwareName: SITE_NAME,
   },
   '/journeys': {
     headline: 'Interface tour & journeys',
     description:
-      'Interactive ArchLens product tour: golden-journey demos for Canvas, TraceLens, ChaosLens, and AdviceLens architecture workflows.',
+      'Interactive ArchLens product tour: golden-journey demos for Canvas, TraceLens, ChaosLens and AdviceLens.',
   },
   '/design-system': {
     headline: 'Design system',
     description:
-      'ArchLens design system tokens, components, and patterns used across the Canvas product suite.',
+      'ArchLens design tokens, components and patterns shared by the homepage, docs and Canvas.',
     indexable: false,
   },
   '/guide': {
     headline: 'Product guide',
     description:
-      'ArchLens product guide: BlueprintSpec architecture modeling with Canvas, ArchLens CLI, TraceLens, ChaosLens, and AdviceLens.',
+      'ArchLens product guide: BlueprintSpec YAML, Canvas, the CLI, TraceLens, ChaosLens and AdviceLens.',
   },
   '/guide/getting-started': {
     headline: 'Getting started with ArchLens',
     description:
-      'Install ArchLens CLI, generate BlueprintSpec YAML from your repo, and open diagrams in ArchLens Canvas in minutes.',
+      'Install ArchLens CLI, generate BlueprintSpec YAML from your repo and open the diagrams in Canvas.',
   },
   '/guide/canvas': {
     headline: 'ArchLens Canvas',
     title: 'ArchLens Canvas - Interactive C4 architecture diagrams | ArchLens',
     description:
-      'ArchLens Canvas is a C4 architecture workspace over BlueprintSpec YAML - bi-directional diagram sync, local folders, and published estate catalogs.',
+      'ArchLens Canvas is a C4 workspace over BlueprintSpec YAML: local folders, diagram/YAML sync and catalogs published from CI.',
     softwareName: 'ArchLens Canvas',
   },
   '/guide/cli': {
     headline: 'ArchLens CLI',
     title: 'ArchLens CLI - Codebase to BlueprintSpec architecture maps | ArchLens',
     description:
-      'ArchLens CLI scans source code, discovers systems and dependencies, and writes validated multi-level BlueprintSpec YAML architecture maps.',
+      'ArchLens CLI scans source, discovers systems and dependencies and writes validated multi-level BlueprintSpec YAML.',
     softwareName: 'ArchLens CLI',
   },
   '/guide/tracelens': {
     headline: 'TraceLens',
     title: 'TraceLens - Code hotspot forensics on architecture diagrams | ArchLens',
     description:
-      'TraceLens overlays git churn, complexity, temporal coupling, and blueprint dependency risk on ArchLens architecture diagrams.',
+      'TraceLens overlays git churn, complexity, temporal coupling and blueprint dependency risk on ArchLens diagrams.',
     softwareName: 'TraceLens',
   },
   '/guide/chaoslens': {
     headline: 'ChaosLens',
     title: 'ChaosLens - Architecture failure simulation without production risk | ArchLens',
     description:
-      'ChaosLens simulates what-if failures on your BlueprintSpec architecture in the browser - blast radius and SLA impact without game-day breakage.',
+      'ChaosLens simulates what-if failures on your BlueprintSpec in the browser: blast radius and SLA bands, without a game day in production.',
     softwareName: 'ChaosLens',
   },
   '/guide/advicelens': {
     headline: 'AdviceLens',
     title: 'AdviceLens - Ranked architecture fix recommendations | ArchLens',
     description:
-      'AdviceLens merges TraceLens forensics and ChaosLens simulations into a ranked, evidence-backed architecture action list.',
+      'AdviceLens merges TraceLens forensics and ChaosLens simulations into a ranked action list for review and CI.',
     softwareName: 'AdviceLens',
   },
   '/guide/schema': {
     headline: 'BlueprintSpec',
     title: 'BlueprintSpec - YAML architecture contract schema | ArchLens',
     description:
-      'BlueprintSpec is the ArchLens YAML SystemSchema contract for C4 systems, containers, components, and entityRef-linked diagrams.',
+      'BlueprintSpec is the ArchLens YAML SystemSchema contract for C4 systems, containers, components and entityRef-linked diagrams.',
     softwareName: 'BlueprintSpec',
   },
   '/guide/chaos-spec': {
@@ -106,22 +106,22 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/guide/ci-workflows': {
     headline: 'GitHub Actions workflows',
     description:
-      'Canonical map of ArchLens GitHub Actions workflows for CI, deploy, catalog publish, and quality gates.',
+      'Canonical map of ArchLens GitHub Actions workflows for CI, deploy, catalog publish and quality gates.',
   },
   '/setup': {
     headline: 'Setup & local development',
     description:
-      'Set up the ArchLens monorepo locally: mise toolchain, pnpm workspaces, Canvas, CLI, and ChaosLens WASM.',
+      'Set up the ArchLens monorepo locally: mise toolchain, pnpm workspaces, Canvas, CLI and ChaosLens WASM.',
   },
   '/tech-stack': {
     headline: 'Technology stack',
     description:
-      'ArchLens technology stack: TypeScript, React, Vite, Zod BlueprintSpec core, Bun CLI, and Cloudflare Pages.',
+      'ArchLens technology stack: TypeScript, React, Vite, Zod BlueprintSpec core, Bun CLI and Cloudflare Pages.',
   },
   '/architecture': {
     headline: 'Architecture & security',
     description:
-      'ArchLens system architecture and security model for Canvas, CLI, storage adapters, and local-first authoring.',
+      'ArchLens system architecture and security model for Canvas, CLI, storage adapters and local-first authoring.',
   },
   '/chaoslens-engine': {
     headline: 'ChaosLens engine',
@@ -136,18 +136,18 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/features-unit': {
     headline: 'Unit test features',
     description:
-      'Generated ArchLens unit-test feature report covering Canvas, CLI, and core BlueprintSpec behavior.',
+      'Generated ArchLens unit-test feature report covering Canvas, CLI and core BlueprintSpec behavior.',
     indexable: false,
   },
   '/ADRs': {
     headline: 'Architecture Decision Records',
     description:
-      'ArchLens ADRs: sparse MADR records for hard-to-reverse architecture choices across Canvas, CLI, and core.',
+      'ArchLens ADRs: sparse MADR records for hard-to-reverse architecture choices across Canvas, CLI and core.',
   },
   '/privacy': {
     headline: 'Privacy policy',
     description:
-      'How ArchLens handles diagrams on your device, Cloudflare hosting, and cookieless PostHog Cloud EU analytics.',
+      'How ArchLens handles diagrams on your device, Cloudflare hosting and cookieless PostHog Cloud EU analytics.',
   },
 };
 
@@ -162,7 +162,7 @@ function normalizePathname(pathname: string): string {
 function titleFor(headline: string, explicit?: string): string {
   if (explicit) return explicit;
   if (headline === SITE_NAME) {
-    return `${SITE_NAME} - Catch architecture risk before it becomes an outage`;
+    return PRODUCT_HERO.documentTitle;
   }
   return `${headline} | ${SITE_NAME}`;
 }
@@ -176,7 +176,7 @@ export function resolvePageSeo(pathname: string): PageSeo {
       headline: 'ArchLens Canvas workspace',
       title: 'ArchLens Canvas workspace | ArchLens',
       description:
-        'Open the ArchLens Canvas workspace to author BlueprintSpec diagrams and run TraceLens, ChaosLens, and AdviceLens.',
+        'Open the ArchLens Canvas workspace to author BlueprintSpec diagrams and run TraceLens, ChaosLens and AdviceLens.',
       canonicalUrl: `${SITE_ORIGIN}/workspace`,
       ogImageUrl: SITE_SOCIAL_IMAGE,
       indexable: false,

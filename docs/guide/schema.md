@@ -1,6 +1,6 @@
 # BlueprintSpec
 
-**BlueprintSpec** is the declarative architecture format - the shared contract every product reads and writes. This page is for teams integrating with BlueprintSpec YAML: whether you author diagrams by hand, generate them from **ArchLens CLI**, or consume them in another tool. It explains the **JSON Schema** validation surface and how we name and link parts of an architecture using **`entityRef`**.
+**BlueprintSpec** is the YAML contract every ArchLens surface reads and writes. This page is for teams integrating with that YAML: authoring by hand, generating from **ArchLens CLI** or consuming it in another tool. It covers the **JSON Schema** validation surface and how we name and link parts of an architecture with **`entityRef`**.
 
 ---
 

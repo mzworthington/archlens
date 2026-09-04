@@ -1,6 +1,6 @@
 # Getting started
 
-This page is for **using** ArchLens - start with the demo, try a browser scan for instant structure, then install the CLI when you need TraceLens/git forensics or CI publish. For hacking on the repo itself, see [Setup & local development](../setup.md).
+This page is for **using** ArchLens. Start with the demo, try a browser scan for structure, then install the CLI when you need TraceLens/git forensics or CI publish. For hacking on the repo itself, see [Setup & local development](../setup.md).
 
 ## 1. Try the demo
 
@@ -8,7 +8,7 @@ Open the hosted app:
 
 **[https://archlens.dev/workspace](https://archlens.dev/workspace)**
 
-Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an option). Choose an intent — **Investigate** (scan, open folder, IaC import), **Collaborate** (share blank / folder / file), or **Ideate** (solo blank canvas or import Mermaid). The chooser also has **Try the demo** and a collapsed **Full analysis** CLI strip. New here? Use **Try the demo** to open the golden journey with **ChaosLens**, so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
+Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an option). Choose an intent: **Investigate** (scan, open folder, IaC import), **Collaborate** (share blank / folder / file) or **Ideate** (solo blank canvas or import Mermaid). The chooser also has **Try the demo** and a collapsed **Full analysis** CLI strip. New here? Use **Try the demo** to open the golden journey with **ChaosLens**, so you can simulate a failure and jump to ranked **AdviceLens** recommendations before configuring anything locally.
 
 ## 2. Scan in the browser
 
@@ -120,7 +120,7 @@ Open the hosted app:
 
 On first open you get a **startup chooser** on bare `/workspace`:
 
-1. Pick an intent — **Investigate** (lite scan, open folder, IaC import, CLI), **Collaborate** (share blank / folder / file), or **Ideate** (solo blank canvas or import Mermaid).
+1. Pick an intent: **Investigate** (lite scan, open folder, IaC import, CLI), **Collaborate** (share blank / folder / file) or **Ideate** (solo blank canvas or import Mermaid).
 2. Or use the secondary **Try the demo** strip - explore the bundled golden journey and simulate a failure (lands in ChaosLens).
 3. Use the system switcher and C4 zoom to explore context → container → component.
 4. Inspect **TraceLens** signals - open Explorer → **TraceLens** on selected nodes, or **View worst offenders** for the estate ranking page (CLI scans only).

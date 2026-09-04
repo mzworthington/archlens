@@ -24,6 +24,6 @@ Product docs are Markdown in this folder. ArchLens Canvas app renders them at:
 
 Open ArchLens Canvas at **[archlens.dev/workspace](https://archlens.dev/workspace)** (or `/workspace` on the same origin).
 
-Start with the [Product guide](./guide/index.md) for using ArchLens Canvas, ArchLens CLI, TraceLens, ChaosLens, and AdviceLens. Use [Setup & local development](./setup.md) when hacking on this repository.
+Start with the [Product guide](./guide/index.md) for Canvas, the CLI, TraceLens, ChaosLens and AdviceLens. Use [Setup & local development](./setup.md) when hacking on this repository.
 
 Contributors: run `cd app && pnpm dev` to serve docs (`/`) and canvas (`/workspace`) locally.

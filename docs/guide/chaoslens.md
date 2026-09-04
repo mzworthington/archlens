@@ -1,6 +1,6 @@
 # ChaosLens
 
-**ChaosLens** simulates **what-if failures** on the architecture you already have open in ArchLens Canvas - without a separate diagram or route. ChaosLens runs on the normal workspace canvas against the active diagram.
+**ChaosLens** simulates **what-if failures** on the architecture you already have open in ArchLens Canvas, without a separate diagram or route. It runs on the normal workspace canvas against the active diagram.
 
 ![ChaosLens simulation](../screenshots/chaoslens.gif)
 

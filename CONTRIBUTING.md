@@ -1,6 +1,6 @@
 # Contributing to ArchLens
 
-Thanks for your interest in contributing. ArchLens helps teams catch architecture risk early: ArchLens Canvas, ArchLens CLI, shared `@archlens/core` (BlueprintSpec), and optional TraceLens / ChaosLens / AdviceLens. Authoring stays local; CI can publish living catalogs to object storage.
+Thanks for your interest in contributing. ArchLens is a C4 studio over BlueprintSpec YAML: Canvas, CLI, shared `@archlens/core`, plus optional TraceLens, ChaosLens and AdviceLens. Authoring stays local. CI can publish a read-only catalog to object storage.
 
 ## Before you start
 

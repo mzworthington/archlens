@@ -1,6 +1,6 @@
 # ChaosSpec
 
-**ChaosSpec** is the declarative failure-scenario format - the shared contract ChaosLens, AdviceLens, and CI use to describe what-if faults against a BlueprintSpec diagram. This page is for teams integrating with ChaosSpec YAML: whether you author game-day scenarios by hand, export them from **ArchLens Canvas**, or load them in `archlens resilience`. It explains the **JSON Schema** validation surface and how scenarios bind to diagrams via **`diagramRef`**.
+**ChaosSpec** is the failure-scenario format ChaosLens, AdviceLens and CI use to describe what-if faults against a BlueprintSpec diagram. This page is for teams integrating with that YAML: authoring scenarios by hand, exporting from **ArchLens Canvas** or loading them in `archlens resilience`. It covers the **JSON Schema** validation surface and how scenarios bind to diagrams via **`diagramRef`**.
 
 ChaosSpec does **not** duplicate topology. It references an existing BlueprintSpec diagram and lists faults (and optional safeguard overrides) against that diagram’s `entityRef`s.
 

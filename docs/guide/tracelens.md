@@ -1,6 +1,6 @@
 # TraceLens
 
-**TraceLens** enricifies architecture nodes with **git signals** (churn, authors, temporal coupling), **structural metrics** (AST complexity, LOC), and **blueprint connections** (schema dependencies, import/coupling overlays on the canvas).
+**TraceLens** attaches **git signals** (churn, authors, temporal coupling), **structural metrics** (AST complexity, LOC) and **blueprint connections** (schema dependencies, import/coupling overlays) to architecture nodes.
 
 ![TraceLens ranked offenders](../screenshots/tracelens.gif)
 

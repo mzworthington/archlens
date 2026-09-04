@@ -1,8 +1,8 @@
 # AdviceLens
 
-**AdviceLens** is ArchLens’s evidence-backed recommendation layer. It merges **TraceLens** code-health signals with **ChaosLens** failure simulation into a **ranked action list** - what to fix first, and why.
+**AdviceLens** ranks what to change. It merges **TraceLens** code-health signals with **ChaosLens** failure simulation into an ordered list: what to fix first, and why.
 
-Unlike a generic “AI insights” panel, AdviceLens **Core** is fully deterministic: priority and evidence come from structured simulation and forensics. Optional **Narration** (Phase 5) can enrich detail text with LLM-generated fixes grounded on that evidence - without changing rank order.
+AdviceLens **Core** is deterministic. Priority and evidence come from simulation and forensics, not a chatbot. Optional **Narration** (Phase 5) can enrich detail text with LLM-generated fixes grounded on that evidence, without changing rank order.
 
 ## The lens family
 
