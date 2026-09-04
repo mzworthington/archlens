@@ -30,7 +30,7 @@ const PAGE_SEO: Record<string, SeoOverride> = {
   '/': {
     headline: SITE_NAME,
     title: PRODUCT_HERO.documentTitle,
-    description: `${PRODUCT_HERO.lede} Open-source BlueprintSpec studio: Canvas, TraceLens, ChaosLens and AdviceLens.`,
+    description: `${PRODUCT_HERO.lede} Open source. Canvas, TraceLens, ChaosLens and AdviceLens.`,
     softwareName: SITE_NAME,
   },
   '/journeys': {
@@ -58,7 +58,7 @@ const PAGE_SEO: Record<string, SeoOverride> = {
     headline: 'ArchLens Canvas',
     title: 'ArchLens Canvas - Interactive architecture diagrams | ArchLens',
     description:
-      'ArchLens Canvas is a workspace over BlueprintSpec: local folders, diagram sync and catalogs published from CI.',
+      'ArchLens Canvas is the map over BlueprintSpec: local folders, diagram sync and catalogs published from CI.',
     softwareName: 'ArchLens Canvas',
   },
   '/guide/cli': {

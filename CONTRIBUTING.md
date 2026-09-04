@@ -1,6 +1,6 @@
 # Contributing to ArchLens
 
-Thanks for your interest in contributing. ArchLens is a studio over BlueprintSpec: Canvas, CLI, shared `@archlens/core`, plus optional TraceLens, ChaosLens and AdviceLens. Authoring stays local. CI can publish a read-only catalog to object storage.
+Thanks for your interest in contributing. ArchLens is Canvas, a CLI and lenses on BlueprintSpec: shared `@archlens/core`, plus optional TraceLens, ChaosLens and AdviceLens. Authoring stays local. CI can publish a read-only catalog.
 
 ## Before you start
 

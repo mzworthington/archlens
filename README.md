@@ -3,7 +3,7 @@
 [![CI & Deployment Pipeline](https://github.com/mzworthington/archlens/actions/workflows/ci.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/ci.yml) [![CodeQL Analysis](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml/badge.svg)](https://github.com/mzworthington/archlens/actions/workflows/codeql.yml) [![archlens.dev](https://img.shields.io/badge/archlens.dev-open%20app-00f0ff)](https://archlens.dev)
 ![GitHub last commit](https://img.shields.io/github/last-commit/mzworthington/archlens)
 
-ArchLens models systems as **BlueprintSpec**: an architecture contract you can author locally, generate from a repo and publish from CI. TraceLens, ChaosLens and AdviceLens run on that same contract.
+ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**. Author locally, or publish from CI. TraceLens, ChaosLens and AdviceLens run on the same map.
 
 **Local authoring:** open a folder in ArchLens Canvas, edit diagrams with bi-directional YAML sync, commit when ready - drafts stay on your machine.  
 **Published estate:** scan in CI, publish to object storage, and open a shared read-only catalog without redeploying the app.

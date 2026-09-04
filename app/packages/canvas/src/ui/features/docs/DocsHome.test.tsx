@@ -30,17 +30,18 @@ describe('DocsHome', () => {
     expect(screen.getByText('Open source')).toBeInTheDocument();
     expect(screen.getByText('Local first')).toBeInTheDocument();
     expect(screen.getByText(/uploaded to ArchLens servers/i)).toBeInTheDocument();
-    expect(screen.getByText(/author locally, or publish the estate/i)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'On the diagram' })).toBeInTheDocument();
-    expect(screen.getByText('Game day on the diagram')).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { name: 'ChaosLens' }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole('link', { name: /open archlens canvas/i }).length).toBeGreaterThan(
       0
     );
-    expect(screen.getByRole('heading', { name: 'From repo to ranked list' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'CLI, Canvas, then the lenses' })
+    ).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'The tools' })).toBeInTheDocument();
     expect(screen.getByText('ArchLens Canvas')).toBeInTheDocument();
     expect(screen.getByText('ArchLens CLI')).toBeInTheDocument();
-    expect(screen.getByText('ChaosLens')).toBeInTheDocument();
+    expect(screen.getAllByText('ChaosLens').length).toBeGreaterThan(0);
     expect(screen.getByText('BlueprintSpec')).toBeInTheDocument();
     expect(screen.getByText('ChaosSpec')).toBeInTheDocument();
     expect(screen.getByText('Observes')).toBeInTheDocument();
@@ -58,13 +59,14 @@ describe('DocsHome', () => {
     render(<DocsHome />);
 
     expect(
-      screen.getByRole('link', { name: 'ArchLens Canvas: Workspace over BlueprintSpec' })
+      screen.getByRole('link', { name: 'ArchLens Canvas: The map you work on' })
     ).toHaveAttribute('href', '/guide/canvas');
+    expect(screen.getByRole('link', { name: 'ArchLens CLI: Scan the repo' })).toHaveAttribute(
+      'href',
+      '/guide/cli'
+    );
     expect(
-      screen.getByRole('link', { name: 'ArchLens CLI: Repo to BlueprintSpec' })
-    ).toHaveAttribute('href', '/guide/cli');
-    expect(
-      screen.getByRole('link', { name: 'ChaosLens: What-if failures on the live diagram' })
+      screen.getByRole('link', { name: 'ChaosLens: Break a service on the map' })
     ).toHaveAttribute('href', '/guide/chaoslens');
   });
 });

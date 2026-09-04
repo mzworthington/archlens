@@ -31,27 +31,26 @@ const WHY_ICONS: LucideIcon[] = [ShieldAlert, GitBranch, Lightbulb];
 const FLOW = [
   {
     step: '1',
-    title: 'Scan the repo',
-    body: 'ArchLens CLI writes a validated BlueprintSpec: systems, containers and the edges between them.',
+    title: 'CLI',
+    body: 'Scan the repo. ArchLens writes BlueprintSpec you can open in Canvas and check in CI.',
   },
   {
     step: '2',
-    title: 'Author locally, or publish the estate',
-    body: 'Open the folder in Canvas (drafts stay on-device), or publish from CI to object storage for a shared read-only catalog.',
+    title: 'Canvas',
+    body: 'Open the folder and edit the map. Or publish from CI and browse a shared catalog.',
   },
   {
     step: '3',
-    title: 'Fault it on the map',
-    body: 'TraceLens and ChaosLens run on that same contract. AdviceLens ranks the change before you spend the redesign budget.',
+    title: 'The lenses',
+    body: 'TraceLens and ChaosLens run on that map. AdviceLens ranks what to change.',
   },
 ] as const;
 
 const PRODUCTS: Product[] = [
   {
     title: 'ArchLens Canvas',
-    tagline: 'Workspace over BlueprintSpec',
-    details:
-      'Author in a local folder with diagrams that stay in sync, or open a catalog your pipeline published.',
+    tagline: 'The map you work on',
+    details: 'Open a local folder, or a catalog your pipeline published. Diagrams stay in sync.',
     href: '/guide/canvas',
     category: 'Platform',
     icon: Layers,
@@ -59,8 +58,8 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'ArchLens CLI',
-    tagline: 'Repo to BlueprintSpec',
-    details: 'Static analysis writes systems, containers and dependencies your CI can validate.',
+    tagline: 'Scan the repo',
+    details: 'Writes BlueprintSpec from source. Open it in Canvas. Check it in CI.',
     href: '/guide/cli',
     category: 'Platform',
     icon: Terminal,
@@ -68,9 +67,8 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'TraceLens',
-    tagline: 'Git and complexity on the nodes',
-    details:
-      'Churn, complexity and coupling on the nodes you already maintain. Hotspots sit on the map.',
+    tagline: 'Git hotspots on the map',
+    details: 'Churn and coupling on the nodes you already have. Hotspots sit on the map.',
     href: '/guide/tracelens',
     category: 'Intelligence',
     role: 'Observes',
@@ -78,9 +76,8 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'ChaosLens',
-    tagline: 'What-if failures on the live diagram',
-    details:
-      'Fault a service on the map you have open. Blast radius and SLA bands, without a game day in production.',
+    tagline: 'Break a service on the map',
+    details: 'Fault a service on the map you have open. See what else fails. Production stays up.',
     href: '/guide/chaoslens',
     category: 'Resilience',
     icon: ShieldAlert,
@@ -89,7 +86,7 @@ const PRODUCTS: Product[] = [
     title: 'AdviceLens',
     tagline: 'What to fix first',
     details:
-      'Same ranked list in the studio, the CLI and CI. Priority comes from simulation and forensics, not an LLM.',
+      'Same ranked list in Canvas, the CLI and CI. Priority comes from TraceLens and ChaosLens.',
     href: '/guide/advicelens',
     category: 'Intelligence',
     role: 'Prescribes',
@@ -97,9 +94,8 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'BlueprintSpec',
-    tagline: 'The architecture contract',
-    details:
-      'Schema and entity references the CLI, Canvas and CI all validate against. One contract, not a slide export.',
+    tagline: 'What Canvas, CLI and CI share',
+    details: 'The architecture contract every ArchLens surface reads and writes.',
     href: '/guide/schema',
     category: 'Contract',
     icon: FileCode2,
@@ -107,9 +103,8 @@ const PRODUCTS: Product[] = [
   },
   {
     title: 'ChaosSpec',
-    tagline: 'Failure scenarios against that contract',
-    details:
-      'Scenarios that bind faults to a BlueprintSpec diagram. Canvas, CLI and CI validate the same schema.',
+    tagline: 'Scenarios for ChaosLens',
+    details: 'Binds faults to a BlueprintSpec diagram. Same checks in Canvas, CLI and CI.',
     href: '/guide/chaos-spec',
     category: 'Contract',
     icon: FileCode2,
@@ -312,7 +307,7 @@ export const DocsHome: React.FC = () => {
             id="how-it-works-heading"
             className="text-xs font-mono uppercase tracking-[0.16em] text-slate-500 mb-5"
           >
-            From repo to ranked list
+            CLI, Canvas, then the lenses
           </h2>
           <ol className="grid gap-4 sm:grid-cols-3">
             {FLOW.map(item => (
@@ -340,7 +335,7 @@ export const DocsHome: React.FC = () => {
                 The tools
               </h2>
               <p className="mt-1 text-sm text-slate-400">
-                Canvas and CLI sit on BlueprintSpec. The lenses read the same contract.
+                Canvas and the CLI. TraceLens, ChaosLens and AdviceLens on the same map.
               </p>
             </div>
             <Link

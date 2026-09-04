@@ -113,9 +113,7 @@ export const DocsShell: React.FC<Props> = ({
         sticky
         badge="DOCS"
         subtitle={
-          isLanding
-            ? 'Architecture maps, git hotspots and failure simulation'
-            : 'Product guide, technology and CI'
+          isLanding ? 'Canvas, TraceLens and ChaosLens' : 'Product guide, technology and CI'
         }
       >
         {!isLanding ? (

@@ -1,6 +1,6 @@
 # Product guide
 
-ArchLens is a studio over **BlueprintSpec**. Scan a repo, overlay git hotspots, simulate failures on the same diagram and leave with a ranked list.
+ArchLens is Canvas, a CLI and lenses on **BlueprintSpec**. Scan a repo, overlay git hotspots, simulate a failure and get a ranked list.
 
 Use this guide for the product, not the internals.
 
