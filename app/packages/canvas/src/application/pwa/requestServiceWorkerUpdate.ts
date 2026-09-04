@@ -10,10 +10,13 @@ export function requestServiceWorkerUpdate(
   registration: Pick<ServiceWorkerRegistration, 'update'> | undefined
 ): Promise<void> {
   if (!registration) return Promise.resolve();
-  return registration.update().catch((error: unknown) => {
-    if (isAbortError(error)) return;
-    throw error;
-  });
+  return registration
+    .update()
+    .then(() => undefined)
+    .catch((error: unknown) => {
+      if (isAbortError(error)) return;
+      throw error;
+    });
 }
 
 function isAbortError(error: unknown): boolean {
