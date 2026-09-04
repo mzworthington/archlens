@@ -1,6 +1,6 @@
 # Product guide
 
-ArchLens is a C4 studio over **BlueprintSpec** YAML. Scan a repo, overlay git hotspots, simulate failures on the same diagram and leave review with a ranked list.
+ArchLens is a C4 studio over **BlueprintSpec** YAML. Scan a repo, overlay git hotspots, simulate failures on the same diagram and walk out of the review with a ranked list.
 
 Use this guide for the product, not the internals.
 
