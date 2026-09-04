@@ -14,7 +14,7 @@ describe('siteSeo catalog', () => {
   it('resolves distinctive homepage metadata with social share image', () => {
     const seo = resolvePageSeo('/');
     expect(seo.title.toLowerCase()).toContain('archlens');
-    expect(seo.description.toLowerCase()).toMatch(/architecture|outage|blueprint/);
+    expect(seo.description.toLowerCase()).toMatch(/canvas|tracelens|outage|blueprint/);
     expect(seo.canonicalUrl).toBe(`${SITE_ORIGIN}/`);
     expect(seo.ogImageUrl).toBe(SITE_SOCIAL_IMAGE);
     expect(seo.indexable).toBe(true);
