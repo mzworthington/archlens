@@ -45,6 +45,8 @@ describe('AppProvider port wiring', () => {
   beforeEach(() => {
     useBlueprintStore.setState({
       isSampleWorkspace: false,
+      isBrowserLiteWorkspace: false,
+      browserLiteSavedToFolder: false,
       workspacePort: noopWorkspace,
       folderWorkspacePort: noopWorkspace,
       sampleWorkspacePort: noopWorkspace,
@@ -56,6 +58,27 @@ describe('AppProvider port wiring', () => {
     expect(useBlueprintStore.getState().sampleWorkspacePort).toBe(samplePort);
     expect(useBlueprintStore.getState().folderWorkspacePort).toBe(folderPort);
     expect(useBlueprintStore.getState().workspacePort).toBe(folderPort);
+  });
+
+  it('does not replace an in-memory browser scan workspace on remount', () => {
+    const scanPort = {
+      ...noopWorkspace,
+      getDirectoryName: () => 'scanned-repo',
+    };
+    useBlueprintStore.setState({
+      isBrowserLiteWorkspace: true,
+      browserLiteSavedToFolder: false,
+      workspacePort: scanPort,
+      folderWorkspacePort: folderPort,
+    });
+
+    render(
+      <AppProvider ports={testPorts()}>
+        <div>child</div>
+      </AppProvider>
+    );
+
+    expect(useBlueprintStore.getState().workspacePort).toBe(scanPort);
   });
 
   it('does not replace the bundled sample workspace port after sample open', () => {

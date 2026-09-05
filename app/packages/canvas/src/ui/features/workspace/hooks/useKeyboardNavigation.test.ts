@@ -191,6 +191,21 @@ describe('useKeyboardNavigation Hook', () => {
     expect(onRedo).toHaveBeenCalledTimes(4);
   });
 
+  it('should call onSaveLiteScanMap when ⌘S or Ctrl+S is pressed (not typing)', () => {
+    const onSaveLiteScanMap = vi.fn();
+    renderHook(() => useKeyboardNavigation({ onSaveLiteScanMap }));
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 's', metaKey: true }));
+    });
+    expect(onSaveLiteScanMap).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: 's', ctrlKey: true }));
+    });
+    expect(onSaveLiteScanMap).toHaveBeenCalledTimes(2);
+  });
+
   it('should call onShortcutsOpen when ? is pressed (not typing)', () => {
     const onShortcutsOpen = vi.fn();
     renderHook(() => useKeyboardNavigation({ onShortcutsOpen }));

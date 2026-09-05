@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-09-05
+
+### 🚀 Features
+
+- Save a browser lite scan map to a blueprints folder or download (MZW-38)
+
 ## 2026-08-26
 
 ### 🧰 Maintenance & Dependencies

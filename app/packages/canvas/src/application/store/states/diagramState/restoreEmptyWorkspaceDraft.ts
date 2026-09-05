@@ -82,6 +82,8 @@ export async function restoreEmptyWorkspaceDraft(
     isWorkspaceOpen: false,
     isSampleWorkspace: false,
     isBrowserLiteWorkspace: false,
+    browserLiteSavedToFolder: false,
+    isBrowserLitePersistPromptOpen: false,
     workspaceName: '',
     selectedNodeId: null,
     selectedEdgeId: null,

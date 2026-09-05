@@ -7,12 +7,16 @@ import { CLI_GETTING_STARTED_PATH } from '../../../../../constants/cli';
 type BrowserLiteScanBannerProps = {
   open: boolean;
   onDismiss: () => void;
+  onSaveMap?: () => void;
+  showSave?: boolean;
 };
 
 /** Sticky reminder that the open workspace is a structure-only browser scan. */
 export const BrowserLiteScanBanner: React.FC<BrowserLiteScanBannerProps> = ({
   open,
   onDismiss,
+  onSaveMap,
+  showSave = false,
 }) => {
   if (!open) return null;
 
@@ -35,6 +39,16 @@ export const BrowserLiteScanBanner: React.FC<BrowserLiteScanBannerProps> = ({
             This map has no TraceLens git hotspots or CI publish. Install the ArchLens CLI for
             in-depth forensics, watch mode and catalog workflows.
           </p>
+          {showSave && onSaveMap ? (
+            <button
+              type="button"
+              onClick={onSaveMap}
+              className="inline-flex items-center rounded-md border border-amber-400/40 bg-amber-900/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-amber-100 hover:bg-amber-800/60 cursor-pointer"
+              data-testid="browser-lite-scan-banner-save"
+            >
+              Save map to folder
+            </button>
+          ) : null}
           <Link
             href={CLI_GETTING_STARTED_PATH}
             className="inline-flex items-center gap-1.5 text-[10px] font-mono font-semibold text-[#00f0ff] hover:underline"

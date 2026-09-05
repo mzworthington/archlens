@@ -138,6 +138,168 @@ dependencies: []
     expect(state.notification?.title).toBe('Browser lite scan ready');
     expect(state.notification?.message).toContain('structure only');
     expect(state.liteScanProgress).toBeNull();
+    expect(state.isBrowserLitePersistPromptOpen).toBe(true);
+    expect(state.browserLiteSavedToFolder).toBe(false);
+    expect(state.folderWorkspacePort).toBe(mockWorkspacePort);
+    expect(state.workspacePort).not.toBe(mockWorkspacePort);
+  });
+
+  it('writes scan YAML into a picked folder and then commits like a folder workspace', async () => {
+    const makeFileHandle = (name: string, content: string) => ({
+      kind: 'file',
+      name,
+      getFile: async () => new File([content], name),
+    });
+    const srcHandle = {
+      kind: 'directory',
+      name: 'src',
+      async *[Symbol.asyncIterator]() {
+        yield ['index.ts', makeFileHandle('index.ts', "import { service } from './service';\n")];
+        yield ['service.ts', makeFileHandle('service.ts', 'export const service = 1;\n')];
+      },
+    };
+    const rootHandle = {
+      kind: 'directory',
+      name: 'demo-repo',
+      async *[Symbol.asyncIterator]() {
+        yield ['package.json', makeFileHandle('package.json', '{"name":"demo-repo"}')];
+        yield ['src', srcHandle];
+      },
+    };
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => rootHandle),
+    });
+
+    const written: Record<string, string> = {};
+    const folderPort: WorkspacePort = {
+      ...mockWorkspacePort,
+      getDirectoryName: () => 'blueprints',
+      selectDirectory: async () => true,
+      writeFile: async (path, content) => {
+        written[path] = content;
+        return true;
+      },
+    };
+    useBlueprintStore.setState({ folderWorkspacePort: folderPort });
+
+    expect(await useBlueprintStore.getState().openBrowserLiteScan()).toBe(true);
+    expect(folderPort.writeFile).toBeDefined();
+    expect(Object.keys(written)).toHaveLength(0);
+
+    const saved = await useBlueprintStore.getState().persistBrowserLiteScanToFolder();
+    expect(saved).toBe(true);
+    expect(Object.keys(written).length).toBeGreaterThan(0);
+    expect(Object.keys(written).some(path => path.endsWith('.yaml'))).toBe(true);
+
+    const afterSave = useBlueprintStore.getState();
+    expect(afterSave.browserLiteSavedToFolder).toBe(true);
+    expect(afterSave.isBrowserLiteWorkspace).toBe(true);
+    expect(afterSave.isBrowserLitePersistPromptOpen).toBe(false);
+    expect(afterSave.workspacePort).toBe(folderPort);
+
+    const commitWrite = vi.spyOn(afterSave.workspacePort, 'writeFile').mockResolvedValue(true);
+    expect(await afterSave.saveActiveDiagram()).toBe(true);
+    expect(commitWrite).toHaveBeenCalled();
+    commitWrite.mockRestore();
+  });
+
+  it('keeps the scan map in memory when save is declined', async () => {
+    const makeFileHandle = (name: string, content: string) => ({
+      kind: 'file',
+      name,
+      getFile: async () => new File([content], name),
+    });
+    const srcHandle = {
+      kind: 'directory',
+      name: 'src',
+      async *[Symbol.asyncIterator]() {
+        yield ['index.ts', makeFileHandle('index.ts', 'export const n = 1;\n')];
+      },
+    };
+    const rootHandle = {
+      kind: 'directory',
+      name: 'keep-memory',
+      async *[Symbol.asyncIterator]() {
+        yield ['src', srcHandle];
+      },
+    };
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => rootHandle),
+    });
+
+    const writeFile = vi.fn(async () => true);
+    useBlueprintStore.setState({
+      folderWorkspacePort: { ...mockWorkspacePort, writeFile, selectDirectory: async () => true },
+    });
+
+    expect(await useBlueprintStore.getState().openBrowserLiteScan()).toBe(true);
+    useBlueprintStore.getState().declineBrowserLiteScanPersist();
+
+    const state = useBlueprintStore.getState();
+    expect(state.isWorkspaceOpen).toBe(true);
+    expect(state.isBrowserLiteWorkspace).toBe(true);
+    expect(state.browserLiteSavedToFolder).toBe(false);
+    expect(state.isBrowserLitePersistPromptOpen).toBe(false);
+    expect(writeFile).not.toHaveBeenCalled();
+  });
+
+  it('downloads scan YAML without binding a folder workspace', async () => {
+    const makeFileHandle = (name: string, content: string) => ({
+      kind: 'file',
+      name,
+      getFile: async () => new File([content], name),
+    });
+    const srcHandle = {
+      kind: 'directory',
+      name: 'src',
+      async *[Symbol.asyncIterator]() {
+        yield ['index.ts', makeFileHandle('index.ts', 'export const n = 1;\n')];
+      },
+    };
+    const rootHandle = {
+      kind: 'directory',
+      name: 'download-repo',
+      async *[Symbol.asyncIterator]() {
+        yield ['src', srcHandle];
+      },
+    };
+    Object.defineProperty(window, 'showDirectoryPicker', {
+      configurable: true,
+      value: vi.fn(async () => rootHandle),
+    });
+
+    const writeFile = vi.fn(async () => true);
+    const saveSchema = vi.fn(async (content: string, fileName: string) => ({ fileName, content }));
+    useBlueprintStore.setState({
+      folderWorkspacePort: { ...mockWorkspacePort, writeFile },
+      fileSystemPort: { ...useBlueprintStore.getState().fileSystemPort, saveSchema },
+    });
+
+    expect(await useBlueprintStore.getState().openBrowserLiteScan()).toBe(true);
+
+    const click = vi.fn();
+    const originalCreate = document.createElement.bind(document);
+    vi.spyOn(document, 'createElement').mockImplementation(tagName => {
+      const el = originalCreate(tagName);
+      if (tagName === 'a') el.click = click;
+      return el;
+    });
+    vi.stubGlobal('URL', {
+      createObjectURL: vi.fn().mockReturnValue('blob:zip'),
+      revokeObjectURL: vi.fn(),
+    });
+
+    const downloaded = await useBlueprintStore.getState().downloadBrowserLiteScan();
+    expect(downloaded).toBe(true);
+    expect(writeFile).not.toHaveBeenCalled();
+    expect(useBlueprintStore.getState().browserLiteSavedToFolder).toBe(false);
+    expect(useBlueprintStore.getState().isBrowserLitePersistPromptOpen).toBe(false);
+    expect(click.mock.calls.length + saveSchema.mock.calls.length).toBeGreaterThan(0);
+
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
   });
 
   it('cancels an in-flight browser lite scan without opening a workspace', async () => {

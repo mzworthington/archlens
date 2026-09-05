@@ -11,12 +11,14 @@ import { WorkspaceComplexitySummary } from './WorkspaceComplexitySummary';
 import { useTraceLensActions } from './useTraceLensActions';
 import { useTraceLensPanelModel } from './useTraceLensPanelModel';
 import { TRACE_LENS_HERO } from '../../content/productOutcomes';
+import { browserLiteTraceLensEmptyCopy } from '../../../application/analysis/persistBrowserLiteScan';
 
 export const TraceLensPanel: React.FC = () => {
   const model = useTraceLensPanelModel();
   const actions = useTraceLensActions(model);
 
   const {
+    isBrowserLiteWorkspace,
     loadedSystems,
     scopeEntityRef,
     scope,
@@ -73,7 +75,18 @@ export const TraceLensPanel: React.FC = () => {
             />
           </div>
 
-          <WorkspaceComplexitySummary summary={complexitySummary} />
+          <WorkspaceComplexitySummary
+            summary={complexitySummary}
+            isBrowserLiteWorkspace={isBrowserLiteWorkspace}
+          />
+          {isBrowserLiteWorkspace ? (
+            <p
+              className="mb-6 text-xs text-slate-500 leading-relaxed"
+              data-testid="browser-lite-tracelens-honesty"
+            >
+              {browserLiteTraceLensEmptyCopy(true)}
+            </p>
+          ) : null}
 
           {traceLensView === 'recommendations' ? (
             <EstateRecommendationsPanel
@@ -116,13 +129,14 @@ export const TraceLensPanel: React.FC = () => {
                   <p className="mt-2 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
                     {searchQuery.trim()
                       ? 'Try another name, entity ref, parent or type.'
-                      : scopeEntityRef
-                        ? 'No offenders in this subtree for the current filter. Try another scope or widen the signal filter.'
-                        : hasScope && !hasForensicsData
-                          ? 'Blueprints are loaded but have no TraceLens blocks. Re-scan with git enabled (`archlens` default) or run `archlens enrich --git` on existing YAML.'
-                          : hasScope
-                            ? 'No rows match this filter. Try All or Heating, or zoom into more component diagrams from the canvas.'
-                            : 'Open the Samples workspace or a blueprint folder from the startup chooser, then return to TraceLens.'}
+                      : (browserLiteTraceLensEmptyCopy(isBrowserLiteWorkspace) ??
+                        (scopeEntityRef
+                          ? 'No offenders in this subtree for the current filter. Try another scope or widen the signal filter.'
+                          : hasScope && !hasForensicsData
+                            ? 'Blueprints are loaded but have no TraceLens blocks. Re-scan with git enabled (`archlens` default) or run `archlens enrich --git` on existing YAML.'
+                            : hasScope
+                              ? 'No rows match this filter. Try All or Heating, or zoom into more component diagrams from the canvas.'
+                              : 'Open the Samples workspace or a blueprint folder from the startup chooser, then return to TraceLens.'))}
                   </p>
                 </div>
               ) : (

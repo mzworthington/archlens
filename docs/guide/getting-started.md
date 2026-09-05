@@ -14,7 +14,9 @@ Bare `/workspace` opens the **startup chooser** (nothing loads until you pick an
 
 From the same startup chooser, under **Investigate**, select **Browser lite scan** and pick a source folder.
 
-This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate structural BlueprintSpec in memory. It is intentionally a **lite / structure-only** preview: application languages (`ts`/`tsx`/`js`/`cs`/`java`/`go`/`py`) plus Terraform/Pulumi via the same `IacAnalyzer` pass as the CLI - **no** TraceLens git hotspots, **no** CI publish and no persisted writes unless you later save/export through Canvas.
+This uses the browser File System Access API and shared `@archlens/analysis` domain logic to generate structural BlueprintSpec in memory. It is intentionally a **lite / structure-only** preview: application languages (`ts`/`tsx`/`js`/`cs`/`java`/`go`/`py`) plus Terraform/Pulumi via the same `IacAnalyzer` pass as the CLI - **no** TraceLens git hotspots and **no** CI publish.
+
+After the scan you can **Save to folder** (or **Download YAML**). A writable folder then uses the same draft/commit flow as any other blueprints workspace. Decline and the map stays in memory. TraceLens in this tab will not claim git hotspots exist.
 
 Use this path for fast first feedback without installing anything. For in-depth knowledge (git forensics, watch mode, catalog publish), install and run the ArchLens CLI in the next step.
 

@@ -113,6 +113,8 @@ export type LoadWorkspaceFromYamlFilesDeps = {
   isSampleWorkspace?: boolean;
   /** True when YAML came from an in-browser structural scan (no CLI forensics). */
   isBrowserLiteWorkspace?: boolean;
+  /** True when that scan YAML has already been written to a writable folder. */
+  browserLiteSavedToFolder?: boolean;
   openGeneration?: number;
   committedPorts?: Record<string, unknown>;
   /** Prefer this entry path when present (e.g. context.yaml from a lite scan). */
@@ -133,6 +135,7 @@ export async function loadWorkspaceFromYamlFiles(
     set,
     isSampleWorkspace = false,
     isBrowserLiteWorkspace = false,
+    browserLiteSavedToFolder = false,
     committedPorts,
     preferredEntryPath,
   } = deps;
@@ -206,6 +209,7 @@ export async function loadWorkspaceFromYamlFiles(
     workspaceName,
     isSampleWorkspace,
     isBrowserLiteWorkspace,
+    browserLiteSavedToFolder,
     openGeneration,
     committedPorts,
     workingCopy: deps.workingCopy,
@@ -330,6 +334,7 @@ async function finalizeWorkspaceOpen(args: {
   workspaceName: string;
   isSampleWorkspace: boolean;
   isBrowserLiteWorkspace?: boolean;
+  browserLiteSavedToFolder?: boolean;
   openGeneration?: number;
   committedPorts?: Record<string, unknown>;
   workingCopy: WorkingCopyPort;
@@ -345,6 +350,7 @@ async function finalizeWorkspaceOpen(args: {
     workspaceName,
     isSampleWorkspace,
     isBrowserLiteWorkspace = false,
+    browserLiteSavedToFolder = false,
     openGeneration,
     committedPorts,
     workingCopy,
@@ -378,7 +384,9 @@ async function finalizeWorkspaceOpen(args: {
     isWorkspaceOpen: true,
     isSampleWorkspace,
     isBrowserLiteWorkspace,
+    browserLiteSavedToFolder,
     browserLiteBannerOpen: isBrowserLiteWorkspace,
+    isBrowserLitePersistPromptOpen: isBrowserLiteWorkspace && !browserLiteSavedToFolder,
     workspaceName,
     workspaceCatalog,
     loadedSystems: [entry],

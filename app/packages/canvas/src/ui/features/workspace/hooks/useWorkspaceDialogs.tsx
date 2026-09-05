@@ -12,6 +12,7 @@ import { WorkspaceSourceCodeDialog } from '../components/SourceCodeDialog/Worksp
 import { ValidationDialog } from '../components/ValidationDialog/ValidationDialog';
 import { CollabShareDialog } from '../components/CollabShareDialog/CollabShareDialog';
 import { NameBlankWorkspaceDialog } from '../components/NameBlankWorkspaceDialog/NameBlankWorkspaceDialog';
+import { SaveBrowserLiteScanDialog } from '../components/SaveBrowserLiteScanDialog/SaveBrowserLiteScanDialog';
 import { GOLDEN_JOURNEY_ENTITY_REF } from '../../../../application/store/samplesWorkspace';
 import { buildChaosLensUrl } from '../../../../application/resilience/chaosLensUrl';
 import { navigateToActiveWorkspaceEntity } from './navigateToActiveWorkspaceEntity';
@@ -72,6 +73,10 @@ export function useWorkspaceDialogs(): React.ReactNode {
     updateSchemaName,
     saveSchema,
     saveBlankCanvasToFolder,
+    persistBrowserLiteScanToFolder,
+    downloadBrowserLiteScan,
+    declineBrowserLiteScanPersist,
+    isBrowserLitePersistPromptOpen,
     setNotification,
   } = useBlueprintStore();
 
@@ -249,6 +254,18 @@ export function useWorkspaceDialogs(): React.ReactNode {
           onCancelScan={cancelBrowserLiteScan}
         />
       ) : null}
+      <SaveBrowserLiteScanDialog
+        isOpen={isBrowserLitePersistPromptOpen}
+        folderSaveAvailable={folderPickerAvailable()}
+        busy={Boolean(isLoading)}
+        onSaveFolder={() => {
+          void persistBrowserLiteScanToFolder();
+        }}
+        onDownload={() => {
+          void downloadBrowserLiteScan();
+        }}
+        onKeepInMemory={declineBrowserLiteScanPersist}
+      />
       <NameBlankWorkspaceDialog
         isOpen={nameBlankOpen}
         folderSaveAvailable={folderPickerAvailable()}

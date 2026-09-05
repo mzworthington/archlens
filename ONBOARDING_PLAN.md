@@ -66,7 +66,7 @@ Do not treat the browser scan as CLI parity (no git TraceLens / publish). Gradua
 - [x] Apply structural ignore globs during the browser walk; prefer `src/` when capping
 - [x] Progress (`files scanned / cap`) surfaced in startup + toolbar flows
 - [ ] ZIP upload fallback where `showDirectoryPicker` is missing (scan input only - not persistence; ADR-0004)
-- [ ] Optional: write generated YAML into a user-picked `blueprints/` folder (commit path) instead of memory-only port
+- [x] Optional: write generated YAML into a user-picked `blueprints/` folder (commit path) instead of memory-only port
 - [x] E2E-style smoke: startup/store action → browser scan (mocked picker) → context workspace loaded
 
 ---

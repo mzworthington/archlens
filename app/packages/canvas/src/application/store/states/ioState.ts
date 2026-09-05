@@ -52,6 +52,12 @@ import { setCollabDisplayName as persistCollabDisplayName } from '../../collab/c
 import { readCollabHostToken } from '../../collab/collabRoomCredentials';
 import { yamlFileNameFromDiagramName } from './ioState/yamlFileNameFromDiagramName';
 import { persistBlankCanvasSessionFromSchema } from './ioState/blankCanvasSession';
+import { serializeSchemaToYaml } from '@archlens/core';
+import {
+  overlayWorkingYamlFiles,
+  writeYamlFilesToWorkspace,
+} from '../../analysis/persistBrowserLiteScan';
+import { createStoreZip, triggerNamedDownload } from '../../../infrastructure/analysis/yamlZip';
 import type { BlueprintStoreSet } from '../store';
 
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
@@ -100,6 +106,12 @@ export interface IoState {
   liteScanProgress: LiteScanProgress | null;
   /** Abort the in-flight browser lite scan (chooser or toolbar). */
   cancelBrowserLiteScan: () => void;
+  /** Write scan YAML into a picked folder and bind draft/commit to that folder. */
+  persistBrowserLiteScanToFolder: () => Promise<boolean>;
+  /** Download scan YAML (single file or zip) without binding a folder. */
+  downloadBrowserLiteScan: () => Promise<boolean>;
+  /** Close the save prompt and leave the map in memory. */
+  declineBrowserLiteScanPersist: () => void;
   saveActiveDiagram: () => Promise<boolean>;
   clearWorkspaceDrafts: () => Promise<void>;
   joinCollabRoom: (
@@ -456,7 +468,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
         isSampleWorkspace: false,
         isBrowserLiteWorkspace: true,
         openGeneration,
-        committedPorts: { workspacePort: scanPort, folderWorkspacePort: scanPort },
+        committedPorts: { workspacePort: scanPort },
       });
 
       if (opened) {
@@ -468,7 +480,7 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
           title: 'Browser lite scan ready',
           message: `Loaded ${walked.sourceFileCount} source file(s)${
             walked.iacFileCount > 0 ? ` and ${walked.iacFileCount} IaC file(s)` : ''
-          } - structure only (no TraceLens/git hotspots).${truncatedNote} In-memory until you export. Install the ArchLens CLI for forensics, watch mode and CI publish.`,
+          } - structure only (no TraceLens/git hotspots).${truncatedNote} Save the map to a folder, download it, or keep it in memory. Install the ArchLens CLI for forensics, watch mode and CI publish.`,
         });
         return true;
       }
@@ -498,6 +510,128 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
       set({ liteScanProgress: null });
       setIsLoading(false);
     }
+  },
+
+  persistBrowserLiteScanToFolder: async () => {
+    const {
+      folderWorkspacePort,
+      workingCopyPort,
+      logger,
+      setNotification,
+      initSchema,
+      setIsLoading,
+    } = get();
+    if (!get().isBrowserLiteWorkspace || get().browserLiteSavedToFolder) return false;
+
+    setIsLoading(true);
+    try {
+      const files = await collectBrowserLiteYamlFiles(get);
+      if (files.length === 0) {
+        setNotification?.({
+          type: 'error',
+          title: 'Save map failed',
+          message: 'There is no scan YAML to write.',
+        });
+        return false;
+      }
+
+      const selected = await folderWorkspacePort.selectDirectory();
+      if (!selected) return false;
+
+      const { written, failed } = await writeYamlFilesToWorkspace(folderWorkspacePort, files);
+      if (written.length === 0) {
+        setNotification?.({
+          type: 'error',
+          title: 'Save map failed',
+          message: 'Could not write Blueprint YAML into that folder.',
+        });
+        return false;
+      }
+
+      const opened = await loadWorkspaceFromYamlFiles({
+        files,
+        workspaceName: folderWorkspacePort.getDirectoryName() || get().workspaceName,
+        preferredEntryPath: get().currentFilePath,
+        workingCopy: workingCopyPort,
+        logger,
+        setNotification,
+        initSchema,
+        set,
+        isSampleWorkspace: false,
+        isBrowserLiteWorkspace: true,
+        browserLiteSavedToFolder: true,
+        committedPorts: { workspacePort: folderWorkspacePort },
+      });
+
+      if (opened) {
+        setNotification?.({
+          type: 'success',
+          title: 'Map saved to folder',
+          message: `Wrote ${written.length} Blueprint YAML file${written.length === 1 ? '' : 's'}${
+            failed.length > 0 ? ` (${failed.length} skipped)` : ''
+          }. Later edits use draft/commit like other folder workspaces.`,
+        });
+      }
+      return opened;
+    } catch (err) {
+      logger.error('Failed to save browser lite scan to folder', err);
+      setNotification?.({
+        type: 'error',
+        title: 'Save map failed',
+        message: (err as Error).message || 'Could not save the map to a folder.',
+      });
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  },
+
+  downloadBrowserLiteScan: async () => {
+    const { fileSystemPort, logger, setNotification } = get();
+    if (!get().isBrowserLiteWorkspace) return false;
+
+    try {
+      const files = await collectBrowserLiteYamlFiles(get);
+      if (files.length === 0) return false;
+
+      if (files.length === 1) {
+        const file = files[0]!;
+        const saved = await fileSystemPort.saveSchema(
+          file.content,
+          file.name.split('/').pop() || file.name
+        );
+        if (!saved) return false;
+      } else {
+        const zip = createStoreZip(files);
+        triggerNamedDownload(
+          `${slugDirectoryName(get().workspaceName)}-blueprints.zip`,
+          bytesToZipBlob(zip)
+        );
+      }
+
+      set({ isBrowserLitePersistPromptOpen: false });
+      setNotification?.({
+        type: 'success',
+        title: 'Map downloaded',
+        message:
+          files.length === 1
+            ? 'Blueprint YAML downloaded. The map stays in memory until you save it to a folder.'
+            : `Downloaded ${files.length} Blueprint YAML files as a zip. The map stays in memory until you save it to a folder.`,
+      });
+      return true;
+    } catch (err) {
+      logger.error('Failed to download browser lite scan', err);
+      setNotification?.({
+        type: 'error',
+        title: 'Download failed',
+        message: (err as Error).message || 'Could not download the scan map.',
+      });
+      return false;
+    }
+  },
+
+  declineBrowserLiteScanPersist: () => {
+    set({ isBrowserLitePersistPromptOpen: false });
   },
 
   clearWorkspaceDrafts: async () => {
@@ -631,3 +765,33 @@ export const createIoState = (set: BlueprintStoreSet, get: () => IoStateDeps): I
     return true;
   },
 });
+
+async function collectBrowserLiteYamlFiles(
+  get: () => IoStateDeps
+): Promise<Array<{ name: string; content: string }>> {
+  const { workspacePort, currentFilePath, yamlCode, loadedSystems } = get();
+  const diskFiles = await workspacePort.readDirectoryFiles();
+  const overlays = new Map<string, string>();
+  for (const system of loadedSystems) {
+    overlays.set(system.path, serializeSchemaToYaml(system.schema));
+  }
+  if (currentFilePath) {
+    overlays.set(currentFilePath, yamlCode);
+  }
+  return overlayWorkingYamlFiles(diskFiles, overlays);
+}
+
+function slugDirectoryName(name: string): string {
+  const slug = name
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return slug || 'browser-scan';
+}
+
+function bytesToZipBlob(bytes: Uint8Array): Blob {
+  const copy = new ArrayBuffer(bytes.byteLength);
+  new Uint8Array(copy).set(bytes);
+  return new Blob([copy], { type: 'application/zip' });
+}

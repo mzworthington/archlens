@@ -18,7 +18,7 @@ On bare `/workspace`, ArchLens shows a **startup chooser** - it does **not** aut
 
 Deep links (`/workspace/…`) skip the chooser and bootstrap the demo so entity URLs resolve. Opening a folder or running a browser scan this session prevents demo from overriding that choice.
 
-You can open a folder, run a browser lite scan, load a single YAML file or import Mermaid/IaC anytime from the toolbar **Open** menu.
+You can open a folder, run a browser lite scan, load a single YAML file or import Mermaid/IaC anytime from the toolbar **Open** menu. After a browser scan, save the generated map to a blueprints folder (or download it) so later edits use draft/commit. Keep it in memory if you are still exploring.
 
 ## Layout
 

@@ -6,11 +6,20 @@ export interface UseKeyboardNavigationOptions {
   onUndo?: () => void;
   onRedo?: () => void;
   onShortcutsOpen?: () => void;
+  onSaveLiteScanMap?: () => void;
   disabled?: boolean;
 }
 
 export function useKeyboardNavigation(options: UseKeyboardNavigationOptions = {}) {
-  const { onSearchOpen, onZoomOut, onUndo, onRedo, onShortcutsOpen, disabled = false } = options;
+  const {
+    onSearchOpen,
+    onZoomOut,
+    onUndo,
+    onRedo,
+    onShortcutsOpen,
+    onSaveLiteScanMap,
+    disabled = false,
+  } = options;
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -26,7 +35,10 @@ export function useKeyboardNavigation(options: UseKeyboardNavigationOptions = {}
       const isZ = e.key.toLowerCase() === 'z';
       const isY = e.key.toLowerCase() === 'y';
 
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's' && onSaveLiteScanMap) {
+        e.preventDefault();
+        onSaveLiteScanMap();
+      } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         onSearchOpen?.();
       } else if (e.key === '/') {
@@ -49,7 +61,7 @@ export function useKeyboardNavigation(options: UseKeyboardNavigationOptions = {}
         onRedo();
       }
     },
-    [disabled, onSearchOpen, onZoomOut, onUndo, onRedo, onShortcutsOpen]
+    [disabled, onSearchOpen, onZoomOut, onUndo, onRedo, onShortcutsOpen, onSaveLiteScanMap]
   );
 
   useEffect(() => {

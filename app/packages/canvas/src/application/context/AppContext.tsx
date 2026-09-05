@@ -72,10 +72,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode; ports?: AppPorts
       fileSystemPort: ports.fileSystemPort,
       folderWorkspacePort: ports.folderWorkspacePort,
       sampleWorkspacePort: ports.sampleWorkspacePort,
-      // Preserve the bundled sample adapter when already open - StrictMode remounts
-      // and races with "Open demo blueprints" used to overwrite it with the folder
-      // adapter, breaking lazy diagram loads (zoom-out / URL sync).
-      ...(state.isSampleWorkspace ? {} : { workspacePort: ports.folderWorkspacePort }),
+      // Preserve sample / in-memory lite-scan adapters on remount. After a scan is
+      // saved to a folder, bind the folder port so draft/commit writes to disk.
+      ...(state.isSampleWorkspace ||
+      (state.isBrowserLiteWorkspace && !state.browserLiteSavedToFolder)
+        ? {}
+        : { workspacePort: ports.folderWorkspacePort }),
       logger: ports.logger,
       layoutRegistry: ports.layoutRegistry,
       workingCopyPort: ports.workingCopyPort,

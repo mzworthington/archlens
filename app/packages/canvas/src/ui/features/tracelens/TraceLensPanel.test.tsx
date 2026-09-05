@@ -9,6 +9,7 @@ describe('TraceLensPanel', () => {
   beforeEach(() => {
     useBlueprintStore.setState({
       isTraceLensMode: true,
+      isBrowserLiteWorkspace: false,
       loadedSystems: [
         {
           path: 'canvas-components.yaml',
@@ -196,6 +197,42 @@ describe('TraceLensPanel', () => {
     expect(summary).toHaveTextContent('900');
     expect(summary).not.toHaveTextContent('1,680');
     expect(summary).toHaveTextContent('40');
+  });
+
+  it('does not tell a browser-scan workspace that git hotspots exist in this tab', () => {
+    useBlueprintStore.setState({
+      isBrowserLiteWorkspace: true,
+      isWorkspaceOpen: true,
+      workspaceName: 'scanned-repo',
+      loadedSystems: [
+        {
+          path: 'context.yaml',
+          name: 'Scanned',
+          schema: {
+            name: 'Scanned',
+            version: '1.0.0',
+            level: 'context',
+            dependencies: [],
+            nodes: [{ entityRef: 'scanned/web', name: 'Web', type: 'web-app' }],
+          },
+        },
+      ],
+    });
+
+    const { hook } = memoryLocation({ path: '/workspace?lens=tracelens' });
+    render(
+      <Router hook={hook}>
+        <TraceLensPanel />
+      </Router>
+    );
+
+    expect(screen.getByTestId('browser-lite-tracelens-honesty')).toHaveTextContent(
+      /Git hotspots are not available in this tab/i
+    );
+    expect(screen.queryByText(/Re-scan with git enabled/i)).not.toBeInTheDocument();
+    expect(screen.getByTestId('workspace-complexity-summary')).toHaveTextContent(
+      /Git hotspots need the ArchLens CLI, not this tab/i
+    );
   });
 
   it('shows guidance when no blueprints are in scope', () => {

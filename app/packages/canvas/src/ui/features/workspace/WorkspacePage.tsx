@@ -18,7 +18,8 @@ import { WorkspacePanelRail } from './layout/WorkspacePanelRail';
 import { useWorkspacePanelLayout } from './layout/useWorkspacePanelLayout';
 import { WORKSPACE_PANEL_WIDTH } from './layout/workspacePanelLayout';
 export const WorkspacePage: React.FC = () => {
-  const { setIsShortcutsOpen } = useBlueprintStore();
+  const { setIsShortcutsOpen, isBrowserLiteWorkspace, browserLiteSavedToFolder } =
+    useBlueprintStore();
   const layout = useWorkspacePanelLayout();
   const workspaceDialogs = useWorkspaceDialogs();
 
@@ -30,6 +31,17 @@ export const WorkspacePage: React.FC = () => {
 
   useKeyboardNavigation({
     onShortcutsOpen: () => setIsShortcutsOpen(true),
+    onSaveLiteScanMap:
+      isBrowserLiteWorkspace && !browserLiteSavedToFolder
+        ? () => {
+            const state = useBlueprintStore.getState();
+            if (state.isBrowserLitePersistPromptOpen) {
+              void state.persistBrowserLiteScanToFolder();
+              return;
+            }
+            state.setBrowserLitePersistPromptOpen(true);
+          }
+        : undefined,
   });
 
   const showLeftPanel = layout.showLeftSlot;

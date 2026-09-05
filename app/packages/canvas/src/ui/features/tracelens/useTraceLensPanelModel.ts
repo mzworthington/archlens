@@ -42,6 +42,7 @@ export function useTraceLensPanelModel() {
     loadedSystems,
     workspaceCatalog,
     isWorkspaceOpen,
+    isBrowserLiteWorkspace,
     isSourceCodeOpen,
     sourceCodeFilepath,
     openSourceCodeDialog,
@@ -53,6 +54,7 @@ export function useTraceLensPanelModel() {
       loadedSystems: state.loadedSystems,
       workspaceCatalog: state.workspaceCatalog,
       isWorkspaceOpen: state.isWorkspaceOpen,
+      isBrowserLiteWorkspace: state.isBrowserLiteWorkspace,
       isSourceCodeOpen: state.isSourceCodeOpen,
       sourceCodeFilepath: state.sourceCodeFilepath,
       openSourceCodeDialog: state.openSourceCodeDialog,
@@ -214,6 +216,7 @@ export function useTraceLensPanelModel() {
   );
 
   return {
+    isBrowserLiteWorkspace,
     loadedSystems,
     setLocation,
     scopeEntityRef,

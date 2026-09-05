@@ -27,6 +27,7 @@ const SHORTCUTS: { section: string; rows: ShortcutRow[] }[] = [
       { keys: ['⌘', 'Z'], description: 'Undo' },
       { keys: ['⌘', '⇧', 'Z'], description: 'Redo' },
       { keys: ['⌘', 'Y'], description: 'Redo (Windows)' },
+      { keys: ['⌘', 'S'], description: 'Save scan map to folder (browser lite scan)' },
     ],
   },
   {
