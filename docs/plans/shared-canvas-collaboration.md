@@ -113,13 +113,13 @@ Primary surface: [`Canvas.tsx`](../../app/packages/canvas/src/ui/features/worksp
 
 Zustand store `useBlueprintStore` ([`store.ts`](../../app/packages/canvas/src/application/store/store.ts)) composes five slices:
 
-| Slice                  | Path                                             | Role                                  |
-| ---------------------- | ------------------------------------------------ | ------------------------------------- |
-| Composition            | `application/store/store.ts`                     | Creates store                         |
-| Diagram                | `states/diagramState.ts` (+ folder)              | Schema, RF nodes/edges, undo, imports |
-| IO                     | `states/ioState.ts`                              | Ports, open/save workspace            |
-| UI                     | `states/uiState.ts`                              | Panels, filters, notifications        |
-| Resilience / TraceLens | `states/resilienceState.ts`, `traceLensState.ts` | Lens modes                            |
+| Slice                  | Path                                             | Role                                      |
+| ---------------------- | ------------------------------------------------ | ----------------------------------------- |
+| Composition            | `application/store/store.ts`                     | Creates store                             |
+| Diagram                | `states/diagramState.ts` (+ folder)              | Schema, RF nodes/edges, undo, imports     |
+| IO                     | `states/ioState.ts` (+ open/save slices)         | Ports; workspace open/save live in slices |
+| UI                     | `states/uiState.ts`                              | Panels, filters, notifications            |
+| Resilience / TraceLens | `states/resilienceState.ts`, `traceLensState.ts` | Lens modes                                |
 
 Active diagram fields that matter for collab:
 

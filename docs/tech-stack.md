@@ -34,7 +34,7 @@ ArchLens Canvas is a **single-page app** served from `app/packages/canvas/`:
   - `schemas/` → `/schemas/*` (public JSON Schema for BlueprintSpec and ChaosSpec)
   - `docs/screenshots/` → `/docs-assets/*`
 - **Tailwind CSS 4** (`@tailwindcss/vite`) for styling.
-- **Zustand** store split into `uiState`, `diagramState`, `ioState` and `resilienceState`.
+- **Zustand** store split into `uiState`, `diagramState`, `ioState` (open/save slices) and `resilienceState`.
 - **React Flow** for the interactive canvas; **dagre**, **ELK** and **d3-hierarchy** for layout.
 - **Mermaid** for import/export; **tree-sitter** WASM for syntax highlighting in the code viewer.
 - **vite-plugin-pwa** + Workbox for offline shell caching and bundled-blueprint `CacheFirst` runtime rules.

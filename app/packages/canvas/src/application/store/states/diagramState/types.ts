@@ -1,5 +1,5 @@
 import type { UiState } from '../uiState';
-import type { IoState } from '../ioState';
+import type { IoState } from '../ioState/types';
 import type {
   SchemaVersionAssessment,
   SystemSchema,

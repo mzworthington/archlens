@@ -28,10 +28,14 @@ graph TD
         StoreEntry[store.ts - Composition Root]
         UiState[uiState.ts - Layout & Panels]
         DiagramState[diagramState.ts - Canvas & Navigation]
-        IoState[ioState.ts - File Systems Sync]
+        IoState[ioState.ts - ports + compose]
+        OpenSlice[openWorkspaceActions]
+        SaveSlice[saveWorkspaceActions]
         StoreEntry --> UiState
         StoreEntry --> DiagramState
         StoreEntry --> IoState
+        IoState --> OpenSlice
+        IoState --> SaveSlice
     end
 
     subgraph Core ["/core"]
