@@ -118,6 +118,29 @@ describe('SourceCodeDialog', () => {
     ).toBeGreaterThan(0);
   });
 
+  it('does not render a link when the viewer URL is a javascript: payload', () => {
+    mockedHook.mockReturnValue({
+      result: {
+        ok: false,
+        error: 'HTTP 404',
+        viewerUrl: 'javascript:alert(1)',
+      },
+      loading: false,
+      reload: vi.fn(),
+    });
+
+    render(
+      <SourceCodeDialog
+        isOpen
+        onClose={() => {}}
+        filepath="src/answer.ts"
+        isWorkspaceOpen={false}
+      />
+    );
+
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
+
   it('allows user to save PAT token for private repository access', async () => {
     const onSavePat = vi.fn();
     mockedHook.mockReturnValue({

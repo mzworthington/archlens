@@ -1,10 +1,17 @@
 const HOST_KEY_PREFIX = 'archlens.collab.hostToken.';
-const SECRET_KEY_PREFIX = 'archlens.collab.guestSecret.';
 const CLAIM_KEY_PREFIX = 'archlens.collab.pendingClaim.';
+
+const guestSecrets = new Map<string, string>();
+const claimSecrets = new Map<string, string>();
 
 type PendingCollabClaim = {
   access: 'open' | 'secret';
   secret?: string;
+  expiresAtMs?: number;
+};
+
+type PersistedCollabClaim = {
+  access: 'open' | 'secret';
   expiresAtMs?: number;
 };
 
@@ -27,18 +34,27 @@ export function readCollabHostToken(roomId: string): string | null {
 export function saveCollabGuestSecret(roomId: string, secret: string): void {
   const trimmed = secret.trim();
   if (!trimmed) {
-    sessionStorage.removeItem(`${SECRET_KEY_PREFIX}${roomId}`);
+    guestSecrets.delete(roomId);
     return;
   }
-  sessionStorage.setItem(`${SECRET_KEY_PREFIX}${roomId}`, trimmed);
+  guestSecrets.set(roomId, trimmed);
 }
 
 function readCollabGuestSecret(roomId: string): string | null {
-  return sessionStorage.getItem(`${SECRET_KEY_PREFIX}${roomId}`);
+  return guestSecrets.get(roomId) ?? null;
 }
 
 function savePendingCollabClaim(roomId: string, claim: PendingCollabClaim): void {
-  sessionStorage.setItem(`${CLAIM_KEY_PREFIX}${roomId}`, JSON.stringify(claim));
+  if (claim.secret) {
+    claimSecrets.set(roomId, claim.secret);
+  } else {
+    claimSecrets.delete(roomId);
+  }
+  const persisted: PersistedCollabClaim = {
+    access: claim.access,
+    ...(claim.expiresAtMs !== undefined ? { expiresAtMs: claim.expiresAtMs } : {}),
+  };
+  sessionStorage.setItem(`${CLAIM_KEY_PREFIX}${roomId}`, JSON.stringify(persisted));
 }
 
 function peekPendingCollabClaim(roomId: string): PendingCollabClaim | undefined {
@@ -49,9 +65,10 @@ function peekPendingCollabClaim(roomId: string): PendingCollabClaim | undefined 
     if (typeof parsed !== 'object' || parsed === null) return undefined;
     const record = parsed as Record<string, unknown>;
     if (record.access !== 'open' && record.access !== 'secret') return undefined;
+    const memorySecret = claimSecrets.get(roomId);
     return {
       access: record.access,
-      secret: typeof record.secret === 'string' ? record.secret : undefined,
+      secret: memorySecret,
       expiresAtMs: typeof record.expiresAtMs === 'number' ? record.expiresAtMs : undefined,
     };
   } catch {

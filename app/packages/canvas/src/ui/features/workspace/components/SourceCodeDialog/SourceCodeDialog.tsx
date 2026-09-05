@@ -29,13 +29,19 @@ function ExternalHttpLink({
   children: React.ReactNode;
   'aria-label'?: string;
 }) {
-  // Protocol allowlist at the sink — CodeQL js/xss-through-dom.
-  if (!href.startsWith('https://') && !href.startsWith('http://')) {
+  let safeHref: string | undefined;
+  try {
+    const parsed = new URL(href);
+    if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+      safeHref = parsed.href;
+    }
+  } catch {
     return null;
   }
+  if (!safeHref) return null;
   return (
     <a
-      href={href}
+      href={safeHref}
       target="_blank"
       rel="noopener noreferrer"
       className={className}

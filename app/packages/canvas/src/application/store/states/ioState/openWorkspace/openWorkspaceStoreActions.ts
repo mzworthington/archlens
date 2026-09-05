@@ -43,6 +43,7 @@ type IoGet = () => IoState & DiagramState & UiState;
 const BROWSER_LITE_SCAN_LOADING_MESSAGE = 'Scanning repository in browser…';
 
 let browserLiteScanController: AbortController | null = null;
+let browserLitePersistInFlight = false;
 
 export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoGet) {
   return {
@@ -315,7 +316,8 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
         setNotification,
         setIsLoading,
       } = get();
-      if (!isMemoryScanWorkspace) return false;
+      if (!isMemoryScanWorkspace || browserLitePersistInFlight) return false;
+      browserLitePersistInFlight = true;
       setIsLoading(true);
       try {
         const files = await workspacePort.readDirectoryFiles();
@@ -350,6 +352,7 @@ export function createOpenWorkspaceStoreActions(set: BlueprintStoreSet, get: IoG
         });
         return false;
       } finally {
+        browserLitePersistInFlight = false;
         setIsLoading(false);
       }
     },

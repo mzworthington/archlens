@@ -468,6 +468,47 @@ nodes: []`);
       expect(folderWrites.length).toBeGreaterThan(1);
     });
 
+    it('ignores a second persist while a folder save is already in flight', async () => {
+      let releasePicker: () => void = () => undefined;
+      const pickerGate = new Promise<void>(resolve => {
+        releasePicker = resolve;
+      });
+      const selectDirectory = vi.fn(async () => {
+        await pickerGate;
+        return true;
+      });
+      const writeFile = vi.fn(async () => true);
+      useBlueprintStore.setState({
+        isMemoryScanWorkspace: true,
+        isScanMapPersistOpen: true,
+        isBrowserLiteWorkspace: true,
+        folderWorkspacePort: {
+          ...mockWorkspacePort,
+          getDirectoryName: () => 'blueprints',
+          selectDirectory,
+          writeFile,
+        },
+        workspacePort: {
+          ...mockWorkspacePort,
+          readDirectoryFiles: async () => [
+            { name: 'demo/context.yaml', content: 'level: context\n' },
+          ],
+        },
+      });
+
+      const first = useBlueprintStore.getState().persistBrowserScanMapToFolder();
+      await vi.waitFor(() => {
+        expect(selectDirectory).toHaveBeenCalledTimes(1);
+      });
+      const second = await useBlueprintStore.getState().persistBrowserScanMapToFolder();
+      expect(second).toBe(false);
+      expect(selectDirectory).toHaveBeenCalledTimes(1);
+
+      releasePicker();
+      expect(await first).toBe(true);
+      expect(selectDirectory).toHaveBeenCalledTimes(1);
+    });
+
     it('leaves the map in memory when save is declined', async () => {
       const writeFile = vi.fn(async () => true);
       const memoryPort: WorkspacePort = {
