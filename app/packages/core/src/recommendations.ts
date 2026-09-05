@@ -1,4 +1,5 @@
 export * from './recommendations/types';
+export * from './recommendations/compareByPriority';
 export * from './recommendations/buildRecommendations';
 export * from './recommendations/resilienceRecommendations';
 export * from './recommendations/refactorRecommendations';

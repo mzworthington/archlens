@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { SystemSchema } from '@archlens/core';
 import {
   buildEstateRecommendations,
+  estateRankScore,
   filterEstateRecommendations,
   rankEstateItems,
 } from './buildEstateRecommendations';
@@ -92,5 +93,65 @@ describe('buildEstateRecommendations', () => {
     expect(items[0]!.recommendation.priority).toBeGreaterThanOrEqual(
       items[items.length - 1]!.recommendation.priority
     );
+  });
+
+  it('returns an empty ranking when the estate has no diagrams', () => {
+    const report = buildEstateRecommendations([]);
+    expect(report.recommendations).toEqual([]);
+    expect(report.summary.diagramCount).toBe(0);
+    expect(report.summary.recommendationCount).toBe(0);
+
+    const ranking = rankEstateItems([]);
+    expect(ranking.items).toEqual([]);
+    expect(ranking.report.recommendations).toEqual([]);
+  });
+
+  it('keeps rank order when recommendation wording is rewritten', () => {
+    const systems = [
+      {
+        path: 'shop-containers.yaml',
+        name: 'Shop containers',
+        schema: stressSchema(),
+      },
+    ];
+
+    const { items } = rankEstateItems(systems);
+    const order = items.map(item => item.recommendation.id);
+    const rewritten = items.map((item, index) => ({
+      ...item,
+      recommendation: {
+        ...item.recommendation,
+        title: `rewritten-title-${index}`,
+        detail: `rewritten-detail-${index}`,
+        narration: {
+          provider: 'adviceLens' as const,
+          detail: `rewritten-narration-${index}`,
+          citations: [],
+        },
+      },
+    }));
+
+    rewritten.sort((left, right) => estateRankScore(right) - estateRankScore(left));
+    expect(rewritten.map(item => item.recommendation.id)).toEqual(order);
+    expect(estateRankScore(rewritten[0]!)).toBe(rewritten[0]!.recommendation.priority);
+  });
+
+  it('keeps the same relative order on forensics and resilience lists', () => {
+    const systems = [
+      {
+        path: 'shop-containers.yaml',
+        name: 'Shop containers',
+        schema: stressSchema(),
+      },
+    ];
+
+    const report = buildEstateRecommendations(systems);
+    const { items } = rankEstateItems(systems);
+    const resilienceOrder = report.recommendations.map(recommendation => recommendation.id);
+    const rankedResilienceOrder = items
+      .filter(item => !item.isFallback)
+      .map(item => item.recommendation.id);
+
+    expect(rankedResilienceOrder).toEqual(resilienceOrder);
   });
 });

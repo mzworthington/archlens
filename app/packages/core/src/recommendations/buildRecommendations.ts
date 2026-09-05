@@ -7,6 +7,7 @@ import type { SimulationResult } from '../resilience/simulation';
 import { buildForensicsRecommendations } from './forensicsRecommendations';
 import { buildRefactorRecommendations } from './refactorRecommendations';
 import { buildResilienceRecommendations } from './resilienceRecommendations';
+import { compareByPriorityDesc } from './compareByPriority';
 import type { Recommendation } from './types';
 
 export interface BuildRecommendationsInput {
@@ -29,7 +30,7 @@ function mergeRecommendations(lists: readonly Recommendation[][]): Recommendatio
     }
   }
 
-  return [...byId.values()].sort((a, b) => b.priority - a.priority);
+  return [...byId.values()].sort(compareByPriorityDesc);
 }
 
 /**

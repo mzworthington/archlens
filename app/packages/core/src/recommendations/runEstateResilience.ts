@@ -10,6 +10,7 @@ import { runResilienceSimulation } from '../resilience/simulation';
 import { buildSimulationSchemaForFaults } from '../resilience/simulationSchema';
 import type { LoadedSystemInput } from '../rules/workspaceExternals';
 import { buildRecommendations } from './buildRecommendations';
+import { compareByPriorityDesc } from './compareByPriority';
 import {
   buildDefaultEstateScenarios,
   chaosSpecToEstateScenario,
@@ -231,7 +232,7 @@ export function runEstateResilience(
   }
 
   const recommendations = [...diagramReports.flatMap(report => report.recommendations)].sort(
-    (a, b) => b.priority - a.priority
+    compareByPriorityDesc
   );
 
   const worstOverallSla =

@@ -11,6 +11,7 @@ import {
   isResilienceAdviceTarget,
   resolveAdviceApplicability,
 } from './resilienceAdviceEligibility';
+import { compareByPriorityDesc } from './compareByPriority';
 import type { Recommendation, RecommendationAction } from './types';
 
 const COMPOSITE_RISK_THRESHOLD = 0.15;
@@ -156,5 +157,5 @@ export function buildForensicsRecommendations(
     recommendations.push(recommendation);
   }
 
-  return recommendations.sort((a, b) => b.priority - a.priority);
+  return recommendations.sort(compareByPriorityDesc);
 }

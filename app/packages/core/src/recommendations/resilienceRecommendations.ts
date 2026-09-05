@@ -3,6 +3,7 @@ import { pubSubBrokersForPublisher, pubSubPeersOnBroker } from '../resilience/gr
 import { INTEGRITY_PEER_FACTOR } from '../resilience/integrityRadius';
 import { resolveNodeResilience } from '../resilience/nodeResilience';
 import { detectSpofCallSites } from '../resilience/simulation';
+import { compareByPriorityDesc } from './compareByPriority';
 import { isResilienceAdviceTarget, isThirdPartyDependency } from './resilienceAdviceEligibility';
 import type { Recommendation } from './types';
 
@@ -48,7 +49,7 @@ function mergeUniqueRecommendations(lists: readonly Recommendation[][]): Recomme
       }
     }
   }
-  return [...byId.values()].sort((a, b) => b.priority - a.priority);
+  return [...byId.values()].sort(compareByPriorityDesc);
 }
 
 function recommendCircuitBreakers(ctx: ResilienceRecommendationContext): Recommendation[] {
